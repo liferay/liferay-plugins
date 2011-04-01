@@ -14,7 +14,13 @@
 
 package com.liferay.knowledgebase.hook.upgrade.v1_0_0;
 
+import com.liferay.portal.kernel.dao.jdbc.DataAccess;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
+
+import java.sql.Connection;
+import java.sql.DatabaseMetaData;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 /**
  * @author Peter Shin
@@ -22,7 +28,7 @@ import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 public class UpgradeArticle extends UpgradeProcess {
 
 	protected void doUpgrade() throws Exception {
-		if (!tableHasColumn("KB_Article", "status")) {
+		if (hasTable("KB_Article") && !tableHasColumn("KB_Article", "status")) {
 			updateArticles();
 		}
 	}
@@ -37,6 +43,29 @@ public class UpgradeArticle extends UpgradeProcess {
 		runSQL("update KB_Article set statusByUserId = userId");
 		runSQL("update KB_Article set statusByUserName = userName");
 		runSQL("update KB_Article set statusDate = modifiedDate");
+	}
+
+	public boolean hasTable(String tableName) throws Exception {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		try {
+			con = DataAccess.getConnection();
+
+			DatabaseMetaData metadata = con.getMetaData();
+
+			rs = metadata.getTables(null, null, tableName, null);
+
+			while (rs.next()) {
+				return true;
+			}
+		}
+		finally {
+			DataAccess.cleanUp(con, ps, rs);
+		}
+
+		return false;
 	}
 
 }

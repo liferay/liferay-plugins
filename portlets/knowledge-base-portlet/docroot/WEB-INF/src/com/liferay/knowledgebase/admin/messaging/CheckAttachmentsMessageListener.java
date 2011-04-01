@@ -14,7 +14,7 @@
 
 package com.liferay.knowledgebase.admin.messaging;
 
-import com.liferay.knowledgebase.service.ArticleLocalServiceUtil;
+import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
 import com.liferay.portal.kernel.messaging.BaseMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
 
@@ -25,7 +25,7 @@ import com.liferay.portal.kernel.messaging.Message;
 public class CheckAttachmentsMessageListener extends BaseMessageListener {
 
 	protected void doReceive(Message message) throws Exception {
-		ArticleLocalServiceUtil.checkAttachments();
+		KBArticleLocalServiceUtil.checkAttachments();
 	}
 
 }

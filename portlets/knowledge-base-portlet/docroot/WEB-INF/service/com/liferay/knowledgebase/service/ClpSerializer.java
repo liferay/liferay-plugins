@@ -14,9 +14,9 @@
 
 package com.liferay.knowledgebase.service;
 
-import com.liferay.knowledgebase.model.ArticleClp;
-import com.liferay.knowledgebase.model.CommentClp;
-import com.liferay.knowledgebase.model.TemplateClp;
+import com.liferay.knowledgebase.model.KBArticleClp;
+import com.liferay.knowledgebase.model.KBCommentClp;
+import com.liferay.knowledgebase.model.KBTemplateClp;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -101,16 +101,16 @@ public class ClpSerializer {
 
 		String oldModelClassName = oldModelClass.getName();
 
-		if (oldModelClassName.equals(ArticleClp.class.getName())) {
-			return translateInputArticle(oldModel);
+		if (oldModelClassName.equals(KBArticleClp.class.getName())) {
+			return translateInputKBArticle(oldModel);
 		}
 
-		if (oldModelClassName.equals(CommentClp.class.getName())) {
-			return translateInputComment(oldModel);
+		if (oldModelClassName.equals(KBCommentClp.class.getName())) {
+			return translateInputKBComment(oldModel);
 		}
 
-		if (oldModelClassName.equals(TemplateClp.class.getName())) {
-			return translateInputTemplate(oldModel);
+		if (oldModelClassName.equals(KBTemplateClp.class.getName())) {
+			return translateInputKBTemplate(oldModel);
 		}
 
 		return oldModel;
@@ -128,8 +128,8 @@ public class ClpSerializer {
 		return newList;
 	}
 
-	public static Object translateInputArticle(BaseModel<?> oldModel) {
-		ArticleClp oldCplModel = (ArticleClp)oldModel;
+	public static Object translateInputKBArticle(BaseModel<?> oldModel) {
+		KBArticleClp oldCplModel = (KBArticleClp)oldModel;
 
 		Thread currentThread = Thread.currentThread();
 
@@ -139,7 +139,7 @@ public class ClpSerializer {
 			currentThread.setContextClassLoader(_classLoader);
 
 			try {
-				Class<?> newModelClass = Class.forName("com.liferay.knowledgebase.model.impl.ArticleImpl",
+				Class<?> newModelClass = Class.forName("com.liferay.knowledgebase.model.impl.KBArticleImpl",
 						true, _classLoader);
 
 				Object newModel = newModelClass.newInstance();
@@ -151,10 +151,10 @@ public class ClpSerializer {
 
 				method0.invoke(newModel, value0);
 
-				Method method1 = newModelClass.getMethod("setArticleId",
+				Method method1 = newModelClass.getMethod("setKbArticleId",
 						new Class[] { Long.TYPE });
 
-				Long value1 = new Long(oldCplModel.getArticleId());
+				Long value1 = new Long(oldCplModel.getKbArticleId());
 
 				method1.invoke(newModel, value1);
 
@@ -318,8 +318,8 @@ public class ClpSerializer {
 		return oldModel;
 	}
 
-	public static Object translateInputComment(BaseModel<?> oldModel) {
-		CommentClp oldCplModel = (CommentClp)oldModel;
+	public static Object translateInputKBComment(BaseModel<?> oldModel) {
+		KBCommentClp oldCplModel = (KBCommentClp)oldModel;
 
 		Thread currentThread = Thread.currentThread();
 
@@ -329,7 +329,7 @@ public class ClpSerializer {
 			currentThread.setContextClassLoader(_classLoader);
 
 			try {
-				Class<?> newModelClass = Class.forName("com.liferay.knowledgebase.model.impl.CommentImpl",
+				Class<?> newModelClass = Class.forName("com.liferay.knowledgebase.model.impl.KBCommentImpl",
 						true, _classLoader);
 
 				Object newModel = newModelClass.newInstance();
@@ -341,10 +341,10 @@ public class ClpSerializer {
 
 				method0.invoke(newModel, value0);
 
-				Method method1 = newModelClass.getMethod("setCommentId",
+				Method method1 = newModelClass.getMethod("setKbCommentId",
 						new Class[] { Long.TYPE });
 
-				Long value1 = new Long(oldCplModel.getCommentId());
+				Long value1 = new Long(oldCplModel.getKbCommentId());
 
 				method1.invoke(newModel, value1);
 
@@ -431,8 +431,8 @@ public class ClpSerializer {
 		return oldModel;
 	}
 
-	public static Object translateInputTemplate(BaseModel<?> oldModel) {
-		TemplateClp oldCplModel = (TemplateClp)oldModel;
+	public static Object translateInputKBTemplate(BaseModel<?> oldModel) {
+		KBTemplateClp oldCplModel = (KBTemplateClp)oldModel;
 
 		Thread currentThread = Thread.currentThread();
 
@@ -442,7 +442,7 @@ public class ClpSerializer {
 			currentThread.setContextClassLoader(_classLoader);
 
 			try {
-				Class<?> newModelClass = Class.forName("com.liferay.knowledgebase.model.impl.TemplateImpl",
+				Class<?> newModelClass = Class.forName("com.liferay.knowledgebase.model.impl.KBTemplateImpl",
 						true, _classLoader);
 
 				Object newModel = newModelClass.newInstance();
@@ -454,10 +454,10 @@ public class ClpSerializer {
 
 				method0.invoke(newModel, value0);
 
-				Method method1 = newModelClass.getMethod("setTemplateId",
+				Method method1 = newModelClass.getMethod("setKbTemplateId",
 						new Class[] { Long.TYPE });
 
-				Long value1 = new Long(oldCplModel.getTemplateId());
+				Long value1 = new Long(oldCplModel.getKbTemplateId());
 
 				method1.invoke(newModel, value1);
 
@@ -555,18 +555,18 @@ public class ClpSerializer {
 		String oldModelClassName = oldModelClass.getName();
 
 		if (oldModelClassName.equals(
-					"com.liferay.knowledgebase.model.impl.ArticleImpl")) {
-			return translateOutputArticle(oldModel);
+					"com.liferay.knowledgebase.model.impl.KBArticleImpl")) {
+			return translateOutputKBArticle(oldModel);
 		}
 
 		if (oldModelClassName.equals(
-					"com.liferay.knowledgebase.model.impl.CommentImpl")) {
-			return translateOutputComment(oldModel);
+					"com.liferay.knowledgebase.model.impl.KBCommentImpl")) {
+			return translateOutputKBComment(oldModel);
 		}
 
 		if (oldModelClassName.equals(
-					"com.liferay.knowledgebase.model.impl.TemplateImpl")) {
-			return translateOutputTemplate(oldModel);
+					"com.liferay.knowledgebase.model.impl.KBTemplateImpl")) {
+			return translateOutputKBTemplate(oldModel);
 		}
 
 		return oldModel;
@@ -596,7 +596,7 @@ public class ClpSerializer {
 		}
 	}
 
-	public static Object translateOutputArticle(BaseModel<?> oldModel) {
+	public static Object translateOutputKBArticle(BaseModel<?> oldModel) {
 		Thread currentThread = Thread.currentThread();
 
 		ClassLoader contextClassLoader = currentThread.getContextClassLoader();
@@ -605,7 +605,7 @@ public class ClpSerializer {
 			currentThread.setContextClassLoader(_classLoader);
 
 			try {
-				ArticleClp newModel = new ArticleClp();
+				KBArticleClp newModel = new KBArticleClp();
 
 				Class<?> oldModelClass = oldModel.getClass();
 
@@ -615,11 +615,11 @@ public class ClpSerializer {
 
 				newModel.setUuid(value0);
 
-				Method method1 = oldModelClass.getMethod("getArticleId");
+				Method method1 = oldModelClass.getMethod("getKbArticleId");
 
 				Long value1 = (Long)method1.invoke(oldModel, (Object[])null);
 
-				newModel.setArticleId(value1);
+				newModel.setKbArticleId(value1);
 
 				Method method2 = oldModelClass.getMethod("getResourcePrimKey");
 
@@ -780,7 +780,7 @@ public class ClpSerializer {
 		return oldModel;
 	}
 
-	public static Object translateOutputComment(BaseModel<?> oldModel) {
+	public static Object translateOutputKBComment(BaseModel<?> oldModel) {
 		Thread currentThread = Thread.currentThread();
 
 		ClassLoader contextClassLoader = currentThread.getContextClassLoader();
@@ -789,7 +789,7 @@ public class ClpSerializer {
 			currentThread.setContextClassLoader(_classLoader);
 
 			try {
-				CommentClp newModel = new CommentClp();
+				KBCommentClp newModel = new KBCommentClp();
 
 				Class<?> oldModelClass = oldModel.getClass();
 
@@ -799,11 +799,11 @@ public class ClpSerializer {
 
 				newModel.setUuid(value0);
 
-				Method method1 = oldModelClass.getMethod("getCommentId");
+				Method method1 = oldModelClass.getMethod("getKbCommentId");
 
 				Long value1 = (Long)method1.invoke(oldModel, (Object[])null);
 
-				newModel.setCommentId(value1);
+				newModel.setKbCommentId(value1);
 
 				Method method2 = oldModelClass.getMethod("getGroupId");
 
@@ -880,7 +880,7 @@ public class ClpSerializer {
 		return oldModel;
 	}
 
-	public static Object translateOutputTemplate(BaseModel<?> oldModel) {
+	public static Object translateOutputKBTemplate(BaseModel<?> oldModel) {
 		Thread currentThread = Thread.currentThread();
 
 		ClassLoader contextClassLoader = currentThread.getContextClassLoader();
@@ -889,7 +889,7 @@ public class ClpSerializer {
 			currentThread.setContextClassLoader(_classLoader);
 
 			try {
-				TemplateClp newModel = new TemplateClp();
+				KBTemplateClp newModel = new KBTemplateClp();
 
 				Class<?> oldModelClass = oldModel.getClass();
 
@@ -899,11 +899,11 @@ public class ClpSerializer {
 
 				newModel.setUuid(value0);
 
-				Method method1 = oldModelClass.getMethod("getTemplateId");
+				Method method1 = oldModelClass.getMethod("getKbTemplateId");
 
 				Long value1 = (Long)method1.invoke(oldModel, (Object[])null);
 
-				newModel.setTemplateId(value1);
+				newModel.setKbTemplateId(value1);
 
 				Method method2 = oldModelClass.getMethod("getGroupId");
 

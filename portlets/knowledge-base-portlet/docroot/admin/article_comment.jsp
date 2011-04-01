@@ -17,9 +17,9 @@
 <%@ include file="/admin/init.jsp" %>
 
 <%
-Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
+KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 
-Comment comment = (Comment)request.getAttribute("article_comment.jsp-comment");
+KBComment kbComment = (KBComment)request.getAttribute("article_comment.jsp-kb_comment");
 %>
 
 <div class="kb-article-comment">
@@ -28,8 +28,8 @@ Comment comment = (Comment)request.getAttribute("article_comment.jsp-comment");
 		<td align="center" valign="top">
 			<liferay-ui:user-display
 				displayStyle="<%= 2 %>"
-				userId="<%= comment.getUserId() %>"
-				userName="<%= comment.getUserName() %>"
+				userId="<%= kbComment.getUserId() %>"
+				userName="<%= kbComment.getUserName() %>"
 			/>
 		</td>
 		<td valign="top" width="99%">
@@ -37,7 +37,7 @@ Comment comment = (Comment)request.getAttribute("article_comment.jsp-comment");
 				<strong class="kb-question"><liferay-ui:message key="was-this-information-helpful" /></strong>
 
 				<c:choose>
-					<c:when test="<%= comment.getHelpful() %>">
+					<c:when test="<%= kbComment.getHelpful() %>">
 						<strong class="kb-yes"><liferay-ui:message key="yes" /></strong>
 					</c:when>
 					<c:otherwise>
@@ -49,20 +49,20 @@ Comment comment = (Comment)request.getAttribute("article_comment.jsp-comment");
 			<br />
 
 			<div>
-				<%= comment.getContent() %>
+				<%= kbComment.getContent() %>
 			</div>
 
 			<br />
 
 			<div>
-				<%= LanguageUtil.format(pageContext, "posted-on-x", dateFormatDateTime.format(comment.getModifiedDate())) %>
+				<%= LanguageUtil.format(pageContext, "posted-on-x", dateFormatDateTime.format(kbComment.getModifiedDate())) %>
 			</div>
 
-			<c:if test="<%= (user.getUserId() == comment.getUserId()) || ArticlePermission.contains(permissionChecker, article, ActionKeys.UPDATE) %>">
+			<c:if test="<%= (user.getUserId() == kbComment.getUserId()) || KBArticlePermission.contains(permissionChecker, kbArticle, ActionKeys.UPDATE) %>">
 				<br />
 
 				<%
-				String deleteURL = "javascript:" + renderResponse.getNamespace() + "deleteComment(" + comment.getCommentId() + ");";
+				String deleteURL = "javascript:" + renderResponse.getNamespace() + "deleteKBComment(" + kbComment.getKbCommentId() + ");";
 				%>
 
 				<liferay-ui:icon-delete

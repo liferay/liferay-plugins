@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 
 <model-hints>
-	<model name="com.liferay.knowledgebase.model.Article">
+	<model name="com.liferay.knowledgebase.model.KBArticle">
 		<field name="uuid" type="String" />
-		<field name="articleId" type="long" />
+		<field name="kbArticleId" type="long" />
 		<field name="resourcePrimKey" type="long" />
 		<field name="groupId" type="long" />
 		<field name="companyId" type="long" />
@@ -32,9 +32,9 @@
 		<field name="statusByUserName" type="String" />
 		<field name="statusDate" type="Date" />
 	</model>
-	<model name="com.liferay.knowledgebase.model.Comment">
+	<model name="com.liferay.knowledgebase.model.KBComment">
 		<field name="uuid" type="String" />
-		<field name="commentId" type="long" />
+		<field name="kbCommentId" type="long" />
 		<field name="groupId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
@@ -50,9 +50,9 @@
 			<hint name="default-value">true</hint>
 		</field>
 	</model>
-	<model name="com.liferay.knowledgebase.model.Template">
+	<model name="com.liferay.knowledgebase.model.KBTemplate">
 		<field name="uuid" type="String" />
-		<field name="templateId" type="long" />
+		<field name="kbTemplateId" type="long" />
 		<field name="groupId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />

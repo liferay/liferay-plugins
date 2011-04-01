@@ -54,14 +54,14 @@ String assetTagName = ParamUtil.getString(request, "tag");
 			/>
 
 			<%
-			String viewRecentArticlesURL = StringPool.BLANK;
+			String viewRecentKBArticlesURL = StringPool.BLANK;
 
 			if (!jspPage.equals("/display/view_recent_articles.jsp")) {
 				PortletURL portletURL = renderResponse.createRenderURL();
 
 				portletURL.setParameter("jspPage", "/display/view_recent_articles.jsp");
 
-				viewRecentArticlesURL = portletURL.toString();
+				viewRecentKBArticlesURL = portletURL.toString();
 			}
 			%>
 
@@ -71,7 +71,7 @@ String assetTagName = ParamUtil.getString(request, "tag");
 				label="<%= true %>"
 				message="recent-articles"
 				method="get"
-				url="<%= viewRecentArticlesURL %>"
+				url="<%= viewRecentKBArticlesURL %>"
 			/>
 
 			<c:if test="<%= DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADMINISTRATOR) %>">
@@ -102,14 +102,14 @@ String assetTagName = ParamUtil.getString(request, "tag");
 			<c:if test="<%= themeDisplay.isSignedIn() %>">
 
 				<%
-				String viewSubscribedArticlesURL = StringPool.BLANK;
+				String viewSubscribedKBArticlesURL = StringPool.BLANK;
 
 				if (!jspPage.equals("/display/view_subscribed_articles.jsp")) {
 					PortletURL portletURL = renderResponse.createRenderURL();
 
 					portletURL.setParameter("jspPage", "/display/view_subscribed_articles.jsp");
 
-					viewSubscribedArticlesURL = portletURL.toString();
+					viewSubscribedKBArticlesURL = portletURL.toString();
 				}
 				%>
 
@@ -119,7 +119,7 @@ String assetTagName = ParamUtil.getString(request, "tag");
 					label="<%= true %>"
 					message="my-subscriptions"
 					method="get"
-					url="<%= viewSubscribedArticlesURL %>"
+					url="<%= viewSubscribedKBArticlesURL %>"
 				/>
 			</c:if>
 		</div>
@@ -146,11 +146,11 @@ String assetTagName = ParamUtil.getString(request, "tag");
 
 <c:if test='<%= !jspPage.equals("/display/view.jsp") && ((assetCategoryId > 0) || Validator.isNotNull(assetTagName)) %>'>
 	<div class="portlet-msg-info">
-		<liferay-portlet:renderURL var="viewPRPArticlesURL">
+		<liferay-portlet:renderURL var="viewPRPKBArticlesURL">
 			<portlet:param name="jspPage" value="/display/view.jsp" />
 		</liferay-portlet:renderURL>
 
-		<aui:a href="<%= viewPRPArticlesURL %>">
+		<aui:a href="<%= viewPRPKBArticlesURL %>">
 			<c:choose>
 				<c:when test="<%= assetCategoryId > 0 %>">
 

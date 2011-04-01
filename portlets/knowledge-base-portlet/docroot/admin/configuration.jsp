@@ -23,24 +23,24 @@ String tabs3 = ParamUtil.getString(request, "tabs3", "article");
 String emailFromName = ParamUtil.getString(request, "emailFromName", AdminUtil.getEmailFromName(preferences));
 String emailFromAddress = ParamUtil.getString(request, "emailFromAddress", AdminUtil.getEmailFromAddress(preferences));
 
-boolean emailArticleAddedEnabled = ParamUtil.getBoolean(request, "emailArticleAddedEnabled", AdminUtil.getEmailArticleAddedEnabled(preferences));
-String emailArticleAddedSubject = ParamUtil.getString(request, "emailArticleAddedSubject", AdminUtil.getEmailArticleAddedSubject(preferences));
-String emailArticleAddedBody = ParamUtil.getString(request, "emailArticleAddedBody", AdminUtil.getEmailArticleAddedBody(preferences));
+boolean emailKBArticleAddedEnabled = ParamUtil.getBoolean(request, "emailKBArticleAddedEnabled", AdminUtil.getEmailKBArticleAddedEnabled(preferences));
+String emailKBArticleAddedSubject = ParamUtil.getString(request, "emailKBArticleAddedSubject", AdminUtil.getEmailKBArticleAddedSubject(preferences));
+String emailKBArticleAddedBody = ParamUtil.getString(request, "emailKBArticleAddedBody", AdminUtil.getEmailKBArticleAddedBody(preferences));
 
-boolean emailArticleUpdatedEnabled = ParamUtil.getBoolean(request, "emailArticleUpdatedEnabled", AdminUtil.getEmailArticleUpdatedEnabled(preferences));
-String emailArticleUpdatedSubject = ParamUtil.getString(request, "emailArticleUpdatedSubject", AdminUtil.getEmailArticleUpdatedSubject(preferences));
-String emailArticleUpdatedBody = ParamUtil.getString(request, "emailArticleUpdatedBody", AdminUtil.getEmailArticleUpdatedBody(preferences));
+boolean emailKBArticleUpdatedEnabled = ParamUtil.getBoolean(request, "emailKBArticleUpdatedEnabled", AdminUtil.getEmailKBArticleUpdatedEnabled(preferences));
+String emailKBArticleUpdatedSubject = ParamUtil.getString(request, "emailKBArticleUpdatedSubject", AdminUtil.getEmailKBArticleUpdatedSubject(preferences));
+String emailKBArticleUpdatedBody = ParamUtil.getString(request, "emailKBArticleUpdatedBody", AdminUtil.getEmailKBArticleUpdatedBody(preferences));
 
 String editorParam = StringPool.BLANK;
 String editorBody = StringPool.BLANK;
 
 if (tabs2.equals("article-added-email")) {
-	editorParam = "emailArticleAddedBody";
-	editorBody = emailArticleAddedBody;
+	editorParam = "emailKBArticleAddedBody";
+	editorBody = emailKBArticleAddedBody;
 }
 else if (tabs2.equals("article-updated-email")) {
-	editorParam = "emailArticleUpdatedBody";
-	editorBody = emailArticleUpdatedBody;
+	editorParam = "emailKBArticleUpdatedBody";
+	editorBody = emailKBArticleUpdatedBody;
 }
 %>
 
@@ -62,10 +62,10 @@ else if (tabs2.equals("article-updated-email")) {
 	<aui:input name="tabs2" type="hidden" value="<%= tabs2 %>" />
 	<aui:input name="tabs3" type="hidden" value="<%= tabs3 %>" />
 
-	<liferay-ui:error key="emailArticleAddedBody" message="please-enter-a-valid-body" />
-	<liferay-ui:error key="emailArticleAddedSubject" message="please-enter-a-valid-subject" />
-	<liferay-ui:error key="emailArticleUpdatedBody" message="please-enter-a-valid-body" />
-	<liferay-ui:error key="emailArticleUpdatedSubject" message="please-enter-a-valid-subject" />
+	<liferay-ui:error key="emailKBArticleAddedBody" message="please-enter-a-valid-body" />
+	<liferay-ui:error key="emailKBArticleAddedSubject" message="please-enter-a-valid-subject" />
+	<liferay-ui:error key="emailKBArticleUpdatedBody" message="please-enter-a-valid-body" />
+	<liferay-ui:error key="emailKBArticleUpdatedSubject" message="please-enter-a-valid-subject" />
 	<liferay-ui:error key="emailFromAddress" message="please-enter-a-valid-email-address" />
 	<liferay-ui:error key="emailFromName" message="please-enter-a-valid-name" />
 
@@ -74,19 +74,19 @@ else if (tabs2.equals("article-updated-email")) {
 			<c:when test='<%= tabs2.equals("general") %>'>
 				<div class="kb-field-wrapper">
 					<aui:field-wrapper label="order-by">
-						<aui:select inlineField="<%= true %>" label="" name="preferences--articlesOrderByCol--">
-							<aui:option label="author" selected='<%= articlesOrderByCol.equals("user-name") %>' value="user-name" />
-							<aui:option label="create-date" selected='<%= articlesOrderByCol.equals("create-date") %>' />
-							<aui:option label="modified-date" selected='<%= articlesOrderByCol.equals("modified-date") %>' />
-							<aui:option label="priority" selected='<%= articlesOrderByCol.equals("priority") %>' />
-							<aui:option label="status" selected='<%= articlesOrderByCol.equals("status") %>' />
-							<aui:option label="title" selected='<%= articlesOrderByCol.equals("title") %>' />
-							<aui:option label="view-count" selected='<%= articlesOrderByCol.equals("view-count") %>' />
+						<aui:select inlineField="<%= true %>" label="" name="preferences--kbArticlesOrderByCol--">
+							<aui:option label="author" selected='<%= kbArticlesOrderByCol.equals("user-name") %>' value="user-name" />
+							<aui:option label="create-date" selected='<%= kbArticlesOrderByCol.equals("create-date") %>' />
+							<aui:option label="modified-date" selected='<%= kbArticlesOrderByCol.equals("modified-date") %>' />
+							<aui:option label="priority" selected='<%= kbArticlesOrderByCol.equals("priority") %>' />
+							<aui:option label="status" selected='<%= kbArticlesOrderByCol.equals("status") %>' />
+							<aui:option label="title" selected='<%= kbArticlesOrderByCol.equals("title") %>' />
+							<aui:option label="view-count" selected='<%= kbArticlesOrderByCol.equals("view-count") %>' />
 						</aui:select>
 
-						<aui:select inlineField="<%= true %>" label="" name="preferences--articlesOrderByType--">
-							<aui:option label="ascending" selected='<%= articlesOrderByType.equals("asc") %>' value="asc" />
-							<aui:option label="descending" selected='<%= articlesOrderByType.equals("desc") %>' value="desc" />
+						<aui:select inlineField="<%= true %>" label="" name="preferences--kbArticlesOrderByType--">
+							<aui:option label="ascending" selected='<%= kbArticlesOrderByType.equals("asc") %>' value="asc" />
+							<aui:option label="descending" selected='<%= kbArticlesOrderByType.equals("desc") %>' value="desc" />
 						</aui:select>
 					</aui:field-wrapper>
 				</div>
@@ -148,19 +148,19 @@ else if (tabs2.equals("article-updated-email")) {
 			<c:when test='<%= tabs2.startsWith("article-") %>'>
 				<c:choose>
 					<c:when test='<%= tabs2.equals("article-added-email") %>'>
-						<aui:input inlineLabel="left" label="enabled" name="preferences--emailArticleAddedEnabled--" type="checkbox" value="<%= emailArticleAddedEnabled %>" />
+						<aui:input inlineLabel="left" label="enabled" name="preferences--emailKBArticleAddedEnabled--" type="checkbox" value="<%= emailKBArticleAddedEnabled %>" />
 					</c:when>
 					<c:when test='<%= tabs2.equals("article-updated-email") %>'>
-						<aui:input inlineLabel="left" label="enabled" name="preferences--emailArticleUpdatedEnabled--" type="checkbox" value="<%= emailArticleUpdatedEnabled %>" />
+						<aui:input inlineLabel="left" label="enabled" name="preferences--emailKBArticleUpdatedEnabled--" type="checkbox" value="<%= emailKBArticleUpdatedEnabled %>" />
 					</c:when>
 				</c:choose>
 
 				<c:choose>
 					<c:when test='<%= tabs2.equals("article-added-email") %>'>
-						<aui:input cssClass="lfr-input-text-container" label="subject" name="preferences--emailArticleAddedSubject--" value="<%= emailArticleAddedSubject %>" />
+						<aui:input cssClass="lfr-input-text-container" label="subject" name="preferences--emailKBArticleAddedSubject--" value="<%= emailKBArticleAddedSubject %>" />
 					</c:when>
 					<c:when test='<%= tabs2.equals("article-updated-email") %>'>
-						<aui:input cssClass="lfr-input-text-container" label="subject" name="preferences--emailArticleUpdatedSubject--" value="<%= emailArticleUpdatedSubject %>" />
+						<aui:input cssClass="lfr-input-text-container" label="subject" name="preferences--emailKBArticleUpdatedSubject--" value="<%= emailKBArticleUpdatedSubject %>" />
 					</c:when>
 				</c:choose>
 
@@ -296,24 +296,24 @@ else if (tabs2.equals("article-updated-email")) {
 
 				<c:choose>
 					<c:when test='<%= tabs3.equals("article") %>'>
-						<aui:input label="enable-description" name="preferences--enableArticleDescription--" type="checkbox" value="<%= enableArticleDescription %>" />
+						<aui:input label="enable-description" name="preferences--enableKBArticleDescription--" type="checkbox" value="<%= enableKBArticleDescription %>" />
 
-						<aui:input label="enable-categories" name="preferences--enableArticleAssetCategories--" type="checkbox" value="<%= enableArticleAssetCategories %>" />
+						<aui:input label="enable-categories" name="preferences--enableKBArticleAssetCategories--" type="checkbox" value="<%= enableKBArticleAssetCategories %>" />
 
-						<aui:input label="enable-tags" name="preferences--enableArticleAssetTags--" type="checkbox" value="<%= enableArticleAssetTags %>" />
+						<aui:input label="enable-tags" name="preferences--enableKBArticleAssetTags--" type="checkbox" value="<%= enableKBArticleAssetTags %>" />
 
-						<aui:input label="enable-ratings" name="preferences--enableArticleRatings--" type="checkbox" value="<%= enableArticleRatings %>" />
+						<aui:input label="enable-ratings" name="preferences--enableKBArticleRatings--" type="checkbox" value="<%= enableKBArticleRatings %>" />
 
-						<aui:input label="enable-comments" name="preferences--enableArticleComments--" type="checkbox" value="<%= enableArticleComments %>" />
+						<aui:input label="enable-comments" name="preferences--enableKBArticleKBComments--" type="checkbox" value="<%= enableKBArticleKBComments %>" />
 
-						<aui:input label="show-comments" name="preferences--showArticleComments--" type="checkbox" value="<%= showArticleComments %>" />
+						<aui:input label="show-comments" name="preferences--showKBArticleKBComments--" type="checkbox" value="<%= showKBArticleKBComments %>" />
 					</c:when>
 					<c:when test='<%= tabs3.equals("template") %>'>
-						<aui:input label="enable-description" name="preferences--enableTemplateDescription--" type="checkbox" value="<%= enableTemplateDescription %>" />
+						<aui:input label="enable-description" name="preferences--enableKBTemplateDescription--" type="checkbox" value="<%= enableKBTemplateDescription %>" />
 
-						<aui:input label="enable-comments" name="preferences--enableTemplateComments--" type="checkbox" value="<%= enableTemplateComments %>" />
+						<aui:input label="enable-comments" name="preferences--enableKBTemplateKBComments--" type="checkbox" value="<%= enableKBTemplateKBComments %>" />
 
-						<aui:input label="show-comments" name="preferences--showTemplateComments--" type="checkbox" value="<%= showTemplateComments %>" />
+						<aui:input label="show-comments" name="preferences--showKBTemplateKBComments--" type="checkbox" value="<%= showKBTemplateKBComments %>" />
 					</c:when>
 				</c:choose>
 			</c:when>

@@ -17,11 +17,11 @@
 <%@ include file="/article/init.jsp" %>
 
 <%
-Article article = null;
+KBArticle kbArticle = null;
 
 if (resourcePrimKey > 0) {
 	try {
-		article = ArticleServiceUtil.getLatestArticle(resourcePrimKey, WorkflowConstants.STATUS_APPROVED);
+		kbArticle = KBArticleServiceUtil.getLatestKBArticle(resourcePrimKey, WorkflowConstants.STATUS_APPROVED);
 	}
 	catch (Exception e) {
 	}
@@ -29,10 +29,10 @@ if (resourcePrimKey > 0) {
 %>
 
 <c:choose>
-	<c:when test="<%= article != null %>">
+	<c:when test="<%= kbArticle != null %>">
 
 		<%
-		request.setAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE, article);
+		request.setAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE, kbArticle);
 		%>
 
 		<liferay-util:include page="/article/view_article.jsp" servletContext="<%= application %>" />

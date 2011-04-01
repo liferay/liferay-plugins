@@ -16,24 +16,24 @@
 
 <%
 if (!searchTerms.hasSearchTerms()) {
-	results = TemplateServiceUtil.getGroupTemplates(scopeGroupId, searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator());
-	total = TemplateServiceUtil.getGroupTemplatesCount(scopeGroupId);
+	results = KBTemplateServiceUtil.getGroupKBTemplates(scopeGroupId, searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator());
+	total = KBTemplateServiceUtil.getGroupKBTemplatesCount(scopeGroupId);
 }
 else if (searchTerms.isAdvancedSearch()) {
-	TemplateSearchDisplay templateSearchDisplay = TemplateServiceUtil.getTemplateSearchDisplay(scopeGroupId, searchTerms.getTitle(), searchTerms.getContent(), searchTerms.getStartDate(timeZone), searchTerms.getEndDate(timeZone), searchTerms.isAndOperator(), searchTerms.getCurStartValues(), searchContainer.getCur(), searchContainer.getDelta(), searchContainer.getOrderByComparator());
+	KBTemplateSearchDisplay kbTemplateSearchDisplay = KBTemplateServiceUtil.getKBTemplateSearchDisplay(scopeGroupId, searchTerms.getTitle(), searchTerms.getContent(), searchTerms.getStartDate(timeZone), searchTerms.getEndDate(timeZone), searchTerms.isAndOperator(), searchTerms.getCurStartValues(), searchContainer.getCur(), searchContainer.getDelta(), searchContainer.getOrderByComparator());
 
-	iteratorURL.setParameter(searchTerms.CUR_START_VALUES, StringUtil.merge(templateSearchDisplay.getCurStartValues()));
+	iteratorURL.setParameter(searchTerms.CUR_START_VALUES, StringUtil.merge(kbTemplateSearchDisplay.getCurStartValues()));
 
-	results = templateSearchDisplay.getResults();
-	total = templateSearchDisplay.getTotal();
+	results = kbTemplateSearchDisplay.getResults();
+	total = kbTemplateSearchDisplay.getTotal();
 }
 else {
-	TemplateSearchDisplay templateSearchDisplay = TemplateServiceUtil.getTemplateSearchDisplay(scopeGroupId, searchTerms.getKeywords(), searchTerms.getKeywords(), null, null, false, searchTerms.getCurStartValues(), searchContainer.getCur(), searchContainer.getDelta(), searchContainer.getOrderByComparator());
+	KBTemplateSearchDisplay kbTemplateSearchDisplay = KBTemplateServiceUtil.getKBTemplateSearchDisplay(scopeGroupId, searchTerms.getKeywords(), searchTerms.getKeywords(), null, null, false, searchTerms.getCurStartValues(), searchContainer.getCur(), searchContainer.getDelta(), searchContainer.getOrderByComparator());
 
-	iteratorURL.setParameter(searchTerms.CUR_START_VALUES, StringUtil.merge(templateSearchDisplay.getCurStartValues()));
+	iteratorURL.setParameter(searchTerms.CUR_START_VALUES, StringUtil.merge(kbTemplateSearchDisplay.getCurStartValues()));
 
-	results = templateSearchDisplay.getResults();
-	total = templateSearchDisplay.getTotal();
+	results = kbTemplateSearchDisplay.getResults();
+	total = kbTemplateSearchDisplay.getTotal();
 }
 
 pageContext.setAttribute("results", results);

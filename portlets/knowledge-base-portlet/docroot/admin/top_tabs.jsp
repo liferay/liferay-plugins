@@ -20,23 +20,23 @@
 String jspPage = ParamUtil.getString(request, "jspPage");
 %>
 
-<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.VIEW_TEMPLATES) %>">
+<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.VIEW_KB_TEMPLATES) %>">
 
 	<%
-	PortletURL articlesURL = renderResponse.createRenderURL();
+	PortletURL kbArticlesURL = renderResponse.createRenderURL();
 
-	articlesURL.setParameter("jspPage", "/admin/view.jsp");
+	kbArticlesURL.setParameter("jspPage", "/admin/view.jsp");
 
-	PortletURL templatesURL = renderResponse.createRenderURL();
+	PortletURL kbTemplatesURL = renderResponse.createRenderURL();
 
-	templatesURL.setParameter("jspPage", "/admin/view_templates.jsp");
+	kbTemplatesURL.setParameter("jspPage", "/admin/view_templates.jsp");
 	%>
 
 	<liferay-ui:tabs
 		names="articles,templates"
 		param="topTabs"
-		url0="<%= articlesURL.toString() %>"
-		url1="<%= templatesURL.toString() %>"
+		url0="<%= kbArticlesURL.toString() %>"
+		url1="<%= kbTemplatesURL.toString() %>"
 		value='<%= jspPage.contains("template") ? "templates" : "articles" %>'
 	/>
 </c:if>

@@ -44,9 +44,9 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 		searchContext.setEnd(searchContainer.getEnd());
 		searchContext.setKeywords(keywords);
 		searchContext.setStart(searchContainer.getStart());
-		searchContext.setSorts(KnowledgeBaseUtil.getArticleSorts(orderByCol, orderByType));
+		searchContext.setSorts(KnowledgeBaseUtil.getKBArticleSorts(orderByCol, orderByType));
 
-		Indexer indexer = IndexerRegistryUtil.getIndexer(Article.class);
+		Indexer indexer = IndexerRegistryUtil.getIndexer(KBArticle.class);
 
 		Hits hits = indexer.search(searchContext);
 
@@ -132,15 +132,15 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 		>
 
 			<%
-			Article article = null;
+			KBArticle kbArticle = null;
 
 			try {
-				article = ArticleLocalServiceUtil.getLatestArticle(GetterUtil.getLong((String)tuple.getObject(0)), WorkflowConstants.STATUS_APPROVED);
+				kbArticle = KBArticleLocalServiceUtil.getLatestKBArticle(GetterUtil.getLong((String)tuple.getObject(0)), WorkflowConstants.STATUS_APPROVED);
 			}
 			catch (NoSuchArticleException nsae) {
 			}
 
-			int viewCount = (article != null) ? article.getViewCount() : 0;
+			int viewCount = (kbArticle != null) ? kbArticle.getViewCount() : 0;
 
 			buffer.append(viewCount);
 			buffer.append(StringPool.SPACE);

@@ -14,14 +14,14 @@
 
 package com.liferay.knowledgebase.admin.social;
 
-import com.liferay.knowledgebase.model.Article;
-import com.liferay.knowledgebase.model.Comment;
-import com.liferay.knowledgebase.model.Template;
-import com.liferay.knowledgebase.service.ArticleLocalServiceUtil;
-import com.liferay.knowledgebase.service.CommentLocalServiceUtil;
-import com.liferay.knowledgebase.service.TemplateLocalServiceUtil;
-import com.liferay.knowledgebase.service.permission.ArticlePermission;
-import com.liferay.knowledgebase.service.permission.TemplatePermission;
+import com.liferay.knowledgebase.model.KBArticle;
+import com.liferay.knowledgebase.model.KBComment;
+import com.liferay.knowledgebase.model.KBTemplate;
+import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
+import com.liferay.knowledgebase.service.KBCommentLocalServiceUtil;
+import com.liferay.knowledgebase.service.KBTemplateLocalServiceUtil;
+import com.liferay.knowledgebase.service.permission.KBArticlePermission;
+import com.liferay.knowledgebase.service.permission.KBTemplatePermission;
 import com.liferay.knowledgebase.util.ActionKeys;
 import com.liferay.knowledgebase.util.KnowledgeBaseUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
@@ -50,57 +50,57 @@ public class AdminActivityInterpreter extends BaseSocialActivityInterpreter {
 
 		String className = activity.getClassName();
 
-		if (className.equals(Article.class.getName())) {
-			return doInterpretArticle(activity, themeDisplay);
+		if (className.equals(KBArticle.class.getName())) {
+			return doInterpretKBArticle(activity, themeDisplay);
 		}
-		else if (className.equals(Comment.class.getName())) {
-			return doInterpretComment(activity, themeDisplay);
+		else if (className.equals(KBComment.class.getName())) {
+			return doInterpretKBComment(activity, themeDisplay);
 		}
-		else if (className.equals(Template.class.getName())) {
-			return doInterpretTemplate(activity, themeDisplay);
+		else if (className.equals(KBTemplate.class.getName())) {
+			return doInterpretKBTemplate(activity, themeDisplay);
 		}
 
 		return null;
 	}
 
-	protected SocialActivityFeedEntry doInterpretArticle(
+	protected SocialActivityFeedEntry doInterpretKBArticle(
 			SocialActivity activity, ThemeDisplay themeDisplay)
 		throws Exception {
 
 		PermissionChecker permissionChecker =
 			themeDisplay.getPermissionChecker();
 
-		Article article = ArticleLocalServiceUtil.getLatestArticle(
+		KBArticle kbArticle = KBArticleLocalServiceUtil.getLatestKBArticle(
 			activity.getClassPK(), WorkflowConstants.STATUS_APPROVED);
 
-		if (!ArticlePermission.contains(
-				permissionChecker, article, ActionKeys.VIEW)) {
+		if (!KBArticlePermission.contains(
+				permissionChecker, kbArticle, ActionKeys.VIEW)) {
 
 			return null;
 		}
 
 		// Link
 
-		String link = KnowledgeBaseUtil.getArticleURL(
-			themeDisplay.getPlid(), article.getResourcePrimKey(),
+		String link = KnowledgeBaseUtil.getKBArticleURL(
+			themeDisplay.getPlid(), kbArticle.getResourcePrimKey(),
 			themeDisplay.getPortalURL(), false);
 
 		// Title
 
 		String key = StringPool.BLANK;
 
-		if (activity.getType() == AdminActivityKeys.ADD_ARTICLE) {
-			key = "activity-knowledge-base-admin-add-article";
+		if (activity.getType() == AdminActivityKeys.ADD_KB_ARTICLE) {
+			key = "activity-knowledge-base-admin-add-kb-article";
 		}
-		else if (activity.getType() == AdminActivityKeys.MOVE_ARTICLE) {
-			key = "activity-knowledge-base-admin-move-article";
+		else if (activity.getType() == AdminActivityKeys.MOVE_KB_ARTICLE) {
+			key = "activity-knowledge-base-admin-move-kb-article";
 		}
-		else if (activity.getType() == AdminActivityKeys.UPDATE_ARTICLE) {
-			key = "activity-knowledge-base-admin-update-article";
+		else if (activity.getType() == AdminActivityKeys.UPDATE_KB_ARTICLE) {
+			key = "activity-knowledge-base-admin-update-kb-article";
 		}
 
 		String title = getTitle(
-			activity, key, article.getTitle(), link, themeDisplay);
+			activity, key, kbArticle.getTitle(), link, themeDisplay);
 
 		// Body
 
@@ -109,34 +109,34 @@ public class AdminActivityInterpreter extends BaseSocialActivityInterpreter {
 		return new SocialActivityFeedEntry(link, title, body);
 	}
 
-	protected SocialActivityFeedEntry doInterpretComment(
+	protected SocialActivityFeedEntry doInterpretKBComment(
 			SocialActivity activity, ThemeDisplay themeDisplay)
 		throws Exception {
 
-		Comment comment = CommentLocalServiceUtil.getComment(
+		KBComment kbComment = KBCommentLocalServiceUtil.getKBComment(
 			activity.getClassPK());
 
-		Article article = null;
-		Template template = null;
+		KBArticle kbArticle = null;
+		KBTemplate kbTemplate = null;
 
-		String className = comment.getClassName();
+		String className = kbComment.getClassName();
 
-		if (className.equals(Article.class.getName())) {
-			article = ArticleLocalServiceUtil.getLatestArticle(
-				comment.getClassPK(), WorkflowConstants.STATUS_APPROVED);
+		if (className.equals(KBArticle.class.getName())) {
+			kbArticle = KBArticleLocalServiceUtil.getLatestKBArticle(
+				kbComment.getClassPK(), WorkflowConstants.STATUS_APPROVED);
 		}
-		else if (className.equals(Template.class.getName())) {
-			template = TemplateLocalServiceUtil.getTemplate(
-				comment.getClassPK());
+		else if (className.equals(KBTemplate.class.getName())) {
+			kbTemplate = KBTemplateLocalServiceUtil.getKBTemplate(
+				kbComment.getClassPK());
 		}
 
 		// Link
 
 		String link = StringPool.BLANK;
 
-		if (article != null) {
-			link = KnowledgeBaseUtil.getArticleURL(
-				themeDisplay.getPlid(), article.getResourcePrimKey(),
+		if (kbArticle != null) {
+			link = KnowledgeBaseUtil.getKBArticleURL(
+				themeDisplay.getPlid(), kbArticle.getResourcePrimKey(),
 				themeDisplay.getPortalURL(), false);
 		}
 
@@ -144,20 +144,20 @@ public class AdminActivityInterpreter extends BaseSocialActivityInterpreter {
 
 		String key = StringPool.BLANK;
 
-		if (activity.getType() == AdminActivityKeys.ADD_COMMENT) {
-			key = "activity-knowledge-base-admin-add-comment";
+		if (activity.getType() == AdminActivityKeys.ADD_KB_COMMENT) {
+			key = "activity-knowledge-base-admin-add-kb-comment";
 		}
-		else if (activity.getType() == AdminActivityKeys.UPDATE_COMMENT) {
-			key = "activity-knowledge-base-admin-update-comment";
+		else if (activity.getType() == AdminActivityKeys.UPDATE_KB_COMMENT) {
+			key = "activity-knowledge-base-admin-update-kb-comment";
 		}
 
 		String content = StringPool.BLANK;
 
-		if (article != null) {
-			content = article.getTitle();
+		if (kbArticle != null) {
+			content = kbArticle.getTitle();
 		}
-		else if (template != null) {
-			content = template.getTitle();
+		else if (kbTemplate != null) {
+			content = kbTemplate.getTitle();
 		}
 
 		String title = getTitle(activity, key, content, link, themeDisplay);
@@ -169,18 +169,18 @@ public class AdminActivityInterpreter extends BaseSocialActivityInterpreter {
 		return new SocialActivityFeedEntry(link, title, body);
 	}
 
-	protected SocialActivityFeedEntry doInterpretTemplate(
+	protected SocialActivityFeedEntry doInterpretKBTemplate(
 			SocialActivity activity, ThemeDisplay themeDisplay)
 		throws Exception {
 
 		PermissionChecker permissionChecker =
 			themeDisplay.getPermissionChecker();
 
-		Template template = TemplateLocalServiceUtil.getTemplate(
+		KBTemplate kbTemplate = KBTemplateLocalServiceUtil.getKBTemplate(
 			activity.getClassPK());
 
-		if (!TemplatePermission.contains(
-				permissionChecker, template, ActionKeys.VIEW)) {
+		if (!KBTemplatePermission.contains(
+				permissionChecker, kbTemplate, ActionKeys.VIEW)) {
 
 			return null;
 		}
@@ -193,15 +193,15 @@ public class AdminActivityInterpreter extends BaseSocialActivityInterpreter {
 
 		String key = StringPool.BLANK;
 
-		if (activity.getType() == AdminActivityKeys.ADD_TEMPLATE) {
-			key = "activity-knowledge-base-admin-add-template";
+		if (activity.getType() == AdminActivityKeys.ADD_KB_TEMPLATE) {
+			key = "activity-knowledge-base-admin-add-kb-template";
 		}
-		else if (activity.getType() == AdminActivityKeys.UPDATE_TEMPLATE) {
-			key = "activity-knowledge-base-admin-update-template";
+		else if (activity.getType() == AdminActivityKeys.UPDATE_KB_TEMPLATE) {
+			key = "activity-knowledge-base-admin-update-kb-template";
 		}
 
 		String title = getTitle(
-			activity, key, template.getTitle(), link, themeDisplay);
+			activity, key, kbTemplate.getTitle(), link, themeDisplay);
 
 		// Body
 
@@ -239,8 +239,8 @@ public class AdminActivityInterpreter extends BaseSocialActivityInterpreter {
 	}
 
 	private static final String[] _CLASS_NAMES = new String[] {
-		Article.class.getName(), Comment.class.getName(),
-		Template.class.getName()
+		KBArticle.class.getName(), KBComment.class.getName(),
+		KBTemplate.class.getName()
 	};
 
 }

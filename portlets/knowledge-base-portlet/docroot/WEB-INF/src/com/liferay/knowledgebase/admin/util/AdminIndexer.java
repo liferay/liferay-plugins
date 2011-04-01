@@ -14,11 +14,11 @@
 
 package com.liferay.knowledgebase.admin.util;
 
-import com.liferay.knowledgebase.model.Article;
-import com.liferay.knowledgebase.service.ArticleLocalServiceUtil;
+import com.liferay.knowledgebase.model.KBArticle;
+import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
 import com.liferay.knowledgebase.util.KnowledgeBaseUtil;
 import com.liferay.knowledgebase.util.PortletKeys;
-import com.liferay.knowledgebase.util.comparator.ArticleModifiedDateComparator;
+import com.liferay.knowledgebase.util.comparator.KBArticleModifiedDateComparator;
 import com.liferay.portal.kernel.search.BaseIndexer;
 import com.liferay.portal.kernel.search.BooleanQuery;
 import com.liferay.portal.kernel.search.Document;
@@ -53,7 +53,7 @@ import javax.portlet.PortletURL;
  */
 public class AdminIndexer extends BaseIndexer {
 
-	public static final String[] CLASS_NAMES = {Article.class.getName()};
+	public static final String[] CLASS_NAMES = {KBArticle.class.getName()};
 
 	public static final String PORTLET_ID = PortletKeys.KNOWLEDGE_BASE_ADMIN;
 
@@ -77,39 +77,40 @@ public class AdminIndexer extends BaseIndexer {
 	}
 
 	protected void doDelete(Object obj) throws Exception {
-		Article article = (Article)obj;
+		KBArticle kbArticle = (KBArticle)obj;
 
 		Document document = new DocumentImpl();
 
-		document.addUID(PORTLET_ID, article.getResourcePrimKey());
+		document.addUID(PORTLET_ID, kbArticle.getResourcePrimKey());
 
 		SearchEngineUtil.deleteDocument(
-			article.getCompanyId(), document.get(Field.UID));
+			kbArticle.getCompanyId(), document.get(Field.UID));
 	}
 
 	protected Document doGetDocument(Object obj) throws Exception {
-		Article article = (Article)obj;
+		KBArticle kbArticle = (KBArticle)obj;
 
-		long companyId = article.getCompanyId();
-		long groupId = getParentGroupId(article.getGroupId());
-		long scopeGroupId = article.getGroupId();
-		long userId = article.getUserId();
-		String userName = PortalUtil.getUserName(userId, article.getUserName());
-		long resourcePrimKey = article.getResourcePrimKey();
-		long rootResourcePrimKey = article.getRootResourcePrimKey();
-		String title = article.getTitle();
-		String content = HtmlUtil.extractText(article.getContent());
-		String description = article.getDescription();
-		Date createDate = article.getCreateDate();
-		Date modifiedDate = article.getModifiedDate();
+		long companyId = kbArticle.getCompanyId();
+		long groupId = getParentGroupId(kbArticle.getGroupId());
+		long scopeGroupId = kbArticle.getGroupId();
+		long userId = kbArticle.getUserId();
+		String userName = PortalUtil.getUserName(
+			userId, kbArticle.getUserName());
+		long resourcePrimKey = kbArticle.getResourcePrimKey();
+		long rootResourcePrimKey = kbArticle.getRootResourcePrimKey();
+		String title = kbArticle.getTitle();
+		String content = HtmlUtil.extractText(kbArticle.getContent());
+		String description = kbArticle.getDescription();
+		Date createDate = kbArticle.getCreateDate();
+		Date modifiedDate = kbArticle.getModifiedDate();
 
 		long[] assetCategoryIds = AssetCategoryLocalServiceUtil.getCategoryIds(
-			Article.class.getName(), resourcePrimKey);
+			KBArticle.class.getName(), resourcePrimKey);
 		String[] assetCategoryNames =
 			AssetCategoryLocalServiceUtil.getCategoryNames(
-				Article.class.getName(), resourcePrimKey);
+				KBArticle.class.getName(), resourcePrimKey);
 		String[] assetTagNames = AssetTagLocalServiceUtil.getTagNames(
-			Article.class.getName(), resourcePrimKey);
+			KBArticle.class.getName(), resourcePrimKey);
 
 		Document document = new DocumentImpl();
 
@@ -132,7 +133,7 @@ public class AdminIndexer extends BaseIndexer {
 		document.addKeyword(Field.ASSET_CATEGORY_NAMES, assetCategoryNames);
 		document.addKeyword(Field.ASSET_TAG_NAMES, assetTagNames);
 
-		document.addKeyword(Field.ENTRY_CLASS_NAME, Article.class.getName());
+		document.addKeyword(Field.ENTRY_CLASS_NAME, KBArticle.class.getName());
 		document.addKeyword(Field.ENTRY_CLASS_PK, resourcePrimKey);
 		document.addKeyword(Field.ROOT_ENTRY_CLASS_PK, rootResourcePrimKey);
 
@@ -166,23 +167,23 @@ public class AdminIndexer extends BaseIndexer {
 	}
 
 	protected void doReindex(Object obj) throws Exception {
-		Article article = (Article)obj;
+		KBArticle kbArticle = (KBArticle)obj;
 
 		SearchEngineUtil.updateDocument(
-			article.getCompanyId(), getDocument(article));
+			kbArticle.getCompanyId(), getDocument(kbArticle));
 	}
 
 	protected void doReindex(String className, long classPK) throws Exception {
-		Article article = ArticleLocalServiceUtil.getLatestArticle(
+		KBArticle kbArticle = KBArticleLocalServiceUtil.getLatestKBArticle(
 			classPK, WorkflowConstants.STATUS_APPROVED);
 
-		reindexArticles(article);
+		reindexKBArticles(kbArticle);
 	}
 
 	protected void doReindex(String[] ids) throws Exception {
 		long companyId = GetterUtil.getLong(ids[0]);
 
-		reindexArticles(companyId);
+		reindexKBArticles(companyId);
 	}
 
 	protected String getPortletId(SearchContext searchContext) {
@@ -202,26 +203,26 @@ public class AdminIndexer extends BaseIndexer {
 		}
 	}
 
-	protected void reindexArticles(Article article) throws Exception {
+	protected void reindexKBArticles(KBArticle kbArticle) throws Exception {
 
-		// See ArticlePermission#contains
+		// See KBArticlePermission#contains
 
-		List<Article> articles =
-			ArticleLocalServiceUtil.getArticleAndAllDescendants(
-				article.getResourcePrimKey(), WorkflowConstants.STATUS_APPROVED,
-				null);
+		List<KBArticle> kbArticles =
+			KBArticleLocalServiceUtil.getKBArticleAndAllDescendants(
+				kbArticle.getResourcePrimKey(),
+				WorkflowConstants.STATUS_APPROVED, null);
 
  		Collection<Document> documents = new ArrayList<Document>();
 
-		for (Article curArticle : articles) {
-			documents.add(getDocument(curArticle));
+		for (KBArticle curKBArticle : kbArticles) {
+			documents.add(getDocument(curKBArticle));
 		}
 
-		SearchEngineUtil.updateDocuments(article.getCompanyId(), documents);
+		SearchEngineUtil.updateDocuments(kbArticle.getCompanyId(), documents);
 	}
 
-	protected void reindexArticles(long companyId) throws Exception {
-		int count = ArticleLocalServiceUtil.getCompanyArticlesCount(
+	protected void reindexKBArticles(long companyId) throws Exception {
+		int count = KBArticleLocalServiceUtil.getCompanyKBArticlesCount(
 			companyId, WorkflowConstants.STATUS_APPROVED);
 
 		int pages = count / Indexer.DEFAULT_INTERVAL;
@@ -230,21 +231,22 @@ public class AdminIndexer extends BaseIndexer {
 			int start = (i * Indexer.DEFAULT_INTERVAL);
 			int end = start + Indexer.DEFAULT_INTERVAL;
 
-			reindexArticles(companyId, start, end);
+			reindexKBArticles(companyId, start, end);
 		}
 	}
 
-	protected void reindexArticles(long companyId, int start, int end)
+	protected void reindexKBArticles(long companyId, int start, int end)
 		throws Exception {
 
-		List<Article> articles = ArticleLocalServiceUtil.getCompanyArticles(
-			companyId, WorkflowConstants.STATUS_APPROVED, start, end,
-			new ArticleModifiedDateComparator());
+		List<KBArticle> kbArticles =
+			KBArticleLocalServiceUtil.getCompanyKBArticles(
+				companyId, WorkflowConstants.STATUS_APPROVED, start, end,
+				new KBArticleModifiedDateComparator());
 
 		Collection<Document> documents = new ArrayList<Document>();
 
-		for (Article article : articles) {
-			Document document = getDocument(article);
+		for (KBArticle kbArticle : kbArticles) {
+			Document document = getDocument(kbArticle);
 
 			documents.add(document);
 		}

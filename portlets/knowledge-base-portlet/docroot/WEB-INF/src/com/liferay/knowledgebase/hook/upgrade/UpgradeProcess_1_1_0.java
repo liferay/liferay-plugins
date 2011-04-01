@@ -14,8 +14,10 @@
 
 package com.liferay.knowledgebase.hook.upgrade;
 
-import com.liferay.knowledgebase.hook.upgrade.v1_1_0.UpgradeArticle;
-import com.liferay.knowledgebase.hook.upgrade.v1_1_0.UpgradeExpandoValue;
+import com.liferay.knowledgebase.hook.upgrade.v1_1_0.UpgradeClassName;
+import com.liferay.knowledgebase.hook.upgrade.v1_1_0.UpgradeKBArticle;
+import com.liferay.knowledgebase.hook.upgrade.v1_1_0.UpgradeKBComment;
+import com.liferay.knowledgebase.hook.upgrade.v1_1_0.UpgradeKBTemplate;
 import com.liferay.knowledgebase.hook.upgrade.v1_1_0.UpgradePortletPreferences;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 
@@ -29,8 +31,10 @@ public class UpgradeProcess_1_1_0 extends UpgradeProcess {
 	}
 
 	protected void doUpgrade() throws Exception {
-		upgrade(UpgradeArticle.class);
-		upgrade(UpgradeExpandoValue.class);
+		upgrade(UpgradeClassName.class);
+		upgrade(UpgradeKBArticle.class);
+		upgrade(UpgradeKBComment.class);
+		upgrade(UpgradeKBTemplate.class);
 		upgrade(UpgradePortletPreferences.class);
 	}
 

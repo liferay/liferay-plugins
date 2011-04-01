@@ -1,6 +1,6 @@
-create table KB_Article (
+create table KBArticle (
 	uuid_ VARCHAR(75) null,
-	articleId LONG not null primary key,
+	kbArticleId LONG not null primary key,
 	resourcePrimKey LONG,
 	groupId LONG,
 	companyId LONG,
@@ -24,9 +24,9 @@ create table KB_Article (
 	statusDate DATE null
 );
 
-create table KB_Comment (
+create table KBComment (
 	uuid_ VARCHAR(75) null,
-	commentId LONG not null primary key,
+	kbCommentId LONG not null primary key,
 	groupId LONG,
 	companyId LONG,
 	userId LONG,
@@ -39,9 +39,9 @@ create table KB_Comment (
 	helpful BOOLEAN
 );
 
-create table KB_Template (
+create table KBTemplate (
 	uuid_ VARCHAR(75) null,
-	templateId LONG not null primary key,
+	kbTemplateId LONG not null primary key,
 	groupId LONG,
 	companyId LONG,
 	userId LONG,

@@ -1,0 +1,381 @@
+/**
+ * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+
+package com.liferay.knowledgebase.model;
+
+/**
+ * <p>
+ * This class is a wrapper for {@link KBComment}.
+ * </p>
+ *
+ * @author    Brian Wing Shun Chan
+ * @see       KBComment
+ * @generated
+ */
+public class KBCommentWrapper implements KBComment {
+	public KBCommentWrapper(KBComment kbComment) {
+		_kbComment = kbComment;
+	}
+
+	public Class<?> getModelClass() {
+		return KBComment.class;
+	}
+
+	public String getModelClassName() {
+		return KBComment.class.getName();
+	}
+
+	/**
+	* Gets the primary key of this k b comment.
+	*
+	* @return the primary key of this k b comment
+	*/
+	public long getPrimaryKey() {
+		return _kbComment.getPrimaryKey();
+	}
+
+	/**
+	* Sets the primary key of this k b comment
+	*
+	* @param pk the primary key of this k b comment
+	*/
+	public void setPrimaryKey(long pk) {
+		_kbComment.setPrimaryKey(pk);
+	}
+
+	/**
+	* Gets the uuid of this k b comment.
+	*
+	* @return the uuid of this k b comment
+	*/
+	public java.lang.String getUuid() {
+		return _kbComment.getUuid();
+	}
+
+	/**
+	* Sets the uuid of this k b comment.
+	*
+	* @param uuid the uuid of this k b comment
+	*/
+	public void setUuid(java.lang.String uuid) {
+		_kbComment.setUuid(uuid);
+	}
+
+	/**
+	* Gets the kb comment ID of this k b comment.
+	*
+	* @return the kb comment ID of this k b comment
+	*/
+	public long getKbCommentId() {
+		return _kbComment.getKbCommentId();
+	}
+
+	/**
+	* Sets the kb comment ID of this k b comment.
+	*
+	* @param kbCommentId the kb comment ID of this k b comment
+	*/
+	public void setKbCommentId(long kbCommentId) {
+		_kbComment.setKbCommentId(kbCommentId);
+	}
+
+	/**
+	* Gets the group ID of this k b comment.
+	*
+	* @return the group ID of this k b comment
+	*/
+	public long getGroupId() {
+		return _kbComment.getGroupId();
+	}
+
+	/**
+	* Sets the group ID of this k b comment.
+	*
+	* @param groupId the group ID of this k b comment
+	*/
+	public void setGroupId(long groupId) {
+		_kbComment.setGroupId(groupId);
+	}
+
+	/**
+	* Gets the company ID of this k b comment.
+	*
+	* @return the company ID of this k b comment
+	*/
+	public long getCompanyId() {
+		return _kbComment.getCompanyId();
+	}
+
+	/**
+	* Sets the company ID of this k b comment.
+	*
+	* @param companyId the company ID of this k b comment
+	*/
+	public void setCompanyId(long companyId) {
+		_kbComment.setCompanyId(companyId);
+	}
+
+	/**
+	* Gets the user ID of this k b comment.
+	*
+	* @return the user ID of this k b comment
+	*/
+	public long getUserId() {
+		return _kbComment.getUserId();
+	}
+
+	/**
+	* Sets the user ID of this k b comment.
+	*
+	* @param userId the user ID of this k b comment
+	*/
+	public void setUserId(long userId) {
+		_kbComment.setUserId(userId);
+	}
+
+	/**
+	* Gets the user uuid of this k b comment.
+	*
+	* @return the user uuid of this k b comment
+	* @throws SystemException if a system exception occurred
+	*/
+	public java.lang.String getUserUuid()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _kbComment.getUserUuid();
+	}
+
+	/**
+	* Sets the user uuid of this k b comment.
+	*
+	* @param userUuid the user uuid of this k b comment
+	*/
+	public void setUserUuid(java.lang.String userUuid) {
+		_kbComment.setUserUuid(userUuid);
+	}
+
+	/**
+	* Gets the user name of this k b comment.
+	*
+	* @return the user name of this k b comment
+	*/
+	public java.lang.String getUserName() {
+		return _kbComment.getUserName();
+	}
+
+	/**
+	* Sets the user name of this k b comment.
+	*
+	* @param userName the user name of this k b comment
+	*/
+	public void setUserName(java.lang.String userName) {
+		_kbComment.setUserName(userName);
+	}
+
+	/**
+	* Gets the create date of this k b comment.
+	*
+	* @return the create date of this k b comment
+	*/
+	public java.util.Date getCreateDate() {
+		return _kbComment.getCreateDate();
+	}
+
+	/**
+	* Sets the create date of this k b comment.
+	*
+	* @param createDate the create date of this k b comment
+	*/
+	public void setCreateDate(java.util.Date createDate) {
+		_kbComment.setCreateDate(createDate);
+	}
+
+	/**
+	* Gets the modified date of this k b comment.
+	*
+	* @return the modified date of this k b comment
+	*/
+	public java.util.Date getModifiedDate() {
+		return _kbComment.getModifiedDate();
+	}
+
+	/**
+	* Sets the modified date of this k b comment.
+	*
+	* @param modifiedDate the modified date of this k b comment
+	*/
+	public void setModifiedDate(java.util.Date modifiedDate) {
+		_kbComment.setModifiedDate(modifiedDate);
+	}
+
+	/**
+	* Gets the class name of the model instance this k b comment is polymorphically associated with.
+	*
+	* @return the class name of the model instance this k b comment is polymorphically associated with
+	*/
+	public java.lang.String getClassName() {
+		return _kbComment.getClassName();
+	}
+
+	/**
+	* Gets the class name ID of this k b comment.
+	*
+	* @return the class name ID of this k b comment
+	*/
+	public long getClassNameId() {
+		return _kbComment.getClassNameId();
+	}
+
+	/**
+	* Sets the class name ID of this k b comment.
+	*
+	* @param classNameId the class name ID of this k b comment
+	*/
+	public void setClassNameId(long classNameId) {
+		_kbComment.setClassNameId(classNameId);
+	}
+
+	/**
+	* Gets the class p k of this k b comment.
+	*
+	* @return the class p k of this k b comment
+	*/
+	public long getClassPK() {
+		return _kbComment.getClassPK();
+	}
+
+	/**
+	* Sets the class p k of this k b comment.
+	*
+	* @param classPK the class p k of this k b comment
+	*/
+	public void setClassPK(long classPK) {
+		_kbComment.setClassPK(classPK);
+	}
+
+	/**
+	* Gets the content of this k b comment.
+	*
+	* @return the content of this k b comment
+	*/
+	public java.lang.String getContent() {
+		return _kbComment.getContent();
+	}
+
+	/**
+	* Sets the content of this k b comment.
+	*
+	* @param content the content of this k b comment
+	*/
+	public void setContent(java.lang.String content) {
+		_kbComment.setContent(content);
+	}
+
+	/**
+	* Gets the helpful of this k b comment.
+	*
+	* @return the helpful of this k b comment
+	*/
+	public boolean getHelpful() {
+		return _kbComment.getHelpful();
+	}
+
+	/**
+	* Determines if this k b comment is helpful.
+	*
+	* @return <code>true</code> if this k b comment is helpful; <code>false</code> otherwise
+	*/
+	public boolean isHelpful() {
+		return _kbComment.isHelpful();
+	}
+
+	/**
+	* Sets whether this k b comment is helpful.
+	*
+	* @param helpful the helpful of this k b comment
+	*/
+	public void setHelpful(boolean helpful) {
+		_kbComment.setHelpful(helpful);
+	}
+
+	public boolean isNew() {
+		return _kbComment.isNew();
+	}
+
+	public void setNew(boolean n) {
+		_kbComment.setNew(n);
+	}
+
+	public boolean isCachedModel() {
+		return _kbComment.isCachedModel();
+	}
+
+	public void setCachedModel(boolean cachedModel) {
+		_kbComment.setCachedModel(cachedModel);
+	}
+
+	public boolean isEscapedModel() {
+		return _kbComment.isEscapedModel();
+	}
+
+	public void setEscapedModel(boolean escapedModel) {
+		_kbComment.setEscapedModel(escapedModel);
+	}
+
+	public java.io.Serializable getPrimaryKeyObj() {
+		return _kbComment.getPrimaryKeyObj();
+	}
+
+	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
+		return _kbComment.getExpandoBridge();
+	}
+
+	public void setExpandoBridgeAttributes(
+		com.liferay.portal.service.ServiceContext serviceContext) {
+		_kbComment.setExpandoBridgeAttributes(serviceContext);
+	}
+
+	public java.lang.Object clone() {
+		return new KBCommentWrapper((KBComment)_kbComment.clone());
+	}
+
+	public int compareTo(com.liferay.knowledgebase.model.KBComment kbComment) {
+		return _kbComment.compareTo(kbComment);
+	}
+
+	public int hashCode() {
+		return _kbComment.hashCode();
+	}
+
+	public com.liferay.knowledgebase.model.KBComment toEscapedModel() {
+		return new KBCommentWrapper(_kbComment.toEscapedModel());
+	}
+
+	public java.lang.String toString() {
+		return _kbComment.toString();
+	}
+
+	public java.lang.String toXmlString() {
+		return _kbComment.toXmlString();
+	}
+
+	public KBComment getWrappedKBComment() {
+		return _kbComment;
+	}
+
+	public void resetOriginalValues() {
+		_kbComment.resetOriginalValues();
+	}
+
+	private KBComment _kbComment;
+}

@@ -40,7 +40,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 	<liferay-ui:search-container-results>
 
 		<%
-		AssetEntryQuery assetEntryQuery = new AssetEntryQuery(Article.class.getName(), searchContainer);
+		AssetEntryQuery assetEntryQuery = new AssetEntryQuery(KBArticle.class.getName(), searchContainer);
 
 		pageContext.setAttribute("results", AssetEntryServiceUtil.getEntries(assetEntryQuery));
 		pageContext.setAttribute("total", AssetEntryServiceUtil.getEntriesCount(assetEntryQuery));

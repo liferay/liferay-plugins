@@ -41,7 +41,7 @@
 		<implicit-parameter name="p_p_state">normal</implicit-parameter>
 	</route>
 	<route>
-		<pattern>/template/{templateId:\d+}</pattern>
+		<pattern>/template/{kbTemplateId:\d+}</pattern>
 		<implicit-parameter name="jspPage">/display/view_template.jsp</implicit-parameter>
 		<implicit-parameter name="p_p_state">normal</implicit-parameter>
 	</route>

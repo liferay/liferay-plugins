@@ -14,11 +14,9 @@
 
 package com.liferay.knowledgebase.hook.upgrade.v1_0_0;
 
-import com.liferay.knowledgebase.model.Article;
 import com.liferay.portal.kernel.dao.jdbc.DataAccess;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.kernel.util.StringBundler;
-import com.liferay.portal.util.PortalUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -36,6 +34,32 @@ public class UpgradeRatings extends UpgradeProcess {
 		}
 	}
 
+	protected long getClassNameId(String className) throws Exception {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		try {
+			con = DataAccess.getConnection();
+
+			ps = con.prepareStatement(
+				"select classNameId from ClassName_ where value = ?");
+
+			ps.setString(1, className);
+
+			rs = ps.executeQuery();
+
+			if (rs.next()) {
+				return rs.getLong("classNameId");
+			}
+
+			return 0;
+		}
+		finally {
+			DataAccess.cleanUp(con, ps, rs);
+		}
+	}
+
 	protected void updateRatingsEntries() throws Exception {
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -48,7 +72,7 @@ public class UpgradeRatings extends UpgradeProcess {
 
 			sb.append("select entryId, score from RatingsEntry where ");
 			sb.append("classNameId = ");
-			sb.append(PortalUtil.getClassNameId(Article.class.getName()));
+			sb.append(getClassNameId(_ARTICLE_CLASS_NAME));
 
 			ps = con.prepareStatement(sb.toString());
 
@@ -86,7 +110,7 @@ public class UpgradeRatings extends UpgradeProcess {
 			sb.append("select statsId, totalScore, averageScore ");
 			sb.append("from RatingsStats where ");
 			sb.append("classNameId = ");
-			sb.append(PortalUtil.getClassNameId(Article.class.getName()));
+			sb.append(getClassNameId(_ARTICLE_CLASS_NAME));
 
 			ps = con.prepareStatement(sb.toString());
 
@@ -113,5 +137,8 @@ public class UpgradeRatings extends UpgradeProcess {
 			DataAccess.cleanUp(con, ps, rs);
 		}
 	}
+
+	private static final String _ARTICLE_CLASS_NAME =
+		"com.liferay.knowledgebase.model.Article";
 
 }

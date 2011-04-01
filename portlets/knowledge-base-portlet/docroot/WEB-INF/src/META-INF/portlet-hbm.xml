@@ -2,12 +2,12 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping default-lazy="false" auto-import="false">
-	<import class="com.liferay.knowledgebase.model.Article" />
-	<import class="com.liferay.knowledgebase.model.Comment" />
-	<import class="com.liferay.knowledgebase.model.Template" />
-	<class name="com.liferay.knowledgebase.model.impl.ArticleImpl" table="KB_Article">
+	<import class="com.liferay.knowledgebase.model.KBArticle" />
+	<import class="com.liferay.knowledgebase.model.KBComment" />
+	<import class="com.liferay.knowledgebase.model.KBTemplate" />
+	<class name="com.liferay.knowledgebase.model.impl.KBArticleImpl" table="KBArticle">
 		<cache usage="read-write" />
-		<id name="articleId" type="long">
+		<id name="kbArticleId" type="long">
 			<generator class="assigned" />
 		</id>
 		<property name="uuid" column="uuid_" type="com.liferay.portal.dao.orm.hibernate.StringType" />
@@ -33,9 +33,9 @@
 		<property name="statusByUserName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="statusDate" type="org.hibernate.type.TimestampType" />
 	</class>
-	<class name="com.liferay.knowledgebase.model.impl.CommentImpl" table="KB_Comment">
+	<class name="com.liferay.knowledgebase.model.impl.KBCommentImpl" table="KBComment">
 		<cache usage="read-write" />
-		<id name="commentId" type="long">
+		<id name="kbCommentId" type="long">
 			<generator class="assigned" />
 		</id>
 		<property name="uuid" column="uuid_" type="com.liferay.portal.dao.orm.hibernate.StringType" />
@@ -50,9 +50,9 @@
 		<property name="content" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="helpful" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 	</class>
-	<class name="com.liferay.knowledgebase.model.impl.TemplateImpl" table="KB_Template">
+	<class name="com.liferay.knowledgebase.model.impl.KBTemplateImpl" table="KBTemplate">
 		<cache usage="read-write" />
-		<id name="templateId" type="long">
+		<id name="kbTemplateId" type="long">
 			<generator class="assigned" />
 		</id>
 		<property name="uuid" column="uuid_" type="com.liferay.portal.dao.orm.hibernate.StringType" />

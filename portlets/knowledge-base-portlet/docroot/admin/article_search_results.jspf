@@ -16,24 +16,24 @@
 
 <%
 if (!searchTerms.hasSearchTerms()) {
-	results = ArticleServiceUtil.getSiblingArticles(scopeGroupId, parentResourcePrimKey, WorkflowConstants.STATUS_ANY, searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator());
-	total = ArticleServiceUtil.getSiblingArticlesCount(scopeGroupId, parentResourcePrimKey, WorkflowConstants.STATUS_ANY);
+	results = KBArticleServiceUtil.getSiblingKBArticles(scopeGroupId, parentResourcePrimKey, WorkflowConstants.STATUS_ANY, searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator());
+	total = KBArticleServiceUtil.getSiblingKBArticlesCount(scopeGroupId, parentResourcePrimKey, WorkflowConstants.STATUS_ANY);
 }
 else if (searchTerms.isAdvancedSearch()) {
-	ArticleSearchDisplay articleSearchDisplay = ArticleServiceUtil.getArticleSearchDisplay(scopeGroupId, searchTerms.getTitle(), searchTerms.getContent(), searchTerms.getStatus(), searchTerms.getStartDate(timeZone), searchTerms.getEndDate(timeZone), searchTerms.isAndOperator(), searchTerms.getCurStartValues(), searchContainer.getCur(), searchContainer.getDelta(), searchContainer.getOrderByComparator());
+	KBArticleSearchDisplay kbArticleSearchDisplay = KBArticleServiceUtil.getKBArticleSearchDisplay(scopeGroupId, searchTerms.getTitle(), searchTerms.getContent(), searchTerms.getStatus(), searchTerms.getStartDate(timeZone), searchTerms.getEndDate(timeZone), searchTerms.isAndOperator(), searchTerms.getCurStartValues(), searchContainer.getCur(), searchContainer.getDelta(), searchContainer.getOrderByComparator());
 
-	iteratorURL.setParameter(searchTerms.CUR_START_VALUES, StringUtil.merge(articleSearchDisplay.getCurStartValues()));
+	iteratorURL.setParameter(searchTerms.CUR_START_VALUES, StringUtil.merge(kbArticleSearchDisplay.getCurStartValues()));
 
-	results = articleSearchDisplay.getResults();
-	total = articleSearchDisplay.getTotal();
+	results = kbArticleSearchDisplay.getResults();
+	total = kbArticleSearchDisplay.getTotal();
 }
 else {
-	ArticleSearchDisplay articleSearchDisplay = ArticleServiceUtil.getArticleSearchDisplay(scopeGroupId, searchTerms.getKeywords(), searchTerms.getKeywords(), WorkflowConstants.STATUS_ANY, null, null, false, searchTerms.getCurStartValues(), searchContainer.getCur(), searchContainer.getDelta(), searchContainer.getOrderByComparator());
+	KBArticleSearchDisplay kbArticleSearchDisplay = KBArticleServiceUtil.getKBArticleSearchDisplay(scopeGroupId, searchTerms.getKeywords(), searchTerms.getKeywords(), WorkflowConstants.STATUS_ANY, null, null, false, searchTerms.getCurStartValues(), searchContainer.getCur(), searchContainer.getDelta(), searchContainer.getOrderByComparator());
 
-	iteratorURL.setParameter(searchTerms.CUR_START_VALUES, StringUtil.merge(articleSearchDisplay.getCurStartValues()));
+	iteratorURL.setParameter(searchTerms.CUR_START_VALUES, StringUtil.merge(kbArticleSearchDisplay.getCurStartValues()));
 
-	results = articleSearchDisplay.getResults();
-	total = articleSearchDisplay.getTotal();
+	results = kbArticleSearchDisplay.getResults();
+	total = kbArticleSearchDisplay.getTotal();
 }
 
 pageContext.setAttribute("results", results);

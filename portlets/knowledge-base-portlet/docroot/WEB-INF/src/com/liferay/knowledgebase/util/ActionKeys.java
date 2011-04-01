@@ -21,17 +21,21 @@ package com.liferay.knowledgebase.util;
 public class ActionKeys
 	extends com.liferay.portal.security.permission.ActionKeys {
 
+	public static final String ADD_KB_ARTICLE = "ADD_KB_ARTICLE";
+
+	public static final String ADD_KB_TEMPLATE = "ADD_KB_TEMPLATE";
+
 	public static final String ADMINISTRATOR = "ADMINISTRATOR";
 
-	public static final String DELETE_ARTICLES = "DELETE_ARTICLES";
+	public static final String DELETE_KB_ARTICLES = "DELETE_KB_ARTICLES";
 
-	public static final String DELETE_TEMPLATES = "DELETE_TEMPLATES";
+	public static final String DELETE_KB_TEMPLATES = "DELETE_KB_TEMPLATES";
 
-	public static final String MOVE = "MOVE";
+	public static final String MOVE_KB_ARTICLE = "MOVE_KB_ARTICLE";
 
-	public static final String UPDATE_ARTICLES_PRIORITIES =
-		"UPDATE_ARTICLES_PRIORITIES";
+	public static final String UPDATE_KB_ARTICLES_PRIORITIES =
+		"UPDATE_KB_ARTICLES_PRIORITIES";
 
-	public static final String VIEW_TEMPLATES = "VIEW_TEMPLATES";
+	public static final String VIEW_KB_TEMPLATES = "VIEW_KB_TEMPLATES";
 
 }

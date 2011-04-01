@@ -26,24 +26,24 @@ String orderByType2 = ParamUtil.getString(request, "orderByType2", "desc");
 
 <liferay-util:include page="/display/top_links.jsp" servletContext="<%= application %>" />
 
-<c:if test="<%= DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_ARTICLE) || DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_TEMPLATE) || (DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS) && GroupPermissionUtil.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS)) %>">
+<c:if test="<%= DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_KB_ARTICLE) || DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_KB_TEMPLATE) || (DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS) && GroupPermissionUtil.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS)) %>">
 	<aui:button-row>
-		<c:if test="<%= DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_ARTICLE) %>">
-			<liferay-portlet:renderURL var="addArticleURL">
+		<c:if test="<%= DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_KB_ARTICLE) %>">
+			<liferay-portlet:renderURL var="addKBArticleURL">
 				<portlet:param name="jspPage" value="/display/edit_article.jsp" />
 				<portlet:param name="redirect" value="<%= currentURL %>" />
 			</liferay-portlet:renderURL>
 
-			<aui:button onClick="<%= addArticleURL %>" value="add-article" />
+			<aui:button onClick="<%= addKBArticleURL %>" value="add-article" />
 		</c:if>
 
-		<c:if test="<%= DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_TEMPLATE) %>">
-			<liferay-portlet:renderURL var="addTemplateURL">
+		<c:if test="<%= DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_KB_TEMPLATE) %>">
+			<liferay-portlet:renderURL var="addKBTemplateURL">
 				<portlet:param name="jspPage" value="/display/edit_template.jsp" />
 				<portlet:param name="redirect" value="<%= currentURL %>" />
 			</liferay-portlet:renderURL>
 
-			<aui:button onClick="<%= addTemplateURL %>" value="add-template" />
+			<aui:button onClick="<%= addKBTemplateURL %>" value="add-template" />
 		</c:if>
 
 		<c:if test="<%= DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS) && GroupPermissionUtil.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS) %>">
@@ -60,7 +60,7 @@ String orderByType2 = ParamUtil.getString(request, "orderByType2", "desc");
 </c:if>
 
 <%
-int templatesCount = TemplateServiceUtil.getGroupTemplatesCount(scopeGroupId);
+int count = KBTemplateServiceUtil.getGroupKBTemplatesCount(scopeGroupId);
 %>
 
 <liferay-portlet:renderURL varImpl="iteratorURL">
@@ -68,7 +68,7 @@ int templatesCount = TemplateServiceUtil.getGroupTemplatesCount(scopeGroupId);
 </liferay-portlet:renderURL>
 
 <liferay-ui:panel-container extended="<%= false %>" id='<%= renderResponse.getNamespace() + "AdministratorPanelContainer" %>' persistState="<%= true %>">
-	<liferay-ui:panel collapsible="<%= true %>" cssClass='<%= (DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.VIEW_TEMPLATES) && (templatesCount > 0)) ? "kb-panel-separator" : StringPool.BLANK %>' extended="<%= true %>" id='<%= renderResponse.getNamespace() + "AdministratorArticlesPanel" %>' persistState="<%= true %>" title="articles">
+	<liferay-ui:panel collapsible="<%= true %>" cssClass='<%= (DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.VIEW_KB_TEMPLATES) && (count > 0)) ? "kb-panel-separator" : StringPool.BLANK %>' extended="<%= true %>" id='<%= renderResponse.getNamespace() + "AdministratorArticlesPanel" %>' persistState="<%= true %>" title="articles">
 		<liferay-ui:search-container
 			curParam="cur1"
 			deltaParam="delta1"
@@ -76,23 +76,23 @@ int templatesCount = TemplateServiceUtil.getGroupTemplatesCount(scopeGroupId);
 			iteratorURL="<%= iteratorURL %>"
 			orderByCol="<%= orderByCol1 %>"
 			orderByColParam="orderByCol1"
-			orderByComparator="<%= KnowledgeBaseUtil.getArticleOrderByComparator(orderByCol1, orderByType1) %>"
+			orderByComparator="<%= KnowledgeBaseUtil.getKBArticleOrderByComparator(orderByCol1, orderByType1) %>"
 			orderByType="<%= orderByType1 %>"
 			orderByTypeParam="orderByType1"
 		>
 			<liferay-ui:search-container-results
-				results="<%= ArticleServiceUtil.getGroupArticles(scopeGroupId, WorkflowConstants.STATUS_ANY, searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator()) %>"
-				total="<%= ArticleServiceUtil.getGroupArticlesCount(scopeGroupId, WorkflowConstants.STATUS_ANY) %>"
+				results="<%= KBArticleServiceUtil.getGroupKBArticles(scopeGroupId, WorkflowConstants.STATUS_ANY, searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator()) %>"
+				total="<%= KBArticleServiceUtil.getGroupKBArticlesCount(scopeGroupId, WorkflowConstants.STATUS_ANY) %>"
 			/>
 
 			<liferay-ui:search-container-row
-				className="com.liferay.knowledgebase.model.Article"
+				className="com.liferay.knowledgebase.model.KBArticle"
 				keyProperty="resourcePrimKey"
-				modelVar="article"
+				modelVar="kbArticle"
 			>
 				<liferay-portlet:renderURL varImpl="rowURL">
 					<portlet:param name="jspPage" value="/display/view_article.jsp" />
-					<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
+					<portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
 					<portlet:param name="status" value="<%= String.valueOf(WorkflowConstants.STATUS_ANY) %>" />
 				</liferay-portlet:renderURL>
 
@@ -115,7 +115,7 @@ int templatesCount = TemplateServiceUtil.getGroupTemplatesCount(scopeGroupId);
 					href="<%= rowURL %>"
 					name="create-date"
 					orderable="<%= true %>"
-					value='<%= dateFormatDate.format(article.getCreateDate()) + "<br />" + dateFormatTime.format(article.getCreateDate()) %>'
+					value='<%= dateFormatDate.format(kbArticle.getCreateDate()) + "<br />" + dateFormatTime.format(kbArticle.getCreateDate()) %>'
 				/>
 
 				<liferay-ui:search-container-column-text
@@ -123,7 +123,7 @@ int templatesCount = TemplateServiceUtil.getGroupTemplatesCount(scopeGroupId);
 					href="<%= rowURL %>"
 					name="modified-date"
 					orderable="<%= true %>"
-					value='<%= dateFormatDate.format(article.getModifiedDate()) + "<br />" + dateFormatTime.format(article.getModifiedDate()) %>'
+					value='<%= dateFormatDate.format(kbArticle.getModifiedDate()) + "<br />" + dateFormatTime.format(kbArticle.getModifiedDate()) %>'
 				/>
 
 				<liferay-ui:search-container-column-text
@@ -131,7 +131,7 @@ int templatesCount = TemplateServiceUtil.getGroupTemplatesCount(scopeGroupId);
 					href="<%= rowURL %>"
 					name="status"
 					orderable="<%= true %>"
-					value='<%= article.getStatus() + " (" + LanguageUtil.get(pageContext, WorkflowConstants.toLabel(article.getStatus())) + ")" %>'
+					value='<%= kbArticle.getStatus() + " (" + LanguageUtil.get(pageContext, WorkflowConstants.toLabel(kbArticle.getStatus())) + ")" %>'
 				/>
 
 				<liferay-ui:search-container-column-text
@@ -153,7 +153,7 @@ int templatesCount = TemplateServiceUtil.getGroupTemplatesCount(scopeGroupId);
 		</liferay-ui:search-container>
 	</liferay-ui:panel>
 
-	<c:if test="<%= DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.VIEW_TEMPLATES) && (templatesCount > 0) %>">
+	<c:if test="<%= DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.VIEW_KB_TEMPLATES) && (count > 0) %>">
 		<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id='<%= renderResponse.getNamespace() + "AdministratorTemplatesPanel" %>' persistState="<%= true %>" title="templates">
 			<liferay-ui:search-container
 				curParam="cur2"
@@ -162,23 +162,23 @@ int templatesCount = TemplateServiceUtil.getGroupTemplatesCount(scopeGroupId);
 				iteratorURL="<%= iteratorURL %>"
 				orderByCol="<%= orderByCol2 %>"
 				orderByColParam="orderByCol2"
-				orderByComparator="<%= KnowledgeBaseUtil.getTemplateOrderByComparator(orderByCol2, orderByType2) %>"
+				orderByComparator="<%= KnowledgeBaseUtil.getKBTemplateOrderByComparator(orderByCol2, orderByType2) %>"
 				orderByType="<%= orderByType2 %>"
 				orderByTypeParam="orderByType2"
 			>
 				<liferay-ui:search-container-results
-					results="<%= TemplateServiceUtil.getGroupTemplates(scopeGroupId, searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator()) %>"
-					total="<%= TemplateServiceUtil.getGroupTemplatesCount(scopeGroupId) %>"
+					results="<%= KBTemplateServiceUtil.getGroupKBTemplates(scopeGroupId, searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator()) %>"
+					total="<%= KBTemplateServiceUtil.getGroupKBTemplatesCount(scopeGroupId) %>"
 				/>
 
 				<liferay-ui:search-container-row
-					className="com.liferay.knowledgebase.model.Template"
-					keyProperty="templateId"
-					modelVar="template"
+					className="com.liferay.knowledgebase.model.KBTemplate"
+					keyProperty="kbTemplateId"
+					modelVar="kbTemplate"
 				>
 					<liferay-portlet:renderURL varImpl="rowURL">
 						<portlet:param name="jspPage" value="/display/view_template.jsp" />
-						<portlet:param name="templateId" value="<%= String.valueOf(template.getTemplateId()) %>" />
+						<portlet:param name="kbTemplateId" value="<%= String.valueOf(kbTemplate.getKbTemplateId()) %>" />
 					</liferay-portlet:renderURL>
 
 					<liferay-ui:search-container-column-text
@@ -200,7 +200,7 @@ int templatesCount = TemplateServiceUtil.getGroupTemplatesCount(scopeGroupId);
 						href="<%= rowURL %>"
 						name="create-date"
 						orderable="<%= true %>"
-						value='<%= dateFormatDate.format(template.getCreateDate()) + "<br />" + dateFormatTime.format(template.getCreateDate()) %>'
+						value='<%= dateFormatDate.format(kbTemplate.getCreateDate()) + "<br />" + dateFormatTime.format(kbTemplate.getCreateDate()) %>'
 					/>
 
 					<liferay-ui:search-container-column-text
@@ -208,7 +208,7 @@ int templatesCount = TemplateServiceUtil.getGroupTemplatesCount(scopeGroupId);
 						href="<%= rowURL %>"
 						name="modified-date"
 						orderable="<%= true %>"
-						value='<%= dateFormatDate.format(template.getModifiedDate()) + "<br />" + dateFormatTime.format(template.getModifiedDate()) %>'
+						value='<%= dateFormatDate.format(kbTemplate.getModifiedDate()) + "<br />" + dateFormatTime.format(kbTemplate.getModifiedDate()) %>'
 					/>
 
 					<liferay-ui:search-container-column-jsp

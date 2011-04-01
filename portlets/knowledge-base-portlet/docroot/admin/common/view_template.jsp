@@ -17,24 +17,24 @@
 <%@ include file="/admin/init.jsp" %>
 
 <%
-Template template = (Template)request.getAttribute(WebKeys.KNOWLEDGE_BASE_TEMPLATE);
+KBTemplate kbTemplate = (KBTemplate)request.getAttribute(WebKeys.KNOWLEDGE_BASE_TEMPLATE);
 %>
 
 <div class="float-container kb-entity-header">
 	<div class="kb-title">
-		<%= template.getTitle() %>
+		<%= kbTemplate.getTitle() %>
 	</div>
 </div>
 
 <div class="kb-entity-body">
 
 	<%
-	request.setAttribute("template_icons.jsp-template", template);
+	request.setAttribute("template_icons.jsp-kb_template", kbTemplate);
 	%>
 
 	<liferay-util:include page="/admin/template_icons.jsp" servletContext="<%= application %>" />
 
-	<%= template.getContent() %>
+	<%= kbTemplate.getContent() %>
 
 	<liferay-util:include page="/admin/template_comments.jsp" servletContext="<%= application %>" />
 </div>

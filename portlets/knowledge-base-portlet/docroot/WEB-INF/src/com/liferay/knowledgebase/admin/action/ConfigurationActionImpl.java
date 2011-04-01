@@ -37,10 +37,10 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 		String tabs2 = ParamUtil.getString(actionRequest, "tabs2");
 
 		if (tabs2.equals("article-added-email")) {
-			validateEmailArticleAdded(actionRequest);
+			validateEmailKBArticleAdded(actionRequest);
 		}
 		else if (tabs2.equals("article-updated-email")) {
-			validateEmailArticleUpdated(actionRequest);
+			validateEmailKBArticleUpdated(actionRequest);
 		}
 		else if (tabs2.equals("email-from")) {
 			validateEmailFrom(actionRequest);
@@ -58,31 +58,31 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 		}
 	}
 
-	protected void validateEmailArticleAdded(ActionRequest actionRequest) {
-		String emailArticleAddedSubject = getParameter(
-			actionRequest, "emailArticleAddedSubject");
-		String emailArticleAddedBody = getParameter(
-			actionRequest, "emailArticleAddedBody");
+	protected void validateEmailKBArticleAdded(ActionRequest actionRequest) {
+		String emailKBArticleAddedSubject = getParameter(
+			actionRequest, "emailKBArticleAddedSubject");
+		String emailKBArticleAddedBody = getParameter(
+			actionRequest, "emailKBArticleAddedBody");
 
-		if (Validator.isNull(emailArticleAddedSubject)) {
-			SessionErrors.add(actionRequest, "emailArticleAddedSubject");
+		if (Validator.isNull(emailKBArticleAddedSubject)) {
+			SessionErrors.add(actionRequest, "emailKBArticleAddedSubject");
 		}
-		else if (Validator.isNull(emailArticleAddedBody)) {
-			SessionErrors.add(actionRequest, "emailArticleAddedBody");
+		else if (Validator.isNull(emailKBArticleAddedBody)) {
+			SessionErrors.add(actionRequest, "emailKBArticleAddedBody");
 		}
 	}
 
-	protected void validateEmailArticleUpdated(ActionRequest actionRequest) {
-		String emailArticleUpdatedSubject = getParameter(
-			actionRequest, "emailArticleUpdatedSubject");
-		String emailArticleUpdatedBody = getParameter(
-			actionRequest, "emailArticleUpdatedBody");
+	protected void validateEmailKBArticleUpdated(ActionRequest actionRequest) {
+		String emailKBArticleUpdatedSubject = getParameter(
+			actionRequest, "emailKBArticleUpdatedSubject");
+		String emailKBArticleUpdatedBody = getParameter(
+			actionRequest, "emailKBArticleUpdatedBody");
 
-		if (Validator.isNull(emailArticleUpdatedSubject)) {
-			SessionErrors.add(actionRequest, "emailArticleUpdatedSubject");
+		if (Validator.isNull(emailKBArticleUpdatedSubject)) {
+			SessionErrors.add(actionRequest, "emailKBArticleUpdatedSubject");
 		}
-		else if (Validator.isNull(emailArticleUpdatedBody)) {
-			SessionErrors.add(actionRequest, "emailArticleUpdatedBody");
+		else if (Validator.isNull(emailKBArticleUpdatedBody)) {
+			SessionErrors.add(actionRequest, "emailKBArticleUpdatedBody");
 		}
 	}
 

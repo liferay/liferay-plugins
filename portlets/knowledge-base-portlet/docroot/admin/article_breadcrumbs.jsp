@@ -19,40 +19,40 @@
 <%
 int status = (Integer)request.getAttribute(WebKeys.KNOWLEDGE_BASE_STATUS);
 
-Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
+KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 %>
 
-<c:if test="<%= !article.isRoot() %>">
+<c:if test="<%= !kbArticle.isRoot() %>">
 	<div class="kb-article-breadcrumbs">
 
 		<%
-		List<Article> selArticles = new ArrayList<Article>();
+		List<KBArticle> selKBArticles = new ArrayList<KBArticle>();
 
-		long selParentResourcePrimKey = article.getResourcePrimKey();
+		long selParentResourcePrimKey = kbArticle.getResourcePrimKey();
 
-		while (selParentResourcePrimKey != ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) {
-			Article selArticle = ArticleServiceUtil.getLatestArticle(selParentResourcePrimKey, status);
+		while (selParentResourcePrimKey != KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) {
+			KBArticle selKBArticle = KBArticleServiceUtil.getLatestKBArticle(selParentResourcePrimKey, status);
 
-			selArticles.add(selArticle);
+			selKBArticles.add(selKBArticle);
 
-			selParentResourcePrimKey = selArticle.getParentResourcePrimKey();
+			selParentResourcePrimKey = selKBArticle.getParentResourcePrimKey();
 		}
 
-		for (int i = selArticles.size(); i > 0; i--) {
-			Article selArticle = selArticles.get(i - 1);
+		for (int i = selKBArticles.size(); i > 0; i--) {
+			KBArticle selKBArticle = selKBArticles.get(i - 1);
 		%>
 
-			<liferay-portlet:renderURL var="viewArticleURL">
+			<liferay-portlet:renderURL var="viewKBArticleURL">
 				<portlet:param name="jspPage" value='<%= jspPath + "view_article.jsp" %>' />
-				<portlet:param name="resourcePrimKey" value="<%= String.valueOf(selArticle.getResourcePrimKey()) %>" />
+				<portlet:param name="resourcePrimKey" value="<%= String.valueOf(selKBArticle.getResourcePrimKey()) %>" />
 			</liferay-portlet:renderURL>
 
 			<c:choose>
-				<c:when test="<%= article.equals(selArticle) %>">
-					<%= selArticle.getTitle() %>
+				<c:when test="<%= kbArticle.equals(selKBArticle) %>">
+					<%= selKBArticle.getTitle() %>
 				</c:when>
 				<c:otherwise>
-					<aui:a href="<%= viewArticleURL %>"><%= StringUtil.shorten(selArticle.getTitle(), 30) %></aui:a> &raquo;
+					<aui:a href="<%= viewKBArticleURL %>"><%= StringUtil.shorten(selKBArticle.getTitle(), 30) %></aui:a> &raquo;
 				</c:otherwise>
 			</c:choose>
 

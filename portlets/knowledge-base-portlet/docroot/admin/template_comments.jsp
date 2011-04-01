@@ -17,41 +17,41 @@
 <%@ include file="/admin/init.jsp" %>
 
 <%
-Template template = (Template)request.getAttribute(WebKeys.KNOWLEDGE_BASE_TEMPLATE);
+KBTemplate kbTemplate = (KBTemplate)request.getAttribute(WebKeys.KNOWLEDGE_BASE_TEMPLATE);
 
-Comment comment = null;
+KBComment kbComment = null;
 
 try {
-	comment = CommentLocalServiceUtil.getComment(user.getUserId(), Template.class.getName(), template.getTemplateId());
+	kbComment = KBCommentLocalServiceUtil.getKBComment(user.getUserId(), KBTemplate.class.getName(), kbTemplate.getKbTemplateId());
 }
 catch (NoSuchCommentException nsce) {
 }
 
-long commentId = BeanParamUtil.getLong(comment, request, "commentId");
+long kbCommentId = BeanParamUtil.getLong(kbComment, request, "kbCommentId");
 
-boolean helpful = BeanParamUtil.getBoolean(comment, request, "helpful", true);
+boolean helpful = BeanParamUtil.getBoolean(kbComment, request, "helpful", true);
 %>
 
-<c:if test="<%= ((enableTemplateComments && themeDisplay.isSignedIn()) || showTemplateComments) && layoutTypePortlet.hasPortletId(portletDisplay.getId()) %>">
+<c:if test="<%= ((enableKBTemplateKBComments && themeDisplay.isSignedIn()) || showKBTemplateKBComments) && layoutTypePortlet.hasPortletId(portletDisplay.getId()) %>">
 	<div class="kb-template-comments">
-		<aui:form method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "updateComment();" %>'>
+		<aui:form method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "updateKBComment();" %>'>
 			<aui:input name="<%= Constants.CMD %>" type="hidden" />
-			<aui:input name="commentId" type="hidden" value="<%= commentId %>" />
-			<aui:input name="classNameId" type="hidden" value="<%= PortalUtil.getClassNameId(Template.class) %>" />
-			<aui:input name="classPK" type="hidden" value="<%= template.getTemplateId() %>" />
+			<aui:input name="kbCommentId" type="hidden" value="<%= kbCommentId %>" />
+			<aui:input name="classNameId" type="hidden" value="<%= PortalUtil.getClassNameId(KBTemplate.class) %>" />
+			<aui:input name="classPK" type="hidden" value="<%= kbTemplate.getKbTemplateId() %>" />
 
-			<liferay-ui:error exception="<%= CommentContentException.class %>" message="please-enter-valid-content" />
+			<liferay-ui:error exception="<%= KBCommentContentException.class %>" message="please-enter-valid-content" />
 
-			<aui:model-context bean="<%= comment %>" model="<%= Comment.class %>" />
+			<aui:model-context bean="<%= kbComment %>" model="<%= KBComment.class %>" />
 
 			<aui:fieldset>
-				<c:if test="<%= enableTemplateComments && themeDisplay.isSignedIn() %>">
-					<liferay-ui:panel-container extended="<%= false %>" id='<%= renderResponse.getNamespace() + "Template" + template.getTemplateId() + "CommentsPanelContainer" %>' persistState="<%= true %>">
-						<liferay-ui:panel collapsible="<%= true %>" defaultState="closed" extended="<%= true %>" id='<%= renderResponse.getNamespace() + "Template" + template.getTemplateId() + "CommentsPanel" %>' persistState="<%= true %>" title="comments">
-							<c:if test="<%= comment != null %>">
+				<c:if test="<%= enableKBTemplateKBComments && themeDisplay.isSignedIn() %>">
+					<liferay-ui:panel-container extended="<%= false %>" id='<%= renderResponse.getNamespace() + "Template" + kbTemplate.getKbTemplateId() + "CommentsPanelContainer" %>' persistState="<%= true %>">
+						<liferay-ui:panel collapsible="<%= true %>" defaultState="closed" extended="<%= true %>" id='<%= renderResponse.getNamespace() + "Template" + kbTemplate.getKbTemplateId() + "CommentsPanel" %>' persistState="<%= true %>" title="comments">
+							<c:if test="<%= kbComment != null %>">
 
 								<%
-								request.setAttribute("template_comment.jsp-comment", comment);
+								request.setAttribute("template_comment.jsp-kb_comment", kbComment);
 								%>
 
 								<liferay-util:include page="/admin/template_comment.jsp" servletContext="<%= application %>" />
@@ -74,18 +74,18 @@ boolean helpful = BeanParamUtil.getBoolean(comment, request, "helpful", true);
 					</liferay-ui:panel-container>
 				</c:if>
 
-				<c:if test="<%= showTemplateComments %>">
+				<c:if test="<%= showKBTemplateKBComments %>">
 					<liferay-portlet:renderURL varImpl="iteratorURL">
 						<portlet:param name="jspPage" value='<%= jspPath + "view_template.jsp" %>' />
-						<portlet:param name="templateId" value="<%= String.valueOf(template.getTemplateId()) %>" />
+						<portlet:param name="kbTemplateId" value="<%= String.valueOf(kbTemplate.getKbTemplateId()) %>" />
 					</liferay-portlet:renderURL>
 
 					<liferay-ui:search-container
 						iteratorURL="<%= iteratorURL %>"
 					>
 						<liferay-ui:search-container-results
-							results="<%= CommentLocalServiceUtil.getComments(Template.class.getName(), template.getTemplateId(), searchContainer.getStart(), searchContainer.getEnd(), null) %>"
-							total="<%= CommentLocalServiceUtil.getCommentsCount(Template.class.getName(), template.getTemplateId()) %>"
+							results="<%= KBCommentLocalServiceUtil.getKBComments(KBTemplate.class.getName(), kbTemplate.getKbTemplateId(), searchContainer.getStart(), searchContainer.getEnd(), null) %>"
+							total="<%= KBCommentLocalServiceUtil.getKBCommentsCount(KBTemplate.class.getName(), kbTemplate.getKbTemplateId()) %>"
 						/>
 
 						<c:if test="<%= total > 0 %>">
@@ -93,11 +93,11 @@ boolean helpful = BeanParamUtil.getBoolean(comment, request, "helpful", true);
 						</c:if>
 
 						<%
-						for (Comment curComment : (List<Comment>)results) {
+						for (KBComment curKBComment : (List<KBComment>)results) {
 						%>
 
 							<%
-							request.setAttribute("template_comment.jsp-comment", curComment);
+							request.setAttribute("template_comment.jsp-kb_comment", curKBComment);
 							%>
 
 							<liferay-util:include page="/admin/template_comment.jsp" servletContext="<%= application %>" />
@@ -118,14 +118,14 @@ boolean helpful = BeanParamUtil.getBoolean(comment, request, "helpful", true);
 	</div>
 
 	<aui:script>
-		function <portlet:namespace />deleteComment(commentId) {
-			document.<portlet:namespace />fm.<portlet:namespace />commentId.value = commentId;
-			submitForm(document.<portlet:namespace />fm, "<liferay-portlet:actionURL name="deleteComment"><portlet:param name="jspPage" value='<%= jspPath + "view_template.jsp" %>' /><portlet:param name="redirect" value="<%= currentURL %>" /><portlet:param name="templateId" value="<%= String.valueOf(template.getTemplateId()) %>" /></liferay-portlet:actionURL>");
+		function <portlet:namespace />deleteKBComment(kbCommentId) {
+			document.<portlet:namespace />fm.<portlet:namespace />kbCommentId.value = kbCommentId;
+			submitForm(document.<portlet:namespace />fm, "<liferay-portlet:actionURL name="deleteKBComment"><portlet:param name="jspPage" value='<%= jspPath + "view_template.jsp" %>' /><portlet:param name="redirect" value="<%= currentURL %>" /><portlet:param name="kbTemplateId" value="<%= String.valueOf(kbTemplate.getKbTemplateId()) %>" /></liferay-portlet:actionURL>");
 		}
 
-		function <portlet:namespace />updateComment() {
-			document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = "<%= (comment == null) ? Constants.ADD : Constants.UPDATE %>";
-			submitForm(document.<portlet:namespace />fm, "<liferay-portlet:actionURL name="updateComment"><portlet:param name="jspPage" value='<%= jspPath + "view_template.jsp" %>' /><portlet:param name="redirect" value="<%= currentURL %>" /><portlet:param name="templateId" value="<%= String.valueOf(template.getTemplateId()) %>" /></liferay-portlet:actionURL>");
+		function <portlet:namespace />updateKBComment() {
+			document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = "<%= (kbComment == null) ? Constants.ADD : Constants.UPDATE %>";
+			submitForm(document.<portlet:namespace />fm, "<liferay-portlet:actionURL name="updateKBComment"><portlet:param name="jspPage" value='<%= jspPath + "view_template.jsp" %>' /><portlet:param name="redirect" value="<%= currentURL %>" /><portlet:param name="kbTemplateId" value="<%= String.valueOf(kbTemplate.getKbTemplateId()) %>" /></liferay-portlet:actionURL>");
 		}
 	</aui:script>
 </c:if>

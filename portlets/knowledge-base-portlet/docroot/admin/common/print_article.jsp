@@ -17,12 +17,12 @@
 <%@ include file="/admin/init.jsp" %>
 
 <%
-Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
+KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 %>
 
 <div class="float-container kb-entity-header">
 	<div class="kb-title">
-		<%= article.getTitle() %>
+		<%= kbArticle.getTitle() %>
 	</div>
 
 	<div class="kb-tools">
@@ -36,5 +36,5 @@ Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 </div>
 
 <div class="kb-entity-body">
-	<%= article.getContent() %>
+	<%= kbArticle.getContent() %>
 </div>

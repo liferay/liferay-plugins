@@ -26,28 +26,28 @@
 		</portlet-ref>
 		<permissions>
 			<supports>
-				<action-key>ADD_ARTICLE</action-key>
-				<action-key>ADD_TEMPLATE</action-key>
-				<action-key>DELETE_ARTICLES</action-key>
-				<action-key>DELETE_TEMPLATES</action-key>
+				<action-key>ADD_KB_ARTICLE</action-key>
+				<action-key>ADD_KB_TEMPLATE</action-key>
+				<action-key>DELETE_KB_ARTICLES</action-key>
+				<action-key>DELETE_KB_TEMPLATES</action-key>
 				<action-key>PERMISSIONS</action-key>
 				<action-key>SUBSCRIBE</action-key>
-				<action-key>UPDATE_ARTICLES_PRIORITIES</action-key>
-				<action-key>VIEW_TEMPLATES</action-key>
+				<action-key>UPDATE_KB_ARTICLES_PRIORITIES</action-key>
+				<action-key>VIEW_KB_TEMPLATES</action-key>
 			</supports>
 			<community-defaults>
 				<action-key>SUBSCRIBE</action-key>
 			</community-defaults>
 			<guest-defaults />
 			<guest-unsupported>
-				<action-key>ADD_ARTICLE</action-key>
-				<action-key>ADD_TEMPLATE</action-key>
-				<action-key>DELETE_ARTICLES</action-key>
-				<action-key>DELETE_TEMPLATES</action-key>
+				<action-key>ADD_KB_ARTICLE</action-key>
+				<action-key>ADD_KB_TEMPLATE</action-key>
+				<action-key>DELETE_KB_ARTICLES</action-key>
+				<action-key>DELETE_KB_TEMPLATES</action-key>
 				<action-key>PERMISSIONS</action-key>
 				<action-key>SUBSCRIBE</action-key>
-				<action-key>UPDATE_ARTICLES_PRIORITIES</action-key>
-				<action-key>VIEW_TEMPLATES</action-key>
+				<action-key>UPDATE_KB_ARTICLES_PRIORITIES</action-key>
+				<action-key>VIEW_KB_TEMPLATES</action-key>
 			</guest-unsupported>
 		</permissions>
 	</model-resource>
@@ -58,36 +58,36 @@
 		</portlet-ref>
 		<permissions>
 			<supports>
-				<action-key>ADD_ARTICLE</action-key>
-				<action-key>ADD_TEMPLATE</action-key>
+				<action-key>ADD_KB_ARTICLE</action-key>
+				<action-key>ADD_KB_TEMPLATE</action-key>
 				<action-key>ADMINISTRATOR</action-key>
 				<action-key>PERMISSIONS</action-key>
 				<action-key>SUBSCRIBE</action-key>
-				<action-key>VIEW_TEMPLATES</action-key>
+				<action-key>VIEW_KB_TEMPLATES</action-key>
 			</supports>
 			<community-defaults>
 				<action-key>SUBSCRIBE</action-key>
 			</community-defaults>
 			<guest-defaults />
 			<guest-unsupported>
-				<action-key>ADD_ARTICLE</action-key>
-				<action-key>ADD_TEMPLATE</action-key>
+				<action-key>ADD_KB_ARTICLE</action-key>
+				<action-key>ADD_KB_TEMPLATE</action-key>
 				<action-key>ADMINISTRATOR</action-key>
 				<action-key>PERMISSIONS</action-key>
 				<action-key>SUBSCRIBE</action-key>
-				<action-key>VIEW_TEMPLATES</action-key>
+				<action-key>VIEW_KB_TEMPLATES</action-key>
 			</guest-unsupported>
 		</permissions>
 	</model-resource>
 	<model-resource>
-		<model-name>com.liferay.knowledgebase.model.Article</model-name>
+		<model-name>com.liferay.knowledgebase.model.KBArticle</model-name>
 		<portlet-ref>
 			<portlet-name>1</portlet-name>
 		</portlet-ref>
 		<permissions>
 			<supports>
 				<action-key>DELETE</action-key>
-				<action-key>MOVE</action-key>
+				<action-key>MOVE_KB_ARTICLE</action-key>
 				<action-key>PERMISSIONS</action-key>
 				<action-key>SUBSCRIBE</action-key>
 				<action-key>UPDATE</action-key>
@@ -102,7 +102,7 @@
 			</guest-defaults>
 			<guest-unsupported>
 				<action-key>DELETE</action-key>
-				<action-key>MOVE</action-key>
+				<action-key>MOVE_KB_ARTICLE</action-key>
 				<action-key>PERMISSIONS</action-key>
 				<action-key>SUBSCRIBE</action-key>
 				<action-key>UPDATE</action-key>
@@ -110,7 +110,7 @@
 		</permissions>
 	</model-resource>
 	<model-resource>
-		<model-name>com.liferay.knowledgebase.model.Template</model-name>
+		<model-name>com.liferay.knowledgebase.model.KBTemplate</model-name>
 		<portlet-ref>
 			<portlet-name>1</portlet-name>
 		</portlet-ref>

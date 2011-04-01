@@ -18,21 +18,21 @@ import com.liferay.documentlibrary.DuplicateFileException;
 import com.liferay.documentlibrary.FileSizeException;
 import com.liferay.documentlibrary.NoSuchFileException;
 import com.liferay.documentlibrary.service.DLLocalServiceUtil;
-import com.liferay.knowledgebase.ArticleContentException;
-import com.liferay.knowledgebase.ArticlePriorityException;
-import com.liferay.knowledgebase.ArticleTitleException;
-import com.liferay.knowledgebase.CommentContentException;
+import com.liferay.knowledgebase.KBArticleContentException;
+import com.liferay.knowledgebase.KBArticlePriorityException;
+import com.liferay.knowledgebase.KBArticleTitleException;
+import com.liferay.knowledgebase.KBCommentContentException;
+import com.liferay.knowledgebase.KBTemplateContentException;
+import com.liferay.knowledgebase.KBTemplateTitleException;
 import com.liferay.knowledgebase.NoSuchArticleException;
 import com.liferay.knowledgebase.NoSuchCommentException;
 import com.liferay.knowledgebase.NoSuchTemplateException;
-import com.liferay.knowledgebase.TemplateContentException;
-import com.liferay.knowledgebase.TemplateTitleException;
-import com.liferay.knowledgebase.model.Article;
-import com.liferay.knowledgebase.model.Comment;
-import com.liferay.knowledgebase.model.Template;
-import com.liferay.knowledgebase.service.ArticleServiceUtil;
-import com.liferay.knowledgebase.service.CommentLocalServiceUtil;
-import com.liferay.knowledgebase.service.TemplateServiceUtil;
+import com.liferay.knowledgebase.model.KBArticle;
+import com.liferay.knowledgebase.model.KBComment;
+import com.liferay.knowledgebase.model.KBTemplate;
+import com.liferay.knowledgebase.service.KBArticleServiceUtil;
+import com.liferay.knowledgebase.service.KBCommentLocalServiceUtil;
+import com.liferay.knowledgebase.service.KBTemplateServiceUtil;
 import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.knowledgebase.util.WebKeys;
 import com.liferay.portal.NoSuchSubscriptionException;
@@ -84,9 +84,6 @@ public class AdminPortlet extends MVCPortlet {
 		UploadPortletRequest uploadRequest = PortalUtil.getUploadPortletRequest(
 			actionRequest);
 
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
 		long resourcePrimKey = ParamUtil.getLong(
 			uploadRequest, "resourcePrimKey");
 
@@ -95,35 +92,11 @@ public class AdminPortlet extends MVCPortlet {
 		String fileName = uploadRequest.getFileName("file");
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
-			Article.class.getName(), actionRequest);
+			KBArticle.class.getName(), actionRequest);
 
-		ArticleServiceUtil.addAttachment(
+		KBArticleServiceUtil.addAttachment(
 			resourcePrimKey, dirName, fileName, FileUtil.getBytes(file),
 			serviceContext);
-	}
-
-	public void deleteArticle(
-			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws Exception {
-
-		long resourcePrimKey = ParamUtil.getLong(
-			actionRequest, "resourcePrimKey");
-
-		ArticleServiceUtil.deleteArticle(resourcePrimKey);
-	}
-
-	public void deleteArticles(
-			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws Exception {
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		long[] resourcePrimKeys = StringUtil.split(
-			ParamUtil.getString(actionRequest, "resourcePrimKeys"), 0L);
-
-		ArticleServiceUtil.deleteArticles(
-			themeDisplay.getScopeGroupId(), resourcePrimKeys);
 	}
 
 	public void deleteAttachment(
@@ -138,12 +111,36 @@ public class AdminPortlet extends MVCPortlet {
 
 		String fileName = ParamUtil.getString(actionRequest, "fileName");
 
-		ArticleServiceUtil.deleteAttachment(
+		KBArticleServiceUtil.deleteAttachment(
 			themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(),
 			resourcePrimKey, fileName);
 	}
 
-	public void deleteComment(
+	public void deleteKBArticle(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		long resourcePrimKey = ParamUtil.getLong(
+			actionRequest, "resourcePrimKey");
+
+		KBArticleServiceUtil.deleteKBArticle(resourcePrimKey);
+	}
+
+	public void deleteKBArticles(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		long[] resourcePrimKeys = StringUtil.split(
+			ParamUtil.getString(actionRequest, "resourcePrimKeys"), 0L);
+
+		KBArticleServiceUtil.deleteKBArticles(
+			themeDisplay.getScopeGroupId(), resourcePrimKeys);
+	}
+
+	public void deleteKBComment(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
@@ -154,35 +151,35 @@ public class AdminPortlet extends MVCPortlet {
 			return;
 		}
 
-		long commentId = ParamUtil.getLong(actionRequest, "commentId");
+		long kbCommentId = ParamUtil.getLong(actionRequest, "kbCommentId");
 
-		CommentLocalServiceUtil.deleteComment(commentId);
+		KBCommentLocalServiceUtil.deleteKBComment(kbCommentId);
 	}
 
-	public void deleteTemplate(
+	public void deleteKBTemplate(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		long templateId = ParamUtil.getLong(actionRequest, "templateId");
+		long kbTemplateId = ParamUtil.getLong(actionRequest, "kbTemplateId");
 
-		TemplateServiceUtil.deleteTemplate(templateId);
+		KBTemplateServiceUtil.deleteKBTemplate(kbTemplateId);
 	}
 
-	public void deleteTemplates(
+	public void deleteKBTemplates(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		long[] templateIds = StringUtil.split(
-			ParamUtil.getString(actionRequest, "templateIds"), 0L);
+		long[] kbTemplateIds = StringUtil.split(
+			ParamUtil.getString(actionRequest, "kbTemplateIds"), 0L);
 
-		TemplateServiceUtil.deleteTemplates(
-			themeDisplay.getScopeGroupId(), templateIds);
+		KBTemplateServiceUtil.deleteKBTemplates(
+			themeDisplay.getScopeGroupId(), kbTemplateIds);
 	}
 
-	public void moveArticle(
+	public void moveKBArticle(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
@@ -193,7 +190,7 @@ public class AdminPortlet extends MVCPortlet {
 			actionRequest, "parentResourcePrimKey");
 		double priority = ParamUtil.getDouble(actionRequest, "priority");
 
-		ArticleServiceUtil.moveArticle(
+		KBArticleServiceUtil.moveKBArticle(
 			resourcePrimKey, parentResourcePrimKey, priority);
 	}
 
@@ -206,28 +203,30 @@ public class AdminPortlet extends MVCPortlet {
 
 			renderRequest.setAttribute(WebKeys.KNOWLEDGE_BASE_STATUS, status);
 
-			Article article = null;
+			KBArticle kbArticle = null;
 
 			long resourcePrimKey = ParamUtil.getLong(
 				renderRequest, "resourcePrimKey");
 
 			if (resourcePrimKey > 0) {
-				article = ArticleServiceUtil.getLatestArticle(
+				kbArticle = KBArticleServiceUtil.getLatestKBArticle(
 					resourcePrimKey, status);
 			}
 
-			renderRequest.setAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE, article);
+			renderRequest.setAttribute(
+				WebKeys.KNOWLEDGE_BASE_ARTICLE, kbArticle);
 
-			Template template = null;
+			KBTemplate kbTemplate = null;
 
-			long templateId = ParamUtil.getLong(renderRequest, "templateId");
+			long kbTemplateId = ParamUtil.getLong(
+				renderRequest, "kbTemplateId");
 
-			if (templateId > 0) {
-				template = TemplateServiceUtil.getTemplate(templateId);
+			if (kbTemplateId > 0) {
+				kbTemplate = KBTemplateServiceUtil.getKBTemplate(kbTemplateId);
 			}
 
 			renderRequest.setAttribute(
-				WebKeys.KNOWLEDGE_BASE_TEMPLATE, template);
+				WebKeys.KNOWLEDGE_BASE_TEMPLATE, kbTemplate);
 		}
 		catch (Exception e) {
 			if (e instanceof NoSuchArticleException ||
@@ -282,7 +281,20 @@ public class AdminPortlet extends MVCPortlet {
 		}
 	}
 
-	public void subscribeArticle(
+	public void subscribeGroupKBArticles(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		String portletId = PortalUtil.getPortletId(actionRequest);
+
+		KBArticleServiceUtil.subscribeGroupKBArticles(
+			themeDisplay.getScopeGroupId(), portletId);
+	}
+
+	public void subscribeKBArticle(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
@@ -292,11 +304,11 @@ public class AdminPortlet extends MVCPortlet {
 		long resourcePrimKey = ParamUtil.getLong(
 			actionRequest, "resourcePrimKey");
 
-		ArticleServiceUtil.subscribeArticle(
+		KBArticleServiceUtil.subscribeKBArticle(
 			themeDisplay.getScopeGroupId(), resourcePrimKey);
 	}
 
-	public void subscribeGroupArticles(
+	public void unsubscribeGroupKBArticles(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
@@ -305,34 +317,44 @@ public class AdminPortlet extends MVCPortlet {
 
 		String portletId = PortalUtil.getPortletId(actionRequest);
 
-		ArticleServiceUtil.subscribeGroupArticles(
+		KBArticleServiceUtil.unsubscribeGroupKBArticles(
 			themeDisplay.getScopeGroupId(), portletId);
 	}
 
-	public void unsubscribeArticle(
+	public void unsubscribeKBArticle(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
 		long resourcePrimKey = ParamUtil.getLong(
 			actionRequest, "resourcePrimKey");
 
-		ArticleServiceUtil.unsubscribeArticle(resourcePrimKey);
+		KBArticleServiceUtil.unsubscribeKBArticle(resourcePrimKey);
 	}
 
-	public void unsubscribeGroupArticles(
+	public void updateAttachments(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
+		long resourcePrimKey = ParamUtil.getLong(
+			actionRequest, "resourcePrimKey");
 
-		String portletId = PortalUtil.getPortletId(actionRequest);
+		String dirName = ParamUtil.getString(actionRequest, "dirName");
 
-		ArticleServiceUtil.unsubscribeGroupArticles(
-			themeDisplay.getScopeGroupId(), portletId);
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(
+			KBArticle.class.getName(), actionRequest);
+
+		dirName = KBArticleServiceUtil.updateAttachments(
+			resourcePrimKey, dirName, serviceContext);
+
+		String redirect = ParamUtil.getString(actionRequest, "redirect");
+
+		redirect = HttpUtil.setParameter(
+			redirect, actionResponse.getNamespace() + "dirName", dirName);
+
+		actionRequest.setAttribute(WebKeys.REDIRECT, redirect);
 	}
 
-	public void updateArticle(
+	public void updateKBArticle(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
@@ -353,18 +375,18 @@ public class AdminPortlet extends MVCPortlet {
 		int workflowAction = ParamUtil.getInteger(
 			actionRequest, "workflowAction", WorkflowConstants.ACTION_PUBLISH);
 
-		Article article = null;
+		KBArticle kbArticle = null;
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
-			Article.class.getName(), actionRequest);
+			KBArticle.class.getName(), actionRequest);
 
 		if (cmd.equals(Constants.ADD)) {
-			article = ArticleServiceUtil.addArticle(
+			kbArticle = KBArticleServiceUtil.addKBArticle(
 				parentResourcePrimKey, title, content, description, dirName,
 				serviceContext);
 		}
 		else if (cmd.equals(Constants.UPDATE)) {
-			article = ArticleServiceUtil.updateArticle(
+			kbArticle = KBArticleServiceUtil.updateKBArticle(
 				resourcePrimKey, title, content, description, dirName,
 				serviceContext);
 		}
@@ -387,74 +409,13 @@ public class AdminPortlet extends MVCPortlet {
 				editURL, namespace + "redirect", redirect);
 			editURL = HttpUtil.setParameter(
 				editURL, namespace + "resourcePrimKey",
-				article.getResourcePrimKey());
+				kbArticle.getResourcePrimKey());
 
 			actionRequest.setAttribute(WebKeys.REDIRECT, editURL);
 		}
 	}
 
-	public void updateAttachments(
-			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws Exception {
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		long resourcePrimKey = ParamUtil.getLong(
-			actionRequest, "resourcePrimKey");
-
-		String dirName = ParamUtil.getString(actionRequest, "dirName");
-
-		ServiceContext serviceContext = ServiceContextFactory.getInstance(
-			Article.class.getName(), actionRequest);
-
-		dirName = ArticleServiceUtil.updateAttachments(
-			resourcePrimKey, dirName, serviceContext);
-
-		String redirect = ParamUtil.getString(actionRequest, "redirect");
-
-		redirect = HttpUtil.setParameter(
-			redirect, actionResponse.getNamespace() + "dirName", dirName);
-
-		actionRequest.setAttribute(WebKeys.REDIRECT, redirect);
-	}
-
-	public void updateComment(
-			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws Exception {
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		if (!themeDisplay.isSignedIn()) {
-			return;
-		}
-
-		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
-
-		long commentId = ParamUtil.getLong(actionRequest, "commentId");
-
-		long classNameId = ParamUtil.getLong(actionRequest, "classNameId");
-		long classPK = ParamUtil.getLong(actionRequest, "classPK");
-		String content = ParamUtil.getString(actionRequest, "content");
-		boolean helpful = ParamUtil.getBoolean(actionRequest, "helpful");
-
-		ServiceContext serviceContext = ServiceContextFactory.getInstance(
-			Comment.class.getName(), actionRequest);
-
-		if (cmd.equals(Constants.ADD)) {
-			CommentLocalServiceUtil.addComment(
-				themeDisplay.getUserId(), classNameId, classPK, content,
-				helpful, serviceContext);
-		}
-		else if (cmd.equals(Constants.UPDATE)) {
-			CommentLocalServiceUtil.updateComment(
-				commentId, classNameId, classPK, content, helpful,
-				serviceContext);
-		}
-	}
-
-	public void updatePriorities(
+	public void updateKBArticlePriorities(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
@@ -481,32 +442,67 @@ public class AdminPortlet extends MVCPortlet {
 			resourcePrimKeyToPriorityMap.put(resourcePrimKey, priority);
 		}
 
-		ArticleServiceUtil.updatePriorities(
+		KBArticleServiceUtil.updateKBArticlePriorities(
 			themeDisplay.getScopeGroupId(), resourcePrimKeyToPriorityMap);
 	}
 
-	public void updateTemplate(
+	public void updateKBComment(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		if (!themeDisplay.isSignedIn()) {
+			return;
+		}
+
+		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
+
+		long kbCommentId = ParamUtil.getLong(actionRequest, "kbCommentId");
+
+		long classNameId = ParamUtil.getLong(actionRequest, "classNameId");
+		long classPK = ParamUtil.getLong(actionRequest, "classPK");
+		String content = ParamUtil.getString(actionRequest, "content");
+		boolean helpful = ParamUtil.getBoolean(actionRequest, "helpful");
+
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(
+			KBComment.class.getName(), actionRequest);
+
+		if (cmd.equals(Constants.ADD)) {
+			KBCommentLocalServiceUtil.addKBComment(
+				themeDisplay.getUserId(), classNameId, classPK, content,
+				helpful, serviceContext);
+		}
+		else if (cmd.equals(Constants.UPDATE)) {
+			KBCommentLocalServiceUtil.updateKBComment(
+				kbCommentId, classNameId, classPK, content, helpful,
+				serviceContext);
+		}
+	}
+
+	public void updateKBTemplate(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
 		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
 
-		long templateId = ParamUtil.getLong(actionRequest, "templateId");
+		long kbTemplateId = ParamUtil.getLong(actionRequest, "kbTemplateId");
 
 		String title = ParamUtil.getString(actionRequest, "title");
 		String content = ParamUtil.getString(actionRequest, "content");
 		String description = ParamUtil.getString(actionRequest, "description");
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
-			Template.class.getName(), actionRequest);
+			KBTemplate.class.getName(), actionRequest);
 
 		if (cmd.equals(Constants.ADD)) {
-			TemplateServiceUtil.addTemplate(
+			KBTemplateServiceUtil.addKBTemplate(
 				title, content, description, serviceContext);
 		}
 		else if (cmd.equals(Constants.UPDATE)) {
-			TemplateServiceUtil.updateTemplate(
-				templateId, title, content, description, serviceContext);
+			KBTemplateServiceUtil.updateKBTemplate(
+				kbTemplateId, title, content, description, serviceContext);
 		}
 	}
 
@@ -546,19 +542,19 @@ public class AdminPortlet extends MVCPortlet {
 	}
 
 	protected boolean isSessionErrorException(Throwable cause) {
-		if (cause instanceof ArticleContentException ||
-			cause instanceof ArticlePriorityException ||
-			cause instanceof ArticleTitleException ||
-			cause instanceof CommentContentException ||
-			cause instanceof DuplicateFileException ||
+		if (cause instanceof DuplicateFileException ||
 			cause instanceof FileSizeException ||
+			cause instanceof KBArticleContentException ||
+			cause instanceof KBArticlePriorityException ||
+			cause instanceof KBArticleTitleException ||
+			cause instanceof KBCommentContentException ||
+			cause instanceof KBTemplateContentException ||
+			cause instanceof KBTemplateTitleException ||
 			cause instanceof NoSuchArticleException ||
 			cause instanceof NoSuchCommentException ||
 			cause instanceof NoSuchFileException ||
 			cause instanceof NoSuchTemplateException ||
-			cause instanceof PrincipalException ||
-			cause instanceof TemplateContentException ||
-			cause instanceof TemplateTitleException) {
+			cause instanceof PrincipalException) {
 
 			return true;
 		}

@@ -14,9 +14,9 @@
 
 package com.liferay.knowledgebase.admin.util;
 
-import com.liferay.knowledgebase.model.Article;
-import com.liferay.knowledgebase.model.ArticleConstants;
-import com.liferay.knowledgebase.service.ArticleLocalServiceUtil;
+import com.liferay.knowledgebase.model.KBArticle;
+import com.liferay.knowledgebase.model.KBArticleConstants;
+import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
 import com.liferay.portal.kernel.bean.BeanPropertiesUtil;
 import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
 import com.liferay.portal.kernel.util.DiffHtmlUtil;
@@ -43,29 +43,125 @@ import net.htmlparser.jericho.Source;
  */
 public class AdminUtil {
 
-	public static String getArticleDiff(
+	public static String getEmailFromAddress(PortletPreferences preferences) {
+		return preferences.getValue(
+			"emailFromAddress", PortletProps.get("admin.email.from.address"));
+	}
+
+	public static String getEmailFromName(PortletPreferences preferences) {
+		return preferences.getValue(
+			"emailFromName", PortletProps.get("admin.email.from.name"));
+	}
+
+	public static String getEmailKBArticleAddedBody(
+		PortletPreferences preferences) {
+
+		String emailKBArticleAddedBody = preferences.getValue(
+			"emailKBArticleAddedBody", StringPool.BLANK);
+
+		if (Validator.isNotNull(emailKBArticleAddedBody)) {
+			return emailKBArticleAddedBody;
+		}
+
+		return ContentUtil.get(
+			PortletProps.get("admin.email.kb.article.added.body"));
+	}
+
+	public static boolean getEmailKBArticleAddedEnabled(
+		PortletPreferences preferences) {
+
+		String emailKBArticleAddedEnabled = preferences.getValue(
+			"emailKBArticleAddedEnabled", StringPool.BLANK);
+
+		if (Validator.isNotNull(emailKBArticleAddedEnabled)) {
+			return GetterUtil.getBoolean(emailKBArticleAddedEnabled);
+		}
+
+		return GetterUtil.getBoolean(
+			PortletProps.get("admin.email.kb.article.added.enabled"));
+	}
+
+	public static String getEmailKBArticleAddedSubject(
+		PortletPreferences preferences) {
+
+		String emailKBArticleAddedSubject = preferences.getValue(
+			"emailKBArticleAddedSubject", StringPool.BLANK);
+
+		if (Validator.isNotNull(emailKBArticleAddedSubject)) {
+			return emailKBArticleAddedSubject;
+		}
+
+		return ContentUtil.get(
+			PortletProps.get("admin.email.kb.article.added.subject"));
+	}
+
+	public static String getEmailKBArticleUpdatedBody(
+		PortletPreferences preferences) {
+
+		String emailKBArticleUpdatedBody = preferences.getValue(
+			"emailKBArticleUpdatedBody", StringPool.BLANK);
+
+		if (Validator.isNotNull(emailKBArticleUpdatedBody)) {
+			return emailKBArticleUpdatedBody;
+		}
+
+		return ContentUtil.get(
+			PortletProps.get("admin.email.kb.article.updated.body"));
+	}
+
+	public static boolean getEmailKBArticleUpdatedEnabled(
+		PortletPreferences preferences) {
+
+		String emailKBArticleUpdatedEnabled = preferences.getValue(
+			"emailKBArticleUpdatedEnabled", StringPool.BLANK);
+
+		if (Validator.isNotNull(emailKBArticleUpdatedEnabled)) {
+			return GetterUtil.getBoolean(emailKBArticleUpdatedEnabled);
+		}
+
+		return GetterUtil.getBoolean(
+			PortletProps.get("admin.email.kb.article.updated.enabled"));
+	}
+
+	public static String getEmailKBArticleUpdatedSubject(
+		PortletPreferences preferences) {
+
+		String emailKBArticleUpdatedSubject = preferences.getValue(
+			"emailKBArticleUpdatedSubject", StringPool.BLANK);
+
+		if (Validator.isNotNull(emailKBArticleUpdatedSubject)) {
+			return emailKBArticleUpdatedSubject;
+		}
+
+		return ContentUtil.get(
+			PortletProps.get("admin.email.kb.article.updated.subject"));
+	}
+
+	public static String getKBArticleDiff(
 			long resourcePrimKey, int sourceVersion, int targetVersion,
 			String param)
 		throws Exception {
 
-		if (sourceVersion < ArticleConstants.DEFAULT_VERSION) {
-			sourceVersion = ArticleConstants.DEFAULT_VERSION;
+		if (sourceVersion < KBArticleConstants.DEFAULT_VERSION) {
+			sourceVersion = KBArticleConstants.DEFAULT_VERSION;
 		}
 
 		if (sourceVersion == targetVersion) {
-			Article article = ArticleLocalServiceUtil.getArticle(
+			KBArticle kbArticle = KBArticleLocalServiceUtil.getKBArticle(
 				resourcePrimKey, targetVersion);
 
-			return BeanPropertiesUtil.getString(article, param);
+			return BeanPropertiesUtil.getString(kbArticle, param);
 		}
 
-		Article sourceArticle = ArticleLocalServiceUtil.getArticle(
+		KBArticle sourceKBArticle = KBArticleLocalServiceUtil.getKBArticle(
 			resourcePrimKey, sourceVersion);
-		Article targetArticle = ArticleLocalServiceUtil.getArticle(
+		KBArticle targetKBArticle = KBArticleLocalServiceUtil.getKBArticle(
 			resourcePrimKey, targetVersion);
 
-		String sourceHtml = BeanPropertiesUtil.getString(sourceArticle, param);
-		String targetHtml = BeanPropertiesUtil.getString(targetArticle, param);
+		String sourceHtml = BeanPropertiesUtil.getString(
+			sourceKBArticle, param);
+		String targetHtml = BeanPropertiesUtil.getString(
+			targetKBArticle, param);
 
 		String diff = DiffHtmlUtil.diff(
 			new UnsyncStringReader(sourceHtml),
@@ -129,100 +225,6 @@ public class AdminUtil {
 		}
 
 		return outputDocument.toString();
-	}
-
-	public static String getEmailArticleAddedBody(
-		PortletPreferences preferences) {
-
-		String emailArticleAddedBody = preferences.getValue(
-			"emailArticleAddedBody", StringPool.BLANK);
-
-		if (Validator.isNotNull(emailArticleAddedBody)) {
-			return emailArticleAddedBody;
-		}
-
-		return ContentUtil.get(
-			PortletProps.get("admin.email.article.added.body"));
-	}
-
-	public static boolean getEmailArticleAddedEnabled(
-		PortletPreferences preferences) {
-
-		String emailArticleAddedEnabled = preferences.getValue(
-			"emailArticleAddedEnabled", StringPool.BLANK);
-
-		if (Validator.isNotNull(emailArticleAddedEnabled)) {
-			return GetterUtil.getBoolean(emailArticleAddedEnabled);
-		}
-
-		return GetterUtil.getBoolean(
-			PortletProps.get("admin.email.article.added.enabled"));
-	}
-
-	public static String getEmailArticleAddedSubject(
-		PortletPreferences preferences) {
-
-		String emailArticleAddedSubject = preferences.getValue(
-			"emailArticleAddedSubject", StringPool.BLANK);
-
-		if (Validator.isNotNull(emailArticleAddedSubject)) {
-			return emailArticleAddedSubject;
-		}
-
-		return ContentUtil.get(
-			PortletProps.get("admin.email.article.added.subject"));
-	}
-
-	public static String getEmailArticleUpdatedBody(
-		PortletPreferences preferences) {
-
-		String emailArticleUpdatedBody = preferences.getValue(
-			"emailArticleUpdatedBody", StringPool.BLANK);
-
-		if (Validator.isNotNull(emailArticleUpdatedBody)) {
-			return emailArticleUpdatedBody;
-		}
-
-		return ContentUtil.get(
-			PortletProps.get("admin.email.article.updated.body"));
-	}
-
-	public static boolean getEmailArticleUpdatedEnabled(
-		PortletPreferences preferences) {
-
-		String emailArticleUpdatedEnabled = preferences.getValue(
-			"emailArticleUpdatedEnabled", StringPool.BLANK);
-
-		if (Validator.isNotNull(emailArticleUpdatedEnabled)) {
-			return GetterUtil.getBoolean(emailArticleUpdatedEnabled);
-		}
-
-		return GetterUtil.getBoolean(
-			PortletProps.get("admin.email.article.updated.enabled"));
-	}
-
-	public static String getEmailArticleUpdatedSubject(
-		PortletPreferences preferences) {
-
-		String emailArticleUpdatedSubject = preferences.getValue(
-			"emailArticleUpdatedSubject", StringPool.BLANK);
-
-		if (Validator.isNotNull(emailArticleUpdatedSubject)) {
-			return emailArticleUpdatedSubject;
-		}
-
-		return ContentUtil.get(
-			PortletProps.get("admin.email.article.updated.subject"));
-	}
-
-	public static String getEmailFromAddress(PortletPreferences preferences) {
-		return preferences.getValue(
-			"emailFromAddress", PortletProps.get("admin.email.from.address"));
-	}
-
-	public static String getEmailFromName(PortletPreferences preferences) {
-		return preferences.getValue(
-			"emailFromName", PortletProps.get("admin.email.from.name"));
 	}
 
 }

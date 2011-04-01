@@ -17,13 +17,13 @@
 <%@ include file="/admin/init.jsp" %>
 
 <%
-Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
+KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 %>
 
-<c:if test="<%= enableArticleRatings %>">
+<c:if test="<%= enableKBArticleRatings %>">
 	<liferay-ui:ratings
-		className="<%= Article.class.getName() %>"
-		classPK="<%= article.getResourcePrimKey() %>"
+		className="<%= KBArticle.class.getName() %>"
+		classPK="<%= kbArticle.getResourcePrimKey() %>"
 		numberOfStars="10"
 	/>
 </c:if>

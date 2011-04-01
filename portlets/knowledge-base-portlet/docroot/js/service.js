@@ -1,44 +1,44 @@
 Liferay.Service.register("Liferay.Service.KB", "com.liferay.knowledgebase.service", "knowledge-base-portlet");
 
 Liferay.Service.registerClass(
-	Liferay.Service.KB, "Article",
+	Liferay.Service.KB, "KBArticle",
 	{
-		addArticle: true,
-		deleteArticle: true,
-		deleteArticles: true,
+		addKBArticle: true,
 		deleteAttachment: true,
-		getArticle: true,
-		getArticleAndAllDescendants: true,
-		getArticleVersions: true,
-		getArticleVersionsCount: true,
-		getArticles: true,
-		getArticleSearchDisplay: true,
-		getGroupArticles: true,
-		getGroupArticlesCount: true,
-		getLatestArticle: true,
-		getSiblingArticles: true,
-		getSiblingArticlesCount: true,
-		moveArticle: true,
-		subscribeArticle: true,
-		subscribeGroupArticles: true,
-		unsubscribeArticle: true,
-		unsubscribeGroupArticles: true,
-		updateArticle: true,
+		deleteKBArticle: true,
+		deleteKBArticles: true,
+		getGroupKBArticles: true,
+		getGroupKBArticlesCount: true,
+		getKBArticle: true,
+		getKBArticleAndAllDescendants: true,
+		getKBArticleSearchDisplay: true,
+		getKBArticleVersions: true,
+		getKBArticleVersionsCount: true,
+		getKBArticles: true,
+		getLatestKBArticle: true,
+		getSiblingKBArticles: true,
+		getSiblingKBArticlesCount: true,
+		moveKBArticle: true,
+		subscribeGroupKBArticles: true,
+		subscribeKBArticle: true,
+		unsubscribeGroupKBArticles: true,
+		unsubscribeKBArticle: true,
 		updateAttachments: true,
-		updatePriorities: true
+		updateKBArticle: true,
+		updateKBArticlePriorities: true
 	}
 );
 
 Liferay.Service.registerClass(
-	Liferay.Service.KB, "Template",
+	Liferay.Service.KB, "KBTemplate",
 	{
-		addTemplate: true,
-		deleteTemplate: true,
-		deleteTemplates: true,
-		getGroupTemplates: true,
-		getGroupTemplatesCount: true,
-		getTemplate: true,
-		getTemplateSearchDisplay: true,
-		updateTemplate: true
+		addKBTemplate: true,
+		deleteKBTemplate: true,
+		deleteKBTemplates: true,
+		getGroupKBTemplates: true,
+		getGroupKBTemplatesCount: true,
+		getKBTemplate: true,
+		getKBTemplateSearchDisplay: true,
+		updateKBTemplate: true
 	}
 );

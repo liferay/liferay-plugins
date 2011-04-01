@@ -14,19 +14,19 @@
 
 package com.liferay.knowledgebase.util;
 
-import com.liferay.knowledgebase.model.Article;
-import com.liferay.knowledgebase.util.comparator.ArticleCreateDateComparator;
-import com.liferay.knowledgebase.util.comparator.ArticleModifiedDateComparator;
-import com.liferay.knowledgebase.util.comparator.ArticlePriorityComparator;
-import com.liferay.knowledgebase.util.comparator.ArticleStatusComparator;
-import com.liferay.knowledgebase.util.comparator.ArticleTitleComparator;
-import com.liferay.knowledgebase.util.comparator.ArticleUserNameComparator;
-import com.liferay.knowledgebase.util.comparator.ArticleVersionComparator;
-import com.liferay.knowledgebase.util.comparator.ArticleViewCountComparator;
-import com.liferay.knowledgebase.util.comparator.TemplateCreateDateComparator;
-import com.liferay.knowledgebase.util.comparator.TemplateModifiedDateComparator;
-import com.liferay.knowledgebase.util.comparator.TemplateTitleComparator;
-import com.liferay.knowledgebase.util.comparator.TemplateUserNameComparator;
+import com.liferay.knowledgebase.model.KBArticle;
+import com.liferay.knowledgebase.util.comparator.KBArticleCreateDateComparator;
+import com.liferay.knowledgebase.util.comparator.KBArticleModifiedDateComparator;
+import com.liferay.knowledgebase.util.comparator.KBArticlePriorityComparator;
+import com.liferay.knowledgebase.util.comparator.KBArticleStatusComparator;
+import com.liferay.knowledgebase.util.comparator.KBArticleTitleComparator;
+import com.liferay.knowledgebase.util.comparator.KBArticleUserNameComparator;
+import com.liferay.knowledgebase.util.comparator.KBArticleVersionComparator;
+import com.liferay.knowledgebase.util.comparator.KBArticleViewCountComparator;
+import com.liferay.knowledgebase.util.comparator.KBTemplateCreateDateComparator;
+import com.liferay.knowledgebase.util.comparator.KBTemplateModifiedDateComparator;
+import com.liferay.knowledgebase.util.comparator.KBTemplateTitleComparator;
+import com.liferay.knowledgebase.util.comparator.KBTemplateUserNameComparator;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.SortFactoryUtil;
@@ -53,7 +53,7 @@ import java.util.Map;
  */
 public class KnowledgeBaseUtil {
 
-	public static OrderByComparator getArticleOrderByComparator(
+	public static OrderByComparator getKBArticleOrderByComparator(
 		String orderByCol, String orderByType) {
 
 		if (Validator.isNull(orderByCol) || Validator.isNull(orderByType)) {
@@ -67,34 +67,34 @@ public class KnowledgeBaseUtil {
 		}
 
 		if (orderByCol.equals("create-date")) {
-			return new ArticleCreateDateComparator(ascending);
+			return new KBArticleCreateDateComparator(ascending);
 		}
 		else if (orderByCol.equals("modified-date")) {
-			return new ArticleModifiedDateComparator(ascending);
+			return new KBArticleModifiedDateComparator(ascending);
 		}
 		else if (orderByCol.equals("priority")) {
-			return new ArticlePriorityComparator(ascending);
+			return new KBArticlePriorityComparator(ascending);
 		}
 		else if (orderByCol.equals("status")) {
-			return new ArticleStatusComparator(ascending);
+			return new KBArticleStatusComparator(ascending);
 		}
 		else if (orderByCol.equals("title")) {
-			return new ArticleTitleComparator(ascending);
+			return new KBArticleTitleComparator(ascending);
 		}
 		else if (orderByCol.equals("user-name")) {
-			return new ArticleUserNameComparator(ascending);
+			return new KBArticleUserNameComparator(ascending);
 		}
 		else if (orderByCol.equals("version")) {
-			return new ArticleVersionComparator(ascending);
+			return new KBArticleVersionComparator(ascending);
 		}
 		else if (orderByCol.equals("view-count")) {
-			return new ArticleViewCountComparator(ascending);
+			return new KBArticleViewCountComparator(ascending);
 		}
 
 		return null;
 	}
 
-	public static Sort[] getArticleSorts(
+	public static Sort[] getKBArticleSorts(
 		String orderByCol, String orderByType) {
 
 		if (Validator.isNull(orderByCol) || Validator.isNull(orderByType)) {
@@ -151,14 +151,14 @@ public class KnowledgeBaseUtil {
 		return SortFactoryUtil.getDefaultSorts();
 	}
 
-	public static String getArticleURL(
+	public static String getKBArticleURL(
 		long plid, long resourcePrimKey, String portalURL, boolean maximized) {
 
 		StringBundler sb = new StringBundler(15);
 
 		sb.append(portalURL);
 		sb.append(PortalUtil.getPathMain());
-		sb.append("/portal/knowledge_base/find_article");
+		sb.append("/portal/knowledge_base/find_kb_article");
 		sb.append(StringPool.QUESTION);
 		sb.append("plid");
 		sb.append(StringPool.EQUAL);
@@ -190,7 +190,7 @@ public class KnowledgeBaseUtil {
 		};
 	}
 
-	public static OrderByComparator getTemplateOrderByComparator(
+	public static OrderByComparator getKBTemplateOrderByComparator(
 		String orderByCol, String orderByType) {
 
 		if (Validator.isNull(orderByCol) || Validator.isNull(orderByType)) {
@@ -204,39 +204,39 @@ public class KnowledgeBaseUtil {
 		}
 
 		if (orderByCol.equals("create-date")) {
-			return new TemplateCreateDateComparator(ascending);
+			return new KBTemplateCreateDateComparator(ascending);
 		}
 		else if (orderByCol.equals("modified-date")) {
-			return new TemplateModifiedDateComparator(ascending);
+			return new KBTemplateModifiedDateComparator(ascending);
 		}
 		else if (orderByCol.equals("title")) {
-			return new TemplateTitleComparator(ascending);
+			return new KBTemplateTitleComparator(ascending);
 		}
 		else if (orderByCol.equals("user-name")) {
-			return new TemplateUserNameComparator(ascending);
+			return new KBTemplateUserNameComparator(ascending);
 		}
 
 		return null;
 	}
 
-	public static List<Article> sort(
-		long[] resourcePrimKeys, List<Article> articles) {
+	public static List<KBArticle> sort(
+		long[] resourcePrimKeys, List<KBArticle> kbArticles) {
 
-		Map<Long, Article> map = new HashMap<Long, Article>();
+		Map<Long, KBArticle> map = new HashMap<Long, KBArticle>();
 
-		for (Article article : articles) {
-			map.put(article.getResourcePrimKey(), article);
+		for (KBArticle kbArticle : kbArticles) {
+			map.put(kbArticle.getResourcePrimKey(), kbArticle);
 		}
 
-		articles.clear();
+		kbArticles.clear();
 
 		for (long resourcePrimKey : resourcePrimKeys) {
 			if (map.containsKey(resourcePrimKey)) {
-				articles.add(map.get(resourcePrimKey));
+				kbArticles.add(map.get(resourcePrimKey));
 			}
 		}
 
-		return articles;
+		return kbArticles;
 	}
 
 	public static String[] splitKeywords(String keywords) {

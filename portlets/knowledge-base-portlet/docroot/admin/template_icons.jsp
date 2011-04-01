@@ -17,21 +17,21 @@
 <%@ include file="/admin/init.jsp" %>
 
 <%
-Template template = (Template)request.getAttribute("template_icons.jsp-template");
+KBTemplate kbTemplate = (KBTemplate)request.getAttribute("template_icons.jsp-kb_template");
 
-long templateId = ParamUtil.getLong(request, "templateId");
+long kbTemplateId = ParamUtil.getLong(request, "kbTemplateId");
 %>
 
-<c:if test="<%= (AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_ARTICLE) && Validator.equals(portletDisplay.getRootPortletId(), PortletKeys.KNOWLEDGE_BASE_ADMIN)) || (DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_ARTICLE) && DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADMINISTRATOR) && Validator.equals(portletDisplay.getRootPortletId(), PortletKeys.KNOWLEDGE_BASE_DISPLAY)) || TemplatePermission.contains(permissionChecker, template, ActionKeys.DELETE) || TemplatePermission.contains(permissionChecker, template, ActionKeys.PERMISSIONS) || TemplatePermission.contains(permissionChecker, template, ActionKeys.UPDATE) %>">
+<c:if test="<%= (AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_KB_ARTICLE) && Validator.equals(portletDisplay.getRootPortletId(), PortletKeys.KNOWLEDGE_BASE_ADMIN)) || (DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_KB_ARTICLE) && DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADMINISTRATOR) && Validator.equals(portletDisplay.getRootPortletId(), PortletKeys.KNOWLEDGE_BASE_DISPLAY)) || KBTemplatePermission.contains(permissionChecker, kbTemplate, ActionKeys.DELETE) || KBTemplatePermission.contains(permissionChecker, kbTemplate, ActionKeys.PERMISSIONS) || KBTemplatePermission.contains(permissionChecker, kbTemplate, ActionKeys.UPDATE) %>">
 	<div class="kb-template-icons">
 		<table class="lfr-table">
 		<tr>
-			<c:if test="<%= (AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_ARTICLE) && Validator.equals(portletDisplay.getRootPortletId(), PortletKeys.KNOWLEDGE_BASE_ADMIN)) || (DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_ARTICLE) && DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADMINISTRATOR) && Validator.equals(portletDisplay.getRootPortletId(), PortletKeys.KNOWLEDGE_BASE_DISPLAY)) %>">
+			<c:if test="<%= (AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_KB_ARTICLE) && Validator.equals(portletDisplay.getRootPortletId(), PortletKeys.KNOWLEDGE_BASE_ADMIN)) || (DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_KB_ARTICLE) && DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADMINISTRATOR) && Validator.equals(portletDisplay.getRootPortletId(), PortletKeys.KNOWLEDGE_BASE_DISPLAY)) %>">
 				<td>
 					<liferay-portlet:renderURL var="checkURL">
 						<portlet:param name="jspPage" value='<%= jspPath + "edit_article.jsp" %>' />
 						<portlet:param name="redirect" value="<%= currentURL %>" />
-						<portlet:param name="templateId" value="<%= String.valueOf(template.getTemplateId()) %>" />
+						<portlet:param name="kbTemplateId" value="<%= String.valueOf(kbTemplate.getKbTemplateId()) %>" />
 					</liferay-portlet:renderURL>
 
 					<liferay-ui:icon
@@ -44,12 +44,12 @@ long templateId = ParamUtil.getLong(request, "templateId");
 				</td>
 			</c:if>
 
-			<c:if test="<%= TemplatePermission.contains(permissionChecker, template, ActionKeys.UPDATE) %>">
+			<c:if test="<%= KBTemplatePermission.contains(permissionChecker, kbTemplate, ActionKeys.UPDATE) %>">
 				<td>
 					<liferay-portlet:renderURL var="editURL">
 						<portlet:param name="jspPage" value='<%= jspPath + "edit_template.jsp" %>' />
 						<portlet:param name="redirect" value="<%= currentURL %>" />
-						<portlet:param name="templateId" value="<%= String.valueOf(template.getTemplateId()) %>" />
+						<portlet:param name="kbTemplateId" value="<%= String.valueOf(kbTemplate.getKbTemplateId()) %>" />
 					</liferay-portlet:renderURL>
 
 					<liferay-ui:icon
@@ -61,12 +61,12 @@ long templateId = ParamUtil.getLong(request, "templateId");
 				</td>
 			</c:if>
 
-			<c:if test="<%= TemplatePermission.contains(permissionChecker, template, ActionKeys.PERMISSIONS) %>">
+			<c:if test="<%= KBTemplatePermission.contains(permissionChecker, kbTemplate, ActionKeys.PERMISSIONS) %>">
 				<td>
 					<liferay-security:permissionsURL
-						modelResource="<%= Template.class.getName() %>"
-						modelResourceDescription="<%= template.getTitle() %>"
-						resourcePrimKey="<%= String.valueOf(template.getTemplateId()) %>"
+						modelResource="<%= KBTemplate.class.getName() %>"
+						modelResourceDescription="<%= kbTemplate.getTitle() %>"
+						resourcePrimKey="<%= String.valueOf(kbTemplate.getKbTemplateId()) %>"
 						var="permissionsURL"
 					/>
 
@@ -79,16 +79,16 @@ long templateId = ParamUtil.getLong(request, "templateId");
 				</td>
 			</c:if>
 
-			<c:if test="<%= TemplatePermission.contains(permissionChecker, template, ActionKeys.DELETE) %>">
+			<c:if test="<%= KBTemplatePermission.contains(permissionChecker, kbTemplate, ActionKeys.DELETE) %>">
 				<td>
 					<liferay-portlet:renderURL var="homeURL">
 						<portlet:param name="jspPage" value='<%= jspPath + "view-jsp" %>' />
 					</liferay-portlet:renderURL>
 
-					<liferay-portlet:actionURL name="deleteTemplate" var="deleteURL">
+					<liferay-portlet:actionURL name="deleteKBTemplate" var="deleteURL">
 						<portlet:param name="jspPage" value='<%= jspPath + "view_template.jsp" %>' />
-						<portlet:param name="redirect" value="<%= (template.getTemplateId() == templateId) ? homeURL : currentURL %>" />
-						<portlet:param name="templateId" value="<%= String.valueOf(template.getTemplateId()) %>" />
+						<portlet:param name="redirect" value="<%= (kbTemplate.getKbTemplateId() == kbTemplateId) ? homeURL : currentURL %>" />
+						<portlet:param name="kbTemplateId" value="<%= String.valueOf(kbTemplate.getKbTemplateId()) %>" />
 					</liferay-portlet:actionURL>
 
 					<liferay-ui:icon-delete

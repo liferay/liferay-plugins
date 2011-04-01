@@ -7,9 +7,9 @@
 			<access>PROPERTY</access>
 		</persistence-unit-defaults>
 	</persistence-unit-metadata>
-	<mapped-superclass class="com.liferay.knowledgebase.model.impl.ArticleModelImpl">
+	<mapped-superclass class="com.liferay.knowledgebase.model.impl.KBArticleModelImpl">
 		<attributes>
-			<id name="articleId" />
+			<id name="kbArticleId" />
 			<basic name="uuid">
 				<column name="UUID_" />
 			</basic>
@@ -45,9 +45,9 @@
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
-	<mapped-superclass class="com.liferay.knowledgebase.model.impl.CommentModelImpl">
+	<mapped-superclass class="com.liferay.knowledgebase.model.impl.KBCommentModelImpl">
 		<attributes>
-			<id name="commentId" />
+			<id name="kbCommentId" />
 			<basic name="uuid">
 				<column name="UUID_" />
 			</basic>
@@ -69,9 +69,9 @@
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
-	<mapped-superclass class="com.liferay.knowledgebase.model.impl.TemplateModelImpl">
+	<mapped-superclass class="com.liferay.knowledgebase.model.impl.KBTemplateModelImpl">
 		<attributes>
-			<id name="templateId" />
+			<id name="kbTemplateId" />
 			<basic name="uuid">
 				<column name="UUID_" />
 			</basic>
@@ -92,16 +92,16 @@
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
-	<entity class="com.liferay.knowledgebase.model.impl.ArticleImpl" name="Article">
-		<table name="KB_Article" />
+	<entity class="com.liferay.knowledgebase.model.impl.KBArticleImpl" name="KBArticle">
+		<table name="KBArticle" />
 		<attributes />
 	</entity>
-	<entity class="com.liferay.knowledgebase.model.impl.CommentImpl" name="Comment">
-		<table name="KB_Comment" />
+	<entity class="com.liferay.knowledgebase.model.impl.KBCommentImpl" name="KBComment">
+		<table name="KBComment" />
 		<attributes />
 	</entity>
-	<entity class="com.liferay.knowledgebase.model.impl.TemplateImpl" name="Template">
-		<table name="KB_Template" />
+	<entity class="com.liferay.knowledgebase.model.impl.KBTemplateImpl" name="KBTemplate">
+		<table name="KBTemplate" />
 		<attributes />
 	</entity>
 </entity-mappings>

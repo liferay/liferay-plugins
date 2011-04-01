@@ -15,9 +15,9 @@
 package com.liferay.knowledgebase.admin.util;
 
 import com.liferay.documentlibrary.service.DLLocalServiceUtil;
-import com.liferay.knowledgebase.model.Article;
-import com.liferay.knowledgebase.service.ArticleLocalServiceUtil;
-import com.liferay.knowledgebase.service.permission.ArticlePermission;
+import com.liferay.knowledgebase.model.KBArticle;
+import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
+import com.liferay.knowledgebase.service.permission.KBArticlePermission;
 import com.liferay.knowledgebase.util.ActionKeys;
 import com.liferay.knowledgebase.util.KnowledgeBaseUtil;
 import com.liferay.portal.kernel.language.LanguageUtil;
@@ -44,34 +44,34 @@ import java.util.Locale;
 public class AdminSubscriptionSender extends SubscriptionSender {
 
 	public AdminSubscriptionSender(
-		Article article, ServiceContext serviceContext) {
+		KBArticle kbArticle, ServiceContext serviceContext) {
 
-		_article = article;
+		_kbArticle = kbArticle;
 		_serviceContext = serviceContext;
 	}
 
 	protected void deleteSubscription(Subscription subscription)
 		throws Exception {
 
-		// Article subscription
+		// KB article subscription
 
-		if (subscription.getClassPK() == _article.getResourcePrimKey()) {
-			ArticleLocalServiceUtil.unsubscribeArticle(
-				subscription.getUserId(), _article.getResourcePrimKey());
+		if (subscription.getClassPK() == _kbArticle.getResourcePrimKey()) {
+			KBArticleLocalServiceUtil.unsubscribeKBArticle(
+				subscription.getUserId(), _kbArticle.getResourcePrimKey());
 		}
 
 		// Group subscription
 
-		if (subscription.getClassPK() == _article.getGroupId()) {
-			ArticleLocalServiceUtil.unsubscribeGroupArticles(
-				subscription.getUserId(), _article.getGroupId());
+		if (subscription.getClassPK() == _kbArticle.getGroupId()) {
+			KBArticleLocalServiceUtil.unsubscribeGroupKBArticles(
+				subscription.getUserId(), _kbArticle.getGroupId());
 		}
 	}
 
-	protected String getEmailArticleAttachments(Locale locale)
+	protected String getEmailKBArticleAttachments(Locale locale)
 		throws Exception {
 
-		String[] fileNames = _article.getAttachmentsFileNames();
+		String[] fileNames = _kbArticle.getAttachmentsFileNames();
 
 		if (fileNames.length <= 0) {
 			return StringPool.BLANK;
@@ -109,8 +109,8 @@ public class AdminSubscriptionSender extends SubscriptionSender {
 
 			PermissionThreadLocal.setPermissionChecker(permissionChecker);
 
-			return ArticlePermission.contains(
-				permissionChecker, _article, ActionKeys.VIEW);
+			return KBArticlePermission.contains(
+				permissionChecker, _kbArticle, ActionKeys.VIEW);
 		}
 		finally {
 			PrincipalThreadLocal.setName(contextName);
@@ -123,23 +123,23 @@ public class AdminSubscriptionSender extends SubscriptionSender {
 	protected String replaceContent(String content, Locale locale)
 		throws Exception {
 
-		String articleAttachments = getEmailArticleAttachments(locale);
-		String articleURL = KnowledgeBaseUtil.getArticleURL(
-			_serviceContext.getPlid(), _article.getResourcePrimKey(),
+		String kbArticleAttachments = getEmailKBArticleAttachments(locale);
+		String kbArticleURL = KnowledgeBaseUtil.getKBArticleURL(
+			_serviceContext.getPlid(), _kbArticle.getResourcePrimKey(),
 			_serviceContext.getPortalURL(), false);
-		String articleVersion = LanguageUtil.format(
-			locale, "version-x", String.valueOf(_article.getVersion()));
+		String kbArticleVersion = LanguageUtil.format(
+			locale, "version-x", String.valueOf(_kbArticle.getVersion()));
 		String categoryTitle = LanguageUtil.get(locale, "category.kb");
 
-		setContextAttribute("[$ARTICLE_ATTACHMENTS$]", articleAttachments);
-		setContextAttribute("[$ARTICLE_URL$]", articleURL);
-		setContextAttribute("[$ARTICLE_VERSION$]", articleVersion);
+		setContextAttribute("[$ARTICLE_ATTACHMENTS$]", kbArticleAttachments);
+		setContextAttribute("[$ARTICLE_URL$]", kbArticleURL);
+		setContextAttribute("[$ARTICLE_VERSION$]", kbArticleVersion);
 		setContextAttribute("[$CATEGORY_TITLE$]", categoryTitle);
 
 		return super.replaceContent(content, locale);
 	}
 
-	private Article _article;
+	private KBArticle _kbArticle;
 	private ServiceContext _serviceContext;
 
 }

@@ -57,12 +57,12 @@ public class AdminOpenSearchImpl extends HitsOpenSearchImpl {
 		WindowState windowState = portletURL.getWindowState();
 
 		if (windowState.equals(LiferayWindowState.MAXIMIZED)) {
-			return KnowledgeBaseUtil.getArticleURL(
+			return KnowledgeBaseUtil.getKBArticleURL(
 				themeDisplay.getPlid(), resourcePrimKey,
 				themeDisplay.getPortalURL(), true);
 		}
 		else {
-			return KnowledgeBaseUtil.getArticleURL(
+			return KnowledgeBaseUtil.getKBArticleURL(
 				themeDisplay.getPlid(), resourcePrimKey,
 				themeDisplay.getPortalURL(), false);
 		}

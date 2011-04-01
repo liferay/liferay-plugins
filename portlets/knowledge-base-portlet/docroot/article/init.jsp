@@ -27,13 +27,13 @@ if (Validator.isNotNull(portletResource)) {
 
 long resourcePrimKey = GetterUtil.getInteger(preferences.getValue("resourcePrimKey", null));
 
-boolean enableArticleDescription = GetterUtil.getBoolean(preferences.getValue("enableArticleDescription", null));
-boolean enableArticleAssetCategories = GetterUtil.getBoolean(preferences.getValue("enableArticleAssetCategories", null));
-boolean enableArticleAssetTags = GetterUtil.getBoolean(preferences.getValue("enableArticleAssetTags", null));
-boolean enableArticleRatings = GetterUtil.getBoolean(preferences.getValue("enableArticleRatings", null));
-boolean enableArticleComments = GetterUtil.getBoolean(preferences.getValue("enableArticleComments", null));
-boolean showArticleComments = GetterUtil.getBoolean(preferences.getValue("showArticleComments", null));
-boolean enableArticleViewCountIncrement = GetterUtil.getBoolean(preferences.getValue("enableArticleViewCountIncrement", null));
+boolean enableKBArticleDescription = GetterUtil.getBoolean(preferences.getValue("enableKBArticleDescription", null));
+boolean enableKBArticleAssetCategories = GetterUtil.getBoolean(preferences.getValue("enableKBArticleAssetCategories", null));
+boolean enableKBArticleAssetTags = GetterUtil.getBoolean(preferences.getValue("enableKBArticleAssetTags", null));
+boolean enableKBArticleRatings = GetterUtil.getBoolean(preferences.getValue("enableKBArticleRatings", null));
+boolean enableKBArticleKBComments = GetterUtil.getBoolean(preferences.getValue("enableKBArticleKBComments", null));
+boolean showKBArticleKBComments = GetterUtil.getBoolean(preferences.getValue("showKBArticleKBComments", null));
+boolean enableKBArticleViewCountIncrement = GetterUtil.getBoolean(preferences.getValue("enableKBArticleViewCountIncrement", null));
 
 int rssDelta = GetterUtil.getInteger(preferences.getValue("rssDelta", null));
 String rssDisplayStyle = preferences.getValue("rssDisplayStyle", StringPool.BLANK);

@@ -17,9 +17,9 @@
 <%@ include file="/admin/init.jsp" %>
 
 <%
-Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
+KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 
-String[] fileNames = article.getAttachmentsFileNames();
+String[] fileNames = kbArticle.getAttachmentsFileNames();
 %>
 
 <c:if test="<%= fileNames.length > 0 %>">

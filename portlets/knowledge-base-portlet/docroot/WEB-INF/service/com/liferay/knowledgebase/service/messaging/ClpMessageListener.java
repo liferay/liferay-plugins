@@ -14,12 +14,12 @@
 
 package com.liferay.knowledgebase.service.messaging;
 
-import com.liferay.knowledgebase.service.ArticleLocalServiceUtil;
-import com.liferay.knowledgebase.service.ArticleServiceUtil;
 import com.liferay.knowledgebase.service.ClpSerializer;
-import com.liferay.knowledgebase.service.CommentLocalServiceUtil;
-import com.liferay.knowledgebase.service.TemplateLocalServiceUtil;
-import com.liferay.knowledgebase.service.TemplateServiceUtil;
+import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
+import com.liferay.knowledgebase.service.KBArticleServiceUtil;
+import com.liferay.knowledgebase.service.KBCommentLocalServiceUtil;
+import com.liferay.knowledgebase.service.KBTemplateLocalServiceUtil;
+import com.liferay.knowledgebase.service.KBTemplateServiceUtil;
 
 import com.liferay.portal.kernel.messaging.BaseMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
@@ -38,14 +38,14 @@ public class ClpMessageListener extends BaseMessageListener {
 
 		if (command.equals("undeploy") &&
 				servletContextName.equals(getServletContextName())) {
-			ArticleLocalServiceUtil.clearService();
+			KBArticleLocalServiceUtil.clearService();
 
-			ArticleServiceUtil.clearService();
-			CommentLocalServiceUtil.clearService();
+			KBArticleServiceUtil.clearService();
+			KBCommentLocalServiceUtil.clearService();
 
-			TemplateLocalServiceUtil.clearService();
+			KBTemplateLocalServiceUtil.clearService();
 
-			TemplateServiceUtil.clearService();
+			KBTemplateServiceUtil.clearService();
 		}
 	}
 }

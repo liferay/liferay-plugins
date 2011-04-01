@@ -17,23 +17,23 @@
 <%@ include file="/admin/init.jsp" %>
 
 <%
-Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
+KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 %>
 
-<c:if test="<%= enableArticleAssetCategories || enableArticleAssetTags %>">
+<c:if test="<%= enableKBArticleAssetCategories || enableKBArticleAssetTags %>">
 	<liferay-util:buffer var="html">
-		<c:if test="<%= enableArticleAssetCategories %>">
+		<c:if test="<%= enableKBArticleAssetCategories %>">
 			<liferay-ui:asset-categories-summary
-				className="<%= Article.class.getName() %>"
-				classPK="<%= article.getClassPK() %>"
+				className="<%= KBArticle.class.getName() %>"
+				classPK="<%= kbArticle.getClassPK() %>"
 				portletURL="<%= renderResponse.createRenderURL() %>"
 			/>
 		</c:if>
 
-		<c:if test="<%= enableArticleAssetTags %>">
+		<c:if test="<%= enableKBArticleAssetTags %>">
 			<liferay-ui:asset-tags-summary
-				className="<%= Article.class.getName() %>"
-				classPK="<%= article.getClassPK() %>"
+				className="<%= KBArticle.class.getName() %>"
+				classPK="<%= kbArticle.getClassPK() %>"
 				message="tags"
 				portletURL="<%= renderResponse.createRenderURL() %>"
 			/>

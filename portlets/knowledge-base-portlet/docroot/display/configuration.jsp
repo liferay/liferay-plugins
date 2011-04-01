@@ -44,18 +44,18 @@ String tabs3 = ParamUtil.getString(request, "tabs3", "article");
 			<c:when test='<%= tabs2.equals("general") %>'>
 				<div class="kb-field-wrapper">
 					<aui:field-wrapper label="order-by">
-						<aui:select inlineField="<%= true %>" label="" name="preferences--articlesOrderByCol--">
-							<aui:option label="author" selected='<%= articlesOrderByCol.equals("user-name") %>' value="user-name" />
-							<aui:option label="create-date" selected='<%= articlesOrderByCol.equals("create-date") %>' />
-							<aui:option label="modified-date" selected='<%= articlesOrderByCol.equals("modified-date") %>' />
-							<aui:option label="priority" selected='<%= articlesOrderByCol.equals("priority") %>' />
-							<aui:option label="title" selected='<%= articlesOrderByCol.equals("title") %>' />
-							<aui:option label="view-count" selected='<%= articlesOrderByCol.equals("view-count") %>' />
+						<aui:select inlineField="<%= true %>" label="" name="preferences--kbArticlesOrderByCol--">
+							<aui:option label="author" selected='<%= kbArticlesOrderByCol.equals("user-name") %>' value="user-name" />
+							<aui:option label="create-date" selected='<%= kbArticlesOrderByCol.equals("create-date") %>' />
+							<aui:option label="modified-date" selected='<%= kbArticlesOrderByCol.equals("modified-date") %>' />
+							<aui:option label="priority" selected='<%= kbArticlesOrderByCol.equals("priority") %>' />
+							<aui:option label="title" selected='<%= kbArticlesOrderByCol.equals("title") %>' />
+							<aui:option label="view-count" selected='<%= kbArticlesOrderByCol.equals("view-count") %>' />
 						</aui:select>
 
-						<aui:select inlineField="<%= true %>" label="" name="preferences--articlesOrderByType--">
-							<aui:option label="ascending" selected='<%= articlesOrderByType.equals("asc") %>' value="asc" />
-							<aui:option label="descending" selected='<%= articlesOrderByType.equals("desc") %>' value="desc" />
+						<aui:select inlineField="<%= true %>" label="" name="preferences--kbArticlesOrderByType--">
+							<aui:option label="ascending" selected='<%= kbArticlesOrderByType.equals("asc") %>' value="asc" />
+							<aui:option label="descending" selected='<%= kbArticlesOrderByType.equals("desc") %>' value="desc" />
 						</aui:select>
 					</aui:field-wrapper>
 				</div>
@@ -69,24 +69,24 @@ String tabs3 = ParamUtil.getString(request, "tabs3", "article");
 
 				<c:choose>
 					<c:when test='<%= tabs3.equals("article") %>'>
-						<aui:input label="enable-description" name="preferences--enableArticleDescription--" type="checkbox" value="<%= enableArticleDescription %>" />
+						<aui:input label="enable-description" name="preferences--enableKBArticleDescription--" type="checkbox" value="<%= enableKBArticleDescription %>" />
 
-						<aui:input label="enable-categories" name="preferences--enableArticleAssetCategories--" type="checkbox" value="<%= enableArticleAssetCategories %>" />
+						<aui:input label="enable-categories" name="preferences--enableKBArticleAssetCategories--" type="checkbox" value="<%= enableKBArticleAssetCategories %>" />
 
-						<aui:input label="enable-tags" name="preferences--enableArticleAssetTags--" type="checkbox" value="<%= enableArticleAssetTags %>" />
+						<aui:input label="enable-tags" name="preferences--enableKBArticleAssetTags--" type="checkbox" value="<%= enableKBArticleAssetTags %>" />
 
-						<aui:input label="enable-ratings" name="preferences--enableArticleRatings--" type="checkbox" value="<%= enableArticleRatings %>" />
+						<aui:input label="enable-ratings" name="preferences--enableKBArticleRatings--" type="checkbox" value="<%= enableKBArticleRatings %>" />
 
-						<aui:input label="enable-comments" name="preferences--enableArticleComments--" type="checkbox" value="<%= enableArticleComments %>" />
+						<aui:input label="enable-comments" name="preferences--enableKBArticleKBComments--" type="checkbox" value="<%= enableKBArticleKBComments %>" />
 
-						<aui:input label="show-comments" name="preferences--showArticleComments--" type="checkbox" value="<%= showArticleComments %>" />
+						<aui:input label="show-comments" name="preferences--showKBArticleKBComments--" type="checkbox" value="<%= showKBArticleKBComments %>" />
 					</c:when>
 					<c:when test='<%= tabs3.equals("template") %>'>
-						<aui:input label="enable-description" name="preferences--enableTemplateDescription--" type="checkbox" value="<%= enableTemplateDescription %>" />
+						<aui:input label="enable-description" name="preferences--enableKBTemplateDescription--" type="checkbox" value="<%= enableKBTemplateDescription %>" />
 
-						<aui:input label="enable-comments" name="preferences--enableTemplateComments--" type="checkbox" value="<%= enableTemplateComments %>" />
+						<aui:input label="enable-comments" name="preferences--enableKBTemplateKBComments--" type="checkbox" value="<%= enableKBTemplateKBComments %>" />
 
-						<aui:input label="show-comments" name="preferences--showTemplateComments--" type="checkbox" value="<%= showTemplateComments %>" />
+						<aui:input label="show-comments" name="preferences--showKBTemplateKBComments--" type="checkbox" value="<%= showKBTemplateKBComments %>" />
 					</c:when>
 				</c:choose>
 			</c:when>

@@ -17,14 +17,14 @@
 <%@ include file="/admin/init.jsp" %>
 
 <%
-Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
+KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 
-if (enableArticleViewCountIncrement) {
-	Article latestArticle = ArticleLocalServiceUtil.getLatestArticle(article.getResourcePrimKey(), WorkflowConstants.STATUS_ANY);
+if (enableKBArticleViewCountIncrement) {
+	KBArticle latestKBArticle = KBArticleLocalServiceUtil.getLatestKBArticle(kbArticle.getResourcePrimKey(), WorkflowConstants.STATUS_ANY);
 
-	ArticleLocalServiceUtil.updateViewCount(themeDisplay.getUserId(), article.getResourcePrimKey(), latestArticle.getViewCount() + 1);
+	KBArticleLocalServiceUtil.updateViewCount(themeDisplay.getUserId(), kbArticle.getResourcePrimKey(), latestKBArticle.getViewCount() + 1);
 
-	AssetEntryServiceUtil.incrementViewCounter(Article.class.getName(), article.getClassPK());
+	AssetEntryServiceUtil.incrementViewCounter(KBArticle.class.getName(), kbArticle.getClassPK());
 }
 %>
 
@@ -32,7 +32,7 @@ if (enableArticleViewCountIncrement) {
 
 <div class="float-container kb-entity-header">
 	<div class="kb-title">
-		<%= article.getTitle() %>
+		<%= kbArticle.getTitle() %>
 	</div>
 
 	<div class="kb-tools">
@@ -43,12 +43,12 @@ if (enableArticleViewCountIncrement) {
 <div class="kb-entity-body">
 
 	<%
-	request.setAttribute("article_icons.jsp-article", article);
+	request.setAttribute("article_icons.jsp-kb_article", kbArticle);
 	%>
 
 	<liferay-util:include page="/admin/article_icons.jsp" servletContext="<%= application %>" />
 
-	<%= article.getContent() %>
+	<%= kbArticle.getContent() %>
 
 	<liferay-util:include page="/admin/article_attachments.jsp" servletContext="<%= application %>" />
 

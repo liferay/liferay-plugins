@@ -29,18 +29,18 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 		<liferay-ui:search-container
 			emptyResultsMessage="no-subscriptions-were-found"
 			orderByCol="<%= orderByCol %>"
-			orderByComparator="<%= KnowledgeBaseUtil.getArticleOrderByComparator(orderByCol, orderByType) %>"
+			orderByComparator="<%= KnowledgeBaseUtil.getKBArticleOrderByComparator(orderByCol, orderByType) %>"
 			orderByType="<%= orderByType %>"
 		>
 			<liferay-ui:search-container-results>
 
 				<%
-				List<Subscription> subscriptions = SubscriptionLocalServiceUtil.getUserSubscriptions(user.getUserId(), Article.class.getName());
+				List<Subscription> subscriptions = SubscriptionLocalServiceUtil.getUserSubscriptions(user.getUserId(), KBArticle.class.getName());
 
-				List<Article> articles = ArticleServiceUtil.getArticles(scopeGroupId, StringUtil.split(ListUtil.toString(subscriptions, "classPK"), 0L), WorkflowConstants.STATUS_APPROVED, searchContainer.getOrderByComparator());
+				List<KBArticle> kbArticles = KBArticleServiceUtil.getKBArticles(scopeGroupId, StringUtil.split(ListUtil.toString(subscriptions, "classPK"), 0L), WorkflowConstants.STATUS_APPROVED, searchContainer.getOrderByComparator());
 
-				pageContext.setAttribute("results", articles);
-				pageContext.setAttribute("total", articles.size());
+				pageContext.setAttribute("results", kbArticles);
+				pageContext.setAttribute("total", kbArticles.size());
 				%>
 
 			</liferay-ui:search-container-results>
@@ -50,13 +50,13 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 			%>
 
 			<liferay-ui:search-container-row
-				className="com.liferay.knowledgebase.model.Article"
+				className="com.liferay.knowledgebase.model.KBArticle"
 				keyProperty="resourcePrimKey"
-				modelVar="article"
+				modelVar="kbArticle"
 			>
 				<liferay-portlet:renderURL varImpl="rowURL">
 					<portlet:param name="jspPage" value="/display/view_article.jsp" />
-					<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
+					<portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
 				</liferay-portlet:renderURL>
 
 				<liferay-ui:search-container-column-text
@@ -78,7 +78,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 					href="<%= rowURL %>"
 					name="create-date"
 					orderable="<%= true %>"
-					value='<%= dateFormatDate.format(article.getCreateDate()) + "<br />" + dateFormatTime.format(article.getCreateDate()) %>'
+					value='<%= dateFormatDate.format(kbArticle.getCreateDate()) + "<br />" + dateFormatTime.format(kbArticle.getCreateDate()) %>'
 				/>
 
 				<liferay-ui:search-container-column-text
@@ -86,7 +86,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 					href="<%= rowURL %>"
 					name="modified-date"
 					orderable="<%= true %>"
-					value='<%= dateFormatDate.format(article.getModifiedDate()) + "<br />" + dateFormatTime.format(article.getModifiedDate()) %>'
+					value='<%= dateFormatDate.format(kbArticle.getModifiedDate()) + "<br />" + dateFormatTime.format(kbArticle.getModifiedDate()) %>'
 				/>
 
 				<c:if test="<%= administrator %>">
@@ -95,7 +95,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 						href="<%= rowURL %>"
 						name="status"
 						orderable="<%= true %>"
-						value='<%= article.getStatus() + " (" + LanguageUtil.get(pageContext, WorkflowConstants.toLabel(article.getStatus())) + ")" %>'
+						value='<%= kbArticle.getStatus() + " (" + LanguageUtil.get(pageContext, WorkflowConstants.toLabel(kbArticle.getStatus())) + ")" %>'
 					/>
 				</c:if>
 
@@ -108,19 +108,19 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 					property="viewCount"
 				/>
 
-				<c:if test="<%= ArticlePermission.contains(permissionChecker, article, ActionKeys.SUBSCRIBE) %>">
+				<c:if test="<%= KBArticlePermission.contains(permissionChecker, kbArticle, ActionKeys.SUBSCRIBE) %>">
 					<liferay-ui:search-container-column-text
 						align="right"
 					>
-						<liferay-portlet:actionURL name="unsubscribeArticle" var="unsubscribeArticleURL">
+						<liferay-portlet:actionURL name="unsubscribeKBArticle" var="unsubscribeKBArticleURL">
 							<portlet:param name="redirect" value="<%= currentURL %>" />
-							<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
+							<portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
 						</liferay-portlet:actionURL>
 
 						<liferay-ui:icon
 							image="unsubscribe"
 							label="<%= true %>"
-							url="<%= unsubscribeArticleURL %>"
+							url="<%= unsubscribeKBArticleURL %>"
 						/>
 					</liferay-ui:search-container-column-text>
 				</c:if>

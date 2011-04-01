@@ -44,25 +44,25 @@ String tabs2 = ParamUtil.getString(request, "tabs2", "general");
 					<aui:field-wrapper label="article">
 
 						<%
-						Article article = null;
+						KBArticle kbArticle = null;
 
 						try {
-							article = ArticleLocalServiceUtil.getLatestArticle(resourcePrimKey, WorkflowConstants.STATUS_APPROVED);
+							kbArticle = KBArticleLocalServiceUtil.getLatestKBArticle(resourcePrimKey, WorkflowConstants.STATUS_APPROVED);
 						}
-						catch (NoSuchArticleException e) {
+						catch (NoSuchArticleException nsae) {
 						}
 						%>
 
-						<div id="<portlet:namespace />configurationArticle">
-							<%= (article != null) ? article.getTitle() : StringPool.BLANK %>
+						<div id="<portlet:namespace />configurationKBArticle">
+							<%= (kbArticle != null) ? kbArticle.getTitle() : StringPool.BLANK %>
 						</div>
 
-						<liferay-portlet:renderURL portletName="<%= portletResource %>" var="selectConfigurationArticleURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
+						<liferay-portlet:renderURL portletName="<%= portletResource %>" var="selectConfigurationKBArticleURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
 							<portlet:param name="jspPage" value="/article/select_configuration_article.jsp" />
 						</liferay-portlet:renderURL>
 
 						<%
-						String taglibOnClick = "var selectConfigurationArticleWindow = window.open('" + selectConfigurationArticleURL + "&" + PortalUtil.getPortletNamespace(portletResource) + "selResourcePrimKey=' + document." + renderResponse.getNamespace() + "fm." + renderResponse.getNamespace() + "resourcePrimKey.value, 'selectConfigurationArticle', 'directories=no,height=640,location=no,menubar=no,resizable=yes,scrollbars=yes,status=no,toolbar=no,width=680'); void(''); selectConfigurationArticleWindow.focus();";
+						String taglibOnClick = "var selectConfigurationKBArticleWindow = window.open('" + selectConfigurationKBArticleURL + "&" + PortalUtil.getPortletNamespace(portletResource) + "selResourcePrimKey=' + document." + renderResponse.getNamespace() + "fm." + renderResponse.getNamespace() + "resourcePrimKey.value, 'selectConfigurationKBArticle', 'directories=no,height=640,location=no,menubar=no,resizable=yes,scrollbars=yes,status=no,toolbar=no,width=680'); void(''); selectConfigurationKBArticleWindow.focus();";
 						%>
 
 						<div class="kb-edit-link">
@@ -72,19 +72,19 @@ String tabs2 = ParamUtil.getString(request, "tabs2", "general");
 				</div>
 			</c:when>
 			<c:when test='<%= tabs2.equals("display-settings") %>'>
-				<aui:input label="enable-description" name="preferences--enableArticleDescription--" type="checkbox" value="<%= enableArticleDescription %>" />
+				<aui:input label="enable-description" name="preferences--enableKBArticleDescription--" type="checkbox" value="<%= enableKBArticleDescription %>" />
 
-				<aui:input label="enable-categories" name="preferences--enableArticleAssetCategories--" type="checkbox" value="<%= enableArticleAssetCategories %>" />
+				<aui:input label="enable-categories" name="preferences--enableKBArticleAssetCategories--" type="checkbox" value="<%= enableKBArticleAssetCategories %>" />
 
-				<aui:input label="enable-tags" name="preferences--enableArticleAssetTags--" type="checkbox" value="<%= enableArticleAssetTags %>" />
+				<aui:input label="enable-tags" name="preferences--enableKBArticleAssetTags--" type="checkbox" value="<%= enableKBArticleAssetTags %>" />
 
-				<aui:input label="enable-ratings" name="preferences--enableArticleRatings--" type="checkbox" value="<%= enableArticleRatings %>" />
+				<aui:input label="enable-ratings" name="preferences--enableKBArticleRatings--" type="checkbox" value="<%= enableKBArticleRatings %>" />
 
-				<aui:input label="enable-comments" name="preferences--enableArticleComments--" type="checkbox" value="<%= enableArticleComments %>" />
+				<aui:input label="enable-comments" name="preferences--enableKBArticleKBComments--" type="checkbox" value="<%= enableKBArticleKBComments %>" />
 
-				<aui:input label="show-comments" name="preferences--showArticleComments--" type="checkbox" value="<%= showArticleComments %>" />
+				<aui:input label="show-comments" name="preferences--showKBArticleKBComments--" type="checkbox" value="<%= showKBArticleKBComments %>" />
 
-				<aui:input label="enable-view-count-increment" name="preferences--enableArticleViewCountIncrement--" type="checkbox" value="<%= enableArticleViewCountIncrement %>" />
+				<aui:input label="enable-view-count-increment" name="preferences--enableKBArticleViewCountIncrement--" type="checkbox" value="<%= enableKBArticleViewCountIncrement %>" />
 			</c:when>
 			<c:when test='<%= tabs2.equals("rss") %>'>
 				<aui:select label="maximum-items-to-display" name="preferences--rssDelta--">
@@ -129,9 +129,9 @@ String tabs2 = ParamUtil.getString(request, "tabs2", "general");
 
 <c:if test='<%= tabs2.equals("general") %>'>
 	<aui:script>
-		function <portlet:namespace />selectConfigurationArticle(resourcePrimKey, title) {
+		function <portlet:namespace />selectConfigurationKBArticle(resourcePrimKey, title) {
 			document.<portlet:namespace />fm.<portlet:namespace />resourcePrimKey.value = resourcePrimKey;
-			document.getElementById("<portlet:namespace />configurationArticle").innerHTML = title;
+			document.getElementById("<portlet:namespace />configurationKBArticle").innerHTML = title;
 		}
 	</aui:script>
 </c:if>

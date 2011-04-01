@@ -17,9 +17,9 @@
 <%@ include file="/admin/init.jsp" %>
 
 <%
-Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
+KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 
-long resourcePrimKey = BeanParamUtil.getLong(article, request, "resourcePrimKey");
+long resourcePrimKey = BeanParamUtil.getLong(kbArticle, request, "resourcePrimKey");
 
 String dirName = ParamUtil.getString(request, "dirName");
 

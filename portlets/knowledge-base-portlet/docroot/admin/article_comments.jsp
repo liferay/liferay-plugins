@@ -19,41 +19,41 @@
 <%
 int status = (Integer)request.getAttribute(WebKeys.KNOWLEDGE_BASE_STATUS);
 
-Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
+KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 
-Comment comment = null;
+KBComment kbComment = null;
 
 try {
-	comment = CommentLocalServiceUtil.getComment(user.getUserId(), Article.class.getName(), article.getResourcePrimKey());
+	kbComment = KBCommentLocalServiceUtil.getKBComment(user.getUserId(), KBArticle.class.getName(), kbArticle.getResourcePrimKey());
 }
 catch (NoSuchCommentException nsce) {
 }
 
-long commentId = BeanParamUtil.getLong(comment, request, "commentId");
+long kbCommentId = BeanParamUtil.getLong(kbComment, request, "kbCommentId");
 
-boolean helpful = BeanParamUtil.getBoolean(comment, request, "helpful", true);
+boolean helpful = BeanParamUtil.getBoolean(kbComment, request, "helpful", true);
 %>
 
-<c:if test="<%= ((enableArticleComments && themeDisplay.isSignedIn()) || showArticleComments) && layoutTypePortlet.hasPortletId(portletDisplay.getId()) && (article.isApproved() || !article.isFirstVersion()) %>">
+<c:if test="<%= ((enableKBArticleKBComments && themeDisplay.isSignedIn()) || showKBArticleKBComments) && layoutTypePortlet.hasPortletId(portletDisplay.getId()) && (kbArticle.isApproved() || !kbArticle.isFirstVersion()) %>">
 	<div class="kb-article-comments">
-		<aui:form method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "updateComment();" %>'>
+		<aui:form method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "updateKBComment();" %>'>
 			<aui:input name="<%= Constants.CMD %>" type="hidden" />
-			<aui:input name="commentId" type="hidden" value="<%= commentId %>" />
-			<aui:input name="classNameId" type="hidden" value="<%= PortalUtil.getClassNameId(Article.class) %>" />
-			<aui:input name="classPK" type="hidden" value="<%= article.getResourcePrimKey() %>" />
+			<aui:input name="kbCommentId" type="hidden" value="<%= kbCommentId %>" />
+			<aui:input name="classNameId" type="hidden" value="<%= PortalUtil.getClassNameId(KBArticle.class) %>" />
+			<aui:input name="classPK" type="hidden" value="<%= kbArticle.getResourcePrimKey() %>" />
 
-			<liferay-ui:error exception="<%= CommentContentException.class %>" message="please-enter-valid-content" />
+			<liferay-ui:error exception="<%= KBCommentContentException.class %>" message="please-enter-valid-content" />
 
-			<aui:model-context bean="<%= comment %>" model="<%= Comment.class %>" />
+			<aui:model-context bean="<%= kbComment %>" model="<%= KBComment.class %>" />
 
 			<aui:fieldset>
-				<c:if test="<%= enableArticleComments && themeDisplay.isSignedIn() %>">
-					<liferay-ui:panel-container extended="<%= false %>" id='<%= renderResponse.getNamespace() + "Article" + article.getResourcePrimKey() + "CommentsPanelContainer" %>' persistState="<%= true %>">
-						<liferay-ui:panel collapsible="<%= true %>" defaultState="closed" extended="<%= true %>" id='<%= renderResponse.getNamespace() + "Article" + article.getResourcePrimKey() + "CommentsPanel" %>' persistState="<%= true %>" title="comments">
-							<c:if test="<%= comment != null %>">
+				<c:if test="<%= enableKBArticleKBComments && themeDisplay.isSignedIn() %>">
+					<liferay-ui:panel-container extended="<%= false %>" id='<%= renderResponse.getNamespace() + "Article" + kbArticle.getResourcePrimKey() + "CommentsPanelContainer" %>' persistState="<%= true %>">
+						<liferay-ui:panel collapsible="<%= true %>" defaultState="closed" extended="<%= true %>" id='<%= renderResponse.getNamespace() + "Article" + kbArticle.getResourcePrimKey() + "CommentsPanel" %>' persistState="<%= true %>" title="comments">
+							<c:if test="<%= kbComment != null %>">
 
 								<%
-								request.setAttribute("article_comment.jsp-comment", comment);
+								request.setAttribute("article_comment.jsp-kb_comment", kbComment);
 								%>
 
 								<liferay-util:include page="/admin/article_comment.jsp" servletContext="<%= application %>" />
@@ -76,10 +76,10 @@ boolean helpful = BeanParamUtil.getBoolean(comment, request, "helpful", true);
 					</liferay-ui:panel-container>
 				</c:if>
 
-				<c:if test="<%= showArticleComments %>">
+				<c:if test="<%= showKBArticleKBComments %>">
 					<liferay-portlet:renderURL varImpl="iteratorURL">
 						<portlet:param name="jspPage" value='<%= jspPath + "view_article.jsp" %>' />
-						<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
+						<portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
 						<portlet:param name="status" value="<%= String.valueOf(status) %>" />
 					</liferay-portlet:renderURL>
 
@@ -87,8 +87,8 @@ boolean helpful = BeanParamUtil.getBoolean(comment, request, "helpful", true);
 						iteratorURL="<%= iteratorURL %>"
 					>
 						<liferay-ui:search-container-results
-							results="<%= CommentLocalServiceUtil.getComments(Article.class.getName(), article.getResourcePrimKey(), searchContainer.getStart(), searchContainer.getEnd(), null) %>"
-							total="<%= CommentLocalServiceUtil.getCommentsCount(Article.class.getName(), article.getResourcePrimKey()) %>"
+							results="<%= KBCommentLocalServiceUtil.getKBComments(KBArticle.class.getName(), kbArticle.getResourcePrimKey(), searchContainer.getStart(), searchContainer.getEnd(), null) %>"
+							total="<%= KBCommentLocalServiceUtil.getKBCommentsCount(KBArticle.class.getName(), kbArticle.getResourcePrimKey()) %>"
 						/>
 
 						<c:if test="<%= total > 0 %>">
@@ -96,11 +96,11 @@ boolean helpful = BeanParamUtil.getBoolean(comment, request, "helpful", true);
 						</c:if>
 
 						<%
-						for (Comment curComment : (List<Comment>)results) {
+						for (KBComment curKBComment : (List<KBComment>)results) {
 						%>
 
 							<%
-							request.setAttribute("article_comment.jsp-comment", curComment);
+							request.setAttribute("article_comment.jsp-kb_comment", curKBComment);
 							%>
 
 							<liferay-util:include page="/admin/article_comment.jsp" servletContext="<%= application %>" />
@@ -121,14 +121,14 @@ boolean helpful = BeanParamUtil.getBoolean(comment, request, "helpful", true);
 	</div>
 
 	<aui:script>
-		function <portlet:namespace />deleteComment(commentId) {
-			document.<portlet:namespace />fm.<portlet:namespace />commentId.value = commentId;
-			submitForm(document.<portlet:namespace />fm, "<liferay-portlet:actionURL name="deleteComment"><portlet:param name="jspPage" value='<%= jspPath + "view_article.jsp" %>' /><portlet:param name="redirect" value="<%= currentURL %>" /><portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" /><portlet:param name="status" value="<%= String.valueOf(status) %>" /></liferay-portlet:actionURL>");
+		function <portlet:namespace />deleteKBComment(kbCommentId) {
+			document.<portlet:namespace />fm.<portlet:namespace />kbCommentId.value = kbCommentId;
+			submitForm(document.<portlet:namespace />fm, "<liferay-portlet:actionURL name="deleteKBComment"><portlet:param name="jspPage" value='<%= jspPath + "view_article.jsp" %>' /><portlet:param name="redirect" value="<%= currentURL %>" /><portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" /><portlet:param name="status" value="<%= String.valueOf(status) %>" /></liferay-portlet:actionURL>");
 		}
 
-		function <portlet:namespace />updateComment() {
-			document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = "<%= (comment == null) ? Constants.ADD : Constants.UPDATE %>";
-			submitForm(document.<portlet:namespace />fm, "<liferay-portlet:actionURL name="updateComment"><portlet:param name="jspPage" value='<%= jspPath + "view_article.jsp" %>' /><portlet:param name="redirect" value="<%= currentURL %>" /><portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" /><portlet:param name="status" value="<%= String.valueOf(status) %>" /></liferay-portlet:actionURL>");
+		function <portlet:namespace />updateKBComment() {
+			document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = "<%= (kbComment == null) ? Constants.ADD : Constants.UPDATE %>";
+			submitForm(document.<portlet:namespace />fm, "<liferay-portlet:actionURL name="updateKBComment"><portlet:param name="jspPage" value='<%= jspPath + "view_article.jsp" %>' /><portlet:param name="redirect" value="<%= currentURL %>" /><portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" /><portlet:param name="status" value="<%= String.valueOf(status) %>" /></liferay-portlet:actionURL>");
 		}
 	</aui:script>
 </c:if>

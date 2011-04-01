@@ -20,18 +20,18 @@ package com.liferay.knowledgebase.admin.social;
  */
 public class AdminActivityKeys {
 
-	public static final int ADD_ARTICLE = 1;
+	public static final int ADD_KB_ARTICLE = 1;
 
-	public static final int ADD_COMMENT = 5;
+	public static final int ADD_KB_COMMENT = 5;
 
-	public static final int ADD_TEMPLATE = 2;
+	public static final int ADD_KB_TEMPLATE = 2;
 
-	public static final int MOVE_ARTICLE = 7;
+	public static final int MOVE_KB_ARTICLE = 7;
 
-	public static final int UPDATE_ARTICLE = 3;
+	public static final int UPDATE_KB_ARTICLE = 3;
 
-	public static final int UPDATE_COMMENT = 6;
+	public static final int UPDATE_KB_COMMENT = 6;
 
-	public static final int UPDATE_TEMPLATE = 4;
+	public static final int UPDATE_KB_TEMPLATE = 4;
 
 }

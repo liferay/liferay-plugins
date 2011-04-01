@@ -38,51 +38,51 @@
 		</portlet-info>
 		<portlet-preferences>
 			<preference>
-				<name>articlesOrderByCol</name>
+				<name>kbArticlesOrderByCol</name>
 				<value>priority</value>
 			</preference>
 			<preference>
-				<name>articlesOrderByType</name>
+				<name>kbArticlesOrderByType</name>
 				<value>desc</value>
 			</preference>
 			<preference>
-				<name>enableArticleDescription</name>
+				<name>enableKBArticleDescription</name>
 				<value>false</value>
 			</preference>
 			<preference>
-				<name>enableArticleAssetCategories</name>
+				<name>enableKBArticleAssetCategories</name>
 				<value>true</value>
 			</preference>
 			<preference>
-				<name>enableArticleAssetTags</name>
+				<name>enableKBArticleAssetTags</name>
 				<value>true</value>
 			</preference>
 			<preference>
-				<name>enableArticleRatings</name>
+				<name>enableKBArticleRatings</name>
 				<value>false</value>
 			</preference>
 			<preference>
-				<name>enableArticleComments</name>
+				<name>enableKBArticleKBComments</name>
 				<value>true</value>
 			</preference>
 			<preference>
-				<name>showArticleComments</name>
+				<name>showKBArticleKBComments</name>
 				<value>true</value>
 			</preference>
 			<preference>
-				<name>enableArticleViewCountIncrement</name>
+				<name>enableKBArticleViewCountIncrement</name>
 				<value>true</value>
 			</preference>
 			<preference>
-				<name>enableTemplateDescription</name>
+				<name>enableKBTemplateDescription</name>
 				<value>false</value>
 			</preference>
 			<preference>
-				<name>enableTemplateComments</name>
+				<name>enableKBTemplateKBComments</name>
 				<value>true</value>
 			</preference>
 			<preference>
-				<name>showTemplateComments</name>
+				<name>showKBTemplateKBComments</name>
 				<value>true</value>
 			</preference>
 		</portlet-preferences>
@@ -131,51 +131,51 @@
 		</portlet-info>
 		<portlet-preferences>
 			<preference>
-				<name>articlesOrderByCol</name>
+				<name>kbArticlesOrderByCol</name>
 				<value>priority</value>
 			</preference>
 			<preference>
-				<name>articlesOrderByType</name>
+				<name>kbArticlesOrderByType</name>
 				<value>desc</value>
 			</preference>
 			<preference>
-				<name>enableArticleDescription</name>
+				<name>enableKBArticleDescription</name>
 				<value>false</value>
 			</preference>
 			<preference>
-				<name>enableArticleAssetCategories</name>
+				<name>enableKBArticleAssetCategories</name>
 				<value>true</value>
 			</preference>
 			<preference>
-				<name>enableArticleAssetTags</name>
+				<name>enableKBArticleAssetTags</name>
 				<value>true</value>
 			</preference>
 			<preference>
-				<name>enableArticleRatings</name>
+				<name>enableKBArticleRatings</name>
 				<value>false</value>
 			</preference>
 			<preference>
-				<name>enableArticleComments</name>
+				<name>enableKBArticleKBComments</name>
 				<value>true</value>
 			</preference>
 			<preference>
-				<name>showArticleComments</name>
+				<name>showKBArticleKBComments</name>
 				<value>true</value>
 			</preference>
 			<preference>
-				<name>enableArticleViewCountIncrement</name>
+				<name>enableKBArticleViewCountIncrement</name>
 				<value>true</value>
 			</preference>
 			<preference>
-				<name>enableTemplateDescription</name>
+				<name>enableKBTemplateDescription</name>
 				<value>false</value>
 			</preference>
 			<preference>
-				<name>enableTemplateComments</name>
+				<name>enableKBTemplateKBComments</name>
 				<value>true</value>
 			</preference>
 			<preference>
-				<name>showTemplateComments</name>
+				<name>showKBTemplateKBComments</name>
 				<value>true</value>
 			</preference>
 			<preference>
@@ -242,31 +242,31 @@
 				<value>0</value>
 			</preference>
 			<preference>
-				<name>enableArticleDescription</name>
+				<name>enableKBArticleDescription</name>
 				<value>false</value>
 			</preference>
 			<preference>
-				<name>enableArticleAssetCategories</name>
+				<name>enableKBArticleAssetCategories</name>
 				<value>true</value>
 			</preference>
 			<preference>
-				<name>enableArticleAssetTags</name>
+				<name>enableKBArticleAssetTags</name>
 				<value>true</value>
 			</preference>
 			<preference>
-				<name>enableArticleRatings</name>
+				<name>enableKBArticleRatings</name>
 				<value>false</value>
 			</preference>
 			<preference>
-				<name>enableArticleComments</name>
+				<name>enableKBArticleKBComments</name>
 				<value>true</value>
 			</preference>
 			<preference>
-				<name>showArticleComments</name>
+				<name>showKBArticleKBComments</name>
 				<value>true</value>
 			</preference>
 			<preference>
-				<name>enableArticleViewCountIncrement</name>
+				<name>enableKBArticleViewCountIncrement</name>
 				<value>false</value>
 			</preference>
 			<preference>

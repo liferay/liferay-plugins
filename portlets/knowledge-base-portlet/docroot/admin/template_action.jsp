@@ -19,14 +19,14 @@
 <%
 ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_ROW);
 
-Template template = (Template)row.getObject();
+KBTemplate kbTemplate = (KBTemplate)row.getObject();
 %>
 
 <liferay-ui:icon-menu cssClass="kb-template-action">
-	<c:if test="<%= TemplatePermission.contains(permissionChecker, template, ActionKeys.VIEW) %>">
+	<c:if test="<%= KBTemplatePermission.contains(permissionChecker, kbTemplate, ActionKeys.VIEW) %>">
 		<liferay-portlet:renderURL var="viewURL">
 			<portlet:param name="jspPage" value='<%= jspPath + "view_template.jsp" %>' />
-			<portlet:param name="templateId" value="<%= String.valueOf(template.getTemplateId()) %>" />
+			<portlet:param name="kbTemplateId" value="<%= String.valueOf(kbTemplate.getKbTemplateId()) %>" />
 		</liferay-portlet:renderURL>
 
 		<liferay-ui:icon
@@ -36,11 +36,11 @@ Template template = (Template)row.getObject();
 		/>
 	</c:if>
 
-	<c:if test="<%= TemplatePermission.contains(permissionChecker, template, ActionKeys.UPDATE) %>">
+	<c:if test="<%= KBTemplatePermission.contains(permissionChecker, kbTemplate, ActionKeys.UPDATE) %>">
 		<liferay-portlet:renderURL var="editURL">
 			<portlet:param name="jspPage" value='<%= jspPath + "edit_template.jsp" %>' />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
-			<portlet:param name="templateId" value="<%= String.valueOf(template.getTemplateId()) %>" />
+			<portlet:param name="kbTemplateId" value="<%= String.valueOf(kbTemplate.getKbTemplateId()) %>" />
 		</liferay-portlet:renderURL>
 
 		<liferay-ui:icon
@@ -50,11 +50,11 @@ Template template = (Template)row.getObject();
 		/>
 	</c:if>
 
-	<c:if test="<%= TemplatePermission.contains(permissionChecker, template, ActionKeys.PERMISSIONS) %>">
+	<c:if test="<%= KBTemplatePermission.contains(permissionChecker, kbTemplate, ActionKeys.PERMISSIONS) %>">
 		<liferay-security:permissionsURL
-			modelResource="<%= Template.class.getName() %>"
-			modelResourceDescription="<%= template.getTitle() %>"
-			resourcePrimKey="<%= String.valueOf(template.getTemplateId()) %>"
+			modelResource="<%= KBTemplate.class.getName() %>"
+			modelResourceDescription="<%= kbTemplate.getTitle() %>"
+			resourcePrimKey="<%= String.valueOf(kbTemplate.getKbTemplateId()) %>"
 			var="permissionsURL"
 		/>
 
@@ -65,10 +65,10 @@ Template template = (Template)row.getObject();
 		/>
 	</c:if>
 
-	<c:if test="<%= TemplatePermission.contains(permissionChecker, template, ActionKeys.DELETE) %>">
-		<liferay-portlet:actionURL name="deleteTemplate" var="deleteURL">
+	<c:if test="<%= KBTemplatePermission.contains(permissionChecker, kbTemplate, ActionKeys.DELETE) %>">
+		<liferay-portlet:actionURL name="deleteKBTemplate" var="deleteURL">
 			<portlet:param name="redirect" value="<%= currentURL %>" />
-			<portlet:param name="templateId" value="<%= String.valueOf(template.getTemplateId()) %>" />
+			<portlet:param name="kbTemplateId" value="<%= String.valueOf(kbTemplate.getKbTemplateId()) %>" />
 		</liferay-portlet:actionURL>
 
 		<liferay-ui:icon-delete

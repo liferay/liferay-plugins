@@ -35,33 +35,33 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 	emptyResultsMessage="there-are-no-articles"
 	iteratorURL="<%= iteratorURL %>"
 	orderByCol="<%= orderByCol %>"
-	orderByComparator="<%= KnowledgeBaseUtil.getArticleOrderByComparator(orderByCol, orderByType) %>"
+	orderByComparator="<%= KnowledgeBaseUtil.getKBArticleOrderByComparator(orderByCol, orderByType) %>"
 	orderByType="<%= orderByType %>"
 >
 	<liferay-ui:search-container-results
-		results="<%= ArticleServiceUtil.getGroupArticles(scopeGroupId, WorkflowConstants.STATUS_APPROVED, searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator()) %>"
-		total="<%= ArticleServiceUtil.getGroupArticlesCount(scopeGroupId, WorkflowConstants.STATUS_APPROVED) %>"
+		results="<%= KBArticleServiceUtil.getGroupKBArticles(scopeGroupId, WorkflowConstants.STATUS_APPROVED, searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator()) %>"
+		total="<%= KBArticleServiceUtil.getGroupKBArticlesCount(scopeGroupId, WorkflowConstants.STATUS_APPROVED) %>"
 	/>
 
 	<liferay-ui:search-container-row
-		className="com.liferay.knowledgebase.model.Article"
+		className="com.liferay.knowledgebase.model.KBArticle"
 		keyProperty="resourcePrimKey"
-		modelVar="article"
+		modelVar="kbArticle"
 	>
 		<liferay-portlet:renderURL var="rowURL">
 			<portlet:param name="jspPage" value="/article/view_article.jsp" />
-			<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
+			<portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
 		</liferay-portlet:renderURL>
 
 		<%
-		rowURL = "var articleWindow = window.open('" + rowURL + "', 'article', 'directories=no,height=640,location=no,menubar=no,resizable=yes,scrollbars=yes,status=no,toolbar=no,width=680'); void(''); articleWindow.focus();";
+		rowURL = "var kbArticleWindow = window.open('" + rowURL + "', 'kbArticle', 'directories=no,height=640,location=no,menubar=no,resizable=yes,scrollbars=yes,status=no,toolbar=no,width=680'); void(''); kbArticleWindow.focus();";
 		%>
 
 		<liferay-ui:search-container-column-text
 			orderable="<%= true %>"
 			name="title"
 		>
-			<aui:a href="javascript:;" onClick="<%= rowURL %>"><%= article.getTitle() %></aui:a>
+			<aui:a href="javascript:;" onClick="<%= rowURL %>"><%= kbArticle.getTitle() %></aui:a>
 		</liferay-ui:search-container-column-text>
 
 		<liferay-ui:search-container-column-text
@@ -69,7 +69,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 			orderable="<%= true %>"
 			orderableProperty="user-name"
 		>
-			<aui:a href="javascript:;" onClick="<%= rowURL %>"><%= article.getUserName() %></aui:a>
+			<aui:a href="javascript:;" onClick="<%= rowURL %>"><%= kbArticle.getUserName() %></aui:a>
 		</liferay-ui:search-container-column-text>
 
 		<liferay-ui:search-container-column-text
@@ -77,7 +77,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 			name="create-date"
 			orderable="<%= true %>"
 		>
-			<aui:a href="javascript:;" onClick="<%= rowURL %>"><%= dateFormatDate.format(article.getCreateDate()) + "<br />" + dateFormatTime.format(article.getCreateDate()) %></aui:a>
+			<aui:a href="javascript:;" onClick="<%= rowURL %>"><%= dateFormatDate.format(kbArticle.getCreateDate()) + "<br />" + dateFormatTime.format(kbArticle.getCreateDate()) %></aui:a>
 		</liferay-ui:search-container-column-text>
 
 		<liferay-ui:search-container-column-text
@@ -85,7 +85,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 			name="modified-date"
 			orderable="<%= true %>"
 		>
-			<aui:a href="javascript:;" onClick="<%= rowURL %>"><%= dateFormatDate.format(article.getModifiedDate()) + "<br />" + dateFormatTime.format(article.getModifiedDate()) %></aui:a>
+			<aui:a href="javascript:;" onClick="<%= rowURL %>"><%= dateFormatDate.format(kbArticle.getModifiedDate()) + "<br />" + dateFormatTime.format(kbArticle.getModifiedDate()) %></aui:a>
 		</liferay-ui:search-container-column-text>
 
 		<liferay-ui:search-container-column-text
@@ -93,7 +93,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 			name="status"
 			orderable="<%= true %>"
 		>
-			<aui:a href="javascript:;" onClick="<%= rowURL %>"><%= article.getStatus() + " (" + LanguageUtil.get(pageContext, WorkflowConstants.toLabel(article.getStatus())) + ")" %></aui:a>
+			<aui:a href="javascript:;" onClick="<%= rowURL %>"><%= kbArticle.getStatus() + " (" + LanguageUtil.get(pageContext, WorkflowConstants.toLabel(kbArticle.getStatus())) + ")" %></aui:a>
 		</liferay-ui:search-container-column-text>
 
 		<liferay-ui:search-container-column-text
@@ -102,7 +102,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 			orderable="<%= true %>"
 			orderableProperty="view-count"
 		>
-			<aui:a href="javascript:;" onClick="<%= rowURL %>"><%= article.getViewCount() %></aui:a>
+			<aui:a href="javascript:;" onClick="<%= rowURL %>"><%= kbArticle.getViewCount() %></aui:a>
 		</liferay-ui:search-container-column-text>
 
 		<liferay-ui:search-container-column-text
@@ -110,7 +110,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 		>
 
 			<%
-			String taglibOnClick = "opener." + PortalUtil.getPortletNamespace(PortletKeys.PORTLET_CONFIGURATION) + "selectConfigurationArticle('" + article.getResourcePrimKey() + "', '" + UnicodeFormatter.toString(article.getTitle()) + "'); window.close();";
+			String taglibOnClick = "opener." + PortalUtil.getPortletNamespace(PortletKeys.PORTLET_CONFIGURATION) + "selectConfigurationKBArticle('" + kbArticle.getResourcePrimKey() + "', '" + UnicodeFormatter.toString(kbArticle.getTitle()) + "'); window.close();";
 			%>
 
 			<aui:button onClick="<%= taglibOnClick %>" value="choose" />
@@ -120,21 +120,21 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 	<c:if test="<%= selResourcePrimKey > 0 %>">
 
 		<%
-		Article selArticle = null;
+		KBArticle selKBArticle = null;
 
 		try {
-			selArticle = ArticleLocalServiceUtil.getLatestArticle(selResourcePrimKey, WorkflowConstants.STATUS_APPROVED);
+			selKBArticle = KBArticleLocalServiceUtil.getLatestKBArticle(selResourcePrimKey, WorkflowConstants.STATUS_APPROVED);
 		}
 		catch (NoSuchArticleException nsae) {
 		}
 		%>
 
-		<c:if test="<%= selArticle != null %>">
+		<c:if test="<%= selKBArticle != null %>">
 			<aui:button-row>
-				<%= selArticle.getTitle() %>
+				<%= selKBArticle.getTitle() %>
 
 				<%
-				String taglibOnClick = "opener." + PortalUtil.getPortletNamespace(PortletKeys.PORTLET_CONFIGURATION) + "selectConfigurationArticle('0', ''); window.close();";
+				String taglibOnClick = "opener." + PortalUtil.getPortletNamespace(PortletKeys.PORTLET_CONFIGURATION) + "selectConfigurationKBArticle('0', ''); window.close();";
 				%>
 
 				<aui:button onClick="<%= taglibOnClick %>" value="remove" />

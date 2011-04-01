@@ -19,31 +19,31 @@
 <%
 String redirect = ParamUtil.getString(request, "redirect");
 
-Template template = (Template)request.getAttribute(WebKeys.KNOWLEDGE_BASE_TEMPLATE);
+KBTemplate kbTemplate = (KBTemplate)request.getAttribute(WebKeys.KNOWLEDGE_BASE_TEMPLATE);
 
-long templateId = BeanParamUtil.getLong(template, request, "templateId");
+long kbTemplateId = BeanParamUtil.getLong(kbTemplate, request, "kbTemplateId");
 
-String content = BeanParamUtil.getString(template, request, "content");
+String content = BeanParamUtil.getString(kbTemplate, request, "content");
 %>
 
 <liferay-ui:header
 	backURL="<%= redirect %>"
-	title='<%= (template != null) ? template.getTitle() : "new-template" %>'
+	title='<%= (kbTemplate != null) ? kbTemplate.getTitle() : "new-template" %>'
 />
 
-<liferay-portlet:actionURL name="updateTemplate" var="updateTemplateURL">
+<liferay-portlet:actionURL name="updateKBTemplate" var="updateKBTemplateURL">
 	<portlet:param name="jspPage" value='<%= jspPath + "edit_template.jsp" %>' />
 	<portlet:param name="redirect" value="<%= redirect %>" />
-	<portlet:param name="templateId" value="<%= String.valueOf(templateId) %>" />
+	<portlet:param name="kbTemplateId" value="<%= String.valueOf(kbTemplateId) %>" />
 </liferay-portlet:actionURL>
 
-<aui:form action="<%= updateTemplateURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "updateTemplate();" %>'>
+<aui:form action="<%= updateKBTemplateURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "updateKBTemplate();" %>'>
 	<aui:input name="<%= Constants.CMD %>" type="hidden" />
 
-	<liferay-ui:error exception="<%= TemplateContentException.class %>" message="please-enter-valid-content" />
-	<liferay-ui:error exception="<%= TemplateTitleException.class %>" message="please-enter-a-valid-title" />
+	<liferay-ui:error exception="<%= KBTemplateContentException.class %>" message="please-enter-valid-content" />
+	<liferay-ui:error exception="<%= KBTemplateTitleException.class %>" message="please-enter-a-valid-title" />
 
-	<aui:model-context bean="<%= template %>" model="<%= Template.class %>" />
+	<aui:model-context bean="<%= kbTemplate %>" model="<%= KBTemplate.class %>" />
 
 	<aui:fieldset>
 		<aui:input name="title" />
@@ -54,14 +54,14 @@ String content = BeanParamUtil.getString(template, request, "content");
 			<aui:input name="content" type="hidden" />
 		</aui:field-wrapper>
 
-		<c:if test="<%= enableTemplateDescription %>">
+		<c:if test="<%= enableKBTemplateDescription %>">
 			<aui:input name="description" />
 		</c:if>
 
-		<c:if test="<%= template == null %>">
+		<c:if test="<%= kbTemplate == null %>">
 			<aui:field-wrapper label="permissions">
 				<liferay-ui:input-permissions
-					modelName="<%= Template.class.getName() %>"
+					modelName="<%= KBTemplate.class.getName() %>"
 				/>
 			</aui:field-wrapper>
 		</c:if>
@@ -79,8 +79,8 @@ String content = BeanParamUtil.getString(template, request, "content");
 		return "<%= UnicodeFormatter.toString(content) %>";
 	}
 
-	function <portlet:namespace />updateTemplate() {
-		document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = "<%= (template == null) ? Constants.ADD : Constants.UPDATE %>";
+	function <portlet:namespace />updateKBTemplate() {
+		document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = "<%= (kbTemplate == null) ? Constants.ADD : Constants.UPDATE %>";
 		document.<portlet:namespace />fm.<portlet:namespace />content.value = window.<portlet:namespace />editor.getHTML();
 		submitForm(document.<portlet:namespace />fm);
 	}

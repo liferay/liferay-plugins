@@ -16,20 +16,20 @@ package com.liferay.knowledgebase.admin.lar;
 
 import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.documentlibrary.service.DLLocalServiceUtil;
-import com.liferay.knowledgebase.model.Article;
-import com.liferay.knowledgebase.model.ArticleConstants;
-import com.liferay.knowledgebase.model.Comment;
-import com.liferay.knowledgebase.model.Template;
-import com.liferay.knowledgebase.service.ArticleLocalServiceUtil;
-import com.liferay.knowledgebase.service.CommentLocalServiceUtil;
-import com.liferay.knowledgebase.service.TemplateLocalServiceUtil;
-import com.liferay.knowledgebase.service.persistence.ArticleUtil;
-import com.liferay.knowledgebase.service.persistence.CommentUtil;
-import com.liferay.knowledgebase.service.persistence.TemplateUtil;
+import com.liferay.knowledgebase.model.KBArticle;
+import com.liferay.knowledgebase.model.KBArticleConstants;
+import com.liferay.knowledgebase.model.KBComment;
+import com.liferay.knowledgebase.model.KBTemplate;
+import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
+import com.liferay.knowledgebase.service.KBCommentLocalServiceUtil;
+import com.liferay.knowledgebase.service.KBTemplateLocalServiceUtil;
+import com.liferay.knowledgebase.service.persistence.KBArticleUtil;
+import com.liferay.knowledgebase.service.persistence.KBCommentUtil;
+import com.liferay.knowledgebase.service.persistence.KBTemplateUtil;
 import com.liferay.knowledgebase.util.KnowledgeBaseUtil;
 import com.liferay.knowledgebase.util.PortletKeys;
-import com.liferay.knowledgebase.util.comparator.ArticleModifiedDateComparator;
-import com.liferay.knowledgebase.util.comparator.ArticlePriorityComparator;
+import com.liferay.knowledgebase.util.comparator.KBArticleModifiedDateComparator;
+import com.liferay.knowledgebase.util.comparator.KBArticlePriorityComparator;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -66,11 +66,11 @@ import javax.portlet.PortletPreferences;
 public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 	public PortletDataHandlerControl[] getExportControls() {
-		return new PortletDataHandlerControl[] {_articles, _templates};
+		return new PortletDataHandlerControl[] {_kbArticles, _kbTemplates};
 	}
 
 	public PortletDataHandlerControl[] getImportControls() {
-		return new PortletDataHandlerControl[] {_articles, _templates};
+		return new PortletDataHandlerControl[] {_kbArticles, _kbTemplates};
 	}
 
 	protected PortletPreferences doDeleteData(
@@ -81,10 +81,10 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		if (!portletDataContext.addPrimaryKey(
 				AdminPortletDataHandlerImpl.class, "deleteData")) {
 
-			ArticleLocalServiceUtil.deleteGroupArticles(
+			KBArticleLocalServiceUtil.deleteGroupKBArticles(
 				portletDataContext.getScopeGroupId());
 
-			TemplateLocalServiceUtil.deleteGroupTemplates(
+			KBTemplateLocalServiceUtil.deleteGroupKBTemplates(
 				portletDataContext.getScopeGroupId());
 		}
 
@@ -107,25 +107,27 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		rootElement.addAttribute(
 			"group-id", String.valueOf(portletDataContext.getScopeGroupId()));
 
-		exportArticles(portletDataContext, rootElement);
+		exportKBArticles(portletDataContext, rootElement);
 
 		if (portletDataContext.getBooleanParameter(
-				_NAMESPACE_ARTICLE, "comments")) {
+				_NAMESPACE_KB_ARTICLE, "kb-comments")) {
 
-			exportComments(
-				portletDataContext, Article.class, "article-comment",
+			exportKBComments(
+				portletDataContext, KBArticle.class, "kb-article-kb-comment",
 				rootElement);
 		}
 
-		if (portletDataContext.getBooleanParameter(_NAMESPACE, "templates")) {
-			exportTemplates(portletDataContext, rootElement);
+		if (portletDataContext.getBooleanParameter(
+				_NAMESPACE, "kb-templates")) {
+
+			exportKBTemplates(portletDataContext, rootElement);
 		}
 
 		if (portletDataContext.getBooleanParameter(
-				_NAMESPACE_TEMPLATE, "comments")) {
+				_NAMESPACE_KB_TEMPLATE, "kb-comments")) {
 
-			exportComments(
-				portletDataContext, Template.class, "template-comment",
+			exportKBComments(
+				portletDataContext, KBTemplate.class, "kb-template-kb-comment",
 				rootElement);
 		}
 
@@ -146,85 +148,91 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 		Element rootElement = document.getRootElement();
 
-		importArticles(portletDataContext, rootElement);
+		importKBArticles(portletDataContext, rootElement);
 
-		if (portletDataContext.getBooleanParameter(_NAMESPACE, "templates")) {
-			importTemplates(portletDataContext, rootElement);
+		if (portletDataContext.getBooleanParameter(
+				_NAMESPACE, "kb-templates")) {
+
+			importKBTemplates(portletDataContext, rootElement);
 		}
 
 		return null;
 	}
 
-	protected void exportArticle(
+	protected void exportKBArticle(
 			PortletDataContext portletDataContext, Element rootElement,
-			String path, Article article)
+			String path, KBArticle kbArticle)
 		throws PortalException, SystemException {
 
-		Element articleElement = rootElement.addElement("article");
+		Element kbArticleElement = rootElement.addElement("kb-article");
 
-		articleElement.addAttribute("path", path);
+		kbArticleElement.addAttribute("path", path);
 
-		article.setUserUuid(article.getUserUuid());
+		kbArticle.setUserUuid(kbArticle.getUserUuid());
 
-		portletDataContext.addZipEntry(path, article);
+		portletDataContext.addZipEntry(path, kbArticle);
 
 		portletDataContext.addPermissions(
-			Article.class, article.getResourcePrimKey());
+			KBArticle.class, kbArticle.getResourcePrimKey());
 
-		exportArticleVersions(
-			portletDataContext, articleElement, article.getResourcePrimKey());
+		exportKBArticleVersions(
+			portletDataContext, kbArticleElement,
+			kbArticle.getResourcePrimKey());
 
 		if (portletDataContext.getBooleanParameter(
-				_NAMESPACE_ARTICLE, "attachments")) {
+				_NAMESPACE_KB_ARTICLE, "attachments")) {
 
-			exportArticleAttachments(portletDataContext, rootElement, article);
+			exportKBArticleAttachments(
+				portletDataContext, rootElement, kbArticle);
 		}
 
 		if (portletDataContext.getBooleanParameter(
-				_NAMESPACE_ARTICLE, "categories")) {
+				_NAMESPACE_KB_ARTICLE, "categories")) {
 
 			portletDataContext.addAssetCategories(
-				Article.class, article.getResourcePrimKey());
+				KBArticle.class, kbArticle.getResourcePrimKey());
 		}
 
 		if (portletDataContext.getBooleanParameter(
-				_NAMESPACE_ARTICLE, "tags")) {
+				_NAMESPACE_KB_ARTICLE, "tags")) {
 
 			portletDataContext.addAssetTags(
-				Article.class, article.getResourcePrimKey());
+				KBArticle.class, kbArticle.getResourcePrimKey());
 		}
 
 		if (portletDataContext.getBooleanParameter(
-				_NAMESPACE_ARTICLE, "ratings")) {
+				_NAMESPACE_KB_ARTICLE, "ratings")) {
 
 			portletDataContext.addRatingsEntries(
-				Article.class, article.getResourcePrimKey());
+				KBArticle.class, kbArticle.getResourcePrimKey());
 		}
 	}
 
-	protected void exportArticleAttachments(
+	protected void exportKBArticleAttachments(
 			PortletDataContext portletDataContext, Element rootElement,
-			Article article)
+			KBArticle kbArticle)
 		throws PortalException, SystemException {
 
-		Element articleAttachmentsElement = rootElement.addElement(
-			"article-attachments");
+		Element kbArticleAttachmentsElement = rootElement.addElement(
+			"kb-article-attachments");
 
-		articleAttachmentsElement.addAttribute(
-			"resource-prim-key", String.valueOf(article.getResourcePrimKey()));
+		kbArticleAttachmentsElement.addAttribute(
+			"resource-prim-key",
+			String.valueOf(kbArticle.getResourcePrimKey()));
 
 		String rootPath =
-			getPortletPath(portletDataContext) + "/articles/attachments/" +
-				article.getResourcePrimKey();
+			getPortletPath(portletDataContext) + "/kbarticles/attachments/" +
+				kbArticle.getResourcePrimKey();
 
-		for (String fileName : article.getAttachmentsFileNames()) {
+		for (String fileName : kbArticle.getAttachmentsFileNames()) {
 			String shortFileName = FileUtil.getShortFileName(fileName);
 
 			String path = rootPath + StringPool.SLASH + shortFileName;
 			byte[] bytes = DLLocalServiceUtil.getFile(
-				article.getCompanyId(), CompanyConstants.SYSTEM, fileName);
+				kbArticle.getCompanyId(), CompanyConstants.SYSTEM, fileName);
 
-			Element fileElement = articleAttachmentsElement.addElement("file");
+			Element fileElement = kbArticleAttachmentsElement.addElement(
+				"file");
 
 			fileElement.addAttribute("path", path);
 			fileElement.addAttribute("short-file-name", shortFileName);
@@ -233,179 +241,183 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		}
 	}
 
-	protected void exportArticleVersions(
-			PortletDataContext portletDataContext, Element articleElement,
+	protected void exportKBArticleVersions(
+			PortletDataContext portletDataContext, Element kbArticleElement,
 			long resourcePrimKey)
 		throws SystemException {
 
-		Element versionsElement = articleElement.addElement("versions");
+		Element versionsElement = kbArticleElement.addElement("versions");
 
 		String rootPath =
-			getPortletPath(portletDataContext) + "/articles/versions/" +
+			getPortletPath(portletDataContext) + "/kbarticles/versions/" +
 				resourcePrimKey;
 
-		List<Article> articles = ArticleUtil.findByR_S(
+		List<KBArticle> kbArticles = KBArticleUtil.findByR_S(
 			resourcePrimKey, WorkflowConstants.STATUS_APPROVED,
 			QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-			new ArticleModifiedDateComparator(true));
+			new KBArticleModifiedDateComparator(true));
 
-		for (Article article : articles) {
+		for (KBArticle kbArticle : kbArticles) {
 			String path =
-				rootPath + StringPool.SLASH + article.getArticleId() + ".xml";
+				rootPath + StringPool.SLASH + kbArticle.getKbArticleId() +
+					".xml";
 
-			Element curArticleElement = versionsElement.addElement("article");
+			Element curKBArticleElement = versionsElement.addElement(
+				"kb-article");
 
-			curArticleElement.addAttribute("path", path);
+			curKBArticleElement.addAttribute("path", path);
 
-			portletDataContext.addZipEntry(path, article);
+			portletDataContext.addZipEntry(path, kbArticle);
 		}
 	}
 
-	protected void exportArticles(
+	protected void exportKBArticles(
 			PortletDataContext portletDataContext, Element rootElement)
 		throws PortalException, SystemException {
 
-		for (Article article : getArticles(portletDataContext)) {
+		for (KBArticle kbArticle : getKBArticles(portletDataContext)) {
 			if (!portletDataContext.isWithinDateRange(
-					article.getModifiedDate())) {
+					kbArticle.getModifiedDate())) {
 
 				continue;
 			}
 
 			String path =
-				getPortletPath(portletDataContext) + "/articles/" +
-					article.getResourcePrimKey() + ".xml";
+				getPortletPath(portletDataContext) + "/kbarticles/" +
+					kbArticle.getResourcePrimKey() + ".xml";
 
 			if (!portletDataContext.isPathNotProcessed(path)) {
 				continue;
 			}
 
-			exportArticle(portletDataContext, rootElement, path, article);
+			exportKBArticle(portletDataContext, rootElement, path, kbArticle);
 		}
 	}
 
-	protected void exportComment(
+	protected void exportKBComment(
 			PortletDataContext portletDataContext, Element rootElement,
-			String name, String path, Comment comment)
+			String name, String path, KBComment kbComment)
 		throws SystemException {
 
-		Element commentElement = rootElement.addElement(name);
+		Element kbCommentElement = rootElement.addElement(name);
 
-		commentElement.addAttribute("path", path);
+		kbCommentElement.addAttribute("path", path);
 
-		comment.setUserUuid(comment.getUserUuid());
+		kbComment.setUserUuid(kbComment.getUserUuid());
 
-		portletDataContext.addZipEntry(path, comment);
+		portletDataContext.addZipEntry(path, kbComment);
 	}
 
-	protected void exportComments(
+	protected void exportKBComments(
 			PortletDataContext portletDataContext, Class<?> classObj,
 			String name, Element rootElement)
 		throws SystemException {
 
 		long classNameId = PortalUtil.getClassNameId(classObj);
 
-		List<Comment> comments = CommentUtil.findByG_C(
+		List<KBComment> kbComments = KBCommentUtil.findByG_C(
 			portletDataContext.getScopeGroupId(), classNameId);
 
-		for (Comment comment : comments) {
+		for (KBComment kbComment : kbComments) {
 			if (!portletDataContext.isWithinDateRange(
-					comment.getModifiedDate())) {
+					kbComment.getModifiedDate())) {
 
 				continue;
 			}
 
 			String path =
-				getPortletPath(portletDataContext) + "/comments/" +
-					comment.getCommentId() + ".xml";
+				getPortletPath(portletDataContext) + "/kbcomments/" +
+					kbComment.getKbCommentId() + ".xml";
 
 			if (!portletDataContext.isPathNotProcessed(path)) {
 				continue;
 			}
 
-			exportComment(portletDataContext, rootElement, name, path, comment);
+			exportKBComment(
+				portletDataContext, rootElement, name, path, kbComment);
 		}
 	}
 
-	protected void exportTemplate(
+	protected void exportKBTemplate(
 			PortletDataContext portletDataContext, Element rootElement,
-			String path, Template template)
+			String path, KBTemplate kbTemplate)
 		throws PortalException, SystemException {
 
-		Element templateElement = rootElement.addElement("template");
+		Element kbTemplateElement = rootElement.addElement("kb-template");
 
-		templateElement.addAttribute("path", path);
+		kbTemplateElement.addAttribute("path", path);
 
-		template.setUserUuid(template.getUserUuid());
+		kbTemplate.setUserUuid(kbTemplate.getUserUuid());
 
-		portletDataContext.addZipEntry(path, template);
+		portletDataContext.addZipEntry(path, kbTemplate);
 
 		portletDataContext.addPermissions(
-			Template.class, template.getTemplateId());
+			KBTemplate.class, kbTemplate.getKbTemplateId());
 	}
 
-	protected void exportTemplates(
+	protected void exportKBTemplates(
 			PortletDataContext portletDataContext, Element rootElement)
 		throws PortalException, SystemException {
 
-		List<Template> templates = TemplateUtil.findByGroupId(
+		List<KBTemplate> kbTemplates = KBTemplateUtil.findByGroupId(
 			portletDataContext.getScopeGroupId());
 
-		for (Template template : templates) {
+		for (KBTemplate kbTemplate : kbTemplates) {
 			if (!portletDataContext.isWithinDateRange(
-					template.getModifiedDate())) {
+					kbTemplate.getModifiedDate())) {
 
 				continue;
 			}
 
 			String path =
-				getPortletPath(portletDataContext) + "/templates/" +
-					template.getTemplateId() + ".xml";
+				getPortletPath(portletDataContext) + "/kbtemplates/" +
+					kbTemplate.getKbTemplateId() + ".xml";
 
 			if (!portletDataContext.isPathNotProcessed(path)) {
 				continue;
 			}
 
-			exportTemplate(portletDataContext, rootElement, path, template);
+			exportKBTemplate(portletDataContext, rootElement, path, kbTemplate);
 		}
 	}
 
-	protected List<Article> getArticles(PortletDataContext portletDataContext)
+	protected List<KBArticle> getKBArticles(
+			PortletDataContext portletDataContext)
 		throws SystemException {
 
-		// Order articles by depth and sort siblings by priority to retain the
-		// priority value on import. See ArticleLocalServiceImpl#getPriority.
+		// Order kbArticles by depth and sort siblings by priority to retain the
+		// priority value on import. See KBArticleLocalServiceImpl#getPriority.
 
-		List<Article> articles = new ArrayList<Article>();
+		List<KBArticle> kbArticles = new ArrayList<KBArticle>();
 
-		List<Article> siblingArticles = new ArrayList<Article>();
+		List<KBArticle> siblingKBArticles = new ArrayList<KBArticle>();
 
 		Long[][] params = new Long[][] {
-			new Long[] {ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY}
+			new Long[] {KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY}
 		};
 
 		while ((params = KnowledgeBaseUtil.getParams(params[0])) != null) {
-			List<Article> curArticles = ArticleUtil.findByG_P_M(
+			List<KBArticle> curKBArticles = KBArticleUtil.findByG_P_M(
 				portletDataContext.getScopeGroupId(),
 				ArrayUtil.toArray(params[1]), true, QueryUtil.ALL_POS,
-				QueryUtil.ALL_POS, new ArticlePriorityComparator(true));
+				QueryUtil.ALL_POS, new KBArticlePriorityComparator(true));
 
-			siblingArticles.addAll(curArticles);
+			siblingKBArticles.addAll(curKBArticles);
 
 			if (params[0].length > 0) {
 				continue;
 			}
 
-			long[] siblingArticlesResourcePrimKeys = StringUtil.split(
-				ListUtil.toString(siblingArticles, "resourcePrimKey"), 0L);
+			long[] siblingKBArticlesResourcePrimKeys = StringUtil.split(
+				ListUtil.toString(siblingKBArticles, "resourcePrimKey"), 0L);
 
-			params[0] = ArrayUtil.toArray(siblingArticlesResourcePrimKeys);
+			params[0] = ArrayUtil.toArray(siblingKBArticlesResourcePrimKeys);
 
-			articles.addAll(siblingArticles);
-			siblingArticles.clear();
+			kbArticles.addAll(siblingKBArticles);
+			siblingKBArticles.clear();
 		}
 
-		return articles;
+		return kbArticles;
 	}
 
 	protected String getPortletPath(PortletDataContext portletDataContext) {
@@ -413,34 +425,34 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			PortletKeys.KNOWLEDGE_BASE_ADMIN);
 	}
 
-	protected void importArticle(
+	protected void importKBArticle(
 			PortletDataContext portletDataContext,
 			Map<Long, Long> resourcePrimKeys, Map<String, String> dirNames,
-			Element articleElement, Article article)
+			Element kbArticleElement, KBArticle kbArticle)
 		throws Exception {
 
-		long userId = portletDataContext.getUserId(article.getUserUuid());
+		long userId = portletDataContext.getUserId(kbArticle.getUserUuid());
 		long parentResourcePrimKey = MapUtil.getLong(
-			resourcePrimKeys, article.getParentResourcePrimKey());
+			resourcePrimKeys, kbArticle.getParentResourcePrimKey());
 		String dirName = MapUtil.getString(
-			dirNames, String.valueOf(article.getResourcePrimKey()));
+			dirNames, String.valueOf(kbArticle.getResourcePrimKey()));
 
 		long[] assetCategoryIds = null;
 
 		if (portletDataContext.getBooleanParameter(
-				_NAMESPACE_ARTICLE, "categories")) {
+				_NAMESPACE_KB_ARTICLE, "categories")) {
 
 			assetCategoryIds = portletDataContext.getAssetCategoryIds(
-				Article.class, article.getResourcePrimKey());
+				KBArticle.class, kbArticle.getResourcePrimKey());
 		}
 
 		String[] assetTagNames = null;
 
 		if (portletDataContext.getBooleanParameter(
-				_NAMESPACE_ARTICLE, "tags")) {
+				_NAMESPACE_KB_ARTICLE, "tags")) {
 
 			assetTagNames = portletDataContext.getAssetTagNames(
-				Article.class, article.getResourcePrimKey());
+				KBArticle.class, kbArticle.getResourcePrimKey());
 		}
 
 		ServiceContext serviceContext = new ServiceContext();
@@ -449,69 +461,74 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		serviceContext.setAddGuestPermissions(true);
 		serviceContext.setAssetCategoryIds(assetCategoryIds);
 		serviceContext.setAssetTagNames(assetTagNames);
-		serviceContext.setCreateDate(article.getCreateDate());
-		serviceContext.setModifiedDate(article.getModifiedDate());
+		serviceContext.setCreateDate(kbArticle.getCreateDate());
+		serviceContext.setModifiedDate(kbArticle.getModifiedDate());
 		serviceContext.setScopeGroupId(portletDataContext.getScopeGroupId());
 
-		Article importedArticle = null;
+		KBArticle importedKBArticle = null;
 
 		if (portletDataContext.isDataStrategyMirror()) {
-			Article existingArticle = ArticleUtil.fetchByUUID_G(
-				article.getUuid(), portletDataContext.getScopeGroupId());
+			KBArticle existingKBArticle = KBArticleUtil.fetchByUUID_G(
+				kbArticle.getUuid(), portletDataContext.getScopeGroupId());
 
-			if (existingArticle == null) {
-				importedArticle = importArticleVersions(
-					portletDataContext, article.getUuid(),
+			if (existingKBArticle == null) {
+				importedKBArticle = importKBArticleVersions(
+					portletDataContext, kbArticle.getUuid(),
 					parentResourcePrimKey, dirName, assetCategoryIds,
-					assetTagNames, articleElement);
+					assetTagNames, kbArticleElement);
 			}
 			else {
-				ArticleLocalServiceUtil.updateArticle(
-					userId, existingArticle.getResourcePrimKey(),
-					article.getTitle(), article.getContent(),
-					article.getDescription(), dirName, serviceContext);
+				KBArticleLocalServiceUtil.updateKBArticle(
+					userId, existingKBArticle.getResourcePrimKey(),
+					kbArticle.getTitle(), kbArticle.getContent(),
+					kbArticle.getDescription(), dirName, serviceContext);
 
-				ArticleLocalServiceUtil.moveArticle(
-					userId, existingArticle.getResourcePrimKey(),
-					parentResourcePrimKey, article.getPriority());
+				KBArticleLocalServiceUtil.moveKBArticle(
+					userId, existingKBArticle.getResourcePrimKey(),
+					parentResourcePrimKey, kbArticle.getPriority());
 
-				importedArticle = ArticleLocalServiceUtil.getLatestArticle(
-					existingArticle.getResourcePrimKey(),
-					WorkflowConstants.STATUS_APPROVED);
+				importedKBArticle =
+					KBArticleLocalServiceUtil.getLatestKBArticle(
+						existingKBArticle.getResourcePrimKey(),
+						WorkflowConstants.STATUS_APPROVED);
 			}
 		}
 		else {
-			importedArticle = importArticleVersions(
+			importedKBArticle = importKBArticleVersions(
 				portletDataContext, null, parentResourcePrimKey, dirName,
-				assetCategoryIds, assetTagNames, articleElement);
+				assetCategoryIds, assetTagNames, kbArticleElement);
 		}
 
 		resourcePrimKeys.put(
-			article.getResourcePrimKey(), importedArticle.getResourcePrimKey());
+			kbArticle.getResourcePrimKey(),
+			importedKBArticle.getResourcePrimKey());
 
 		portletDataContext.importPermissions(
-			Article.class, article.getResourcePrimKey(),
-			importedArticle.getResourcePrimKey());
+			KBArticle.class, kbArticle.getResourcePrimKey(),
+			importedKBArticle.getResourcePrimKey());
 
 		if (portletDataContext.getBooleanParameter(
-				_NAMESPACE_ARTICLE, "ratings")) {
+				_NAMESPACE_KB_ARTICLE, "ratings")) {
 
 			portletDataContext.importRatingsEntries(
-				Article.class, article.getResourcePrimKey(),
-				importedArticle.getResourcePrimKey());
+				KBArticle.class, kbArticle.getResourcePrimKey(),
+				importedKBArticle.getResourcePrimKey());
 		}
 	}
 
-	protected void importArticleAttachments(
+	protected void importKBArticleAttachments(
 			PortletDataContext portletDataContext, long importId,
 			Map<String, String> dirNames, Element rootElement)
 		throws Exception {
 
-		List<Element> articleAttachmentsElements = rootElement.elements(
-			"article-attachments");
+		List<Element> kbArticleAttachmentsElements = rootElement.elements(
+			"kb-article-attachments");
 
-		for (Element articleAttachmentsElement : articleAttachmentsElements) {
-			String resourcePrimKey = articleAttachmentsElement.attributeValue(
+		for (int i = 0; i < kbArticleAttachmentsElements.size(); i++) {
+			Element kbArticleAttachmentsElement =
+				kbArticleAttachmentsElements.get(i);
+
+			String resourcePrimKey = kbArticleAttachmentsElement.attributeValue(
 				"resource-prim-key");
 
 			String dirName =
@@ -522,7 +539,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 				portletDataContext.getCompanyId(), CompanyConstants.SYSTEM,
 				dirName);
 
-			List<Element> fileElements = articleAttachmentsElement.elements(
+			List<Element> fileElements = kbArticleAttachmentsElement.elements(
 				"file");
 
 			for (Element fileElement : fileElements) {
@@ -547,33 +564,34 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		}
 	}
 
-	protected Article importArticleVersions(
+	protected KBArticle importKBArticleVersions(
 			PortletDataContext portletDataContext, String uuid,
 			long parentResourcePrimKey, String dirName, long[] assetCategoryIds,
-			String[] assetTagNames, Element articleElement)
+			String[] assetTagNames, Element kbArticleElement)
 		throws Exception {
 
-		Element versionsElement = articleElement.element("versions");
+		Element versionsElement = kbArticleElement.element("versions");
 
-		List<Element> articleElements = versionsElement.elements("article");
+		List<Element> kbArticleElements = versionsElement.elements(
+			"kb-article");
 
-		Article importedArticle = null;
+		KBArticle importedKBArticle = null;
 
-		for (Element curArticleElement : articleElements) {
-			Article curArticle =
-				(Article)portletDataContext.getZipEntryAsObject(
-					curArticleElement.attributeValue("path"));
+		for (Element curKBArticleElement : kbArticleElements) {
+			KBArticle curKBArticle =
+				(KBArticle)portletDataContext.getZipEntryAsObject(
+					curKBArticleElement.attributeValue("path"));
 
 			long userId = portletDataContext.getUserId(
-				curArticle.getUserUuid());
+				curKBArticle.getUserUuid());
 
 			String curDirName = StringPool.BLANK;
 			long[] curAssetCategoryIds = null;
 			String[] curAssetTagNames = null;
 
-			int index = articleElements.indexOf(curArticleElement);
+			int index = kbArticleElements.indexOf(curKBArticleElement);
 
-			if (index == (articleElements.size() - 1)) {
+			if (index == (kbArticleElements.size() - 1)) {
 				curDirName = dirName;
 				curAssetCategoryIds = assetCategoryIds;
 				curAssetTagNames = assetTagNames;
@@ -585,31 +603,31 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			serviceContext.setAddGuestPermissions(true);
 			serviceContext.setAssetCategoryIds(curAssetCategoryIds);
 			serviceContext.setAssetTagNames(curAssetTagNames);
-			serviceContext.setCreateDate(curArticle.getCreateDate());
-			serviceContext.setModifiedDate(curArticle.getModifiedDate());
+			serviceContext.setCreateDate(curKBArticle.getCreateDate());
+			serviceContext.setModifiedDate(curKBArticle.getModifiedDate());
 			serviceContext.setScopeGroupId(
 				portletDataContext.getScopeGroupId());
 
-			if (importedArticle == null) {
+			if (importedKBArticle == null) {
 				serviceContext.setUuid(uuid);
 
-				importedArticle = ArticleLocalServiceUtil.addArticle(
-					userId, parentResourcePrimKey, curArticle.getTitle(),
-					curArticle.getContent(), curArticle.getDescription(),
+				importedKBArticle = KBArticleLocalServiceUtil.addKBArticle(
+					userId, parentResourcePrimKey, curKBArticle.getTitle(),
+					curKBArticle.getContent(), curKBArticle.getDescription(),
 					curDirName, serviceContext);
 			}
 			else {
-				importedArticle = ArticleLocalServiceUtil.updateArticle(
-					userId, importedArticle.getResourcePrimKey(),
-					curArticle.getTitle(), curArticle.getContent(),
-					curArticle.getDescription(), curDirName, serviceContext);
+				importedKBArticle = KBArticleLocalServiceUtil.updateKBArticle(
+					userId, importedKBArticle.getResourcePrimKey(),
+					curKBArticle.getTitle(), curKBArticle.getContent(),
+					curKBArticle.getDescription(), curDirName, serviceContext);
 			}
 		}
 
-		return importedArticle;
+		return importedKBArticle;
 	}
 
-	protected void importArticles(
+	protected void importKBArticles(
 			PortletDataContext portletDataContext, Element rootElement)
 		throws Exception {
 
@@ -620,40 +638,41 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 		try {
 			if (portletDataContext.getBooleanParameter(
-					_NAMESPACE_ARTICLE, "attachments")) {
+					_NAMESPACE_KB_ARTICLE, "attachments")) {
 
 				DLLocalServiceUtil.addDirectory(
 					portletDataContext.getCompanyId(), CompanyConstants.SYSTEM,
 					"knowledgebase/temp/import/" + importId);
 
-				importArticleAttachments(
+				importKBArticleAttachments(
 					portletDataContext, importId, dirNames, rootElement);
 			}
 
-			List<Element> articleElements = rootElement.elements("article");
+			List<Element> kbArticleElements = rootElement.elements(
+				"kb-article");
 
-			for (Element articleElement : articleElements) {
-				String path = articleElement.attributeValue("path");
+			for (Element kbArticleElement : kbArticleElements) {
+				String path = kbArticleElement.attributeValue("path");
 
 				if (!portletDataContext.isPathNotProcessed(path)) {
 					continue;
 				}
 
-				Article article =
-					(Article)portletDataContext.getZipEntryAsObject(path);
+				KBArticle kbArticle =
+					(KBArticle)portletDataContext.getZipEntryAsObject(path);
 
-				importArticle(
+				importKBArticle(
 					portletDataContext, resourcePrimKeys, dirNames,
-					articleElement, article);
+					kbArticleElement, kbArticle);
 			}
 
-			importComments(
-				portletDataContext, "article-comment", resourcePrimKeys,
+			importKBComments(
+				portletDataContext, "kb-article-kb-comment", resourcePrimKeys,
 				rootElement);
 		}
 		finally {
 			if (portletDataContext.getBooleanParameter(
-					_NAMESPACE_ARTICLE, "attachments")) {
+					_NAMESPACE_KB_ARTICLE, "attachments")) {
 
 				DLLocalServiceUtil.deleteDirectory(
 					portletDataContext.getCompanyId(),
@@ -663,164 +682,169 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		}
 	}
 
-	protected void importComment(
+	protected void importKBComment(
 			PortletDataContext portletDataContext, Map<Long, Long> classPKs,
-			Comment comment)
+			KBComment kbComment)
 		throws Exception {
 
-		long userId = portletDataContext.getUserId(comment.getUserUuid());
-		long classPK = MapUtil.getLong(classPKs, comment.getClassPK());
+		long userId = portletDataContext.getUserId(kbComment.getUserUuid());
+		long classPK = MapUtil.getLong(classPKs, kbComment.getClassPK());
 
 		ServiceContext serviceContext = new ServiceContext();
 
-		serviceContext.setCreateDate(comment.getCreateDate());
-		serviceContext.setModifiedDate(comment.getModifiedDate());
+		serviceContext.setCreateDate(kbComment.getCreateDate());
+		serviceContext.setModifiedDate(kbComment.getModifiedDate());
 		serviceContext.setScopeGroupId(portletDataContext.getScopeGroupId());
 
 		if (portletDataContext.isDataStrategyMirror()) {
-			Comment existingComment = CommentUtil.fetchByUUID_G(
-				comment.getUuid(), portletDataContext.getScopeGroupId());
+			KBComment existingKBComment = KBCommentUtil.fetchByUUID_G(
+				kbComment.getUuid(), portletDataContext.getScopeGroupId());
 
-			if (existingComment == null) {
-				serviceContext.setUuid(comment.getUuid());
+			if (existingKBComment == null) {
+				serviceContext.setUuid(kbComment.getUuid());
 
-				CommentLocalServiceUtil.addComment(
-					userId, comment.getClassNameId(), classPK,
-					comment.getContent(), comment.getHelpful(), serviceContext);
+				KBCommentLocalServiceUtil.addKBComment(
+					userId, kbComment.getClassNameId(), classPK,
+					kbComment.getContent(), kbComment.getHelpful(),
+					serviceContext);
 			}
 			else {
-				CommentLocalServiceUtil.updateComment(
-					existingComment.getCommentId(), comment.getClassNameId(),
-					classPK, comment.getContent(), comment.getHelpful(),
-					serviceContext);
+				KBCommentLocalServiceUtil.updateKBComment(
+					existingKBComment.getKbCommentId(),
+					kbComment.getClassNameId(), classPK, kbComment.getContent(),
+					kbComment.getHelpful(), serviceContext);
 			}
 		}
 		else {
-			CommentLocalServiceUtil.addComment(
-				userId, comment.getClassNameId(), classPK, comment.getContent(),
-				comment.getHelpful(), serviceContext);
+			KBCommentLocalServiceUtil.addKBComment(
+				userId, kbComment.getClassNameId(), classPK,
+				kbComment.getContent(), kbComment.getHelpful(), serviceContext);
 		}
 	}
 
-	protected void importComments(
+	protected void importKBComments(
 			PortletDataContext portletDataContext, String name,
 			Map<Long, Long> classPKs, Element rootElement)
 		throws Exception {
 
-		List<Element> commentElements = rootElement.elements(name);
+		List<Element> kbCommentElements = rootElement.elements(name);
 
-		for (Element commentElement : commentElements) {
-			String path = commentElement.attributeValue("path");
+		for (Element kbCommentElement : kbCommentElements) {
+			String path = kbCommentElement.attributeValue("path");
 
 			if (!portletDataContext.isPathNotProcessed(path)) {
 				continue;
 			}
 
-			Comment comment =
-				(Comment)portletDataContext.getZipEntryAsObject(path);
+			KBComment kbComment =
+				(KBComment)portletDataContext.getZipEntryAsObject(path);
 
-			importComment(portletDataContext, classPKs, comment);
+			importKBComment(portletDataContext, classPKs, kbComment);
 		}
 	}
 
-	protected void importTemplate(
-			PortletDataContext portletDataContext, Map<Long, Long> templateIds,
-			Template template)
+	protected void importKBTemplate(
+			PortletDataContext portletDataContext,
+			Map<Long, Long> kbTemplateIds, KBTemplate kbTemplate)
 		throws Exception {
 
-		long userId = portletDataContext.getUserId(template.getUserUuid());
+		long userId = portletDataContext.getUserId(kbTemplate.getUserUuid());
 
 		ServiceContext serviceContext = new ServiceContext();
 
 		serviceContext.setAddCommunityPermissions(true);
 		serviceContext.setAddGuestPermissions(true);
-		serviceContext.setCreateDate(template.getCreateDate());
-		serviceContext.setModifiedDate(template.getModifiedDate());
+		serviceContext.setCreateDate(kbTemplate.getCreateDate());
+		serviceContext.setModifiedDate(kbTemplate.getModifiedDate());
 		serviceContext.setScopeGroupId(portletDataContext.getScopeGroupId());
 
-		Template importedTemplate = null;
+		KBTemplate importedKBTemplate = null;
 
 		if (portletDataContext.isDataStrategyMirror()) {
-			Template existingTemplate = TemplateUtil.fetchByUUID_G(
-				template.getUuid(), portletDataContext.getScopeGroupId());
+			KBTemplate existingKBTemplate = KBTemplateUtil.fetchByUUID_G(
+				kbTemplate.getUuid(), portletDataContext.getScopeGroupId());
 
-			if (existingTemplate == null) {
-				serviceContext.setUuid(template.getUuid());
+			if (existingKBTemplate == null) {
+				serviceContext.setUuid(kbTemplate.getUuid());
 
-				importedTemplate = TemplateLocalServiceUtil.addTemplate(
-					userId, template.getTitle(), template.getContent(),
-					template.getDescription(), serviceContext);
+				importedKBTemplate = KBTemplateLocalServiceUtil.addKBTemplate(
+					userId, kbTemplate.getTitle(), kbTemplate.getContent(),
+					kbTemplate.getDescription(), serviceContext);
 			}
 			else {
-				importedTemplate = TemplateLocalServiceUtil.updateTemplate(
-					existingTemplate.getTemplateId(), template.getTitle(),
-					template.getContent(), template.getDescription(),
-					serviceContext);
+				importedKBTemplate =
+					KBTemplateLocalServiceUtil.updateKBTemplate(
+						existingKBTemplate.getKbTemplateId(),
+						kbTemplate.getTitle(), kbTemplate.getContent(),
+						kbTemplate.getDescription(), serviceContext);
 			}
 		}
 		else {
-			importedTemplate = TemplateLocalServiceUtil.addTemplate(
-				userId, template.getTitle(), template.getContent(),
-				template.getDescription(), serviceContext);
+			importedKBTemplate = KBTemplateLocalServiceUtil.addKBTemplate(
+				userId, kbTemplate.getTitle(), kbTemplate.getContent(),
+				kbTemplate.getDescription(), serviceContext);
 		}
 
-		templateIds.put(
-			template.getTemplateId(), importedTemplate.getTemplateId());
+		kbTemplateIds.put(
+			kbTemplate.getKbTemplateId(), importedKBTemplate.getKbTemplateId());
 
 		portletDataContext.importPermissions(
-			Template.class, template.getTemplateId(),
-			importedTemplate.getTemplateId());
+			KBTemplate.class, kbTemplate.getKbTemplateId(),
+			importedKBTemplate.getKbTemplateId());
 	}
 
-	protected void importTemplates(
+	protected void importKBTemplates(
 			PortletDataContext portletDataContext, Element rootElement)
 		throws Exception {
 
-		Map<Long, Long> templateIds = new HashMap<Long, Long>();
+		Map<Long, Long> kbTemplateIds = new HashMap<Long, Long>();
 
-		for (Element templateElement : rootElement.elements("template")) {
-			String path = templateElement.attributeValue("path");
+		for (Element kbTemplateElement : rootElement.elements("kb-template")) {
+			String path = kbTemplateElement.attributeValue("path");
 
 			if (!portletDataContext.isPathNotProcessed(path)) {
 				continue;
 			}
 
-			Template template =
-				(Template)portletDataContext.getZipEntryAsObject(path);
+			KBTemplate kbTemplate =
+				(KBTemplate)portletDataContext.getZipEntryAsObject(path);
 
-			importTemplate(portletDataContext, templateIds, template);
+			importKBTemplate(portletDataContext, kbTemplateIds, kbTemplate);
 		}
 
-		importComments(
-			portletDataContext, "template-comment", templateIds, rootElement);
+		importKBComments(
+			portletDataContext, "kb-template-kb-comment", kbTemplateIds,
+			rootElement);
 	}
 
 	private static final String _NAMESPACE = "knowledge_base";
 
-	private static final String _NAMESPACE_ARTICLE = "knowledge_base_article";
+	private static final String _NAMESPACE_KB_ARTICLE =
+		"knowledge_base_kb_article";
 
-	private static final String _NAMESPACE_TEMPLATE = "knowledge_base_template";
+	private static final String _NAMESPACE_KB_TEMPLATE =
+		"knowledge_base_kb_template";
 
-	private static PortletDataHandlerControl[] _articleOptions =
+	private static PortletDataHandlerControl[] _kbArticleOptions =
 		new PortletDataHandlerControl[] {
-			new PortletDataHandlerBoolean(_NAMESPACE_ARTICLE, "attachments"),
-			new PortletDataHandlerBoolean(_NAMESPACE_ARTICLE, "categories"),
-			new PortletDataHandlerBoolean(_NAMESPACE_ARTICLE, "tags"),
-			new PortletDataHandlerBoolean(_NAMESPACE_ARTICLE, "ratings"),
-			new PortletDataHandlerBoolean(_NAMESPACE_ARTICLE, "comments")
+			new PortletDataHandlerBoolean(_NAMESPACE_KB_ARTICLE, "attachments"),
+			new PortletDataHandlerBoolean(_NAMESPACE_KB_ARTICLE, "categories"),
+			new PortletDataHandlerBoolean(_NAMESPACE_KB_ARTICLE, "tags"),
+			new PortletDataHandlerBoolean(_NAMESPACE_KB_ARTICLE, "ratings"),
+			new PortletDataHandlerBoolean(_NAMESPACE_KB_ARTICLE, "kb-comments")
 		};
 
-	private static PortletDataHandlerBoolean _articles =
+	private static PortletDataHandlerBoolean _kbArticles =
 		new PortletDataHandlerBoolean(
-			_NAMESPACE, "articles", true, true, _articleOptions);
+			_NAMESPACE, "kb-articles", true, true, _kbArticleOptions);
 
-	private static PortletDataHandlerControl[] _templateOptions =
+	private static PortletDataHandlerControl[] _kbTemplateOptions =
 		new PortletDataHandlerControl[] {
-			new PortletDataHandlerBoolean(_NAMESPACE_TEMPLATE, "comments")
+			new PortletDataHandlerBoolean(_NAMESPACE_KB_TEMPLATE, "kb-comments")
 		};
 
-	private static PortletDataHandlerBoolean _templates =
+	private static PortletDataHandlerBoolean _kbTemplates =
 		new PortletDataHandlerBoolean(
-			_NAMESPACE, "templates", true, false, _templateOptions);
+			_NAMESPACE, "kb-templates", true, false, _kbTemplateOptions);
 
 }

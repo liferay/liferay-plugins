@@ -14,7 +14,7 @@
 
 package com.liferay.knowledgebase.hook.events;
 
-import com.liferay.knowledgebase.hook.action.FindArticleAction;
+import com.liferay.knowledgebase.hook.action.FindKBArticleAction;
 import com.liferay.portal.kernel.events.Action;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -66,7 +66,7 @@ public class ServicePreAction extends Action {
 			return;
 		}
 
-		if (!portletId.equals(FindArticleAction.PORTLET_ID)) {
+		if (!portletId.equals(FindKBArticleAction.PORTLET_ID)) {
 			return;
 		}
 
