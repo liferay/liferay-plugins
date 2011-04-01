@@ -77,7 +77,7 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 		catch (Exception e) {
 			_log.error(e, e);
 
-			if (_throwException) {
+			if (!_swallowException) {
 				throw new SearchException(e.getMessage());
 			}
 
@@ -89,8 +89,8 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 		_solrServer = solrServer;
 	}
 
-	public void setThrowException(boolean throwException) {
-		_throwException = throwException;
+	public void setSwallowException(boolean swallowException) {
+		_swallowException = swallowException;
 	}
 
 	protected String getSnippet(
@@ -295,6 +295,6 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 		SolrIndexSearcherImpl.class);
 
 	private SolrServer _solrServer;
-	private boolean _throwException;
+	private boolean _swallowException;
 
 }
