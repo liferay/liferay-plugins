@@ -547,8 +547,6 @@ AUI().use(
 				instance._sound = new SWFObject('/chat-portlet/alert.swf', 'alertsound', '0', '0', '8');
 				instance._soundContainer = instance._chatContainer.one('.chat-sound');
 
-				instance._contactsInstalled = A.one('#contactsInstalled').val();
-
 				instance._updatePresenceTask = A.debounce(instance._updatePresence, 30000, instance);
 
 				instance._updatePresenceTask.delay(0);
@@ -687,18 +685,7 @@ AUI().use(
 					buddyList.delegate(
 						'click',
 						function(event) {
-							if (event.target.hasClass('contacts')) {
-								var userId = event.currentTarget.getAttribute('userId');
-
-								var url = A.one('#contactsURL').val();
-
-								url = Liferay.Util.addParams("_1_WAR_contactsportlet_userId=" + userId, url);
-
-								window.location = url;
-							}
-							else {
-								instance._createChatFromUser(event.currentTarget);
-							}
+							instance._createChatFromUser(event.currentTarget);
 						},
 						'li'
 					);
@@ -975,17 +962,11 @@ AUI().use(
 
 					var userImagePath = Liferay.Chat.Util.getUserImagePath(buddy.portraitId);
 
-					buffer.push('<li class="active" userId="' + buddy.userId + '">');
-					buffer.push('<img alt="" src="' + userImagePath + '" />');
-					buffer.push('<div class="name">' + buddy.fullName + '</div>');
-
-					if (instance._contactsInstalled) {
-						buffer.push('<div class="services">');
-						buffer.push('<div class="contacts"></div>');
-						buffer.push('</div>');
-					}
-
-					buffer.push('</li>');
+					buffer.push(
+						'<li class="active" userId="' + buddy.userId + '">' +
+							'<img alt="" src="' + userImagePath + '" />' +
+							'<div class="name">' + buddy.fullName + '</div>' +
+						'</li>');
 				}
 
 				instance._onlineBuddies.html(buffer.join(''));
