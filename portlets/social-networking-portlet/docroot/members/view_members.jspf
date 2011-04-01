@@ -28,11 +28,11 @@ else {
 	userParams.put("usersGroups", new Long(group.getGroupId()));
 }
 
-int total = UserLocalServiceUtil.searchCount(company.getCompanyId(), null, Boolean.TRUE, userParams);
+int total = UserLocalServiceUtil.searchCount(company.getCompanyId(), null, WorkflowConstants.STATUS_APPROVED, userParams);
 
 searchContainer.setTotal(total);
 
-List<User> results = UserLocalServiceUtil.search(company.getCompanyId(), null, Boolean.TRUE, userParams, searchContainer.getStart(), searchContainer.getEnd(), new UserLoginDateComparator());
+List<User> results = UserLocalServiceUtil.search(company.getCompanyId(), null, WorkflowConstants.STATUS_APPROVED, userParams, searchContainer.getStart(), searchContainer.getEnd(), new UserLoginDateComparator());
 
 searchContainer.setResults(results);
 
@@ -54,7 +54,7 @@ for (int i = 0; i < results.size(); i++) {
 %>
 
 <div>
-	<%= LanguageUtil.format(pageContext, (organization != null) ? "this-organization-has-x-members" : "this-community-has-x-members", String.valueOf(total)) %>
+	<%= LanguageUtil.format(pageContext, (organization != null) ? "this-organization-has-x-members" : "this-site-has-x-members", String.valueOf(total)) %>
 </div>
 
 <c:if test="<%= total > 0 %>">
