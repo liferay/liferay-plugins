@@ -16,7 +16,6 @@ package com.liferay.vldap.server.directory;
 
 import com.liferay.portal.model.Company;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -41,36 +40,43 @@ public class CompanyDirectory extends BaseDirectory {
 	}
 
 	protected List<Directory> initDirectories() throws Exception {
-		CommunitiesDirectory communitiesDirectory = new CommunitiesDirectory(
-			this);
-
-		communitiesDirectory.setCompany(_company);
-
-		_directories.add(communitiesDirectory);
-
-		OrganizationsDirectory organizationsDirectory =
-			new OrganizationsDirectory(this);
-
-		organizationsDirectory.setCompany(_company);
-
-		_directories.add(organizationsDirectory);
-
-		RolesDirectory rolesDirectory = new RolesDirectory(this);
-
-		rolesDirectory.setCompany(_company);
-
-		_directories.add(rolesDirectory);
-
 		UsersDirectory usersDirectory = new UsersDirectory(this);
 
 		usersDirectory.setCompany(_company);
 
 		_directories.add(usersDirectory);
 
+		CommunitiesDirectory communitiesDirectory = new CommunitiesDirectory(
+			this, usersDirectory);
+
+		communitiesDirectory.setCompany(_company);
+
+		_directories.add(communitiesDirectory);
+
+		OrganizationsDirectory organizationsDirectory =
+			new OrganizationsDirectory(this, usersDirectory);
+
+		organizationsDirectory.setCompany(_company);
+
+		_directories.add(organizationsDirectory);
+
+		RolesDirectory rolesDirectory = new RolesDirectory(
+			this, usersDirectory);
+
+		rolesDirectory.setCompany(_company);
+
+		_directories.add(rolesDirectory);
+
+		UserGroupsDirectory userGroupsDirectory = new UserGroupsDirectory(
+			this, usersDirectory);
+
+		userGroupsDirectory.setCompany(_company);
+
+		_directories.add(userGroupsDirectory);
+
 		return _directories;
 	}
 
 	private Company _company;
-	private List<Directory> _directories = new ArrayList<Directory>();
 
 }

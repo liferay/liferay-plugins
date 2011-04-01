@@ -14,49 +14,45 @@
 
 package com.liferay.vldap.server.directory;
 
-import com.liferay.portal.model.Group;
+import com.liferay.portal.model.UserGroup;
 import com.liferay.vldap.util.UserCollection;
 
 import java.util.List;
 
 /**
- * @author Brian Wing Shun Chan
+ * @author Raymond Augé
  */
-public class CommunityDirectory extends BaseDirectory {
+public class UserGroupDirectory extends BaseDirectory {
 
-
-	public CommunityDirectory(
-			Group group, Directory parentDirectory, Directory usersDirectory)
+	public UserGroupDirectory(
+			UserGroup userGroup, Directory parentDirectory,
+			Directory usersDirectory)
 		throws Exception {
 
-		super("ou=" + group.getName(), parentDirectory);
+		super("ou=" + userGroup.getName(), parentDirectory);
 
-		_group = group;
+		_userGroup = userGroup;
 		_usersDirectory = usersDirectory;
 
 		initAttributes();
 	}
 
-	protected Group getGroup() {
-		return _group;
-	}
-
 	protected void initAttributes() {
-		addAttribute("cn", _group.getName());
+		addAttribute("cn", _userGroup.getName());
+		addAttribute("description", _userGroup.getDescription());
 		addAttribute("objectClass", "groupOfNames");
-		addAttribute("description", _group.getDescription());
 		addAttribute("objectclass", "organizationalUnit");
 		addAttribute("objectclass", "top");
-		addAttribute("ou", _group.getName());
+		addAttribute("ou", _userGroup.getName());
 	}
 
 	protected List<Directory> initDirectories() throws Exception {
-		UserCollection.collectUsers(_group, this, _usersDirectory);
+		UserCollection.collectUsers(_userGroup, this, _usersDirectory);
 
 		return _directories;
 	}
 
-	private Group _group;
+	private UserGroup _userGroup;
 	private Directory _usersDirectory;
 
 }

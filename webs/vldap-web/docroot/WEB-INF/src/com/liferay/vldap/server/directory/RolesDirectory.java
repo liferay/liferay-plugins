@@ -26,7 +26,6 @@ import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.UserGroupRoleLocalServiceUtil;
 import com.liferay.vldap.util.PortletPropsValues;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -35,10 +34,12 @@ import java.util.List;
  */
 public class RolesDirectory extends BaseDirectory {
 
-	public RolesDirectory(Directory parentDirectory)
+	public RolesDirectory(Directory parentDirectory, Directory usersDirectory)
 		throws Exception {
 
 		super("ou=Roles", parentDirectory);
+
+		_usersDirectory = usersDirectory;
 
 		initAttributes();
 	}
@@ -104,7 +105,12 @@ public class RolesDirectory extends BaseDirectory {
 		}
 
 		for (Role role : roles) {
-			Directory roleDirectory = new RoleDirectory(role, this);
+			if (role.getName().equals(RoleConstants.OWNER)) {
+				continue;
+			}
+
+			Directory roleDirectory = new RoleDirectory(
+				role, this, _usersDirectory);
 
 			_directories.add(roleDirectory);
 		}
@@ -121,7 +127,7 @@ public class RolesDirectory extends BaseDirectory {
 	}
 
 	private Company _company;
-	private List<Directory> _directories = new ArrayList<Directory>();
 	private User _user;
+	private Directory _usersDirectory;
 
 }

@@ -15,24 +15,23 @@
 package com.liferay.vldap.server.directory;
 
 import com.liferay.portal.model.Company;
-import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
-import com.liferay.portal.service.GroupLocalServiceUtil;
-import com.liferay.vldap.util.PortletPropsValues;
+import com.liferay.portal.model.UserGroup;
+import com.liferay.portal.service.UserGroupLocalServiceUtil;
 
 import java.util.Collections;
 import java.util.List;
 
 /**
- * @author Brian Wing Shun Chan
+ * @author Raymond Augé
  */
-public class CommunitiesDirectory extends BaseDirectory {
+public class UserGroupsDirectory extends BaseDirectory {
 
-	public CommunitiesDirectory(
+	public UserGroupsDirectory(
 			Directory parentDirectory, Directory usersDirectory)
 		throws Exception {
 
-		super("ou=Communities", parentDirectory);
+		super("ou=User Groups", parentDirectory);
 
 		_usersDirectory = usersDirectory;
 
@@ -42,26 +41,26 @@ public class CommunitiesDirectory extends BaseDirectory {
 	protected void initAttributes() {
 		addAttribute("objectclass", "organizationalUnit");
 		addAttribute("objectclass", "top");
-		addAttribute("ou", "Communities");
+		addAttribute("ou", "UserGroups");
 	}
 
 	protected List<Directory> initDirectories() throws Exception {
-		List<Group> groups = Collections.emptyList();
+		List<UserGroup> userGroups = Collections.emptyList();
 
 		if (_user != null) {
-			groups = GroupLocalServiceUtil.getUserGroups(_user.getUserId());
+			userGroups = UserGroupLocalServiceUtil.getUserUserGroups(
+				_user.getUserId());
 		}
 		else if (_company != null) {
-			groups = GroupLocalServiceUtil.search(
-				_company.getCompanyId(), null, null, null, 0,
-				PortletPropsValues.SEARCH_MAX_SIZE);
+			userGroups = UserGroupLocalServiceUtil.getUserGroups(
+				_company.getCompanyId());
 		}
 
-		for (Group group : groups) {
-			Directory communityDirectory = new CommunityDirectory(
-				group, this, _usersDirectory);
+		for (UserGroup userGroup : userGroups) {
+			Directory roleDirectory = new UserGroupDirectory(
+				userGroup, this, _usersDirectory);
 
-			_directories.add(communityDirectory);
+			_directories.add(roleDirectory);
 		}
 
 		return _directories;

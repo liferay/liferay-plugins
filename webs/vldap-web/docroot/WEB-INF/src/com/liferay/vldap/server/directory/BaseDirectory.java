@@ -104,6 +104,8 @@ public abstract class BaseDirectory implements Directory {
 
 	public List<Directory> getDirectories() throws Exception {
 		if (_directories == null) {
+			_directories = new ArrayList<Directory>();
+
 			_directories = initDirectories();
 		}
 
@@ -250,7 +252,7 @@ public abstract class BaseDirectory implements Directory {
 	};
 
 	private List<Attribute> _attributes = new ArrayList<Attribute>();
-	private List<Directory> _directories;
+	protected List<Directory> _directories;
 	private Directory _parentDirectory;
 	private DN _name;
 

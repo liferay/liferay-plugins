@@ -21,11 +21,11 @@ import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Organization;
 import com.liferay.portal.model.Role;
 import com.liferay.portal.model.User;
+import com.liferay.portal.model.UserGroup;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.util.comparator.UserScreenNameComparator;
 import com.liferay.vldap.util.PortletPropsValues;
 
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -43,7 +43,15 @@ public class UsersDirectory extends BaseDirectory {
 	public UsersDirectory(Directory parentDirectory)
 		throws Exception {
 
+		this(parentDirectory, null);
+	}
+
+	public UsersDirectory(Directory parentDirectory, Directory usersDirectory)
+		throws Exception {
+
 		super("ou=Users", parentDirectory);
+
+		_usersDirectory = usersDirectory;
 
 		initAttributes();
 	}
@@ -92,9 +100,8 @@ public class UsersDirectory extends BaseDirectory {
 	}
 
 	protected void initAttributes() {
-		addAttribute("objectclass", "organizationalUnit");
-		addAttribute("objectclass", "top");
-		addAttribute("ou", "Users");
+		addAttribute("cn", "Users");
+		addAttribute("objectClass", "groupOfNames");
 	}
 
 	protected List<Directory> initDirectories() throws Exception {
@@ -127,8 +134,15 @@ public class UsersDirectory extends BaseDirectory {
 
 			params.put("usersRoles", _role.getRoleId());
 		}
+		else if (_userGroup != null) {
+			companyId = _userGroup.getCompanyId();
+
+			params.put("usersUserGroups", _userGroup.getUserGroupId());
+		}
 		else if (_company != null) {
 			companyId = _company.getCompanyId();
+
+			_usersDirectory = this;
 		}
 
 		List<User> users = UserLocalServiceUtil.search(
@@ -141,7 +155,7 @@ public class UsersDirectory extends BaseDirectory {
 				continue;
 			}
 
-			Directory userDirectory = new UserDirectory(user, this);
+			Directory userDirectory = new UserDirectory(user, _usersDirectory);
 
 			addAttribute("member", userDirectory.getName().getName());
 
@@ -167,10 +181,15 @@ public class UsersDirectory extends BaseDirectory {
 		_role = role;
 	}
 
+	protected void setUserGroup(UserGroup userGroup) {
+		_userGroup = userGroup;
+	}
+
 	private Company _company;
-	private List<Directory> _directories = new ArrayList<Directory>();
 	private Group _group;
 	private Organization _organization;
 	private Role _role;
+	private Directory _usersDirectory;
+	private UserGroup _userGroup;
 
 }

@@ -21,7 +21,6 @@ import com.liferay.portal.model.User;
 import com.liferay.portal.service.OrganizationLocalServiceUtil;
 import com.liferay.vldap.util.PortletPropsValues;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -30,10 +29,13 @@ import java.util.List;
  */
 public class OrganizationsDirectory extends BaseDirectory {
 
-	public OrganizationsDirectory(Directory parentDirectory)
+	public OrganizationsDirectory(
+			Directory parentDirectory, Directory usersDirectory)
 		throws Exception {
 
 		super("ou=Organizations", parentDirectory);
+
+		_usersDirectory = usersDirectory;
 
 		initAttributes();
 	}
@@ -60,7 +62,7 @@ public class OrganizationsDirectory extends BaseDirectory {
 
 		for (Organization organization : organizations) {
 			Directory organizationDirectory = new OrganizationDirectory(
-				organization, this);
+				organization, this, _usersDirectory);
 
 			_directories.add(organizationDirectory);
 		}
@@ -77,7 +79,7 @@ public class OrganizationsDirectory extends BaseDirectory {
 	}
 
 	private Company _company;
-	private List<Directory> _directories = new ArrayList<Directory>();
 	private User _user;
+	private Directory _usersDirectory;
 
 }

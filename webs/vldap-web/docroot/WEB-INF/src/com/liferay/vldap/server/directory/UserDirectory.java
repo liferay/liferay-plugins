@@ -19,7 +19,6 @@ import com.liferay.portal.model.User;
 
 import java.text.Format;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -27,7 +26,8 @@ import java.util.List;
  */
 public class UserDirectory extends BaseDirectory {
 
-	public UserDirectory(User user, Directory parentDirectory)
+	public UserDirectory(
+			User user, Directory parentDirectory)
 		throws Exception {
 
 		super("cn=" + user.getScreenName(), parentDirectory);
@@ -54,36 +54,9 @@ public class UserDirectory extends BaseDirectory {
 	}
 
 	protected List<Directory> initDirectories() throws Exception {
-		if (!isDescendantOf("ou=Communities")) {
-			CommunitiesDirectory communitiesDirectory =
-				new CommunitiesDirectory(this);
-
-			communitiesDirectory.setUser(_user);
-
-			_directories.add(communitiesDirectory);
-		}
-
-		if (!isDescendantOf("ou=Organizations")) {
-			OrganizationsDirectory organizationsDirectory =
-				new OrganizationsDirectory(this);
-
-			organizationsDirectory.setUser(_user);
-
-			_directories.add(organizationsDirectory);
-		}
-
-		if (!isDescendantOf("ou=Roles")) {
-			RolesDirectory rolesDirectory = new RolesDirectory(this);
-
-			rolesDirectory.setUser(_user);
-
-			_directories.add(rolesDirectory);
-		}
-
 		return _directories;
 	}
 
-	private List<Directory> _directories = new ArrayList<Directory>();
 	private Format _format =
 		FastDateFormatFactoryUtil.getSimpleDateFormat("yyyyMMddHHmmss.SZ");
 	private User _user;

@@ -17,7 +17,6 @@ package com.liferay.vldap.server.directory;
 import com.liferay.portal.model.Company;
 import com.liferay.portal.service.CompanyLocalServiceUtil;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.directory.shared.ldap.message.internal.InternalRequest;
@@ -57,7 +56,6 @@ public class TopDirectory extends BaseDirectory {
 		return _directories;
 	}
 
-	private List<Directory> _directories = new ArrayList<Directory>();
 	private InternalRequest _internalRequest;
 
 }

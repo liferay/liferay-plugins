@@ -19,7 +19,6 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.vldap.server.handler.BindLdapHandler;
 import com.liferay.vldap.util.OIDConstants;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.directory.shared.ldap.message.internal.InternalRequest;
@@ -64,7 +63,6 @@ public class RootDirectory extends BaseDirectory {
 		return _directories;
 	}
 
-	private List<Directory> _directories = new ArrayList<Directory>();
 	private InternalRequest _internalRequest;
 
 }

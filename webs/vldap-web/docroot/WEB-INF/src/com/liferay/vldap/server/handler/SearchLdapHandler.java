@@ -135,6 +135,10 @@ public class SearchLdapHandler extends BaseLdapHandler {
 			new SearchResponseEntryImpl(
 				internalSearchRequest.getMessageId());
 
+		if (directory.getAttribute("objectClass", "groupOfNames") != null) {
+			directory.getDirectories();
+		}
+
 		Entry entry = directory.toEntry(
 			ldapHandlerContext.getSchemaManager(),
 			internalSearchRequest.getAttributes());

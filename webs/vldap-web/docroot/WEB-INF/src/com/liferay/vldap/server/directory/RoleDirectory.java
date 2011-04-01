@@ -15,8 +15,8 @@
 package com.liferay.vldap.server.directory;
 
 import com.liferay.portal.model.Role;
+import com.liferay.vldap.util.UserCollection;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,35 +24,35 @@ import java.util.List;
  */
 public class RoleDirectory extends BaseDirectory {
 
-	public RoleDirectory(Role role, Directory parentDirectory)
+	public RoleDirectory(
+			Role role, Directory parentDirectory, Directory usersDirectory)
 		throws Exception {
 
 		super("ou=" + role.getName(), parentDirectory);
 
 		_role = role;
+		_usersDirectory = usersDirectory;
 
 		initAttributes();
 	}
 
 	protected void initAttributes() {
+		addAttribute("cn", _role.getName());
+		addAttribute("description", _role.getDescription());
+		addAttribute("objectClass", "groupOfNames");
+		addAttribute("objectclass", "organizationalRole");
 		addAttribute("objectclass", "organizationalUnit");
 		addAttribute("objectclass", "top");
 		addAttribute("ou", _role.getName());
 	}
 
 	protected List<Directory> initDirectories() throws Exception {
-		if (!isDescendantOf("ou=Users")) {
-			UsersDirectory usersDirectory = new UsersDirectory(this);
-
-			usersDirectory.setRole(_role);
-
-			_directories.add(usersDirectory);
-		}
+		UserCollection.collectUsers(_role, this, _usersDirectory);
 
 		return _directories;
 	}
 
-	private List<Directory> _directories = new ArrayList<Directory>();
 	private Role _role;
+	private Directory _usersDirectory;
 
 }

@@ -15,8 +15,8 @@
 package com.liferay.vldap.server.directory;
 
 import com.liferay.portal.model.Organization;
+import com.liferay.vldap.util.UserCollection;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,12 +25,14 @@ import java.util.List;
 public class OrganizationDirectory extends BaseDirectory {
 
 	public OrganizationDirectory(
-			Organization organization, Directory parentDirectory)
+			Organization organization, Directory parentDirectory,
+			Directory usersDirectory)
 		throws Exception {
 
 		super("ou=" + organization.getName(), parentDirectory);
 
 		_organization = organization;
+		_usersDirectory = usersDirectory;
 
 		initAttributes();
 	}
@@ -40,24 +42,20 @@ public class OrganizationDirectory extends BaseDirectory {
 	}
 
 	protected void initAttributes() {
+		addAttribute("cn", _organization.getName());
+		addAttribute("objectClass", "groupOfNames");
 		addAttribute("objectclass", "organizationalUnit");
 		addAttribute("objectclass", "top");
 		addAttribute("ou", _organization.getName());
 	}
 
 	protected List<Directory> initDirectories() throws Exception {
-		if (!isDescendantOf("ou=Users")) {
-			UsersDirectory usersDirectory = new UsersDirectory(this);
-
-			usersDirectory.setOrganization(_organization);
-
-			_directories.add(usersDirectory);
-		}
+		UserCollection.collectUsers(_organization, this, _usersDirectory);
 
 		return _directories;
 	}
 
-	private List<Directory> _directories = new ArrayList<Directory>();
 	private Organization _organization;
+	private Directory _usersDirectory;
 
 }
