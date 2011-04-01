@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.0.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_0_0.dtd">
 
-<service-builder package-path="com.liferay.knowledgebase">
+<service-builder package-path="com.liferay.knowledgebase" auto-namespace-tables="false">
 	<namespace>KB</namespace>
-	<entity name="Article" uuid="true" local-service="true" remote-service="true">
+	<entity name="KBArticle" uuid="true" local-service="true" remote-service="true">
 
 		<!-- PK fields -->
 
-		<column name="articleId" type="long" primary="true" />
+		<column name="kbArticleId" type="long" primary="true" />
 
 		<!-- Resource -->
 
@@ -57,7 +57,7 @@
 			<finder-column name="resourcePrimKey" />
 			<finder-column name="groupId" />
 		</finder>
-		<finder name="R_V" return-type="Article" unique="true">
+		<finder name="R_V" return-type="KBArticle" unique="true">
 			<finder-column name="resourcePrimKey" />
 			<finder-column name="version" />
 		</finder>
@@ -153,11 +153,11 @@
 		<reference package-path="com.liferay.portlet.ratings" entity="RatingsStats" />
 		<reference package-path="com.liferay.portlet.social" entity="SocialActivity" />
 	</entity>
-	<entity name="Comment" uuid="true" local-service="true" remote-service="false">
+	<entity name="KBComment" uuid="true" local-service="true" remote-service="false">
 
 		<!-- PK fields -->
 
-		<column name="commentId" type="long" primary="true" />
+		<column name="kbCommentId" type="long" primary="true" />
 
 		<!-- Group instance -->
 
@@ -197,7 +197,7 @@
 			<finder-column name="classNameId" />
 			<finder-column name="classPK" />
 		</finder>
-		<finder name="U_C_C" return-type="Comment" unique="true">
+		<finder name="U_C_C" return-type="KBComment" unique="true">
 			<finder-column name="userId" />
 			<finder-column name="classNameId" />
 			<finder-column name="classPK" />
@@ -207,11 +207,11 @@
 
 		<reference package-path="com.liferay.portlet.social" entity="SocialActivity" />
 	</entity>
-	<entity name="Template" uuid="true" local-service="true" remote-service="true">
+	<entity name="KBTemplate" uuid="true" local-service="true" remote-service="true">
 
 		<!-- PK fields -->
 
-		<column name="templateId" type="long" primary="true" />
+		<column name="kbTemplateId" type="long" primary="true" />
 
 		<!-- Group instance -->
 
@@ -248,11 +248,11 @@
 		<reference package-path="com.liferay.portlet.social" entity="SocialActivity" />
 	</entity>
 	<exceptions>
-		<exception>ArticleContent</exception>
-		<exception>ArticlePriority</exception>
-		<exception>ArticleTitle</exception>
-		<exception>CommentContent</exception>
-		<exception>TemplateContent</exception>
-		<exception>TemplateTitle</exception>
+		<exception>KBArticleContent</exception>
+		<exception>KBArticlePriority</exception>
+		<exception>KBArticleTitle</exception>
+		<exception>KBCommentContent</exception>
+		<exception>KBTemplateContent</exception>
+		<exception>KBTemplateTitle</exception>
 	</exceptions>
 </service-builder>
