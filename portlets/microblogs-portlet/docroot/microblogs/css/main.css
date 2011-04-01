@@ -1,0 +1,185 @@
+/**
+ * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+
+.microblogs-portlet .action-container {
+	margin-left: 15px;
+	visibility: hidden;
+}
+
+.microblogs-portlet .control-container {
+	float: right;
+}
+
+.ie6 .microblogs-portlet .action-container {
+	visibility: visible;
+}
+
+.microblogs-portlet .taglib-header,
+.aui-dialog.microblogs-portlet .taglib-header {
+	border-bottom: none;
+	margin: 0;
+}
+
+.microblogs-portlet .aui-field-input-text {
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	height: 18px;
+	margin: 10px 0 5px;
+	min-width: 400px;
+	width: 99%;
+}
+
+.aui-dialog.microblogs-portlet .aui-field-input-text {
+	height: 60px;
+}
+
+.microblogs-portlet .microblogs-entry:hover .action-container {
+	visibility: visible;
+}
+
+.microblogs-portlet .microblogs-entry {
+	margin-bottom: 10px;
+	width: 100%;
+}
+
+.aui-dialog.microblogs-portlet .microblogs-entry {
+	margin-top: 10px;
+}
+
+.microblogs-portlet .microblogs-container {
+	margin-top: 10px;
+}
+
+.microblogs-portlet .microblogs-countdown {
+	color: #C8C9CA;
+	font-size: 20px;
+	margin-right: 5px;
+	vertical-align: bottom;
+}
+
+.microblogs-portlet .microblogs-entry .user-name {
+	font-size: 12px;
+	font-weight: bold;
+}
+
+.microblogs-portlet .microblogs-entry .small {
+	color: #4F4F4F;
+	font-size: 10px;
+}
+
+.microblogs-portlet .microblogs-entry .content {
+	font-size: 12px;
+}
+
+.microblogs-portlet .microblogs-entry .footer {
+	color: #4F4F4F;
+	font-size: 10px;
+	height: 15px;
+	margin-top: 5px;
+}
+
+.microblogs-portlet .microblogs-entry .footer span {
+	margin-right: 2px;
+}
+
+.microblogs-portlet .aui-button-holder {
+	width: 100%;
+}
+
+.microblogs-portlet .aui-button-holder .aui-field-select,
+.microblogs-portlet .thumbnail {
+	float: left;
+}
+
+.microblogs-portlet .aui-button-holder .button-holder-right {
+	float: right;
+}
+
+.microblogs-portlet .thumbnail img {
+	width: 50px;
+}
+
+.microblogs-portlet .thumbnail a {
+	text-decoration: none;
+}
+
+.microblogs-portlet .entry-bubble,
+.microblogs-portlet .my-entry-bubble {
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	background: #DDE1E6;
+	border-color: #C8C9CA;
+	border-radius: 5px;
+	border-style: solid;
+	border-width: 1px 1px 3px 3px;
+	color: #000;
+	margin-left: 65px;
+	padding: 3px;
+	padding-left: 5px;
+	position: relative;
+}
+
+.microblogs-portlet .my-entry-bubble {
+	background: #DFF4FF;
+	border-color: #A7CEDF;
+	margin-left: 65px;
+	position: relative;
+}
+
+.microblogs-portlet .entry-bubble:before,
+.microblogs-portlet .entry-bubble:after {
+	border: 12px solid transparent;
+	border-right-color: #C8C9CA;
+	border-left: 0;
+	content: "";
+	left: -13px;
+	position: absolute;
+	top: 16px;
+}
+
+.microblogs-portlet .entry-bubble:after {
+	border: 10px solid transparent;
+	border-right-color: #DDE1E6;
+	left: -20px;
+}
+
+.microblogs-portlet .entry-bubble div,
+.microblogs-portlet .my-entry-bubble div {
+	left: -7px;
+	margin-bottom: 3px;
+	position: relative;
+	margin-left: 10px;
+}
+
+.microblogs-portlet .my-entry-bubble:before,
+.microblogs-portlet .my-entry-bubble:after {
+	border: 12px solid transparent;
+	border-right-color: #A7CEDF;
+	border-left: 0;
+	content: "";
+	left: -13px;
+	position: absolute;
+	top: 16px;
+}
+
+.microblogs-portlet .my-entry-bubble:after {
+	border: 10px solid transparent;
+	border-right-color: #DFF4FF;
+	left: -20px;
+}
+
+.microblogs-portlet .aui-tabview-list {
+	margin-top: 5px;
+}
