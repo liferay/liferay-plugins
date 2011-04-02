@@ -52,4 +52,7 @@
 			<finder-column name="receiverMicroblogsEntryId" />
 		</finder>
 	</entity>
+	<exceptions>
+		<exception>UnsupportedMicroblogsEntry</exception>
+	</exceptions>
 </service-builder>
