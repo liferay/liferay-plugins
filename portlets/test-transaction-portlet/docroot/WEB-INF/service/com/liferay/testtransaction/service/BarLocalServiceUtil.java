@@ -245,51 +245,39 @@ public class BarLocalServiceUtil {
 		getService().setBeanIdentifier(beanIdentifier);
 	}
 
-	public static com.liferay.testtransaction.model.Bar addBar(
+	public static void addBar_Rollback(java.lang.String text)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getService().addBar_Rollback(text);
+	}
+
+	public static com.liferay.testtransaction.model.Bar addBar_Success(
 		java.lang.String text)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().addBar(text);
+		return getService().addBar_Success(text);
 	}
 
-	public static void addBarPortalRollback(java.lang.String text)
+	public static void addBarAndClassName_PortalRollback(java.lang.String text)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		getService().addBarPortalRollback(text);
+		getService().addBarAndClassName_PortalRollback(text);
 	}
 
-	public static void addBarPortletRollback(java.lang.String text)
+	public static void addBarAndClassName_PortletRollback(java.lang.String text)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		getService().addBarPortletRollback(text);
+		getService().addBarAndClassName_PortletRollback(text);
 	}
 
-	public static com.liferay.testtransaction.model.Bar addBarWithoutClassName(
-		java.lang.String text)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().addBarWithoutClassName(text);
-	}
-
-	public static void addBarWithoutClassNameRollback(java.lang.String text)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getService().addBarWithoutClassNameRollback(text);
-	}
-
-	public static void cleanUp(com.liferay.testtransaction.model.Bar bar)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		getService().cleanUp(bar);
-	}
-
-	public static void cleanUpWithoutClassName(
+	public static void deleteBarAndClassName(
 		com.liferay.testtransaction.model.Bar bar)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().cleanUpWithoutClassName(bar);
+		getService().deleteBarAndClassName(bar);
 	}
 
-	public static com.liferay.testtransaction.model.Bar findBarByText(
+	public static com.liferay.testtransaction.model.Bar getBar(
 		java.lang.String text)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getService().findBarByText(text);
+		return getService().getBar(text);
 	}
 
 	public static boolean hasBar(java.lang.String text)
@@ -300,6 +288,11 @@ public class BarLocalServiceUtil {
 	public static boolean hasClassName()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().hasClassName();
+	}
+
+	public static void testAddClassNameAndBar_Success(java.lang.String text)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getService().testAddClassNameAndBar_Success(text);
 	}
 
 	public static void clearService() {

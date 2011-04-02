@@ -1,4 +1,3 @@
-
 /**
  * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
  *
@@ -12,33 +11,27 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
+
 package com.liferay.testtransaction.messaging;
 
-import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.messaging.BaseMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
-import com.liferay.portal.kernel.messaging.MessageListener;
-import com.liferay.portal.kernel.messaging.MessageListenerException;
 import com.liferay.testtransaction.service.BarLocalServiceUtil;
 
 /**
  * @author Shuyang Zhou
  */
-public class ServiceInvokeMessageListener implements MessageListener {
+public class TestTransactionMessageListener extends BaseMessageListener {
 
-	public void receive(Message message) throws MessageListenerException {
-		String barText = (String)message.getPayload();
-		boolean rollback = message.getBoolean("ROLLBACK");
+	protected void doReceive(Message message) throws Exception {
+		boolean rollback = message.getBoolean("rollback");
+		String text = message.getString("text");
 
-		try {
-			if (rollback) {
-				BarLocalServiceUtil.addBarWithoutClassNameRollback(barText);
-			}
-			else {
-				BarLocalServiceUtil.addBarWithoutClassName(barText);
-			}
+		if (rollback) {
+			BarLocalServiceUtil.addBar_Rollback(text);
 		}
-		catch (SystemException se) {
-			throw new RuntimeException(se);
+		else {
+			BarLocalServiceUtil.addBar_Success(text);
 		}
 	}
 

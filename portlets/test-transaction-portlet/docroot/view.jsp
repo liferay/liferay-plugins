@@ -20,23 +20,28 @@
 <%@ page import="com.liferay.testtransaction.model.Bar" %>
 <%@ page import="com.liferay.testtransaction.service.BarLocalServiceUtil" %>
 
-BarLocalServiceUtil.addBar=<%= _testAddBar() %><br />
-BarLocalServiceUtil.addBarPortalRollback=<%= _testAddBarPortalRollback() %><br />
-BarLocalServiceUtil.addBarPortletRollback=<%= _testAddBarPortletRollback() %><br />
-<br />
-PortalServiceUtil.testAddBar=<%= _testPortalAddBar() %><br />
-PortalServiceUtil.testAddBarPortalRollback=<%= _testPortalAddBarPortalRollback() %><br />
-PortalServiceUtil.testAddBarPortletRollback=<%= _testPortalAddBarPortletRollback() %>
+<p>
+	BarLocalServiceUtil.addBar_Success=<%= _testAddBar_Success() %><br />
+	BarLocalServiceUtil.addBarAndClassName_PortalRollback=<%= _testAddBarAndClassName_PortalRollback() %><br />
+	BarLocalServiceUtil.addBarAndClassName_PortletRollback=<%= _testAddBarAndClassName_PortletRollback() %>
+</p>
+
+<p>
+	PortalServiceUtil.testAddClassNameAndTestTransactionPortletBar_Success=<%= _testAddClassNameAndTestTransactionPortletBar_Success() %><br />
+	PortalServiceUtil.testAddClassNameAndTestTransactionPortletBar_PortalRollback=<%= _testAddClassNameAndTestTransactionPortletBar_PortalRollback() %><br />
+	PortletServiceUtil.testAddClassNameAndTestTransactionPortletBar_PortletRollback=<%= _testAddClassNameAndTestTransactionPortletBar_PortletRollback() %>
+</p>
+
 <%!
-private String _testAddBar() {
+private String _testAddBar_Success() {
 	String text = "Hello World";
 
 	try {
-		Bar bar = BarLocalServiceUtil.addBar(text);
+		Bar bar = BarLocalServiceUtil.addBar_Success(text);
 
 		bar = BarLocalServiceUtil.getBar(bar.getBarId());
 
-		BarLocalServiceUtil.cleanUp(bar);
+		BarLocalServiceUtil.deleteBar(bar);
 
 		return "PASSED";
 	}
@@ -47,11 +52,11 @@ private String _testAddBar() {
 	}
 }
 
-private String _testAddBarPortalRollback() {
+private String _testAddBarAndClassName_PortalRollback() {
 	String text = "Hello World";
 
 	try {
-		BarLocalServiceUtil.addBarPortalRollback(text);
+		BarLocalServiceUtil.addBarAndClassName_PortalRollback(text);
 
 		System.out.println("Portal failed to throw a SystemException");
 
@@ -81,11 +86,11 @@ private String _testAddBarPortalRollback() {
 	}
 }
 
-private String _testAddBarPortletRollback() {
+private String _testAddBarAndClassName_PortletRollback() {
 	String text = "Hello World";
 
 	try {
-		BarLocalServiceUtil.addBarPortletRollback(text);
+		BarLocalServiceUtil.addBarAndClassName_PortletRollback(text);
 
 		System.out.println("Portlet failed to throw a SystemException");
 
@@ -115,22 +120,23 @@ private String _testAddBarPortletRollback() {
 	}
 }
 
-private String _testPortalAddBar() {
+private String _testAddClassNameAndTestTransactionPortletBar_Success() {
 	String text = "Hello World";
 
 	try {
-		PortalServiceUtil.testAddBar(text);
+		PortalServiceUtil.testAddClassNameAndTestTransactionPortletBar_Success(text);
 
-		if (!PortalServiceUtil.hasClassName()) {
-			System.out.println("Class name " + PortalService.class.getName() + "is not committed.");
+		if (!PortalServiceUtil.testHasClassName()) {
+			System.out.println("Class name " + PortalService.class.getName() + "is not committed");
 
 			return "FAILED";
 		}
 
-		PortalServiceUtil.cleanUpClassName();
+		PortalServiceUtil.testDeleteClassName();
 
-		Bar bar = BarLocalServiceUtil.findBarByText(text);
-		BarLocalServiceUtil.cleanUpWithoutClassName(bar);
+		Bar bar = BarLocalServiceUtil.getBar(text);
+
+		BarLocalServiceUtil.deleteBar(bar);
 
 		return "PASSED";
 	}
@@ -141,11 +147,11 @@ private String _testPortalAddBar() {
 	}
 }
 
-private String _testPortalAddBarPortalRollback() {
+private String _testAddClassNameAndTestTransactionPortletBar_PortalRollback() {
 	String text = "Hello World";
 
 	try {
-		PortalServiceUtil.testAddBarPortalRollback(text);
+		PortalServiceUtil.testAddClassNameAndTestTransactionPortletBar_PortalRollback(text);
 
 		System.out.println("Portal failed to throw a SystemException");
 
@@ -159,7 +165,7 @@ private String _testPortalAddBarPortalRollback() {
 				return "FAILED";
 			}
 
-			if (PortalServiceUtil.hasClassName()) {
+			if (PortalServiceUtil.testHasClassName()) {
 				System.out.println("Portal failed to roll back ClassName object");
 
 				return "FAILED";
@@ -175,11 +181,11 @@ private String _testPortalAddBarPortalRollback() {
 	}
 }
 
-private String _testPortalAddBarPortletRollback() {
+private String _testAddClassNameAndTestTransactionPortletBar_PortletRollback() {
 	String text = "Hello World";
 
 	try {
-		PortalServiceUtil.testAddBarPortletRollback(text);
+		PortalServiceUtil.testAddClassNameAndTestTransactionPortletBar_PortletRollback(text);
 
 		System.out.println("Portlet failed to throw a SystemException");
 
@@ -193,7 +199,7 @@ private String _testPortalAddBarPortletRollback() {
 				return "FAILED";
 			}
 
-			if (PortalServiceUtil.hasClassName()) {
+			if (PortalServiceUtil.testHasClassName()) {
 				System.out.println("Portlet failed to roll back ClassName object");
 
 				return "FAILED";

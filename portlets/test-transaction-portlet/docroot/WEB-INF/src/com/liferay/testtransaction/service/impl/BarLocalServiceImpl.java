@@ -16,7 +16,6 @@ package com.liferay.testtransaction.service.impl;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.model.ClassName;
 import com.liferay.portal.service.PortalServiceUtil;
 import com.liferay.testtransaction.NoSuchBarException;
 import com.liferay.testtransaction.model.Bar;
@@ -29,92 +28,53 @@ import java.util.List;
  */
 public class BarLocalServiceImpl extends BarLocalServiceBaseImpl {
 
-	public Bar addBar(String text) throws SystemException {
-		long barId = counterLocalService.increment();
-
-		Bar bar = barPersistence.create(barId);
-
-		bar.setText(text);
-
-		barPersistence.update(bar, false);
-
-		PortalServiceUtil.testClassName(BarLocalServiceImpl.class.getName());
-
-		return bar;
-	}
-
-	public void addBarPortalRollback(String text) throws SystemException {
-		long barId = counterLocalService.increment();
-
-		Bar bar = barPersistence.create(barId);
-
-		bar.setText(text);
-
-		barPersistence.update(bar, false);
-
-		PortalServiceUtil.testClassNameRollback(
-			BarLocalServiceImpl.class.getName());
-	}
-
-	public void addBarPortletRollback(String text) throws SystemException {
-		long barId = counterLocalService.increment();
-
-		Bar bar = barPersistence.create(barId);
-
-		bar.setText(text);
-
-		barPersistence.update(bar, false);
-
-		PortalServiceUtil.testClassName(BarLocalServiceImpl.class.getName());
+	public void addBar_Rollback(String text) throws SystemException {
+		addBar(text);
 
 		throw new SystemException();
 	}
 
-	public Bar addBarWithoutClassName(String text) throws SystemException {
-		long barId = counterLocalService.increment();
-
-		Bar bar = barPersistence.create(barId);
-
-		bar.setText(text);
-
-		barPersistence.update(bar, false);
-
-		return bar;
+	public Bar addBar_Success(String text) throws SystemException {
+		return addBar(text);
 	}
 
-	public void addBarWithoutClassNameRollback(String text)
+	public void addBarAndClassName_PortalRollback(String text)
 		throws SystemException {
-		long barId = counterLocalService.increment();
 
-		Bar bar = barPersistence.create(barId);
+		addBar(text);
 
-		bar.setText(text);
+		PortalServiceUtil.testAddClassName_Rollback(
+			BarLocalServiceImpl.class.getName());
+	}
 
-		barPersistence.update(bar, false);
+	public void addBarAndClassName_PortletRollback(String text)
+		throws SystemException {
+
+		addBar(text);
+
+		PortalServiceUtil.testAddClassName_Success(
+			BarLocalServiceImpl.class.getName());
 
 		throw new SystemException();
 	}
 
-	public void cleanUp(Bar bar) throws PortalException, SystemException {
-		barPersistence.remove(bar);
-
-		ClassName className = classNamePersistence.findByValue(
-			BarLocalServiceImpl.class.getName());
-
-		classNamePersistence.remove(className);
-	}
-
-	public void cleanUpWithoutClassName(Bar bar)
-		throws PortalException, SystemException {
+	public void deleteBar(Bar bar) throws SystemException {
 		barPersistence.remove(bar);
 	}
 
-	public Bar findBarByText(String text)
+	public void deleteBarAndClassName(Bar bar)
 		throws PortalException, SystemException {
+
+		barPersistence.remove(bar);
+
+		classNamePersistence.removeByValue(BarLocalServiceImpl.class.getName());
+	}
+
+	public Bar getBar(String text) throws PortalException, SystemException {
 		List<Bar> bars = barPersistence.findByText(text);
 
 		if (bars.isEmpty()) {
-			throw new NoSuchBarException("No such Bar with text : " + text);
+			throw new NoSuchBarException();
 		}
 
 		return bars.get(0);
@@ -141,6 +101,27 @@ public class BarLocalServiceImpl extends BarLocalServiceBaseImpl {
 		else {
 			return false;
 		}
+	}
+
+	public void testAddClassNameAndBar_Success(String text)
+		throws SystemException {
+
+		addBar(text);
+
+		PortalServiceUtil.testAddClassName_Success(
+			BarLocalServiceImpl.class.getName());
+	}
+
+	protected Bar addBar(String text) throws SystemException {
+		long barId = counterLocalService.increment();
+
+		Bar bar = barPersistence.create(barId);
+
+		bar.setText(text);
+
+		barPersistence.update(bar, false);
+
+		return bar;
 	}
 
 }

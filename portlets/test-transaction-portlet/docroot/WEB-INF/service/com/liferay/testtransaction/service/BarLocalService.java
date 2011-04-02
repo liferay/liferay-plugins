@@ -220,33 +220,25 @@ public interface BarLocalService {
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier);
 
-	public com.liferay.testtransaction.model.Bar addBar(java.lang.String text)
+	public void addBar_Rollback(java.lang.String text)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
-	public void addBarPortalRollback(java.lang.String text)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	public void addBarPortletRollback(java.lang.String text)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	public com.liferay.testtransaction.model.Bar addBarWithoutClassName(
+	public com.liferay.testtransaction.model.Bar addBar_Success(
 		java.lang.String text)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
-	public void addBarWithoutClassNameRollback(java.lang.String text)
+	public void addBarAndClassName_PortalRollback(java.lang.String text)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
-	public void cleanUp(com.liferay.testtransaction.model.Bar bar)
+	public void addBarAndClassName_PortletRollback(java.lang.String text)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public void deleteBarAndClassName(com.liferay.testtransaction.model.Bar bar)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
-	public void cleanUpWithoutClassName(
-		com.liferay.testtransaction.model.Bar bar)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
-
-	public com.liferay.testtransaction.model.Bar findBarByText(
-		java.lang.String text)
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.testtransaction.model.Bar getBar(java.lang.String text)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -256,5 +248,8 @@ public interface BarLocalService {
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public boolean hasClassName()
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public void testAddClassNameAndBar_Success(java.lang.String text)
 		throws com.liferay.portal.kernel.exception.SystemException;
 }

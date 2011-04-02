@@ -16,7 +16,7 @@
 
 	<!-- Listeners -->
 
-	<bean id="messageListener.test_transaction" class="com.liferay.testtransaction.messaging.ServiceInvokeMessageListener" />
+	<bean id="messageListener.test_transaction" class="com.liferay.testtransaction.messaging.TestTransactionMessageListener" />
 
 	<!-- Configurator -->
 
