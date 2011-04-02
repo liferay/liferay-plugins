@@ -14,7 +14,6 @@
 
 package com.liferay.microblogs.service.impl;
 
-import com.liferay.microblogs.UnsupportedMicroblogsEntryException;
 import com.liferay.microblogs.model.MicroblogsEntry;
 import com.liferay.microblogs.model.MicroblogsEntryConstants;
 import com.liferay.microblogs.service.base.MicroblogsEntryLocalServiceBaseImpl;
@@ -51,8 +50,6 @@ public class MicroblogsEntryLocalServiceImpl
 		}
 
 		Date now = new Date();
-
-		validate(type, receiverMicroblogsEntryId, socialRelationType);
 
 		long microblogsEntryId = counterLocalService.increment();
 
@@ -251,27 +248,6 @@ public class MicroblogsEntryLocalServiceImpl
 			serviceContext.getAssetTagNames());
 
 		return microblogsEntry;
-	}
-
-	protected void validate(
-			int type, long receiverMicroblogsEntryId, int socialRelationType)
-		throws PortalException, SystemException {
-
-		MicroblogsEntry microblogsEntry =
-			microblogsEntryPersistence.findByPrimaryKey(
-				receiverMicroblogsEntryId);
-
-		if (microblogsEntry.getSocialRelationType() ==
-				MicroblogsEntryConstants.TYPE_EVERYONE) {
-
-			return;
-		}
-
-		if ((type == MicroblogsEntryConstants.TYPE_REPLY) ||
-			(type == MicroblogsEntryConstants.TYPE_REPOST)) {
-
-			throw new UnsupportedMicroblogsEntryException();
-		}
 	}
 
 }
