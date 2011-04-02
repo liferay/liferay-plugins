@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.vldap.util;
+package com.liferay.vldap.server.directory;
 
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -24,6 +24,7 @@ import com.liferay.portal.model.User;
 import com.liferay.portal.model.UserGroup;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.util.comparator.UserScreenNameComparator;
+import com.liferay.vldap.util.PortletPropsValues;
 
 import java.util.LinkedHashMap;
 import java.util.List;
