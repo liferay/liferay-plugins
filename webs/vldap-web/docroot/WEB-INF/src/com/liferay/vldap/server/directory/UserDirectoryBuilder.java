@@ -123,12 +123,12 @@ public class UserDirectoryBuilder {
 			companyId = company.getCompanyId();
 		}
 
+		List<Directory> directories = currentDirectory.getDirectories();
+
 		List<User> users = UserLocalServiceUtil.search(
 			companyId, firstName, middleName, lastName, screenName,
 			emailAddress, status, params, andSearch, start, end,
 			orderByComparator);
-
-		List<Directory> directories = currentDirectory.getDirectories();
 
 		for (User user : users) {
 			if (user.isDefaultUser()) {
