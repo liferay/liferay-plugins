@@ -24,8 +24,6 @@ import com.liferay.portal.model.User;
 import com.liferay.portal.model.UserGroup;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.util.comparator.UserScreenNameComparator;
-import com.liferay.vldap.server.directory.Directory;
-import com.liferay.vldap.server.directory.UserDirectory;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -33,55 +31,54 @@ import java.util.List;
 /**
  * @author Raymond Augé
  */
-public class UserCollection {
+public class UserDirectoryBuilder {
 
-	public static void collectUsers(
+	public static void buildUserDirectories(
 			Company company, Directory currentDirectory,
 			Directory usersDirectory)
 		throws Exception {
 
-		collectUsers(
+		_buildUserDirectories(
 			company, null, null, null, null, currentDirectory, usersDirectory);
 	}
 
-	public static void collectUsers(
-			Group group, Directory currentDirectory,
-			Directory usersDirectory)
+	public static void buildUserDirectories(
+			Group group, Directory currentDirectory, Directory usersDirectory)
 		throws Exception {
 
-		collectUsers(
+		_buildUserDirectories(
 			null, group, null, null, null, currentDirectory, usersDirectory);
 	}
 
-	public static void collectUsers(
+	public static void buildUserDirectories(
 			Organization organization, Directory currentDirectory,
 			Directory usersDirectory)
 		throws Exception {
 
-		collectUsers(
+		_buildUserDirectories(
 			null, null, organization, null, null, currentDirectory,
 			usersDirectory);
 	}
 
-	public static void collectUsers(
+	public static void buildUserDirectories(
 			Role role, Directory currentDirectory, Directory usersDirectory)
 		throws Exception {
 
-		collectUsers(
+		_buildUserDirectories(
 			null, null, null, role, null, currentDirectory, usersDirectory);
 	}
 
-	public static void collectUsers(
+	public static void buildUserDirectories(
 			UserGroup userGroup, Directory currentDirectory,
 			Directory usersDirectory)
 		throws Exception {
 
-		collectUsers(
+		_buildUserDirectories(
 			null, null, null, null, userGroup, currentDirectory,
 			usersDirectory);
 	}
 
-	public static void collectUsers(
+	private static void _buildUserDirectories(
 			Company company, Group group, Organization organization,
 			Role role, UserGroup userGroup, Directory currentDirectory,
 			Directory usersDirectory)

@@ -26,8 +26,7 @@ import java.util.List;
  */
 public class UserDirectory extends BaseDirectory {
 
-	public UserDirectory(
-			User user, Directory parentDirectory)
+	public UserDirectory(User user, Directory parentDirectory)
 		throws Exception {
 
 		super("cn=" + user.getScreenName(), parentDirectory);

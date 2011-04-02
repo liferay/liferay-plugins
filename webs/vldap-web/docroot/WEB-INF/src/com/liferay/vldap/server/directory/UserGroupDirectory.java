@@ -15,7 +15,6 @@
 package com.liferay.vldap.server.directory;
 
 import com.liferay.portal.model.UserGroup;
-import com.liferay.vldap.util.UserCollection;
 
 import java.util.List;
 
@@ -47,7 +46,8 @@ public class UserGroupDirectory extends BaseDirectory {
 	}
 
 	protected List<Directory> initDirectories() throws Exception {
-		UserCollection.collectUsers(_userGroup, this, _usersDirectory);
+		UserDirectoryBuilder.buildUserDirectories(
+			_userGroup, this, _usersDirectory);
 
 		return _directories;
 	}

@@ -15,7 +15,6 @@
 package com.liferay.vldap.server.directory;
 
 import com.liferay.portal.model.Organization;
-import com.liferay.vldap.util.UserCollection;
 
 import java.util.List;
 
@@ -50,7 +49,8 @@ public class OrganizationDirectory extends BaseDirectory {
 	}
 
 	protected List<Directory> initDirectories() throws Exception {
-		UserCollection.collectUsers(_organization, this, _usersDirectory);
+		UserDirectoryBuilder.buildUserDirectories(
+			_organization, this, _usersDirectory);
 
 		return _directories;
 	}

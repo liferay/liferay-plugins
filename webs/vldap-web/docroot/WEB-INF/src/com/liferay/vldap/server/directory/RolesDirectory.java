@@ -105,7 +105,9 @@ public class RolesDirectory extends BaseDirectory {
 		}
 
 		for (Role role : roles) {
-			if (role.getName().equals(RoleConstants.OWNER)) {
+			String roleName = role.getName();
+
+			if (roleName.equals(RoleConstants.OWNER)) {
 				continue;
 			}
 

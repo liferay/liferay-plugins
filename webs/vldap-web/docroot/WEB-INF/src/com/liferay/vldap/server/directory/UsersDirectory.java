@@ -189,7 +189,7 @@ public class UsersDirectory extends BaseDirectory {
 	private Group _group;
 	private Organization _organization;
 	private Role _role;
-	private Directory _usersDirectory;
 	private UserGroup _userGroup;
+	private Directory _usersDirectory;
 
 }

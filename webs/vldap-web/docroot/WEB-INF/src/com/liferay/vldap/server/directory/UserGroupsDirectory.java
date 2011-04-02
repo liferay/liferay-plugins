@@ -57,10 +57,10 @@ public class UserGroupsDirectory extends BaseDirectory {
 		}
 
 		for (UserGroup userGroup : userGroups) {
-			Directory roleDirectory = new UserGroupDirectory(
+			Directory userGroupDirectory = new UserGroupDirectory(
 				userGroup, this, _usersDirectory);
 
-			_directories.add(roleDirectory);
+			_directories.add(userGroupDirectory);
 		}
 
 		return _directories;

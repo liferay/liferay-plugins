@@ -15,7 +15,6 @@
 package com.liferay.vldap.server.directory;
 
 import com.liferay.portal.model.Group;
-import com.liferay.vldap.util.UserCollection;
 
 import java.util.List;
 
@@ -23,7 +22,6 @@ import java.util.List;
  * @author Brian Wing Shun Chan
  */
 public class CommunityDirectory extends BaseDirectory {
-
 
 	public CommunityDirectory(
 			Group group, Directory parentDirectory, Directory usersDirectory)
@@ -43,15 +41,16 @@ public class CommunityDirectory extends BaseDirectory {
 
 	protected void initAttributes() {
 		addAttribute("cn", _group.getName());
-		addAttribute("objectClass", "groupOfNames");
 		addAttribute("description", _group.getDescription());
+		addAttribute("objectClass", "groupOfNames");
 		addAttribute("objectclass", "organizationalUnit");
 		addAttribute("objectclass", "top");
 		addAttribute("ou", _group.getName());
 	}
 
 	protected List<Directory> initDirectories() throws Exception {
-		UserCollection.collectUsers(_group, this, _usersDirectory);
+		UserDirectoryBuilder.buildUserDirectories(
+			_group, this, _usersDirectory);
 
 		return _directories;
 	}
