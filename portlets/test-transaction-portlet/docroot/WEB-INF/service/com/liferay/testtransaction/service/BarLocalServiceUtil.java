@@ -261,10 +261,35 @@ public class BarLocalServiceUtil {
 		getService().addBarPortletRollback(text);
 	}
 
+	public static com.liferay.testtransaction.model.Bar addBarWithoutClassName(
+		java.lang.String text)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().addBarWithoutClassName(text);
+	}
+
+	public static void addBarWithoutClassNameRollback(java.lang.String text)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getService().addBarWithoutClassNameRollback(text);
+	}
+
 	public static void cleanUp(com.liferay.testtransaction.model.Bar bar)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		getService().cleanUp(bar);
+	}
+
+	public static void cleanUpWithoutClassName(
+		com.liferay.testtransaction.model.Bar bar)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService().cleanUpWithoutClassName(bar);
+	}
+
+	public static com.liferay.testtransaction.model.Bar findBarByText(
+		java.lang.String text)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().findBarByText(text);
 	}
 
 	public static boolean hasBar(java.lang.String text)

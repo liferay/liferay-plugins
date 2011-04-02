@@ -229,7 +229,24 @@ public interface BarLocalService {
 	public void addBarPortletRollback(java.lang.String text)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	public com.liferay.testtransaction.model.Bar addBarWithoutClassName(
+		java.lang.String text)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public void addBarWithoutClassNameRollback(java.lang.String text)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
 	public void cleanUp(com.liferay.testtransaction.model.Bar bar)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	public void cleanUpWithoutClassName(
+		com.liferay.testtransaction.model.Bar bar)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.testtransaction.model.Bar findBarByText(
+		java.lang.String text)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 

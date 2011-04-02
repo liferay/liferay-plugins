@@ -18,8 +18,11 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.ClassName;
 import com.liferay.portal.service.PortalServiceUtil;
+import com.liferay.testtransaction.NoSuchBarException;
 import com.liferay.testtransaction.model.Bar;
 import com.liferay.testtransaction.service.base.BarLocalServiceBaseImpl;
+
+import java.util.List;
 
 /**
  * @author Brian Wing Shun Chan
@@ -67,6 +70,31 @@ public class BarLocalServiceImpl extends BarLocalServiceBaseImpl {
 		throw new SystemException();
 	}
 
+	public Bar addBarWithoutClassName(String text) throws SystemException {
+		long barId = counterLocalService.increment();
+
+		Bar bar = barPersistence.create(barId);
+
+		bar.setText(text);
+
+		barPersistence.update(bar, false);
+
+		return bar;
+	}
+
+	public void addBarWithoutClassNameRollback(String text)
+		throws SystemException {
+		long barId = counterLocalService.increment();
+
+		Bar bar = barPersistence.create(barId);
+
+		bar.setText(text);
+
+		barPersistence.update(bar, false);
+
+		throw new SystemException();
+	}
+
 	public void cleanUp(Bar bar) throws PortalException, SystemException {
 		barPersistence.remove(bar);
 
@@ -74,6 +102,22 @@ public class BarLocalServiceImpl extends BarLocalServiceBaseImpl {
 			BarLocalServiceImpl.class.getName());
 
 		classNamePersistence.remove(className);
+	}
+
+	public void cleanUpWithoutClassName(Bar bar)
+		throws PortalException, SystemException {
+		barPersistence.remove(bar);
+	}
+
+	public Bar findBarByText(String text)
+		throws PortalException, SystemException {
+		List<Bar> bars = barPersistence.findByText(text);
+
+		if (bars.isEmpty()) {
+			throw new NoSuchBarException("No such Bar with text : " + text);
+		}
+
+		return bars.get(0);
 	}
 
 	public boolean hasBar(String text) throws SystemException {

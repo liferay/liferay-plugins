@@ -249,10 +249,35 @@ public class BarLocalServiceWrapper implements BarLocalService {
 		_barLocalService.addBarPortletRollback(text);
 	}
 
+	public com.liferay.testtransaction.model.Bar addBarWithoutClassName(
+		java.lang.String text)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _barLocalService.addBarWithoutClassName(text);
+	}
+
+	public void addBarWithoutClassNameRollback(java.lang.String text)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_barLocalService.addBarWithoutClassNameRollback(text);
+	}
+
 	public void cleanUp(com.liferay.testtransaction.model.Bar bar)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		_barLocalService.cleanUp(bar);
+	}
+
+	public void cleanUpWithoutClassName(
+		com.liferay.testtransaction.model.Bar bar)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_barLocalService.cleanUpWithoutClassName(bar);
+	}
+
+	public com.liferay.testtransaction.model.Bar findBarByText(
+		java.lang.String text)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _barLocalService.findBarByText(text);
 	}
 
 	public boolean hasBar(java.lang.String text)
