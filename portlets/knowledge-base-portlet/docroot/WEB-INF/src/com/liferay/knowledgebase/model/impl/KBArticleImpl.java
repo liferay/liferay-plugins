@@ -68,6 +68,10 @@ public class KBArticleImpl extends KBArticleModelImpl implements KBArticle {
 		return false;
 	}
 
+	public boolean isResourceMain() {
+		return isMain();
+	}
+
 	public boolean isRoot() {
 		if (getParentResourcePrimKey() ==
 				KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) {
