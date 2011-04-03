@@ -27,21 +27,13 @@ import java.sql.ResultSet;
 /**
  * @author Peter Shin
  */
-public class UpgradeClassName extends UpgradeProcess {
+public class UpgradeResourceAction extends UpgradeProcess {
 
 	protected void doUpgrade() throws Exception {
-		long classNameId = getClassNameId(_ARTICLE_CLASS_NAME);
-
-		if (classNameId == 0) {
-			return;
-		}
-
-		updateClassName(_KB_ARTICLE_CLASS_NAME, _ARTICLE_CLASS_NAME);
-		updateClassName(_KB_COMMENT_CLASS_NAME, _COMMENT_CLASS_NAME);
-		updateClassName(_KB_TEMPLATE_CLASS_NAME, _TEMPLATE_CLASS_NAME);
+		updateResourceActions();
 	}
 
-	protected long getClassNameId(String className) throws Exception {
+	protected void updateResourceActions() throws Exception {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -49,69 +41,74 @@ public class UpgradeClassName extends UpgradeProcess {
 		try {
 			con = DataAccess.getConnection();
 
-			String sql = "select classNameId from ClassName_ where value = ?";
+			StringBundler sb = new StringBundler(5);
 
-			ps = con.prepareStatement(sql);
+			sb.append("select * from ResourceAction where name in ('");
+			sb.append(_ARTICLE_CLASS_NAME);
+			sb.append("', '");
+			sb.append(_TEMPLATE_CLASS_NAME);
+			sb.append("')");
 
-			ps.setString(1, className);
+			ps = con.prepareStatement(sb.toString());
 
 			rs = ps.executeQuery();
 
-			if (rs.next()) {
-				return rs.getLong("classNameId");
-			}
+			while (rs.next()) {
+				long resourceActionId = rs.getLong("resourceActionId");
+				String name = rs.getString("name");
+				String actionId = rs.getString("actionId");
+				long bitwiseValue = rs.getLong("bitwiseValue");
 
-			return 0;
+				String newName = null;
+
+				if (name.equals(_ARTICLE_CLASS_NAME)) {
+					newName = _KB_ARTICLE_CLASS_NAME;
+				}
+				else {
+					newName = _KB_TEMPLATE_CLASS_NAME;
+				}
+
+				sb = new StringBundler(7);
+
+				sb.append("delete from ResourceAction where name = '");
+				sb.append(newName);
+				sb.append("' and actionId = '");
+				sb.append(actionId);
+				sb.append("' and bitwiseValue = '");
+				sb.append(bitwiseValue);
+				sb.append("'");
+
+				if (_log.isDebugEnabled()) {
+					_log.debug(sb.toString());
+				}
+
+				runSQL(sb.toString());
+
+				sb = new StringBundler(5);
+
+				sb.append("update ResourceAction set name = '");
+				sb.append(newName);
+				sb.append("' where resourceActionId = '");
+				sb.append(resourceActionId);
+				sb.append("'");
+
+				if (_log.isDebugEnabled()) {
+					_log.debug(sb.toString());
+				}
+
+				runSQL(sb.toString());
+			}
 		}
 		finally {
 			DataAccess.cleanUp(con, ps, rs);
 		}
 	}
 
-	protected void updateClassName(String newClassName, String oldClassName)
-		throws Exception {
-
-		long newClassNameId = getClassNameId(newClassName);
-		long oldClassNameId = getClassNameId(oldClassName);
-
-		StringBundler sb = new StringBundler(3);
-
-		sb.append("delete from ClassName_ where classNameId = '");
-		sb.append(newClassNameId);
-		sb.append("'");
-
-		if (_log.isDebugEnabled()) {
-			_log.debug(sb.toString());
-		}
-
-		runSQL(sb.toString());
-
-		sb = new StringBundler(5);
-
-		sb.append("update ClassName_ set value = '");
-		sb.append(newClassName);
-		sb.append("' where classNameId = '");
-		sb.append(oldClassNameId);
-		sb.append("'");
-
-		if (_log.isDebugEnabled()) {
-			_log.debug(sb.toString());
-		}
-
-		runSQL(sb.toString());
-	}
-
 	private static final String _ARTICLE_CLASS_NAME =
 		"com.liferay.knowledgebase.model.Article";
 
-	private static final String _COMMENT_CLASS_NAME =
-		"com.liferay.knowledgebase.model.Comment";
-
 	private static final String _KB_ARTICLE_CLASS_NAME =
 		"com.liferay.knowledgebase.model.KBArticle";
-
-	private static final String _KB_COMMENT_CLASS_NAME =
-		"com.liferay.knowledgebase.model.KBComment";
 
 	private static final String _KB_TEMPLATE_CLASS_NAME =
 		"com.liferay.knowledgebase.model.KBTemplate";
@@ -119,6 +116,7 @@ public class UpgradeClassName extends UpgradeProcess {
 	private static final String _TEMPLATE_CLASS_NAME =
 		"com.liferay.knowledgebase.model.Template";
 
-	private static Log _log = LogFactoryUtil.getLog(UpgradeClassName.class);
+	private static Log _log = LogFactoryUtil.getLog(
+		UpgradeResourceAction.class);
 
 }

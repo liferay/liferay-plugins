@@ -15,21 +15,23 @@
 package com.liferay.knowledgebase.hook.upgrade.v1_0_0;
 
 import com.liferay.portal.kernel.dao.jdbc.DataAccess;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.kernel.util.StringBundler;
 
 import java.sql.Connection;
+import java.sql.DatabaseMetaData;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 /**
  * @author Peter Shin
  */
-public class UpgradeRatings extends UpgradeProcess {
+public class UpgradeRatingsStats extends UpgradeProcess {
 
 	protected void doUpgrade() throws Exception {
-		if (tableHasData("KB_Article")) {
-			updateRatingsEntries();
+		if (hasTable("KB_Article")) {
 			updateRatingsStats();
 		}
 	}
@@ -42,8 +44,9 @@ public class UpgradeRatings extends UpgradeProcess {
 		try {
 			con = DataAccess.getConnection();
 
-			ps = con.prepareStatement(
-				"select classNameId from ClassName_ where value = ?");
+			String sql = "select classNameId from ClassName_ where value = ?";
+
+			ps = con.prepareStatement(sql);
 
 			ps.setString(1, className);
 
@@ -60,7 +63,7 @@ public class UpgradeRatings extends UpgradeProcess {
 		}
 	}
 
-	protected void updateRatingsEntries() throws Exception {
+	protected boolean hasTable(String tableName) throws Exception {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -68,33 +71,19 @@ public class UpgradeRatings extends UpgradeProcess {
 		try {
 			con = DataAccess.getConnection();
 
-			StringBundler sb = new StringBundler(3);
+			DatabaseMetaData metadata = con.getMetaData();
 
-			sb.append("select entryId, score from RatingsEntry where ");
-			sb.append("classNameId = ");
-			sb.append(getClassNameId(_ARTICLE_CLASS_NAME));
-
-			ps = con.prepareStatement(sb.toString());
-
-			rs = ps.executeQuery();
+			rs = metadata.getTables(null, null, tableName, null);
 
 			while (rs.next()) {
-				long entryId = rs.getLong("entryId");
-				double score = rs.getDouble("score");
-
-				sb = new StringBundler(4);
-
-				sb.append("update RatingsEntry set score = ");
-				sb.append(score * 2);
-				sb.append(" where entryId = ");
-				sb.append(entryId);
-
-				runSQL(sb.toString());
+				return true;
 			}
 		}
 		finally {
 			DataAccess.cleanUp(con, ps, rs);
 		}
+
+		return false;
 	}
 
 	protected void updateRatingsStats() throws Exception {
@@ -107,10 +96,10 @@ public class UpgradeRatings extends UpgradeProcess {
 
 			StringBundler sb = new StringBundler(4);
 
-			sb.append("select statsId, totalScore, averageScore ");
-			sb.append("from RatingsStats where ");
-			sb.append("classNameId = ");
+			sb.append("select statsId, totalScore, averageScore from ");
+			sb.append("RatingsStats where classNameId = '");
 			sb.append(getClassNameId(_ARTICLE_CLASS_NAME));
+			sb.append("'");
 
 			ps = con.prepareStatement(sb.toString());
 
@@ -121,14 +110,19 @@ public class UpgradeRatings extends UpgradeProcess {
 				double totalScore = rs.getDouble("totalScore");
 				double averageScore = rs.getDouble("averageScore");
 
-				sb = new StringBundler(6);
+				sb = new StringBundler(7);
 
-				sb.append("update RatingsStats set totalScore = ");
+				sb.append("update RatingsStats set totalScore = '");
 				sb.append(totalScore * 2);
-				sb.append(", averageScore = ");
+				sb.append("', averageScore = '");
 				sb.append(averageScore * 2);
-				sb.append(" where statsId = ");
+				sb.append("' where statsId = '");
 				sb.append(statsId);
+				sb.append("'");
+
+				if (_log.isDebugEnabled()) {
+					_log.debug(sb.toString());
+				}
 
 				runSQL(sb.toString());
 			}
@@ -140,5 +134,7 @@ public class UpgradeRatings extends UpgradeProcess {
 
 	private static final String _ARTICLE_CLASS_NAME =
 		"com.liferay.knowledgebase.model.Article";
+
+	private static Log _log = LogFactoryUtil.getLog(UpgradeRatingsStats.class);
 
 }

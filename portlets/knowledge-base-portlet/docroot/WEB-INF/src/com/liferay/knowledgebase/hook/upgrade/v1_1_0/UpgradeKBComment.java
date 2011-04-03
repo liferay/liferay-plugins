@@ -15,6 +15,8 @@
 package com.liferay.knowledgebase.hook.upgrade.v1_1_0;
 
 import com.liferay.portal.kernel.dao.jdbc.DataAccess;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.kernel.util.StringBundler;
 
@@ -63,6 +65,10 @@ public class UpgradeKBComment extends UpgradeProcess {
 			ps.setString(11, content);
 			ps.setBoolean(12, helpful);
 
+			if (_log.isDebugEnabled()) {
+				_log.debug("Adding kb comment " + kbCommentId);
+			}
+
 			ps.executeUpdate();
 		}
 		finally {
@@ -70,13 +76,25 @@ public class UpgradeKBComment extends UpgradeProcess {
 		}
 	}
 
+	protected void deleteTable(String tableName) throws Exception {
+		String template = "drop table " + tableName;
+
+		if (_log.isDebugEnabled()) {
+			_log.debug(template);
+		}
+
+		runSQL(template);
+	}
+
 	protected void doUpgrade() throws Exception {
 		if (hasTable("KB_Comment")) {
-			updateKBComments();
+			updateComments();
+
+			deleteTable("KB_Comment");
 		}
 	}
 
-	public boolean hasTable(String tableName) throws Exception {
+	protected boolean hasTable(String tableName) throws Exception {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -99,7 +117,7 @@ public class UpgradeKBComment extends UpgradeProcess {
 		return false;
 	}
 
-	protected void updateKBComments() throws Exception {
+	protected void updateComments() throws Exception {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -134,8 +152,8 @@ public class UpgradeKBComment extends UpgradeProcess {
 		finally {
 			DataAccess.cleanUp(con, ps, rs);
 		}
-
-		runSQL("drop table KB_Comment");
 	}
+
+	private static Log _log = LogFactoryUtil.getLog(UpgradeKBComment.class);
 
 }

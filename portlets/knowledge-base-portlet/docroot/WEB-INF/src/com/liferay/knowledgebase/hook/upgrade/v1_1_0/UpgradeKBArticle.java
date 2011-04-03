@@ -90,6 +90,10 @@ public class UpgradeKBArticle extends UpgradeProcess {
 			ps.setString(22, statusByUserName);
 			ps.setDate(23, statusDate);
 
+			if (_log.isDebugEnabled()) {
+				_log.debug("Adding kb article " + kbArticleId);
+			}
+
 			ps.executeUpdate();
 		}
 		finally {
@@ -133,13 +137,25 @@ public class UpgradeKBArticle extends UpgradeProcess {
 		}
 	}
 
+	protected void deleteTable(String tableName) throws Exception {
+		String template = "drop table " + tableName;
+
+		if (_log.isDebugEnabled()) {
+			_log.debug(template);
+		}
+
+		runSQL(template);
+	}
+
 	protected void doUpgrade() throws Exception {
 		if (hasTable("KB_Article")) {
-			updateKBArticles();
+			updateArticles();
+
+			deleteTable("KB_Article");
 		}
 	}
 
-	public boolean hasTable(String tableName) throws Exception {
+	protected boolean hasTable(String tableName) throws Exception {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -162,7 +178,7 @@ public class UpgradeKBArticle extends UpgradeProcess {
 		return false;
 	}
 
-	protected void updateKBArticles() throws Exception {
+	protected void updateArticles() throws Exception {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -240,8 +256,6 @@ public class UpgradeKBArticle extends UpgradeProcess {
 		finally {
 			DataAccess.cleanUp(con, ps, rs);
 		}
-
-		runSQL("drop table KB_Article");
 	}
 
 	private static final String _ARTICLE_DIR_NAME_PREFIX =
