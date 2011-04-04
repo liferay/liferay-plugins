@@ -15,13 +15,10 @@
 package com.liferay.knowledgebase.hook.upgrade.v1_0_0;
 
 import com.liferay.portal.kernel.dao.jdbc.DataAccess;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.kernel.util.StringBundler;
 
 import java.sql.Connection;
-import java.sql.DatabaseMetaData;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
@@ -44,9 +41,8 @@ public class UpgradeRatingsEntry extends UpgradeProcess {
 		try {
 			con = DataAccess.getConnection();
 
-			String sql = "select classNameId from ClassName_ where value = ?";
-
-			ps = con.prepareStatement(sql);
+			ps = con.prepareStatement(
+				"select classNameId from ClassName_ where value = ?");
 
 			ps.setString(1, className);
 
@@ -63,29 +59,6 @@ public class UpgradeRatingsEntry extends UpgradeProcess {
 		}
 	}
 
-	protected boolean hasTable(String tableName) throws Exception {
-		Connection con = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-
-		try {
-			con = DataAccess.getConnection();
-
-			DatabaseMetaData metadata = con.getMetaData();
-
-			rs = metadata.getTables(null, null, tableName, null);
-
-			while (rs.next()) {
-				return true;
-			}
-		}
-		finally {
-			DataAccess.cleanUp(con, ps, rs);
-		}
-
-		return false;
-	}
-
 	protected void updateRatingsEntries() throws Exception {
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -94,14 +67,12 @@ public class UpgradeRatingsEntry extends UpgradeProcess {
 		try {
 			con = DataAccess.getConnection();
 
-			StringBundler sb = new StringBundler(4);
+			long classNameId = getClassNameId(
+				"com.liferay.knowledgebase.model.Article");
 
-			sb.append("select entryId, score from RatingsEntry where ");
-			sb.append("classNameId = '");
-			sb.append(getClassNameId(_ARTICLE_CLASS_NAME));
-			sb.append("'");
-
-			ps = con.prepareStatement(sb.toString());
+			ps = con.prepareStatement(
+				"select entryId, score from RatingsEntry where classNameId = " +
+					classNameId);
 
 			rs = ps.executeQuery();
 
@@ -109,17 +80,12 @@ public class UpgradeRatingsEntry extends UpgradeProcess {
 				long entryId = rs.getLong("entryId");
 				double score = rs.getDouble("score");
 
-				sb = new StringBundler(5);
+				StringBundler sb = new StringBundler(4);
 
-				sb.append("update RatingsEntry set score = '");
+				sb.append("update RatingsEntry set score = ");
 				sb.append(score * 2);
-				sb.append("' where entryId = '");
+				sb.append(" where entryId = ");
 				sb.append(entryId);
-				sb.append("'");
-
-				if (_log.isDebugEnabled()) {
-					_log.debug(sb.toString());
-				}
 
 				runSQL(sb.toString());
 			}
@@ -128,10 +94,5 @@ public class UpgradeRatingsEntry extends UpgradeProcess {
 			DataAccess.cleanUp(con, ps, rs);
 		}
 	}
-
-	private static final String _ARTICLE_CLASS_NAME =
-		"com.liferay.knowledgebase.model.Article";
-
-	private static Log _log = LogFactoryUtil.getLog(UpgradeRatingsStats.class);
 
 }
