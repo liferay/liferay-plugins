@@ -137,7 +137,8 @@ public class EditorPortlet extends MVCPortlet {
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-		jsonObject.put("fileEntryId", fileEntry.getFileEntryId());
+		jsonObject.put(
+			"fileEntryId", String.valueOf(fileEntry.getFileEntryId()));
 
 		writeJSON(resourceRequest, resourceResponse, jsonObject.toString());
 	}
@@ -193,9 +194,14 @@ public class EditorPortlet extends MVCPortlet {
 			ResourceResponse resourceResponse)
 		throws IOException {
 
+		JSONObject jsonError = JSONFactoryUtil.createJSONObject();
+
+		jsonError.put("message", exception.getLocalizedMessage());
+		jsonError.put("name", exception.getClass().getSimpleName());
+
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-		jsonObject.put("error", exception.getLocalizedMessage());
+		jsonObject.put("error", jsonError);
 
 		writeJSON(resourceRequest, resourceResponse, jsonObject.toString());
 	}
@@ -284,7 +290,9 @@ public class EditorPortlet extends MVCPortlet {
 		jsonObject.put("contentValid", contentValid);
 
 		if (contentValid) {
-			String appId = "http://localhost/raw.xml";
+			String portalURL = PortalUtil.getPortalURL(themeDisplay);
+
+			String appId = portalURL.concat("/raw.xml");
 
 			jsonObject.put("appId", appId);
 
@@ -300,7 +308,6 @@ public class EditorPortlet extends MVCPortlet {
 
 			String ownerId = ShindigUtil.getOwnerId(themeDisplay.getLayout());
 			String currentURL = PortalUtil.getCurrentURL(resourceRequest);
-			String portalURL = PortalUtil.getPortalURL(themeDisplay);
 
 			String secureToken = ShindigUtil.createSecurityToken(
 				ownerId, themeDisplay.getUserId(), appId, portalURL, appId,
