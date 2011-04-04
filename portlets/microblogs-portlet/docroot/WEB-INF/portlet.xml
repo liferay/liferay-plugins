@@ -6,4 +6,66 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd"
 >
+	<portlet>
+		<portlet-name>1</portlet-name>
+		<display-name>Microblogs</display-name>
+		<portlet-class>com.liferay.microblogs.portlet.MicroblogsPortlet</portlet-class>
+		<init-param>
+			<name>view-jsp</name>
+			<value>/microblogs/view.jsp</value>
+		</init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+		</supports>
+		<resource-bundle>content.Language</resource-bundle>
+		<portlet-info>
+			<title>Microblogs</title>
+			<short-title>Microblogs</short-title>
+			<keywords>Microblogs</keywords>
+		</portlet-info>
+		<security-role-ref>
+			<role-name>administrator</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>guest</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>power-user</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>user</role-name>
+		</security-role-ref>
+	</portlet>
+	<portlet>
+		<portlet-name>2</portlet-name>
+		<display-name>Microblogs Status Update</display-name>
+		<portlet-class>com.liferay.microblogs.portlet.MicroblogsPortlet</portlet-class>
+		<init-param>
+			<name>view-jsp</name>
+			<value>/status_update/view.jsp</value>
+		</init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+		</supports>
+		<resource-bundle>content.Language</resource-bundle>
+		<portlet-info>
+			<title>Microblogs Status Update</title>
+			<short-title>Microblogs Status Update</short-title>
+			<keywords>Microblogs Status Update</keywords>
+		</portlet-info>
+		<security-role-ref>
+			<role-name>administrator</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>guest</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>power-user</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>user</role-name>
+		</security-role-ref>
+	</portlet>
 </portlet-app>
