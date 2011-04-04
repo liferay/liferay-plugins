@@ -39,5 +39,7 @@ public interface KBArticle extends KBArticleModel {
 
 	public boolean isFirstVersion();
 
+	public boolean isResourceMain();
+
 	public boolean isRoot();
 }
