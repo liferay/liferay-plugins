@@ -15,10 +15,7 @@
 package com.liferay.knowledgebase.hook.upgrade.v1_1_0;
 
 import com.liferay.portal.kernel.dao.jdbc.DataAccess;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
-import com.liferay.portal.kernel.util.StringBundler;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -30,15 +27,15 @@ import java.sql.ResultSet;
 public class UpgradeClassName extends UpgradeProcess {
 
 	protected void doUpgrade() throws Exception {
-		long classNameId = getClassNameId(_ARTICLE_CLASS_NAME);
-
-		if (classNameId == 0) {
-			return;
-		}
-
-		updateClassName(_KB_ARTICLE_CLASS_NAME, _ARTICLE_CLASS_NAME);
-		updateClassName(_KB_COMMENT_CLASS_NAME, _COMMENT_CLASS_NAME);
-		updateClassName(_KB_TEMPLATE_CLASS_NAME, _TEMPLATE_CLASS_NAME);
+		updateClassName(
+			"com.liferay.knowledgebase.model.Article",
+			"com.liferay.knowledgebase.model.KBArticle");
+		updateClassName(
+			"com.liferay.knowledgebase.model.Comment",
+			"com.liferay.knowledgebase.model.KBComment");
+		updateClassName(
+			"com.liferay.knowledgebase.model.Template",
+			"com.liferay.knowledgebase.model.KBTemplate");
 	}
 
 	protected long getClassNameId(String className) throws Exception {
@@ -49,9 +46,8 @@ public class UpgradeClassName extends UpgradeProcess {
 		try {
 			con = DataAccess.getConnection();
 
-			String sql = "select classNameId from ClassName_ where value = ?";
-
-			ps = con.prepareStatement(sql);
+			ps = con.prepareStatement(
+				"select classNameId from ClassName_ where value = ?");
 
 			ps.setString(1, className);
 
@@ -68,57 +64,16 @@ public class UpgradeClassName extends UpgradeProcess {
 		}
 	}
 
-	protected void updateClassName(String newClassName, String oldClassName)
+	protected void updateClassName(String oldClassName, String newClassName)
 		throws Exception {
 
-		long newClassNameId = getClassNameId(newClassName);
 		long oldClassNameId = getClassNameId(oldClassName);
+		long newClassNameId = getClassNameId(newClassName);
 
-		StringBundler sb = new StringBundler(3);
-
-		sb.append("delete from ClassName_ where classNameId = '");
-		sb.append(newClassNameId);
-		sb.append("'");
-
-		if (_log.isDebugEnabled()) {
-			_log.debug(sb.toString());
-		}
-
-		runSQL(sb.toString());
-
-		sb = new StringBundler(5);
-
-		sb.append("update ClassName_ set value = '");
-		sb.append(newClassName);
-		sb.append("' where classNameId = '");
-		sb.append(oldClassNameId);
-		sb.append("'");
-
-		if (_log.isDebugEnabled()) {
-			_log.debug(sb.toString());
-		}
-
-		runSQL(sb.toString());
+		runSQL(
+			"update ClassName_ set classNameId = " + newClassNameId +
+				" value = '" + newClassName + "' where classNameId = " +
+					oldClassNameId);
 	}
-
-	private static final String _ARTICLE_CLASS_NAME =
-		"com.liferay.knowledgebase.model.Article";
-
-	private static final String _COMMENT_CLASS_NAME =
-		"com.liferay.knowledgebase.model.Comment";
-
-	private static final String _KB_ARTICLE_CLASS_NAME =
-		"com.liferay.knowledgebase.model.KBArticle";
-
-	private static final String _KB_COMMENT_CLASS_NAME =
-		"com.liferay.knowledgebase.model.KBComment";
-
-	private static final String _KB_TEMPLATE_CLASS_NAME =
-		"com.liferay.knowledgebase.model.KBTemplate";
-
-	private static final String _TEMPLATE_CLASS_NAME =
-		"com.liferay.knowledgebase.model.Template";
-
-	private static Log _log = LogFactoryUtil.getLog(UpgradeClassName.class);
 
 }
