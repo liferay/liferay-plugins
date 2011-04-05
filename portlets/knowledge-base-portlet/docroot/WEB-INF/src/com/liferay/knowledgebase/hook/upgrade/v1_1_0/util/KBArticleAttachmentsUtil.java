@@ -66,8 +66,7 @@ public class KBArticleAttachmentsUtil {
 
 			ServiceContext serviceContext = new ServiceContext();
 
-			serviceContext.setCreateDate(kbArticle.getModifiedDate());
-			serviceContext.setModifiedDate(kbArticle.getModifiedDate());
+			serviceContext.setCompanyId(kbArticle.getCompanyId());
 			serviceContext.setScopeGroupId(kbArticle.getGroupId());
 
 			for (String fileName : fileNames) {

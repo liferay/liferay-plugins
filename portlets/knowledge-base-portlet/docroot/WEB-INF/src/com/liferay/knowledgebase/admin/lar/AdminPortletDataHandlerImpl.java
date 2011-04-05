@@ -469,6 +469,12 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			List<Element> fileElements = kbArticleAttachmentsElement.elements(
 				"file");
 
+			ServiceContext serviceContext = new ServiceContext();
+
+			serviceContext.setCompanyId(portletDataContext.getCompanyId());
+			serviceContext.setScopeGroupId(
+				portletDataContext.getScopeGroupId());
+
 			for (Element fileElement : fileElements) {
 				String shortFileName = fileElement.attributeValue(
 					"short-file-name");
@@ -476,8 +482,6 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 				String fileName = dirName + StringPool.SLASH + shortFileName;
 				byte[] bytes = portletDataContext.getZipEntryAsByteArray(
 					fileElement.attributeValue("path"));
-
-				ServiceContext serviceContext = new ServiceContext();
 
 				DLLocalServiceUtil.addFile(
 					portletDataContext.getCompanyId(),
