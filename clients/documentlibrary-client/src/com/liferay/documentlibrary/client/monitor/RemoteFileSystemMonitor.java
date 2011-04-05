@@ -28,12 +28,7 @@ public class RemoteFileSystemMonitor {
 
 	public void startMonitor() {
 		if (_log.isInfoEnabled()) {
-			_log.info("Starting to sync server with root " +
-				AppPropsValues.ROOT_FOLDER);
-		}
-
-		if (_log.isInfoEnabled()) {
-			_log.info("Starting initial sync");
+			_log.info("Syncing server with root " + AppPropsValues.ROOT_FOLDER);
 		}
 
 		Folder folderData = new Folder();

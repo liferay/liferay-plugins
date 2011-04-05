@@ -34,12 +34,7 @@ public class LocalFileSystemMonitor {
 		stopMonitoring();
 
 		if (_log.isInfoEnabled()) {
-			_log.info("Starting to sync server with root " +
-				AppPropsValues.ROOT_FOLDER);
-		}
-
-		if (_log.isInfoEnabled()) {
-			_log.info("Starting initial sync");
+			_log.info("Syncing server with root " + AppPropsValues.ROOT_FOLDER);
 		}
 
 		LocalFileSystemListener folderListener = new LocalFileSystemListener();
