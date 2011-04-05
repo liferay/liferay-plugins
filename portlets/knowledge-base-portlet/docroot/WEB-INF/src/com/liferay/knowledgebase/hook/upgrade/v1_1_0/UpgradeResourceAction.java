@@ -14,7 +14,12 @@
 
 package com.liferay.knowledgebase.hook.upgrade.v1_1_0;
 
+import com.liferay.portal.kernel.dao.jdbc.DataAccess;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 /**
  * @author Peter Shin
@@ -22,15 +27,63 @@ import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 public class UpgradeResourceAction extends UpgradeProcess {
 
 	protected void doUpgrade() throws Exception {
-		runSQL(
-			"update ResourceAction set name = " +
-				"'com.liferay.knowledgebase.model.KBArticle' where name = " +
-					"'com.liferay.knowledgebase.model.Article'");
+		if (hasResourceAction("com.liferay.knowledgebase.model.Article")) {
+			runSQL(
+				"delete from ResourceAction where name = " +
+					"'com.liferay.knowledgebase.model.KBArticle'");
 
-		runSQL(
-			"update ResourceAction set name = " +
-				"'com.liferay.knowledgebase.model.KBTemplate' where name = " +
-					"'com.liferay.knowledgebase.model.Template'");
+			runSQL(
+				"update ResourceAction set name = " +
+					"'com.liferay.knowledgebase.model.KBArticle' where " +
+						"name = 'com.liferay.knowledgebase.model.Article'");
+
+			runSQL(
+				"update ResourceAction set actionId = 'MOVE_KB_ARTICLE' " +
+					"where name = " +
+						"'com.liferay.knowledgebase.model.KBArticle' and " +
+							"actionId = 'MOVE'");
+		}
+
+		if (hasResourceAction("com.liferay.knowledgebase.model.Template")) {
+			runSQL(
+				"delete from ResourceAction where name = " +
+					"'com.liferay.knowledgebase.model.KBTemplate'");
+
+			runSQL(
+				"update ResourceAction set name = " +
+					"'com.liferay.knowledgebase.model.KBTemplate' where " +
+						"name = 'com.liferay.knowledgebase.model.Template'");
+		}
+	}
+
+	protected boolean hasResourceAction(String name) throws Exception {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		try {
+			con = DataAccess.getConnection();
+
+			ps = con.prepareStatement(
+				"select count(*) from ResourceAction where name = ?");
+
+			ps.setString(1, name);
+
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				long count = rs.getLong(1);
+
+				if (count > 0) {
+					return true;
+				}
+			}
+
+			return false;
+		}
+		finally {
+			DataAccess.cleanUp(con, ps, rs);
+		}
 	}
 
 }

@@ -14,7 +14,13 @@
 
 package com.liferay.knowledgebase.hook.upgrade.v1_1_0;
 
+import com.liferay.knowledgebase.hook.upgrade.v1_1_0.util.KBCommentTable;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
+import com.liferay.portal.kernel.upgrade.util.UpgradeTable;
+import com.liferay.portal.kernel.upgrade.util.UpgradeTableFactoryUtil;
+import com.liferay.portal.kernel.util.ArrayUtil;
+
+import java.sql.Types;
 
 /**
  * @author Peter Shin
@@ -22,6 +28,35 @@ import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 public class UpgradeKBComment extends UpgradeProcess {
 
 	protected void doUpgrade() throws Exception {
+		if (hasTable("KB_Comment")) {
+			renameTable();
+		}
+	}
+
+	protected void renameTable() throws Exception {
+		runSQL(KBCommentTable.TABLE_SQL_DROP);
+
+		runSQL("alter table KB_Comment add kbCommentId LONG");
+		runSQL("update KB_Comment set kbCommentId = commentId");
+
+		Object[][] columns = {{"commentId", new Integer(Types.BIGINT)}};
+
+		columns = ArrayUtil.append(columns, KBCommentTable.TABLE_COLUMNS);
+
+		UpgradeTable upgradeTable = UpgradeTableFactoryUtil.getUpgradeTable(
+			"KB_Comment", columns);
+
+		String createSQL = KBCommentTable.TABLE_SQL_CREATE;
+
+		createSQL =
+			createSQL.substring(0, createSQL.length() - 1) +
+				",commentId VARCHAR(75) null)";
+
+		upgradeTable.setCreateSQL(createSQL);
+
+		upgradeTable.updateTable();
+
+		runSQL("alter table KBComment drop column commentId");
 	}
 
 }

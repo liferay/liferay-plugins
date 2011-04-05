@@ -14,7 +14,13 @@
 
 package com.liferay.knowledgebase.hook.upgrade.v1_1_0;
 
+import com.liferay.knowledgebase.hook.upgrade.v1_1_0.util.KBTemplateTable;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
+import com.liferay.portal.kernel.upgrade.util.UpgradeTable;
+import com.liferay.portal.kernel.upgrade.util.UpgradeTableFactoryUtil;
+import com.liferay.portal.kernel.util.ArrayUtil;
+
+import java.sql.Types;
 
 /**
  * @author Peter Shin
@@ -22,6 +28,35 @@ import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 public class UpgradeKBTemplate extends UpgradeProcess {
 
 	protected void doUpgrade() throws Exception {
+		if (hasTable("KB_Template")) {
+			renameTable();
+		}
+	}
+
+	protected void renameTable() throws Exception {
+		runSQL(KBTemplateTable.TABLE_SQL_DROP);
+
+		runSQL("alter table KB_Template add kbTemplateId LONG");
+		runSQL("update KB_Template set kbTemplateId = templateId");
+
+		Object[][] columns = {{"templateId", new Integer(Types.BIGINT)}};
+
+		columns = ArrayUtil.append(columns, KBTemplateTable.TABLE_COLUMNS);
+
+		UpgradeTable upgradeTable = UpgradeTableFactoryUtil.getUpgradeTable(
+			"KB_Template", columns);
+
+		String createSQL = KBTemplateTable.TABLE_SQL_CREATE;
+
+		createSQL =
+			createSQL.substring(0, createSQL.length() - 1) +
+				",templateId VARCHAR(75) null)";
+
+		upgradeTable.setCreateSQL(createSQL);
+
+		upgradeTable.updateTable();
+
+		runSQL("alter table KBTemplate drop column templateId");
 	}
 
 }

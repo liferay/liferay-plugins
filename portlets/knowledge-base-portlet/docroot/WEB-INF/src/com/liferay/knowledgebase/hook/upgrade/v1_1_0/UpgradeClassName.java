@@ -70,10 +70,14 @@ public class UpgradeClassName extends UpgradeProcess {
 		long oldClassNameId = getClassNameId(oldClassName);
 		long newClassNameId = getClassNameId(newClassName);
 
-		runSQL(
-			"update ClassName_ set classNameId = " + newClassNameId +
-				" value = '" + newClassName + "' where classNameId = " +
-					oldClassNameId);
+		if (oldClassNameId != 0) {
+			runSQL(
+				"delete from ClassName_ where classNameId = " + newClassNameId);
+
+			runSQL(
+				"update ClassName_ set value = '" + newClassName +
+					"' where classNameId = " + oldClassNameId);
+		}
 	}
 
 }
