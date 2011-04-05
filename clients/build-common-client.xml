@@ -11,12 +11,6 @@
 	</target>
 
 	<target name="compile">
-		<mkdir dir="lib" />
-
-		<copy todir="lib">
-			<fileset dir="${app.server.lib.portal.dir}" includes="${plugin.jars}" />
-		</copy>
-
 		<mkdir dir="classes" />
 
 		<copy todir="classes">
@@ -24,7 +18,6 @@
 		</copy>
 
 		<path id="plugin-lib.classpath">
-			<fileset dir="lib" includes="*.jar" />
 			<pathelement location="classes" />
 		</path>
 
