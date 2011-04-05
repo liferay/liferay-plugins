@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+
+<project name="documentlibrary-client" basedir="." default="deploy">
+	<property name="plugin.version" value="1" />
+	<property name="plugin.jars" value="jabsorb.jar,portal-impl.jar" />
+
+	<property name="async.http.client.jar" value="async-http-client-1.6.3.jar" />
+
+	<property name="jnotify.version" value="0.93" />
+	<property name="jnotify.jar" value="jnotify-${jnotify.version}.jar" />
+	<property name="jnotify.zip" value="jnotify-lib-${jnotify.version}.zip" />
+
+	<property name="netty" value="netty-3.2.4.Final" />
+	<property name="netty.jar" value="${netty}.jar" />
+	<property name="netty.zip" value="${netty}-dist.zip" />
+
+	<property name="slf4j.version" value="1.6.1" />
+	<property name="slf4j.api.jar" value="slf4j-api-${slf4j.version}.jar" />
+	<property name="slf4j.jdk14.jar" value="slf4j-jdk14-${slf4j.version}.jar" />
+	<property name="slf4j.zip" value="slf4j-${slf4j.version}.zip" />
+
+	<import file="../build-common-client.xml" />
+
+	<target name="clean">
+		<antcall target="build-common-client.clean" />
+
+		<delete dir="lib" />
+		<delete dir="tmp" />		
+	</target>
+
+	<target name="compile">
+		<copy
+			file="${async.http.client.jar}"
+			tofile="lib/async-http-client.jar"
+		/>
+
+		<antcall target="extract-dependency">
+			<param name="source.zip" value="${jnotify.zip}" />
+			<param name="source.jar" value="${jnotify.jar}" />
+			<param name="dest.jar" value="jnotify.jar" />
+		</antcall>
+
+		<antcall target="extract-dependency">
+			<param name="source.zip" value="${netty.zip}" />
+			<param name="source.jar" value="${netty.jar}" />
+			<param name="dest.jar" value="netty.jar" />
+		</antcall>
+
+		<antcall target="extract-dependency">
+			<param name="source.zip" value="${slf4j.zip}" />
+			<param name="source.jar" value="${slf4j.api.jar}" />
+			<param name="dest.jar" value="slf4j-api.jar" />
+		</antcall>
+
+		<antcall target="extract-dependency">
+			<param name="source.zip" value="${slf4j.zip}" />
+			<param name="source.jar" value="${slf4j.jdk14.jar}" />
+			<param name="dest.jar" value="slf4j-jdk14.jar" />
+		</antcall>
+
+		<copy todir="lib/native">
+			<fileset dir="tmp" includes="*.dll, *.dylib, *.so" />
+		</copy>
+
+		<copy todir="lib">
+			<fileset dir="${app.server.lib.global.dir}" includes="portal-service.jar" />
+		</copy>
+
+		<antcall target="build-common-client.compile" />
+	</target>
+
+	<target name="extract-dependency">
+		<if>
+			<not>
+				<available file="lib/${dest.jar}" />
+			</not>
+			<then>
+				<if>
+					<not>
+						<available file="${source.jar}" filepath="tmp" />
+					</not>
+					<then>
+						<unzip
+							dest="tmp"
+							src="${source.zip}"
+						>
+							<patternset
+								includes="**/*.dll, **/*.dylib, **/*.jar, **/*.so"
+							/>
+							<chainedmapper>
+								<flattenmapper />
+							</chainedmapper>
+						</unzip>
+					</then>
+				</if>
+
+				<copy
+					file="tmp/${source.jar}"
+					tofile="lib/${dest.jar}"
+				/>
+			</then>
+		</if>
+	</target>
+
+	<target name="run" depends="compile">
+		<path id="plugin-lib.classpath">
+			<fileset dir="lib" includes="*.jar" />
+			<pathelement location="classes" />
+		</path>
+
+		<java
+			classname="com.liferay.documentlibrary.client.desktop.DesktopClient"
+			classpathref="plugin-lib.classpath"
+			failonerror="true"
+			fork="true"
+			newenvironment="true"
+		>
+			<jvmarg value="-Djava.library.path=lib/native" />
+		</java>
+	</target>
+</project>
