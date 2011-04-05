@@ -18,8 +18,6 @@ import com.liferay.opensocial.NoSuchGadgetException;
 import com.liferay.opensocial.model.Gadget;
 import com.liferay.opensocial.service.GadgetLocalServiceUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
-import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.lar.BasePortletDataHandler;
 import com.liferay.portal.kernel.lar.PortletDataContext;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -100,7 +98,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			Gadget gadget = (Gadget)portletDataContext.getZipEntryAsObject(
 				gadgetPath);
 
-			importGadget(portletDataContext, gadget);
+			importGadget(portletDataContext, gadgetElement, gadget);
 		}
 
 		return null;
@@ -109,7 +107,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 	protected void exportGadget(
 			PortletDataContext portletDataContext, Element gadgetsElement,
 			Gadget gadget)
-		throws SystemException {
+		throws Exception {
 
 		String path = getGadgetPath(portletDataContext, gadget);
 
@@ -119,9 +117,8 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 		Element gadgetElement = gadgetsElement.addElement("gadget");
 
-		gadgetElement.addAttribute("path",path);
-
-		portletDataContext.addZipEntry(path, gadget);
+		portletDataContext.addClassedModel(
+			gadgetElement, path, gadget, _NAMESPACE);
 	}
 
 	protected String getGadgetPath(
@@ -138,8 +135,9 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 	}
 
 	protected void importGadget(
-			PortletDataContext portletDataContext, Gadget gadget)
-		throws PortalException, SystemException {
+			PortletDataContext portletDataContext, Element gadgetElement,
+			Gadget gadget)
+		throws Exception {
 
 		Gadget importedGadget = null;
 
@@ -154,7 +152,9 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			GadgetLocalServiceUtil.updateGadget(importedGadget, false);
 		}
 		catch (NoSuchGadgetException nsge) {
-			ServiceContext serviceContext = new ServiceContext();
+			ServiceContext serviceContext =
+				portletDataContext.createServiceContext(
+					gadgetElement, gadget, _NAMESPACE);
 
 			serviceContext.setUuid(gadget.getUuid());
 
@@ -163,6 +163,8 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 				gadget.getPortletCategoryNames(), serviceContext);
 		}
 	}
+
+	private static final String _NAMESPACE = "opensocial";
 
 	private static final String _PORTLET_KEY = "1_WAR_opensocialportlet";
 
