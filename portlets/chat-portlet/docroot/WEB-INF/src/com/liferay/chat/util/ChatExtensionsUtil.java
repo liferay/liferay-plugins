@@ -22,8 +22,8 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class ChatExtensionsUtil {
 
-	public static Map<String, String> getExtensionsMap() {
-		return _instance._getExtensionsMap();
+	public static Map<String, String> getExtensions() {
+		return _instance._getExtensions();
 	}
 
 	public static void register(String servletContextName, String path) {
@@ -38,7 +38,7 @@ public class ChatExtensionsUtil {
 		_extensions = new ConcurrentHashMap<String, String>();
 	}
 
-	public Map<String, String> _getExtensionsMap() {
+	public Map<String, String> _getExtensions() {
 		return _extensions;
 	}
 

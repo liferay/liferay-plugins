@@ -146,19 +146,21 @@
 
 		<div class="chat-extensions aui-helper-hidden">
 
-				<%
-				Map<String, String> extensionsMap = ChatExtensionsUtil.getExtensionsMap();
+			<%
+			Map<String, String> extensions = ChatExtensionsUtil.getExtensions();
 
-				Set<String> servletContextNames = extensionsMap.keySet();
+			Set<String> servletContextNames = extensions.keySet();
 
-				for (String servletContextName : servletContextNames) {
-				%>
+			for (String servletContextName : servletContextNames) {
+				String extensionPath = extensions.get(servletContextName);
+				ServletContext extensionServletContext = ServletContextPool.get(servletContextName);
+			%>
 
-					<liferay-util:include page="<%= extensionsMap.get(servletContextName) %>" servletContext="<%= ServletContextPool.get(servletContextName) %>" />
+				<liferay-util:include page="<%= extensionPath %>" servletContext="<%= extensionServletContext) %>" />
 
-				<%
-				}
-				%>
+			<%
+			}
+			%>
 
 		</div>
 	</div>

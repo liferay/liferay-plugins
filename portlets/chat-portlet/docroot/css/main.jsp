@@ -456,7 +456,7 @@ html body {
 	zoom: 1;
 }
 
-/* ---------- Buddy Service Extensions ---------- */
+/* ---------- Buddy service extensions ---------- */
 
 .chat-bar .online-users .buddy-services {
 	display: none;

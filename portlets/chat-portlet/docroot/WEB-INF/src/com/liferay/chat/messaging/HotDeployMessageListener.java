@@ -25,9 +25,10 @@ public class HotDeployMessageListener extends BaseMessageListener {
 
 	protected void doReceive(Message message) throws Exception {
 		String command = message.getString("command");
-		String servletContextName = message.getString("servletContextName");
 
 		if (command.equals("undeploy")) {
+			String servletContextName = message.getString("servletContextName");
+
 			ChatExtensionsUtil.unregister(servletContextName);
 		}
 	}
