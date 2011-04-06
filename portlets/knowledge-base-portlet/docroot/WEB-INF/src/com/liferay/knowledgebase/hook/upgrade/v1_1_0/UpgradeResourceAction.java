@@ -28,31 +28,11 @@ public class UpgradeResourceAction extends UpgradeProcess {
 
 	protected void doUpgrade() throws Exception {
 		if (hasResourceAction("com.liferay.knowledgebase.model.Article")) {
-			runSQL(
-				"delete from ResourceAction where name = " +
-					"'com.liferay.knowledgebase.model.KBArticle'");
-
-			runSQL(
-				"update ResourceAction set name = " +
-					"'com.liferay.knowledgebase.model.KBArticle' where " +
-						"name = 'com.liferay.knowledgebase.model.Article'");
-
-			runSQL(
-				"update ResourceAction set actionId = 'MOVE_KB_ARTICLE' " +
-					"where name = " +
-						"'com.liferay.knowledgebase.model.KBArticle' and " +
-							"actionId = 'MOVE'");
+			updateKBArticleResourceActions();
 		}
 
 		if (hasResourceAction("com.liferay.knowledgebase.model.Template")) {
-			runSQL(
-				"delete from ResourceAction where name = " +
-					"'com.liferay.knowledgebase.model.KBTemplate'");
-
-			runSQL(
-				"update ResourceAction set name = " +
-					"'com.liferay.knowledgebase.model.KBTemplate' where " +
-						"name = 'com.liferay.knowledgebase.model.Template'");
+			updateKBTemplateResourceActions();
 		}
 	}
 
@@ -84,6 +64,33 @@ public class UpgradeResourceAction extends UpgradeProcess {
 		finally {
 			DataAccess.cleanUp(con, ps, rs);
 		}
+	}
+
+	protected void updateKBArticleResourceActions() throws Exception {
+		runSQL(
+			"delete from ResourceAction where name = " +
+				"'com.liferay.knowledgebase.model.KBArticle'");
+
+		runSQL(
+			"update ResourceAction set name = " +
+				"'com.liferay.knowledgebase.model.KBArticle' where name = " +
+					"'com.liferay.knowledgebase.model.Article'");
+
+		runSQL(
+			"update ResourceAction set actionId = 'MOVE_KB_ARTICLE' where " +
+				"name = 'com.liferay.knowledgebase.model.KBArticle' and " +
+					"actionId = 'MOVE'");
+	}
+
+	protected void updateKBTemplateResourceActions() throws Exception {
+		runSQL(
+			"delete from ResourceAction where name = " +
+				"'com.liferay.knowledgebase.model.KBTemplate'");
+
+		runSQL(
+			"update ResourceAction set name = " +
+				"'com.liferay.knowledgebase.model.KBTemplate' where name = " +
+					"'com.liferay.knowledgebase.model.Template'");
 	}
 
 }

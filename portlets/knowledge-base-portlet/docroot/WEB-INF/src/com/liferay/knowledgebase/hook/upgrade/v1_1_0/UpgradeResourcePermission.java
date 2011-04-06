@@ -28,17 +28,11 @@ public class UpgradeResourcePermission extends UpgradeProcess {
 
 	protected void doUpgrade() throws Exception {
 		if (hasResourcePermission("com.liferay.knowledgebase.model.Article")) {
-			runSQL(
-				"update ResourcePermission set name = " +
-					"'com.liferay.knowledgebase.model.KBArticle' where " +
-						"name = 'com.liferay.knowledgebase.model.Article'");
+			updateKBArticleResourcePermissions();
 		}
 
 		if (hasResourcePermission("com.liferay.knowledgebase.model.Template")) {
-			runSQL(
-				"update ResourcePermission set name = " +
-					"'com.liferay.knowledgebase.model.KBTemplate' where " +
-						"name = 'com.liferay.knowledgebase.model.Template'");
+			updateKBTemplateResourcePermissions();
 		}
 	}
 
@@ -70,6 +64,20 @@ public class UpgradeResourcePermission extends UpgradeProcess {
 		finally {
 			DataAccess.cleanUp(con, ps, rs);
 		}
+	}
+
+	protected void updateKBArticleResourcePermissions() throws Exception {
+		runSQL(
+			"update ResourcePermission set name = " +
+				"'com.liferay.knowledgebase.model.KBArticle' where name = " +
+					"'com.liferay.knowledgebase.model.Article'");
+	}
+
+	protected void updateKBTemplateResourcePermissions() throws Exception {
+		runSQL(
+			"update ResourcePermission set name = " +
+				"'com.liferay.knowledgebase.model.KBTemplate' where name = " +
+					"'com.liferay.knowledgebase.model.Template'");
 	}
 
 }
