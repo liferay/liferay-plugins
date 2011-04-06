@@ -451,9 +451,8 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		List<Element> kbArticleAttachmentsElements = rootElement.elements(
 			"kb-article-attachments");
 
-		for (int i = 0; i < kbArticleAttachmentsElements.size(); i++) {
-			Element kbArticleAttachmentsElement =
-				kbArticleAttachmentsElements.get(i);
+		for (Element kbArticleAttachmentsElement :
+				kbArticleAttachmentsElements) {
 
 			String resourcePrimKey = kbArticleAttachmentsElement.attributeValue(
 				"resource-prim-key");
