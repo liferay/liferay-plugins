@@ -605,7 +605,7 @@ AUI().use(
 				styleSheet.set(
 					'.chat-bar .buddy-services .' + name,
 					{
-						'background-image': 'url("' + icon + '")'
+						backgroundImage: 'url("' + icon + '")'
 					}
 				);
 			},
