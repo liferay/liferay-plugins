@@ -455,3 +455,23 @@ html body {
 	word-wrap: break-word;
 	zoom: 1;
 }
+
+/* ---------- Buddy Service Extensions ---------- */
+
+.chat-bar .online-users .buddy-services {
+	display: none;
+	float: right;
+	margin-top: 4px;
+}
+
+.chat-bar .panel-content li:hover .buddy-services {
+	display: block;
+}
+
+.chat-bar .buddy-services div {
+	background: transparent no-repeat;
+	float: left;
+	height: 16px;
+	margin-right: 3px;
+	width: 16px;
+}

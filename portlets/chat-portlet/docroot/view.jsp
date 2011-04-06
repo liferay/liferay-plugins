@@ -87,7 +87,7 @@
 											String fullName = ContactConstants.getFullName(firstName, middleName, lastName);
 										%>
 
-											<li class="active" userId="<%= userId %>">
+											<li class="user active" userId="<%= userId %>">
 												<img alt="" src="<%= themeDisplay.getPathImage() %>/user_portrait?img_id=<%= portraitId %>">
 
 												<div class="name">
@@ -143,5 +143,23 @@
 
 		<input id="activePanelId" type="hidden" value="<%= activePanelId %>" />
 		<input id="chatPortletId" type="hidden" value="<%= portletDisplay.getId() %>" />
+
+		<div class="chat-extensions aui-helper-hidden">
+
+				<%
+				Map<String, String> extensionsMap = ChatExtensionsUtil.getExtensionsMap();
+
+				Set<String> servletContextNames = extensionsMap.keySet();
+
+				for (String servletContextName : servletContextNames) {
+				%>
+
+					<liferay-util:include page="<%= extensionsMap.get(servletContextName) %>" servletContext="<%= ServletContextPool.get(servletContextName) %>" />
+
+				<%
+				}
+				%>
+
+		</div>
 	</div>
 </c:if>

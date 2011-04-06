@@ -2,6 +2,7 @@ AUI().use(
 	'aui-base',
 	'aui-live-search',
 	'liferay-poller',
+	'stylesheet',
 	'swfobject',
 	function(A) {
 		Liferay.namespace('Chat');
@@ -564,8 +565,6 @@ AUI().use(
 
 				instance._createBuddyListPanel();
 				instance._createSettingsPanel();
-
-				Liferay.fire('chatPortletReady');
 			},
 
 			close: function(panelName) {
@@ -584,6 +583,31 @@ AUI().use(
 				var instance = this;
 
 				return instance._tabsContainer;
+			},
+
+			registerBuddyService: function(options) {
+				var instance = this;
+
+				var name = options.name;
+				var fn = options.fn;
+				var icon = options.icon;
+
+				instance._buddyServices[name] = fn;
+
+				var styleSheet = instance._styleSheet;
+
+				if (!styleSheet) {
+					styleSheet = new A.StyleSheet();
+
+					instance._styleSheet = styleSheet;
+				}
+
+				styleSheet.set(
+					'.chat-bar .buddy-services .' + name,
+					{
+						'background-image': 'url("' + icon + '")'
+					}
+				);
 			},
 
 			send: function(options, id) {
@@ -685,9 +709,20 @@ AUI().use(
 					buddyList.delegate(
 						'click',
 						function(event) {
-							instance._createChatFromUser(event.currentTarget);
+							var target = event.currentTarget;
+
+							if (target.ancestor('.buddy-services')) {
+								event.stopPropagation();
+
+								var serviceName = target.getAttribute('class');
+
+								instance._buddyServices[serviceName](target.ancestor('li.user'));
+							}
+							else {
+								instance._createChatFromUser(target);
+							}
 						},
-						'li'
+						'li, .buddy-services div'
 					);
 				}
 
@@ -963,9 +998,19 @@ AUI().use(
 					var userImagePath = Liferay.Chat.Util.getUserImagePath(buddy.portraitId);
 
 					buffer.push(
-						'<li class="active" userId="' + buddy.userId + '">' +
+						'<li class="user active" userId="' + buddy.userId + '">' +
 							'<img alt="" src="' + userImagePath + '" />' +
 							'<div class="name">' + buddy.fullName + '</div>' +
+							'<div class="buddy-services">');
+
+					var serviceNames = instance._buddyServices;
+
+					for (var serviceName in serviceNames) {
+						buffer.push('<div class="' + serviceName + '"></div>');
+					}
+
+					buffer.push(
+							'</div>' +
 						'</li>');
 				}
 
@@ -1092,14 +1137,29 @@ AUI().use(
 			},
 
 			_buddies: {},
+			_buddyServices: {},
 			_chatSessions: {},
 			_entries: [],
 			_panels: {},
-			_settings: {}
+			_settings: {},
+			_styleSheet: null
 		};
 
 		A.augment(Liferay.Chat.Manager, A.Attribute, true);
 
-		A.on('domready', Liferay.Chat.Manager.init, Liferay.Chat.Manager);
+		Liferay.publish(
+			'chatPortletReady',
+			{
+				defaultFn: A.bind(Liferay.Chat.Manager.init, Liferay.Chat.Manager),
+				fireOnce: true
+			}
+		);
+
+		A.on(
+			'domready',
+			function() {
+				Liferay.fire('chatPortletReady');
+			}
+		);
 	}
 );
