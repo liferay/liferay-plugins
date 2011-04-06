@@ -52,7 +52,7 @@ public class MicroblogsEntryLocalServiceImpl
 
 		Date now = new Date();
 
-		validate(type, receiverMicroblogsEntryId);
+		validate(type, receiverMicroblogsEntryId, socialRelationType);
 
 		long microblogsEntryId = counterLocalService.increment();
 
@@ -254,12 +254,8 @@ public class MicroblogsEntryLocalServiceImpl
 	}
 
 	protected void validate(
-			int type, long receiverMicroblogsEntryId)
+			int type, long receiverMicroblogsEntryId, int socialRelationType)
 		throws PortalException, SystemException {
-
-		if (receiverMicroblogsEntryId == 0) {
-			return;
-		}
 
 		MicroblogsEntry microblogsEntry =
 			microblogsEntryPersistence.findByPrimaryKey(
