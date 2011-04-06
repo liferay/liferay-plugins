@@ -156,7 +156,7 @@
 				ServletContext extensionServletContext = ServletContextPool.get(servletContextName);
 			%>
 
-				<liferay-util:include page="<%= extensionPath %>" servletContext="<%= extensionServletContext) %>" />
+				<liferay-util:include page="<%= extensionPath %>" servletContext="<%= extensionServletContext %>" />
 
 			<%
 			}
