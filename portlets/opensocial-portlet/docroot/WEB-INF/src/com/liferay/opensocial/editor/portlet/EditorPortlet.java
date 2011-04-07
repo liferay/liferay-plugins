@@ -53,7 +53,7 @@ public class EditorPortlet extends MVCPortlet {
 
 	public void serveResource(
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
-		throws PortletException, IOException {
+		throws IOException, PortletException {
 
 		try {
 			String resourceID = resourceRequest.getResourceID();
