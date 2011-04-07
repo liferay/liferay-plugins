@@ -18,7 +18,7 @@ import com.liferay.microblogs.UnsupportedMicroblogsEntryException;
 import com.liferay.microblogs.model.MicroblogsEntry;
 import com.liferay.microblogs.model.MicroblogsEntryConstants;
 import com.liferay.microblogs.service.base.MicroblogsEntryLocalServiceBaseImpl;
-import com.liferay.microblogs.social.MicroblogsActivityKeys;
+import com.liferay.microblogs.microblogs.social.MicroblogsActivityKeys;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringPool;
@@ -52,7 +52,7 @@ public class MicroblogsEntryLocalServiceImpl
 
 		Date now = new Date();
 
-		validate(type, receiverMicroblogsEntryId, socialRelationType);
+		validate(type, receiverMicroblogsEntryId);
 
 		long microblogsEntryId = counterLocalService.increment();
 
@@ -254,8 +254,12 @@ public class MicroblogsEntryLocalServiceImpl
 	}
 
 	protected void validate(
-			int type, long receiverMicroblogsEntryId, int socialRelationType)
+			int type, long receiverMicroblogsEntryId)
 		throws PortalException, SystemException {
+
+		if (receiverMicroblogsEntryId == 0) {
+			return;
+		}
 
 		MicroblogsEntry microblogsEntry =
 			microblogsEntryPersistence.findByPrimaryKey(
