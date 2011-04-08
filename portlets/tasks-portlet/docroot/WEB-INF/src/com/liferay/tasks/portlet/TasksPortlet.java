@@ -132,8 +132,8 @@ public class TasksPortlet extends MVCPortlet {
 
 		if (cmd.equals(Constants.DELETE)) {
 			MBMessageServiceUtil.deleteDiscussionMessage(
-				groupId, className, classPK, className, classPK, messageId,
-				themeDisplay.getUserId());
+				groupId, className, classPK, className, classPK,
+				themeDisplay.getUserId(), messageId);
 		}
 		else if (messageId <= 0) {
 			MBMessageServiceUtil.addDiscussionMessage(
