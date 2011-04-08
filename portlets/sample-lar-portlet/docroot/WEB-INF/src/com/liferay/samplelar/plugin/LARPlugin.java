@@ -144,15 +144,11 @@ public class LARPlugin extends BasePortletDataHandler {
 		}
 	}
 
-	public PortletDataHandlerControl[] getExportControls()
-		throws PortletDataException {
-
+	public PortletDataHandlerControl[] getExportControls() {
 		return new PortletDataHandlerControl[] {_enableExport};
 	}
 
-	public PortletDataHandlerControl[] getImportControls()
-		throws PortletDataException{
-
+	public PortletDataHandlerControl[] getImportControls() {
 		return new PortletDataHandlerControl[] {_enableImport};
 	}
 
