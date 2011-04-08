@@ -88,7 +88,6 @@ taskListURL.setParameter("tabs2", tabs2);
 			rowURL.setWindowState(LiferayWindowState.EXCLUSIVE);
 
 			rowURL.setParameter("jspPage", "/view_task.jsp");
-			rowURL.setParameter("redirect", currentURL);
 			rowURL.setParameter("tasksEntryId", String.valueOf(tasksEntry.getTasksEntryId()));
 
 			rowHREF = rowURL.toString();

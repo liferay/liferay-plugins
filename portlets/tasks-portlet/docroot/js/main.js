@@ -155,7 +155,7 @@ AUI().use(
 					function(event) {
 						var assetTag = event.currentTarget;
 
-						assetTag.toggle('selected');
+						assetTag.toggleClass('selected');
 
 						var showAll = A.one('.tasks-portlet input[name="all-tasks"]').get('checked');
 

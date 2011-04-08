@@ -143,8 +143,9 @@ public class TasksPortlet extends MVCPortlet {
 		}
 		else {
 			MBMessageServiceUtil.updateDiscussionMessage(
-				className, classPK, className, classPK, messageId,
-				themeDisplay.getUserId(), subject, body, serviceContext);
+				className, classPK, className, classPK,
+				themeDisplay.getUserId(), messageId, subject, body,
+				serviceContext);
 		}
 	}
 
