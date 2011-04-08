@@ -14,6 +14,8 @@
 
 package com.liferay.wsrp.consumer.portlet;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.LiferayPortletURL;
 import com.liferay.portal.kernel.servlet.HttpHeaders;
@@ -642,6 +644,9 @@ public class ConsumerPortlet extends GenericPortlet {
 			personName.setPrefix(listType.getName());
 		}
 		catch (Exception e) {
+			if (_log.isDebugEnabled()) {
+				_log.debug("Unable to retrieve name prefix", e);
+			}
 		}
 
 		try {
@@ -651,6 +656,9 @@ public class ConsumerPortlet extends GenericPortlet {
 			personName.setSuffix(listType.getName());
 		}
 		catch (Exception e) {
+			if (_log.isDebugEnabled()) {
+				_log.debug("Unable to retrieve name suffix", e);
+			}
 		}
 
 		return personName;
@@ -2024,5 +2032,8 @@ public class ConsumerPortlet extends GenericPortlet {
 		"(wsrp_rewrite_)|(?:wsrp_rewrite\\?([^\\s/]+)/wsrp_rewrite)|" +
 		"(?:location\\.href\\s*=\\s*'(/widget/c/portal/layout(?:[^']+))')|" +
 		"(?:href\\s*=\\s*\"(/widget/c/portal/layout(?:[^\"]+))\")");
+
+	private static Log _log = LogFactoryUtil.getLog(
+		ConsumerPortlet.class);
 
 }
