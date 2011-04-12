@@ -79,7 +79,7 @@ public class SitesPortlet extends MVCPortlet {
 			catch (Exception e) {
 				jsonObject.put("result", "failure");
 
-				String message;
+				String message = null;
 
 				if (e instanceof DuplicateGroupException) {
 					message = "please-enter-a-unique-name";
@@ -144,13 +144,14 @@ public class SitesPortlet extends MVCPortlet {
 				layoutSetPrototypeGroup.getGroupId(), true, 0);
 
 			for (Layout layout : layouts) {
-				JSONObject curJsonObject = JSONFactoryUtil.createJSONObject();
+				JSONObject layoutJSONObject =
+					JSONFactoryUtil.createJSONObject();
 
-				curJsonObject.put("plid", layout.getPlid());
-				curJsonObject.put(
+				layoutJSONObject.put("plid", layout.getPlid());
+				layoutJSONObject.put(
 					"name", layout.getName(themeDisplay.getLocale()));
 
-				jsonArray.put(curJsonObject);
+				jsonArray.put(layoutJSONObject);
 			}
 
 			jsonObject.put("layouts", jsonArray);
@@ -166,9 +167,9 @@ public class SitesPortlet extends MVCPortlet {
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws PortletException {
 
-		String id = resourceRequest.getResourceID();
-
 		try {
+			String id = resourceRequest.getResourceID();
+
 			if (id.equals("getLayoutSetPrototypeDescription")) {
 				getLayoutSetPrototypeDescription(
 					resourceRequest, resourceResponse);
