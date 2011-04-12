@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-#parse ($init)
+#parse($init)
 
 <html class="#language ("lang.dir")" dir="#language ("lang.dir")">
 

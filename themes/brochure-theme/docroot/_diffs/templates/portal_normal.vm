@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-#parse ($init)
+#parse($init)
 
 <html class="#language("lang.dir")" dir="#language("lang.dir")" lang="$w3c_language_id">
 
@@ -12,7 +12,7 @@
 
 <body class="$css_class">
 
-#if($is_signed_in)
+#if ($is_signed_in)
 	#dockbar()
 #end
 
@@ -30,7 +30,7 @@ $theme.include($top_messages_include)
 			</h1>
 
 		</hgroup>
-		#if(!$is_signed_in)
+		#if (!$is_signed_in)
 			<a href="$sign_in_url" id="sign-in" rel="nofollow">$sign_in_text</a>
 		#end
 
@@ -46,7 +46,7 @@ $theme.include($top_messages_include)
 	</header>
 
 	#if ($has_navigation)
-		#parse ("$full_templates_path/navigation.vm")
+		#parse("$full_templates_path/navigation.vm")
 	#end
 
 	#if ($selectable)

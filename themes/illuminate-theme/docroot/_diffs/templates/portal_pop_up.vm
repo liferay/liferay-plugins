@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-#parse ($init)
+#parse($init)
 
 <html dir="#language ("lang.dir")" lang="$w3c_language_id">
 
@@ -9,8 +9,8 @@
 
 	$theme.include($top_head_include)
 
-	#css ($css_main_file)
-	#js ($js_main_file)
+	#css($css_main_file)
+	#js($js_main_file)
 </head>
 
 <body class="portal-popup $css_class">

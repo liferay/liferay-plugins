@@ -21,7 +21,7 @@
 		</div>
 	#end
 
-	#if($show-author)
+	#if ($show-author)
 		<div class="author-info">
 			<span class="article-author">$reserved-article-author-name.getData() </span>
 
