@@ -36,7 +36,7 @@ pageContext.setAttribute("portletURL", portletURL);
 
 <liferay-ui:search-container
 	delta="<%= 30 %>"
-	emptyResultsMessage="no-communities-were-found"
+	emptyResultsMessage="no-sites-were-found"
 >
 
 	<%
@@ -58,7 +58,7 @@ pageContext.setAttribute("portletURL", portletURL);
 
 		<c:if test="<%= PortalPermissionUtil.contains(permissionChecker, ActionKeys.ADD_COMMUNITY) %>">
 			<liferay-portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>" var="addSiteURL">
-				<liferay-portlet:param name="jspPage" value="/sites/edit_community.jsp" />
+				<liferay-portlet:param name="jspPage" value="/sites/edit_site.jsp" />
 			</liferay-portlet:renderURL>
 
 			<a class="add-site" href="javascript:;" onClick="Liferay.SO.Sites.displayPopup('<%= addSiteURL %>','<liferay-ui:message key="add-site" />');"><liferay-ui:message key="add-site" /></a>
@@ -135,7 +135,7 @@ pageContext.setAttribute("portletURL", portletURL);
 
 		<liferay-ui:search-container-column-jsp
 			align="right"
-			path="/sites/community_action.jsp"
+			path="/sites/site_action.jsp"
 			valign="top"
 		/>
 	</liferay-ui:search-container-row>

@@ -44,8 +44,9 @@ AUI().use(
 				if (!instance._popup) {
 					instance._popup = new A.Dialog(
 						{
+							cssClass: 'so-portlet-sites-dialog',
 							resizable: false,
-							width: 600
+							width: 526
 						}
 					).plug(
 						A.Plugin.IO,

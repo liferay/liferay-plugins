@@ -17,29 +17,172 @@
 
 package com.liferay.so.sites.portlet;
 
+import com.liferay.portal.DuplicateGroupException;
+import com.liferay.portal.GroupNameException;
+import com.liferay.portal.kernel.json.JSONArray;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.MethodKey;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalClassInvoker;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.UnicodeProperties;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Group;
+import com.liferay.portal.model.GroupConstants;
+import com.liferay.portal.model.Layout;
+import com.liferay.portal.model.LayoutSetPrototype;
 import com.liferay.portal.service.GroupServiceUtil;
+import com.liferay.portal.service.LayoutLocalServiceUtil;
+import com.liferay.portal.service.LayoutSetPrototypeServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.so.util.WebKeys;
 import com.liferay.util.bridges.mvc.MVCPortlet;
+import com.liferay.util.servlet.ServletResponseUtil;
+
+import java.util.List;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
+import javax.portlet.PortletException;
+import javax.portlet.ResourceRequest;
+import javax.portlet.ResourceResponse;
+
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * @author Ryan Park
  */
 public class SitesPortlet extends MVCPortlet {
 
-	public void addCommunity(
+	public void addSite(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		String redirect = ParamUtil.getString(actionRequest, "redirect");
+
+		if (Validator.isNotNull(redirect)) {
+			doAddSite(actionRequest, actionResponse);
+		}
+		else {
+			JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
+			try {
+				doAddSite(actionRequest, actionResponse);
+
+				jsonObject.put("result", "success");
+			}
+			catch (Exception e) {
+				jsonObject.put("result", "failure");
+
+				String message;
+
+				if (e instanceof DuplicateGroupException) {
+					message = "please-enter-a-unique-name";
+				}
+				else if (e instanceof GroupNameException) {
+					message = "please-enter-a-valid-name";
+				}
+				else {
+					message = "your-request-failed-to-complete";
+				}
+
+				ThemeDisplay themeDisplay =
+					(ThemeDisplay)actionRequest.getAttribute(
+						WebKeys.THEME_DISPLAY);
+
+				jsonObject.put("message", themeDisplay.translate(message));
+			}
+
+			HttpServletResponse response = PortalUtil.getHttpServletResponse(
+				actionResponse);
+
+			ServletResponseUtil.write(response, jsonObject.toString());
+		}
+	}
+
+	public void getLayoutSetPrototypeDescription(
+			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		int layoutSetPrototypeId = ParamUtil.getInteger(
+			resourceRequest, "layoutSetPrototypeId");
+
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
+		if (layoutSetPrototypeId <= 0) {
+			jsonObject.put("layoutSetPrototypeId", layoutSetPrototypeId);
+			jsonObject.put("name", themeDisplay.translate("none"));
+			jsonObject.put("description", StringPool.BLANK);
+
+			JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
+
+			jsonObject.put("layouts", jsonArray);
+		}
+		else {
+			LayoutSetPrototype layoutSetPrototype =
+				LayoutSetPrototypeServiceUtil.getLayoutSetPrototype(
+					layoutSetPrototypeId);
+
+			jsonObject.put("layoutSetPrototypeId", layoutSetPrototypeId);
+			jsonObject.put(
+				"name", layoutSetPrototype.getName(themeDisplay.getLocale()));
+			jsonObject.put("description", layoutSetPrototype.getDescription());
+
+			JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
+
+			Group layoutSetPrototypeGroup = layoutSetPrototype.getGroup();
+
+			List<Layout> layouts = LayoutLocalServiceUtil.getLayouts(
+				layoutSetPrototypeGroup.getGroupId(), true, 0);
+
+			for (Layout layout : layouts) {
+				JSONObject curJsonObject = JSONFactoryUtil.createJSONObject();
+
+				curJsonObject.put("plid", layout.getPlid());
+				curJsonObject.put(
+					"name", layout.getName(themeDisplay.getLocale()));
+
+				jsonArray.put(curJsonObject);
+			}
+
+			jsonObject.put("layouts", jsonArray);
+		}
+
+		HttpServletResponse response = PortalUtil.getHttpServletResponse(
+			resourceResponse);
+
+		ServletResponseUtil.write(response, jsonObject.toString());
+	}
+
+	public void serveResource(
+			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
+		throws PortletException {
+
+		String id = resourceRequest.getResourceID();
+
+		try {
+			if (id.equals("getLayoutSetPrototypeDescription")) {
+				getLayoutSetPrototypeDescription(
+					resourceRequest, resourceResponse);
+			}
+			else {
+				super.serveResource(resourceRequest, resourceResponse);
+			}
+		}
+		catch (Exception e) {
+			throw new PortletException(e);
+		}
+	}
+
+	protected void doAddSite(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
@@ -72,10 +215,18 @@ public class SitesPortlet extends MVCPortlet {
 		group = GroupServiceUtil.updateGroup(
 			group.getGroupId(), typeSettingsProperties.toString());
 
-		long publicLayoutSetPrototypeId = ParamUtil.getLong(
-			actionRequest, "publicLayoutSetPrototypeId");
-		long privateLayoutSetPrototypeId = ParamUtil.getLong(
-			actionRequest, "privateLayoutSetPrototypeId");
+		long layoutSetPrototypeId = ParamUtil.getLong(
+			actionRequest, "layoutSetPrototypeId");
+
+		long publicLayoutSetPrototypeId = 0;
+		long privateLayoutSetPrototypeId = 0;
+
+		if (type == GroupConstants.TYPE_COMMUNITY_OPEN) {
+			publicLayoutSetPrototypeId = layoutSetPrototypeId;
+		}
+		else {
+			privateLayoutSetPrototypeId = layoutSetPrototypeId;
+		}
 
 		PortalClassInvoker.invoke(
 			true, _applyLayoutSetPrototypesMethodKey, group,

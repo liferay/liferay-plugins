@@ -1271,6 +1271,41 @@ table.calendar {
 	top: 1px;
 }
 
+.so-portlet-sites .description {
+	font-size: .9em;
+	color: #555;
+	padding-left: 20px;
+}
+
+.so-portlet-sites-dialog {
+	.template-details {
+		background: #F4F4F4;
+		border: 1px solid #C0C2C5;
+		padding: 1em;
+
+		h3.name {
+			margin: 0;
+		}
+
+		ul.pages {
+			margin: 0;
+
+			li {
+				float: left;
+				list-style: disc inside none;
+				padding-right: 1em;
+			}
+		}
+	}
+
+	.aui-button-holder {
+		background: #EEE;
+		border-top: 1px solid #BFBFBF;
+		margin: 1em 0;
+		padding: 0.5em;
+	}
+}
+
 /* TMS: Tasks */
 
 .tms-portlet-tasks .progress {
