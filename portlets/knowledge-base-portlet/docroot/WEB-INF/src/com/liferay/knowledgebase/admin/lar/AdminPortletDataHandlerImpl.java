@@ -277,11 +277,11 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 	}
 
 	protected void exportKBComments(
-			PortletDataContext portletDataContext, Class<?> classObj,
+			PortletDataContext portletDataContext, Class<?> clazz,
 			String name, Element rootElement)
 		throws Exception {
 
-		long classNameId = PortalUtil.getClassNameId(classObj);
+		long classNameId = PortalUtil.getClassNameId(clazz);
 
 		List<KBComment> kbComments = KBCommentUtil.findByG_C(
 			portletDataContext.getScopeGroupId(), classNameId);
