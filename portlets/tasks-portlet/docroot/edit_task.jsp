@@ -83,7 +83,7 @@ long javaScriptLastModified = ServletContextUtil.getLastModified(application, "/
 				<c:when test="<%= group.isUser() %>">
 					<option <%= (assigneeUserId == user.getUserId()) ? "selected" : StringPool.BLANK %> value="<%= user.getUserId() %>"><%= HtmlUtil.escape(user.getFullName()) %></option>
 
-					<optgroup label="<liferay-ui:message key="friends" />">
+					<optgroup label="<liferay-ui:message key="contacts" />">
 				</c:when>
 				<c:otherwise>
 					<option <%= (assigneeUserId == 0) ? "selected" : StringPool.BLANK %> value="0"></option>
@@ -102,7 +102,7 @@ long javaScriptLastModified = ServletContextUtil.getLastModified(application, "/
 			List<User> users = null;
 
 			if (group.isUser()) {
-				users = UserLocalServiceUtil.getSocialUsers(group.getClassPK(), SocialRelationConstants.TYPE_BI_FRIEND, QueryUtil.ALL_POS, QueryUtil.ALL_POS, new ContactFirstNameComparator(true));
+				users = UserLocalServiceUtil.getSocialUsers(group.getClassPK(), QueryUtil.ALL_POS, QueryUtil.ALL_POS, new ContactFirstNameComparator(true));
 			}
 			else {
 				LinkedHashMap userParams = new LinkedHashMap();
