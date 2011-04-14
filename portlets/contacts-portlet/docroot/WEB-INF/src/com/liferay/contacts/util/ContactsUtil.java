@@ -75,6 +75,10 @@ public class ContactsUtil {
 			user.getCompanyId(), Contact.class.getName(),
 			user.getContactId());
 
+		if (addresses.isEmpty()) {
+			return StringPool.BLANK;
+		}
+
 		StringBundler sb = new StringBundler(addresses.size() * 19);
 
 		for (Address address: addresses) {
@@ -271,6 +275,10 @@ public class ContactsUtil {
 			user.getCompanyId(), Contact.class.getName(),
 			user.getContactId());
 
+		if (phones.isEmpty()) {
+			return StringPool.BLANK;
+		}
+
 		StringBundler sb = new StringBundler(phones.size() * 7);
 
 		for (Phone phone : phones) {
@@ -294,6 +302,10 @@ public class ContactsUtil {
 		List<Website> websites = WebsiteLocalServiceUtil.getWebsites(
 			user.getCompanyId(), Contact.class.getName(),
 			user.getContactId());
+
+		if (websites.isEmpty()) {
+			return StringPool.BLANK;
+		}
 
 		StringBundler sb = new StringBundler(websites.size() * 5);
 
