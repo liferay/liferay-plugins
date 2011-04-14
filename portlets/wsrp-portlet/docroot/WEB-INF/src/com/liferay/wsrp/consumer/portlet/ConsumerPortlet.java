@@ -1082,13 +1082,12 @@ public class ConsumerPortlet extends GenericPortlet {
 			localesArray[i] = locale.toString();
 		}
 
-		Locale consumerLocale = themeDisplay.getLocale();
+		Locale locale = themeDisplay.getLocale();
 
-		if (!locales.contains(consumerLocale)) {
-			String[] addedLocale = {
-				consumerLocale.toString(), consumerLocale.getLanguage()};
-
-			localesArray = ArrayUtil.append(addedLocale,localesArray);
+		if (!locales.contains(locale)) {
+			localesArray = ArrayUtil.append(
+				localesArray,
+				new String[] {locale.toString(), locale.getLanguage()});
 		}
 
 		mimeRequest.setLocales(localesArray);
