@@ -29,6 +29,7 @@ import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.TransientValue;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
@@ -1588,6 +1589,17 @@ public class ConsumerPortlet extends GenericPortlet {
 				resourceResponse.setProperty(
 					HttpHeaders.CACHE_CONTROL,
 					HttpHeaders.CACHE_CONTROL_NO_CACHE_NO_STORE_VALUE);
+			}
+			else if (cacheControl.getExpires() > 0) {
+				String maxAge = StringUtil.valueOf(cacheControl.getExpires());
+
+				resourceResponse.setProperty(
+					HttpHeaders.CACHE_CONTROL, "max-age=" + maxAge);
+			}
+			else if (cacheControl.getExpires() == -1) {
+				resourceResponse.setProperty(
+					HttpHeaders.CACHE_CONTROL,
+					HttpHeaders.CACHE_CONTROL_DEFAULT_VALUE);
 			}
 		}
 
