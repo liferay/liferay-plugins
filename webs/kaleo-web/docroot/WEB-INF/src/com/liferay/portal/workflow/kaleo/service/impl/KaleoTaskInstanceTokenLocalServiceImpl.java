@@ -24,8 +24,10 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
+import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Role;
 import com.liferay.portal.model.User;
+import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.workflow.kaleo.NoSuchTimerException;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
@@ -70,7 +72,15 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 		KaleoTaskInstanceToken kaleoTaskInstanceToken =
 			kaleoTaskInstanceTokenPersistence.create(kaleoTaskInstanceTokenId);
 
-		kaleoTaskInstanceToken.setGroupId(serviceContext.getScopeGroupId());
+		long groupId = serviceContext.getScopeGroupId();
+
+		Group group = GroupLocalServiceUtil.getGroup(groupId);
+
+		if (group.isStagingGroup()) {
+			groupId = group.getLiveGroupId();
+		}
+
+		kaleoTaskInstanceToken.setGroupId(groupId);
 		kaleoTaskInstanceToken.setCompanyId(user.getCompanyId());
 		kaleoTaskInstanceToken.setUserId(user.getUserId());
 		kaleoTaskInstanceToken.setUserName(user.getFullName());
