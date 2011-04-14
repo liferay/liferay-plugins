@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.LiferayPortletURL;
 import com.liferay.portal.kernel.servlet.HttpHeaders;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.Base64;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.FileUtil;
@@ -1080,6 +1081,15 @@ public class ConsumerPortlet extends GenericPortlet {
 			Locale locale = locales.get(i);
 
 			localesArray[i] = locale.toString();
+		}
+
+		Locale consumerLocale = themeDisplay.getLocale();
+
+		if (!locales.contains(consumerLocale)) {
+			String[] addedLocale = {
+				consumerLocale.toString(), consumerLocale.getLanguage()};
+
+			localesArray = ArrayUtil.append(addedLocale,localesArray);
 		}
 
 		mimeRequest.setLocales(localesArray);
