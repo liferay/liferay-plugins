@@ -49,6 +49,8 @@ long folderId = BeanParamUtil.getLong(entry, request, "folderId");
 	<liferay-ui:error exception="<%= EntryURLException.class %>" message="please-enter-a-valid-url" />
 	<liferay-ui:error exception="<%= NoSuchFolderException.class %>" message="please-enter-a-valid-folder" />
 
+	<liferay-ui:asset-categories-error />
+
 	<liferay-ui:asset-tags-error />
 
 	<aui:model-context bean="<%= entry %>" model="<%= BookmarksEntry.class %>" />

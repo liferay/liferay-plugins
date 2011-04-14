@@ -50,6 +50,9 @@ String dirName = ParamUtil.getString(request, "dirName");
 
 	<liferay-ui:error exception="<%= KBArticleContentException.class %>" message="please-enter-valid-content" />
 	<liferay-ui:error exception="<%= KBArticleTitleException.class %>" message="please-enter-a-valid-title" />
+
+	<liferay-ui:asset-categories-error />
+
 	<liferay-ui:asset-tags-error />
 
 	<c:choose>

@@ -38,6 +38,8 @@ if (fooId > 0) {
 		title='<%= (foo != null) ? foo.getField1() : "new-foo" %>'
 	/>
 
+	<liferay-ui:asset-categories-error />
+
 	<liferay-ui:asset-tags-error />
 
 	<aui:model-context bean="<%= foo %>" model="<%= Foo.class %>" />
