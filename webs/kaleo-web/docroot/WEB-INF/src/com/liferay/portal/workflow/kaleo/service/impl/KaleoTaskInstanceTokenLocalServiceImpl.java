@@ -81,6 +81,7 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 		}
 
 		kaleoTaskInstanceToken.setGroupId(groupId);
+
 		kaleoTaskInstanceToken.setCompanyId(user.getCompanyId());
 		kaleoTaskInstanceToken.setUserId(user.getUserId());
 		kaleoTaskInstanceToken.setUserName(user.getFullName());
