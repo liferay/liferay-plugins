@@ -10,6 +10,15 @@
 	</portlet>
 	<portlet>
 		<portlet-name>2</portlet-name>
+		<scheduler-entry>
+			<scheduler-event-listener-class>com.liferay.wsrp.messaging.WSRPConsumerCheckEventMessageListener</scheduler-event-listener-class>
+			<trigger>
+				<simple>
+					<property-key>failed.consumer.check.interval</property-key>
+					<time-unit>second</time-unit>
+				</simple>
+			</trigger>
+		</scheduler-entry>
 		<friendly-url-mapper-class>com.liferay.wsrp.consumer.portlet.ConsumerFriendlyURLMapper</friendly-url-mapper-class>
 	</portlet>
 	<role-mapper>
