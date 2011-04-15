@@ -42,7 +42,7 @@ portletURL.setParameter("jspPage", "/sites/edit_site.jsp");
 
 	<div class="section-container">
 		<div class="section site-information">
-			<liferay-ui:header title="site-information" />
+			<liferay-ui:header title="information" />
 
 			<aui:fieldset>
 				<aui:input name="name" />
@@ -51,12 +51,12 @@ portletURL.setParameter("jspPage", "/sites/edit_site.jsp");
 			</aui:fieldset>
 		</div>
 
-		<div class="section site-settings aui-helper-hidden">
-			<liferay-ui:header title="site-settings" />
+		<%
+		LayoutSetPrototype defaultLayoutSetPrototype = null;
+		%>
 
-			<%
-			LayoutSetPrototype defaultLayoutSetPrototype = null;
-			%>
+		<div class="section site-settings aui-helper-hidden">
+			<liferay-ui:header title="settings" />
 
 			<aui:column columnWidth="<%= 40 %>" first="<%= true %>">
 
@@ -95,37 +95,78 @@ portletURL.setParameter("jspPage", "/sites/edit_site.jsp");
 
 			<aui:column columnWidth="<%= 60 %>">
 				<div class="template-details">
-					<h3 class="name"><%= defaultLayoutSetPrototype.getName(locale) %></h3>
 
-					<p class="description">
-						<%= defaultLayoutSetPrototype.getDescription() %>
-					</p>
+					<c:if test="<%= defaultLayoutSetPrototype != null %>">
+						<h3 class="name"><%= defaultLayoutSetPrototype.getName(locale) %></h3>
 
-					<span>
-						<liferay-ui:message key="included-pages" />
-					</span>
+						<p class="description">
+							<%= defaultLayoutSetPrototype.getDescription() %>
+						</p>
 
-					<ul class="pages">
+						<span>
+							<liferay-ui:message key="included-pages" />
+						</span>
 
-						<%
-						Group layoutSetPrototypeGroup = defaultLayoutSetPrototype.getGroup();
+						<ul class="pages">
 
-						List<Layout> prototypeLayouts = LayoutLocalServiceUtil.getLayouts(layoutSetPrototypeGroup.getGroupId(), true, 0);
+							<%
+							Group layoutSetPrototypeGroup = defaultLayoutSetPrototype.getGroup();
 
-						for (Layout prototypeLayout : prototypeLayouts) {
-						%>
+							List<Layout> prototypeLayouts = LayoutLocalServiceUtil.getLayouts(layoutSetPrototypeGroup.getGroupId(), true, 0);
 
-							<li><%= prototypeLayout.getName(locale) %></li>
+							for (Layout prototypeLayout : prototypeLayouts) {
+							%>
 
-						<%
-						}
-						%>
+								<li><%= prototypeLayout.getName(locale) %></li>
 
-					</ul>
+							<%
+							}
+							%>
+
+						</ul>
+					</c:if>
 
 					<div style="clear: both;"></div>
 				</div>
 			</aui:column>
+		</div>
+
+		<div class="section site-customization aui-helper-hidden">
+			<liferay-ui:header title="customization" />
+
+			<div class="set-label">
+				<liferay-ui:message key="included-pages" />
+			</div>
+
+			<div class="tip">
+				<liferay-ui:message key="uncheck-the-pages-to-exclude-from-your-site" />
+			</div>
+
+			<aui:input name="deleteLayoutIds" type="hidden" />
+
+			<div class="delete-layouts-container">
+				<c:if test="<%= defaultLayoutSetPrototype != null %>">
+
+					<%
+					Group layoutSetPrototypeGroup = defaultLayoutSetPrototype.getGroup();
+
+					List<Layout> prototypeLayouts = LayoutLocalServiceUtil.getLayouts(layoutSetPrototypeGroup.getGroupId(), true, 0);
+
+					for (Layout prototypeLayout : prototypeLayouts) {
+					%>
+
+						<span class="page">
+							<input checked id="layout<%= prototypeLayout.getLayoutId() %>" type="checkbox" data-layoutId="<%= prototypeLayout.getLayoutId() %>" />
+
+							<label for="layout<%= prototypeLayout.getLayoutId() %>"><%= prototypeLayout.getName(locale) %></label>
+						</span>
+
+					<%
+					}
+					%>
+
+				</c:if>
+			</div>
 		</div>
 	</div>
 
@@ -153,6 +194,20 @@ portletURL.setParameter("jspPage", "/sites/edit_site.jsp");
 		'<portlet:namespace />addSite',
 		function() {
 			nextButton.set('disabled', true);
+
+			var layoutElems = sectionContainer.all('.delete-layouts-container .page input:not(:checked)');
+
+			var deleteLayoutIds = [];
+
+			layoutElems.each(
+				function(layoutElem, index, collection) {
+					deleteLayoutIds.push(layoutElem.getAttribute('data-layoutId'));
+				}
+			);
+
+			var deleteLayoutIdsElem = A.one('#<portlet:namespace />deleteLayoutIds');
+
+			deleteLayoutIdsElem.set('value', deleteLayoutIds.join(','));
 
 			A.io.request(
 				form.getAttribute('action'),
@@ -263,7 +318,13 @@ portletURL.setParameter("jspPage", "/sites/edit_site.jsp");
 <aui:script use="aui-base,aui-io">
 	var templateSelect = A.one('.so-portlet-sites-dialog #<portlet:namespace />layoutSetPrototypeSelect');
 
-	var templateDescription = A.one('.so-portlet-sites-dialog .template-details');
+	var descriptionContainer = A.one('.so-portlet-sites-dialog .template-details');
+
+	var name = descriptionContainer.one('.name');
+	var description = descriptionContainer.one('.description');
+	var pages = descriptionContainer.one('.pages');
+
+	var deleteLayoutsContainer = A.one('.so-portlet-sites-dialog .delete-layouts-container');
 
 	templateSelect.on(
 		'change',
@@ -279,25 +340,34 @@ portletURL.setParameter("jspPage", "/sites/edit_site.jsp");
 
 							window.testData = data;
 
-							var name = templateDescription.one('.name');
-							var description = templateDescription.one('.description');
-							var pages = templateDescription.one('.pages');
-
-
 							name.html(data.name);
 							description.html(data.description);
 
 							var layouts = data.layouts;
 
-							var buffer = [''];
+							var listBuffer = [];
 
 							for (var i in layouts) {
 								var layout = layouts[i];
 
-								buffer.push('<li>' + layout.name + '</li>');
+								listBuffer.push('<li>' + layout.name + '</li>');
 							}
 
-							pages.html(buffer.join(''));
+							pages.html(listBuffer.join(''));
+
+							var inputBuffer = [];
+
+							for (var i in layouts) {
+								var layout = layouts[i];
+
+								inputBuffer.push(
+									'<span class="page">' +
+										'<input checked id="layout' + layout.layoutId + '" type="checkbox" data-layoutId="' + layout.layoutId + '" />' +
+										'<label for="layout' + layout.layoutId + '">' + layout.name + '</label>' +
+									'</span>');
+							}
+
+							deleteLayoutsContainer.html(inputBuffer.join(''));
 						}
 					},
 					data: {

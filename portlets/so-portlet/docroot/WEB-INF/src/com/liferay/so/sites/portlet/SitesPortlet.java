@@ -22,10 +22,12 @@ import com.liferay.portal.GroupNameException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.MethodKey;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalClassInvoker;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Group;
@@ -44,11 +46,13 @@ import com.liferay.so.util.WebKeys;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 import com.liferay.util.servlet.ServletResponseUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletException;
+import javax.portlet.PortletRequest;
 import javax.portlet.ResourceRequest;
 import javax.portlet.ResourceResponse;
 
@@ -147,7 +151,7 @@ public class SitesPortlet extends MVCPortlet {
 				JSONObject layoutJSONObject =
 					JSONFactoryUtil.createJSONObject();
 
-				layoutJSONObject.put("plid", layout.getPlid());
+				layoutJSONObject.put("layoutId", layout.getLayoutId());
 				layoutJSONObject.put(
 					"name", layout.getName(themeDisplay.getLocale()));
 
@@ -219,20 +223,47 @@ public class SitesPortlet extends MVCPortlet {
 		long layoutSetPrototypeId = ParamUtil.getLong(
 			actionRequest, "layoutSetPrototypeId");
 
+		boolean privateLayout = (type != GroupConstants.TYPE_COMMUNITY_OPEN);
+
 		long publicLayoutSetPrototypeId = 0;
 		long privateLayoutSetPrototypeId = 0;
 
-		if (type == GroupConstants.TYPE_COMMUNITY_OPEN) {
-			publicLayoutSetPrototypeId = layoutSetPrototypeId;
+		if (privateLayout) {
+			privateLayoutSetPrototypeId = layoutSetPrototypeId;
 		}
 		else {
-			privateLayoutSetPrototypeId = layoutSetPrototypeId;
+			publicLayoutSetPrototypeId = layoutSetPrototypeId;
 		}
 
 		PortalClassInvoker.invoke(
 			true, _applyLayoutSetPrototypesMethodKey, group,
 			publicLayoutSetPrototypeId, privateLayoutSetPrototypeId,
 			serviceContext);
+
+		long[] deleteLayoutIds = getLongArray(actionRequest, "deleteLayoutIds");
+
+		List<Layout> layouts = new ArrayList(deleteLayoutIds.length);
+
+		for (long deleteLayoutId : deleteLayoutIds) {
+			Layout layout = LayoutLocalServiceUtil.getLayout(
+				group.getGroupId(), privateLayout, deleteLayoutId);
+
+			layouts.add(layout);
+		}
+
+		for (Layout layout : layouts) {
+			LayoutLocalServiceUtil.deleteLayout(layout, true);
+		}
+	}
+
+	protected long[] getLongArray(PortletRequest portletRequest, String name) {
+		String value = portletRequest.getParameter(name);
+
+		if (value == null) {
+			return null;
+		}
+
+		return StringUtil.split(GetterUtil.getString(value), 0L);
 	}
 
 	private static final String _CLASS_NAME =

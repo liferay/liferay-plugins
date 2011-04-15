@@ -1298,6 +1298,22 @@ table.calendar {
 		}
 	}
 
+	.site-customization {
+		.set-label {
+			font-weight: bold;
+		}
+
+		.tip {
+			margin-bottom: 1em;
+		}
+
+		.page {
+			display: block;
+			float: left;
+			width: 125px;
+		}
+	}
+
 	.aui-button-holder {
 		background: #EEE;
 		border-top: 1px solid #BFBFBF;
