@@ -262,11 +262,11 @@ public class WSRPConsumerPortletLocalServiceImpl
 				String portletHandle = (String)tuple.getObject(4);
 				String userToken = (String)tuple.getObject(5);
 
+				_failedWSRPConsumerPortlets.remove(wsrpConsumerPortletId);
+
 				initWSRPConsumerPortlet(
 					companyId, wsrpConsumerId, wsrpConsumerPortletId,
 					wsrpConsumerPortletUuid, name, portletHandle, userToken);
-
-				_failedWSRPConsumerPortlets.remove(wsrpConsumerPortletId);
 			}
 			catch (Exception e) {
 				_log.error(
@@ -290,6 +290,8 @@ public class WSRPConsumerPortletLocalServiceImpl
 			Portlet portlet = getPortlet(
 				companyId, wsrpConsumerId, wsrpConsumerPortletUuid, name,
 				portletHandle, userToken);
+
+			initializationFailed = !portlet.isActive();
 
 			PortletLocalServiceUtil.deployRemotePortlet(
 				portlet, _WSRP_CATEGORY);
@@ -486,19 +488,28 @@ public class WSRPConsumerPortletLocalServiceImpl
 
 		Portlet portlet = _portletsPool.get(wsrpConsumerPortletUuid);
 
-		if (portlet != null) {
+		if (portlet != null && portlet.isActive()) {
 			return portlet;
 		}
 
 		WSRPConsumer wsrpConsumer = wsrpConsumerPersistence.findByPrimaryKey(
 			wsrpConsumerId);
 
-		WSRPConsumerManager wsrpConsumerManager =
-			WSRPConsumerManagerFactory.getWSRPConsumerManager(
-				wsrpConsumer, userToken);
+		PortletDescription portletDescription = null;
 
-		PortletDescription portletDescription =
-			wsrpConsumerManager.getPortletDescription(portletHandle);
+		try {
+			WSRPConsumerManager wsrpConsumerManager =
+				WSRPConsumerManagerFactory.getWSRPConsumerManager(
+					wsrpConsumer, userToken);
+	
+			portletDescription =
+				wsrpConsumerManager.getPortletDescription(portletHandle);
+		}
+		catch (Exception e) {
+			_log.warn(
+				"Unable to connect to WSRP producer for portlet " +
+					wsrpConsumerPortletUuid, e);
+		}
 
 		String portletName =
 			ConsumerPortlet.PORTLET_NAME_PREFIX.concat(wsrpConsumerPortletUuid);
@@ -509,6 +520,7 @@ public class WSRPConsumerPortletLocalServiceImpl
 		portlet = PortletLocalServiceUtil.clonePortlet(
 			companyId, _CONSUMER_PORTLET_ID);
 
+		portlet.setActive(true);
 		portlet.setPortletId(portletId);
 		portlet.setTimestamp(System.currentTimeMillis());
 
@@ -527,6 +539,13 @@ public class WSRPConsumerPortletLocalServiceImpl
 
 		if (portletDescription != null) {
 			addPortletExtraInfo(portlet, portletApp, portletDescription, name);
+		}
+		else {
+			PortletInfo portletInfo = new PortletInfo(
+				name, name, StringPool.BLANK, StringPool.BLANK);
+
+			portlet.setActive(false);
+			portlet.setPortletInfo(portletInfo);
 		}
 
 		_portletsPool.put(wsrpConsumerPortletUuid, portlet);
