@@ -95,7 +95,6 @@ portletURL.setParameter("jspPage", "/sites/edit_site.jsp");
 
 			<aui:column columnWidth="<%= 60 %>">
 				<div class="template-details">
-
 					<c:if test="<%= defaultLayoutSetPrototype != null %>">
 						<h3 class="name"><%= defaultLayoutSetPrototype.getName(locale) %></h3>
 
@@ -156,7 +155,7 @@ portletURL.setParameter("jspPage", "/sites/edit_site.jsp");
 					%>
 
 						<span class="page">
-							<input checked id="layout<%= prototypeLayout.getLayoutId() %>" type="checkbox" data-layoutId="<%= prototypeLayout.getLayoutId() %>" />
+							<input checked data-layoutId="<%= prototypeLayout.getLayoutId() %>" id="layout<%= prototypeLayout.getLayoutId() %>" type="checkbox" />
 
 							<label for="layout<%= prototypeLayout.getLayoutId() %>"><%= prototypeLayout.getName(locale) %></label>
 						</span>
@@ -362,7 +361,7 @@ portletURL.setParameter("jspPage", "/sites/edit_site.jsp");
 
 								inputBuffer.push(
 									'<span class="page">' +
-										'<input checked id="layout' + layout.layoutId + '" type="checkbox" data-layoutId="' + layout.layoutId + '" />' +
+										'<input checked data-layoutId="' + layout.layoutId + '" id="layout' + layout.layoutId + '" type="checkbox" />' +
 										'<label for="layout' + layout.layoutId + '">' + layout.name + '</label>' +
 									'</span>');
 							}

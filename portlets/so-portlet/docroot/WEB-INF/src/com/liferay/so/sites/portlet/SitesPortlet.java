@@ -223,7 +223,11 @@ public class SitesPortlet extends MVCPortlet {
 		long layoutSetPrototypeId = ParamUtil.getLong(
 			actionRequest, "layoutSetPrototypeId");
 
-		boolean privateLayout = (type != GroupConstants.TYPE_COMMUNITY_OPEN);
+		boolean privateLayout = false;
+
+		if (type != GroupConstants.TYPE_COMMUNITY_OPEN) {
+			privateLayout = true;
+		}
 
 		long publicLayoutSetPrototypeId = 0;
 		long privateLayoutSetPrototypeId = 0;
