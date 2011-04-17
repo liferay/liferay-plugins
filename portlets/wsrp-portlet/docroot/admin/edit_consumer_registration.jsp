@@ -86,7 +86,7 @@ if (supportsInbandRegistration) {
 		</select>
 	</td>
 </tr>
-<tbody <%= supportsInbandRegistration ? "class=\"aui-helper-hidden\"" : "" %> id="<portlet:namespace />registrationHandleSettings">
+<tbody <%= supportsInbandRegistration ? "class=\"yui3-aui-helper-hidden\"" : "" %> id="<portlet:namespace />registrationHandleSettings">
 	<tr>
 		<td>
 			<liferay-ui:message key="registration-handle" />
@@ -96,7 +96,7 @@ if (supportsInbandRegistration) {
 		</td>
 	</tr>
 </tbody>
-<tbody <%= !supportsInbandRegistration ? "class=\"aui-helper-hidden\"" : "" %> id="<portlet:namespace />registrationPropertiesSettings">
+<tbody <%= !supportsInbandRegistration ? "class=\"yui3-aui-helper-hidden\"" : "" %> id="<portlet:namespace />registrationPropertiesSettings">
 	<tr>
 		<td>
 			<liferay-ui:message key="registration-properties" />

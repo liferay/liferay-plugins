@@ -54,18 +54,18 @@
 	margin-right: 0.25em;
 }
 
-.digg-portlet-configuration .story-count .aui-field-input {
+.digg-portlet-configuration .story-count .yui3-aui-field-input {
 	width: 2em;
 	text-align: center;
 }
 
-.digg-portlet-configuration .height .aui-field-input,
-.digg-portlet-configuration .width .aui-field-input {
+.digg-portlet-configuration .height .yui3-aui-field-input,
+.digg-portlet-configuration .width .yui3-aui-field-input {
 	width: 4em;
 }
 
-.digg-portlet-configuration .aui-field-content,
-.digg-portlet-configuration .fallback .aui-field-input {
+.digg-portlet-configuration .yui3-aui-field-content,
+.digg-portlet-configuration .fallback .yui3-aui-field-input {
 	margin-right: 0.1em;
 }
 
@@ -73,16 +73,16 @@
 	margin-right: 0.3em;
 }
 
-.digg-portlet-configuration .polling .aui-field-content,
-.polling .aui-field-inline {
+.digg-portlet-configuration .polling .yui3-aui-field-content,
+.polling .yui3-aui-field-inline {
 	margin: 0;
 }
 
-.digg-portlet-configuration .polling .aui-field-input-choice {
+.digg-portlet-configuration .polling .yui3-aui-field-input-choice {
 	width: auto;
 }
 
-.digg-portlet-configuration .polling .aui-field-input-text {
+.digg-portlet-configuration .polling .yui3-aui-field-input-text {
 	margin: 0 0.1em 0 0;
 	text-align: center;
 	width: 3em;
@@ -263,14 +263,14 @@
 	<div class="pfld">
 		<aui:input cssClass="story-count" inlineField="true" label="number-of-items" maxlength="2" name="preferences--storyCount--" value="<%= storyCount %>" />
 
-		<div class="aui-field aui-field-inline aui-field-text polling">
-			<label class="aui-field-label"><%= LanguageUtil.get(pageContext, "polling") %></label>
+		<div class="yui3-aui-field yui3-aui-field-inline yui3-aui-field-text polling">
+			<label class="yui3-aui-field-label"><%= LanguageUtil.get(pageContext, "polling") %></label>
 
 			<aui:input inlineField="true" label="" name="preferences--polling--" type="checkbox" value="<%= polling %>" />
 
 			<aui:input cssClass="polling-rate" inlineField="true" label="" name="preferences--pollingRate--" value="<%= pollingRate %>" />
 
-			<label class="aui-field-label aui-field-label-inline"><%= LanguageUtil.get(pageContext, "seconds-between-updates") %></label>
+			<label class="yui3-aui-field-label yui3-aui-field-label-inline"><%= LanguageUtil.get(pageContext, "seconds-between-updates") %></label>
 		</div>
 	</div>
 

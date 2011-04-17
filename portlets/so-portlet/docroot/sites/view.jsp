@@ -126,7 +126,7 @@ pageContext.setAttribute("portletURL", portletURL);
 				<c:if test="<%= Validator.isNotNull(group.getDescription()) %>">
 					<img alt="arrow" class="description-toggle" src="<%= themeDisplay.getPathThemeImage() %>/custom/arrow_right.png" />
 
-					<div class="aui-helper-hidden description">
+					<div class="yui3-aui-helper-hidden description">
 						<%= StringUtil.shorten(HtmlUtil.escape(group.getDescription()), 200) %>
 					</div>
 				</c:if>

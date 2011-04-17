@@ -92,8 +92,8 @@ if (projectsEntries.isEmpty()) {
 						Calendar selDate = startDate;
 						%>
 
-						<div class="aui-field">
-							<label class="aui-field-label" for="<portlet:namespace /><%= fieldParam %>"><liferay-ui:message key="start-date" /></label>
+						<div class="yui3-aui-field">
+							<label class="yui3-aui-field-label" for="<portlet:namespace /><%= fieldParam %>"><liferay-ui:message key="start-date" /></label>
 
 							<%@ include file="/expertise/select_date.jspf" %>
 						</div>
@@ -106,8 +106,8 @@ if (projectsEntries.isEmpty()) {
 						Calendar selDate = endDate;
 						%>
 
-						<div class="aui-field">
-							<label class="aui-field-label" for="<portlet:namespace /><%= fieldParam %>"><liferay-ui:message key="end-date" /></label>
+						<div class="yui3-aui-field">
+							<label class="yui3-aui-field-label" for="<portlet:namespace /><%= fieldParam %>"><liferay-ui:message key="end-date" /></label>
 
 							<%@ include file="/expertise/select_date.jspf" %>
 						</div>
@@ -118,8 +118,8 @@ if (projectsEntries.isEmpty()) {
 						String fieldParam = "projectsEntryCurrent" + projectsEntriesIndex;
 						%>
 
-						<div class="aui-field">
-							<label class="aui-field-label" for="<portlet:namespace /><%= fieldParam %>"><liferay-ui:message key="current" /></label>
+						<div class="yui3-aui-field">
+							<label class="yui3-aui-field-label" for="<portlet:namespace /><%= fieldParam %>"><liferay-ui:message key="current" /></label>
 
 							<liferay-ui:input-checkbox param="<%= fieldParam %>" defaultValue="<%= current %>" />
 						</div>

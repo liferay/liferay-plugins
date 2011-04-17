@@ -49,13 +49,13 @@ if (mbThreadId != 0) {
 
 		<aui:input name="subject" value="<%= subject %>" />
 
-		<label class="aui-field-label">
+		<label class="yui3-aui-field-label">
 			<liferay-ui:message key="message" />
 		</label>
 
 		<textarea class="message-body" id="<portlet:namespace />body" name="<portlet:namespace />body"></textarea>
 
-		<label class="aui-field-label">
+		<label class="yui3-aui-field-label">
 			<liferay-ui:message key="attachments" />
 		</label>
 

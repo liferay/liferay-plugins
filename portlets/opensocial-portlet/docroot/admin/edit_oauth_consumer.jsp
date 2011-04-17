@@ -78,7 +78,7 @@ String keyType = BeanParamUtil.getString(oAuthConsumer, request, "keyType");
 		<liferay-ui:input-field model="<%= OAuthConsumer.class %>" bean="<%= oAuthConsumer %>" field="consumerKey" />
 	</td>
 </tr>
-<tr id="<portlet:namespace />consumerSecret" class="aui-helper-hidden">
+<tr id="<portlet:namespace />consumerSecret" class="yui3-aui-helper-hidden">
 	<td>
 		<liferay-ui:message key="consumer-secret" />
 	</td>

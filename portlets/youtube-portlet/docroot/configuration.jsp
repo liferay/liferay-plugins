@@ -23,11 +23,11 @@
 
 	<aui:layout>
 		<aui:column id="controls" columnWidth="50">
-			<div class="aui-field-row">
+			<div class="yui3-aui-field-row">
 				<aui:input cssClass="url" inlineField="true" label="url" name="preferences--url--" value="<%= url %>" />
 			</div>
 
-			<div class="aui-field-row">
+			<div class="yui3-aui-field-row">
 				<aui:select label="preset-frame-size" name="preferences--presetSize--" inlineField="true" cssClass="preset-size">
 					<aui:option label="Custom" value="custom" />
 					<aui:option label="Standard 360 4:3" selected='<%= presetSize.equals("480x360") %>' value="480x360" />
@@ -47,7 +47,7 @@
 
 			<liferay-ui:panel-container extended="<%= false %>" persistState="<%= true %>">
 				<liferay-ui:panel collapsible="<%= true %>" defaultState="closed" extended="<%= false %>" persistState="<%= true %>" title="advanced-options">
-					<div class="aui-field-row">
+					<div class="yui3-aui-field-row">
 						<aui:input cssClass="player-color" inlineField="true" label="player-color" name="preferences--playerColor--" value="<%= playerColor %>" />
 
 						<aui:input cssClass="border-color" inlineField="true" label="border-color" name="preferences--borderColor--" value="<%= borderColor %>" />
@@ -55,7 +55,7 @@
 
 					<aui:input cssClass="show-thicker-border" inlineField="true" label="show-thicker-border" name="preferences--showThickerBorder--" value="<%= showThickerBorder %>" type="checkbox" />
 
-					<div class="aui-field-row">
+					<div class="yui3-aui-field-row">
 						<aui:input cssClass="hd" inlineField="true" label="hd-video" name="preferences--hd--" value="<%= hd %>" type="checkbox" />
 
 						<aui:input cssClass="autoplay" inlineField="true" label="auto-play" name="preferences--autoplay--" value="<%= autoplay %>" type="checkbox" />
@@ -63,13 +63,13 @@
 						<aui:input cssClass="loop" inlineField="true" label="loop" name="preferences--loop--" value="<%= loop %>" type="checkbox" />
 					</div>
 
-					<div class="aui-field-row">
+					<div class="yui3-aui-field-row">
 						<aui:input cssClass="enable-fullscreen" inlineField="true" label="enable-fullscreen-option" name="preferences--enableFullscreen--" value="<%= enableFullscreen %>" type="checkbox" />
 
 						<aui:input checked="<%= enableKeyboardControls %>" cssClass="enable-keyboard-controls" inlineField="true" label="enable-keyboard-controls" name="preferences--enableKeyboardControls--" value="<%= enableKeyboardControls %>" type="checkbox" />
 					</div>
 
-					<div class="aui-field-row">
+					<div class="yui3-aui-field-row">
 						<aui:input cssClass="show-info" inlineField="true" label="show-video-info" name="preferences--showInfo--" value="<%= showInfo %>" type="checkbox" />
 
 						<aui:input cssClass="enable-enhanced-genie-menu" helpMessage="enhanced-genie-menu-help" inlineField="true" label="enable-enhanced-genie-menu" name="preferences--enableEnhancedGenieMenu--" value="<%= enableEnhancedGenieMenu %>" type="checkbox" />
@@ -77,7 +77,7 @@
 						<aui:input cssClass="enable-search" inlineField="true" label="enable-search" name="preferences--enableSearch--" type="checkbox" value="<%= enableSearch %>" />
 					</div>
 
-					<div class="aui-field-row">
+					<div class="yui3-aui-field-row">
 						<aui:input cssClass="start-time" inlineField="true" label="start-time" name="preferences--startTime--" value="<%= startTime %>" />
 
 						<aui:select label="annotations" name="annotations" value="<%= annotations %>" inlineField="true" cssClass="annotations">
@@ -95,7 +95,7 @@
 		</aui:column>
 
 		<aui:column columnWidth="50">
-			<div class="aui-field-wrapper-content" id="preview"></div>
+			<div class="yui3-aui-field-wrapper-content" id="preview"></div>
 		</aui:column>
 	</aui:layout>
 
@@ -167,8 +167,8 @@
 
 	var presetChange = function(e) {
 		if (this.val().indexOf('x') < 0) {
-			A.one('.aui-field.height').removeClass('invisible');
-			A.one('.aui-field.width').removeClass('invisible');
+			A.one('.yui3-aui-field.height').removeClass('invisible');
+			A.one('.yui3-aui-field.width').removeClass('invisible');
 
 			return;
 		}
@@ -255,7 +255,7 @@
 
 			submitForm(document['<portlet:namespace />fm']);
 		},
-		'input.aui-button-input-submit'
+		'input.yui3-aui-button-input-submit'
 	);
 
 	A.on(
@@ -296,8 +296,8 @@
 	).render();
 
 	if (presetSizeNode.val() == 'custom') {
-		A.one('.aui-field.height').removeClass('invisible');
-		A.one('.aui-field.width').removeClass('invisible');
+		A.one('.yui3-aui-field.height').removeClass('invisible');
+		A.one('.yui3-aui-field.width').removeClass('invisible');
 	}
 
 	createPlayer();

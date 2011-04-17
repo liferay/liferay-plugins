@@ -76,7 +76,7 @@ PortletURL portletURL = renderResponse.createRenderURL();
 			<aui:form action="<%= searchURL %>" method="get" name="searchFm">
 				<liferay-portlet:renderURLParams varImpl="searchURL" />
 
-				<span class="aui-search-bar">
+				<span class="yui3-aui-search-bar">
 					<aui:input inlineField="<%= true %>" id="keywords1" label="" name="keywords" size="30" title="search-users" type="text" />
 
 					<aui:button type="submit" value="search" />
