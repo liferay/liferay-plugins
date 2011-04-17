@@ -196,9 +196,9 @@ body {
 	text-decoration: underline;
 }
 
-.portlet li.aui-selected span.aui-tab-content span a,
-.portlet li.aui-selected span.aui-tab-content span a:visited,
-.portlet li.aui-selected span.aui-tab-content span a:hover {
+.portlet li.yui3-aui-selected span.yui3-aui-tab-content span a,
+.portlet li.yui3-aui-selected span.yui3-aui-tab-content span a:visited,
+.portlet li.yui3-aui-selected span.yui3-aui-tab-content span a:hover {
 	color: #EEE;
 	text-shadow: none;
 }

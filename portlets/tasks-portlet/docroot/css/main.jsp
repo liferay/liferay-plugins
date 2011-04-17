@@ -318,7 +318,7 @@
 	border-right: none;
 }
 
-.tasks-dialog .aui-layout {
+.tasks-dialog .yui3-aui-layout {
 	margin-bottom: 1em;
 }
 

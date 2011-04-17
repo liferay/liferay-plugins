@@ -27,7 +27,7 @@
 	margin-top: 0.2em;
 }
 
-.breadcrumbs .last a, .aui-tree-node-selected a {
+.breadcrumbs .last a, .yui3-aui-tree-node-selected a {
 	color: #555;
 }
 
@@ -92,7 +92,7 @@
 
 /* ---------- Extras ---------- */
 
-.aui-tab-active:after {
+.yui3-aui-tab-active:after {
 	border: 10px solid;
 	border-bottom-width: 0;
 	border-color: #333 transparent transparent;

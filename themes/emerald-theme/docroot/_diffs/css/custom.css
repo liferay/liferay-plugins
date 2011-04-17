@@ -173,8 +173,8 @@ a:hover {
 	background: #DFD7BC url(../images/custom/portlet-content-bg.png) 0 0 repeat-x;
 }
 
-.aui-tab-active .aui-tab-label a,
-.aui-tab-active .aui-tab-label a:visited {
+.yui3-aui-tab-active .yui3-aui-tab-label a,
+.yui3-aui-tab-active .yui3-aui-tab-label a:visited {
 	color: #FFF;
 	text-shadow: none;
 }

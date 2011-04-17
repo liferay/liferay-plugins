@@ -14,15 +14,15 @@
 	width: 6em;
 }
 
-.portlet-configuration .lfr-form-row .aui-field {
+.portlet-configuration .lfr-form-row .yui3-aui-field {
 	margin-left: 2em;
 }
 
-.portlet-configuration .lfr-form-row .aui-field.optional-control {
+.portlet-configuration .lfr-form-row .yui3-aui-field.optional-control {
 	margin: 1.3em;
 }
 
-.portlet-configuration .lfr-form-row .aui-field.options, .portlet-configuration .lfr-form-row .validation .aui-field {
+.portlet-configuration .lfr-form-row .yui3-aui-field.options, .portlet-configuration .lfr-form-row .validation .yui3-aui-field {
 	clear: both;
 	display: block;
 }
@@ -42,7 +42,7 @@
 	clear: left;
 }
 
-.portlet-configuration .label-name .aui-field-wrapper-content {
+.portlet-configuration .label-name .yui3-aui-field-wrapper-content {
 	margin-top: 0;
 }
 

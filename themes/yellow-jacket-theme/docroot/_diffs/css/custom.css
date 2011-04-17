@@ -257,7 +257,7 @@ content: "";
 .portlet-body,
 .portlet p,
 .portlet-body h2,
-.aui-tab-label a {
+.yui3-aui-tab-label a {
 	color: #FFF;
 }
 
@@ -271,7 +271,7 @@ content: "";
 	color: #000;
 }
 
-.calendar-container.aui-tabview-list {
+.calendar-container.yui3-aui-tabview-list {
 	background: #48494B;
 }
 
