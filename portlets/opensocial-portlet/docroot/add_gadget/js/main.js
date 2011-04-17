@@ -5,7 +5,7 @@
 
 	var OpenSocial = Liferay.namespace('OpenSocial');
 
-	var TPL_LIST_ITEM_GADGET = '<li class="aui-menu-item"><a href="javascript:;"><span><img alt="{0}" class="icon" src="/opensocial-portlet/icon.png" title="{0}"></span> {0}</a></li>';
+	var TPL_LIST_ITEM_GADGET = '<li class="yui3-aui-menu-item"><a href="javascript:;"><span><img alt="{0}" class="icon" src="/opensocial-portlet/icon.png" title="{0}"></span> {0}</a></li>';
 
 	function initDockbar() {
 		if (!Dockbar) {

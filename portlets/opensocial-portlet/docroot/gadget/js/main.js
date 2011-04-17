@@ -5,7 +5,7 @@ AUI().add(
 
 		var containsString = Lang.String.contains;
 
-		var getClassName = A.ClassNameManager.getClassName;
+		var getClassName = A.getClassName;
 
 		var CSS_CLASS_GADGET = getClassName('gadget');
 
