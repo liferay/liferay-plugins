@@ -4,21 +4,21 @@
 <liferay-portlet-app>
 	<portlet>
 		<portlet-name>1</portlet-name>
+		<scheduler-entry>
+			<scheduler-event-listener-class>com.liferay.wsrp.admin.messaging.WSRPConsumerPortletCheckEventMessageListener</scheduler-event-listener-class>
+			<trigger>
+				<simple>
+					<property-key>failed.consumers.check.interval</property-key>
+					<time-unit>second</time-unit>
+				</simple>
+			</trigger>
+		</scheduler-entry>
 		<portlet-data-handler-class>com.liferay.wsrp.admin.lar.AdminPortletDataHandlerImpl</portlet-data-handler-class>
 		<control-panel-entry-category>portal</control-panel-entry-category>
 		<css-class-wrapper>wsrp-portlet-admin</css-class-wrapper>
 	</portlet>
 	<portlet>
 		<portlet-name>2</portlet-name>
-		<scheduler-entry>
-			<scheduler-event-listener-class>com.liferay.wsrp.messaging.WSRPConsumerCheckEventMessageListener</scheduler-event-listener-class>
-			<trigger>
-				<simple>
-					<property-key>failed.consumer.check.interval</property-key>
-					<time-unit>second</time-unit>
-				</simple>
-			</trigger>
-		</scheduler-entry>
 		<friendly-url-mapper-class>com.liferay.wsrp.consumer.portlet.ConsumerFriendlyURLMapper</friendly-url-mapper-class>
 	</portlet>
 	<role-mapper>

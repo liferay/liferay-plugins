@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.wsrp.messaging;
+package com.liferay.wsrp.admin.messaging;
 
 import com.liferay.portal.kernel.messaging.BaseMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
@@ -21,7 +21,8 @@ import com.liferay.wsrp.service.WSRPConsumerPortletLocalServiceUtil;
 /**
  * @author Mika Koivisto
  */
-public class WSRPConsumerCheckEventMessageListener extends BaseMessageListener {
+public class WSRPConsumerPortletCheckEventMessageListener
+	extends BaseMessageListener {
 
 	protected void doReceive(Message message) throws Exception {
 		WSRPConsumerPortletLocalServiceUtil.initFailedWSRPConsumerPortlets();
