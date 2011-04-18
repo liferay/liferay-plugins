@@ -291,7 +291,9 @@ public class WSRPConsumerPortletLocalServiceImpl
 				companyId, wsrpConsumerId, wsrpConsumerPortletUuid, name,
 				portletHandle, userToken);
 
-			initializationFailed = !portlet.isActive();
+			if (!portlet.isActive()) {
+				initializationFailed = true;
+			}
 
 			PortletLocalServiceUtil.deployRemotePortlet(
 				portlet, _WSRP_CATEGORY);
@@ -488,27 +490,8 @@ public class WSRPConsumerPortletLocalServiceImpl
 
 		Portlet portlet = _portletsPool.get(wsrpConsumerPortletUuid);
 
-		if (portlet != null && portlet.isActive()) {
+		if ((portlet != null) && portlet.isActive()) {
 			return portlet;
-		}
-
-		WSRPConsumer wsrpConsumer = wsrpConsumerPersistence.findByPrimaryKey(
-			wsrpConsumerId);
-
-		PortletDescription portletDescription = null;
-
-		try {
-			WSRPConsumerManager wsrpConsumerManager =
-				WSRPConsumerManagerFactory.getWSRPConsumerManager(
-					wsrpConsumer, userToken);
-	
-			portletDescription =
-				wsrpConsumerManager.getPortletDescription(portletHandle);
-		}
-		catch (Exception e) {
-			_log.warn(
-				"Unable to connect to WSRP producer for portlet " +
-					wsrpConsumerPortletUuid, e);
 		}
 
 		String portletName =
@@ -520,7 +503,6 @@ public class WSRPConsumerPortletLocalServiceImpl
 		portlet = PortletLocalServiceUtil.clonePortlet(
 			companyId, _CONSUMER_PORTLET_ID);
 
-		portlet.setActive(true);
 		portlet.setPortletId(portletId);
 		portlet.setTimestamp(System.currentTimeMillis());
 
@@ -537,14 +519,37 @@ public class WSRPConsumerPortletLocalServiceImpl
 		initParams.put(
 			InvokerPortlet.INIT_INVOKER_PORTLET_NAME, _CONSUMER_PORTLET_NAME);
 
+		WSRPConsumer wsrpConsumer = wsrpConsumerPersistence.findByPrimaryKey(
+			wsrpConsumerId);
+
+		PortletDescription portletDescription = null;
+
+		try {
+			WSRPConsumerManager wsrpConsumerManager =
+				WSRPConsumerManagerFactory.getWSRPConsumerManager(
+					wsrpConsumer, userToken);
+
+			portletDescription = wsrpConsumerManager.getPortletDescription(
+				portletHandle);
+		}
+		catch (Exception e) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(
+					"Unable to connect to WSRP producer for portlet " +
+						wsrpConsumerPortletUuid,
+					e);
+			}
+		}
+
 		if (portletDescription != null) {
 			addPortletExtraInfo(portlet, portletApp, portletDescription, name);
+
+			portlet.setActive(true);
 		}
 		else {
 			PortletInfo portletInfo = new PortletInfo(
 				name, name, StringPool.BLANK, StringPool.BLANK);
 
-			portlet.setActive(false);
 			portlet.setPortletInfo(portletInfo);
 		}
 
