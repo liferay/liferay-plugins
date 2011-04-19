@@ -418,10 +418,6 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 				kbArticleElement);
 		}
 
-		kbArticlePKs.put(
-			kbArticle.getResourcePrimKey(),
-			importedKBArticle.getResourcePrimKey());
-
 		portletDataContext.importClassedModel(
 			kbArticle, importedKBArticle, _NAMESPACE);
 	}
@@ -643,10 +639,6 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			KBTemplate kbTemplate)
 		throws Exception {
 
-		Map<Long, Long> kbTemplatePKs =
-			(Map<Long, Long>)portletDataContext.getNewPrimaryKeysMap(
-				KBTemplate.class);
-
 		long userId = portletDataContext.getUserId(kbTemplate.getUserUuid());
 
 		ServiceContext serviceContext = portletDataContext.createServiceContext(
@@ -681,9 +673,6 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 				kbTemplate.getEngineType(), kbTemplate.isCacheable(),
 				serviceContext);
 		}
-
-		kbTemplatePKs.put(
-			kbTemplate.getKbTemplateId(), importedKBTemplate.getKbTemplateId());
 
 		portletDataContext.importClassedModel(
 			kbTemplate, importedKBTemplate, _NAMESPACE);
