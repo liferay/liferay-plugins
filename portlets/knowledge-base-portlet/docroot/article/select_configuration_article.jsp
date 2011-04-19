@@ -49,61 +49,60 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 		modelVar="kbArticle"
 	>
 		<liferay-portlet:renderURL var="rowURL">
-			<portlet:param name="jspPage" value="/article/view_article.jsp" />
+			<portlet:param name="jspPage" value="/article/print_article.jsp" />
 			<portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
 		</liferay-portlet:renderURL>
 
 		<%
-		rowURL = "var kbArticleWindow = window.open('" + rowURL + "', 'kbArticle', 'directories=no,height=640,location=no,menubar=no,resizable=yes,scrollbars=yes,status=no,toolbar=no,width=680'); void(''); kbArticleWindow.focus();";
+		rowURL = "javascript:var printKBArticleWindow = window.open('" + rowURL + "', 'printKBArticle', 'directories=no,height=640,location=no,menubar=no,resizable=yes,scrollbars=yes,status=no,toolbar=no,width=680'); void(''); printKBArticleWindow.focus();";
 		%>
 
 		<liferay-ui:search-container-column-text
+			href="<%= rowURL %>"
 			orderable="<%= true %>"
-			name="title"
-		>
-			<aui:a href="javascript:;" onClick="<%= rowURL %>"><%= kbArticle.getTitle() %></aui:a>
-		</liferay-ui:search-container-column-text>
+			property="title"
+		/>
 
 		<liferay-ui:search-container-column-text
+			href="<%= rowURL %>"
 			name="author"
 			orderable="<%= true %>"
 			orderableProperty="user-name"
-		>
-			<aui:a href="javascript:;" onClick="<%= rowURL %>"><%= kbArticle.getUserName() %></aui:a>
-		</liferay-ui:search-container-column-text>
+			property="userName"
+		/>
 
 		<liferay-ui:search-container-column-text
 			cssClass="kb-column-no-wrap"
+			href="<%= rowURL %>"
 			name="create-date"
 			orderable="<%= true %>"
-		>
-			<aui:a href="javascript:;" onClick="<%= rowURL %>"><%= dateFormatDate.format(kbArticle.getCreateDate()) + "<br />" + dateFormatTime.format(kbArticle.getCreateDate()) %></aui:a>
-		</liferay-ui:search-container-column-text>
+			value='<%= dateFormatDate.format(kbArticle.getCreateDate()) + "<br />" + dateFormatTime.format(kbArticle.getCreateDate()) %>'
+		/>
 
 		<liferay-ui:search-container-column-text
 			cssClass="kb-column-no-wrap"
+			href="<%= rowURL %>"
 			name="modified-date"
 			orderable="<%= true %>"
-		>
-			<aui:a href="javascript:;" onClick="<%= rowURL %>"><%= dateFormatDate.format(kbArticle.getModifiedDate()) + "<br />" + dateFormatTime.format(kbArticle.getModifiedDate()) %></aui:a>
-		</liferay-ui:search-container-column-text>
+			value='<%= dateFormatDate.format(kbArticle.getModifiedDate()) + "<br />" + dateFormatTime.format(kbArticle.getModifiedDate()) %>'
+		/>
 
 		<liferay-ui:search-container-column-text
 			cssClass="kb-column-no-wrap"
+			href="<%= rowURL %>"
 			name="status"
 			orderable="<%= true %>"
-		>
-			<aui:a href="javascript:;" onClick="<%= rowURL %>"><%= kbArticle.getStatus() + " (" + LanguageUtil.get(pageContext, WorkflowConstants.toLabel(kbArticle.getStatus())) + ")" %></aui:a>
-		</liferay-ui:search-container-column-text>
+			value='<%= kbArticle.getStatus() + " (" + LanguageUtil.get(pageContext, WorkflowConstants.toLabel(kbArticle.getStatus())) + ")" %>'
+		/>
 
 		<liferay-ui:search-container-column-text
 			cssClass="kb-column-no-wrap"
+			href="<%= rowURL %>"
 			name="views"
 			orderable="<%= true %>"
 			orderableProperty="view-count"
-		>
-			<aui:a href="javascript:;" onClick="<%= rowURL %>"><%= kbArticle.getViewCount() %></aui:a>
-		</liferay-ui:search-container-column-text>
+			property="viewCount"
+		/>
 
 		<liferay-ui:search-container-column-text
 			align="right"

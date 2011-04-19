@@ -17,13 +17,24 @@
 <%@ include file="/admin/init.jsp" %>
 
 <%
-KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_ARTICLE);
+KBTemplate kbTemplate = (KBTemplate)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_TEMPLATE);
 %>
 
-<c:if test="<%= enableKBArticleRatings %>">
-	<liferay-ui:ratings
-		className="<%= KBArticle.class.getName() %>"
-		classPK="<%= kbArticle.getResourcePrimKey() %>"
-		numberOfStars="10"
-	/>
-</c:if>
+<div class="float-container kb-entity-header">
+	<div class="kb-title">
+		<%= kbTemplate.getTitle() %>
+	</div>
+
+	<div class="kb-tools">
+		<liferay-ui:icon
+			image="print"
+			label="<%= true %>"
+			method="get"
+			url="javascript:print();"
+		/>
+	</div>
+</div>
+
+<div class="kb-entity-body">
+	<pre><%= kbTemplate.getContent() %></pre>
+</div>

@@ -19,7 +19,7 @@
 <%
 int status = (Integer)request.getAttribute(WebKeys.KNOWLEDGE_BASE_STATUS);
 
-KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
+KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_ARTICLE);
 
 List<KBArticle> siblingKBArticles = KBArticleServiceUtil.getSiblingKBArticles(scopeGroupId, kbArticle.getResourcePrimKey(), status, QueryUtil.ALL_POS, QueryUtil.ALL_POS, new KBArticlePriorityComparator(true));
 %>

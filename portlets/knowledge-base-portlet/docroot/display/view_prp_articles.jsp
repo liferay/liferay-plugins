@@ -48,10 +48,6 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 
 	</liferay-ui:search-container-results>
 
-	<%
-	boolean administrator = DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADMINISTRATOR);
-	%>
-
 	<liferay-ui:search-container-row
 		className="com.liferay.portlet.asset.model.AssetEntry"
 		keyProperty="entryId"
@@ -94,7 +90,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 			value='<%= dateFormatDate.format(assetEntry.getModifiedDate()) + "<br />" + dateFormatTime.format(assetEntry.getModifiedDate()) %>'
 		/>
 
-		<c:if test="<%= administrator %>">
+		<c:if test="<%= DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADMINISTRATOR) %>">
 			<liferay-ui:search-container-column-text
 				cssClass="kb-column-no-wrap"
 				href="<%= rowURL %>"

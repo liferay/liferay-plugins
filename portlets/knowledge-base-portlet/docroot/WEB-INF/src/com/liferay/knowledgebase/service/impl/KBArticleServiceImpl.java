@@ -530,7 +530,7 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 			serviceContext);
 	}
 
-	public void updateKBArticlePriorities(
+	public void updateKBArticlesPriorities(
 			long groupId, Map<Long, Double> resourcePrimKeyToPriorityMap)
 		throws PortalException, SystemException {
 
@@ -538,7 +538,7 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 			getPermissionChecker(), groupId,
 			ActionKeys.UPDATE_KB_ARTICLES_PRIORITIES);
 
-		kbArticleLocalService.updateKBArticlePriorities(
+		kbArticleLocalService.updateKBArticlesPriorities(
 			resourcePrimKeyToPriorityMap);
 	}
 

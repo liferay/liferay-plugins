@@ -114,7 +114,7 @@ public class KBArticleAssetRenderer extends BaseAssetRenderer {
 
 		if (template.equals(TEMPLATE_FULL_CONTENT)) {
 			renderRequest.setAttribute(
-				WebKeys.KNOWLEDGE_BASE_ARTICLE, _kbArticle);
+				WebKeys.KNOWLEDGE_BASE_KB_ARTICLE, _kbArticle);
 
 			return "/admin/asset/" + template + ".jsp";
 		}

@@ -17,6 +17,7 @@ package com.liferay.knowledgebase.admin.util;
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.model.KBArticleConstants;
 import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
+import com.liferay.knowledgebase.util.PortletPropsValues;
 import com.liferay.portal.kernel.bean.BeanPropertiesUtil;
 import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
 import com.liferay.portal.kernel.util.DiffHtmlUtil;
@@ -25,7 +26,6 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.util.ContentUtil;
-import com.liferay.util.portlet.PortletProps;
 
 import java.util.Map;
 
@@ -45,12 +45,12 @@ public class AdminUtil {
 
 	public static String getEmailFromAddress(PortletPreferences preferences) {
 		return preferences.getValue(
-			"emailFromAddress", PortletProps.get("admin.email.from.address"));
+			"emailFromAddress", PortletPropsValues.ADMIN_EMAIL_FROM_ADDRESS);
 	}
 
 	public static String getEmailFromName(PortletPreferences preferences) {
 		return preferences.getValue(
-			"emailFromName", PortletProps.get("admin.email.from.name"));
+			"emailFromName", PortletPropsValues.ADMIN_EMAIL_FROM_NAME);
 	}
 
 	public static String getEmailKBArticleAddedBody(
@@ -64,7 +64,7 @@ public class AdminUtil {
 		}
 
 		return ContentUtil.get(
-			PortletProps.get("admin.email.kb.article.added.body"));
+			PortletPropsValues.ADMIN_EMAIL_KB_ARTICLE_ADDED_BODY);
 	}
 
 	public static boolean getEmailKBArticleAddedEnabled(
@@ -77,8 +77,7 @@ public class AdminUtil {
 			return GetterUtil.getBoolean(emailKBArticleAddedEnabled);
 		}
 
-		return GetterUtil.getBoolean(
-			PortletProps.get("admin.email.kb.article.added.enabled"));
+		return PortletPropsValues.ADMIN_EMAIL_KB_ARTICLE_ADDED_ENABLED;
 	}
 
 	public static String getEmailKBArticleAddedSubject(
@@ -92,7 +91,7 @@ public class AdminUtil {
 		}
 
 		return ContentUtil.get(
-			PortletProps.get("admin.email.kb.article.added.subject"));
+			PortletPropsValues.ADMIN_EMAIL_KB_ARTICLE_ADDED_SUBJECT);
 	}
 
 	public static String getEmailKBArticleUpdatedBody(
@@ -106,7 +105,7 @@ public class AdminUtil {
 		}
 
 		return ContentUtil.get(
-			PortletProps.get("admin.email.kb.article.updated.body"));
+			PortletPropsValues.ADMIN_EMAIL_KB_ARTICLE_UPDATED_BODY);
 	}
 
 	public static boolean getEmailKBArticleUpdatedEnabled(
@@ -119,8 +118,7 @@ public class AdminUtil {
 			return GetterUtil.getBoolean(emailKBArticleUpdatedEnabled);
 		}
 
-		return GetterUtil.getBoolean(
-			PortletProps.get("admin.email.kb.article.updated.enabled"));
+		return PortletPropsValues.ADMIN_EMAIL_KB_ARTICLE_UPDATED_ENABLED;
 	}
 
 	public static String getEmailKBArticleUpdatedSubject(
@@ -134,7 +132,7 @@ public class AdminUtil {
 		}
 
 		return ContentUtil.get(
-			PortletProps.get("admin.email.kb.article.updated.subject"));
+			PortletPropsValues.ADMIN_EMAIL_KB_ARTICLE_UPDATED_SUBJECT);
 	}
 
 	public static String getKBArticleDiff(

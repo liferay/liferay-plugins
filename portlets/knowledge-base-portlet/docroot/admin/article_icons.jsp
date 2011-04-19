@@ -24,15 +24,15 @@ KBArticle kbArticle = (KBArticle)request.getAttribute("article_icons.jsp-kb_arti
 long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
 %>
 
-<c:if test="<%= (AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_KB_ARTICLE) && Validator.equals(portletDisplay.getRootPortletId(), PortletKeys.KNOWLEDGE_BASE_ADMIN)) || (DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_KB_ARTICLE) && DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADMINISTRATOR) && Validator.equals(portletDisplay.getRootPortletId(), PortletKeys.KNOWLEDGE_BASE_DISPLAY)) || KBArticlePermission.contains(permissionChecker, kbArticle, ActionKeys.UPDATE) || (kbArticle.isRoot() && KBArticlePermission.contains(permissionChecker, kbArticle, ActionKeys.PERMISSIONS)) || KBArticlePermission.contains(permissionChecker, kbArticle, ActionKeys.MOVE_KB_ARTICLE) || KBArticlePermission.contains(permissionChecker, kbArticle, ActionKeys.DELETE) %>">
+<c:if test="<%= (AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_KB_ARTICLE) && rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN)) || (DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_KB_ARTICLE) && DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADMINISTRATOR) && rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_DISPLAY)) || ((!rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_DISPLAY) || DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADMINISTRATOR)) && KBArticlePermission.contains(permissionChecker, kbArticle, ActionKeys.UPDATE)) || (kbArticle.isRoot() && KBArticlePermission.contains(permissionChecker, kbArticle, ActionKeys.PERMISSIONS)) || KBArticlePermission.contains(permissionChecker, kbArticle, ActionKeys.MOVE_KB_ARTICLE) || KBArticlePermission.contains(permissionChecker, kbArticle, ActionKeys.DELETE) %>">
 	<div class="kb-article-icons">
 		<table class="lfr-table">
 		<tr>
-			<c:if test="<%= (AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_KB_ARTICLE) && Validator.equals(portletDisplay.getRootPortletId(), PortletKeys.KNOWLEDGE_BASE_ADMIN)) || (DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_KB_ARTICLE) && DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADMINISTRATOR) && Validator.equals(portletDisplay.getRootPortletId(), PortletKeys.KNOWLEDGE_BASE_DISPLAY)) %>">
+			<c:if test="<%= (AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_KB_ARTICLE) && rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN)) || (DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_KB_ARTICLE) && DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADMINISTRATOR) && rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_DISPLAY)) %>">
 				<td>
 					<liferay-portlet:renderURL var="addKBArticleURL">
 						<portlet:param name="jspPage" value='<%= jspPath + "edit_article.jsp" %>' />
-						<portlet:param name="redirect" value="<%= currentURL %>" />
+						<portlet:param name="redirect" value="<%= redirect %>" />
 						<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
 					</liferay-portlet:renderURL>
 
@@ -46,11 +46,11 @@ long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
 				</td>
 			</c:if>
 
-			<c:if test="<%= KBArticlePermission.contains(permissionChecker, kbArticle, ActionKeys.UPDATE) %>">
+			<c:if test="<%= (!rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_DISPLAY) || DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADMINISTRATOR)) && KBArticlePermission.contains(permissionChecker, kbArticle, ActionKeys.UPDATE) %>">
 				<td>
 					<liferay-portlet:renderURL var="editURL">
 						<portlet:param name="jspPage" value='<%= jspPath + "edit_article.jsp" %>' />
-						<portlet:param name="redirect" value="<%= currentURL %>" />
+						<portlet:param name="redirect" value="<%= redirect %>" />
 						<portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
 						<portlet:param name="status" value="<%= String.valueOf(WorkflowConstants.STATUS_ANY) %>" />
 					</liferay-portlet:renderURL>
@@ -86,7 +86,7 @@ long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
 				<td>
 					<liferay-portlet:renderURL var="moveKBArticleURL">
 						<portlet:param name="jspPage" value='<%= jspPath + "move_article.jsp" %>' />
-						<portlet:param name="redirect" value="<%= currentURL %>" />
+						<portlet:param name="redirect" value="<%= redirect %>" />
 						<portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
 						<portlet:param name="status" value="<%= String.valueOf(status) %>" />
 					</liferay-portlet:renderURL>
@@ -104,7 +104,7 @@ long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
 			<c:if test="<%= KBArticlePermission.contains(permissionChecker, kbArticle, ActionKeys.DELETE) %>">
 				<td>
 					<liferay-portlet:renderURL var="homeURL">
-						<portlet:param name="jspPage" value='<%= jspPath + "view-jsp" %>' />
+						<portlet:param name="jspPage" value='<%= jspPath + "view.jsp" %>' />
 					</liferay-portlet:renderURL>
 
 					<liferay-portlet:actionURL name="deleteKBArticle" var="deleteURL">
@@ -124,7 +124,7 @@ long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
 			<td>
 				<aui:model-context bean="<%= kbArticle %>" model="<%= KBArticle.class %>" />
 
-				<aui:workflow-status status="<%= kbArticle.getStatus() %>" version="<%= String.valueOf(kbArticle.getVersion()) %>" />
+				<aui:workflow-status status="<%= kbArticle.getStatus() %>" />
 			</td>
 		</tr>
 		</table>

@@ -147,7 +147,7 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 					<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_KB_ARTICLE) %>">
 						<liferay-portlet:renderURL var="addKBArticleURL">
 							<portlet:param name="jspPage" value='<%= jspPath + "edit_article.jsp" %>' />
-							<portlet:param name="redirect" value="<%= currentURL %>" />
+							<portlet:param name="redirect" value="<%= redirect %>" />
 						</liferay-portlet:renderURL>
 
 						<aui:button onClick="<%= addKBArticleURL %>" value="add-article" />
@@ -169,7 +169,7 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 							<c:choose>
 								<c:when test="<%= SubscriptionLocalServiceUtil.isSubscribed(user.getCompanyId(), user.getUserId(), KBArticle.class.getName(), scopeGroupId) %>">
 									<liferay-portlet:actionURL name="unsubscribeGroupKBArticles" var="unsubscribeGroupKBArticlesURL">
-										<portlet:param name="redirect" value="<%= currentURL %>" />
+										<portlet:param name="redirect" value="<%= redirect %>" />
 									</liferay-portlet:actionURL>
 
 									<liferay-ui:icon
@@ -180,7 +180,7 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 								</c:when>
 								<c:otherwise>
 									<liferay-portlet:actionURL name="subscribeGroupKBArticles" var="subscribeGroupKBArticlesURL">
-										<portlet:param name="redirect" value="<%= currentURL %>" />
+										<portlet:param name="redirect" value="<%= redirect %>" />
 									</liferay-portlet:actionURL>
 
 									<liferay-ui:icon
@@ -197,7 +197,7 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 				<div class="separator"><!-- --></div>
 			</c:if>
 
-			<c:if test="<%= parentResourcePrimKey != KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY %>">
+			<c:if test="<%= !searchTerms.hasSearchTerms() && (parentResourcePrimKey != KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) %>">
 
 				<%
 				searchContainer.setEmptyResultsMessage(null);
@@ -221,7 +221,7 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 
 					<c:choose>
 						<c:when test="<%= total > 0 %>">
-							<%= LanguageUtil.format(pageContext, "showing-child-articles-for-x", sb.toString(), false) %>
+							<%= LanguageUtil.format(pageContext, "child-articles-for-x", sb.toString(), false) %>
 						</c:when>
 						<c:otherwise>
 							<%= LanguageUtil.format(pageContext, "there-are-no-child-articles-for-x", sb.toString(), false) %>
@@ -237,7 +237,7 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 					</c:if>
 
 					<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.UPDATE_KB_ARTICLES_PRIORITIES) %>">
-						<aui:button onClick='<%= renderResponse.getNamespace() + "updateKBArticlePriorities();" %>' value="save" />
+						<aui:button onClick='<%= renderResponse.getNamespace() + "updateKBArticlesPriorities();" %>' value="save" />
 					</c:if>
 				</aui:button-row>
 			</c:if>
@@ -248,9 +248,9 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 </aui:form>
 
 <aui:script>
-	function <portlet:namespace />updateKBArticlePriorities() {
+	function <portlet:namespace />updateKBArticlesPriorities() {
 		document.<portlet:namespace />fm.method = "post";
-		submitForm(document.<portlet:namespace />fm, "<liferay-portlet:actionURL name="updateKBArticlePriorities"><portlet:param name="jspPage" value="/admin/view.jsp" /><portlet:param name="redirect" value="<%= currentURL %>" /></liferay-portlet:actionURL>");
+		submitForm(document.<portlet:namespace />fm, "<liferay-portlet:actionURL name="updateKBArticlesPriorities"><portlet:param name="jspPage" value="/admin/view.jsp" /><portlet:param name="redirect" value="<%= redirect %>" /></liferay-portlet:actionURL>");
 	}
 
 	Liferay.provide(
@@ -260,7 +260,7 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 			if (confirm('<%= UnicodeLanguageUtil.get(pageContext, "are-you-sure-you-want-to-delete-the-selected-articles") %>')) {
 				document.<portlet:namespace />fm.method = "post";
 				document.<portlet:namespace />fm.<portlet:namespace />resourcePrimKeys.value = Liferay.Util.listCheckedExcept(document.<portlet:namespace />fm, "<portlet:namespace />allRowIds");
-				submitForm(document.<portlet:namespace />fm, "<liferay-portlet:actionURL name="deleteKBArticles"><portlet:param name="jspPage" value="/admin/view.jsp" /><portlet:param name="redirect" value="<%= currentURL %>" /></liferay-portlet:actionURL>");
+				submitForm(document.<portlet:namespace />fm, "<liferay-portlet:actionURL name="deleteKBArticles"><portlet:param name="jspPage" value="/admin/view.jsp" /><portlet:param name="redirect" value="<%= redirect %>" /></liferay-portlet:actionURL>");
 			}
 		},
 		['liferay-util-list-fields']

@@ -33,6 +33,8 @@ import com.liferay.knowledgebase.model.KBTemplate;
 import com.liferay.knowledgebase.service.KBArticleServiceUtil;
 import com.liferay.knowledgebase.service.KBCommentLocalServiceUtil;
 import com.liferay.knowledgebase.service.KBTemplateServiceUtil;
+import com.liferay.knowledgebase.service.permission.KBArticlePermission;
+import com.liferay.knowledgebase.util.ActionKeys;
 import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.knowledgebase.util.WebKeys;
 import com.liferay.portal.NoSuchSubscriptionException;
@@ -41,6 +43,7 @@ import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.FileUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -49,6 +52,7 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.security.auth.PrincipalException;
+import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.theme.ThemeDisplay;
@@ -168,8 +172,7 @@ public class DisplayPortlet extends MVCPortlet {
 		throws PortletException, IOException {
 
 		try {
-			int status = ParamUtil.getInteger(
-				renderRequest, "status", WorkflowConstants.STATUS_APPROVED);
+			int status = getStatus(renderRequest);
 
 			renderRequest.setAttribute(WebKeys.KNOWLEDGE_BASE_STATUS, status);
 
@@ -184,7 +187,7 @@ public class DisplayPortlet extends MVCPortlet {
 			}
 
 			renderRequest.setAttribute(
-				WebKeys.KNOWLEDGE_BASE_ARTICLE, kbArticle);
+				WebKeys.KNOWLEDGE_BASE_KB_ARTICLE, kbArticle);
 
 			KBTemplate kbTemplate = null;
 
@@ -196,7 +199,7 @@ public class DisplayPortlet extends MVCPortlet {
 			}
 
 			renderRequest.setAttribute(
-				WebKeys.KNOWLEDGE_BASE_TEMPLATE, kbTemplate);
+				WebKeys.KNOWLEDGE_BASE_KB_TEMPLATE, kbTemplate);
 		}
 		catch (Exception e) {
 			if (e instanceof NoSuchArticleException ||
@@ -543,6 +546,39 @@ public class DisplayPortlet extends MVCPortlet {
 		else {
 			super.doDispatch(renderRequest, renderResponse);
 		}
+	}
+
+	protected int getStatus(RenderRequest renderRequest) throws Exception {
+		ThemeDisplay themeDisplay = (ThemeDisplay)renderRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		String value = renderRequest.getParameter("status");
+
+		if (Validator.isNotNull(value)) {
+			return GetterUtil.getInteger(value);
+		}
+
+		if (!themeDisplay.isSignedIn()) {
+			return WorkflowConstants.STATUS_APPROVED;
+		}
+
+		long resourcePrimKey = ParamUtil.getLong(
+			renderRequest, "resourcePrimKey");
+
+		if (resourcePrimKey == 0) {
+			return WorkflowConstants.STATUS_APPROVED;
+		}
+
+		PermissionChecker permissionChecker =
+			themeDisplay.getPermissionChecker();
+
+		if (KBArticlePermission.contains(
+				permissionChecker, resourcePrimKey, ActionKeys.UPDATE)) {
+
+			return WorkflowConstants.STATUS_ANY;
+		}
+
+		return WorkflowConstants.STATUS_APPROVED;
 	}
 
 	protected boolean isSessionErrorException(Throwable cause) {

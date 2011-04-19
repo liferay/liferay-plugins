@@ -30,10 +30,6 @@
 		total="<%= KBArticleServiceUtil.getSiblingKBArticlesCount(scopeGroupId, KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY, WorkflowConstants.STATUS_APPROVED) %>"
 	/>
 
-	<%
-	boolean administrator = DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADMINISTRATOR);
-	%>
-
 	<liferay-ui:search-container-row
 		className="com.liferay.knowledgebase.model.KBArticle"
 		keyProperty="resourcePrimKey"
@@ -82,7 +78,7 @@
 			value='<%= dateFormatDate.format(kbArticle.getModifiedDate()) + "<br />" + dateFormatTime.format(kbArticle.getModifiedDate()) %>'
 		/>
 
-		<c:if test="<%= administrator %>">
+		<c:if test="<%= DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADMINISTRATOR) %>">
 			<liferay-ui:search-container-column-text
 				cssClass="kb-column-no-wrap"
 				href="<%= rowURL %>"
@@ -111,7 +107,7 @@
 		<c:if test="<%= DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_KB_ARTICLE) && DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADMINISTRATOR) %>">
 			<liferay-portlet:renderURL var="addKBArticleURL">
 				<portlet:param name="jspPage" value="/display/edit_article.jsp" />
-				<portlet:param name="redirect" value="<%= currentURL %>" />
+				<portlet:param name="redirect" value="<%= redirect %>" />
 			</liferay-portlet:renderURL>
 
 			<aui:button onClick="<%= addKBArticleURL %>" value="add-article" />
@@ -152,7 +148,7 @@
 						<c:choose>
 							<c:when test="<%= SubscriptionLocalServiceUtil.isSubscribed(user.getCompanyId(), user.getUserId(), KBArticle.class.getName(), scopeGroupId) %>">
 								<liferay-portlet:actionURL name="unsubscribeGroupKBArticles" var="unsubscribeGroupKBArticlesURL">
-									<portlet:param name="redirect" value="<%= currentURL %>" />
+									<portlet:param name="redirect" value="<%= redirect %>" />
 								</liferay-portlet:actionURL>
 
 								<liferay-ui:icon
@@ -163,7 +159,7 @@
 							</c:when>
 							<c:otherwise>
 								<liferay-portlet:actionURL name="subscribeGroupKBArticles" var="subscribeGroupKBArticlesURL">
-									<portlet:param name="redirect" value="<%= currentURL %>" />
+									<portlet:param name="redirect" value="<%= redirect %>" />
 								</liferay-portlet:actionURL>
 
 								<liferay-ui:icon

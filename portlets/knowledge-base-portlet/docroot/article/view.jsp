@@ -17,24 +17,11 @@
 <%@ include file="/article/init.jsp" %>
 
 <%
-KBArticle kbArticle = null;
-
-if (resourcePrimKey > 0) {
-	try {
-		kbArticle = KBArticleServiceUtil.getLatestKBArticle(resourcePrimKey, WorkflowConstants.STATUS_APPROVED);
-	}
-	catch (Exception e) {
-	}
-}
+KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_ARTICLE);
 %>
 
 <c:choose>
 	<c:when test="<%= kbArticle != null %>">
-
-		<%
-		request.setAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE, kbArticle);
-		%>
-
 		<liferay-util:include page="/article/view_article.jsp" servletContext="<%= application %>" />
 	</c:when>
 	<c:otherwise>
@@ -44,14 +31,7 @@ if (resourcePrimKey > 0) {
 		%>
 
 		<div class="portlet-configuration portlet-msg-info">
-			<c:choose>
-				<c:when test="<%= PortletPermissionUtil.contains(permissionChecker, plid, portletDisplay.getId(), ActionKeys.CONFIGURATION) %>">
-					<aui:a href="<%= portletDisplay.getURLConfiguration() %>" label="please-configure-this-portlet-to-make-it-visible-to-all-users" />
-				</c:when>
-				<c:otherwise>
-					<liferay-ui:message key="please-configure-this-portlet-to-make-it-visible-to-all-users" />
-				</c:otherwise>
-			</c:choose>
+			<aui:a href="<%= portletDisplay.getURLConfiguration() %>" label="please-configure-this-portlet-to-make-it-visible-to-all-users" />
 		</div>
 	</c:otherwise>
 </c:choose>

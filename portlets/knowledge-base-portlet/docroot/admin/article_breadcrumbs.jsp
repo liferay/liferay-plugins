@@ -19,7 +19,7 @@
 <%
 int status = (Integer)request.getAttribute(WebKeys.KNOWLEDGE_BASE_STATUS);
 
-KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
+KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_ARTICLE);
 %>
 
 <c:if test="<%= !kbArticle.isRoot() %>">

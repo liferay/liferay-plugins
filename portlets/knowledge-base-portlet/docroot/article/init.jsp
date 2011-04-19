@@ -25,7 +25,7 @@ if (Validator.isNotNull(portletResource)) {
 	preferences = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
 }
 
-long resourcePrimKey = GetterUtil.getInteger(preferences.getValue("resourcePrimKey", null));
+long resourcePrimKey = GetterUtil.getLong(preferences.getValue("resourcePrimKey", null));
 
 boolean enableKBArticleDescription = GetterUtil.getBoolean(preferences.getValue("enableKBArticleDescription", null));
 boolean enableKBArticleAssetCategories = GetterUtil.getBoolean(preferences.getValue("enableKBArticleAssetCategories", null));

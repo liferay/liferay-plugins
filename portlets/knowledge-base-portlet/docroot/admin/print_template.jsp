@@ -16,14 +16,4 @@
 
 <%@ include file="/admin/init.jsp" %>
 
-<%
-KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_ARTICLE);
-%>
-
-<c:if test="<%= enableKBArticleRatings %>">
-	<liferay-ui:ratings
-		className="<%= KBArticle.class.getName() %>"
-		classPK="<%= kbArticle.getResourcePrimKey() %>"
-		numberOfStars="10"
-	/>
-</c:if>
+<liferay-util:include page="/admin/common/print_template.jsp" servletContext="<%= application %>" />

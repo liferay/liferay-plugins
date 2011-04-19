@@ -1,10 +1,10 @@
 /* ---------- Portlet ---------- */
 
-.knowledge-base-portlet-display .top-links-container .article-search {
-	float: right;
-}
-
 .knowledge-base-portlet-display .kb-display-tools {
 	float: right;
 	padding: 5px 5px 0 0;
+}
+
+.knowledge-base-portlet-display .top-links-container .article-search {
+	float: right;
 }

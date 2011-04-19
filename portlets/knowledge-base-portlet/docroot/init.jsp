@@ -55,6 +55,7 @@
 <%@ page import="com.liferay.knowledgebase.util.ActionKeys" %>
 <%@ page import="com.liferay.knowledgebase.util.KnowledgeBaseUtil" %>
 <%@ page import="com.liferay.knowledgebase.util.PortletKeys" %>
+<%@ page import="com.liferay.knowledgebase.util.PortletPropsValues" %>
 <%@ page import="com.liferay.knowledgebase.util.WebKeys" %>
 <%@ page import="com.liferay.knowledgebase.util.comparator.KBArticlePriorityComparator" %>
 <%@ page import="com.liferay.portal.NoSuchSubscriptionException" %>
@@ -100,7 +101,6 @@
 <%@ page import="com.liferay.portal.service.SubscriptionLocalServiceUtil" %>
 <%@ page import="com.liferay.portal.service.WorkflowDefinitionLinkLocalServiceUtil" %>
 <%@ page import="com.liferay.portal.service.permission.GroupPermissionUtil" %>
-<%@ page import="com.liferay.portal.service.permission.PortletPermissionUtil" %>
 <%@ page import="com.liferay.portal.util.PortalUtil" %>
 <%@ page import="com.liferay.portlet.PortletPreferencesFactoryUtil" %>
 <%@ page import="com.liferay.portlet.asset.model.AssetCategory" %>
@@ -134,9 +134,13 @@ WindowState windowState = renderRequest.getWindowState();
 
 String currentURL = PortalUtil.getCurrentURL(request);
 
+String rootPortletId = portletDisplay.getRootPortletId();
+
 String jspPath = portletConfig.getInitParameter("jsp-path");
 
 Format dateFormatDate = FastDateFormatFactoryUtil.getDate(FastDateFormatConstants.LONG, locale, timeZone);
 Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(FastDateFormatConstants.LONG, FastDateFormatConstants.SHORT, locale, timeZone);
 Format dateFormatTime = FastDateFormatFactoryUtil.getTime(locale, timeZone);
+
+String redirect = ParamUtil.getString(request, "redirect", currentURL);
 %>

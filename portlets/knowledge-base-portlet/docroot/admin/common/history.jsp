@@ -19,7 +19,7 @@
 <%
 int status = (Integer)request.getAttribute(WebKeys.KNOWLEDGE_BASE_STATUS);
 
-KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
+KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_ARTICLE);
 
 int sourceVersion = ParamUtil.getInteger(request, "sourceVersion", kbArticle.getVersion() - 1);
 int targetVersion = ParamUtil.getInteger(request, "targetVersion", kbArticle.getVersion());
@@ -70,10 +70,6 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 				%>
 
 			</liferay-ui:search-container-results>
-
-			<%
-			boolean update = KBArticlePermission.contains(permissionChecker, kbArticle, ActionKeys.UPDATE);
-			%>
 
 			<liferay-ui:search-container-row
 				className="com.liferay.knowledgebase.model.KBArticle"
@@ -126,7 +122,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 					value='<%= dateFormatDate.format(curKBArticle.getModifiedDate()) + "<br />" + dateFormatTime.format(curKBArticle.getModifiedDate()) %>'
 				/>
 
-				<c:if test="<%= (status == WorkflowConstants.STATUS_ANY) || update %>">
+				<c:if test="<%= (status == WorkflowConstants.STATUS_ANY) || KBArticlePermission.contains(permissionChecker, kbArticle, ActionKeys.UPDATE) %>">
 					<liferay-ui:search-container-column-text
 						cssClass="kb-column-no-wrap"
 						href="<%= rowURL %>"
@@ -145,19 +141,21 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 					property="viewCount"
 				/>
 
-				<c:if test="<%= update %>">
+				<c:if test="<%= KBArticlePermission.contains(permissionChecker, kbArticle, ActionKeys.UPDATE) %>">
 					<liferay-ui:search-container-column-text
 						align="right"
 					>
 						<liferay-portlet:actionURL name="updateKBArticle" var="revertURL">
 							<portlet:param name="jspPage" value='<%= jspPath + "history.jsp" %>' />
-							<portlet:param name="redirect" value="<%= currentURL %>" />
+							<portlet:param name="redirect" value="<%= redirect %>" />
 							<portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
 							<portlet:param name="status" value="<%= String.valueOf(status) %>" />
 							<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.UPDATE %>" />
+							<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(kbArticle.getParentResourcePrimKey()) %>" />
 							<portlet:param name="title" value="<%= curKBArticle.getTitle() %>" />
 							<portlet:param name="content" value="<%= curKBArticle.getContent() %>" />
 							<portlet:param name="description" value="<%= curKBArticle.getDescription() %>" />
+							<portlet:param name="workflowAction" value="<%= String.valueOf(WorkflowConstants.ACTION_PUBLISH) %>" />
 						</liferay-portlet:actionURL>
 
 						<liferay-ui:icon
@@ -179,7 +177,6 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 					<liferay-portlet:renderURL var="viewKBArticleURL">
 						<portlet:param name="jspPage" value='<%= jspPath + "view_article.jsp" %>' />
 						<portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
-						<portlet:param name="status" value="<%= String.valueOf(status) %>" />
 					</liferay-portlet:renderURL>
 
 					<liferay-ui:icon

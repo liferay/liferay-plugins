@@ -17,7 +17,7 @@
 <%@ include file="/admin/init.jsp" %>
 
 <%
-KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
+KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_ARTICLE);
 
 if (enableKBArticleViewCountIncrement) {
 	KBArticle latestKBArticle = KBArticleLocalServiceUtil.getLatestKBArticle(kbArticle.getResourcePrimKey(), WorkflowConstants.STATUS_ANY);

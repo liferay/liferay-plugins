@@ -17,6 +17,8 @@
 <%@ include file="/display/init.jsp" %>
 
 <%
+String jspPage = ParamUtil.getString(request, "jspPage");
+
 int status = (Integer)request.getAttribute(WebKeys.KNOWLEDGE_BASE_STATUS);
 
 ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_ROW);
@@ -25,10 +27,10 @@ KBArticle kbArticle = (KBArticle)row.getObject();
 %>
 
 <liferay-ui:icon-menu cssClass="kb-article-action">
-	<c:if test="<%= KBArticlePermission.contains(permissionChecker, kbArticle, ActionKeys.UPDATE) %>">
+	<c:if test="<%= DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADMINISTRATOR) && KBArticlePermission.contains(permissionChecker, kbArticle, ActionKeys.UPDATE) %>">
 		<liferay-portlet:renderURL var="editURL">
 			<portlet:param name="jspPage" value="/display/edit_article.jsp" />
-			<portlet:param name="redirect" value="<%= currentURL %>" />
+			<portlet:param name="redirect" value="<%= redirect %>" />
 			<portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
 			<portlet:param name="status" value="<%= String.valueOf(WorkflowConstants.STATUS_ANY) %>" />
 		</liferay-portlet:renderURL>
@@ -75,7 +77,7 @@ KBArticle kbArticle = (KBArticle)row.getObject();
 		<c:choose>
 			<c:when test="<%= SubscriptionLocalServiceUtil.isSubscribed(user.getCompanyId(), user.getUserId(), KBArticle.class.getName(), kbArticle.getResourcePrimKey()) %>">
 				<liferay-portlet:actionURL name="unsubscribeKBArticle" var="unsubscribeKBArticleURL">
-					<portlet:param name="redirect" value="<%= currentURL %>" />
+					<portlet:param name="redirect" value="<%= redirect %>" />
 					<portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
 				</liferay-portlet:actionURL>
 
@@ -86,7 +88,7 @@ KBArticle kbArticle = (KBArticle)row.getObject();
 			</c:when>
 			<c:otherwise>
 				<liferay-portlet:actionURL name="subscribeKBArticle" var="subscribeKBArticleURL">
-					<portlet:param name="redirect" value="<%= currentURL %>" />
+					<portlet:param name="redirect" value="<%= redirect %>" />
 					<portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
 				</liferay-portlet:actionURL>
 
@@ -101,7 +103,7 @@ KBArticle kbArticle = (KBArticle)row.getObject();
 	<c:if test="<%= KBArticlePermission.contains(permissionChecker, kbArticle, ActionKeys.MOVE_KB_ARTICLE) %>">
 		<liferay-portlet:renderURL var="moveKBArticleURL">
 			<portlet:param name="jspPage" value="/display/move_article.jsp" />
-			<portlet:param name="redirect" value="<%= currentURL %>" />
+			<portlet:param name="redirect" value="<%= redirect %>" />
 			<portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
 			<portlet:param name="status" value="<%= String.valueOf(status) %>" />
 		</liferay-portlet:renderURL>
@@ -116,8 +118,10 @@ KBArticle kbArticle = (KBArticle)row.getObject();
 
 	<c:if test="<%= KBArticlePermission.contains(permissionChecker, kbArticle, ActionKeys.DELETE) %>">
 		<liferay-portlet:actionURL name="deleteKBArticle" var="deleteURL">
-			<portlet:param name="redirect" value="<%= currentURL %>" />
+			<portlet:param name="jspPage" value="<%= jspPage %>" />
+			<portlet:param name="redirect" value="<%= redirect %>" />
 			<portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
+			<portlet:param name="status" value="<%= String.valueOf(status) %>" />
 		</liferay-portlet:actionURL>
 
 		<liferay-ui:icon-delete

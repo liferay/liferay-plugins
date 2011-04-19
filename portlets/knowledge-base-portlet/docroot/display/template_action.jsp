@@ -17,6 +17,8 @@
 <%@ include file="/display/init.jsp" %>
 
 <%
+String jspPage = ParamUtil.getString(request, "jspPage");
+
 ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_ROW);
 
 KBTemplate kbTemplate = (KBTemplate)row.getObject();
@@ -26,7 +28,7 @@ KBTemplate kbTemplate = (KBTemplate)row.getObject();
 	<c:if test="<%= KBTemplatePermission.contains(permissionChecker, kbTemplate, ActionKeys.UPDATE) %>">
 		<liferay-portlet:renderURL var="editURL">
 			<portlet:param name="jspPage" value="/display/edit_template.jsp" />
-			<portlet:param name="redirect" value="<%= currentURL %>" />
+			<portlet:param name="redirect" value="<%= redirect %>" />
 			<portlet:param name="kbTemplateId" value="<%= String.valueOf(kbTemplate.getKbTemplateId()) %>" />
 		</liferay-portlet:renderURL>
 
@@ -54,7 +56,8 @@ KBTemplate kbTemplate = (KBTemplate)row.getObject();
 
 	<c:if test="<%= KBTemplatePermission.contains(permissionChecker, kbTemplate, ActionKeys.DELETE) %>">
 		<liferay-portlet:actionURL name="deleteKBTemplate" var="deleteURL">
-			<portlet:param name="redirect" value="<%= currentURL %>" />
+			<portlet:param name="jspPage" value="<%= jspPage %>" />
+			<portlet:param name="redirect" value="<%= redirect %>" />
 			<portlet:param name="kbTemplateId" value="<%= String.valueOf(kbTemplate.getKbTemplateId()) %>" />
 		</liferay-portlet:actionURL>
 

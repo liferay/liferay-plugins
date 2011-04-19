@@ -71,10 +71,6 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 
 	</liferay-ui:search-container-results>
 
-	<%
-	boolean administrator = DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADMINISTRATOR);
-	%>
-
 	<liferay-ui:search-container-row
 		className="com.liferay.portal.kernel.util.Tuple"
 		modelVar="tuple"
@@ -115,7 +111,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 			value='<%= dateFormatDate.format(tuple.getObject(4)) + "<br />" + dateFormatTime.format(tuple.getObject(4)) %>'
 		/>
 
-		<c:if test="<%= administrator %>">
+		<c:if test="<%= DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADMINISTRATOR) %>">
 			<liferay-ui:search-container-column-text
 				cssClass="kb-column-no-wrap"
 				href="<%= rowURL %>"

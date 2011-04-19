@@ -17,9 +17,7 @@
 <%@ include file="/admin/init.jsp" %>
 
 <%
-String redirect = ParamUtil.getString(request, "redirect", currentURL);
-
-KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
+KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_ARTICLE);
 
 long resourcePrimKey = BeanParamUtil.getLong(kbArticle, request, "resourcePrimKey");
 

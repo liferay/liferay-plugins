@@ -45,10 +45,6 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 
 			</liferay-ui:search-container-results>
 
-			<%
-			boolean administrator = DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADMINISTRATOR);
-			%>
-
 			<liferay-ui:search-container-row
 				className="com.liferay.knowledgebase.model.KBArticle"
 				keyProperty="resourcePrimKey"
@@ -89,7 +85,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 					value='<%= dateFormatDate.format(kbArticle.getModifiedDate()) + "<br />" + dateFormatTime.format(kbArticle.getModifiedDate()) %>'
 				/>
 
-				<c:if test="<%= administrator %>">
+				<c:if test="<%= DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADMINISTRATOR) %>">
 					<liferay-ui:search-container-column-text
 						cssClass="kb-column-no-wrap"
 						href="<%= rowURL %>"
@@ -113,7 +109,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 						align="right"
 					>
 						<liferay-portlet:actionURL name="unsubscribeKBArticle" var="unsubscribeKBArticleURL">
-							<portlet:param name="redirect" value="<%= currentURL %>" />
+							<portlet:param name="redirect" value="<%= redirect %>" />
 							<portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
 						</liferay-portlet:actionURL>
 

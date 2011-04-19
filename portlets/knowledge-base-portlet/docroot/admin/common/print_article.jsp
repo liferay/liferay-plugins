@@ -17,7 +17,7 @@
 <%@ include file="/admin/init.jsp" %>
 
 <%
-KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
+KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_ARTICLE);
 %>
 
 <div class="float-container kb-entity-header">

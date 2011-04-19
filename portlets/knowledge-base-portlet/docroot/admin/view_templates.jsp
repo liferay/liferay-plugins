@@ -90,7 +90,7 @@
 					<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_KB_TEMPLATE) %>">
 						<liferay-portlet:renderURL var="addKBTemplateURL">
 							<portlet:param name="jspPage" value='<%= jspPath + "edit_template.jsp" %>' />
-							<portlet:param name="redirect" value="<%= currentURL %>" />
+							<portlet:param name="redirect" value="<%= redirect %>" />
 						</liferay-portlet:renderURL>
 
 						<aui:button onClick="<%= addKBTemplateURL %>" value="add-template" />
@@ -130,7 +130,7 @@
 			if (confirm('<%= UnicodeLanguageUtil.get(pageContext, "are-you-sure-you-want-to-delete-the-selected-templates") %>')) {
 				document.<portlet:namespace />fm.method = "post";
 				document.<portlet:namespace />fm.<portlet:namespace />kbTemplateIds.value = Liferay.Util.listCheckedExcept(document.<portlet:namespace />fm, "<portlet:namespace />allRowIds");
-				submitForm(document.<portlet:namespace />fm, "<liferay-portlet:actionURL name="deleteKBTemplates"><portlet:param name="jspPage" value="/admin/view_templates.jsp" /><portlet:param name="redirect" value="<%= currentURL %>" /></liferay-portlet:actionURL>");
+				submitForm(document.<portlet:namespace />fm, "<liferay-portlet:actionURL name="deleteKBTemplates"><portlet:param name="jspPage" value="/admin/view_templates.jsp" /><portlet:param name="redirect" value="<%= redirect %>" /></liferay-portlet:actionURL>");
 			}
 		},
 		['liferay-util-list-fields']

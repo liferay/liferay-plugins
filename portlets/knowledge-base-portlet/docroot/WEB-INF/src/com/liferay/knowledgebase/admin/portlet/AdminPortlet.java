@@ -214,7 +214,7 @@ public class AdminPortlet extends MVCPortlet {
 			}
 
 			renderRequest.setAttribute(
-				WebKeys.KNOWLEDGE_BASE_ARTICLE, kbArticle);
+				WebKeys.KNOWLEDGE_BASE_KB_ARTICLE, kbArticle);
 
 			KBTemplate kbTemplate = null;
 
@@ -226,7 +226,7 @@ public class AdminPortlet extends MVCPortlet {
 			}
 
 			renderRequest.setAttribute(
-				WebKeys.KNOWLEDGE_BASE_TEMPLATE, kbTemplate);
+				WebKeys.KNOWLEDGE_BASE_KB_TEMPLATE, kbTemplate);
 		}
 		catch (Exception e) {
 			if (e instanceof NoSuchArticleException ||
@@ -373,7 +373,7 @@ public class AdminPortlet extends MVCPortlet {
 		String description = ParamUtil.getString(actionRequest, "description");
 		String dirName = ParamUtil.getString(actionRequest, "dirName");
 		int workflowAction = ParamUtil.getInteger(
-			actionRequest, "workflowAction", WorkflowConstants.ACTION_PUBLISH);
+			actionRequest, "workflowAction");
 
 		KBArticle kbArticle = null;
 
@@ -415,7 +415,7 @@ public class AdminPortlet extends MVCPortlet {
 		}
 	}
 
-	public void updateKBArticlePriorities(
+	public void updateKBArticlesPriorities(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
@@ -442,7 +442,7 @@ public class AdminPortlet extends MVCPortlet {
 			resourcePrimKeyToPriorityMap.put(resourcePrimKey, priority);
 		}
 
-		KBArticleServiceUtil.updateKBArticlePriorities(
+		KBArticleServiceUtil.updateKBArticlesPriorities(
 			themeDisplay.getScopeGroupId(), resourcePrimKeyToPriorityMap);
 	}
 

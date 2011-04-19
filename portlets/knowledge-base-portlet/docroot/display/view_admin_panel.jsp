@@ -31,7 +31,7 @@ String orderByType2 = ParamUtil.getString(request, "orderByType2", "desc");
 		<c:if test="<%= DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_KB_ARTICLE) %>">
 			<liferay-portlet:renderURL var="addKBArticleURL">
 				<portlet:param name="jspPage" value="/display/edit_article.jsp" />
-				<portlet:param name="redirect" value="<%= currentURL %>" />
+				<portlet:param name="redirect" value="<%= redirect %>" />
 			</liferay-portlet:renderURL>
 
 			<aui:button onClick="<%= addKBArticleURL %>" value="add-article" />
@@ -40,7 +40,7 @@ String orderByType2 = ParamUtil.getString(request, "orderByType2", "desc");
 		<c:if test="<%= DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_KB_TEMPLATE) %>">
 			<liferay-portlet:renderURL var="addKBTemplateURL">
 				<portlet:param name="jspPage" value="/display/edit_template.jsp" />
-				<portlet:param name="redirect" value="<%= currentURL %>" />
+				<portlet:param name="redirect" value="<%= redirect %>" />
 			</liferay-portlet:renderURL>
 
 			<aui:button onClick="<%= addKBTemplateURL %>" value="add-template" />
@@ -59,16 +59,12 @@ String orderByType2 = ParamUtil.getString(request, "orderByType2", "desc");
 	</aui:button-row>
 </c:if>
 
-<%
-int count = KBTemplateServiceUtil.getGroupKBTemplatesCount(scopeGroupId);
-%>
-
 <liferay-portlet:renderURL varImpl="iteratorURL">
 	<portlet:param name="jspPage" value="/display/view_admin_panel.jsp" />
 </liferay-portlet:renderURL>
 
 <liferay-ui:panel-container extended="<%= false %>" id='<%= renderResponse.getNamespace() + "AdministratorPanelContainer" %>' persistState="<%= true %>">
-	<liferay-ui:panel collapsible="<%= true %>" cssClass='<%= (DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.VIEW_KB_TEMPLATES) && (count > 0)) ? "kb-panel-separator" : StringPool.BLANK %>' extended="<%= true %>" id='<%= renderResponse.getNamespace() + "AdministratorArticlesPanel" %>' persistState="<%= true %>" title="articles">
+	<liferay-ui:panel collapsible="<%= true %>" cssClass='<%= (DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.VIEW_KB_TEMPLATES) && (KBTemplateServiceUtil.getGroupKBTemplatesCount(scopeGroupId) > 0)) ? "kb-panel-separator" : StringPool.BLANK %>' extended="<%= true %>" id='<%= renderResponse.getNamespace() + "AdministratorArticlesPanel" %>' persistState="<%= true %>" title="articles">
 		<liferay-ui:search-container
 			curParam="cur1"
 			deltaParam="delta1"
@@ -153,7 +149,7 @@ int count = KBTemplateServiceUtil.getGroupKBTemplatesCount(scopeGroupId);
 		</liferay-ui:search-container>
 	</liferay-ui:panel>
 
-	<c:if test="<%= DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.VIEW_KB_TEMPLATES) && (count > 0) %>">
+	<c:if test="<%= DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.VIEW_KB_TEMPLATES) && (KBTemplateServiceUtil.getGroupKBTemplatesCount(scopeGroupId) > 0) %>">
 		<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id='<%= renderResponse.getNamespace() + "AdministratorTemplatesPanel" %>' persistState="<%= true %>" title="templates">
 			<liferay-ui:search-container
 				curParam="cur2"

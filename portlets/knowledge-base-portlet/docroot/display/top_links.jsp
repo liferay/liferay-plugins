@@ -66,7 +66,7 @@ String assetTagName = ParamUtil.getString(request, "tag");
 			%>
 
 			<liferay-ui:icon
-				cssClass='<%= (!themeDisplay.isSignedIn() && !DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADMINISTRATOR)) ? "top-link last" : "top-link" %>'
+				cssClass='<%= !themeDisplay.isSignedIn() ? "top-link last" : "top-link" %>'
 				image="../aui/clock"
 				label="<%= true %>"
 				message="recent-articles"

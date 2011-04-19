@@ -17,9 +17,7 @@
 <%@ include file="/admin/init.jsp" %>
 
 <%
-String redirect = ParamUtil.getString(request, "redirect");
-
-KBTemplate kbTemplate = (KBTemplate)request.getAttribute(WebKeys.KNOWLEDGE_BASE_TEMPLATE);
+KBTemplate kbTemplate = (KBTemplate)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_TEMPLATE);
 
 long kbTemplateId = BeanParamUtil.getLong(kbTemplate, request, "kbTemplateId");
 

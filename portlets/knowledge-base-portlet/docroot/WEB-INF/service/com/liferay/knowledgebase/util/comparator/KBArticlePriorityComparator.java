@@ -18,6 +18,7 @@ import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.portal.kernel.util.OrderByComparator;
 
 /**
+ * @author Peter Shin
  * @author Brian Wing Shun Chan
  */
 public class KBArticlePriorityComparator extends OrderByComparator {
