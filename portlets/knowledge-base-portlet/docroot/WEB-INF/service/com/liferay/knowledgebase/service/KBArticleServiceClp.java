@@ -127,8 +127,8 @@ public class KBArticleServiceClp implements KBArticleService {
 				java.lang.String.class,
 				com.liferay.portal.service.ServiceContext.class);
 
-		_updateKBArticlePrioritiesMethodKey25 = new MethodKey(_classLoaderProxy.getClassName(),
-				"updateKBArticlePriorities", long.class, java.util.Map.class);
+		_updateKBArticlesPrioritiesMethodKey25 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateKBArticlesPriorities", long.class, java.util.Map.class);
 	}
 
 	public void addAttachment(long resourcePrimKey, java.lang.String dirName,
@@ -922,11 +922,11 @@ public class KBArticleServiceClp implements KBArticleService {
 		return (com.liferay.knowledgebase.model.KBArticle)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void updateKBArticlePriorities(long groupId,
+	public void updateKBArticlesPriorities(long groupId,
 		java.util.Map<java.lang.Long, java.lang.Double> resourcePrimKeyToPriorityMap)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_updateKBArticlePrioritiesMethodKey25,
+		MethodHandler methodHandler = new MethodHandler(_updateKBArticlesPrioritiesMethodKey25,
 				groupId,
 				ClpSerializer.translateInput(resourcePrimKeyToPriorityMap));
 
@@ -982,5 +982,5 @@ public class KBArticleServiceClp implements KBArticleService {
 	private MethodKey _unsubscribeKBArticleMethodKey22;
 	private MethodKey _updateAttachmentsMethodKey23;
 	private MethodKey _updateKBArticleMethodKey24;
-	private MethodKey _updateKBArticlePrioritiesMethodKey25;
+	private MethodKey _updateKBArticlesPrioritiesMethodKey25;
 }

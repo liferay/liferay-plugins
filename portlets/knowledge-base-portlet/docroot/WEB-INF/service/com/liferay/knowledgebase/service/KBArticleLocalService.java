@@ -399,15 +399,15 @@ public interface KBArticleLocalService {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
-	public void updateKBArticlePriorities(
-		java.util.Map<java.lang.Long, java.lang.Double> resourcePrimKeyToPriorityMap)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
-
 	public void updateKBArticleResources(
 		com.liferay.knowledgebase.model.KBArticle kbArticle,
 		java.lang.String[] communityPermissions,
 		java.lang.String[] guestPermissions)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	public void updateKBArticlesPriorities(
+		java.util.Map<java.lang.Long, java.lang.Double> resourcePrimKeyToPriorityMap)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 

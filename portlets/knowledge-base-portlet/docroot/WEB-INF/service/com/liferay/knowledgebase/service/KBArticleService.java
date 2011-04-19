@@ -184,7 +184,7 @@ public interface KBArticleService {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
-	public void updateKBArticlePriorities(long groupId,
+	public void updateKBArticlesPriorities(long groupId,
 		java.util.Map<java.lang.Long, java.lang.Double> resourcePrimKeyToPriorityMap)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;

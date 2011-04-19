@@ -25,7 +25,7 @@ Liferay.Service.registerClass(
 		unsubscribeKBArticle: true,
 		updateAttachments: true,
 		updateKBArticle: true,
-		updateKBArticlePriorities: true
+		updateKBArticlesPriorities: true
 	}
 );
 

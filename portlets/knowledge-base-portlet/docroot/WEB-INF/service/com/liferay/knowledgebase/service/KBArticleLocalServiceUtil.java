@@ -499,13 +499,6 @@ public class KBArticleLocalServiceUtil {
 			assetTagNames);
 	}
 
-	public static void updateKBArticlePriorities(
-		java.util.Map<java.lang.Long, java.lang.Double> resourcePrimKeyToPriorityMap)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		getService().updateKBArticlePriorities(resourcePrimKeyToPriorityMap);
-	}
-
 	public static void updateKBArticleResources(
 		com.liferay.knowledgebase.model.KBArticle kbArticle,
 		java.lang.String[] communityPermissions,
@@ -515,6 +508,13 @@ public class KBArticleLocalServiceUtil {
 		getService()
 			.updateKBArticleResources(kbArticle, communityPermissions,
 			guestPermissions);
+	}
+
+	public static void updateKBArticlesPriorities(
+		java.util.Map<java.lang.Long, java.lang.Double> resourcePrimKeyToPriorityMap)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService().updateKBArticlesPriorities(resourcePrimKeyToPriorityMap);
 	}
 
 	public static com.liferay.knowledgebase.model.KBArticle updateStatus(

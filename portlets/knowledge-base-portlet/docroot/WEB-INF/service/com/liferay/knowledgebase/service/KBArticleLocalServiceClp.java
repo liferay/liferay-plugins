@@ -200,13 +200,13 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 				com.liferay.knowledgebase.model.KBArticle.class, long[].class,
 				java.lang.String[].class);
 
-		_updateKBArticlePrioritiesMethodKey45 = new MethodKey(_classLoaderProxy.getClassName(),
-				"updateKBArticlePriorities", java.util.Map.class);
-
-		_updateKBArticleResourcesMethodKey46 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateKBArticleResourcesMethodKey45 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateKBArticleResources",
 				com.liferay.knowledgebase.model.KBArticle.class,
 				java.lang.String[].class, java.lang.String[].class);
+
+		_updateKBArticlesPrioritiesMethodKey46 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateKBArticlesPriorities", java.util.Map.class);
 
 		_updateStatusMethodKey47 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateStatus", long.class, long.class, int.class,
@@ -1546,12 +1546,16 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		}
 	}
 
-	public void updateKBArticlePriorities(
-		java.util.Map<java.lang.Long, java.lang.Double> resourcePrimKeyToPriorityMap)
+	public void updateKBArticleResources(
+		com.liferay.knowledgebase.model.KBArticle kbArticle,
+		java.lang.String[] communityPermissions,
+		java.lang.String[] guestPermissions)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_updateKBArticlePrioritiesMethodKey45,
-				ClpSerializer.translateInput(resourcePrimKeyToPriorityMap));
+		MethodHandler methodHandler = new MethodHandler(_updateKBArticleResourcesMethodKey45,
+				ClpSerializer.translateInput(kbArticle),
+				ClpSerializer.translateInput(communityPermissions),
+				ClpSerializer.translateInput(guestPermissions));
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -1575,16 +1579,12 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		}
 	}
 
-	public void updateKBArticleResources(
-		com.liferay.knowledgebase.model.KBArticle kbArticle,
-		java.lang.String[] communityPermissions,
-		java.lang.String[] guestPermissions)
+	public void updateKBArticlesPriorities(
+		java.util.Map<java.lang.Long, java.lang.Double> resourcePrimKeyToPriorityMap)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_updateKBArticleResourcesMethodKey46,
-				ClpSerializer.translateInput(kbArticle),
-				ClpSerializer.translateInput(communityPermissions),
-				ClpSerializer.translateInput(guestPermissions));
+		MethodHandler methodHandler = new MethodHandler(_updateKBArticlesPrioritiesMethodKey46,
+				ClpSerializer.translateInput(resourcePrimKeyToPriorityMap));
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -1721,8 +1721,8 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 	private MethodKey _updateAttachmentsMethodKey42;
 	private MethodKey _updateKBArticleMethodKey43;
 	private MethodKey _updateKBArticleAssetMethodKey44;
-	private MethodKey _updateKBArticlePrioritiesMethodKey45;
-	private MethodKey _updateKBArticleResourcesMethodKey46;
+	private MethodKey _updateKBArticleResourcesMethodKey45;
+	private MethodKey _updateKBArticlesPrioritiesMethodKey46;
 	private MethodKey _updateStatusMethodKey47;
 	private MethodKey _updateViewCountMethodKey48;
 }

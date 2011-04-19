@@ -480,13 +480,6 @@ public class KBArticleLocalServiceWrapper implements KBArticleLocalService {
 			assetCategoryIds, assetTagNames);
 	}
 
-	public void updateKBArticlePriorities(
-		java.util.Map<java.lang.Long, java.lang.Double> resourcePrimKeyToPriorityMap)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		_kbArticleLocalService.updateKBArticlePriorities(resourcePrimKeyToPriorityMap);
-	}
-
 	public void updateKBArticleResources(
 		com.liferay.knowledgebase.model.KBArticle kbArticle,
 		java.lang.String[] communityPermissions,
@@ -495,6 +488,13 @@ public class KBArticleLocalServiceWrapper implements KBArticleLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		_kbArticleLocalService.updateKBArticleResources(kbArticle,
 			communityPermissions, guestPermissions);
+	}
+
+	public void updateKBArticlesPriorities(
+		java.util.Map<java.lang.Long, java.lang.Double> resourcePrimKeyToPriorityMap)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_kbArticleLocalService.updateKBArticlesPriorities(resourcePrimKeyToPriorityMap);
 	}
 
 	public com.liferay.knowledgebase.model.KBArticle updateStatus(long userId,

@@ -249,12 +249,12 @@ public class KBArticleServiceUtil {
 			description, dirName, serviceContext);
 	}
 
-	public static void updateKBArticlePriorities(long groupId,
+	public static void updateKBArticlesPriorities(long groupId,
 		java.util.Map<java.lang.Long, java.lang.Double> resourcePrimKeyToPriorityMap)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		getService()
-			.updateKBArticlePriorities(groupId, resourcePrimKeyToPriorityMap);
+			.updateKBArticlesPriorities(groupId, resourcePrimKeyToPriorityMap);
 	}
 
 	public static void clearService() {
