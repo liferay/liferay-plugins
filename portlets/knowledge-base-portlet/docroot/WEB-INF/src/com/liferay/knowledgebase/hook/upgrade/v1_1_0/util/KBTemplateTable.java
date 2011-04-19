@@ -34,10 +34,11 @@ public class KBTemplateTable {
 		{"modifiedDate", Types.TIMESTAMP},
 		{"title", Types.VARCHAR},
 		{"content", Types.CLOB},
-		{"description", Types.VARCHAR}
+		{"engineType", Types.INTEGER},
+		{"cacheable", Types.BOOLEAN}
 	};
 
-	public static final String TABLE_SQL_CREATE = "create table KBTemplate (uuid_ VARCHAR(75) null,kbTemplateId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,title STRING null,content TEXT null,description STRING null)";
+	public static final String TABLE_SQL_CREATE = "create table KBTemplate (uuid_ VARCHAR(75) null,kbTemplateId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,title STRING null,content TEXT null,engineType INTEGER,cacheable BOOLEAN)";
 
 	public static final String TABLE_SQL_DROP = "drop table KBTemplate";
 

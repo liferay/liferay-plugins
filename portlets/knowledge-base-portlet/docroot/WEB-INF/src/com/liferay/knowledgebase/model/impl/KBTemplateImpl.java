@@ -15,6 +15,7 @@
 package com.liferay.knowledgebase.model.impl;
 
 import com.liferay.knowledgebase.model.KBTemplate;
+import com.liferay.knowledgebase.model.KBTemplateConstants;
 
 /**
  * @author Peter Shin
@@ -23,6 +24,22 @@ import com.liferay.knowledgebase.model.KBTemplate;
 public class KBTemplateImpl extends KBTemplateModelImpl implements KBTemplate {
 
 	public KBTemplateImpl() {
+	}
+
+	public boolean isFreeMarker() {
+		if (getEngineType() == KBTemplateConstants.ENGINE_TYPE_FREEMARKER) {
+			return true;
+		}
+
+		return false;
+	}
+
+	public boolean isVelocity() {
+		if (getEngineType() == KBTemplateConstants.ENGINE_TYPE_VELOCITY) {
+			return true;
+		}
+
+		return false;
 	}
 
 }

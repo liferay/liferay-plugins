@@ -23,6 +23,7 @@
 <%@ page import="com.liferay.knowledgebase.admin.search.KBTemplateSearch" %>
 <%@ page import="com.liferay.knowledgebase.admin.search.KBTemplateSearchTerms" %>
 <%@ page import="com.liferay.knowledgebase.admin.util.AdminUtil" %>
+<%@ page import="com.liferay.knowledgebase.admin.util.KBArticleContentCacheUtil" %>
 
 <%
 PortletPreferences preferences = renderRequest.getPreferences();
@@ -44,7 +45,6 @@ boolean enableKBArticleKBComments = GetterUtil.getBoolean(preferences.getValue("
 boolean showKBArticleKBComments = GetterUtil.getBoolean(preferences.getValue("showKBArticleKBComments", null));
 boolean enableKBArticleViewCountIncrement = GetterUtil.getBoolean(preferences.getValue("enableKBArticleViewCountIncrement", null));
 
-boolean enableKBTemplateDescription = GetterUtil.getBoolean(preferences.getValue("enableKBTemplateDescription", null));
 boolean enableKBTemplateKBComments = GetterUtil.getBoolean(preferences.getValue("enableKBTemplateKBComments", null));
 boolean showKBTemplateKBComments = GetterUtil.getBoolean(preferences.getValue("showKBTemplateKBComments", null));
 

@@ -33,6 +33,7 @@
 		<column name="title" type="String" />
 		<column name="content" type="String" />
 		<column name="description" type="String" />
+		<column name="kbTemplateId" type="long" />
 		<column name="priority" type="double" />
 		<column name="viewCount" type="int" />
 		<column name="latest" type="boolean" />
@@ -52,6 +53,9 @@
 
 		<finder name="ResourcePrimKey" return-type="Collection">
 			<finder-column name="resourcePrimKey" />
+		</finder>
+		<finder name="KBTemplateId" return-type="Collection">
+			<finder-column name="kbTemplateId" />
 		</finder>
 		<finder name="R_G" return-type="Collection">
 			<finder-column name="resourcePrimKey" />
@@ -229,7 +233,8 @@
 
 		<column name="title" type="String" />
 		<column name="content" type="String" />
-		<column name="description" type="String" />
+		<column name="engineType" type="int" />
+		<column name="cacheable" type="boolean" />
 
 		<!-- Order -->
 
@@ -254,5 +259,6 @@
 		<exception>KBCommentContent</exception>
 		<exception>KBTemplateContent</exception>
 		<exception>KBTemplateTitle</exception>
+		<exception>RequiredKBTemplate</exception>
 	</exceptions>
 </service-builder>

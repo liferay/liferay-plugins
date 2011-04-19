@@ -104,6 +104,7 @@ public class AdminIndexer extends BaseIndexer {
 		String description = kbArticle.getDescription();
 		Date createDate = kbArticle.getCreateDate();
 		Date modifiedDate = kbArticle.getModifiedDate();
+		long kbTemplateId = kbArticle.getKbTemplateId();
 
 		long[] assetCategoryIds = AssetCategoryLocalServiceUtil.getCategoryIds(
 			KBArticle.class.getName(), resourcePrimKey);
@@ -140,6 +141,7 @@ public class AdminIndexer extends BaseIndexer {
 
 		document.addKeyword(Field.USER_NAME + "Keyword", userName, true);
 		document.addKeyword(Field.TITLE + "Keyword", title, true);
+		document.addKeyword("kbTemplateId", kbTemplateId);
 
 		return document;
 	}

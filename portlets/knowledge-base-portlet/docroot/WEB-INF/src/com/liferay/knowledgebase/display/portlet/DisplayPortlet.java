@@ -27,9 +27,12 @@ import com.liferay.knowledgebase.KBTemplateTitleException;
 import com.liferay.knowledgebase.NoSuchArticleException;
 import com.liferay.knowledgebase.NoSuchCommentException;
 import com.liferay.knowledgebase.NoSuchTemplateException;
+import com.liferay.knowledgebase.RequiredKBTemplateException;
+import com.liferay.knowledgebase.admin.util.AdminUtil;
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.model.KBComment;
 import com.liferay.knowledgebase.model.KBTemplate;
+import com.liferay.knowledgebase.model.KBTemplateParser;
 import com.liferay.knowledgebase.service.KBArticleServiceUtil;
 import com.liferay.knowledgebase.service.KBCommentLocalServiceUtil;
 import com.liferay.knowledgebase.service.KBTemplateServiceUtil;
@@ -48,6 +51,7 @@ import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.CompanyConstants;
@@ -395,6 +399,7 @@ public class DisplayPortlet extends MVCPortlet {
 		String title = ParamUtil.getString(actionRequest, "title");
 		String content = ParamUtil.getString(actionRequest, "content");
 		String description = ParamUtil.getString(actionRequest, "description");
+		long kbTemplateId = ParamUtil.getLong(actionRequest, "kbTemplateId");
 		String dirName = ParamUtil.getString(actionRequest, "dirName");
 		int workflowAction = ParamUtil.getInteger(
 			actionRequest, "workflowAction", WorkflowConstants.ACTION_PUBLISH);
@@ -406,13 +411,13 @@ public class DisplayPortlet extends MVCPortlet {
 
 		if (cmd.equals(Constants.ADD)) {
 			kbArticle = KBArticleServiceUtil.addKBArticle(
-				parentResourcePrimKey, title, content, description, dirName,
-				serviceContext);
+				parentResourcePrimKey, title, content, description,
+				kbTemplateId, dirName, serviceContext);
 		}
 		else if (cmd.equals(Constants.UPDATE)) {
 			kbArticle = KBArticleServiceUtil.updateKBArticle(
-				resourcePrimKey, title, content, description, dirName,
-				serviceContext);
+				resourcePrimKey, title, content, description, kbTemplateId,
+				dirName, serviceContext);
 		}
 
 		if (!cmd.equals(Constants.ADD) && !cmd.equals(Constants.UPDATE)) {
@@ -439,6 +444,18 @@ public class DisplayPortlet extends MVCPortlet {
 
 			actionRequest.setAttribute(WebKeys.REDIRECT, editURL);
 		}
+	}
+
+	public void updateKBArticlesKBTemplates(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		long[] kbArticleIds = StringUtil.split(
+			ParamUtil.getString(actionRequest, "kbArticleIds"), 0L);
+		long kbTemplateId = ParamUtil.getLong(actionRequest, "kbTemplateId");
+
+		KBArticleServiceUtil.updateKBArticlesKBTemplates(
+			kbArticleIds, kbTemplateId);
 	}
 
 	public void updateKBComment(
@@ -486,18 +503,22 @@ public class DisplayPortlet extends MVCPortlet {
 
 		String title = ParamUtil.getString(actionRequest, "title");
 		String content = ParamUtil.getString(actionRequest, "content");
-		String description = ParamUtil.getString(actionRequest, "description");
+		int engineType = ParamUtil.getInteger(actionRequest, "engineType");
+		boolean cacheable = ParamUtil.getBoolean(actionRequest, "cacheable");
+
+		transform(content, engineType, actionRequest);
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			KBTemplate.class.getName(), actionRequest);
 
 		if (cmd.equals(Constants.ADD)) {
 			KBTemplateServiceUtil.addKBTemplate(
-				title, content, description, serviceContext);
+				title, content, engineType, cacheable, serviceContext);
 		}
 		else if (cmd.equals(Constants.UPDATE)) {
 			KBTemplateServiceUtil.updateKBTemplate(
-				kbTemplateId, title, content, description, serviceContext);
+				kbTemplateId, title, content, engineType, cacheable,
+				serviceContext);
 		}
 	}
 
@@ -594,12 +615,30 @@ public class DisplayPortlet extends MVCPortlet {
 			cause instanceof NoSuchCommentException ||
 			cause instanceof NoSuchFileException ||
 			cause instanceof NoSuchTemplateException ||
-			cause instanceof PrincipalException) {
+			cause instanceof PrincipalException ||
+			cause instanceof RequiredKBTemplateException) {
 
 			return true;
 		}
 
 		return false;
+	}
+
+	protected void transform(
+			String content, int engineType, ActionRequest actionRequest)
+		throws KBTemplateContentException {
+
+		KBTemplateParser kbTemplateParser = AdminUtil.getKBTemplateParser(
+			engineType);
+
+		try {
+			kbTemplateParser.transform(
+				KBTemplate.class.getName(), content, null,
+				PortalUtil.getHttpServletRequest(actionRequest));
+		}
+		catch (Exception e) {
+			throw new KBTemplateContentException(e.getMessage());
+		}
 	}
 
 }

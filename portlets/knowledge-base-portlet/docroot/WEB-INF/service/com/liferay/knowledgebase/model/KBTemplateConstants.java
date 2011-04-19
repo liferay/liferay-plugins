@@ -16,18 +16,30 @@ package com.liferay.knowledgebase.model;
 
 /**
  * @author Peter Shin
- * @author Brian Wing Shun Chan
  */
-public class KBArticleConstants {
+public class KBTemplateConstants {
 
-	public static final long DEFAULT_KB_TEMPLATE_ID = 0;
+	public static final int DEFAULT_ENGINE_TYPE = 0;
 
-	public static final long DEFAULT_PARENT_RESOURCE_PRIM_KEY = 0;
+	public static final int ENGINE_TYPE_FREEMARKER = 1;
 
-	public static final double DEFAULT_PRIORITY = 1.0;
+	public static final String ENGINE_TYPE_FREEMARKER_LABEL = "freemarker";
 
-	public static final int DEFAULT_VERSION = 1;
+	public static final int ENGINE_TYPE_VELOCITY = 0;
 
-	public static final String DIR_NAME_PREFIX = "knowledgebase/kbarticles/";
+	public static final String ENGINE_TYPE_VELOCITY_LABEL = "velocity";
+
+	public static final int[] ENGINE_TYPES = {
+		ENGINE_TYPE_FREEMARKER, ENGINE_TYPE_VELOCITY
+	};
+
+	public static String getEngineTypeLabel(int engineType) {
+		if (engineType == ENGINE_TYPE_FREEMARKER) {
+			return ENGINE_TYPE_FREEMARKER_LABEL;
+		}
+		else {
+			return ENGINE_TYPE_VELOCITY_LABEL;
+		}
+	}
 
 }

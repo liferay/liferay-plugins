@@ -17,6 +17,7 @@ package com.liferay.knowledgebase.service.impl;
 import com.liferay.knowledgebase.KBTemplateContentException;
 import com.liferay.knowledgebase.KBTemplateTitleException;
 import com.liferay.knowledgebase.NoSuchTemplateException;
+import com.liferay.knowledgebase.RequiredKBTemplateException;
 import com.liferay.knowledgebase.admin.social.AdminActivityKeys;
 import com.liferay.knowledgebase.model.KBTemplate;
 import com.liferay.knowledgebase.service.base.KBTemplateLocalServiceBaseImpl;
@@ -52,8 +53,8 @@ import java.util.Map;
 public class KBTemplateLocalServiceImpl extends KBTemplateLocalServiceBaseImpl {
 
 	public KBTemplate addKBTemplate(
-			long userId, String title, String content, String description,
-			ServiceContext serviceContext)
+			long userId, String title, String content, int engineType,
+			boolean cacheable, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		// KB template
@@ -77,7 +78,8 @@ public class KBTemplateLocalServiceImpl extends KBTemplateLocalServiceBaseImpl {
 		kbTemplate.setModifiedDate(serviceContext.getModifiedDate(now));
 		kbTemplate.setTitle(title);
 		kbTemplate.setContent(content);
-		kbTemplate.setDescription(description);
+		kbTemplate.setEngineType(engineType);
+		kbTemplate.setCacheable(cacheable);
 
 		kbTemplatePersistence.update(kbTemplate, false);
 
@@ -142,6 +144,13 @@ public class KBTemplateLocalServiceImpl extends KBTemplateLocalServiceBaseImpl {
 
 	public void deleteKBTemplate(KBTemplate kbTemplate)
 		throws PortalException, SystemException {
+
+		int count = kbArticleLocalService.getKBTemplateKBArticlesCount(
+			kbTemplate.getKbTemplateId());
+
+		if (count > 0) {
+			throw new RequiredKBTemplateException(kbTemplate);
+		}
 
 		// KB template
 
@@ -217,8 +226,8 @@ public class KBTemplateLocalServiceImpl extends KBTemplateLocalServiceBaseImpl {
 	}
 
 	public KBTemplate updateKBTemplate(
-			long kbTemplateId, String title, String content, String description,
-			ServiceContext serviceContext)
+			long kbTemplateId, String title, String content, int engineType,
+			boolean cacheable, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		// KB template
@@ -231,7 +240,8 @@ public class KBTemplateLocalServiceImpl extends KBTemplateLocalServiceBaseImpl {
 		kbTemplate.setModifiedDate(serviceContext.getModifiedDate(null));
 		kbTemplate.setTitle(title);
 		kbTemplate.setContent(content);
-		kbTemplate.setDescription(description);
+		kbTemplate.setEngineType(engineType);
+		kbTemplate.setCacheable(cacheable);
 
 		kbTemplatePersistence.update(kbTemplate, false);
 

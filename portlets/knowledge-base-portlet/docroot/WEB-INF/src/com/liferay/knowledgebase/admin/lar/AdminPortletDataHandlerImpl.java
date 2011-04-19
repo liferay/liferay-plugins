@@ -129,8 +129,11 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 		Element rootElement = document.getRootElement();
 
-		importKBArticles(portletDataContext, rootElement);
+		// KB templates are imported before KB articles. See
+		// AdminPortletDataHandlerImp#importKBArticle.
+
 		importKBTemplates(portletDataContext, rootElement);
+		importKBArticles(portletDataContext, rootElement);
 		importKBComments(portletDataContext, rootElement);
 
 		return null;
@@ -366,9 +369,15 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			(Map<Long, Long>)portletDataContext.getNewPrimaryKeysMap(
 				KBArticle.class);
 
+		Map<Long, Long> kbTemplatePKs =
+			(Map<Long, Long>)portletDataContext.getNewPrimaryKeysMap(
+				KBTemplate.class);
+
 		long userId = portletDataContext.getUserId(kbArticle.getUserUuid());
 		long parentResourcePrimKey = MapUtil.getLong(
 			kbArticlePKs, kbArticle.getParentResourcePrimKey());
+		long kbTemplateId = MapUtil.getLong(
+			kbTemplatePKs, kbArticle.getKbTemplateId());
 		String dirName = MapUtil.getString(
 			dirNames, String.valueOf(kbArticle.getResourcePrimKey()));
 
@@ -390,7 +399,8 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 				KBArticleLocalServiceUtil.updateKBArticle(
 					userId, existingKBArticle.getResourcePrimKey(),
 					kbArticle.getTitle(), kbArticle.getContent(),
-					kbArticle.getDescription(), dirName, serviceContext);
+					kbArticle.getDescription(), kbTemplateId, dirName,
+					serviceContext);
 
 				KBArticleLocalServiceUtil.moveKBArticle(
 					userId, existingKBArticle.getResourcePrimKey(),
@@ -473,6 +483,10 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			Element kbArticleElement)
 		throws Exception {
 
+		Map<Long, Long> kbTemplatePKs =
+			(Map<Long, Long>)portletDataContext.getNewPrimaryKeysMap(
+				KBTemplate.class);
+
 		Element versionsElement = kbArticleElement.element("versions");
 
 		List<Element> kbArticleElements = versionsElement.elements(
@@ -487,6 +501,8 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 			long curUserId = portletDataContext.getUserId(
 				curKBArticle.getUserUuid());
+			long curKBTemplateId = MapUtil.getLong(
+				kbTemplatePKs, curKBArticle.getKbTemplateId());
 			String curDirName = StringPool.BLANK;
 
 			if (curKBArticle.isMain()) {
@@ -503,13 +519,14 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 				importedKBArticle = KBArticleLocalServiceUtil.addKBArticle(
 					curUserId, parentResourcePrimKey, curKBArticle.getTitle(),
 					curKBArticle.getContent(), curKBArticle.getDescription(),
-					curDirName, serviceContext);
+					curKBTemplateId, curDirName, serviceContext);
 			}
 			else {
 				importedKBArticle = KBArticleLocalServiceUtil.updateKBArticle(
 					curUserId, importedKBArticle.getResourcePrimKey(),
 					curKBArticle.getTitle(), curKBArticle.getContent(),
-					curKBArticle.getDescription(), curDirName, serviceContext);
+					curKBArticle.getDescription(), curKBTemplateId, curDirName,
+					serviceContext);
 			}
 		}
 
@@ -646,20 +663,23 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 				importedKBTemplate = KBTemplateLocalServiceUtil.addKBTemplate(
 					userId, kbTemplate.getTitle(), kbTemplate.getContent(),
-					kbTemplate.getDescription(), serviceContext);
+					kbTemplate.getEngineType(), kbTemplate.isCacheable(),
+					serviceContext);
 			}
 			else {
 				importedKBTemplate =
 					KBTemplateLocalServiceUtil.updateKBTemplate(
 						existingKBTemplate.getKbTemplateId(),
 						kbTemplate.getTitle(), kbTemplate.getContent(),
-						kbTemplate.getDescription(), serviceContext);
+						kbTemplate.getEngineType(), kbTemplate.isCacheable(),
+						serviceContext);
 			}
 		}
 		else {
 			importedKBTemplate = KBTemplateLocalServiceUtil.addKBTemplate(
 				userId, kbTemplate.getTitle(), kbTemplate.getContent(),
-				kbTemplate.getDescription(), serviceContext);
+				kbTemplate.getEngineType(), kbTemplate.isCacheable(),
+				serviceContext);
 		}
 
 		kbTemplatePKs.put(

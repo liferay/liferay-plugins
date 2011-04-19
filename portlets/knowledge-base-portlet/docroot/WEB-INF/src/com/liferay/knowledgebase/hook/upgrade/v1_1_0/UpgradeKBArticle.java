@@ -51,6 +51,11 @@ public class UpgradeKBArticle extends UpgradeProcess {
 			runSQL("update KB_Article set rootResourcePrimKey = 0");
 		}
 
+		if (!tableHasColumn("KB_Article", "kbTemplateId")) {
+			runSQL("alter table KB_Article add kbTemplateId LONG");
+			runSQL("update KB_Article set kbTemplateId = 0");
+		}
+
 		if (!tableHasColumn("KB_Article", "viewCount")) {
 			runSQL("alter table KB_Article add viewCount INTEGER");
 			runSQL("update KB_Article set viewCount = 0");

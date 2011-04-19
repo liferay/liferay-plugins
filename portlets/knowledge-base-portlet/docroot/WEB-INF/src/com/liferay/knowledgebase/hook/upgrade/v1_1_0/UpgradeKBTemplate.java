@@ -39,7 +39,20 @@ public class UpgradeKBTemplate extends UpgradeProcess {
 		runSQL("alter table KB_Template add kbTemplateId LONG");
 		runSQL("update KB_Template set kbTemplateId = templateId");
 
-		Object[][] columns = {{"templateId", new Integer(Types.BIGINT)}};
+		if (!tableHasColumn("KB_Template", "engineType")) {
+			runSQL("alter table KB_Template add engineType INTEGER");
+			runSQL("update KB_Template set engineType = 0");
+		}
+
+		if (!tableHasColumn("KB_Template", "cacheable")) {
+			runSQL("alter table KB_Template add cacheable BOOLEAN");
+			runSQL("update KB_Template set cacheable = TRUE");
+		}
+
+		Object[][] columns = {
+			{"templateId", new Integer(Types.BIGINT)},
+			{"description", Types.VARCHAR}
+		};
 
 		columns = ArrayUtil.append(columns, KBTemplateTable.TABLE_COLUMNS);
 
@@ -50,13 +63,14 @@ public class UpgradeKBTemplate extends UpgradeProcess {
 
 		createSQL =
 			createSQL.substring(0, createSQL.length() - 1) +
-				",templateId VARCHAR(75) null)";
+				",templateId VARCHAR(75) null, description VARCHAR(75) null)";
 
 		upgradeTable.setCreateSQL(createSQL);
 
 		upgradeTable.updateTable();
 
 		runSQL("alter table KBTemplate drop column templateId");
+		runSQL("alter table KBTemplate drop column description");
 	}
 
 }

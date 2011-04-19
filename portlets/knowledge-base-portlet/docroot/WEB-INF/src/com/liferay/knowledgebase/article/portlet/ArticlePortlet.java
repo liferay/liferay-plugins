@@ -22,12 +22,19 @@ import com.liferay.knowledgebase.KBArticleContentException;
 import com.liferay.knowledgebase.KBArticlePriorityException;
 import com.liferay.knowledgebase.KBArticleTitleException;
 import com.liferay.knowledgebase.KBCommentContentException;
+import com.liferay.knowledgebase.KBTemplateContentException;
+import com.liferay.knowledgebase.KBTemplateTitleException;
 import com.liferay.knowledgebase.NoSuchArticleException;
 import com.liferay.knowledgebase.NoSuchCommentException;
+import com.liferay.knowledgebase.NoSuchTemplateException;
+import com.liferay.knowledgebase.admin.util.AdminUtil;
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.model.KBComment;
+import com.liferay.knowledgebase.model.KBTemplate;
+import com.liferay.knowledgebase.model.KBTemplateParser;
 import com.liferay.knowledgebase.service.KBArticleServiceUtil;
 import com.liferay.knowledgebase.service.KBCommentLocalServiceUtil;
+import com.liferay.knowledgebase.service.KBTemplateServiceUtil;
 import com.liferay.knowledgebase.service.permission.KBArticlePermission;
 import com.liferay.knowledgebase.util.ActionKeys;
 import com.liferay.knowledgebase.util.PortletKeys;
@@ -174,9 +181,22 @@ public class ArticlePortlet extends MVCPortlet {
 
 			renderRequest.setAttribute(
 				WebKeys.KNOWLEDGE_BASE_KB_ARTICLE, kbArticle);
+
+			KBTemplate kbTemplate = null;
+
+			long kbTemplateId = ParamUtil.getLong(
+				renderRequest, "kbTemplateId");
+
+			if (kbTemplateId > 0) {
+				kbTemplate = KBTemplateServiceUtil.getKBTemplate(kbTemplateId);
+			}
+
+			renderRequest.setAttribute(
+				WebKeys.KNOWLEDGE_BASE_KB_TEMPLATE, kbTemplate);
 		}
 		catch (Exception e) {
 			if (e instanceof NoSuchArticleException ||
+				e instanceof NoSuchTemplateException ||
 				e instanceof PrincipalException) {
 
 				SessionErrors.add(renderRequest, e.getClass().getName());
@@ -318,6 +338,7 @@ public class ArticlePortlet extends MVCPortlet {
 		String title = ParamUtil.getString(actionRequest, "title");
 		String content = ParamUtil.getString(actionRequest, "content");
 		String description = ParamUtil.getString(actionRequest, "description");
+		long kbTemplateId = ParamUtil.getLong(actionRequest, "kbTemplateId");
 		String dirName = ParamUtil.getString(actionRequest, "dirName");
 		int workflowAction = ParamUtil.getInteger(
 			actionRequest, "workflowAction");
@@ -329,13 +350,13 @@ public class ArticlePortlet extends MVCPortlet {
 
 		if (cmd.equals(Constants.ADD)) {
 			kbArticle = KBArticleServiceUtil.addKBArticle(
-				parentResourcePrimKey, title, content, description, dirName,
-				serviceContext);
+				parentResourcePrimKey, title, content, description,
+				kbTemplateId, dirName, serviceContext);
 		}
 		else if (cmd.equals(Constants.UPDATE)) {
 			kbArticle = KBArticleServiceUtil.updateKBArticle(
-				resourcePrimKey, title, content, description, dirName,
-				serviceContext);
+				resourcePrimKey, title, content, description, kbTemplateId,
+				dirName, serviceContext);
 		}
 
 		if (!cmd.equals(Constants.ADD) && !cmd.equals(Constants.UPDATE)) {
@@ -399,6 +420,35 @@ public class ArticlePortlet extends MVCPortlet {
 		}
 	}
 
+	public void updateKBTemplate(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
+
+		long kbTemplateId = ParamUtil.getLong(actionRequest, "kbTemplateId");
+
+		String title = ParamUtil.getString(actionRequest, "title");
+		String content = ParamUtil.getString(actionRequest, "content");
+		int engineType = ParamUtil.getInteger(actionRequest, "engineType");
+		boolean cacheable = ParamUtil.getBoolean(actionRequest, "cacheable");
+
+		transform(content, engineType, actionRequest);
+
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(
+			KBTemplate.class.getName(), actionRequest);
+
+		if (cmd.equals(Constants.ADD)) {
+			KBTemplateServiceUtil.addKBTemplate(
+				title, content, engineType, cacheable, serviceContext);
+		}
+		else if (cmd.equals(Constants.UPDATE)) {
+			KBTemplateServiceUtil.updateKBTemplate(
+				kbTemplateId, title, content, engineType, cacheable,
+				serviceContext);
+		}
+	}
+
 	protected void addSuccessMessage(
 		ActionRequest actionRequest, ActionResponse actionResponse) {
 
@@ -422,6 +472,8 @@ public class ArticlePortlet extends MVCPortlet {
 				renderRequest, NoSuchCommentException.class.getName()) ||
 			SessionErrors.contains(
 				renderRequest, NoSuchSubscriptionException.class.getName()) ||
+			SessionErrors.contains(
+				renderRequest, NoSuchTemplateException.class.getName()) ||
 			SessionErrors.contains(
 				renderRequest, PrincipalException.class.getName())) {
 
@@ -478,15 +530,35 @@ public class ArticlePortlet extends MVCPortlet {
 			cause instanceof KBArticlePriorityException ||
 			cause instanceof KBArticleTitleException ||
 			cause instanceof KBCommentContentException ||
+			cause instanceof KBTemplateContentException ||
+			cause instanceof KBTemplateTitleException ||
 			cause instanceof NoSuchArticleException ||
 			cause instanceof NoSuchCommentException ||
 			cause instanceof NoSuchFileException ||
+			cause instanceof NoSuchTemplateException ||
 			cause instanceof PrincipalException) {
 
 			return true;
 		}
 
 		return false;
+	}
+
+	protected void transform(
+			String content, int engineType, ActionRequest actionRequest)
+		throws KBTemplateContentException {
+
+		KBTemplateParser kbTemplateParser = AdminUtil.getKBTemplateParser(
+			engineType);
+
+		try {
+			kbTemplateParser.transform(
+				KBTemplate.class.getName(), content, null,
+				PortalUtil.getHttpServletRequest(actionRequest));
+		}
+		catch (Exception e) {
+			throw new KBTemplateContentException(e.getMessage());
+		}
 	}
 
 }

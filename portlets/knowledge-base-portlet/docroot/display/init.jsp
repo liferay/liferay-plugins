@@ -38,7 +38,6 @@ boolean enableKBArticleKBComments = GetterUtil.getBoolean(preferences.getValue("
 boolean showKBArticleKBComments = GetterUtil.getBoolean(preferences.getValue("showKBArticleKBComments", null));
 boolean enableKBArticleViewCountIncrement = GetterUtil.getBoolean(preferences.getValue("enableKBArticleViewCountIncrement", null));
 
-boolean enableKBTemplateDescription = GetterUtil.getBoolean(preferences.getValue("enableKBTemplateDescription", null));
 boolean enableKBTemplateKBComments = GetterUtil.getBoolean(preferences.getValue("enableKBTemplateKBComments", null));
 boolean showKBTemplateKBComments = GetterUtil.getBoolean(preferences.getValue("showKBTemplateKBComments", null));
 

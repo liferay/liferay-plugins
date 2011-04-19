@@ -225,7 +225,21 @@
 	margin: 0 0 5px;
 }
 
+.knowledge-base-portlet .kb-selected-template {
+	display: block;
+	margin: 5px 0 0;
+}
+
 .knowledge-base-portlet .kb-submit-buttons {
 	margin-top: 0;
 	padding-top: 10px;
+}
+
+.knowledge-base-portlet .kb-template-editor .yui3-aui-field-element {
+	display: block;
+}
+
+.knowledge-base-portlet .kb-template-editor .yui3-aui-field-element textarea {
+	height: 500px;
+	width: 100%;
 }

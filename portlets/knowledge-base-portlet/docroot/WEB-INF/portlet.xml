@@ -74,10 +74,6 @@
 				<value>true</value>
 			</preference>
 			<preference>
-				<name>enableKBTemplateDescription</name>
-				<value>false</value>
-			</preference>
-			<preference>
 				<name>enableKBTemplateKBComments</name>
 				<value>true</value>
 			</preference>
@@ -165,10 +161,6 @@
 			<preference>
 				<name>enableKBArticleViewCountIncrement</name>
 				<value>true</value>
-			</preference>
-			<preference>
-				<name>enableKBTemplateDescription</name>
-				<value>false</value>
 			</preference>
 			<preference>
 				<name>enableKBTemplateKBComments</name>

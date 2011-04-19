@@ -39,7 +39,7 @@ import java.util.List;
 public class KBTemplateServiceImpl extends KBTemplateServiceBaseImpl {
 
 	public KBTemplate addKBTemplate(
-			String title, String content, String description,
+			String title, String content, int engineType, boolean cacheable,
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
@@ -48,7 +48,7 @@ public class KBTemplateServiceImpl extends KBTemplateServiceBaseImpl {
 			ActionKeys.ADD_KB_TEMPLATE);
 
 		return kbTemplateLocalService.addKBTemplate(
-			getUserId(), title, content, description, serviceContext);
+			getUserId(), title, content, engineType, cacheable, serviceContext);
 	}
 
 	public void deleteKBTemplate(long kbTemplateId)
@@ -164,15 +164,16 @@ public class KBTemplateServiceImpl extends KBTemplateServiceBaseImpl {
 	}
 
 	public KBTemplate updateKBTemplate(
-			long kbTemplateId, String title, String content, String description,
-			ServiceContext serviceContext)
+			long kbTemplateId, String title, String content, int engineType,
+			boolean cacheable, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		KBTemplatePermission.check(
 			getPermissionChecker(), kbTemplateId, ActionKeys.UPDATE);
 
 		return kbTemplateLocalService.updateKBTemplate(
-			kbTemplateId, title, content, description, serviceContext);
+			kbTemplateId, title, content, engineType, cacheable,
+			serviceContext);
 	}
 
 	private static final int _INTERVAL = 200;

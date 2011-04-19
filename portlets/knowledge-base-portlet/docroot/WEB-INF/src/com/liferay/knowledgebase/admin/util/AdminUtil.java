@@ -16,12 +16,17 @@ package com.liferay.knowledgebase.admin.util;
 
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.model.KBArticleConstants;
+import com.liferay.knowledgebase.model.KBTemplateConstants;
+import com.liferay.knowledgebase.model.KBTemplateParser;
+import com.liferay.knowledgebase.model.impl.KBFreeMarkerTemplateParserImpl;
+import com.liferay.knowledgebase.model.impl.KBVelocityTemplateParserImpl;
 import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
 import com.liferay.knowledgebase.util.PortletPropsValues;
 import com.liferay.portal.kernel.bean.BeanPropertiesUtil;
 import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
 import com.liferay.portal.kernel.util.DiffHtmlUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.InstancePool;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
@@ -223,6 +228,19 @@ public class AdminUtil {
 		}
 
 		return outputDocument.toString();
+	}
+
+	public static KBTemplateParser getKBTemplateParser(int engineType) {
+		if (engineType == KBTemplateConstants.ENGINE_TYPE_FREEMARKER) {
+			return (KBTemplateParser)InstancePool.get(
+				KBFreeMarkerTemplateParserImpl.class.getName(), false);
+		}
+		else if (engineType == KBTemplateConstants.ENGINE_TYPE_VELOCITY) {
+			return (KBTemplateParser)InstancePool.get(
+				KBVelocityTemplateParserImpl.class.getName(), false);
+		}
+
+		return null;
 	}
 
 }

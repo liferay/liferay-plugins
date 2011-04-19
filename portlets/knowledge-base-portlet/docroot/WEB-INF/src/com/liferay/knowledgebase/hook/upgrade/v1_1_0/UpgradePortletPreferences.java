@@ -52,7 +52,6 @@ public class UpgradePortletPreferences
 		adminDefaultPreferencesMap.put("showKBArticleKBComments", "true");
 		adminDefaultPreferencesMap.put(
 			"enableKBArticleViewCountIncrement", "true");
-		adminDefaultPreferencesMap.put("enableKBTemplateDescription", "false");
 		adminDefaultPreferencesMap.put("enableKBTemplateKBComments", "true");
 		adminDefaultPreferencesMap.put("showKBTemplateKBComments", "true");
 
@@ -69,8 +68,6 @@ public class UpgradePortletPreferences
 		articleDefaultPreferencesMap.put("showKBArticleKBComments", "true");
 		articleDefaultPreferencesMap.put(
 			"enableKBArticleViewCountIncrement", "true");
-		articleDefaultPreferencesMap.put(
-			"enableKBTemplateDescription", "false");
 		articleDefaultPreferencesMap.put("enableKBTemplateKBComments", "true");
 		articleDefaultPreferencesMap.put("showKBTemplateKBComments", "true");
 		articleDefaultPreferencesMap.put("rssDelta", "20");
@@ -115,8 +112,6 @@ public class UpgradePortletPreferences
 			"enableArticleViewCountIncrement",
 			"enableKBArticleViewCountIncrement");
 		oldAdminPreferenceNamesMap.put(
-			"enableTemplateDescription", "enableKBTemplateDescription");
-		oldAdminPreferenceNamesMap.put(
 			"enableTemplateComments", "enableKBTemplateKBComments");
 		oldAdminPreferenceNamesMap.put(
 			"showTemplateComments", "showKBTemplateKBComments");
@@ -142,8 +137,6 @@ public class UpgradePortletPreferences
 		oldArticlePreferenceNamesMap.put(
 			"enableArticleViewCountIncrement",
 			"enableKBArticleViewCountIncrement");
-		oldArticlePreferenceNamesMap.put(
-			"enableTemplateDescription", "enableKBTemplateDescription");
 		oldArticlePreferenceNamesMap.put(
 			"enableTemplateComments", "enableKBTemplateKBComments");
 		oldArticlePreferenceNamesMap.put(

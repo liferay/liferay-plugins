@@ -82,8 +82,6 @@ String tabs3 = ParamUtil.getString(request, "tabs3", "article");
 						<aui:input label="show-comments" name="preferences--showKBArticleKBComments--" type="checkbox" value="<%= showKBArticleKBComments %>" />
 					</c:when>
 					<c:when test='<%= tabs3.equals("template") %>'>
-						<aui:input label="enable-description" name="preferences--enableKBTemplateDescription--" type="checkbox" value="<%= enableKBTemplateDescription %>" />
-
 						<aui:input label="enable-comments" name="preferences--enableKBTemplateKBComments--" type="checkbox" value="<%= enableKBTemplateKBComments %>" />
 
 						<aui:input label="show-comments" name="preferences--showKBTemplateKBComments--" type="checkbox" value="<%= showKBTemplateKBComments %>" />

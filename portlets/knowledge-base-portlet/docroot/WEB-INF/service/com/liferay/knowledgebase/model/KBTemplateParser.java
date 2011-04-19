@@ -1,4 +1,3 @@
-<%--
 /**
  * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
  *
@@ -12,29 +11,23 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
---%>
 
-<%@ include file="/admin/init.jsp" %>
+package com.liferay.knowledgebase.model;
 
-<%
-KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_ARTICLE);
-%>
+import java.util.Map;
 
-<div class="float-container kb-entity-header">
-	<div class="kb-title">
-		<%= kbArticle.getTitle() %>
-	</div>
+import javax.servlet.http.HttpServletRequest;
 
-	<div class="kb-tools">
-		<liferay-ui:icon
-			image="print"
-			label="<%= true %>"
-			method="get"
-			url="javascript:print();"
-		/>
-	</div>
-</div>
+/**
+ * @author Peter Shin
+ */
+public interface KBTemplateParser {
 
-<div class="kb-entity-body">
-	<%= KBArticleContentCacheUtil.getContent(request) %>
-</div>
+	public String transform(HttpServletRequest request) throws Exception;
+
+	public String transform(
+			String id, String content, Map<String, Object> variables,
+			HttpServletRequest request)
+		throws Exception;
+
+}
