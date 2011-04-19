@@ -50,6 +50,7 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -75,6 +76,8 @@ import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 import javax.portlet.ResourceRequest;
 import javax.portlet.ResourceResponse;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author Peter Shin
@@ -506,7 +509,7 @@ public class DisplayPortlet extends MVCPortlet {
 		int engineType = ParamUtil.getInteger(actionRequest, "engineType");
 		boolean cacheable = ParamUtil.getBoolean(actionRequest, "cacheable");
 
-		transform(content, engineType, actionRequest);
+		transform(kbTemplateId, content, engineType, actionRequest);
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			KBTemplate.class.getName(), actionRequest);
@@ -625,16 +628,31 @@ public class DisplayPortlet extends MVCPortlet {
 	}
 
 	protected void transform(
-			String content, int engineType, ActionRequest actionRequest)
+			long kbTemplateId, String content, int engineType,
+			ActionRequest actionRequest)
 		throws KBTemplateContentException {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		HttpServletRequest request = PortalUtil.getHttpServletRequest(
+			actionRequest);
+
+		StringBundler sb = new StringBundler(7);
+
+		sb.append(themeDisplay.getUserId());
+		sb.append(StringPool.PERIOD);
+		sb.append(themeDisplay.getScopeGroupId());
+		sb.append(StringPool.PERIOD);
+		sb.append(kbTemplateId);
+		sb.append(StringPool.PERIOD);
+		sb.append(System.currentTimeMillis());
 
 		KBTemplateParser kbTemplateParser = AdminUtil.getKBTemplateParser(
 			engineType);
 
 		try {
-			kbTemplateParser.transform(
-				KBTemplate.class.getName(), content, null,
-				PortalUtil.getHttpServletRequest(actionRequest));
+			kbTemplateParser.transform(sb.toString(), content, null, request);
 		}
 		catch (Exception e) {
 			throw new KBTemplateContentException(e.getMessage());
