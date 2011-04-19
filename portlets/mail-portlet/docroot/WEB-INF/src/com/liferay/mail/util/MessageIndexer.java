@@ -40,6 +40,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import javax.portlet.PortletURL;
 
@@ -155,7 +156,7 @@ public class MessageIndexer extends BaseIndexer {
 	}
 
 	protected Summary doGetSummary(
-		Document doc, String snippet, PortletURL portletURL) {
+		Document doc, Locale locale, String snippet, PortletURL portletURL) {
 
 		return null;
 	}
