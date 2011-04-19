@@ -60,7 +60,8 @@ public class KBTemplateJSONSerializer {
 		jsonObject.put("modifiedDate", modifiedDateJSON);
 		jsonObject.put("title", model.getTitle());
 		jsonObject.put("content", model.getContent());
-		jsonObject.put("description", model.getDescription());
+		jsonObject.put("engineType", model.getEngineType());
+		jsonObject.put("cacheable", model.getCacheable());
 
 		return jsonObject;
 	}

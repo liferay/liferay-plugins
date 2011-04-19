@@ -191,6 +191,14 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 		_description = description;
 	}
 
+	public long getKbTemplateId() {
+		return _kbTemplateId;
+	}
+
+	public void setKbTemplateId(long kbTemplateId) {
+		_kbTemplateId = kbTemplateId;
+	}
+
 	public double getPriority() {
 		return _priority;
 	}
@@ -284,6 +292,14 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 		throw new UnsupportedOperationException();
 	}
 
+	public com.liferay.knowledgebase.model.KBTemplate getKBTemplate() {
+		throw new UnsupportedOperationException();
+	}
+
+	public boolean hasKBTemplate() {
+		throw new UnsupportedOperationException();
+	}
+
 	public boolean isFirstVersion() {
 		throw new UnsupportedOperationException();
 	}
@@ -363,6 +379,7 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 		clone.setTitle(getTitle());
 		clone.setContent(getContent());
 		clone.setDescription(getDescription());
+		clone.setKbTemplateId(getKbTemplateId());
 		clone.setPriority(getPriority());
 		clone.setViewCount(getViewCount());
 		clone.setLatest(getLatest());
@@ -419,7 +436,7 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(47);
+		StringBundler sb = new StringBundler(49);
 
 		sb.append("{uuid=");
 		sb.append(getUuid());
@@ -451,6 +468,8 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 		sb.append(getContent());
 		sb.append(", description=");
 		sb.append(getDescription());
+		sb.append(", kbTemplateId=");
+		sb.append(getKbTemplateId());
 		sb.append(", priority=");
 		sb.append(getPriority());
 		sb.append(", viewCount=");
@@ -473,7 +492,7 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(73);
+		StringBundler sb = new StringBundler(76);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.knowledgebase.model.KBArticle");
@@ -540,6 +559,10 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 		sb.append(getDescription());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>kbTemplateId</column-name><column-value><![CDATA[");
+		sb.append(getKbTemplateId());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>priority</column-name><column-value><![CDATA[");
 		sb.append(getPriority());
 		sb.append("]]></column-value></column>");
@@ -594,6 +617,7 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 	private String _title;
 	private String _content;
 	private String _description;
+	private long _kbTemplateId;
 	private double _priority;
 	private int _viewCount;
 	private boolean _latest;

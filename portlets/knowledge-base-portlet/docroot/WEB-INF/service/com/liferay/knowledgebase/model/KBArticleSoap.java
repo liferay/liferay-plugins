@@ -46,6 +46,7 @@ public class KBArticleSoap implements Serializable {
 		soapModel.setTitle(model.getTitle());
 		soapModel.setContent(model.getContent());
 		soapModel.setDescription(model.getDescription());
+		soapModel.setKbTemplateId(model.getKbTemplateId());
 		soapModel.setPriority(model.getPriority());
 		soapModel.setViewCount(model.getViewCount());
 		soapModel.setLatest(model.getLatest());
@@ -226,6 +227,14 @@ public class KBArticleSoap implements Serializable {
 		_description = description;
 	}
 
+	public long getKbTemplateId() {
+		return _kbTemplateId;
+	}
+
+	public void setKbTemplateId(long kbTemplateId) {
+		_kbTemplateId = kbTemplateId;
+	}
+
 	public double getPriority() {
 		return _priority;
 	}
@@ -313,6 +322,7 @@ public class KBArticleSoap implements Serializable {
 	private String _title;
 	private String _content;
 	private String _description;
+	private long _kbTemplateId;
 	private double _priority;
 	private int _viewCount;
 	private boolean _latest;

@@ -487,6 +487,129 @@ public class KBArticleUtil {
 	}
 
 	/**
+	* Finds all the k b articles where kbTemplateId = &#63;.
+	*
+	* @param kbTemplateId the kb template ID to search with
+	* @return the matching k b articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> findByKBTemplateId(
+		long kbTemplateId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByKBTemplateId(kbTemplateId);
+	}
+
+	/**
+	* Finds a range of all the k b articles where kbTemplateId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param kbTemplateId the kb template ID to search with
+	* @param start the lower bound of the range of k b articles to return
+	* @param end the upper bound of the range of k b articles to return (not inclusive)
+	* @return the range of matching k b articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> findByKBTemplateId(
+		long kbTemplateId, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByKBTemplateId(kbTemplateId, start, end);
+	}
+
+	/**
+	* Finds an ordered range of all the k b articles where kbTemplateId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param kbTemplateId the kb template ID to search with
+	* @param start the lower bound of the range of k b articles to return
+	* @param end the upper bound of the range of k b articles to return (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching k b articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> findByKBTemplateId(
+		long kbTemplateId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByKBTemplateId(kbTemplateId, start, end,
+			orderByComparator);
+	}
+
+	/**
+	* Finds the first k b article in the ordered set where kbTemplateId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param kbTemplateId the kb template ID to search with
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching k b article
+	* @throws com.liferay.knowledgebase.NoSuchArticleException if a matching k b article could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.knowledgebase.model.KBArticle findByKBTemplateId_First(
+		long kbTemplateId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByKBTemplateId_First(kbTemplateId, orderByComparator);
+	}
+
+	/**
+	* Finds the last k b article in the ordered set where kbTemplateId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param kbTemplateId the kb template ID to search with
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching k b article
+	* @throws com.liferay.knowledgebase.NoSuchArticleException if a matching k b article could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.knowledgebase.model.KBArticle findByKBTemplateId_Last(
+		long kbTemplateId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByKBTemplateId_Last(kbTemplateId, orderByComparator);
+	}
+
+	/**
+	* Finds the k b articles before and after the current k b article in the ordered set where kbTemplateId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param kbArticleId the primary key of the current k b article
+	* @param kbTemplateId the kb template ID to search with
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next k b article
+	* @throws com.liferay.knowledgebase.NoSuchArticleException if a k b article with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.knowledgebase.model.KBArticle[] findByKBTemplateId_PrevAndNext(
+		long kbArticleId, long kbTemplateId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByKBTemplateId_PrevAndNext(kbArticleId, kbTemplateId,
+			orderByComparator);
+	}
+
+	/**
 	* Finds all the k b articles where resourcePrimKey = &#63; and groupId = &#63;.
 	*
 	* @param resourcePrimKey the resource prim key to search with
@@ -5203,6 +5326,17 @@ public class KBArticleUtil {
 	}
 
 	/**
+	* Removes all the k b articles where kbTemplateId = &#63; from the database.
+	*
+	* @param kbTemplateId the kb template ID to search with
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByKBTemplateId(long kbTemplateId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByKBTemplateId(kbTemplateId);
+	}
+
+	/**
 	* Removes all the k b articles where resourcePrimKey = &#63; and groupId = &#63; from the database.
 	*
 	* @param resourcePrimKey the resource prim key to search with
@@ -5498,6 +5632,18 @@ public class KBArticleUtil {
 	public static int countByResourcePrimKey(long resourcePrimKey)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().countByResourcePrimKey(resourcePrimKey);
+	}
+
+	/**
+	* Counts all the k b articles where kbTemplateId = &#63;.
+	*
+	* @param kbTemplateId the kb template ID to search with
+	* @return the number of matching k b articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByKBTemplateId(long kbTemplateId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByKBTemplateId(kbTemplateId);
 	}
 
 	/**

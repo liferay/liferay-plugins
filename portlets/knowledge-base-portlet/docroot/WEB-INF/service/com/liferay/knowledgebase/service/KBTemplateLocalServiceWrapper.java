@@ -259,12 +259,12 @@ public class KBTemplateLocalServiceWrapper implements KBTemplateLocalService {
 
 	public com.liferay.knowledgebase.model.KBTemplate addKBTemplate(
 		long userId, java.lang.String title, java.lang.String content,
-		java.lang.String description,
+		int engineType, boolean cacheable,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _kbTemplateLocalService.addKBTemplate(userId, title, content,
-			description, serviceContext);
+			engineType, cacheable, serviceContext);
 	}
 
 	public void addKBTemplateResources(
@@ -323,12 +323,12 @@ public class KBTemplateLocalServiceWrapper implements KBTemplateLocalService {
 
 	public com.liferay.knowledgebase.model.KBTemplate updateKBTemplate(
 		long kbTemplateId, java.lang.String title, java.lang.String content,
-		java.lang.String description,
+		int engineType, boolean cacheable,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _kbTemplateLocalService.updateKBTemplate(kbTemplateId, title,
-			content, description, serviceContext);
+			content, engineType, cacheable, serviceContext);
 	}
 
 	public void updateKBTemplateResources(

@@ -382,7 +382,8 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 		kbTemplateImpl.setModifiedDate(kbTemplate.getModifiedDate());
 		kbTemplateImpl.setTitle(kbTemplate.getTitle());
 		kbTemplateImpl.setContent(kbTemplate.getContent());
-		kbTemplateImpl.setDescription(kbTemplate.getDescription());
+		kbTemplateImpl.setEngineType(kbTemplate.getEngineType());
+		kbTemplateImpl.setCacheable(kbTemplate.isCacheable());
 
 		return kbTemplateImpl;
 	}

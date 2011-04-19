@@ -14,6 +14,7 @@ create table KBArticle (
 	title STRING null,
 	content TEXT null,
 	description STRING null,
+	kbTemplateId LONG,
 	priority DOUBLE,
 	viewCount INTEGER,
 	latest BOOLEAN,
@@ -50,5 +51,6 @@ create table KBTemplate (
 	modifiedDate DATE null,
 	title STRING null,
 	content TEXT null,
-	description STRING null
+	engineType INTEGER,
+	cacheable BOOLEAN
 );

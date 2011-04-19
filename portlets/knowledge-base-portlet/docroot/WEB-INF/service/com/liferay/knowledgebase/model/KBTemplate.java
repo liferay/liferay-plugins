@@ -29,4 +29,7 @@ public interface KBTemplate extends KBTemplateModel {
 	 *
 	 * Never modify this interface directly. Add methods to {@link com.liferay.knowledgebase.model.impl.KBTemplateImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	public boolean isFreeMarker();
+
+	public boolean isVelocity();
 }

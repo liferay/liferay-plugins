@@ -65,6 +65,7 @@ public class KBArticleJSONSerializer {
 		jsonObject.put("title", model.getTitle());
 		jsonObject.put("content", model.getContent());
 		jsonObject.put("description", model.getDescription());
+		jsonObject.put("kbTemplateId", model.getKbTemplateId());
 		jsonObject.put("priority", model.getPriority());
 		jsonObject.put("viewCount", model.getViewCount());
 		jsonObject.put("latest", model.getLatest());

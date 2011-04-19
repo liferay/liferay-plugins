@@ -87,7 +87,7 @@ public class KBTemplateLocalServiceClp implements KBTemplateLocalService {
 
 		_addKBTemplateMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
 				"addKBTemplate", long.class, java.lang.String.class,
-				java.lang.String.class, java.lang.String.class,
+				java.lang.String.class, int.class, boolean.class,
 				com.liferay.portal.service.ServiceContext.class);
 
 		_addKBTemplateResourcesMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
@@ -121,7 +121,7 @@ public class KBTemplateLocalServiceClp implements KBTemplateLocalService {
 
 		_updateKBTemplateMethodKey24 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateKBTemplate", long.class, java.lang.String.class,
-				java.lang.String.class, java.lang.String.class,
+				java.lang.String.class, int.class, boolean.class,
 				com.liferay.portal.service.ServiceContext.class);
 
 		_updateKBTemplateResourcesMethodKey25 = new MethodKey(_classLoaderProxy.getClassName(),
@@ -573,7 +573,7 @@ public class KBTemplateLocalServiceClp implements KBTemplateLocalService {
 
 	public com.liferay.knowledgebase.model.KBTemplate addKBTemplate(
 		long userId, java.lang.String title, java.lang.String content,
-		java.lang.String description,
+		int engineType, boolean cacheable,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -581,8 +581,7 @@ public class KBTemplateLocalServiceClp implements KBTemplateLocalService {
 
 		MethodHandler methodHandler = new MethodHandler(_addKBTemplateMethodKey16,
 				userId, ClpSerializer.translateInput(title),
-				ClpSerializer.translateInput(content),
-				ClpSerializer.translateInput(description),
+				ClpSerializer.translateInput(content), engineType, cacheable,
 				ClpSerializer.translateInput(serviceContext));
 
 		try {
@@ -823,7 +822,7 @@ public class KBTemplateLocalServiceClp implements KBTemplateLocalService {
 
 	public com.liferay.knowledgebase.model.KBTemplate updateKBTemplate(
 		long kbTemplateId, java.lang.String title, java.lang.String content,
-		java.lang.String description,
+		int engineType, boolean cacheable,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -831,8 +830,7 @@ public class KBTemplateLocalServiceClp implements KBTemplateLocalService {
 
 		MethodHandler methodHandler = new MethodHandler(_updateKBTemplateMethodKey24,
 				kbTemplateId, ClpSerializer.translateInput(title),
-				ClpSerializer.translateInput(content),
-				ClpSerializer.translateInput(description),
+				ClpSerializer.translateInput(content), engineType, cacheable,
 				ClpSerializer.translateInput(serviceContext));
 
 		try {

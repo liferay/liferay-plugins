@@ -73,9 +73,10 @@ public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 			{ "modifiedDate", Types.TIMESTAMP },
 			{ "title", Types.VARCHAR },
 			{ "content", Types.CLOB },
-			{ "description", Types.VARCHAR }
+			{ "engineType", Types.INTEGER },
+			{ "cacheable", Types.BOOLEAN }
 		};
-	public static final String TABLE_SQL_CREATE = "create table KBTemplate (uuid_ VARCHAR(75) null,kbTemplateId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,title STRING null,content TEXT null,description STRING null)";
+	public static final String TABLE_SQL_CREATE = "create table KBTemplate (uuid_ VARCHAR(75) null,kbTemplateId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,title STRING null,content TEXT null,engineType INTEGER,cacheable BOOLEAN)";
 	public static final String TABLE_SQL_DROP = "drop table KBTemplate";
 	public static final String ORDER_BY_JPQL = " ORDER BY kbTemplate.modifiedDate DESC";
 	public static final String ORDER_BY_SQL = " ORDER BY KBTemplate.modifiedDate DESC";
@@ -108,7 +109,8 @@ public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 		model.setModifiedDate(soapModel.getModifiedDate());
 		model.setTitle(soapModel.getTitle());
 		model.setContent(soapModel.getContent());
-		model.setDescription(soapModel.getDescription());
+		model.setEngineType(soapModel.getEngineType());
+		model.setCacheable(soapModel.getCacheable());
 
 		return model;
 	}
@@ -281,17 +283,24 @@ public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 		_content = content;
 	}
 
-	public String getDescription() {
-		if (_description == null) {
-			return StringPool.BLANK;
-		}
-		else {
-			return _description;
-		}
+	public int getEngineType() {
+		return _engineType;
 	}
 
-	public void setDescription(String description) {
-		_description = description;
+	public void setEngineType(int engineType) {
+		_engineType = engineType;
+	}
+
+	public boolean getCacheable() {
+		return _cacheable;
+	}
+
+	public boolean isCacheable() {
+		return _cacheable;
+	}
+
+	public void setCacheable(boolean cacheable) {
+		_cacheable = cacheable;
 	}
 
 	public KBTemplate toEscapedModel() {
@@ -331,7 +340,8 @@ public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 		kbTemplateImpl.setModifiedDate(getModifiedDate());
 		kbTemplateImpl.setTitle(getTitle());
 		kbTemplateImpl.setContent(getContent());
-		kbTemplateImpl.setDescription(getDescription());
+		kbTemplateImpl.setEngineType(getEngineType());
+		kbTemplateImpl.setCacheable(getCacheable());
 
 		kbTemplateImpl.resetOriginalValues();
 
@@ -392,7 +402,7 @@ public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(23);
+		StringBundler sb = new StringBundler(25);
 
 		sb.append("{uuid=");
 		sb.append(getUuid());
@@ -414,15 +424,17 @@ public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 		sb.append(getTitle());
 		sb.append(", content=");
 		sb.append(getContent());
-		sb.append(", description=");
-		sb.append(getDescription());
+		sb.append(", engineType=");
+		sb.append(getEngineType());
+		sb.append(", cacheable=");
+		sb.append(getCacheable());
 		sb.append("}");
 
 		return sb.toString();
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(37);
+		StringBundler sb = new StringBundler(40);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.knowledgebase.model.KBTemplate");
@@ -469,8 +481,12 @@ public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 		sb.append(getContent());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>description</column-name><column-value><![CDATA[");
-		sb.append(getDescription());
+			"<column><column-name>engineType</column-name><column-value><![CDATA[");
+		sb.append(getEngineType());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>cacheable</column-name><column-value><![CDATA[");
+		sb.append(getCacheable());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -492,6 +508,7 @@ public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 	private Date _modifiedDate;
 	private String _title;
 	private String _content;
-	private String _description;
+	private int _engineType;
+	private boolean _cacheable;
 	private transient ExpandoBridge _expandoBridge;
 }

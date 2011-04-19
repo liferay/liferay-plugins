@@ -29,13 +29,13 @@ public class KBTemplateServiceWrapper implements KBTemplateService {
 	}
 
 	public com.liferay.knowledgebase.model.KBTemplate addKBTemplate(
-		java.lang.String title, java.lang.String content,
-		java.lang.String description,
+		java.lang.String title, java.lang.String content, int engineType,
+		boolean cacheable,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _kbTemplateService.addKBTemplate(title, content, description,
-			serviceContext);
+		return _kbTemplateService.addKBTemplate(title, content, engineType,
+			cacheable, serviceContext);
 	}
 
 	public void deleteKBTemplate(long kbTemplateId)
@@ -84,12 +84,12 @@ public class KBTemplateServiceWrapper implements KBTemplateService {
 
 	public com.liferay.knowledgebase.model.KBTemplate updateKBTemplate(
 		long kbTemplateId, java.lang.String title, java.lang.String content,
-		java.lang.String description,
+		int engineType, boolean cacheable,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _kbTemplateService.updateKBTemplate(kbTemplateId, title,
-			content, description, serviceContext);
+			content, engineType, cacheable, serviceContext);
 	}
 
 	public KBTemplateService getWrappedKBTemplateService() {

@@ -39,13 +39,14 @@ public class KBTemplateServiceUtil {
 	 * Never modify this class directly. Add custom service methods to {@link com.liferay.knowledgebase.service.impl.KBTemplateServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
 	public static com.liferay.knowledgebase.model.KBTemplate addKBTemplate(
-		java.lang.String title, java.lang.String content,
-		java.lang.String description,
+		java.lang.String title, java.lang.String content, int engineType,
+		boolean cacheable,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
-				   .addKBTemplate(title, content, description, serviceContext);
+				   .addKBTemplate(title, content, engineType, cacheable,
+			serviceContext);
 	}
 
 	public static void deleteKBTemplate(long kbTemplateId)
@@ -95,13 +96,13 @@ public class KBTemplateServiceUtil {
 
 	public static com.liferay.knowledgebase.model.KBTemplate updateKBTemplate(
 		long kbTemplateId, java.lang.String title, java.lang.String content,
-		java.lang.String description,
+		int engineType, boolean cacheable,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
-				   .updateKBTemplate(kbTemplateId, title, content, description,
-			serviceContext);
+				   .updateKBTemplate(kbTemplateId, title, content, engineType,
+			cacheable, serviceContext);
 	}
 
 	public static void clearService() {

@@ -255,21 +255,48 @@ public class KBTemplateWrapper implements KBTemplate {
 	}
 
 	/**
-	* Gets the description of this k b template.
+	* Gets the engine type of this k b template.
 	*
-	* @return the description of this k b template
+	* @return the engine type of this k b template
 	*/
-	public java.lang.String getDescription() {
-		return _kbTemplate.getDescription();
+	public int getEngineType() {
+		return _kbTemplate.getEngineType();
 	}
 
 	/**
-	* Sets the description of this k b template.
+	* Sets the engine type of this k b template.
 	*
-	* @param description the description of this k b template
+	* @param engineType the engine type of this k b template
 	*/
-	public void setDescription(java.lang.String description) {
-		_kbTemplate.setDescription(description);
+	public void setEngineType(int engineType) {
+		_kbTemplate.setEngineType(engineType);
+	}
+
+	/**
+	* Gets the cacheable of this k b template.
+	*
+	* @return the cacheable of this k b template
+	*/
+	public boolean getCacheable() {
+		return _kbTemplate.getCacheable();
+	}
+
+	/**
+	* Determines if this k b template is cacheable.
+	*
+	* @return <code>true</code> if this k b template is cacheable; <code>false</code> otherwise
+	*/
+	public boolean isCacheable() {
+		return _kbTemplate.isCacheable();
+	}
+
+	/**
+	* Sets whether this k b template is cacheable.
+	*
+	* @param cacheable the cacheable of this k b template
+	*/
+	public void setCacheable(boolean cacheable) {
+		_kbTemplate.setCacheable(cacheable);
 	}
 
 	public boolean isNew() {
@@ -331,6 +358,14 @@ public class KBTemplateWrapper implements KBTemplate {
 
 	public java.lang.String toXmlString() {
 		return _kbTemplate.toXmlString();
+	}
+
+	public boolean isFreeMarker() {
+		return _kbTemplate.isFreeMarker();
+	}
+
+	public boolean isVelocity() {
+		return _kbTemplate.isVelocity();
 	}
 
 	public KBTemplate getWrappedKBTemplate() {

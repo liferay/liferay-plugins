@@ -30,6 +30,7 @@
 			<basic name="title" />
 			<basic name="content" />
 			<basic name="description" />
+			<basic name="kbTemplateId" />
 			<basic name="priority" />
 			<basic name="viewCount" />
 			<basic name="latest" />
@@ -87,7 +88,8 @@
 			</basic>
 			<basic name="title" />
 			<basic name="content" />
-			<basic name="description" />
+			<basic name="engineType" />
+			<basic name="cacheable" />
 			<transient name="primaryKey" />
 			<transient name="userUuid" />
 		</attributes>
