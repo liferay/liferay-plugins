@@ -1,0 +1,52 @@
+/**
+ * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+
+package com.liferay.testmisc.spring;
+
+import com.liferay.portal.kernel.scheduler.SchedulerEngineUtil;
+import com.liferay.portal.kernel.scheduler.StorageType;
+import com.liferay.portal.kernel.scheduler.TriggerState;
+import com.liferay.testmisc.messaging.TestSchedulerMessageListener;
+import com.liferay.testmisc.scheduler.SchedulerTestResult;
+
+/**
+ * @author Shuyang Zhou
+ */
+public class SlowBean {
+
+	public void afterPropertiesSet() {
+		try {
+			Thread.sleep(1000);
+
+			String className = TestSchedulerMessageListener.class.getName();
+
+			TriggerState triggerState = SchedulerEngineUtil.getJobState(
+				className, className, StorageType.MEMORY);
+
+			if (triggerState == null) {
+				SchedulerTestResult.setScheduledBeforeSpringInitialized(false);
+			}
+			else {
+				SchedulerTestResult.setScheduledBeforeSpringInitialized(true);
+			}
+
+			SchedulerTestResult.setRanBeforeSpringInitialzed(
+				TestSchedulerMessageListener.isRan());
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+}

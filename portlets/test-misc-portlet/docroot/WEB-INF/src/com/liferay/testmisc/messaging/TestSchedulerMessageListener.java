@@ -24,13 +24,20 @@ import com.liferay.portal.kernel.messaging.Message;
  */
 public class TestSchedulerMessageListener extends BaseMessageListener {
 
+	public static boolean isRan() {
+		return _ran;
+	}
+
 	protected void doReceive(Message message) throws Exception {
 		if (_log.isInfoEnabled()) {
 			_log.info("Execute");
 		}
+		_ran = true;
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(
 		TestSchedulerMessageListener.class);
+
+	private static volatile boolean _ran;
 
 }
