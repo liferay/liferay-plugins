@@ -22,8 +22,6 @@ import com.liferay.knowledgebase.util.PortletPropsValues;
 import com.liferay.knowledgebase.util.WebKeys;
 import com.liferay.portal.kernel.cache.MultiVMPoolUtil;
 import com.liferay.portal.kernel.cache.PortalCache;
-import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -49,7 +47,7 @@ public class KBArticleContentCacheUtil {
 	}
 
 	public static String getContent(HttpServletRequest request)
-		throws PortalException, SystemException {
+		throws Exception {
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
 			WebKeys.THEME_DISPLAY);
@@ -137,10 +135,10 @@ public class KBArticleContentCacheUtil {
 		variables.put("exception", e);
 		variables.put("kbTemplate", kbTemplate);
 
-		KBTemplateParser kbTemplateParser = AdminUtil.getKBTemplateParser(
-			kbTemplate.getEngineType());
-
 		try {
+			KBTemplateParser kbTemplateParser = AdminUtil.getKBTemplateParser(
+				kbTemplate.getEngineType());
+
 			return kbTemplateParser.transform(
 				key, ContentUtil.get(value), variables, request);
 		}

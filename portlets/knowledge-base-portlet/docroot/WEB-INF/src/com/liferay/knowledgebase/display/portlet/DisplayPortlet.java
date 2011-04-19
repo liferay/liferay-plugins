@@ -630,7 +630,7 @@ public class DisplayPortlet extends MVCPortlet {
 	protected void transform(
 			long kbTemplateId, String content, int engineType,
 			ActionRequest actionRequest)
-		throws KBTemplateContentException {
+		throws Exception {
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
