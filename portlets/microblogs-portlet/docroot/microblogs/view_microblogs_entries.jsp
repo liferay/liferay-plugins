@@ -19,24 +19,22 @@
 <%
 String redirect = ParamUtil.getString(request, "redirect");
 
-List<MicroblogsEntry> results = (List<MicroblogsEntry>)request.getAttribute(WebKeys.MICROBLOGS_ENTRIES);
-int total = ((Integer)request.getAttribute(WebKeys.MICROBLOGS_ENTRIES_COUNT)).intValue();
+List<MicroblogsEntry> microblogsEntries = (List<MicroblogsEntry>)request.getAttribute(WebKeys.MICROBLOGS_ENTRIES);
 
-PortletURL portletURL = (PortletURL)request.getAttribute(WebKeys.MICROBLOGS_URL);
+PortletURL portletURL = (PortletURL)request.getAttribute(WebKeys.MICROBLOGS_ENTRIES_URL);
 %>
 
-<c:if test="<%= results.isEmpty() %>">
+<c:if test="<%= microblogsEntries.isEmpty() %>">
 	<div class="portlet-msg-info">
 		<liferay-ui:message key="you-have-no-microblogs-entry" />
 	</div>
 </c:if>
 
 <%
-for (MicroblogsEntry microblogsEntry : results) {
-	String userFullName = PortalUtil.getUserName(microblogsEntry.getUserId(), microblogsEntry.getUserName());
-
+for (MicroblogsEntry microblogsEntry : microblogsEntries) {
 	String userDisplayURL = StringPool.BLANK;
 	String userEmail = StringPool.BLANK;
+	String userFullName = PortalUtil.getUserName(microblogsEntry.getUserId(), microblogsEntry.getUserName());
 	String userPortaitURL = StringPool.BLANK;
 
 	try {
@@ -57,20 +55,10 @@ for (MicroblogsEntry microblogsEntry : results) {
 
 		<div class="<%= (themeDisplay.getUserId() == microblogsEntry.getUserId()) ? "my-entry-bubble" : "entry-bubble" %> ">
 			<div class="user-name">
-				<span>
-					<%= userFullName %>
-				</span>
-				<span class="small">
-					<%= userEmail %>
-				</span>
+				<span><%= userFullName %></span> <span class="small"><%= userEmail %></span>
 
 				<c:if test="<%= microblogsEntry.getType() == MicroblogsEntryConstants.TYPE_REPOST %>">
-					<span class="small">
-						<liferay-ui:message key="reposted-from" />
-					</span>
-					<span>
-						<%= PortalUtil.getUserName(microblogsEntry.getReceiverUserId(), StringPool.BLANK) %>
-					</span>
+					<span class="small"><liferay-ui:message key="reposted-from" /></span> <span><%= PortalUtil.getUserName(microblogsEntry.getReceiverUserId(), StringPool.BLANK) %></span>
 				</c:if>
 			</div>
 
@@ -80,6 +68,7 @@ for (MicroblogsEntry microblogsEntry : results) {
 				String content = microblogsEntry.getContent();
 
 				Pattern pattern = Pattern.compile("#\\w+");
+
 				Matcher matcher = pattern.matcher(content);
 
 				PortletURL viewURL = renderResponse.createRenderURL();
@@ -90,24 +79,23 @@ for (MicroblogsEntry microblogsEntry : results) {
 
 				while (matcher.find()) {
 					String result = matcher.group();
-					String tag = result.substring(1);
 
-					viewURL.setParameter("tabs1", HtmlUtil.escape(tag));
-					viewURL.setParameter("tagName", tag);
+					String assetTagName = result.substring(1);
 
-					String tagLink = "<a href=\"" + viewURL + "\">" + result + "</a>";
+					viewURL.setParameter("tabs1", HtmlUtil.escape(assetTagName));
+					viewURL.setParameter("assetTagName", assetTagName);
 
-					content = content.replaceAll(result, tagLink);
+					content = StringUtil.replace(content, result, "<a href=\"" + viewURL + "\">" + result + "</a>");
 				}
 
 				if (microblogsEntry.getType() == MicroblogsEntryConstants.TYPE_REPLY) {
 					String receiverUserFullName = PortalUtil.getUserName(microblogsEntry.getReceiverUserId(), StringPool.BLANK);
 
 					viewURL.setParameter("tabs1", receiverUserFullName);
-					viewURL.setParameter("tagName", StringPool.BLANK);
 					viewURL.setParameter("receiverMicroblogsEntryId", String.valueOf(microblogsEntry.getReceiverMicroblogsEntryId()));
+					viewURL.setParameter("assetTagName", StringPool.BLANK);
 
-					content = "@<a href='" + viewURL + "'>" + receiverUserFullName + "</a> " + content;
+					content = "@<a href=\"" + viewURL + "\">" + receiverUserFullName + "</a> " + content;
 				}
 				%>
 
@@ -125,9 +113,9 @@ for (MicroblogsEntry microblogsEntry : results) {
 					<c:if test="<%= themeDisplay.getUserId() != microblogsEntry.getUserId() && MicroblogsPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_ENTRY) && (microblogsEntry.getSocialRelationType() == MicroblogsEntryConstants.TYPE_EVERYONE) %>">
 						<portlet:renderURL var="repostMicroblogsEntryURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
 							<portlet:param name="jspPage" value="/microblogs/edit_microblogs_entry.jsp" />
-							<portlet:param name="repost" value="<%= String.valueOf(true) %>" />
 							<portlet:param name="redirect" value="<%= redirect %>" />
 							<portlet:param name="microblogsEntryId" value="<%= String.valueOf(microblogsEntry.getMicroblogsEntryId()) %>" />
+							<portlet:param name="repost" value="<%= Boolean.TRUE.toString() %>" />
 						</portlet:renderURL>
 
 						<%
@@ -145,9 +133,9 @@ for (MicroblogsEntry microblogsEntry : results) {
 					<c:if test="<%= MicroblogsPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_ENTRY) && (microblogsEntry.getSocialRelationType() == MicroblogsEntryConstants.TYPE_EVERYONE) %>">
 						<portlet:renderURL var="replyMicroblogsEntryURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
 							<portlet:param name="jspPage" value="/microblogs/edit_microblogs_entry.jsp" />
-							<portlet:param name="reply" value="<%= String.valueOf(true) %>" />
 							<portlet:param name="redirect" value="<%= redirect %>" />
 							<portlet:param name="microblogsEntryId" value="<%= String.valueOf(microblogsEntry.getMicroblogsEntryId()) %>" />
+							<portlet:param name="reply" value="<%= Boolean.TRUE.toString() %>" />
 						</portlet:renderURL>
 
 						<%
@@ -164,9 +152,9 @@ for (MicroblogsEntry microblogsEntry : results) {
 					<c:if test="<%= microblogsEntry.getType() != MicroblogsEntryConstants.TYPE_REPOST && MicroblogsEntryPermission.contains(permissionChecker, microblogsEntry.getMicroblogsEntryId(), ActionKeys.UPDATE) %>">
 						<portlet:renderURL var="updateMicroblogsEntryURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
 							<portlet:param name="jspPage" value="/microblogs/edit_microblogs_entry.jsp" />
-							<portlet:param name="edit" value="<%= String.valueOf(true) %>" />
 							<portlet:param name="redirect" value="<%= redirect %>" />
 							<portlet:param name="microblogsEntryId" value="<%= String.valueOf(microblogsEntry.getMicroblogsEntryId()) %>" />
+							<portlet:param name="edit" value="<%= Boolean.TRUE.toString() %>" />
 						</portlet:renderURL>
 
 						<%
@@ -182,8 +170,8 @@ for (MicroblogsEntry microblogsEntry : results) {
 
 					<c:if test="<%= MicroblogsEntryPermission.contains(permissionChecker, microblogsEntry.getMicroblogsEntryId(), ActionKeys.DELETE) %>">
 						<portlet:actionURL name="deleteMicroblogsEntry" var="deleteURL" windowState="<%= LiferayWindowState.NORMAL.toString() %>">
-							<portlet:param name="microblogsEntryId" value="<%= String.valueOf(microblogsEntry.getMicroblogsEntryId()) %>" />
 							<portlet:param name="redirect" value="<%= portletURL.toString() %>" />
+							<portlet:param name="microblogsEntryId" value="<%= String.valueOf(microblogsEntry.getMicroblogsEntryId()) %>" />
 						</portlet:actionURL>
 
 						<liferay-ui:icon-delete

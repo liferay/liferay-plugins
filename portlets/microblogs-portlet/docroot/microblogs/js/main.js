@@ -32,6 +32,7 @@ AUI().use(
 				popup.set('title', title);
 
 				popup.io.set('uri', url);
+
 				popup.io.start();
 			},
 
@@ -41,12 +42,12 @@ AUI().use(
 				if (!instance._popup) {
 					instance._popup = new A.Dialog(
 						{
-							resizable: false,
-							width: 475,
-							modal: true,
+							centered: true,
 							constrain2view: true,
-							centered:true,
-							cssClass: 'microblogs-portlet'
+							cssClass: 'microblogs-portlet',
+							modal: true,
+							resizable: false,
+							width: 475
 						}
 					).plug(
 						A.Plugin.IO,

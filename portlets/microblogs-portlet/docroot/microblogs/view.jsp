@@ -21,15 +21,13 @@ String redirect = ParamUtil.getString(request, "redirect");
 
 String tabs1 = ParamUtil.getString(request, "tabs1", "timeline");
 
-Group group = themeDisplay.getScopeGroup();
-
 long receiverMicroblogsEntryId = ParamUtil.getLong(request, "receiverMicroblogsEntryId");
 
-String tagName = ParamUtil.getString(request, "tagName");
+String assetTagName = ParamUtil.getString(request, "assetTagName");
 
 String tabs1Names = "timeline,mentions";
 
-if (receiverMicroblogsEntryId > 0 || Validator.isNotNull(tagName)) {
+if ((receiverMicroblogsEntryId > 0) || Validator.isNotNull(assetTagName)) {
 	tabs1Names += "," + tabs1;
 }
 
@@ -54,8 +52,6 @@ portletURL.setParameter("tabs1", tabs1);
 	</div>
 </c:if>
 
-<portlet:actionURL name="updateMicroblogsEntry" var="updateMicroblogsEntryURL" />
-
 <c:if test="<%= MicroblogsPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_ENTRY) %>">
 	<liferay-util:include page="/microblogs/edit_microblogs_entry.jsp" portletId="<%= portletDisplay.getId() %>" />
 </c:if>
@@ -69,9 +65,8 @@ portletURL.setParameter("tabs1", tabs1);
 <div class="microblogs-container">
 
 	<%
-	SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, delta, portletURL, null, null);
+	SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, 10, portletURL, null, null);
 
-	searchContainer.setDelta(delta);
 	searchContainer.setDeltaConfigurable(false);
 
 	List<MicroblogsEntry> results = new ArrayList<MicroblogsEntry>();
@@ -80,11 +75,13 @@ portletURL.setParameter("tabs1", tabs1);
 	if (tabs1.equals("timeline")) {
 		long microblogsEntryUserId = themeDisplay.getUserId();
 
+		Group group = themeDisplay.getScopeGroup();
+
 		if (group.isUser()) {
 			microblogsEntryUserId = group.getClassPK();
 		}
 
-		if (microblogsEntryUserId  == themeDisplay.getUserId()) {
+		if (microblogsEntryUserId == themeDisplay.getUserId()) {
 			results = MicroblogsEntryServiceUtil.getMicroblogsEntries(searchContainer.getStart(), searchContainer.getEnd());
 			total = MicroblogsEntryServiceUtil.getMicroblogsEntriesCount();
 		}
@@ -95,6 +92,8 @@ portletURL.setParameter("tabs1", tabs1);
 	}
 	else if (tabs1.equals("mentions")) {
 		long receiverUserId = themeDisplay.getUserId();
+
+		Group group = themeDisplay.getScopeGroup();
 
 		if (group.isUser()) {
 			receiverUserId = group.getClassPK();
@@ -109,19 +108,18 @@ portletURL.setParameter("tabs1", tabs1);
 
 		portletURL.setParameter("receiverMicroblogsEntryId", String.valueOf(receiverMicroblogsEntryId));
 	}
-	else if (Validator.isNotNull(tagName)) {
-		results = MicroblogsEntryServiceUtil.getMicroblogsEntries(tagName, searchContainer.getStart(), searchContainer.getEnd());
-		total = MicroblogsEntryServiceUtil.getMicroblogsEntriesCount(tagName);
+	else if (Validator.isNotNull(assetTagName)) {
+		results = MicroblogsEntryServiceUtil.getMicroblogsEntries(assetTagName, searchContainer.getStart(), searchContainer.getEnd());
+		total = MicroblogsEntryServiceUtil.getMicroblogsEntriesCount(assetTagName);
 
-		portletURL.setParameter("tagName", String.valueOf(tagName));
+		portletURL.setParameter("assetTagName", String.valueOf(assetTagName));
 	}
 
 	searchContainer.setResults(results);
 	searchContainer.setTotal(total);
 
 	request.setAttribute(WebKeys.MICROBLOGS_ENTRIES, results);
-	request.setAttribute(WebKeys.MICROBLOGS_ENTRIES_COUNT, new Integer(total));
-	request.setAttribute(WebKeys.MICROBLOGS_URL, portletURL);
+	request.setAttribute(WebKeys.MICROBLOGS_ENTRIES_URL, portletURL);
 	%>
 
 	<liferay-util:include page="/microblogs/view_microblogs_entries.jsp" portletId="<%= portletDisplay.getId() %>" />

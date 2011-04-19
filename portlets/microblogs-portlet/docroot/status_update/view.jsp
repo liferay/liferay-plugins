@@ -43,7 +43,7 @@ portletURL.setParameter("jspPage", "/status_update/view.jsp");
 	<%
 	List<MicroblogsEntry> microblogsEntries = new ArrayList<MicroblogsEntry>();
 
-	if (microblogsEntryUserId  == themeDisplay.getUserId()) {
+	if (microblogsEntryUserId == themeDisplay.getUserId()) {
 		microblogsEntries = MicroblogsEntryServiceUtil.getMicroblogsEntries(0, 1);
 	}
 	else {
@@ -51,8 +51,7 @@ portletURL.setParameter("jspPage", "/status_update/view.jsp");
 	}
 
 	request.setAttribute(WebKeys.MICROBLOGS_ENTRIES, microblogsEntries);
-	request.setAttribute(WebKeys.MICROBLOGS_ENTRIES_COUNT, new Integer(1));
-	request.setAttribute(WebKeys.MICROBLOGS_URL, portletURL);
+	request.setAttribute(WebKeys.MICROBLOGS_ENTRIES_URL, portletURL);
 	%>
 
 	<liferay-util:include page="/microblogs/view_microblogs_entries.jsp" portletId="<%= portletDisplay.getId() %>" />

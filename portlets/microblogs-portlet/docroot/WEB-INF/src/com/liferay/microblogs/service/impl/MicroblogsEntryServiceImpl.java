@@ -32,7 +32,7 @@ public class MicroblogsEntryServiceImpl extends MicroblogsEntryServiceBaseImpl {
 
 	public MicroblogsEntry addMicroblogsEntry(
 			long userId, String content, int type, long receiverUserId,
-			long receiverEntryId, int socialRelationType,
+			long receiverMicroblogsEntryId, int socialRelationType,
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
@@ -41,7 +41,7 @@ public class MicroblogsEntryServiceImpl extends MicroblogsEntryServiceBaseImpl {
 			ActionKeys.ADD_ENTRY);
 
 		return microblogsEntryLocalService.addMicroblogsEntry(
-			userId, content, type, receiverUserId, receiverEntryId,
+			userId, content, type, receiverUserId, receiverMicroblogsEntryId,
 			socialRelationType, serviceContext);
 	}
 

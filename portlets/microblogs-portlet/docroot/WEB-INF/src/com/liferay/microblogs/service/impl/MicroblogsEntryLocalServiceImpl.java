@@ -15,10 +15,10 @@
 package com.liferay.microblogs.service.impl;
 
 import com.liferay.microblogs.UnsupportedMicroblogsEntryException;
+import com.liferay.microblogs.microblogs.social.MicroblogsActivityKeys;
 import com.liferay.microblogs.model.MicroblogsEntry;
 import com.liferay.microblogs.model.MicroblogsEntryConstants;
 import com.liferay.microblogs.service.base.MicroblogsEntryLocalServiceBaseImpl;
-import com.liferay.microblogs.microblogs.social.MicroblogsActivityKeys;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringPool;
@@ -253,8 +253,7 @@ public class MicroblogsEntryLocalServiceImpl
 		return microblogsEntry;
 	}
 
-	protected void validate(
-			int type, long receiverMicroblogsEntryId)
+	protected void validate(int type, long receiverMicroblogsEntryId)
 		throws PortalException, SystemException {
 
 		if (receiverMicroblogsEntryId == 0) {

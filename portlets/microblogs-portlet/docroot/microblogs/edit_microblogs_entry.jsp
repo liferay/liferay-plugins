@@ -17,9 +17,7 @@
 <%@ include file="/init.jsp" %>
 
 <%
-long microblogsEntryId = ParamUtil.getLong(request, "microblogsEntryId", 0);
-
-WindowState windowState = renderRequest.getWindowState();
+long microblogsEntryId = ParamUtil.getLong(request, "microblogsEntryId");
 
 MicroblogsEntry microblogsEntry = null;
 
@@ -27,30 +25,25 @@ if (microblogsEntryId > 0) {
 	try {
 		microblogsEntry = MicroblogsEntryLocalServiceUtil.getMicroblogsEntry(microblogsEntryId);
 	}
-	catch (NoSuchModelException nsme) {
+	catch (NoSuchEntryException nsee) {
 	}
 }
 
-boolean edit = ParamUtil.getBoolean(request, "edit", false);
-boolean reply = ParamUtil.getBoolean(request, "reply", false);
-boolean repost = ParamUtil.getBoolean(request, "repost", false);
+String modifiedDate = StringPool.BLANK;
 
 long receiverUserId = 0;
 
-String receiverUserFullName = StringPool.BLANK;
-
 String receiverUserDisplayURL = StringPool.BLANK;
 String receiverUserEmail = StringPool.BLANK;
+String receiverUserFullName = StringPool.BLANK;
 String receiverUserPortaitURL = StringPool.BLANK;
 
-String modifiedDate = StringPool.BLANK;
-
 if ((microblogsEntry != null) && (reply || repost)) {
+	modifiedDate = dateFormatDateTime.format(microblogsEntry.getModifiedDate());
+
 	receiverUserId = microblogsEntry.getUserId();
 
 	receiverUserFullName = PortalUtil.getUserName(microblogsEntry.getUserId(), microblogsEntry.getUserName());
-
-	modifiedDate = dateFormatDateTime.format(microblogsEntry.getModifiedDate());
 
 	try {
 		User receiverUser = UserLocalServiceUtil.getUserById(microblogsEntry.getUserId());
@@ -64,9 +57,14 @@ if ((microblogsEntry != null) && (reply || repost)) {
 }
 
 String header = "whats-happening";
+
 String formName = "dialogFm";
 
 boolean view = false;
+
+boolean edit = ParamUtil.getBoolean(request, "edit");
+boolean reply = ParamUtil.getBoolean(request, "reply");
+boolean repost = ParamUtil.getBoolean(request, "repost");
 
 if (edit) {
 	header = "what-do-you-want-to-say-instead";
@@ -103,8 +101,7 @@ header = LanguageUtil.format(pageContext, header, receiverUserFullName);
 
 				<div class="entry-bubble">
 					<div class="user-name">
-						<span><%= receiverUserFullName %></span>
-						<span class="small"><%= receiverUserEmail %></span>
+						<span><%= receiverUserFullName %></span> <span class="small"><%= receiverUserEmail %></span>
 					</div>
 
 					<div class="content">
@@ -123,21 +120,21 @@ header = LanguageUtil.format(pageContext, header, receiverUserFullName);
 <portlet:actionURL name="updateMicroblogsEntry" var="updateMicroblogsEntryURL" />
 
 <aui:form action="<%= updateMicroblogsEntryURL %>" name="<%= formName %>">
-	<aui:input type="hidden" name="redirect" value="<%= currentURL %>" />
-	<aui:input type="hidden" name="microblogsEntryId" value="<%= repost || reply ? 0 : microblogsEntryId %>" />
-	<aui:input type="hidden" name="receiverUserId" value="<%= receiverUserId %>" />
-	<aui:input type="hidden" name="receiverEntryId" value="<%= microblogsEntryId %>" />
+	<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
+	<aui:input name="microblogsEntryId" type="hidden" value="<%= (repost || reply) ? 0 : microblogsEntryId %>" />
+	<aui:input name="receiverUserId" type="hidden" value="<%= receiverUserId %>" />
+	<aui:input name="receiverMicroblogsEntryId" type="hidden" value="<%= microblogsEntryId %>" />
 
 	<c:choose>
 		<c:when test="<%= repost %>">
-			<aui:input type="hidden" name="type" value="<%= MicroblogsEntryConstants.TYPE_REPOST %>" />
+			<aui:input name="type" type="hidden" value="<%= MicroblogsEntryConstants.TYPE_REPOST %>" />
 
-			<aui:input type="hidden" name="content" value="<%= microblogsEntry.getContent() %>" />
+			<aui:input name="content" type="hidden" value="<%= microblogsEntry.getContent() %>" />
 		</c:when>
 		<c:when test="<%= reply %>">
-			<aui:input type="hidden" name="type" value="<%= MicroblogsEntryConstants.TYPE_REPLY %>" />
+			<aui:input name="type" type="hidden" value="<%= MicroblogsEntryConstants.TYPE_REPLY %>" />
 
-			<aui:input type="hidden" name="receiverEntryId" value="<%= microblogsEntryId %>" />
+			<aui:input name="receiverMicroblogsEntryId" type="hidden" value="<%= microblogsEntryId %>" />
 		</c:when>
 	</c:choose>
 
@@ -174,7 +171,7 @@ header = LanguageUtil.format(pageContext, header, receiverUserFullName);
 			<aui:button name="submit" type="submit" value="post" />
 
 			<c:if test="<%= !view %>">
-				<aui:button onClick="Liferay.Microblogs.closePopup()" type="cancel" />
+				<aui:button onClick="Liferay.Microblogs.closePopup();" type="cancel" />
 			</c:if>
 		</span>
 	</aui:button-row>

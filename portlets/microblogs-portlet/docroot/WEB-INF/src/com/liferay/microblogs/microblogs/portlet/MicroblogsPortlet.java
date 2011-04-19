@@ -60,8 +60,8 @@ public class MicroblogsPortlet extends MVCPortlet {
 		int type = ParamUtil.getInteger(actionRequest, "type");
 		long receiverUserId = ParamUtil.getLong(
 			actionRequest, "receiverUserId");
-		long receiverEntryId = ParamUtil.getLong(
-			actionRequest, "receiverEntryId");
+		long receiverMicroblogsEntryId = ParamUtil.getLong(
+			actionRequest, "receiverMicroblogsEntryId");
 		int socialRelationType = ParamUtil.getInteger(
 			actionRequest, "socialRelationType");
 
@@ -79,7 +79,7 @@ public class MicroblogsPortlet extends MVCPortlet {
 		else {
 			MicroblogsEntryServiceUtil.addMicroblogsEntry(
 				themeDisplay.getUserId(), content, type, receiverUserId,
-				receiverEntryId, socialRelationType, serviceContext);
+				receiverMicroblogsEntryId, socialRelationType, serviceContext);
 		}
 	}
 
