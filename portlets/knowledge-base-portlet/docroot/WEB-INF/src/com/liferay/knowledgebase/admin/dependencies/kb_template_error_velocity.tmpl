@@ -13,7 +13,7 @@ $exception.getMessage()
 			${velocityCount}
 		</td>
 		<td style="padding-left:5px;">
-			<pre>${line}</pre>
+			<pre>${htmlUtil.escape($line)}</pre>
 		</td>
 	</tr>
 #end
