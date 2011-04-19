@@ -28,6 +28,7 @@ import com.liferay.portal.kernel.dao.orm.FinderPath;
 import com.liferay.portal.kernel.dao.orm.Query;
 import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import com.liferay.portal.kernel.dao.orm.SQLQuery;
 import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
@@ -41,6 +42,7 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.ModelListener;
+import com.liferay.portal.security.permission.InlineSQLHelperUtil;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.ResourcePersistence;
 import com.liferay.portal.service.persistence.UserPersistence;
@@ -794,6 +796,323 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	}
 
 	/**
+	 * Filters by the user's permissions and finds all the microblogs entries where companyId = &#63;.
+	 *
+	 * @param companyId the company ID to search with
+	 * @return the matching microblogs entries that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<MicroblogsEntry> filterFindByCompanyId(long companyId)
+		throws SystemException {
+		return filterFindByCompanyId(companyId, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Filters by the user's permissions and finds a range of all the microblogs entries where companyId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param companyId the company ID to search with
+	 * @param start the lower bound of the range of microblogs entries to return
+	 * @param end the upper bound of the range of microblogs entries to return (not inclusive)
+	 * @return the range of matching microblogs entries that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<MicroblogsEntry> filterFindByCompanyId(long companyId,
+		int start, int end) throws SystemException {
+		return filterFindByCompanyId(companyId, start, end, null);
+	}
+
+	/**
+	 * Filters by the user's permissions and finds an ordered range of all the microblogs entries where companyId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param companyId the company ID to search with
+	 * @param start the lower bound of the range of microblogs entries to return
+	 * @param end the upper bound of the range of microblogs entries to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching microblogs entries that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<MicroblogsEntry> filterFindByCompanyId(long companyId,
+		int start, int end, OrderByComparator orderByComparator)
+		throws SystemException {
+		if (!InlineSQLHelperUtil.isEnabled()) {
+			return findByCompanyId(companyId, start, end, orderByComparator);
+		}
+
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(3 +
+					(orderByComparator.getOrderByFields().length * 3));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		if (getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_MICROBLOGSENTRY_WHERE);
+		}
+		else {
+			query.append(_FILTER_SQL_SELECT_MICROBLOGSENTRY_NO_INLINE_DISTINCT_WHERE_1);
+		}
+
+		query.append(_FINDER_COLUMN_COMPANYID_COMPANYID_2);
+
+		if (!getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_MICROBLOGSENTRY_NO_INLINE_DISTINCT_WHERE_2);
+		}
+
+		if (orderByComparator != null) {
+			if (getDB().isSupportsInlineDistinct()) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+			else {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
+					orderByComparator);
+			}
+		}
+
+		else {
+			if (getDB().isSupportsInlineDistinct()) {
+				query.append(MicroblogsEntryModelImpl.ORDER_BY_JPQL);
+			}
+			else {
+				query.append(MicroblogsEntryModelImpl.ORDER_BY_SQL);
+			}
+		}
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				MicroblogsEntry.class.getName(), _FILTER_COLUMN_PK,
+				_FILTER_COLUMN_USERID);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			if (getDB().isSupportsInlineDistinct()) {
+				q.addEntity(_FILTER_ENTITY_ALIAS, MicroblogsEntryImpl.class);
+			}
+			else {
+				q.addEntity(_FILTER_ENTITY_TABLE, MicroblogsEntryImpl.class);
+			}
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(companyId);
+
+			return (List<MicroblogsEntry>)QueryUtil.list(q, getDialect(),
+				start, end);
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	/**
+	 * Filters the microblogs entries before and after the current microblogs entry in the ordered set where companyId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param microblogsEntryId the primary key of the current microblogs entry
+	 * @param companyId the company ID to search with
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next microblogs entry
+	 * @throws com.liferay.microblogs.NoSuchEntryException if a microblogs entry with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public MicroblogsEntry[] filterFindByCompanyId_PrevAndNext(
+		long microblogsEntryId, long companyId,
+		OrderByComparator orderByComparator)
+		throws NoSuchEntryException, SystemException {
+		if (!InlineSQLHelperUtil.isEnabled()) {
+			return findByCompanyId_PrevAndNext(microblogsEntryId, companyId,
+				orderByComparator);
+		}
+
+		MicroblogsEntry microblogsEntry = findByPrimaryKey(microblogsEntryId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			MicroblogsEntry[] array = new MicroblogsEntryImpl[3];
+
+			array[0] = filterGetByCompanyId_PrevAndNext(session,
+					microblogsEntry, companyId, orderByComparator, true);
+
+			array[1] = microblogsEntry;
+
+			array[2] = filterGetByCompanyId_PrevAndNext(session,
+					microblogsEntry, companyId, orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected MicroblogsEntry filterGetByCompanyId_PrevAndNext(
+		Session session, MicroblogsEntry microblogsEntry, long companyId,
+		OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		if (getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_MICROBLOGSENTRY_WHERE);
+		}
+		else {
+			query.append(_FILTER_SQL_SELECT_MICROBLOGSENTRY_NO_INLINE_DISTINCT_WHERE_1);
+		}
+
+		query.append(_FINDER_COLUMN_COMPANYID_COMPANYID_2);
+
+		if (!getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_MICROBLOGSENTRY_NO_INLINE_DISTINCT_WHERE_2);
+		}
+
+		if (orderByComparator != null) {
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			if (orderByFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+
+		else {
+			if (getDB().isSupportsInlineDistinct()) {
+				query.append(MicroblogsEntryModelImpl.ORDER_BY_JPQL);
+			}
+			else {
+				query.append(MicroblogsEntryModelImpl.ORDER_BY_SQL);
+			}
+		}
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				MicroblogsEntry.class.getName(), _FILTER_COLUMN_PK,
+				_FILTER_COLUMN_USERID);
+
+		SQLQuery q = session.createSQLQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		if (getDB().isSupportsInlineDistinct()) {
+			q.addEntity(_FILTER_ENTITY_ALIAS, MicroblogsEntryImpl.class);
+		}
+		else {
+			q.addEntity(_FILTER_ENTITY_TABLE, MicroblogsEntryImpl.class);
+		}
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(companyId);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByValues(microblogsEntry);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<MicroblogsEntry> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
 	 * Finds all the microblogs entries where userId = &#63;.
 	 *
 	 * @param userId the user ID to search with
@@ -1110,6 +1429,321 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 
 		q.setFirstResult(0);
 		q.setMaxResults(2);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(userId);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByValues(microblogsEntry);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<MicroblogsEntry> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
+	 * Filters by the user's permissions and finds all the microblogs entries where userId = &#63;.
+	 *
+	 * @param userId the user ID to search with
+	 * @return the matching microblogs entries that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<MicroblogsEntry> filterFindByUserId(long userId)
+		throws SystemException {
+		return filterFindByUserId(userId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			null);
+	}
+
+	/**
+	 * Filters by the user's permissions and finds a range of all the microblogs entries where userId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param userId the user ID to search with
+	 * @param start the lower bound of the range of microblogs entries to return
+	 * @param end the upper bound of the range of microblogs entries to return (not inclusive)
+	 * @return the range of matching microblogs entries that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<MicroblogsEntry> filterFindByUserId(long userId, int start,
+		int end) throws SystemException {
+		return filterFindByUserId(userId, start, end, null);
+	}
+
+	/**
+	 * Filters by the user's permissions and finds an ordered range of all the microblogs entries where userId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param userId the user ID to search with
+	 * @param start the lower bound of the range of microblogs entries to return
+	 * @param end the upper bound of the range of microblogs entries to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching microblogs entries that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<MicroblogsEntry> filterFindByUserId(long userId, int start,
+		int end, OrderByComparator orderByComparator) throws SystemException {
+		if (!InlineSQLHelperUtil.isEnabled()) {
+			return findByUserId(userId, start, end, orderByComparator);
+		}
+
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(3 +
+					(orderByComparator.getOrderByFields().length * 3));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		if (getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_MICROBLOGSENTRY_WHERE);
+		}
+		else {
+			query.append(_FILTER_SQL_SELECT_MICROBLOGSENTRY_NO_INLINE_DISTINCT_WHERE_1);
+		}
+
+		query.append(_FINDER_COLUMN_USERID_USERID_2);
+
+		if (!getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_MICROBLOGSENTRY_NO_INLINE_DISTINCT_WHERE_2);
+		}
+
+		if (orderByComparator != null) {
+			if (getDB().isSupportsInlineDistinct()) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+			else {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
+					orderByComparator);
+			}
+		}
+
+		else {
+			if (getDB().isSupportsInlineDistinct()) {
+				query.append(MicroblogsEntryModelImpl.ORDER_BY_JPQL);
+			}
+			else {
+				query.append(MicroblogsEntryModelImpl.ORDER_BY_SQL);
+			}
+		}
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				MicroblogsEntry.class.getName(), _FILTER_COLUMN_PK,
+				_FILTER_COLUMN_USERID);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			if (getDB().isSupportsInlineDistinct()) {
+				q.addEntity(_FILTER_ENTITY_ALIAS, MicroblogsEntryImpl.class);
+			}
+			else {
+				q.addEntity(_FILTER_ENTITY_TABLE, MicroblogsEntryImpl.class);
+			}
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(userId);
+
+			return (List<MicroblogsEntry>)QueryUtil.list(q, getDialect(),
+				start, end);
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	/**
+	 * Filters the microblogs entries before and after the current microblogs entry in the ordered set where userId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param microblogsEntryId the primary key of the current microblogs entry
+	 * @param userId the user ID to search with
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next microblogs entry
+	 * @throws com.liferay.microblogs.NoSuchEntryException if a microblogs entry with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public MicroblogsEntry[] filterFindByUserId_PrevAndNext(
+		long microblogsEntryId, long userId, OrderByComparator orderByComparator)
+		throws NoSuchEntryException, SystemException {
+		if (!InlineSQLHelperUtil.isEnabled()) {
+			return findByUserId_PrevAndNext(microblogsEntryId, userId,
+				orderByComparator);
+		}
+
+		MicroblogsEntry microblogsEntry = findByPrimaryKey(microblogsEntryId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			MicroblogsEntry[] array = new MicroblogsEntryImpl[3];
+
+			array[0] = filterGetByUserId_PrevAndNext(session, microblogsEntry,
+					userId, orderByComparator, true);
+
+			array[1] = microblogsEntry;
+
+			array[2] = filterGetByUserId_PrevAndNext(session, microblogsEntry,
+					userId, orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected MicroblogsEntry filterGetByUserId_PrevAndNext(Session session,
+		MicroblogsEntry microblogsEntry, long userId,
+		OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		if (getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_MICROBLOGSENTRY_WHERE);
+		}
+		else {
+			query.append(_FILTER_SQL_SELECT_MICROBLOGSENTRY_NO_INLINE_DISTINCT_WHERE_1);
+		}
+
+		query.append(_FINDER_COLUMN_USERID_USERID_2);
+
+		if (!getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_MICROBLOGSENTRY_NO_INLINE_DISTINCT_WHERE_2);
+		}
+
+		if (orderByComparator != null) {
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			if (orderByFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+
+		else {
+			if (getDB().isSupportsInlineDistinct()) {
+				query.append(MicroblogsEntryModelImpl.ORDER_BY_JPQL);
+			}
+			else {
+				query.append(MicroblogsEntryModelImpl.ORDER_BY_SQL);
+			}
+		}
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				MicroblogsEntry.class.getName(), _FILTER_COLUMN_PK,
+				_FILTER_COLUMN_USERID);
+
+		SQLQuery q = session.createSQLQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		if (getDB().isSupportsInlineDistinct()) {
+			q.addEntity(_FILTER_ENTITY_ALIAS, MicroblogsEntryImpl.class);
+		}
+		else {
+			q.addEntity(_FILTER_ENTITY_TABLE, MicroblogsEntryImpl.class);
+		}
 
 		QueryPos qPos = QueryPos.getInstance(q);
 
@@ -1495,6 +2129,335 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	}
 
 	/**
+	 * Filters by the user's permissions and finds all the microblogs entries where userId = &#63; and type = &#63;.
+	 *
+	 * @param userId the user ID to search with
+	 * @param type the type to search with
+	 * @return the matching microblogs entries that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<MicroblogsEntry> filterFindByU_T(long userId, int type)
+		throws SystemException {
+		return filterFindByU_T(userId, type, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Filters by the user's permissions and finds a range of all the microblogs entries where userId = &#63; and type = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param userId the user ID to search with
+	 * @param type the type to search with
+	 * @param start the lower bound of the range of microblogs entries to return
+	 * @param end the upper bound of the range of microblogs entries to return (not inclusive)
+	 * @return the range of matching microblogs entries that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<MicroblogsEntry> filterFindByU_T(long userId, int type,
+		int start, int end) throws SystemException {
+		return filterFindByU_T(userId, type, start, end, null);
+	}
+
+	/**
+	 * Filters by the user's permissions and finds an ordered range of all the microblogs entries where userId = &#63; and type = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param userId the user ID to search with
+	 * @param type the type to search with
+	 * @param start the lower bound of the range of microblogs entries to return
+	 * @param end the upper bound of the range of microblogs entries to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching microblogs entries that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<MicroblogsEntry> filterFindByU_T(long userId, int type,
+		int start, int end, OrderByComparator orderByComparator)
+		throws SystemException {
+		if (!InlineSQLHelperUtil.isEnabled()) {
+			return findByU_T(userId, type, start, end, orderByComparator);
+		}
+
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(4 +
+					(orderByComparator.getOrderByFields().length * 3));
+		}
+		else {
+			query = new StringBundler(4);
+		}
+
+		if (getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_MICROBLOGSENTRY_WHERE);
+		}
+		else {
+			query.append(_FILTER_SQL_SELECT_MICROBLOGSENTRY_NO_INLINE_DISTINCT_WHERE_1);
+		}
+
+		query.append(_FINDER_COLUMN_U_T_USERID_2);
+
+		query.append(_FINDER_COLUMN_U_T_TYPE_2);
+
+		if (!getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_MICROBLOGSENTRY_NO_INLINE_DISTINCT_WHERE_2);
+		}
+
+		if (orderByComparator != null) {
+			if (getDB().isSupportsInlineDistinct()) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+			else {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
+					orderByComparator);
+			}
+		}
+
+		else {
+			if (getDB().isSupportsInlineDistinct()) {
+				query.append(MicroblogsEntryModelImpl.ORDER_BY_JPQL);
+			}
+			else {
+				query.append(MicroblogsEntryModelImpl.ORDER_BY_SQL);
+			}
+		}
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				MicroblogsEntry.class.getName(), _FILTER_COLUMN_PK,
+				_FILTER_COLUMN_USERID);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			if (getDB().isSupportsInlineDistinct()) {
+				q.addEntity(_FILTER_ENTITY_ALIAS, MicroblogsEntryImpl.class);
+			}
+			else {
+				q.addEntity(_FILTER_ENTITY_TABLE, MicroblogsEntryImpl.class);
+			}
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(userId);
+
+			qPos.add(type);
+
+			return (List<MicroblogsEntry>)QueryUtil.list(q, getDialect(),
+				start, end);
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	/**
+	 * Filters the microblogs entries before and after the current microblogs entry in the ordered set where userId = &#63; and type = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param microblogsEntryId the primary key of the current microblogs entry
+	 * @param userId the user ID to search with
+	 * @param type the type to search with
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next microblogs entry
+	 * @throws com.liferay.microblogs.NoSuchEntryException if a microblogs entry with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public MicroblogsEntry[] filterFindByU_T_PrevAndNext(
+		long microblogsEntryId, long userId, int type,
+		OrderByComparator orderByComparator)
+		throws NoSuchEntryException, SystemException {
+		if (!InlineSQLHelperUtil.isEnabled()) {
+			return findByU_T_PrevAndNext(microblogsEntryId, userId, type,
+				orderByComparator);
+		}
+
+		MicroblogsEntry microblogsEntry = findByPrimaryKey(microblogsEntryId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			MicroblogsEntry[] array = new MicroblogsEntryImpl[3];
+
+			array[0] = filterGetByU_T_PrevAndNext(session, microblogsEntry,
+					userId, type, orderByComparator, true);
+
+			array[1] = microblogsEntry;
+
+			array[2] = filterGetByU_T_PrevAndNext(session, microblogsEntry,
+					userId, type, orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected MicroblogsEntry filterGetByU_T_PrevAndNext(Session session,
+		MicroblogsEntry microblogsEntry, long userId, int type,
+		OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		if (getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_MICROBLOGSENTRY_WHERE);
+		}
+		else {
+			query.append(_FILTER_SQL_SELECT_MICROBLOGSENTRY_NO_INLINE_DISTINCT_WHERE_1);
+		}
+
+		query.append(_FINDER_COLUMN_U_T_USERID_2);
+
+		query.append(_FINDER_COLUMN_U_T_TYPE_2);
+
+		if (!getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_MICROBLOGSENTRY_NO_INLINE_DISTINCT_WHERE_2);
+		}
+
+		if (orderByComparator != null) {
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			if (orderByFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+
+		else {
+			if (getDB().isSupportsInlineDistinct()) {
+				query.append(MicroblogsEntryModelImpl.ORDER_BY_JPQL);
+			}
+			else {
+				query.append(MicroblogsEntryModelImpl.ORDER_BY_SQL);
+			}
+		}
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				MicroblogsEntry.class.getName(), _FILTER_COLUMN_PK,
+				_FILTER_COLUMN_USERID);
+
+		SQLQuery q = session.createSQLQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		if (getDB().isSupportsInlineDistinct()) {
+			q.addEntity(_FILTER_ENTITY_ALIAS, MicroblogsEntryImpl.class);
+		}
+		else {
+			q.addEntity(_FILTER_ENTITY_TABLE, MicroblogsEntryImpl.class);
+		}
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(userId);
+
+		qPos.add(type);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByValues(microblogsEntry);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<MicroblogsEntry> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
 	 * Finds all the microblogs entries where type = &#63; and receiverUserId = &#63;.
 	 *
 	 * @param type the type to search with
@@ -1831,6 +2794,335 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 
 		q.setFirstResult(0);
 		q.setMaxResults(2);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(type);
+
+		qPos.add(receiverUserId);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByValues(microblogsEntry);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<MicroblogsEntry> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
+	 * Filters by the user's permissions and finds all the microblogs entries where type = &#63; and receiverUserId = &#63;.
+	 *
+	 * @param type the type to search with
+	 * @param receiverUserId the receiver user ID to search with
+	 * @return the matching microblogs entries that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<MicroblogsEntry> filterFindByT_R(int type, long receiverUserId)
+		throws SystemException {
+		return filterFindByT_R(type, receiverUserId, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Filters by the user's permissions and finds a range of all the microblogs entries where type = &#63; and receiverUserId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param type the type to search with
+	 * @param receiverUserId the receiver user ID to search with
+	 * @param start the lower bound of the range of microblogs entries to return
+	 * @param end the upper bound of the range of microblogs entries to return (not inclusive)
+	 * @return the range of matching microblogs entries that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<MicroblogsEntry> filterFindByT_R(int type, long receiverUserId,
+		int start, int end) throws SystemException {
+		return filterFindByT_R(type, receiverUserId, start, end, null);
+	}
+
+	/**
+	 * Filters by the user's permissions and finds an ordered range of all the microblogs entries where type = &#63; and receiverUserId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param type the type to search with
+	 * @param receiverUserId the receiver user ID to search with
+	 * @param start the lower bound of the range of microblogs entries to return
+	 * @param end the upper bound of the range of microblogs entries to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching microblogs entries that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<MicroblogsEntry> filterFindByT_R(int type, long receiverUserId,
+		int start, int end, OrderByComparator orderByComparator)
+		throws SystemException {
+		if (!InlineSQLHelperUtil.isEnabled()) {
+			return findByT_R(type, receiverUserId, start, end, orderByComparator);
+		}
+
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(4 +
+					(orderByComparator.getOrderByFields().length * 3));
+		}
+		else {
+			query = new StringBundler(4);
+		}
+
+		if (getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_MICROBLOGSENTRY_WHERE);
+		}
+		else {
+			query.append(_FILTER_SQL_SELECT_MICROBLOGSENTRY_NO_INLINE_DISTINCT_WHERE_1);
+		}
+
+		query.append(_FINDER_COLUMN_T_R_TYPE_2);
+
+		query.append(_FINDER_COLUMN_T_R_RECEIVERUSERID_2);
+
+		if (!getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_MICROBLOGSENTRY_NO_INLINE_DISTINCT_WHERE_2);
+		}
+
+		if (orderByComparator != null) {
+			if (getDB().isSupportsInlineDistinct()) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+			else {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
+					orderByComparator);
+			}
+		}
+
+		else {
+			if (getDB().isSupportsInlineDistinct()) {
+				query.append(MicroblogsEntryModelImpl.ORDER_BY_JPQL);
+			}
+			else {
+				query.append(MicroblogsEntryModelImpl.ORDER_BY_SQL);
+			}
+		}
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				MicroblogsEntry.class.getName(), _FILTER_COLUMN_PK,
+				_FILTER_COLUMN_USERID);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			if (getDB().isSupportsInlineDistinct()) {
+				q.addEntity(_FILTER_ENTITY_ALIAS, MicroblogsEntryImpl.class);
+			}
+			else {
+				q.addEntity(_FILTER_ENTITY_TABLE, MicroblogsEntryImpl.class);
+			}
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(type);
+
+			qPos.add(receiverUserId);
+
+			return (List<MicroblogsEntry>)QueryUtil.list(q, getDialect(),
+				start, end);
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	/**
+	 * Filters the microblogs entries before and after the current microblogs entry in the ordered set where type = &#63; and receiverUserId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param microblogsEntryId the primary key of the current microblogs entry
+	 * @param type the type to search with
+	 * @param receiverUserId the receiver user ID to search with
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next microblogs entry
+	 * @throws com.liferay.microblogs.NoSuchEntryException if a microblogs entry with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public MicroblogsEntry[] filterFindByT_R_PrevAndNext(
+		long microblogsEntryId, int type, long receiverUserId,
+		OrderByComparator orderByComparator)
+		throws NoSuchEntryException, SystemException {
+		if (!InlineSQLHelperUtil.isEnabled()) {
+			return findByT_R_PrevAndNext(microblogsEntryId, type,
+				receiverUserId, orderByComparator);
+		}
+
+		MicroblogsEntry microblogsEntry = findByPrimaryKey(microblogsEntryId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			MicroblogsEntry[] array = new MicroblogsEntryImpl[3];
+
+			array[0] = filterGetByT_R_PrevAndNext(session, microblogsEntry,
+					type, receiverUserId, orderByComparator, true);
+
+			array[1] = microblogsEntry;
+
+			array[2] = filterGetByT_R_PrevAndNext(session, microblogsEntry,
+					type, receiverUserId, orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected MicroblogsEntry filterGetByT_R_PrevAndNext(Session session,
+		MicroblogsEntry microblogsEntry, int type, long receiverUserId,
+		OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		if (getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_MICROBLOGSENTRY_WHERE);
+		}
+		else {
+			query.append(_FILTER_SQL_SELECT_MICROBLOGSENTRY_NO_INLINE_DISTINCT_WHERE_1);
+		}
+
+		query.append(_FINDER_COLUMN_T_R_TYPE_2);
+
+		query.append(_FINDER_COLUMN_T_R_RECEIVERUSERID_2);
+
+		if (!getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_MICROBLOGSENTRY_NO_INLINE_DISTINCT_WHERE_2);
+		}
+
+		if (orderByComparator != null) {
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			if (orderByFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+
+		else {
+			if (getDB().isSupportsInlineDistinct()) {
+				query.append(MicroblogsEntryModelImpl.ORDER_BY_JPQL);
+			}
+			else {
+				query.append(MicroblogsEntryModelImpl.ORDER_BY_SQL);
+			}
+		}
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				MicroblogsEntry.class.getName(), _FILTER_COLUMN_PK,
+				_FILTER_COLUMN_USERID);
+
+		SQLQuery q = session.createSQLQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		if (getDB().isSupportsInlineDistinct()) {
+			q.addEntity(_FILTER_ENTITY_ALIAS, MicroblogsEntryImpl.class);
+		}
+		else {
+			q.addEntity(_FILTER_ENTITY_TABLE, MicroblogsEntryImpl.class);
+		}
 
 		QueryPos qPos = QueryPos.getInstance(q);
 
@@ -2222,6 +3514,339 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	}
 
 	/**
+	 * Filters by the user's permissions and finds all the microblogs entries where type = &#63; and receiverMicroblogsEntryId = &#63;.
+	 *
+	 * @param type the type to search with
+	 * @param receiverMicroblogsEntryId the receiver microblogs entry ID to search with
+	 * @return the matching microblogs entries that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<MicroblogsEntry> filterFindByT_RMEI(int type,
+		long receiverMicroblogsEntryId) throws SystemException {
+		return filterFindByT_RMEI(type, receiverMicroblogsEntryId,
+			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Filters by the user's permissions and finds a range of all the microblogs entries where type = &#63; and receiverMicroblogsEntryId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param type the type to search with
+	 * @param receiverMicroblogsEntryId the receiver microblogs entry ID to search with
+	 * @param start the lower bound of the range of microblogs entries to return
+	 * @param end the upper bound of the range of microblogs entries to return (not inclusive)
+	 * @return the range of matching microblogs entries that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<MicroblogsEntry> filterFindByT_RMEI(int type,
+		long receiverMicroblogsEntryId, int start, int end)
+		throws SystemException {
+		return filterFindByT_RMEI(type, receiverMicroblogsEntryId, start, end,
+			null);
+	}
+
+	/**
+	 * Filters by the user's permissions and finds an ordered range of all the microblogs entries where type = &#63; and receiverMicroblogsEntryId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param type the type to search with
+	 * @param receiverMicroblogsEntryId the receiver microblogs entry ID to search with
+	 * @param start the lower bound of the range of microblogs entries to return
+	 * @param end the upper bound of the range of microblogs entries to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching microblogs entries that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<MicroblogsEntry> filterFindByT_RMEI(int type,
+		long receiverMicroblogsEntryId, int start, int end,
+		OrderByComparator orderByComparator) throws SystemException {
+		if (!InlineSQLHelperUtil.isEnabled()) {
+			return findByT_RMEI(type, receiverMicroblogsEntryId, start, end,
+				orderByComparator);
+		}
+
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(4 +
+					(orderByComparator.getOrderByFields().length * 3));
+		}
+		else {
+			query = new StringBundler(4);
+		}
+
+		if (getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_MICROBLOGSENTRY_WHERE);
+		}
+		else {
+			query.append(_FILTER_SQL_SELECT_MICROBLOGSENTRY_NO_INLINE_DISTINCT_WHERE_1);
+		}
+
+		query.append(_FINDER_COLUMN_T_RMEI_TYPE_2);
+
+		query.append(_FINDER_COLUMN_T_RMEI_RECEIVERMICROBLOGSENTRYID_2);
+
+		if (!getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_MICROBLOGSENTRY_NO_INLINE_DISTINCT_WHERE_2);
+		}
+
+		if (orderByComparator != null) {
+			if (getDB().isSupportsInlineDistinct()) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+			else {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
+					orderByComparator);
+			}
+		}
+
+		else {
+			if (getDB().isSupportsInlineDistinct()) {
+				query.append(MicroblogsEntryModelImpl.ORDER_BY_JPQL);
+			}
+			else {
+				query.append(MicroblogsEntryModelImpl.ORDER_BY_SQL);
+			}
+		}
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				MicroblogsEntry.class.getName(), _FILTER_COLUMN_PK,
+				_FILTER_COLUMN_USERID);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			if (getDB().isSupportsInlineDistinct()) {
+				q.addEntity(_FILTER_ENTITY_ALIAS, MicroblogsEntryImpl.class);
+			}
+			else {
+				q.addEntity(_FILTER_ENTITY_TABLE, MicroblogsEntryImpl.class);
+			}
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(type);
+
+			qPos.add(receiverMicroblogsEntryId);
+
+			return (List<MicroblogsEntry>)QueryUtil.list(q, getDialect(),
+				start, end);
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	/**
+	 * Filters the microblogs entries before and after the current microblogs entry in the ordered set where type = &#63; and receiverMicroblogsEntryId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param microblogsEntryId the primary key of the current microblogs entry
+	 * @param type the type to search with
+	 * @param receiverMicroblogsEntryId the receiver microblogs entry ID to search with
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next microblogs entry
+	 * @throws com.liferay.microblogs.NoSuchEntryException if a microblogs entry with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public MicroblogsEntry[] filterFindByT_RMEI_PrevAndNext(
+		long microblogsEntryId, int type, long receiverMicroblogsEntryId,
+		OrderByComparator orderByComparator)
+		throws NoSuchEntryException, SystemException {
+		if (!InlineSQLHelperUtil.isEnabled()) {
+			return findByT_RMEI_PrevAndNext(microblogsEntryId, type,
+				receiverMicroblogsEntryId, orderByComparator);
+		}
+
+		MicroblogsEntry microblogsEntry = findByPrimaryKey(microblogsEntryId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			MicroblogsEntry[] array = new MicroblogsEntryImpl[3];
+
+			array[0] = filterGetByT_RMEI_PrevAndNext(session, microblogsEntry,
+					type, receiverMicroblogsEntryId, orderByComparator, true);
+
+			array[1] = microblogsEntry;
+
+			array[2] = filterGetByT_RMEI_PrevAndNext(session, microblogsEntry,
+					type, receiverMicroblogsEntryId, orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected MicroblogsEntry filterGetByT_RMEI_PrevAndNext(Session session,
+		MicroblogsEntry microblogsEntry, int type,
+		long receiverMicroblogsEntryId, OrderByComparator orderByComparator,
+		boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		if (getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_MICROBLOGSENTRY_WHERE);
+		}
+		else {
+			query.append(_FILTER_SQL_SELECT_MICROBLOGSENTRY_NO_INLINE_DISTINCT_WHERE_1);
+		}
+
+		query.append(_FINDER_COLUMN_T_RMEI_TYPE_2);
+
+		query.append(_FINDER_COLUMN_T_RMEI_RECEIVERMICROBLOGSENTRYID_2);
+
+		if (!getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_MICROBLOGSENTRY_NO_INLINE_DISTINCT_WHERE_2);
+		}
+
+		if (orderByComparator != null) {
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			if (orderByFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+
+		else {
+			if (getDB().isSupportsInlineDistinct()) {
+				query.append(MicroblogsEntryModelImpl.ORDER_BY_JPQL);
+			}
+			else {
+				query.append(MicroblogsEntryModelImpl.ORDER_BY_SQL);
+			}
+		}
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				MicroblogsEntry.class.getName(), _FILTER_COLUMN_PK,
+				_FILTER_COLUMN_USERID);
+
+		SQLQuery q = session.createSQLQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		if (getDB().isSupportsInlineDistinct()) {
+			q.addEntity(_FILTER_ENTITY_ALIAS, MicroblogsEntryImpl.class);
+		}
+		else {
+			q.addEntity(_FILTER_ENTITY_TABLE, MicroblogsEntryImpl.class);
+		}
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(type);
+
+		qPos.add(receiverMicroblogsEntryId);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByValues(microblogsEntry);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<MicroblogsEntry> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
 	 * Finds all the microblogs entries.
 	 *
 	 * @return the microblogs entries
@@ -2461,6 +4086,54 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	}
 
 	/**
+	 * Filters by the user's permissions and counts all the microblogs entries where companyId = &#63;.
+	 *
+	 * @param companyId the company ID to search with
+	 * @return the number of matching microblogs entries that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int filterCountByCompanyId(long companyId) throws SystemException {
+		if (!InlineSQLHelperUtil.isEnabled()) {
+			return countByCompanyId(companyId);
+		}
+
+		StringBundler query = new StringBundler(2);
+
+		query.append(_FILTER_SQL_COUNT_MICROBLOGSENTRY_WHERE);
+
+		query.append(_FINDER_COLUMN_COMPANYID_COMPANYID_2);
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				MicroblogsEntry.class.getName(), _FILTER_COLUMN_PK,
+				_FILTER_COLUMN_USERID);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			q.addScalar(COUNT_COLUMN_NAME,
+				com.liferay.portal.kernel.dao.orm.Type.LONG);
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(companyId);
+
+			Long count = (Long)q.uniqueResult();
+
+			return count.intValue();
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	/**
 	 * Counts all the microblogs entries where userId = &#63;.
 	 *
 	 * @param userId the user ID to search with
@@ -2511,6 +4184,54 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 		}
 
 		return count.intValue();
+	}
+
+	/**
+	 * Filters by the user's permissions and counts all the microblogs entries where userId = &#63;.
+	 *
+	 * @param userId the user ID to search with
+	 * @return the number of matching microblogs entries that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int filterCountByUserId(long userId) throws SystemException {
+		if (!InlineSQLHelperUtil.isEnabled()) {
+			return countByUserId(userId);
+		}
+
+		StringBundler query = new StringBundler(2);
+
+		query.append(_FILTER_SQL_COUNT_MICROBLOGSENTRY_WHERE);
+
+		query.append(_FINDER_COLUMN_USERID_USERID_2);
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				MicroblogsEntry.class.getName(), _FILTER_COLUMN_PK,
+				_FILTER_COLUMN_USERID);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			q.addScalar(COUNT_COLUMN_NAME,
+				com.liferay.portal.kernel.dao.orm.Type.LONG);
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(userId);
+
+			Long count = (Long)q.uniqueResult();
+
+			return count.intValue();
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
 	}
 
 	/**
@@ -2569,6 +4290,60 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 		}
 
 		return count.intValue();
+	}
+
+	/**
+	 * Filters by the user's permissions and counts all the microblogs entries where userId = &#63; and type = &#63;.
+	 *
+	 * @param userId the user ID to search with
+	 * @param type the type to search with
+	 * @return the number of matching microblogs entries that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int filterCountByU_T(long userId, int type)
+		throws SystemException {
+		if (!InlineSQLHelperUtil.isEnabled()) {
+			return countByU_T(userId, type);
+		}
+
+		StringBundler query = new StringBundler(3);
+
+		query.append(_FILTER_SQL_COUNT_MICROBLOGSENTRY_WHERE);
+
+		query.append(_FINDER_COLUMN_U_T_USERID_2);
+
+		query.append(_FINDER_COLUMN_U_T_TYPE_2);
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				MicroblogsEntry.class.getName(), _FILTER_COLUMN_PK,
+				_FILTER_COLUMN_USERID);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			q.addScalar(COUNT_COLUMN_NAME,
+				com.liferay.portal.kernel.dao.orm.Type.LONG);
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(userId);
+
+			qPos.add(type);
+
+			Long count = (Long)q.uniqueResult();
+
+			return count.intValue();
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
 	}
 
 	/**
@@ -2631,6 +4406,60 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	}
 
 	/**
+	 * Filters by the user's permissions and counts all the microblogs entries where type = &#63; and receiverUserId = &#63;.
+	 *
+	 * @param type the type to search with
+	 * @param receiverUserId the receiver user ID to search with
+	 * @return the number of matching microblogs entries that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int filterCountByT_R(int type, long receiverUserId)
+		throws SystemException {
+		if (!InlineSQLHelperUtil.isEnabled()) {
+			return countByT_R(type, receiverUserId);
+		}
+
+		StringBundler query = new StringBundler(3);
+
+		query.append(_FILTER_SQL_COUNT_MICROBLOGSENTRY_WHERE);
+
+		query.append(_FINDER_COLUMN_T_R_TYPE_2);
+
+		query.append(_FINDER_COLUMN_T_R_RECEIVERUSERID_2);
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				MicroblogsEntry.class.getName(), _FILTER_COLUMN_PK,
+				_FILTER_COLUMN_USERID);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			q.addScalar(COUNT_COLUMN_NAME,
+				com.liferay.portal.kernel.dao.orm.Type.LONG);
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(type);
+
+			qPos.add(receiverUserId);
+
+			Long count = (Long)q.uniqueResult();
+
+			return count.intValue();
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	/**
 	 * Counts all the microblogs entries where type = &#63; and receiverMicroblogsEntryId = &#63;.
 	 *
 	 * @param type the type to search with
@@ -2687,6 +4516,60 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 		}
 
 		return count.intValue();
+	}
+
+	/**
+	 * Filters by the user's permissions and counts all the microblogs entries where type = &#63; and receiverMicroblogsEntryId = &#63;.
+	 *
+	 * @param type the type to search with
+	 * @param receiverMicroblogsEntryId the receiver microblogs entry ID to search with
+	 * @return the number of matching microblogs entries that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int filterCountByT_RMEI(int type, long receiverMicroblogsEntryId)
+		throws SystemException {
+		if (!InlineSQLHelperUtil.isEnabled()) {
+			return countByT_RMEI(type, receiverMicroblogsEntryId);
+		}
+
+		StringBundler query = new StringBundler(3);
+
+		query.append(_FILTER_SQL_COUNT_MICROBLOGSENTRY_WHERE);
+
+		query.append(_FINDER_COLUMN_T_RMEI_TYPE_2);
+
+		query.append(_FINDER_COLUMN_T_RMEI_RECEIVERMICROBLOGSENTRYID_2);
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				MicroblogsEntry.class.getName(), _FILTER_COLUMN_PK,
+				_FILTER_COLUMN_USERID);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			q.addScalar(COUNT_COLUMN_NAME,
+				com.liferay.portal.kernel.dao.orm.Type.LONG);
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(type);
+
+			qPos.add(receiverMicroblogsEntryId);
+
+			Long count = (Long)q.uniqueResult();
+
+			return count.intValue();
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
 	}
 
 	/**
@@ -2779,7 +4662,18 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	private static final String _FINDER_COLUMN_T_RMEI_TYPE_2 = "microblogsEntry.type = ? AND ";
 	private static final String _FINDER_COLUMN_T_RMEI_RECEIVERMICROBLOGSENTRYID_2 =
 		"microblogsEntry.receiverMicroblogsEntryId = ?";
+	private static final String _FILTER_SQL_SELECT_MICROBLOGSENTRY_WHERE = "SELECT DISTINCT {microblogsEntry.*} FROM MicroblogsEntry microblogsEntry WHERE ";
+	private static final String _FILTER_SQL_SELECT_MICROBLOGSENTRY_NO_INLINE_DISTINCT_WHERE_1 =
+		"SELECT {MicroblogsEntry.*} FROM (SELECT DISTINCT microblogsEntry.microblogsEntryId FROM MicroblogsEntry microblogsEntry WHERE ";
+	private static final String _FILTER_SQL_SELECT_MICROBLOGSENTRY_NO_INLINE_DISTINCT_WHERE_2 =
+		") TEMP_TABLE INNER JOIN MicroblogsEntry ON TEMP_TABLE.microblogsEntryId = MicroblogsEntry.microblogsEntryId";
+	private static final String _FILTER_SQL_COUNT_MICROBLOGSENTRY_WHERE = "SELECT COUNT(DISTINCT microblogsEntry.microblogsEntryId) AS COUNT_VALUE FROM MicroblogsEntry microblogsEntry WHERE ";
+	private static final String _FILTER_COLUMN_PK = "microblogsEntry.microblogsEntryId";
+	private static final String _FILTER_COLUMN_USERID = "microblogsEntry.userId";
+	private static final String _FILTER_ENTITY_ALIAS = "microblogsEntry";
+	private static final String _FILTER_ENTITY_TABLE = "MicroblogsEntry";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "microblogsEntry.";
+	private static final String _ORDER_BY_ENTITY_TABLE = "MicroblogsEntry.";
 	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No MicroblogsEntry exists with the primary key ";
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No MicroblogsEntry exists with the key {";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(

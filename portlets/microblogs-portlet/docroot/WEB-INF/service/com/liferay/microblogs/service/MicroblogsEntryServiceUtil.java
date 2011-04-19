@@ -40,13 +40,13 @@ public class MicroblogsEntryServiceUtil {
 	 */
 	public static com.liferay.microblogs.model.MicroblogsEntry addMicroblogsEntry(
 		long userId, java.lang.String content, int type, long receiverUserId,
-		long receiverEntryId, int socialRelationType,
+		long receiverMicroblogsEntryId, int socialRelationType,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .addMicroblogsEntry(userId, content, type, receiverUserId,
-			receiverEntryId, socialRelationType, serviceContext);
+			receiverMicroblogsEntryId, socialRelationType, serviceContext);
 	}
 
 	public static void deleteMicroblogsEntry(long microblogsEntryId)

@@ -31,13 +31,13 @@ public class MicroblogsEntryServiceWrapper implements MicroblogsEntryService {
 
 	public com.liferay.microblogs.model.MicroblogsEntry addMicroblogsEntry(
 		long userId, java.lang.String content, int type, long receiverUserId,
-		long receiverEntryId, int socialRelationType,
+		long receiverMicroblogsEntryId, int socialRelationType,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _microblogsEntryService.addMicroblogsEntry(userId, content,
-			type, receiverUserId, receiverEntryId, socialRelationType,
-			serviceContext);
+			type, receiverUserId, receiverMicroblogsEntryId,
+			socialRelationType, serviceContext);
 	}
 
 	public void deleteMicroblogsEntry(long microblogsEntryId)

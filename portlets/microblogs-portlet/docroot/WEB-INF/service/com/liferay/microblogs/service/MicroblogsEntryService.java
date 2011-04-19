@@ -43,7 +43,7 @@ public interface MicroblogsEntryService {
 	 */
 	public com.liferay.microblogs.model.MicroblogsEntry addMicroblogsEntry(
 		long userId, java.lang.String content, int type, long receiverUserId,
-		long receiverEntryId, int socialRelationType,
+		long receiverMicroblogsEntryId, int socialRelationType,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;

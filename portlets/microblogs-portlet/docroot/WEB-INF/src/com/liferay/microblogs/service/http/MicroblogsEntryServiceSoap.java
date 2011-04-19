@@ -67,12 +67,12 @@ import java.rmi.RemoteException;
 public class MicroblogsEntryServiceSoap {
 	public static com.liferay.microblogs.model.MicroblogsEntrySoap addMicroblogsEntry(
 		long userId, java.lang.String content, int type, long receiverUserId,
-		long receiverEntryId, int socialRelationType,
+		long receiverMicroblogsEntryId, int socialRelationType,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws RemoteException {
 		try {
 			com.liferay.microblogs.model.MicroblogsEntry returnValue = MicroblogsEntryServiceUtil.addMicroblogsEntry(userId,
-					content, type, receiverUserId, receiverEntryId,
+					content, type, receiverUserId, receiverMicroblogsEntryId,
 					socialRelationType, serviceContext);
 
 			return com.liferay.microblogs.model.MicroblogsEntrySoap.toSoapModel(returnValue);

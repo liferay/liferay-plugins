@@ -62,7 +62,7 @@ public class MicroblogsEntryServiceClp implements MicroblogsEntryService {
 
 	public com.liferay.microblogs.model.MicroblogsEntry addMicroblogsEntry(
 		long userId, java.lang.String content, int type, long receiverUserId,
-		long receiverEntryId, int socialRelationType,
+		long receiverMicroblogsEntryId, int socialRelationType,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -70,7 +70,7 @@ public class MicroblogsEntryServiceClp implements MicroblogsEntryService {
 
 		MethodHandler methodHandler = new MethodHandler(_addMicroblogsEntryMethodKey0,
 				userId, ClpSerializer.translateInput(content), type,
-				receiverUserId, receiverEntryId, socialRelationType,
+				receiverUserId, receiverMicroblogsEntryId, socialRelationType,
 				ClpSerializer.translateInput(serviceContext));
 
 		try {
