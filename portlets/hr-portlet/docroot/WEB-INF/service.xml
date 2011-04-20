@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.0.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_0_0.dtd">
 
-<service-builder package-path="com.liferay.crm">
+<service-builder package-path="com.liferay.hr">
 	<namespace>HR</namespace>
 	<entity name="HRAccountingVendor" local-service="false" remote-service="false">
     </entity>
