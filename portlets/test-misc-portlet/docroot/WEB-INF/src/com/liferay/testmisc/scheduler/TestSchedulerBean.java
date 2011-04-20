@@ -12,41 +12,44 @@
  * details.
  */
 
-package com.liferay.testmisc.spring;
+package com.liferay.testmisc.scheduler;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.scheduler.SchedulerEngineUtil;
 import com.liferay.portal.kernel.scheduler.StorageType;
 import com.liferay.portal.kernel.scheduler.TriggerState;
 import com.liferay.testmisc.messaging.TestSchedulerMessageListener;
-import com.liferay.testmisc.scheduler.SchedulerTestResult;
 
 /**
  * @author Shuyang Zhou
  */
-public class SlowBean {
+public class TestSchedulerBean {
 
 	public void afterPropertiesSet() {
 		try {
 			Thread.sleep(1000);
 
-			String className = TestSchedulerMessageListener.class.getName();
-
 			TriggerState triggerState = SchedulerEngineUtil.getJobState(
-				className, className, StorageType.MEMORY);
+				TestSchedulerMessageListener.class.getName(),
+				TestSchedulerMessageListener.class.getName(),
+				StorageType.MEMORY);
 
 			if (triggerState == null) {
-				SchedulerTestResult.setScheduledBeforeSpringInitialized(false);
+				TestSchedulerUtil.setScheduledBeforeSpringInitialized(false);
 			}
 			else {
-				SchedulerTestResult.setScheduledBeforeSpringInitialized(true);
+				TestSchedulerUtil.setScheduledBeforeSpringInitialized(true);
 			}
 
-			SchedulerTestResult.setRanBeforeSpringInitialzed(
-				TestSchedulerMessageListener.isRan());
+			TestSchedulerUtil.setReceivedBeforeSpringInitialzed(
+				TestSchedulerMessageListener.isReceived());
 		}
 		catch (Exception e) {
-			e.printStackTrace();
+			_log.error(e, e);
 		}
 	}
+
+	private static Log _log = LogFactoryUtil.getLog(TestSchedulerBean.class);
 
 }

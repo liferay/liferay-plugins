@@ -1,4 +1,3 @@
-
 /**
  * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
  *
@@ -12,32 +11,35 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
+
 package com.liferay.testmisc.scheduler;
 
 /**
  * @author Shuyang Zhou
  */
-public class SchedulerTestResult {
+public class TestSchedulerUtil {
 
-	public static boolean isRanBeforeSpringInitialzed() {
-		return _ranBeforeSpringInitialzed;
-	}
-
-	public static void setRanBeforeSpringInitialzed(
-		boolean ranBeforeSpringInitialzed) {
-		_ranBeforeSpringInitialzed = ranBeforeSpringInitialzed;
+	public static boolean isReceivedBeforeSpringInitialzed() {
+		return _receivedBeforeSpringInitialzed;
 	}
 
 	public static boolean isScheduledBeforeSpringInitialized() {
 		return _scheduledBeforeSpringInitialized;
 	}
 
+	public static void setReceivedBeforeSpringInitialzed(
+		boolean receivedBeforeSpringInitialzed) {
+
+		_receivedBeforeSpringInitialzed = receivedBeforeSpringInitialzed;
+	}
+
 	public static void setScheduledBeforeSpringInitialized(
 		boolean scheduledBeforeSpringInitialized) {
+
 		_scheduledBeforeSpringInitialized = scheduledBeforeSpringInitialized;
 	}
 
-	private static boolean _ranBeforeSpringInitialzed;
+	private static boolean _receivedBeforeSpringInitialzed;
 	private static boolean _scheduledBeforeSpringInitialized;
 
 }
