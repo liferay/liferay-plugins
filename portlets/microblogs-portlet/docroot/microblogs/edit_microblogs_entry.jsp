@@ -38,6 +38,10 @@ String receiverUserEmail = StringPool.BLANK;
 String receiverUserFullName = StringPool.BLANK;
 String receiverUserPortaitURL = StringPool.BLANK;
 
+boolean edit = ParamUtil.getBoolean(request, "edit");
+boolean reply = ParamUtil.getBoolean(request, "reply");
+boolean repost = ParamUtil.getBoolean(request, "repost");
+
 if ((microblogsEntry != null) && (reply || repost)) {
 	modifiedDate = dateFormatDateTime.format(microblogsEntry.getModifiedDate());
 
@@ -61,10 +65,6 @@ String header = "whats-happening";
 String formName = "dialogFm";
 
 boolean view = false;
-
-boolean edit = ParamUtil.getBoolean(request, "edit");
-boolean reply = ParamUtil.getBoolean(request, "reply");
-boolean repost = ParamUtil.getBoolean(request, "repost");
 
 if (edit) {
 	header = "what-do-you-want-to-say-instead";
