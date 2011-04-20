@@ -32,11 +32,11 @@ portletURL.setParameter("jspPage", "/sites/edit_site.jsp");
 <aui:form action="<%= addSiteURL %>" method="post" name="dialogFm">
 	<aui:model-context model="<%= Group.class %>" />
 
-	<div class="portlet-msg-success aui-helper-hidden">
+	<div class="portlet-msg-success yui3-aui-helper-hidden">
 		<liferay-ui:message key="your-request-processed-successfully" />
 	</div>
 
-	<div class="portlet-msg-error aui-helper-hidden">
+	<div class="portlet-msg-error yui3-aui-helper-hidden">
 		<liferay-ui:message key="your-request-failed-to-complete" />
 	</div>
 
@@ -55,7 +55,7 @@ portletURL.setParameter("jspPage", "/sites/edit_site.jsp");
 		LayoutSetPrototype defaultLayoutSetPrototype = null;
 		%>
 
-		<div class="section site-settings aui-helper-hidden">
+		<div class="section site-settings yui3-aui-helper-hidden">
 			<liferay-ui:header title="settings" />
 
 			<aui:column columnWidth="<%= 40 %>" first="<%= true %>">
@@ -130,7 +130,7 @@ portletURL.setParameter("jspPage", "/sites/edit_site.jsp");
 			</aui:column>
 		</div>
 
-		<div class="section site-customization aui-helper-hidden">
+		<div class="section site-customization yui3-aui-helper-hidden">
 			<liferay-ui:header title="customization" />
 
 			<div class="set-label">
@@ -259,7 +259,7 @@ portletURL.setParameter("jspPage", "/sites/edit_site.jsp");
 		window,
 		'<portlet:namespace />previous',
 		function() {
-			var section = A.one('.so-portlet-sites-dialog .section:not(.aui-helper-hidden)').previous();
+			var section = A.one('.so-portlet-sites-dialog .section:not(.yui3-aui-helper-hidden)').previous();
 
 			<portlet:namespace />showSection(section);
 		}
@@ -273,11 +273,11 @@ portletURL.setParameter("jspPage", "/sites/edit_site.jsp");
 
 			if (!section.previous()) {
 				previousButton.set('disabled', true);
-				previousButton.ancestor('.aui-button').addClass('aui-button-disabled');
+				previousButton.ancestor('.yui3-aui-button').addClass('yui3-aui-button-disabled');
 			}
 			else {
 				previousButton.set('disabled', false);
-				previousButton.ancestor('.aui-button').removeClass('aui-button-disabled');
+				previousButton.ancestor('.yui3-aui-button').removeClass('yui3-aui-button-disabled');
 			}
 
 			if (!section.next()) {
@@ -299,7 +299,7 @@ portletURL.setParameter("jspPage", "/sites/edit_site.jsp");
 		window,
 		'<portlet:namespace />next',
 		function() {
-			var section = A.one('.so-portlet-sites-dialog .section:not(.aui-helper-hidden)').next();
+			var section = A.one('.so-portlet-sites-dialog .section:not(.yui3-aui-helper-hidden)').next();
 
 			if (section) {
 				<portlet:namespace />showSection(section);
