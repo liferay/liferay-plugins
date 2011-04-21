@@ -7,7 +7,7 @@
 		<!-- PK fields -->
 
 		<column name="hrEmploymentStatusId" type="long" primary="true" />
-    </entity>
+	</entity>
 	<entity name="HRJobTitle" local-service="false" remote-service="false">
 
 		<!-- PK fields -->
@@ -17,13 +17,13 @@
 		<!-- Relationships -->
 
 		<column name="hrOrganizations" type="Collection" entity="HROrganization" mapping-table="HROrganizations_HRJobTitles" />
-    </entity>
+	</entity>
 	<entity name="HRLocation" local-service="false" remote-service="false">
 
 		<!-- PK fields -->
 
 		<column name="hrLocationId" type="long" primary="true" />
-    </entity>
+	</entity>
 	<entity name="HROrganization" local-service="false" remote-service="false">
 
 		<!-- PK fields -->
@@ -43,17 +43,17 @@
 		<!-- Other fields -->
 
 		<column name="hrLocationId" type="long" />
-    </entity>
+	</entity>
 	<entity name="HRUserHistory" local-service="false" remote-service="false">
 
 		<!-- PK fields -->
 
 		<column name="hrUserHistoryId" type="long" primary="true" />
-    </entity>
+	</entity>
 	<entity name="HRWageType" local-service="false" remote-service="false">
 
 		<!-- PK fields -->
 
 		<column name="hrWageTypeId" type="long" primary="true" />
-    </entity>
+	</entity>
 </service-builder>

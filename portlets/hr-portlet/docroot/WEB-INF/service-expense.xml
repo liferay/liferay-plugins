@@ -33,7 +33,7 @@
 
 		<column name="name" type="String" />
 		<column name="description" type="String" />
-    </entity>
+	</entity>
 	<entity name="HRExpenseCurrency" local-service="false" remote-service="false">
 
 		<!-- PK fields -->
@@ -46,7 +46,7 @@
 		<column name="toCurrencyCode" type="String" />
 		<column name="conversionDate" type="Date" />
 		<column name="conversionValue" type="double" />
-    </entity>
+	</entity>
 	<entity name="HRExpenseType" local-service="false" remote-service="false">
 
 		<!-- PK fields -->

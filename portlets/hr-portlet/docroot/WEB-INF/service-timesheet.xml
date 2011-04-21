@@ -22,31 +22,31 @@
 		<!-- PK fields -->
 
 		<column name="hrTimeOffId" type="long" primary="true" />
-    </entity>
+	</entity>
 	<entity name="HRTimeOffAllotment" local-service="false" remote-service="false">
 
 		<!-- PK fields -->
 
 		<column name="hrTimeOffAllotmentId" type="long" primary="true" />
-    </entity>
+	</entity>
 	<entity name="HRTimeOffType" local-service="false" remote-service="false">
 
 		<!-- PK fields -->
 
 		<column name="hrTimeOffTypeId" type="long" primary="true" />
-    </entity>
+	</entity>
 	<entity name="HRTimeSheet" local-service="false" remote-service="false">
 
 		<!-- PK fields -->
 
 		<column name="hrTimeSheetId" type="long" primary="true" />
-    </entity>
+	</entity>
 	<entity name="HRTimeSheetDay" local-service="false" remote-service="false">
 
 		<!-- PK fields -->
 
 		<column name="hrTimeSheetDayId" type="long" primary="true" />
-    </entity>
+	</entity>
 	<entity name="HRUserTimeOff" local-service="false" remote-service="false">
 
 		<!-- PK fields -->
@@ -57,5 +57,5 @@
 
 		<column name="hrTimeOffId" type="long" />
 		<column name="hrUserId" type="long" />
-    </entity>
+	</entity>
 </service-builder>

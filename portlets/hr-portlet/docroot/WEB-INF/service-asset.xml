@@ -13,17 +13,17 @@
 		<!-- PK fields -->
 
 		<column name="hrAssetCheckoutId" type="long" primary="true" />
-    </entity>
+	</entity>
 	<entity name="HRAssetDefinition" local-service="false" remote-service="false">
 
 		<!-- PK fields -->
 
 		<column name="hrAssetDefinitionId" type="long" primary="true" />
-    </entity>
+	</entity>
 	<entity name="HRAssetType" local-service="false" remote-service="false">
 
 		<!-- PK fields -->
 
 		<column name="hrAssetTypeId" type="long" primary="true" />
-    </entity>
+	</entity>
 </service-builder>
