@@ -13,7 +13,7 @@
 		<column name="hrExpenseAccountId" type="long" />
 		<column name="hrExpenseTypeId" type="long" />
 		<column name="hrUserId" type="long" />
-		<column name="expenseDate" type="String" />
+		<column name="expenseDate" type="Date" />
 		<column name="expenseAmount" type="double" />
 		<column name="expenseCurrencyCode" type="String" />
 		<column name="reimbursementAmount" type="double" />
