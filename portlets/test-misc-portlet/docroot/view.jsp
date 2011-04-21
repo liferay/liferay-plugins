@@ -45,3 +45,48 @@ This is the <strong>Sample Test Portlet</strong>. This was made to test some por
 <br /><br />
 
 <strong>Upload:</strong> <a href="<portlet:renderURL><portlet:param name="<%= ActionRequest.ACTION_NAME %>" value="uploadForm1" /><portlet:param name="jspPage" value="/upload/form.jsp" /></portlet:renderURL>">Form 1</a> | <a href="<portlet:renderURL><portlet:param name="<%= ActionRequest.ACTION_NAME %>" value="uploadForm2" /><portlet:param name="jspPage" value="/upload/form.jsp" /></portlet:renderURL>">Form 2</a> | <a href="<portlet:renderURL><portlet:param name="<%= ActionRequest.ACTION_NAME %>" value="uploadForm3" /><portlet:param name="jspPage" value="/upload/form.jsp" /></portlet:renderURL>">Form 3</a>
+
+<br /><br />
+
+<strong>Scheduler Test Result:</strong>
+
+<br />
+
+Should be scheduled before Spring initialized : <%=_scheduledBeforeSpringInitialized() %>
+
+<br />
+
+Should not receive before Spring initialized : <%=_receivedBeforeSpringInitialized() %>
+
+<br />
+
+Should receive after Spring initialized : <%=_receivedAfterSpringInitialized() %>
+
+<%!
+private String _scheduledBeforeSpringInitialized() {
+	if (TestSchedulerUtil.isScheduledBeforeSpringInitialized()) {
+		return "PASSED";
+	}
+	else {
+		return "FAILED";
+	}
+}
+
+private String _receivedBeforeSpringInitialized() {
+	if (TestSchedulerUtil.isReceivedBeforeSpringInitialzed()) {
+		return "FAILED";
+	}
+	else {
+		return "PASSED";
+	}
+}
+
+private String _receivedAfterSpringInitialized() {
+	if (TestSchedulerMessageListener.isReceived()) {
+		return "PASSED";
+	}
+	else {
+		return "FAILED";
+	}
+}
+%>
