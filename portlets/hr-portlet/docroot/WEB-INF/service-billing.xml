@@ -8,18 +8,6 @@
 
 		<column name="hrClientId" type="long" primary="true" />
     </entity>
-	<entity name="HRClientBillingRate" local-service="false" remote-service="false">
-
-		<!-- PK fields -->
-
-		<column name="hrClientBillingRateId" type="long" primary="true" />
-    </entity>
-	<entity name="HRClientRole" local-service="false" remote-service="false">
-
-		<!-- PK fields -->
-
-		<column name="hrClientRoleId" type="long" primary="true" />
-    </entity>
 	<entity name="HRBillability" local-service="false" remote-service="false">
 
 		<!-- PK fields -->
@@ -32,6 +20,18 @@
 
 		<column name="hrProjectId" type="long" primary="true" />
 	</entity>
+	<entity name="HRProjectBillingRate" local-service="false" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="hrProjectBillingRateId" type="long" primary="true" />
+    </entity>
+	<entity name="HRProjectRole" local-service="false" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="hrProjectRoleId" type="long" primary="true" />
+    </entity>
 	<entity name="HRProjectStatus" local-service="false" remote-service="false">
 
 		<!-- PK fields -->
@@ -54,11 +54,11 @@
 
 		<column name="hrTaskStatusId" type="long" primary="true" />
     </entity>
-	<entity name="HRUserClient" local-service="false" remote-service="false">
+	<entity name="HRUserProject" local-service="false" remote-service="false">
 
 		<!-- PK fields -->
 
-		<column name="hrUserClientId" type="long" primary="true" />
+		<column name="hrUserProjectId" type="long" primary="true" />
 	</entity>
 	<entity name="HRUserTask" local-service="false" remote-service="false">
 
