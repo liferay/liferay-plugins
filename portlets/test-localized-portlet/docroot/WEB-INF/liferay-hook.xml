@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 
 <hook>
+	<language-properties>com/liferay/testlocalized/resources/Language.properties</language-properties>
 	<language-properties>com/liferay/testlocalized/resources/Language_en.properties</language-properties>
 	<language-properties>com/liferay/testlocalized/resources/Language_es.properties</language-properties>
 	<language-properties>com/liferay/testlocalized/resources/Language_fr_FR.properties</language-properties>
