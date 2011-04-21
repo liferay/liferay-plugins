@@ -16,73 +16,63 @@
 
 <%@ include file="/init.jsp" %>
 
-This is the <strong>Sample Test Portlet</strong>. This was made to test some portlet features.
+<h3>Portlet Request</h3>
 
-<br /><br />
+<p>
+	<a href="<portlet:renderURL><portlet:param name="jspPage" value="/portlet_request/attribute_sharing.jsp" /></portlet:renderURL>">Attribute Sharing</a><br />
+	<a href="<portlet:renderURL><portlet:param name="jspPage" value="/portlet_request/remote_user.jsp" /></portlet:renderURL>">Remote User</a>
+</p>
 
-<strong>Portlet Request:</strong> <a href="<portlet:renderURL><portlet:param name="jspPage" value="/portlet_request/attribute_sharing.jsp" /></portlet:renderURL>">Attribute Sharing</a> | <a href="<portlet:renderURL><portlet:param name="jspPage" value="/portlet_request/remote_user.jsp" /></portlet:renderURL>">Remote User</a>
+<h3>Portlet Response (ActionResponse, Normal State)</h3>
 
-<br /><br />
+<p>
+	<a href="<portlet:actionURL />">Download File</a>
+</p>
 
-<strong>Portlet Response (ActionResponse, Normal State):</strong> <a href="<portlet:actionURL />">Download File</a>
+<h3>Portlet Response (ActionResponse, Exclusive State)</h3>
 
-<br /><br />
+<p>
+	<a href="<portlet:actionURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>" />">Download File</a>
+</p>
 
-<strong>Portlet Response (ActionResponse, Exclusive State):</strong> <a href="<portlet:actionURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>" />">Download File</a>
+<h3>Portlet Response (ResourceResponse)</h3>
 
-<br /><br />
+<p>
+	<a href="<portlet:renderURL><portlet:param name="jspPage" value="/portlet_response/buffer_size.jsp" /></portlet:renderURL>">Buffer Size</a><br />
+	<a href="<portlet:resourceURL id="logo.png" />">Download File</a>
+</p>
 
-<strong>Portlet Response (ResourceResponse):</strong> <a href="<portlet:renderURL><portlet:param name="jspPage" value="/portlet_response/buffer_size.jsp" /></portlet:renderURL>">Buffer Size</a> | <a href="<portlet:resourceURL id="logo.png" />">Download File</a>
+<h3>Portlet Session</h3>
 
-<br /><br />
+<p>
+	<a href="<portlet:renderURL><portlet:param name="jspPage" value="/portlet_session/attribute_sharing.jsp" /></portlet:renderURL>">Attribute Sharing</a>
+</p>
 
-<strong>Portlet Session:</strong> <a href="<portlet:renderURL><portlet:param name="jspPage" value="/portlet_session/attribute_sharing.jsp" /></portlet:renderURL>">Attribute Sharing</a>
+<h3>Scheduler</h3>
 
-<br /><br />
+<p>
+	TestSchedulerMessageListener.isReceived=<%= _assertTrue(TestSchedulerMessageListener.isReceived()) %><br />
+	TestSchedulerUtil.isScheduledBeforeSpringInitialized=<%= _assertTrue(TestSchedulerUtil.isScheduledBeforeSpringInitialized()) %><br />
+	TestSchedulerUtil.isReceivedBeforeSpringInitialzed=<%= _assertTrue(TestSchedulerUtil.isReceivedBeforeSpringInitialzed()) %>
+</p>
 
-<strong>Servlet Request:</strong> <a href="<%= request.getContextPath() %>/servlet_request/remote_user.jsp">Remote User</a>
+<h3>Servlet Request</h3>
 
-<br /><br />
+<p>
+	<a href="<%= request.getContextPath() %>/servlet_request/remote_user.jsp">Remote User</a>
+</p>
 
-<strong>Upload:</strong> <a href="<portlet:renderURL><portlet:param name="<%= ActionRequest.ACTION_NAME %>" value="uploadForm1" /><portlet:param name="jspPage" value="/upload/form.jsp" /></portlet:renderURL>">Form 1</a> | <a href="<portlet:renderURL><portlet:param name="<%= ActionRequest.ACTION_NAME %>" value="uploadForm2" /><portlet:param name="jspPage" value="/upload/form.jsp" /></portlet:renderURL>">Form 2</a> | <a href="<portlet:renderURL><portlet:param name="<%= ActionRequest.ACTION_NAME %>" value="uploadForm3" /><portlet:param name="jspPage" value="/upload/form.jsp" /></portlet:renderURL>">Form 3</a>
+<h3>Upload</h3>
 
-<br /><br />
-
-<strong>Scheduler Test Result:</strong>
-
-<br />
-
-Should be scheduled before Spring initialized : <%=_scheduledBeforeSpringInitialized() %>
-
-<br />
-
-Should not receive before Spring initialized : <%=_receivedBeforeSpringInitialized() %>
-
-<br />
-
-Should receive after Spring initialized : <%=_receivedAfterSpringInitialized() %>
+<p>
+	<a href="<portlet:renderURL><portlet:param name="<%= ActionRequest.ACTION_NAME %>" value="uploadForm1" /><portlet:param name="jspPage" value="/upload/form.jsp" /></portlet:renderURL>">Form 1</a><br />
+	<a href="<portlet:renderURL><portlet:param name="<%= ActionRequest.ACTION_NAME %>" value="uploadForm2" /><portlet:param name="jspPage" value="/upload/form.jsp" /></portlet:renderURL>">Form 2</a><br />
+	<a href="<portlet:renderURL><portlet:param name="<%= ActionRequest.ACTION_NAME %>" value="uploadForm3" /><portlet:param name="jspPage" value="/upload/form.jsp" /></portlet:renderURL>">Form 3</a>
+</p>
 
 <%!
-private String _scheduledBeforeSpringInitialized() {
-	if (TestSchedulerUtil.isScheduledBeforeSpringInitialized()) {
-		return "PASSED";
-	}
-	else {
-		return "FAILED";
-	}
-}
-
-private String _receivedBeforeSpringInitialized() {
-	if (TestSchedulerUtil.isReceivedBeforeSpringInitialzed()) {
-		return "FAILED";
-	}
-	else {
-		return "PASSED";
-	}
-}
-
-private String _receivedAfterSpringInitialized() {
-	if (TestSchedulerMessageListener.isReceived()) {
+private static String _assertTrue(boolean value) {
+	if (value) {
 		return "PASSED";
 	}
 	else {

@@ -20,7 +20,6 @@
 
 <%@ page import="com.liferay.portal.kernel.portlet.LiferayWindowState" %>
 <%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
-
 <%@ page import="com.liferay.testmisc.messaging.TestSchedulerMessageListener" %>
 <%@ page import="com.liferay.testmisc.scheduler.TestSchedulerUtil" %>
 
