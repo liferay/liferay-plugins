@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.0.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_0_0.dtd">
+
+<service-builder>
+	<entity name="HREmploymentStatus" local-service="false" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="hrEmploymentStatusId" type="long" primary="true" />
+    </entity>
+	<entity name="HRJobTitle" local-service="false" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="hrJobTitleId" type="long" primary="true" />
+
+		<!-- Relationships -->
+
+		<column name="hrOrganizations" type="Collection" entity="HROrganization" mapping-table="HROrganizations_HRJobTitles" />
+    </entity>
+	<entity name="HRLocation" local-service="false" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="hrLocationId" type="long" primary="true" />
+    </entity>
+	<entity name="HROrganization" local-service="false" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="hrOrganizationId" type="long" primary="true" />
+
+		<!-- Relationships -->
+
+		<column name="hrJobTitles" type="Collection" entity="HRJobTitle" mapping-table="HROrganizations_HRJobTitles" />
+	</entity>
+	<entity name="HRUser" local-service="false" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="hrUserId" type="long" primary="true" />
+
+		<!-- Other fields -->
+
+		<column name="hrLocationId" type="long" />
+    </entity>
+	<entity name="HRUserHistory" local-service="false" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="hrUserHistoryId" type="long" primary="true" />
+    </entity>
+	<entity name="HRWageType" local-service="false" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="hrWageTypeId" type="long" primary="true" />
+    </entity>
+</service-builder>

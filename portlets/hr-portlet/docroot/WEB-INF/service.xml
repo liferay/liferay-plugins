@@ -3,88 +3,9 @@
 
 <service-builder package-path="com.liferay.hr" auto-namespace-tables="false">
 	<namespace>HR</namespace>
-	<entity name="HRAssetCheckout" local-service="false" remote-service="false">
-    </entity>
-	<entity name="HRAssetDefinition" local-service="false" remote-service="false">
-    </entity>
-	<entity name="HRAssetEntry" local-service="false" remote-service="false">
-    </entity>
-	<entity name="HRAssetType" local-service="false" remote-service="false">
-    </entity>
-	<entity name="HREmploymentStatus" local-service="false" remote-service="false">
-    </entity>
-	<entity name="HRExpenseAccount" local-service="false" remote-service="false">
-    </entity>
-	<entity name="HRExpenseEntry" local-service="false" remote-service="false">
-    </entity>
-	<entity name="HRExpenseType" local-service="false" remote-service="false">
-    </entity>
-	<entity name="HRHoliday" local-service="false" remote-service="false">
-
-		<!-- PK fields -->
-
-		<column name="hrHolidayId" type="long" primary="true" />
-
-		<!-- Other fields -->
-
-		<column name="hrLocationId" type="long" />
-		<column name="name" type="String" />
-		<column name="description" type="String" />
-		<column name="dayOfYear" type="int" />
-		<column name="year" type="int" />
-		<column name="paid" type="boolean" />
-	</entity>
-	<entity name="HRJobTitle" local-service="false" remote-service="false">
-
-		<!-- Relationships -->
-
-		<column name="hrOrganizations" type="Collection" entity="HROrganization" mapping-table="HROrganizations_HRJobTitles" />
-    </entity>
-	<entity name="HRLocation" local-service="false" remote-service="false">
-    </entity>
-	<entity name="HROrganization" local-service="false" remote-service="false">
-
-		<!-- Relationships -->
-
-		<column name="hrJobTitles" type="Collection" entity="HRJobTitle" mapping-table="HROrganizations_HRJobTitles" />
-	</entity>
-	<entity name="HRProject" local-service="false" remote-service="false">
-    </entity>
-	<entity name="HRTask" local-service="false" remote-service="false">
-    </entity>
-	<entity name="HRTimeOff" local-service="false" remote-service="false">
-    </entity>
-	<entity name="HRTimeOffAllotment" local-service="false" remote-service="false">
-    </entity>
-	<entity name="HRTimeOffType" local-service="false" remote-service="false">
-    </entity>
-	<entity name="HRTimeSheet" local-service="false" remote-service="false">
-    </entity>
-	<entity name="HRTimeSheetDay" local-service="false" remote-service="false">
-    </entity>
-	<entity name="HRUser" local-service="false" remote-service="false">
-
-		<!-- Other fields -->
-
-		<column name="hrLocationId" type="long" />
-    </entity>
-	<entity name="HRUserHistory" local-service="false" remote-service="false">
-    </entity>
-	<entity name="HRUserTask" local-service="false" remote-service="false">
-
-		<!-- Other fields -->
-
-		<column name="hrTaskId" type="long" />
-		<column name="hrTimesheetId" type="long" />
-		<column name="hrUserId" type="long" />
-    </entity>
-	<entity name="HRUserTimeOff" local-service="false" remote-service="false">
-
-		<!-- Other fields -->
-
-		<column name="hrTimeOffId" type="long" />
-		<column name="hrUserId" type="long" />
-    </entity>
-	<entity name="HRWageType" local-service="false" remote-service="false">
-    </entity>
+	<service-builder file="service-asset.xml" />
+	<service-builder file="service-billing.xml" />
+	<service-builder file="service-expense.xml" />
+	<service-builder file="service-org-chart.xml" />
+	<service-builder file="service-timesheet.xml" />
 </service-builder>

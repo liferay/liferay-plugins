@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.0.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_0_0.dtd">
+
+<service-builder>
+	<entity name="HRClient" local-service="false" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="hrClientId" type="long" primary="true" />
+    </entity>
+	<entity name="HRClientBillingRate" local-service="false" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="hrClientBillingRateId" type="long" primary="true" />
+    </entity>
+	<entity name="HRClientRole" local-service="false" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="hrClientRoleId" type="long" primary="true" />
+    </entity>
+	<entity name="HRBillability" local-service="false" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="hrBillabilityId" type="long" primary="true" />
+    </entity>
+	<entity name="HRProject" local-service="false" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="hrProjectId" type="long" primary="true" />
+	</entity>
+	<entity name="HRProjectStatus" local-service="false" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="hrProjectStatusId" type="long" primary="true" />
+    </entity>
+	<entity name="HRTask" local-service="false" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="hrTaskId" type="long" primary="true" />
+
+		<!-- Other fields -->
+
+		<column name="parentHRTaskId" type="long" />
+    </entity>
+	<entity name="HRTaskStatus" local-service="false" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="hrTaskStatusId" type="long" primary="true" />
+    </entity>
+	<entity name="HRUserClient" local-service="false" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="hrUserClientId" type="long" primary="true" />
+	</entity>
+	<entity name="HRUserTask" local-service="false" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="hrUserTaskId" type="long" primary="true" />
+
+		<!-- Other fields -->
+
+		<column name="hrTaskId" type="long" />
+		<column name="hrTimesheetId" type="long" />
+		<column name="hrUserId" type="long" />
+    </entity>
+</service-builder>

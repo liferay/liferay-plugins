@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.0.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_0_0.dtd">
+
+<service-builder>
+	<entity name="HRExpense" local-service="false" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="hrExpenseId" type="long" primary="true" />
+
+		<!-- Other fields -->
+
+		<column name="hrExpenseAccountId" type="long" />
+		<column name="hrExpenseTypeId" type="long" />
+		<column name="hrUserId" type="long" />
+		<column name="expenseAmount" type="double" />
+		<column name="expenseCurrencyCode" type="String" />
+		<column name="reimbursementAmount" type="double" />
+		<column name="reimbursementCurrencyCode" type="String" />
+		<column name="status" type="int" />
+		<column name="statusByUserId" type="long" />
+		<column name="statusByUserName" type="String" />
+		<column name="statusDate" type="Date" />
+	</entity>
+	<entity name="HRExpenseAccount" local-service="false" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="hrExpenseAccountId" type="long" primary="true" />
+
+		<!-- Other fields -->
+
+		<column name="name" type="String" />
+		<column name="description" type="String" />
+    </entity>
+	<entity name="HRExpenseCurrency" local-service="false" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="hrExpenseCurrencyId" type="long" primary="true" />
+
+		<!-- Other fields -->
+
+		<column name="fromCurrencyCode" type="String" />
+		<column name="toCurrencyCode" type="String" />
+		<column name="conversionDate" type="Date" />
+		<column name="conversionValue" type="double" />
+    </entity>
+	<entity name="HRExpenseType" local-service="false" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="hrExpenseTypeId" type="long" primary="true" />
+
+		<!-- Other fields -->
+
+		<column name="name" type="String" />
+		<column name="description" type="String" />
+	</entity>
+</service-builder>
