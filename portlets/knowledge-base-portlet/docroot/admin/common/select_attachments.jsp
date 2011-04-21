@@ -114,7 +114,7 @@ String[] fileNames = DLLocalServiceUtil.getFileNames(company.getCompanyId(), Com
 
 <aui:script>
 	function <portlet:namespace />addAttachment() {
-		document.<portlet:namespace />fm.enctype = "<%= ContentTypes.MULTIPART_FORM_DATA %>";
+		document.<portlet:namespace />fm.encoding = "<%= ContentTypes.MULTIPART_FORM_DATA %>";
 		submitForm(document.<portlet:namespace />fm, '<liferay-portlet:actionURL name="addAttachment"><portlet:param name="jspPage" value='<%= jspPath + "select_attachments.jsp" %>' /><portlet:param name="redirect" value="<%= redirect %>" /><portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" /><portlet:param name="status" value="<%= String.valueOf(WorkflowConstants.STATUS_ANY) %>" /><portlet:param name="dirName" value="<%= dirName %>" /></liferay-portlet:actionURL>');
 	}
 
