@@ -65,8 +65,8 @@ public class WURFLDeviceRecognitionProvider
 	}
 
 	public void reload() throws Exception {
-		_knownDevices.reload();
 		_wurflHolderImpl.reload();
+		_knownDevices.reload();
 	}
 
 	public void setKnownDevices(KnownDevices knownDevices) {
