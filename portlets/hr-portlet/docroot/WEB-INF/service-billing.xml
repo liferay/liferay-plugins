@@ -7,36 +7,75 @@
 		<!-- PK fields -->
 
 		<column name="hrBillabilityId" type="long" primary="true" />
+
+		<!-- Other fields -->
+
+		<column name="name" type="String" />
+		<column name="description" type="String" />
 	</entity>
 	<entity name="HRClient" local-service="false" remote-service="false">
 
 		<!-- PK fields -->
 
 		<column name="hrClientId" type="long" primary="true" />
+
+		<!-- Other fields -->
+
+		<column name="name" type="String" />
+		<column name="description" type="String" />
 	</entity>
 	<entity name="HRProject" local-service="false" remote-service="false">
 
 		<!-- PK fields -->
 
 		<column name="hrProjectId" type="long" primary="true" />
+
+		<!-- Other fields -->
+
+		<column name="hrBillabilityId" type="long" />
+		<column name="hrClientId" type="long" />
+		<column name="hrProjectStatusId" type="long" />
+		<column name="name" type="String" />
+		<column name="description" type="String" />
+		<column name="startDate" type="Date" />
+		<column name="endDate" type="Date" />
+		<column name="estimatedCost" type="double" />
+		<column name="estimatedExpenses" type="double" />
+		<column name="estimatedHours" type="int" />
 	</entity>
 	<entity name="HRProjectBillingRate" local-service="false" remote-service="false">
 
 		<!-- PK fields -->
 
 		<column name="hrProjectBillingRateId" type="long" primary="true" />
+
+		<!-- Other fields -->
+
+		<column name="hrProjectId" type="long" />
+		<column name="hrProjectRoleId" type="long" />
+		<column name="rate" type="double" />
 	</entity>
 	<entity name="HRProjectRole" local-service="false" remote-service="false">
 
 		<!-- PK fields -->
 
 		<column name="hrProjectRoleId" type="long" primary="true" />
+
+		<!-- Other fields -->
+
+		<column name="name" type="String" />
+		<column name="description" type="String" />
 	</entity>
 	<entity name="HRProjectStatus" local-service="false" remote-service="false">
 
 		<!-- PK fields -->
 
 		<column name="hrProjectStatusId" type="long" primary="true" />
+
+		<!-- Other fields -->
+
+		<column name="name" type="String" />
+		<column name="description" type="String" />
 	</entity>
 	<entity name="HRTask" local-service="false" remote-service="false">
 
@@ -46,19 +85,38 @@
 
 		<!-- Other fields -->
 
+		<column name="hrBillabilityId" type="long" />
+		<column name="hrProjectId" type="long" />
+		<column name="hrTaskStatusId" type="long" />
 		<column name="parentHRTaskId" type="long" />
+		<column name="name" type="String" />
+		<column name="description" type="String" />
+		<column name="startDate" type="Date" />
+		<column name="endDate" type="Date" />
+		<column name="bidHours" type="int" />
 	</entity>
 	<entity name="HRTaskStatus" local-service="false" remote-service="false">
 
 		<!-- PK fields -->
 
 		<column name="hrTaskStatusId" type="long" primary="true" />
+
+		<!-- Other fields -->
+
+		<column name="name" type="String" />
+		<column name="description" type="String" />
 	</entity>
 	<entity name="HRUserProject" local-service="false" remote-service="false">
 
 		<!-- PK fields -->
 
 		<column name="hrUserProjectId" type="long" primary="true" />
+
+		<!-- Other fields -->
+
+		<column name="hrProjectBillingRateId" type="long" />
+		<column name="hrProjectId" type="long" />
+		<column name="hrUserId" type="long" />
 	</entity>
 	<entity name="HRUserTask" local-service="false" remote-service="false">
 

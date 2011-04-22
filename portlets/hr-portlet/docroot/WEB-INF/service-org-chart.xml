@@ -7,12 +7,22 @@
 		<!-- PK fields -->
 
 		<column name="hrEmploymentStatusId" type="long" primary="true" />
+
+		<!-- Other fields -->
+
+		<column name="name" type="String" />
+		<column name="description" type="String" />
 	</entity>
 	<entity name="HRJobTitle" local-service="false" remote-service="false">
 
 		<!-- PK fields -->
 
 		<column name="hrJobTitleId" type="long" primary="true" />
+
+		<!-- Other fields -->
+
+		<column name="name" type="String" />
+		<column name="description" type="String" />
 
 		<!-- Relationships -->
 
@@ -23,12 +33,22 @@
 		<!-- PK fields -->
 
 		<column name="hrLocationId" type="long" primary="true" />
+
+		<!-- Other fields -->
+
+		<column name="hrOrganizationId" type="long" />
+		<column name="name" type="String" />
+		<column name="description" type="String" />
 	</entity>
 	<entity name="HROrganization" local-service="false" remote-service="false">
 
 		<!-- PK fields -->
 
 		<column name="hrOrganizationId" type="long" primary="true" />
+
+		<!-- Other fields -->
+
+		<column name="description" type="String" />
 
 		<!-- Relationships -->
 
@@ -42,18 +62,38 @@
 
 		<!-- Other fields -->
 
+		<column name="hrEmploymentStatusId" type="long" />
+		<column name="hrJobTitleId" type="long" />
 		<column name="hrLocationId" type="long" />
+		<column name="hrWageTypeId" type="long" />
+		<column name="hireDate" type="Date" />
+		<column name="wageAmount" type="double" />
+		<column name="wageCurrencyCode" type="String" />
+		<column name="overtimeAllowed" type="boolean" />
 	</entity>
 	<entity name="HRUserHistory" local-service="false" remote-service="false">
 
 		<!-- PK fields -->
 
 		<column name="hrUserHistoryId" type="long" primary="true" />
+
+		<!-- Other fields -->
+
+		<column name="hrUserId" type="long" />
+		<column name="hrJobTitleId" type="long" />
+		<column name="hrWageTypeId" type="long" />
+		<column name="wageAmount" type="double" />
+		<column name="wageCurrencyCode" type="String" />
 	</entity>
 	<entity name="HRWageType" local-service="false" remote-service="false">
 
 		<!-- PK fields -->
 
 		<column name="hrWageTypeId" type="long" primary="true" />
+
+		<!-- Other fields -->
+
+		<column name="name" type="String" />
+		<column name="description" type="String" />
 	</entity>
 </service-builder>

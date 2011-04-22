@@ -7,23 +7,47 @@
 		<!-- PK fields -->
 
 		<column name="hrAssetId" type="long" primary="true" />
+
+		<!-- Other fields -->
+
+		<column name="hrAssetDefinitionId" type="long" />
+		<column name="hrAssetTypeId" type="long" />
+		<column name="value" type="String" />
+		<column name="name" type="String" />
+		<column name="description" type="String" />
 	</entity>
 	<entity name="HRAssetCheckout" local-service="false" remote-service="false">
 
 		<!-- PK fields -->
 
 		<column name="hrAssetCheckoutId" type="long" primary="true" />
+
+		<!-- Other fields -->
+
+		<column name="hrAssetId" type="long" />
+		<column name="hrUserId" type="long" />
+		<column name="checkoutDate" type="Date" />
 	</entity>
 	<entity name="HRAssetDefinition" local-service="false" remote-service="false">
 
 		<!-- PK fields -->
 
 		<column name="hrAssetDefinitionId" type="long" primary="true" />
+
+		<!-- Other fields -->
+
+		<column name="value" type="String" />
+		<column name="description" type="String" />
 	</entity>
 	<entity name="HRAssetType" local-service="false" remote-service="false">
 
 		<!-- PK fields -->
 
 		<column name="hrAssetTypeId" type="long" primary="true" />
+
+		<!-- Other fields -->
+
+		<column name="name" type="String" />
+		<column name="description" type="String" />
 	</entity>
 </service-builder>
