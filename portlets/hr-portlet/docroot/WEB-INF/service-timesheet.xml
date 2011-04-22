@@ -10,7 +10,7 @@
 
 		<!-- Other fields -->
 
-		<column name="hrLocationId" type="long" />
+		<column name="hrOfficeId" type="long" />
 		<column name="name" type="String" />
 		<column name="description" type="String" />
 		<column name="dayOfYear" type="int" />

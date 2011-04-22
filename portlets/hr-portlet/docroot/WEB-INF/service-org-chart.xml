@@ -2,11 +2,49 @@
 <!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.0.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_0_0.dtd">
 
 <service-builder>
-	<entity name="HREmploymentStatus" local-service="false" remote-service="false">
+	<entity name="HRBranch" local-service="false" remote-service="false">
 
 		<!-- PK fields -->
 
-		<column name="hrEmploymentStatusId" type="long" primary="true" />
+		<column name="hrBranchId" type="long" primary="true" />
+
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="organizationId" type="long" />
+
+		<!-- Relationships -->
+
+		<column name="hrJobTitles" type="Collection" entity="HRJobTitle" mapping-table="HRBranches_HRJobTitles" />
+	</entity>
+	<entity name="HREmploymentType" local-service="false" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="hrEmploymentTypeId" type="long" primary="true" />
+
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
 
 		<!-- Other fields -->
 
@@ -19,6 +57,18 @@
 
 		<column name="hrJobTitleId" type="long" primary="true" />
 
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
 		<!-- Other fields -->
 
 		<column name="name" type="String" />
@@ -26,33 +76,52 @@
 
 		<!-- Relationships -->
 
-		<column name="hrOrganizations" type="Collection" entity="HROrganization" mapping-table="HROrganizations_HRJobTitles" />
+		<column name="hrBranches" type="Collection" entity="HRBranch" mapping-table="HRBranches_HRJobTitles" />
 	</entity>
-	<entity name="HRLocation" local-service="false" remote-service="false">
+	<entity name="HROffice" local-service="false" remote-service="false">
 
 		<!-- PK fields -->
 
-		<column name="hrLocationId" type="long" primary="true" />
+		<column name="hrOfficeId" type="long" primary="true" />
+
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
 
 		<!-- Other fields -->
 
-		<column name="hrOrganizationId" type="long" />
+		<column name="organizationId" type="long" />
+	</entity>
+	<entity name="HRTerminationType" local-service="false" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="hrTerminationTypeId" type="long" primary="true" />
+
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
 		<column name="name" type="String" />
 		<column name="description" type="String" />
-	</entity>
-	<entity name="HROrganization" local-service="false" remote-service="false">
-
-		<!-- PK fields -->
-
-		<column name="hrOrganizationId" type="long" primary="true" />
-
-		<!-- Other fields -->
-
-		<column name="description" type="String" />
-
-		<!-- Relationships -->
-
-		<column name="hrJobTitles" type="Collection" entity="HRJobTitle" mapping-table="HROrganizations_HRJobTitles" />
 	</entity>
 	<entity name="HRUser" local-service="false" remote-service="false">
 
@@ -60,16 +129,30 @@
 
 		<column name="hrUserId" type="long" primary="true" />
 
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
 		<!-- Other fields -->
 
-		<column name="hrEmploymentStatusId" type="long" />
+		<column name="hrEmploymentTypeId" type="long" />
 		<column name="hrJobTitleId" type="long" />
-		<column name="hrLocationId" type="long" />
+		<column name="hrOfficeId" type="long" />
+		<column name="hrTerminationTypeId" type="long" />
 		<column name="hrWageTypeId" type="long" />
 		<column name="hireDate" type="Date" />
+		<column name="terminationDate" type="Date" />
 		<column name="wageAmount" type="double" />
 		<column name="wageCurrencyCode" type="String" />
-		<column name="overtimeAllowed" type="boolean" />
+		<column name="overtimeExempt" type="boolean" />
 	</entity>
 	<entity name="HRUserHistory" local-service="false" remote-service="false">
 
@@ -77,19 +160,47 @@
 
 		<column name="hrUserHistoryId" type="long" primary="true" />
 
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+
 		<!-- Other fields -->
 
-		<column name="hrUserId" type="long" />
+		<column name="hrEmploymentTypeId" type="long" />
 		<column name="hrJobTitleId" type="long" />
+		<column name="hrOfficeId" type="long" />
+		<column name="hrTerminationTypeId" type="long" />
 		<column name="hrWageTypeId" type="long" />
+		<column name="hireDate" type="Date" />
+		<column name="terminationDate" type="Date" />
 		<column name="wageAmount" type="double" />
 		<column name="wageCurrencyCode" type="String" />
+		<column name="overtimeExempt" type="boolean" />
 	</entity>
 	<entity name="HRWageType" local-service="false" remote-service="false">
 
 		<!-- PK fields -->
 
 		<column name="hrWageTypeId" type="long" primary="true" />
+
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
 
 		<!-- Other fields -->
 
