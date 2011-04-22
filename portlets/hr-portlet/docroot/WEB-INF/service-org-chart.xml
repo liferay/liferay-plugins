@@ -48,8 +48,16 @@
 
 		<!-- Other fields -->
 
+		<column name="code" type="String" />
 		<column name="name" type="String" />
 		<column name="description" type="String" />
+
+		<!-- Finder methods -->
+
+		<finder name="G_C" return-type="HREmploymentType" unique="true">
+			<finder-column name="groupId" />
+			<finder-column name="code" />
+		</finder>
 	</entity>
 	<entity name="HRJobTitle" local-service="false" remote-service="false">
 
@@ -120,8 +128,16 @@
 
 		<!-- Other fields -->
 
+		<column name="code" type="String" />
 		<column name="name" type="String" />
 		<column name="description" type="String" />
+
+		<!-- Finder methods -->
+
+		<finder name="G_C" return-type="HRTerminationType" unique="true">
+			<finder-column name="groupId" />
+			<finder-column name="code" />
+		</finder>
 	</entity>
 	<entity name="HRUser" local-service="false" remote-service="false">
 
@@ -204,7 +220,15 @@
 
 		<!-- Other fields -->
 
+		<column name="code" type="String" />
 		<column name="name" type="String" />
 		<column name="description" type="String" />
+
+		<!-- Finder methods -->
+
+		<finder name="G_C" return-type="HRWageType" unique="true">
+			<finder-column name="groupId" />
+			<finder-column name="code" />
+		</finder>
 	</entity>
 </service-builder>

@@ -8,6 +8,18 @@
 
 		<column name="hrExpenseId" type="long" primary="true" />
 
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
 		<!-- Other fields -->
 
 		<column name="hrExpenseAccountId" type="long" />
@@ -29,6 +41,18 @@
 
 		<column name="hrExpenseAccountId" type="long" primary="true" />
 
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
 		<!-- Other fields -->
 
 		<column name="name" type="String" />
@@ -40,18 +64,51 @@
 
 		<column name="hrExpenseCurrencyId" type="long" primary="true" />
 
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
 		<!-- Other fields -->
 
 		<column name="fromCurrencyCode" type="String" />
 		<column name="toCurrencyCode" type="String" />
 		<column name="conversionDate" type="Date" />
 		<column name="conversionValue" type="double" />
+
+		<!-- Finder methods -->
+
+		<finder name="G_F_T_C" return-type="HRExpenseCurrency" unique="true">
+			<finder-column name="groupId" />
+			<finder-column name="fromCurrencyCode" />
+			<finder-column name="toCurrencyCode" />
+			<finder-column name="conversionDate" />
+		</finder>
 	</entity>
 	<entity name="HRExpenseType" local-service="false" remote-service="false">
 
 		<!-- PK fields -->
 
 		<column name="hrExpenseTypeId" type="long" primary="true" />
+
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
 
 		<!-- Other fields -->
 
