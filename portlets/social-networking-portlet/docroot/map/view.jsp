@@ -104,7 +104,7 @@ boolean ipGeocoderConfigured = ipGeocoderInstalled && (IPGeocoderUtil.getIPInfo(
 
 						userParams.put("usersGroups", new Long(group.getGroupId()));
 
-						users = UserLocalServiceUtil.search(company.getCompanyId(), null, Boolean.TRUE, userParams, 0, 50, new UserLoginDateComparator());
+						users = UserLocalServiceUtil.search(company.getCompanyId(), null, WorkflowConstants.STATUS_APPROVED, userParams, 0, 50, new UserLoginDateComparator());
 					}
 					else if (friendsProfileMap) {
 						users = UserLocalServiceUtil.getSocialUsers(user2.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND, 0, 50, new UserLoginDateComparator());
@@ -114,7 +114,7 @@ boolean ipGeocoderConfigured = ipGeocoderInstalled && (IPGeocoderUtil.getIPInfo(
 
 						userParams.put("usersOrgs", new Long(organization.getOrganizationId()));
 
-						users = UserLocalServiceUtil.search(company.getCompanyId(), null, Boolean.TRUE, userParams, 0, 50, new UserLoginDateComparator());
+						users = UserLocalServiceUtil.search(company.getCompanyId(), null, WorkflowConstants.STATUS_APPROVED, userParams, 0, 50, new UserLoginDateComparator());
 					}
 					else if (userProfileMap) {
 						users = new ArrayList();
