@@ -241,6 +241,9 @@
 						<c:when test="<%= SocialRequestLocalServiceUtil.hasRequest(user.getUserId(), User.class.getName(), user.getUserId(), FriendsRequestKeys.ADD_FRIEND, user2.getUserId(), SocialRequestConstants.STATUS_PENDING) %>">
 							<%= LanguageUtil.format(pageContext, (user2.isMale() ? "x-needs-to-approve-you-as-his-friend" : "x-needs-to-approve-you-as-her-friend"), HtmlUtil.escape(user2.getFirstName())) %>
 						</c:when>
+						<c:when test="<%= SocialRequestLocalServiceUtil.hasRequest(user2.getUserId(), User.class.getName(), user2.getUserId(), FriendsRequestKeys.ADD_FRIEND, user.getUserId(), SocialRequestConstants.STATUS_PENDING) %>">
+							<%= LanguageUtil.format(pageContext, "you-need-to-approve-x-as-your-friend", HtmlUtil.escape(user2.getFirstName())) %>
+						</c:when>
 						<c:otherwise>
 							<liferay-portlet:actionURL var="addAsFriendURL" name="addFriend" portletName="1_WAR_socialnetworkingportlet">
 								<liferay-portlet:param name="redirect" value='<%= currentURL %>' />

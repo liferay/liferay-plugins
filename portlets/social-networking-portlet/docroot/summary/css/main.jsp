@@ -76,6 +76,10 @@
 	background-image: url(<%= themeImagesPath %>/common/time.png);
 }
 
+.social-networking-portlet-summary .summary-container .friend-requests.pending {
+	background-image: url(<%= themeImagesPath %>/common/time.png);
+}
+
 .social-networking-portlet-summary .summary-container .join-community {
 	margin: 0.7em auto 1em;
 }

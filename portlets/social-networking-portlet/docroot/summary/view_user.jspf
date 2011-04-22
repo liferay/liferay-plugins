@@ -47,6 +47,11 @@
 				<liferay-ui:message key="friend-requested" />
 			</div>
 		</c:when>
+		<c:when test="<%= SocialRequestLocalServiceUtil.hasRequest(user2.getUserId(), User.class.getName(), user2.getUserId(), FriendsRequestKeys.ADD_FRIEND, user.getUserId(), SocialRequestConstants.STATUS_PENDING) %>">
+			<div class="portlet-msg-info friend-requests pending">
+				<liferay-ui:message key="pending-friend-requests" />
+			</div>
+		</c:when>
 		<c:when test="<%= SocialRelationLocalServiceUtil.isRelatable(user.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND) %>">
 
 			<%
