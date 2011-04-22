@@ -22,6 +22,7 @@ import com.liferay.microblogs.service.base.MicroblogsEntryLocalServiceBaseImpl;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portlet.asset.service.AssetEntryLocalServiceUtil;
@@ -78,8 +79,10 @@ public class MicroblogsEntryLocalServiceImpl
 
 		// Asset
 
+		Group group = user.getGroup();
+
 		AssetEntryLocalServiceUtil.updateEntry(
-			userId, 0, MicroblogsEntry.class.getName(),
+			userId, group.getGroupId(), MicroblogsEntry.class.getName(),
 			microblogsEntryId, serviceContext.getAssetCategoryIds(),
 			serviceContext.getAssetTagNames());
 
