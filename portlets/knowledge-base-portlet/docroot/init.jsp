@@ -26,6 +26,7 @@
 <%@ taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 
 <%@ page import="com.liferay.documentlibrary.DuplicateFileException" %>
+<%@ page import="com.liferay.documentlibrary.FileNameException" %>
 <%@ page import="com.liferay.documentlibrary.FileSizeException" %>
 <%@ page import="com.liferay.documentlibrary.NoSuchFileException" %>
 <%@ page import="com.liferay.documentlibrary.service.DLLocalServiceUtil" %>
