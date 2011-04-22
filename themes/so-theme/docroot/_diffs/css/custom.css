@@ -25,6 +25,10 @@ a:active {
 	position: static;
 }
 
+#skip-to-content {
+	display: none;
+}
+
 .portlet-content,
 .portlet-minimized .portlet-content-container {
 	padding: 0 0 10px;
@@ -46,41 +50,45 @@ a:active {
 
 /* ---------- Heading ---------- */
 
-#skip-to-content,
-#banner h2.community-title,
-#banner h3.page-title,
-#navigation h1 {
-	display: none;
-}
-
-/* ---------- Banner ---------- */
-
 #banner {
 	border-bottom: 3px solid #3E3639;
 	margin-bottom: 1.5em;
+	min-height: 90px;
 	position: relative;
-}
 
-#banner h1.company-title {
-	margin: 0 0 0 15px;
-	padding-top: 15px;
-}
+	h1.company-title {
+		margin: 10px 15px 30px;
+	}
 
-/* ---------- Search ---------- */
+	h2.community-title {
+		bottom: 3px;
+		left: 15px;
+		margin: 0;
+		position: absolute;
 
-#page-search {
-	position: absolute;
-	right: 0;
-	top: 25px;
-}
+		a {
+			color: #8D1E31;
+		}
+	}
 
-#page-search input {
-	float: left;
-	margin-left: 3px;
-}
+	h3.page-title {
+		display: none;
+	}
 
-#page-search select {
-	display: none;
+	#page-search {
+		position: absolute;
+		right: 15px;
+		top: 20px;
+
+		input {
+			float: left;
+			margin-left: 3px;
+		}
+
+		select {
+			display: none;
+		}
+	}
 }
 
 /* ---------- Navigation ---------- */
@@ -89,6 +97,10 @@ a:active {
 	position: absolute;
 	right: 0;
 	bottom: 0;
+}
+
+#navigation h1 {
+	display: none;
 }
 
 #navigation ul {
