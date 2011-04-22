@@ -66,6 +66,7 @@ public class WURFLDeviceRecognitionProvider
 
 	public void reload() throws Exception {
 		_wurflHolderImpl.reload();
+
 		_knownDevices.reload();
 	}
 
