@@ -15,6 +15,7 @@
 package com.liferay.knowledgebase.display.portlet;
 
 import com.liferay.documentlibrary.DuplicateFileException;
+import com.liferay.documentlibrary.FileNameException;
 import com.liferay.documentlibrary.FileSizeException;
 import com.liferay.documentlibrary.NoSuchFileException;
 import com.liferay.documentlibrary.service.DLLocalServiceUtil;
@@ -607,6 +608,7 @@ public class DisplayPortlet extends MVCPortlet {
 
 	protected boolean isSessionErrorException(Throwable cause) {
 		if (cause instanceof DuplicateFileException ||
+			cause instanceof FileNameException ||
 			cause instanceof FileSizeException ||
 			cause instanceof KBArticleContentException ||
 			cause instanceof KBArticlePriorityException ||

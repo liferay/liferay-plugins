@@ -82,6 +82,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * @author Peter Shin
  * @author Brian Wing Shun Chan
+ * @author Eric Min
  */
 public class AdminPortlet extends MVCPortlet {
 
