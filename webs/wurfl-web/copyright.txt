@@ -10,18 +10,3 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
-
-package com.liferay.portal.mobile.device.wurfl.util;
-
-/**
- * @author Michael C. Han
- */
-public class PortletPropsKeys {
-
-	public static final String WURFL_DATABASE_PATCHES =
-		"wurfl.database.patches";
-
-	public static final String WURFL_DATABASE_PRIMARY =
-		"wurfl.database.primary";
-
-}

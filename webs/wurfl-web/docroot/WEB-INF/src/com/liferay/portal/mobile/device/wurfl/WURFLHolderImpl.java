@@ -1,9 +1,9 @@
-/*
+/**
  * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by the Free
- * Software Foundation; version 2.0 of the License.
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation; version 2.0 of the License.
  *
  * This library is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
@@ -15,9 +15,19 @@ package com.liferay.portal.mobile.device.wurfl;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.mobile.device.wurfl.util.PortletPropsKeys;
+import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.mobile.device.wurfl.util.PortletPropsValues;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.zip.GZIPInputStream;
+import java.util.zip.ZipInputStream;
 
 import net.sourceforge.wurfl.core.DefaultDeviceProvider;
 import net.sourceforge.wurfl.core.DefaultWURFLHolder;
@@ -34,63 +44,11 @@ import net.sourceforge.wurfl.core.resource.WURFLModel;
 import net.sourceforge.wurfl.core.resource.WURFLResources;
 import net.sourceforge.wurfl.core.resource.XMLResource;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.zip.GZIPInputStream;
-import java.util.zip.ZipInputStream;
-
 /**
  * @author Milen Dyankov
  * @author Michael C. Han
  */
 public class WURFLHolderImpl implements WURFLHolder {
-
-	public void initialize()
-		throws Exception {
-
-		List<InputStream> inputStreams = new ArrayList<InputStream>();
-
-		try {
-			XMLResource primaryDatabaseXMLResource = getWURFLDatabase(inputStreams);
-
-			WURFLResources wurflPatches = getWURFLDatabasePatches(inputStreams);
-
-			WURFLModel model = new DefaultWURFLModel(
-				primaryDatabaseXMLResource, wurflPatches);
-
-			MatcherManager matcherManager = new MatcherManager(model);
-
-			DeviceProvider deviceProvider = new DefaultDeviceProvider(model);
-
-			WURFLService service = new DefaultWURFLService(matcherManager,
-					deviceProvider);
-
-			WURFLManager manager = new DefaultWURFLManager(service);
-
-			WURFLUtils utils = new WURFLUtils(model, deviceProvider);
-
-			_wurflHolder = new DefaultWURFLHolder(manager, utils);
-		}
-		finally {
-			for (InputStream in : inputStreams) {
-				try {
-					in.close();
-				}
-				catch (IOException e) {
-					//nothing to do...
-				}
-			}
-		}
-
-		if (_log.isDebugEnabled()) {
-			_log.debug("WURFL initialised!");
-		}
-	}
 
 	public WURFLManager getWURFLManager() {
 		if (_wurflHolder == null) {
@@ -108,6 +66,47 @@ public class WURFLHolderImpl implements WURFLHolder {
 		return _wurflHolder.getWURFLUtils();
 	}
 
+	public void initialize() throws Exception {
+		List<InputStream> inputStreams = new ArrayList<InputStream>();
+
+		try {
+			XMLResource xmlResource = getWURFLDatabase(inputStreams);
+
+			WURFLResources wurflResources = getWURFLDatabasePatches(
+				inputStreams);
+
+			WURFLModel wurflModel = new DefaultWURFLModel(
+				xmlResource, wurflResources);
+
+			MatcherManager matcherManager = new MatcherManager(wurflModel);
+
+			DeviceProvider deviceProvider = new DefaultDeviceProvider(
+				wurflModel);
+
+			WURFLService wurflService = new DefaultWURFLService(
+				matcherManager, deviceProvider);
+
+			WURFLManager wurflManager = new DefaultWURFLManager(wurflService);
+
+			WURFLUtils wurflUtils = new WURFLUtils(wurflModel, deviceProvider);
+
+			_wurflHolder = new DefaultWURFLHolder(wurflManager, wurflUtils);
+		}
+		finally {
+			for (InputStream inputStream : inputStreams) {
+				try {
+					inputStream.close();
+				}
+				catch (IOException ioe) {
+				}
+			}
+		}
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("Initialised");
+		}
+	}
+
 	public synchronized void reload() throws Exception {
 		initialize();
 	}
@@ -115,72 +114,61 @@ public class WURFLHolderImpl implements WURFLHolder {
 	protected XMLResource getWURFLDatabase(List<InputStream> inputStreams)
 		throws IOException {
 
-		String primaryDatabaseFileName =
-			PortletPropsValues.WURFL_DATABASE_PRIMARY;
+		Class<?> clazz = getClass();
 
-		InputStream primaryDatabaseInputStream =
-			getClass().getResourceAsStream(primaryDatabaseFileName);
+		InputStream inputStream = clazz.getResourceAsStream(
+			PortletPropsValues.WURFL_DATABASE_PRIMARY);
 
-		if (Validator.isNull(primaryDatabaseInputStream)) {
+		if (inputStream == null) {
 			throw new IllegalStateException(
-				"WURFL database not initialized, please define: " +
-				PortletPropsKeys.WURFL_DATABASE_PRIMARY);
+				"Unable to find " + PortletPropsValues.WURFL_DATABASE_PRIMARY);
 		}
 
-		if (primaryDatabaseFileName.endsWith(".zip") ||
-			primaryDatabaseFileName.endsWith(".jar")) {
+		if (PortletPropsValues.WURFL_DATABASE_PRIMARY.endsWith(".gz")) {
+			inputStream = new GZIPInputStream(inputStream);
+		}
+		else if (PortletPropsValues.WURFL_DATABASE_PRIMARY.endsWith(".jar") ||
+			PortletPropsValues.WURFL_DATABASE_PRIMARY.endsWith(".zip")) {
 
-			ZipInputStream zipInputStream =
-				new ZipInputStream(primaryDatabaseInputStream);
+			ZipInputStream zipInputStream = new ZipInputStream(inputStream);
 
-			primaryDatabaseInputStream = zipInputStream;
+			inputStream = zipInputStream;
 
-			//the zip file downloaded from the WURFL website is zipped
-			//in a fashion that requires obtaining the next entry in the
-			//zip file.
 			zipInputStream.getNextEntry();
 		}
-		else if (primaryDatabaseFileName.endsWith(".gz")) {
-			primaryDatabaseInputStream =
-				new GZIPInputStream(primaryDatabaseInputStream);
-		}
 
-		XMLResource primaryDatabaseXMLResource = new XMLResource(
-			primaryDatabaseInputStream);
+		XMLResource xmlResource = new XMLResource(inputStream);
 
-		inputStreams.add(primaryDatabaseInputStream);
+		inputStreams.add(inputStream);
 
-		return primaryDatabaseXMLResource;
+		return xmlResource;
 	}
 
 	protected WURFLResources getWURFLDatabasePatches(
 			List<InputStream> inputStreams)
 		throws FileNotFoundException {
 
-		WURFLResources wurflPatches = new WURFLResources();
+		WURFLResources wurflResources = new WURFLResources();
 
-		String databasePatchesPath =
-			PortletPropsValues.WURFL_DATABASE_PATCHES_PATH;
+		String[] fileNames = FileUtil.listFiles(
+			PortletPropsValues.WURFL_DATABASE_PATCHES);
 
-		File databasePatchesDir = new File(databasePatchesPath);
+		for (String fileName : fileNames) {
+			File file = new File(fileName);
 
-		if (databasePatchesDir.exists() && databasePatchesDir.isDirectory()) {
-			File[] databasePatchFiles = databasePatchesDir.listFiles();
+			FileInputStream fileInputStream = new FileInputStream(file);
 
-			for (File databasePatchFile : databasePatchFiles) {
-				FileInputStream fis = new FileInputStream(databasePatchFile);
+			inputStreams.add(fileInputStream);
 
-				inputStreams.add(fis);
+			XMLResource xmlResource = new XMLResource(file);
 
-				wurflPatches.add(new XMLResource(databasePatchFile));
-			}
+			wurflResources.add(xmlResource);
 		}
 
-		return wurflPatches;
+		return wurflResources;
 	}
 
-	private static Log _log = LogFactoryUtil.getLog(
-		WURFLHolderImpl.class);
+	private static Log _log = LogFactoryUtil.getLog(WURFLHolderImpl.class);
 
 	private WURFLHolder _wurflHolder;
 

@@ -1,9 +1,9 @@
-/*
+/**
  * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by the Free
- * Software Foundation; version 2.0 of the License.
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation; version 2.0 of the License.
  *
  * This library is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
@@ -13,7 +13,6 @@
 
 package com.liferay.portal.mobile.device.wurfl.util;
 
-import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.util.portlet.PortletProps;
 
 /**
@@ -21,11 +20,10 @@ import com.liferay.util.portlet.PortletProps;
  */
 public class PortletPropsValues {
 
-	public static final String WURFL_DATABASE_PATCHES_PATH =
-		GetterUtil.getString(
-			PortletProps.get(PortletPropsKeys.WURFL_DATABASE_PATCHES_PATH));
+	public static final String WURFL_DATABASE_PATCHES = PortletProps.get(
+		PortletPropsKeys.WURFL_DATABASE_PATCHES);
 
-	public static final String WURFL_DATABASE_PRIMARY = GetterUtil.getString(
-		PortletProps.get(PortletPropsKeys.WURFL_DATABASE_PRIMARY));
+	public static final String WURFL_DATABASE_PRIMARY = PortletProps.get(
+		PortletPropsKeys.WURFL_DATABASE_PRIMARY);
 
 }

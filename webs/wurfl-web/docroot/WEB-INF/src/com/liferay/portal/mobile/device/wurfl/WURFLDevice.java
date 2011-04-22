@@ -1,9 +1,9 @@
-/*
+/**
  * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by the Free
- * Software Foundation; version 2.0 of the License.
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation; version 2.0 of the License.
  *
  * This library is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
@@ -13,14 +13,14 @@
 
 package com.liferay.portal.mobile.device.wurfl;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Map.Entry;
-
 import com.liferay.portal.kernel.mobile.device.AbstractDevice;
 import com.liferay.portal.kernel.mobile.device.Capability;
 import com.liferay.portal.kernel.mobile.device.Dimensions;
 import com.liferay.portal.kernel.util.GetterUtil;
+
+import java.util.HashMap;
+import java.util.Map.Entry;
+import java.util.Map;
 
 /**
  * @author Milen Dyankov
@@ -29,12 +29,11 @@ import com.liferay.portal.kernel.util.GetterUtil;
 public class WURFLDevice extends AbstractDevice {
 
 	public WURFLDevice(Map<String, String> capabilities) {
-
-		for (Entry<String, String> capabilityEntry : capabilities.entrySet()) {
+		for (Entry<String, String> entry : capabilities.entrySet()) {
 			Capability capability = new Capability(
-				capabilityEntry.getKey(), capabilityEntry.getValue());
+				entry.getKey(), entry.getValue());
 
-			_capabilities.put(capabilityEntry.getKey(), capability);
+			_capabilities.put(entry.getKey(), capability);
 		}
 	}
 
@@ -58,14 +57,14 @@ public class WURFLDevice extends AbstractDevice {
 		return capability.getValue();
 	}
 
+	public Map<String, Capability> getCapabilities() {
+		return _capabilities;
+	}
+
 	public String getCapability(String name) {
 		Capability capability = _capabilities.get(name);
 
 		return capability.getValue();
-	}
-
-	public Map<String, Capability> getCapabilities() {
-		return _capabilities;
 	}
 
 	public String getModel() {
@@ -95,15 +94,17 @@ public class WURFLDevice extends AbstractDevice {
 	}
 
 	public Dimensions getScreenSize() {
-		Capability widthCapability = _capabilities.get(
-			WURFLConstants.RESOLUTION_WIDTH);
-		float width = GetterUtil.getFloat(widthCapability.getValue());
-
 		Capability heightCapability = _capabilities.get(
 			WURFLConstants.RESOLUTION_HEIGHT);
+
 		float height = GetterUtil.getFloat(heightCapability.getValue());
 
-		return new Dimensions(width, height);
+		Capability widthCapability = _capabilities.get(
+			WURFLConstants.RESOLUTION_WIDTH);
+
+		float width = GetterUtil.getFloat(widthCapability.getValue());
+
+		return new Dimensions(height, width);
 	}
 
 	public boolean hasQwertyKeyboard() {
