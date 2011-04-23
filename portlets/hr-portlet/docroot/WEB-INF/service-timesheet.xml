@@ -8,6 +8,18 @@
 
 		<column name="hrHolidayId" type="long" primary="true" />
 
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
 		<!-- Other fields -->
 
 		<column name="hrOfficeId" type="long" />
@@ -22,6 +34,18 @@
 		<!-- PK fields -->
 
 		<column name="hrTimeOffId" type="long" primary="true" />
+
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
 
 		<!-- Other fields -->
 
@@ -43,9 +67,23 @@
 
 		<column name="hrTimeOffAllotmentId" type="long" primary="true" />
 
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
 		<!-- Other fields -->
 
+		<column name="hrEmploymentTypeId" type="long" />
 		<column name="hrTimeOffTypeId" type="long" />
+		<column name="year" type="int" />
 		<column name="hoursAllowed" type="int" />
 		<column name="yearsWorked" type="int" />
 	</entity>
@@ -55,10 +93,30 @@
 
 		<column name="hrTimeOffTypeId" type="long" primary="true" />
 
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
 		<!-- Other fields -->
 
+		<column name="code" type="String" />
 		<column name="name" type="String" />
 		<column name="description" type="String" />
+
+		<!-- Finder methods -->
+
+		<finder name="G_C" return-type="HRTimeOffType" unique="true">
+			<finder-column name="groupId" />
+			<finder-column name="code" />
+		</finder>
 	</entity>
 	<entity name="HRTimeSheet" local-service="false" remote-service="false">
 
@@ -90,8 +148,6 @@
 		<column name="dayOfYear" type="int" />
 		<column name="year" type="int" />
 		<column name="hours" type="int" />
-		<column name="overtime" type="int" />
-
 	</entity>
 	<entity name="HRUserTimeOff" local-service="false" remote-service="false">
 
@@ -101,7 +157,11 @@
 
 		<!-- Other fields -->
 
-		<column name="hrTimeOffId" type="long" />
+		<column name="hrTimeOffTypeId" type="long" />
 		<column name="hrUserId" type="long" />
+		<column name="hoursAllowed" type="int" />
+		<column name="hoursUnused" type="int" />
+		<column name="hoursUsed" type="int" />
+		<column name="year" type="int" />
 	</entity>
 </service-builder>
