@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE look-and-feel PUBLIC "-//Liferay//DTD Look and Feel 6.0.0//EN" "http://www.liferay.com/dtd/liferay-look-and-feel_6_0_0.dtd">
+
+<look-and-feel>
+	<compatibility>
+		<version>6.1.0+</version>
+	</compatibility>
+	<theme id="so" name="Social Office Theme">
+		<color-scheme id="collaboration" name="Collaboration">
+			<default-cs>true</default-cs>
+			<css-class>collaboration</css-class>
+		</color-scheme>
+		<color-scheme id="website" name="Website">
+			<css-class>website</css-class>
+		</color-scheme>
+	</theme>
+</look-and-feel>

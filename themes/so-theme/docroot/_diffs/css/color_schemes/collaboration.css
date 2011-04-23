@@ -1,0 +1,27 @@
+.collaboration {
+	.columns-2 {
+		#column-1 {
+			border-right: 1px solid #CCC;
+		}
+
+		#column-1.yui3-aui-w70 {
+			width: 75%;
+		}
+
+		#column-2.yui3-aui-w30 {
+			width: 25%;
+		}
+	}
+
+	.columns-3 {
+		#column-1,
+		#column-3 {
+			min-width: 250px;
+			width: 25%;
+		}
+
+		#column-2 {
+			width: 50%;
+		}
+	}
+}
