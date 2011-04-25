@@ -120,8 +120,21 @@ pageContext.setAttribute("portletURL", portletURL);
 			boolean socialOfficeEnabled = GetterUtil.getBoolean(group.getExpandoBridge().getAttribute("socialOfficeEnabled"));
 			%>
 
-			<div<%= socialOfficeEnabled ? " class=\"social-office-enabled\"" : StringPool.BLANK %>>
-				<a href="<%= rowURL %>"><%= HtmlUtil.escape(group.getDescriptiveName()) %></a>
+			<div>
+				<a href="<%= rowURL %>">
+					<c:if test="<%= group.isCommunity() %>">
+						<c:choose>
+							<c:when test="<%= socialOfficeEnabled %>">
+								<liferay-ui:icon message="<%= group.getDescriptiveName() %>" src='<%= themeDisplay.getPathContext() + "/html/icons/social_office.png" %>' />
+							</c:when>
+							<c:otherwise>
+								<liferay-ui:icon message="<%= group.getDescriptiveName() %>" src='<%= themeDisplay.getPathContext() + "/html/icons/enterprise_admin_communities.png" %>' />
+							</c:otherwise>
+						</c:choose>
+					</c:if>
+
+					<%= HtmlUtil.escape(group.getDescriptiveName()) %>
+				</a>
 
 				<c:if test="<%= Validator.isNotNull(group.getDescription()) %>">
 					<img alt="arrow" class="description-toggle" src="<%= themeDisplay.getPathThemeImage() %>/custom/arrow_right.png" />
