@@ -107,6 +107,10 @@
 		<!-- Other fields -->
 
 		<column name="organizationId" type="long" />
+
+		<!-- Relationships -->
+
+		<column name="hrHolidays" type="Collection" entity="HRHoliday" mapping-table="HRHolidays_HROffices" />
 	</entity>
 	<entity name="HRTerminationType" local-service="false" remote-service="false">
 

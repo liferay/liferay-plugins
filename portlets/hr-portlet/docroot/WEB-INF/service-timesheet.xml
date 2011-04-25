@@ -22,12 +22,15 @@
 
 		<!-- Other fields -->
 
-		<column name="hrOfficeId" type="long" />
 		<column name="name" type="String" />
 		<column name="description" type="String" />
 		<column name="dayOfYear" type="int" />
 		<column name="year" type="int" />
 		<column name="paid" type="boolean" />
+
+		<!-- Relationships -->
+
+		<column name="hrOffices" type="Collection" entity="HROffice" mapping-table="HRHolidays_HROffices" />
 	</entity>
 	<entity name="HRTimeOff" local-service="false" remote-service="false">
 
@@ -87,7 +90,7 @@
 
 		<!-- Finder methods -->
 
-		<finder name="G_C" return-type="hrTimeOffFrequencyTypeId" unique="true">
+		<finder name="G_C" return-type="HRTimeOffFrequencyType" unique="true">
 			<finder-column name="groupId" />
 			<finder-column name="code" />
 		</finder>
@@ -152,6 +155,18 @@
 
 		<column name="hrTimeSheetId" type="long" primary="true" />
 
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
 		<!-- Other fields -->
 
 		<column name="hrUserId" type="long" />
@@ -169,6 +184,18 @@
 
 		<column name="hrTimeSheetDayId" type="long" primary="true" />
 
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
 		<!-- Other fields -->
 
 		<column name="hrTimeSheetId" type="long" />
@@ -183,6 +210,18 @@
 
 		<column name="hrTimeSheetHoursPerDay" type="long" primary="true" />
 
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
 		<!-- Other fields -->
 
 		<column name="hrOfficeId" type="long" />
@@ -194,14 +233,26 @@
 
 		<column name="hrUserTimeOffId" type="long" primary="true" />
 
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
 		<!-- Other fields -->
 
 		<column name="hrTimeOffTypeId" type="long" />
 		<column name="hrUserId" type="long" />
+		<column name="year" type="int" />
 		<column name="hoursAllowed" type="double" />
 		<column name="hoursAccrued" type="double" />
 		<column name="hoursCarriedOver" type="double" />
 		<column name="hoursUsed" type="double" />
-		<column name="year" type="int" />
 	</entity>
 </service-builder>

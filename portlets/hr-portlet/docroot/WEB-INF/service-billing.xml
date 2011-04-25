@@ -98,10 +98,30 @@
 
 		<column name="hrProjectStatusId" type="long" primary="true" />
 
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
 		<!-- Other fields -->
 
+		<column name="code" type="String" />
 		<column name="name" type="String" />
 		<column name="description" type="String" />
+
+		<!-- Finder methods -->
+
+		<finder name="G_C" return-type="HRProjectStatus" unique="true">
+			<finder-column name="groupId" />
+			<finder-column name="code" />
+		</finder>
 	</entity>
 	<entity name="HRTask" local-service="false" remote-service="false">
 
@@ -136,10 +156,30 @@
 
 		<column name="hrTaskStatusId" type="long" primary="true" />
 
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
 		<!-- Other fields -->
 
+		<column name="code" type="String" />
 		<column name="name" type="String" />
 		<column name="description" type="String" />
+
+		<!-- Finder methods -->
+
+		<finder name="G_C" return-type="HRTaskStatus" unique="true">
+			<finder-column name="groupId" />
+			<finder-column name="code" />
+		</finder>
 	</entity>
 	<entity name="HRUserProject" local-service="false" remote-service="false">
 
@@ -153,7 +193,7 @@
 		<column name="hrProjectId" type="long" />
 		<column name="hrProjectRoleId" type="long" />
 		<column name="hrUserId" type="long" />
-		<column name="rate" type="double" />
+		<column name="actualRate" type="double" />
 	</entity>
 	<entity name="HRUserTask" local-service="false" remote-service="false">
 
