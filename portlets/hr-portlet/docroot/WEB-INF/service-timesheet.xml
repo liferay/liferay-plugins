@@ -55,43 +55,17 @@
 		<column name="startDayOfYear" type="int" />
 		<column name="endDayOfYear" type="int" />
 		<column name="year" type="int" />
-		<column name="totalHours" type="int" />
+		<column name="totalHours" type="double" />
 		<column name="status" type="int" />
 		<column name="statusByUserId" type="long" />
 		<column name="statusByUserName" type="String" />
 		<column name="statusDate" type="Date" />
 	</entity>
-	<entity name="HRTimeOffAllotment" local-service="false" remote-service="false">
+	<entity name="HRTimeOffFrequencyType" local-service="false" remote-service="false">
 
 		<!-- PK fields -->
 
-		<column name="hrTimeOffAllotmentId" type="long" primary="true" />
-
-		<!-- Group instance -->
-
-		<column name="groupId" type="long" />
-
-		<!-- Audit fields -->
-
-		<column name="companyId" type="long" />
-		<column name="userId" type="long" />
-		<column name="userName" type="String" />
-		<column name="createDate" type="Date" />
-		<column name="modifiedDate" type="Date" />
-
-		<!-- Other fields -->
-
-		<column name="hrEmploymentTypeId" type="long" />
-		<column name="hrTimeOffTypeId" type="long" />
-		<column name="year" type="int" />
-		<column name="hoursAllowed" type="int" />
-		<column name="yearsWorked" type="int" />
-	</entity>
-	<entity name="HRTimeOffType" local-service="false" remote-service="false">
-
-		<!-- PK fields -->
-
-		<column name="hrTimeOffTypeId" type="long" primary="true" />
+		<column name="hrTimeOffFrequencyTypeId" type="long" primary="true" />
 
 		<!-- Group instance -->
 
@@ -113,10 +87,64 @@
 
 		<!-- Finder methods -->
 
-		<finder name="G_C" return-type="HRTimeOffType" unique="true">
+		<finder name="G_C" return-type="hrTimeOffFrequencyTypeId" unique="true">
 			<finder-column name="groupId" />
 			<finder-column name="code" />
 		</finder>
+	</entity>
+	<entity name="HRTimeOffPolicy" local-service="false" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="hrTimeOffPolicyId" type="long" primary="true" />
+
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="hrTimeOffTypeId" type="long" />
+		<column name="hrUserId" type="long" />
+		<column name="accrueHRTimeOffFrequencyTypeId" type="long" />
+		<column name="resetHRTimeOffFrequencyTypeId" type="long" />
+		<column name="effectiveDate" type="Date" />
+		<column name="inactive" type="boolean" />
+		<column name="hoursAllowed" type="double" />
+		<column name="hoursBaseAmount" type="double" />
+		<column name="hoursToAccrue" type="double" />
+		<column name="carryOverHoursAllowed" type="double" />
+	</entity>
+	<entity name="HRTimeOffType" local-service="false" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="hrTimeOffTypeId" type="long" primary="true" />
+
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="name" type="String" />
+		<column name="description" type="String" />
 	</entity>
 	<entity name="HRTimeSheet" local-service="false" remote-service="false">
 
@@ -147,7 +175,18 @@
 		<column name="hrUserId" type="long" />
 		<column name="dayOfYear" type="int" />
 		<column name="year" type="int" />
-		<column name="hours" type="int" />
+		<column name="hours" type="double" />
+	</entity>
+	<entity name="HRTimeSheetHoursPerDay" local-service="false" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="hrTimeSheetHoursPerDay" type="long" primary="true" />
+
+		<!-- Other fields -->
+
+		<column name="hrOfficeId" type="long" />
+		<column name="hoursPerDay" type="double" />
 	</entity>
 	<entity name="HRUserTimeOff" local-service="false" remote-service="false">
 
@@ -159,9 +198,10 @@
 
 		<column name="hrTimeOffTypeId" type="long" />
 		<column name="hrUserId" type="long" />
-		<column name="hoursAllowed" type="int" />
-		<column name="hoursUnused" type="int" />
-		<column name="hoursUsed" type="int" />
+		<column name="hoursAllowed" type="double" />
+		<column name="hoursAccrued" type="double" />
+		<column name="hoursCarriedOver" type="double" />
+		<column name="hoursUsed" type="double" />
 		<column name="year" type="int" />
 	</entity>
 </service-builder>

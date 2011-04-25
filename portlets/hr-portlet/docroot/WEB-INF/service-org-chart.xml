@@ -168,6 +168,7 @@
 		<column name="terminationDate" type="Date" />
 		<column name="wageAmount" type="double" />
 		<column name="wageCurrencyCode" type="String" />
+		<column name="benefitsExempt" type="boolean" />
 		<column name="overtimeExempt" type="boolean" />
 	</entity>
 	<entity name="HRUserHistory" local-service="false" remote-service="false">
@@ -198,6 +199,7 @@
 		<column name="terminationDate" type="Date" />
 		<column name="wageAmount" type="double" />
 		<column name="wageCurrencyCode" type="String" />
+		<column name="benefitsExempt" type="boolean" />
 		<column name="overtimeExempt" type="boolean" />
 	</entity>
 	<entity name="HRWageType" local-service="false" remote-service="false">

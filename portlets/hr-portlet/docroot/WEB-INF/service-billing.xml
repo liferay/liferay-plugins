@@ -8,10 +8,30 @@
 
 		<column name="hrBillabilityId" type="long" primary="true" />
 
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
 		<!-- Other fields -->
 
+		<column name="code" type="String" />
 		<column name="name" type="String" />
 		<column name="description" type="String" />
+
+		<!-- Finder methods -->
+
+		<finder name="G_C" return-type="HRBillability" unique="true">
+			<finder-column name="groupId" />
+			<finder-column name="code" />
+		</finder>
 	</entity>
 	<entity name="HRClient" local-service="false" remote-service="false">
 
@@ -32,16 +52,22 @@
 
 		<!-- Other fields -->
 
-		<column name="hrBillabilityId" type="long" />
 		<column name="hrClientId" type="long" />
 		<column name="hrProjectStatusId" type="long" />
 		<column name="name" type="String" />
 		<column name="description" type="String" />
-		<column name="startDate" type="Date" />
-		<column name="endDate" type="Date" />
+		<column name="estimatedStartDate" type="Date" />
+		<column name="estimatedEndDate" type="Date" />
 		<column name="estimatedCost" type="double" />
+		<column name="estimatedCostCurrencyCode" type="String" />
 		<column name="estimatedExpenses" type="double" />
-		<column name="estimatedHours" type="int" />
+		<column name="estimatedHours" type="double" />
+		<column name="actualStartDate" type="Date" />
+		<column name="actualEndDate" type="Date" />
+		<column name="actualCost" type="double" />
+		<column name="actualCostCurrencyCode" type="String" />
+		<column name="actualExpenses" type="double" />
+		<column name="actualHours" type="double" />
 	</entity>
 	<entity name="HRProjectBillingRate" local-service="false" remote-service="false">
 
@@ -91,9 +117,18 @@
 		<column name="parentHRTaskId" type="long" />
 		<column name="name" type="String" />
 		<column name="description" type="String" />
-		<column name="startDate" type="Date" />
-		<column name="endDate" type="Date" />
-		<column name="bidHours" type="int" />
+		<column name="estimatedStartDate" type="Date" />
+		<column name="estimatedEndDate" type="Date" />
+		<column name="estimatedCost" type="double" />
+		<column name="estimatedCostCurrencyCode" type="String" />
+		<column name="estimatedExpenses" type="double" />
+		<column name="estimatedHours" type="double" />
+		<column name="actualStartDate" type="Date" />
+		<column name="actualEndDate" type="Date" />
+		<column name="actualCost" type="double" />
+		<column name="actualCostCurrencyCode" type="String" />
+		<column name="actualExpenses" type="double" />
+		<column name="actualHours" type="double" />
 	</entity>
 	<entity name="HRTaskStatus" local-service="false" remote-service="false">
 
@@ -116,7 +151,9 @@
 
 		<column name="hrProjectBillingRateId" type="long" />
 		<column name="hrProjectId" type="long" />
+		<column name="hrProjectRoleId" type="long" />
 		<column name="hrUserId" type="long" />
+		<column name="rate" type="double" />
 	</entity>
 	<entity name="HRUserTask" local-service="false" remote-service="false">
 
@@ -126,6 +163,7 @@
 
 		<!-- Other fields -->
 
+		<column name="hrBillabilityId" type="long" />
 		<column name="hrTaskId" type="long" />
 		<column name="hrTimesheetId" type="long" />
 		<column name="hrUserId" type="long" />
