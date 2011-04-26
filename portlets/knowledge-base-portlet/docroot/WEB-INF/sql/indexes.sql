@@ -7,7 +7,6 @@ create index IX_B0FCBB47 on KBArticle (groupId, parentResourcePrimKey, latest);
 create index IX_D91D2879 on KBArticle (groupId, parentResourcePrimKey, main);
 create index IX_55A38CF2 on KBArticle (groupId, parentResourcePrimKey, status);
 create index IX_DF5748B on KBArticle (groupId, status);
-create index IX_32D075C5 on KBArticle (kbTemplateId);
 create index IX_86BA3247 on KBArticle (parentResourcePrimKey, latest);
 create index IX_1DCC5F79 on KBArticle (parentResourcePrimKey, main);
 create index IX_2B6103F2 on KBArticle (parentResourcePrimKey, status);
