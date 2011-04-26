@@ -111,9 +111,6 @@ public class UpgradeKBArticle extends UpgradeProcess {
 		upgradeTable.updateTable();
 
 		runSQL("alter table KBArticle drop column articleId");
-
-		KBArticleAttachmentsUtil.deleteAttachmentsDirectory(
-			PortalUtil.getDefaultCompanyId());
 	}
 
 	protected void updateTable() throws Exception {
@@ -144,6 +141,9 @@ public class UpgradeKBArticle extends UpgradeProcess {
 		upgradeTable.setCreateSQL(KBArticleTable.TABLE_SQL_CREATE);
 
 		upgradeTable.updateTable();
+
+		KBArticleAttachmentsUtil.deleteAttachmentsDirectory(
+			PortalUtil.getDefaultCompanyId());
 	}
 
 }
