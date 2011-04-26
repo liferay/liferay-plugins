@@ -235,11 +235,7 @@
 	padding-top: 10px;
 }
 
-.knowledge-base-portlet .kb-template-editor .yui3-aui-field-element {
-	display: block;
-}
-
-.knowledge-base-portlet .kb-template-editor .yui3-aui-field-element textarea {
+.knowledge-base-portlet .kb-template-editor {
 	height: 500px;
 	width: 100%;
 }

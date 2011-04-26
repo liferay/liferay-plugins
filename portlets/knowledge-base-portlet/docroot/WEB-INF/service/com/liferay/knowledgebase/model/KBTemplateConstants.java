@@ -19,7 +19,8 @@ package com.liferay.knowledgebase.model;
  */
 public class KBTemplateConstants {
 
-	public static final int DEFAULT_ENGINE_TYPE = 0;
+	public static final int DEFAULT_ENGINE_TYPE =
+		KBTemplateConstants.ENGINE_TYPE_VELOCITY;
 
 	public static final int ENGINE_TYPE_FREEMARKER = 1;
 

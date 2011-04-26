@@ -19,12 +19,12 @@ import com.liferay.knowledgebase.model.KBTemplate;
 import com.liferay.knowledgebase.model.KBTemplateParser;
 import com.liferay.knowledgebase.util.PortletPropsValues;
 import com.liferay.knowledgebase.util.WebKeys;
+import com.liferay.portal.kernel.freemarker.FreeMarkerContext;
+import com.liferay.portal.kernel.freemarker.FreeMarkerEngineUtil;
+import com.liferay.portal.kernel.freemarker.FreeMarkerVariablesUtil;
 import com.liferay.portal.kernel.io.unsync.UnsyncStringWriter;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.kernel.velocity.VelocityContext;
-import com.liferay.portal.kernel.velocity.VelocityEngineUtil;
-import com.liferay.portal.kernel.velocity.VelocityVariablesUtil;
 
 import java.util.Map;
 
@@ -33,7 +33,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * @author Peter Shin
  */
-public class KBVelocityTemplateParserImpl implements KBTemplateParser {
+public class FreeMarkerKBTemplateParserImpl implements KBTemplateParser {
 
 	public String transform(HttpServletRequest request) throws Exception {
 		KBArticle kbArticle = (KBArticle)request.getAttribute(
@@ -41,14 +41,14 @@ public class KBVelocityTemplateParserImpl implements KBTemplateParser {
 
 		KBTemplate kbTemplate = kbArticle.getKBTemplate();
 
-		String velocityTemplateId = getVelocityTemplateId(
+		String freeMarkerTemplateId = getFreeMarkerTemplateId(
 			kbTemplate.getGroupId(), kbTemplate.getKbTemplateId());
 
 		UnsyncStringWriter unsyncStringWriter = new UnsyncStringWriter();
 
-		VelocityEngineUtil.mergeTemplate(
-			velocityTemplateId, kbTemplate.getContent(),
-			getVelocityContext(request), unsyncStringWriter);
+		FreeMarkerEngineUtil.mergeTemplate(
+			freeMarkerTemplateId, kbTemplate.getContent(),
+			getFreeMarkerContext(request), unsyncStringWriter);
 
 		return unsyncStringWriter.toString();
 	}
@@ -62,33 +62,33 @@ public class KBVelocityTemplateParserImpl implements KBTemplateParser {
 			return StringPool.BLANK;
 		}
 
-		VelocityContext velocityContext = getVelocityContext(request);
+		FreeMarkerContext freeMarkerContext = getFreeMarkerContext(request);
 
 		if (variables != null) {
 			for (Map.Entry<String, Object> entry : variables.entrySet()) {
-				velocityContext.put(entry.getKey(), entry.getValue());
+				freeMarkerContext.put(entry.getKey(), entry.getValue());
 			}
 		}
 
 		UnsyncStringWriter unsyncStringWriter = new UnsyncStringWriter();
 
-		VelocityEngineUtil.mergeTemplate(
-			id, content, velocityContext, unsyncStringWriter);
+		FreeMarkerEngineUtil.mergeTemplate(
+			id, content, freeMarkerContext, unsyncStringWriter);
 
 		return unsyncStringWriter.toString();
 	}
 
-	protected VelocityContext getVelocityContext(HttpServletRequest request)
+	protected FreeMarkerContext getFreeMarkerContext(HttpServletRequest request)
 		throws Exception {
 
 		// Standard tools
 
-		VelocityContext velocityContext =
-			VelocityEngineUtil.getWrappedStandardToolsContext();
+		FreeMarkerContext freeMarkerContext =
+			FreeMarkerEngineUtil.getWrappedStandardToolsContext();
 
 		// Variables
 
-		VelocityVariablesUtil.insertVariables(velocityContext, request);
+		FreeMarkerVariablesUtil.insertVariables(freeMarkerContext, request);
 
 		// KB Article
 
@@ -96,10 +96,10 @@ public class KBVelocityTemplateParserImpl implements KBTemplateParser {
 			WebKeys.KNOWLEDGE_BASE_KB_ARTICLE);
 
 		if (kbArticle != null) {
-			velocityContext.put("kbArticle", kbArticle);
+			freeMarkerContext.put("kbArticle", kbArticle);
 		}
 		else {
-			velocityContext.put("kbArticle", new KBArticleImpl());
+			freeMarkerContext.put("kbArticle", new KBArticleImpl());
 		}
 
 		// Restricted variables
@@ -108,13 +108,13 @@ public class KBVelocityTemplateParserImpl implements KBTemplateParser {
 			PortletPropsValues.ADMIN_KB_TEMPLATE_RESTRICTED_VARIABLES;
 
 		for (String restrictedVariable : restrictedVariables) {
-			velocityContext.put(restrictedVariable, StringPool.BLANK);
+			freeMarkerContext.put(restrictedVariable, StringPool.BLANK);
 		}
 
-		return velocityContext;
+		return freeMarkerContext;
 	}
 
-	protected String getVelocityTemplateId(long groupId, long kbTemplateId) {
+	protected String getFreeMarkerTemplateId(long groupId, long kbTemplateId) {
 		return String.valueOf(groupId).concat(StringPool.PERIOD).concat(
 			String.valueOf(kbTemplateId));
 	}

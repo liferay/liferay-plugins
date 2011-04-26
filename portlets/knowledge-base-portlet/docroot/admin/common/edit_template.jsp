@@ -24,6 +24,10 @@ long kbTemplateId = BeanParamUtil.getLong(kbTemplate, request, "kbTemplateId");
 String content = BeanParamUtil.getString(kbTemplate, request, "content");
 int engineType = BeanParamUtil.getInteger(kbTemplate, request, "engineType", KBTemplateConstants.DEFAULT_ENGINE_TYPE);
 boolean cacheable = BeanParamUtil.getBoolean(kbTemplate, request, "cacheable", true);
+
+if ((request.getParameter("content") == null) && (kbTemplate == null)) {
+	content = AdminUtil.getKBTemplateContent(engineType);
+}
 %>
 
 <liferay-ui:header
@@ -63,7 +67,9 @@ boolean cacheable = BeanParamUtil.getBoolean(kbTemplate, request, "cacheable", t
 	<aui:fieldset>
 		<aui:input name="title" />
 
-		<aui:input cssClass="kb-template-editor" name="content" type="textarea" wrap="off" />
+		<aui:field-wrapper label="content">
+			<textarea class="kb-template-editor" name="<portlet:namespace />content" wrap="off"><%= content %></textarea>
+		</aui:field-wrapper>
 
 		<%
 		String taglibOnChange = renderResponse.getNamespace() + "updateEngineType(this.value);";
@@ -108,18 +114,11 @@ boolean cacheable = BeanParamUtil.getBoolean(kbTemplate, request, "cacheable", t
 
 <aui:script>
 	function <portlet:namespace />updateEngineType(value) {
-		var defaultFreeMarkerContent = "<%= UnicodeFormatter.toString(ContentUtil.get(PortletPropsValues.ADMIN_KB_TEMPLATE_CONTENT_FREEMARKER)) %>";
-		var defaultVelocityContent = "<%= UnicodeFormatter.toString(ContentUtil.get(PortletPropsValues.ADMIN_KB_TEMPLATE_CONTENT_VELOCITY)) %>";
-
-		var contentEl = document.<portlet:namespace />fm.<portlet:namespace />content;
-
-		if ((contentEl.value == "") || (contentEl.value == defaultFreeMarkerContent) || (contentEl.value == defaultVelocityContent)) {
-			if (value == "<%= KBTemplateConstants.ENGINE_TYPE_FREEMARKER %>") {
-				document.<portlet:namespace />fm.<portlet:namespace />content.value = defaultFreeMarkerContent;
-			}
-			else if (value == "<%= KBTemplateConstants.ENGINE_TYPE_VELOCITY %>") {
-				document.<portlet:namespace />fm.<portlet:namespace />content.value = defaultVelocityContent;
-			}
+		if (value == "<%= KBTemplateConstants.ENGINE_TYPE_FREEMARKER %>") {
+			document.<portlet:namespace />fm.<portlet:namespace />content.value = "<%= UnicodeFormatter.toString(AdminUtil.getKBTemplateContent(KBTemplateConstants.ENGINE_TYPE_FREEMARKER)) %>";
+		}
+		else if (value == "<%= KBTemplateConstants.ENGINE_TYPE_VELOCITY %>") {
+			document.<portlet:namespace />fm.<portlet:namespace />content.value = "<%= UnicodeFormatter.toString(AdminUtil.getKBTemplateContent(KBTemplateConstants.ENGINE_TYPE_VELOCITY)) %>";
 		}
 	}
 
@@ -128,5 +127,5 @@ boolean cacheable = BeanParamUtil.getBoolean(kbTemplate, request, "cacheable", t
 		submitForm(document.<portlet:namespace />fm);
 	}
 
-	<portlet:namespace />updateEngineType("<%= engineType %>");
+	Liferay.Util.enableTextareaTabs(document.<portlet:namespace />fm.<portlet:namespace />content);
 </aui:script>

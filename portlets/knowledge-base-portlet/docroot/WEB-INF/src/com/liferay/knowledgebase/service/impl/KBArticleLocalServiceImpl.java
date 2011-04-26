@@ -509,14 +509,14 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			OrderByComparator orderByComparator)
 		throws SystemException {
 
-		return kbArticlePersistence.findByKBTemplateId(
+		return kbTemplatePersistence.getKBArticles(
 			kbTemplateId, start, end, orderByComparator);
 	}
 
 	public int getKBTemplateKBArticlesCount(long kbTemplateId)
 		throws SystemException {
 
-		return kbArticlePersistence.countByKBTemplateId(kbTemplateId);
+		return kbTemplatePersistence.getKBArticlesSize(kbTemplateId);
 	}
 
 	public KBArticle getLatestKBArticle(long resourcePrimKey, int status)

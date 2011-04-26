@@ -18,12 +18,14 @@ import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.model.KBArticleConstants;
 import com.liferay.knowledgebase.model.KBTemplateConstants;
 import com.liferay.knowledgebase.model.KBTemplateParser;
-import com.liferay.knowledgebase.model.impl.KBFreeMarkerTemplateParserImpl;
-import com.liferay.knowledgebase.model.impl.KBVelocityTemplateParserImpl;
+import com.liferay.knowledgebase.model.impl.FreeMarkerKBTemplateParserImpl;
+import com.liferay.knowledgebase.model.impl.VelocityKBTemplateParserImpl;
 import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
 import com.liferay.knowledgebase.util.PortletPropsValues;
 import com.liferay.portal.kernel.bean.BeanPropertiesUtil;
 import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.DiffHtmlUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.InstanceFactory;
@@ -230,32 +232,48 @@ public class AdminUtil {
 		return outputDocument.toString();
 	}
 
-	public static KBTemplateParser getKBTemplateParser(int engineType)
-		throws Exception {
-
+	public static String getKBTemplateContent(int engineType) {
 		if (engineType == KBTemplateConstants.ENGINE_TYPE_FREEMARKER) {
-			if (_freeMarkerKBTemplateParser == null) {
-				_freeMarkerKBTemplateParser =
-					(KBTemplateParser)InstanceFactory.newInstance(
-						KBFreeMarkerTemplateParserImpl.class.getName());
-			}
+			return ContentUtil.get(
+				PortletPropsValues.ADMIN_KB_TEMPLATE_CONTENT_FREEMARKER);
+		}
+		else if (engineType == KBTemplateConstants.ENGINE_TYPE_VELOCITY) {
+			return ContentUtil.get(
+				PortletPropsValues.ADMIN_KB_TEMPLATE_CONTENT_VELOCITY);
+		}
 
+		return StringPool.BLANK;
+	}
+
+	public static KBTemplateParser getKBTemplateParser(int engineType) {
+		if (engineType == KBTemplateConstants.ENGINE_TYPE_FREEMARKER) {
 			return _freeMarkerKBTemplateParser;
 		}
 		else if (engineType == KBTemplateConstants.ENGINE_TYPE_VELOCITY) {
-			if (_velocityKBTemplateParser == null) {
-				_velocityKBTemplateParser =
-					(KBTemplateParser)InstanceFactory.newInstance(
-						KBVelocityTemplateParserImpl.class.getName());
-			}
-
 			return _velocityKBTemplateParser;
 		}
 
 		return null;
 	}
 
+	private static Log _log = LogFactoryUtil.getLog(AdminUtil.class);
+
 	private static KBTemplateParser _freeMarkerKBTemplateParser;
 	private static KBTemplateParser _velocityKBTemplateParser;
+
+	static {
+		try {
+			_freeMarkerKBTemplateParser =
+				(KBTemplateParser)InstanceFactory.newInstance(
+					FreeMarkerKBTemplateParserImpl.class.getName());
+
+			_velocityKBTemplateParser =
+				(KBTemplateParser)InstanceFactory.newInstance(
+					VelocityKBTemplateParserImpl.class.getName());
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+		}
+	}
 
 }

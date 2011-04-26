@@ -54,9 +54,6 @@
 		<finder name="ResourcePrimKey" return-type="Collection">
 			<finder-column name="resourcePrimKey" />
 		</finder>
-		<finder name="KBTemplateId" return-type="Collection">
-			<finder-column name="kbTemplateId" />
-		</finder>
 		<finder name="R_G" return-type="Collection">
 			<finder-column name="resourcePrimKey" />
 			<finder-column name="groupId" />
@@ -235,6 +232,10 @@
 		<column name="content" type="String" />
 		<column name="engineType" type="int" />
 		<column name="cacheable" type="boolean" />
+
+		<!-- Relationships -->
+
+		<column name="kbArticles" type="Collection" entity="KBArticle" mapping-key="kbTemplateId" />
 
 		<!-- Order -->
 

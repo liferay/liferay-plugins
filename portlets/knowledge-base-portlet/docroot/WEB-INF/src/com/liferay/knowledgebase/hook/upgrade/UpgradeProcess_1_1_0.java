@@ -22,12 +22,10 @@ import com.liferay.knowledgebase.hook.upgrade.v1_1_0.UpgradeKBTemplate;
 import com.liferay.knowledgebase.hook.upgrade.v1_1_0.UpgradePortletPreferences;
 import com.liferay.knowledgebase.hook.upgrade.v1_1_0.UpgradeResourceAction;
 import com.liferay.knowledgebase.hook.upgrade.v1_1_0.UpgradeResourcePermission;
-import com.liferay.knowledgebase.hook.upgrade.v1_1_0.util.KBArticleAttachmentsUtil;
 import com.liferay.portal.kernel.cache.MultiVMPoolUtil;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.service.ClassNameLocalServiceUtil;
 import com.liferay.portal.service.ResourceActionLocalServiceUtil;
-import com.liferay.portal.util.PortalUtil;
 
 /**
  * @author Peter Shin
@@ -36,12 +34,6 @@ public class UpgradeProcess_1_1_0 extends UpgradeProcess {
 
 	public int getThreshold() {
 		return 110;
-	}
-
-	protected void cleanUp() {
-		long companyId = PortalUtil.getDefaultCompanyId();
-
-		KBArticleAttachmentsUtil.deleteAttachmentsDirectory(companyId);
 	}
 
 	protected void clearCache() throws Exception {
@@ -62,8 +54,6 @@ public class UpgradeProcess_1_1_0 extends UpgradeProcess {
 		upgrade(UpgradeResourcePermission.class);
 
 		clearCache();
-
-		cleanUp();
 	}
 
 }
