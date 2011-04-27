@@ -39,6 +39,18 @@
 
 		<column name="hrClientId" type="long" primary="true" />
 
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
 		<!-- Other fields -->
 
 		<column name="name" type="String" />
@@ -50,6 +62,18 @@
 
 		<column name="hrProjectId" type="long" primary="true" />
 
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
 		<!-- Other fields -->
 
 		<column name="hrClientId" type="long" />
@@ -58,22 +82,36 @@
 		<column name="description" type="String" />
 		<column name="estimatedStartDate" type="Date" />
 		<column name="estimatedEndDate" type="Date" />
-		<column name="estimatedCost" type="double" />
-		<column name="estimatedCostCurrencyCode" type="String" />
-		<column name="estimatedExpenses" type="double" />
 		<column name="estimatedHours" type="double" />
+		<column name="estimatedHoursCost" type="double" />
+		<column name="estimatedHoursCostCurrencyCode" type="String" />
+		<column name="estimatedExpenses" type="double" />
+		<column name="estimatedExpensesCurrencyCode" type="String" />
 		<column name="actualStartDate" type="Date" />
 		<column name="actualEndDate" type="Date" />
-		<column name="actualCost" type="double" />
-		<column name="actualCostCurrencyCode" type="String" />
-		<column name="actualExpenses" type="double" />
 		<column name="actualHours" type="double" />
+		<column name="actualHoursCost" type="double" />
+		<column name="actualHoursCostCurrencyCode" type="String" />
+		<column name="actualExpenses" type="double" />
+		<column name="actualExpensesCurrencyCode" type="double" />
 	</entity>
 	<entity name="HRProjectBillingRate" local-service="false" remote-service="false">
 
 		<!-- PK fields -->
 
 		<column name="hrProjectBillingRateId" type="long" primary="true" />
+
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
 
 		<!-- Other fields -->
 
@@ -86,6 +124,18 @@
 		<!-- PK fields -->
 
 		<column name="hrProjectRoleId" type="long" primary="true" />
+
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
 
 		<!-- Other fields -->
 
@@ -129,6 +179,18 @@
 
 		<column name="hrTaskId" type="long" primary="true" />
 
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
 		<!-- Other fields -->
 
 		<column name="hrBillabilityId" type="long" />
@@ -139,16 +201,19 @@
 		<column name="description" type="String" />
 		<column name="estimatedStartDate" type="Date" />
 		<column name="estimatedEndDate" type="Date" />
-		<column name="estimatedCost" type="double" />
-		<column name="estimatedCostCurrencyCode" type="String" />
+		<column name="estimatedHours" type="double" />
+		<column name="estimatedHoursCost" type="double" />
+		<column name="estimatedHoursCostCurrencyCode" type="String" />
 		<column name="estimatedExpenses" type="double" />
+		<column name="estimatedExpensesCurrencyCode" type="String" />
 		<column name="estimatedHours" type="double" />
 		<column name="actualStartDate" type="Date" />
 		<column name="actualEndDate" type="Date" />
-		<column name="actualCost" type="double" />
-		<column name="actualCostCurrencyCode" type="String" />
-		<column name="actualExpenses" type="double" />
 		<column name="actualHours" type="double" />
+		<column name="actualHoursCost" type="double" />
+		<column name="actualHoursCostCurrencyCode" type="String" />
+		<column name="actualExpenses" type="double" />
+		<column name="actualExpensesCurrencyCode" type="String" />
 	</entity>
 	<entity name="HRTaskStatus" local-service="false" remote-service="false">
 
@@ -187,6 +252,18 @@
 
 		<column name="hrUserProjectId" type="long" primary="true" />
 
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
 		<!-- Other fields -->
 
 		<column name="hrProjectBillingRateId" type="long" />
@@ -200,6 +277,18 @@
 		<!-- PK fields -->
 
 		<column name="hrUserTaskId" type="long" primary="true" />
+
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
 
 		<!-- Other fields -->
 
