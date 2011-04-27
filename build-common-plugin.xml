@@ -239,8 +239,10 @@
 		>
 			<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
 			<jvmarg value="-Dorg.apache.commons.logging.Log=org.apache.commons.logging.impl.Log4JLogger" />
-			<arg value="docroot/WEB-INF/service.xml" />
-			<arg value="docroot/WEB-INF/server-config.wsdd" />
+			<arg value="wsdd.input.file=docroot/WEB-INF/service.xml" />
+			<arg value="wsdd.service.namespace=Plugin" />
+			<arg value="wsdd.output.path=docroot/WEB-INF/src/" />
+			<arg value="wsdd.server.config.file=docroot/WEB-INF/server-config.wsdd" />
 		</java>
 	</target>
 
