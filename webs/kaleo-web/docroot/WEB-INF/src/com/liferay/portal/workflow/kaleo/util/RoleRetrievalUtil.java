@@ -77,7 +77,9 @@ public class RoleRetrievalUtil {
 	}
 
 	public static int getRoleType(String roleType) {
-		if (roleType.equals(RoleConstants.TYPE_COMMUNITY_LABEL)) {
+		if (roleType.equals(RoleConstants.TYPE_COMMUNITY_LABEL) ||
+			roleType.equals(_LEGACY_TYPE_COMMUNITY_LABEL)) {
+
 			return RoleConstants.TYPE_COMMUNITY;
 		}
 		else if (roleType.equals(RoleConstants.TYPE_ORGANIZATION_LABEL)) {
@@ -87,5 +89,8 @@ public class RoleRetrievalUtil {
 			return RoleConstants.TYPE_REGULAR;
 		}
 	}
+
+
+	private static final String _LEGACY_TYPE_COMMUNITY_LABEL = "community";
 
 }
