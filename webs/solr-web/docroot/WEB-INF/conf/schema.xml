@@ -59,6 +59,8 @@
 		<field name="comments" type="text" indexed="true" stored="true" />
 		<field name="content" type="text" indexed="true" stored="true" />
 		<field name="description" type="text" indexed="true" stored="true" />
+		<field name="firstName" type="string" indexed="true" stored="true" />
+		<field name="lastName" type="string" indexed="true" stored="true" />
 		<field name="name" type="string" indexed="true" stored="true" />
 		<field name="properties" type="string" indexed="true" stored="true" />
 		<field name="title" type="string" indexed="true" stored="true" />
