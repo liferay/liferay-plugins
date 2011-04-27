@@ -90,7 +90,6 @@ public class RoleRetrievalUtil {
 		}
 	}
 
-
 	private static final String _LEGACY_TYPE_COMMUNITY_LABEL = "community";
 
 }
