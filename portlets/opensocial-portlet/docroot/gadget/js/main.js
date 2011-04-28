@@ -101,7 +101,7 @@ AUI().add(
 						var secureToken = instance.get('secureToken');
 						var width = instance.get('width');
 
-						if (requiresPubsub == 'true') {
+						if (requiresPubsub) {
 						    var iframeAttrs = {
 								className: CSS_CLASS_GADGET,
 								frameborder: 'no',
