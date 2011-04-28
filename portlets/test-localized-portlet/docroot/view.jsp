@@ -105,7 +105,7 @@ if (locale.getLanguage().equals("fr")) {
 else if (locale.getLanguage().equals("es")) {
 	expectedResourceBundleValues = new String[] {
 		"first-name",
-		"Recepci�n 2.0",
+		"Recepci\u00f3n 2.0",
 		"playing-basketball-is-fun",
 		"Tome por favor una bebida fresca.",
 		"this-is-an-unlocalized-hook-message",
@@ -122,7 +122,7 @@ else if (locale.getLanguage().equals("es")) {
 
 	expectedTaglibValues = new String[] {
 		"Nombre 2.0",
-		"Recepci�n 2.0",
+		"Recepci\u00f3n 2.0",
 		"Jugar a baloncesto es diversi\u00f3n.",
 		"Tome por favor una bebida fresca.",
 		"This is an unlocalized hook message.",
