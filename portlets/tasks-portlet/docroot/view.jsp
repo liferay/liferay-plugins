@@ -78,7 +78,7 @@ portletURL.setParameter("tabs2", tabs2);
 			Liferay.Tasks.init(
 				{
 					currentTab: '<%= tabs1 %>',
-					taskListURL: '<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="jspPage" value="/view_tasks.jsp" /><portlet:param name="tabs1" value="<%= tabs1 %>" /></portlet:renderURL>'
+					taskListURL: '<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="jspPage" value="/view_tasks.jsp" /></portlet:renderURL>'
 				}
 			);
 		}
