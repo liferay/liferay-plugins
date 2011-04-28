@@ -134,7 +134,7 @@ AUI().use(
 					}
 				);
 
-				return assetTagIds;
+				return assetTagIds.join(',');
 			},
 
 			_getGroupId: function() {
