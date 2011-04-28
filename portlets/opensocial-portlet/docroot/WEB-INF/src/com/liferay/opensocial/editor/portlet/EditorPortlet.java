@@ -27,7 +27,6 @@ import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.theme.ThemeDisplay;
@@ -79,11 +78,14 @@ public class EditorPortlet extends MVCPortlet {
 			else if (resourceID.equals("getRenderParameters")) {
 				serveGetRenderParameters(resourceRequest, resourceResponse);
 			}
-			else if (resourceID.equals("updateFileEntry")) {
-				serveUpdateFileEntry(resourceRequest, resourceResponse);
+			else if (resourceID.equals("updateFileEntryContent")) {
+				serveUpdateFileEntryContent(resourceRequest, resourceResponse);
 			}
-			else if (resourceID.equals("updateFolder")) {
-				serveUpdateFileEntry(resourceRequest, resourceResponse);
+			else if (resourceID.equals("updateFileEntryTitle")) {
+				serveUpdateFileEntryTitle(resourceRequest, resourceResponse);
+			}
+			else if (resourceID.equals("updateFolderName")) {
+				serveUpdateFolderName(resourceRequest, resourceResponse);
 			}
 		}
 		catch (IOException ioe) {
@@ -137,8 +139,14 @@ public class EditorPortlet extends MVCPortlet {
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-		jsonObject.put(
-			"fileEntryId", String.valueOf(fileEntry.getFileEntryId()));
+		long fileEntryId = fileEntry.getFileEntryId();
+
+		jsonObject.put("fileEntryId", String.valueOf(fileEntryId));
+
+		String fileEntryURL = ShindigUtil.getFileEntryURL(
+			StringPool.BLANK, fileEntryId);
+
+		jsonObject.put("fileEntryURL", fileEntryURL);
 
 		writeJSON(resourceRequest, resourceResponse, jsonObject.toString());
 	}
@@ -166,7 +174,7 @@ public class EditorPortlet extends MVCPortlet {
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-		jsonObject.put("folderId", folder.getFolderId());
+		jsonObject.put("folderId", String.valueOf(folder.getFolderId()));
 
 		writeJSON(resourceRequest, resourceResponse, jsonObject.toString());
 	}
@@ -241,10 +249,10 @@ public class EditorPortlet extends MVCPortlet {
 		for (Folder folder : folders) {
 			JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-			jsonObject.put("id", String.valueOf(folder.getFolderId()));
+			jsonObject.put("entryId", String.valueOf(folder.getFolderId()));
 			jsonObject.put("label", folder.getName());
 			jsonObject.put("leaf", false);
-			jsonObject.put("type", "io");
+			jsonObject.put("type", "editor");
 
 			jsonArray.put(jsonObject);
 		}
@@ -262,10 +270,17 @@ public class EditorPortlet extends MVCPortlet {
 			for (FileEntry fileEntry : fileEntries) {
 				JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-				jsonObject.put(
-					"id", String.valueOf(fileEntry.getFileEntryId()));
+				long fileEntryId = fileEntry.getFileEntryId();
+
+				jsonObject.put("entryId", String.valueOf(fileEntryId));
+
+				String fileEntryURL = ShindigUtil.getFileEntryURL(
+						StringPool.BLANK, fileEntryId);
+
+				jsonObject.put("fileEntryURL", fileEntryURL);
 				jsonObject.put("label", fileEntry.getTitle());
 				jsonObject.put("leaf", true);
+				jsonObject.put("type", "editor");
 
 				jsonArray.put(jsonObject);
 			}
@@ -320,7 +335,33 @@ public class EditorPortlet extends MVCPortlet {
 		writeJSON(resourceRequest, resourceResponse, jsonObject.toString());
 	}
 
-	protected void serveUpdateFileEntry(
+	protected void serveUpdateFileEntryContent(
+			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
+		throws Exception {
+
+		long fileEntryId = ParamUtil.getLong(resourceRequest, "fileEntryId");
+
+		FileEntry fileEntry = DLAppServiceUtil.getFileEntry(fileEntryId);
+
+		String content = ParamUtil.getString(resourceRequest, "content");
+
+		byte[] bytes = content.getBytes(StringPool.UTF8);
+
+		ServiceContext serviceContext = new ServiceContext();
+
+		serviceContext.setCreateDate(fileEntry.getCreateDate());
+		serviceContext.setModifiedDate(fileEntry.getModifiedDate());
+
+		DLAppServiceUtil.updateFileEntry(
+			fileEntryId, StringPool.BLANK, StringPool.BLANK, StringPool.BLANK,
+			StringPool.BLANK, false, bytes, serviceContext);
+
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
+		writeJSON(resourceRequest, resourceResponse, jsonObject.toString());
+	}
+
+	protected void serveUpdateFileEntryTitle(
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws Exception {
 
@@ -333,12 +374,6 @@ public class EditorPortlet extends MVCPortlet {
 
 		byte[] bytes = null;
 
-		String content = ParamUtil.getString(resourceRequest, "content");
-
-		if (Validator.isNotNull(content)) {
-			bytes = content.getBytes(StringPool.UTF8);
-		}
-
 		ServiceContext serviceContext = new ServiceContext();
 
 		serviceContext.setCreateDate(fileEntry.getCreateDate());
@@ -347,6 +382,29 @@ public class EditorPortlet extends MVCPortlet {
 		DLAppServiceUtil.updateFileEntry(
 			fileEntryId, fileEntryTitle, StringPool.BLANK, StringPool.BLANK,
 			StringPool.BLANK, false, bytes, serviceContext);
+
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
+		writeJSON(resourceRequest, resourceResponse, jsonObject.toString());
+	}
+
+	protected void serveUpdateFolderName(
+			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
+		throws Exception {
+
+		long folderId = ParamUtil.getLong(resourceRequest, "folderId");
+
+		Folder folder = DLAppServiceUtil.getFolder(folderId);
+
+		String folderName = ParamUtil.getString(resourceRequest, "folderName");
+
+		ServiceContext serviceContext = new ServiceContext();
+
+		serviceContext.setCreateDate(folder.getCreateDate());
+		serviceContext.setModifiedDate(folder.getModifiedDate());
+
+		DLAppServiceUtil.updateFolder(
+			folderId, folderName, StringPool.BLANK, serviceContext);
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 

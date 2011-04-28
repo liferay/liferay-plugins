@@ -1,0 +1,233 @@
+/**
+ * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+
+.opensocial-portlet-editor .gadget-editor-content {
+	height: 600px;
+}
+
+.opensocial-portlet-editor .yui3-aui-tree-view-editor {
+	background: #FFF;
+	height: 100%;
+}
+
+.opensocial-portlet-editor .tree-view-editor-column {
+	float: left;
+	height: 100%;
+	width: 20%;
+}
+
+.opensocial-portlet-editor .main-editor-column {
+	float: right;
+	height: 100%;
+	width: 80%;
+}
+
+.opensocial-portlet-editor .yui3-aui-tree-view-editor .yui3-aui-tree-node, .yui3-aui-tree-label {
+	cursor: pointer;
+}
+
+.opensocial-portlet-editor .yui3-aui-tree-view-editor .yui3-aui-tree-node-selected {
+	background: #f0fcff;
+}
+
+.opensocial-portlet-editor .yui3-aui-tree-view-editor .yui3-aui-tree-node-selected .yui3-aui-tree-label {
+	font-weight: normal
+}
+
+.opensocial-portlet-editor .yui3-aui-tree-view-editor .yui3-aui-tree-label:hover {
+	color: #06c;
+}
+
+.opensocial-portlet-editor .yui3-aui-tree-view-editor .yui3-aui-tree-node .aui-tree-node-loaded {
+	color: #06c;
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+.opensocial-portlet-editor .yui3-aui-tree-view-editor .yui3-aui-tree-node .aui-tree-node-loaded .yui3-aui-tree-label {
+	font-weight: bold
+}
+
+.opensocial-portlet-editor .yui3-aui-tree-node-content:hover .gadget-editor-tree-node-contextmenuicon {
+	background-image: url("images/tool.png");
+	background-repeat: no-repeat;
+	float: right;
+	height: 16px;
+	width: 16px;
+}
+
+.gadget-editor-contextmenu-toolbar {
+	background: #EEF0F2;
+	border-bottom-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+}
+
+.yui3-aui-editable {
+	z-index: 1;
+}
+
+.opensocial-portlet-editor .main-editor-column-resize {
+	padding-left: 8px;
+}
+
+.opensocial-portlet-editor .main-editor-column-resize-proxy {
+	border: none;
+	border-left: 1px dashed black;
+}
+
+.opensocial-portlet-editor .preview-panel-resize-proxy {
+	border: none;
+	border-top: 1px dashed black;
+}
+
+.opensocial-portlet-editor .gadget-editor-tree-node-contextmenuicon-open {
+	background-image: url("images/tool.png");
+	background-repeat: no-repeat;
+	float: right;
+	height: 16px;
+	width: 16px;
+}
+
+.opensocial-portlet-editor .yui3-aui-panel-bd {
+	overflow: auto;
+}
+
+.opensocial-portlet-editor .yui3-aui-tabview-list .yui3-aui-tab-content:hover {
+	background: #D3D3D3;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+}
+
+.opensocial-portlet-editor .yui3-aui-tabview-list .yui3-aui-tab-active .yui3-aui-tab-content:hover {
+	background: none;
+	color: #D3D3D3;
+}
+
+.opensocial-portlet-editor .yui3-aui-tabview-list .yui3-aui-tab-content .gadget-editor-tab-close {
+	background-image: url("images/close.png");
+	background-repeat: no-repeat;
+	filter: alpha(opacity=20);
+	float: right;
+	height: 16px;
+	opacity: 0.2;
+	width: 16px;
+
+}
+
+.opensocial-portlet-editor .yui3-aui-tabview-list .yui3-aui-tab-content .gadget-editor-tab-close:hover {
+	filter: alpha(opacity=100);
+	opacity: 1;
+	zoom: 1;
+}
+
+.opensocial-portlet-editor .yui3-aui-tabview-list, .yui3-aui-tabview-list-content {
+	margin-bottom: 0px;
+}
+
+.CodeMirror {
+	background-color: #FFFFFF;
+	font-family: monospace;
+	font-size: 12px;
+}
+
+.CodeMirror-lines:hover {
+	cursor: text;
+}
+
+.CodeMirror-matchingbracket {
+    border: solid 0.5px;
+    color: #808080 !important;
+}
+
+.codemirror-activeline {
+	background: #F0FCFF !important;
+}
+
+.codemirror-searched {
+	background: #FFFF00;
+}
+
+.opensocial-portlet-editor .preview-panel {
+	padding-top: 8px;
+}
+
+.opensocial-portlet-editor .yui3-gadget {
+	height: 100%;
+	width: 100%;
+}
+
+.yui3-aui-icon-gadgeteditor-addfile {
+	background-image: url("images/add_file.png");
+	background-repeat: no-repeat;
+	height: 16px;
+	width: 16px;
+}
+
+.yui3-aui-icon-gadgeteditor-addfolder {
+	background-image: url("images/add_folder.png");
+	background-repeat: no-repeat;
+	height: 16px;
+	width: 16px;
+}
+
+.yui3-aui-icon-gadgeteditor-close {
+	background-image: url("images/close.png");
+	background-repeat: no-repeat;
+	height: 16px;
+	width: 16px;
+}
+
+.yui3-aui-icon-gadgeteditor-delete {
+	background-image: url("images/delete.png");
+	background-repeat: no-repeat;
+	height: 16px;
+	width: 16px;
+}
+
+.yui3-aui-icon-gadgeteditor-disk {
+	background-image: url("images/disk.png");
+	background-repeat: no-repeat;
+	height: 16px;
+	width: 16px;
+}
+
+.yui3-aui-icon-gadgeteditor-refresh {
+	background-image: url("images/refresh.png");
+	background-repeat: no-repeat;
+	height: 16px;
+	width: 16px;
+}
+
+.yui3-aui-icon-gadgeteditor-rename {
+	background-image: url("images/rename.png");
+	background-repeat: no-repeat;
+	height: 16px;
+	width: 16px;
+}
+
+.yui3-aui-icon-gadgeteditor-tool {
+	background-image: url("images/disk_dirty.png");
+	background-repeat: no-repeat;
+	height: 16px;
+	width: 16px;
+}
+
+.yui3-aui-icon-gadgeteditor-url {
+	background-image: url("images/url.png");
+	background-repeat: no-repeat;
+	height: 16px;
+	width: 16px;
+}

@@ -7,6 +7,14 @@
 
 	<target name="merge">
 
+		<!-- Delete unused Shindig directories -->
+
+		<delete dir="tmp/editor" />
+
+		<delete dir="tmp/samplecontainer" />
+
+		<delete dir="tmp/sampledata" />
+
 		<!-- Merge -->
 
 		<antcall target="build-common-plugin.merge" />
@@ -134,22 +142,6 @@
 			<arg value="tmp/WEB-INF/web.xml" />
 		</java>
 
-		<!-- Configure canonicaldb.json -->
-
-		<antcall target="merge-backup-file">
-			<param name="backup.file.name" value="tmp/sampledata/canonicaldb.json" />
-		</antcall>
-
-		<replace file="tmp/sampledata/canonicaldb.json">
-			<replacefilter token="http://localhost:8080/" value="http://localhost:8080/opensocial-portlet/" />
-		</replace>
-
-		<copy
-			file="tmp/sampledata/canonicaldb.json"
-			tofile="tmp/WEB-INF/classes/sampledata/canonicaldb.json"
-			overwrite="true"
-		/>
-
 		<!-- Configure container.js -->
 
 		<antcall target="merge-backup-file">
@@ -180,16 +172,6 @@
 		</antcall>
 
 		<replace file="tmp/WEB-INF/classes/config/oauth.json">
-			<replacefilter token="http://localhost:8080/" value="http://localhost:8080/opensocial-portlet/" />
-		</replace>
-
-		<!-- Configure shindigoauth.xml -->
-
-		<antcall target="merge-backup-file">
-			<param name="backup.file.name" value="tmp/samplecontainer/examples/shindigoauth.xml" />
-		</antcall>
-
-		<replace file="tmp/samplecontainer/examples/shindigoauth.xml">
 			<replacefilter token="http://localhost:8080/" value="http://localhost:8080/opensocial-portlet/" />
 		</replace>
 
@@ -262,6 +244,20 @@
 				<unzip
 					dest="tmp/gadget/js"
 					src="OpenAjax_Hub_2.0.5_r1293.zip"
+				/>
+			</then>
+		</if>
+
+		<!-- CodeMirror -->
+
+		<if>
+			<not>
+				<available file="tmp/editor/CodeMirror_2.0_47_g574e6b6" />
+			</not>
+			<then>
+				<unzip
+					dest="tmp/editor"
+					src="CodeMirror_2.0_47_g574e6b6.zip"
 				/>
 			</then>
 		</if>
