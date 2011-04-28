@@ -79,7 +79,7 @@ KBTemplate kbTemplate = (KBTemplate)request.getAttribute(WebKeys.KNOWLEDGE_BASE_
 
 	<liferay-util:include page="/admin/template_icons.jsp" servletContext="<%= application %>" />
 
-	<pre><%= kbTemplate.getContent() %></pre>
+	<pre><%= HtmlUtil.escape(kbTemplate.getContent()) %></pre>
 
 	<liferay-util:include page="/admin/template_comments.jsp" servletContext="<%= application %>" />
 </div>

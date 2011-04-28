@@ -92,6 +92,10 @@
 	margin: 5px 0 0;
 }
 
+.knowledge-base-portlet .kb-block-labels .yui3-aui-field-label {
+	display: block;
+}
+
 .knowledge-base-portlet .kb-column-no-wrap {
 	white-space: nowrap;
 }

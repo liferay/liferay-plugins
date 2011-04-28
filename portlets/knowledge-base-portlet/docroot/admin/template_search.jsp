@@ -27,7 +27,7 @@ KBTemplateDisplayTerms displayTerms = (KBTemplateDisplayTerms)searchContainer.ge
 	displayTerms="<%= displayTerms %>"
 	id="toggle_id_knowledge_base_template_search"
 >
-	<aui:fieldset cssClass="kb-search-toggle">
+	<aui:fieldset cssClass="kb-block-labels kb-search-toggle">
 		<div class="kb-field-wrapper">
 			<aui:input inlineField="<%= true %>" name="<%= displayTerms.TITLE %>" size="40" value="<%= displayTerms.getTitle() %>" />
 

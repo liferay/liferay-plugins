@@ -188,21 +188,6 @@ public class KnowledgeBaseUtil {
 		return sb.toString();
 	}
 
-	public static Long[][] getParams(Long[] params) {
-		if ((params == null) || (params.length == 0)) {
-			return null;
-		}
-
-		if (params.length <= _SQL_DATA_MAX_PARAMETERS) {
-			return new Long[][] {new Long[0], params};
-		}
-
-		return new Long[][] {
-			ArrayUtil.subset(params, _SQL_DATA_MAX_PARAMETERS, params.length),
-			ArrayUtil.subset(params, 0, _SQL_DATA_MAX_PARAMETERS)
-		};
-	}
-
 	public static OrderByComparator getKBTemplateOrderByComparator(
 		String orderByCol, String orderByType) {
 
@@ -233,6 +218,21 @@ public class KnowledgeBaseUtil {
 		}
 
 		return null;
+	}
+
+	public static Long[][] getParams(Long[] params) {
+		if ((params == null) || (params.length == 0)) {
+			return null;
+		}
+
+		if (params.length <= _SQL_DATA_MAX_PARAMETERS) {
+			return new Long[][] {new Long[0], params};
+		}
+
+		return new Long[][] {
+			ArrayUtil.subset(params, _SQL_DATA_MAX_PARAMETERS, params.length),
+			ArrayUtil.subset(params, 0, _SQL_DATA_MAX_PARAMETERS)
+		};
 	}
 
 	public static List<KBArticle> sort(
