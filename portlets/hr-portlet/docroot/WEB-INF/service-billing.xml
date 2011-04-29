@@ -206,7 +206,6 @@
 		<column name="estimatedHoursCostCurrencyCode" type="String" />
 		<column name="estimatedExpenses" type="double" />
 		<column name="estimatedExpensesCurrencyCode" type="String" />
-		<column name="estimatedHours" type="double" />
 		<column name="actualStartDate" type="Date" />
 		<column name="actualEndDate" type="Date" />
 		<column name="actualHours" type="double" />
