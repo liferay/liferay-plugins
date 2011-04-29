@@ -28,7 +28,6 @@ import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.workflow.kaleo.NoSuchInstanceException;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstance;
 import com.liferay.portal.workflow.kaleo.service.base.KaleoInstanceLocalServiceBaseImpl;
-import com.liferay.portal.workflow.kaleo.util.GroupUtil;
 import com.liferay.portal.workflow.kaleo.util.WorkflowContextUtil;
 
 import java.io.Serializable;
@@ -59,10 +58,7 @@ public class KaleoInstanceLocalServiceImpl
 		KaleoInstance kaleoInstance =
 			kaleoInstancePersistence.create(kaleoInstanceId);
 
-		long groupId = GroupUtil.getGroupId(serviceContext);
-
-		kaleoInstance.setGroupId(groupId);
-
+		kaleoInstance.setGroupId(serviceContext.getScopeGroupId());
 		kaleoInstance.setCompanyId(user.getCompanyId());
 		kaleoInstance.setUserId(user.getUserId());
 		kaleoInstance.setUserName(user.getFullName());

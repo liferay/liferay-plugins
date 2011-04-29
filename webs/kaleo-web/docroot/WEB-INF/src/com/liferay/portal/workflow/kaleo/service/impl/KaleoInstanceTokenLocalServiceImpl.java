@@ -25,7 +25,6 @@ import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
 import com.liferay.portal.workflow.kaleo.model.KaleoNode;
 import com.liferay.portal.workflow.kaleo.model.impl.KaleoInstanceTokenImpl;
 import com.liferay.portal.workflow.kaleo.service.base.KaleoInstanceTokenLocalServiceBaseImpl;
-import com.liferay.portal.workflow.kaleo.util.GroupUtil;
 
 import java.io.Serializable;
 
@@ -57,10 +56,7 @@ public class KaleoInstanceTokenLocalServiceImpl
 		KaleoInstanceToken kaleoInstanceToken =
 			kaleoInstanceTokenPersistence.create(kaleoInstanceTokenId);
 
-		long groupId = GroupUtil.getGroupId(serviceContext);
-
-		kaleoInstanceToken.setGroupId(groupId);
-
+		kaleoInstanceToken.setGroupId(serviceContext.getScopeGroupId());
 		kaleoInstanceToken.setCompanyId(user.getCompanyId());
 		kaleoInstanceToken.setUserId(user.getUserId());
 		kaleoInstanceToken.setUserName(user.getFullName());
@@ -195,10 +191,7 @@ public class KaleoInstanceTokenLocalServiceImpl
 		KaleoInstanceToken kaleoInstanceToken =
 			kaleoInstanceTokenPersistence.create(rootKaleoInstanceTokenId);
 
-		long groupId = GroupUtil.getGroupId(serviceContext);
-
-		kaleoInstanceToken.setGroupId(groupId);
-
+		kaleoInstanceToken.setGroupId(serviceContext.getScopeGroupId());
 		kaleoInstanceToken.setCompanyId(user.getCompanyId());
 		kaleoInstanceToken.setUserId(user.getUserId());
 		kaleoInstanceToken.setUserName(user.getFullName());
