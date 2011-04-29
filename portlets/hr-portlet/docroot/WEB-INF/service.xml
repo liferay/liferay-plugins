@@ -3,9 +3,9 @@
 
 <service-builder package-path="com.liferay.hr" auto-namespace-tables="false">
 	<namespace>HR</namespace>
-	<service-builder file="service-asset.xml" />
-	<service-builder file="service-billing.xml" />
-	<service-builder file="service-expense.xml" />
-	<service-builder file="service-org-chart.xml" />
-	<service-builder file="service-timesheet.xml" />
+	<service-builder-import file="service-asset.xml" />
+	<service-builder-import file="service-billing.xml" />
+	<service-builder-import file="service-expense.xml" />
+	<service-builder-import file="service-org-chart.xml" />
+	<service-builder-import file="service-timesheet.xml" />
 </service-builder>
