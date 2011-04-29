@@ -28,32 +28,34 @@ public class KBArticleServiceWrapper implements KBArticleService {
 		_kbArticleService = kbArticleService;
 	}
 
-	public void addAttachment(long resourcePrimKey, java.lang.String dirName,
-		java.lang.String shortFileName, byte[] bytes,
+	public void addAttachment(java.lang.String portletId, long resourcePrimKey,
+		java.lang.String dirName, java.lang.String shortFileName, byte[] bytes,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_kbArticleService.addAttachment(resourcePrimKey, dirName,
+		_kbArticleService.addAttachment(portletId, resourcePrimKey, dirName,
 			shortFileName, bytes, serviceContext);
 	}
 
 	public com.liferay.knowledgebase.model.KBArticle addKBArticle(
-		long parentResourcePrimKey, java.lang.String title,
-		java.lang.String content, java.lang.String description,
-		long kbTemplateId, java.lang.String dirName,
+		java.lang.String portletId, long parentResourcePrimKey,
+		java.lang.String title, java.lang.String content,
+		java.lang.String description, long kbTemplateId,
+		java.lang.String dirName,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _kbArticleService.addKBArticle(parentResourcePrimKey, title,
-			content, description, kbTemplateId, dirName, serviceContext);
+		return _kbArticleService.addKBArticle(portletId, parentResourcePrimKey,
+			title, content, description, kbTemplateId, dirName, serviceContext);
 	}
 
 	public void deleteAttachment(long companyId, long groupId,
-		long resourcePrimKey, java.lang.String fileName)
+		java.lang.String portletId, long resourcePrimKey,
+		java.lang.String fileName)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_kbArticleService.deleteAttachment(companyId, groupId, resourcePrimKey,
-			fileName);
+		_kbArticleService.deleteAttachment(companyId, groupId, portletId,
+			resourcePrimKey, fileName);
 	}
 
 	public void deleteKBArticle(long resourcePrimKey)
@@ -206,13 +208,13 @@ public class KBArticleServiceWrapper implements KBArticleService {
 		_kbArticleService.unsubscribeKBArticle(resourcePrimKey);
 	}
 
-	public java.lang.String updateAttachments(long resourcePrimKey,
-		java.lang.String dirName,
+	public java.lang.String updateAttachments(java.lang.String portletId,
+		long resourcePrimKey, java.lang.String dirName,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _kbArticleService.updateAttachments(resourcePrimKey, dirName,
-			serviceContext);
+		return _kbArticleService.updateAttachments(portletId, resourcePrimKey,
+			dirName, serviceContext);
 	}
 
 	public com.liferay.knowledgebase.model.KBArticle updateKBArticle(

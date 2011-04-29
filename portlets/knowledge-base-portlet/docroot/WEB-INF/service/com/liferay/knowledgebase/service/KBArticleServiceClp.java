@@ -26,19 +26,19 @@ public class KBArticleServiceClp implements KBArticleService {
 		_classLoaderProxy = classLoaderProxy;
 
 		_addAttachmentMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
-				"addAttachment", long.class, java.lang.String.class,
-				java.lang.String.class, byte[].class,
+				"addAttachment", java.lang.String.class, long.class,
+				java.lang.String.class, java.lang.String.class, byte[].class,
 				com.liferay.portal.service.ServiceContext.class);
 
 		_addKBArticleMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
-				"addKBArticle", long.class, java.lang.String.class,
-				java.lang.String.class, java.lang.String.class, long.class,
-				java.lang.String.class,
+				"addKBArticle", java.lang.String.class, long.class,
+				java.lang.String.class, java.lang.String.class,
+				java.lang.String.class, long.class, java.lang.String.class,
 				com.liferay.portal.service.ServiceContext.class);
 
 		_deleteAttachmentMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
-				"deleteAttachment", long.class, long.class, long.class,
-				java.lang.String.class);
+				"deleteAttachment", long.class, long.class,
+				java.lang.String.class, long.class, java.lang.String.class);
 
 		_deleteKBArticleMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
 				"deleteKBArticle", long.class);
@@ -118,7 +118,8 @@ public class KBArticleServiceClp implements KBArticleService {
 				"unsubscribeKBArticle", long.class);
 
 		_updateAttachmentsMethodKey23 = new MethodKey(_classLoaderProxy.getClassName(),
-				"updateAttachments", long.class, java.lang.String.class,
+				"updateAttachments", java.lang.String.class, long.class,
+				java.lang.String.class,
 				com.liferay.portal.service.ServiceContext.class);
 
 		_updateKBArticleMethodKey24 = new MethodKey(_classLoaderProxy.getClassName(),
@@ -134,13 +135,14 @@ public class KBArticleServiceClp implements KBArticleService {
 				"updateKBArticlesPriorities", long.class, java.util.Map.class);
 	}
 
-	public void addAttachment(long resourcePrimKey, java.lang.String dirName,
-		java.lang.String shortFileName, byte[] bytes,
+	public void addAttachment(java.lang.String portletId, long resourcePrimKey,
+		java.lang.String dirName, java.lang.String shortFileName, byte[] bytes,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_addAttachmentMethodKey0,
-				resourcePrimKey, ClpSerializer.translateInput(dirName),
+				ClpSerializer.translateInput(portletId), resourcePrimKey,
+				ClpSerializer.translateInput(dirName),
 				ClpSerializer.translateInput(shortFileName),
 				ClpSerializer.translateInput(bytes),
 				ClpSerializer.translateInput(serviceContext));
@@ -168,16 +170,18 @@ public class KBArticleServiceClp implements KBArticleService {
 	}
 
 	public com.liferay.knowledgebase.model.KBArticle addKBArticle(
-		long parentResourcePrimKey, java.lang.String title,
-		java.lang.String content, java.lang.String description,
-		long kbTemplateId, java.lang.String dirName,
+		java.lang.String portletId, long parentResourcePrimKey,
+		java.lang.String title, java.lang.String content,
+		java.lang.String description, long kbTemplateId,
+		java.lang.String dirName,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addKBArticleMethodKey1,
-				parentResourcePrimKey, ClpSerializer.translateInput(title),
+				ClpSerializer.translateInput(portletId), parentResourcePrimKey,
+				ClpSerializer.translateInput(title),
 				ClpSerializer.translateInput(content),
 				ClpSerializer.translateInput(description), kbTemplateId,
 				ClpSerializer.translateInput(dirName),
@@ -208,12 +212,13 @@ public class KBArticleServiceClp implements KBArticleService {
 	}
 
 	public void deleteAttachment(long companyId, long groupId,
-		long resourcePrimKey, java.lang.String fileName)
+		java.lang.String portletId, long resourcePrimKey,
+		java.lang.String fileName)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_deleteAttachmentMethodKey2,
-				companyId, groupId, resourcePrimKey,
-				ClpSerializer.translateInput(fileName));
+				companyId, groupId, ClpSerializer.translateInput(portletId),
+				resourcePrimKey, ClpSerializer.translateInput(fileName));
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -851,15 +856,16 @@ public class KBArticleServiceClp implements KBArticleService {
 		}
 	}
 
-	public java.lang.String updateAttachments(long resourcePrimKey,
-		java.lang.String dirName,
+	public java.lang.String updateAttachments(java.lang.String portletId,
+		long resourcePrimKey, java.lang.String dirName,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateAttachmentsMethodKey23,
-				resourcePrimKey, ClpSerializer.translateInput(dirName),
+				ClpSerializer.translateInput(portletId), resourcePrimKey,
+				ClpSerializer.translateInput(dirName),
 				ClpSerializer.translateInput(serviceContext));
 
 		try {

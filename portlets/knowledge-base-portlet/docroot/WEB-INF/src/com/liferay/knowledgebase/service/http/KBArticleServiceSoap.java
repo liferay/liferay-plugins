@@ -65,13 +65,14 @@ import java.rmi.RemoteException;
  * @generated
  */
 public class KBArticleServiceSoap {
-	public static void addAttachment(long resourcePrimKey,
-		java.lang.String dirName, java.lang.String shortFileName, byte[] bytes,
+	public static void addAttachment(java.lang.String portletId,
+		long resourcePrimKey, java.lang.String dirName,
+		java.lang.String shortFileName, byte[] bytes,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws RemoteException {
 		try {
-			KBArticleServiceUtil.addAttachment(resourcePrimKey, dirName,
-				shortFileName, bytes, serviceContext);
+			KBArticleServiceUtil.addAttachment(portletId, resourcePrimKey,
+				dirName, shortFileName, bytes, serviceContext);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -81,15 +82,16 @@ public class KBArticleServiceSoap {
 	}
 
 	public static com.liferay.knowledgebase.model.KBArticleSoap addKBArticle(
-		long parentResourcePrimKey, java.lang.String title,
-		java.lang.String content, java.lang.String description,
-		long kbTemplateId, java.lang.String dirName,
+		java.lang.String portletId, long parentResourcePrimKey,
+		java.lang.String title, java.lang.String content,
+		java.lang.String description, long kbTemplateId,
+		java.lang.String dirName,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws RemoteException {
 		try {
-			com.liferay.knowledgebase.model.KBArticle returnValue = KBArticleServiceUtil.addKBArticle(parentResourcePrimKey,
-					title, content, description, kbTemplateId, dirName,
-					serviceContext);
+			com.liferay.knowledgebase.model.KBArticle returnValue = KBArticleServiceUtil.addKBArticle(portletId,
+					parentResourcePrimKey, title, content, description,
+					kbTemplateId, dirName, serviceContext);
 
 			return com.liferay.knowledgebase.model.KBArticleSoap.toSoapModel(returnValue);
 		}
@@ -101,11 +103,11 @@ public class KBArticleServiceSoap {
 	}
 
 	public static void deleteAttachment(long companyId, long groupId,
-		long resourcePrimKey, java.lang.String fileName)
-		throws RemoteException {
+		java.lang.String portletId, long resourcePrimKey,
+		java.lang.String fileName) throws RemoteException {
 		try {
 			KBArticleServiceUtil.deleteAttachment(companyId, groupId,
-				resourcePrimKey, fileName);
+				portletId, resourcePrimKey, fileName);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -385,13 +387,14 @@ public class KBArticleServiceSoap {
 		}
 	}
 
-	public static java.lang.String updateAttachments(long resourcePrimKey,
+	public static java.lang.String updateAttachments(
+		java.lang.String portletId, long resourcePrimKey,
 		java.lang.String dirName,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws RemoteException {
 		try {
-			java.lang.String returnValue = KBArticleServiceUtil.updateAttachments(resourcePrimKey,
-					dirName, serviceContext);
+			java.lang.String returnValue = KBArticleServiceUtil.updateAttachments(portletId,
+					resourcePrimKey, dirName, serviceContext);
 
 			return returnValue;
 		}

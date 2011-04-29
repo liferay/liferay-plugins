@@ -41,22 +41,24 @@ public interface KBArticleService {
 	 *
 	 * Never modify or reference this interface directly. Always use {@link KBArticleServiceUtil} to access the k b article remote service. Add custom service methods to {@link com.liferay.knowledgebase.service.impl.KBArticleServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
-	public void addAttachment(long resourcePrimKey, java.lang.String dirName,
-		java.lang.String shortFileName, byte[] bytes,
+	public void addAttachment(java.lang.String portletId, long resourcePrimKey,
+		java.lang.String dirName, java.lang.String shortFileName, byte[] bytes,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.knowledgebase.model.KBArticle addKBArticle(
-		long parentResourcePrimKey, java.lang.String title,
-		java.lang.String content, java.lang.String description,
-		long kbTemplateId, java.lang.String dirName,
+		java.lang.String portletId, long parentResourcePrimKey,
+		java.lang.String title, java.lang.String content,
+		java.lang.String description, long kbTemplateId,
+		java.lang.String dirName,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
 	public void deleteAttachment(long companyId, long groupId,
-		long resourcePrimKey, java.lang.String fileName)
+		java.lang.String portletId, long resourcePrimKey,
+		java.lang.String fileName)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -171,8 +173,8 @@ public interface KBArticleService {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
-	public java.lang.String updateAttachments(long resourcePrimKey,
-		java.lang.String dirName,
+	public java.lang.String updateAttachments(java.lang.String portletId,
+		long resourcePrimKey, java.lang.String dirName,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;

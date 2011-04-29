@@ -19,8 +19,10 @@ import com.liferay.knowledgebase.model.KBTemplateSearchDisplay;
 import com.liferay.knowledgebase.model.impl.KBTemplateSearchDisplayImpl;
 import com.liferay.knowledgebase.service.base.KBTemplateServiceBaseImpl;
 import com.liferay.knowledgebase.service.permission.AdminPermission;
+import com.liferay.knowledgebase.service.permission.DisplayPermission;
 import com.liferay.knowledgebase.service.permission.KBTemplatePermission;
 import com.liferay.knowledgebase.util.ActionKeys;
+import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -39,13 +41,20 @@ import java.util.List;
 public class KBTemplateServiceImpl extends KBTemplateServiceBaseImpl {
 
 	public KBTemplate addKBTemplate(
-			String title, String content, int engineType, boolean cacheable,
-			ServiceContext serviceContext)
+			String portletId, String title, String content, int engineType,
+			boolean cacheable, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
-		AdminPermission.check(
-			getPermissionChecker(), serviceContext.getScopeGroupId(),
-			ActionKeys.ADD_KB_TEMPLATE);
+		if (portletId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN)) {
+			AdminPermission.check(
+				getPermissionChecker(), serviceContext.getScopeGroupId(),
+				ActionKeys.ADD_KB_TEMPLATE);
+		}
+		else if (portletId.equals(PortletKeys.KNOWLEDGE_BASE_DISPLAY)) {
+			DisplayPermission.check(
+				getPermissionChecker(), serviceContext.getScopeGroupId(),
+				ActionKeys.ADD_KB_TEMPLATE);
+		}
 
 		return kbTemplateLocalService.addKBTemplate(
 			getUserId(), title, content, engineType, cacheable, serviceContext);

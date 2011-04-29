@@ -92,6 +92,8 @@ public class ArticlePortlet extends MVCPortlet {
 		UploadPortletRequest uploadRequest = PortalUtil.getUploadPortletRequest(
 			actionRequest);
 
+		String portletId = PortalUtil.getPortletId(actionRequest);
+
 		long resourcePrimKey = ParamUtil.getLong(
 			uploadRequest, "resourcePrimKey");
 
@@ -103,8 +105,8 @@ public class ArticlePortlet extends MVCPortlet {
 			KBArticle.class.getName(), actionRequest);
 
 		KBArticleServiceUtil.addAttachment(
-			resourcePrimKey, dirName, fileName, FileUtil.getBytes(file),
-			serviceContext);
+			portletId, resourcePrimKey, dirName, fileName,
+			FileUtil.getBytes(file), serviceContext);
 	}
 
 	public void deleteAttachment(
@@ -114,6 +116,8 @@ public class ArticlePortlet extends MVCPortlet {
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
+		String portletId = PortalUtil.getPortletId(actionRequest);
+
 		long resourcePrimKey = ParamUtil.getLong(
 			actionRequest, "resourcePrimKey");
 
@@ -121,7 +125,7 @@ public class ArticlePortlet extends MVCPortlet {
 
 		KBArticleServiceUtil.deleteAttachment(
 			themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(),
-			resourcePrimKey, fileName);
+			portletId, resourcePrimKey, fileName);
 	}
 
 	public void deleteKBArticle(
@@ -306,6 +310,8 @@ public class ArticlePortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
+		String portletId = PortalUtil.getPortletId(actionRequest);
+
 		long resourcePrimKey = ParamUtil.getLong(
 			actionRequest, "resourcePrimKey");
 
@@ -315,7 +321,7 @@ public class ArticlePortlet extends MVCPortlet {
 			KBArticle.class.getName(), actionRequest);
 
 		dirName = KBArticleServiceUtil.updateAttachments(
-			resourcePrimKey, dirName, serviceContext);
+			portletId, resourcePrimKey, dirName, serviceContext);
 
 		String redirect = ParamUtil.getString(actionRequest, "redirect");
 
@@ -331,6 +337,8 @@ public class ArticlePortlet extends MVCPortlet {
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
+
+		String portletId = PortalUtil.getPortletId(actionRequest);
 
 		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
 
@@ -354,7 +362,7 @@ public class ArticlePortlet extends MVCPortlet {
 
 		if (cmd.equals(Constants.ADD)) {
 			kbArticle = KBArticleServiceUtil.addKBArticle(
-				parentResourcePrimKey, title, content, description,
+				portletId, parentResourcePrimKey, title, content, description,
 				kbTemplateId, dirName, serviceContext);
 		}
 		else if (cmd.equals(Constants.UPDATE)) {
@@ -428,6 +436,8 @@ public class ArticlePortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
+		String portletId = PortalUtil.getPortletId(actionRequest);
+
 		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
 
 		long kbTemplateId = ParamUtil.getLong(actionRequest, "kbTemplateId");
@@ -444,7 +454,8 @@ public class ArticlePortlet extends MVCPortlet {
 
 		if (cmd.equals(Constants.ADD)) {
 			KBTemplateServiceUtil.addKBTemplate(
-				title, content, engineType, cacheable, serviceContext);
+				portletId, title, content, engineType, cacheable,
+				serviceContext);
 		}
 		else if (cmd.equals(Constants.UPDATE)) {
 			KBTemplateServiceUtil.updateKBTemplate(
