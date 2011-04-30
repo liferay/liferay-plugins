@@ -81,8 +81,8 @@ public class RoleRetrievalUtil {
 	}
 
 	public static int getRoleType(String roleType) {
-		if (roleType.equals(RoleConstants.TYPE_COMMUNITY_LABEL)) {
-			return RoleConstants.TYPE_COMMUNITY;
+		if (roleType.equals(RoleConstants.TYPE_SITE_LABEL)) {
+			return RoleConstants.TYPE_SITE;
 		}
 		else if (roleType.equals(RoleConstants.TYPE_ORGANIZATION_LABEL)) {
 			return RoleConstants.TYPE_ORGANIZATION;

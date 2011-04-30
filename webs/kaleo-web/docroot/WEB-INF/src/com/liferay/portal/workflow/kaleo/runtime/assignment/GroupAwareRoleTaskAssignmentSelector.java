@@ -79,7 +79,7 @@ public class GroupAwareRoleTaskAssignmentSelector
 			return true;
 		}
 		else if ((group != null) && group.isCommunity() &&
-				 (role.getType() == RoleConstants.TYPE_COMMUNITY)) {
+				 (role.getType() == RoleConstants.TYPE_SITE)) {
 
 			return true;
 		}

@@ -178,7 +178,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 
 				Role role = RoleLocalServiceUtil.getRole(roleId);
 
-				if ((role.getType() == RoleConstants.TYPE_COMMUNITY) ||
+				if ((role.getType() == RoleConstants.TYPE_SITE) ||
 					(role.getType() == RoleConstants.TYPE_ORGANIZATION)) {
 
 					List<UserGroupRole> userGroupRoles =
