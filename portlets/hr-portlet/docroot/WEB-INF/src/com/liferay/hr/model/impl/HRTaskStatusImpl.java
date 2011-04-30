@@ -17,21 +17,12 @@ package com.liferay.hr.model.impl;
 import com.liferay.hr.model.HRTaskStatus;
 
 /**
- * The model implementation for the HRTaskStatus service. Represents a row in the &quot;HRTaskStatus&quot; database table, with each column mapped to a property of this class.
- *
- * <p>
- * Helper methods and all application logic should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link com.liferay.hr.model.HRTaskStatus} interface.
- * </p>
- *
- * @author Brian Wing Shun Chan
+ * @author Wesley Gong
  */
-public class HRTaskStatusImpl extends HRTaskStatusModelImpl
-	implements HRTaskStatus {
-	/*
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this class directly. All methods that expect a h r task status model instance should use the {@link HRTaskStatus} interface instead.
-	 */
+public class HRTaskStatusImpl
+	extends HRTaskStatusModelImpl implements HRTaskStatus {
+
 	public HRTaskStatusImpl() {
 	}
+
 }

@@ -17,20 +17,11 @@ package com.liferay.hr.model.impl;
 import com.liferay.hr.model.HRHoliday;
 
 /**
- * The model implementation for the HRHoliday service. Represents a row in the &quot;HRHoliday&quot; database table, with each column mapped to a property of this class.
- *
- * <p>
- * Helper methods and all application logic should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link com.liferay.hr.model.HRHoliday} interface.
- * </p>
- *
- * @author Brian Wing Shun Chan
+ * @author Wesley Gong
  */
 public class HRHolidayImpl extends HRHolidayModelImpl implements HRHoliday {
-	/*
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this class directly. All methods that expect a h r holiday model instance should use the {@link HRHoliday} interface instead.
-	 */
+
 	public HRHolidayImpl() {
 	}
+
 }

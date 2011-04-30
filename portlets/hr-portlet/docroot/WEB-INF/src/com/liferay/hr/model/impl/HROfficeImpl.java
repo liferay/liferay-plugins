@@ -17,20 +17,11 @@ package com.liferay.hr.model.impl;
 import com.liferay.hr.model.HROffice;
 
 /**
- * The model implementation for the HROffice service. Represents a row in the &quot;HROffice&quot; database table, with each column mapped to a property of this class.
- *
- * <p>
- * Helper methods and all application logic should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link com.liferay.hr.model.HROffice} interface.
- * </p>
- *
- * @author Brian Wing Shun Chan
+ * @author Wesley Gong
  */
 public class HROfficeImpl extends HROfficeModelImpl implements HROffice {
-	/*
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this class directly. All methods that expect a h r office model instance should use the {@link HROffice} interface instead.
-	 */
+
 	public HROfficeImpl() {
 	}
+
 }

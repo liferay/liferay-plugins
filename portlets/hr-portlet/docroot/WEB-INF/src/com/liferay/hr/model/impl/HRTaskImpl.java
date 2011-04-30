@@ -17,20 +17,11 @@ package com.liferay.hr.model.impl;
 import com.liferay.hr.model.HRTask;
 
 /**
- * The model implementation for the HRTask service. Represents a row in the &quot;HRTask&quot; database table, with each column mapped to a property of this class.
- *
- * <p>
- * Helper methods and all application logic should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link com.liferay.hr.model.HRTask} interface.
- * </p>
- *
- * @author Brian Wing Shun Chan
+ * * @author Wesley Gong
  */
 public class HRTaskImpl extends HRTaskModelImpl implements HRTask {
-	/*
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this class directly. All methods that expect a h r task model instance should use the {@link HRTask} interface instead.
-	 */
+
 	public HRTaskImpl() {
 	}
+
 }

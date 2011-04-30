@@ -17,21 +17,12 @@ package com.liferay.hr.model.impl;
 import com.liferay.hr.model.HRUserHistory;
 
 /**
- * The model implementation for the HRUserHistory service. Represents a row in the &quot;HRUserHistory&quot; database table, with each column mapped to a property of this class.
- *
- * <p>
- * Helper methods and all application logic should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link com.liferay.hr.model.HRUserHistory} interface.
- * </p>
- *
- * @author Brian Wing Shun Chan
+ * @author Wesley Gong
  */
-public class HRUserHistoryImpl extends HRUserHistoryModelImpl
-	implements HRUserHistory {
-	/*
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this class directly. All methods that expect a h r user history model instance should use the {@link HRUserHistory} interface instead.
-	 */
+public class HRUserHistoryImpl
+	extends HRUserHistoryModelImpl implements HRUserHistory {
+
 	public HRUserHistoryImpl() {
 	}
+
 }

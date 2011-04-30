@@ -17,20 +17,11 @@ package com.liferay.hr.model.impl;
 import com.liferay.hr.model.HRAsset;
 
 /**
- * The model implementation for the HRAsset service. Represents a row in the &quot;HRAsset&quot; database table, with each column mapped to a property of this class.
- *
- * <p>
- * Helper methods and all application logic should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link com.liferay.hr.model.HRAsset} interface.
- * </p>
- *
- * @author Brian Wing Shun Chan
+ * @author Wesley Gong
  */
 public class HRAssetImpl extends HRAssetModelImpl implements HRAsset {
-	/*
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this class directly. All methods that expect a h r asset model instance should use the {@link HRAsset} interface instead.
-	 */
+
 	public HRAssetImpl() {
 	}
+
 }

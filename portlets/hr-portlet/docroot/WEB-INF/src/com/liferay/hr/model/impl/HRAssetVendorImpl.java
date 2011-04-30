@@ -17,21 +17,12 @@ package com.liferay.hr.model.impl;
 import com.liferay.hr.model.HRAssetVendor;
 
 /**
- * The model implementation for the HRAssetVendor service. Represents a row in the &quot;HRAssetVendor&quot; database table, with each column mapped to a property of this class.
- *
- * <p>
- * Helper methods and all application logic should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link com.liferay.hr.model.HRAssetVendor} interface.
- * </p>
- *
- * @author Brian Wing Shun Chan
+ * @author Wesley Gong
  */
-public class HRAssetVendorImpl extends HRAssetVendorModelImpl
-	implements HRAssetVendor {
-	/*
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this class directly. All methods that expect a h r asset vendor model instance should use the {@link HRAssetVendor} interface instead.
-	 */
+public class HRAssetVendorImpl
+	extends HRAssetVendorModelImpl implements HRAssetVendor {
+
 	public HRAssetVendorImpl() {
 	}
+
 }

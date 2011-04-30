@@ -17,21 +17,12 @@ package com.liferay.hr.model.impl;
 import com.liferay.hr.model.HRExpenseType;
 
 /**
- * The model implementation for the HRExpenseType service. Represents a row in the &quot;HRExpenseType&quot; database table, with each column mapped to a property of this class.
- *
- * <p>
- * Helper methods and all application logic should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link com.liferay.hr.model.HRExpenseType} interface.
- * </p>
- *
- * @author Brian Wing Shun Chan
+ * @author Wesley Gong
  */
-public class HRExpenseTypeImpl extends HRExpenseTypeModelImpl
-	implements HRExpenseType {
-	/*
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this class directly. All methods that expect a h r expense type model instance should use the {@link HRExpenseType} interface instead.
-	 */
+public class HRExpenseTypeImpl
+	extends HRExpenseTypeModelImpl implements HRExpenseType {
+
 	public HRExpenseTypeImpl() {
 	}
+
 }
