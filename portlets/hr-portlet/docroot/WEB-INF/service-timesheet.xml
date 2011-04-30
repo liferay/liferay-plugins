@@ -208,7 +208,7 @@
 
 		<!-- PK fields -->
 
-		<column name="hrTimeSheetHoursPerDay" type="long" primary="true" />
+		<column name="hrTimeSheetHoursPerDayId" type="long" primary="true" />
 
 		<!-- Group instance -->
 

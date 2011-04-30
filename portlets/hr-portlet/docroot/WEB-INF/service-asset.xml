@@ -73,8 +73,8 @@
 
 		<!-- Other fields -->
 
+		<column name="hrAssetProductId" type="String" />
 		<column name="hrAssetTypeId" type="long" />
-		<column name="hrAssetModelId" type="String" />
 		<column name="hrAssetVendorId" type="long" />
 		<column name="definitionNumber" type="String" />
 		<column name="orderId" type="Date" />
@@ -82,11 +82,11 @@
 		<column name="quantity" type="int" />
 		<column name="individualPrice" type="double" />
 	</entity>
-	<entity name="HRAssetModel" local-service="false" remote-service="false">
+	<entity name="HRAssetProduct" local-service="false" remote-service="false">
 
 		<!-- PK fields -->
 
-		<column name="hrAssetModelId" type="long" primary="true" />
+		<column name="hrAssetProductId" type="long" primary="true" />
 
 		<!-- Group instance -->
 
