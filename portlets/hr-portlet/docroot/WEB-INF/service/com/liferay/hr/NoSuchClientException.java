@@ -17,7 +17,7 @@ package com.liferay.hr;
 import com.liferay.portal.NoSuchModelException;
 
 /**
- * @author Brian Wing Shun Chan
+ * @author Wesley Gong
  */
 public class NoSuchClientException extends NoSuchModelException {
 
