@@ -20,7 +20,7 @@
 String tabs1 = ParamUtil.getString(request, "tabs1", tabs1Default);
 String tabs2 = ParamUtil.getString(request, "tabs2", "open");
 
-long[] assetTagIds = ParamUtil.getLongValues(request, "assetTagIds");
+long[] assetTagIds = StringUtil.split(ParamUtil.getString(request, "assetTagIds"), 0L);
 long groupId = ParamUtil.getLong(request, "groupId", 0);
 
 PortletURL portletURL = renderResponse.createRenderURL();
