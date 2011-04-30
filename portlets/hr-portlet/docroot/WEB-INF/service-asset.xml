@@ -82,7 +82,7 @@
 		<column name="quantity" type="int" />
 		<column name="individualPrice" type="double" />
 	</entity>
-	<entity name="HRAssetModelId" local-service="false" remote-service="false">
+	<entity name="HRAssetModel" local-service="false" remote-service="false">
 
 		<!-- PK fields -->
 
@@ -129,7 +129,7 @@
 		<column name="name" type="String" />
 		<column name="description" type="String" />
 	</entity>
-	<entity name="HRAssetVendorId" local-service="false" remote-service="false">
+	<entity name="HRAssetVendor" local-service="false" remote-service="false">
 
 		<!-- PK fields -->
 
