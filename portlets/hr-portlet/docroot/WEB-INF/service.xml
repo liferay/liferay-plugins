@@ -2,6 +2,7 @@
 <!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.0.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_0_0.dtd">
 
 <service-builder package-path="com.liferay.hr" auto-namespace-tables="false">
+	<author>Wesley Gong</author>
 	<namespace>HR</namespace>
 	<service-builder-import file="service-asset.xml" />
 	<service-builder-import file="service-billing.xml" />
