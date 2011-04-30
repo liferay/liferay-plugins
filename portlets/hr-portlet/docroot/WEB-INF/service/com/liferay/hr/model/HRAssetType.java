@@ -17,7 +17,7 @@ package com.liferay.hr.model;
 /**
  * The model interface for the HRAssetType service. Represents a row in the &quot;HRAssetType&quot; database table, with each column mapped to a property of this class.
  *
- * @author Brian Wing Shun Chan
+ * @author Wesley Gong
  * @see HRAssetTypeModel
  * @see com.liferay.hr.model.impl.HRAssetTypeImpl
  * @see com.liferay.hr.model.impl.HRAssetTypeModelImpl

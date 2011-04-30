@@ -17,7 +17,7 @@ package com.liferay.hr.model;
 /**
  * The model interface for the HRUserTimeOff service. Represents a row in the &quot;HRUserTimeOff&quot; database table, with each column mapped to a property of this class.
  *
- * @author Brian Wing Shun Chan
+ * @author Wesley Gong
  * @see HRUserTimeOffModel
  * @see com.liferay.hr.model.impl.HRUserTimeOffImpl
  * @see com.liferay.hr.model.impl.HRUserTimeOffModelImpl

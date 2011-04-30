@@ -17,7 +17,7 @@ package com.liferay.hr.model;
 /**
  * The model interface for the HRUserTask service. Represents a row in the &quot;HRUserTask&quot; database table, with each column mapped to a property of this class.
  *
- * @author Brian Wing Shun Chan
+ * @author Wesley Gong
  * @see HRUserTaskModel
  * @see com.liferay.hr.model.impl.HRUserTaskImpl
  * @see com.liferay.hr.model.impl.HRUserTaskModelImpl

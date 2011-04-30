@@ -27,7 +27,7 @@ import java.lang.reflect.Proxy;
 import java.util.Date;
 
 /**
- * @author Brian Wing Shun Chan
+ * @author Wesley Gong
  */
 public class HRAssetTypeClp extends BaseModelImpl<HRAssetType>
 	implements HRAssetType {

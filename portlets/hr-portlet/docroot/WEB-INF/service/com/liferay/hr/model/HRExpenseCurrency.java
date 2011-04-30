@@ -17,7 +17,7 @@ package com.liferay.hr.model;
 /**
  * The model interface for the HRExpenseCurrency service. Represents a row in the &quot;HRExpenseCurrency&quot; database table, with each column mapped to a property of this class.
  *
- * @author Brian Wing Shun Chan
+ * @author Wesley Gong
  * @see HRExpenseCurrencyModel
  * @see com.liferay.hr.model.impl.HRExpenseCurrencyImpl
  * @see com.liferay.hr.model.impl.HRExpenseCurrencyModelImpl

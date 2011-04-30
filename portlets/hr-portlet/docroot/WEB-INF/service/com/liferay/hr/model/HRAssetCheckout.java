@@ -17,7 +17,7 @@ package com.liferay.hr.model;
 /**
  * The model interface for the HRAssetCheckout service. Represents a row in the &quot;HRAssetCheckout&quot; database table, with each column mapped to a property of this class.
  *
- * @author Brian Wing Shun Chan
+ * @author Wesley Gong
  * @see HRAssetCheckoutModel
  * @see com.liferay.hr.model.impl.HRAssetCheckoutImpl
  * @see com.liferay.hr.model.impl.HRAssetCheckoutModelImpl

@@ -17,7 +17,7 @@ package com.liferay.hr.model;
 /**
  * The model interface for the HRBillability service. Represents a row in the &quot;HRBillability&quot; database table, with each column mapped to a property of this class.
  *
- * @author Brian Wing Shun Chan
+ * @author Wesley Gong
  * @see HRBillabilityModel
  * @see com.liferay.hr.model.impl.HRBillabilityImpl
  * @see com.liferay.hr.model.impl.HRBillabilityModelImpl

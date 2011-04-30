@@ -17,7 +17,7 @@ package com.liferay.hr.model;
 /**
  * The model interface for the HRWageType service. Represents a row in the &quot;HRWageType&quot; database table, with each column mapped to a property of this class.
  *
- * @author Brian Wing Shun Chan
+ * @author Wesley Gong
  * @see HRWageTypeModel
  * @see com.liferay.hr.model.impl.HRWageTypeImpl
  * @see com.liferay.hr.model.impl.HRWageTypeModelImpl

@@ -17,7 +17,7 @@ package com.liferay.hr.model;
 /**
  * The model interface for the HRJobTitle service. Represents a row in the &quot;HRJobTitle&quot; database table, with each column mapped to a property of this class.
  *
- * @author Brian Wing Shun Chan
+ * @author Wesley Gong
  * @see HRJobTitleModel
  * @see com.liferay.hr.model.impl.HRJobTitleImpl
  * @see com.liferay.hr.model.impl.HRJobTitleModelImpl

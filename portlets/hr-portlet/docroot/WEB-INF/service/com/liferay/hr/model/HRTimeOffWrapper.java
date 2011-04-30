@@ -19,7 +19,7 @@ package com.liferay.hr.model;
  * This class is a wrapper for {@link HRTimeOff}.
  * </p>
  *
- * @author    Brian Wing Shun Chan
+ * @author    Wesley Gong
  * @see       HRTimeOff
  * @generated
  */

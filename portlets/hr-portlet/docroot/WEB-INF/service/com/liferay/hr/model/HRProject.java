@@ -17,7 +17,7 @@ package com.liferay.hr.model;
 /**
  * The model interface for the HRProject service. Represents a row in the &quot;HRProject&quot; database table, with each column mapped to a property of this class.
  *
- * @author Brian Wing Shun Chan
+ * @author Wesley Gong
  * @see HRProjectModel
  * @see com.liferay.hr.model.impl.HRProjectImpl
  * @see com.liferay.hr.model.impl.HRProjectModelImpl

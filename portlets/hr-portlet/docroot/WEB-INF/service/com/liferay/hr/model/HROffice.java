@@ -17,7 +17,7 @@ package com.liferay.hr.model;
 /**
  * The model interface for the HROffice service. Represents a row in the &quot;HROffice&quot; database table, with each column mapped to a property of this class.
  *
- * @author Brian Wing Shun Chan
+ * @author Wesley Gong
  * @see HROfficeModel
  * @see com.liferay.hr.model.impl.HROfficeImpl
  * @see com.liferay.hr.model.impl.HROfficeModelImpl

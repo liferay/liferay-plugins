@@ -23,7 +23,7 @@ import java.util.List;
 /**
  * This class is used by SOAP remote services.
  *
- * @author    Brian Wing Shun Chan
+ * @author    Wesley Gong
  * @generated
  */
 public class HRUserSoap implements Serializable {

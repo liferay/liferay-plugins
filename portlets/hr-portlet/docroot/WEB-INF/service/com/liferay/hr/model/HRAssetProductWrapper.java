@@ -19,7 +19,7 @@ package com.liferay.hr.model;
  * This class is a wrapper for {@link HRAssetProduct}.
  * </p>
  *
- * @author    Brian Wing Shun Chan
+ * @author    Wesley Gong
  * @see       HRAssetProduct
  * @generated
  */

@@ -17,7 +17,7 @@ package com.liferay.hr.model;
 /**
  * The model interface for the HRUser service. Represents a row in the &quot;HRUser&quot; database table, with each column mapped to a property of this class.
  *
- * @author Brian Wing Shun Chan
+ * @author Wesley Gong
  * @see HRUserModel
  * @see com.liferay.hr.model.impl.HRUserImpl
  * @see com.liferay.hr.model.impl.HRUserModelImpl

@@ -66,7 +66,7 @@ import java.util.Set;
  * Caching information and settings can be found in <code>portal.properties</code>
  * </p>
  *
- * @author Brian Wing Shun Chan
+ * @author Wesley Gong
  * @see HRBranchPersistence
  * @see HRBranchUtil
  * @generated

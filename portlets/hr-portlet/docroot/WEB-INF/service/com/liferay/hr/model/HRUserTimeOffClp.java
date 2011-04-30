@@ -27,7 +27,7 @@ import java.lang.reflect.Proxy;
 import java.util.Date;
 
 /**
- * @author Brian Wing Shun Chan
+ * @author Wesley Gong
  */
 public class HRUserTimeOffClp extends BaseModelImpl<HRUserTimeOff>
 	implements HRUserTimeOff {

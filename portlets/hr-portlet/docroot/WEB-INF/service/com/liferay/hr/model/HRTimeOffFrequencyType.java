@@ -17,7 +17,7 @@ package com.liferay.hr.model;
 /**
  * The model interface for the HRTimeOffFrequencyType service. Represents a row in the &quot;HRTimeOffFrequencyType&quot; database table, with each column mapped to a property of this class.
  *
- * @author Brian Wing Shun Chan
+ * @author Wesley Gong
  * @see HRTimeOffFrequencyTypeModel
  * @see com.liferay.hr.model.impl.HRTimeOffFrequencyTypeImpl
  * @see com.liferay.hr.model.impl.HRTimeOffFrequencyTypeModelImpl

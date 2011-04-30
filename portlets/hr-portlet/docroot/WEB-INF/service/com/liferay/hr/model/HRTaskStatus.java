@@ -17,7 +17,7 @@ package com.liferay.hr.model;
 /**
  * The model interface for the HRTaskStatus service. Represents a row in the &quot;HRTaskStatus&quot; database table, with each column mapped to a property of this class.
  *
- * @author Brian Wing Shun Chan
+ * @author Wesley Gong
  * @see HRTaskStatusModel
  * @see com.liferay.hr.model.impl.HRTaskStatusImpl
  * @see com.liferay.hr.model.impl.HRTaskStatusModelImpl
