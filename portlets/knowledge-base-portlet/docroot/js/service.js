@@ -31,6 +31,21 @@ Liferay.Service.registerClass(
 );
 
 Liferay.Service.registerClass(
+	Liferay.Service.KB, "KBStructure",
+	{
+		addKBStructure: true,
+		deleteKBStructure: true,
+		deleteKBStructureLocalization: true,
+		deleteKBStructures: true,
+		getGroupKBStructures: true,
+		getGroupKBStructuresCount: true,
+		getKBStructure: true,
+		getKBStructureSearchDisplay: true,
+		updateKBStructure: true
+	}
+);
+
+Liferay.Service.registerClass(
 	Liferay.Service.KB, "KBTemplate",
 	{
 		addKBTemplate: true,

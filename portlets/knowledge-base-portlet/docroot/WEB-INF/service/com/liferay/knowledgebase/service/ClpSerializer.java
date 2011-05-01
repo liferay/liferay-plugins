@@ -16,6 +16,7 @@ package com.liferay.knowledgebase.service;
 
 import com.liferay.knowledgebase.model.KBArticleClp;
 import com.liferay.knowledgebase.model.KBCommentClp;
+import com.liferay.knowledgebase.model.KBStructureClp;
 import com.liferay.knowledgebase.model.KBTemplateClp;
 
 import com.liferay.portal.kernel.log.Log;
@@ -107,6 +108,10 @@ public class ClpSerializer {
 
 		if (oldModelClassName.equals(KBCommentClp.class.getName())) {
 			return translateInputKBComment(oldModel);
+		}
+
+		if (oldModelClassName.equals(KBStructureClp.class.getName())) {
+			return translateInputKBStructure(oldModel);
 		}
 
 		if (oldModelClassName.equals(KBTemplateClp.class.getName())) {
@@ -438,6 +443,105 @@ public class ClpSerializer {
 		return oldModel;
 	}
 
+	public static Object translateInputKBStructure(BaseModel<?> oldModel) {
+		KBStructureClp oldCplModel = (KBStructureClp)oldModel;
+
+		Thread currentThread = Thread.currentThread();
+
+		ClassLoader contextClassLoader = currentThread.getContextClassLoader();
+
+		try {
+			currentThread.setContextClassLoader(_classLoader);
+
+			try {
+				Class<?> newModelClass = Class.forName("com.liferay.knowledgebase.model.impl.KBStructureImpl",
+						true, _classLoader);
+
+				Object newModel = newModelClass.newInstance();
+
+				Method method0 = newModelClass.getMethod("setUuid",
+						new Class[] { String.class });
+
+				String value0 = oldCplModel.getUuid();
+
+				method0.invoke(newModel, value0);
+
+				Method method1 = newModelClass.getMethod("setKbStructureId",
+						new Class[] { Long.TYPE });
+
+				Long value1 = new Long(oldCplModel.getKbStructureId());
+
+				method1.invoke(newModel, value1);
+
+				Method method2 = newModelClass.getMethod("setGroupId",
+						new Class[] { Long.TYPE });
+
+				Long value2 = new Long(oldCplModel.getGroupId());
+
+				method2.invoke(newModel, value2);
+
+				Method method3 = newModelClass.getMethod("setCompanyId",
+						new Class[] { Long.TYPE });
+
+				Long value3 = new Long(oldCplModel.getCompanyId());
+
+				method3.invoke(newModel, value3);
+
+				Method method4 = newModelClass.getMethod("setUserId",
+						new Class[] { Long.TYPE });
+
+				Long value4 = new Long(oldCplModel.getUserId());
+
+				method4.invoke(newModel, value4);
+
+				Method method5 = newModelClass.getMethod("setUserName",
+						new Class[] { String.class });
+
+				String value5 = oldCplModel.getUserName();
+
+				method5.invoke(newModel, value5);
+
+				Method method6 = newModelClass.getMethod("setCreateDate",
+						new Class[] { Date.class });
+
+				Date value6 = oldCplModel.getCreateDate();
+
+				method6.invoke(newModel, value6);
+
+				Method method7 = newModelClass.getMethod("setModifiedDate",
+						new Class[] { Date.class });
+
+				Date value7 = oldCplModel.getModifiedDate();
+
+				method7.invoke(newModel, value7);
+
+				Method method8 = newModelClass.getMethod("setTitle",
+						new Class[] { String.class });
+
+				String value8 = oldCplModel.getTitle();
+
+				method8.invoke(newModel, value8);
+
+				Method method9 = newModelClass.getMethod("setContent",
+						new Class[] { String.class });
+
+				String value9 = oldCplModel.getContent();
+
+				method9.invoke(newModel, value9);
+
+				return newModel;
+			}
+			catch (Exception e) {
+				_log.error(e, e);
+			}
+		}
+		finally {
+			currentThread.setContextClassLoader(contextClassLoader);
+		}
+
+		return oldModel;
+	}
+
 	public static Object translateInputKBTemplate(BaseModel<?> oldModel) {
 		KBTemplateClp oldCplModel = (KBTemplateClp)oldModel;
 
@@ -576,6 +680,11 @@ public class ClpSerializer {
 		if (oldModelClassName.equals(
 					"com.liferay.knowledgebase.model.impl.KBCommentImpl")) {
 			return translateOutputKBComment(oldModel);
+		}
+
+		if (oldModelClassName.equals(
+					"com.liferay.knowledgebase.model.impl.KBStructureImpl")) {
+			return translateOutputKBStructure(oldModel);
 		}
 
 		if (oldModelClassName.equals(
@@ -886,6 +995,92 @@ public class ClpSerializer {
 						(Object[])null);
 
 				newModel.setHelpful(value11);
+
+				return newModel;
+			}
+			catch (Exception e) {
+				_log.error(e, e);
+			}
+		}
+		finally {
+			currentThread.setContextClassLoader(contextClassLoader);
+		}
+
+		return oldModel;
+	}
+
+	public static Object translateOutputKBStructure(BaseModel<?> oldModel) {
+		Thread currentThread = Thread.currentThread();
+
+		ClassLoader contextClassLoader = currentThread.getContextClassLoader();
+
+		try {
+			currentThread.setContextClassLoader(_classLoader);
+
+			try {
+				KBStructureClp newModel = new KBStructureClp();
+
+				Class<?> oldModelClass = oldModel.getClass();
+
+				Method method0 = oldModelClass.getMethod("getUuid");
+
+				String value0 = (String)method0.invoke(oldModel, (Object[])null);
+
+				newModel.setUuid(value0);
+
+				Method method1 = oldModelClass.getMethod("getKbStructureId");
+
+				Long value1 = (Long)method1.invoke(oldModel, (Object[])null);
+
+				newModel.setKbStructureId(value1);
+
+				Method method2 = oldModelClass.getMethod("getGroupId");
+
+				Long value2 = (Long)method2.invoke(oldModel, (Object[])null);
+
+				newModel.setGroupId(value2);
+
+				Method method3 = oldModelClass.getMethod("getCompanyId");
+
+				Long value3 = (Long)method3.invoke(oldModel, (Object[])null);
+
+				newModel.setCompanyId(value3);
+
+				Method method4 = oldModelClass.getMethod("getUserId");
+
+				Long value4 = (Long)method4.invoke(oldModel, (Object[])null);
+
+				newModel.setUserId(value4);
+
+				Method method5 = oldModelClass.getMethod("getUserName");
+
+				String value5 = (String)method5.invoke(oldModel, (Object[])null);
+
+				newModel.setUserName(value5);
+
+				Method method6 = oldModelClass.getMethod("getCreateDate");
+
+				Date value6 = (Date)method6.invoke(oldModel, (Object[])null);
+
+				newModel.setCreateDate(value6);
+
+				Method method7 = oldModelClass.getMethod("getModifiedDate");
+
+				Date value7 = (Date)method7.invoke(oldModel, (Object[])null);
+
+				newModel.setModifiedDate(value7);
+
+				Method method8 = oldModelClass.getMethod("getTitle");
+
+				String value8 = (String)method8.invoke(oldModel, (Object[])null);
+
+				newModel.setTitle(value8);
+
+				Method method9 = oldModelClass.getMethod("getContent");
+
+				String value9 = (String)method9.invoke(oldModel, (Object[])null);
+
+				newModel.setContent(value9);
 
 				return newModel;
 			}

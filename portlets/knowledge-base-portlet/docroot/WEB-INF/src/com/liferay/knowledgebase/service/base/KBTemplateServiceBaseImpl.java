@@ -19,10 +19,13 @@ import com.liferay.counter.service.CounterLocalService;
 import com.liferay.knowledgebase.service.KBArticleLocalService;
 import com.liferay.knowledgebase.service.KBArticleService;
 import com.liferay.knowledgebase.service.KBCommentLocalService;
+import com.liferay.knowledgebase.service.KBStructureLocalService;
+import com.liferay.knowledgebase.service.KBStructureService;
 import com.liferay.knowledgebase.service.KBTemplateLocalService;
 import com.liferay.knowledgebase.service.KBTemplateService;
 import com.liferay.knowledgebase.service.persistence.KBArticlePersistence;
 import com.liferay.knowledgebase.service.persistence.KBCommentPersistence;
+import com.liferay.knowledgebase.service.persistence.KBStructurePersistence;
 import com.liferay.knowledgebase.service.persistence.KBTemplatePersistence;
 
 import com.liferay.portal.kernel.bean.BeanReference;
@@ -154,6 +157,62 @@ public abstract class KBTemplateServiceBaseImpl extends PrincipalBean
 	public void setKBCommentPersistence(
 		KBCommentPersistence kbCommentPersistence) {
 		this.kbCommentPersistence = kbCommentPersistence;
+	}
+
+	/**
+	 * Gets the k b structure local service.
+	 *
+	 * @return the k b structure local service
+	 */
+	public KBStructureLocalService getKBStructureLocalService() {
+		return kbStructureLocalService;
+	}
+
+	/**
+	 * Sets the k b structure local service.
+	 *
+	 * @param kbStructureLocalService the k b structure local service
+	 */
+	public void setKBStructureLocalService(
+		KBStructureLocalService kbStructureLocalService) {
+		this.kbStructureLocalService = kbStructureLocalService;
+	}
+
+	/**
+	 * Gets the k b structure remote service.
+	 *
+	 * @return the k b structure remote service
+	 */
+	public KBStructureService getKBStructureService() {
+		return kbStructureService;
+	}
+
+	/**
+	 * Sets the k b structure remote service.
+	 *
+	 * @param kbStructureService the k b structure remote service
+	 */
+	public void setKBStructureService(KBStructureService kbStructureService) {
+		this.kbStructureService = kbStructureService;
+	}
+
+	/**
+	 * Gets the k b structure persistence.
+	 *
+	 * @return the k b structure persistence
+	 */
+	public KBStructurePersistence getKBStructurePersistence() {
+		return kbStructurePersistence;
+	}
+
+	/**
+	 * Sets the k b structure persistence.
+	 *
+	 * @param kbStructurePersistence the k b structure persistence
+	 */
+	public void setKBStructurePersistence(
+		KBStructurePersistence kbStructurePersistence) {
+		this.kbStructurePersistence = kbStructurePersistence;
 	}
 
 	/**
@@ -424,6 +483,12 @@ public abstract class KBTemplateServiceBaseImpl extends PrincipalBean
 	protected KBCommentLocalService kbCommentLocalService;
 	@BeanReference(type = KBCommentPersistence.class)
 	protected KBCommentPersistence kbCommentPersistence;
+	@BeanReference(type = KBStructureLocalService.class)
+	protected KBStructureLocalService kbStructureLocalService;
+	@BeanReference(type = KBStructureService.class)
+	protected KBStructureService kbStructureService;
+	@BeanReference(type = KBStructurePersistence.class)
+	protected KBStructurePersistence kbStructurePersistence;
 	@BeanReference(type = KBTemplateLocalService.class)
 	protected KBTemplateLocalService kbTemplateLocalService;
 	@BeanReference(type = KBTemplateService.class)

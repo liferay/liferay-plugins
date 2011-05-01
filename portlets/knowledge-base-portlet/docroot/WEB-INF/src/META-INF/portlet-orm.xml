@@ -70,6 +70,29 @@
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
+	<mapped-superclass class="com.liferay.knowledgebase.model.impl.KBStructureModelImpl">
+		<attributes>
+			<id name="kbStructureId" />
+			<basic name="uuid">
+				<column name="UUID_" />
+			</basic>
+			<basic name="groupId" />
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="userName" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="title" />
+			<basic name="content" />
+			<transient name="primaryKey" />
+			<transient name="titleMap" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
 	<mapped-superclass class="com.liferay.knowledgebase.model.impl.KBTemplateModelImpl">
 		<attributes>
 			<id name="kbTemplateId" />
@@ -100,6 +123,10 @@
 	</entity>
 	<entity class="com.liferay.knowledgebase.model.impl.KBCommentImpl" name="KBComment">
 		<table name="KBComment" />
+		<attributes />
+	</entity>
+	<entity class="com.liferay.knowledgebase.model.impl.KBStructureImpl" name="KBStructure">
+		<table name="KBStructure" />
 		<attributes />
 	</entity>
 	<entity class="com.liferay.knowledgebase.model.impl.KBTemplateImpl" name="KBTemplate">
