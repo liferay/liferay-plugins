@@ -12,24 +12,29 @@
  * details.
  */
 
-package com.liferay.knowledgebase.util;
+package com.liferay.knowledgebase;
+
+import com.liferay.portal.kernel.exception.PortalException;
 
 /**
  * @author Brian Wing Shun Chan
- * @author Peter Shin
  */
-public class WebKeys implements com.liferay.portal.kernel.util.WebKeys {
+public class DuplicateKBStructureFieldNameException extends PortalException {
 
-	public static final String KNOWLEDGE_BASE_KB_ARTICLE =
-		"KNOWLEDGE_BASE_KB_ARTICLE";
+	public DuplicateKBStructureFieldNameException() {
+		super();
+	}
 
-	public static final String KNOWLEDGE_BASE_KB_STRUCTURE =
-		"KNOWLEDGE_BASE_KB_STRUCTURE";
+	public DuplicateKBStructureFieldNameException(String msg) {
+		super(msg);
+	}
 
-	public static final String KNOWLEDGE_BASE_KB_TEMPLATE =
-		"KNOWLEDGE_BASE_KB_TEMPLATE";
+	public DuplicateKBStructureFieldNameException(String msg, Throwable cause) {
+		super(msg, cause);
+	}
 
-	public static final String KNOWLEDGE_BASE_STATUS =
-		"KNOWLEDGE_BASE_STATUS";
+	public DuplicateKBStructureFieldNameException(Throwable cause) {
+		super(cause);
+	}
 
 }

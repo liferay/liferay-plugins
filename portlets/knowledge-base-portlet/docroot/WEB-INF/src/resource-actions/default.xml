@@ -27,12 +27,15 @@
 		<permissions>
 			<supports>
 				<action-key>ADD_KB_ARTICLE</action-key>
+				<action-key>ADD_KB_STRUCTURE</action-key>
 				<action-key>ADD_KB_TEMPLATE</action-key>
 				<action-key>DELETE_KB_ARTICLES</action-key>
+				<action-key>DELETE_KB_STRUCTURES</action-key>
 				<action-key>DELETE_KB_TEMPLATES</action-key>
 				<action-key>PERMISSIONS</action-key>
 				<action-key>SUBSCRIBE</action-key>
 				<action-key>UPDATE_KB_ARTICLES_PRIORITIES</action-key>
+				<action-key>VIEW_KB_STRUCTURES</action-key>
 				<action-key>VIEW_KB_TEMPLATES</action-key>
 			</supports>
 			<community-defaults>
@@ -41,12 +44,15 @@
 			<guest-defaults />
 			<guest-unsupported>
 				<action-key>ADD_KB_ARTICLE</action-key>
+				<action-key>ADD_KB_STRUCTURE</action-key>
 				<action-key>ADD_KB_TEMPLATE</action-key>
 				<action-key>DELETE_KB_ARTICLES</action-key>
+				<action-key>DELETE_KB_STRUCTURES</action-key>
 				<action-key>DELETE_KB_TEMPLATES</action-key>
 				<action-key>PERMISSIONS</action-key>
 				<action-key>SUBSCRIBE</action-key>
 				<action-key>UPDATE_KB_ARTICLES_PRIORITIES</action-key>
+				<action-key>VIEW_KB_STRUCTURES</action-key>
 				<action-key>VIEW_KB_TEMPLATES</action-key>
 			</guest-unsupported>
 		</permissions>
@@ -105,6 +111,31 @@
 				<action-key>MOVE_KB_ARTICLE</action-key>
 				<action-key>PERMISSIONS</action-key>
 				<action-key>SUBSCRIBE</action-key>
+				<action-key>UPDATE</action-key>
+			</guest-unsupported>
+		</permissions>
+	</model-resource>
+	<model-resource>
+		<model-name>com.liferay.knowledgebase.model.KBStructure</model-name>
+		<portlet-ref>
+			<portlet-name>1</portlet-name>
+		</portlet-ref>
+		<permissions>
+			<supports>
+				<action-key>DELETE</action-key>
+				<action-key>PERMISSIONS</action-key>
+				<action-key>UPDATE</action-key>
+				<action-key>VIEW</action-key>
+			</supports>
+			<community-defaults>
+				<action-key>VIEW</action-key>
+			</community-defaults>
+			<guest-defaults>
+				<action-key>VIEW</action-key>
+			</guest-defaults>
+			<guest-unsupported>
+				<action-key>DELETE</action-key>
+				<action-key>PERMISSIONS</action-key>
 				<action-key>UPDATE</action-key>
 			</guest-unsupported>
 		</permissions>

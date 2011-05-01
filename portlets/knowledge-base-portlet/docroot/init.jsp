@@ -30,31 +30,50 @@
 <%@ page import="com.liferay.documentlibrary.FileSizeException" %>
 <%@ page import="com.liferay.documentlibrary.NoSuchFileException" %>
 <%@ page import="com.liferay.documentlibrary.service.DLLocalServiceUtil" %>
+<%@ page import="com.liferay.knowledgebase.DuplicateKBStructureFieldLabelException" %>
+<%@ page import="com.liferay.knowledgebase.DuplicateKBStructureFieldNameException" %>
+<%@ page import="com.liferay.knowledgebase.DuplicateKBStructureOptionLabelException" %>
+<%@ page import="com.liferay.knowledgebase.DuplicateKBStructureOptionValueException" %>
 <%@ page import="com.liferay.knowledgebase.KBArticleContentException" %>
 <%@ page import="com.liferay.knowledgebase.KBArticlePriorityException" %>
 <%@ page import="com.liferay.knowledgebase.KBArticleTitleException" %>
 <%@ page import="com.liferay.knowledgebase.KBCommentContentException" %>
+<%@ page import="com.liferay.knowledgebase.KBStructureFieldLabelException" %>
+<%@ page import="com.liferay.knowledgebase.KBStructureFieldNameException" %>
+<%@ page import="com.liferay.knowledgebase.KBStructureOptionLabelException" %>
+<%@ page import="com.liferay.knowledgebase.KBStructureOptionValueException" %>
+<%@ page import="com.liferay.knowledgebase.KBStructureTitleException" %>
 <%@ page import="com.liferay.knowledgebase.KBTemplateContentException" %>
 <%@ page import="com.liferay.knowledgebase.KBTemplateTitleException" %>
 <%@ page import="com.liferay.knowledgebase.NoSuchArticleException" %>
 <%@ page import="com.liferay.knowledgebase.NoSuchCommentException" %>
+<%@ page import="com.liferay.knowledgebase.NoSuchStructureException" %>
 <%@ page import="com.liferay.knowledgebase.NoSuchTemplateException" %>
 <%@ page import="com.liferay.knowledgebase.RequiredKBTemplateException" %>
 <%@ page import="com.liferay.knowledgebase.model.KBArticle" %>
 <%@ page import="com.liferay.knowledgebase.model.KBArticleConstants" %>
 <%@ page import="com.liferay.knowledgebase.model.KBArticleSearchDisplay" %>
 <%@ page import="com.liferay.knowledgebase.model.KBComment" %>
+<%@ page import="com.liferay.knowledgebase.model.KBStructure" %>
+<%@ page import="com.liferay.knowledgebase.model.KBStructureField" %>
+<%@ page import="com.liferay.knowledgebase.model.KBStructureFieldConstants" %>
+<%@ page import="com.liferay.knowledgebase.model.KBStructureOption" %>
+<%@ page import="com.liferay.knowledgebase.model.KBStructureSearchDisplay" %>
 <%@ page import="com.liferay.knowledgebase.model.KBTemplate" %>
 <%@ page import="com.liferay.knowledgebase.model.KBTemplateConstants" %>
 <%@ page import="com.liferay.knowledgebase.model.KBTemplateSearchDisplay" %>
+<%@ page import="com.liferay.knowledgebase.model.impl.KBStructureFieldImpl" %>
+<%@ page import="com.liferay.knowledgebase.model.impl.KBStructureOptionImpl" %>
 <%@ page import="com.liferay.knowledgebase.service.KBArticleLocalServiceUtil" %>
 <%@ page import="com.liferay.knowledgebase.service.KBArticleServiceUtil" %>
 <%@ page import="com.liferay.knowledgebase.service.KBCommentLocalServiceUtil" %>
 <%@ page import="com.liferay.knowledgebase.service.KBTemplateLocalServiceUtil" %>
+<%@ page import="com.liferay.knowledgebase.service.KBStructureServiceUtil" %>
 <%@ page import="com.liferay.knowledgebase.service.KBTemplateServiceUtil" %>
 <%@ page import="com.liferay.knowledgebase.service.permission.AdminPermission" %>
 <%@ page import="com.liferay.knowledgebase.service.permission.DisplayPermission" %>
 <%@ page import="com.liferay.knowledgebase.service.permission.KBArticlePermission" %>
+<%@ page import="com.liferay.knowledgebase.service.permission.KBStructurePermission" %>
 <%@ page import="com.liferay.knowledgebase.service.permission.KBTemplatePermission" %>
 <%@ page import="com.liferay.knowledgebase.util.ActionKeys" %>
 <%@ page import="com.liferay.knowledgebase.util.KnowledgeBaseUtil" %>
@@ -78,6 +97,7 @@
 <%@ page import="com.liferay.portal.kernel.search.SearchContext" %>
 <%@ page import="com.liferay.portal.kernel.search.SearchContextFactory" %>
 <%@ page import="com.liferay.portal.kernel.servlet.SessionErrors" %>
+<%@ page import="com.liferay.portal.kernel.util.ArrayUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.Constants" %>
 <%@ page import="com.liferay.portal.kernel.util.ContentTypes" %>
 <%@ page import="com.liferay.portal.kernel.util.FastDateFormatConstants" %>
@@ -87,6 +107,7 @@
 <%@ page import="com.liferay.portal.kernel.util.HtmlUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.HttpUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.ListUtil" %>
+<%@ page import="com.liferay.portal.kernel.util.LocaleUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.PrefsPropsUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.PropsKeys" %>
@@ -105,6 +126,7 @@
 <%@ page import="com.liferay.portal.service.SubscriptionLocalServiceUtil" %>
 <%@ page import="com.liferay.portal.service.WorkflowDefinitionLinkLocalServiceUtil" %>
 <%@ page import="com.liferay.portal.service.permission.GroupPermissionUtil" %>
+<%@ page import="com.liferay.portal.service.permission.PortletPermissionUtil" %>
 <%@ page import="com.liferay.portal.util.PortalUtil" %>
 <%@ page import="com.liferay.portlet.PortletPreferencesFactoryUtil" %>
 <%@ page import="com.liferay.portlet.asset.model.AssetCategory" %>
@@ -123,6 +145,7 @@
 
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>
+<%@ page import="java.util.Locale" %>
 
 <%@ page import="javax.portlet.PortletPreferences" %>
 <%@ page import="javax.portlet.PortletURL" %>
@@ -137,15 +160,17 @@
 <%
 WindowState windowState = renderRequest.getWindowState();
 
-String currentURL = PortalUtil.getCurrentURL(request);
-
 String rootPortletId = portletDisplay.getRootPortletId();
 
 String jspPath = portletConfig.getInitParameter("jsp-path");
+
+Locale defaultLocale = LocaleUtil.getDefault();
+String defaultLanguageId = LocaleUtil.toLanguageId(defaultLocale);
 
 Format dateFormatDate = FastDateFormatFactoryUtil.getDate(FastDateFormatConstants.LONG, locale, timeZone);
 Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(FastDateFormatConstants.LONG, FastDateFormatConstants.SHORT, locale, timeZone);
 Format dateFormatTime = FastDateFormatFactoryUtil.getTime(locale, timeZone);
 
+String currentURL = PortalUtil.getCurrentURL(request);
 String redirect = ParamUtil.getString(request, "redirect", currentURL);
 %>

@@ -20,23 +20,50 @@
 String jspPage = ParamUtil.getString(request, "jspPage");
 %>
 
-<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.VIEW_KB_TEMPLATES) %>">
+<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.VIEW_KB_STRUCTURES) || AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.VIEW_KB_TEMPLATES) %>">
 
 	<%
-	PortletURL kbArticlesURL = renderResponse.createRenderURL();
+	List<String> names = new ArrayList<String>();
+	List<String> urls = new ArrayList<String>();
+	String value = null;
 
-	kbArticlesURL.setParameter("jspPage", "/admin/view.jsp");
+	if (PortletPermissionUtil.contains(permissionChecker, plid, portletDisplay.getId(), ActionKeys.VIEW)) {
+		PortletURL kbArticlesURL = renderResponse.createRenderURL();
 
-	PortletURL kbTemplatesURL = renderResponse.createRenderURL();
+		kbArticlesURL.setParameter("jspPage", "/admin/view.jsp");
 
-	kbTemplatesURL.setParameter("jspPage", "/admin/view_templates.jsp");
+		names.add("articles");
+		urls.add(kbArticlesURL.toString());
+		value = names.get(names.size() - 1);
+	}
+
+	if (AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.VIEW_KB_TEMPLATES)) {
+		PortletURL kbTemplatesURL = renderResponse.createRenderURL();
+
+		kbTemplatesURL.setParameter("jspPage", "/admin/view_templates.jsp");
+
+		names.add("templates");
+		urls.add(kbTemplatesURL.toString());
+		value = jspPage.contains("template") ? names.get(names.size() - 1) : value;
+	}
+
+	if (AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.VIEW_KB_STRUCTURES)) {
+		PortletURL kbStructuresURL = renderResponse.createRenderURL();
+
+		kbStructuresURL.setParameter("jspPage", "/admin/view_structures.jsp");
+
+		names.add("structures");
+		urls.add(kbStructuresURL.toString());
+		value = jspPage.contains("structure") ? names.get(names.size() - 1) : value;
+	}
 	%>
 
 	<liferay-ui:tabs
-		names="articles,templates"
+		names="<%= StringUtil.merge(names) %>"
 		param="topTabs"
-		url0="<%= kbArticlesURL.toString() %>"
-		url1="<%= kbTemplatesURL.toString() %>"
-		value='<%= jspPage.contains("template") ? "templates" : "articles" %>'
+		url0="<%= (urls.size() > 0) ? urls.get(0) : null %>"
+		url1="<%= (urls.size() > 1) ? urls.get(1) : null %>"
+		url2="<%= (urls.size() > 2) ? urls.get(2) : null %>"
+		value="<%= value %>"
 	/>
 </c:if>

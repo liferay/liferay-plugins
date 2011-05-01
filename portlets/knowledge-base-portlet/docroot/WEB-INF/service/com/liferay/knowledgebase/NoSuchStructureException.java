@@ -12,24 +12,29 @@
  * details.
  */
 
-package com.liferay.knowledgebase.util;
+package com.liferay.knowledgebase;
+
+import com.liferay.portal.NoSuchModelException;
 
 /**
  * @author Brian Wing Shun Chan
- * @author Peter Shin
  */
-public class WebKeys implements com.liferay.portal.kernel.util.WebKeys {
+public class NoSuchStructureException extends NoSuchModelException {
 
-	public static final String KNOWLEDGE_BASE_KB_ARTICLE =
-		"KNOWLEDGE_BASE_KB_ARTICLE";
+	public NoSuchStructureException() {
+		super();
+	}
 
-	public static final String KNOWLEDGE_BASE_KB_STRUCTURE =
-		"KNOWLEDGE_BASE_KB_STRUCTURE";
+	public NoSuchStructureException(String msg) {
+		super(msg);
+	}
 
-	public static final String KNOWLEDGE_BASE_KB_TEMPLATE =
-		"KNOWLEDGE_BASE_KB_TEMPLATE";
+	public NoSuchStructureException(String msg, Throwable cause) {
+		super(msg, cause);
+	}
 
-	public static final String KNOWLEDGE_BASE_STATUS =
-		"KNOWLEDGE_BASE_STATUS";
+	public NoSuchStructureException(Throwable cause) {
+		super(cause);
+	}
 
 }

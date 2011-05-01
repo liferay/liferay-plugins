@@ -122,51 +122,61 @@
 }
 
 .knowledge-base-portlet .kb-entity-body .kb-article-comments,
+.knowledge-base-portlet .kb-entity-body .kb-structure-comments,
 .knowledge-base-portlet .kb-entity-body .kb-template-comments {
 	margin: 10px -7px 0;
 }
 
 .knowledge-base-portlet .kb-entity-body .kb-article-comments .yui3-aui-field-content,
+.knowledge-base-portlet .kb-entity-body .kb-structure-comments .yui3-aui-field-content,
 .knowledge-base-portlet .kb-entity-body .kb-template-comments .yui3-aui-field-content {
 	margin: 0;
 }
 
 .knowledge-base-portlet .kb-entity-body .kb-article-comments .kb-helpful-inputs,
+.knowledge-base-portlet .kb-entity-body .kb-structure-comments .kb-helpful-inputs,
 .knowledge-base-portlet .kb-entity-body .kb-template-comments .kb-helpful-inputs {
 	margin: 4px 0 0;
 }
 
 .knowledge-base-portlet .kb-entity-body .kb-article-comments .kb-helpful-inputs label,
+.knowledge-base-portlet .kb-entity-body .kb-structure-comments .kb-helpful-inputs label,
 .knowledge-base-portlet .kb-entity-body .kb-template-comments .kb-helpful-inputs label {
 	font-weight: normal;
 }
 
 .knowledge-base-portlet .kb-entity-body .kb-article-comments .kb-helpful-text,
+.knowledge-base-portlet .kb-entity-body .kb-structure-comments .kb-helpful-text,
 .knowledge-base-portlet .kb-entity-body .kb-template-comments .kb-helpful-text {
 	margin: 0 10px 0 0;
 }
 
 .knowledge-base-portlet .kb-entity-body .kb-article-comments .kb-no,
+.knowledge-base-portlet .kb-entity-body .kb-structure-comments .kb-no,
 .knowledge-base-portlet .kb-entity-body .kb-template-comments .kb-no {
 	color: red;
 }
 
 .knowledge-base-portlet .kb-entity-body .kb-article-comments .kb-question,
+.knowledge-base-portlet .kb-entity-body .kb-structure-comments .kb-question,
 .knowledge-base-portlet .kb-entity-body .kb-template-comments .kb-question {
 	color: #999;
 }
 
 .knowledge-base-portlet .kb-entity-body .kb-article-comments .kb-yes,
+.knowledge-base-portlet .kb-entity-body .kb-structure-comments .kb-yes,
 .knowledge-base-portlet .kb-entity-body .kb-template-comments .kb-yes {
 	color: green;
 }
 
 .knowledge-base-portlet .kb-entity-body .kb-article-comments .lfr-panel-content,
+.knowledge-base-portlet .kb-entity-body .kb-structure-comments .lfr-panel-content,
 .knowledge-base-portlet .kb-entity-body .kb-template-comments .lfr-panel-content {
 	margin: 10px 0 0;
 }
 
 .knowledge-base-portlet .kb-entity-body .kb-article-icons,
+.knowledge-base-portlet .kb-entity-body .kb-structure-icons,
 .knowledge-base-portlet .kb-entity-body .kb-template-icons {
 	padding: 0 0 5px;
 }
@@ -212,6 +222,7 @@
 }
 
 .knowledge-base-portlet .kb-results-body .kb-article-icons,
+.knowledge-base-portlet .kb-results-body .kb-structure-icons,
 .knowledge-base-portlet .kb-results-body .kb-template-icons {
 	padding: 5px 0;
 }
@@ -232,6 +243,10 @@
 .knowledge-base-portlet .kb-selected-template {
 	display: block;
 	margin: 5px 0 0;
+}
+
+.knowledge-base-portlet .kb-structure-option-editor {
+	padding: 0 0 0 20px;
 }
 
 .knowledge-base-portlet .kb-submit-buttons {

@@ -12,24 +12,36 @@
  * details.
  */
 
-package com.liferay.knowledgebase.util;
+package com.liferay.knowledgebase.model;
+
+import java.io.Serializable;
+
+import java.util.List;
 
 /**
- * @author Brian Wing Shun Chan
  * @author Peter Shin
  */
-public class WebKeys implements com.liferay.portal.kernel.util.WebKeys {
+public interface KBStructureField extends Serializable {
 
-	public static final String KNOWLEDGE_BASE_KB_ARTICLE =
-		"KNOWLEDGE_BASE_KB_ARTICLE";
+	public String getKbStructureFieldId();
 
-	public static final String KNOWLEDGE_BASE_KB_STRUCTURE =
-		"KNOWLEDGE_BASE_KB_STRUCTURE";
+	public List<KBStructureOption> getKbStructureOptions();
 
-	public static final String KNOWLEDGE_BASE_KB_TEMPLATE =
-		"KNOWLEDGE_BASE_KB_TEMPLATE";
+	public String getLabel();
 
-	public static final String KNOWLEDGE_BASE_STATUS =
-		"KNOWLEDGE_BASE_STATUS";
+	public String getName();
+
+	public String getType();
+
+	public void setKbStructureFieldId(String kbStructureFieldId);
+
+	public void setKbStructureOptions(
+		List<KBStructureOption> kbStructureOptions);
+
+	public void setLabel(String label);
+
+	public void setName(String name);
+
+	public void setType(String type);
 
 }

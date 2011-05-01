@@ -12,24 +12,22 @@
  * details.
  */
 
-package com.liferay.knowledgebase.util;
+package com.liferay.knowledgebase.model.impl;
+
+import com.liferay.knowledgebase.model.KBStructure;
+import com.liferay.portal.kernel.util.LocalizationUtil;
 
 /**
  * @author Brian Wing Shun Chan
- * @author Peter Shin
  */
-public class WebKeys implements com.liferay.portal.kernel.util.WebKeys {
+public class KBStructureImpl extends KBStructureModelImpl
+	implements KBStructure {
 
-	public static final String KNOWLEDGE_BASE_KB_ARTICLE =
-		"KNOWLEDGE_BASE_KB_ARTICLE";
+	public KBStructureImpl() {
+	}
 
-	public static final String KNOWLEDGE_BASE_KB_STRUCTURE =
-		"KNOWLEDGE_BASE_KB_STRUCTURE";
-
-	public static final String KNOWLEDGE_BASE_KB_TEMPLATE =
-		"KNOWLEDGE_BASE_KB_TEMPLATE";
-
-	public static final String KNOWLEDGE_BASE_STATUS =
-		"KNOWLEDGE_BASE_STATUS";
+	public String[] getLanguageIds() {
+		return LocalizationUtil.getAvailableLocales(getTitle());
+	}
 
 }

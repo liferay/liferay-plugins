@@ -289,7 +289,7 @@ else if (tabs2.equals("article-updated-email")) {
 			</c:when>
 			<c:when test='<%= tabs2.equals("display-settings") %>'>
 				<liferay-ui:tabs
-					names="article,template"
+					names="article,template,structure"
 					param="tabs3"
 					url="<%= portletURL %>"
 				/>
@@ -312,6 +312,11 @@ else if (tabs2.equals("article-updated-email")) {
 						<aui:input label="enable-comments" name="preferences--enableKBTemplateKBComments--" type="checkbox" value="<%= enableKBTemplateKBComments %>" />
 
 						<aui:input label="show-comments" name="preferences--showKBTemplateKBComments--" type="checkbox" value="<%= showKBTemplateKBComments %>" />
+					</c:when>
+					<c:when test='<%= tabs3.equals("structure") %>'>
+						<aui:input label="enable-comments" name="preferences--enableKBStructureKBComments--" type="checkbox" value="<%= enableKBStructureKBComments %>" />
+
+						<aui:input label="show-comments" name="preferences--showKBStructureKBComments--" type="checkbox" value="<%= showKBStructureKBComments %>" />
 					</c:when>
 				</c:choose>
 			</c:when>

@@ -12,24 +12,29 @@
  * details.
  */
 
-package com.liferay.knowledgebase.util;
+package com.liferay.knowledgebase.model;
 
 /**
- * @author Brian Wing Shun Chan
  * @author Peter Shin
  */
-public class WebKeys implements com.liferay.portal.kernel.util.WebKeys {
+public class KBStructureFieldConstants {
 
-	public static final String KNOWLEDGE_BASE_KB_ARTICLE =
-		"KNOWLEDGE_BASE_KB_ARTICLE";
+	public static final String DEFAULT_TYPE =
+		KBStructureFieldConstants.TYPE_TEXT;
 
-	public static final String KNOWLEDGE_BASE_KB_STRUCTURE =
-		"KNOWLEDGE_BASE_KB_STRUCTURE";
+	public static final String TYPE_SELECT = "select";
 
-	public static final String KNOWLEDGE_BASE_KB_TEMPLATE =
-		"KNOWLEDGE_BASE_KB_TEMPLATE";
+	public static final String TYPE_SELECT_MULTIPLE = "select-multiple";
 
-	public static final String KNOWLEDGE_BASE_STATUS =
-		"KNOWLEDGE_BASE_STATUS";
+	public static final String TYPE_TEXT = "text";
+
+	public static final String TYPE_TEXTAREA = "textarea";
+
+	public static final String TYPE_WYSIWYG_EDITOR = "wysiwyg-editor";
+
+	public static final String[] TYPES = {
+		TYPE_SELECT, TYPE_SELECT_MULTIPLE, TYPE_TEXT, TYPE_TEXTAREA,
+		TYPE_WYSIWYG_EDITOR
+	};
 
 }

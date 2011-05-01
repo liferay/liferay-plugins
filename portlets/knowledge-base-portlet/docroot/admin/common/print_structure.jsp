@@ -1,3 +1,4 @@
+<%--
 /**
  * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
  *
@@ -11,25 +12,29 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
+--%>
 
-package com.liferay.knowledgebase.util;
+<%@ include file="/admin/init.jsp" %>
 
-/**
- * @author Brian Wing Shun Chan
- * @author Peter Shin
- */
-public class WebKeys implements com.liferay.portal.kernel.util.WebKeys {
+<%
+KBStructure kbStructure = (KBStructure)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_STRUCTURE);
+%>
 
-	public static final String KNOWLEDGE_BASE_KB_ARTICLE =
-		"KNOWLEDGE_BASE_KB_ARTICLE";
+<div class="float-container kb-entity-header">
+	<div class="kb-title">
+		<%= kbStructure.getTitle(locale) %>
+	</div>
 
-	public static final String KNOWLEDGE_BASE_KB_STRUCTURE =
-		"KNOWLEDGE_BASE_KB_STRUCTURE";
+	<div class="kb-tools">
+		<liferay-ui:icon
+			image="print"
+			label="<%= true %>"
+			method="get"
+			url="javascript:print();"
+		/>
+	</div>
+</div>
 
-	public static final String KNOWLEDGE_BASE_KB_TEMPLATE =
-		"KNOWLEDGE_BASE_KB_TEMPLATE";
-
-	public static final String KNOWLEDGE_BASE_STATUS =
-		"KNOWLEDGE_BASE_STATUS";
-
-}
+<div class="kb-entity-body">
+	<pre><%= HtmlUtil.escape(KBStructureContentUtil.unescapeContent(kbStructure.getContent())) %></pre>
+</div>

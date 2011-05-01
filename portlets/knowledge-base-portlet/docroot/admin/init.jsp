@@ -19,11 +19,15 @@
 <%@ page import="com.liferay.knowledgebase.admin.search.KBArticleDisplayTerms" %>
 <%@ page import="com.liferay.knowledgebase.admin.search.KBArticleSearch" %>
 <%@ page import="com.liferay.knowledgebase.admin.search.KBArticleSearchTerms" %>
+<%@ page import="com.liferay.knowledgebase.admin.search.KBStructureDisplayTerms" %>
+<%@ page import="com.liferay.knowledgebase.admin.search.KBStructureSearch" %>
+<%@ page import="com.liferay.knowledgebase.admin.search.KBStructureSearchTerms" %>
 <%@ page import="com.liferay.knowledgebase.admin.search.KBTemplateDisplayTerms" %>
 <%@ page import="com.liferay.knowledgebase.admin.search.KBTemplateSearch" %>
 <%@ page import="com.liferay.knowledgebase.admin.search.KBTemplateSearchTerms" %>
 <%@ page import="com.liferay.knowledgebase.admin.util.AdminUtil" %>
 <%@ page import="com.liferay.knowledgebase.admin.util.KBArticleContentCacheUtil" %>
+<%@ page import="com.liferay.knowledgebase.admin.util.KBStructureContentUtil" %>
 
 <%
 PortletPreferences preferences = renderRequest.getPreferences();
@@ -47,6 +51,9 @@ boolean enableKBArticleViewCountIncrement = GetterUtil.getBoolean(preferences.ge
 
 boolean enableKBTemplateKBComments = GetterUtil.getBoolean(preferences.getValue("enableKBTemplateKBComments", null));
 boolean showKBTemplateKBComments = GetterUtil.getBoolean(preferences.getValue("showKBTemplateKBComments", null));
+
+boolean enableKBStructureKBComments = GetterUtil.getBoolean(preferences.getValue("enableKBStructureKBComments", null));
+boolean showKBStructureKBComments = GetterUtil.getBoolean(preferences.getValue("showKBStructureKBComments", null));
 
 int rssDelta = GetterUtil.getInteger(preferences.getValue("rssDelta", null));
 String rssDisplayStyle = preferences.getValue("rssDisplayStyle", StringPool.BLANK);

@@ -24,6 +24,8 @@ public class AdminActivityKeys {
 
 	public static final int ADD_KB_COMMENT = 5;
 
+	public static final int ADD_KB_STRUCTURE = 8;
+
 	public static final int ADD_KB_TEMPLATE = 2;
 
 	public static final int MOVE_KB_ARTICLE = 7;
@@ -31,6 +33,8 @@ public class AdminActivityKeys {
 	public static final int UPDATE_KB_ARTICLE = 3;
 
 	public static final int UPDATE_KB_COMMENT = 6;
+
+	public static final int UPDATE_KB_STRUCTURE = 9;
 
 	public static final int UPDATE_KB_TEMPLATE = 4;
 

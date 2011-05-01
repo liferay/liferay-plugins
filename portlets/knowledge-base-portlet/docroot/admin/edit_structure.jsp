@@ -1,3 +1,4 @@
+<%--
 /**
  * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
  *
@@ -11,25 +12,8 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
+--%>
 
-package com.liferay.knowledgebase.util;
+<%@ include file="/admin/init.jsp" %>
 
-/**
- * @author Brian Wing Shun Chan
- * @author Peter Shin
- */
-public class WebKeys implements com.liferay.portal.kernel.util.WebKeys {
-
-	public static final String KNOWLEDGE_BASE_KB_ARTICLE =
-		"KNOWLEDGE_BASE_KB_ARTICLE";
-
-	public static final String KNOWLEDGE_BASE_KB_STRUCTURE =
-		"KNOWLEDGE_BASE_KB_STRUCTURE";
-
-	public static final String KNOWLEDGE_BASE_KB_TEMPLATE =
-		"KNOWLEDGE_BASE_KB_TEMPLATE";
-
-	public static final String KNOWLEDGE_BASE_STATUS =
-		"KNOWLEDGE_BASE_STATUS";
-
-}
+<liferay-util:include page="/admin/common/edit_structure.jsp" servletContext="<%= application %>" />
