@@ -78,13 +78,13 @@ public class GroupAwareRoleTaskAssignmentSelector
 		if (role.getType() == RoleConstants.TYPE_REGULAR) {
 			return true;
 		}
-		else if ((group != null) && group.isCommunity() &&
-				 (role.getType() == RoleConstants.TYPE_SITE)) {
+		else if ((group != null) && group.isOrganization() &&
+				 (role.getType() == RoleConstants.TYPE_ORGANIZATION)) {
 
 			return true;
 		}
-		else if ((group != null) && group.isOrganization() &&
-				 (role.getType() == RoleConstants.TYPE_ORGANIZATION)) {
+		else if ((group != null) && group.isCommunity() &&
+				 (role.getType() == RoleConstants.TYPE_SITE)) {
 
 			return true;
 		}
