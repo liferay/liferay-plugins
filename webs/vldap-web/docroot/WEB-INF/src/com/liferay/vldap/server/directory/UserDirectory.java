@@ -15,11 +15,19 @@
 package com.liferay.vldap.server.directory;
 
 import com.liferay.portal.kernel.util.FastDateFormatFactoryUtil;
+import com.liferay.portal.model.Group;
+import com.liferay.portal.model.Organization;
+import com.liferay.portal.model.Role;
 import com.liferay.portal.model.User;
+import com.liferay.portal.model.UserGroup;
+import com.liferay.portal.service.GroupLocalServiceUtil;
+import com.liferay.portal.util.PortalUtil;
 
 import java.text.Format;
-
+import java.util.LinkedHashMap;
 import java.util.List;
+
+import org.apache.directory.shared.ldap.name.DN;
 
 /**
  * @author Brian Wing Shun Chan
@@ -45,11 +53,54 @@ public class UserDirectory extends BaseDirectory {
 		addAttribute(
 			"modifyTimestamp", _format.format(_user.getModifiedDate()));
 		addAttribute("sn", _user.getLastName());
+		addAttribute("objectclass", "groupOfNames");
 		addAttribute("objectclass", "inetOrgPerson");
 		addAttribute("objectclass", "liferayPerson");
 		addAttribute("objectclass", "top");
 		addAttribute("uid", String.valueOf(_user.getUserId()));
 		addAttribute("uuid", _user.getUuid());
+
+		DN grandParentDN = getParentDirectory().getParentDirectory().getName();
+
+		try {
+			long groupClassNameId = 
+				PortalUtil.getClassNameId(Group.class.getName());
+	
+			LinkedHashMap<String, Object> groupParams =
+				new LinkedHashMap<String, Object>();
+
+			groupParams.put("usersGroups", new Long(_user.getUserId()));
+
+			List<Group> groups = GroupLocalServiceUtil.search(
+				_user.getCompanyId(), new long[] {groupClassNameId}, null, null,
+				groupParams, -1, -1);
+
+			for (Group group : groups) {
+				addAttribute(
+					"member", "cn=" + group.getName() +
+					",ou=" + group.getName() +
+					",ou=Communities," + grandParentDN.getName());
+			}
+			for (Organization organization : _user.getOrganizations()) {
+				addAttribute(
+					"member", "cn=" + organization.getName() +
+					",ou=" + organization.getName() +
+					",ou=Organizations," + grandParentDN.getName());
+			}
+			for (Role role : _user.getRoles()) {
+				addAttribute(
+					"member", "cn=" + role.getName() + ",ou=" + role.getName() +
+					",ou=Roles," + grandParentDN.getName());
+			}
+			for (UserGroup userGroup : _user.getUserGroups()) {
+				addAttribute(
+					"member", "cn=" + userGroup.getName() +
+					",ou=" + userGroup.getName() +
+					",ou=User Groups," + grandParentDN.getName());
+			}
+		}
+		catch (Exception e) {
+		}
 	}
 
 	protected List<Directory> initDirectories() throws Exception {
