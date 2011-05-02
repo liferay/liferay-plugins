@@ -300,7 +300,8 @@ public class UpgradeCompany extends UpgradeProcess {
 			userId, 0, name, description, StringPool.BLANK, StringPool.BLANK,
 			StringPool.BLANK, StringPool.BLANK, 0, false, StringPool.BLANK,
 			StringPool.BLANK, 1, StringPool.BLANK, false, StringPool.BLANK, 0,
-			false, StringPool.BLANK, StringPool.BLANK, false, serviceContext);
+			false, StringPool.BLANK, StringPool.BLANK, false, false,
+			serviceContext);
 	}
 	protected MBMessage addMBMessage(
 			long userId, String userName, long groupId, long categoryId,
@@ -609,8 +610,8 @@ public class UpgradeCompany extends UpgradeProcess {
 			PortletPreferencesFactoryUtil.getLayoutPortletSetup(
 				layout, portletId);
 
-		portletSetup.setValue("group-id", String.valueOf(layout.getGroupId()));
-		portletSetup.setValue("article-id", articleId);
+		portletSetup.setValue("groupId", String.valueOf(layout.getGroupId()));
+		portletSetup.setValue("articleId", articleId);
 
 		portletSetup.store();
 	}
