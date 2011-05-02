@@ -25,6 +25,8 @@ import java.io.File;
 import java.net.InetSocketAddress;
 import java.net.SocketAddress;
 
+import java.util.Map;
+
 import org.apache.directory.shared.ldap.schema.SchemaManager;
 import org.apache.directory.shared.ldap.schema.loader.ldif.LdifSchemaLoader;
 import org.apache.directory.shared.ldap.schema.manager.impl.DefaultSchemaManager;
@@ -32,6 +34,7 @@ import org.apache.directory.shared.ldap.schema.registries.SchemaLoader;
 import org.apache.mina.core.filterchain.DefaultIoFilterChainBuilder;
 import org.apache.mina.core.filterchain.IoFilterAdapter;
 import org.apache.mina.core.service.IoAcceptor;
+import org.apache.mina.core.session.IoSession;
 import org.apache.mina.filter.codec.ProtocolCodecFactory;
 import org.apache.mina.filter.codec.ProtocolCodecFilter;
 import org.apache.mina.filter.logging.LoggingFilter;
@@ -59,6 +62,13 @@ public class VLDAPServer {
 
 	protected void destroyIoAcceptor() {
 		if (_ioAcceptor != null) {
+			Map<Long, IoSession> managedSessions =
+				_ioAcceptor.getManagedSessions();
+
+			for (IoSession ioSession : managedSessions.values()) {
+				ioSession.close(true);
+			}
+
 			_ioAcceptor.unbind();
 			_ioAcceptor.dispose();
 		}
