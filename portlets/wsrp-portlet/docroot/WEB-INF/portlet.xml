@@ -44,5 +44,17 @@
 			<short-title>WSRP Consumer</short-title>
 			<keywords>WSRP Consumer</keywords>
 		</portlet-info>
+		<security-role-ref>
+			<role-name>administrator</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>guest</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>power-user</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>user</role-name>
+		</security-role-ref>
 	</portlet>
 </portlet-app>

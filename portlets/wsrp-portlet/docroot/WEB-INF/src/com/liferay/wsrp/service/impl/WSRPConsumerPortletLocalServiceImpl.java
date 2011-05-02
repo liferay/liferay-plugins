@@ -500,9 +500,9 @@ public class WSRPConsumerPortletLocalServiceImpl
 		String portletId = PortalUtil.getJsSafePortletId(
 			PortalUUIDUtil.toJsSafeUuid(portletName));
 
-		portlet = PortletLocalServiceUtil.clonePortlet(
-			companyId, _CONSUMER_PORTLET_ID);
+		portlet = PortletLocalServiceUtil.clonePortlet(_CONSUMER_PORTLET_ID);
 
+		portlet.setCompanyId(companyId);
 		portlet.setPortletId(portletId);
 		portlet.setTimestamp(System.currentTimeMillis());
 
