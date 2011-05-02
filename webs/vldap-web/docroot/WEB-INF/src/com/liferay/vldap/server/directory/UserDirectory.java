@@ -14,6 +14,9 @@
 
 package com.liferay.vldap.server.directory;
 
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.FastDateFormatFactoryUtil;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Organization;
@@ -24,6 +27,7 @@ import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
 
 import java.text.Format;
+
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -60,52 +64,69 @@ public class UserDirectory extends BaseDirectory {
 		addAttribute("uid", String.valueOf(_user.getUserId()));
 		addAttribute("uuid", _user.getUuid());
 
-		DN grandParentDN = getParentDirectory().getParentDirectory().getName();
-
 		try {
-			long groupClassNameId = 
-				PortalUtil.getClassNameId(Group.class.getName());
-	
-			LinkedHashMap<String, Object> groupParams =
-				new LinkedHashMap<String, Object>();
-
-			groupParams.put("usersGroups", new Long(_user.getUserId()));
-
-			List<Group> groups = GroupLocalServiceUtil.search(
-				_user.getCompanyId(), new long[] {groupClassNameId}, null, null,
-				groupParams, -1, -1);
-
-			for (Group group : groups) {
-				addAttribute(
-					"member", "cn=" + group.getName() +
-					",ou=" + group.getName() +
-					",ou=Communities," + grandParentDN.getName());
-			}
-			for (Organization organization : _user.getOrganizations()) {
-				addAttribute(
-					"member", "cn=" + organization.getName() +
-					",ou=" + organization.getName() +
-					",ou=Organizations," + grandParentDN.getName());
-			}
-			for (Role role : _user.getRoles()) {
-				addAttribute(
-					"member", "cn=" + role.getName() + ",ou=" + role.getName() +
-					",ou=Roles," + grandParentDN.getName());
-			}
-			for (UserGroup userGroup : _user.getUserGroups()) {
-				addAttribute(
-					"member", "cn=" + userGroup.getName() +
-					",ou=" + userGroup.getName() +
-					",ou=User Groups," + grandParentDN.getName());
-			}
+			initMemberAttributes();
 		}
 		catch (Exception e) {
+			_log.error(e, e);
 		}
 	}
 
 	protected List<Directory> initDirectories() throws Exception {
 		return _directories;
 	}
+
+	protected void initMemberAttributes() throws Exception {
+		Directory parentDirectory = getParentDirectory();
+
+		CompanyDirectory companyDirectory =
+			(CompanyDirectory)parentDirectory.getParentDirectory();
+
+		DN companyDirectoryDN = companyDirectory.getName();
+
+		long groupClassNameId = PortalUtil.getClassNameId(
+			Group.class.getName());
+
+		LinkedHashMap<String, Object> groupParams =
+			new LinkedHashMap<String, Object>();
+
+		groupParams.put("usersGroups", new Long(_user.getUserId()));
+
+		List<Group> groups = GroupLocalServiceUtil.search(
+			_user.getCompanyId(), new long[] {groupClassNameId}, null, null,
+			groupParams, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+
+		for (Group group : groups) {
+			addAttribute(
+				"member",
+				"cn=" + group.getName() + ",ou=" + group.getName() +
+					",ou=Communities," + companyDirectoryDN.getName());
+		}
+
+		for (Organization organization : _user.getOrganizations()) {
+			addAttribute(
+				"member",
+				"cn=" + organization.getName() + ",ou=" +
+					organization.getName() + ",ou=Organizations," +
+						companyDirectoryDN.getName());
+		}
+
+		for (Role role : _user.getRoles()) {
+			addAttribute(
+				"member",
+				"cn=" + role.getName() + ",ou=" + role.getName() +
+					",ou=Roles," + companyDirectoryDN.getName());
+		}
+
+		for (UserGroup userGroup : _user.getUserGroups()) {
+			addAttribute(
+				"member",
+				"cn=" + userGroup.getName() + ",ou=" + userGroup.getName() +
+					",ou=User Groups," + companyDirectoryDN.getName());
+		}
+	}
+
+	private static Log _log = LogFactoryUtil.getLog(UserDirectory.class);
 
 	private Format _format =
 		FastDateFormatFactoryUtil.getSimpleDateFormat("yyyyMMddHHmmss.SZ");
