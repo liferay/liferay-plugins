@@ -205,13 +205,7 @@ public class LiferayPersonService implements PersonService {
 
 		Group group = GroupLocalServiceUtil.getGroup(groupIdLong);
 
-		if (group.isCommunity()) {
-			Name name = new NameImpl(group.getName() + " (Community)");
-
-			person = new PersonImpl(groupId, name.getFormatted(), name);
-
-		}
-		else if (group.isOrganization()) {
+		if (group.isOrganization()) {
 			Organization organization =
 				OrganizationLocalServiceUtil.getOrganization(
 					group.getClassPK());
@@ -225,6 +219,11 @@ public class LiferayPersonService implements PersonService {
 				Organization.class.getName(), organization.getOrganizationId());
 
 			person.setPhoneNumbers(phoneNumbers);
+		} else if (group.isRegularSite()) {
+			Name name = new NameImpl(group.getName() + " (Community)");
+
+			person = new PersonImpl(groupId, name.getFormatted(), name);
+
 		}
 
 		person.setGender(Gender.male);
