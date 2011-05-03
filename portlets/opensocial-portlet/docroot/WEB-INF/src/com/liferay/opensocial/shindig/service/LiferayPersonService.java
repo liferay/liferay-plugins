@@ -219,11 +219,11 @@ public class LiferayPersonService implements PersonService {
 				Organization.class.getName(), organization.getOrganizationId());
 
 			person.setPhoneNumbers(phoneNumbers);
-		} else if (group.isRegularSite()) {
-			Name name = new NameImpl(group.getName() + " (Community)");
+		}
+		else if (group.isSite()) {
+			Name name = new NameImpl(group.getName() + " (Site)");
 
 			person = new PersonImpl(groupId, name.getFormatted(), name);
-
 		}
 
 		person.setGender(Gender.male);
