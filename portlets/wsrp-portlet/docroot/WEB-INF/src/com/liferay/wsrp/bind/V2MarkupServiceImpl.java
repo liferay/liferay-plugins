@@ -690,9 +690,8 @@ public class V2MarkupServiceImpl
 
 		String[] locales = mimeRequest.getLocales();
 
-		if (locales.length != 0) {
-			String languageId = locales[0];
-			sb.append(getWidgetPath(languageId));
+		if (locales.length > 0) {
+			sb.append(getWidgetPath(locales[0]));
 		}
 		else {
 			sb.append(getWidgetPath());
@@ -792,7 +791,7 @@ public class V2MarkupServiceImpl
 		return getWidgetPath(null);
 	}
 
-	protected String getWidgetPath(String locale) {
+	protected String getWidgetPath(String languageId) {
 		HttpServletRequest request = ServletUtil.getRequest();
 
 		String portalURL = PortalUtil.getPortalURL(request);
@@ -801,9 +800,9 @@ public class V2MarkupServiceImpl
 
 		sb.append(portalURL);
 
-		if(locale != null) {
+		if (locale != null) {
 			sb.append(StringPool.SLASH);
-			sb.append(locale);
+			sb.append(languageId);
 		}
 
 		sb.append(PortalUtil.getPathContext());
