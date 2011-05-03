@@ -688,7 +688,16 @@ public class V2MarkupServiceImpl
 
 		StringBuilder sb = new StringBuilder();
 
-		sb.append(getWidgetPath());
+		String[] locales = mimeRequest.getLocales();
+
+		if (locales.length != 0) {
+			String languageId = locales[0];
+			sb.append(getWidgetPath(languageId));
+		}
+		else {
+			sb.append(getWidgetPath());
+		}
+
 		sb.append(StringPool.QUESTION);
 
 		String propertiesAuthenticatonTokenSharedSecret = Encryptor.digest(
@@ -780,6 +789,10 @@ public class V2MarkupServiceImpl
 	}
 
 	protected String getWidgetPath() {
+		return getWidgetPath(null);
+	}
+
+	protected String getWidgetPath(String locale) {
 		HttpServletRequest request = ServletUtil.getRequest();
 
 		String portalURL = PortalUtil.getPortalURL(request);
@@ -787,6 +800,12 @@ public class V2MarkupServiceImpl
 		StringBuilder sb = new StringBuilder();
 
 		sb.append(portalURL);
+
+		if(locale != null) {
+			sb.append(StringPool.SLASH);
+			sb.append(locale);
+		}
+
 		sb.append(PortalUtil.getPathContext());
 		sb.append(_PATH_WIDGET);
 
