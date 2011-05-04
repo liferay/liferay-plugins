@@ -131,15 +131,16 @@ public class KBArticleContentCacheUtil {
 			value = PortletPropsValues.ADMIN_KB_TEMPLATE_ERROR_VELOCITY;
 		}
 
+		Map<String, Object> variables = new HashMap<String, Object>();
+
 		String exception = e.getMessage();
 
 		if (Validator.isNull(exception)) {
 			exception = e.getClass().getName();
 		}
 
-		Map<String, Object> variables = new HashMap<String, Object>();
-
 		variables.put("exception", exception);
+
 		variables.put("kbTemplate", kbTemplate);
 
 		try {
