@@ -220,7 +220,7 @@ public class LiferayPersonService implements PersonService {
 
 			person.setPhoneNumbers(phoneNumbers);
 		}
-		else if (group.isSite()) {
+		else if (group.isRegularSite()) {
 			Name name = new NameImpl(group.getName() + " (Site)");
 
 			person = new PersonImpl(groupId, name.getFormatted(), name);

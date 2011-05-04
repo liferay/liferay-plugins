@@ -83,7 +83,7 @@ public class GroupAwareRoleTaskAssignmentSelector
 
 			return true;
 		}
-		else if ((group != null) && group.isSite() &&
+		else if ((group != null) && group.isRegularSite() &&
 				 (role.getType() == RoleConstants.TYPE_SITE)) {
 
 			return true;
