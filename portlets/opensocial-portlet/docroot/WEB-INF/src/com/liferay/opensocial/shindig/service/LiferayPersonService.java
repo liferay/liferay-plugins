@@ -205,7 +205,7 @@ public class LiferayPersonService implements PersonService {
 
 		Group group = GroupLocalServiceUtil.getGroup(groupIdLong);
 
-		if (group.isOrganizationSite()) {
+		if (group.isOrganization()) {
 			Organization organization =
 				OrganizationLocalServiceUtil.getOrganization(
 					group.getClassPK());

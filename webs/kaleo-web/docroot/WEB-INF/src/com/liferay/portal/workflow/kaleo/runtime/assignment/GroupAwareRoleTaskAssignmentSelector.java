@@ -78,7 +78,7 @@ public class GroupAwareRoleTaskAssignmentSelector
 		if (role.getType() == RoleConstants.TYPE_REGULAR) {
 			return true;
 		}
-		else if ((group != null) && group.isOrganizationSite() &&
+		else if ((group != null) && group.isOrganization() &&
 				 (role.getType() == RoleConstants.TYPE_ORGANIZATION)) {
 
 			return true;
