@@ -21,15 +21,15 @@ KBStructure kbStructure = (KBStructure)request.getAttribute(WebKeys.KNOWLEDGE_BA
 
 long kbStructureId = BeanParamUtil.getLong(kbStructure, request, "kbStructureId");
 
-String content = BeanParamUtil.getString(kbStructure, request, "content");
+String content = BeanParamUtil.getString(kbStructure, request, "content", ContentUtil.get(PortletPropsValues.ADMIN_KB_STRUCTURE_CONTENT));
 
 String localizedLanguageId = ParamUtil.getString(request, "localizedLanguageId", defaultLanguageId);
-long[] kbStructureFieldsIndexes = StringUtil.split(ParamUtil.getString(request, "kbStructureFieldsIndexes"), 0L);
+long[] kbStructureFieldsIndexes = StringUtil.split(ParamUtil.getString(request, "kbStructureFieldsIndexes", "0"), 0L);
 
 List<KBStructureField> kbStructureFields = new ArrayList<KBStructureField>();
 
 if (request.getParameter("kbStructureFieldsIndexes") != null) {
-	for (int i = 0; i < kbStructureFieldsIndexes.length; i++) {
+	for (long kbStructureFieldIndex : kbStructureFieldsIndexes) {
 		kbStructureFields.add(new KBStructureFieldImpl());
 	}
 }
@@ -40,11 +40,6 @@ else {
 	for (int i = 0; i < kbStructureFields.size(); i++) {
 		kbStructureFieldsIndexes[i] = i;
 	}
-}
-
-if (kbStructureFields.isEmpty()) {
-	kbStructureFields.add(new KBStructureFieldImpl());
-	kbStructureFieldsIndexes = new long[] {0};
 }
 %>
 

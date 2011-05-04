@@ -134,8 +134,8 @@ public class KBTemplateLocalServiceImpl extends KBTemplateLocalServiceBaseImpl {
 	public void deleteGroupKBTemplates(long groupId)
 		throws PortalException, SystemException {
 
-		List<KBTemplate> kbTemplates =
-			kbTemplatePersistence.findByGroupId(groupId);
+		List<KBTemplate> kbTemplates = kbTemplatePersistence.findByGroupId(
+			groupId);
 
 		for (KBTemplate kbTemplate : kbTemplates) {
 			deleteKBTemplate(kbTemplate);

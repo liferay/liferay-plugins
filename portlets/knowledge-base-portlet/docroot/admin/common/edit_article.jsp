@@ -39,6 +39,7 @@ String dirName = ParamUtil.getString(request, "dirName");
 	<portlet:param name="jspPage" value='<%= jspPath + "edit_article.jsp" %>' />
 	<portlet:param name="redirect" value="<%= redirect %>" />
 	<portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" />
+	<portlet:param name="status" value="<%= String.valueOf(WorkflowConstants.STATUS_ANY) %>" />
 </liferay-portlet:actionURL>
 
 <aui:form action="<%= updateKBArticleURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "updateKBArticle();" %>'>

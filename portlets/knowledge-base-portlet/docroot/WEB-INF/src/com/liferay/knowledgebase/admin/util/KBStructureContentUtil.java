@@ -53,13 +53,15 @@ public class KBStructureContentUtil {
 
 		Document document = SAXReaderUtil.createDocument();
 
-		Element rootElement = document.addElement("form-builder");
+		Element rootElement = document.addElement("kb-structure");
 
 		rootElement.addAttribute("default-language-id", localizedLanguageId);
 
-		Element kbStructureElement = rootElement.addElement("kb-structure");
+		Element kbStructureContentElement = rootElement.addElement(
+			"kb-structure-content");
 
-		kbStructureElement.addAttribute("language-id", localizedLanguageId);
+		kbStructureContentElement.addAttribute(
+			"language-id", localizedLanguageId);
 
 		for (KBStructureField kbStructureField : kbStructureFields) {
 			String kbStructureFieldId = String.valueOf(
@@ -71,8 +73,8 @@ public class KBStructureContentUtil {
 			String kbStructureFieldType = StringEscapeUtils.escapeXml(
 				kbStructureField.getType());
 
-			Element kbStructureFieldElement = kbStructureElement.addElement(
-				"kb-structure-field");
+			Element kbStructureFieldElement =
+				kbStructureContentElement.addElement("kb-structure-field");
 
 			kbStructureFieldElement.addAttribute(
 				"kb-structure-field-id", kbStructureFieldId);
@@ -126,15 +128,15 @@ public class KBStructureContentUtil {
 
 		Element rootElement = document.getRootElement();
 
-		for (Element kbStructureElement : rootElement.elements()) {
-			String languageId = kbStructureElement.attributeValue(
+		for (Element kbStructureContentElement : rootElement.elements()) {
+			String languageId = kbStructureContentElement.attributeValue(
 				"language-id");
 
 			if (!languageId.equals(localizedLanguageId)) {
 				continue;
 			}
 
-			kbStructureElement.detach();
+			kbStructureContentElement.detach();
 
 			try {
 				return document.formattedString();
@@ -162,17 +164,21 @@ public class KBStructureContentUtil {
 
 		Element rootElement = document.getRootElement();
 
-		Element kbStructureElement = (Element)rootElement.selectSingleNode(
-			"kb-structure[@language-id='" + localizedLanguageId + "']");
+		Element kbStructureContentElement =
+			(Element)rootElement.selectSingleNode(
+				"kb-structure-content[@language-id='" +
+					localizedLanguageId + "']");
 
-		if (kbStructureElement == null) {
+		if (kbStructureContentElement == null) {
 			String value = rootElement.attributeValue("default-language-id");
 
-			kbStructureElement = (Element)rootElement.selectSingleNode(
-				"kb-structure[@language-id='" + value + "']");
+			kbStructureContentElement = (Element)rootElement.selectSingleNode(
+				"kb-structure-content[@language-id='" + value + "']");
 		}
 
-		for (Element kbStructureFieldElement : kbStructureElement.elements()) {
+		for (Element kbStructureFieldElement :
+				kbStructureContentElement.elements()) {
+
 			String kbStructureFieldId = kbStructureFieldElement.attributeValue(
 				"kb-structure-field-id");
 			String kbStructureFieldName = StringEscapeUtils.unescapeXml(
@@ -312,9 +318,9 @@ public class KBStructureContentUtil {
 
 		Element rootElement = document.getRootElement();
 
-		for (Element kbStructureElement : rootElement.elements()) {
+		for (Element kbStructureContentElement : rootElement.elements()) {
 			for (Element kbStructureFieldElement :
-					kbStructureElement.elements()) {
+					kbStructureContentElement.elements()) {
 
 				String kbStructureFieldName = StringEscapeUtils.unescapeXml(
 					kbStructureFieldElement.attributeValue("name"));
@@ -367,16 +373,20 @@ public class KBStructureContentUtil {
 
 		Element rootElement = document.getRootElement();
 
-		Element oldKBStructureElement = (Element)rootElement.selectSingleNode(
-			"kb-structure[@language-id='" + localizedLanguageId + "']");
+		Element oldKBStructureContentElement =
+			(Element)rootElement.selectSingleNode(
+				"kb-structure-content[@language-id='" +
+					localizedLanguageId + "']");
 
-		if (oldKBStructureElement != null) {
-			oldKBStructureElement.detach();
+		if (oldKBStructureContentElement != null) {
+			oldKBStructureContentElement.detach();
 		}
 
-		Element newKBStructureElement = rootElement.addElement("kb-structure");
+		Element newKBStructureContentElement = rootElement.addElement(
+			"kb-structure-content");
 
-		newKBStructureElement.addAttribute("language-id", localizedLanguageId);
+		newKBStructureContentElement.addAttribute(
+			"language-id", localizedLanguageId);
 
 		for (KBStructureField kbStructureField : kbStructureFields) {
 			String kbStructureFieldId =
@@ -393,8 +403,8 @@ public class KBStructureContentUtil {
 					CounterLocalServiceUtil.increment());
 			}
 
-			Element kbStructureFieldElement = newKBStructureElement.addElement(
-				"kb-structure-field");
+			Element kbStructureFieldElement =
+				newKBStructureContentElement.addElement("kb-structure-field");
 
 			kbStructureFieldElement.addAttribute(
 				"kb-structure-field-id", kbStructureFieldId);
@@ -442,24 +452,20 @@ public class KBStructureContentUtil {
 		String defaultLanguageId = rootElement.attributeValue(
 			"default-language-id");
 
-		Element defaultKBStructureElement = elements.remove(defaultLanguageId);
+		Element defaultKBStructureContentElement = elements.remove(
+			defaultLanguageId);
 
-		rootElement.add(defaultKBStructureElement);
+		rootElement.add(defaultKBStructureContentElement);
 
 		if (!localizedLanguageId.equals(defaultLanguageId)) {
 			for (Map.Entry<String, Element> entry : elements.entrySet()) {
 				rootElement.add(entry.getValue());
 			}
-
-			try {
-				return document.formattedString();
-			}
-			catch (IOException ioe) {
-				return document.asXML();
-			}
 		}
-
-		updateLocalizations(rootElement, defaultKBStructureElement, elements);
+		else {
+			updateLocalizations(
+				rootElement, defaultKBStructureContentElement, elements);
+		}
 
 		try {
 			return document.formattedString();
@@ -470,34 +476,35 @@ public class KBStructureContentUtil {
 	}
 
 	protected static Element updateLocalizations(
-		Element rootElement, Element defaultKBStructureElement,
+		Element rootElement, Element defaultKBStructureContentElement,
 		Map<String, Element> elements) {
 
 		for (Map.Entry<String, Element> entry : elements.entrySet()) {
-			Element oldKBStructureElement = entry.getValue();
+			Element oldKBStructureContentElement = entry.getValue();
 
-			Element newKBStructureElement = oldKBStructureElement.createCopy();
+			Element newKBStructureContentElement =
+				oldKBStructureContentElement.createCopy();
 
 			for (Element newKBStructureFieldElement :
-					newKBStructureElement.elements()) {
+					newKBStructureContentElement.elements()) {
 
 				newKBStructureFieldElement.detach();
 			}
 
 			for (Element defaultKBStructureFieldElement :
-					defaultKBStructureElement.elements()) {
+					defaultKBStructureContentElement.elements()) {
 
 				String defaultKBStructureFieldId =
 					defaultKBStructureFieldElement.attributeValue(
 						"kb-structure-field-id");
 
 				Element oldKBStructureFieldElement =
-					(Element)oldKBStructureElement.selectSingleNode(
+					(Element)oldKBStructureContentElement.selectSingleNode(
 						"kb-structure-field[@kb-structure-field-id='" +
 							defaultKBStructureFieldId + "']");
 
 				if (oldKBStructureFieldElement == null) {
-					newKBStructureElement.add(
+					newKBStructureContentElement.add(
 						defaultKBStructureFieldElement.createCopy());
 
 					continue;
@@ -534,10 +541,10 @@ public class KBStructureContentUtil {
 					}
 				}
 
-				newKBStructureElement.add(newKBStructureFieldElement);
+				newKBStructureContentElement.add(newKBStructureFieldElement);
 			}
 
-			rootElement.add(newKBStructureElement);
+			rootElement.add(newKBStructureContentElement);
 		}
 
 		return rootElement;

@@ -104,9 +104,7 @@ String localizedLanguageId = ParamUtil.getString(request, "localizedLanguageId",
 
 		<aui:input languageId="<%= localizedLanguageId %>" name="title" />
 
-		<div class="kb-fields" id="<portlet:namespace />fields">
-			<liferay-util:include page="/admin/structure_content_editor.jsp" servletContext="<%= application %>" />
-		</div>
+		<liferay-util:include page="/admin/structure_content_editor.jsp" servletContext="<%= application %>" />
 
 		<c:if test="<%= kbStructure == null %>">
 			<aui:field-wrapper label="permissions">

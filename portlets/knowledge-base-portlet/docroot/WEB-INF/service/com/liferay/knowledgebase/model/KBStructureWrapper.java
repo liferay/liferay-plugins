@@ -378,7 +378,8 @@ public class KBStructureWrapper implements KBStructure {
 		return new KBStructureWrapper((KBStructure)_kbStructure.clone());
 	}
 
-	public int compareTo(KBStructure kbStructure) {
+	public int compareTo(
+		com.liferay.knowledgebase.model.KBStructure kbStructure) {
 		return _kbStructure.compareTo(kbStructure);
 	}
 
@@ -386,7 +387,7 @@ public class KBStructureWrapper implements KBStructure {
 		return _kbStructure.hashCode();
 	}
 
-	public KBStructure toEscapedModel() {
+	public com.liferay.knowledgebase.model.KBStructure toEscapedModel() {
 		return new KBStructureWrapper(_kbStructure.toEscapedModel());
 	}
 

@@ -42,6 +42,9 @@ public class PortletPropsKeys {
 	public static final String ADMIN_EMAIL_KB_ARTICLE_UPDATED_SUBJECT =
 		"admin.email.kb.article.updated.subject";
 
+	public static final String ADMIN_KB_STRUCTURE_CONTENT =
+		"admin.kb.structure.content";
+
 	public static final String ADMIN_KB_TEMPLATE_CONTENT_FREEMARKER =
 		"admin.kb.template.content.freemarker";
 

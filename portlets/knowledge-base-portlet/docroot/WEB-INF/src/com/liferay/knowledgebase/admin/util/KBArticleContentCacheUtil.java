@@ -25,6 +25,7 @@ import com.liferay.portal.kernel.cache.PortalCache;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.util.ContentUtil;
 
@@ -130,9 +131,15 @@ public class KBArticleContentCacheUtil {
 			value = PortletPropsValues.ADMIN_KB_TEMPLATE_ERROR_VELOCITY;
 		}
 
+		String exception = e.getMessage();
+
+		if (Validator.isNull(exception)) {
+			exception = e.getClass().getName();
+		}
+
 		Map<String, Object> variables = new HashMap<String, Object>();
 
-		variables.put("exception", e);
+		variables.put("exception", exception);
 		variables.put("kbTemplate", kbTemplate);
 
 		try {

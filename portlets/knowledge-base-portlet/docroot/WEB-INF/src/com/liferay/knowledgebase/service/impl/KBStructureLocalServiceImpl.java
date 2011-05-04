@@ -42,6 +42,7 @@ import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringPool;
@@ -404,6 +405,14 @@ public class KBStructureLocalServiceImpl
 
 			if (kbStructureFieldNames.contains(kbStructureField.getName())) {
 				throw new DuplicateKBStructureFieldNameException();
+			}
+
+			for (char c : kbStructureField.getName().toCharArray()) {
+				if (!Validator.isChar(c) && !Validator.isDigit(c) &&
+					(c != CharPool.DASH) && (c != CharPool.UNDERLINE)) {
+
+					throw new KBStructureFieldNameException();
+				}
 			}
 
 			kbStructureFieldNames.add(kbStructureField.getName());

@@ -22,6 +22,8 @@ public class KBStructureFieldConstants {
 	public static final String DEFAULT_TYPE =
 		KBStructureFieldConstants.TYPE_TEXT;
 
+	public static final String TYPE_CHECKBOX = "checkbox";
+
 	public static final String TYPE_SELECT = "select";
 
 	public static final String TYPE_SELECT_MULTIPLE = "select-multiple";
@@ -33,8 +35,8 @@ public class KBStructureFieldConstants {
 	public static final String TYPE_WYSIWYG_EDITOR = "wysiwyg-editor";
 
 	public static final String[] TYPES = {
-		TYPE_SELECT, TYPE_SELECT_MULTIPLE, TYPE_TEXT, TYPE_TEXTAREA,
-		TYPE_WYSIWYG_EDITOR
+		TYPE_CHECKBOX, TYPE_SELECT, TYPE_SELECT_MULTIPLE, TYPE_TEXT,
+		TYPE_TEXTAREA, TYPE_WYSIWYG_EDITOR
 	};
 
 }

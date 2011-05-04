@@ -22,11 +22,11 @@ import com.liferay.util.portlet.PortletProps;
  */
 public class PortletPropsValues {
 
-	public static final String ADMIN_EMAIL_FROM_ADDRESS =
-		PortletProps.get(PortletPropsKeys.ADMIN_EMAIL_FROM_ADDRESS);
+	public static final String ADMIN_EMAIL_FROM_ADDRESS = PortletProps.get(
+		PortletPropsKeys.ADMIN_EMAIL_FROM_ADDRESS);
 
-	public static final String ADMIN_EMAIL_FROM_NAME =
-		PortletProps.get(PortletPropsKeys.ADMIN_EMAIL_FROM_NAME);
+	public static final String ADMIN_EMAIL_FROM_NAME = PortletProps.get(
+		PortletPropsKeys.ADMIN_EMAIL_FROM_NAME);
 
 	public static final String ADMIN_EMAIL_KB_ARTICLE_ADDED_BODY =
 		PortletProps.get(PortletPropsKeys.ADMIN_EMAIL_KB_ARTICLE_ADDED_BODY);
@@ -48,6 +48,9 @@ public class PortletPropsValues {
 	public static final String ADMIN_EMAIL_KB_ARTICLE_UPDATED_SUBJECT =
 		PortletProps.get(
 			PortletPropsKeys.ADMIN_EMAIL_KB_ARTICLE_UPDATED_SUBJECT);
+
+	public static final String ADMIN_KB_STRUCTURE_CONTENT = PortletProps.get(
+		PortletPropsKeys.ADMIN_KB_STRUCTURE_CONTENT);
 
 	public static final String ADMIN_KB_TEMPLATE_CONTENT_FREEMARKER =
 		PortletProps.get(PortletPropsKeys.ADMIN_KB_TEMPLATE_CONTENT_FREEMARKER);
