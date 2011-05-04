@@ -800,7 +800,7 @@ public class V2MarkupServiceImpl
 
 		sb.append(portalURL);
 
-		if (locale != null) {
+		if (Validator.isNotNull(languageId)) {
 			sb.append(StringPool.SLASH);
 			sb.append(languageId);
 		}
