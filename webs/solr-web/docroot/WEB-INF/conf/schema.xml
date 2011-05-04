@@ -70,7 +70,7 @@
 		<field name="version" type="string" indexed="true" stored="true" />
 		<dynamicField name="*" type="string" indexed="true" multiValued="true" stored="true" />
 		<dynamicField name="*TagNames" type="text" indexed="true" multiValued="true" stored="true" />
-		<dynamicField name="expando/*" type="text" indexed="true" stored="true" />
+		<dynamicField name="expando/*" type="text" indexed="true" multiValued="true" stored="true" />
 		<dynamicField name="web_content/*" type="text" indexed="true" stored="true" />
 	</fields>
 	<uniqueKey>uid</uniqueKey>
