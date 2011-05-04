@@ -3,7 +3,7 @@
 
 <look-and-feel>
 	<compatibility>
-		<version>6.1+</version>
+		<version>6.1.0+</version>
 	</compatibility>
 	<theme id="sevencogs" name="7Cogs">
 		<layout-templates>
