@@ -58,7 +58,7 @@ portletURL.setParameter("jspPage", "/sites/edit_site.jsp");
 		<div class="section site-settings yui3-aui-helper-hidden">
 			<liferay-ui:header title="settings" />
 
-			<aui:column columnWidth="<%= 40 %>" first="<%= true %>">
+			<aui:column columnWidth="<%= 50 %>" first="<%= true %>">
 
 				<%
 				List<LayoutSetPrototype> layoutSetPrototypes = LayoutSetPrototypeServiceUtil.search(company.getCompanyId(), Boolean.TRUE, null);
@@ -93,7 +93,7 @@ portletURL.setParameter("jspPage", "/sites/edit_site.jsp");
 				</aui:fieldset>
 			</aui:column>
 
-			<aui:column columnWidth="<%= 60 %>">
+			<aui:column columnWidth="<%= 50 %>">
 				<div class="template-details">
 					<c:if test="<%= defaultLayoutSetPrototype != null %>">
 						<h3 class="name"><%= defaultLayoutSetPrototype.getName(locale) %></h3>
