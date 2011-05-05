@@ -16,7 +16,7 @@
 
 <%@ include file="/init.jsp" %>
 
-<form name="<portlet:namespace />fm" target="_blank" onSubmit="submitForm(document.<portlet:namespace />fm, 'http://www.weather.com/search/search', false); return false;">
+<form name="<portlet:namespace />fm" target="_blank" onSubmit="submitForm(document.<portlet:namespace />fm, 'http://www.weather.com/search/enhancedlocalsearch', false); return false;">
 
 <table class="lfr-table">
 
@@ -29,7 +29,7 @@ for (String zip : zips) {
 
 		<tr>
 			<td>
-				<a href="http://www.weather.com/search/search?where=<%= weather.getZip() %>" style="font-size: xx-small; font-weight: bold;" target="_blank"><%= weather.getZip() %></a>
+				<a href="http://www.weather.com/search/enhancedlocalsearch?where=<%= weather.getZip() %>" style="font-size: xx-small; font-weight: bold;" target="_blank"><%= weather.getZip() %></a>
 			</td>
 			<td align="right">
 				<span style="font-size: xx-small;">
