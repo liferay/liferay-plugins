@@ -133,18 +133,16 @@ public class EditorPortlet extends MVCPortlet {
 
 		serviceContext.setScopeGroupId(folder.getGroupId());
 
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
 		FileEntry fileEntry = DLAppServiceUtil.addFileEntry(
 			folder.getRepositoryId(), folderId, fileEntryTitle,
 			StringPool.BLANK, StringPool.BLANK, bytes, serviceContext);
 
-		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
-
-		long fileEntryId = fileEntry.getFileEntryId();
-
-		jsonObject.put("fileEntryId", String.valueOf(fileEntryId));
+		jsonObject.put("fileEntryId", fileEntry.getFileEntryId());
 
 		String fileEntryURL = ShindigUtil.getFileEntryURL(
-			StringPool.BLANK, fileEntryId);
+			StringPool.BLANK, fileEntry.getFileEntryId());
 
 		jsonObject.put("fileEntryURL", fileEntryURL);
 
@@ -174,7 +172,7 @@ public class EditorPortlet extends MVCPortlet {
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-		jsonObject.put("folderId", String.valueOf(folder.getFolderId()));
+		jsonObject.put("folderId", folder.getFolderId());
 
 		writeJSON(resourceRequest, resourceResponse, jsonObject.toString());
 	}
@@ -249,7 +247,7 @@ public class EditorPortlet extends MVCPortlet {
 		for (Folder folder : folders) {
 			JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-			jsonObject.put("entryId", String.valueOf(folder.getFolderId()));
+			jsonObject.put("entryId", folder.getFolderId());
 			jsonObject.put("label", folder.getName());
 			jsonObject.put("leaf", false);
 			jsonObject.put("type", "editor");
@@ -270,14 +268,13 @@ public class EditorPortlet extends MVCPortlet {
 			for (FileEntry fileEntry : fileEntries) {
 				JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-				long fileEntryId = fileEntry.getFileEntryId();
-
-				jsonObject.put("entryId", String.valueOf(fileEntryId));
+				jsonObject.put("entryId", fileEntry.getFileEntryId());
 
 				String fileEntryURL = ShindigUtil.getFileEntryURL(
-						StringPool.BLANK, fileEntryId);
+					StringPool.BLANK, fileEntry.getFileEntryId());
 
 				jsonObject.put("fileEntryURL", fileEntryURL);
+
 				jsonObject.put("label", fileEntry.getTitle());
 				jsonObject.put("leaf", true);
 				jsonObject.put("type", "editor");
