@@ -76,9 +76,7 @@ boolean ipGeocoderConfigured = ipGeocoderInstalled && (IPGeocoderUtil.getIPInfo(
 			</c:otherwise>
 		</c:choose>
 
-		<liferay-util:html-bottom>
-			<script src="http://www.google.com/jsapi?key=<%= PortletProps.get("map.google.maps.api.key") %>" type="text/javascript"></script>
-		</liferay-util:html-bottom>
+		<script src="http://www.google.com/jsapi?key=<%= PortletProps.get("map.google.maps.api.key") %>" type="text/javascript"></script>
 
 		<aui:script>
 			google.load("maps", "2.x", {"language" : "ja_JP"});
