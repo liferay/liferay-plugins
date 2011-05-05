@@ -248,9 +248,15 @@ public class MicroblogsEntryLocalServiceImpl
 
 		// Asset
 
+		User user = userPersistence.findByPrimaryKey(
+			microblogsEntry.getUserId());
+
+		Group group = user.getGroup();
+
 		AssetEntryLocalServiceUtil.updateEntry(
-			microblogsEntry.getUserId(), 0, MicroblogsEntry.class.getName(),
-			microblogsEntryId, serviceContext.getAssetCategoryIds(),
+			microblogsEntry.getUserId(), group.getGroupId(),
+			MicroblogsEntry.class.getName(), microblogsEntryId,
+			serviceContext.getAssetCategoryIds(),
 			serviceContext.getAssetTagNames());
 
 		return microblogsEntry;
