@@ -1,9 +1,9 @@
 #set ($portlet_display = $portletDisplay)
 
-#set ($portlet_id = $htmlUtil.escape($portlet_display.getId()))
+#set ($portlet_id = $htmlUtil.escapeAttribute($portlet_display.getId()))
 #set ($portlet_title = $portlet_display.getTitle())
 #set ($portlet_content = $portlet_display.getContent())
-#set ($portlet_back_url = $htmlUtil.escape($portlet_display.getURLBack()))
+#set ($portlet_back_url = $htmlUtil.escapeAttribute($portlet_display.getURLBack()))
 #set ($portlet_max_url = $portlet_display.getURLMax())
 
 #set ($portlet_setup = $portlet_display.getPortletSetup())
