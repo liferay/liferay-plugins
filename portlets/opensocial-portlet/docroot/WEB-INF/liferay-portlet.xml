@@ -30,19 +30,19 @@
 	</portlet>
 	<portlet>
 		<portlet-name>4</portlet-name>
-		<header-portlet-css>/editor/CodeMirror_2.0_47_g574e6b6/lib/codemirror.css</header-portlet-css>
-		<header-portlet-css>/editor/CodeMirror_2.0_47_g574e6b6/mode/css/css.css</header-portlet-css>
-		<header-portlet-css>/editor/CodeMirror_2.0_47_g574e6b6/mode/javascript/javascript.css</header-portlet-css>
-		<header-portlet-css>/editor/CodeMirror_2.0_47_g574e6b6/mode/xml/xml.css</header-portlet-css>
+		<header-portlet-css>/editor/CodeMirror_2.0_52_g68d004c/lib/codemirror.css</header-portlet-css>
+		<header-portlet-css>/editor/CodeMirror_2.0_52_g68d004c/mode/css/css.css</header-portlet-css>
+		<header-portlet-css>/editor/CodeMirror_2.0_52_g68d004c/mode/javascript/javascript.css</header-portlet-css>
+		<header-portlet-css>/editor/CodeMirror_2.0_52_g68d004c/mode/xml/xml.css</header-portlet-css>
 		<header-portlet-css>/editor/css/main.css</header-portlet-css>
+		<footer-portlet-javascript>/gadgets/js/shindig-container:pubsub-2.js?c=1&amp;debug=1&amp;nocache=1</footer-portlet-javascript>
 		<footer-portlet-javascript>/gadget/js/main.js</footer-portlet-javascript>
 		<footer-portlet-javascript>/gadget/js/OpenAjax_Hub_2.0.5_r1293/src/containers/inline/inline.js</footer-portlet-javascript>
-		<footer-portlet-javascript>/gadgets/js/shindig-container:pubsub-2.js?c=1&amp;debug=1&amp;nocache=1</footer-portlet-javascript>
-		<footer-portlet-javascript>/editor/CodeMirror_2.0_47_g574e6b6/lib/codemirror.js</footer-portlet-javascript>
-		<footer-portlet-javascript>/editor/CodeMirror_2.0_47_g574e6b6/mode/css/css.js</footer-portlet-javascript>
-		<footer-portlet-javascript>/editor/CodeMirror_2.0_47_g574e6b6/mode/gadget/gadget.js</footer-portlet-javascript>
-		<footer-portlet-javascript>/editor/CodeMirror_2.0_47_g574e6b6/mode/gadgetxml/gadgetxml.js</footer-portlet-javascript>
-		<footer-portlet-javascript>/editor/CodeMirror_2.0_47_g574e6b6/mode/javascript/javascript.js</footer-portlet-javascript>
+		<footer-portlet-javascript>/editor/CodeMirror_2.0_52_g68d004c/lib/codemirror.js</footer-portlet-javascript>
+		<footer-portlet-javascript>/editor/CodeMirror_2.0_52_g68d004c/mode/css/css.js</footer-portlet-javascript>
+		<footer-portlet-javascript>/editor/CodeMirror_2.0_52_g68d004c/mode/gadget/gadget.js</footer-portlet-javascript>
+		<footer-portlet-javascript>/editor/CodeMirror_2.0_52_g68d004c/mode/gadgetxml/gadgetxml.js</footer-portlet-javascript>
+		<footer-portlet-javascript>/editor/CodeMirror_2.0_52_g68d004c/mode/javascript/javascript.js</footer-portlet-javascript>
 		<footer-portlet-javascript>/editor/js/gadget-editor-tabs.js</footer-portlet-javascript>
 		<footer-portlet-javascript>/editor/js/gadget-editor-tree.js</footer-portlet-javascript>
 		<footer-portlet-javascript>/editor/js/main.js</footer-portlet-javascript>

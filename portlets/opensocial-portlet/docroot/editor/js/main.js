@@ -1386,7 +1386,7 @@ AUI().add(
 								function(value) {
 									var node = new A.TreeNodeEditor(
 										{
-											entryId: value.entryId,
+											entryId: String(value.entryId),
 											label: value.label,
 											leaf: value.leaf,
 											type: value.type
@@ -1747,6 +1747,8 @@ AUI().add(
 
 								if (tab) {
 									tab.set('label', label);
+
+									tab.updateEditorMode();
 								}
 							}
 						};
@@ -1791,7 +1793,7 @@ AUI().add(
 							if (node.isLeaf()) {
 								node.setAttrs(
 									{
-										entryId: data.fileEntryId,
+										entryId: String(data.fileEntryId),
 										fileEntryLoaded: true,
 										fileEntryURL: data.fileEntryURL,
 										isNewEntry: false,
@@ -1800,9 +1802,10 @@ AUI().add(
 								);
 
 								var tab = instance._tabViewEditor.get('activeTab');
+
 								tab.setAttrs(
 									{
-										entryId: data.fileEntryId,
+										entryId: String(data.fileEntryId),
 										isDirty: false,
 										isNew: false,
 										label: label
@@ -1810,11 +1813,13 @@ AUI().add(
 								);
 
 								instance._addEntryToDataSet(tab);
+
+								tab.updateEditorMode();
 							}
 							else {
 								node.setAttrs(
 									{
-										entryId: data.folderId,
+										entryId: String(data.folderId),
 										isNewEntry: false,
 										label: label
 									}

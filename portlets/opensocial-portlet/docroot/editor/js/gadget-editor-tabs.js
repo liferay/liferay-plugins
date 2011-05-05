@@ -338,8 +338,6 @@ AUI().add(
 						var editor = instance.get('editor');
 
 						editor.setOption('mode', mode);
-
-						editor.setValue(editor.getValue());
 					},
 
 					unmarkSearch: function() {

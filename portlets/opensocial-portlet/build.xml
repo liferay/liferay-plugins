@@ -236,12 +236,12 @@
 
 		<if>
 			<not>
-				<available file="tmp/editor/CodeMirror_2.0_47_g574e6b6" />
+				<available file="tmp/editor/CodeMirror_2.0_52_g68d004c" />
 			</not>
 			<then>
 				<unzip
 					dest="tmp/editor"
-					src="CodeMirror_2.0_47_g574e6b6.zip"
+					src="CodeMirror_2.0_52_g68d004c.zip"
 				/>
 
 				<antcall target="patch-codemirror" />
@@ -295,37 +295,37 @@
 
 	<target name="patch-codemirror">
 		<copy
-			file="tmp/editor/CodeMirror_2.0_47_g574e6b6/mode/htmlmixed/htmlmixed.js"
-			tofile="tmp/editor/CodeMirror_2.0_47_g574e6b6/mode/gadget/gadget.js"
+			file="tmp/editor/CodeMirror_2.0_52_g68d004c/mode/htmlmixed/htmlmixed.js"
+			tofile="tmp/editor/CodeMirror_2.0_52_g68d004c/mode/gadget/gadget.js"
 		/>
 
-		<replace file="tmp/editor/CodeMirror_2.0_47_g574e6b6/mode/gadget/gadget.js">
+		<replace file="tmp/editor/CodeMirror_2.0_52_g68d004c/mode/gadget/gadget.js">
 			<replacetoken><![CDATA[CodeMirror.defineMode("htmlmixed", function(config, parserConfig) {]]></replacetoken>
 			<replacevalue><![CDATA[CodeMirror.defineMode("gadget", function(config, parserConfig) {]]></replacevalue>
 		</replace>
 
-		<replace file="tmp/editor/CodeMirror_2.0_47_g574e6b6/mode/gadget/gadget.js">
+		<replace file="tmp/editor/CodeMirror_2.0_52_g68d004c/mode/gadget/gadget.js">
 			<replacetoken><![CDATA[var htmlMode = CodeMirror.getMode(config, {name: "xml", htmlMode: true});]]></replacetoken>
 			<replacevalue><![CDATA[var htmlMode = CodeMirror.getMode(config, {name: "gadgetxml", htmlMode: true});]]></replacevalue>
 		</replace>
 
-		<replace file="tmp/editor/CodeMirror_2.0_47_g574e6b6/mode/gadget/gadget.js">
+		<replace file="tmp/editor/CodeMirror_2.0_52_g68d004c/mode/gadget/gadget.js">
 			<replacetoken><![CDATA[CodeMirror.defineMIME("text/html", "htmlmixed");]]></replacetoken>
 			<replacevalue><![CDATA[CodeMirror.defineMIME("gadget", "gadget");]]></replacevalue>
 		</replace>
 
 		<copy
-			file="tmp/editor/CodeMirror_2.0_47_g574e6b6/mode/xml/xml.js"
-			tofile="tmp/editor/CodeMirror_2.0_47_g574e6b6/mode/gadgetxml/gadgetxml.js"
+			file="tmp/editor/CodeMirror_2.0_52_g68d004c/mode/xml/xml.js"
+			tofile="tmp/editor/CodeMirror_2.0_52_g68d004c/mode/gadgetxml/gadgetxml.js"
 		/>
 
-		<replace file="tmp/editor/CodeMirror_2.0_47_g574e6b6/mode/gadgetxml/gadgetxml.js">
+		<replace file="tmp/editor/CodeMirror_2.0_52_g68d004c/mode/gadgetxml/gadgetxml.js">
 			<replacetoken><![CDATA[CodeMirror.defineMode("xml", function(config, parserConfig) {]]></replacetoken>
 			<replacevalue><![CDATA[CodeMirror.defineMode("gadgetxml", function(config, parserConfig) {]]></replacevalue>
 		</replace>
 
 
-		<replace file="tmp/editor/CodeMirror_2.0_47_g574e6b6/mode/gadgetxml/gadgetxml.js">
+		<replace file="tmp/editor/CodeMirror_2.0_52_g68d004c/mode/gadgetxml/gadgetxml.js">
 			<replacetoken><![CDATA[if (stream.eat("[")) {]]></replacetoken>
 			<replacevalue><![CDATA[if (false && stream.eat("[")) {]]></replacevalue>
 		</replace>
