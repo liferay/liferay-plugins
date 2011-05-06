@@ -180,8 +180,8 @@ public class WSRPProducerLocalServiceImpl
 		}
 
 		Group group = groupLocalService.addGroup(
-			user.getUserId(), null, 0, 0, name, null, type, null,
-			true, null);
+			user.getUserId(), null, 0, 0, name, null, type, null, true, true,
+			null);
 
 		layoutLocalService.addLayout(
 			user.getUserId(), group.getGroupId(), false,

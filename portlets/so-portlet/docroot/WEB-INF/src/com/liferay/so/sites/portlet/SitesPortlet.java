@@ -202,7 +202,8 @@ public class SitesPortlet extends MVCPortlet {
 			Group.class.getName(), actionRequest);
 
 		Group group = GroupServiceUtil.addGroup(
-			name, description, type, StringPool.BLANK, true, serviceContext);
+			name, description, type, StringPool.BLANK, true, true,
+			serviceContext);
 
 		ExpandoBridge expandoBridge = group.getExpandoBridge();
 
