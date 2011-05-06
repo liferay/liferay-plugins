@@ -23,7 +23,7 @@
 </portlet:renderURL>
 
 <div>
-	<aui:button onClick="${editAssetURL}" value="add-asset" />
+	<aui:button href="${editAssetURL}" value="add-asset" />
 </div>
 
 <c:if test="${fn:length(assets) > 0}">

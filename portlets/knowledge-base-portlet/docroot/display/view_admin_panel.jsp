@@ -75,7 +75,7 @@ String orderByType2 = ParamUtil.getString(request, "orderByType2", "desc");
 				<portlet:param name="redirect" value="<%= redirect %>" />
 			</liferay-portlet:renderURL>
 
-			<aui:button onClick="<%= addKBArticleURL %>" value="add-article" />
+			<aui:button href="<%= addKBArticleURL %>" value="add-article" />
 		</c:if>
 
 		<c:if test="<%= DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_KB_TEMPLATE) %>">
@@ -84,7 +84,7 @@ String orderByType2 = ParamUtil.getString(request, "orderByType2", "desc");
 				<portlet:param name="redirect" value="<%= redirect %>" />
 			</liferay-portlet:renderURL>
 
-			<aui:button onClick="<%= addKBTemplateURL %>" value="add-template" />
+			<aui:button href="<%= addKBTemplateURL %>" value="add-template" />
 		</c:if>
 
 		<c:if test="<%= DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS) && GroupPermissionUtil.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS) %>">
@@ -95,7 +95,7 @@ String orderByType2 = ParamUtil.getString(request, "orderByType2", "desc");
 				var="permissionsURL"
 			/>
 
-			<aui:button onClick="<%= permissionsURL %>" value="permissions" />
+			<aui:button href="<%= permissionsURL %>" value="permissions" />
 		</c:if>
 	</aui:button-row>
 </c:if>

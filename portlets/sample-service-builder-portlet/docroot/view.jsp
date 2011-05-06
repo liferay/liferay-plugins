@@ -24,7 +24,7 @@
 </portlet:renderURL>
 
 <aui:button-row>
-	<aui:button onClick="<%= editFooURL %>" value="add-foo" />
+	<aui:button href="<%= editFooURL %>" value="add-foo" />
 </aui:button-row>
 
 <liferay-ui:search-container>

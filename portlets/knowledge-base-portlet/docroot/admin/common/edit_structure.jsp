@@ -121,7 +121,7 @@ String localizedLanguageId = ParamUtil.getString(request, "localizedLanguageId",
 				<aui:button onClick='<%= renderResponse.getNamespace() + "deleteKBStructureLocalization();" %>' value="remove-translation" />
 			</c:if>
 
-			<aui:button onClick="<%= redirect %>" type="cancel" />
+			<aui:button href="<%= redirect %>" type="cancel" />
 		</aui:button-row>
 	</aui:fieldset>
 </aui:form>

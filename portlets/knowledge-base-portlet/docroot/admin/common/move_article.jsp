@@ -67,7 +67,7 @@ double priority = BeanParamUtil.getDouble(kbArticle, request, "priority");
 		<aui:button-row cssClass="kb-submit-buttons">
 			<aui:button type="submit" />
 
-			<aui:button onClick="<%= redirect %>" type="cancel" />
+			<aui:button href="<%= redirect %>" type="cancel" />
 		</aui:button-row>
 	</aui:fieldset>
 </aui:form>

@@ -48,7 +48,7 @@ portletURL.setParameter("tabs1", tabs1);
 	/>
 
 	<div class="control-container">
-		<aui:button onClick="<%= permissionsURL %>" value="permissions" />
+		<aui:button href="<%= permissionsURL %>" value="permissions" />
 	</div>
 </c:if>
 

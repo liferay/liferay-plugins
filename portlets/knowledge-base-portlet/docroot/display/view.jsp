@@ -110,7 +110,7 @@
 				<portlet:param name="redirect" value="<%= redirect %>" />
 			</liferay-portlet:renderURL>
 
-			<aui:button onClick="<%= addKBArticleURL %>" value="add-article" />
+			<aui:button href="<%= addKBArticleURL %>" value="add-article" />
 		</c:if>
 
 		<c:if test="<%= DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS) && GroupPermissionUtil.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS) %>">
@@ -121,7 +121,7 @@
 				var="permissionsURL"
 			/>
 
-			<aui:button onClick="<%= permissionsURL %>" value="permissions" />
+			<aui:button href="<%= permissionsURL %>" value="permissions" />
 		</c:if>
 
 		<div class="kb-display-tools">

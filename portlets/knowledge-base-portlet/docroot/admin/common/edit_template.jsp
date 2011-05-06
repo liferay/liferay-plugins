@@ -107,7 +107,7 @@ if ((request.getParameter("content") == null) && (kbTemplate == null)) {
 		<aui:button-row cssClass="kb-submit-buttons">
 			<aui:button type="submit" value="publish" />
 
-			<aui:button onClick="<%= redirect %>" type="cancel" />
+			<aui:button href="<%= redirect %>" type="cancel" />
 		</aui:button-row>
 	</aui:fieldset>
 </aui:form>

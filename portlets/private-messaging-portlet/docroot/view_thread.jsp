@@ -238,7 +238,7 @@ UserThreadLocalServiceUtil.markUserThreadAsRead(user.getUserId(), mbThreadId);
 </aui:layout>
 
 <aui:layout cssClass="controls">
-	<aui:button onClick="<%= backURL %>" value="back-to-messages" />
+	<aui:button href="<%= backURL %>" value="back-to-messages" />
 </aui:layout>
 
 <aui:script>
