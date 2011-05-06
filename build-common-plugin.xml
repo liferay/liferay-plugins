@@ -274,20 +274,20 @@
 		</if>
 
 		<if>
-			<available file="tmp/WEB-INF/lib" />
+			<available file="docroot/WEB-INF/tld" />
 			<then>
 				<delete>
-					<fileset dir="tmp/WEB-INF/lib" includes="${required.portal.jars}" />
-					<fileset dir="tmp/WEB-INF/lib" includes="${plugin.jars}" />
+					<fileset dir="docroot/WEB-INF/tld" includes="${plugin.tlds}" />
 				</delete>
 			</then>
 		</if>
 
 		<if>
-			<available file="docroot/WEB-INF/tld" />
+			<available file="tmp/WEB-INF/lib" />
 			<then>
 				<delete>
-					<fileset dir="docroot/WEB-INF/tld" includes="${plugin.tlds}" />
+					<fileset dir="tmp/WEB-INF/lib" includes="${required.portal.jars}" />
+					<fileset dir="tmp/WEB-INF/lib" includes="${plugin.jars}" />
 				</delete>
 			</then>
 		</if>
