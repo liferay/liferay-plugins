@@ -61,15 +61,16 @@
 		<field name="description" type="text" indexed="true" stored="true" />
 		<field name="firstName" type="string" indexed="true" stored="true" />
 		<field name="lastName" type="string" indexed="true" stored="true" />
-		<field name="name" type="string" indexed="true" stored="true" />
+		<field name="name" type="text" indexed="true" stored="true" />
 		<field name="properties" type="string" indexed="true" stored="true" />
-		<field name="title" type="string" indexed="true" stored="true" />
+		<field name="title" type="text" indexed="true" stored="true" />
 		<field name="uid" type="string" indexed="true" stored="true" />
-		<field name="url" type="text" indexed="true" stored="true" />
-		<field name="userName" type="text" indexed="true" stored="true" />
+		<field name="url" type="string" indexed="true" stored="true" />
+		<field name="userName" type="string" indexed="true" stored="true" />
 		<field name="version" type="string" indexed="true" stored="true" />
 		<dynamicField name="*" type="string" indexed="true" multiValued="true" stored="true" />
-		<dynamicField name="*TagNames" type="text" indexed="true" multiValued="true" stored="true" />
+		<dynamicField name="*CategoryNames" type="string" indexed="true" multiValued="true" stored="true" />
+		<dynamicField name="*CategoryIds" type="string" indexed="true" multiValued="true" stored="true" />
 		<dynamicField name="expando/*" type="text" indexed="true" multiValued="true" stored="true" />
 		<dynamicField name="web_content/*" type="text" indexed="true" stored="true" />
 	</fields>
