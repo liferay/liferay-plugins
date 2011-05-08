@@ -654,14 +654,17 @@ public class MongoExpandoValueLocalServiceImpl
 		expandoValue.setClassPK(expandoValueDBObject.getLong("classPK"));
 
 		int type = expandoColumn.getType();
+		Object value = expandoValueDBObject.get(expandoColumn.getName());
+
+		if (value == null) {
+			return expandoValue;
+		}
 
 		if (type == ExpandoColumnConstants.BOOLEAN) {
-			expandoValue.setBoolean(
-				(Boolean)expandoValueDBObject.get(expandoColumn.getName()));
+			expandoValue.setBoolean((Boolean)value);
 		}
 		else if (type == ExpandoColumnConstants.BOOLEAN_ARRAY) {
-			List<Boolean> list = (List<Boolean>)expandoValueDBObject.get(
-				expandoColumn.getName());
+			List<Boolean> list = (List<Boolean>)value;
 
 			expandoValue.setBooleanArray(
 				ArrayUtil.toArray(list.toArray(new Boolean[list.size()])));
@@ -671,8 +674,7 @@ public class MongoExpandoValueLocalServiceImpl
 				(Date)expandoValueDBObject.get(expandoColumn.getName()));
 		}
 		else if (type == ExpandoColumnConstants.DATE_ARRAY) {
-			List<Date> list = (List<Date>)expandoValueDBObject.get(
-				expandoColumn.getName());
+			List<Date> list = (List<Date>)value;
 
 			expandoValue.setDateArray(list.toArray(new Date[list.size()]));
 		}
@@ -681,8 +683,7 @@ public class MongoExpandoValueLocalServiceImpl
 				(Double)expandoValueDBObject.get(expandoColumn.getName()));
 		}
 		else if (type == ExpandoColumnConstants.DOUBLE_ARRAY) {
-			List<Double> list = (List<Double>)expandoValueDBObject.get(
-				expandoColumn.getName());
+			List<Double> list = (List<Double>)value;
 
 			expandoValue.setDoubleArray(
 				ArrayUtil.toArray(list.toArray(new Double[list.size()])));
@@ -692,19 +693,16 @@ public class MongoExpandoValueLocalServiceImpl
 				(Float)expandoValueDBObject.get(expandoColumn.getName()));
 		}
 		else if (type == ExpandoColumnConstants.FLOAT_ARRAY) {
-			List<Float> list = (List<Float>)expandoValueDBObject.get(
-				expandoColumn.getName());
+			List<Float> list = (List<Float>)value;
 
 			expandoValue.setFloatArray(
 				ArrayUtil.toArray(list.toArray(new Float[list.size()])));
 		}
 		else if (type == ExpandoColumnConstants.INTEGER) {
-			expandoValue.setInteger(
-				(Integer)expandoValueDBObject.get(expandoColumn.getName()));
+			expandoValue.setInteger((Integer)value);
 		}
 		else if (type == ExpandoColumnConstants.INTEGER_ARRAY) {
-			List<Integer> list = (List<Integer>)expandoValueDBObject.get(
-				expandoColumn.getName());
+			List<Integer> list = (List<Integer>)value;
 
 			expandoValue.setIntegerArray(
 				ArrayUtil.toArray(list.toArray(new Integer[list.size()])));
@@ -714,8 +712,7 @@ public class MongoExpandoValueLocalServiceImpl
 				(Long)expandoValueDBObject.get(expandoColumn.getName()));
 		}
 		else if (type == ExpandoColumnConstants.LONG_ARRAY) {
-			List<Long> list = (List<Long>)expandoValueDBObject.get(
-				expandoColumn.getName());
+			List<Long> list = (List<Long>)value;
 
 			expandoValue.setLongArray(
 				ArrayUtil.toArray(list.toArray(new Long[list.size()])));
@@ -725,21 +722,18 @@ public class MongoExpandoValueLocalServiceImpl
 				expandoColumn.getName()));
 		}
 		else if (type == ExpandoColumnConstants.SHORT_ARRAY) {
-			List<Short> list = (List<Short>)expandoValueDBObject.get(
-				expandoColumn.getName());
+			List<Short> list = (List<Short>)value;
 
 			expandoValue.setShortArray(
 				ArrayUtil.toArray(list.toArray(new Short[list.size()])));
 		}
 		else if (type == ExpandoColumnConstants.STRING_ARRAY) {
-			List<String> list = (List<String>)expandoValueDBObject.get(
-				expandoColumn.getName());
+			List<String> list = (List<String>)value;
 
 			expandoValue.setStringArray(list.toArray(new String[list.size()]));
 		}
 		else {
-			expandoValue.setString(
-				(String)expandoValueDBObject.get(expandoColumn.getName()));
+			expandoValue.setString((String)value);
 		}
 
 		return expandoValue;
