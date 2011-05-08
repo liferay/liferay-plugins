@@ -21,11 +21,11 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.portlet.expando.model.ExpandoColumn;
+import com.liferay.portlet.expando.model.ExpandoColumnConstants;
 import com.liferay.portlet.expando.model.ExpandoTable;
 import com.liferay.portlet.expando.service.ExpandoColumnLocalService;
 import com.liferay.portlet.expando.service.ExpandoColumnLocalServiceWrapper;
 import com.liferay.portlet.expando.service.ExpandoTableLocalServiceUtil;
-import com.liferay.portlet.expando.util.ExpandoBridgeIndexer;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
@@ -77,10 +77,11 @@ public class MongoExpandoColumnLocalServiceImpl
 		UnicodeProperties typeSettingsProperties =
 			expandoColumn.getTypeSettingsProperties();
 
-		boolean indexable = GetterUtil.getBoolean(
-			typeSettingsProperties.getProperty(ExpandoBridgeIndexer.INDEXABLE));
+		int indexType = GetterUtil.getInteger(
+			typeSettingsProperties.getProperty(
+				ExpandoColumnConstants.INDEX_TYPE));
 
-		if (indexable) {
+		if (indexType != ExpandoColumnConstants.INDEX_TYPE_NONE) {
 			DBCollection dbCollection = MongoDBUtil.getCollection(expandoTable);
 
 			dbCollection.createIndex(
