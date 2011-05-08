@@ -653,12 +653,13 @@ public class MongoExpandoValueLocalServiceImpl
 			expandoValueDBObject.getLong("classNameId"));
 		expandoValue.setClassPK(expandoValueDBObject.getLong("classPK"));
 
-		int type = expandoColumn.getType();
 		Object value = expandoValueDBObject.get(expandoColumn.getName());
 
 		if (value == null) {
 			return expandoValue;
 		}
+
+		int type = expandoColumn.getType();
 
 		if (type == ExpandoColumnConstants.BOOLEAN) {
 			expandoValue.setBoolean((Boolean)value);
