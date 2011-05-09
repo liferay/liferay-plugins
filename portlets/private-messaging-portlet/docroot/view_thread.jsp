@@ -31,13 +31,13 @@ UserThreadLocalServiceUtil.markUserThreadAsRead(user.getUserId(), mbThreadId);
 		<portlet:param name="mbThreadIds" value="<%= String.valueOf(mbThreadId) %>" />
 	</liferay-portlet:actionURL>
 
-	<aui:button name="markAsUnread" onClick="<%= markAsUnreadURL %>" value="mark-as-unread" />
+	<aui:button href="<%= markAsUnreadURL %>" name="markAsUnread" value="mark-as-unread" />
 
 	<liferay-portlet:actionURL name="deleteMessages" var="deleteMessageURL">
 		<portlet:param name="mbThreadIds" value="<%= String.valueOf(mbThreadId) %>" />
 	</liferay-portlet:actionURL>
 
-	<aui:button name="deleteMessage" onClick="<%= deleteMessageURL %>" value="delete" />
+	<aui:button href="<%= deleteMessageURL %>" name="deleteMessage" value="delete" />
 </aui:layout>
 
 <aui:layout cssClass="thread-info">
