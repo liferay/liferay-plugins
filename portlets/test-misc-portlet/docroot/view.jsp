@@ -53,7 +53,7 @@
 <p>
 	TestSchedulerMessageListener.isReceived=<%= _assertTrue(TestSchedulerMessageListener.isReceived()) %><br />
 	TestSchedulerUtil.isScheduledBeforeSpringInitialized=<%= _assertTrue(TestSchedulerUtil.isScheduledBeforeSpringInitialized()) %><br />
-	TestSchedulerUtil.isReceivedBeforeSpringInitialzed=<%= _assertTrue(TestSchedulerUtil.isReceivedBeforeSpringInitialzed()) %>
+	TestSchedulerUtil.isReceivedBeforeSpringInitialzed=<%= _assertFalse(TestSchedulerUtil.isReceivedBeforeSpringInitialzed()) %>
 </p>
 
 <h3>Servlet Request</h3>
@@ -73,6 +73,15 @@
 <%!
 private static String _assertTrue(boolean value) {
 	if (value) {
+		return "PASSED";
+	}
+	else {
+		return "FAILED";
+	}
+}
+
+private static String _assertFalse(boolean value) {
+	if (!value) {
 		return "PASSED";
 	}
 	else {
