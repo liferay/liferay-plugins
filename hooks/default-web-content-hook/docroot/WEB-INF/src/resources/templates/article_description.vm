@@ -1,5 +1,5 @@
 #set ($namespace = $request.get('portlet-namespace'))
-#set ($article-url = $request.get('render-url') + "&" + $namespace + "articleId=" + $reserved-article-id.getData() + "&" + $namespace + "templateId=article-template")
+#set ($article-url = $request.get('render-url') + "&" + $namespace + "articleId=" + $reserved-article-id.getData() + "&" + $namespace + "templateId=regular-article")
 
 #if (!$show-maximized-in-descriptive-mode.getData())
 	#set ($article-url = $article-url.replace("p_p_state=maximized", "p_p_state=normal"))
