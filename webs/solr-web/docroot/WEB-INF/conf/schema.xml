@@ -61,8 +61,10 @@
 		<field name="description" type="text" indexed="true" stored="true" />
 		<field name="firstName" type="string" indexed="true" stored="true" />
 		<field name="lastName" type="string" indexed="true" stored="true" />
+		<field name="leftOrganizationId" type="slong" indexed="true" stored="true" />
 		<field name="name" type="text" indexed="true" stored="true" />
 		<field name="properties" type="string" indexed="true" stored="true" />
+		<field name="rightOrganizationId" type="slong" indexed="true" stored="true" />
 		<field name="title" type="text" indexed="true" stored="true" />
 		<field name="uid" type="string" indexed="true" stored="true" />
 		<field name="url" type="string" indexed="true" stored="true" />
