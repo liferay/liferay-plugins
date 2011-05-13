@@ -2,7 +2,7 @@
 <!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.0.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_0_0.dtd">
 
 <service-builder>
-	<entity name="HRExpense" local-service="false" remote-service="false">
+	<entity name="HRExpense" local-service="true" remote-service="false">
 
 		<!-- PK fields -->
 
@@ -35,7 +35,7 @@
 		<column name="statusByUserName" type="String" />
 		<column name="statusDate" type="Date" />
 	</entity>
-	<entity name="HRExpenseAccount" local-service="false" remote-service="false">
+	<entity name="HRExpenseAccount" local-service="true" remote-service="false">
 
 		<!-- PK fields -->
 
@@ -58,7 +58,7 @@
 		<column name="name" type="String" />
 		<column name="description" type="String" />
 	</entity>
-	<entity name="HRExpenseCurrency" local-service="false" remote-service="false">
+	<entity name="HRExpenseCurrency" local-service="true" remote-service="false">
 
 		<!-- PK fields -->
 
@@ -83,16 +83,22 @@
 		<column name="conversionDate" type="Date" />
 		<column name="conversionValue" type="double" />
 
+		<!-- Order -->
+
+		<order by="desc">
+			<order-column name="conversionDate" />
+		</order>
+
 		<!-- Finder methods -->
 
 		<finder name="G_F_T_C" return-type="HRExpenseCurrency" unique="true">
 			<finder-column name="groupId" />
 			<finder-column name="fromCurrencyCode" />
 			<finder-column name="toCurrencyCode" />
-			<finder-column name="conversionDate" />
+			<finder-column name="conversionDate" comparator="&lt;" />
 		</finder>
 	</entity>
-	<entity name="HRExpenseType" local-service="false" remote-service="false">
+	<entity name="HRExpenseType" local-service="true" remote-service="false">
 
 		<!-- PK fields -->
 

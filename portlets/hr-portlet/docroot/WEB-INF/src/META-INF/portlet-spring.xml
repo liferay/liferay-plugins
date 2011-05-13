@@ -11,9 +11,25 @@
 	<bean id="com.liferay.hr.service.persistence.HRBranchPersistence" class="com.liferay.hr.service.persistence.HRBranchPersistenceImpl" parent="basePersistence" />
 	<bean id="com.liferay.hr.service.persistence.HRClientPersistence" class="com.liferay.hr.service.persistence.HRClientPersistenceImpl" parent="basePersistence" />
 	<bean id="com.liferay.hr.service.persistence.HREmploymentTypePersistence" class="com.liferay.hr.service.persistence.HREmploymentTypePersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.hr.service.HRExpenseLocalService" class="com.liferay.hr.service.impl.HRExpenseLocalServiceImpl" />
+	<bean id="com.liferay.hr.service.HRExpenseLocalServiceUtil" class="com.liferay.hr.service.HRExpenseLocalServiceUtil">
+		<property name="service" ref="com.liferay.hr.service.HRExpenseLocalService" />
+	</bean>
 	<bean id="com.liferay.hr.service.persistence.HRExpensePersistence" class="com.liferay.hr.service.persistence.HRExpensePersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.hr.service.HRExpenseAccountLocalService" class="com.liferay.hr.service.impl.HRExpenseAccountLocalServiceImpl" />
+	<bean id="com.liferay.hr.service.HRExpenseAccountLocalServiceUtil" class="com.liferay.hr.service.HRExpenseAccountLocalServiceUtil">
+		<property name="service" ref="com.liferay.hr.service.HRExpenseAccountLocalService" />
+	</bean>
 	<bean id="com.liferay.hr.service.persistence.HRExpenseAccountPersistence" class="com.liferay.hr.service.persistence.HRExpenseAccountPersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.hr.service.HRExpenseCurrencyLocalService" class="com.liferay.hr.service.impl.HRExpenseCurrencyLocalServiceImpl" />
+	<bean id="com.liferay.hr.service.HRExpenseCurrencyLocalServiceUtil" class="com.liferay.hr.service.HRExpenseCurrencyLocalServiceUtil">
+		<property name="service" ref="com.liferay.hr.service.HRExpenseCurrencyLocalService" />
+	</bean>
 	<bean id="com.liferay.hr.service.persistence.HRExpenseCurrencyPersistence" class="com.liferay.hr.service.persistence.HRExpenseCurrencyPersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.hr.service.HRExpenseTypeLocalService" class="com.liferay.hr.service.impl.HRExpenseTypeLocalServiceImpl" />
+	<bean id="com.liferay.hr.service.HRExpenseTypeLocalServiceUtil" class="com.liferay.hr.service.HRExpenseTypeLocalServiceUtil">
+		<property name="service" ref="com.liferay.hr.service.HRExpenseTypeLocalService" />
+	</bean>
 	<bean id="com.liferay.hr.service.persistence.HRExpenseTypePersistence" class="com.liferay.hr.service.persistence.HRExpenseTypePersistenceImpl" parent="basePersistence" />
 	<bean id="com.liferay.hr.service.persistence.HRHolidayPersistence" class="com.liferay.hr.service.persistence.HRHolidayPersistenceImpl" parent="basePersistence" />
 	<bean id="com.liferay.hr.service.persistence.HRJobTitlePersistence" class="com.liferay.hr.service.persistence.HRJobTitlePersistenceImpl" parent="basePersistence" />

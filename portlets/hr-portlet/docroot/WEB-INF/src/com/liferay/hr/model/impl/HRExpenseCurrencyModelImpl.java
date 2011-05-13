@@ -19,6 +19,7 @@ import com.liferay.hr.model.HRExpenseCurrencyModel;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
@@ -73,6 +74,8 @@ public class HRExpenseCurrencyModelImpl extends BaseModelImpl<HRExpenseCurrency>
 		};
 	public static final String TABLE_SQL_CREATE = "create table HRExpenseCurrency (hrExpenseCurrencyId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,fromCurrencyCode VARCHAR(75) null,toCurrencyCode VARCHAR(75) null,conversionDate DATE null,conversionValue DOUBLE)";
 	public static final String TABLE_SQL_DROP = "drop table HRExpenseCurrency";
+	public static final String ORDER_BY_JPQL = " ORDER BY hrExpenseCurrency.conversionDate DESC";
+	public static final String ORDER_BY_SQL = " ORDER BY HRExpenseCurrency.conversionDate DESC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
@@ -299,17 +302,18 @@ public class HRExpenseCurrencyModelImpl extends BaseModelImpl<HRExpenseCurrency>
 	}
 
 	public int compareTo(HRExpenseCurrency hrExpenseCurrency) {
-		long pk = hrExpenseCurrency.getPrimaryKey();
+		int value = 0;
 
-		if (getPrimaryKey() < pk) {
-			return -1;
+		value = DateUtil.compareTo(getConversionDate(),
+				hrExpenseCurrency.getConversionDate());
+
+		value = value * -1;
+
+		if (value != 0) {
+			return value;
 		}
-		else if (getPrimaryKey() > pk) {
-			return 1;
-		}
-		else {
-			return 0;
-		}
+
+		return 0;
 	}
 
 	public boolean equals(Object obj) {

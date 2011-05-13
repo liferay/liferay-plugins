@@ -16,6 +16,7 @@ package com.liferay.hr.model;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
@@ -180,17 +181,18 @@ public class HRExpenseCurrencyClp extends BaseModelImpl<HRExpenseCurrency>
 	}
 
 	public int compareTo(HRExpenseCurrency hrExpenseCurrency) {
-		long pk = hrExpenseCurrency.getPrimaryKey();
+		int value = 0;
 
-		if (getPrimaryKey() < pk) {
-			return -1;
+		value = DateUtil.compareTo(getConversionDate(),
+				hrExpenseCurrency.getConversionDate());
+
+		value = value * -1;
+
+		if (value != 0) {
+			return value;
 		}
-		else if (getPrimaryKey() > pk) {
-			return 1;
-		}
-		else {
-			return 0;
-		}
+
+		return 0;
 	}
 
 	public boolean equals(Object obj) {

@@ -201,7 +201,7 @@ public class HRExpenseCurrencyUtil {
 	}
 
 	/**
-	* Finds the h r expense currency where groupId = &#63; and fromCurrencyCode = &#63; and toCurrencyCode = &#63; and conversionDate = &#63; or throws a {@link com.liferay.hr.NoSuchExpenseCurrencyException} if it could not be found.
+	* Finds the h r expense currency where groupId = &#63; and fromCurrencyCode = &#63; and toCurrencyCode = &#63; and conversionDate &lt; &#63; or throws a {@link com.liferay.hr.NoSuchExpenseCurrencyException} if it could not be found.
 	*
 	* @param groupId the group ID to search with
 	* @param fromCurrencyCode the from currency code to search with
@@ -222,7 +222,7 @@ public class HRExpenseCurrencyUtil {
 	}
 
 	/**
-	* Finds the h r expense currency where groupId = &#63; and fromCurrencyCode = &#63; and toCurrencyCode = &#63; and conversionDate = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	* Finds the h r expense currency where groupId = &#63; and fromCurrencyCode = &#63; and toCurrencyCode = &#63; and conversionDate &lt; &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	*
 	* @param groupId the group ID to search with
 	* @param fromCurrencyCode the from currency code to search with
@@ -241,7 +241,7 @@ public class HRExpenseCurrencyUtil {
 	}
 
 	/**
-	* Finds the h r expense currency where groupId = &#63; and fromCurrencyCode = &#63; and toCurrencyCode = &#63; and conversionDate = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	* Finds the h r expense currency where groupId = &#63; and fromCurrencyCode = &#63; and toCurrencyCode = &#63; and conversionDate &lt; &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	*
 	* @param groupId the group ID to search with
 	* @param fromCurrencyCode the from currency code to search with
@@ -310,7 +310,7 @@ public class HRExpenseCurrencyUtil {
 	}
 
 	/**
-	* Removes the h r expense currency where groupId = &#63; and fromCurrencyCode = &#63; and toCurrencyCode = &#63; and conversionDate = &#63; from the database.
+	* Removes the h r expense currency where groupId = &#63; and fromCurrencyCode = &#63; and toCurrencyCode = &#63; and conversionDate &lt; &#63; from the database.
 	*
 	* @param groupId the group ID to search with
 	* @param fromCurrencyCode the from currency code to search with
@@ -339,7 +339,7 @@ public class HRExpenseCurrencyUtil {
 	}
 
 	/**
-	* Counts all the h r expense currencies where groupId = &#63; and fromCurrencyCode = &#63; and toCurrencyCode = &#63; and conversionDate = &#63;.
+	* Counts all the h r expense currencies where groupId = &#63; and fromCurrencyCode = &#63; and toCurrencyCode = &#63; and conversionDate &lt; &#63;.
 	*
 	* @param groupId the group ID to search with
 	* @param fromCurrencyCode the from currency code to search with

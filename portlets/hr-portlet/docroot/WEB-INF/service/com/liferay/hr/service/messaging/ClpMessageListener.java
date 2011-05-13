@@ -15,6 +15,10 @@
 package com.liferay.hr.service.messaging;
 
 import com.liferay.hr.service.ClpSerializer;
+import com.liferay.hr.service.HRExpenseAccountLocalServiceUtil;
+import com.liferay.hr.service.HRExpenseCurrencyLocalServiceUtil;
+import com.liferay.hr.service.HRExpenseLocalServiceUtil;
+import com.liferay.hr.service.HRExpenseTypeLocalServiceUtil;
 
 import com.liferay.portal.kernel.messaging.BaseMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
@@ -33,6 +37,13 @@ public class ClpMessageListener extends BaseMessageListener {
 
 		if (command.equals("undeploy") &&
 				servletContextName.equals(getServletContextName())) {
+			HRExpenseLocalServiceUtil.clearService();
+
+			HRExpenseAccountLocalServiceUtil.clearService();
+
+			HRExpenseCurrencyLocalServiceUtil.clearService();
+
+			HRExpenseTypeLocalServiceUtil.clearService();
 		}
 	}
 }

@@ -486,7 +486,7 @@ public class HRExpenseCurrencyPersistenceImpl extends BasePersistenceImpl<HRExpe
 	}
 
 	/**
-	 * Finds the h r expense currency where groupId = &#63; and fromCurrencyCode = &#63; and toCurrencyCode = &#63; and conversionDate = &#63; or throws a {@link com.liferay.hr.NoSuchExpenseCurrencyException} if it could not be found.
+	 * Finds the h r expense currency where groupId = &#63; and fromCurrencyCode = &#63; and toCurrencyCode = &#63; and conversionDate &lt; &#63; or throws a {@link com.liferay.hr.NoSuchExpenseCurrencyException} if it could not be found.
 	 *
 	 * @param groupId the group ID to search with
 	 * @param fromCurrencyCode the from currency code to search with
@@ -532,7 +532,7 @@ public class HRExpenseCurrencyPersistenceImpl extends BasePersistenceImpl<HRExpe
 	}
 
 	/**
-	 * Finds the h r expense currency where groupId = &#63; and fromCurrencyCode = &#63; and toCurrencyCode = &#63; and conversionDate = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Finds the h r expense currency where groupId = &#63; and fromCurrencyCode = &#63; and toCurrencyCode = &#63; and conversionDate &lt; &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
 	 * @param groupId the group ID to search with
 	 * @param fromCurrencyCode the from currency code to search with
@@ -549,7 +549,7 @@ public class HRExpenseCurrencyPersistenceImpl extends BasePersistenceImpl<HRExpe
 	}
 
 	/**
-	 * Finds the h r expense currency where groupId = &#63; and fromCurrencyCode = &#63; and toCurrencyCode = &#63; and conversionDate = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Finds the h r expense currency where groupId = &#63; and fromCurrencyCode = &#63; and toCurrencyCode = &#63; and conversionDate &lt; &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
 	 * @param groupId the group ID to search with
 	 * @param fromCurrencyCode the from currency code to search with
@@ -573,7 +573,7 @@ public class HRExpenseCurrencyPersistenceImpl extends BasePersistenceImpl<HRExpe
 		}
 
 		if (result == null) {
-			StringBundler query = new StringBundler(5);
+			StringBundler query = new StringBundler(6);
 
 			query.append(_SQL_SELECT_HREXPENSECURRENCY_WHERE);
 
@@ -609,6 +609,8 @@ public class HRExpenseCurrencyPersistenceImpl extends BasePersistenceImpl<HRExpe
 			else {
 				query.append(_FINDER_COLUMN_G_F_T_C_CONVERSIONDATE_2);
 			}
+
+			query.append(HRExpenseCurrencyModelImpl.ORDER_BY_JPQL);
 
 			String sql = query.toString();
 
@@ -755,7 +757,7 @@ public class HRExpenseCurrencyPersistenceImpl extends BasePersistenceImpl<HRExpe
 				sql = query.toString();
 			}
 			else {
-				sql = _SQL_SELECT_HREXPENSECURRENCY;
+				sql = _SQL_SELECT_HREXPENSECURRENCY.concat(HRExpenseCurrencyModelImpl.ORDER_BY_JPQL);
 			}
 
 			Session session = null;
@@ -799,7 +801,7 @@ public class HRExpenseCurrencyPersistenceImpl extends BasePersistenceImpl<HRExpe
 	}
 
 	/**
-	 * Removes the h r expense currency where groupId = &#63; and fromCurrencyCode = &#63; and toCurrencyCode = &#63; and conversionDate = &#63; from the database.
+	 * Removes the h r expense currency where groupId = &#63; and fromCurrencyCode = &#63; and toCurrencyCode = &#63; and conversionDate &lt; &#63; from the database.
 	 *
 	 * @param groupId the group ID to search with
 	 * @param fromCurrencyCode the from currency code to search with
@@ -828,7 +830,7 @@ public class HRExpenseCurrencyPersistenceImpl extends BasePersistenceImpl<HRExpe
 	}
 
 	/**
-	 * Counts all the h r expense currencies where groupId = &#63; and fromCurrencyCode = &#63; and toCurrencyCode = &#63; and conversionDate = &#63;.
+	 * Counts all the h r expense currencies where groupId = &#63; and fromCurrencyCode = &#63; and toCurrencyCode = &#63; and conversionDate &lt; &#63;.
 	 *
 	 * @param groupId the group ID to search with
 	 * @param fromCurrencyCode the from currency code to search with
@@ -1089,8 +1091,8 @@ public class HRExpenseCurrencyPersistenceImpl extends BasePersistenceImpl<HRExpe
 	private static final String _FINDER_COLUMN_G_F_T_C_TOCURRENCYCODE_1 = "hrExpenseCurrency.toCurrencyCode IS NULL AND ";
 	private static final String _FINDER_COLUMN_G_F_T_C_TOCURRENCYCODE_2 = "hrExpenseCurrency.toCurrencyCode = ? AND ";
 	private static final String _FINDER_COLUMN_G_F_T_C_TOCURRENCYCODE_3 = "(hrExpenseCurrency.toCurrencyCode IS NULL OR hrExpenseCurrency.toCurrencyCode = ?) AND ";
-	private static final String _FINDER_COLUMN_G_F_T_C_CONVERSIONDATE_1 = "hrExpenseCurrency.conversionDate IS NULL";
-	private static final String _FINDER_COLUMN_G_F_T_C_CONVERSIONDATE_2 = "hrExpenseCurrency.conversionDate = ?";
+	private static final String _FINDER_COLUMN_G_F_T_C_CONVERSIONDATE_1 = "hrExpenseCurrency.conversionDate < NULL";
+	private static final String _FINDER_COLUMN_G_F_T_C_CONVERSIONDATE_2 = "hrExpenseCurrency.conversionDate < ?";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "hrExpenseCurrency.";
 	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No HRExpenseCurrency exists with the primary key ";
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No HRExpenseCurrency exists with the key {";
