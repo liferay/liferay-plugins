@@ -17,24 +17,8 @@ package com.liferay.hr.service.impl;
 import com.liferay.hr.service.base.HRExpenseAccountLocalServiceBaseImpl;
 
 /**
- * The implementation of the h r expense account local service.
- *
- * <p>
- * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link com.liferay.hr.service.HRExpenseAccountLocalService} interface.
- *
- * <p>
- * This is a local service. Methods of this service will not have security checks based on the propagated JAAS credentials because this service can only be accessed from within the same VM.
- * </p>
- *
  * @author Wesley Gong
- * @see com.liferay.hr.service.base.HRExpenseAccountLocalServiceBaseImpl
- * @see com.liferay.hr.service.HRExpenseAccountLocalServiceUtil
  */
 public class HRExpenseAccountLocalServiceImpl
 	extends HRExpenseAccountLocalServiceBaseImpl {
-	/*
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this interface directly. Always use {@link com.liferay.hr.service.HRExpenseAccountLocalServiceUtil} to access the h r expense account local service.
-	 */
 }
