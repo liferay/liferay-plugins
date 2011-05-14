@@ -62,6 +62,14 @@ public class AdminIndexer extends BaseIndexer {
 		return CLASS_NAMES;
 	}
 
+	public void postProcessSearchQuery(
+			BooleanQuery searchQuery, SearchContext searchContext)
+		throws Exception {
+
+		addSearchTerm(searchQuery, searchContext, Field.TITLE, true);
+		addSearchTerm(searchQuery, searchContext, Field.CONTENT, true);
+	}
+
 	public Hits search(SearchContext searchContext) throws SearchException {
 		Hits hits = super.search(searchContext);
 
@@ -70,7 +78,7 @@ public class AdminIndexer extends BaseIndexer {
 		String keywords = searchContext.getKeywords();
 
 		queryTerms = ArrayUtil.append(
-			queryTerms, KnowledgeBaseUtil.splitKeywords(keywords));
+			queryTerms, KnowledgeBaseUtil.parseKeywords(keywords));
 
 		hits.setQueryTerms(queryTerms);
 
@@ -192,19 +200,6 @@ public class AdminIndexer extends BaseIndexer {
 
 	protected String getPortletId(SearchContext searchContext) {
 		return PORTLET_ID;
-	}
-
-	protected void postProcessSearchQuery(
-			BooleanQuery searchQuery, SearchContext searchContext)
-		throws Exception {
-
-		String[] values = KnowledgeBaseUtil.splitKeywords(
-			searchContext.getKeywords());
-
-		for (String value : values) {
-			searchQuery.addTerm(Field.TITLE, value, true);
-			searchQuery.addTerm(Field.CONTENT, value, true);
-		}
 	}
 
 	protected void reindexKBArticles(KBArticle kbArticle) throws Exception {

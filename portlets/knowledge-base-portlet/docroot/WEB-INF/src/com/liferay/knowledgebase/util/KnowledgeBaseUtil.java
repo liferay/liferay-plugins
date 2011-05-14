@@ -284,15 +284,15 @@ public class KnowledgeBaseUtil {
 		return kbArticles;
 	}
 
-	public static String[] splitKeywords(String keywords) {
-		List<String> keywordsList = new UniqueList<String>();
+	public static String[] parseKeywords(String values) {
+		List<String> keywords = new UniqueList<String>();
 
 		StringBundler sb = new StringBundler();
 
-		for (char c : keywords.toCharArray()) {
+		for (char c : values.toCharArray()) {
 			if (Character.isWhitespace(c)) {
 				if (sb.length() > 0) {
-					keywordsList.add(sb.toString());
+					keywords.add(sb.toString());
 
 					sb = new StringBundler();
 				}
@@ -301,15 +301,15 @@ public class KnowledgeBaseUtil {
 				sb.append(c);
 			}
 			else {
-				return new String[] {keywords};
+				return new String[] {values};
 			}
 		}
 
 		if (sb.length() > 0) {
-			keywordsList.add(sb.toString());
+			keywords.add(sb.toString());
 		}
 
-		return StringUtil.split(StringUtil.merge(keywordsList));
+		return StringUtil.split(StringUtil.merge(keywords));
 	}
 
 	private static final int _SQL_DATA_MAX_PARAMETERS =
