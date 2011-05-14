@@ -5,8 +5,8 @@
 	<portlet>
 		<portlet-name>1</portlet-name>
 		<friendly-url-mapper-class>com.liferay.util.bridges.alloy.AlloyFriendlyURLMapper</friendly-url-mapper-class>
-		<friendly-url-mapping>hr</friendly-url-mapping>
-		<friendly-url-routes>com/liferay/util/bridges/alloy/alloy-friendly-url-routes.xml?controller=hrExpenses</friendly-url-routes>
+		<friendly-url-mapping>hr_expense</friendly-url-mapping>
+		<friendly-url-routes>com/liferay/util/bridges/alloy/alloy-friendly-url-routes.xml?controller=expenses</friendly-url-routes>
 		<css-class-wrapper>hr-expense-portlet</css-class-wrapper>
 	</portlet>
 	<role-mapper>
