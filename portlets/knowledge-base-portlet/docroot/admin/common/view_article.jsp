@@ -58,5 +58,7 @@ if (enableKBArticleViewCountIncrement) {
 
 	<liferay-util:include page="/admin/article_siblings.jsp" servletContext="<%= application %>" />
 
+	<liferay-util:include page="/admin/article_asset_entries.jsp" servletContext="<%= application %>" />
+
 	<liferay-util:include page="/admin/article_comments.jsp" servletContext="<%= application %>" />
 </div>

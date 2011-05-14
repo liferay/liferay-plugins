@@ -62,6 +62,10 @@
 				<value>false</value>
 			</preference>
 			<preference>
+				<name>showKBArticleAssetEntries</name>
+				<value>true</value>
+			</preference>
+			<preference>
 				<name>enableKBArticleKBComments</name>
 				<value>true</value>
 			</preference>
@@ -157,6 +161,10 @@
 			<preference>
 				<name>enableKBArticleRatings</name>
 				<value>false</value>
+			</preference>
+			<preference>
+				<name>showKBArticleAssetEntries</name>
+				<value>true</value>
 			</preference>
 			<preference>
 				<name>enableKBArticleKBComments</name>
@@ -256,6 +264,10 @@
 			<preference>
 				<name>enableKBArticleRatings</name>
 				<value>false</value>
+			</preference>
+			<preference>
+				<name>showKBArticleAssetEntries</name>
+				<value>true</value>
 			</preference>
 			<preference>
 				<name>enableKBArticleKBComments</name>

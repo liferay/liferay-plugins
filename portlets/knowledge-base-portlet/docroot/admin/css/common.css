@@ -43,6 +43,11 @@
 	padding-top: 6px;
 }
 
+.knowledge-base-portlet .taglib-ratings.stars {
+	margin: 15px 0 0;
+	padding: 0;
+}
+
 .knowledge-base-portlet .top-links-container {
 	margin: 0 0 15px 0;
 }
@@ -64,7 +69,7 @@
 
 .knowledge-base-portlet .kb-article-siblings {
 	border: 1px solid #CCC;
-	margin: 10px -7px 0;
+	margin: 15px -7px 0;
 }
 
 .knowledge-base-portlet .kb-article-siblings .kb-element-body {
@@ -112,6 +117,50 @@
 	padding: 0 7px;
 }
 
+.knowledge-base-portlet .kb-entity-body .kb-article-asset-entries {
+	margin: 15px 0 0;
+}
+
+.knowledge-base-portlet .kb-entity-body .kb-article-asset-entries .kb-info {
+	color: #7D7D7D;
+	padding-left: 5px;
+}
+
+.knowledge-base-portlet .kb-entity-body .kb-article-asset-entries .kb-most-popular-column {
+	padding: 0 0 0 20px;
+	width: 40%
+}
+
+.knowledge-base-portlet .kb-entity-body .kb-article-asset-entries .kb-most-popular-column .kb-header {
+	border-bottom: 1px solid #CCC;
+	color: #555;
+	font-weight: bold;
+	margin: 0 -7px 0 -27px;
+	padding: 0 7px;
+}
+
+.knowledge-base-portlet .kb-entity-body .kb-article-asset-entries .kb-most-recent-column {
+	padding: 0 20px;
+	width: 60%
+}
+
+.knowledge-base-portlet .kb-entity-body .kb-article-asset-entries .kb-most-recent-column .kb-header {
+	border-bottom: 1px solid #CCC;
+	color: #555;
+	font-weight: bold;
+	margin: 0 0 0 -27px;
+	padding: 0 7px;
+}
+
+.knowledge-base-portlet .kb-entity-body .kb-article-asset-entries .kb-title {
+	margin: 5px 0 0;
+}
+
+.knowledge-base-portlet .kb-entity-body .kb-article-asset-entries .kb-title a {
+	font-weight: bold;
+	margin: 0 0 0 -20px;
+}
+
 .knowledge-base-portlet .kb-entity-body .kb-article-assets {
 	color: #7D7D7D;
 	margin: 10px 0 0;
@@ -124,7 +173,7 @@
 .knowledge-base-portlet .kb-entity-body .kb-article-comments,
 .knowledge-base-portlet .kb-entity-body .kb-structure-comments,
 .knowledge-base-portlet .kb-entity-body .kb-template-comments {
-	margin: 10px -7px 0;
+	margin: 15px -7px 0;
 }
 
 .knowledge-base-portlet .kb-entity-body .kb-article-comments .yui3-aui-field-content,
@@ -167,12 +216,6 @@
 .knowledge-base-portlet .kb-entity-body .kb-structure-comments .kb-yes,
 .knowledge-base-portlet .kb-entity-body .kb-template-comments .kb-yes {
 	color: green;
-}
-
-.knowledge-base-portlet .kb-entity-body .kb-article-comments .lfr-panel-content,
-.knowledge-base-portlet .kb-entity-body .kb-structure-comments .lfr-panel-content,
-.knowledge-base-portlet .kb-entity-body .kb-template-comments .lfr-panel-content {
-	margin: 10px 0 0;
 }
 
 .knowledge-base-portlet .kb-entity-body .kb-article-icons,

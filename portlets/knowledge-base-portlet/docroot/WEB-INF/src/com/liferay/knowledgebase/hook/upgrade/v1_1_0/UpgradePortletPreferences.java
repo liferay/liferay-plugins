@@ -136,6 +136,7 @@ public class UpgradePortletPreferences
 			"enableKBArticleAssetCategories", "true");
 		_adminDefaultPreferencesMap.put("enableKBArticleAssetTags", "true");
 		_adminDefaultPreferencesMap.put("enableKBArticleRatings", "false");
+		_adminDefaultPreferencesMap.put("showKBArticleAssetEntries", "true");
 		_adminDefaultPreferencesMap.put("enableKBArticleKBComments", "true");
 		_adminDefaultPreferencesMap.put("showKBArticleKBComments", "true");
 		_adminDefaultPreferencesMap.put(
@@ -153,6 +154,7 @@ public class UpgradePortletPreferences
 			"enableKBArticleAssetCategories", "true");
 		_articleDefaultPreferencesMap.put("enableKBArticleAssetTags", "true");
 		_articleDefaultPreferencesMap.put("enableKBArticleRatings", "false");
+		_articleDefaultPreferencesMap.put("showKBArticleAssetEntries", "true");
 		_articleDefaultPreferencesMap.put("enableKBArticleKBComments", "true");
 		_articleDefaultPreferencesMap.put("showKBArticleKBComments", "true");
 		_articleDefaultPreferencesMap.put(
@@ -172,6 +174,7 @@ public class UpgradePortletPreferences
 			"enableKBArticleAssetCategories", "true");
 		_displayDefaultPreferencesMap.put("enableKBArticleAssetTags", "true");
 		_displayDefaultPreferencesMap.put("enableKBArticleRatings", "false");
+		_displayDefaultPreferencesMap.put("showKBArticleAssetEntries", "true");
 		_displayDefaultPreferencesMap.put("enableKBArticleKBComments", "true");
 		_displayDefaultPreferencesMap.put("showKBArticleKBComments", "true");
 		_displayDefaultPreferencesMap.put(
