@@ -502,8 +502,11 @@ public class ArticlePortlet extends MVCPortlet {
 	protected long getResourcePrimKey(RenderRequest renderRequest) {
 		PortletPreferences preferences = renderRequest.getPreferences();
 
-		return GetterUtil.getLong(
+		long defaultValue = GetterUtil.getLong(
 			preferences.getValue("resourcePrimKey", null));
+
+		return ParamUtil.getLong(
+			renderRequest, "resourcePrimKey", defaultValue);
 	}
 
 	protected int getStatus(RenderRequest renderRequest) throws Exception {

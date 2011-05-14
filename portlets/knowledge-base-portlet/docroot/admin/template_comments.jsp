@@ -32,7 +32,7 @@ long kbCommentId = BeanParamUtil.getLong(kbComment, request, "kbCommentId");
 boolean helpful = BeanParamUtil.getBoolean(kbComment, request, "helpful", true);
 %>
 
-<c:if test="<%= ((enableKBTemplateKBComments && themeDisplay.isSignedIn()) || showKBTemplateKBComments) && layoutTypePortlet.hasPortletId(portletDisplay.getId()) %>">
+<c:if test="<%= (enableKBTemplateKBComments && themeDisplay.isSignedIn()) || showKBTemplateKBComments %>">
 	<div class="kb-template-comments">
 		<aui:form method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "updateKBComment();" %>'>
 			<aui:input name="<%= Constants.CMD %>" type="hidden" />

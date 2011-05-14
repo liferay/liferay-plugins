@@ -175,7 +175,7 @@ public class UpgradePortletPreferences
 		_displayDefaultPreferencesMap.put("enableKBArticleKBComments", "true");
 		_displayDefaultPreferencesMap.put("showKBArticleKBComments", "true");
 		_displayDefaultPreferencesMap.put(
-			"enableKBArticleViewCountIncrement", "false");
+			"enableKBArticleViewCountIncrement", "true");
 		_displayDefaultPreferencesMap.put("rssDelta", "20");
 		_displayDefaultPreferencesMap.put("rssDisplayStyle", "full-content");
 		_displayDefaultPreferencesMap.put("rssFormat", "atom10");

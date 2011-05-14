@@ -267,7 +267,7 @@
 			</preference>
 			<preference>
 				<name>enableKBArticleViewCountIncrement</name>
-				<value>false</value>
+				<value>true</value>
 			</preference>
 			<preference>
 				<name>rssDelta</name>

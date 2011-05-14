@@ -34,7 +34,7 @@ long kbCommentId = BeanParamUtil.getLong(kbComment, request, "kbCommentId");
 boolean helpful = BeanParamUtil.getBoolean(kbComment, request, "helpful", true);
 %>
 
-<c:if test="<%= ((enableKBArticleKBComments && themeDisplay.isSignedIn()) || showKBArticleKBComments) && layoutTypePortlet.hasPortletId(portletDisplay.getId()) && (kbArticle.isApproved() || !kbArticle.isFirstVersion()) %>">
+<c:if test="<%= ((enableKBArticleKBComments && themeDisplay.isSignedIn()) || showKBArticleKBComments) && (kbArticle.isApproved() || !kbArticle.isFirstVersion()) %>">
 	<div class="kb-article-comments">
 		<aui:form method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "updateKBComment();" %>'>
 			<aui:input name="<%= Constants.CMD %>" type="hidden" />

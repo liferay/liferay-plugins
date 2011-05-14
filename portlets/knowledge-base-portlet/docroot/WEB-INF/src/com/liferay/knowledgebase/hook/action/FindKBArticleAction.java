@@ -60,10 +60,6 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class FindKBArticleAction extends BaseStrutsAction {
 
-	public static final String PORTLET_ID =
-		PortletKeys.KNOWLEDGE_BASE_ARTICLE +
-			PortletConstants.INSTANCE_SEPARATOR + "0000";
-
 	public String execute(
 			StrutsAction originalStrutsAction, HttpServletRequest request,
 			HttpServletResponse response)
@@ -113,7 +109,9 @@ public class FindKBArticleAction extends BaseStrutsAction {
 			long plid, HttpServletRequest request)
 		throws Exception {
 
-		PortletURL portletURL = getKBArticleURL(plid, PORTLET_ID, request);
+		String portletId = PortletKeys.KNOWLEDGE_BASE_ARTICLE_DEFAULT_INSTANCE;
+
+		PortletURL portletURL = getKBArticleURL(plid, portletId, request);
 
 		portletURL.setWindowState(LiferayWindowState.MAXIMIZED);
 
@@ -122,7 +120,7 @@ public class FindKBArticleAction extends BaseStrutsAction {
 		}
 
 		portletURL.setParameter(
-			"p_p_auth", AuthTokenUtil.getToken(request, plid, PORTLET_ID));
+			"p_p_auth", AuthTokenUtil.getToken(request, plid, portletId));
 
 		return portletURL;
 	}

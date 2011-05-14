@@ -17,7 +17,7 @@
 <%@ include file="/article/init.jsp" %>
 
 <%
-String tabs2 = ParamUtil.getString(request, "tabs2", "general");
+String tabs2 = ParamUtil.getString(request, "tabs2", Validator.equals(portletResource, PortletKeys.KNOWLEDGE_BASE_ARTICLE_DEFAULT_INSTANCE) ? "display-settings" : "general");
 %>
 
 <liferay-portlet:renderURL portletConfiguration="true" var="portletURL">
@@ -25,7 +25,7 @@ String tabs2 = ParamUtil.getString(request, "tabs2", "general");
 </liferay-portlet:renderURL>
 
 <liferay-ui:tabs
-	names="general,display-settings,rss"
+	names='<%= Validator.equals(portletResource, PortletKeys.KNOWLEDGE_BASE_ARTICLE_DEFAULT_INSTANCE) ? "display-settings,rss" : "general,display-settings,rss" %>'
 	param="tabs2"
 	url="<%= portletURL %>"
 />
