@@ -27,15 +27,15 @@
 		<permissions>
 			<supports>
 				<action-key>ADD_KB_ARTICLE</action-key>
-				<action-key>ADD_KB_STRUCTURE</action-key>
+				<!--<action-key>ADD_KB_STRUCTURE</action-key>-->
 				<action-key>ADD_KB_TEMPLATE</action-key>
 				<action-key>DELETE_KB_ARTICLES</action-key>
-				<action-key>DELETE_KB_STRUCTURES</action-key>
+				<!--<action-key>DELETE_KB_STRUCTURES</action-key>-->
 				<action-key>DELETE_KB_TEMPLATES</action-key>
 				<action-key>PERMISSIONS</action-key>
 				<action-key>SUBSCRIBE</action-key>
 				<action-key>UPDATE_KB_ARTICLES_PRIORITIES</action-key>
-				<action-key>VIEW_KB_STRUCTURES</action-key>
+				<!--<action-key>VIEW_KB_STRUCTURES</action-key>-->
 				<action-key>VIEW_KB_TEMPLATES</action-key>
 			</supports>
 			<community-defaults>
@@ -44,15 +44,15 @@
 			<guest-defaults />
 			<guest-unsupported>
 				<action-key>ADD_KB_ARTICLE</action-key>
-				<action-key>ADD_KB_STRUCTURE</action-key>
+				<!--<action-key>ADD_KB_STRUCTURE</action-key>-->
 				<action-key>ADD_KB_TEMPLATE</action-key>
 				<action-key>DELETE_KB_ARTICLES</action-key>
-				<action-key>DELETE_KB_STRUCTURES</action-key>
+				<!--<action-key>DELETE_KB_STRUCTURES</action-key>-->
 				<action-key>DELETE_KB_TEMPLATES</action-key>
 				<action-key>PERMISSIONS</action-key>
 				<action-key>SUBSCRIBE</action-key>
 				<action-key>UPDATE_KB_ARTICLES_PRIORITIES</action-key>
-				<action-key>VIEW_KB_STRUCTURES</action-key>
+				<!--<action-key>VIEW_KB_STRUCTURES</action-key>-->
 				<action-key>VIEW_KB_TEMPLATES</action-key>
 			</guest-unsupported>
 		</permissions>

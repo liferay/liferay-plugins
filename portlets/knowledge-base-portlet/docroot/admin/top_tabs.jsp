@@ -47,7 +47,7 @@ String jspPage = ParamUtil.getString(request, "jspPage");
 		value = jspPage.contains("template") ? names.get(names.size() - 1) : value;
 	}
 
-	if (AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.VIEW_KB_STRUCTURES)) {
+	if (false) {//if (AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.VIEW_KB_STRUCTURES)) {
 		PortletURL kbStructuresURL = renderResponse.createRenderURL();
 
 		kbStructuresURL.setParameter("jspPage", "/admin/view_structures.jsp");
