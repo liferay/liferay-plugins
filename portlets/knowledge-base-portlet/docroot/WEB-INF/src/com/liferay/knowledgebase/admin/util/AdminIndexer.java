@@ -66,8 +66,8 @@ public class AdminIndexer extends BaseIndexer {
 			BooleanQuery searchQuery, SearchContext searchContext)
 		throws Exception {
 
-		addSearchTerm(searchQuery, searchContext, Field.TITLE, true);
 		addSearchTerm(searchQuery, searchContext, Field.CONTENT, true);
+		addSearchTerm(searchQuery, searchContext, Field.TITLE, true);
 	}
 
 	public Hits search(SearchContext searchContext) throws SearchException {
