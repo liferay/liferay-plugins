@@ -17,7 +17,7 @@ AUI().add(
 
 		var STR_EMPTY = '';
 
-		var TPL_IFRAME = '<iframe id="{iframeId}" name="{iframeId}" class="' + CSS_CLASS_GADGET + '" src="about:blank" frameborder="no" scrolling="no" {height} {width}></iframe>';
+		var TPL_IFRAME = '<iframe id="{iframeId}" name="{iframeId}" class="' + CSS_CLASS_GADGET + '" src="about:blank" frameborder="no" scrolling="{scrolling}" {height} {width}></iframe>';
 
 		var Gadget = A.Component.create(
 			{
@@ -63,6 +63,16 @@ AUI().add(
 					rpcToken: {
 						value: Math.round(0x7FFFFFFF * Math.random())
 					},
+					scrolling: {
+						setter: function(v) {
+							if (v) {
+								return 'yes';
+							}
+							else {
+								return 'no';
+							}
+						}
+					},
 					serverBase: {},
 					secureToken: {
 						value: 'john.doe:john.doe:appid:cont:url:0:default'
@@ -98,6 +108,7 @@ AUI().add(
 						var height = instance.get('height');
 						var iframeId = instance.get('iframeId');
 						var requiresPubsub = instance.get('requiresPubsub');
+						var scrolling = instance.get('scrolling');
 						var secureToken = instance.get('secureToken');
 						var width = instance.get('width');
 
@@ -105,7 +116,7 @@ AUI().add(
 						    var iframeAttrs = {
 								className: CSS_CLASS_GADGET,
 								frameborder: 'no',
-								scrolling: 'no'
+								scrolling: scrolling
 						    };
 
 						    if (height) {
@@ -149,6 +160,7 @@ AUI().add(
 								{
 									height: (height ? 'height="' + height + '"' : STR_EMPTY),
 									iframeId: iframeId,
+									scrolling: scrolling,
 									width: (width ? 'width="' + width + '"' : STR_EMPTY)
 								}
 							);
