@@ -21,34 +21,36 @@
 	</state>
 	<condition>
 		<name>determine-branch</name>
-		<script><![CDATA[
-							import com.liferay.portal.kernel.util.GetterUtil;
-							import com.liferay.portal.kernel.workflow.WorkflowConstants;
-							import com.liferay.portlet.asset.model.AssetCategory;
-							import com.liferay.portlet.asset.model.AssetEntry;
-							import com.liferay.portlet.asset.service.AssetEntryLocalServiceUtil;
+		<script>
+			<![CDATA[
+				import com.liferay.portal.kernel.util.GetterUtil;
+				import com.liferay.portal.kernel.workflow.WorkflowConstants;
+				import com.liferay.portlet.asset.model.AssetCategory;
+				import com.liferay.portlet.asset.model.AssetEntry;
+				import com.liferay.portlet.asset.service.AssetEntryLocalServiceUtil;
 
-							import java.util.List;
+				import java.util.List;
 
-							String className = (String)workflowContext.get(WorkflowConstants.CONTEXT_ENTRY_CLASS_NAME);
-							long classPK = GetterUtil.getLong((String)workflowContext.get(WorkflowConstants.CONTEXT_ENTRY_CLASS_PK));
+				String className = (String)workflowContext.get(WorkflowConstants.CONTEXT_ENTRY_CLASS_NAME);
+				long classPK = GetterUtil.getLong((String)workflowContext.get(WorkflowConstants.CONTEXT_ENTRY_CLASS_PK));
 
-							AssetEntry assetEntry = AssetEntryLocalServiceUtil.getEntry(className, classPK);
+				AssetEntry assetEntry = AssetEntryLocalServiceUtil.getEntry(className, classPK);
 
-							List<AssetCategory> assetCategories = assetEntry.getCategories();
+				List<AssetCategory> assetCategories = assetEntry.getCategories();
 
-							returnValue = "Content Review";
+				returnValue = "Content Review";
 
-							for (AssetCategory assetCategory : assetCategories) {
-								String categoryName = assetCategory.getName();
+				for (AssetCategory assetCategory : assetCategories) {
+					String categoryName = assetCategory.getName();
 
-								if (categoryName.equals("legal")) {
-									returnValue = "Legal Review";
+					if (categoryName.equals("legal")) {
+						returnValue = "Legal Review";
 
-									return;
-								}
-							}
-						]]></script>
+						return;
+					}
+				}
+			]]>
+		</script>
 		<script-language>groovy</script-language>
 		<transitions>
 			<transition>

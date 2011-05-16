@@ -58,8 +58,8 @@ public class DRLConditionEvaluator implements ConditionEvaluator {
 		}
 
 		throw new IllegalStateException(
-			"Conditional did not return value for script: " +
-			kaleoCondition.getScript());
+			"Conditional did not return value for script " +
+				kaleoCondition.getScript());
 	}
 
 	private static final String _RETURN_VALUE = "returnValue";

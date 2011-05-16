@@ -20,7 +20,7 @@ package com.liferay.portal.workflow.kaleo.definition;
 public class Condition extends Node {
 
 	public Condition(
-		String name, String description,String script, String scriptLanguage) {
+		String name, String description, String script, String scriptLanguage) {
 
 		super(NodeType.CONDITION, name, description);
 

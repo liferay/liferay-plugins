@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -27,6 +27,7 @@ import com.liferay.portal.workflow.kaleo.runtime.condition.ConditionEvaluator;
 import com.liferay.portal.workflow.kaleo.runtime.graph.PathElement;
 
 import java.io.Serializable;
+
 import java.util.List;
 import java.util.Map;
 
@@ -40,8 +41,7 @@ public class ConditionNodeExecutor extends BaseNodeExecutor {
 	}
 
 	protected void doEnter(
-			KaleoNode currentKaleoNode, ExecutionContext executionContext)
-		throws PortalException, SystemException {
+		KaleoNode currentKaleoNode, ExecutionContext executionContext) {
 	}
 
 	protected void doExecute(
@@ -77,16 +77,13 @@ public class ConditionNodeExecutor extends BaseNodeExecutor {
 	}
 
 	protected void doExecuteTimer(
-			KaleoNode currentKaleoNode, KaleoTimer kaleoTimer,
-			ExecutionContext executionContext)
-		throws PortalException, SystemException {
+		KaleoNode currentKaleoNode, KaleoTimer kaleoTimer,
+		ExecutionContext executionContext) {
 	}
 
 	protected void doExit(
-			KaleoNode currentKaleoNode, ExecutionContext executionContext,
-			List<PathElement> remainingPathElements)
-		throws PortalException, SystemException {
-
+		KaleoNode currentKaleoNode, ExecutionContext executionContext,
+		List<PathElement> remainingPathElements) {
 	}
 
 	private ConditionEvaluator _conditionEvaluator;

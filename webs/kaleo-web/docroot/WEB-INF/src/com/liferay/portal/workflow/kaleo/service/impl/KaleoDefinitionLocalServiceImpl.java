@@ -138,6 +138,10 @@ public class KaleoDefinitionLocalServiceImpl
 
 		kaleoDefinitionPersistence.removeByCompanyId(companyId);
 
+		// Kaleo condition
+
+		kaleoConditionLocalService.deleteCompanyKaleoConditions(companyId);
+
 		// Kaleo instances
 
 		kaleoInstanceLocalService.deleteCompanyKaleoInstances(companyId);
@@ -145,10 +149,6 @@ public class KaleoDefinitionLocalServiceImpl
 		// Kaleo nodes
 
 		kaleoNodeLocalService.deleteCompanyKaleoNodes(companyId);
-
-		// Kaleo condition
-
-		kaleoConditionLocalService.deleteCompanyKaleoConditions(companyId);
 
 		// Kaleo tasks
 
@@ -182,6 +182,11 @@ public class KaleoDefinitionLocalServiceImpl
 
 		kaleoDefinitionPersistence.remove(kaleoDefinition);
 
+		// Kaleo condition
+
+		kaleoConditionLocalService.deleteKaleoDefinitionKaleoCondition(
+			kaleoDefinition.getKaleoDefinitionId());
+
 		// Kaleo instances
 
 		kaleoInstanceLocalService.deleteKaleoDefinitionKaleoInstances(
@@ -190,11 +195,6 @@ public class KaleoDefinitionLocalServiceImpl
 		// Kaleo nodes
 
 		kaleoNodeLocalService.deleteKaleoDefinitionKaleoNodes(
-			kaleoDefinition.getKaleoDefinitionId());
-
-		// Kaleo condition
-
-		kaleoConditionLocalService.deleteKaleoDefinitionKaleoCondition(
 			kaleoDefinition.getKaleoDefinitionId());
 
 		// Kaleo tasks
