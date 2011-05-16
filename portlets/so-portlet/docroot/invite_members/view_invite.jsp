@@ -131,7 +131,7 @@
 				</div>
 
 				<%
-				List<Role> roles = RoleLocalServiceUtil.search(layout.getCompanyId(), null, null, new Integer[] {RoleConstants.TYPE_COMMUNITY}, QueryUtil.ALL_POS, QueryUtil.ALL_POS, new RoleNameComparator(false));
+				List<Role> roles = RoleLocalServiceUtil.search(layout.getCompanyId(), null, null, new Integer[] {RoleConstants.TYPE_SITE}, QueryUtil.ALL_POS, QueryUtil.ALL_POS, new RoleNameComparator(false));
 
 				roles = EnterpriseAdminUtil.filterGroupRoles(permissionChecker, group.getGroupId(), roles);
 				%>
