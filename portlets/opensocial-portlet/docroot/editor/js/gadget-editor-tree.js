@@ -1,6 +1,46 @@
 AUI().add(
 	'gadget-editor-tree',
 	function(A) {
+		var Lang = A.Lang;
+		var isString = Lang.isString;
+		var isValue = Lang.isValue;
+
+		var AUTO = 'auto';
+
+		var ACTIVE_EDITABLE = 'activeEditable';
+
+		var BOUNDING_BOX = 'boundingBox';
+
+		var CLICK = 'click';
+
+		var CONTENT_BOX = 'contentBox';
+
+		var DISABLED = 'disabled';
+
+		var EDITABLE = 'editable';
+
+		var ENTRY_ID = 'entryId';
+
+		var CSS_CONTEXT_MENU_OPEN = 'gadget-editor-tree-node-contextmenuicon-open';
+
+		var ID = 'id';
+
+		var LABEL = 'label';
+
+		var NEW_NODE = 'newNode';
+
+		var NEW_FOLDER = 'New Folder';
+
+		var OWNER_TREE = 'ownerTree';
+
+		var OVERFLOW = 'overflow';
+
+		var PARENT_NODE = 'parentNode';
+
+		var TPL_ICON_CONTEXT_MENU = '<a href="javascript:;"></a>';
+
+		var VISIBLE = 'visible';
+
 		var TreeViewEditor = A.Component.create(
 			{
 				EXTENDS: A.TreeView,
@@ -23,7 +63,7 @@ AUI().add(
 
 						var node = new TreeNodeEditor(
 							{
-								entryId: 'newNode' + label,
+								entryId: NEW_NODE + label,
 								fileEntryLoaded: true,
 								isNewEntry: true,
 								label: label,
@@ -31,7 +71,7 @@ AUI().add(
 							}
 						);
 
-						if (instance.get('id') == parentId) {
+						if (instance.get() == parentId) {
 							instance.appendChild(node);
 						}
 						else {
@@ -40,7 +80,7 @@ AUI().add(
 
 						node.sort();
 
-						node.get('editable').fire('startEditing');
+						node.get(EDITABLE).fire('startEditing');
 					},
 
 					appendChild: function(node) {
@@ -60,14 +100,14 @@ AUI().add(
 
 						if (lastSelected) {
 							if (lastSelected.isLeaf()) {
-								folderId = lastSelected.get('parentNode').get('id');
+								folderId = lastSelected.get(PARENT_NODE).get(ID);
 							}
 							else {
-								folderId = lastSelected.get('id');
+								folderId = lastSelected.get(ID);
 							}
 						}
 						else {
-							folderId = instance.get('id');
+							folderId = instance.get(ID);
 						}
 
 						return folderId;
@@ -79,46 +119,43 @@ AUI().add(
 						var children = instance.getChildren();
 
 						var folderChildren = [];
-
 						var fileEntryChildren = [];
 
 						A.Array.each(
 							children,
-							function(value) {
-								if (value.isLeaf()) {
-									fileEntryChildren.push(value);
+							function(item, index, collection) {
+								if (item.isLeaf()) {
+									fileEntryChildren.push(item);
 								}
 								else {
-									folderChildren.push(value);
+									folderChildren.push(item);
 								}
 							}
 						);
 
-						folderChildren.sort(instance._arraySort);
+						var arraySort = instance._arraySort;
 
-						fileEntryChildren.sort(instance._arraySort);
+						folderChildren.sort(arraySort);
+						fileEntryChildren.sort(arraySort);
 
 						A.Array.each(
 							folderChildren,
-							function(child, index, array) {
-								if (index == 0) {
-									return;
+							function(item, index, collection) {
+								if (index != 0) {
+									instance.insertAfter(item, collection[index-1]);
 								}
-
-								instance.insertAfter(child, array[index-1]);
 							}
 						);
 
 						A.Array.each(
 							fileEntryChildren,
-							function(child, index, array) {
+							function(item, index, collection) {
 								if (index == 0) {
-									instance.insertAfter(child, folderChildren[folderChildren.length - 1]);
-
-									return;
+									instance.insertAfter(item, folderChildren[folderChildren.length - 1]);
 								}
-
-								instance.insertAfter(child, array[index-1]);
+								else {
+									instance.insertAfter(item, collection[index-1]);
+								}
 							}
 						);
 					}
@@ -171,9 +208,7 @@ AUI().add(
 						TreeNodeEditor.superclass.renderUI.apply(this, arguments);
 
 						instance._renderContextMenu();
-
 						instance._renderEditable();
-
 						instance._renderFileEntryLoaded();
 					},
 
@@ -182,63 +217,59 @@ AUI().add(
 
 						TreeNodeEditor.superclass.appendChild.apply(instance, arguments);
 
-						node.addTarget(instance.get('ownerTree'));
+						node.addTarget(instance.get(OWNER_TREE));
 					},
 
 					sort: function() {
 						var instance = this;
 
-						var parentNode = instance.get('parentNode');
+						var parentNode = instance.get(PARENT_NODE);
 
-						if (!parentNode) {
-							return;
-						}
+						if (parentNode) {
+							var siblings = parentNode.getChildren();
 
-						var siblings = parentNode.getChildren();
+							var filteredSiblings = [];
 
-						var filteredSiblings = [];
+							var isLeaf = instance.isLeaf();
 
-						var isLeaf = instance.isLeaf();
+							var ownerTree = instance.get(OWNER_TREE);
 
-						var ownerTree = instance.get('ownerTree');
+							A.Array.each(
+								siblings,
+								function(sibling) {
+									if (sibling.isLeaf() == isLeaf) {
+										filteredSiblings.push(sibling);
+									}
+								}
+							);
 
-						A.Array.each(
-							siblings,
-							function(sibling) {
-								if (sibling.isLeaf() == isLeaf) {
-									filteredSiblings.push(sibling);
+							if (filteredSiblings.length == 1) {
+								if (siblings.length > 1) {
+									if (isLeaf) {
+										var lastNode = siblings[siblings.length - 1];
+
+										ownerTree.insertAfter(instance, lastNode);
+									}
+									else {
+										var firstNode = siblings[0];
+
+										ownerTree.insertBefore(instance, firstNode);
+									}
 								}
 							}
-						);
-
-						if (filteredSiblings.length == 1) {
-							if (siblings.length == 1) {
-								return;
-							}
-
-							if (isLeaf) {
-								var lastNode = siblings[siblings.length - 1];
-
-								ownerTree.insertAfter(instance, lastNode);
-							}
 							else {
-								var firstNode = siblings[0];
+								var nodeIndex = filteredSiblings.indexOf(instance);
 
-								ownerTree.insertBefore(instance, firstNode);
-							}
-						}
-						else {
-							var nodeIndex = filteredSiblings.indexOf(instance);
+								if (nodeIndex > 0) {
+									var nodeBefore = filteredSiblings[nodeIndex - 1];
 
-							if (nodeIndex > 0) {
-								var nodeBefore = filteredSiblings[nodeIndex - 1];
+									ownerTree.insertAfter(instance, nodeBefore);
+								}
+								else {
+									var nodeAfter = filteredSiblings[nodeIndex + 1];
 
-								ownerTree.insertAfter(instance, nodeBefore);
-							}
-							else {
-								var nodeAfter = filteredSiblings[nodeIndex + 1];
-
-								ownerTree.insertBefore(instance, nodeAfter);
+									ownerTree.insertBefore(instance, nodeAfter);
+								}
 							}
 						}
 					},
@@ -249,48 +280,45 @@ AUI().add(
 						var children = instance.getChildren();
 
 						var folderChildren = [];
-
 						var fileEntryChildren = [];
 
-						var ownerTree = instance.get('ownerTree');
+						var ownerTree = instance.get(OWNER_TREE);
 
 						A.Array.each(
 							children,
-							function(value) {
-								if (value.isLeaf()) {
-									fileEntryChildren.push(value);
+							function(item, index, collection) {
+								if (item.isLeaf()) {
+									fileEntryChildren.push(item);
 								}
 								else {
-									folderChildren.push(value);
+									folderChildren.push(item);
 								}
 							}
 						);
 
-						folderChildren.sort(instance._arraySort);
+						var arraySort = instance._arraySort;
 
-						fileEntryChildren.sort(instance._arraySort);
+						folderChildren.sort(arraySort);
+						fileEntryChildren.sort(arraySort);
 
 						A.Array.each(
 							folderChildren,
-							function(child, index, array) {
-								if (index == 0) {
-									return;
+							function(item, index, collection) {
+								if (index != 0) {
+									ownerTree.insertAfter(child, array[index-1]);
 								}
-
-								ownerTree.insertAfter(child, array[index-1]);
 							}
 						);
 
 						A.Array.each(
 							fileEntryChildren,
-							function(child, index, array) {
+							function(item, index, collection) {
 								if (index == 0) {
-									ownerTree.insertAfter(child, folderChildren[folderChildren.length - 1]);
-
-									return;
+									ownerTree.insertAfter(item, folderChildren[folderChildren.length - 1]);
 								}
-
-								ownerTree.insertAfter(child, array[index-1]);
+								else {
+									ownerTree.insertAfter(item, array[index-1]);
+								}
 							}
 						);
 					},
@@ -302,63 +330,70 @@ AUI().add(
 					},
 
 					_arraySort: function(node1, node2) {
-						label1 = node1.get('label');
-						label2 = node2.get('label');
+						var instance = this;
 
-						if(!A.Lang.isValue(label1)) {
-							if(!A.Lang.isValue(label2)) {
-								return 0;
-							}
-							else {
-								return 1;
+						var label1 = node1.get(LABEL);
+						var label2 = node2.get(LABEL);
+
+						var returnValue = 0;
+
+						if (!isValue(label1)) {
+							if (isValue(label2)) {
+								returnValue = 1;
 							}
 						}
-						else if(!A.Lang.isValue(label2)) {
-							return -1;
+						else if (!isValue(label2)) {
+							returnValue = -1;
 						}
 
-						if(A.Lang.isString(label1)) {
+						if (isString(label1)) {
 							label1 = label1.toLowerCase();
 						}
-						if(A.Lang.isString(label2)) {
+
+						if (isString(label2)) {
 							label2 = label2.toLowerCase();
 						}
-						if(label1 < label2) {
-							return -1;
+
+						if (label1 < label2) {
+							returnValue = -1;
 						}
 						else if (label1 > label2) {
-							return 1;
+							returnValue = 1;
 						}
-						else {
-							return 0;
-						}
+
+						return returnValue;
 					},
 
 					_onEntryIdChange: function(event) {
 						var instance = this;
 
-						event.target.get('editable').set('entryId', event.newVal);
+						event.target.get(EDITABLE).set(ENTRY_ID, event.newVal);
 					},
 
 					_renderContextMenu: function() {
 						var instance = this;
 
-						var ownerTree = instance.get('ownerTree');
+						var ownerTree = instance.get(OWNER_TREE);
 
 						var newFolderContextMenuButton = new A.ButtonItem(
 							{
 								handler: function(event) {
 									var buttonItem = event.target;
 
-									if (!buttonItem.get('disabled')) {
+									if (!buttonItem.get(DISABLED)) {
 
-										instance.fire('addFolderNode', { parentFolderId: instance.get('id') });
+										instance.fire(
+											'addFolderNode',
+											{
+												parentFolderId: instance.get(ID)
+											}
+										);
 
 										contextMenuOverlay.hide();
 									}
 								},
 								icon: 'gadgeteditor-addfolder',
-								label: 'New Folder'
+								label: NEW_FOLDER
 							}
 						);
 
@@ -370,8 +405,13 @@ AUI().add(
 								handler: function(event) {
 									var buttonItem = event.target;
 
-									if (!buttonItem.get('disabled')) {
-										instance.fire('closeFileEntry', { entryId: instance.get('entryId') });
+									if (!buttonItem.get(DISABLED)) {
+										instance.fire(
+											'closeFileEntry',
+											{
+												entryId: instance.get(ENTRY_ID)
+											}
+										);
 
 										contextMenuOverlay.hide();
 									}
@@ -390,8 +430,13 @@ AUI().add(
 								handler: function(event) {
 									var buttonItem = event.target;
 
-									if (!buttonItem.get('disabled')) {
-										instance.fire('showURL', { entryId: instance.get('entryId') });
+									if (!buttonItem.get(DISABLED)) {
+										instance.fire(
+											'showURL',
+											{
+												entryId: instance.get(ENTRY_ID)
+											}
+										);
 
 										contextMenuOverlay.hide();
 									}
@@ -408,8 +453,13 @@ AUI().add(
 								handler: function(event) {
 									var buttonItem = event.target;
 
-									if (!buttonItem.get('disabled')) {
-										instance.fire('renameEntry', { entryId: instance.get('entryId') });
+									if (!buttonItem.get(DISABLED)) {
+										instance.fire(
+											'renameEntry',
+											{
+												entryId: instance.get(ENTRY_ID)
+											}
+										);
 
 										contextMenuOverlay.hide();
 									}
@@ -426,8 +476,13 @@ AUI().add(
 								handler: function(event) {
 									var buttonItem = event.target;
 
-									if (!buttonItem.get('disabled')) {
-										instance.fire('deleteEntry', { entryId: instance.get('entryId') });
+									if (!buttonItem.get(DISABLED)) {
+										instance.fire(
+											'deleteEntry',
+											{
+												entryId: instance.get(ENTRY_ID)
+											}
+										);
 
 										contextMenuOverlay.hide();
 									}
@@ -441,12 +496,16 @@ AUI().add(
 
 						var children = [];
 
-						children.push([ renameContextMenuButton, deleteContextMenuButton ]);
+						children.push(renameContextMenuButton, deleteContextMenuButton);
 
 						if (instance.isLeaf()) {
 							children.unshift(closeContextMenuButton);
 
-							children.push( { type: 'ToolbarSpacer' });
+							children.push(
+								{
+									type: 'ToolbarSpacer'
+								}
+							);
 
 							children.push(showURLContextMenuButton);
 						}
@@ -461,45 +520,38 @@ AUI().add(
 							}
 						);
 
-						contextMenu.get('contentBox').addClass('gadget-editor-contextmenu-toolbar');
+						contextMenu.get(CONTENT_BOX).addClass('gadget-editor-contextmenu-toolbar');
 
-						var contextMenuIcon = A.Node.create('<a href="javascript:;"></a>');
+						var contextMenuIcon = A.Node.create(TPL_ICON_CONTEXT_MENU);
 
 						contextMenuIcon.addClass('gadget-editor-tree-node-contextmenuicon');
 
-						instance.get('contentBox').append(contextMenuIcon);
+						instance.get(CONTENT_BOX).append(contextMenuIcon);
 
 						var treeActionOverlayManager = ownerTree.get('treeActionOverlayManager');
 
 						var contextMenuOverlay = new A.OverlayContext(
 							{
-								boundingBox: contextMenu.get('boundingBox'),
+								boundingBox: contextMenu.get(BOUNDING_BOX),
 								trigger: contextMenuIcon,
-								hideOn: 'click',
-								showOn: 'click',
+								hideOn: CLICK,
+								showOn: CLICK,
 								after: {
+									render: function(event) {
+										contextMenu.render();
+										overlayContext.render();
+									},
 									visibleChange: function(event) {
-										if (event.target.get('visible')) {
-											contextMenuIcon.addClass('gadget-editor-tree-node-contextmenuicon-open');
-										}
-										else {
-											contextMenuIcon.removeClass('gadget-editor-tree-node-contextmenuicon-open');
-										}
+										contextMenuIcon.toggleClass(CSS_CONTEXT_MENU_OPEN, event.target.get(VISIBLE));
 									}
 								},
 								on: {
 									show: function(event) {
 										var overlayContext = event.target;
 
-										if (!overlayContext.get('rendered')) {
-											contextMenu.render();
-
-											overlayContext.render();
-										}
-
 										treeActionOverlayManager.hideAll();
 
-										var activeEditable = ownerTree.get('activeEditable');
+										var activeEditable = ownerTree.get(ACTIVE_EDITABLE);
 
 										if (activeEditable) {
 											activeEditable.fire('stopEditing', true);
@@ -515,19 +567,21 @@ AUI().add(
 					_renderEditable: function() {
 						var instance = this;
 
-						var ownerTree = instance.get('ownerTree');
+						var ownerTree = instance.get(OWNER_TREE);
+
+						var ownerTreeBoundingBox = ownerTree.get(BOUNDING_BOX);
 
 						var editable = new EditableEditor(
 							{
 								eventType: '',
-								entryId: instance.get('entryId'),
+								entryId: instance.get(ENTRY_ID),
 								node: instance.get('labelEl'),
 								after: {
 									startEditing: function(event) {
-										ownerTree.set('activeEditable', event.target);
+										ownerTree.set(ACTIVE_EDITABLE, event.target);
 									},
 									stopEditing: function(event) {
-										ownerTree.set('activeEditable', null);
+										ownerTree.set(ACTIVE_EDITABLE, null);
 									}
 								},
 								on: {
@@ -538,20 +592,18 @@ AUI().add(
 											editable.render();
 										}
 
-										var ownerTreeBoundingBox = ownerTree.get('boundingBox');
-
 										var region = ownerTreeBoundingBox.get('region');
 
 										var editableY = editable.get('node').getXY()[1];
 
 										if (editableY >= region.bottom) {
-											ownerTreeBoundingBox.set('scrollTop', editableY);;
+											ownerTreeBoundingBox.set('scrollTop', editableY);
 										}
 
-										ownerTreeBoundingBox.setStyle('overflow', 'hidden');
+										ownerTreeBoundingBox.setStyle(OVERFLOW, 'hidden');
 									},
 									stopEditing: function(event) {
-										ownerTree.get('boundingBox').setStyle('overflow', 'auto');
+										ownerTreeBoundingBox.setStyle(OVERFLOW, AUTO);
 									}
 								}
 							}
@@ -559,25 +611,18 @@ AUI().add(
 
 						editable.addTarget(instance);
 
-						instance.set('editable', editable);
+						instance.set(EDITABLE, editable);
 					},
 
 					_renderFileEntryLoaded: function() {
 						var instance = this;
 
-						if (!instance.isLeaf()) {
-							return;
-						}
+						if (instance.isLeaf()) {
+							var fileEntryLoaded = instance.get('fileEntryLoaded');
 
-						if (instance.get('fileEntryLoaded')) {
-							instance.get('contentBox').addClass('aui-tree-node-loaded');
+							instance._closeContextMenuButton.set(DISABLED, !fileEntryLoaded);
 
-							instance._closeContextMenuButton.enable();
-						}
-						else {
-							instance.get('contentBox').removeClass('aui-tree-node-loaded');
-
-							instance._closeContextMenuButton.disable();
+							instance.get(CONTENT_BOX).toggleClass('aui-tree-node-loaded', fileEntryLoaded);
 						}
 					}
 				}
@@ -600,7 +645,7 @@ AUI().add(
 					_afterFocusedChangeEditable: function(event) {
 						var instance = this;
 
-						if (instance.get('visible')) {
+						if (instance.get(VISIBLE)) {
 							instance.save();
 						}
 					},
@@ -612,7 +657,7 @@ AUI().add(
 
 						var inputField = instance._comboBox._field;
 
-						inputField.set('width', 'auto');
+						inputField.set('width', AUTO);
 
 						inputField.fire('adjustSize');
 					}
@@ -626,7 +671,6 @@ AUI().add(
 	},
 	'',
 	{
-		requires: ['aui-tree-view', 'aui-tree-node', 'aui-overlay-manager', 'aui-toolbar', 'aui-overlay-context'],
-		use: []
+		requires: ['aui-tree-view', 'aui-tree-node', 'aui-overlay-manager', 'aui-toolbar', 'aui-overlay-context']
 	}
 );

@@ -3,22 +3,117 @@ AUI().add(
 	function (A) {
 		var Lang = A.Lang;
 
-		var TPL_EDITOR =
-			'<div id="editorPortlet">' +
-				'<div id="gadgetEditorToolbar"></div>' +
-				'<hr />' +
-				'<div class="gadget-editor-content" id="gadgetEditorContent">' +
-					'<div class="tree-view-editor-column" id="treeViewEditorColumn">' +
-						'<div id="treeViewEditor"></div>' +
-					'</div>' +
-					'<div class="main-editor-column" id="mainEditorColumn">' +
-						'<div class="main-editor-column-resize" id="mainEditorColumnResize">' +
-							'<div id="tabViewEditor"></div>' +
-							'<div class="preview-panel" id="previewPanel"></div>' +
-						'</div>' +
+		var ABSOLUTE = 'absolute';
+
+		var ACTIVE = 'active';
+
+		var ACTIVE_TAB = 'activeTab';
+
+		var BOUNDING_BOX = 'boundingBox';
+
+		var CODE_MIRROR = 'codeMirror';
+
+		var CONFIG_SPACER = {
+			type: 'ToolbarSpacer'
+		};
+
+		var CONTENT_BOX = 'contentBox';
+
+		var DISABLED = 'disabled';
+
+		var EDITABLE = 'editable';
+
+		var EDITOR = 'editor';
+
+		var ENTRY_ID = 'entryId';
+
+		var EVENT_ADD_FILE_ENTRY_NODE = 'addFileEntryNode';
+
+		var EVENT_ADD_FOLDER_NODE = 'addFolderNode';
+
+		var EVENT_CANCEL_RENAME_ENTRY = 'cancelRenameEntry';
+
+		var EVENT_CLOSE_FILE_ENTRY = 'closeFileEntry';
+
+		var EVENT_DELETE_ENTRY = 'deleteEntry';
+
+		var EVENT_LOAD_CONTENT = 'loadContent';
+
+		var EVENT_RENDER_GADGET = 'renderGadget';
+
+		var EVENT_SAVE_CONTENT = 'saveContent';
+
+		var EVENT_SAVE_RENAME_ENTRY = 'saveRenameEntry';
+
+		var EVENT_START_RENAME_ENTRY = 'startRenameEntry';
+
+		var FILE_ENTRY_LOADED = 'fileEntryLoaded';
+
+		var GET_FOLDER_CHILDREN = 'getFolderChildren';
+
+		var HEIGHT = 'height';
+
+		var ID = 'id';
+
+		var INCREASE = 'increase';
+
+		var IS_DIRTY = 'isDirty';
+
+		var IS_NEW = 'isNew';
+
+		var IS_NEW_ENTRY = 'isNewEntry';
+
+		var IS_RENDERED = 'isRendered';
+
+		var LABEL = 'label';
+
+		var LOADED_CHANGE = 'loadedChange';
+
+		var NEW_FOLDER = 'New Folder';
+
+		var NUM_PERCENTAGE_HUNDRED = '100%';
+
+		var PARENT_NODE = 'parentNode';
+
+		var PROXY_EL = 'proxyEl';
+
+		var REPOSITORY_ID = 'repositoryId';
+
+		var ROOT_FOLDER_ID = 'rootFolderId';
+
+		var STR_T = 't';
+
+		var TPL_EDITOR = '<div id="editorPortlet">' +
+			'<div id="gadgetEditorToolbar"></div>' +
+			'<hr />' +
+			'<div class="gadget-editor-content" id="gadgetEditorContent">' +
+				'<div class="tree-view-editor-column" id="treeViewEditorColumn">' +
+					'<div id="treeViewEditor"></div>' +
+				'</div>' +
+				'<div class="main-editor-column" id="mainEditorColumn">' +
+					'<div class="main-editor-column-resize" id="mainEditorColumnResize">' +
+						'<div id="tabViewEditor"></div>' +
+						'<div class="preview-panel" id="previewPanel"></div>' +
 					'</div>' +
 				'</div>' +
-			'</div>';
+			'</div>' +
+		'</div>';
+
+		var TPL_ERROR_MESSAGE = '{name}<br /><br />{message}';
+
+		var TPL_URL_DISPLAY = '"{0}" URL:<br /><br /> {1}';
+
+		var UNTITLED = 'Untitled';
+
+		var XML = '.xml';
+
+		var UNTITLED_XML = UNTITLED + XML;
+
+		var WIDTH = 'width';
+
+		var WRAPPER = 'wrapper';
+
+		var VALUE = 'value';
 
 		var Editor = A.Component.create(
 			{
@@ -53,12 +148,11 @@ AUI().add(
 					initializer: function() {
 						var instance = this;
 
-						A.StyleSheet.register(A.StyleSheet(), 'codeMirror');
+						A.StyleSheet.register(A.StyleSheet(), CODE_MIRROR);
 
 						instance._io = {};
 
 						instance._createEvents();
-
 						instance._createIndexDataSet();
 					},
 
@@ -67,24 +161,18 @@ AUI().add(
 
 						var container = A.Node.create(TPL_EDITOR);
 
-						instance.get('contentBox').appendChild(container);
+						instance.get(CONTENT_BOX).appendChild(container);
 
 						instance._container = container;
 
-						instance._gadgetEditorHeight = parseInt(container.one('#gadgetEditorContent').getStyle('height'));
+						instance._gadgetEditorHeight = container.one('#gadgetEditorContent').height();
 
 						instance._renderLoadingMask();
-
 						instance._renderToolbar();
-
 						instance._renderEditorColumnResize();
-
 						instance._renderPreviewPanelResize();
-
 						instance._renderTreeViewEditor();
-
 						instance._renderTabViewEditor();
-
 						instance._renderPreviewPanel();
 					},
 
@@ -123,24 +211,29 @@ AUI().add(
 
 						instance._tabViewEditor.addNewTab();
 
-						var tabViewEditorBoundingBox = instance._tabViewEditor.get('boundingBox');
+						var tabViewEditorBoundingBox = instance._tabViewEditor.get(BOUNDING_BOX);
 
-						tabViewEditorBoundingBox.setStyles(
+						instance._tabViewEditor.setAttrs(
 							{
-								height: '100%',
-								position: 'absolute',
-								top: 0,
+								height: NUM_PERCENTAGE_HUNDRED,
 								width: instance._getEditorColumnResizeWidth()
 							}
 						);
 
-						var previewResizeWrapper = instance._previewResize.get('wrapper');
+						tabViewEditorBoundingBox.setStyles(
+							{
+								position: ABSOLUTE,
+								top: 0
+							}
+						);
+
+						var previewResizeWrapper = instance._previewResize.get(WRAPPER);
 
 						previewResizeWrapper.setStyles(
 							{
 								bottom: 0,
 								height: 200,
-								position: 'absolute',
+								position: ABSOLUTE,
 								width: instance._getEditorColumnResizeWidth()
 							}
 						);
@@ -153,55 +246,57 @@ AUI().add(
 					_addEntryToDataSet: function(object) {
 						var instance = this;
 
-						var entryId = object.get('entryId');
+						var entryId = object.get(ENTRY_ID);
 
-						if (entryId == 0) {
-							return;
-						}
+						if (entryId != 0) {
+							var item;
 
-						var item = null;
+							var containsKey = instance._indexDataSet.containsKey(entryId);
 
-						var containsKey = instance._indexDataSet.containsKey(entryId);
+							if (containsKey) {
+								item = instance._indexDataSet.item(entryId);
+							}
+							else {
+								item = {};
+							}
 
-						if (containsKey) {
-							item = instance._indexDataSet.item(entryId);
-						}
-						else {
-							item = {};
-						}
+							var addEntry = true;
 
-						if (object instanceof A.TreeNode) {
-							item.node = object;
-						}
-						else if (object instanceof A.Tab) {
-							item.tab = object;
-						}
-						else {
-							return;
-						}
+							if (A.instanceOf(object, A.TreeNode)) {
+								item.node = object;
+							}
+							else if (A.instanceOf(object, A.Tab)) {
+								item.tab = object;
+							}
+							else {
+								addEntry = false;
+							}
 
-						instance._indexDataSet.add(entryId, item);
+							if (addEntry) {
+								instance._indexDataSet.add(entryId, item);
+							}
+						}
 					},
 
 					_addNewEntryToTreeNode: function(isLeaf, parentFolderId) {
 						var instance = this;
 
-						var isRoot = false;
+						var rootFolder = false;
 
 						var parentFolderNode = instance._treeViewEditor.getNodeById(parentFolderId);
 
 						if (!parentFolderNode) {
 							parentFolderNode = instance._treeViewEditor;
 
-							isRoot = true;
+							rootFolder = true;
 						}
 
-						if (isRoot || parentFolderNode.get('loaded')) {
-							if (!isRoot) {
+						if (rootFolder || parentFolderNode.get('loaded')) {
+							if (!rootFolder) {
 								parentFolderNode.expand();
 							}
 
-							setTimeout(
+							A.setTimeout(
 								function() {
 									var entryLabel = instance._getNextNewEntryName(isLeaf, parentFolderNode);
 
@@ -210,13 +305,13 @@ AUI().add(
 								0
 							);
 
-							if (!isRoot) {
-								parentFolderNode.detach('loadedChange');
+							if (!rootFolder) {
+								parentFolderNode.detach(LOADED_CHANGE);
 							}
 						}
 						else {
 							parentFolderNode.after(
-								'loadedChange',
+								LOADED_CHANGE,
 								function() {
 									instance._addNewEntryToTreeNode(isLeaf, parentFolderId);
 								}
@@ -229,26 +324,29 @@ AUI().add(
 					_adjustPreviewPanelContentHeight: function() {
 						var instance = this;
 
-						var wrapper = instance._previewResize.get('wrapper');
+						var previewResize = instance._previewResize;
 
-						var node = instance._previewResize.get('node');
+						var previewResizeWrapper = previewResize.get(WRAPPER);
+						var node = previewResize.get('node');
 
-						var previewHeight = parseInt(wrapper.getStyle('height')) - node.getPadding('t');
+						var previewHeight = previewResizeWrapper.height() - node.getPadding(STR_T);
 
-						var previewPanelHeaderHeight = parseInt(instance._previewPanel.headerNode.get('offsetHeight'));
+						var previewPanel = instance._previewPanel;
 
-						var bodyNode = instance._previewPanel.bodyNode;
+						var previewPanelHeaderHeight = previewPanel.headerNode.get('offsetHeight');
 
-						bodyNode.setStyle('height', previewHeight - previewPanelHeaderHeight - bodyNode.getPadding('tb'));
+						var bodyNode = previewPanel.bodyNode;
+
+						bodyNode.height(previewHeight - previewPanelHeaderHeight - bodyNode.getPadding('tb'));
 					},
 
 					_afterEditableCancel: function(event) {
 						var instance = this;
 
 						instance.fire(
-							'cancelRenameEntry',
+							EVENT_CANCEL_RENAME_ENTRY,
 							{
-								entryId: event.target.get('entryId')
+								entryId: event.target.get(ENTRY_ID)
 							}
 						);
 					},
@@ -263,7 +361,7 @@ AUI().add(
 						var instance = this;
 
 						instance.fire(
-							'closeFileEntry',
+							EVENT_CLOSE_FILE_ENTRY,
 							{
 								entryId: event.entryId
 							}
@@ -281,19 +379,22 @@ AUI().add(
 					_afterTabIsDirtyChange: function(event) {
 						var instance = this;
 
-						instance._saveButton.set('disabled', !event.newVal);
+						instance._saveButton.set(DISABLED, !event.newVal);
 					},
 
 					_afterTabIsNewChange: function(event) {
 						var instance = this;
 
-						instance._deleteButton.set('disabled', event.newVal);
+						instance._deleteButton.set(DISABLED, event.newVal);
 					},
 
 					_afterTabViewActiveTabChange: function(event) {
 						var instance = this;
 
-						var entryId = event.newVal.get('entryId');
+						var activeTab = event.newVal;
+						var previousTab = event.prevVal;
+
+						var entryId = activeTab.get(ENTRY_ID);
 
 						var node = instance._getNodeFromDataSet(entryId);
 
@@ -306,31 +407,31 @@ AUI().add(
 
 							node.select();
 
-							var parentNode = node.get('parentNode');
+							var parentNode = node.get(PARENT_NODE);
 
-							while (parentNode && parentNode instanceof A.TreeNode) {
+							while (parentNode && A.instanceOf(parentNode, A.TreeNode)) {
 								parentNode.expand();
 
-								parentNode = parentNode.get('parentNode');
+								parentNode = parentNode.get(PARENT_NODE);
 							}
 						}
 
-						instance._saveButton.set('disabled', !event.newVal.get('isDirty'));
+						instance._saveButton.set(DISABLED, !activeTab.get(IS_DIRTY));
 
-						instance._deleteButton.set('disabled', event.newVal.get('isNew'));
+						instance._deleteButton.set(DISABLED, activeTab.get(IS_NEW));
 
-						if (event.prevVal) {
-							event.prevVal.unmarkSearch();
+						if (previousTab) {
+							previousTab.unmarkSearch();
 						}
 
-						if (instance._previewButton.StateInteraction.get('active')) {
+						if (instance._previewButton.StateInteraction.get(ACTIVE)) {
 							instance.fire(
-								'renderGadget',
+								EVENT_RENDER_GADGET,
 								{
 									entryId: entryId,
 									noCache: true
 								}
-							)
+							);
 						}
 
 						instance._updateUndoButtons();
@@ -340,7 +441,7 @@ AUI().add(
 						var instance = this;
 
 						instance.fire(
-							'addFolderNode',
+							EVENT_ADD_FOLDER_NODE,
 							{
 								parentFolderId: event.parentFolderId
 							}
@@ -357,7 +458,7 @@ AUI().add(
 						var instance = this;
 
 						instance.fire(
-							'closeFileEntry',
+							EVENT_CLOSE_FILE_ENTRY,
 							{
 								entryId: event.entryId
 							}
@@ -368,7 +469,7 @@ AUI().add(
 						var instance = this;
 
 						instance.fire(
-							'deleteEntry',
+							EVENT_DELETE_ENTRY,
 							{
 								entryId: event.entryId
 							}
@@ -386,7 +487,7 @@ AUI().add(
 						var instance = this;
 
 						instance.fire(
-							'startRenameEntry',
+							EVENT_START_RENAME_ENTRY,
 							{
 								entryId: event.entryId
 							}
@@ -396,11 +497,13 @@ AUI().add(
 					_afterTreeNodeSelect: function(event) {
 						var instance = this;
 
-						if (event.target.isLeaf()) {
+						var target = event.target;
+
+						if (target.isLeaf()) {
 							instance.fire(
-								'loadContent',
+								EVENT_LOAD_CONTENT,
 								{
-									entryId: event.target.get('entryId')
+									entryId: target.get(ENTRY_ID)
 								}
 							);
 						}
@@ -413,7 +516,7 @@ AUI().add(
 
 						var url = instance.get('portalURL') + node.get('fileEntryURL');
 
-						var bodyContent = '"' + node.get('label') + '" URL:<br /><br />' + url;
+						var bodyContent = Lang.sub(TPL_URL_DISPLAY, [node.get(LABEL), url]);
 
 						instance._createDialog('URL', bodyContent, false, true, null).render();
 					},
@@ -424,54 +527,104 @@ AUI().add(
 						instance._addEntryToDataSet(event.tree.node);
 					},
 
+					_appendEditorChildren: function(data) {
+						var instance = this;
+
+						var treeViewEditor = instance._treeViewEditor;
+
+						A.Array.each(
+							data,
+							function(item, index, collection) {
+								var node = new A.TreeNodeEditor(
+									{
+										entryId: String(item.entryId),
+										label: item.label,
+										leaf: item.leaf,
+										type: item.type
+									}
+								);
+
+								treeViewEditor.appendChild(node);
+							}
+						);
+
+						treeViewEditor.sortChildren();
+					},
+
 					_changeEditorFontSize: function(action) {
 						var instance = this;
 
-						if (instance._fontSize === undefined) {
-							instance._fontSize = 12;
+						var fontSize = instance._fontSize;
+
+						if (Lang.isUndefined(fontSize)) {
+							fontSize = 12;
 						}
 
-						if (action == 'increase') {
-							instance._fontSize += 2;
+						if (action == INCREASE) {
+							fontSize += 2;
 
-							if (instance._fontSize >= 64) {
+							if (fontSize >= 64) {
 								instance._increaseEditorFontSizeButton.disable();
 							}
 
 							instance._decreaseEditorFontSizeButton.enable();
 						}
 						else {
-							instance._fontSize -= 2;
+							fontSize -= 2;
 
-							if (instance._fontSize <= 2) {
+							if (fontSize <= 2) {
 								instance._decreaseEditorFontSizeButton.disable();
 							}
 
 							instance._increaseEditorFontSizeButton.enable();
 						}
 
-						A.StyleSheet('codeMirror').set(
+						A.StyleSheet(CODE_MIRROR).set(
 							'.CodeMirror',
 							{
-								fontSize: instance._fontSize + 'px'
+								fontSize: fontSize + 'px'
 							}
 						);
 
-						instance._tabViewEditor.get('activeTab').get('editor').refresh();
+						instance._fontSize = fontSize;
+
+						instance._tabViewEditor.get(ACTIVE_TAB).get(EDITOR).refresh();
+					},
+
+					_closeFileEntry: function(entryId) {
+						var instance = this;
+
+						var tab = instance._getTabFromDataSet(entryId);
+
+						if (tab) {
+							instance._tabViewEditor.closeTabById(tab.get(ID));
+						}
+
+						var node = instance._getNodeFromDataSet(entryId);
+
+						if (node) {
+							if (node.isSelected()) {
+								node.unselect();
+							}
+
+							node.set(FILE_ENTRY_LOADED, false);
+						}
 					},
 
 					_closePreviewPanel: function() {
 						var instance = this;
 
-						instance._previewResize.get('wrapper').hide();
+						instance._previewResize.get(WRAPPER).hide();
 
-						instance._tabViewEditor.get('boundingBox').setStyle('height', instance._gadgetEditorHeight + 'px');
+						var tabViewEditor = instance._tabViewEditor;
 
-						instance._tabViewEditor.adjustEditorHeight();
+						tabViewEditor.set(HEIGHT, instance._gadgetEditorHeight);
 
-						if (instance._previewButton.StateInteraction.get('active')) {
-							instance._previewButton.StateInteraction.set('active', false);
-						}
+						tabViewEditor.adjustEditorHeight();
+
+						var previewStateInteraction = instance._previewButton.StateInteraction;
+
+						previewStateInteraction.set(ACTIVE, false);
 					},
 
 					_closeSearchDialog: function() {
@@ -479,11 +632,11 @@ AUI().add(
 
 						instance._searchDialog.close();
 
-						var tab = instance._tabViewEditor.get('activeTab');
+						var tab = instance._tabViewEditor.get(ACTIVE_TAB);
 
 						tab.unmarkSearch();
 
-						instance._searchEditorButton.StateInteraction.set('active', false);
+						instance._searchEditorButton.StateInteraction.set(ACTIVE, false);
 					},
 
 					_createDialog: function(title, bodyContent, modal, close, buttons) {
@@ -510,70 +663,70 @@ AUI().add(
 						var instance = this;
 
 						instance.publish(
-							'addFileEntryNode',
+							EVENT_ADD_FILE_ENTRY_NODE,
 							{
 								defaultFn: instance._defAddFileEntryNodeFn
 							}
 						);
 
 						instance.publish(
-							'addFolderNode',
+							EVENT_ADD_FOLDER_NODE,
 							{
 								defaultFn: instance._defAddFolderNodeFn
 							}
 						);
 
 						instance.publish(
-							'cancelRenameEntry',
+							EVENT_CANCEL_RENAME_ENTRY,
 							{
 								defaultFn: instance._defCancelRenameEntryFn
 							}
 						);
 
 						instance.publish(
-							'closeFileEntry',
+							EVENT_CLOSE_FILE_ENTRY,
 							{
 								defaultFn: instance._defCloseFileEntryFn
 							}
 						);
 
 						instance.publish(
-							'deleteEntry',
+							EVENT_DELETE_ENTRY,
 							{
 								defaultFn: instance._defDeleteEntryFn
 							}
 						);
 
 						instance.publish(
-							'loadContent',
+							EVENT_LOAD_CONTENT,
 							{
 								defaultFn: instance._defLoadContentFn
 							}
 						);
 
 						instance.publish(
-							'renderGadget',
+							EVENT_RENDER_GADGET,
 							{
 								defaultFn: instance._defRenderGadgetFn
 							}
 						);
 
 						instance.publish(
-							'saveContent',
+							EVENT_SAVE_CONTENT,
 							{
 								defaultFn: instance._defSaveContentFn
 							}
 						);
 
 						instance.publish(
-							'saveRenameEntry',
+							EVENT_SAVE_RENAME_ENTRY,
 							{
 								defaultFn: instance._defSaveRenameEntryFn
 							}
 						);
 
 						instance.publish(
-							'startRenameEntry',
+							EVENT_START_RENAME_ENTRY,
 							{
 								defaultFn: instance._defStartRenameEntryFn
 							}
@@ -583,7 +736,7 @@ AUI().add(
 					_createIndexDataSet: function() {
 						var instance = this;
 
-						instance._indexDataSet = new A.DataSet;
+						instance._indexDataSet = new A.DataSet();
 					},
 
 					_defAddFileEntryNodeFn: function() {
@@ -603,97 +756,34 @@ AUI().add(
 
 						var node = instance._getNodeFromDataSet(event.entryId);
 
-						if (node.get('isNewEntry')) {
-							node.get('parentNode').removeChild(node);
+						if (node.get(IS_NEW_ENTRY)) {
+							node.get(PARENT_NODE).removeChild(node);
 						}
 					},
 
 					_defCloseFileEntryFn: function(event) {
 						var instance = this;
 
-						var closeFileEntryFn = function() {
-							var tab = instance._getTabFromDataSet(event.entryId);
-
-							if (tab) {
-								instance._tabViewEditor.closeTabById(tab.get('id'));
-							}
-
-							var node = instance._getNodeFromDataSet(event.entryId);
-
-							if (node) {
-								if (node.isSelected()) {
-									node.unselect();
-								}
-
-								node.set('fileEntryLoaded', false);
-							}
-						};
+						var entryId = event.entryId;
 
 						var tab = instance._getTabFromDataSet(event.entryId);
 
-						if (tab && tab.get('isDirty') && !event.noConfirm) {
-							instance._showConfirmationDialog('"' + tab.get('label') + '" has not been saved. Are you sure you want to close the tab?', closeFileEntryFn);
+						if (tab && tab.get(IS_DIRTY) && !event.noConfirm) {
+							instance._showConfirmationDialog('"' + tab.get(LABEL) + '" has not been saved. Are you sure you want to close the tab?', instance._closeFileEntry, entryId);
 						}
 						else {
-							closeFileEntryFn();
+							instance._closeFileEntry(entryId);
 						}
 					},
 
 					_defDeleteEntryFn: function(event) {
 						var instance = this;
 
-						var node = instance._getNodeFromDataSet(event.entryId);
+						var entryId = event.entryId;
 
-						var callback = function() {
-							var deleteEntryCallback = function(data) {
-								if (data && data.error) {
-									instance._showErrorDialog(data.error);
+						var node = instance._getNodeFromDataSet(entryId);
 
-									return;
-								}
-
-								if (node.isLeaf()) {
-									instance.fire(
-										'closeFileEntry',
-										{
-											entryId: event.entryId,
-											noConfirm: true
-										}
-									);
-								}
-								else {
-									var children = node.getChildren(true);
-
-									A.Array.each(
-										children,
-										function(value) {
-											if (value.isLeaf()) {
-												instance.fire(
-													'closeFileEntry',
-													{
-														entryId: value.get('entryId'),
-														noConfirm: true
-													}
-												);
-											}
-										}
-									);
-								}
-
-								var parentNode = node.get('parentNode');
-
-								parentNode.removeChild(node);
-							};
-
-							if (node.isLeaf()) {
-								instance._requestDeleteFileEntry(event.entryId, deleteEntryCallback);
-							}
-							else {
-								instance._requestDeleteFolder(event.entryId, deleteEntryCallback);
-							}
-						};
-
-						instance._showConfirmationDialog('Are you sure you want to delete "' + node.get('label') + '"?', callback);
+						instance._showConfirmationDialog('Are you sure you want to delete "' + node.get(LABEL) + '"?', instance._deleteEntry, node, entryId);
 					},
 
 					_defLoadContentFn: function(event) {
@@ -701,8 +791,8 @@ AUI().add(
 
 						var node = instance._getNodeFromDataSet(event.entryId);
 
-						if (node.get('fileEntryLoaded')) {
-							var tabId = instance._getTabFromDataSet(event.entryId).get('id');
+						if (node.get(FILE_ENTRY_LOADED)) {
+							var tabId = instance._getTabFromDataSet(event.entryId).get(ID);
 
 							instance._tabViewEditor.selectTabById(tabId);
 						}
@@ -716,12 +806,12 @@ AUI().add(
 									return;
 								}
 
-								var tab = instance._tabViewEditor.addExistingDocument(event.entryId, node.get('label'), data.content);
+								var tab = instance._tabViewEditor.addExistingDocument(event.entryId, node.get(LABEL), data.content);
 
-								node.set('fileEntryLoaded', true);
+								node.set(FILE_ENTRY_LOADED, true);
 							};
 
-							instance._requestGetFileEntryContent(node.get('entryId'), callback);
+							instance._requestGetFileEntryContent(node.get(ENTRY_ID), callback);
 						}
 					},
 
@@ -730,7 +820,7 @@ AUI().add(
 
 						var tab = instance._getTabFromDataSet(event.entryId);
 
-						var content = tab.get('editor').getValue();
+						var content = tab.get(EDITOR).getValue();
 
 						var callback = function(data) {
 							if (data.error) {
@@ -738,51 +828,59 @@ AUI().add(
 
 								return;
 							}
+							else {
+								var contentValid = data.contentValid;
 
-							var contentValid = data.contentValid;
+								tab.set('contentValid', contentValid);
 
-							tab.set('contentValid', contentValid);
+								var previewPanel = instance._previewPanel;
+								var previewPanelBodyNode = previewPanel.bodyNode;
 
-							if (!contentValid) {
-								instance._previewPanel.bodyNode.empty();
+								if (!contentValid) {
+									previewPanelBodyNode.empty();
 
-								var error = 'The gadget content is not valid.';
+									var error = 'The gadget content is not valid.';
 
-								instance._previewPanel.set('bodyContent', error);
+									previewPanel.set('bodyContent', error);
+								}
+								else if (!tab.get(IS_RENDERED) || event.noCache) {
+									previewPanelBodyNode.empty();
+
+									new Liferay.OpenSocial.Gadget(
+										{
+											appId: data.appId,
+											content: escape(content),
+											debug: instance.get('gadgetDebug'),
+											moduleId: data.moduleId,
+											nocache: instance.get('gadgetNocache'),
+											portletId: instance.get('gadgetPortletId'),
+											requiresPubsub: data.requiresPubsub,
+											secureToken: data.secureToken,
+											serverBase: instance.get('gadgetServerBase'),
+											specUrl: data.specUrl,
+											store: instance.get('gadgetStore'),
+											view: instance.get('gadgetView'),
+											viewParams: instance.get('gadgetViewParams')
+										}
+									).render(previewPanelBodyNode);
+
+									tab.set(IS_RENDERED, true);
+								}
+
+								var previewResize = instance._previewResize;
+
+								var previewResizeWrapper = previewResize.get(WRAPPER);
+
+								var previewResizeWrapperHeight = previewResizeWrapper.height();
+
+								instance._tabViewEditor.set(HEIGHT, instance._gadgetEditorHeight - previewResizeWrapperHeight);
+
+								previewResizeWrapper.show();
+
+								instance._tabViewEditor.adjustEditorHeight();
+
+								instance._adjustPreviewPanelContentHeight();
 							}
-							else if (!tab.get('isRendered') || event.noCache) {
-								instance._previewPanel.bodyNode.empty();
-
-								new Liferay.OpenSocial.Gadget(
-									{
-										appId: data.appId,
-										content: escape(content),
-										debug: instance.get('gadgetDebug'),
-										moduleId: data.moduleId,
-										nocache: instance.get('gadgetNocache'),
-										portletId: instance.get('gadgetPortletId'),
-										requiresPubsub: data.requiresPubsub,
-										secureToken: data.secureToken,
-										serverBase: instance.get('gadgetServerBase'),
-										specUrl: data.specUrl,
-										store: instance.get('gadgetStore'),
-										view: instance.get('gadgetView'),
-										viewParams: instance.get('gadgetViewParams')
-									}
-								).render(instance._previewPanel.bodyNode);
-
-								tab.set('isRendered', true);
-							}
-
-							var previewResizeWrapperHeight = parseInt(instance._previewResize.get('wrapper').getStyle('height'));
-
-							instance._tabViewEditor.get('boundingBox').setStyle('height', instance._gadgetEditorHeight - previewResizeWrapperHeight + 'px');
-
-							instance._previewResize.get('wrapper').show();
-
-							instance._tabViewEditor.adjustEditorHeight();
-
-							instance._adjustPreviewPanelContentHeight();
 						};
 
 						instance._requestGetRenderParameters(content, callback);
@@ -793,27 +891,26 @@ AUI().add(
 
 						var tab = instance._getTabFromDataSet(event.entryId);
 
-						if (tab.get('isNew') && tab.get('isDirty')) {
+						if (tab.get(IS_NEW) && tab.get(IS_DIRTY)) {
 							var parentFolderId = instance._treeViewEditor.getSelectedFolderId();
 
 							if (parentFolderId == 0) {
-								parentFolderId = instance._rootNode.get('id');
+								parentFolderId = instance._rootNode.get(ID);
 							}
 
 							instance._addNewEntryToTreeNode(true, parentFolderId);
 						}
-						else if (tab.get('isDirty')) {
+						else if (tab.get(IS_DIRTY)) {
 							var callback = function(data) {
 								if (data.error) {
 									instance._showErrorDialog(data.error);
-
-									return;
 								}
-
-								tab.set('isDirty', false);
+								else {
+									tab.set(IS_DIRTY, false);
+								}
 							};
 
-							instance._requestUpdateFileEntryContent(event.entryId, tab.get('editor').getValue(), callback);
+							instance._requestUpdateFileEntryContent(event.entryId, tab.get(EDITOR).getValue(), callback);
 						}
 					},
 
@@ -822,7 +919,7 @@ AUI().add(
 
 						var node = instance._getNodeFromDataSet(event.entryId);
 
-						if (node.get('isNewEntry')) {
+						if (node.get(IS_NEW_ENTRY)) {
 							instance._saveRenameNewEntry(node);
 						}
 						else {
@@ -833,11 +930,61 @@ AUI().add(
 					_defStartRenameEntryFn: function(event) {
 						var instance = this;
 
-						var editable = instance._getNodeFromDataSet(event.entryId).get('editable');
+						var editable = instance._getNodeFromDataSet(event.entryId).get(EDITABLE);
 
 						instance._visibleEditable = editable;
 
 						editable.fire('startEditing');
+					},
+
+					_deleteEntry: function(node, entryId) {
+						var instance = this;
+
+						var deleteEntryCallback = function(data) {
+							if (data && data.error) {
+								instance._showErrorDialog(data.error);
+							}
+							else {
+								if (node.isLeaf()) {
+									instance.fire(
+										EVENT_CLOSE_FILE_ENTRY,
+										{
+											entryId: entryId,
+											noConfirm: true
+										}
+									);
+								}
+								else {
+									var children = node.getChildren(true);
+
+									A.Array.each(
+										children,
+										function(item, index, collection) {
+											if (item.isLeaf()) {
+												instance.fire(
+													EVENT_CLOSE_FILE_ENTRY,
+													{
+														entryId: item.get(ENTRY_ID),
+														noConfirm: true
+													}
+												);
+											}
+										}
+									);
+								}
+
+								var parentNode = node.get(PARENT_NODE);
+
+								parentNode.removeChild(node);
+							}
+						};
+
+						if (node.isLeaf()) {
+							instance._requestDeleteFileEntry(entryId, deleteEntryCallback);
+						}
+						else {
+							instance._requestDeleteFolder(entryId, deleteEntryCallback);
+						}
 					},
 
 					_getEditorColumnResizeWidth: function() {
@@ -845,11 +992,11 @@ AUI().add(
 
 						var mainEditorColumnResize = A.one('#mainEditorColumnResize');
 
-						return mainEditorColumnResize.get('offsetWidth') - mainEditorColumnResize.getPadding('l');
+						return mainEditorColumnResize.width();
 					},
 
 					_getIORequest: function(resourceId, callback) {
-						instance = this;
+						var instance = this;
 
 						var io = instance._io[resourceId];
 
@@ -872,17 +1019,15 @@ AUI().add(
 							instance._io[resourceId] = io;
 						}
 
-						var onSuccess = io.on(
+						io.once(
 							'success',
 							function(event) {
-								onSuccess.detach();
-
 								instance._loadingMask.hide();
 
 								if (callback) {
 									var message = this.get('responseData');
 
-									callback(message);
+									callback.apply(instance, message);
 								}
 							}
 						);
@@ -890,34 +1035,36 @@ AUI().add(
 						return io;
 					},
 
-					_getNextNewEntryName: function(isLeaf, parentNode) {
+					_getNextNewEntryName: function(leafNode, parentNode) {
+						var instance = this;
+
 						var children = parentNode.getChildren();
 
 						var label;
 
-						if (isLeaf) {
-							label = 'Untitled.xml';
+						if (leafNode) {
+							label = UNTITLED_XML;
 						}
 						else {
-							label = 'New Folder';
+							label = NEW_FOLDER;
 						}
 
-						var newUntitledCounter = 0;
+						var i = 0;
 
-						var isDuplicateLabel = false;
+						var duplicateLabel = false;
 
 						do {
-							isDuplicateLabel = A.Array.some(
+							duplicateLabel = A.Array.some(
 								children,
-								function(value) {
-									if (value.isLeaf() == isLeaf && value.get('label').toLowerCase() == label.toLowerCase()) {
-										newUntitledCounter++;
+								function(item, index, collection) {
+									if (item.isLeaf() == leafNode && item.get(LABEL).toLowerCase() == label.toLowerCase()) {
+										i++;
 
-										if (isLeaf) {
-											label = 'Untitled' + newUntitledCounter + '.xml';
+										if (leafNode) {
+											label = UNTITLED + i + XML;
 										}
 										else {
-											label = 'New Folder' + newUntitledCounter;
+											label = NEW_FOLDER + i;
 										}
 
 										return true;
@@ -925,7 +1072,7 @@ AUI().add(
 								}
 							);
 						}
-						while (isDuplicateLabel)
+						while (duplicateLabel);
 
 						return label;
 					},
@@ -933,13 +1080,15 @@ AUI().add(
 					_getNodeFromDataSet: function(entryId) {
 						var instance = this;
 
-						if (entryId == 0) {
-							return null;
+						var node = null;
+
+						if (entryId != 0) {
+							var item = instance._indexDataSet.item(entryId);
+
+							node = item && item.node;
 						}
 
-						var item = instance._indexDataSet.item(entryId);
-
-						return item && item.node;
+						return node;
 					},
 
 					_getResourceURL: function(id) {
@@ -947,7 +1096,7 @@ AUI().add(
 
 						var resourceURL = instance.get('resourceURL');
 
-						resourceURL += ('&p_p_resource_id=' + id);
+						resourceURL += '&p_p_resource_id=' + id;
 
 						return resourceURL;
 					},
@@ -955,13 +1104,15 @@ AUI().add(
 					_getTabFromDataSet: function(entryId) {
 						var instance = this;
 
-						if (entryId == 0) {
-							return null;
+						var tab = null;
+
+						if (entryId != 0) {
+							var item = instance._indexDataSet.item(entryId);
+
+							tab = item && item.tab;
 						}
 
-						var item = instance._indexDataSet.item(entryId);
-
-						return item && item.tab;
+						return tab;
 					},
 
 					_onEditableSave: function(event) {
@@ -970,9 +1121,9 @@ AUI().add(
 						event.preventDefault();
 
 						instance.fire(
-							'saveRenameEntry',
+							EVENT_SAVE_RENAME_ENTRY,
 							{
-								entryId: event.target.get('entryId')
+								entryId: event.target.get(ENTRY_ID)
 							}
 						);
 					},
@@ -1004,28 +1155,34 @@ AUI().add(
 					_renderEditorColumnResize: function() {
 						var instance = this;
 
-						var gadgetEditorWidth = parseInt(A.one('#gadgetEditorContent').getStyle('width'));
+						var gadgetEditorWidth = A.one('#gadgetEditorContent').width();
 
 						var mainEditorColumnResize = new A.Resize(
 							{
 								after: {
 									end: function(event) {
-										instance._tabViewEditor.get('boundingBox').setStyle('width', instance._getEditorColumnResizeWidth());
+										var tabViewEditor = instance._tabViewEditor;
 
-										instance._previewResize.get('wrapper').setStyle('width', instance._getEditorColumnResizeWidth());
+										var width = instance._getEditorColumnResizeWidth();
 
-										instance._previewPanel.get('boundingBox').setStyle('width', instance._getEditorColumnResizeWidth());
+										tabViewEditor.set(WIDTH, width);
+
+										instance._previewResize.get(WRAPPER).setStyle(WIDTH, width);
+
+										instance._previewPanel.set(WIDTH, width);
 
 										instance._tabViewEditor.adjustEditorHeight();
 									}
 								},
 								handles: 'l',
-								node: A.one('#mainEditorColumnResize'),
+								node: '#mainEditorColumnResize',
 								on: {
 									end: function(event) {
 										var treeViewEditorColumn = A.one('#treeViewEditorColumn');
 
-										treeViewEditorColumn.setStyle('width', (gadgetEditorWidth - event.target.info.offsetWidth) + 'px');
+										var width = gadgetEditorWidth - event.target.info.offsetWidth;
+
+										treeViewEditorColumn.setStyle(WIDTH, width);
 									}
 								},
 								proxy: true,
@@ -1033,9 +1190,9 @@ AUI().add(
 							}
 						);
 
-						mainEditorColumnResize.get('proxyEl').addClass('main-editor-column-resize-proxy');
+						mainEditorColumnResize.get(PROXY_EL).addClass('main-editor-column-resize-proxy');
 
-						mainEditorColumnResize.get('wrapper').setStyle('height', '100%');
+						mainEditorColumnResize.get(WRAPPER).setStyle(HEIGHT, NUM_PERCENTAGE_HUNDRED);
 
 						mainEditorColumnResize.plug(
 							A.Plugin.ResizeConstrained,
@@ -1068,11 +1225,11 @@ AUI().add(
 						var previewPanelRefreshButton = new A.ButtonItem(
 							{
 								handler: function(event) {
-									if (!event.target.get('disabled')) {
-										var entryId = instance._tabViewEditor.get('activeTab').get('entryId');
+									if (!event.target.get(DISABLED)) {
+										var entryId = instance._tabViewEditor.get(ACTIVE_TAB).get(ENTRY_ID);
 
 										instance.fire(
-											'renderGadget',
+											EVENT_RENDER_GADGET,
 											{
 												entryId: entryId,
 												noCache: true
@@ -1084,20 +1241,16 @@ AUI().add(
 							}
 						);
 
-						instance._previewPanelRefreshButton = previewPanelRefreshButton;
-
 						var previewPanelCloseButton = new A.ButtonItem(
 							{
 								handler: function(event) {
-									if (!event.target.get('disabled')) {
+									if (!event.target.get(DISABLED)) {
 										instance._closePreviewPanel();
 									}
 								},
 								icon: 'close'
 							}
 						);
-
-						instance._previewPanelCloseButton = previewPanelCloseButton;
 
 						var previewPanel = new A.Panel(
 							{
@@ -1106,10 +1259,12 @@ AUI().add(
 									previewPanelRefreshButton,
 									previewPanelCloseButton
 								],
-								boundingBox: A.one('#previewPanel'),
+								boundingBox: '#previewPanel'
 							}
 						).render();
 
+						instance._previewPanelRefreshButton = previewPanelRefreshButton;
+						instance._previewPanelCloseButton = previewPanelCloseButton;
 						instance._previewPanel = previewPanel;
 					},
 
@@ -1118,17 +1273,19 @@ AUI().add(
 
 						var previewResize = new A.Resize(
 							{
-								handles: 't',
-								node: A.one('#previewPanel'),
+								handles: STR_T,
+								node: '#previewPanel',
 								after: {
 									end: function(event) {
-										var height = parseInt(event.target.info.offsetHeight);
+										var height = event.target.info.offsetHeight;
 
-										instance._tabViewEditor.get('boundingBox').setStyle('height', instance._gadgetEditorHeight - height + 'px');
+										var editorHeight = instance._gadgetEditorHeight - height;
+
+										instance._tabViewEditor.set(HEIGHT,  editorHeight);
 
 										instance._tabViewEditor.adjustEditorHeight();
 
-										previewResize.get('wrapper').setStyle('height', height + 'px');
+										previewResize.get(WRAPPER).setStyle(HEIGHT, height);
 
 										instance._adjustPreviewPanelContentHeight();
 									}
@@ -1138,7 +1295,7 @@ AUI().add(
 							}
 						);
 
-						previewResize.get('proxyEl').addClass('preview-panel-resize-proxy');
+						previewResize.get(PROXY_EL).addClass('preview-panel-resize-proxy');
 
 						instance._previewResize = previewResize;
 
@@ -1155,7 +1312,7 @@ AUI().add(
 
 						var tabViewEditor = new A.TabViewEditor(
 							{
-								boundingBox: A.one('#tabViewEditor')
+								boundingBox: '#tabViewEditor'
 							}
 						).render();
 
@@ -1170,28 +1327,26 @@ AUI().add(
 						var newFileEntryButton = new A.ButtonItem(
 							{
 								handler: function(event) {
-									if (!event.target.get('disabled')) {
-										instance.fire('addFileEntryNode');
+									if (!event.target.get(DISABLED)) {
+										instance.fire(EVENT_ADD_FILE_ENTRY_NODE);
 									}
 								},
 								icon: 'gadgeteditor-addfile'
 							}
 						);
 
-						instance._newFileEntryButton = newFileEntryButton;
-
 						var newFolderButton = new A.ButtonItem(
 							{
 								handler: function(event) {
-									if (!event.target.get('disabled')) {
+									if (!event.target.get(DISABLED)) {
 										var parentFolderId = instance._treeViewEditor.getSelectedFolderId();
 
 										if (parentFolderId == 0) {
-											parentFolderId = instance._rootNode.get('id');
+											parentFolderId = instance._rootNode.get(ID);
 										}
 
 										instance.fire(
-											'addFolderNode',
+											EVENT_ADD_FOLDER_NODE,
 											{
 												parentFolderId: parentFolderId
 											}
@@ -1202,17 +1357,15 @@ AUI().add(
 							}
 						);
 
-						instance._newFolderButton = newFolderButton;
-
 						var saveButton = new A.ButtonItem(
 							{
 								disabled: true,
 								handler: function(event) {
-									if (!event.target.get('disabled')) {
-										var entryId = instance._tabViewEditor.get('activeTab').get('entryId');
+									if (!event.target.get(DISABLED)) {
+										var entryId = instance._tabViewEditor.get(ACTIVE_TAB).get(ENTRY_ID);
 
 										instance.fire(
-											'saveContent',
+											EVENT_SAVE_CONTENT,
 											{
 												entryId: entryId
 											}
@@ -1223,17 +1376,15 @@ AUI().add(
 							}
 						);
 
-						instance._saveButton = saveButton;
-
 						var deleteButton = new A.ButtonItem(
 							{
 								disabled: true,
 								handler: function(event) {
-									if (!event.target.get('disabled')) {
-										var entryId = instance._tabViewEditor.get('activeTab').get('entryId');
+									if (!event.target.get(DISABLED)) {
+										var entryId = instance._tabViewEditor.get(ACTIVE_TAB).get(ENTRY_ID);
 
 										instance.fire(
-											'deleteEntry',
+											EVENT_DELETE_ENTRY,
 											{
 												entryId: entryId
 											}
@@ -1244,18 +1395,16 @@ AUI().add(
 							}
 						);
 
-						instance._deleteButton = deleteButton;
-
 						var previewButton = new A.ButtonItem(
 							{
 								activeState: true,
 								handler: function(event) {
-									if (!event.target.get('disabled')) {
-										if (event.target.StateInteraction.get('active')) {
-											var entryId = instance._tabViewEditor.get('activeTab').get('entryId');
+									if (!event.target.get(DISABLED)) {
+										if (event.target.StateInteraction.get(ACTIVE)) {
+											var entryId = instance._tabViewEditor.get(ACTIVE_TAB).get(ENTRY_ID);
 
 											instance.fire(
-												'renderGadget',
+												EVENT_RENDER_GADGET,
 												{
 													entryId: entryId
 												}
@@ -1271,39 +1420,33 @@ AUI().add(
 							}
 						);
 
-						instance._previewButton = previewButton;
-
 						var increaseFontSizeButton = new A.ButtonItem(
 							{
 								handler: function(event) {
-									if (!event.target.get('disabled')) {
-										instance._changeEditorFontSize('increase');
+									if (!event.target.get(DISABLED)) {
+										instance._changeEditorFontSize(INCREASE);
 									}
 								},
-								icon: 'zoomin',
+								icon: 'zoomin'
 							}
 						);
-
-						instance._increaseEditorFontSizeButton = increaseFontSizeButton;
 
 						var decreaseFontSizeButton = new A.ButtonItem(
 							{
 								handler: function(event) {
-									if (!event.target.get('disabled')) {
+									if (!event.target.get(DISABLED)) {
 										instance._changeEditorFontSize('decrease');
 									}
 								},
-								icon: 'zoomout',
+								icon: 'zoomout'
 							}
 						);
-
-						instance._decreaseEditorFontSizeButton = decreaseFontSizeButton;
 
 						var undoEditorButton = new A.ButtonItem(
 							{
 								disabled: true,
 								handler: function(event) {
-									if (!event.target.get('disabled')) {
+									if (!event.target.get(DISABLED)) {
 										instance._undoContent('undo');
 									}
 								},
@@ -1311,13 +1454,11 @@ AUI().add(
 							}
 						);
 
-						instance._undoContentButton = undoEditorButton;
-
 						var redoEditorButton = new A.ButtonItem(
 							{
 								disabled: true,
 								handler: function(event) {
-									if (!event.target.get('disabled')) {
+									if (!event.target.get(DISABLED)) {
 										instance._undoContent('redo');
 									}
 								},
@@ -1325,14 +1466,12 @@ AUI().add(
 							}
 						);
 
-						instance._redoEditorButton = redoEditorButton;
-
 						var searchEditorButton = new A.ButtonItem(
 							{
 								activeState: true,
 								handler: function(event) {
-									if (!event.target.get('disabled')) {
-										if (event.target.StateInteraction.get('active')) {
+									if (!event.target.get(DISABLED)) {
+										if (event.target.StateInteraction.get(ACTIVE)) {
 											instance._showSearchDialog();
 										}
 										else {
@@ -1344,74 +1483,59 @@ AUI().add(
 							}
 						);
 
-						instance._searchEditorButton = searchEditorButton;
-
-						new A.Toolbar(
+						var editorToolbar = new A.Toolbar(
 							{
-								boundingBox: A.one('#gadgetEditorToolbar'),
+								boundingBox: '#gadgetEditorToolbar',
 								children: [
 									newFileEntryButton,
 									newFolderButton,
 									saveButton,
 									deleteButton,
-									{
-										type: 'ToolbarSpacer'
-									},
+									CONFIG_SPACER,
 									previewButton,
-									{
-										type: 'ToolbarSpacer'
-									},
+									CONFIG_SPACER,
 									increaseFontSizeButton,
 									decreaseFontSizeButton,
-									{
-										type: 'ToolbarSpacer'
-									},
+									CONFIG_SPACER,
 									undoEditorButton,
 									redoEditorButton,
-									{
-										type: 'ToolbarSpacer'
-									},
+									CONFIG_SPACER,
 									searchEditorButton
-								],
+								]
 							}
 						).render();
+
+						instance._newFileEntryButton = newFileEntryButton;
+						instance._newFolderButton = newFolderButton;
+						instance._saveButton = saveButton;
+						instance._deleteButton = deleteButton;
+						instance._previewButton = previewButton;
+						instance._increaseEditorFontSizeButton = increaseFontSizeButton;
+						instance._decreaseEditorFontSizeButton = decreaseFontSizeButton;
+						instance._undoContentButton = undoEditorButton;
+						instance._redoEditorButton = redoEditorButton;
+						instance._searchEditorButton = searchEditorButton;
+
+						instance._editorToolbar = editorToolbar;
 					},
 
 					_renderTreeViewEditor: function() {
 						var instance = this;
 
-						var callback = function(data) {
-							A.Array.each(
-								data,
-								function(value) {
-									var node = new A.TreeNodeEditor(
-										{
-											entryId: String(value.entryId),
-											label: value.label,
-											leaf: value.leaf,
-											type: value.type
-										}
-									);
+						var callback = A.bind(instance._appendEditorChildren, instance);
 
-									instance._treeViewEditor.appendChild(node);
-								}
-							);
-
-							instance._treeViewEditor.sortChildren();
-						};
-
-						var children = instance._requestGetFolderChildren(instance.get('rootFolderId'), instance.get('repositoryId'), true, callback)
+						instance._requestGetFolderChildren(instance.get(ROOT_FOLDER_ID), instance.get(REPOSITORY_ID), true, callback);
 
 						var treeViewEditor = new A.TreeViewEditor(
 							{
-								boundingBox: A.one('#treeViewEditor'),
+								boundingBox: '#treeViewEditor',
 								io: {
 									cfg: {
 										data: function(node) {
 											return {
-												folderId: node.get('entryId'),
+												folderId: node.get(ENTRY_ID),
 												getFileEntries: true,
-												repositoryId: instance.get('repositoryId')
+												repositoryId: instance.get(REPOSITORY_ID)
 											};
 										},
 										on: {
@@ -1423,9 +1547,9 @@ AUI().add(
 											}
 										}
 									},
-									url: instance._getResourceURL('getFolderChildren')
+									url: instance._getResourceURL(GET_FOLDER_CHILDREN)
 								},
-								rootFolderId: instance.get('rootFolderId')
+								rootFolderId: instance.get(ROOT_FOLDER_ID)
 							}
 						).render();
 
@@ -1439,19 +1563,15 @@ AUI().add(
 
 						instance._loadingMask.show();
 
-						var io = instance._getIORequest('addFileEntry', callback);
-
-						io.setAttrs(
+						instance._sendIORequest(
+							'addFileEntry',
 							{
-								data: {
-									content: content,
-									fileEntryTitle: name,
-									folderId: folderId
-								}
-							}
+								content: content,
+								fileEntryTitle: name,
+								folderId: folderId
+							},
+							callback
 						);
-
-						io.start();
 					},
 
 					_requestAddFolder: function(name, parentFolderId, callback) {
@@ -1459,18 +1579,14 @@ AUI().add(
 
 						instance._loadingMask.show();
 
-						var io = instance._getIORequest('addFolder', callback);
-
-						io.setAttrs(
+						instance._sendIORequest(
+							'addFolder',
 							{
-								data: {
-									folderName: name,
-									parentFolderId: parentFolderId
-								}
-							}
+								folderName: name,
+								parentFolderId: parentFolderId
+							},
+							callback
 						);
-
-						io.start();
 					},
 
 					_requestDeleteFileEntry: function(fileEntryId, callback) {
@@ -1478,17 +1594,13 @@ AUI().add(
 
 						instance._loadingMask.show();
 
-						var io = instance._getIORequest('deleteFileEntry', callback);
-
-						io.setAttrs(
+						instance._sendIORequest(
+							'deleteFileEntry',
 							{
-								data: {
-									fileEntryId: fileEntryId
-								}
-							}
+								fileEntryId: fileEntryId
+							},
+							callback
 						);
-
-						io.start();
 					},
 
 					_requestDeleteFolder: function(folderId, callback) {
@@ -1496,17 +1608,13 @@ AUI().add(
 
 						instance._loadingMask.show();
 
-						var io = instance._getIORequest('deleteFolder', callback);
-
-						io.setAttrs(
+						instance._sendIORequest(
+							'deleteFolder',
 							{
-								data: {
-									folderId: folderId
-								}
-							}
+								folderId: folderId
+							},
+							callback
 						);
-
-						io.start();
 					},
 
 					_requestGetFileEntryContent: function(fileEntryId, callback) {
@@ -1514,17 +1622,13 @@ AUI().add(
 
 						instance._loadingMask.show();
 
-						var io = instance._getIORequest('getFileEntryContent', callback);
-
-						io.setAttrs(
+						instance._sendIORequest(
+							'getFileEntryContent',
 							{
-								data: {
-									fileEntryId: fileEntryId
-								}
-							}
+								fileEntryId: fileEntryId
+							},
+							callback
 						);
-
-						io.start();
 					},
 
 					_requestGetFolderChildren: function(folderId, repositoryId, getFileEntries, callback) {
@@ -1532,19 +1636,15 @@ AUI().add(
 
 						instance._loadingMask.show();
 
-						var io = instance._getIORequest('getFolderChildren', callback);
-
-						io.setAttrs(
+						instance._sendIORequest(
+							GET_FOLDER_CHILDREN,
 							{
-								data: {
-									folderId: folderId,
-									getFileEntries: getFileEntries,
-									repositoryId: repositoryId
-								}
-							}
+								folderId: folderId,
+								getFileEntries: getFileEntries,
+								repositoryId: repositoryId
+							},
+							callback
 						);
-
-						io.start();
 					},
 
 					_requestGetRenderParameters: function(content, callback) {
@@ -1552,17 +1652,13 @@ AUI().add(
 
 						instance._loadingMask.show();
 
-						var io = instance._getIORequest('getRenderParameters', callback);
-
-						io.setAttrs(
+						instance._sendIORequest(
+							'getRenderParameters',
 							{
-								data: {
-									content: content
-								}
-							}
+								content: content
+							},
+							callback
 						);
-
-						io.start();
 					},
 
 					_requestUpdateFileEntryContent: function(fileEntryId, content, callback) {
@@ -1570,18 +1666,14 @@ AUI().add(
 
 						instance._loadingMask.show();
 
-						var io = instance._getIORequest('updateFileEntryContent', callback);
-
-						io.setAttrs(
+						instance._sendIORequest(
+							'updateFileEntryContent',
 							{
-								data: {
-									content: content,
-									fileEntryId: fileEntryId
-								}
-							}
+								content: content,
+								fileEntryId: fileEntryId
+							},
+							callback
 						);
-
-						io.start();
 					},
 
 					_requestUpdateFileEntryTitle: function(fileEntryId, title, callback) {
@@ -1589,18 +1681,14 @@ AUI().add(
 
 						instance._loadingMask.show();
 
-						var io = instance._getIORequest('updateFileEntryTitle', callback);
-
-						io.setAttrs(
+						instance._sendIORequest(
+							'updateFileEntryTitle',
 							{
-								data: {
-									fileEntryId: fileEntryId,
-									fileEntryTitle: title
-								}
-							}
+								fileEntryId: fileEntryId,
+								fileEntryTitle: title
+							},
+							callback
 						);
-
-						io.start();
 					},
 
 					_requestUpdateFolderName: function(folderId, name, callback) {
@@ -1608,28 +1696,38 @@ AUI().add(
 
 						instance._loadingMask.show();
 
-						var io = instance._getIORequest('updateFolderName', callback);
-
-						io.setAttrs(
+						instance._sendIORequest(
+							'updateFolderName',
 							{
-								data: {
-									folderId: folderId,
-									folderName: name
-								}
-							}
+								folderId: folderId,
+								folderName: name
+							},
+							callback
 						);
+					},
+
+					_sendIORequest: function(name, data, callback) {
+						var instance = this;
+
+						var io = instance._getIORequest(name, callback);
+
+						io.set('data', data);
 
 						io.start();
+
+						return io;
 					},
 
 					_showConfirmationDialog: function(message, callback) {
 						var instance = this;
 
+						var args = arguments;
+
 						var buttons = [
 							{
 								handler: function(event) {
 									if (callback) {
-										callback();
+										callback.apply(instance, A.Array(args, 2, true));
 									}
 
 									instance._confirmationDialog.close();
@@ -1654,11 +1752,11 @@ AUI().add(
 
 						var bodyContent;
 
-						if (A.Lang.isString(error)) {
+						if (Lang.isString(error)) {
 							bodyContent = error;
 						}
 						else {
-							bodyContent = error.name + '<br /><br />' + error.message;
+							bodyContent = Lang.sub(TPL_ERROR_MESSAGE, error);
 						}
 
 						instance._createDialog('Error', bodyContent, true, true, null).render();
@@ -1687,9 +1785,9 @@ AUI().add(
 						var buttons = [
 							{
 								handler: function(event) {
-									var tab = instance._tabViewEditor.get('activeTab');
+									var tab = instance._tabViewEditor.get(ACTIVE_TAB);
 
-									var searchText = searchField.get('value');
+									var searchText = searchField.get(VALUE);
 
 									tab.searchEditorText(searchText, false);
 								},
@@ -1697,11 +1795,11 @@ AUI().add(
 							},
 							{
 								handler: function(event) {
-									var tab = instance._tabViewEditor.get('activeTab');
+									var tab = instance._tabViewEditor.get(ACTIVE_TAB);
 
-									var searchText = searchField.get('value');
+									var searchText = searchField.get(VALUE);
 
-									var replaceText = replaceField.get('value');
+									var replaceText = replaceField.get(VALUE);
 
 									tab.searchEditorText(searchText, false, replaceText, true);
 								},
@@ -1715,40 +1813,39 @@ AUI().add(
 							}
 						];
 
-						var _searchDialog = instance._createDialog('Search', form.get('boundingBox'), false, false, buttons).render();
-
-						instance._searchDialog = _searchDialog;
+						instance._searchDialog = instance._createDialog('Search', form.get(BOUNDING_BOX), false, false, buttons).render();
 					},
 
 					_saveRenameExistingEntry: function(node) {
 						var instance = this;
 
-						var editable = node.get('editable');
+						var editable = node.get(EDITABLE);
 
-						var label = editable.inputNode.get('value');
+						var label = editable.inputNode.get(VALUE);
 
-						var entryId = node.get('entryId');
+						var entryId = node.get(ENTRY_ID);
 
 						var callback = function(data) {
-							editable.fire('stopEditing', !data.error);
+							var dataError = data.error;
 
-							if (data.error) {
-								instance._showErrorDialog(data.error);
+							editable.fire('stopEditing', !dataError);
 
-								return;
+							if (dataError) {
+								instance._showErrorDialog(dataError);
 							}
+							else {
+								node.set(LABEL, label);
 
-							node.set('label', label);
+								node.sort();
 
-							node.sort();
+								if (node.isLeaf()) {
+									var tab = instance._getTabFromDataSet(entryId);
 
-							if (node.isLeaf()) {
-								var tab = instance._getTabFromDataSet(entryId);
+									if (tab) {
+										tab.set(LABEL, label);
 
-								if (tab) {
-									tab.set('label', label);
-
-									tab.updateEditorMode();
+										tab.updateEditorMode();
+									}
 								}
 							}
 						};
@@ -1764,73 +1861,78 @@ AUI().add(
 					_saveRenameNewEntry: function(node) {
 						var instance = this;
 
-						var editable = node.get('editable');
+						var editable = node.get(EDITABLE);
 
-						var label = editable.inputNode.get('value');
+						var label = editable.inputNode.get(VALUE);
 
-						var parentFolderNode = node.get('parentNode');
+						var parentFolderNode = node.get(PARENT_NODE);
 
 						var parentFolderEntryId;
 
-						if (parentFolderNode.get('id') == instance._treeViewEditor.get('id')) {
-							parentFolderEntryId = instance.get('rootFolderId');
+						var tabViewEditor = instance._tabViewEditor;
+
+						if (parentFolderNode.get(ID) == instance._treeViewEditor.get(ID)) {
+							parentFolderEntryId = instance.get(ROOT_FOLDER_ID);
 						}
 						else {
-							parentFolderEntryId = parentFolderNode.get('entryId');
+							parentFolderEntryId = parentFolderNode.get(ENTRY_ID);
 						}
 
 						var callback = function(data) {
-							editable.fire('stopEditing', !data.error);
+							var dataError = data.error;
 
-							if (data.error) {
-								instance._showErrorDialog(data.error);
+							editable.fire('stopEditing', !dataError);
+
+							if (dataError) {
+								instance._showErrorDialog(dataError);
 
 								parentFolderNode.removeChild(node);
-
-								return;
-							}
-
-							if (node.isLeaf()) {
-								node.setAttrs(
-									{
-										entryId: String(data.fileEntryId),
-										fileEntryLoaded: true,
-										fileEntryURL: data.fileEntryURL,
-										isNewEntry: false,
-										label: label
-									}
-								);
-
-								var tab = instance._tabViewEditor.get('activeTab');
-
-								tab.setAttrs(
-									{
-										entryId: String(data.fileEntryId),
-										isDirty: false,
-										isNew: false,
-										label: label
-									}
-								);
-
-								instance._addEntryToDataSet(tab);
-
-								tab.updateEditorMode();
 							}
 							else {
-								node.setAttrs(
-									{
-										entryId: String(data.folderId),
-										isNewEntry: false,
-										label: label
-									}
-								);
-							}
+								if (node.isLeaf()) {
+									var fileEntryId = data.fileEntryId;
 
-							node.sort();
+									node.setAttrs(
+										{
+											entryId: String(fileEntryId),
+											fileEntryLoaded: true,
+											fileEntryURL: data.fileEntryURL,
+											isNewEntry: false,
+											label: label
+										}
+									);
+
+									var tab = tabViewEditor.get(ACTIVE_TAB);
+
+									tab.setAttrs(
+										{
+											entryId: String(fileEntryId),
+											isDirty: false,
+											isNew: false,
+											label: label
+										}
+									);
+
+									instance._addEntryToDataSet(tab);
+
+									tab.updateEditorMode();
+								}
+								else {
+									node.setAttrs(
+										{
+											entryId: String(data.folderId),
+											isNewEntry: false,
+											label: label
+										}
+									);
+								}
+
+								node.sort();
+							}
 						};
 
 						if (node.isLeaf()) {
-							instance._requestAddFileEntry(label, instance._tabViewEditor.get('activeTab').get('editor').getValue(), parentFolderEntryId, callback);
+							instance._requestAddFileEntry(label, tabViewEditor.get(ACTIVE_TAB).get(EDITOR).getValue(), parentFolderEntryId, callback);
 						}
 						else {
 							instance._requestAddFolder(label, parentFolderEntryId, callback);
@@ -1840,7 +1942,7 @@ AUI().add(
 					_undoContent: function(action) {
 						var instance = this;
 
-						var editor = instance._tabViewEditor.get('activeTab').get('editor');
+						var editor = instance._tabViewEditor.get(ACTIVE_TAB).get(EDITOR);
 
 						if (action == 'undo') {
 							editor.undo();
@@ -1853,19 +1955,16 @@ AUI().add(
 					_updateUndoButtons: function() {
 						var instance = this;
 
-						var tab = instance._tabViewEditor.get('activeTab');
+						var tab = instance._tabViewEditor.get(ACTIVE_TAB);
 
-						var editor = instance._tabViewEditor.get('activeTab').get('editor');
+						var editor = instance._tabViewEditor.get(ACTIVE_TAB).get(EDITOR);
 
-						if (!editor) {
-							return;
+						if (editor) {
+							var historySize = editor.historySize();
+
+							instance._redoEditorButton.set(DISABLED, historySize.redo == 0);
+							instance._undoContentButton.set(DISABLED, historySize.undo == 0);
 						}
-
-						var historySize = editor.historySize();
-
-						instance._redoEditorButton.set('disabled', historySize.redo == 0);
-
-						instance._undoContentButton.set('disabled', historySize.undo == 0);
 					}
 				}
 			}

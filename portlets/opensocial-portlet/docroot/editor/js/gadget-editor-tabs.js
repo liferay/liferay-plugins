@@ -1,6 +1,40 @@
 AUI().add(
 	'gadget-editor-tabs',
 	function(A) {
+		var Lang = A.Lang;
+
+		var ACTIVE_TAB = 'activeTab';
+
+		var BOUNDING_BOX = 'boundingBox';
+
+		var CONTENT_BOX = 'contentBox';
+
+		var CONTENT_NODE = 'contentNode';
+
+		var DIRTY_INDICATOR_NODE = 'dirtyIndicatorNode';
+
+		var EDITOR = 'editor';
+
+		var ENTRY_ID = 'entryId';
+
+		var HEIGHT = 'height';
+
+		var ID = 'id';
+
+		var IS_DIRTY = 'isDirty';
+
+		var IS_RENDERED = 'isRendered';
+
+		var ITEMS = 'items';
+
+		var LABEL = 'label';
+
+		var TPL_CLOSE_BUTTON = '<a class="gadget-editor-tab-close" href="javascript:;"></a>';
+
+		var TPL_DIV = '<div></div>';
+
+		var TPL_DIRTY_INDICATOR = '<span>*</span>';
+
 		var TabViewEditor = A.Component.create(
 			{
 				EXTENDS: A.TabView,
@@ -11,7 +45,7 @@ AUI().add(
 					addExistingDocument: function(entryId, label, editorContent) {
 						var instance = this;
 
-						var contentNode = A.Node.create('<div></div>');
+						var contentNode = A.Node.create(TPL_DIV);
 
 						var tab = new TabEditor(
 							{
@@ -35,17 +69,13 @@ AUI().add(
 					addNewTab: function() {
 						var instance = this;
 
-						if (instance._newTabCounter === undefined) {
-							instance._newTabCounter = 0;
-						}
-
-						var newTabCounter = instance._newTabCounter;
+						var newTabCounter = instance._newTabCounter || 0;
 
 						newTabCounter++;
 
 						var entryId = 'newTab' + newTabCounter;
 
-						var contentNode = A.Node.create('<div></div>');
+						var contentNode = A.Node.create(TPL_DIV);
 
 						var tab = new TabEditor(
 							{
@@ -81,23 +111,21 @@ AUI().add(
 					adjustEditorHeight: function() {
 						var instance = this;
 
-						var tab = instance.get('activeTab');
+						var tab = instance.get(ACTIVE_TAB);
 
-						var codeMirrorElement = tab.get('contentNode').one('.CodeMirror');
+						var codeMirrorElement = tab.get(CONTENT_NODE).one('.CodeMirror');
 
-						if (!codeMirrorElement) {
-							return;
+						if (codeMirrorElement) {
+							var contentTabsHeight = instance.get(BOUNDING_BOX).get('clientHeight');
+
+							var listNodeHeight = instance.get('listNode').get('offsetHeight');
+
+							var height =  contentTabsHeight - listNodeHeight;
+
+							codeMirrorElement.setStyle(HEIGHT, height);
+
+							tab.get(EDITOR).refresh();
 						}
-
-						var contentTabsHeight = instance.get('boundingBox').get('clientHeight');
-
-						var listNodeHeight = instance.get('listNode').get('offsetHeight');
-
-						var height =  contentTabsHeight - listNodeHeight;
-
-						codeMirrorElement.setStyle('height', height + 'px');
-
-						tab.get('editor').refresh();
 					},
 
 					closeTabById: function(id) {
@@ -105,32 +133,28 @@ AUI().add(
 
 						var tab = instance.getTabById(id);
 
-						if (!tab) {
-							return;
+						if (tab) {
+							var items = instance.get(ITEMS);
+
+							if (items.length == 1) {
+								instance.addNewTab();
+							}
+
+							instance.removeTabById(id);
+
+							instance.adjustEditorHeight();
 						}
-
-						var items = instance.get('items');
-
-						if (instance.get('items').length == 1) {
-							instance.addNewTab();
-						}
-
-						instance.removeTabById(id);
-
-						instance.adjustEditorHeight();
 					},
 
 					getTabById: function(id) {
 						var instance = this;
 
-						var items = instance.get('items');
-
 						var tab = null;
 
 						A.Array.some(
-							items,
-							function(value) {
-								if (value.get('id') == id) {
+							instance.get(ITEMS),
+							function(item, index, collection) {
+								if (item.get(ID) == id) {
 									tab = value;
 
 									return true;
@@ -148,9 +172,8 @@ AUI().add(
 
 						instance.removeTab(tab);
 
-						var tabContentNode = tab.get('contentNode');
-
-						var tabViewContentNode = instance.get('contentNode');
+						var tabContentNode = tab.get(CONTENT_NODE);
+						var tabViewContentNode = instance.get(CONTENT_NODE);
 
 						if (tabViewContentNode.contains(tabContentNode)) {
 							tabViewContentNode.removeChild(tabContentNode);
@@ -170,11 +193,9 @@ AUI().add(
 
 						TabViewEditor.superclass._onActiveTabChange.apply(this, arguments);
 
-						if (!event.newVal) {
-							return;
+						if (event.newVal) {
+							instance.adjustEditorHeight();
 						}
-
-						instance.adjustEditorHeight();
 					}
 				}
 			}
@@ -220,19 +241,16 @@ AUI().add(
 					initializer: function(config) {
 						var instance = this;
 
-						instance._searched = false;
-						instance._searchLastPosition = null;
-						instance._searchLastQuery = null;
 						instance._searchMarked = [];
 
 						instance._editorModes = {
-							css: [ 'css' ],
-							gadget: [ 'xml' ],
-							javascript: [ 'js' ],
-							xml: [ 'html', 'htm', 'shtml', 'shtm', 'xhtml', 'xsml', 'xsl', 'xsd', 'kml', 'wsdl' ]
-						}
+							css: ['css'],
+							gadget: ['xml'],
+							javascript: ['js'],
+							xml: ['html', 'htm', 'shtml', 'shtm', 'xhtml', 'xsml', 'xsl', 'xsd', 'kml', 'wsdl']
+						};
 
-						instance._createEditor(instance.get('contentNode'), config.editorContent);
+						instance._createEditor(instance.get(CONTENT_NODE), config.editorContent);
 					},
 
 					renderUI: function() {
@@ -241,14 +259,13 @@ AUI().add(
 						TabEditor.superclass.renderUI.apply(this, arguments);
 
 						instance._renderCloseButton();
-
 						instance._renderDirtyIndicator();
 					},
 
 					getEditorModeFromLabel: function() {
 						var instance = this;
 
-						var label = instance.get('label');
+						var label = instance.get(LABEL);
 
 						var mode;
 
@@ -276,58 +293,69 @@ AUI().add(
 					searchEditorText: function(searchText, caseInsensitive, replaceText, doReplace) {
 						var instance = this;
 
-						if (!searchText) {
-							return;
-						}
+						var searched = instance._searched;
+						var searchLastPosition = instance._searchLastPosition;
+						var searchLastQuery = instance._searchLastQuery;
 
-						var editor = instance.get('editor');
+						if (searchText) {
+							var editor = instance.get(EDITOR);
 
-						if (instance._searchLastQuery != searchText) {
-							instance._searchLastPosition = null;
+							if (searchLastQuery != searchText) {
+								searchLastPosition = null;
 
-							instance._searched = false;
-						}
-
-						if (!instance._searched) {
-							instance.unmarkSearch();
-
-							for (var cursor = editor.getSearchCursor(searchText, null, caseInsensitive); cursor.findNext();) {
-								instance._searchMarked.push(editor.markText(cursor.from(), cursor.to(), "codemirror-searched"));
+								searched = false;
 							}
 
-							instance._searched = true;
-						}
+							if (!searched) {
+								instance.unmarkSearch();
 
-						var cursor = null;
+								var searchMarked = instance._searchMarked;
 
-						if (instance._searchLastQuery != searchText) {
-							instance._searchLastPosition = null;
+								var cursor = editor.getSearchCursor(searchText, null, caseInsensitive)
 
-							instance._searched = false;
+								while (cursor.findNext()) {
+									searchMarked.push(editor.markText(cursor.from(), cursor.to(), 'codemirror-searched'));
+								}
 
-							cursor = editor.getSearchCursor(searchText, editor.getCursor(), caseInsensitive);
-						}
-						else {
-							cursor = editor.getSearchCursor(searchText, instance._searchLastPosition, caseInsensitive);
-
-							if (doReplace && cursor.findPrevious()) {
-								editor.replaceRange(replaceText, cursor.from(), cursor.to());
+								searched = true;
 							}
-						}
 
-						if (!cursor.findNext()) {
-							cursor = editor.getSearchCursor(searchText, null, caseInsensitive);
+							var cursor;
+
+							if (searchLastQuery != searchText) {
+								searchLastPosition = null;
+
+								searched = false;
+
+								cursor = editor.getSearchCursor(searchText, editor.getCursor(), caseInsensitive);
+							}
+							else {
+								cursor = editor.getSearchCursor(searchText, searchLastPosition, caseInsensitive);
+
+								if (doReplace && cursor.findPrevious()) {
+									editor.replaceRange(replaceText, cursor.from(), cursor.to());
+								}
+							}
 
 							if (!cursor.findNext()) {
-								return;
+								cursor = editor.getSearchCursor(searchText, null, caseInsensitive);
+
+								if (!cursor.findNext()) {
+									cursor = null;
+								}
 							}
+
+							if (cursor) {
+								editor.setSelection(cursor.from(), cursor.to());
+
+								instance._searchLastQuery = searchText;
+
+								searchLastPosition = cursor.to();
+							}
+
+							instance._searched = searched;
+							instance._searchLastPosition = searchLastPosition;
 						}
-
-						editor.setSelection(cursor.from(), cursor.to());
-
-						instance._searchLastQuery = searchText;
-
-						instance._searchLastPosition = cursor.to();
 					},
 
 					updateEditorMode: function() {
@@ -335,7 +363,7 @@ AUI().add(
 
 						var mode = instance.getEditorModeFromLabel();
 
-						var editor = instance.get('editor');
+						var editor = instance.get(EDITOR);
 
 						editor.setOption('mode', mode);
 					},
@@ -343,21 +371,21 @@ AUI().add(
 					unmarkSearch: function() {
 						var instance = this;
 
-						for (var i = 0; i < instance._searchMarked.length; ++i) {
-							instance._searchMarked[i]();
+						var searchMarked = instance._searchMarked;
+						var length = searchMarked.length;
+
+						for (var i = 0; i < length; ++i) {
+							searchMarked[i]();
 						}
 
 						instance._searchMarked.length = 0;
-
 						instance._searched = false;
 					},
 
 					_afterIdChange: function(event) {
 						var instance = this;
 
-						var id = event.newVal;
-
-						instance.get('boundingBox').attr('id', id);
+						instance.get(BOUNDING_BOX).attr(ID, event.newVal);
 					},
 
 					_createEditor: function(node , content) {
@@ -365,30 +393,33 @@ AUI().add(
 
 						var mode = instance.getEditorModeFromLabel();
 
-						var editor = new CodeMirror(node.getDOM(), {
-							lineNumbers: true,
-							matchBrackets: true,
-							mode: mode,
-							onChange: function(editor) {
-								instance.set('isDirty', true);
-								instance.set('isRendered', false);
+						var editor = new CodeMirror(
+							node.getDOM(),
+							{
+								lineNumbers: true,
+								matchBrackets: true,
+								mode: mode,
+								onChange: function(editor) {
+									instance.set(IS_DIRTY, true);
+									instance.set(IS_RENDERED, false);
 
-								instance.fire('onEditorChange');
-							},
-							onCursorActivity: function(editor) {
-								editor.setLineClass(currentLine, null);
+									instance.fire('onEditorChange');
+								},
+								onCursorActivity: function(editor) {
+									editor.setLineClass(currentLine, null);
 
-								currentLine = editor.setLineClass(editor.getCursor().line, 'codemirror-activeline');
-							},
-							onFocus: function(editor) {
-								instance.fire('onEditorFocus');
-							},
-							value: content
-						});
+									currentLine = editor.setLineClass(editor.getCursor().line, 'codemirror-activeline');
+								},
+								onFocus: function(editor) {
+									instance.fire('onEditorFocus');
+								},
+								value: content
+							}
+						);
 
 						var currentLine = editor.setLineClass(0, 'codemirror-activeline');
 
-						instance.set('editor', editor);
+						instance.set(EDITOR, editor);
 
 						return editor;
 					},
@@ -396,15 +427,26 @@ AUI().add(
 					_hideIsDirtyIndicator: function() {
 						var instance = this;
 
-						instance.get('dirtyIndicatorNode').hide();
+						instance.get(DIRTY_INDICATOR_NODE).hide();
+					},
+
+					_onCloseButtonClick: function(event) {
+						var instance = this;
+
+						event.preventDefault();
+
+						instance.fire(
+							'close',
+							{
+								entryId: instance.get(ENTRY_ID)
+							}
+						);
 					},
 
 					_onIsDirtyChange: function(event) {
 						var instance = this;
 
-						var isDirty = event.newVal;
-
-						if (isDirty) {
+						if (event.newVal) {
 							instance._showIsDirtyIndicator();
 						}
 						else {
@@ -415,42 +457,34 @@ AUI().add(
 					_renderCloseButton: function() {
 						var instance = this;
 
-						var contentBox = instance.get('contentBox');
+						var closeButton = A.Node.create(TPL_CLOSE_BUTTON);
 
-						var closeButton = A.Node.create('<a href="javascript:;"></a>');
+						closeButton.on('click', instance._onCloseButtonClick, instance);
 
-						closeButton.addClass('gadget-editor-tab-close');
-
-						var onClickCloseButton = function(event) {
-							event.preventDefault();
-
-							instance.fire('close', { entryId: instance.get('entryId') });
-						};
-
-						closeButton.on('click', onClickCloseButton);
-
-						contentBox.append(closeButton);
+						instance.get(CONTENT_BOX).append(closeButton);
 					},
 
 					_renderDirtyIndicator: function() {
 						var instance = this;
 
-						var contentBox = instance.get('contentBox');
-
-						var dirtyIndicatorNode = A.Node.create('<span>*</span>');
+						var dirtyIndicatorNode = A.Node.create(TPL_DIRTY_INDICATOR);
 
 						dirtyIndicatorNode.hide();
 
-						contentBox.prepend(dirtyIndicatorNode);
+						instance.get(CONTENT_BOX).prepend(dirtyIndicatorNode);
 
-						instance.set('dirtyIndicatorNode', dirtyIndicatorNode);
+						instance.set(DIRTY_INDICATOR_NODE, dirtyIndicatorNode);
 					},
 
 					_showIsDirtyIndicator: function() {
 						var instance = this;
 
-						instance.get('dirtyIndicatorNode').show();
-					}
+						instance.get(DIRTY_INDICATOR_NODE).show();
+					},
+
+					_searched: false,
+					_searchLastPosition: null,
+					_searchLastQuery: null
 				}
 			}
 		);

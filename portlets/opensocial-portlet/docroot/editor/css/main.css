@@ -56,22 +56,22 @@
 }
 
 .opensocial-portlet-editor .yui3-aui-tree-view-editor .yui3-aui-tree-node .aui-tree-node-loaded .yui3-aui-tree-label {
-	font-weight: bold
+	font-weight: bold;
 }
 
-.opensocial-portlet-editor .yui3-aui-tree-node-content:hover .gadget-editor-tree-node-contextmenuicon {
-	background-image: url("images/tool.png");
+.opensocial-portlet-editor .yui3-aui-tree-node-content:hover .gadget-editor-tree-node-contextmenuicon, .opensocial-portlet-editor .gadget-editor-tree-node-contextmenuicon-open, .opensocial-portlet-editor .yui3-aui-tabview-list .yui3-aui-tab-content .gadget-editor-tab-close {
 	background-repeat: no-repeat;
 	float: right;
 	height: 16px;
 	width: 16px;
 }
 
+.opensocial-portlet-editor .yui3-aui-tree-node-content:hover .gadget-editor-tree-node-contextmenuicon {
+	background-image: url(../images/tool.png);
+}
+
 .gadget-editor-contextmenu-toolbar {
 	background: #EEF0F2;
-	border-bottom-radius: 4px;
-	-moz-border-radius: 4px;
-	-webkit-border-radius: 4px;
 }
 
 .yui3-aui-editable {
@@ -83,21 +83,17 @@
 }
 
 .opensocial-portlet-editor .main-editor-column-resize-proxy {
-	border: none;
+	border-width: 0;
 	border-left: 1px dashed black;
 }
 
 .opensocial-portlet-editor .preview-panel-resize-proxy {
-	border: none;
+	border-width: 0;
 	border-top: 1px dashed black;
 }
 
 .opensocial-portlet-editor .gadget-editor-tree-node-contextmenuicon-open {
-	background-image: url("images/tool.png");
-	background-repeat: no-repeat;
-	float: right;
-	height: 16px;
-	width: 16px;
+	background-image: url(../images/tool.png);
 }
 
 .opensocial-portlet-editor .yui3-aui-panel-bd {
@@ -106,9 +102,6 @@
 
 .opensocial-portlet-editor .yui3-aui-tabview-list .yui3-aui-tab-content:hover {
 	background: #D3D3D3;
-	border-radius: 4px;
-	-moz-border-radius: 4px;
-	-webkit-border-radius: 4px;
 }
 
 .opensocial-portlet-editor .yui3-aui-tabview-list .yui3-aui-tab-active .yui3-aui-tab-content:hover {
@@ -117,24 +110,76 @@
 }
 
 .opensocial-portlet-editor .yui3-aui-tabview-list .yui3-aui-tab-content .gadget-editor-tab-close {
-	background-image: url("images/close.png");
-	background-repeat: no-repeat;
-	filter: alpha(opacity=20);
-	float: right;
-	height: 16px;
+	background-image: url(../images/close.png);
 	opacity: 0.2;
-	width: 16px;
-
 }
 
 .opensocial-portlet-editor .yui3-aui-tabview-list .yui3-aui-tab-content .gadget-editor-tab-close:hover {
-	filter: alpha(opacity=100);
 	opacity: 1;
-	zoom: 1;
 }
 
-.opensocial-portlet-editor .yui3-aui-tabview-list, .yui3-aui-tabview-list-content {
+.opensocial-portlet-editor .yui3-aui-tabview-list, .opensocial-portlet-editor .yui3-aui-tabview-list-content {
 	margin-bottom: 0px;
+}
+
+.opensocial-portlet-editor .preview-panel {
+	padding-top: 8px;
+}
+
+.opensocial-portlet-editor .yui3-gadget {
+	height: 100%;
+	width: 100%;
+}
+
+.yui3-aui-icon-gadgeteditor-addfile, .yui3-aui-icon-gadgeteditor-addfolder, .yui3-aui-icon-gadgeteditor-close, .yui3-aui-icon-gadgeteditor-delete, .yui3-aui-icon-gadgeteditor-disk, .yui3-aui-icon-gadgeteditor-refresh, .yui3-aui-icon-gadgeteditor-rename, .yui3-aui-icon-gadgeteditor-tool, .yui3-aui-icon-gadgeteditor-url {
+	background-repeat: no-repeat;
+	height: 16px;
+	width: 16px;
+}
+
+.yui3-aui-icon-gadgeteditor-addfile {
+	background-image: url(../images/add_file.png);
+}
+
+.yui3-aui-icon-gadgeteditor-addfolder {
+	background-image: url(../images/add_folder.png);
+}
+
+.yui3-aui-icon-gadgeteditor-close {
+	background-image: url(../images/close.png);
+}
+
+.yui3-aui-icon-gadgeteditor-delete {
+	background-image: url(../images/delete.png);
+}
+
+.yui3-aui-icon-gadgeteditor-disk {
+	background-image: url(../images/disk.png);
+}
+
+.yui3-aui-icon-gadgeteditor-refresh {
+	background-image: url(../images/refresh.png);
+}
+
+.yui3-aui-icon-gadgeteditor-rename {
+	background-image: url(../images/rename.png);
+}
+
+.yui3-aui-icon-gadgeteditor-tool {
+	background-image: url(../images/disk_dirty.png);
+}
+
+.yui3-aui-icon-gadgeteditor-url {
+	background-image: url(../images/url.png);
+}
+
+.ie .opensocial-portlet-editor .yui3-aui-tabview-list .yui3-aui-tab-content .gadget-editor-tab-close {
+	filter: alpha(opacity=20);
+}
+
+.ie .opensocial-portlet-editor .yui3-aui-tabview-list .yui3-aui-tab-content .gadget-editor-tab-close:hover {
+	filter: alpha(opacity=100);
+	zoom: 1;
 }
 
 .CodeMirror {
@@ -158,76 +203,4 @@
 
 .codemirror-searched {
 	background: #FFFF00;
-}
-
-.opensocial-portlet-editor .preview-panel {
-	padding-top: 8px;
-}
-
-.opensocial-portlet-editor .yui3-gadget {
-	height: 100%;
-	width: 100%;
-}
-
-.yui3-aui-icon-gadgeteditor-addfile {
-	background-image: url("images/add_file.png");
-	background-repeat: no-repeat;
-	height: 16px;
-	width: 16px;
-}
-
-.yui3-aui-icon-gadgeteditor-addfolder {
-	background-image: url("images/add_folder.png");
-	background-repeat: no-repeat;
-	height: 16px;
-	width: 16px;
-}
-
-.yui3-aui-icon-gadgeteditor-close {
-	background-image: url("images/close.png");
-	background-repeat: no-repeat;
-	height: 16px;
-	width: 16px;
-}
-
-.yui3-aui-icon-gadgeteditor-delete {
-	background-image: url("images/delete.png");
-	background-repeat: no-repeat;
-	height: 16px;
-	width: 16px;
-}
-
-.yui3-aui-icon-gadgeteditor-disk {
-	background-image: url("images/disk.png");
-	background-repeat: no-repeat;
-	height: 16px;
-	width: 16px;
-}
-
-.yui3-aui-icon-gadgeteditor-refresh {
-	background-image: url("images/refresh.png");
-	background-repeat: no-repeat;
-	height: 16px;
-	width: 16px;
-}
-
-.yui3-aui-icon-gadgeteditor-rename {
-	background-image: url("images/rename.png");
-	background-repeat: no-repeat;
-	height: 16px;
-	width: 16px;
-}
-
-.yui3-aui-icon-gadgeteditor-tool {
-	background-image: url("images/disk_dirty.png");
-	background-repeat: no-repeat;
-	height: 16px;
-	width: 16px;
-}
-
-.yui3-aui-icon-gadgeteditor-url {
-	background-image: url("images/url.png");
-	background-repeat: no-repeat;
-	height: 16px;
-	width: 16px;
 }
