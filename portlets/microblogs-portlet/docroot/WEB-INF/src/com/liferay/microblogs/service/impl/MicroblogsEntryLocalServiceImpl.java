@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
+import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portlet.asset.service.AssetEntryLocalServiceUtil;
 import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
@@ -79,11 +80,8 @@ public class MicroblogsEntryLocalServiceImpl
 
 		// Asset
 
-		Group group = user.getGroup();
-
-		AssetEntryLocalServiceUtil.updateEntry(
-			userId, group.getGroupId(), MicroblogsEntry.class.getName(),
-			microblogsEntryId, serviceContext.getAssetCategoryIds(),
+		updateAsset(
+			microblogsEntry, serviceContext.getAssetCategoryIds(),
 			serviceContext.getAssetTagNames());
 
 		// Social
@@ -230,6 +228,21 @@ public class MicroblogsEntryLocalServiceImpl
 		return microblogsEntryPersistence.countByU_T(userId, type);
 	}
 
+	public void updateAsset(
+			MicroblogsEntry microblogsEntry, long[] assetCategoryIds,
+			String[] assetTagNames)
+		throws PortalException, SystemException {
+
+		Group group = GroupLocalServiceUtil.getCompanyGroup(
+			microblogsEntry.getCompanyId());
+
+		AssetEntryLocalServiceUtil.updateEntry(
+			microblogsEntry.getUserId(), group.getGroupId(),
+			MicroblogsEntry.class.getName(),
+			microblogsEntry.getMicroblogsEntryId(), assetCategoryIds,
+			assetTagNames);
+	}
+
 	public MicroblogsEntry updateMicroblogsEntry(
 			long microblogsEntryId, String content, int socialRelationType,
 			ServiceContext serviceContext)
@@ -248,15 +261,8 @@ public class MicroblogsEntryLocalServiceImpl
 
 		// Asset
 
-		User user = userPersistence.findByPrimaryKey(
-			microblogsEntry.getUserId());
-
-		Group group = user.getGroup();
-
-		AssetEntryLocalServiceUtil.updateEntry(
-			microblogsEntry.getUserId(), group.getGroupId(),
-			MicroblogsEntry.class.getName(), microblogsEntryId,
-			serviceContext.getAssetCategoryIds(),
+		updateAsset(
+			microblogsEntry, serviceContext.getAssetCategoryIds(),
 			serviceContext.getAssetTagNames());
 
 		return microblogsEntry;

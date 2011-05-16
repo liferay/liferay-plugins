@@ -27,9 +27,10 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Company;
-import com.liferay.portal.model.GroupConstants;
+import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.CompanyLocalServiceUtil;
+import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
@@ -225,7 +226,10 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 		throws PortalException, SystemException {
 
 		User user = UserLocalServiceUtil.getUser(userId);
-		long groupId = GroupConstants.DEFAULT_PARENT_GROUP_ID;
+
+		Group group = GroupLocalServiceUtil.getCompanyGroup(
+			user.getCompanyId());
+
 		long categoryId =
 			PrivateMessagingConstants.PRIVATE_MESSAGING_CATEGORY_ID;
 
@@ -242,9 +246,9 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 		serviceContext.setWorkflowAction(WorkflowConstants.ACTION_SAVE_DRAFT);
 
 		MBMessage mbMessage = MBMessageLocalServiceUtil.addMessage(
-			userId, user.getScreenName(), groupId, categoryId, mbThreadId,
-			parentMBMessageId, subject, body, MBMessageConstants.DEFAULT_FORMAT,
-			files, anonymous, priority,
+			userId, user.getScreenName(), group.getGroupId(), categoryId,
+			mbThreadId, parentMBMessageId, subject, body,
+			MBMessageConstants.DEFAULT_FORMAT, files, anonymous, priority,
 			allowPingbacks, serviceContext);
 
 		if (mbThreadId == 0) {
