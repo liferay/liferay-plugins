@@ -122,7 +122,7 @@ public class EditorPortlet extends MVCPortlet {
 
 		ServiceContext serviceContext = new ServiceContext();
 
-		serviceContext.setAddCommunityPermissions(true);
+		serviceContext.setAddGroupPermissions(true);
 		serviceContext.setAddGuestPermissions(true);
 
 		String extension = FileUtil.getExtension(fileEntryTitle);
@@ -162,7 +162,7 @@ public class EditorPortlet extends MVCPortlet {
 
 		ServiceContext serviceContext = new ServiceContext();
 
-		serviceContext.setAddCommunityPermissions(true);
+		serviceContext.setAddGroupPermissions(true);
 		serviceContext.setAddGuestPermissions(true);
 		serviceContext.setScopeGroupId(parentFolder.getGroupId());
 

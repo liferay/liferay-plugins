@@ -105,16 +105,16 @@ public class KBStructureLocalServiceImpl
 
 		// Resources
 
-		if (serviceContext.getAddCommunityPermissions() ||
+		if (serviceContext.getAddGroupPermissions() ||
 			serviceContext.getAddGuestPermissions()) {
 
 			addKBStructureResources(
-				kbStructure, serviceContext.getAddCommunityPermissions(),
+				kbStructure, serviceContext.getAddGroupPermissions(),
 				serviceContext.getAddGuestPermissions());
 		}
 		else {
 			addKBStructureResources(
-				kbStructure, serviceContext.getCommunityPermissions(),
+				kbStructure, serviceContext.getGroupPermissions(),
 				serviceContext.getGuestPermissions());
 		}
 
@@ -286,11 +286,11 @@ public class KBStructureLocalServiceImpl
 
 		// Resources
 
-		if ((serviceContext.getCommunityPermissions() != null) ||
+		if ((serviceContext.getGroupPermissions() != null) ||
 			(serviceContext.getGuestPermissions() != null)) {
 
 			updateKBStructureResources(
-				kbStructure, serviceContext.getCommunityPermissions(),
+				kbStructure, serviceContext.getGroupPermissions(),
 				serviceContext.getGuestPermissions());
 		}
 

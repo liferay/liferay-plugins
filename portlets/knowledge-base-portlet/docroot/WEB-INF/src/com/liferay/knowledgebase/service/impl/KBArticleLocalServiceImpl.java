@@ -148,16 +148,16 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		// Resources
 
-		if (serviceContext.getAddCommunityPermissions() ||
+		if (serviceContext.getAddGroupPermissions() ||
 			serviceContext.getAddGuestPermissions()) {
 
 			addKBArticleResources(
-				kbArticle, serviceContext.getAddCommunityPermissions(),
+				kbArticle, serviceContext.getAddGroupPermissions(),
 				serviceContext.getAddGuestPermissions());
 		}
 		else {
 			addKBArticleResources(
-				kbArticle, serviceContext.getCommunityPermissions(),
+				kbArticle, serviceContext.getGroupPermissions(),
 				serviceContext.getGuestPermissions());
 		}
 
@@ -752,11 +752,11 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		// Resources
 
-		if ((serviceContext.getCommunityPermissions() != null) ||
+		if ((serviceContext.getGroupPermissions() != null) ||
 			(serviceContext.getGuestPermissions() != null)) {
 
 			updateKBArticleResources(
-				kbArticle, serviceContext.getCommunityPermissions(),
+				kbArticle, serviceContext.getGroupPermissions(),
 				serviceContext.getGuestPermissions());
 		}
 

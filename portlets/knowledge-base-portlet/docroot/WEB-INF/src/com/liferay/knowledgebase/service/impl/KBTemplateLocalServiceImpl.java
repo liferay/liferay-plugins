@@ -85,16 +85,16 @@ public class KBTemplateLocalServiceImpl extends KBTemplateLocalServiceBaseImpl {
 
 		// Resources
 
-		if (serviceContext.getAddCommunityPermissions() ||
+		if (serviceContext.getAddGroupPermissions() ||
 			serviceContext.getAddGuestPermissions()) {
 
 			addKBTemplateResources(
-				kbTemplate, serviceContext.getAddCommunityPermissions(),
+				kbTemplate, serviceContext.getAddGroupPermissions(),
 				serviceContext.getAddGuestPermissions());
 		}
 		else {
 			addKBTemplateResources(
-				kbTemplate, serviceContext.getCommunityPermissions(),
+				kbTemplate, serviceContext.getGroupPermissions(),
 				serviceContext.getGuestPermissions());
 		}
 
@@ -247,11 +247,11 @@ public class KBTemplateLocalServiceImpl extends KBTemplateLocalServiceBaseImpl {
 
 		// Resources
 
-		if ((serviceContext.getCommunityPermissions() != null) ||
+		if ((serviceContext.getGroupPermissions() != null) ||
 			(serviceContext.getGuestPermissions() != null)) {
 
 			updateKBTemplateResources(
-				kbTemplate, serviceContext.getCommunityPermissions(),
+				kbTemplate, serviceContext.getGroupPermissions(),
 				serviceContext.getGuestPermissions());
 		}
 

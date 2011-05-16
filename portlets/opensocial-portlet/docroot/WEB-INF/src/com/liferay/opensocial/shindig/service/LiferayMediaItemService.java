@@ -421,7 +421,7 @@ public class LiferayMediaItemService implements MediaItemService {
 
 		ServiceContext serviceContext = new ServiceContext();
 
-		serviceContext.setAddCommunityPermissions(true);
+		serviceContext.setAddGroupPermissions(true);
 		serviceContext.setAddGuestPermissions(true);
 
 		String extension = FileUtil.getExtension(fileName);

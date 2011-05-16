@@ -311,7 +311,7 @@ public class LiferayAlbumService implements AlbumService {
 
 		ServiceContext serviceContext = new ServiceContext();
 
-		serviceContext.setAddCommunityPermissions(true);
+		serviceContext.setAddGroupPermissions(true);
 		serviceContext.setAddGuestPermissions(true);
 		serviceContext.setExpandoBridgeAttributes(
 			SerializerUtil.toExpandoAttributes(

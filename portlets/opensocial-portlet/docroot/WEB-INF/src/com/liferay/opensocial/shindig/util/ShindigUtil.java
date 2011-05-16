@@ -168,7 +168,7 @@ public class ShindigUtil {
 		if (folder == null) {
 			ServiceContext serviceContext = new ServiceContext();
 
-			serviceContext.setAddCommunityPermissions(true);
+			serviceContext.setAddGroupPermissions(true);
 			serviceContext.setAddGuestPermissions(true);
 			serviceContext.setScopeGroupId(repositoryId);
 
