@@ -134,6 +134,7 @@ if (projectsEntries.isEmpty()) {
 	}
 	%>
 
+	<aui:input name="projectsEntriesIndexes" type="hidden" value="<%= StringUtil.merge(projectsEntriesIndexes) %>" />
 </aui:fieldset>
 
 <aui:script use="liferay-auto-fields">
