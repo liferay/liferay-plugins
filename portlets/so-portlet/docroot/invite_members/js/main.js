@@ -103,7 +103,7 @@ AUI().add(
 					new A.LiveSearch(
 						{
 							input: '#invite-user-search',
-							nodes: '#so-invitemembers-wrapper .search .user'
+							nodes: '#so-invitemembers-container .search .user'
 						}
 					);
 				},
