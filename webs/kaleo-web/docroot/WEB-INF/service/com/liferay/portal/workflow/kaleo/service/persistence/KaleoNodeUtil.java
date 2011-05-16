@@ -809,6 +809,97 @@ public class KaleoNodeUtil {
 		return getPersistence().containsKaleoActions(pk);
 	}
 
+	/**
+	* Gets all the kaleo transitions associated with the kaleo node.
+	*
+	* @param pk the primary key of the kaleo node to get the associated kaleo transitions for
+	* @return the kaleo transitions associated with the kaleo node
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTransition> getKaleoTransitions(
+		long pk) throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().getKaleoTransitions(pk);
+	}
+
+	/**
+	* Gets a range of all the kaleo transitions associated with the kaleo node.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param pk the primary key of the kaleo node to get the associated kaleo transitions for
+	* @param start the lower bound of the range of kaleo nodes to return
+	* @param end the upper bound of the range of kaleo nodes to return (not inclusive)
+	* @return the range of kaleo transitions associated with the kaleo node
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTransition> getKaleoTransitions(
+		long pk, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().getKaleoTransitions(pk, start, end);
+	}
+
+	/**
+	* Gets an ordered range of all the kaleo transitions associated with the kaleo node.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param pk the primary key of the kaleo node to get the associated kaleo transitions for
+	* @param start the lower bound of the range of kaleo nodes to return
+	* @param end the upper bound of the range of kaleo nodes to return (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of kaleo transitions associated with the kaleo node
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTransition> getKaleoTransitions(
+		long pk, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .getKaleoTransitions(pk, start, end, orderByComparator);
+	}
+
+	/**
+	* Gets the number of kaleo transitions associated with the kaleo node.
+	*
+	* @param pk the primary key of the kaleo node to get the number of associated kaleo transitions for
+	* @return the number of kaleo transitions associated with the kaleo node
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int getKaleoTransitionsSize(long pk)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().getKaleoTransitionsSize(pk);
+	}
+
+	/**
+	* Determines if the kaleo transition is associated with the kaleo node.
+	*
+	* @param pk the primary key of the kaleo node
+	* @param kaleoTransitionPK the primary key of the kaleo transition
+	* @return <code>true</code> if the kaleo transition is associated with the kaleo node; <code>false</code> otherwise
+	* @throws SystemException if a system exception occurred
+	*/
+	public static boolean containsKaleoTransition(long pk,
+		long kaleoTransitionPK)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().containsKaleoTransition(pk, kaleoTransitionPK);
+	}
+
+	/**
+	* Determines if the kaleo node has any kaleo transitions associated with it.
+	*
+	* @param pk the primary key of the kaleo node to check for associations with kaleo transitions
+	* @return <code>true</code> if the kaleo node has any kaleo transitions associated with it; <code>false</code> otherwise
+	* @throws SystemException if a system exception occurred
+	*/
+	public static boolean containsKaleoTransitions(long pk)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().containsKaleoTransitions(pk);
+	}
+
 	public static KaleoNodePersistence getPersistence() {
 		if (_persistence == null) {
 			_persistence = (KaleoNodePersistence)PortletBeanLocatorUtil.locate(com.liferay.portal.workflow.kaleo.service.ClpSerializer.getServletContextName(),

@@ -37,9 +37,8 @@ public class KaleoConditionSoap implements Serializable {
 		soapModel.setUserName(model.getUserName());
 		soapModel.setCreateDate(model.getCreateDate());
 		soapModel.setModifiedDate(model.getModifiedDate());
-		soapModel.setClassName(model.getClassName());
-		soapModel.setClassPK(model.getClassPK());
-		soapModel.setDescription(model.getDescription());
+		soapModel.setKaleoDefinitionId(model.getKaleoDefinitionId());
+		soapModel.setKaleoNodeId(model.getKaleoNodeId());
 		soapModel.setScript(model.getScript());
 		soapModel.setScriptLanguage(model.getScriptLanguage());
 
@@ -150,28 +149,20 @@ public class KaleoConditionSoap implements Serializable {
 		_modifiedDate = modifiedDate;
 	}
 
-	public String getClassName() {
-		return _className;
+	public long getKaleoDefinitionId() {
+		return _kaleoDefinitionId;
 	}
 
-	public void setClassName(String className) {
-		_className = className;
+	public void setKaleoDefinitionId(long kaleoDefinitionId) {
+		_kaleoDefinitionId = kaleoDefinitionId;
 	}
 
-	public long getClassPK() {
-		return _classPK;
+	public long getKaleoNodeId() {
+		return _kaleoNodeId;
 	}
 
-	public void setClassPK(long classPK) {
-		_classPK = classPK;
-	}
-
-	public String getDescription() {
-		return _description;
-	}
-
-	public void setDescription(String description) {
-		_description = description;
+	public void setKaleoNodeId(long kaleoNodeId) {
+		_kaleoNodeId = kaleoNodeId;
 	}
 
 	public String getScript() {
@@ -197,9 +188,8 @@ public class KaleoConditionSoap implements Serializable {
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
-	private String _className;
-	private long _classPK;
-	private String _description;
+	private long _kaleoDefinitionId;
+	private long _kaleoNodeId;
 	private String _script;
 	private String _scriptLanguage;
 }

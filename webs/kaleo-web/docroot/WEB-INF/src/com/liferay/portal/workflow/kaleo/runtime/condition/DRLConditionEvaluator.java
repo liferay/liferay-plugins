@@ -20,8 +20,6 @@ import com.liferay.portal.kernel.bi.rules.RulesEngineUtil;
 import com.liferay.portal.kernel.bi.rules.RulesResourceRetriever;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.resource.StringResourceRetriever;
 import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
 import com.liferay.portal.workflow.kaleo.model.KaleoCondition;
@@ -36,7 +34,7 @@ import java.util.Map;
  */
 public class DRLConditionEvaluator implements ConditionEvaluator {
 
-	public boolean evaluate(
+	public String evaluate(
 			KaleoCondition kaleoCondition, ExecutionContext executionContext)
 		throws PortalException, SystemException {
 
@@ -53,24 +51,17 @@ public class DRLConditionEvaluator implements ConditionEvaluator {
 			rulesResourceRetriever, facts, query,
 			PortalClassLoaderUtil.getClassLoader());
 
-		Boolean returnValue = (Boolean)results.get(_RETURN_VALUE);
+		String returnValue = (String)results.get(_RETURN_VALUE);
 
 		if (returnValue != null) {
 			return returnValue;
 		}
 
-		if (_log.isWarnEnabled()) {
-			_log.warn(
-				"Conditional did not return value for script " +
-					kaleoCondition.getScript());
-		}
-
-		return false;
+		throw new IllegalStateException(
+			"Conditional did not return value for script: " +
+			kaleoCondition.getScript());
 	}
 
 	private static final String _RETURN_VALUE = "returnValue";
-
-	private static Log _log = LogFactoryUtil.getLog(
-		DRLConditionEvaluator.class);
 
 }

@@ -16,6 +16,7 @@ package com.liferay.portal.workflow.kaleo;
 
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.workflow.kaleo.service.KaleoActionLocalService;
+import com.liferay.portal.workflow.kaleo.service.KaleoConditionLocalService;
 import com.liferay.portal.workflow.kaleo.service.KaleoDefinitionLocalService;
 import com.liferay.portal.workflow.kaleo.service.KaleoInstanceLocalService;
 import com.liferay.portal.workflow.kaleo.service.KaleoInstanceTokenLocalService;
@@ -34,6 +35,9 @@ public class BaseKaleoBean {
 
 	@BeanReference(type = KaleoActionLocalService.class)
 	protected KaleoActionLocalService kaleoActionLocalService;
+
+	@BeanReference(type = KaleoConditionLocalService.class)
+	protected KaleoConditionLocalService kaleoConditionLocalService;
 
 	@BeanReference(type = KaleoDefinitionLocalService.class)
 	protected KaleoDefinitionLocalService kaleoDefinitionLocalService;

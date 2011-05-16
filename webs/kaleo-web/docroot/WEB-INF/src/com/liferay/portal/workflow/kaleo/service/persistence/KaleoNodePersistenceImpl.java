@@ -2060,6 +2060,231 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	}
 
 	/**
+	 * Gets all the kaleo transitions associated with the kaleo node.
+	 *
+	 * @param pk the primary key of the kaleo node to get the associated kaleo transitions for
+	 * @return the kaleo transitions associated with the kaleo node
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<com.liferay.portal.workflow.kaleo.model.KaleoTransition> getKaleoTransitions(
+		long pk) throws SystemException {
+		return getKaleoTransitions(pk, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+	}
+
+	/**
+	 * Gets a range of all the kaleo transitions associated with the kaleo node.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param pk the primary key of the kaleo node to get the associated kaleo transitions for
+	 * @param start the lower bound of the range of kaleo nodes to return
+	 * @param end the upper bound of the range of kaleo nodes to return (not inclusive)
+	 * @return the range of kaleo transitions associated with the kaleo node
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<com.liferay.portal.workflow.kaleo.model.KaleoTransition> getKaleoTransitions(
+		long pk, int start, int end) throws SystemException {
+		return getKaleoTransitions(pk, start, end, null);
+	}
+
+	public static final FinderPath FINDER_PATH_GET_KALEOTRANSITIONS = new FinderPath(com.liferay.portal.workflow.kaleo.model.impl.KaleoTransitionModelImpl.ENTITY_CACHE_ENABLED,
+			com.liferay.portal.workflow.kaleo.model.impl.KaleoTransitionModelImpl.FINDER_CACHE_ENABLED,
+			com.liferay.portal.workflow.kaleo.service.persistence.KaleoTransitionPersistenceImpl.FINDER_CLASS_NAME_LIST,
+			"getKaleoTransitions",
+			new String[] {
+				Long.class.getName(), "java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			});
+
+	/**
+	 * Gets an ordered range of all the kaleo transitions associated with the kaleo node.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param pk the primary key of the kaleo node to get the associated kaleo transitions for
+	 * @param start the lower bound of the range of kaleo nodes to return
+	 * @param end the upper bound of the range of kaleo nodes to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of kaleo transitions associated with the kaleo node
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<com.liferay.portal.workflow.kaleo.model.KaleoTransition> getKaleoTransitions(
+		long pk, int start, int end, OrderByComparator orderByComparator)
+		throws SystemException {
+		Object[] finderArgs = new Object[] {
+				pk, String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator)
+			};
+
+		List<com.liferay.portal.workflow.kaleo.model.KaleoTransition> list = (List<com.liferay.portal.workflow.kaleo.model.KaleoTransition>)FinderCacheUtil.getResult(FINDER_PATH_GET_KALEOTRANSITIONS,
+				finderArgs, this);
+
+		if (list == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				String sql = null;
+
+				if (orderByComparator != null) {
+					sql = _SQL_GETKALEOTRANSITIONS.concat(ORDER_BY_CLAUSE)
+												  .concat(orderByComparator.getOrderBy());
+				}
+				else {
+					sql = _SQL_GETKALEOTRANSITIONS.concat(com.liferay.portal.workflow.kaleo.model.impl.KaleoTransitionModelImpl.ORDER_BY_SQL);
+				}
+
+				SQLQuery q = session.createSQLQuery(sql);
+
+				q.addEntity("KaleoTransition",
+					com.liferay.portal.workflow.kaleo.model.impl.KaleoTransitionImpl.class);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(pk);
+
+				list = (List<com.liferay.portal.workflow.kaleo.model.KaleoTransition>)QueryUtil.list(q,
+						getDialect(), start, end);
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (list == null) {
+					FinderCacheUtil.removeResult(FINDER_PATH_GET_KALEOTRANSITIONS,
+						finderArgs);
+				}
+				else {
+					kaleoTransitionPersistence.cacheResult(list);
+
+					FinderCacheUtil.putResult(FINDER_PATH_GET_KALEOTRANSITIONS,
+						finderArgs, list);
+				}
+
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	public static final FinderPath FINDER_PATH_GET_KALEOTRANSITIONS_SIZE = new FinderPath(com.liferay.portal.workflow.kaleo.model.impl.KaleoTransitionModelImpl.ENTITY_CACHE_ENABLED,
+			com.liferay.portal.workflow.kaleo.model.impl.KaleoTransitionModelImpl.FINDER_CACHE_ENABLED,
+			com.liferay.portal.workflow.kaleo.service.persistence.KaleoTransitionPersistenceImpl.FINDER_CLASS_NAME_LIST,
+			"getKaleoTransitionsSize", new String[] { Long.class.getName() });
+
+	/**
+	 * Gets the number of kaleo transitions associated with the kaleo node.
+	 *
+	 * @param pk the primary key of the kaleo node to get the number of associated kaleo transitions for
+	 * @return the number of kaleo transitions associated with the kaleo node
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int getKaleoTransitionsSize(long pk) throws SystemException {
+		Object[] finderArgs = new Object[] { pk };
+
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_GET_KALEOTRANSITIONS_SIZE,
+				finderArgs, this);
+
+		if (count == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				SQLQuery q = session.createSQLQuery(_SQL_GETKALEOTRANSITIONSSIZE);
+
+				q.addScalar(COUNT_COLUMN_NAME,
+					com.liferay.portal.kernel.dao.orm.Type.LONG);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(pk);
+
+				count = (Long)q.uniqueResult();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_GET_KALEOTRANSITIONS_SIZE,
+					finderArgs, count);
+
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	public static final FinderPath FINDER_PATH_CONTAINS_KALEOTRANSITION = new FinderPath(com.liferay.portal.workflow.kaleo.model.impl.KaleoTransitionModelImpl.ENTITY_CACHE_ENABLED,
+			com.liferay.portal.workflow.kaleo.model.impl.KaleoTransitionModelImpl.FINDER_CACHE_ENABLED,
+			com.liferay.portal.workflow.kaleo.service.persistence.KaleoTransitionPersistenceImpl.FINDER_CLASS_NAME_LIST,
+			"containsKaleoTransition",
+			new String[] { Long.class.getName(), Long.class.getName() });
+
+	/**
+	 * Determines if the kaleo transition is associated with the kaleo node.
+	 *
+	 * @param pk the primary key of the kaleo node
+	 * @param kaleoTransitionPK the primary key of the kaleo transition
+	 * @return <code>true</code> if the kaleo transition is associated with the kaleo node; <code>false</code> otherwise
+	 * @throws SystemException if a system exception occurred
+	 */
+	public boolean containsKaleoTransition(long pk, long kaleoTransitionPK)
+		throws SystemException {
+		Object[] finderArgs = new Object[] { pk, kaleoTransitionPK };
+
+		Boolean value = (Boolean)FinderCacheUtil.getResult(FINDER_PATH_CONTAINS_KALEOTRANSITION,
+				finderArgs, this);
+
+		if (value == null) {
+			try {
+				value = Boolean.valueOf(containsKaleoTransition.contains(pk,
+							kaleoTransitionPK));
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (value == null) {
+					value = Boolean.FALSE;
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_CONTAINS_KALEOTRANSITION,
+					finderArgs, value);
+			}
+		}
+
+		return value.booleanValue();
+	}
+
+	/**
+	 * Determines if the kaleo node has any kaleo transitions associated with it.
+	 *
+	 * @param pk the primary key of the kaleo node to check for associations with kaleo transitions
+	 * @return <code>true</code> if the kaleo node has any kaleo transitions associated with it; <code>false</code> otherwise
+	 * @throws SystemException if a system exception occurred
+	 */
+	public boolean containsKaleoTransitions(long pk) throws SystemException {
+		if (getKaleoTransitionsSize(pk) > 0) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+
+	/**
 	 * Initializes the kaleo node persistence.
 	 */
 	public void afterPropertiesSet() {
@@ -2084,6 +2309,8 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 		}
 
 		containsKaleoAction = new ContainsKaleoAction(this);
+
+		containsKaleoTransition = new ContainsKaleoTransition(this);
 	}
 
 	public void destroy() {
@@ -2129,6 +2356,7 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
 	protected ContainsKaleoAction containsKaleoAction;
+	protected ContainsKaleoTransition containsKaleoTransition;
 
 	protected class ContainsKaleoAction {
 		protected ContainsKaleoAction(KaleoNodePersistenceImpl persistenceImpl) {
@@ -2159,6 +2387,36 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 		private MappingSqlQuery<Integer> _mappingSqlQuery;
 	}
 
+	protected class ContainsKaleoTransition {
+		protected ContainsKaleoTransition(
+			KaleoNodePersistenceImpl persistenceImpl) {
+			super();
+
+			_mappingSqlQuery = MappingSqlQueryFactoryUtil.getMappingSqlQuery(getDataSource(),
+					_SQL_CONTAINSKALEOTRANSITION,
+					new int[] { java.sql.Types.BIGINT, java.sql.Types.BIGINT },
+					RowMapper.COUNT);
+		}
+
+		protected boolean contains(long kaleoNodeId, long kaleoTransitionId) {
+			List<Integer> results = _mappingSqlQuery.execute(new Object[] {
+						new Long(kaleoNodeId), new Long(kaleoTransitionId)
+					});
+
+			if (results.size() > 0) {
+				Integer count = results.get(0);
+
+				if (count.intValue() > 0) {
+					return true;
+				}
+			}
+
+			return false;
+		}
+
+		private MappingSqlQuery<Integer> _mappingSqlQuery;
+	}
+
 	private static final String _SQL_SELECT_KALEONODE = "SELECT kaleoNode FROM KaleoNode kaleoNode";
 	private static final String _SQL_SELECT_KALEONODE_WHERE = "SELECT kaleoNode FROM KaleoNode kaleoNode WHERE ";
 	private static final String _SQL_COUNT_KALEONODE = "SELECT COUNT(kaleoNode) FROM KaleoNode kaleoNode";
@@ -2166,6 +2424,9 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	private static final String _SQL_GETKALEOACTIONS = "SELECT {KaleoAction.*} FROM KaleoAction INNER JOIN KaleoNode ON (KaleoNode.kaleoNodeId = KaleoAction.kaleoNodeId) WHERE (KaleoNode.kaleoNodeId = ?)";
 	private static final String _SQL_GETKALEOACTIONSSIZE = "SELECT COUNT(*) AS COUNT_VALUE FROM KaleoAction WHERE kaleoNodeId = ?";
 	private static final String _SQL_CONTAINSKALEOACTION = "SELECT COUNT(*) AS COUNT_VALUE FROM KaleoAction WHERE kaleoNodeId = ? AND kaleoActionId = ?";
+	private static final String _SQL_GETKALEOTRANSITIONS = "SELECT {KaleoTransition.*} FROM KaleoTransition INNER JOIN KaleoNode ON (KaleoNode.kaleoNodeId = KaleoTransition.kaleoNodeId) WHERE (KaleoNode.kaleoNodeId = ?)";
+	private static final String _SQL_GETKALEOTRANSITIONSSIZE = "SELECT COUNT(*) AS COUNT_VALUE FROM KaleoTransition WHERE kaleoNodeId = ?";
+	private static final String _SQL_CONTAINSKALEOTRANSITION = "SELECT COUNT(*) AS COUNT_VALUE FROM KaleoTransition WHERE kaleoNodeId = ? AND kaleoTransitionId = ?";
 	private static final String _FINDER_COLUMN_COMPANYID_COMPANYID_2 = "kaleoNode.companyId = ?";
 	private static final String _FINDER_COLUMN_KALEODEFINITIONID_KALEODEFINITIONID_2 =
 		"kaleoNode.kaleoDefinitionId = ?";

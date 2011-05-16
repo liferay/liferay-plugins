@@ -24,7 +24,7 @@ import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
  */
 public interface ConditionEvaluator {
 
-	public boolean evaluate(
+	public String evaluate(
 			KaleoCondition kaleoCondition, ExecutionContext executionContext)
 		throws PortalException, SystemException;
 

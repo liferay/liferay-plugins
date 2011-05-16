@@ -26,7 +26,6 @@ import com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
 import com.liferay.portal.workflow.kaleo.runtime.action.ActionExecutorUtil;
 import com.liferay.portal.workflow.kaleo.runtime.graph.PathElement;
-import com.liferay.portal.workflow.kaleo.runtime.node.transition.TransitionSelector;
 import com.liferay.portal.workflow.kaleo.runtime.notification.NotificationUtil;
 import com.liferay.portal.workflow.kaleo.runtime.util.ExecutionUtil;
 
@@ -121,14 +120,6 @@ public abstract class BaseNodeExecutor
 			executionContext);
 	}
 
-	public TransitionSelector getTransitionSelector() {
-		return transitionSelector;
-	}
-
-	public void setTransitionSelector(TransitionSelector transitionSelector) {
-		this.transitionSelector = transitionSelector;
-	}
-
 	protected abstract void doEnter(
 			KaleoNode currentKaleoNode, ExecutionContext executionContext)
 		throws PortalException, SystemException;
@@ -147,7 +138,5 @@ public abstract class BaseNodeExecutor
 			KaleoNode currentKaleoNode, ExecutionContext executionContext,
 			List<PathElement> remainingPathElements)
 		throws PortalException, SystemException;
-
-	protected TransitionSelector transitionSelector;
 
 }

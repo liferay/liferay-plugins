@@ -146,6 +146,10 @@ public class KaleoDefinitionLocalServiceImpl
 
 		kaleoNodeLocalService.deleteCompanyKaleoNodes(companyId);
 
+		// Kaleo condition
+
+		kaleoConditionLocalService.deleteCompanyKaleoConditions(companyId);
+
 		// Kaleo tasks
 
 		kaleoTaskLocalService.deleteCompanyKaleoTasks(companyId);
@@ -186,6 +190,11 @@ public class KaleoDefinitionLocalServiceImpl
 		// Kaleo nodes
 
 		kaleoNodeLocalService.deleteKaleoDefinitionKaleoNodes(
+			kaleoDefinition.getKaleoDefinitionId());
+
+		// Kaleo condition
+
+		kaleoConditionLocalService.deleteKaleoDefinitionKaleoCondition(
 			kaleoDefinition.getKaleoDefinitionId());
 
 		// Kaleo tasks

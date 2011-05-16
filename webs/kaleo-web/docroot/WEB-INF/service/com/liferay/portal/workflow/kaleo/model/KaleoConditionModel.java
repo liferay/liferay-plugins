@@ -176,48 +176,32 @@ public interface KaleoConditionModel extends BaseModel<KaleoCondition>,
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Gets the class name of this kaleo condition.
+	 * Gets the kaleo definition ID of this kaleo condition.
 	 *
-	 * @return the class name of this kaleo condition
+	 * @return the kaleo definition ID of this kaleo condition
 	 */
-	@AutoEscape
-	public String getClassName();
+	public long getKaleoDefinitionId();
 
 	/**
-	 * Sets the class name of this kaleo condition.
+	 * Sets the kaleo definition ID of this kaleo condition.
 	 *
-	 * @param className the class name of this kaleo condition
+	 * @param kaleoDefinitionId the kaleo definition ID of this kaleo condition
 	 */
-	public void setClassName(String className);
+	public void setKaleoDefinitionId(long kaleoDefinitionId);
 
 	/**
-	 * Gets the class p k of this kaleo condition.
+	 * Gets the kaleo node ID of this kaleo condition.
 	 *
-	 * @return the class p k of this kaleo condition
+	 * @return the kaleo node ID of this kaleo condition
 	 */
-	public long getClassPK();
+	public long getKaleoNodeId();
 
 	/**
-	 * Sets the class p k of this kaleo condition.
+	 * Sets the kaleo node ID of this kaleo condition.
 	 *
-	 * @param classPK the class p k of this kaleo condition
+	 * @param kaleoNodeId the kaleo node ID of this kaleo condition
 	 */
-	public void setClassPK(long classPK);
-
-	/**
-	 * Gets the description of this kaleo condition.
-	 *
-	 * @return the description of this kaleo condition
-	 */
-	@AutoEscape
-	public String getDescription();
-
-	/**
-	 * Sets the description of this kaleo condition.
-	 *
-	 * @param description the description of this kaleo condition
-	 */
-	public void setDescription(String description);
+	public void setKaleoNodeId(long kaleoNodeId);
 
 	/**
 	 * Gets the script of this kaleo condition.

@@ -28,7 +28,7 @@ import java.util.Map;
  */
 public class MultiLanguageConditionEvaluator implements ConditionEvaluator {
 
-	public boolean evaluate(
+	public String evaluate(
 			KaleoCondition kaleoCondition, ExecutionContext executionContext)
 		throws PortalException, SystemException {
 

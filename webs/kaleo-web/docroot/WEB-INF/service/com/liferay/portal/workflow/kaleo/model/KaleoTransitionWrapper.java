@@ -433,12 +433,6 @@ public class KaleoTransitionWrapper implements KaleoTransition {
 		return _kaleoTransition.toXmlString();
 	}
 
-	public com.liferay.portal.workflow.kaleo.model.KaleoCondition getKaleoCondition()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return _kaleoTransition.getKaleoCondition();
-	}
-
 	public com.liferay.portal.workflow.kaleo.model.KaleoNode getSourceKaleoNode()
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {

@@ -19,17 +19,9 @@
 			</transition>
 		</transitions>
 	</state>
-	<state>
+	<condition>
 		<name>determine-branch</name>
-		<transitions>
-			<transition>
-				<name>Legal Review</name>
-				<target>legal-review</target>
-				<default>false</default>
-				<condition>
-					<description></description>
-					<script>
-						<![CDATA[
+		<script><![CDATA[
 							import com.liferay.portal.kernel.util.GetterUtil;
 							import com.liferay.portal.kernel.workflow.WorkflowConstants;
 							import com.liferay.portlet.asset.model.AssetCategory;
@@ -44,64 +36,33 @@
 							AssetEntry assetEntry = AssetEntryLocalServiceUtil.getEntry(className, classPK);
 
 							List<AssetCategory> assetCategories = assetEntry.getCategories();
+
+							returnValue = "Content Review";
 
 							for (AssetCategory assetCategory : assetCategories) {
 								String categoryName = assetCategory.getName();
 
 								if (categoryName.equals("legal")) {
-									returnValue = true;
+									returnValue = "Legal Review";
 
-									break;
+									return;
 								}
 							}
-
-							returnValue = false;
-						]]>
-					</script>
-					<script-language>groovy</script-language>
-				</condition>
+						]]></script>
+		<script-language>groovy</script-language>
+		<transitions>
+			<transition>
+				<name>Legal Review</name>
+				<target>legal-review</target>
+				<default>false</default>
 			</transition>
 			<transition>
 				<name>Content Review</name>
 				<target>content-review</target>
 				<default>false</default>
-				<condition>
-					<description></description>
-					<script>
-						<![CDATA[
-							import com.liferay.portal.kernel.util.GetterUtil;
-							import com.liferay.portal.kernel.workflow.WorkflowConstants;
-							import com.liferay.portlet.asset.model.AssetCategory;
-							import com.liferay.portlet.asset.model.AssetEntry;
-							import com.liferay.portlet.asset.service.AssetEntryLocalServiceUtil;
-
-							import java.util.List;
-
-							String className = (String)workflowContext.get(WorkflowConstants.CONTEXT_ENTRY_CLASS_NAME);
-							long classPK = GetterUtil.getLong((String)workflowContext.get(WorkflowConstants.CONTEXT_ENTRY_CLASS_PK));
-
-							AssetEntry assetEntry = AssetEntryLocalServiceUtil.getEntry(className, classPK);
-
-							List<AssetCategory> assetCategories = assetEntry.getCategories();
-
-							for (AssetCategory assetCategory : assetCategories) {
-								String categoryName = assetCategory.getName();
-
-								if (categoryName.equals("content")) {
-									returnValue = true;
-
-									break;
-								}
-							}
-
-							returnValue = false;
-						]]>
-					</script>
-					<script-language>groovy</script-language>
-				</condition>
 			</transition>
 		</transitions>
-	</state>
+	</condition>
 	<task>
 		<name>update</name>
 		<actions>
@@ -125,7 +86,7 @@
 		</transitions>
 	</task>
 	<task>
-		<name>legal-review</name>
+		<name>content-review</name>
 		<actions>
 			<notification>
 				<name>Review Notification</name>
@@ -185,7 +146,7 @@
 		</transitions>
 	</task>
 	<task>
-		<name>content-review</name>
+		<name>legal-review</name>
 		<actions>
 			<notification>
 				<name>Review Notification</name>

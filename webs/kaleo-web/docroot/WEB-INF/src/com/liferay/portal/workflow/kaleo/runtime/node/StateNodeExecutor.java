@@ -73,8 +73,7 @@ public class StateNodeExecutor extends BaseNodeExecutor {
 		KaleoTransition kaleoTransition = null;
 
 		if (Validator.isNull(transitionName)) {
-			kaleoTransition = transitionSelector.selectKaleoTransition(
-				currentKaleoNode, executionContext);
+			kaleoTransition = currentKaleoNode.getDefaultKaleoTransition();
 		}
 		else {
 			kaleoTransition = currentKaleoNode.getKaleoTransition(

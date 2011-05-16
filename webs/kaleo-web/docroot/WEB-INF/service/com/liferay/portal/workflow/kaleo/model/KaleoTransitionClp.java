@@ -194,10 +194,6 @@ public class KaleoTransitionClp extends BaseModelImpl<KaleoTransition>
 		_defaultTransition = defaultTransition;
 	}
 
-	public com.liferay.portal.workflow.kaleo.model.KaleoCondition getKaleoCondition() {
-		throw new UnsupportedOperationException();
-	}
-
 	public com.liferay.portal.workflow.kaleo.model.KaleoNode getSourceKaleoNode() {
 		throw new UnsupportedOperationException();
 	}

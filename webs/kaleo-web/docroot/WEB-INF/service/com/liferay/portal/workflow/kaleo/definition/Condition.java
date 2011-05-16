@@ -17,13 +17,13 @@ package com.liferay.portal.workflow.kaleo.definition;
 /**
  * @author Michael C. Han
  */
-public class Condition {
+public class Condition extends Node {
 
-	public Condition(String script, String scriptLanguage) {
-		this(null, script, scriptLanguage);
-	}
+	public Condition(
+		String name, String description,String script, String scriptLanguage) {
 
-	public Condition(String description, String script, String scriptLanguage) {
+		super(NodeType.CONDITION, name, description);
+
 		_description = description;
 		_script = script;
 		_scriptLanguage = ScriptLanguage.parse(scriptLanguage);

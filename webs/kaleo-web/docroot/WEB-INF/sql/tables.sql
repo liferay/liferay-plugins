@@ -25,9 +25,8 @@ create table KaleoCondition (
 	userName VARCHAR(75) null,
 	createDate DATE null,
 	modifiedDate DATE null,
-	className VARCHAR(75) null,
-	classPK LONG,
-	description STRING null,
+	kaleoDefinitionId LONG,
+	kaleoNodeId LONG,
 	script TEXT null,
 	scriptLanguage VARCHAR(75) null
 );

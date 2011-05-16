@@ -210,41 +210,143 @@ public interface KaleoConditionPersistence extends BasePersistence<KaleoConditio
 			com.liferay.portal.workflow.kaleo.NoSuchConditionException;
 
 	/**
-	* Finds the kaleo condition where className = &#63; and classPK = &#63; or throws a {@link com.liferay.portal.workflow.kaleo.NoSuchConditionException} if it could not be found.
+	* Finds all the kaleo conditions where kaleoDefinitionId = &#63;.
 	*
-	* @param className the class name to search with
-	* @param classPK the class p k to search with
-	* @return the matching kaleo condition
+	* @param kaleoDefinitionId the kaleo definition ID to search with
+	* @return the matching kaleo conditions
+	* @throws SystemException if a system exception occurred
+	*/
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoCondition> findByKaleoDefinitionId(
+		long kaleoDefinitionId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Finds a range of all the kaleo conditions where kaleoDefinitionId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param kaleoDefinitionId the kaleo definition ID to search with
+	* @param start the lower bound of the range of kaleo conditions to return
+	* @param end the upper bound of the range of kaleo conditions to return (not inclusive)
+	* @return the range of matching kaleo conditions
+	* @throws SystemException if a system exception occurred
+	*/
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoCondition> findByKaleoDefinitionId(
+		long kaleoDefinitionId, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Finds an ordered range of all the kaleo conditions where kaleoDefinitionId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param kaleoDefinitionId the kaleo definition ID to search with
+	* @param start the lower bound of the range of kaleo conditions to return
+	* @param end the upper bound of the range of kaleo conditions to return (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching kaleo conditions
+	* @throws SystemException if a system exception occurred
+	*/
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoCondition> findByKaleoDefinitionId(
+		long kaleoDefinitionId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Finds the first kaleo condition in the ordered set where kaleoDefinitionId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param kaleoDefinitionId the kaleo definition ID to search with
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching kaleo condition
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchConditionException if a matching kaleo condition could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.liferay.portal.workflow.kaleo.model.KaleoCondition findByC_C(
-		java.lang.String className, long classPK)
+	public com.liferay.portal.workflow.kaleo.model.KaleoCondition findByKaleoDefinitionId_First(
+		long kaleoDefinitionId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.portal.workflow.kaleo.NoSuchConditionException;
 
 	/**
-	* Finds the kaleo condition where className = &#63; and classPK = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	* Finds the last kaleo condition in the ordered set where kaleoDefinitionId = &#63;.
 	*
-	* @param className the class name to search with
-	* @param classPK the class p k to search with
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param kaleoDefinitionId the kaleo definition ID to search with
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching kaleo condition
+	* @throws com.liferay.portal.workflow.kaleo.NoSuchConditionException if a matching kaleo condition could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.portal.workflow.kaleo.model.KaleoCondition findByKaleoDefinitionId_Last(
+		long kaleoDefinitionId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchConditionException;
+
+	/**
+	* Finds the kaleo conditions before and after the current kaleo condition in the ordered set where kaleoDefinitionId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param kaleoConditionId the primary key of the current kaleo condition
+	* @param kaleoDefinitionId the kaleo definition ID to search with
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next kaleo condition
+	* @throws com.liferay.portal.workflow.kaleo.NoSuchConditionException if a kaleo condition with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.portal.workflow.kaleo.model.KaleoCondition[] findByKaleoDefinitionId_PrevAndNext(
+		long kaleoConditionId, long kaleoDefinitionId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchConditionException;
+
+	/**
+	* Finds the kaleo condition where kaleoNodeId = &#63; or throws a {@link com.liferay.portal.workflow.kaleo.NoSuchConditionException} if it could not be found.
+	*
+	* @param kaleoNodeId the kaleo node ID to search with
+	* @return the matching kaleo condition
+	* @throws com.liferay.portal.workflow.kaleo.NoSuchConditionException if a matching kaleo condition could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.portal.workflow.kaleo.model.KaleoCondition findByKaleoNodeId(
+		long kaleoNodeId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchConditionException;
+
+	/**
+	* Finds the kaleo condition where kaleoNodeId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	*
+	* @param kaleoNodeId the kaleo node ID to search with
 	* @return the matching kaleo condition, or <code>null</code> if a matching kaleo condition could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.liferay.portal.workflow.kaleo.model.KaleoCondition fetchByC_C(
-		java.lang.String className, long classPK)
+	public com.liferay.portal.workflow.kaleo.model.KaleoCondition fetchByKaleoNodeId(
+		long kaleoNodeId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the kaleo condition where className = &#63; and classPK = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	* Finds the kaleo condition where kaleoNodeId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	*
-	* @param className the class name to search with
-	* @param classPK the class p k to search with
+	* @param kaleoNodeId the kaleo node ID to search with
 	* @return the matching kaleo condition, or <code>null</code> if a matching kaleo condition could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.liferay.portal.workflow.kaleo.model.KaleoCondition fetchByC_C(
-		java.lang.String className, long classPK, boolean retrieveFromCache)
+	public com.liferay.portal.workflow.kaleo.model.KaleoCondition fetchByKaleoNodeId(
+		long kaleoNodeId, boolean retrieveFromCache)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -300,13 +402,21 @@ public interface KaleoConditionPersistence extends BasePersistence<KaleoConditio
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Removes the kaleo condition where className = &#63; and classPK = &#63; from the database.
+	* Removes all the kaleo conditions where kaleoDefinitionId = &#63; from the database.
 	*
-	* @param className the class name to search with
-	* @param classPK the class p k to search with
+	* @param kaleoDefinitionId the kaleo definition ID to search with
 	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByC_C(java.lang.String className, long classPK)
+	public void removeByKaleoDefinitionId(long kaleoDefinitionId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Removes the kaleo condition where kaleoNodeId = &#63; from the database.
+	*
+	* @param kaleoNodeId the kaleo node ID to search with
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByKaleoNodeId(long kaleoNodeId)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.portal.workflow.kaleo.NoSuchConditionException;
 
@@ -329,14 +439,23 @@ public interface KaleoConditionPersistence extends BasePersistence<KaleoConditio
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Counts all the kaleo conditions where className = &#63; and classPK = &#63;.
+	* Counts all the kaleo conditions where kaleoDefinitionId = &#63;.
 	*
-	* @param className the class name to search with
-	* @param classPK the class p k to search with
+	* @param kaleoDefinitionId the kaleo definition ID to search with
 	* @return the number of matching kaleo conditions
 	* @throws SystemException if a system exception occurred
 	*/
-	public int countByC_C(java.lang.String className, long classPK)
+	public int countByKaleoDefinitionId(long kaleoDefinitionId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Counts all the kaleo conditions where kaleoNodeId = &#63;.
+	*
+	* @param kaleoNodeId the kaleo node ID to search with
+	* @return the number of matching kaleo conditions
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByKaleoNodeId(long kaleoNodeId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

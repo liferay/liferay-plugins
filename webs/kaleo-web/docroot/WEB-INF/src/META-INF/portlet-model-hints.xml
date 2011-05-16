@@ -39,11 +39,8 @@
 		<field name="userName" type="String" />
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
-		<field name="className" type="String" />
-		<field name="classPK" type="long" />
-		<field name="description" type="String">
-			<hint-collection name="TEXTAREA" />
-		</field>
+		<field name="kaleoDefinitionId" type="long" />
+		<field name="kaleoNodeId" type="long" />
 		<field name="script" type="String">
 			<hint-collection name="CLOB" />
 		</field>

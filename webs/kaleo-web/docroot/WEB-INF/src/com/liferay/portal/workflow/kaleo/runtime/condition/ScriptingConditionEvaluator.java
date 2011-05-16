@@ -16,8 +16,6 @@ package com.liferay.portal.workflow.kaleo.runtime.condition;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.scripting.ScriptingUtil;
 import com.liferay.portal.workflow.kaleo.model.KaleoCondition;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
@@ -32,7 +30,7 @@ import java.util.Set;
  */
 public class ScriptingConditionEvaluator implements ConditionEvaluator {
 
-	public boolean evaluate(
+	public String evaluate(
 			KaleoCondition kaleoCondition, ExecutionContext executionContext)
 		throws PortalException, SystemException {
 
@@ -43,27 +41,20 @@ public class ScriptingConditionEvaluator implements ConditionEvaluator {
 			null, inputObjects, _outputNames,
 			kaleoCondition.getScriptLanguage(), kaleoCondition.getScript());
 
-		Boolean returnValue = (Boolean)results.get(_RETURN_VALUE);
+		String returnValue = (String)results.get(_RETURN_VALUE);
 
 		if (returnValue != null) {
 			return returnValue;
 		}
 
-		if (_log.isWarnEnabled()) {
-			_log.warn(
-				"Conditional did not return value for script " +
-					kaleoCondition.getScript());
-		}
-
-		return false;
+		throw new IllegalStateException(
+			"Conditional did not return value for script: " +
+			kaleoCondition.getScript());
 	}
 
 	private static final String _RETURN_VALUE = "returnValue";
 
 	private static Set<String> _outputNames = new HashSet<String>();
-
-	private static Log _log = LogFactoryUtil.getLog(
-		ScriptingConditionEvaluator.class);
 
 	static {
 		_outputNames.add(_RETURN_VALUE);

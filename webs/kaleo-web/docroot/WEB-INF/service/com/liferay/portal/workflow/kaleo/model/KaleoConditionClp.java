@@ -118,28 +118,20 @@ public class KaleoConditionClp extends BaseModelImpl<KaleoCondition>
 		_modifiedDate = modifiedDate;
 	}
 
-	public String getClassName() {
-		return _className;
+	public long getKaleoDefinitionId() {
+		return _kaleoDefinitionId;
 	}
 
-	public void setClassName(String className) {
-		_className = className;
+	public void setKaleoDefinitionId(long kaleoDefinitionId) {
+		_kaleoDefinitionId = kaleoDefinitionId;
 	}
 
-	public long getClassPK() {
-		return _classPK;
+	public long getKaleoNodeId() {
+		return _kaleoNodeId;
 	}
 
-	public void setClassPK(long classPK) {
-		_classPK = classPK;
-	}
-
-	public String getDescription() {
-		return _description;
-	}
-
-	public void setDescription(String description) {
-		_description = description;
+	public void setKaleoNodeId(long kaleoNodeId) {
+		_kaleoNodeId = kaleoNodeId;
 	}
 
 	public String getScript() {
@@ -179,9 +171,8 @@ public class KaleoConditionClp extends BaseModelImpl<KaleoCondition>
 		clone.setUserName(getUserName());
 		clone.setCreateDate(getCreateDate());
 		clone.setModifiedDate(getModifiedDate());
-		clone.setClassName(getClassName());
-		clone.setClassPK(getClassPK());
-		clone.setDescription(getDescription());
+		clone.setKaleoDefinitionId(getKaleoDefinitionId());
+		clone.setKaleoNodeId(getKaleoNodeId());
 		clone.setScript(getScript());
 		clone.setScriptLanguage(getScriptLanguage());
 
@@ -237,7 +228,7 @@ public class KaleoConditionClp extends BaseModelImpl<KaleoCondition>
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(25);
+		StringBundler sb = new StringBundler(23);
 
 		sb.append("{kaleoConditionId=");
 		sb.append(getKaleoConditionId());
@@ -253,12 +244,10 @@ public class KaleoConditionClp extends BaseModelImpl<KaleoCondition>
 		sb.append(getCreateDate());
 		sb.append(", modifiedDate=");
 		sb.append(getModifiedDate());
-		sb.append(", className=");
-		sb.append(getClassName());
-		sb.append(", classPK=");
-		sb.append(getClassPK());
-		sb.append(", description=");
-		sb.append(getDescription());
+		sb.append(", kaleoDefinitionId=");
+		sb.append(getKaleoDefinitionId());
+		sb.append(", kaleoNodeId=");
+		sb.append(getKaleoNodeId());
 		sb.append(", script=");
 		sb.append(getScript());
 		sb.append(", scriptLanguage=");
@@ -269,7 +258,7 @@ public class KaleoConditionClp extends BaseModelImpl<KaleoCondition>
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(40);
+		StringBundler sb = new StringBundler(37);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.portal.workflow.kaleo.model.KaleoCondition");
@@ -304,16 +293,12 @@ public class KaleoConditionClp extends BaseModelImpl<KaleoCondition>
 		sb.append(getModifiedDate());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>className</column-name><column-value><![CDATA[");
-		sb.append(getClassName());
+			"<column><column-name>kaleoDefinitionId</column-name><column-value><![CDATA[");
+		sb.append(getKaleoDefinitionId());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>classPK</column-name><column-value><![CDATA[");
-		sb.append(getClassPK());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>description</column-name><column-value><![CDATA[");
-		sb.append(getDescription());
+			"<column><column-name>kaleoNodeId</column-name><column-value><![CDATA[");
+		sb.append(getKaleoNodeId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>script</column-name><column-value><![CDATA[");
@@ -337,9 +322,8 @@ public class KaleoConditionClp extends BaseModelImpl<KaleoCondition>
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
-	private String _className;
-	private long _classPK;
-	private String _description;
+	private long _kaleoDefinitionId;
+	private long _kaleoNodeId;
 	private String _script;
 	private String _scriptLanguage;
 }

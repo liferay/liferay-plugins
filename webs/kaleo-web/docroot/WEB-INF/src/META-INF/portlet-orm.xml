@@ -46,9 +46,8 @@
 			<basic name="modifiedDate">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
-			<basic name="className" />
-			<basic name="classPK" />
-			<basic name="description" />
+			<basic name="kaleoDefinitionId" />
+			<basic name="kaleoNodeId" />
 			<basic name="script" />
 			<basic name="scriptLanguage" />
 			<transient name="primaryKey" />

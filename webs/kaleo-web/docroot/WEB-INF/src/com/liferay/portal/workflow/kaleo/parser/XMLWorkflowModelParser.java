@@ -79,6 +79,14 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 
 		Definition definition = new Definition(name, description, version);
 
+		List<Element> conditionElements = rootElement.elements("condition");
+
+		for (Element conditionElement : conditionElements) {
+			Condition condition = parseCondition(conditionElement);
+
+			definition.addNode(condition);
+		}
+
 		List<Element> forkElements = rootElement.elements("fork");
 
 		for (Element forkElement : forkElements) {
@@ -112,8 +120,8 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 		}
 
 		parseTransitions(
-			definition, forkElements, joinElements, stateElements,
-			taskElements);
+			definition, conditionElements, forkElements,
+			joinElements, stateElements, taskElements);
 
 		return definition;
 	}
@@ -271,22 +279,28 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 		return assignments;
 	}
 
-	protected void parseCondition(
-		Transition transition, Element transitionElement) {
+	protected Condition parseCondition(Element conditionElement) {
+		String name = conditionElement.elementText("name");
+		String description = conditionElement.elementText("description");
+		String script = conditionElement.elementText("script");
+		String scriptLanguage = conditionElement.elementText("script-language");
 
-		Element conditionElement = transitionElement.element("condition");
+		Condition condition = new Condition(
+			name, description, script, scriptLanguage);
 
-		if (conditionElement != null) {
-			String description = conditionElement.elementText("description");
-			String script = conditionElement.elementText("script");
-			String scriptLanguage = conditionElement.elementText(
-				"script-language");
+		Element actionsElement = conditionElement.element("actions");
 
-			Condition condition = new Condition(
-				description, script, scriptLanguage);
-
-			transition.setCondition(condition);
+		if (actionsElement != null) {
+			parseActions(actionsElement, condition);
 		}
+
+		Element timersElement = conditionElement.element("timers");
+
+		if (timersElement != null) {
+			parseTimers(timersElement, condition);
+		}
+
+		return condition;
 	}
 
 	protected DelayDuration parseDelay(Element delayElement) {
@@ -548,17 +562,19 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 			Transition transition = new Transition(
 				transitionName, sourceNode, targetNode, defaultValue);
 
-			parseCondition(transition, transitionElement);
-
 			sourceNode.addTransition(transition);
 		}
 	}
 
 	protected void parseTransitions(
-			Definition definition, List<Element> forkElements,
-			List<Element> joinElements, List<Element> stateElements,
-			List<Element> taskElements)
+			Definition definition, List<Element> conditionElements,
+			List<Element> forkElements, List<Element> joinElements,
+			List<Element> stateElements, List<Element> taskElements)
 		throws WorkflowException {
+
+		for (Element conditionElement : conditionElements) {
+			parseTransition(definition, conditionElement);
+		}
 
 		for (Element forkElement : forkElements) {
 			parseTransition(definition, forkElement);

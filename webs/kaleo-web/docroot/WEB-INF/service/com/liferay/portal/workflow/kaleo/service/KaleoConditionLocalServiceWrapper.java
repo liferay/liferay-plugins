@@ -242,20 +242,30 @@ public class KaleoConditionLocalServiceWrapper
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoCondition addKaleoCondition(
+		long kaleoDefinitionId, long kaleoNodeId,
 		com.liferay.portal.workflow.kaleo.definition.Condition condition,
-		java.lang.String className, long classPK,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _kaleoConditionLocalService.addKaleoCondition(condition,
-			className, classPK, serviceContext);
+		return _kaleoConditionLocalService.addKaleoCondition(kaleoDefinitionId,
+			kaleoNodeId, condition, serviceContext);
 	}
 
-	public com.liferay.portal.workflow.kaleo.model.KaleoCondition getKaleoCondition(
-		java.lang.String className, long classPK)
+	public void deleteCompanyKaleoConditions(long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_kaleoConditionLocalService.deleteCompanyKaleoConditions(companyId);
+	}
+
+	public void deleteKaleoDefinitionKaleoCondition(long kaleoDefinitionId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_kaleoConditionLocalService.deleteKaleoDefinitionKaleoCondition(kaleoDefinitionId);
+	}
+
+	public com.liferay.portal.workflow.kaleo.model.KaleoCondition getKaleoNodeKaleoCondition(
+		long kaleoNodeId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _kaleoConditionLocalService.getKaleoCondition(className, classPK);
+		return _kaleoConditionLocalService.getKaleoNodeKaleoCondition(kaleoNodeId);
 	}
 
 	public KaleoConditionLocalService getWrappedKaleoConditionLocalService() {

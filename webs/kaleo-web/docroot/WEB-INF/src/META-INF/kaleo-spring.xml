@@ -154,20 +154,19 @@
 	<bean id="com.liferay.portal.workflow.kaleo.runtime.node.NodeExecutorFactory" class="com.liferay.portal.workflow.kaleo.runtime.node.NodeExecutorFactory">
 		<property name="nodeExectors">
 			<map>
-				<entry key="FORK">
-					<bean class="com.liferay.portal.workflow.kaleo.runtime.node.ForkNodeExecutor">
-						<property name="transitionSelector" ref="com.liferay.portal.workflow.kaleo.runtime.node.transition.TransitionSelector" />
+				<entry key="CONDITION">
+					<bean class="com.liferay.portal.workflow.kaleo.runtime.node.ConditionNodeExecutor">
+						<property name="conditionEvaluator" ref="com.liferay.portal.workflow.kaleo.runtime.condition.ConditionEvaluator" />
 					</bean>
+				</entry>
+				<entry key="FORK">
+					<bean class="com.liferay.portal.workflow.kaleo.runtime.node.ForkNodeExecutor" />
 				</entry>
 				<entry key="JOIN">
-					<bean class="com.liferay.portal.workflow.kaleo.runtime.node.JoinNodeExecutor">
-						<property name="transitionSelector" ref="com.liferay.portal.workflow.kaleo.runtime.node.transition.TransitionSelector" />
-					</bean>
+					<bean class="com.liferay.portal.workflow.kaleo.runtime.node.JoinNodeExecutor" />
 				</entry>
 				<entry key="STATE">
-					<bean class="com.liferay.portal.workflow.kaleo.runtime.node.StateNodeExecutor">
-						<property name="transitionSelector" ref="com.liferay.portal.workflow.kaleo.runtime.node.transition.TransitionSelector" />
-					</bean>
+					<bean class="com.liferay.portal.workflow.kaleo.runtime.node.StateNodeExecutor" />
 				</entry>
 				<entry key="TASK">
 					<bean class="com.liferay.portal.workflow.kaleo.runtime.node.TaskNodeExecutor">
@@ -175,14 +174,10 @@
 							<bean class="com.liferay.portal.workflow.kaleo.runtime.calendar.DefaultDueDateCalculator" />
 						</property>
 						<property name="taskAssignmentSelector" ref="com.liferay.portal.workflow.kaleo.runtime.assignment.CompositeTaskAssignmentSelector" />
-						<property name="transitionSelector" ref="com.liferay.portal.workflow.kaleo.runtime.node.transition.TransitionSelector" />
 					</bean>
 				</entry>
 			</map>
 		</property>
-	</bean>
-	<bean id="com.liferay.portal.workflow.kaleo.runtime.node.transition.TransitionSelector" class="com.liferay.portal.workflow.kaleo.runtime.node.transition.DefaultTransitionSelector">
-		<property name="conditionEvaluator" ref="com.liferay.portal.workflow.kaleo.runtime.condition.ConditionEvaluator" />
 	</bean>
 	<bean id="com.liferay.portal.workflow.kaleo.runtime.notification.NotificationSenderFactory" class="com.liferay.portal.workflow.kaleo.runtime.notification.NotificationSenderFactory">
 		<property name="notificationSenders">

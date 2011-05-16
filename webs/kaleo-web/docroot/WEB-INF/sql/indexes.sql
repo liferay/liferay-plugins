@@ -2,8 +2,9 @@ create index IX_50E9112C on KaleoAction (companyId);
 create index IX_F95A622 on KaleoAction (kaleoDefinitionId);
 create index IX_B88DF9B1 on KaleoAction (kaleoNodeId, executionType);
 
-create index IX_A83CCCD1 on KaleoCondition (className, classPK);
 create index IX_FEE46067 on KaleoCondition (companyId);
+create index IX_DC978A5D on KaleoCondition (kaleoDefinitionId);
+create index IX_86CBD4C on KaleoCondition (kaleoNodeId);
 
 create index IX_40B9112F on KaleoDefinition (companyId);
 create index IX_408542BA on KaleoDefinition (companyId, active_);

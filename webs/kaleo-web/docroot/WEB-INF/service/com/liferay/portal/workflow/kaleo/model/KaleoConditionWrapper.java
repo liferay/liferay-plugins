@@ -201,57 +201,39 @@ public class KaleoConditionWrapper implements KaleoCondition {
 	}
 
 	/**
-	* Gets the class name of this kaleo condition.
+	* Gets the kaleo definition ID of this kaleo condition.
 	*
-	* @return the class name of this kaleo condition
+	* @return the kaleo definition ID of this kaleo condition
 	*/
-	public java.lang.String getClassName() {
-		return _kaleoCondition.getClassName();
+	public long getKaleoDefinitionId() {
+		return _kaleoCondition.getKaleoDefinitionId();
 	}
 
 	/**
-	* Sets the class name of this kaleo condition.
+	* Sets the kaleo definition ID of this kaleo condition.
 	*
-	* @param className the class name of this kaleo condition
+	* @param kaleoDefinitionId the kaleo definition ID of this kaleo condition
 	*/
-	public void setClassName(java.lang.String className) {
-		_kaleoCondition.setClassName(className);
+	public void setKaleoDefinitionId(long kaleoDefinitionId) {
+		_kaleoCondition.setKaleoDefinitionId(kaleoDefinitionId);
 	}
 
 	/**
-	* Gets the class p k of this kaleo condition.
+	* Gets the kaleo node ID of this kaleo condition.
 	*
-	* @return the class p k of this kaleo condition
+	* @return the kaleo node ID of this kaleo condition
 	*/
-	public long getClassPK() {
-		return _kaleoCondition.getClassPK();
+	public long getKaleoNodeId() {
+		return _kaleoCondition.getKaleoNodeId();
 	}
 
 	/**
-	* Sets the class p k of this kaleo condition.
+	* Sets the kaleo node ID of this kaleo condition.
 	*
-	* @param classPK the class p k of this kaleo condition
+	* @param kaleoNodeId the kaleo node ID of this kaleo condition
 	*/
-	public void setClassPK(long classPK) {
-		_kaleoCondition.setClassPK(classPK);
-	}
-
-	/**
-	* Gets the description of this kaleo condition.
-	*
-	* @return the description of this kaleo condition
-	*/
-	public java.lang.String getDescription() {
-		return _kaleoCondition.getDescription();
-	}
-
-	/**
-	* Sets the description of this kaleo condition.
-	*
-	* @param description the description of this kaleo condition
-	*/
-	public void setDescription(java.lang.String description) {
-		_kaleoCondition.setDescription(description);
+	public void setKaleoNodeId(long kaleoNodeId) {
+		_kaleoCondition.setKaleoNodeId(kaleoNodeId);
 	}
 
 	/**

@@ -32,7 +32,7 @@ public class KaleoConditionLocalServiceImpl
 	extends KaleoConditionLocalServiceBaseImpl {
 
 	public KaleoCondition addKaleoCondition(
-			Condition condition, String className, long classPK,
+			long kaleoDefinitionId, long kaleoNodeId, Condition condition,
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
@@ -50,9 +50,8 @@ public class KaleoConditionLocalServiceImpl
 		kaleoCondition.setUserName(user.getFullName());
 		kaleoCondition.setCreateDate(now);
 		kaleoCondition.setModifiedDate(now);
-		kaleoCondition.setClassName(className);
-		kaleoCondition.setClassPK(classPK);
-		kaleoCondition.setDescription(condition.getDescription());
+		kaleoCondition.setKaleoDefinitionId(kaleoDefinitionId);
+		kaleoCondition.setKaleoNodeId(kaleoNodeId);
 		kaleoCondition.setScript(condition.getScript());
 		kaleoCondition.setScriptLanguage(
 			condition.getScriptLanguage().getValue());
@@ -62,10 +61,22 @@ public class KaleoConditionLocalServiceImpl
 		return kaleoCondition;
 	}
 
-	public KaleoCondition getKaleoCondition(String className, long classPK)
+	public void deleteCompanyKaleoConditions(long companyId)
+		throws SystemException {
+
+		kaleoConditionPersistence.removeByCompanyId(companyId);
+	}
+
+	public void deleteKaleoDefinitionKaleoCondition(long kaleoDefinitionId)
+		throws SystemException {
+
+		kaleoConditionPersistence.removeByKaleoDefinitionId(kaleoDefinitionId);
+	}
+
+	public KaleoCondition getKaleoNodeKaleoCondition(long kaleoNodeId)
 		throws PortalException, SystemException {
 
-		return kaleoConditionPersistence.findByC_C(className, classPK);
+		return kaleoConditionPersistence.findByKaleoNodeId(kaleoNodeId);
 	}
 
 }

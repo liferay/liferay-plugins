@@ -400,40 +400,33 @@ public class ClpSerializer {
 
 				method6.invoke(newModel, value6);
 
-				Method method7 = newModelClass.getMethod("setClassName",
-						new Class[] { String.class });
+				Method method7 = newModelClass.getMethod("setKaleoDefinitionId",
+						new Class[] { Long.TYPE });
 
-				String value7 = oldCplModel.getClassName();
+				Long value7 = new Long(oldCplModel.getKaleoDefinitionId());
 
 				method7.invoke(newModel, value7);
 
-				Method method8 = newModelClass.getMethod("setClassPK",
+				Method method8 = newModelClass.getMethod("setKaleoNodeId",
 						new Class[] { Long.TYPE });
 
-				Long value8 = new Long(oldCplModel.getClassPK());
+				Long value8 = new Long(oldCplModel.getKaleoNodeId());
 
 				method8.invoke(newModel, value8);
 
-				Method method9 = newModelClass.getMethod("setDescription",
+				Method method9 = newModelClass.getMethod("setScript",
 						new Class[] { String.class });
 
-				String value9 = oldCplModel.getDescription();
+				String value9 = oldCplModel.getScript();
 
 				method9.invoke(newModel, value9);
 
-				Method method10 = newModelClass.getMethod("setScript",
+				Method method10 = newModelClass.getMethod("setScriptLanguage",
 						new Class[] { String.class });
 
-				String value10 = oldCplModel.getScript();
+				String value10 = oldCplModel.getScriptLanguage();
 
 				method10.invoke(newModel, value10);
-
-				Method method11 = newModelClass.getMethod("setScriptLanguage",
-						new Class[] { String.class });
-
-				String value11 = oldCplModel.getScriptLanguage();
-
-				method11.invoke(newModel, value11);
 
 				return newModel;
 			}
@@ -2741,37 +2734,30 @@ public class ClpSerializer {
 
 				newModel.setModifiedDate(value6);
 
-				Method method7 = oldModelClass.getMethod("getClassName");
+				Method method7 = oldModelClass.getMethod("getKaleoDefinitionId");
 
-				String value7 = (String)method7.invoke(oldModel, (Object[])null);
+				Long value7 = (Long)method7.invoke(oldModel, (Object[])null);
 
-				newModel.setClassName(value7);
+				newModel.setKaleoDefinitionId(value7);
 
-				Method method8 = oldModelClass.getMethod("getClassPK");
+				Method method8 = oldModelClass.getMethod("getKaleoNodeId");
 
 				Long value8 = (Long)method8.invoke(oldModel, (Object[])null);
 
-				newModel.setClassPK(value8);
+				newModel.setKaleoNodeId(value8);
 
-				Method method9 = oldModelClass.getMethod("getDescription");
+				Method method9 = oldModelClass.getMethod("getScript");
 
 				String value9 = (String)method9.invoke(oldModel, (Object[])null);
 
-				newModel.setDescription(value9);
+				newModel.setScript(value9);
 
-				Method method10 = oldModelClass.getMethod("getScript");
+				Method method10 = oldModelClass.getMethod("getScriptLanguage");
 
 				String value10 = (String)method10.invoke(oldModel,
 						(Object[])null);
 
-				newModel.setScript(value10);
-
-				Method method11 = oldModelClass.getMethod("getScriptLanguage");
-
-				String value11 = (String)method11.invoke(oldModel,
-						(Object[])null);
-
-				newModel.setScriptLanguage(value11);
+				newModel.setScriptLanguage(value10);
 
 				return newModel;
 			}

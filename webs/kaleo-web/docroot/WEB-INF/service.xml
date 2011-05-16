@@ -72,9 +72,8 @@
 
 		<!-- Other fields -->
 
-		<column name="className" type="String" />
-		<column name="classPK" type="long" />
-		<column name="description" type="String" />
+		<column name="kaleoDefinitionId" type="long" />
+		<column name="kaleoNodeId" type="long" />
 		<column name="script" type="String" />
 		<column name="scriptLanguage" type="String" />
 
@@ -89,9 +88,11 @@
 		<finder name="CompanyId" return-type="Collection">
 			<finder-column name="companyId" />
 		</finder>
-		<finder name="C_C" return-type="KaleoCondition">
-			<finder-column name="className" />
-			<finder-column name="classPK" />
+		<finder name="KaleoDefinitionId" return-type="Collection">
+			<finder-column name="kaleoDefinitionId" />
+		</finder>
+		<finder name="KaleoNodeId" return-type="KaleoCondition">
+			<finder-column name="kaleoNodeId" />
 		</finder>
 	</entity>
 	<entity name="KaleoDefinition" local-service="true" remote-service="false">
@@ -370,6 +371,7 @@
 		<!-- Relationships -->
 
 		<column name="kaleoActions" type="Collection" entity="KaleoAction" mapping-key="kaleoNodeId" />
+		<column name="kaleoTransitions" type="Collection" entity="KaleoTransition" mapping-key="kaleoNodeId" />
 
 		<!-- Order -->
 

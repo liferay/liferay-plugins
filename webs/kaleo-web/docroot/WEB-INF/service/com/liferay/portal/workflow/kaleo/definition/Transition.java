@@ -28,10 +28,6 @@ public class Transition {
 		_default = defaultValue;
 	}
 
-	public Condition getCondition() {
-		return _condition;
-	}
-
 	public String getName() {
 		return _name;
 	}
@@ -48,11 +44,6 @@ public class Transition {
 		return _default;
 	}
 
-	public void setCondition(Condition condition) {
-		_condition = condition;
-	}
-
-	private Condition _condition;
 	private boolean _default;
 	private String _name;
 	private Node _sourceNode;

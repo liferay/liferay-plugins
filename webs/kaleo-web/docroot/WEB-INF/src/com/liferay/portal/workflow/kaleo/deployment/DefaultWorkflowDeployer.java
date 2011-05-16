@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.workflow.WorkflowException;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.workflow.kaleo.NoSuchDefinitionException;
 import com.liferay.portal.workflow.kaleo.WorkflowDefinitionAdapter;
+import com.liferay.portal.workflow.kaleo.definition.Condition;
 import com.liferay.portal.workflow.kaleo.definition.Definition;
 import com.liferay.portal.workflow.kaleo.definition.Node;
 import com.liferay.portal.workflow.kaleo.definition.NodeType;
@@ -28,6 +29,7 @@ import com.liferay.portal.workflow.kaleo.definition.Task;
 import com.liferay.portal.workflow.kaleo.definition.Transition;
 import com.liferay.portal.workflow.kaleo.model.KaleoDefinition;
 import com.liferay.portal.workflow.kaleo.model.KaleoNode;
+import com.liferay.portal.workflow.kaleo.service.KaleoConditionLocalServiceUtil;
 import com.liferay.portal.workflow.kaleo.service.KaleoDefinitionLocalServiceUtil;
 import com.liferay.portal.workflow.kaleo.service.KaleoNodeLocalServiceUtil;
 import com.liferay.portal.workflow.kaleo.service.KaleoTaskLocalServiceUtil;
@@ -79,6 +81,13 @@ public class DefaultWorkflowDeployer implements WorkflowDeployer {
 
 				KaleoTaskLocalServiceUtil.addKaleoTask(
 					kaleoDefinitionId, kaleoNode.getKaleoNodeId(), task,
+					serviceContext);
+			}
+			else if (nodeType.equals(NodeType.CONDITION)) {
+				Condition condition = (Condition)node;
+
+				KaleoConditionLocalServiceUtil.addKaleoCondition(
+					kaleoDefinitionId, kaleoNode.getKaleoNodeId(), condition,
 					serviceContext);
 			}
 		}
