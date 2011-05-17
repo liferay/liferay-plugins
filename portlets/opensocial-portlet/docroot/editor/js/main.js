@@ -9,6 +9,8 @@ AUI().add(
 
 		var ACTIVE_TAB = 'activeTab';
 
+		var BODY_CONTENT = 'bodyContent';
+
 		var BOUNDING_BOX = 'boundingBox';
 
 		var CODE_MIRROR = 'codeMirror';
@@ -49,6 +51,8 @@ AUI().add(
 
 		var FILE_ENTRY_LOADED = 'fileEntryLoaded';
 
+		var FILE_ENTRY_URL = 'fileEntryURL';
+
 		var GET_FOLDER_CHILDREN = 'getFolderChildren';
 
 		var HEIGHT = 'height';
@@ -66,6 +70,8 @@ AUI().add(
 		var IS_RENDERED = 'isRendered';
 
 		var LABEL = 'label';
+
+		var LAST_SELECTED = 'lastSelected';
 
 		var LOADED_CHANGE = 'loadedChange';
 
@@ -138,7 +144,6 @@ AUI().add(
 						value: 'default'
 					},
 					gadgetViewParams: {},
-					portalURL: {},
 					repositoryId: {},
 					resourceURL: {},
 					rootFolderId: {}
@@ -248,7 +253,7 @@ AUI().add(
 
 						var entryId = object.get(ENTRY_ID);
 
-						if (entryId != 0) {
+						if (entryId != '') {
 							var item;
 
 							var containsKey = instance._indexDataSet.containsKey(entryId);
@@ -399,7 +404,7 @@ AUI().add(
 						var node = instance._getNodeFromDataSet(entryId);
 
 						if (node && !node.isSelected()) {
-							var lastSelected = instance._treeViewEditor.get('lastSelected');
+							var lastSelected = instance._treeViewEditor.get(LAST_SELECTED);
 
 							if (lastSelected) {
 								lastSelected.unselect();
@@ -514,9 +519,7 @@ AUI().add(
 
 						var node = instance._getNodeFromDataSet(event.entryId);
 
-						var url = instance.get('portalURL') + node.get('fileEntryURL');
-
-						var bodyContent = Lang.sub(TPL_URL_DISPLAY, [node.get(LABEL), url]);
+						var bodyContent = Lang.sub(TPL_URL_DISPLAY, [node.get(LABEL), node.get(FILE_ENTRY_URL)]);
 
 						instance._createDialog('URL', bodyContent, false, true, null).render();
 					},
@@ -530,25 +533,31 @@ AUI().add(
 					_appendEditorChildren: function(data) {
 						var instance = this;
 
-						var treeViewEditor = instance._treeViewEditor;
+						if (data.error) {
+							instance._showErrorDialog(data.error);
+						}
+						else {
+							var treeViewEditor = instance._treeViewEditor;
 
-						A.Array.each(
-							data,
-							function(item, index, collection) {
-								var node = new A.TreeNodeEditor(
-									{
-										entryId: String(item.entryId),
-										label: item.label,
-										leaf: item.leaf,
-										type: item.type
-									}
-								);
+							A.Array.each(
+								data,
+								function(item, index, collection) {
+									var node = new A.TreeNodeEditor(
+										{
+											entryId: item.entryId,
+											fileEntryURL: item.fileEntryURL,
+											label: item.label,
+											leaf: item.leaf,
+											type: item.type
+										}
+									);
 
-								treeViewEditor.appendChild(node);
-							}
-						);
+									treeViewEditor.appendChild(node);
+								}
+							);
 
-						treeViewEditor.sortChildren();
+							treeViewEditor.sortChildren();
+						}
 					},
 
 					_changeEditorFontSize: function(action) {
@@ -792,9 +801,11 @@ AUI().add(
 						var node = instance._getNodeFromDataSet(event.entryId);
 
 						if (node.get(FILE_ENTRY_LOADED)) {
-							var tabId = instance._getTabFromDataSet(event.entryId).get(ID);
+							if (event.entryId != instance._tabViewEditor.get(ACTIVE_TAB).get(ENTRY_ID)) {
+								var tabId = instance._getTabFromDataSet(event.entryId).get(ID);
 
-							instance._tabViewEditor.selectTabById(tabId);
+								instance._tabViewEditor.selectTabById(tabId);
+							}
 						}
 						else {
 							var callback = function(data) {
@@ -818,72 +829,74 @@ AUI().add(
 					_defRenderGadgetFn: function(event) {
 						var instance = this;
 
+						var previewPanel = instance._previewPanel;
+						var previewPanelBodyNode = previewPanel.bodyNode;
+
 						var tab = instance._getTabFromDataSet(event.entryId);
 
-						var content = tab.get(EDITOR).getValue();
+						if (tab.get(IS_DIRTY) || tab.get(IS_NEW)) {
+							previewPanelBodyNode.empty();
+
+							var error = 'The gadget content is not valid.';
+
+							previewPanel.set(BODY_CONTENT, error);
+
+							instance._showPreviewPanel();
+
+							return;
+						}
+
+						var node = instance._getNodeFromDataSet(event.entryId);
+
+						var fileEntryURL = node.get(FILE_ENTRY_URL);
 
 						var callback = function(data) {
 							if (data.error) {
-								instance._showErrorDialog(data.error);
+								if (data.error.name == 'ProcessingException') {
+									previewPanelBodyNode.empty();
 
-								return;
+									previewPanel.set(BODY_CONTENT, data.error.message);
+
+									instance._showPreviewPanel()
+								}
+								else {
+									instance._showErrorDialog(data.error);
+								}
 							}
 							else {
-								var contentValid = data.contentValid;
+								previewPanelBodyNode.empty();
 
-								tab.set('contentValid', contentValid);
+								new Liferay.OpenSocial.Gadget(
+									{
+										appId: fileEntryURL,
+										debug: 1,
+										height: data.height,
+										moduleId: data.moduleId,
+										nocache: 1,
+										portletId: instance.get('gadgetPortletId'),
+										requiresPubsub: data.requiresPubsub,
+										scrolling: data.scrolling,
+										secureToken: data.secureToken,
+										serverBase: instance.get('gadgetServerBase'),
+										specUrl: fileEntryURL,
+										store: instance.get('gadgetStore'),
+										view: instance.get('gadgetView'),
+										viewParams: instance.get('gadgetViewParams')
+									}
+								).render(previewPanelBodyNode);
 
-								var previewPanel = instance._previewPanel;
-								var previewPanelBodyNode = previewPanel.bodyNode;
+								tab.set(IS_RENDERED, true);
 
-								if (!contentValid) {
-									previewPanelBodyNode.empty();
-
-									var error = 'The gadget content is not valid.';
-
-									previewPanel.set('bodyContent', error);
-								}
-								else if (!tab.get(IS_RENDERED) || event.noCache) {
-									previewPanelBodyNode.empty();
-
-									new Liferay.OpenSocial.Gadget(
-										{
-											appId: data.appId,
-											content: escape(content),
-											debug: instance.get('gadgetDebug'),
-											moduleId: data.moduleId,
-											nocache: instance.get('gadgetNocache'),
-											portletId: instance.get('gadgetPortletId'),
-											requiresPubsub: data.requiresPubsub,
-											secureToken: data.secureToken,
-											serverBase: instance.get('gadgetServerBase'),
-											specUrl: data.specUrl,
-											store: instance.get('gadgetStore'),
-											view: instance.get('gadgetView'),
-											viewParams: instance.get('gadgetViewParams')
-										}
-									).render(previewPanelBodyNode);
-
-									tab.set(IS_RENDERED, true);
-								}
-
-								var previewResize = instance._previewResize;
-
-								var previewResizeWrapper = previewResize.get(WRAPPER);
-
-								var previewResizeWrapperHeight = previewResizeWrapper.height();
-
-								instance._tabViewEditor.set(HEIGHT, instance._gadgetEditorHeight - previewResizeWrapperHeight);
-
-								previewResizeWrapper.show();
-
-								instance._tabViewEditor.adjustEditorHeight();
-
-								instance._adjustPreviewPanelContentHeight();
+								instance._showPreviewPanel();
 							}
 						};
 
-						instance._requestGetRenderParameters(content, callback);
+						if (!tab.get(IS_RENDERED) || event.noCache) {
+							instance._requestGetRenderParameters(fileEntryURL, callback);
+						}
+						else {
+							instance._showPreviewPanel();
+						}
 					},
 
 					_defSaveContentFn: function(event) {
@@ -1027,7 +1040,7 @@ AUI().add(
 								if (callback) {
 									var message = this.get('responseData');
 
-									callback.apply(instance, message);
+									callback.apply(instance, [message]);
 								}
 							}
 						);
@@ -1082,7 +1095,7 @@ AUI().add(
 
 						var node = null;
 
-						if (entryId != 0) {
+						if (entryId != '') {
 							var item = instance._indexDataSet.item(entryId);
 
 							node = item && item.node;
@@ -1106,7 +1119,7 @@ AUI().add(
 
 						var tab = null;
 
-						if (entryId != 0) {
+						if (entryId != '') {
 							var item = instance._indexDataSet.item(entryId);
 
 							tab = item && item.tab;
@@ -1647,7 +1660,7 @@ AUI().add(
 						);
 					},
 
-					_requestGetRenderParameters: function(content, callback) {
+					_requestGetRenderParameters: function(fileEntryURL, callback) {
 						var instance = this;
 
 						instance._loadingMask.show();
@@ -1655,7 +1668,7 @@ AUI().add(
 						instance._sendIORequest(
 							'getRenderParameters',
 							{
-								content: content
+								fileEntryURL: fileEntryURL
 							},
 							callback
 						);
@@ -1704,116 +1717,6 @@ AUI().add(
 							},
 							callback
 						);
-					},
-
-					_sendIORequest: function(name, data, callback) {
-						var instance = this;
-
-						var io = instance._getIORequest(name, callback);
-
-						io.set('data', data);
-
-						io.start();
-
-						return io;
-					},
-
-					_showConfirmationDialog: function(message, callback) {
-						var instance = this;
-
-						var args = arguments;
-
-						var buttons = [
-							{
-								handler: function(event) {
-									if (callback) {
-										callback.apply(instance, A.Array(args, 2, true));
-									}
-
-									instance._confirmationDialog.close();
-								},
-								text: 'Yes'
-							},
-							{
-								handler: function(event) {
-									instance._confirmationDialog.close();
-								},
-								text: 'No'
-							}
-						];
-
-						var confirmationDialog = instance._createDialog('Confirm', message, true, false, buttons).render();
-
-						instance._confirmationDialog = confirmationDialog;
-					},
-
-					_showErrorDialog: function(error) {
-						var instance = this;
-
-						var bodyContent;
-
-						if (Lang.isString(error)) {
-							bodyContent = error;
-						}
-						else {
-							bodyContent = Lang.sub(TPL_ERROR_MESSAGE, error);
-						}
-
-						instance._createDialog('Error', bodyContent, true, true, null).render();
-					},
-
-					_showSearchDialog: function() {
-						var instance = this;
-
-						var form = new A.Form().render();
-
-						var searchField = new A.Textfield(
-							{
-								labelText: 'Search for:'
-							}
-						);
-
-						var replaceField = new A.Textfield(
-							{
-								labelText: 'Replace with:'
-							}
-						);
-
-						form.add(searchField, true);
-						form.add(replaceField, true);
-
-						var buttons = [
-							{
-								handler: function(event) {
-									var tab = instance._tabViewEditor.get(ACTIVE_TAB);
-
-									var searchText = searchField.get(VALUE);
-
-									tab.searchEditorText(searchText, false);
-								},
-								text: 'Search'
-							},
-							{
-								handler: function(event) {
-									var tab = instance._tabViewEditor.get(ACTIVE_TAB);
-
-									var searchText = searchField.get(VALUE);
-
-									var replaceText = replaceField.get(VALUE);
-
-									tab.searchEditorText(searchText, false, replaceText, true);
-								},
-								text: 'Replace'
-							},
-							{
-								handler: function(event) {
-									instance._closeSearchDialog();
-								},
-								text: 'Close'
-							}
-						];
-
-						instance._searchDialog = instance._createDialog('Search', form.get(BOUNDING_BOX), false, false, buttons).render();
 					},
 
 					_saveRenameExistingEntry: function(node) {
@@ -1894,7 +1797,7 @@ AUI().add(
 
 									node.setAttrs(
 										{
-											entryId: String(fileEntryId),
+											entryId: fileEntryId,
 											fileEntryLoaded: true,
 											fileEntryURL: data.fileEntryURL,
 											isNewEntry: false,
@@ -1906,7 +1809,7 @@ AUI().add(
 
 									tab.setAttrs(
 										{
-											entryId: String(fileEntryId),
+											entryId: fileEntryId,
 											isDirty: false,
 											isNew: false,
 											label: label
@@ -1920,7 +1823,7 @@ AUI().add(
 								else {
 									node.setAttrs(
 										{
-											entryId: String(data.folderId),
+											entryId: data.folderId,
 											isNewEntry: false,
 											label: label
 										}
@@ -1928,6 +1831,14 @@ AUI().add(
 								}
 
 								node.sort();
+
+								var lastSelected = instance._treeViewEditor.get(LAST_SELECTED);
+
+								if (lastSelected) {
+									lastSelected.unselect();
+								}
+
+								node.select();
 							}
 						};
 
@@ -1937,6 +1848,134 @@ AUI().add(
 						else {
 							instance._requestAddFolder(label, parentFolderEntryId, callback);
 						}
+					},
+
+					_sendIORequest: function(name, data, callback) {
+						var instance = this;
+
+						var io = instance._getIORequest(name, callback);
+
+						io.set('data', data);
+
+						io.start();
+
+						return io;
+					},
+
+					_showConfirmationDialog: function(message, callback) {
+						var instance = this;
+
+						var args = arguments;
+
+						var buttons = [
+							{
+								handler: function(event) {
+									if (callback) {
+										callback.apply(instance, A.Array(args, 2, true));
+									}
+
+									instance._confirmationDialog.close();
+								},
+								text: 'Yes'
+							},
+							{
+								handler: function(event) {
+									instance._confirmationDialog.close();
+								},
+								text: 'No'
+							}
+						];
+
+						var confirmationDialog = instance._createDialog('Confirm', message, true, false, buttons).render();
+
+						instance._confirmationDialog = confirmationDialog;
+					},
+
+					_showErrorDialog: function(error) {
+						var instance = this;
+
+						var bodyContent;
+
+						if (Lang.isString(error)) {
+							bodyContent = error;
+						}
+						else {
+							bodyContent = Lang.sub(TPL_ERROR_MESSAGE, error);
+						}
+
+						instance._createDialog('Error', bodyContent, true, true, null).render();
+					},
+
+					_showPreviewPanel: function() {
+						var instance = this;
+
+						var previewResize = instance._previewResize;
+
+						var previewResizeWrapper = previewResize.get(WRAPPER);
+
+						var previewResizeWrapperHeight = previewResizeWrapper.height();
+
+						instance._tabViewEditor.set(HEIGHT, instance._gadgetEditorHeight - previewResizeWrapperHeight);
+
+						previewResizeWrapper.show();
+
+						instance._tabViewEditor.adjustEditorHeight();
+
+						instance._adjustPreviewPanelContentHeight();
+					},
+
+					_showSearchDialog: function() {
+						var instance = this;
+
+						var form = new A.Form().render();
+
+						var searchField = new A.Textfield(
+							{
+								labelText: 'Search for:'
+							}
+						);
+
+						var replaceField = new A.Textfield(
+							{
+								labelText: 'Replace with:'
+							}
+						);
+
+						form.add(searchField, true);
+						form.add(replaceField, true);
+
+						var buttons = [
+							{
+								handler: function(event) {
+									var tab = instance._tabViewEditor.get(ACTIVE_TAB);
+
+									var searchText = searchField.get(VALUE);
+
+									tab.searchEditorText(searchText, false);
+								},
+								text: 'Search'
+							},
+							{
+								handler: function(event) {
+									var tab = instance._tabViewEditor.get(ACTIVE_TAB);
+
+									var searchText = searchField.get(VALUE);
+
+									var replaceText = replaceField.get(VALUE);
+
+									tab.searchEditorText(searchText, false, replaceText, true);
+								},
+								text: 'Replace'
+							},
+							{
+								handler: function(event) {
+									instance._closeSearchDialog();
+								},
+								text: 'Close'
+							}
+						];
+
+						instance._searchDialog = instance._createDialog('Search', form.get(BOUNDING_BOX), false, false, buttons).render();
 					},
 
 					_undoContent: function(action) {

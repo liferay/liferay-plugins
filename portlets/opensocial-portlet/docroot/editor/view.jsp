@@ -38,7 +38,6 @@ Folder rootFolder = ShindigUtil.getGadgetEditorRootFolder(repositoryId);
 			),
 			gadgetView: '<%= renderRequest.getAttribute(WebKeys.VIEW) %>',
 			gadgetViewParams: '<%= ParamUtil.getString(renderRequest, "viewParams") %>',
-			portalURL: '<%= themeDisplay.getPortalURL() + themeDisplay.getPathContext() %>',
 			repositoryId: '<%= repositoryId %>',
 			resourceURL: '<portlet:resourceURL />',
 			rootFolderId: '<%= rootFolder.getFolderId() %>'

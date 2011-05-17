@@ -16,7 +16,6 @@ package com.liferay.opensocial.shindig.util;
 
 import com.google.inject.Inject;
 
-import com.liferay.opensocial.GadgetURLException;
 import com.liferay.opensocial.service.GadgetLocalServiceUtil;
 import com.liferay.opensocial.util.PortletPropsValues;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -54,12 +53,10 @@ import org.apache.shindig.config.ContainerConfig;
 import org.apache.shindig.gadgets.Gadget;
 import org.apache.shindig.gadgets.process.Processor;
 import org.apache.shindig.gadgets.servlet.JsonRpcGadgetContext;
-import org.apache.shindig.gadgets.spec.Feature;
 import org.apache.shindig.gadgets.spec.GadgetSpec;
 import org.apache.shindig.gadgets.spec.ModulePrefs;
 import org.apache.shindig.gadgets.spec.OAuthService;
 import org.apache.shindig.gadgets.spec.OAuthSpec;
-import org.apache.shindig.gadgets.spec.SpecParserException;
 
 import org.json.JSONObject;
 
@@ -182,14 +179,23 @@ public class ShindigUtil {
 	}
 
 	public static GadgetSpec getGadgetSpec(String url) throws Exception {
+		boolean debug = GetterUtil.getBoolean(
+			PortletPropsValues.SHINDIG_JS_DEBUG);
+
+		boolean ignoreCache = GetterUtil.getBoolean(
+			PortletPropsValues.SHINDIG_NO_CACHE);
+
+		return getGadgetSpec(url, debug, ignoreCache);
+	}
+
+	public static GadgetSpec getGadgetSpec(
+			String url, boolean debug, boolean ignoreCache)
+		throws Exception {
+
 		JSONObject gadgetContextJSONObject = new JSONObject();
 
-		gadgetContextJSONObject.put(
-			"debug",
-			GetterUtil.getBoolean(PortletPropsValues.SHINDIG_JS_DEBUG));
-		gadgetContextJSONObject.put(
-			"ignoreCache",
-			GetterUtil.getBoolean(PortletPropsValues.SHINDIG_NO_CACHE));
+		gadgetContextJSONObject.put("debug", debug);
+		gadgetContextJSONObject.put("ignoreCache", ignoreCache);
 
 		JSONObject gadgetRequestJSONObject = new JSONObject();
 
@@ -272,37 +278,6 @@ public class ShindigUtil {
 		}
 
 		return false;
-	}
-
-	public static boolean isRequiresPubsub(String url)
-		throws GadgetURLException {
-
-		GadgetSpec gadgetSpec = null;
-
-		try {
-			gadgetSpec = ShindigUtil.getGadgetSpec(url);
-		}
-		catch (Exception e) {
-			throw new GadgetURLException(e);
-		}
-
-		ModulePrefs modulePrefs = gadgetSpec.getModulePrefs();
-
-		Map<String, Feature> features = modulePrefs.getFeatures();
-
-		return features.containsKey("pubsub-2");
-	}
-
-	public static boolean isRequiresPubsubFromContent(String content)
-		throws SpecParserException {
-
-		GadgetSpec gadgetSpec = new GadgetSpec(null, content);
-
-		ModulePrefs modulePrefs = gadgetSpec.getModulePrefs();
-
-		Map<String, Feature> features = modulePrefs.getFeatures();
-
-		return features.containsKey("pubsub-2");
 	}
 
 	public static void setHost(String host) {

@@ -97,6 +97,7 @@
 }
 
 .opensocial-portlet-editor .yui3-aui-panel-bd {
+	background: #FFFFFF;
 	overflow: auto;
 }
 
@@ -126,7 +127,7 @@
 	padding-top: 8px;
 }
 
-.opensocial-portlet-editor .yui3-gadget {
+.opensocial-portlet-editor .yui3-aui-gadget {
 	height: 100%;
 	width: 100%;
 }
@@ -193,8 +194,7 @@
 }
 
 .CodeMirror-matchingbracket {
-    border: solid 0.5px;
-    color: #808080 !important;
+    color: #FF0000 !important;
 }
 
 .codemirror-activeline {

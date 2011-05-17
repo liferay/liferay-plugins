@@ -40,10 +40,15 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.portlet.PortletException;
 import javax.portlet.ResourceRequest;
 import javax.portlet.ResourceResponse;
+
+import org.apache.shindig.gadgets.spec.Feature;
+import org.apache.shindig.gadgets.spec.GadgetSpec;
+import org.apache.shindig.gadgets.spec.ModulePrefs;
 
 /**
  * @author Dennis Ju
@@ -109,6 +114,9 @@ public class EditorPortlet extends MVCPortlet {
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws Exception {
 
+		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
 		long folderId = ParamUtil.getLong(resourceRequest, "folderId");
 
 		Folder folder = DLAppServiceUtil.getFolder(folderId);
@@ -141,8 +149,10 @@ public class EditorPortlet extends MVCPortlet {
 
 		jsonObject.put("fileEntryId", fileEntry.getFileEntryId());
 
+		String portalURL = PortalUtil.getPortalURL(themeDisplay);
+
 		String fileEntryURL = ShindigUtil.getFileEntryURL(
-			StringPool.BLANK, fileEntry.getFileEntryId());
+			portalURL, fileEntry.getFileEntryId());
 
 		jsonObject.put("fileEntryURL", fileEntryURL);
 
@@ -233,6 +243,9 @@ public class EditorPortlet extends MVCPortlet {
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws Exception {
 
+		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
 		long repositoryId = ParamUtil.getLong(resourceRequest, "repositoryId");
 		long folderId = ParamUtil.getLong(resourceRequest, "folderId");
 
@@ -270,8 +283,10 @@ public class EditorPortlet extends MVCPortlet {
 
 				jsonObject.put("entryId", fileEntry.getFileEntryId());
 
+				String portalURL = PortalUtil.getPortalURL(themeDisplay);
+
 				String fileEntryURL = ShindigUtil.getFileEntryURL(
-					StringPool.BLANK, fileEntry.getFileEntryId());
+					portalURL, fileEntry.getFileEntryId());
 
 				jsonObject.put("fileEntryURL", fileEntryURL);
 
@@ -293,41 +308,45 @@ public class EditorPortlet extends MVCPortlet {
 		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		String content = ParamUtil.getString(resourceRequest, "content");
-
-		boolean contentValid = ShindigUtil.isContentValid(content);
-
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-		jsonObject.put("contentValid", contentValid);
+		String fileEntryURL = ParamUtil.getString(
+			resourceRequest, "fileEntryURL");
 
-		if (contentValid) {
-			String portalURL = PortalUtil.getPortalURL(themeDisplay);
+		GadgetSpec gadgetSpec = ShindigUtil.getGadgetSpec(
+			fileEntryURL, true, true);
 
-			String appId = portalURL.concat("/raw.xml");
+		ModulePrefs modulePrefs = gadgetSpec.getModulePrefs();
 
-			jsonObject.put("appId", appId);
+		int height = modulePrefs.getHeight();
 
-			long moduleId = ShindigUtil.getModuleId(
-				resourceResponse.getNamespace());
+		jsonObject.put("height", height);
 
-			jsonObject.put("moduleId", moduleId);
+		long moduleId = ShindigUtil.getModuleId(
+			resourceResponse.getNamespace());
 
-			boolean requiresPubsub = ShindigUtil.isRequiresPubsubFromContent(
-				content);
+		jsonObject.put("moduleId", moduleId);
 
-			jsonObject.put("requiresPubsub", requiresPubsub);
+		Map<String, Feature> features = modulePrefs.getFeatures();
 
-			String ownerId = ShindigUtil.getOwnerId(themeDisplay.getLayout());
-			String currentURL = PortalUtil.getCurrentURL(resourceRequest);
+		boolean requiresPubsub = features.containsKey("pubsub-2");
 
-			String secureToken = ShindigUtil.createSecurityToken(
-				ownerId, themeDisplay.getUserId(), appId, portalURL, appId,
-				moduleId, currentURL);
+		jsonObject.put("requiresPubsub", requiresPubsub);
 
-			jsonObject.put("secureToken", secureToken);
-			jsonObject.put("specUrl", appId);
-		}
+		boolean scrolling = modulePrefs.getScrolling();
+
+		jsonObject.put("scrolling", scrolling);
+
+		String ownerId = ShindigUtil.getOwnerId(themeDisplay.getLayout());
+		String portalURL = PortalUtil.getPortalURL(themeDisplay);
+		String currentURL = PortalUtil.getCurrentURL(resourceRequest);
+
+		String secureToken = ShindigUtil.createSecurityToken(
+			ownerId, themeDisplay.getUserId(), fileEntryURL, portalURL,
+			fileEntryURL, moduleId, currentURL);
+
+		jsonObject.put("secureToken", secureToken);
+		jsonObject.put("specUrl", fileEntryURL);
 
 		writeJSON(resourceRequest, resourceResponse, jsonObject.toString());
 	}
@@ -350,8 +369,9 @@ public class EditorPortlet extends MVCPortlet {
 		serviceContext.setModifiedDate(fileEntry.getModifiedDate());
 
 		DLAppServiceUtil.updateFileEntry(
-			fileEntryId, StringPool.BLANK, StringPool.BLANK, StringPool.BLANK,
-			StringPool.BLANK, false, bytes, serviceContext);
+			fileEntryId, fileEntry.getTitle(), fileEntry.getTitle(),
+			fileEntry.getDescription(), StringPool.BLANK, false, bytes,
+			serviceContext);
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
@@ -377,8 +397,9 @@ public class EditorPortlet extends MVCPortlet {
 		serviceContext.setModifiedDate(fileEntry.getModifiedDate());
 
 		DLAppServiceUtil.updateFileEntry(
-			fileEntryId, fileEntryTitle, StringPool.BLANK, StringPool.BLANK,
-			StringPool.BLANK, false, bytes, serviceContext);
+			fileEntryId, fileEntryTitle, fileEntryTitle,
+			fileEntry.getDescription(), StringPool.BLANK, false, bytes,
+			serviceContext);
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
@@ -401,7 +422,7 @@ public class EditorPortlet extends MVCPortlet {
 		serviceContext.setModifiedDate(folder.getModifiedDate());
 
 		DLAppServiceUtil.updateFolder(
-			folderId, folderName, StringPool.BLANK, serviceContext);
+			folderId, folderName, folder.getDescription(), serviceContext);
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 

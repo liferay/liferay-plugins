@@ -155,7 +155,7 @@ AUI().add(
 							instance.get(ITEMS),
 							function(item, index, collection) {
 								if (item.get(ID) == id) {
-									tab = value;
+									tab = item;
 
 									return true;
 								}
@@ -206,11 +206,13 @@ AUI().add(
 		var TabEditor = A.Component.create(
 			{
 				ATTRS: {
-					contentValid: {},
 					dirtyIndicatorNode: {},
 					editor: {},
 					entryId: {
-						value: 0
+						value: '',
+						setter: function(v) {
+							return String(v);
+						}
 					},
 					isDirty: {
 						value: false

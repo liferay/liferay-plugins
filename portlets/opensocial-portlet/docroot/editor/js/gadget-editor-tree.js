@@ -37,6 +37,8 @@ AUI().add(
 
 		var PARENT_NODE = 'parentNode';
 
+		var RENDERED = 'rendered';
+
 		var TPL_ICON_CONTEXT_MENU = '<a href="javascript:;"></a>';
 
 		var VISIBLE = 'visible';
@@ -71,7 +73,7 @@ AUI().add(
 							}
 						);
 
-						if (instance.get() == parentId) {
+						if (instance.get(ID) == parentId) {
 							instance.appendChild(node);
 						}
 						else {
@@ -151,7 +153,9 @@ AUI().add(
 							fileEntryChildren,
 							function(item, index, collection) {
 								if (index == 0) {
-									instance.insertAfter(item, folderChildren[folderChildren.length - 1]);
+									if (folderChildren.length > 0) {
+										instance.insertAfter(item, folderChildren[folderChildren.length - 1]);
+									}
 								}
 								else {
 									instance.insertAfter(item, collection[index-1]);
@@ -175,7 +179,10 @@ AUI().add(
 					editable: {},
 
 					entryId: {
-						value: 0
+						value: '',
+						setter: function(v) {
+							return String(v);
+						}
 					},
 
 					fileEntryLoaded: {
@@ -305,7 +312,7 @@ AUI().add(
 							folderChildren,
 							function(item, index, collection) {
 								if (index != 0) {
-									ownerTree.insertAfter(child, array[index-1]);
+									ownerTree.insertAfter(child, collection[index-1]);
 								}
 							}
 						);
@@ -314,10 +321,12 @@ AUI().add(
 							fileEntryChildren,
 							function(item, index, collection) {
 								if (index == 0) {
-									ownerTree.insertAfter(item, folderChildren[folderChildren.length - 1]);
+									if (folderChildren.length > 0) {
+										ownerTree.insertAfter(item, folderChildren[folderChildren.length - 1]);
+									}
 								}
 								else {
-									ownerTree.insertAfter(item, array[index-1]);
+									ownerTree.insertAfter(item, collection[index-1]);
 								}
 							}
 						);
@@ -537,10 +546,6 @@ AUI().add(
 								hideOn: CLICK,
 								showOn: CLICK,
 								after: {
-									render: function(event) {
-										contextMenu.render();
-										overlayContext.render();
-									},
 									visibleChange: function(event) {
 										contextMenuIcon.toggleClass(CSS_CONTEXT_MENU_OPEN, event.target.get(VISIBLE));
 									}
@@ -548,6 +553,11 @@ AUI().add(
 								on: {
 									show: function(event) {
 										var overlayContext = event.target;
+
+										if (!overlayContext.get(RENDERED)) {
+											contextMenu.render();
+											overlayContext.render();
+										}
 
 										treeActionOverlayManager.hideAll();
 
@@ -588,7 +598,7 @@ AUI().add(
 									startEditing: function(event) {
 										var editable = event.target;
 
-										if (!editable.get('rendered')) {
+										if (!editable.get(RENDERED)) {
 											editable.render();
 										}
 
@@ -637,7 +647,10 @@ AUI().add(
 
 				ATTRS: {
 					entryId: {
-						value: 0
+						value: '',
+						setter: function(v) {
+							return String(v);
+						}
 					}
 				},
 
