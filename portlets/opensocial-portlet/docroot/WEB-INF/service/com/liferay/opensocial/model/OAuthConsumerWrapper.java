@@ -48,10 +48,10 @@ public class OAuthConsumerWrapper implements OAuthConsumer {
 	/**
 	* Sets the primary key of this o auth consumer
 	*
-	* @param pk the primary key of this o auth consumer
+	* @param primaryKey the primary key of this o auth consumer
 	*/
-	public void setPrimaryKey(long pk) {
-		_oAuthConsumer.setPrimaryKey(pk);
+	public void setPrimaryKey(long primaryKey) {
+		_oAuthConsumer.setPrimaryKey(primaryKey);
 	}
 
 	/**
@@ -242,6 +242,10 @@ public class OAuthConsumerWrapper implements OAuthConsumer {
 
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _oAuthConsumer.getPrimaryKeyObj();
+	}
+
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_oAuthConsumer.setPrimaryKeyObj(primaryKeyObj);
 	}
 
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {

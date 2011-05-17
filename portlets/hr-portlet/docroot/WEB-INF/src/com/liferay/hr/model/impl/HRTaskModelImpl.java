@@ -117,12 +117,16 @@ public class HRTaskModelImpl extends BaseModelImpl<HRTask>
 		return _hrTaskId;
 	}
 
-	public void setPrimaryKey(long pk) {
-		setHrTaskId(pk);
+	public void setPrimaryKey(long primaryKey) {
+		setHrTaskId(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_hrTaskId);
+	}
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public long getHrTaskId() {
@@ -447,12 +451,12 @@ public class HRTaskModelImpl extends BaseModelImpl<HRTask>
 	}
 
 	public int compareTo(HRTask hrTask) {
-		long pk = hrTask.getPrimaryKey();
+		long primaryKey = hrTask.getPrimaryKey();
 
-		if (getPrimaryKey() < pk) {
+		if (getPrimaryKey() < primaryKey) {
 			return -1;
 		}
-		else if (getPrimaryKey() > pk) {
+		else if (getPrimaryKey() > primaryKey) {
 			return 1;
 		}
 		else {
@@ -474,9 +478,9 @@ public class HRTaskModelImpl extends BaseModelImpl<HRTask>
 			return false;
 		}
 
-		long pk = hrTask.getPrimaryKey();
+		long primaryKey = hrTask.getPrimaryKey();
 
-		if (getPrimaryKey() == pk) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {

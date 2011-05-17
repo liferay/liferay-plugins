@@ -48,10 +48,10 @@ public class KaleoNotificationWrapper implements KaleoNotification {
 	/**
 	* Sets the primary key of this kaleo notification
 	*
-	* @param pk the primary key of this kaleo notification
+	* @param primaryKey the primary key of this kaleo notification
 	*/
-	public void setPrimaryKey(long pk) {
-		_kaleoNotification.setPrimaryKey(pk);
+	public void setPrimaryKey(long primaryKey) {
+		_kaleoNotification.setPrimaryKey(primaryKey);
 	}
 
 	/**
@@ -388,6 +388,10 @@ public class KaleoNotificationWrapper implements KaleoNotification {
 
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _kaleoNotification.getPrimaryKeyObj();
+	}
+
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_kaleoNotification.setPrimaryKeyObj(primaryKeyObj);
 	}
 
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {

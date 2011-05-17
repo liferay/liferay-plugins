@@ -48,10 +48,10 @@ public class JIRAActionWrapper implements JIRAAction {
 	/**
 	* Sets the primary key of this j i r a action
 	*
-	* @param pk the primary key of this j i r a action
+	* @param primaryKey the primary key of this j i r a action
 	*/
-	public void setPrimaryKey(long pk) {
-		_jiraAction.setPrimaryKey(pk);
+	public void setPrimaryKey(long primaryKey) {
+		_jiraAction.setPrimaryKey(primaryKey);
 	}
 
 	/**
@@ -224,6 +224,10 @@ public class JIRAActionWrapper implements JIRAAction {
 
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _jiraAction.getPrimaryKeyObj();
+	}
+
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_jiraAction.setPrimaryKeyObj(primaryKeyObj);
 	}
 
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {

@@ -48,10 +48,10 @@ public class HRUserTaskWrapper implements HRUserTask {
 	/**
 	* Sets the primary key of this h r user task
 	*
-	* @param pk the primary key of this h r user task
+	* @param primaryKey the primary key of this h r user task
 	*/
-	public void setPrimaryKey(long pk) {
-		_hrUserTask.setPrimaryKey(pk);
+	public void setPrimaryKey(long primaryKey) {
+		_hrUserTask.setPrimaryKey(primaryKey);
 	}
 
 	/**
@@ -318,6 +318,10 @@ public class HRUserTaskWrapper implements HRUserTask {
 
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _hrUserTask.getPrimaryKeyObj();
+	}
+
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_hrUserTask.setPrimaryKeyObj(primaryKeyObj);
 	}
 
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {

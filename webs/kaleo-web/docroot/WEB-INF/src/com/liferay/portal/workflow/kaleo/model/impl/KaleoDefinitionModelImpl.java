@@ -111,12 +111,16 @@ public class KaleoDefinitionModelImpl extends BaseModelImpl<KaleoDefinition>
 		return _kaleoDefinitionId;
 	}
 
-	public void setPrimaryKey(long pk) {
-		setKaleoDefinitionId(pk);
+	public void setPrimaryKey(long primaryKey) {
+		setKaleoDefinitionId(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_kaleoDefinitionId);
+	}
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public long getKaleoDefinitionId() {
@@ -440,9 +444,9 @@ public class KaleoDefinitionModelImpl extends BaseModelImpl<KaleoDefinition>
 			return false;
 		}
 
-		long pk = kaleoDefinition.getPrimaryKey();
+		long primaryKey = kaleoDefinition.getPrimaryKey();
 
-		if (getPrimaryKey() == pk) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {

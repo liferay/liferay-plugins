@@ -56,9 +56,9 @@ public interface KaleoTaskModel extends BaseModel<KaleoTask>, GroupedModel {
 	/**
 	 * Sets the primary key of this kaleo task
 	 *
-	 * @param pk the primary key of this kaleo task
+	 * @param primaryKey the primary key of this kaleo task
 	 */
-	public void setPrimaryKey(long pk);
+	public void setPrimaryKey(long primaryKey);
 
 	/**
 	 * Gets the kaleo task ID of this kaleo task.
@@ -245,6 +245,8 @@ public interface KaleoTaskModel extends BaseModel<KaleoTask>, GroupedModel {
 	public void setEscapedModel(boolean escapedModel);
 
 	public Serializable getPrimaryKeyObj();
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj);
 
 	public ExpandoBridge getExpandoBridge();
 

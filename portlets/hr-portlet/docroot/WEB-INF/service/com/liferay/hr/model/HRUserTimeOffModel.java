@@ -57,9 +57,9 @@ public interface HRUserTimeOffModel extends BaseModel<HRUserTimeOff>,
 	/**
 	 * Sets the primary key of this h r user time off
 	 *
-	 * @param pk the primary key of this h r user time off
+	 * @param primaryKey the primary key of this h r user time off
 	 */
-	public void setPrimaryKey(long pk);
+	public void setPrimaryKey(long primaryKey);
 
 	/**
 	 * Gets the hr user time off ID of this h r user time off.
@@ -301,6 +301,8 @@ public interface HRUserTimeOffModel extends BaseModel<HRUserTimeOff>,
 	public void setEscapedModel(boolean escapedModel);
 
 	public Serializable getPrimaryKeyObj();
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj);
 
 	public ExpandoBridge getExpandoBridge();
 

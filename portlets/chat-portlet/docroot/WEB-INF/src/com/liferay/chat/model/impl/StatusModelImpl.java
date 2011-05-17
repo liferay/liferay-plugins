@@ -96,12 +96,16 @@ public class StatusModelImpl extends BaseModelImpl<Status>
 		return _statusId;
 	}
 
-	public void setPrimaryKey(long pk) {
-		setStatusId(pk);
+	public void setPrimaryKey(long primaryKey) {
+		setStatusId(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_statusId);
+	}
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public long getStatusId() {
@@ -249,12 +253,12 @@ public class StatusModelImpl extends BaseModelImpl<Status>
 	}
 
 	public int compareTo(Status status) {
-		long pk = status.getPrimaryKey();
+		long primaryKey = status.getPrimaryKey();
 
-		if (getPrimaryKey() < pk) {
+		if (getPrimaryKey() < primaryKey) {
 			return -1;
 		}
-		else if (getPrimaryKey() > pk) {
+		else if (getPrimaryKey() > primaryKey) {
 			return 1;
 		}
 		else {
@@ -276,9 +280,9 @@ public class StatusModelImpl extends BaseModelImpl<Status>
 			return false;
 		}
 
-		long pk = status.getPrimaryKey();
+		long primaryKey = status.getPrimaryKey();
 
-		if (getPrimaryKey() == pk) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {

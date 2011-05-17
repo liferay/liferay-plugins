@@ -57,9 +57,9 @@ public interface KaleoTaskAssignmentModel extends BaseModel<KaleoTaskAssignment>
 	/**
 	 * Sets the primary key of this kaleo task assignment
 	 *
-	 * @param pk the primary key of this kaleo task assignment
+	 * @param primaryKey the primary key of this kaleo task assignment
 	 */
-	public void setPrimaryKey(long pk);
+	public void setPrimaryKey(long primaryKey);
 
 	/**
 	 * Gets the kaleo task assignment ID of this kaleo task assignment.
@@ -304,6 +304,8 @@ public interface KaleoTaskAssignmentModel extends BaseModel<KaleoTaskAssignment>
 	public void setEscapedModel(boolean escapedModel);
 
 	public Serializable getPrimaryKeyObj();
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj);
 
 	public ExpandoBridge getExpandoBridge();
 

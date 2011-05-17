@@ -48,10 +48,10 @@ public class HROfficeWrapper implements HROffice {
 	/**
 	* Sets the primary key of this h r office
 	*
-	* @param pk the primary key of this h r office
+	* @param primaryKey the primary key of this h r office
 	*/
-	public void setPrimaryKey(long pk) {
-		_hrOffice.setPrimaryKey(pk);
+	public void setPrimaryKey(long primaryKey) {
+		_hrOffice.setPrimaryKey(primaryKey);
 	}
 
 	/**
@@ -244,6 +244,10 @@ public class HROfficeWrapper implements HROffice {
 
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _hrOffice.getPrimaryKeyObj();
+	}
+
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_hrOffice.setPrimaryKeyObj(primaryKeyObj);
 	}
 
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {

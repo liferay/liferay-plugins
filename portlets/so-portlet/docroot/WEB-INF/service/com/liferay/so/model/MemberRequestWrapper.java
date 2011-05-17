@@ -48,10 +48,10 @@ public class MemberRequestWrapper implements MemberRequest {
 	/**
 	* Sets the primary key of this member request
 	*
-	* @param pk the primary key of this member request
+	* @param primaryKey the primary key of this member request
 	*/
-	public void setPrimaryKey(long pk) {
-		_memberRequest.setPrimaryKey(pk);
+	public void setPrimaryKey(long primaryKey) {
+		_memberRequest.setPrimaryKey(primaryKey);
 	}
 
 	/**
@@ -336,6 +336,10 @@ public class MemberRequestWrapper implements MemberRequest {
 
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _memberRequest.getPrimaryKeyObj();
+	}
+
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_memberRequest.setPrimaryKeyObj(primaryKeyObj);
 	}
 
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {

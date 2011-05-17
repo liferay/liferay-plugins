@@ -100,12 +100,16 @@ public class HREmploymentTypeModelImpl extends BaseModelImpl<HREmploymentType>
 		return _hrEmploymentTypeId;
 	}
 
-	public void setPrimaryKey(long pk) {
-		setHrEmploymentTypeId(pk);
+	public void setPrimaryKey(long primaryKey) {
+		setHrEmploymentTypeId(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_hrEmploymentTypeId);
+	}
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public long getHrEmploymentTypeId() {
@@ -278,12 +282,12 @@ public class HREmploymentTypeModelImpl extends BaseModelImpl<HREmploymentType>
 	}
 
 	public int compareTo(HREmploymentType hrEmploymentType) {
-		long pk = hrEmploymentType.getPrimaryKey();
+		long primaryKey = hrEmploymentType.getPrimaryKey();
 
-		if (getPrimaryKey() < pk) {
+		if (getPrimaryKey() < primaryKey) {
 			return -1;
 		}
-		else if (getPrimaryKey() > pk) {
+		else if (getPrimaryKey() > primaryKey) {
 			return 1;
 		}
 		else {
@@ -305,9 +309,9 @@ public class HREmploymentTypeModelImpl extends BaseModelImpl<HREmploymentType>
 			return false;
 		}
 
-		long pk = hrEmploymentType.getPrimaryKey();
+		long primaryKey = hrEmploymentType.getPrimaryKey();
 
-		if (getPrimaryKey() == pk) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {

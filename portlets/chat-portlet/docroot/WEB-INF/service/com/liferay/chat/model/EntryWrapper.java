@@ -48,10 +48,10 @@ public class EntryWrapper implements Entry {
 	/**
 	* Sets the primary key of this entry
 	*
-	* @param pk the primary key of this entry
+	* @param primaryKey the primary key of this entry
 	*/
-	public void setPrimaryKey(long pk) {
-		_entry.setPrimaryKey(pk);
+	public void setPrimaryKey(long primaryKey) {
+		_entry.setPrimaryKey(primaryKey);
 	}
 
 	/**
@@ -210,6 +210,10 @@ public class EntryWrapper implements Entry {
 
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _entry.getPrimaryKeyObj();
+	}
+
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_entry.setPrimaryKeyObj(primaryKeyObj);
 	}
 
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {

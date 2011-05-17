@@ -56,9 +56,9 @@ public interface OAuthTokenModel extends AuditedModel, BaseModel<OAuthToken> {
 	/**
 	 * Sets the primary key of this o auth token
 	 *
-	 * @param pk the primary key of this o auth token
+	 * @param primaryKey the primary key of this o auth token
 	 */
-	public void setPrimaryKey(long pk);
+	public void setPrimaryKey(long primaryKey);
 
 	/**
 	 * Gets the o auth token ID of this o auth token.
@@ -290,6 +290,8 @@ public interface OAuthTokenModel extends AuditedModel, BaseModel<OAuthToken> {
 	public void setEscapedModel(boolean escapedModel);
 
 	public Serializable getPrimaryKeyObj();
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj);
 
 	public ExpandoBridge getExpandoBridge();
 

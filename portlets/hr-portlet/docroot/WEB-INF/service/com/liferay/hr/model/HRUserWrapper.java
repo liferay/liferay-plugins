@@ -48,10 +48,10 @@ public class HRUserWrapper implements HRUser {
 	/**
 	* Sets the primary key of this h r user
 	*
-	* @param pk the primary key of this h r user
+	* @param primaryKey the primary key of this h r user
 	*/
-	public void setPrimaryKey(long pk) {
-		_hrUser.setPrimaryKey(pk);
+	public void setPrimaryKey(long primaryKey) {
+		_hrUser.setPrimaryKey(primaryKey);
 	}
 
 	/**
@@ -462,6 +462,10 @@ public class HRUserWrapper implements HRUser {
 
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _hrUser.getPrimaryKeyObj();
+	}
+
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_hrUser.setPrimaryKeyObj(primaryKeyObj);
 	}
 
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {

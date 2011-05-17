@@ -149,12 +149,16 @@ public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 		return _kbTemplateId;
 	}
 
-	public void setPrimaryKey(long pk) {
-		setKbTemplateId(pk);
+	public void setPrimaryKey(long primaryKey) {
+		setKbTemplateId(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_kbTemplateId);
+	}
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public String getUuid() {
@@ -377,9 +381,9 @@ public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 			return false;
 		}
 
-		long pk = kbTemplate.getPrimaryKey();
+		long primaryKey = kbTemplate.getPrimaryKey();
 
-		if (getPrimaryKey() == pk) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {

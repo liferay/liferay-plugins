@@ -27,6 +27,7 @@
 			<basic name="receiverMicroblogsEntryId" />
 			<basic name="socialRelationType" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="receiverUserUuid" />
 			<transient name="userUuid" />
 		</attributes>

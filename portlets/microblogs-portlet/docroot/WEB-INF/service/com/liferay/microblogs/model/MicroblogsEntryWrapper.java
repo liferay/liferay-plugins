@@ -48,10 +48,10 @@ public class MicroblogsEntryWrapper implements MicroblogsEntry {
 	/**
 	* Sets the primary key of this microblogs entry
 	*
-	* @param pk the primary key of this microblogs entry
+	* @param primaryKey the primary key of this microblogs entry
 	*/
-	public void setPrimaryKey(long pk) {
-		_microblogsEntry.setPrimaryKey(pk);
+	public void setPrimaryKey(long primaryKey) {
+		_microblogsEntry.setPrimaryKey(primaryKey);
 	}
 
 	/**
@@ -318,6 +318,10 @@ public class MicroblogsEntryWrapper implements MicroblogsEntry {
 
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _microblogsEntry.getPrimaryKeyObj();
+	}
+
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_microblogsEntry.setPrimaryKeyObj(primaryKeyObj);
 	}
 
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {

@@ -48,10 +48,10 @@ public class WSRPConsumerPortletWrapper implements WSRPConsumerPortlet {
 	/**
 	* Sets the primary key of this w s r p consumer portlet
 	*
-	* @param pk the primary key of this w s r p consumer portlet
+	* @param primaryKey the primary key of this w s r p consumer portlet
 	*/
-	public void setPrimaryKey(long pk) {
-		_wsrpConsumerPortlet.setPrimaryKey(pk);
+	public void setPrimaryKey(long primaryKey) {
+		_wsrpConsumerPortlet.setPrimaryKey(primaryKey);
 	}
 
 	/**
@@ -224,6 +224,10 @@ public class WSRPConsumerPortletWrapper implements WSRPConsumerPortlet {
 
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _wsrpConsumerPortlet.getPrimaryKeyObj();
+	}
+
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_wsrpConsumerPortlet.setPrimaryKeyObj(primaryKeyObj);
 	}
 
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {

@@ -48,10 +48,10 @@ public class HRProjectStatusWrapper implements HRProjectStatus {
 	/**
 	* Sets the primary key of this h r project status
 	*
-	* @param pk the primary key of this h r project status
+	* @param primaryKey the primary key of this h r project status
 	*/
-	public void setPrimaryKey(long pk) {
-		_hrProjectStatus.setPrimaryKey(pk);
+	public void setPrimaryKey(long primaryKey) {
+		_hrProjectStatus.setPrimaryKey(primaryKey);
 	}
 
 	/**
@@ -280,6 +280,10 @@ public class HRProjectStatusWrapper implements HRProjectStatus {
 
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _hrProjectStatus.getPrimaryKeyObj();
+	}
+
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_hrProjectStatus.setPrimaryKeyObj(primaryKeyObj);
 	}
 
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {

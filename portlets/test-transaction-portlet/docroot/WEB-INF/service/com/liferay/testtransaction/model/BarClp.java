@@ -41,12 +41,16 @@ public class BarClp extends BaseModelImpl<Bar> implements Bar {
 		return _barId;
 	}
 
-	public void setPrimaryKey(long pk) {
-		setBarId(pk);
+	public void setPrimaryKey(long primaryKey) {
+		setBarId(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_barId);
+	}
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public long getBarId() {
@@ -110,9 +114,9 @@ public class BarClp extends BaseModelImpl<Bar> implements Bar {
 			return false;
 		}
 
-		long pk = bar.getPrimaryKey();
+		long primaryKey = bar.getPrimaryKey();
 
-		if (getPrimaryKey() == pk) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {

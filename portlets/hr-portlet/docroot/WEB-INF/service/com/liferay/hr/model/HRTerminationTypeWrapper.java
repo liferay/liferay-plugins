@@ -48,10 +48,10 @@ public class HRTerminationTypeWrapper implements HRTerminationType {
 	/**
 	* Sets the primary key of this h r termination type
 	*
-	* @param pk the primary key of this h r termination type
+	* @param primaryKey the primary key of this h r termination type
 	*/
-	public void setPrimaryKey(long pk) {
-		_hrTerminationType.setPrimaryKey(pk);
+	public void setPrimaryKey(long primaryKey) {
+		_hrTerminationType.setPrimaryKey(primaryKey);
 	}
 
 	/**
@@ -280,6 +280,10 @@ public class HRTerminationTypeWrapper implements HRTerminationType {
 
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _hrTerminationType.getPrimaryKeyObj();
+	}
+
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_hrTerminationType.setPrimaryKeyObj(primaryKeyObj);
 	}
 
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {

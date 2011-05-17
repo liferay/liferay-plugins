@@ -46,12 +46,16 @@ public class HRAssetVendorClp extends BaseModelImpl<HRAssetVendor>
 		return _hrAssetVendorId;
 	}
 
-	public void setPrimaryKey(long pk) {
-		setHrAssetVendorId(pk);
+	public void setPrimaryKey(long primaryKey) {
+		setHrAssetVendorId(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_hrAssetVendorId);
+	}
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public long getHrAssetVendorId() {
@@ -162,12 +166,12 @@ public class HRAssetVendorClp extends BaseModelImpl<HRAssetVendor>
 	}
 
 	public int compareTo(HRAssetVendor hrAssetVendor) {
-		long pk = hrAssetVendor.getPrimaryKey();
+		long primaryKey = hrAssetVendor.getPrimaryKey();
 
-		if (getPrimaryKey() < pk) {
+		if (getPrimaryKey() < primaryKey) {
 			return -1;
 		}
-		else if (getPrimaryKey() > pk) {
+		else if (getPrimaryKey() > primaryKey) {
 			return 1;
 		}
 		else {
@@ -189,9 +193,9 @@ public class HRAssetVendorClp extends BaseModelImpl<HRAssetVendor>
 			return false;
 		}
 
-		long pk = hrAssetVendor.getPrimaryKey();
+		long primaryKey = hrAssetVendor.getPrimaryKey();
 
-		if (getPrimaryKey() == pk) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {

@@ -1901,8 +1901,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 		}
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				CalendarResource.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID, groupId);
+				CalendarResource.class.getName(), _FILTER_COLUMN_PK, groupId);
 
 		Session session = null;
 
@@ -2090,8 +2089,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 		}
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				CalendarResource.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID, groupId);
+				CalendarResource.class.getName(), _FILTER_COLUMN_PK, groupId);
 
 		SQLQuery q = session.createSQLQuery(sql);
 
@@ -2969,8 +2967,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 		}
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				CalendarResource.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID, groupId);
+				CalendarResource.class.getName(), _FILTER_COLUMN_PK, groupId);
 
 		Session session = null;
 
@@ -3175,8 +3172,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 		}
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				CalendarResource.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID, groupId);
+				CalendarResource.class.getName(), _FILTER_COLUMN_PK, groupId);
 
 		SQLQuery q = session.createSQLQuery(sql);
 
@@ -3364,8 +3360,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 		}
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				CalendarResource.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID, groupIds);
+				CalendarResource.class.getName(), _FILTER_COLUMN_PK, groupIds);
 
 		Session session = null;
 
@@ -4300,8 +4295,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 		query.append(_FINDER_COLUMN_G_A_ACTIVE_2);
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				CalendarResource.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID, groupId);
+				CalendarResource.class.getName(), _FILTER_COLUMN_PK, groupId);
 
 		Session session = null;
 
@@ -4614,8 +4608,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 		query.append(_FINDER_COLUMN_G_N_A_ACTIVE_2);
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				CalendarResource.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID, groupId);
+				CalendarResource.class.getName(), _FILTER_COLUMN_PK, groupId);
 
 		Session session = null;
 
@@ -4717,8 +4710,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 		conjunctionable = true;
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				CalendarResource.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID, groupIds);
+				CalendarResource.class.getName(), _FILTER_COLUMN_PK, groupIds);
 
 		Session session = null;
 
@@ -4967,7 +4959,6 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 		") TEMP_TABLE INNER JOIN CalendarResource ON TEMP_TABLE.calendarResourceId = CalendarResource.calendarResourceId";
 	private static final String _FILTER_SQL_COUNT_CALENDARRESOURCE_WHERE = "SELECT COUNT(DISTINCT calendarResource.calendarResourceId) AS COUNT_VALUE FROM CalendarResource calendarResource WHERE ";
 	private static final String _FILTER_COLUMN_PK = "calendarResource.calendarResourceId";
-	private static final String _FILTER_COLUMN_USERID = "calendarResource.userId";
 	private static final String _FILTER_ENTITY_ALIAS = "calendarResource";
 	private static final String _FILTER_ENTITY_TABLE = "CalendarResource";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "calendarResource.";

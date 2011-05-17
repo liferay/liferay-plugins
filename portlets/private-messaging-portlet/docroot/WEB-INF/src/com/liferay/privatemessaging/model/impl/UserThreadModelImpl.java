@@ -101,12 +101,16 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 		return _userThreadId;
 	}
 
-	public void setPrimaryKey(long pk) {
-		setUserThreadId(pk);
+	public void setPrimaryKey(long primaryKey) {
+		setUserThreadId(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_userThreadId);
+	}
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public long getUserThreadId() {
@@ -288,9 +292,9 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 			return false;
 		}
 
-		long pk = userThread.getPrimaryKey();
+		long primaryKey = userThread.getPrimaryKey();
 
-		if (getPrimaryKey() == pk) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {

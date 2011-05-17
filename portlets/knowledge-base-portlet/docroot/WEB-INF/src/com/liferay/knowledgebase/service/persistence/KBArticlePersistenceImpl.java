@@ -2132,8 +2132,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		}
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				KBArticle.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID, groupId);
+				KBArticle.class.getName(), _FILTER_COLUMN_PK, groupId);
 
 		Session session = null;
 
@@ -2319,8 +2318,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		}
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				KBArticle.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID, groupId);
+				KBArticle.class.getName(), _FILTER_COLUMN_PK, groupId);
 
 		SQLQuery q = session.createSQLQuery(sql);
 
@@ -4500,8 +4498,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		}
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				KBArticle.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID, groupId);
+				KBArticle.class.getName(), _FILTER_COLUMN_PK, groupId);
 
 		Session session = null;
 
@@ -4687,8 +4684,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		}
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				KBArticle.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID, groupId);
+				KBArticle.class.getName(), _FILTER_COLUMN_PK, groupId);
 
 		SQLQuery q = session.createSQLQuery(sql);
 
@@ -5187,8 +5183,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		}
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				KBArticle.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID, groupId);
+				KBArticle.class.getName(), _FILTER_COLUMN_PK, groupId);
 
 		Session session = null;
 
@@ -5374,8 +5369,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		}
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				KBArticle.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID, groupId);
+				KBArticle.class.getName(), _FILTER_COLUMN_PK, groupId);
 
 		SQLQuery q = session.createSQLQuery(sql);
 
@@ -5874,8 +5868,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		}
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				KBArticle.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID, groupId);
+				KBArticle.class.getName(), _FILTER_COLUMN_PK, groupId);
 
 		Session session = null;
 
@@ -6061,8 +6054,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		}
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				KBArticle.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID, groupId);
+				KBArticle.class.getName(), _FILTER_COLUMN_PK, groupId);
 
 		SQLQuery q = session.createSQLQuery(sql);
 
@@ -9384,8 +9376,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		}
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				KBArticle.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID, groupId);
+				KBArticle.class.getName(), _FILTER_COLUMN_PK, groupId);
 
 		Session session = null;
 
@@ -9577,8 +9568,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		}
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				KBArticle.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID, groupId);
+				KBArticle.class.getName(), _FILTER_COLUMN_PK, groupId);
 
 		SQLQuery q = session.createSQLQuery(sql);
 
@@ -9755,8 +9745,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		}
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				KBArticle.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID, groupId);
+				KBArticle.class.getName(), _FILTER_COLUMN_PK, groupId);
 
 		Session session = null;
 
@@ -10448,8 +10437,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		}
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				KBArticle.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID, groupId);
+				KBArticle.class.getName(), _FILTER_COLUMN_PK, groupId);
 
 		Session session = null;
 
@@ -10641,8 +10629,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		}
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				KBArticle.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID, groupId);
+				KBArticle.class.getName(), _FILTER_COLUMN_PK, groupId);
 
 		SQLQuery q = session.createSQLQuery(sql);
 
@@ -10819,8 +10806,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		}
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				KBArticle.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID, groupId);
+				KBArticle.class.getName(), _FILTER_COLUMN_PK, groupId);
 
 		Session session = null;
 
@@ -11511,8 +11497,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		}
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				KBArticle.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID, groupId);
+				KBArticle.class.getName(), _FILTER_COLUMN_PK, groupId);
 
 		Session session = null;
 
@@ -11704,8 +11689,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		}
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				KBArticle.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID, groupId);
+				KBArticle.class.getName(), _FILTER_COLUMN_PK, groupId);
 
 		SQLQuery q = session.createSQLQuery(sql);
 
@@ -11881,8 +11865,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		}
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				KBArticle.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID, groupId);
+				KBArticle.class.getName(), _FILTER_COLUMN_PK, groupId);
 
 		Session session = null;
 
@@ -12581,8 +12564,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		}
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				KBArticle.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID, groupId);
+				KBArticle.class.getName(), _FILTER_COLUMN_PK, groupId);
 
 		Session session = null;
 
@@ -12776,8 +12758,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		}
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				KBArticle.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID, groupId);
+				KBArticle.class.getName(), _FILTER_COLUMN_PK, groupId);
 
 		SQLQuery q = session.createSQLQuery(sql);
 
@@ -12956,8 +12937,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		}
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				KBArticle.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID, groupId);
+				KBArticle.class.getName(), _FILTER_COLUMN_PK, groupId);
 
 		Session session = null;
 
@@ -13655,8 +13635,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		}
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				KBArticle.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID, groupId);
+				KBArticle.class.getName(), _FILTER_COLUMN_PK, groupId);
 
 		Session session = null;
 
@@ -13850,8 +13829,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		}
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				KBArticle.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID, groupId);
+				KBArticle.class.getName(), _FILTER_COLUMN_PK, groupId);
 
 		SQLQuery q = session.createSQLQuery(sql);
 
@@ -14029,8 +14007,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		}
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				KBArticle.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID, groupId);
+				KBArticle.class.getName(), _FILTER_COLUMN_PK, groupId);
 
 		Session session = null;
 
@@ -14728,8 +14705,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		}
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				KBArticle.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID, groupId);
+				KBArticle.class.getName(), _FILTER_COLUMN_PK, groupId);
 
 		Session session = null;
 
@@ -14923,8 +14899,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		}
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				KBArticle.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID, groupId);
+				KBArticle.class.getName(), _FILTER_COLUMN_PK, groupId);
 
 		SQLQuery q = session.createSQLQuery(sql);
 
@@ -15102,8 +15077,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		}
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				KBArticle.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID, groupId);
+				KBArticle.class.getName(), _FILTER_COLUMN_PK, groupId);
 
 		Session session = null;
 
@@ -15858,8 +15832,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		query.append(_FINDER_COLUMN_R_G_GROUPID_2);
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				KBArticle.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID, groupId);
+				KBArticle.class.getName(), _FILTER_COLUMN_PK, groupId);
 
 		Session session = null;
 
@@ -16474,8 +16447,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		query.append(_FINDER_COLUMN_G_L_LATEST_2);
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				KBArticle.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID, groupId);
+				KBArticle.class.getName(), _FILTER_COLUMN_PK, groupId);
 
 		Session session = null;
 
@@ -16586,8 +16558,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		query.append(_FINDER_COLUMN_G_M_MAIN_2);
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				KBArticle.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID, groupId);
+				KBArticle.class.getName(), _FILTER_COLUMN_PK, groupId);
 
 		Session session = null;
 
@@ -16698,8 +16669,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		query.append(_FINDER_COLUMN_G_S_STATUS_2);
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				KBArticle.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID, groupId);
+				KBArticle.class.getName(), _FILTER_COLUMN_PK, groupId);
 
 		Session session = null;
 
@@ -17542,8 +17512,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		query.append(_FINDER_COLUMN_R_G_L_LATEST_2);
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				KBArticle.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID, groupId);
+				KBArticle.class.getName(), _FILTER_COLUMN_PK, groupId);
 
 		Session session = null;
 
@@ -17633,8 +17602,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		conjunctionable = true;
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				KBArticle.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID, groupId);
+				KBArticle.class.getName(), _FILTER_COLUMN_PK, groupId);
 
 		Session session = null;
 
@@ -17858,8 +17826,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		query.append(_FINDER_COLUMN_R_G_M_MAIN_2);
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				KBArticle.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID, groupId);
+				KBArticle.class.getName(), _FILTER_COLUMN_PK, groupId);
 
 		Session session = null;
 
@@ -17949,8 +17916,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		conjunctionable = true;
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				KBArticle.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID, groupId);
+				KBArticle.class.getName(), _FILTER_COLUMN_PK, groupId);
 
 		Session session = null;
 
@@ -18174,8 +18140,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		query.append(_FINDER_COLUMN_R_G_S_STATUS_2);
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				KBArticle.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID, groupId);
+				KBArticle.class.getName(), _FILTER_COLUMN_PK, groupId);
 
 		Session session = null;
 
@@ -18265,8 +18230,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		conjunctionable = true;
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				KBArticle.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID, groupId);
+				KBArticle.class.getName(), _FILTER_COLUMN_PK, groupId);
 
 		Session session = null;
 
@@ -18493,8 +18457,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		query.append(_FINDER_COLUMN_G_P_L_LATEST_2);
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				KBArticle.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID, groupId);
+				KBArticle.class.getName(), _FILTER_COLUMN_PK, groupId);
 
 		Session session = null;
 
@@ -18585,8 +18548,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		conjunctionable = true;
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				KBArticle.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID, groupId);
+				KBArticle.class.getName(), _FILTER_COLUMN_PK, groupId);
 
 		Session session = null;
 
@@ -18811,8 +18773,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		query.append(_FINDER_COLUMN_G_P_M_MAIN_2);
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				KBArticle.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID, groupId);
+				KBArticle.class.getName(), _FILTER_COLUMN_PK, groupId);
 
 		Session session = null;
 
@@ -18903,8 +18864,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		conjunctionable = true;
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				KBArticle.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID, groupId);
+				KBArticle.class.getName(), _FILTER_COLUMN_PK, groupId);
 
 		Session session = null;
 
@@ -19131,8 +19091,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		query.append(_FINDER_COLUMN_G_P_S_STATUS_2);
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				KBArticle.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID, groupId);
+				KBArticle.class.getName(), _FILTER_COLUMN_PK, groupId);
 
 		Session session = null;
 
@@ -19223,8 +19182,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		conjunctionable = true;
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				KBArticle.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID, groupId);
+				KBArticle.class.getName(), _FILTER_COLUMN_PK, groupId);
 
 		Session session = null;
 
@@ -19496,7 +19454,6 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		") TEMP_TABLE INNER JOIN KBArticle ON TEMP_TABLE.kbArticleId = KBArticle.kbArticleId";
 	private static final String _FILTER_SQL_COUNT_KBARTICLE_WHERE = "SELECT COUNT(DISTINCT kbArticle.kbArticleId) AS COUNT_VALUE FROM KBArticle kbArticle WHERE ";
 	private static final String _FILTER_COLUMN_PK = "kbArticle.rootResourcePrimKey";
-	private static final String _FILTER_COLUMN_USERID = "kbArticle.userId";
 	private static final String _FILTER_ENTITY_ALIAS = "kbArticle";
 	private static final String _FILTER_ENTITY_TABLE = "KBArticle";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "kbArticle.";

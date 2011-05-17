@@ -56,9 +56,9 @@ public interface KaleoActionModel extends BaseModel<KaleoAction>, GroupedModel {
 	/**
 	 * Sets the primary key of this kaleo action
 	 *
-	 * @param pk the primary key of this kaleo action
+	 * @param primaryKey the primary key of this kaleo action
 	 */
-	public void setPrimaryKey(long pk);
+	public void setPrimaryKey(long primaryKey);
 
 	/**
 	 * Gets the kaleo action ID of this kaleo action.
@@ -319,6 +319,8 @@ public interface KaleoActionModel extends BaseModel<KaleoAction>, GroupedModel {
 	public void setEscapedModel(boolean escapedModel);
 
 	public Serializable getPrimaryKeyObj();
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj);
 
 	public ExpandoBridge getExpandoBridge();
 

@@ -101,12 +101,16 @@ public class HRUserTaskModelImpl extends BaseModelImpl<HRUserTask>
 		return _hrUserTaskId;
 	}
 
-	public void setPrimaryKey(long pk) {
-		setHrUserTaskId(pk);
+	public void setPrimaryKey(long primaryKey) {
+		setHrUserTaskId(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_hrUserTaskId);
+	}
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public long getHrUserTaskId() {
@@ -263,12 +267,12 @@ public class HRUserTaskModelImpl extends BaseModelImpl<HRUserTask>
 	}
 
 	public int compareTo(HRUserTask hrUserTask) {
-		long pk = hrUserTask.getPrimaryKey();
+		long primaryKey = hrUserTask.getPrimaryKey();
 
-		if (getPrimaryKey() < pk) {
+		if (getPrimaryKey() < primaryKey) {
 			return -1;
 		}
-		else if (getPrimaryKey() > pk) {
+		else if (getPrimaryKey() > primaryKey) {
 			return 1;
 		}
 		else {
@@ -290,9 +294,9 @@ public class HRUserTaskModelImpl extends BaseModelImpl<HRUserTask>
 			return false;
 		}
 
-		long pk = hrUserTask.getPrimaryKey();
+		long primaryKey = hrUserTask.getPrimaryKey();
 
-		if (getPrimaryKey() == pk) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {

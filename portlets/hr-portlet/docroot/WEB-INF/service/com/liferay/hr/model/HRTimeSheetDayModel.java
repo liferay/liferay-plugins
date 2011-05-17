@@ -57,9 +57,9 @@ public interface HRTimeSheetDayModel extends BaseModel<HRTimeSheetDay>,
 	/**
 	 * Sets the primary key of this h r time sheet day
 	 *
-	 * @param pk the primary key of this h r time sheet day
+	 * @param primaryKey the primary key of this h r time sheet day
 	 */
-	public void setPrimaryKey(long pk);
+	public void setPrimaryKey(long primaryKey);
 
 	/**
 	 * Gets the hr time sheet day ID of this h r time sheet day.
@@ -273,6 +273,8 @@ public interface HRTimeSheetDayModel extends BaseModel<HRTimeSheetDay>,
 	public void setEscapedModel(boolean escapedModel);
 
 	public Serializable getPrimaryKeyObj();
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj);
 
 	public ExpandoBridge getExpandoBridge();
 

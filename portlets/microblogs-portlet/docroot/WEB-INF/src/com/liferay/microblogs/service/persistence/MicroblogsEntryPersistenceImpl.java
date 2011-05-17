@@ -891,8 +891,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 		}
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				MicroblogsEntry.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID);
+				MicroblogsEntry.class.getName(), _FILTER_COLUMN_PK);
 
 		Session session = null;
 
@@ -1075,8 +1074,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 		}
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				MicroblogsEntry.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID);
+				MicroblogsEntry.class.getName(), _FILTER_COLUMN_PK);
 
 		SQLQuery q = session.createSQLQuery(sql);
 
@@ -1547,8 +1545,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 		}
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				MicroblogsEntry.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID);
+				MicroblogsEntry.class.getName(), _FILTER_COLUMN_PK);
 
 		Session session = null;
 
@@ -1730,8 +1727,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 		}
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				MicroblogsEntry.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID);
+				MicroblogsEntry.class.getName(), _FILTER_COLUMN_PK);
 
 		SQLQuery q = session.createSQLQuery(sql);
 
@@ -2229,8 +2225,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 		}
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				MicroblogsEntry.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID);
+				MicroblogsEntry.class.getName(), _FILTER_COLUMN_PK);
 
 		Session session = null;
 
@@ -2418,8 +2413,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 		}
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				MicroblogsEntry.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID);
+				MicroblogsEntry.class.getName(), _FILTER_COLUMN_PK);
 
 		SQLQuery q = session.createSQLQuery(sql);
 
@@ -2920,8 +2914,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 		}
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				MicroblogsEntry.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID);
+				MicroblogsEntry.class.getName(), _FILTER_COLUMN_PK);
 
 		Session session = null;
 
@@ -3109,8 +3102,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 		}
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				MicroblogsEntry.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID);
+				MicroblogsEntry.class.getName(), _FILTER_COLUMN_PK);
 
 		SQLQuery q = session.createSQLQuery(sql);
 
@@ -3617,8 +3609,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 		}
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				MicroblogsEntry.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID);
+				MicroblogsEntry.class.getName(), _FILTER_COLUMN_PK);
 
 		Session session = null;
 
@@ -3807,8 +3798,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 		}
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				MicroblogsEntry.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID);
+				MicroblogsEntry.class.getName(), _FILTER_COLUMN_PK);
 
 		SQLQuery q = session.createSQLQuery(sql);
 
@@ -4104,8 +4094,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 		query.append(_FINDER_COLUMN_COMPANYID_COMPANYID_2);
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				MicroblogsEntry.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID);
+				MicroblogsEntry.class.getName(), _FILTER_COLUMN_PK);
 
 		Session session = null;
 
@@ -4205,8 +4194,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 		query.append(_FINDER_COLUMN_USERID_USERID_2);
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				MicroblogsEntry.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID);
+				MicroblogsEntry.class.getName(), _FILTER_COLUMN_PK);
 
 		Session session = null;
 
@@ -4315,8 +4303,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 		query.append(_FINDER_COLUMN_U_T_TYPE_2);
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				MicroblogsEntry.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID);
+				MicroblogsEntry.class.getName(), _FILTER_COLUMN_PK);
 
 		Session session = null;
 
@@ -4428,8 +4415,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 		query.append(_FINDER_COLUMN_T_R_RECEIVERUSERID_2);
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				MicroblogsEntry.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID);
+				MicroblogsEntry.class.getName(), _FILTER_COLUMN_PK);
 
 		Session session = null;
 
@@ -4541,8 +4527,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 		query.append(_FINDER_COLUMN_T_RMEI_RECEIVERMICROBLOGSENTRYID_2);
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				MicroblogsEntry.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID);
+				MicroblogsEntry.class.getName(), _FILTER_COLUMN_PK);
 
 		Session session = null;
 
@@ -4669,7 +4654,6 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 		") TEMP_TABLE INNER JOIN MicroblogsEntry ON TEMP_TABLE.microblogsEntryId = MicroblogsEntry.microblogsEntryId";
 	private static final String _FILTER_SQL_COUNT_MICROBLOGSENTRY_WHERE = "SELECT COUNT(DISTINCT microblogsEntry.microblogsEntryId) AS COUNT_VALUE FROM MicroblogsEntry microblogsEntry WHERE ";
 	private static final String _FILTER_COLUMN_PK = "microblogsEntry.microblogsEntryId";
-	private static final String _FILTER_COLUMN_USERID = "microblogsEntry.userId";
 	private static final String _FILTER_ENTITY_ALIAS = "microblogsEntry";
 	private static final String _FILTER_ENTITY_TABLE = "MicroblogsEntry";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "microblogsEntry.";

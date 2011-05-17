@@ -48,10 +48,10 @@ public class KaleoConditionWrapper implements KaleoCondition {
 	/**
 	* Sets the primary key of this kaleo condition
 	*
-	* @param pk the primary key of this kaleo condition
+	* @param primaryKey the primary key of this kaleo condition
 	*/
-	public void setPrimaryKey(long pk) {
-		_kaleoCondition.setPrimaryKey(pk);
+	public void setPrimaryKey(long primaryKey) {
+		_kaleoCondition.setPrimaryKey(primaryKey);
 	}
 
 	/**
@@ -298,6 +298,10 @@ public class KaleoConditionWrapper implements KaleoCondition {
 
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _kaleoCondition.getPrimaryKeyObj();
+	}
+
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_kaleoCondition.setPrimaryKeyObj(primaryKeyObj);
 	}
 
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {

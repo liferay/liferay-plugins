@@ -100,12 +100,16 @@ public class HRProjectBillingRateModelImpl extends BaseModelImpl<HRProjectBillin
 		return _hrProjectBillingRateId;
 	}
 
-	public void setPrimaryKey(long pk) {
-		setHrProjectBillingRateId(pk);
+	public void setPrimaryKey(long primaryKey) {
+		setHrProjectBillingRateId(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_hrProjectBillingRateId);
+	}
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public long getHrProjectBillingRateId() {
@@ -245,12 +249,12 @@ public class HRProjectBillingRateModelImpl extends BaseModelImpl<HRProjectBillin
 	}
 
 	public int compareTo(HRProjectBillingRate hrProjectBillingRate) {
-		long pk = hrProjectBillingRate.getPrimaryKey();
+		long primaryKey = hrProjectBillingRate.getPrimaryKey();
 
-		if (getPrimaryKey() < pk) {
+		if (getPrimaryKey() < primaryKey) {
 			return -1;
 		}
-		else if (getPrimaryKey() > pk) {
+		else if (getPrimaryKey() > primaryKey) {
 			return 1;
 		}
 		else {
@@ -272,9 +276,9 @@ public class HRProjectBillingRateModelImpl extends BaseModelImpl<HRProjectBillin
 			return false;
 		}
 
-		long pk = hrProjectBillingRate.getPrimaryKey();
+		long primaryKey = hrProjectBillingRate.getPrimaryKey();
 
-		if (getPrimaryKey() == pk) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {

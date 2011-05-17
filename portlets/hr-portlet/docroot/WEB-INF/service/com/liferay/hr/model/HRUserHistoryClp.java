@@ -46,12 +46,16 @@ public class HRUserHistoryClp extends BaseModelImpl<HRUserHistory>
 		return _hrUserHistoryId;
 	}
 
-	public void setPrimaryKey(long pk) {
-		setHrUserHistoryId(pk);
+	public void setPrimaryKey(long primaryKey) {
+		setHrUserHistoryId(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_hrUserHistoryId);
+	}
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public long getHrUserHistoryId() {
@@ -242,12 +246,12 @@ public class HRUserHistoryClp extends BaseModelImpl<HRUserHistory>
 	}
 
 	public int compareTo(HRUserHistory hrUserHistory) {
-		long pk = hrUserHistory.getPrimaryKey();
+		long primaryKey = hrUserHistory.getPrimaryKey();
 
-		if (getPrimaryKey() < pk) {
+		if (getPrimaryKey() < primaryKey) {
 			return -1;
 		}
-		else if (getPrimaryKey() > pk) {
+		else if (getPrimaryKey() > primaryKey) {
 			return 1;
 		}
 		else {
@@ -269,9 +273,9 @@ public class HRUserHistoryClp extends BaseModelImpl<HRUserHistory>
 			return false;
 		}
 
-		long pk = hrUserHistory.getPrimaryKey();
+		long primaryKey = hrUserHistory.getPrimaryKey();
 
-		if (getPrimaryKey() == pk) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {

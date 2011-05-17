@@ -56,9 +56,9 @@ public interface HRAssetModel extends BaseModel<HRAsset>, GroupedModel {
 	/**
 	 * Sets the primary key of this h r asset
 	 *
-	 * @param pk the primary key of this h r asset
+	 * @param primaryKey the primary key of this h r asset
 	 */
-	public void setPrimaryKey(long pk);
+	public void setPrimaryKey(long primaryKey);
 
 	/**
 	 * Gets the hr asset ID of this h r asset.
@@ -244,6 +244,8 @@ public interface HRAssetModel extends BaseModel<HRAsset>, GroupedModel {
 	public void setEscapedModel(boolean escapedModel);
 
 	public Serializable getPrimaryKeyObj();
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj);
 
 	public ExpandoBridge getExpandoBridge();
 

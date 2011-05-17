@@ -45,12 +45,16 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 		return _fooId;
 	}
 
-	public void setPrimaryKey(long pk) {
-		setFooId(pk);
+	public void setPrimaryKey(long primaryKey) {
+		setFooId(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_fooId);
+	}
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public String getUuid() {
@@ -225,9 +229,9 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 			return false;
 		}
 
-		long pk = foo.getPrimaryKey();
+		long primaryKey = foo.getPrimaryKey();
 
-		if (getPrimaryKey() == pk) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {

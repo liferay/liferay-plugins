@@ -100,12 +100,16 @@ public class HRTimeOffFrequencyTypeModelImpl extends BaseModelImpl<HRTimeOffFreq
 		return _hrTimeOffFrequencyTypeId;
 	}
 
-	public void setPrimaryKey(long pk) {
-		setHrTimeOffFrequencyTypeId(pk);
+	public void setPrimaryKey(long primaryKey) {
+		setHrTimeOffFrequencyTypeId(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_hrTimeOffFrequencyTypeId);
+	}
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public long getHrTimeOffFrequencyTypeId() {
@@ -278,12 +282,12 @@ public class HRTimeOffFrequencyTypeModelImpl extends BaseModelImpl<HRTimeOffFreq
 	}
 
 	public int compareTo(HRTimeOffFrequencyType hrTimeOffFrequencyType) {
-		long pk = hrTimeOffFrequencyType.getPrimaryKey();
+		long primaryKey = hrTimeOffFrequencyType.getPrimaryKey();
 
-		if (getPrimaryKey() < pk) {
+		if (getPrimaryKey() < primaryKey) {
 			return -1;
 		}
-		else if (getPrimaryKey() > pk) {
+		else if (getPrimaryKey() > primaryKey) {
 			return 1;
 		}
 		else {
@@ -305,9 +309,9 @@ public class HRTimeOffFrequencyTypeModelImpl extends BaseModelImpl<HRTimeOffFreq
 			return false;
 		}
 
-		long pk = hrTimeOffFrequencyType.getPrimaryKey();
+		long primaryKey = hrTimeOffFrequencyType.getPrimaryKey();
 
-		if (getPrimaryKey() == pk) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {

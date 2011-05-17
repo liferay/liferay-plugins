@@ -48,10 +48,10 @@ public class HRProjectRoleWrapper implements HRProjectRole {
 	/**
 	* Sets the primary key of this h r project role
 	*
-	* @param pk the primary key of this h r project role
+	* @param primaryKey the primary key of this h r project role
 	*/
-	public void setPrimaryKey(long pk) {
-		_hrProjectRole.setPrimaryKey(pk);
+	public void setPrimaryKey(long primaryKey) {
+		_hrProjectRole.setPrimaryKey(primaryKey);
 	}
 
 	/**
@@ -262,6 +262,10 @@ public class HRProjectRoleWrapper implements HRProjectRole {
 
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _hrProjectRole.getPrimaryKeyObj();
+	}
+
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_hrProjectRole.setPrimaryKeyObj(primaryKeyObj);
 	}
 
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {

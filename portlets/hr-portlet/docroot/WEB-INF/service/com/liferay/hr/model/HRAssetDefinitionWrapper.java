@@ -48,10 +48,10 @@ public class HRAssetDefinitionWrapper implements HRAssetDefinition {
 	/**
 	* Sets the primary key of this h r asset definition
 	*
-	* @param pk the primary key of this h r asset definition
+	* @param primaryKey the primary key of this h r asset definition
 	*/
-	public void setPrimaryKey(long pk) {
-		_hrAssetDefinition.setPrimaryKey(pk);
+	public void setPrimaryKey(long primaryKey) {
+		_hrAssetDefinition.setPrimaryKey(primaryKey);
 	}
 
 	/**
@@ -370,6 +370,10 @@ public class HRAssetDefinitionWrapper implements HRAssetDefinition {
 
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _hrAssetDefinition.getPrimaryKeyObj();
+	}
+
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_hrAssetDefinition.setPrimaryKeyObj(primaryKeyObj);
 	}
 
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {

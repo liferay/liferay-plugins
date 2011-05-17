@@ -43,12 +43,16 @@ public class GadgetClp extends BaseModelImpl<Gadget> implements Gadget {
 		return _gadgetId;
 	}
 
-	public void setPrimaryKey(long pk) {
-		setGadgetId(pk);
+	public void setPrimaryKey(long primaryKey) {
+		setGadgetId(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_gadgetId);
+	}
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public String getUuid() {
@@ -166,9 +170,9 @@ public class GadgetClp extends BaseModelImpl<Gadget> implements Gadget {
 			return false;
 		}
 
-		long pk = gadget.getPrimaryKey();
+		long primaryKey = gadget.getPrimaryKey();
 
-		if (getPrimaryKey() == pk) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {

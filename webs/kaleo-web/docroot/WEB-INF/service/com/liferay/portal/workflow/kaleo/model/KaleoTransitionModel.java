@@ -57,9 +57,9 @@ public interface KaleoTransitionModel extends BaseModel<KaleoTransition>,
 	/**
 	 * Sets the primary key of this kaleo transition
 	 *
-	 * @param pk the primary key of this kaleo transition
+	 * @param primaryKey the primary key of this kaleo transition
 	 */
-	public void setPrimaryKey(long pk);
+	public void setPrimaryKey(long primaryKey);
 
 	/**
 	 * Gets the kaleo transition ID of this kaleo transition.
@@ -325,6 +325,8 @@ public interface KaleoTransitionModel extends BaseModel<KaleoTransition>,
 	public void setEscapedModel(boolean escapedModel);
 
 	public Serializable getPrimaryKeyObj();
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj);
 
 	public ExpandoBridge getExpandoBridge();
 

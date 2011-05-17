@@ -57,9 +57,9 @@ public interface KaleoInstanceModel extends BaseModel<KaleoInstance>,
 	/**
 	 * Sets the primary key of this kaleo instance
 	 *
-	 * @param pk the primary key of this kaleo instance
+	 * @param primaryKey the primary key of this kaleo instance
 	 */
-	public void setPrimaryKey(long pk);
+	public void setPrimaryKey(long primaryKey);
 
 	/**
 	 * Gets the kaleo instance ID of this kaleo instance.
@@ -324,6 +324,8 @@ public interface KaleoInstanceModel extends BaseModel<KaleoInstance>,
 	public void setEscapedModel(boolean escapedModel);
 
 	public Serializable getPrimaryKeyObj();
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj);
 
 	public ExpandoBridge getExpandoBridge();
 

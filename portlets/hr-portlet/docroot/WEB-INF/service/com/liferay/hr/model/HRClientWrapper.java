@@ -48,10 +48,10 @@ public class HRClientWrapper implements HRClient {
 	/**
 	* Sets the primary key of this h r client
 	*
-	* @param pk the primary key of this h r client
+	* @param primaryKey the primary key of this h r client
 	*/
-	public void setPrimaryKey(long pk) {
-		_hrClient.setPrimaryKey(pk);
+	public void setPrimaryKey(long primaryKey) {
+		_hrClient.setPrimaryKey(primaryKey);
 	}
 
 	/**
@@ -262,6 +262,10 @@ public class HRClientWrapper implements HRClient {
 
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _hrClient.getPrimaryKeyObj();
+	}
+
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_hrClient.setPrimaryKeyObj(primaryKeyObj);
 	}
 
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {

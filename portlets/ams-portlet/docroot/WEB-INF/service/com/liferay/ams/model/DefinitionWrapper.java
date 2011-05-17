@@ -48,10 +48,10 @@ public class DefinitionWrapper implements Definition {
 	/**
 	* Sets the primary key of this definition
 	*
-	* @param pk the primary key of this definition
+	* @param primaryKey the primary key of this definition
 	*/
-	public void setPrimaryKey(long pk) {
-		_definition.setPrimaryKey(pk);
+	public void setPrimaryKey(long primaryKey) {
+		_definition.setPrimaryKey(primaryKey);
 	}
 
 	/**
@@ -334,6 +334,10 @@ public class DefinitionWrapper implements Definition {
 
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _definition.getPrimaryKeyObj();
+	}
+
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_definition.setPrimaryKeyObj(primaryKeyObj);
 	}
 
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {

@@ -105,12 +105,16 @@ public class HRAssetDefinitionModelImpl extends BaseModelImpl<HRAssetDefinition>
 		return _hrAssetDefinitionId;
 	}
 
-	public void setPrimaryKey(long pk) {
-		setHrAssetDefinitionId(pk);
+	public void setPrimaryKey(long primaryKey) {
+		setHrAssetDefinitionId(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_hrAssetDefinitionId);
+	}
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public long getHrAssetDefinitionId() {
@@ -305,12 +309,12 @@ public class HRAssetDefinitionModelImpl extends BaseModelImpl<HRAssetDefinition>
 	}
 
 	public int compareTo(HRAssetDefinition hrAssetDefinition) {
-		long pk = hrAssetDefinition.getPrimaryKey();
+		long primaryKey = hrAssetDefinition.getPrimaryKey();
 
-		if (getPrimaryKey() < pk) {
+		if (getPrimaryKey() < primaryKey) {
 			return -1;
 		}
-		else if (getPrimaryKey() > pk) {
+		else if (getPrimaryKey() > primaryKey) {
 			return 1;
 		}
 		else {
@@ -332,9 +336,9 @@ public class HRAssetDefinitionModelImpl extends BaseModelImpl<HRAssetDefinition>
 			return false;
 		}
 
-		long pk = hrAssetDefinition.getPrimaryKey();
+		long primaryKey = hrAssetDefinition.getPrimaryKey();
 
-		if (getPrimaryKey() == pk) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {

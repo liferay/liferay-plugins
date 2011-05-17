@@ -28,6 +28,7 @@
 				<column name="ACTIVE_" />
 			</basic>
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
@@ -54,6 +55,7 @@
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
@@ -79,6 +81,7 @@
 			<basic name="quantity" />
 			<basic name="price" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
@@ -88,6 +91,7 @@
 			<basic name="groupId" />
 			<basic name="name" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 		</attributes>
 	</mapped-superclass>
 	<entity class="com.liferay.ams.model.impl.AssetImpl" name="Asset">

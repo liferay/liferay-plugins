@@ -48,10 +48,10 @@ public class OAuthTokenWrapper implements OAuthToken {
 	/**
 	* Sets the primary key of this o auth token
 	*
-	* @param pk the primary key of this o auth token
+	* @param primaryKey the primary key of this o auth token
 	*/
-	public void setPrimaryKey(long pk) {
-		_oAuthToken.setPrimaryKey(pk);
+	public void setPrimaryKey(long primaryKey) {
+		_oAuthToken.setPrimaryKey(primaryKey);
 	}
 
 	/**
@@ -352,6 +352,10 @@ public class OAuthTokenWrapper implements OAuthToken {
 
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _oAuthToken.getPrimaryKeyObj();
+	}
+
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_oAuthToken.setPrimaryKeyObj(primaryKeyObj);
 	}
 
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {

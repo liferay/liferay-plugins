@@ -46,12 +46,16 @@ public class WallEntryClp extends BaseModelImpl<WallEntry> implements WallEntry 
 		return _wallEntryId;
 	}
 
-	public void setPrimaryKey(long pk) {
-		setWallEntryId(pk);
+	public void setPrimaryKey(long primaryKey) {
+		setWallEntryId(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_wallEntryId);
+	}
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public long getWallEntryId() {
@@ -179,9 +183,9 @@ public class WallEntryClp extends BaseModelImpl<WallEntry> implements WallEntry 
 			return false;
 		}
 
-		long pk = wallEntry.getPrimaryKey();
+		long primaryKey = wallEntry.getPrimaryKey();
 
-		if (getPrimaryKey() == pk) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {

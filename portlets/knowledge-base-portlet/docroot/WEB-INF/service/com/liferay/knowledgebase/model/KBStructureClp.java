@@ -55,12 +55,16 @@ public class KBStructureClp extends BaseModelImpl<KBStructure>
 		return _kbStructureId;
 	}
 
-	public void setPrimaryKey(long pk) {
-		setKbStructureId(pk);
+	public void setPrimaryKey(long primaryKey) {
+		setKbStructureId(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_kbStructureId);
+	}
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public String getUuid() {
@@ -304,9 +308,9 @@ public class KBStructureClp extends BaseModelImpl<KBStructure>
 			return false;
 		}
 
-		long pk = kbStructure.getPrimaryKey();
+		long primaryKey = kbStructure.getPrimaryKey();
 
-		if (getPrimaryKey() == pk) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {

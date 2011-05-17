@@ -45,12 +45,16 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 		return _accountId;
 	}
 
-	public void setPrimaryKey(long pk) {
-		setAccountId(pk);
+	public void setPrimaryKey(long primaryKey) {
+		setAccountId(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_accountId);
+	}
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public long getAccountId() {
@@ -366,9 +370,9 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 			return false;
 		}
 
-		long pk = account.getPrimaryKey();
+		long primaryKey = account.getPrimaryKey();
 
-		if (getPrimaryKey() == pk) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {

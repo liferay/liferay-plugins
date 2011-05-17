@@ -45,12 +45,16 @@ public class HRAssetClp extends BaseModelImpl<HRAsset> implements HRAsset {
 		return _hrAssetId;
 	}
 
-	public void setPrimaryKey(long pk) {
-		setHrAssetId(pk);
+	public void setPrimaryKey(long primaryKey) {
+		setHrAssetId(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_hrAssetId);
+	}
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public long getHrAssetId() {
@@ -178,12 +182,12 @@ public class HRAssetClp extends BaseModelImpl<HRAsset> implements HRAsset {
 	}
 
 	public int compareTo(HRAsset hrAsset) {
-		long pk = hrAsset.getPrimaryKey();
+		long primaryKey = hrAsset.getPrimaryKey();
 
-		if (getPrimaryKey() < pk) {
+		if (getPrimaryKey() < primaryKey) {
 			return -1;
 		}
-		else if (getPrimaryKey() > pk) {
+		else if (getPrimaryKey() > primaryKey) {
 			return 1;
 		}
 		else {
@@ -205,9 +209,9 @@ public class HRAssetClp extends BaseModelImpl<HRAsset> implements HRAsset {
 			return false;
 		}
 
-		long pk = hrAsset.getPrimaryKey();
+		long primaryKey = hrAsset.getPrimaryKey();
 
-		if (getPrimaryKey() == pk) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {

@@ -102,12 +102,16 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue>
 		return _jiraIssueId;
 	}
 
-	public void setPrimaryKey(long pk) {
-		setJiraIssueId(pk);
+	public void setPrimaryKey(long primaryKey) {
+		setJiraIssueId(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_jiraIssueId);
+	}
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public long getJiraIssueId() {
@@ -313,9 +317,9 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue>
 			return false;
 		}
 
-		long pk = jiraIssue.getPrimaryKey();
+		long primaryKey = jiraIssue.getPrimaryKey();
 
-		if (getPrimaryKey() == pk) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {

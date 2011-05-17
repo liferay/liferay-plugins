@@ -129,7 +129,12 @@ public class MicroblogsEntryLocalServiceClp
 		_getUserMicroblogsEntriesCountMethodKey27 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getUserMicroblogsEntriesCount", long.class, int.class);
 
-		_updateMicroblogsEntryMethodKey28 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateAssetMethodKey28 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateAsset",
+				com.liferay.microblogs.model.MicroblogsEntry.class,
+				long[].class, java.lang.String[].class);
+
+		_updateMicroblogsEntryMethodKey29 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateMicroblogsEntry", long.class, java.lang.String.class,
 				int.class, com.liferay.portal.service.ServiceContext.class);
 	}
@@ -914,6 +919,38 @@ public class MicroblogsEntryLocalServiceClp
 		return ((Integer)returnObj).intValue();
 	}
 
+	public void updateAsset(
+		com.liferay.microblogs.model.MicroblogsEntry microblogsEntry,
+		long[] assetCategoryIds, java.lang.String[] assetTagNames)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		MethodHandler methodHandler = new MethodHandler(_updateAssetMethodKey28,
+				ClpSerializer.translateInput(microblogsEntry),
+				ClpSerializer.translateInput(assetCategoryIds),
+				ClpSerializer.translateInput(assetTagNames));
+
+		try {
+			_classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
 	public com.liferay.microblogs.model.MicroblogsEntry updateMicroblogsEntry(
 		long microblogsEntryId, java.lang.String content,
 		int socialRelationType,
@@ -922,7 +959,7 @@ public class MicroblogsEntryLocalServiceClp
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateMicroblogsEntryMethodKey28,
+		MethodHandler methodHandler = new MethodHandler(_updateMicroblogsEntryMethodKey29,
 				microblogsEntryId, ClpSerializer.translateInput(content),
 				socialRelationType, ClpSerializer.translateInput(serviceContext));
 
@@ -983,5 +1020,6 @@ public class MicroblogsEntryLocalServiceClp
 	private MethodKey _getUserMicroblogsEntriesMethodKey25;
 	private MethodKey _getUserMicroblogsEntriesCountMethodKey26;
 	private MethodKey _getUserMicroblogsEntriesCountMethodKey27;
-	private MethodKey _updateMicroblogsEntryMethodKey28;
+	private MethodKey _updateAssetMethodKey28;
+	private MethodKey _updateMicroblogsEntryMethodKey29;
 }

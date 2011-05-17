@@ -101,12 +101,16 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 		return _wsrpConsumerId;
 	}
 
-	public void setPrimaryKey(long pk) {
-		setWsrpConsumerId(pk);
+	public void setPrimaryKey(long primaryKey) {
+		setWsrpConsumerId(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_wsrpConsumerId);
+	}
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public String getUuid() {
@@ -303,9 +307,9 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 			return false;
 		}
 
-		long pk = wsrpConsumer.getPrimaryKey();
+		long primaryKey = wsrpConsumer.getPrimaryKey();
 
-		if (getPrimaryKey() == pk) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {

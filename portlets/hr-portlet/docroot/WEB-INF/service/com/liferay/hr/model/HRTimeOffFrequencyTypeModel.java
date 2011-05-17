@@ -57,9 +57,9 @@ public interface HRTimeOffFrequencyTypeModel extends BaseModel<HRTimeOffFrequenc
 	/**
 	 * Sets the primary key of this h r time off frequency type
 	 *
-	 * @param pk the primary key of this h r time off frequency type
+	 * @param primaryKey the primary key of this h r time off frequency type
 	 */
-	public void setPrimaryKey(long pk);
+	public void setPrimaryKey(long primaryKey);
 
 	/**
 	 * Gets the hr time off frequency type ID of this h r time off frequency type.
@@ -233,6 +233,8 @@ public interface HRTimeOffFrequencyTypeModel extends BaseModel<HRTimeOffFrequenc
 	public void setEscapedModel(boolean escapedModel);
 
 	public Serializable getPrimaryKeyObj();
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj);
 
 	public ExpandoBridge getExpandoBridge();
 

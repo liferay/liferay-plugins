@@ -48,10 +48,10 @@ public class UserThreadWrapper implements UserThread {
 	/**
 	* Sets the primary key of this user thread
 	*
-	* @param pk the primary key of this user thread
+	* @param primaryKey the primary key of this user thread
 	*/
-	public void setPrimaryKey(long pk) {
-		_userThread.setPrimaryKey(pk);
+	public void setPrimaryKey(long primaryKey) {
+		_userThread.setPrimaryKey(primaryKey);
 	}
 
 	/**
@@ -280,6 +280,10 @@ public class UserThreadWrapper implements UserThread {
 
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _userThread.getPrimaryKeyObj();
+	}
+
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_userThread.setPrimaryKeyObj(primaryKeyObj);
 	}
 
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {

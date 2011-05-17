@@ -57,9 +57,9 @@ public interface HRExpenseAccountModel extends BaseModel<HRExpenseAccount>,
 	/**
 	 * Sets the primary key of this h r expense account
 	 *
-	 * @param pk the primary key of this h r expense account
+	 * @param primaryKey the primary key of this h r expense account
 	 */
-	public void setPrimaryKey(long pk);
+	public void setPrimaryKey(long primaryKey);
 
 	/**
 	 * Gets the hr expense account ID of this h r expense account.
@@ -218,6 +218,8 @@ public interface HRExpenseAccountModel extends BaseModel<HRExpenseAccount>,
 	public void setEscapedModel(boolean escapedModel);
 
 	public Serializable getPrimaryKeyObj();
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj);
 
 	public ExpandoBridge getExpandoBridge();
 

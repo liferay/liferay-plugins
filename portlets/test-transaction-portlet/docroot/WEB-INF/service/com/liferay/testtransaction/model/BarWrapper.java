@@ -48,10 +48,10 @@ public class BarWrapper implements Bar {
 	/**
 	* Sets the primary key of this bar
 	*
-	* @param pk the primary key of this bar
+	* @param primaryKey the primary key of this bar
 	*/
-	public void setPrimaryKey(long pk) {
-		_bar.setPrimaryKey(pk);
+	public void setPrimaryKey(long primaryKey) {
+		_bar.setPrimaryKey(primaryKey);
 	}
 
 	/**
@@ -116,6 +116,10 @@ public class BarWrapper implements Bar {
 
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _bar.getPrimaryKeyObj();
+	}
+
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_bar.setPrimaryKeyObj(primaryKeyObj);
 	}
 
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {

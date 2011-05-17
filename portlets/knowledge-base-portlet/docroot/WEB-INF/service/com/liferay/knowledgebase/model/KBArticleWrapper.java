@@ -48,10 +48,10 @@ public class KBArticleWrapper implements KBArticle {
 	/**
 	* Sets the primary key of this k b article
 	*
-	* @param pk the primary key of this k b article
+	* @param primaryKey the primary key of this k b article
 	*/
-	public void setPrimaryKey(long pk) {
-		_kbArticle.setPrimaryKey(pk);
+	public void setPrimaryKey(long primaryKey) {
+		_kbArticle.setPrimaryKey(primaryKey);
 	}
 
 	/**
@@ -617,6 +617,10 @@ public class KBArticleWrapper implements KBArticle {
 
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _kbArticle.getPrimaryKeyObj();
+	}
+
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_kbArticle.setPrimaryKeyObj(primaryKeyObj);
 	}
 
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {

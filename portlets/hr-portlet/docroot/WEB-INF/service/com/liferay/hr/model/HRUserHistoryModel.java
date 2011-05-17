@@ -55,9 +55,9 @@ public interface HRUserHistoryModel extends BaseModel<HRUserHistory> {
 	/**
 	 * Sets the primary key of this h r user history
 	 *
-	 * @param pk the primary key of this h r user history
+	 * @param primaryKey the primary key of this h r user history
 	 */
-	public void setPrimaryKey(long pk);
+	public void setPrimaryKey(long primaryKey);
 
 	/**
 	 * Gets the hr user history ID of this h r user history.
@@ -341,6 +341,8 @@ public interface HRUserHistoryModel extends BaseModel<HRUserHistory> {
 	public void setEscapedModel(boolean escapedModel);
 
 	public Serializable getPrimaryKeyObj();
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj);
 
 	public ExpandoBridge getExpandoBridge();
 

@@ -58,9 +58,9 @@ public interface KBArticleModel extends BaseModel<KBArticle>, GroupedModel,
 	/**
 	 * Sets the primary key of this k b article
 	 *
-	 * @param pk the primary key of this k b article
+	 * @param primaryKey the primary key of this k b article
 	 */
-	public void setPrimaryKey(long pk);
+	public void setPrimaryKey(long primaryKey);
 
 	/**
 	 * Gets the uuid of this k b article.
@@ -496,6 +496,8 @@ public interface KBArticleModel extends BaseModel<KBArticle>, GroupedModel,
 	public void setEscapedModel(boolean escapedModel);
 
 	public Serializable getPrimaryKeyObj();
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj);
 
 	public ExpandoBridge getExpandoBridge();
 

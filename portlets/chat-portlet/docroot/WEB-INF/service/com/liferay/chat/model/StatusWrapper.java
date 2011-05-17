@@ -48,10 +48,10 @@ public class StatusWrapper implements Status {
 	/**
 	* Sets the primary key of this status
 	*
-	* @param pk the primary key of this status
+	* @param primaryKey the primary key of this status
 	*/
-	public void setPrimaryKey(long pk) {
-		_status.setPrimaryKey(pk);
+	public void setPrimaryKey(long primaryKey) {
+		_status.setPrimaryKey(primaryKey);
 	}
 
 	/**
@@ -271,6 +271,10 @@ public class StatusWrapper implements Status {
 
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _status.getPrimaryKeyObj();
+	}
+
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_status.setPrimaryKeyObj(primaryKeyObj);
 	}
 
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {

@@ -333,6 +333,15 @@ public class MicroblogsEntryLocalServiceWrapper
 			type);
 	}
 
+	public void updateAsset(
+		com.liferay.microblogs.model.MicroblogsEntry microblogsEntry,
+		long[] assetCategoryIds, java.lang.String[] assetTagNames)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_microblogsEntryLocalService.updateAsset(microblogsEntry,
+			assetCategoryIds, assetTagNames);
+	}
+
 	public com.liferay.microblogs.model.MicroblogsEntry updateMicroblogsEntry(
 		long microblogsEntryId, java.lang.String content,
 		int socialRelationType,

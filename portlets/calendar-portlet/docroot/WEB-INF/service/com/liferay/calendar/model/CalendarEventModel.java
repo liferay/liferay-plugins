@@ -59,9 +59,9 @@ public interface CalendarEventModel extends BaseModel<CalendarEvent>,
 	/**
 	 * Sets the primary key of this calendar event
 	 *
-	 * @param pk the primary key of this calendar event
+	 * @param primaryKey the primary key of this calendar event
 	 */
-	public void setPrimaryKey(long pk);
+	public void setPrimaryKey(long primaryKey);
 
 	/**
 	 * Gets the uuid of this calendar event.
@@ -519,6 +519,8 @@ public interface CalendarEventModel extends BaseModel<CalendarEvent>,
 	public void setEscapedModel(boolean escapedModel);
 
 	public Serializable getPrimaryKeyObj();
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj);
 
 	public ExpandoBridge getExpandoBridge();
 

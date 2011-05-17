@@ -28,6 +28,7 @@
 			<basic name="invitedTeamId" />
 			<basic name="status" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="receiverUserUuid" />
 			<transient name="userUuid" />
 		</attributes>
@@ -56,6 +57,7 @@
 				<column name="DATA_" />
 			</basic>
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>

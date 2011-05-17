@@ -160,12 +160,16 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 		return _calendarResourceId;
 	}
 
-	public void setPrimaryKey(long pk) {
-		setCalendarResourceId(pk);
+	public void setPrimaryKey(long primaryKey) {
+		setCalendarResourceId(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_calendarResourceId);
+	}
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public String getUuid() {
@@ -591,9 +595,9 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 			return false;
 		}
 
-		long pk = calendarResource.getPrimaryKey();
+		long primaryKey = calendarResource.getPrimaryKey();
 
-		if (getPrimaryKey() == pk) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {

@@ -46,12 +46,16 @@ public class HRExpenseAccountClp extends BaseModelImpl<HRExpenseAccount>
 		return _hrExpenseAccountId;
 	}
 
-	public void setPrimaryKey(long pk) {
-		setHrExpenseAccountId(pk);
+	public void setPrimaryKey(long primaryKey) {
+		setHrExpenseAccountId(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_hrExpenseAccountId);
+	}
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public long getHrExpenseAccountId() {
@@ -162,12 +166,12 @@ public class HRExpenseAccountClp extends BaseModelImpl<HRExpenseAccount>
 	}
 
 	public int compareTo(HRExpenseAccount hrExpenseAccount) {
-		long pk = hrExpenseAccount.getPrimaryKey();
+		long primaryKey = hrExpenseAccount.getPrimaryKey();
 
-		if (getPrimaryKey() < pk) {
+		if (getPrimaryKey() < primaryKey) {
 			return -1;
 		}
-		else if (getPrimaryKey() > pk) {
+		else if (getPrimaryKey() > primaryKey) {
 			return 1;
 		}
 		else {
@@ -189,9 +193,9 @@ public class HRExpenseAccountClp extends BaseModelImpl<HRExpenseAccount>
 			return false;
 		}
 
-		long pk = hrExpenseAccount.getPrimaryKey();
+		long primaryKey = hrExpenseAccount.getPrimaryKey();
 
-		if (getPrimaryKey() == pk) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {

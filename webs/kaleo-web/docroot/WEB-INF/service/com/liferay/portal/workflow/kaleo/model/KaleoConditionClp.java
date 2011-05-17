@@ -46,12 +46,16 @@ public class KaleoConditionClp extends BaseModelImpl<KaleoCondition>
 		return _kaleoConditionId;
 	}
 
-	public void setPrimaryKey(long pk) {
-		setKaleoConditionId(pk);
+	public void setPrimaryKey(long primaryKey) {
+		setKaleoConditionId(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_kaleoConditionId);
+	}
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public long getKaleoConditionId() {
@@ -213,9 +217,9 @@ public class KaleoConditionClp extends BaseModelImpl<KaleoCondition>
 			return false;
 		}
 
-		long pk = kaleoCondition.getPrimaryKey();
+		long primaryKey = kaleoCondition.getPrimaryKey();
 
-		if (getPrimaryKey() == pk) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {

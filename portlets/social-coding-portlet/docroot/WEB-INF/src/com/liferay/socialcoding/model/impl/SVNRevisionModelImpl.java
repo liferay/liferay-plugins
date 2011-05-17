@@ -96,12 +96,16 @@ public class SVNRevisionModelImpl extends BaseModelImpl<SVNRevision>
 		return _svnRevisionId;
 	}
 
-	public void setPrimaryKey(long pk) {
-		setSvnRevisionId(pk);
+	public void setPrimaryKey(long primaryKey) {
+		setSvnRevisionId(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_svnRevisionId);
+	}
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public long getSvnRevisionId() {
@@ -237,9 +241,9 @@ public class SVNRevisionModelImpl extends BaseModelImpl<SVNRevision>
 			return false;
 		}
 
-		long pk = svnRevision.getPrimaryKey();
+		long primaryKey = svnRevision.getPrimaryKey();
 
-		if (getPrimaryKey() == pk) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {

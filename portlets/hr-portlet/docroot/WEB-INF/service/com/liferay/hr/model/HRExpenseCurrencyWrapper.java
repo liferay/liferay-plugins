@@ -48,10 +48,10 @@ public class HRExpenseCurrencyWrapper implements HRExpenseCurrency {
 	/**
 	* Sets the primary key of this h r expense currency
 	*
-	* @param pk the primary key of this h r expense currency
+	* @param primaryKey the primary key of this h r expense currency
 	*/
-	public void setPrimaryKey(long pk) {
-		_hrExpenseCurrency.setPrimaryKey(pk);
+	public void setPrimaryKey(long primaryKey) {
+		_hrExpenseCurrency.setPrimaryKey(primaryKey);
 	}
 
 	/**
@@ -298,6 +298,10 @@ public class HRExpenseCurrencyWrapper implements HRExpenseCurrency {
 
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _hrExpenseCurrency.getPrimaryKeyObj();
+	}
+
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_hrExpenseCurrency.setPrimaryKeyObj(primaryKeyObj);
 	}
 
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {

@@ -48,10 +48,10 @@ public class HRAssetWrapper implements HRAsset {
 	/**
 	* Sets the primary key of this h r asset
 	*
-	* @param pk the primary key of this h r asset
+	* @param primaryKey the primary key of this h r asset
 	*/
-	public void setPrimaryKey(long pk) {
-		_hrAsset.setPrimaryKey(pk);
+	public void setPrimaryKey(long primaryKey) {
+		_hrAsset.setPrimaryKey(primaryKey);
 	}
 
 	/**
@@ -298,6 +298,10 @@ public class HRAssetWrapper implements HRAsset {
 
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _hrAsset.getPrimaryKeyObj();
+	}
+
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_hrAsset.setPrimaryKeyObj(primaryKeyObj);
 	}
 
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {

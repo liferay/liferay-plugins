@@ -95,12 +95,16 @@ public class JIRAChangeGroupModelImpl extends BaseModelImpl<JIRAChangeGroup>
 		return _jiraChangeGroupId;
 	}
 
-	public void setPrimaryKey(long pk) {
-		setJiraChangeGroupId(pk);
+	public void setPrimaryKey(long primaryKey) {
+		setJiraChangeGroupId(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_jiraChangeGroupId);
+	}
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public long getJiraChangeGroupId() {
@@ -206,9 +210,9 @@ public class JIRAChangeGroupModelImpl extends BaseModelImpl<JIRAChangeGroup>
 			return false;
 		}
 
-		long pk = jiraChangeGroup.getPrimaryKey();
+		long primaryKey = jiraChangeGroup.getPrimaryKey();
 
-		if (getPrimaryKey() == pk) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {

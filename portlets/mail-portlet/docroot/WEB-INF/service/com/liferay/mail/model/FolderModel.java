@@ -56,9 +56,9 @@ public interface FolderModel extends AuditedModel, BaseModel<Folder> {
 	/**
 	 * Sets the primary key of this folder
 	 *
-	 * @param pk the primary key of this folder
+	 * @param primaryKey the primary key of this folder
 	 */
-	public void setPrimaryKey(long pk);
+	public void setPrimaryKey(long primaryKey);
 
 	/**
 	 * Gets the folder ID of this folder.
@@ -231,6 +231,8 @@ public interface FolderModel extends AuditedModel, BaseModel<Folder> {
 	public void setEscapedModel(boolean escapedModel);
 
 	public Serializable getPrimaryKeyObj();
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj);
 
 	public ExpandoBridge getExpandoBridge();
 

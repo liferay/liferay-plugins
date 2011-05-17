@@ -1422,8 +1422,7 @@ public class KBStructurePersistenceImpl extends BasePersistenceImpl<KBStructure>
 		}
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				KBStructure.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID, groupId);
+				KBStructure.class.getName(), _FILTER_COLUMN_PK, groupId);
 
 		Session session = null;
 
@@ -1604,8 +1603,7 @@ public class KBStructurePersistenceImpl extends BasePersistenceImpl<KBStructure>
 		}
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				KBStructure.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID, groupId);
+				KBStructure.class.getName(), _FILTER_COLUMN_PK, groupId);
 
 		SQLQuery q = session.createSQLQuery(sql);
 
@@ -2007,8 +2005,7 @@ public class KBStructurePersistenceImpl extends BasePersistenceImpl<KBStructure>
 		query.append(_FINDER_COLUMN_GROUPID_GROUPID_2);
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				KBStructure.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID, groupId);
+				KBStructure.class.getName(), _FILTER_COLUMN_PK, groupId);
 
 		Session session = null;
 
@@ -2140,7 +2137,6 @@ public class KBStructurePersistenceImpl extends BasePersistenceImpl<KBStructure>
 		") TEMP_TABLE INNER JOIN KBStructure ON TEMP_TABLE.kbStructureId = KBStructure.kbStructureId";
 	private static final String _FILTER_SQL_COUNT_KBSTRUCTURE_WHERE = "SELECT COUNT(DISTINCT kbStructure.kbStructureId) AS COUNT_VALUE FROM KBStructure kbStructure WHERE ";
 	private static final String _FILTER_COLUMN_PK = "kbStructure.kbStructureId";
-	private static final String _FILTER_COLUMN_USERID = "kbStructure.userId";
 	private static final String _FILTER_ENTITY_ALIAS = "kbStructure";
 	private static final String _FILTER_ENTITY_TABLE = "KBStructure";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "kbStructure.";

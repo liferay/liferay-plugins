@@ -56,9 +56,9 @@ public interface KaleoLogModel extends BaseModel<KaleoLog>, GroupedModel {
 	/**
 	 * Sets the primary key of this kaleo log
 	 *
-	 * @param pk the primary key of this kaleo log
+	 * @param primaryKey the primary key of this kaleo log
 	 */
-	public void setPrimaryKey(long pk);
+	public void setPrimaryKey(long primaryKey);
 
 	/**
 	 * Gets the kaleo log ID of this kaleo log.
@@ -511,6 +511,8 @@ public interface KaleoLogModel extends BaseModel<KaleoLog>, GroupedModel {
 	public void setEscapedModel(boolean escapedModel);
 
 	public Serializable getPrimaryKeyObj();
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj);
 
 	public ExpandoBridge getExpandoBridge();
 

@@ -48,10 +48,10 @@ public class KBStructureWrapper implements KBStructure {
 	/**
 	* Sets the primary key of this k b structure
 	*
-	* @param pk the primary key of this k b structure
+	* @param primaryKey the primary key of this k b structure
 	*/
-	public void setPrimaryKey(long pk) {
-		_kbStructure.setPrimaryKey(pk);
+	public void setPrimaryKey(long primaryKey) {
+		_kbStructure.setPrimaryKey(primaryKey);
 	}
 
 	/**
@@ -363,6 +363,10 @@ public class KBStructureWrapper implements KBStructure {
 
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _kbStructure.getPrimaryKeyObj();
+	}
+
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_kbStructure.setPrimaryKeyObj(primaryKeyObj);
 	}
 
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {

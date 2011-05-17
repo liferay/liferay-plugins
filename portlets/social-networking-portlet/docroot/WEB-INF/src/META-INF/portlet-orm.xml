@@ -32,6 +32,7 @@
 			<basic name="price" />
 			<basic name="thumbnailId" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
@@ -51,6 +52,7 @@
 			<basic name="status" />
 			<basic name="comments" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
@@ -69,6 +71,7 @@
 			</basic>
 			<basic name="comments" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>

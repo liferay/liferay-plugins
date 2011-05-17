@@ -48,10 +48,10 @@ public class HRJobTitleWrapper implements HRJobTitle {
 	/**
 	* Sets the primary key of this h r job title
 	*
-	* @param pk the primary key of this h r job title
+	* @param primaryKey the primary key of this h r job title
 	*/
-	public void setPrimaryKey(long pk) {
-		_hrJobTitle.setPrimaryKey(pk);
+	public void setPrimaryKey(long primaryKey) {
+		_hrJobTitle.setPrimaryKey(primaryKey);
 	}
 
 	/**
@@ -262,6 +262,10 @@ public class HRJobTitleWrapper implements HRJobTitle {
 
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _hrJobTitle.getPrimaryKeyObj();
+	}
+
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_hrJobTitle.setPrimaryKeyObj(primaryKeyObj);
 	}
 
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {

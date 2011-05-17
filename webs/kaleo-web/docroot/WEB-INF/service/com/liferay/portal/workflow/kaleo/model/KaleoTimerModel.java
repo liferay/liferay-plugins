@@ -56,9 +56,9 @@ public interface KaleoTimerModel extends BaseModel<KaleoTimer>, GroupedModel {
 	/**
 	 * Sets the primary key of this kaleo timer
 	 *
-	 * @param pk the primary key of this kaleo timer
+	 * @param primaryKey the primary key of this kaleo timer
 	 */
-	public void setPrimaryKey(long pk);
+	public void setPrimaryKey(long primaryKey);
 
 	/**
 	 * Gets the kaleo timer ID of this kaleo timer.
@@ -309,6 +309,8 @@ public interface KaleoTimerModel extends BaseModel<KaleoTimer>, GroupedModel {
 	public void setEscapedModel(boolean escapedModel);
 
 	public Serializable getPrimaryKeyObj();
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj);
 
 	public ExpandoBridge getExpandoBridge();
 

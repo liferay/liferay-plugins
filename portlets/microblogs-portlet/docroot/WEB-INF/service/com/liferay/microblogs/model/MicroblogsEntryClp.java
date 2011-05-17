@@ -47,12 +47,16 @@ public class MicroblogsEntryClp extends BaseModelImpl<MicroblogsEntry>
 		return _microblogsEntryId;
 	}
 
-	public void setPrimaryKey(long pk) {
-		setMicroblogsEntryId(pk);
+	public void setPrimaryKey(long primaryKey) {
+		setMicroblogsEntryId(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_microblogsEntryId);
+	}
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public long getMicroblogsEntryId() {
@@ -218,9 +222,9 @@ public class MicroblogsEntryClp extends BaseModelImpl<MicroblogsEntry>
 			return false;
 		}
 
-		long pk = microblogsEntry.getPrimaryKey();
+		long primaryKey = microblogsEntry.getPrimaryKey();
 
-		if (getPrimaryKey() == pk) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {

@@ -48,10 +48,10 @@ public class KaleoTaskWrapper implements KaleoTask {
 	/**
 	* Sets the primary key of this kaleo task
 	*
-	* @param pk the primary key of this kaleo task
+	* @param primaryKey the primary key of this kaleo task
 	*/
-	public void setPrimaryKey(long pk) {
-		_kaleoTask.setPrimaryKey(pk);
+	public void setPrimaryKey(long primaryKey) {
+		_kaleoTask.setPrimaryKey(primaryKey);
 	}
 
 	/**
@@ -298,6 +298,10 @@ public class KaleoTaskWrapper implements KaleoTask {
 
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _kaleoTask.getPrimaryKeyObj();
+	}
+
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_kaleoTask.setPrimaryKeyObj(primaryKeyObj);
 	}
 
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {

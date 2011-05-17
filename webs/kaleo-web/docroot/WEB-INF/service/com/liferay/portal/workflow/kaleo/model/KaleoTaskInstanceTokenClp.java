@@ -46,12 +46,16 @@ public class KaleoTaskInstanceTokenClp extends BaseModelImpl<KaleoTaskInstanceTo
 		return _kaleoTaskInstanceTokenId;
 	}
 
-	public void setPrimaryKey(long pk) {
-		setKaleoTaskInstanceTokenId(pk);
+	public void setPrimaryKey(long primaryKey) {
+		setKaleoTaskInstanceTokenId(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_kaleoTaskInstanceTokenId);
+	}
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public long getKaleoTaskInstanceTokenId() {
@@ -310,9 +314,9 @@ public class KaleoTaskInstanceTokenClp extends BaseModelImpl<KaleoTaskInstanceTo
 			return false;
 		}
 
-		long pk = kaleoTaskInstanceToken.getPrimaryKey();
+		long primaryKey = kaleoTaskInstanceToken.getPrimaryKey();
 
-		if (getPrimaryKey() == pk) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {

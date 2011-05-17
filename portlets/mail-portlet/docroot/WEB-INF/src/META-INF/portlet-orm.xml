@@ -42,6 +42,7 @@
 			<basic name="trashFolderId" />
 			<basic name="defaultSender" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
@@ -59,6 +60,7 @@
 				<column name="SIZE_" />
 			</basic>
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
@@ -79,6 +81,7 @@
 			<basic name="displayName" />
 			<basic name="remoteMessageCount" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
@@ -114,6 +117,7 @@
 			</basic>
 			<basic name="remoteMessageId" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>

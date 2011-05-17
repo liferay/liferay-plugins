@@ -48,10 +48,10 @@ public class HRTimeOffWrapper implements HRTimeOff {
 	/**
 	* Sets the primary key of this h r time off
 	*
-	* @param pk the primary key of this h r time off
+	* @param primaryKey the primary key of this h r time off
 	*/
-	public void setPrimaryKey(long pk) {
-		_hrTimeOff.setPrimaryKey(pk);
+	public void setPrimaryKey(long primaryKey) {
+		_hrTimeOff.setPrimaryKey(primaryKey);
 	}
 
 	/**
@@ -507,6 +507,10 @@ public class HRTimeOffWrapper implements HRTimeOff {
 
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _hrTimeOff.getPrimaryKeyObj();
+	}
+
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_hrTimeOff.setPrimaryKeyObj(primaryKeyObj);
 	}
 
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {

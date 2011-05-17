@@ -47,12 +47,16 @@ public class MemberRequestClp extends BaseModelImpl<MemberRequest>
 		return _memberRequestId;
 	}
 
-	public void setPrimaryKey(long pk) {
-		setMemberRequestId(pk);
+	public void setPrimaryKey(long primaryKey) {
+		setMemberRequestId(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_memberRequestId);
+	}
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public long getMemberRequestId() {
@@ -227,9 +231,9 @@ public class MemberRequestClp extends BaseModelImpl<MemberRequest>
 			return false;
 		}
 
-		long pk = memberRequest.getPrimaryKey();
+		long primaryKey = memberRequest.getPrimaryKey();
 
-		if (getPrimaryKey() == pk) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {

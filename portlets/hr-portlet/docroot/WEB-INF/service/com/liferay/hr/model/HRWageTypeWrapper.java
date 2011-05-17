@@ -48,10 +48,10 @@ public class HRWageTypeWrapper implements HRWageType {
 	/**
 	* Sets the primary key of this h r wage type
 	*
-	* @param pk the primary key of this h r wage type
+	* @param primaryKey the primary key of this h r wage type
 	*/
-	public void setPrimaryKey(long pk) {
-		_hrWageType.setPrimaryKey(pk);
+	public void setPrimaryKey(long primaryKey) {
+		_hrWageType.setPrimaryKey(primaryKey);
 	}
 
 	/**
@@ -280,6 +280,10 @@ public class HRWageTypeWrapper implements HRWageType {
 
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _hrWageType.getPrimaryKeyObj();
+	}
+
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_hrWageType.setPrimaryKeyObj(primaryKeyObj);
 	}
 
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {

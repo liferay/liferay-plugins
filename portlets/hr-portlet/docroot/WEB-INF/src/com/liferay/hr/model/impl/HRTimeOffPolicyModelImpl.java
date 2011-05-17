@@ -107,12 +107,16 @@ public class HRTimeOffPolicyModelImpl extends BaseModelImpl<HRTimeOffPolicy>
 		return _hrTimeOffPolicyId;
 	}
 
-	public void setPrimaryKey(long pk) {
-		setHrTimeOffPolicyId(pk);
+	public void setPrimaryKey(long primaryKey) {
+		setHrTimeOffPolicyId(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_hrTimeOffPolicyId);
+	}
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public long getHrTimeOffPolicyId() {
@@ -329,12 +333,12 @@ public class HRTimeOffPolicyModelImpl extends BaseModelImpl<HRTimeOffPolicy>
 	}
 
 	public int compareTo(HRTimeOffPolicy hrTimeOffPolicy) {
-		long pk = hrTimeOffPolicy.getPrimaryKey();
+		long primaryKey = hrTimeOffPolicy.getPrimaryKey();
 
-		if (getPrimaryKey() < pk) {
+		if (getPrimaryKey() < primaryKey) {
 			return -1;
 		}
-		else if (getPrimaryKey() > pk) {
+		else if (getPrimaryKey() > primaryKey) {
 			return 1;
 		}
 		else {
@@ -356,9 +360,9 @@ public class HRTimeOffPolicyModelImpl extends BaseModelImpl<HRTimeOffPolicy>
 			return false;
 		}
 
-		long pk = hrTimeOffPolicy.getPrimaryKey();
+		long primaryKey = hrTimeOffPolicy.getPrimaryKey();
 
-		if (getPrimaryKey() == pk) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {

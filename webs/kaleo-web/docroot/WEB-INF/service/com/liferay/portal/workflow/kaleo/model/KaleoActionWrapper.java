@@ -48,10 +48,10 @@ public class KaleoActionWrapper implements KaleoAction {
 	/**
 	* Sets the primary key of this kaleo action
 	*
-	* @param pk the primary key of this kaleo action
+	* @param primaryKey the primary key of this kaleo action
 	*/
-	public void setPrimaryKey(long pk) {
-		_kaleoAction.setPrimaryKey(pk);
+	public void setPrimaryKey(long primaryKey) {
+		_kaleoAction.setPrimaryKey(primaryKey);
 	}
 
 	/**
@@ -388,6 +388,10 @@ public class KaleoActionWrapper implements KaleoAction {
 
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _kaleoAction.getPrimaryKeyObj();
+	}
+
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_kaleoAction.setPrimaryKeyObj(primaryKeyObj);
 	}
 
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {

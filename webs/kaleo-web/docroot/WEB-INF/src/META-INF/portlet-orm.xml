@@ -30,6 +30,7 @@
 			<basic name="scriptLanguage" />
 			<basic name="priority" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
@@ -51,6 +52,7 @@
 			<basic name="script" />
 			<basic name="scriptLanguage" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
@@ -76,6 +78,7 @@
 			</basic>
 			<basic name="startKaleoNodeId" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="titleMap" />
 			<transient name="userUuid" />
 		</attributes>
@@ -105,6 +108,7 @@
 			</basic>
 			<basic name="workflowContext" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
@@ -133,6 +137,7 @@
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
@@ -180,6 +185,7 @@
 			<basic name="duration" />
 			<basic name="workflowContext" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
@@ -207,6 +213,7 @@
 			</basic>
 			<basic name="terminal" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
@@ -233,6 +240,7 @@
 			<basic name="templateLanguage" />
 			<basic name="notificationTypes" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
@@ -256,6 +264,7 @@
 			<basic name="recipientRoleType" />
 			<basic name="address" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
@@ -277,6 +286,7 @@
 			<basic name="name" />
 			<basic name="description" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
@@ -302,6 +312,7 @@
 			<basic name="assigneeScript" />
 			<basic name="assigneeScriptLanguage" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
@@ -331,6 +342,7 @@
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
@@ -365,6 +377,7 @@
 			<basic name="workflowContext" />
 			<transient name="completionUserUuid" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
@@ -390,6 +403,7 @@
 			<basic name="duration" />
 			<basic name="scale" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
@@ -419,6 +433,7 @@
 			<basic name="workflowContext" />
 			<transient name="completionUserUuid" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
@@ -445,6 +460,7 @@
 			<basic name="targetKaleoNodeName" />
 			<basic name="defaultTransition" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>

@@ -58,9 +58,9 @@ public interface KBStructureModel extends BaseModel<KBStructure>, GroupedModel {
 	/**
 	 * Sets the primary key of this k b structure
 	 *
-	 * @param pk the primary key of this k b structure
+	 * @param primaryKey the primary key of this k b structure
 	 */
-	public void setPrimaryKey(long pk);
+	public void setPrimaryKey(long primaryKey);
 
 	/**
 	 * Gets the uuid of this k b structure.
@@ -293,6 +293,8 @@ public interface KBStructureModel extends BaseModel<KBStructure>, GroupedModel {
 	public void setEscapedModel(boolean escapedModel);
 
 	public Serializable getPrimaryKeyObj();
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj);
 
 	public ExpandoBridge getExpandoBridge();
 

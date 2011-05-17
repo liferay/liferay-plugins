@@ -102,12 +102,16 @@ public class FolderModelImpl extends BaseModelImpl<Folder>
 		return _folderId;
 	}
 
-	public void setPrimaryKey(long pk) {
-		setFolderId(pk);
+	public void setPrimaryKey(long primaryKey) {
+		setFolderId(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_folderId);
+	}
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public long getFolderId() {
@@ -299,9 +303,9 @@ public class FolderModelImpl extends BaseModelImpl<Folder>
 			return false;
 		}
 
-		long pk = folder.getPrimaryKey();
+		long primaryKey = folder.getPrimaryKey();
 
-		if (getPrimaryKey() == pk) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {

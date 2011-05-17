@@ -48,10 +48,10 @@ public class GadgetWrapper implements Gadget {
 	/**
 	* Sets the primary key of this gadget
 	*
-	* @param pk the primary key of this gadget
+	* @param primaryKey the primary key of this gadget
 	*/
-	public void setPrimaryKey(long pk) {
-		_gadget.setPrimaryKey(pk);
+	public void setPrimaryKey(long primaryKey) {
+		_gadget.setPrimaryKey(primaryKey);
 	}
 
 	/**
@@ -224,6 +224,10 @@ public class GadgetWrapper implements Gadget {
 
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _gadget.getPrimaryKeyObj();
+	}
+
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_gadget.setPrimaryKeyObj(primaryKeyObj);
 	}
 
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {

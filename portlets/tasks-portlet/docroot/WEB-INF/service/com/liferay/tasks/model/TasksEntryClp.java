@@ -47,12 +47,16 @@ public class TasksEntryClp extends BaseModelImpl<TasksEntry>
 		return _tasksEntryId;
 	}
 
-	public void setPrimaryKey(long pk) {
-		setTasksEntryId(pk);
+	public void setPrimaryKey(long primaryKey) {
+		setTasksEntryId(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_tasksEntryId);
+	}
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public long getTasksEntryId() {
@@ -287,9 +291,9 @@ public class TasksEntryClp extends BaseModelImpl<TasksEntry>
 			return false;
 		}
 
-		long pk = tasksEntry.getPrimaryKey();
+		long primaryKey = tasksEntry.getPrimaryKey();
 
-		if (getPrimaryKey() == pk) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {

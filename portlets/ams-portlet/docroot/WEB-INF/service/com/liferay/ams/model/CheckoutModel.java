@@ -56,9 +56,9 @@ public interface CheckoutModel extends AuditedModel, BaseModel<Checkout> {
 	/**
 	 * Sets the primary key of this checkout
 	 *
-	 * @param pk the primary key of this checkout
+	 * @param primaryKey the primary key of this checkout
 	 */
-	public void setPrimaryKey(long pk);
+	public void setPrimaryKey(long primaryKey);
 
 	/**
 	 * Gets the checkout ID of this checkout.
@@ -229,6 +229,8 @@ public interface CheckoutModel extends AuditedModel, BaseModel<Checkout> {
 	public void setEscapedModel(boolean escapedModel);
 
 	public Serializable getPrimaryKeyObj();
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj);
 
 	public ExpandoBridge getExpandoBridge();
 

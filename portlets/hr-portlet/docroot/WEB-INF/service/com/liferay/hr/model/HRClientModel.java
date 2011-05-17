@@ -56,9 +56,9 @@ public interface HRClientModel extends BaseModel<HRClient>, GroupedModel {
 	/**
 	 * Sets the primary key of this h r client
 	 *
-	 * @param pk the primary key of this h r client
+	 * @param primaryKey the primary key of this h r client
 	 */
-	public void setPrimaryKey(long pk);
+	public void setPrimaryKey(long primaryKey);
 
 	/**
 	 * Gets the hr client ID of this h r client.
@@ -217,6 +217,8 @@ public interface HRClientModel extends BaseModel<HRClient>, GroupedModel {
 	public void setEscapedModel(boolean escapedModel);
 
 	public Serializable getPrimaryKeyObj();
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj);
 
 	public ExpandoBridge getExpandoBridge();
 

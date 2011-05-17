@@ -48,10 +48,10 @@ public class HRAssetCheckoutWrapper implements HRAssetCheckout {
 	/**
 	* Sets the primary key of this h r asset checkout
 	*
-	* @param pk the primary key of this h r asset checkout
+	* @param primaryKey the primary key of this h r asset checkout
 	*/
-	public void setPrimaryKey(long pk) {
-		_hrAssetCheckout.setPrimaryKey(pk);
+	public void setPrimaryKey(long primaryKey) {
+		_hrAssetCheckout.setPrimaryKey(primaryKey);
 	}
 
 	/**
@@ -336,6 +336,10 @@ public class HRAssetCheckoutWrapper implements HRAssetCheckout {
 
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _hrAssetCheckout.getPrimaryKeyObj();
+	}
+
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_hrAssetCheckout.setPrimaryKeyObj(primaryKeyObj);
 	}
 
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {

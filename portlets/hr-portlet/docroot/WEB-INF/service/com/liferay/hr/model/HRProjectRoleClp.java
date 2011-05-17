@@ -46,12 +46,16 @@ public class HRProjectRoleClp extends BaseModelImpl<HRProjectRole>
 		return _hrProjectRoleId;
 	}
 
-	public void setPrimaryKey(long pk) {
-		setHrProjectRoleId(pk);
+	public void setPrimaryKey(long primaryKey) {
+		setHrProjectRoleId(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_hrProjectRoleId);
+	}
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public long getHrProjectRoleId() {
@@ -162,12 +166,12 @@ public class HRProjectRoleClp extends BaseModelImpl<HRProjectRole>
 	}
 
 	public int compareTo(HRProjectRole hrProjectRole) {
-		long pk = hrProjectRole.getPrimaryKey();
+		long primaryKey = hrProjectRole.getPrimaryKey();
 
-		if (getPrimaryKey() < pk) {
+		if (getPrimaryKey() < primaryKey) {
 			return -1;
 		}
-		else if (getPrimaryKey() > pk) {
+		else if (getPrimaryKey() > primaryKey) {
 			return 1;
 		}
 		else {
@@ -189,9 +193,9 @@ public class HRProjectRoleClp extends BaseModelImpl<HRProjectRole>
 			return false;
 		}
 
-		long pk = hrProjectRole.getPrimaryKey();
+		long primaryKey = hrProjectRole.getPrimaryKey();
 
-		if (getPrimaryKey() == pk) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {

@@ -99,12 +99,16 @@ public class OAuthConsumerModelImpl extends BaseModelImpl<OAuthConsumer>
 		return _oAuthConsumerId;
 	}
 
-	public void setPrimaryKey(long pk) {
-		setOAuthConsumerId(pk);
+	public void setPrimaryKey(long primaryKey) {
+		setOAuthConsumerId(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_oAuthConsumerId);
+	}
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public long getOAuthConsumerId() {
@@ -285,9 +289,9 @@ public class OAuthConsumerModelImpl extends BaseModelImpl<OAuthConsumer>
 			return false;
 		}
 
-		long pk = oAuthConsumer.getPrimaryKey();
+		long primaryKey = oAuthConsumer.getPrimaryKey();
 
-		if (getPrimaryKey() == pk) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {

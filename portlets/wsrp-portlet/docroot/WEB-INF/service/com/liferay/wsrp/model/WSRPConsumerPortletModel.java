@@ -54,9 +54,9 @@ public interface WSRPConsumerPortletModel extends BaseModel<WSRPConsumerPortlet>
 	/**
 	 * Sets the primary key of this w s r p consumer portlet
 	 *
-	 * @param pk the primary key of this w s r p consumer portlet
+	 * @param primaryKey the primary key of this w s r p consumer portlet
 	 */
-	public void setPrimaryKey(long pk);
+	public void setPrimaryKey(long primaryKey);
 
 	/**
 	 * Gets the uuid of this w s r p consumer portlet.
@@ -186,6 +186,8 @@ public interface WSRPConsumerPortletModel extends BaseModel<WSRPConsumerPortlet>
 	public void setEscapedModel(boolean escapedModel);
 
 	public Serializable getPrimaryKeyObj();
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj);
 
 	public ExpandoBridge getExpandoBridge();
 

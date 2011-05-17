@@ -48,10 +48,10 @@ public class MeetupsRegistrationWrapper implements MeetupsRegistration {
 	/**
 	* Sets the primary key of this meetups registration
 	*
-	* @param pk the primary key of this meetups registration
+	* @param primaryKey the primary key of this meetups registration
 	*/
-	public void setPrimaryKey(long pk) {
-		_meetupsRegistration.setPrimaryKey(pk);
+	public void setPrimaryKey(long primaryKey) {
+		_meetupsRegistration.setPrimaryKey(primaryKey);
 	}
 
 	/**
@@ -262,6 +262,10 @@ public class MeetupsRegistrationWrapper implements MeetupsRegistration {
 
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _meetupsRegistration.getPrimaryKeyObj();
+	}
+
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_meetupsRegistration.setPrimaryKeyObj(primaryKeyObj);
 	}
 
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {

@@ -48,10 +48,10 @@ public class KaleoTimerWrapper implements KaleoTimer {
 	/**
 	* Sets the primary key of this kaleo timer
 	*
-	* @param pk the primary key of this kaleo timer
+	* @param primaryKey the primary key of this kaleo timer
 	*/
-	public void setPrimaryKey(long pk) {
-		_kaleoTimer.setPrimaryKey(pk);
+	public void setPrimaryKey(long primaryKey) {
+		_kaleoTimer.setPrimaryKey(primaryKey);
 	}
 
 	/**
@@ -379,6 +379,10 @@ public class KaleoTimerWrapper implements KaleoTimer {
 
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _kaleoTimer.getPrimaryKeyObj();
+	}
+
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_kaleoTimer.setPrimaryKeyObj(primaryKeyObj);
 	}
 
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {

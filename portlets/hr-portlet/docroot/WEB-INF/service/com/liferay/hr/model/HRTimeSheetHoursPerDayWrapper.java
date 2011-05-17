@@ -49,10 +49,10 @@ public class HRTimeSheetHoursPerDayWrapper implements HRTimeSheetHoursPerDay {
 	/**
 	* Sets the primary key of this h r time sheet hours per day
 	*
-	* @param pk the primary key of this h r time sheet hours per day
+	* @param primaryKey the primary key of this h r time sheet hours per day
 	*/
-	public void setPrimaryKey(long pk) {
-		_hrTimeSheetHoursPerDay.setPrimaryKey(pk);
+	public void setPrimaryKey(long primaryKey) {
+		_hrTimeSheetHoursPerDay.setPrimaryKey(primaryKey);
 	}
 
 	/**
@@ -263,6 +263,10 @@ public class HRTimeSheetHoursPerDayWrapper implements HRTimeSheetHoursPerDay {
 
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _hrTimeSheetHoursPerDay.getPrimaryKeyObj();
+	}
+
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_hrTimeSheetHoursPerDay.setPrimaryKeyObj(primaryKeyObj);
 	}
 
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {

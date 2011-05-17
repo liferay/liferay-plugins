@@ -48,10 +48,10 @@ public class AttachmentWrapper implements Attachment {
 	/**
 	* Sets the primary key of this attachment
 	*
-	* @param pk the primary key of this attachment
+	* @param primaryKey the primary key of this attachment
 	*/
-	public void setPrimaryKey(long pk) {
-		_attachment.setPrimaryKey(pk);
+	public void setPrimaryKey(long primaryKey) {
+		_attachment.setPrimaryKey(primaryKey);
 	}
 
 	/**
@@ -262,6 +262,10 @@ public class AttachmentWrapper implements Attachment {
 
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _attachment.getPrimaryKeyObj();
+	}
+
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_attachment.setPrimaryKeyObj(primaryKeyObj);
 	}
 
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {

@@ -48,10 +48,10 @@ public class HREmploymentTypeWrapper implements HREmploymentType {
 	/**
 	* Sets the primary key of this h r employment type
 	*
-	* @param pk the primary key of this h r employment type
+	* @param primaryKey the primary key of this h r employment type
 	*/
-	public void setPrimaryKey(long pk) {
-		_hrEmploymentType.setPrimaryKey(pk);
+	public void setPrimaryKey(long primaryKey) {
+		_hrEmploymentType.setPrimaryKey(primaryKey);
 	}
 
 	/**
@@ -280,6 +280,10 @@ public class HREmploymentTypeWrapper implements HREmploymentType {
 
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _hrEmploymentType.getPrimaryKeyObj();
+	}
+
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_hrEmploymentType.setPrimaryKeyObj(primaryKeyObj);
 	}
 
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {

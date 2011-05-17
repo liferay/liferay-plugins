@@ -52,9 +52,9 @@ public interface SVNRepositoryModel extends BaseModel<SVNRepository> {
 	/**
 	 * Sets the primary key of this s v n repository
 	 *
-	 * @param pk the primary key of this s v n repository
+	 * @param primaryKey the primary key of this s v n repository
 	 */
-	public void setPrimaryKey(long pk);
+	public void setPrimaryKey(long primaryKey);
 
 	/**
 	 * Gets the svn repository ID of this s v n repository.
@@ -112,6 +112,8 @@ public interface SVNRepositoryModel extends BaseModel<SVNRepository> {
 	public void setEscapedModel(boolean escapedModel);
 
 	public Serializable getPrimaryKeyObj();
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj);
 
 	public ExpandoBridge getExpandoBridge();
 

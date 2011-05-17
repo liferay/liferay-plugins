@@ -48,10 +48,10 @@ public class JIRAChangeGroupWrapper implements JIRAChangeGroup {
 	/**
 	* Sets the primary key of this j i r a change group
 	*
-	* @param pk the primary key of this j i r a change group
+	* @param primaryKey the primary key of this j i r a change group
 	*/
-	public void setPrimaryKey(long pk) {
-		_jiraChangeGroup.setPrimaryKey(pk);
+	public void setPrimaryKey(long primaryKey) {
+		_jiraChangeGroup.setPrimaryKey(primaryKey);
 	}
 
 	/**
@@ -152,6 +152,10 @@ public class JIRAChangeGroupWrapper implements JIRAChangeGroup {
 
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _jiraChangeGroup.getPrimaryKeyObj();
+	}
+
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_jiraChangeGroup.setPrimaryKeyObj(primaryKeyObj);
 	}
 
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {

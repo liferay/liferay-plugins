@@ -46,12 +46,16 @@ public class HRTerminationTypeClp extends BaseModelImpl<HRTerminationType>
 		return _hrTerminationTypeId;
 	}
 
-	public void setPrimaryKey(long pk) {
-		setHrTerminationTypeId(pk);
+	public void setPrimaryKey(long primaryKey) {
+		setHrTerminationTypeId(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_hrTerminationTypeId);
+	}
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public long getHrTerminationTypeId() {
@@ -171,12 +175,12 @@ public class HRTerminationTypeClp extends BaseModelImpl<HRTerminationType>
 	}
 
 	public int compareTo(HRTerminationType hrTerminationType) {
-		long pk = hrTerminationType.getPrimaryKey();
+		long primaryKey = hrTerminationType.getPrimaryKey();
 
-		if (getPrimaryKey() < pk) {
+		if (getPrimaryKey() < primaryKey) {
 			return -1;
 		}
-		else if (getPrimaryKey() > pk) {
+		else if (getPrimaryKey() > primaryKey) {
 			return 1;
 		}
 		else {
@@ -198,9 +202,9 @@ public class HRTerminationTypeClp extends BaseModelImpl<HRTerminationType>
 			return false;
 		}
 
-		long pk = hrTerminationType.getPrimaryKey();
+		long primaryKey = hrTerminationType.getPrimaryKey();
 
-		if (getPrimaryKey() == pk) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {

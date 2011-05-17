@@ -56,9 +56,9 @@ public interface HRJobTitleModel extends BaseModel<HRJobTitle>, GroupedModel {
 	/**
 	 * Sets the primary key of this h r job title
 	 *
-	 * @param pk the primary key of this h r job title
+	 * @param primaryKey the primary key of this h r job title
 	 */
-	public void setPrimaryKey(long pk);
+	public void setPrimaryKey(long primaryKey);
 
 	/**
 	 * Gets the hr job title ID of this h r job title.
@@ -217,6 +217,8 @@ public interface HRJobTitleModel extends BaseModel<HRJobTitle>, GroupedModel {
 	public void setEscapedModel(boolean escapedModel);
 
 	public Serializable getPrimaryKeyObj();
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj);
 
 	public ExpandoBridge getExpandoBridge();
 

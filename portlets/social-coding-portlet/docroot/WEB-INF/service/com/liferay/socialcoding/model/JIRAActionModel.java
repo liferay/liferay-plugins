@@ -54,9 +54,9 @@ public interface JIRAActionModel extends BaseModel<JIRAAction> {
 	/**
 	 * Sets the primary key of this j i r a action
 	 *
-	 * @param pk the primary key of this j i r a action
+	 * @param primaryKey the primary key of this j i r a action
 	 */
-	public void setPrimaryKey(long pk);
+	public void setPrimaryKey(long primaryKey);
 
 	/**
 	 * Gets the jira action ID of this j i r a action.
@@ -187,6 +187,8 @@ public interface JIRAActionModel extends BaseModel<JIRAAction> {
 	public void setEscapedModel(boolean escapedModel);
 
 	public Serializable getPrimaryKeyObj();
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj);
 
 	public ExpandoBridge getExpandoBridge();
 

@@ -46,12 +46,16 @@ public class HRWageTypeClp extends BaseModelImpl<HRWageType>
 		return _hrWageTypeId;
 	}
 
-	public void setPrimaryKey(long pk) {
-		setHrWageTypeId(pk);
+	public void setPrimaryKey(long primaryKey) {
+		setHrWageTypeId(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_hrWageTypeId);
+	}
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public long getHrWageTypeId() {
@@ -171,12 +175,12 @@ public class HRWageTypeClp extends BaseModelImpl<HRWageType>
 	}
 
 	public int compareTo(HRWageType hrWageType) {
-		long pk = hrWageType.getPrimaryKey();
+		long primaryKey = hrWageType.getPrimaryKey();
 
-		if (getPrimaryKey() < pk) {
+		if (getPrimaryKey() < primaryKey) {
 			return -1;
 		}
-		else if (getPrimaryKey() > pk) {
+		else if (getPrimaryKey() > primaryKey) {
 			return 1;
 		}
 		else {
@@ -198,9 +202,9 @@ public class HRWageTypeClp extends BaseModelImpl<HRWageType>
 			return false;
 		}
 
-		long pk = hrWageType.getPrimaryKey();
+		long primaryKey = hrWageType.getPrimaryKey();
 
-		if (getPrimaryKey() == pk) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {

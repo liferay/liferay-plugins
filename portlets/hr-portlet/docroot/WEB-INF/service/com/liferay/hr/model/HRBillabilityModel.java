@@ -57,9 +57,9 @@ public interface HRBillabilityModel extends BaseModel<HRBillability>,
 	/**
 	 * Sets the primary key of this h r billability
 	 *
-	 * @param pk the primary key of this h r billability
+	 * @param primaryKey the primary key of this h r billability
 	 */
-	public void setPrimaryKey(long pk);
+	public void setPrimaryKey(long primaryKey);
 
 	/**
 	 * Gets the hr billability ID of this h r billability.
@@ -233,6 +233,8 @@ public interface HRBillabilityModel extends BaseModel<HRBillability>,
 	public void setEscapedModel(boolean escapedModel);
 
 	public Serializable getPrimaryKeyObj();
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj);
 
 	public ExpandoBridge getExpandoBridge();
 

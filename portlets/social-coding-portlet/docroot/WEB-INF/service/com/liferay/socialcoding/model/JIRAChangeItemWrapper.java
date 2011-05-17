@@ -48,10 +48,10 @@ public class JIRAChangeItemWrapper implements JIRAChangeItem {
 	/**
 	* Sets the primary key of this j i r a change item
 	*
-	* @param pk the primary key of this j i r a change item
+	* @param primaryKey the primary key of this j i r a change item
 	*/
-	public void setPrimaryKey(long pk) {
-		_jiraChangeItem.setPrimaryKey(pk);
+	public void setPrimaryKey(long primaryKey) {
+		_jiraChangeItem.setPrimaryKey(primaryKey);
 	}
 
 	/**
@@ -206,6 +206,10 @@ public class JIRAChangeItemWrapper implements JIRAChangeItem {
 
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _jiraChangeItem.getPrimaryKeyObj();
+	}
+
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_jiraChangeItem.setPrimaryKeyObj(primaryKeyObj);
 	}
 
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {

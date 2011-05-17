@@ -46,12 +46,16 @@ public class HRTimeSheetDayClp extends BaseModelImpl<HRTimeSheetDay>
 		return _hrTimeSheetDayId;
 	}
 
-	public void setPrimaryKey(long pk) {
-		setHrTimeSheetDayId(pk);
+	public void setPrimaryKey(long primaryKey) {
+		setHrTimeSheetDayId(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_hrTimeSheetDayId);
+	}
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public long getHrTimeSheetDayId() {
@@ -197,12 +201,12 @@ public class HRTimeSheetDayClp extends BaseModelImpl<HRTimeSheetDay>
 	}
 
 	public int compareTo(HRTimeSheetDay hrTimeSheetDay) {
-		long pk = hrTimeSheetDay.getPrimaryKey();
+		long primaryKey = hrTimeSheetDay.getPrimaryKey();
 
-		if (getPrimaryKey() < pk) {
+		if (getPrimaryKey() < primaryKey) {
 			return -1;
 		}
-		else if (getPrimaryKey() > pk) {
+		else if (getPrimaryKey() > primaryKey) {
 			return 1;
 		}
 		else {
@@ -224,9 +228,9 @@ public class HRTimeSheetDayClp extends BaseModelImpl<HRTimeSheetDay>
 			return false;
 		}
 
-		long pk = hrTimeSheetDay.getPrimaryKey();
+		long primaryKey = hrTimeSheetDay.getPrimaryKey();
 
-		if (getPrimaryKey() == pk) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {

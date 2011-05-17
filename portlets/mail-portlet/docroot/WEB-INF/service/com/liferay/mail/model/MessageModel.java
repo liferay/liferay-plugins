@@ -56,9 +56,9 @@ public interface MessageModel extends AuditedModel, BaseModel<Message> {
 	/**
 	 * Sets the primary key of this message
 	 *
-	 * @param pk the primary key of this message
+	 * @param primaryKey the primary key of this message
 	 */
-	public void setPrimaryKey(long pk);
+	public void setPrimaryKey(long primaryKey);
 
 	/**
 	 * Gets the message ID of this message.
@@ -363,6 +363,8 @@ public interface MessageModel extends AuditedModel, BaseModel<Message> {
 	public void setEscapedModel(boolean escapedModel);
 
 	public Serializable getPrimaryKeyObj();
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj);
 
 	public ExpandoBridge getExpandoBridge();
 

@@ -104,12 +104,16 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 		return _oAuthTokenId;
 	}
 
-	public void setPrimaryKey(long pk) {
-		setOAuthTokenId(pk);
+	public void setPrimaryKey(long primaryKey) {
+		setOAuthTokenId(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_oAuthTokenId);
+	}
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public long getOAuthTokenId() {
@@ -356,12 +360,12 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 	}
 
 	public int compareTo(OAuthToken oAuthToken) {
-		long pk = oAuthToken.getPrimaryKey();
+		long primaryKey = oAuthToken.getPrimaryKey();
 
-		if (getPrimaryKey() < pk) {
+		if (getPrimaryKey() < primaryKey) {
 			return -1;
 		}
-		else if (getPrimaryKey() > pk) {
+		else if (getPrimaryKey() > primaryKey) {
 			return 1;
 		}
 		else {
@@ -383,9 +387,9 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 			return false;
 		}
 
-		long pk = oAuthToken.getPrimaryKey();
+		long primaryKey = oAuthToken.getPrimaryKey();
 
-		if (getPrimaryKey() == pk) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {

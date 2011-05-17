@@ -56,9 +56,9 @@ public interface HRUserTaskModel extends BaseModel<HRUserTask>, GroupedModel {
 	/**
 	 * Sets the primary key of this h r user task
 	 *
-	 * @param pk the primary key of this h r user task
+	 * @param primaryKey the primary key of this h r user task
 	 */
-	public void setPrimaryKey(long pk);
+	public void setPrimaryKey(long primaryKey);
 
 	/**
 	 * Gets the hr user task ID of this h r user task.
@@ -258,6 +258,8 @@ public interface HRUserTaskModel extends BaseModel<HRUserTask>, GroupedModel {
 	public void setEscapedModel(boolean escapedModel);
 
 	public Serializable getPrimaryKeyObj();
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj);
 
 	public ExpandoBridge getExpandoBridge();
 

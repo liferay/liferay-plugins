@@ -31,6 +31,7 @@
 			</basic>
 			<basic name="field5" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>

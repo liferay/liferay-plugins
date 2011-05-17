@@ -48,10 +48,10 @@ public class CalendarResourceWrapper implements CalendarResource {
 	/**
 	* Sets the primary key of this calendar resource
 	*
-	* @param pk the primary key of this calendar resource
+	* @param primaryKey the primary key of this calendar resource
 	*/
-	public void setPrimaryKey(long pk) {
-		_calendarResource.setPrimaryKey(pk);
+	public void setPrimaryKey(long primaryKey) {
+		_calendarResource.setPrimaryKey(primaryKey);
 	}
 
 	/**
@@ -538,6 +538,10 @@ public class CalendarResourceWrapper implements CalendarResource {
 
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _calendarResource.getPrimaryKeyObj();
+	}
+
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_calendarResource.setPrimaryKeyObj(primaryKeyObj);
 	}
 
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {

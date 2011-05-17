@@ -48,10 +48,10 @@ public class TasksEntryWrapper implements TasksEntry {
 	/**
 	* Sets the primary key of this tasks entry
 	*
-	* @param pk the primary key of this tasks entry
+	* @param primaryKey the primary key of this tasks entry
 	*/
-	public void setPrimaryKey(long pk) {
-		_tasksEntry.setPrimaryKey(pk);
+	public void setPrimaryKey(long primaryKey) {
+		_tasksEntry.setPrimaryKey(primaryKey);
 	}
 
 	/**
@@ -392,6 +392,10 @@ public class TasksEntryWrapper implements TasksEntry {
 
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _tasksEntry.getPrimaryKeyObj();
+	}
+
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_tasksEntry.setPrimaryKeyObj(primaryKeyObj);
 	}
 
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {

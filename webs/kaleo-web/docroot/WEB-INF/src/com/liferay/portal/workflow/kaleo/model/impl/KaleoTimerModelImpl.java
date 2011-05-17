@@ -106,12 +106,16 @@ public class KaleoTimerModelImpl extends BaseModelImpl<KaleoTimer>
 		return _kaleoTimerId;
 	}
 
-	public void setPrimaryKey(long pk) {
-		setKaleoTimerId(pk);
+	public void setPrimaryKey(long primaryKey) {
+		setKaleoTimerId(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_kaleoTimerId);
+	}
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public long getKaleoTimerId() {
@@ -348,9 +352,9 @@ public class KaleoTimerModelImpl extends BaseModelImpl<KaleoTimer>
 			return false;
 		}
 
-		long pk = kaleoTimer.getPrimaryKey();
+		long primaryKey = kaleoTimer.getPrimaryKey();
 
-		if (getPrimaryKey() == pk) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {

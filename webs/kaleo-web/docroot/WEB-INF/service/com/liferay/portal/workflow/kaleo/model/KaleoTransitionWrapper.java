@@ -48,10 +48,10 @@ public class KaleoTransitionWrapper implements KaleoTransition {
 	/**
 	* Sets the primary key of this kaleo transition
 	*
-	* @param pk the primary key of this kaleo transition
+	* @param primaryKey the primary key of this kaleo transition
 	*/
-	public void setPrimaryKey(long pk) {
-		_kaleoTransition.setPrimaryKey(pk);
+	public void setPrimaryKey(long primaryKey) {
+		_kaleoTransition.setPrimaryKey(primaryKey);
 	}
 
 	/**
@@ -397,6 +397,10 @@ public class KaleoTransitionWrapper implements KaleoTransition {
 
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _kaleoTransition.getPrimaryKeyObj();
+	}
+
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_kaleoTransition.setPrimaryKeyObj(primaryKeyObj);
 	}
 
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {

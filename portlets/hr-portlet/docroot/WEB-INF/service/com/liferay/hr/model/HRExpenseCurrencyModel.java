@@ -57,9 +57,9 @@ public interface HRExpenseCurrencyModel extends BaseModel<HRExpenseCurrency>,
 	/**
 	 * Sets the primary key of this h r expense currency
 	 *
-	 * @param pk the primary key of this h r expense currency
+	 * @param primaryKey the primary key of this h r expense currency
 	 */
-	public void setPrimaryKey(long pk);
+	public void setPrimaryKey(long primaryKey);
 
 	/**
 	 * Gets the hr expense currency ID of this h r expense currency.
@@ -246,6 +246,8 @@ public interface HRExpenseCurrencyModel extends BaseModel<HRExpenseCurrency>,
 	public void setEscapedModel(boolean escapedModel);
 
 	public Serializable getPrimaryKeyObj();
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj);
 
 	public ExpandoBridge getExpandoBridge();
 

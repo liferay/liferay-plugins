@@ -104,12 +104,16 @@ public class HRExpenseCurrencyModelImpl extends BaseModelImpl<HRExpenseCurrency>
 		return _hrExpenseCurrencyId;
 	}
 
-	public void setPrimaryKey(long pk) {
-		setHrExpenseCurrencyId(pk);
+	public void setPrimaryKey(long primaryKey) {
+		setHrExpenseCurrencyId(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_hrExpenseCurrencyId);
+	}
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public long getHrExpenseCurrencyId() {
@@ -330,9 +334,9 @@ public class HRExpenseCurrencyModelImpl extends BaseModelImpl<HRExpenseCurrency>
 			return false;
 		}
 
-		long pk = hrExpenseCurrency.getPrimaryKey();
+		long primaryKey = hrExpenseCurrency.getPrimaryKey();
 
-		if (getPrimaryKey() == pk) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {

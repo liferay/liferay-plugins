@@ -44,12 +44,16 @@ public class AttachmentClp extends BaseModelImpl<Attachment>
 		return _attachmentId;
 	}
 
-	public void setPrimaryKey(long pk) {
-		setAttachmentId(pk);
+	public void setPrimaryKey(long primaryKey) {
+		setAttachmentId(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_attachmentId);
+	}
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public long getAttachmentId() {
@@ -160,12 +164,12 @@ public class AttachmentClp extends BaseModelImpl<Attachment>
 	}
 
 	public int compareTo(Attachment attachment) {
-		long pk = attachment.getPrimaryKey();
+		long primaryKey = attachment.getPrimaryKey();
 
-		if (getPrimaryKey() < pk) {
+		if (getPrimaryKey() < primaryKey) {
 			return -1;
 		}
-		else if (getPrimaryKey() > pk) {
+		else if (getPrimaryKey() > primaryKey) {
 			return 1;
 		}
 		else {
@@ -187,9 +191,9 @@ public class AttachmentClp extends BaseModelImpl<Attachment>
 			return false;
 		}
 
-		long pk = attachment.getPrimaryKey();
+		long primaryKey = attachment.getPrimaryKey();
 
-		if (getPrimaryKey() == pk) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {

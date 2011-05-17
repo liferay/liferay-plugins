@@ -48,10 +48,10 @@ public class SVNRepositoryWrapper implements SVNRepository {
 	/**
 	* Sets the primary key of this s v n repository
 	*
-	* @param pk the primary key of this s v n repository
+	* @param primaryKey the primary key of this s v n repository
 	*/
-	public void setPrimaryKey(long pk) {
-		_svnRepository.setPrimaryKey(pk);
+	public void setPrimaryKey(long primaryKey) {
+		_svnRepository.setPrimaryKey(primaryKey);
 	}
 
 	/**
@@ -134,6 +134,10 @@ public class SVNRepositoryWrapper implements SVNRepository {
 
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _svnRepository.getPrimaryKeyObj();
+	}
+
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_svnRepository.setPrimaryKeyObj(primaryKeyObj);
 	}
 
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {

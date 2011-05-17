@@ -47,12 +47,16 @@ public class ProjectsEntryClp extends BaseModelImpl<ProjectsEntry>
 		return _projectsEntryId;
 	}
 
-	public void setPrimaryKey(long pk) {
-		setProjectsEntryId(pk);
+	public void setPrimaryKey(long primaryKey) {
+		setProjectsEntryId(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_projectsEntryId);
+	}
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public long getProjectsEntryId() {
@@ -206,9 +210,9 @@ public class ProjectsEntryClp extends BaseModelImpl<ProjectsEntry>
 			return false;
 		}
 
-		long pk = projectsEntry.getPrimaryKey();
+		long primaryKey = projectsEntry.getPrimaryKey();
 
-		if (getPrimaryKey() == pk) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {

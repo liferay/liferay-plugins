@@ -57,9 +57,9 @@ public interface KaleoTimerInstanceTokenModel extends BaseModel<KaleoTimerInstan
 	/**
 	 * Sets the primary key of this kaleo timer instance token
 	 *
-	 * @param pk the primary key of this kaleo timer instance token
+	 * @param primaryKey the primary key of this kaleo timer instance token
 	 */
-	public void setPrimaryKey(long pk);
+	public void setPrimaryKey(long primaryKey);
 
 	/**
 	 * Gets the kaleo timer instance token ID of this kaleo timer instance token.
@@ -338,6 +338,8 @@ public interface KaleoTimerInstanceTokenModel extends BaseModel<KaleoTimerInstan
 	public void setEscapedModel(boolean escapedModel);
 
 	public Serializable getPrimaryKeyObj();
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj);
 
 	public ExpandoBridge getExpandoBridge();
 

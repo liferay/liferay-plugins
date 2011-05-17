@@ -56,12 +56,16 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 		return _calendarBookingId;
 	}
 
-	public void setPrimaryKey(long pk) {
-		setCalendarBookingId(pk);
+	public void setPrimaryKey(long primaryKey) {
+		setCalendarBookingId(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_calendarBookingId);
+	}
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public String getUuid() {
@@ -712,9 +716,9 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 			return false;
 		}
 
-		long pk = calendarBooking.getPrimaryKey();
+		long primaryKey = calendarBooking.getPrimaryKey();
 
-		if (getPrimaryKey() == pk) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {

@@ -57,9 +57,9 @@ public interface KaleoTaskInstanceTokenModel extends BaseModel<KaleoTaskInstance
 	/**
 	 * Sets the primary key of this kaleo task instance token
 	 *
-	 * @param pk the primary key of this kaleo task instance token
+	 * @param primaryKey the primary key of this kaleo task instance token
 	 */
-	public void setPrimaryKey(long pk);
+	public void setPrimaryKey(long primaryKey);
 
 	/**
 	 * Gets the kaleo task instance token ID of this kaleo task instance token.
@@ -381,6 +381,8 @@ public interface KaleoTaskInstanceTokenModel extends BaseModel<KaleoTaskInstance
 	public void setEscapedModel(boolean escapedModel);
 
 	public Serializable getPrimaryKeyObj();
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj);
 
 	public ExpandoBridge getExpandoBridge();
 

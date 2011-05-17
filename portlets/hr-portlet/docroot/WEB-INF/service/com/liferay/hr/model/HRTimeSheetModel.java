@@ -56,9 +56,9 @@ public interface HRTimeSheetModel extends BaseModel<HRTimeSheet>, GroupedModel {
 	/**
 	 * Sets the primary key of this h r time sheet
 	 *
-	 * @param pk the primary key of this h r time sheet
+	 * @param primaryKey the primary key of this h r time sheet
 	 */
-	public void setPrimaryKey(long pk);
+	public void setPrimaryKey(long primaryKey);
 
 	/**
 	 * Gets the hr time sheet ID of this h r time sheet.
@@ -363,6 +363,8 @@ public interface HRTimeSheetModel extends BaseModel<HRTimeSheet>, GroupedModel {
 	public void setEscapedModel(boolean escapedModel);
 
 	public Serializable getPrimaryKeyObj();
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj);
 
 	public ExpandoBridge getExpandoBridge();
 

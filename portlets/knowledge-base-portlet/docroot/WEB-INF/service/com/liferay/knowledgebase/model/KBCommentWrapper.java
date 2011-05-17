@@ -48,10 +48,10 @@ public class KBCommentWrapper implements KBComment {
 	/**
 	* Sets the primary key of this k b comment
 	*
-	* @param pk the primary key of this k b comment
+	* @param primaryKey the primary key of this k b comment
 	*/
-	public void setPrimaryKey(long pk) {
-		_kbComment.setPrimaryKey(pk);
+	public void setPrimaryKey(long primaryKey) {
+		_kbComment.setPrimaryKey(primaryKey);
 	}
 
 	/**
@@ -334,6 +334,10 @@ public class KBCommentWrapper implements KBComment {
 
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _kbComment.getPrimaryKeyObj();
+	}
+
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_kbComment.setPrimaryKeyObj(primaryKeyObj);
 	}
 
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {

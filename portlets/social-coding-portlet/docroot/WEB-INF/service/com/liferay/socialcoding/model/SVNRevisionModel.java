@@ -54,9 +54,9 @@ public interface SVNRevisionModel extends BaseModel<SVNRevision> {
 	/**
 	 * Sets the primary key of this s v n revision
 	 *
-	 * @param pk the primary key of this s v n revision
+	 * @param primaryKey the primary key of this s v n revision
 	 */
-	public void setPrimaryKey(long pk);
+	public void setPrimaryKey(long primaryKey);
 
 	/**
 	 * Gets the svn revision ID of this s v n revision.
@@ -157,6 +157,8 @@ public interface SVNRevisionModel extends BaseModel<SVNRevision> {
 	public void setEscapedModel(boolean escapedModel);
 
 	public Serializable getPrimaryKeyObj();
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj);
 
 	public ExpandoBridge getExpandoBridge();
 

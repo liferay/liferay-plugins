@@ -99,12 +99,16 @@ public class HRClientModelImpl extends BaseModelImpl<HRClient>
 		return _hrClientId;
 	}
 
-	public void setPrimaryKey(long pk) {
-		setHrClientId(pk);
+	public void setPrimaryKey(long primaryKey) {
+		setHrClientId(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_hrClientId);
+	}
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public long getHrClientId() {
@@ -244,12 +248,12 @@ public class HRClientModelImpl extends BaseModelImpl<HRClient>
 	}
 
 	public int compareTo(HRClient hrClient) {
-		long pk = hrClient.getPrimaryKey();
+		long primaryKey = hrClient.getPrimaryKey();
 
-		if (getPrimaryKey() < pk) {
+		if (getPrimaryKey() < primaryKey) {
 			return -1;
 		}
-		else if (getPrimaryKey() > pk) {
+		else if (getPrimaryKey() > primaryKey) {
 			return 1;
 		}
 		else {
@@ -271,9 +275,9 @@ public class HRClientModelImpl extends BaseModelImpl<HRClient>
 			return false;
 		}
 
-		long pk = hrClient.getPrimaryKey();
+		long primaryKey = hrClient.getPrimaryKey();
 
-		if (getPrimaryKey() == pk) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {

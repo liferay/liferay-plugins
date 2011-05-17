@@ -16,6 +16,7 @@
 			<basic name="content" />
 			<transient name="fromUserUuid" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="toUserUuid" />
 		</attributes>
 	</mapped-superclass>
@@ -32,6 +33,7 @@
 			<basic name="message" />
 			<basic name="playSound" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>

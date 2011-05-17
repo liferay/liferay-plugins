@@ -48,10 +48,10 @@ public class HRTimeSheetWrapper implements HRTimeSheet {
 	/**
 	* Sets the primary key of this h r time sheet
 	*
-	* @param pk the primary key of this h r time sheet
+	* @param primaryKey the primary key of this h r time sheet
 	*/
-	public void setPrimaryKey(long pk) {
-		_hrTimeSheet.setPrimaryKey(pk);
+	public void setPrimaryKey(long primaryKey) {
+		_hrTimeSheet.setPrimaryKey(primaryKey);
 	}
 
 	/**
@@ -453,6 +453,10 @@ public class HRTimeSheetWrapper implements HRTimeSheet {
 
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _hrTimeSheet.getPrimaryKeyObj();
+	}
+
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_hrTimeSheet.setPrimaryKeyObj(primaryKeyObj);
 	}
 
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {

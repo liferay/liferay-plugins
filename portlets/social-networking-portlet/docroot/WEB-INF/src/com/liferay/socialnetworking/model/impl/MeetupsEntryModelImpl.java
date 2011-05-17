@@ -107,12 +107,16 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry>
 		return _meetupsEntryId;
 	}
 
-	public void setPrimaryKey(long pk) {
-		setMeetupsEntryId(pk);
+	public void setPrimaryKey(long primaryKey) {
+		setMeetupsEntryId(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_meetupsEntryId);
+	}
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public long getMeetupsEntryId() {
@@ -325,9 +329,9 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry>
 			return false;
 		}
 
-		long pk = meetupsEntry.getPrimaryKey();
+		long primaryKey = meetupsEntry.getPrimaryKey();
 
-		if (getPrimaryKey() == pk) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {

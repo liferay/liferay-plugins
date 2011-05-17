@@ -57,9 +57,9 @@ public interface KaleoConditionModel extends BaseModel<KaleoCondition>,
 	/**
 	 * Sets the primary key of this kaleo condition
 	 *
-	 * @param pk the primary key of this kaleo condition
+	 * @param primaryKey the primary key of this kaleo condition
 	 */
-	public void setPrimaryKey(long pk);
+	public void setPrimaryKey(long primaryKey);
 
 	/**
 	 * Gets the kaleo condition ID of this kaleo condition.
@@ -246,6 +246,8 @@ public interface KaleoConditionModel extends BaseModel<KaleoCondition>,
 	public void setEscapedModel(boolean escapedModel);
 
 	public Serializable getPrimaryKeyObj();
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj);
 
 	public ExpandoBridge getExpandoBridge();
 

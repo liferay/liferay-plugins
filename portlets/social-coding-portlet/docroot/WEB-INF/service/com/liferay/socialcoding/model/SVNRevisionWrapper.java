@@ -48,10 +48,10 @@ public class SVNRevisionWrapper implements SVNRevision {
 	/**
 	* Sets the primary key of this s v n revision
 	*
-	* @param pk the primary key of this s v n revision
+	* @param primaryKey the primary key of this s v n revision
 	*/
-	public void setPrimaryKey(long pk) {
-		_svnRevision.setPrimaryKey(pk);
+	public void setPrimaryKey(long primaryKey) {
+		_svnRevision.setPrimaryKey(primaryKey);
 	}
 
 	/**
@@ -188,6 +188,10 @@ public class SVNRevisionWrapper implements SVNRevision {
 
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _svnRevision.getPrimaryKeyObj();
+	}
+
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_svnRevision.setPrimaryKeyObj(primaryKeyObj);
 	}
 
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {

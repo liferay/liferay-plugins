@@ -23,6 +23,7 @@
 			<basic name="twitterScreenName" />
 			<basic name="lastStatusId" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="twitterUserUuid" />
 			<transient name="userUuid" />
 		</attributes>

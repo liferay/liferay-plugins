@@ -57,9 +57,9 @@ public interface MeetupsRegistrationModel extends AuditedModel,
 	/**
 	 * Sets the primary key of this meetups registration
 	 *
-	 * @param pk the primary key of this meetups registration
+	 * @param primaryKey the primary key of this meetups registration
 	 */
-	public void setPrimaryKey(long pk);
+	public void setPrimaryKey(long primaryKey);
 
 	/**
 	 * Gets the meetups registration ID of this meetups registration.
@@ -217,6 +217,8 @@ public interface MeetupsRegistrationModel extends AuditedModel,
 	public void setEscapedModel(boolean escapedModel);
 
 	public Serializable getPrimaryKeyObj();
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj);
 
 	public ExpandoBridge getExpandoBridge();
 

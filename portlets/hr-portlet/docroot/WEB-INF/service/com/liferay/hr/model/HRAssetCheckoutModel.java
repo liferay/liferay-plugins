@@ -57,9 +57,9 @@ public interface HRAssetCheckoutModel extends BaseModel<HRAssetCheckout>,
 	/**
 	 * Sets the primary key of this h r asset checkout
 	 *
-	 * @param pk the primary key of this h r asset checkout
+	 * @param primaryKey the primary key of this h r asset checkout
 	 */
-	public void setPrimaryKey(long pk);
+	public void setPrimaryKey(long primaryKey);
 
 	/**
 	 * Gets the hr asset checkout ID of this h r asset checkout.
@@ -273,6 +273,8 @@ public interface HRAssetCheckoutModel extends BaseModel<HRAssetCheckout>,
 	public void setEscapedModel(boolean escapedModel);
 
 	public Serializable getPrimaryKeyObj();
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj);
 
 	public ExpandoBridge getExpandoBridge();
 

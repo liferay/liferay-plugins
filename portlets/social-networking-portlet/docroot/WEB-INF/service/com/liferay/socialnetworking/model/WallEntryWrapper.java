@@ -48,10 +48,10 @@ public class WallEntryWrapper implements WallEntry {
 	/**
 	* Sets the primary key of this wall entry
 	*
-	* @param pk the primary key of this wall entry
+	* @param primaryKey the primary key of this wall entry
 	*/
-	public void setPrimaryKey(long pk) {
-		_wallEntry.setPrimaryKey(pk);
+	public void setPrimaryKey(long primaryKey) {
+		_wallEntry.setPrimaryKey(primaryKey);
 	}
 
 	/**
@@ -244,6 +244,10 @@ public class WallEntryWrapper implements WallEntry {
 
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _wallEntry.getPrimaryKeyObj();
+	}
+
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_wallEntry.setPrimaryKeyObj(primaryKeyObj);
 	}
 
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {

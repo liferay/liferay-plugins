@@ -48,10 +48,10 @@ public class KaleoLogWrapper implements KaleoLog {
 	/**
 	* Sets the primary key of this kaleo log
 	*
-	* @param pk the primary key of this kaleo log
+	* @param primaryKey the primary key of this kaleo log
 	*/
-	public void setPrimaryKey(long pk) {
-		_kaleoLog.setPrimaryKey(pk);
+	public void setPrimaryKey(long primaryKey) {
+		_kaleoLog.setPrimaryKey(primaryKey);
 	}
 
 	/**
@@ -634,6 +634,10 @@ public class KaleoLogWrapper implements KaleoLog {
 
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _kaleoLog.getPrimaryKeyObj();
+	}
+
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_kaleoLog.setPrimaryKeyObj(primaryKeyObj);
 	}
 
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {

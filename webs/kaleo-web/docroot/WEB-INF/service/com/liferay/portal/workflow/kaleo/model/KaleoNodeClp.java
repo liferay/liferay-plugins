@@ -45,12 +45,16 @@ public class KaleoNodeClp extends BaseModelImpl<KaleoNode> implements KaleoNode 
 		return _kaleoNodeId;
 	}
 
-	public void setPrimaryKey(long pk) {
-		setKaleoNodeId(pk);
+	public void setPrimaryKey(long primaryKey) {
+		setKaleoNodeId(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_kaleoNodeId);
+	}
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public long getKaleoNodeId() {
@@ -254,9 +258,9 @@ public class KaleoNodeClp extends BaseModelImpl<KaleoNode> implements KaleoNode 
 			return false;
 		}
 
-		long pk = kaleoNode.getPrimaryKey();
+		long primaryKey = kaleoNode.getPrimaryKey();
 
-		if (getPrimaryKey() == pk) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {

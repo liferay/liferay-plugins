@@ -48,10 +48,10 @@ public class WSRPConsumerWrapper implements WSRPConsumer {
 	/**
 	* Sets the primary key of this w s r p consumer
 	*
-	* @param pk the primary key of this w s r p consumer
+	* @param primaryKey the primary key of this w s r p consumer
 	*/
-	public void setPrimaryKey(long pk) {
-		_wsrpConsumer.setPrimaryKey(pk);
+	public void setPrimaryKey(long primaryKey) {
+		_wsrpConsumer.setPrimaryKey(primaryKey);
 	}
 
 	/**
@@ -280,6 +280,10 @@ public class WSRPConsumerWrapper implements WSRPConsumer {
 
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _wsrpConsumer.getPrimaryKeyObj();
+	}
+
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_wsrpConsumer.setPrimaryKeyObj(primaryKeyObj);
 	}
 
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {

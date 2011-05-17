@@ -48,10 +48,10 @@ public class HRAssetVendorWrapper implements HRAssetVendor {
 	/**
 	* Sets the primary key of this h r asset vendor
 	*
-	* @param pk the primary key of this h r asset vendor
+	* @param primaryKey the primary key of this h r asset vendor
 	*/
-	public void setPrimaryKey(long pk) {
-		_hrAssetVendor.setPrimaryKey(pk);
+	public void setPrimaryKey(long primaryKey) {
+		_hrAssetVendor.setPrimaryKey(primaryKey);
 	}
 
 	/**
@@ -262,6 +262,10 @@ public class HRAssetVendorWrapper implements HRAssetVendor {
 
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _hrAssetVendor.getPrimaryKeyObj();
+	}
+
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_hrAssetVendor.setPrimaryKeyObj(primaryKeyObj);
 	}
 
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {

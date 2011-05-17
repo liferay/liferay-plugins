@@ -27,6 +27,7 @@
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
@@ -56,6 +57,7 @@
 			</basic>
 			<transient name="hrUserUuid" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
@@ -85,6 +87,7 @@
 			<basic name="quantity" />
 			<basic name="individualPrice" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
@@ -105,6 +108,7 @@
 			<basic name="name" />
 			<basic name="description" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
@@ -124,6 +128,7 @@
 			<basic name="name" />
 			<basic name="description" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
@@ -143,6 +148,7 @@
 			<basic name="name" />
 			<basic name="description" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
@@ -165,6 +171,7 @@
 			<basic name="name" />
 			<basic name="description" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
@@ -183,6 +190,7 @@
 			</basic>
 			<basic name="organizationId" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
@@ -202,6 +210,7 @@
 			<basic name="name" />
 			<basic name="description" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
@@ -224,6 +233,7 @@
 			<basic name="name" />
 			<basic name="description" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
@@ -258,6 +268,7 @@
 			</basic>
 			<transient name="hrUserUuid" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="statusByUserUuid" />
 			<transient name="userUuid" />
 		</attributes>
@@ -278,6 +289,7 @@
 			<basic name="name" />
 			<basic name="description" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
@@ -301,6 +313,7 @@
 			</basic>
 			<basic name="conversionValue" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
@@ -320,6 +333,7 @@
 			<basic name="name" />
 			<basic name="description" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
@@ -342,6 +356,7 @@
 			<basic name="year" />
 			<basic name="paid" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
@@ -361,6 +376,7 @@
 			<basic name="name" />
 			<basic name="description" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
@@ -379,6 +395,7 @@
 			</basic>
 			<basic name="organizationId" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
@@ -422,6 +439,7 @@
 			<basic name="actualExpenses" />
 			<basic name="actualExpensesCurrencyCode" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
@@ -442,6 +460,7 @@
 			<basic name="hrProjectRoleId" />
 			<basic name="rate" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
@@ -461,6 +480,7 @@
 			<basic name="name" />
 			<basic name="description" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
@@ -483,6 +503,7 @@
 			<basic name="name" />
 			<basic name="description" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
@@ -528,6 +549,7 @@
 			<basic name="actualExpenses" />
 			<basic name="actualExpensesCurrencyCode" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
@@ -550,6 +572,7 @@
 			<basic name="name" />
 			<basic name="description" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
@@ -572,6 +595,7 @@
 			<basic name="name" />
 			<basic name="description" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
@@ -603,6 +627,7 @@
 			</basic>
 			<transient name="hrUserUuid" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="statusByUserUuid" />
 			<transient name="userUuid" />
 		</attributes>
@@ -626,6 +651,7 @@
 			<basic name="name" />
 			<basic name="description" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
@@ -656,6 +682,7 @@
 			<basic name="carryOverHoursAllowed" />
 			<transient name="hrUserUuid" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
@@ -675,6 +702,7 @@
 			<basic name="name" />
 			<basic name="description" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
@@ -703,6 +731,7 @@
 			</basic>
 			<transient name="hrUserUuid" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="statusByUserUuid" />
 			<transient name="userUuid" />
 		</attributes>
@@ -727,6 +756,7 @@
 			<basic name="hours" />
 			<transient name="hrUserUuid" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
@@ -746,6 +776,7 @@
 			<basic name="hrOfficeId" />
 			<basic name="hoursPerDay" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
@@ -779,6 +810,7 @@
 			<basic name="overtimeExempt" />
 			<transient name="hrUserUuid" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
@@ -808,6 +840,7 @@
 			<basic name="benefitsExempt" />
 			<basic name="overtimeExempt" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
@@ -831,6 +864,7 @@
 			<basic name="actualRate" />
 			<transient name="hrUserUuid" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
@@ -853,6 +887,7 @@
 			<basic name="hrUserId" />
 			<transient name="hrUserUuid" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
@@ -878,6 +913,7 @@
 			<basic name="hoursUsed" />
 			<transient name="hrUserUuid" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
@@ -900,6 +936,7 @@
 			<basic name="name" />
 			<basic name="description" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>

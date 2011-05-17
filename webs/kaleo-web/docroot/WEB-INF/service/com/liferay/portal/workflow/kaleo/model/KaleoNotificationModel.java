@@ -57,9 +57,9 @@ public interface KaleoNotificationModel extends BaseModel<KaleoNotification>,
 	/**
 	 * Sets the primary key of this kaleo notification
 	 *
-	 * @param pk the primary key of this kaleo notification
+	 * @param primaryKey the primary key of this kaleo notification
 	 */
-	public void setPrimaryKey(long pk);
+	public void setPrimaryKey(long primaryKey);
 
 	/**
 	 * Gets the kaleo notification ID of this kaleo notification.
@@ -321,6 +321,8 @@ public interface KaleoNotificationModel extends BaseModel<KaleoNotification>,
 	public void setEscapedModel(boolean escapedModel);
 
 	public Serializable getPrimaryKeyObj();
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj);
 
 	public ExpandoBridge getExpandoBridge();
 

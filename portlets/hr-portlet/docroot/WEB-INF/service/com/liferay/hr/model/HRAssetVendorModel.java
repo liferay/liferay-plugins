@@ -57,9 +57,9 @@ public interface HRAssetVendorModel extends BaseModel<HRAssetVendor>,
 	/**
 	 * Sets the primary key of this h r asset vendor
 	 *
-	 * @param pk the primary key of this h r asset vendor
+	 * @param primaryKey the primary key of this h r asset vendor
 	 */
-	public void setPrimaryKey(long pk);
+	public void setPrimaryKey(long primaryKey);
 
 	/**
 	 * Gets the hr asset vendor ID of this h r asset vendor.
@@ -218,6 +218,8 @@ public interface HRAssetVendorModel extends BaseModel<HRAssetVendor>,
 	public void setEscapedModel(boolean escapedModel);
 
 	public Serializable getPrimaryKeyObj();
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj);
 
 	public ExpandoBridge getExpandoBridge();
 

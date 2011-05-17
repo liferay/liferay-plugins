@@ -99,12 +99,16 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction>
 		return _jiraActionId;
 	}
 
-	public void setPrimaryKey(long pk) {
-		setJiraActionId(pk);
+	public void setPrimaryKey(long primaryKey) {
+		setJiraActionId(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_jiraActionId);
+	}
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public long getJiraActionId() {
@@ -261,9 +265,9 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction>
 			return false;
 		}
 
-		long pk = jiraAction.getPrimaryKey();
+		long primaryKey = jiraAction.getPrimaryKey();
 
-		if (getPrimaryKey() == pk) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {

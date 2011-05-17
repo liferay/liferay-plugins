@@ -46,12 +46,16 @@ public class KaleoNotificationClp extends BaseModelImpl<KaleoNotification>
 		return _kaleoNotificationId;
 	}
 
-	public void setPrimaryKey(long pk) {
-		setKaleoNotificationId(pk);
+	public void setPrimaryKey(long primaryKey) {
+		setKaleoNotificationId(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_kaleoNotificationId);
+	}
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public long getKaleoNotificationId() {
@@ -258,9 +262,9 @@ public class KaleoNotificationClp extends BaseModelImpl<KaleoNotification>
 			return false;
 		}
 
-		long pk = kaleoNotification.getPrimaryKey();
+		long primaryKey = kaleoNotification.getPrimaryKey();
 
-		if (getPrimaryKey() == pk) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {

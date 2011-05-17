@@ -53,6 +53,7 @@
 			<transient name="descriptionMap" />
 			<transient name="nameMap" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="statusByUserUuid" />
 			<transient name="titleMap" />
 			<transient name="userUuid" />
@@ -95,6 +96,7 @@
 			<basic name="secondReminder" />
 			<transient name="descriptionMap" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="titleMap" />
 			<transient name="userUuid" />
 		</attributes>
@@ -126,6 +128,7 @@
 			<transient name="descriptionMap" />
 			<transient name="nameMap" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>

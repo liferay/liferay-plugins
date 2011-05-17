@@ -56,9 +56,9 @@ public interface FeedModel extends AuditedModel, BaseModel<Feed> {
 	/**
 	 * Sets the primary key of this feed
 	 *
-	 * @param pk the primary key of this feed
+	 * @param primaryKey the primary key of this feed
 	 */
-	public void setPrimaryKey(long pk);
+	public void setPrimaryKey(long primaryKey);
 
 	/**
 	 * Gets the feed ID of this feed.
@@ -231,6 +231,8 @@ public interface FeedModel extends AuditedModel, BaseModel<Feed> {
 	public void setEscapedModel(boolean escapedModel);
 
 	public Serializable getPrimaryKeyObj();
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj);
 
 	public ExpandoBridge getExpandoBridge();
 

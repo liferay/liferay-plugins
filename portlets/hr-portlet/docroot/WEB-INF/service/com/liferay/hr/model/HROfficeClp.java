@@ -45,12 +45,16 @@ public class HROfficeClp extends BaseModelImpl<HROffice> implements HROffice {
 		return _hrOfficeId;
 	}
 
-	public void setPrimaryKey(long pk) {
-		setHrOfficeId(pk);
+	public void setPrimaryKey(long primaryKey) {
+		setHrOfficeId(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_hrOfficeId);
+	}
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public long getHrOfficeId() {
@@ -151,12 +155,12 @@ public class HROfficeClp extends BaseModelImpl<HROffice> implements HROffice {
 	}
 
 	public int compareTo(HROffice hrOffice) {
-		long pk = hrOffice.getPrimaryKey();
+		long primaryKey = hrOffice.getPrimaryKey();
 
-		if (getPrimaryKey() < pk) {
+		if (getPrimaryKey() < primaryKey) {
 			return -1;
 		}
-		else if (getPrimaryKey() > pk) {
+		else if (getPrimaryKey() > primaryKey) {
 			return 1;
 		}
 		else {
@@ -178,9 +182,9 @@ public class HROfficeClp extends BaseModelImpl<HROffice> implements HROffice {
 			return false;
 		}
 
-		long pk = hrOffice.getPrimaryKey();
+		long primaryKey = hrOffice.getPrimaryKey();
 
-		if (getPrimaryKey() == pk) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {

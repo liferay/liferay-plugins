@@ -52,9 +52,9 @@ public interface JIRAChangeItemModel extends BaseModel<JIRAChangeItem> {
 	/**
 	 * Sets the primary key of this j i r a change item
 	 *
-	 * @param pk the primary key of this j i r a change item
+	 * @param primaryKey the primary key of this j i r a change item
 	 */
-	public void setPrimaryKey(long pk);
+	public void setPrimaryKey(long primaryKey);
 
 	/**
 	 * Gets the jira change item ID of this j i r a change item.
@@ -172,6 +172,8 @@ public interface JIRAChangeItemModel extends BaseModel<JIRAChangeItem> {
 	public void setEscapedModel(boolean escapedModel);
 
 	public Serializable getPrimaryKeyObj();
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj);
 
 	public ExpandoBridge getExpandoBridge();
 

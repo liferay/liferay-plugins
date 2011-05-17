@@ -56,9 +56,9 @@ public interface HRExpenseModel extends BaseModel<HRExpense>, GroupedModel {
 	/**
 	 * Sets the primary key of this h r expense
 	 *
-	 * @param pk the primary key of this h r expense
+	 * @param primaryKey the primary key of this h r expense
 	 */
-	public void setPrimaryKey(long pk);
+	public void setPrimaryKey(long primaryKey);
 
 	/**
 	 * Gets the hr expense ID of this h r expense.
@@ -421,6 +421,8 @@ public interface HRExpenseModel extends BaseModel<HRExpense>, GroupedModel {
 	public void setEscapedModel(boolean escapedModel);
 
 	public Serializable getPrimaryKeyObj();
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj);
 
 	public ExpandoBridge getExpandoBridge();
 

@@ -98,12 +98,16 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 		return _wsrpConsumerPortletId;
 	}
 
-	public void setPrimaryKey(long pk) {
-		setWsrpConsumerPortletId(pk);
+	public void setPrimaryKey(long primaryKey) {
+		setWsrpConsumerPortletId(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_wsrpConsumerPortletId);
+	}
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public String getUuid() {
@@ -270,9 +274,9 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 			return false;
 		}
 
-		long pk = wsrpConsumerPortlet.getPrimaryKey();
+		long primaryKey = wsrpConsumerPortlet.getPrimaryKey();
 
-		if (getPrimaryKey() == pk) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {

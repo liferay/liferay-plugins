@@ -48,10 +48,10 @@ public class HRTaskStatusWrapper implements HRTaskStatus {
 	/**
 	* Sets the primary key of this h r task status
 	*
-	* @param pk the primary key of this h r task status
+	* @param primaryKey the primary key of this h r task status
 	*/
-	public void setPrimaryKey(long pk) {
-		_hrTaskStatus.setPrimaryKey(pk);
+	public void setPrimaryKey(long primaryKey) {
+		_hrTaskStatus.setPrimaryKey(primaryKey);
 	}
 
 	/**
@@ -280,6 +280,10 @@ public class HRTaskStatusWrapper implements HRTaskStatus {
 
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _hrTaskStatus.getPrimaryKeyObj();
+	}
+
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_hrTaskStatus.setPrimaryKeyObj(primaryKeyObj);
 	}
 
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {

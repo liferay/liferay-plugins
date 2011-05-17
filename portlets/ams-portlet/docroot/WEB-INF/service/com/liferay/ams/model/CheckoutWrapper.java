@@ -48,10 +48,10 @@ public class CheckoutWrapper implements Checkout {
 	/**
 	* Sets the primary key of this checkout
 	*
-	* @param pk the primary key of this checkout
+	* @param primaryKey the primary key of this checkout
 	*/
-	public void setPrimaryKey(long pk) {
-		_checkout.setPrimaryKey(pk);
+	public void setPrimaryKey(long primaryKey) {
+		_checkout.setPrimaryKey(primaryKey);
 	}
 
 	/**
@@ -280,6 +280,10 @@ public class CheckoutWrapper implements Checkout {
 
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _checkout.getPrimaryKeyObj();
+	}
+
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_checkout.setPrimaryKeyObj(primaryKeyObj);
 	}
 
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {

@@ -54,9 +54,9 @@ public interface JIRAChangeGroupModel extends BaseModel<JIRAChangeGroup> {
 	/**
 	 * Sets the primary key of this j i r a change group
 	 *
-	 * @param pk the primary key of this j i r a change group
+	 * @param primaryKey the primary key of this j i r a change group
 	 */
-	public void setPrimaryKey(long pk);
+	public void setPrimaryKey(long primaryKey);
 
 	/**
 	 * Gets the jira change group ID of this j i r a change group.
@@ -128,6 +128,8 @@ public interface JIRAChangeGroupModel extends BaseModel<JIRAChangeGroup> {
 	public void setEscapedModel(boolean escapedModel);
 
 	public Serializable getPrimaryKeyObj();
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj);
 
 	public ExpandoBridge getExpandoBridge();
 

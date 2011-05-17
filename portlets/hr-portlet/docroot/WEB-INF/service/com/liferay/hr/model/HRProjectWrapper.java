@@ -48,10 +48,10 @@ public class HRProjectWrapper implements HRProject {
 	/**
 	* Sets the primary key of this h r project
 	*
-	* @param pk the primary key of this h r project
+	* @param primaryKey the primary key of this h r project
 	*/
-	public void setPrimaryKey(long pk) {
-		_hrProject.setPrimaryKey(pk);
+	public void setPrimaryKey(long primaryKey) {
+		_hrProject.setPrimaryKey(primaryKey);
 	}
 
 	/**
@@ -553,6 +553,10 @@ public class HRProjectWrapper implements HRProject {
 
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _hrProject.getPrimaryKeyObj();
+	}
+
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_hrProject.setPrimaryKeyObj(primaryKeyObj);
 	}
 
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {

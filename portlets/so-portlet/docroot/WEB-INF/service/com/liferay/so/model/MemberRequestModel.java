@@ -57,9 +57,9 @@ public interface MemberRequestModel extends BaseModel<MemberRequest>,
 	/**
 	 * Sets the primary key of this member request
 	 *
-	 * @param pk the primary key of this member request
+	 * @param primaryKey the primary key of this member request
 	 */
-	public void setPrimaryKey(long pk);
+	public void setPrimaryKey(long primaryKey);
 
 	/**
 	 * Gets the member request ID of this member request.
@@ -274,6 +274,8 @@ public interface MemberRequestModel extends BaseModel<MemberRequest>,
 	public void setEscapedModel(boolean escapedModel);
 
 	public Serializable getPrimaryKeyObj();
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj);
 
 	public ExpandoBridge getExpandoBridge();
 

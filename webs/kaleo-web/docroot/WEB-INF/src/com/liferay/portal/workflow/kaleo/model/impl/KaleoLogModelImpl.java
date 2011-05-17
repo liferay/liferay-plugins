@@ -120,12 +120,16 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 		return _kaleoLogId;
 	}
 
-	public void setPrimaryKey(long pk) {
-		setKaleoLogId(pk);
+	public void setPrimaryKey(long primaryKey) {
+		setKaleoLogId(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_kaleoLogId);
+	}
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public long getKaleoLogId() {
@@ -517,9 +521,9 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 			return false;
 		}
 
-		long pk = kaleoLog.getPrimaryKey();
+		long primaryKey = kaleoLog.getPrimaryKey();
 
-		if (getPrimaryKey() == pk) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {

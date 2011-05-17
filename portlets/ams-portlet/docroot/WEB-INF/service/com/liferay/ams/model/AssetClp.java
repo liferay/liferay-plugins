@@ -45,12 +45,16 @@ public class AssetClp extends BaseModelImpl<Asset> implements Asset {
 		return _assetId;
 	}
 
-	public void setPrimaryKey(long pk) {
-		setAssetId(pk);
+	public void setPrimaryKey(long primaryKey) {
+		setAssetId(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_assetId);
+	}
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public long getAssetId() {
@@ -173,12 +177,12 @@ public class AssetClp extends BaseModelImpl<Asset> implements Asset {
 	}
 
 	public int compareTo(Asset asset) {
-		long pk = asset.getPrimaryKey();
+		long primaryKey = asset.getPrimaryKey();
 
-		if (getPrimaryKey() < pk) {
+		if (getPrimaryKey() < primaryKey) {
 			return -1;
 		}
-		else if (getPrimaryKey() > pk) {
+		else if (getPrimaryKey() > primaryKey) {
 			return 1;
 		}
 		else {
@@ -200,9 +204,9 @@ public class AssetClp extends BaseModelImpl<Asset> implements Asset {
 			return false;
 		}
 
-		long pk = asset.getPrimaryKey();
+		long primaryKey = asset.getPrimaryKey();
 
-		if (getPrimaryKey() == pk) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {

@@ -47,12 +47,16 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 		return _kbArticleId;
 	}
 
-	public void setPrimaryKey(long pk) {
-		setKbArticleId(pk);
+	public void setPrimaryKey(long primaryKey) {
+		setKbArticleId(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_kbArticleId);
+	}
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public String getUuid() {
@@ -421,9 +425,9 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 			return false;
 		}
 
-		long pk = kbArticle.getPrimaryKey();
+		long primaryKey = kbArticle.getPrimaryKey();
 
-		if (getPrimaryKey() == pk) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {

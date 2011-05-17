@@ -48,10 +48,10 @@ public class HRHolidayWrapper implements HRHoliday {
 	/**
 	* Sets the primary key of this h r holiday
 	*
-	* @param pk the primary key of this h r holiday
+	* @param primaryKey the primary key of this h r holiday
 	*/
-	public void setPrimaryKey(long pk) {
-		_hrHoliday.setPrimaryKey(pk);
+	public void setPrimaryKey(long primaryKey) {
+		_hrHoliday.setPrimaryKey(primaryKey);
 	}
 
 	/**
@@ -325,6 +325,10 @@ public class HRHolidayWrapper implements HRHoliday {
 
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _hrHoliday.getPrimaryKeyObj();
+	}
+
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_hrHoliday.setPrimaryKeyObj(primaryKeyObj);
 	}
 
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {

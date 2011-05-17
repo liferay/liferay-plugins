@@ -339,6 +339,15 @@ public class MicroblogsEntryLocalServiceUtil {
 		return getService().getUserMicroblogsEntriesCount(userId, type);
 	}
 
+	public static void updateAsset(
+		com.liferay.microblogs.model.MicroblogsEntry microblogsEntry,
+		long[] assetCategoryIds, java.lang.String[] assetTagNames)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService()
+			.updateAsset(microblogsEntry, assetCategoryIds, assetTagNames);
+	}
+
 	public static com.liferay.microblogs.model.MicroblogsEntry updateMicroblogsEntry(
 		long microblogsEntryId, java.lang.String content,
 		int socialRelationType,

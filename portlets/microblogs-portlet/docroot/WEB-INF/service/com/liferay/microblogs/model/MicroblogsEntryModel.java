@@ -57,9 +57,9 @@ public interface MicroblogsEntryModel extends AuditedModel,
 	/**
 	 * Sets the primary key of this microblogs entry
 	 *
-	 * @param pk the primary key of this microblogs entry
+	 * @param primaryKey the primary key of this microblogs entry
 	 */
-	public void setPrimaryKey(long pk);
+	public void setPrimaryKey(long primaryKey);
 
 	/**
 	 * Gets the microblogs entry ID of this microblogs entry.
@@ -260,6 +260,8 @@ public interface MicroblogsEntryModel extends AuditedModel,
 	public void setEscapedModel(boolean escapedModel);
 
 	public Serializable getPrimaryKeyObj();
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj);
 
 	public ExpandoBridge getExpandoBridge();
 

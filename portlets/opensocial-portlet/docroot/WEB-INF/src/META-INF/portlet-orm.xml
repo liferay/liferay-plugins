@@ -24,6 +24,7 @@
 			<basic name="url" />
 			<basic name="portletCategoryNames" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 		</attributes>
 	</mapped-superclass>
 	<mapped-superclass class="com.liferay.opensocial.model.impl.OAuthConsumerModelImpl">
@@ -43,6 +44,7 @@
 			<basic name="keyType" />
 			<transient name="OAuthConsumerId" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 		</attributes>
 	</mapped-superclass>
 	<mapped-superclass class="com.liferay.opensocial.model.impl.OAuthTokenModelImpl">
@@ -67,6 +69,7 @@
 			<basic name="expiration" />
 			<transient name="OAuthTokenId" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>

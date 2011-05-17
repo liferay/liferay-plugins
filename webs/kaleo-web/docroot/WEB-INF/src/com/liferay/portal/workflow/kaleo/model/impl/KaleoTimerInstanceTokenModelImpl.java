@@ -107,12 +107,16 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 		return _kaleoTimerInstanceTokenId;
 	}
 
-	public void setPrimaryKey(long pk) {
-		setKaleoTimerInstanceTokenId(pk);
+	public void setPrimaryKey(long primaryKey) {
+		setKaleoTimerInstanceTokenId(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_kaleoTimerInstanceTokenId);
+	}
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public long getKaleoTimerInstanceTokenId() {
@@ -382,9 +386,9 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 			return false;
 		}
 
-		long pk = kaleoTimerInstanceToken.getPrimaryKey();
+		long primaryKey = kaleoTimerInstanceToken.getPrimaryKey();
 
-		if (getPrimaryKey() == pk) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {

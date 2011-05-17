@@ -55,12 +55,16 @@ public class CalendarEventClp extends BaseModelImpl<CalendarEvent>
 		return _calendarEventId;
 	}
 
-	public void setPrimaryKey(long pk) {
-		setCalendarEventId(pk);
+	public void setPrimaryKey(long primaryKey) {
+		setCalendarEventId(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_calendarEventId);
+	}
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public String getUuid() {
@@ -503,9 +507,9 @@ public class CalendarEventClp extends BaseModelImpl<CalendarEvent>
 			return false;
 		}
 
-		long pk = calendarEvent.getPrimaryKey();
+		long primaryKey = calendarEvent.getPrimaryKey();
 
-		if (getPrimaryKey() == pk) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {

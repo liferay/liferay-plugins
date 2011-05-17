@@ -57,9 +57,9 @@ public interface HREmploymentTypeModel extends BaseModel<HREmploymentType>,
 	/**
 	 * Sets the primary key of this h r employment type
 	 *
-	 * @param pk the primary key of this h r employment type
+	 * @param primaryKey the primary key of this h r employment type
 	 */
-	public void setPrimaryKey(long pk);
+	public void setPrimaryKey(long primaryKey);
 
 	/**
 	 * Gets the hr employment type ID of this h r employment type.
@@ -233,6 +233,8 @@ public interface HREmploymentTypeModel extends BaseModel<HREmploymentType>,
 	public void setEscapedModel(boolean escapedModel);
 
 	public Serializable getPrimaryKeyObj();
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj);
 
 	public ExpandoBridge getExpandoBridge();
 

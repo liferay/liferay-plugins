@@ -110,12 +110,16 @@ public class HRHolidayModelImpl extends BaseModelImpl<HRHoliday>
 		return _hrHolidayId;
 	}
 
-	public void setPrimaryKey(long pk) {
-		setHrHolidayId(pk);
+	public void setPrimaryKey(long primaryKey) {
+		setHrHolidayId(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_hrHolidayId);
+	}
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public long getHrHolidayId() {
@@ -286,12 +290,12 @@ public class HRHolidayModelImpl extends BaseModelImpl<HRHoliday>
 	}
 
 	public int compareTo(HRHoliday hrHoliday) {
-		long pk = hrHoliday.getPrimaryKey();
+		long primaryKey = hrHoliday.getPrimaryKey();
 
-		if (getPrimaryKey() < pk) {
+		if (getPrimaryKey() < primaryKey) {
 			return -1;
 		}
-		else if (getPrimaryKey() > pk) {
+		else if (getPrimaryKey() > primaryKey) {
 			return 1;
 		}
 		else {
@@ -313,9 +317,9 @@ public class HRHolidayModelImpl extends BaseModelImpl<HRHoliday>
 			return false;
 		}
 
-		long pk = hrHoliday.getPrimaryKey();
+		long primaryKey = hrHoliday.getPrimaryKey();
 
-		if (getPrimaryKey() == pk) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {

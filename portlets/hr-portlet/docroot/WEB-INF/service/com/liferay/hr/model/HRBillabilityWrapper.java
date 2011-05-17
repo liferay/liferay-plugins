@@ -48,10 +48,10 @@ public class HRBillabilityWrapper implements HRBillability {
 	/**
 	* Sets the primary key of this h r billability
 	*
-	* @param pk the primary key of this h r billability
+	* @param primaryKey the primary key of this h r billability
 	*/
-	public void setPrimaryKey(long pk) {
-		_hrBillability.setPrimaryKey(pk);
+	public void setPrimaryKey(long primaryKey) {
+		_hrBillability.setPrimaryKey(primaryKey);
 	}
 
 	/**
@@ -280,6 +280,10 @@ public class HRBillabilityWrapper implements HRBillability {
 
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _hrBillability.getPrimaryKeyObj();
+	}
+
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_hrBillability.setPrimaryKeyObj(primaryKeyObj);
 	}
 
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {

@@ -91,12 +91,16 @@ public class SVNRepositoryModelImpl extends BaseModelImpl<SVNRepository>
 		return _svnRepositoryId;
 	}
 
-	public void setPrimaryKey(long pk) {
-		setSvnRepositoryId(pk);
+	public void setPrimaryKey(long primaryKey) {
+		setSvnRepositoryId(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_svnRepositoryId);
+	}
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public long getSvnRepositoryId() {
@@ -198,9 +202,9 @@ public class SVNRepositoryModelImpl extends BaseModelImpl<SVNRepository>
 			return false;
 		}
 
-		long pk = svnRepository.getPrimaryKey();
+		long primaryKey = svnRepository.getPrimaryKey();
 
-		if (getPrimaryKey() == pk) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {

@@ -57,9 +57,9 @@ public interface HRTimeOffTypeModel extends BaseModel<HRTimeOffType>,
 	/**
 	 * Sets the primary key of this h r time off type
 	 *
-	 * @param pk the primary key of this h r time off type
+	 * @param primaryKey the primary key of this h r time off type
 	 */
-	public void setPrimaryKey(long pk);
+	public void setPrimaryKey(long primaryKey);
 
 	/**
 	 * Gets the hr time off type ID of this h r time off type.
@@ -218,6 +218,8 @@ public interface HRTimeOffTypeModel extends BaseModel<HRTimeOffType>,
 	public void setEscapedModel(boolean escapedModel);
 
 	public Serializable getPrimaryKeyObj();
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj);
 
 	public ExpandoBridge getExpandoBridge();
 

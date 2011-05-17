@@ -48,10 +48,10 @@ public class TypeWrapper implements Type {
 	/**
 	* Sets the primary key of this type
 	*
-	* @param pk the primary key of this type
+	* @param primaryKey the primary key of this type
 	*/
-	public void setPrimaryKey(long pk) {
-		_type.setPrimaryKey(pk);
+	public void setPrimaryKey(long primaryKey) {
+		_type.setPrimaryKey(primaryKey);
 	}
 
 	/**
@@ -134,6 +134,10 @@ public class TypeWrapper implements Type {
 
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _type.getPrimaryKeyObj();
+	}
+
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_type.setPrimaryKeyObj(primaryKeyObj);
 	}
 
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {

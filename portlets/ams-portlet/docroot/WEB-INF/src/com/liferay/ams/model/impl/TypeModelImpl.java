@@ -90,12 +90,16 @@ public class TypeModelImpl extends BaseModelImpl<Type> implements TypeModel {
 		return _typeId;
 	}
 
-	public void setPrimaryKey(long pk) {
-		setTypeId(pk);
+	public void setPrimaryKey(long primaryKey) {
+		setTypeId(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_typeId);
+	}
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public long getTypeId() {
@@ -188,9 +192,9 @@ public class TypeModelImpl extends BaseModelImpl<Type> implements TypeModel {
 			return false;
 		}
 
-		long pk = type.getPrimaryKey();
+		long primaryKey = type.getPrimaryKey();
 
-		if (getPrimaryKey() == pk) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {

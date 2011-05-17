@@ -56,9 +56,9 @@ public interface WallEntryModel extends BaseModel<WallEntry>, GroupedModel {
 	/**
 	 * Sets the primary key of this wall entry
 	 *
-	 * @param pk the primary key of this wall entry
+	 * @param primaryKey the primary key of this wall entry
 	 */
-	public void setPrimaryKey(long pk);
+	public void setPrimaryKey(long primaryKey);
 
 	/**
 	 * Gets the wall entry ID of this wall entry.
@@ -202,6 +202,8 @@ public interface WallEntryModel extends BaseModel<WallEntry>, GroupedModel {
 	public void setEscapedModel(boolean escapedModel);
 
 	public Serializable getPrimaryKeyObj();
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj);
 
 	public ExpandoBridge getExpandoBridge();
 

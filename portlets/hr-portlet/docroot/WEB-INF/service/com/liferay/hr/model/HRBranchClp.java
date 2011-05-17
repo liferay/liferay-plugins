@@ -45,12 +45,16 @@ public class HRBranchClp extends BaseModelImpl<HRBranch> implements HRBranch {
 		return _hrBranchId;
 	}
 
-	public void setPrimaryKey(long pk) {
-		setHrBranchId(pk);
+	public void setPrimaryKey(long primaryKey) {
+		setHrBranchId(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_hrBranchId);
+	}
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public long getHrBranchId() {
@@ -151,12 +155,12 @@ public class HRBranchClp extends BaseModelImpl<HRBranch> implements HRBranch {
 	}
 
 	public int compareTo(HRBranch hrBranch) {
-		long pk = hrBranch.getPrimaryKey();
+		long primaryKey = hrBranch.getPrimaryKey();
 
-		if (getPrimaryKey() < pk) {
+		if (getPrimaryKey() < primaryKey) {
 			return -1;
 		}
-		else if (getPrimaryKey() > pk) {
+		else if (getPrimaryKey() > primaryKey) {
 			return 1;
 		}
 		else {
@@ -178,9 +182,9 @@ public class HRBranchClp extends BaseModelImpl<HRBranch> implements HRBranch {
 			return false;
 		}
 
-		long pk = hrBranch.getPrimaryKey();
+		long primaryKey = hrBranch.getPrimaryKey();
 
-		if (getPrimaryKey() == pk) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {

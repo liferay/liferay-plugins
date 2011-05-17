@@ -56,9 +56,9 @@ public interface HRBranchModel extends BaseModel<HRBranch>, GroupedModel {
 	/**
 	 * Sets the primary key of this h r branch
 	 *
-	 * @param pk the primary key of this h r branch
+	 * @param primaryKey the primary key of this h r branch
 	 */
-	public void setPrimaryKey(long pk);
+	public void setPrimaryKey(long primaryKey);
 
 	/**
 	 * Gets the hr branch ID of this h r branch.
@@ -201,6 +201,8 @@ public interface HRBranchModel extends BaseModel<HRBranch>, GroupedModel {
 	public void setEscapedModel(boolean escapedModel);
 
 	public Serializable getPrimaryKeyObj();
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj);
 
 	public ExpandoBridge getExpandoBridge();
 

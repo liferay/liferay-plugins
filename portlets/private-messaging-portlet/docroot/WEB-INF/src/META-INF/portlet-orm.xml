@@ -25,6 +25,7 @@
 			</basic>
 			<basic name="deleted" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>

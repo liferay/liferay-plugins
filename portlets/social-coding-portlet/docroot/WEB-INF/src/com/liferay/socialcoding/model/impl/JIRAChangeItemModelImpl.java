@@ -93,12 +93,16 @@ public class JIRAChangeItemModelImpl extends BaseModelImpl<JIRAChangeItem>
 		return _jiraChangeItemId;
 	}
 
-	public void setPrimaryKey(long pk) {
-		setJiraChangeItemId(pk);
+	public void setPrimaryKey(long primaryKey) {
+		setJiraChangeItemId(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_jiraChangeItemId);
+	}
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public long getJiraChangeItemId() {
@@ -223,12 +227,12 @@ public class JIRAChangeItemModelImpl extends BaseModelImpl<JIRAChangeItem>
 	}
 
 	public int compareTo(JIRAChangeItem jiraChangeItem) {
-		long pk = jiraChangeItem.getPrimaryKey();
+		long primaryKey = jiraChangeItem.getPrimaryKey();
 
-		if (getPrimaryKey() < pk) {
+		if (getPrimaryKey() < primaryKey) {
 			return -1;
 		}
-		else if (getPrimaryKey() > pk) {
+		else if (getPrimaryKey() > primaryKey) {
 			return 1;
 		}
 		else {
@@ -250,9 +254,9 @@ public class JIRAChangeItemModelImpl extends BaseModelImpl<JIRAChangeItem>
 			return false;
 		}
 
-		long pk = jiraChangeItem.getPrimaryKey();
+		long primaryKey = jiraChangeItem.getPrimaryKey();
 
-		if (getPrimaryKey() == pk) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {

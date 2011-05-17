@@ -48,10 +48,10 @@ public class KaleoDefinitionWrapper implements KaleoDefinition {
 	/**
 	* Sets the primary key of this kaleo definition
 	*
-	* @param pk the primary key of this kaleo definition
+	* @param primaryKey the primary key of this kaleo definition
 	*/
-	public void setPrimaryKey(long pk) {
-		_kaleoDefinition.setPrimaryKey(pk);
+	public void setPrimaryKey(long primaryKey) {
+		_kaleoDefinition.setPrimaryKey(primaryKey);
 	}
 
 	/**
@@ -426,6 +426,10 @@ public class KaleoDefinitionWrapper implements KaleoDefinition {
 
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _kaleoDefinition.getPrimaryKeyObj();
+	}
+
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_kaleoDefinition.setPrimaryKeyObj(primaryKeyObj);
 	}
 
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {

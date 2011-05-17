@@ -98,12 +98,16 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 		return _feedId;
 	}
 
-	public void setPrimaryKey(long pk) {
-		setFeedId(pk);
+	public void setPrimaryKey(long primaryKey) {
+		setFeedId(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_feedId);
+	}
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public long getFeedId() {
@@ -275,12 +279,12 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 	}
 
 	public int compareTo(Feed feed) {
-		long pk = feed.getPrimaryKey();
+		long primaryKey = feed.getPrimaryKey();
 
-		if (getPrimaryKey() < pk) {
+		if (getPrimaryKey() < primaryKey) {
 			return -1;
 		}
-		else if (getPrimaryKey() > pk) {
+		else if (getPrimaryKey() > primaryKey) {
 			return 1;
 		}
 		else {
@@ -302,9 +306,9 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 			return false;
 		}
 
-		long pk = feed.getPrimaryKey();
+		long primaryKey = feed.getPrimaryKey();
 
-		if (getPrimaryKey() == pk) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {

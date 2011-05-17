@@ -54,9 +54,9 @@ public interface WSRPConsumerModel extends BaseModel<WSRPConsumer> {
 	/**
 	 * Sets the primary key of this w s r p consumer
 	 *
-	 * @param pk the primary key of this w s r p consumer
+	 * @param primaryKey the primary key of this w s r p consumer
 	 */
-	public void setPrimaryKey(long pk);
+	public void setPrimaryKey(long primaryKey);
 
 	/**
 	 * Gets the uuid of this w s r p consumer.
@@ -233,6 +233,8 @@ public interface WSRPConsumerModel extends BaseModel<WSRPConsumer> {
 	public void setEscapedModel(boolean escapedModel);
 
 	public Serializable getPrimaryKeyObj();
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj);
 
 	public ExpandoBridge getExpandoBridge();
 

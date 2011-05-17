@@ -56,9 +56,9 @@ public interface DefinitionModel extends BaseModel<Definition>, GroupedModel {
 	/**
 	 * Sets the primary key of this definition
 	 *
-	 * @param pk the primary key of this definition
+	 * @param primaryKey the primary key of this definition
 	 */
-	public void setPrimaryKey(long pk);
+	public void setPrimaryKey(long primaryKey);
 
 	/**
 	 * Gets the definition ID of this definition.
@@ -273,6 +273,8 @@ public interface DefinitionModel extends BaseModel<Definition>, GroupedModel {
 	public void setEscapedModel(boolean escapedModel);
 
 	public Serializable getPrimaryKeyObj();
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj);
 
 	public ExpandoBridge getExpandoBridge();
 

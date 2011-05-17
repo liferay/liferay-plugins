@@ -48,10 +48,10 @@ public class KBTemplateWrapper implements KBTemplate {
 	/**
 	* Sets the primary key of this k b template
 	*
-	* @param pk the primary key of this k b template
+	* @param primaryKey the primary key of this k b template
 	*/
-	public void setPrimaryKey(long pk) {
-		_kbTemplate.setPrimaryKey(pk);
+	public void setPrimaryKey(long primaryKey) {
+		_kbTemplate.setPrimaryKey(primaryKey);
 	}
 
 	/**
@@ -325,6 +325,10 @@ public class KBTemplateWrapper implements KBTemplate {
 
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _kbTemplate.getPrimaryKeyObj();
+	}
+
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_kbTemplate.setPrimaryKeyObj(primaryKeyObj);
 	}
 
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {

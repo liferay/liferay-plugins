@@ -57,9 +57,9 @@ public interface HRAssetDefinitionModel extends BaseModel<HRAssetDefinition>,
 	/**
 	 * Sets the primary key of this h r asset definition
 	 *
-	 * @param pk the primary key of this h r asset definition
+	 * @param primaryKey the primary key of this h r asset definition
 	 */
-	public void setPrimaryKey(long pk);
+	public void setPrimaryKey(long primaryKey);
 
 	/**
 	 * Gets the hr asset definition ID of this h r asset definition.
@@ -302,6 +302,8 @@ public interface HRAssetDefinitionModel extends BaseModel<HRAssetDefinition>,
 	public void setEscapedModel(boolean escapedModel);
 
 	public Serializable getPrimaryKeyObj();
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj);
 
 	public ExpandoBridge getExpandoBridge();
 

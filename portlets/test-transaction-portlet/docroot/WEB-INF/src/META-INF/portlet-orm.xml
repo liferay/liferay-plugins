@@ -14,6 +14,7 @@
 				<column name="TEXT_" />
 			</basic>
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 		</attributes>
 	</mapped-superclass>
 	<entity class="com.liferay.testtransaction.model.impl.BarImpl" name="Bar">

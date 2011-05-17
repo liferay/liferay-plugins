@@ -48,10 +48,10 @@ public class WSRPProducerWrapper implements WSRPProducer {
 	/**
 	* Sets the primary key of this w s r p producer
 	*
-	* @param pk the primary key of this w s r p producer
+	* @param primaryKey the primary key of this w s r p producer
 	*/
-	public void setPrimaryKey(long pk) {
-		_wsrpProducer.setPrimaryKey(pk);
+	public void setPrimaryKey(long primaryKey) {
+		_wsrpProducer.setPrimaryKey(primaryKey);
 	}
 
 	/**
@@ -242,6 +242,10 @@ public class WSRPProducerWrapper implements WSRPProducer {
 
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _wsrpProducer.getPrimaryKeyObj();
+	}
+
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_wsrpProducer.setPrimaryKeyObj(primaryKeyObj);
 	}
 
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {

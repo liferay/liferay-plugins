@@ -56,9 +56,9 @@ public interface HRHolidayModel extends BaseModel<HRHoliday>, GroupedModel {
 	/**
 	 * Sets the primary key of this h r holiday
 	 *
-	 * @param pk the primary key of this h r holiday
+	 * @param primaryKey the primary key of this h r holiday
 	 */
-	public void setPrimaryKey(long pk);
+	public void setPrimaryKey(long primaryKey);
 
 	/**
 	 * Gets the hr holiday ID of this h r holiday.
@@ -266,6 +266,8 @@ public interface HRHolidayModel extends BaseModel<HRHoliday>, GroupedModel {
 	public void setEscapedModel(boolean escapedModel);
 
 	public Serializable getPrimaryKeyObj();
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj);
 
 	public ExpandoBridge getExpandoBridge();
 

@@ -48,10 +48,10 @@ public class HRExpenseTypeWrapper implements HRExpenseType {
 	/**
 	* Sets the primary key of this h r expense type
 	*
-	* @param pk the primary key of this h r expense type
+	* @param primaryKey the primary key of this h r expense type
 	*/
-	public void setPrimaryKey(long pk) {
-		_hrExpenseType.setPrimaryKey(pk);
+	public void setPrimaryKey(long primaryKey) {
+		_hrExpenseType.setPrimaryKey(primaryKey);
 	}
 
 	/**
@@ -262,6 +262,10 @@ public class HRExpenseTypeWrapper implements HRExpenseType {
 
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _hrExpenseType.getPrimaryKeyObj();
+	}
+
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_hrExpenseType.setPrimaryKeyObj(primaryKeyObj);
 	}
 
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {

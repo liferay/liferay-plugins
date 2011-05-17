@@ -48,10 +48,10 @@ public class CalendarBookingWrapper implements CalendarBooking {
 	/**
 	* Sets the primary key of this calendar booking
 	*
-	* @param pk the primary key of this calendar booking
+	* @param primaryKey the primary key of this calendar booking
 	*/
-	public void setPrimaryKey(long pk) {
-		_calendarBooking.setPrimaryKey(pk);
+	public void setPrimaryKey(long primaryKey) {
+		_calendarBooking.setPrimaryKey(primaryKey);
 	}
 
 	/**
@@ -918,6 +918,10 @@ public class CalendarBookingWrapper implements CalendarBooking {
 
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _calendarBooking.getPrimaryKeyObj();
+	}
+
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_calendarBooking.setPrimaryKeyObj(primaryKeyObj);
 	}
 
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {

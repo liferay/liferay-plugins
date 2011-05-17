@@ -57,9 +57,9 @@ public interface HRAssetProductModel extends BaseModel<HRAssetProduct>,
 	/**
 	 * Sets the primary key of this h r asset product
 	 *
-	 * @param pk the primary key of this h r asset product
+	 * @param primaryKey the primary key of this h r asset product
 	 */
-	public void setPrimaryKey(long pk);
+	public void setPrimaryKey(long primaryKey);
 
 	/**
 	 * Gets the hr asset product ID of this h r asset product.
@@ -232,6 +232,8 @@ public interface HRAssetProductModel extends BaseModel<HRAssetProduct>,
 	public void setEscapedModel(boolean escapedModel);
 
 	public Serializable getPrimaryKeyObj();
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj);
 
 	public ExpandoBridge getExpandoBridge();
 

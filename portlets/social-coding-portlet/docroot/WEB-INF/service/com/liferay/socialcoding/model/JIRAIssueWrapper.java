@@ -48,10 +48,10 @@ public class JIRAIssueWrapper implements JIRAIssue {
 	/**
 	* Sets the primary key of this j i r a issue
 	*
-	* @param pk the primary key of this j i r a issue
+	* @param primaryKey the primary key of this j i r a issue
 	*/
-	public void setPrimaryKey(long pk) {
-		_jiraIssue.setPrimaryKey(pk);
+	public void setPrimaryKey(long primaryKey) {
+		_jiraIssue.setPrimaryKey(primaryKey);
 	}
 
 	/**
@@ -278,6 +278,10 @@ public class JIRAIssueWrapper implements JIRAIssue {
 
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _jiraIssue.getPrimaryKeyObj();
+	}
+
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_jiraIssue.setPrimaryKeyObj(primaryKeyObj);
 	}
 
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {

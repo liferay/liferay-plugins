@@ -105,12 +105,16 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 		return _kbCommentId;
 	}
 
-	public void setPrimaryKey(long pk) {
-		setKbCommentId(pk);
+	public void setPrimaryKey(long primaryKey) {
+		setKbCommentId(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_kbCommentId);
+	}
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public String getUuid() {
@@ -365,9 +369,9 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 			return false;
 		}
 
-		long pk = kbComment.getPrimaryKey();
+		long primaryKey = kbComment.getPrimaryKey();
 
-		if (getPrimaryKey() == pk) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {

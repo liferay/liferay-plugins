@@ -49,10 +49,10 @@ public class HRProjectBillingRateWrapper implements HRProjectBillingRate {
 	/**
 	* Sets the primary key of this h r project billing rate
 	*
-	* @param pk the primary key of this h r project billing rate
+	* @param primaryKey the primary key of this h r project billing rate
 	*/
-	public void setPrimaryKey(long pk) {
-		_hrProjectBillingRate.setPrimaryKey(pk);
+	public void setPrimaryKey(long primaryKey) {
+		_hrProjectBillingRate.setPrimaryKey(primaryKey);
 	}
 
 	/**
@@ -281,6 +281,10 @@ public class HRProjectBillingRateWrapper implements HRProjectBillingRate {
 
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _hrProjectBillingRate.getPrimaryKeyObj();
+	}
+
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_hrProjectBillingRate.setPrimaryKeyObj(primaryKeyObj);
 	}
 
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {

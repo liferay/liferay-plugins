@@ -44,12 +44,16 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 		return _wsrpProducerId;
 	}
 
-	public void setPrimaryKey(long pk) {
-		setWsrpProducerId(pk);
+	public void setPrimaryKey(long primaryKey) {
+		setWsrpProducerId(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_wsrpProducerId);
+	}
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public String getUuid() {
@@ -181,9 +185,9 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 			return false;
 		}
 
-		long pk = wsrpProducer.getPrimaryKey();
+		long primaryKey = wsrpProducer.getPrimaryKey();
 
-		if (getPrimaryKey() == pk) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {

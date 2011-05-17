@@ -59,9 +59,9 @@ public interface CalendarBookingModel extends BaseModel<CalendarBooking>,
 	/**
 	 * Sets the primary key of this calendar booking
 	 *
-	 * @param pk the primary key of this calendar booking
+	 * @param primaryKey the primary key of this calendar booking
 	 */
-	public void setPrimaryKey(long pk);
+	public void setPrimaryKey(long primaryKey);
 
 	/**
 	 * Gets the uuid of this calendar booking.
@@ -719,6 +719,8 @@ public interface CalendarBookingModel extends BaseModel<CalendarBooking>,
 	public void setEscapedModel(boolean escapedModel);
 
 	public Serializable getPrimaryKeyObj();
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj);
 
 	public ExpandoBridge getExpandoBridge();
 

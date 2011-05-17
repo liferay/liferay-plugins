@@ -36,6 +36,7 @@
 				<column name="ACTIONLEVEL" />
 			</basic>
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 		</attributes>
 	</mapped-superclass>
 	<mapped-superclass class="com.liferay.socialcoding.model.impl.JIRAChangeGroupModelImpl">
@@ -54,6 +55,7 @@
 				<column name="ISSUEID" />
 			</basic>
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 		</attributes>
 	</mapped-superclass>
 	<mapped-superclass class="com.liferay.socialcoding.model.impl.JIRAChangeItemModelImpl">
@@ -70,6 +72,7 @@
 			<basic name="newValue" />
 			<basic name="newString" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 		</attributes>
 	</mapped-superclass>
 	<mapped-superclass class="com.liferay.socialcoding.model.impl.JIRAIssueModelImpl">
@@ -104,6 +107,7 @@
 				<column name="ISSUESTATUS" />
 			</basic>
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 		</attributes>
 	</mapped-superclass>
 	<mapped-superclass class="com.liferay.socialcoding.model.impl.SVNRepositoryModelImpl">
@@ -112,6 +116,7 @@
 			<basic name="url" />
 			<basic name="revisionNumber" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 		</attributes>
 	</mapped-superclass>
 	<mapped-superclass class="com.liferay.socialcoding.model.impl.SVNRevisionModelImpl">
@@ -125,6 +130,7 @@
 			<basic name="revisionNumber" />
 			<basic name="comments" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 		</attributes>
 	</mapped-superclass>
 	<entity class="com.liferay.socialcoding.model.impl.JIRAActionImpl" name="JIRAAction">

@@ -48,10 +48,10 @@ public class HRBranchWrapper implements HRBranch {
 	/**
 	* Sets the primary key of this h r branch
 	*
-	* @param pk the primary key of this h r branch
+	* @param primaryKey the primary key of this h r branch
 	*/
-	public void setPrimaryKey(long pk) {
-		_hrBranch.setPrimaryKey(pk);
+	public void setPrimaryKey(long primaryKey) {
+		_hrBranch.setPrimaryKey(primaryKey);
 	}
 
 	/**
@@ -244,6 +244,10 @@ public class HRBranchWrapper implements HRBranch {
 
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _hrBranch.getPrimaryKeyObj();
+	}
+
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_hrBranch.setPrimaryKeyObj(primaryKeyObj);
 	}
 
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {

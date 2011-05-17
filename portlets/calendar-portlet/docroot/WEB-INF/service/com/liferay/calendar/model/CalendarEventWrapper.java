@@ -48,10 +48,10 @@ public class CalendarEventWrapper implements CalendarEvent {
 	/**
 	* Sets the primary key of this calendar event
 	*
-	* @param pk the primary key of this calendar event
+	* @param primaryKey the primary key of this calendar event
 	*/
-	public void setPrimaryKey(long pk) {
-		_calendarEvent.setPrimaryKey(pk);
+	public void setPrimaryKey(long primaryKey) {
+		_calendarEvent.setPrimaryKey(primaryKey);
 	}
 
 	/**
@@ -655,6 +655,10 @@ public class CalendarEventWrapper implements CalendarEvent {
 
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _calendarEvent.getPrimaryKeyObj();
+	}
+
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_calendarEvent.setPrimaryKeyObj(primaryKeyObj);
 	}
 
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {

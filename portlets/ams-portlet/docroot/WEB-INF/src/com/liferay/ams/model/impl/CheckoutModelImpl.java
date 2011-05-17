@@ -100,12 +100,16 @@ public class CheckoutModelImpl extends BaseModelImpl<Checkout>
 		return _checkoutId;
 	}
 
-	public void setPrimaryKey(long pk) {
-		setCheckoutId(pk);
+	public void setPrimaryKey(long primaryKey) {
+		setCheckoutId(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_checkoutId);
+	}
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public long getCheckoutId() {
@@ -244,12 +248,12 @@ public class CheckoutModelImpl extends BaseModelImpl<Checkout>
 	}
 
 	public int compareTo(Checkout checkout) {
-		long pk = checkout.getPrimaryKey();
+		long primaryKey = checkout.getPrimaryKey();
 
-		if (getPrimaryKey() < pk) {
+		if (getPrimaryKey() < primaryKey) {
 			return -1;
 		}
-		else if (getPrimaryKey() > pk) {
+		else if (getPrimaryKey() > primaryKey) {
 			return 1;
 		}
 		else {
@@ -271,9 +275,9 @@ public class CheckoutModelImpl extends BaseModelImpl<Checkout>
 			return false;
 		}
 
-		long pk = checkout.getPrimaryKey();
+		long primaryKey = checkout.getPrimaryKey();
 
-		if (getPrimaryKey() == pk) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {

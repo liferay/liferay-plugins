@@ -48,10 +48,10 @@ public class KaleoInstanceTokenWrapper implements KaleoInstanceToken {
 	/**
 	* Sets the primary key of this kaleo instance token
 	*
-	* @param pk the primary key of this kaleo instance token
+	* @param primaryKey the primary key of this kaleo instance token
 	*/
-	public void setPrimaryKey(long pk) {
-		_kaleoInstanceToken.setPrimaryKey(pk);
+	public void setPrimaryKey(long primaryKey) {
+		_kaleoInstanceToken.setPrimaryKey(primaryKey);
 	}
 
 	/**
@@ -397,6 +397,10 @@ public class KaleoInstanceTokenWrapper implements KaleoInstanceToken {
 
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _kaleoInstanceToken.getPrimaryKeyObj();
+	}
+
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_kaleoInstanceToken.setPrimaryKeyObj(primaryKeyObj);
 	}
 
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {

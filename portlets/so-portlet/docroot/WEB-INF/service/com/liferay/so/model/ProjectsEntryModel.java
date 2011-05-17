@@ -57,9 +57,9 @@ public interface ProjectsEntryModel extends AuditedModel,
 	/**
 	 * Sets the primary key of this projects entry
 	 *
-	 * @param pk the primary key of this projects entry
+	 * @param primaryKey the primary key of this projects entry
 	 */
-	public void setPrimaryKey(long pk);
+	public void setPrimaryKey(long primaryKey);
 
 	/**
 	 * Gets the projects entry ID of this projects entry.
@@ -247,6 +247,8 @@ public interface ProjectsEntryModel extends AuditedModel,
 	public void setEscapedModel(boolean escapedModel);
 
 	public Serializable getPrimaryKeyObj();
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj);
 
 	public ExpandoBridge getExpandoBridge();
 

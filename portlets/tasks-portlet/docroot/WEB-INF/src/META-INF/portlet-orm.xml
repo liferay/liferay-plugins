@@ -33,6 +33,7 @@
 			<basic name="status" />
 			<transient name="assigneeUserUuid" />
 			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
 			<transient name="resolverUserUuid" />
 			<transient name="userUuid" />
 		</attributes>

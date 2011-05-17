@@ -107,12 +107,16 @@ public class KaleoTransitionModelImpl extends BaseModelImpl<KaleoTransition>
 		return _kaleoTransitionId;
 	}
 
-	public void setPrimaryKey(long pk) {
-		setKaleoTransitionId(pk);
+	public void setPrimaryKey(long primaryKey) {
+		setKaleoTransitionId(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_kaleoTransitionId);
+	}
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public long getKaleoTransitionId() {
@@ -391,9 +395,9 @@ public class KaleoTransitionModelImpl extends BaseModelImpl<KaleoTransition>
 			return false;
 		}
 
-		long pk = kaleoTransition.getPrimaryKey();
+		long primaryKey = kaleoTransition.getPrimaryKey();
 
-		if (getPrimaryKey() == pk) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {

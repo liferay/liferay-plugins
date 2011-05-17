@@ -53,9 +53,9 @@ public interface EntryModel extends BaseModel<Entry> {
 	/**
 	 * Sets the primary key of this entry
 	 *
-	 * @param pk the primary key of this entry
+	 * @param primaryKey the primary key of this entry
 	 */
-	public void setPrimaryKey(long pk);
+	public void setPrimaryKey(long primaryKey);
 
 	/**
 	 * Gets the entry ID of this entry.
@@ -171,6 +171,8 @@ public interface EntryModel extends BaseModel<Entry> {
 	public void setEscapedModel(boolean escapedModel);
 
 	public Serializable getPrimaryKeyObj();
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj);
 
 	public ExpandoBridge getExpandoBridge();
 

@@ -46,12 +46,16 @@ public class HRAssetCheckoutClp extends BaseModelImpl<HRAssetCheckout>
 		return _hrAssetCheckoutId;
 	}
 
-	public void setPrimaryKey(long pk) {
-		setHrAssetCheckoutId(pk);
+	public void setPrimaryKey(long primaryKey) {
+		setHrAssetCheckoutId(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_hrAssetCheckoutId);
+	}
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public long getHrAssetCheckoutId() {
@@ -197,12 +201,12 @@ public class HRAssetCheckoutClp extends BaseModelImpl<HRAssetCheckout>
 	}
 
 	public int compareTo(HRAssetCheckout hrAssetCheckout) {
-		long pk = hrAssetCheckout.getPrimaryKey();
+		long primaryKey = hrAssetCheckout.getPrimaryKey();
 
-		if (getPrimaryKey() < pk) {
+		if (getPrimaryKey() < primaryKey) {
 			return -1;
 		}
-		else if (getPrimaryKey() > pk) {
+		else if (getPrimaryKey() > primaryKey) {
 			return 1;
 		}
 		else {
@@ -224,9 +228,9 @@ public class HRAssetCheckoutClp extends BaseModelImpl<HRAssetCheckout>
 			return false;
 		}
 
-		long pk = hrAssetCheckout.getPrimaryKey();
+		long primaryKey = hrAssetCheckout.getPrimaryKey();
 
-		if (getPrimaryKey() == pk) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {

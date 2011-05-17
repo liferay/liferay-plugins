@@ -48,10 +48,10 @@ public class FeedWrapper implements Feed {
 	/**
 	* Sets the primary key of this feed
 	*
-	* @param pk the primary key of this feed
+	* @param primaryKey the primary key of this feed
 	*/
-	public void setPrimaryKey(long pk) {
-		_feed.setPrimaryKey(pk);
+	public void setPrimaryKey(long primaryKey) {
+		_feed.setPrimaryKey(primaryKey);
 	}
 
 	/**
@@ -282,6 +282,10 @@ public class FeedWrapper implements Feed {
 
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _feed.getPrimaryKeyObj();
+	}
+
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_feed.setPrimaryKeyObj(primaryKeyObj);
 	}
 
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {

@@ -48,10 +48,10 @@ public class FooWrapper implements Foo {
 	/**
 	* Sets the primary key of this foo
 	*
-	* @param pk the primary key of this foo
+	* @param primaryKey the primary key of this foo
 	*/
-	public void setPrimaryKey(long pk) {
-		_foo.setPrimaryKey(pk);
+	public void setPrimaryKey(long primaryKey) {
+		_foo.setPrimaryKey(primaryKey);
 	}
 
 	/**
@@ -343,6 +343,10 @@ public class FooWrapper implements Foo {
 
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _foo.getPrimaryKeyObj();
+	}
+
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_foo.setPrimaryKeyObj(primaryKeyObj);
 	}
 
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {

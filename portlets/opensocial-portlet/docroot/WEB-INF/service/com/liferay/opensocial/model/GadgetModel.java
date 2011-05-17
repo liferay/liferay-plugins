@@ -54,9 +54,9 @@ public interface GadgetModel extends BaseModel<Gadget> {
 	/**
 	 * Sets the primary key of this gadget
 	 *
-	 * @param pk the primary key of this gadget
+	 * @param primaryKey the primary key of this gadget
 	 */
-	public void setPrimaryKey(long pk);
+	public void setPrimaryKey(long primaryKey);
 
 	/**
 	 * Gets the uuid of this gadget.
@@ -187,6 +187,8 @@ public interface GadgetModel extends BaseModel<Gadget> {
 	public void setEscapedModel(boolean escapedModel);
 
 	public Serializable getPrimaryKeyObj();
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj);
 
 	public ExpandoBridge getExpandoBridge();
 
