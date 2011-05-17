@@ -25,13 +25,15 @@ String appId = gadget.getUrl();
 String gadgetUrl = gadget.getUrl();
 long moduleId = ShindigUtil.getModuleId(renderResponse.getNamespace());
 
+GadgetSpec gadgetSpec = ShindigUtil.getGadgetSpec(gadgetUrl);
+
+ModulePrefs modulePrefs = gadgetSpec.getModulePrefs();
+
+Map<String, Feature> features = modulePrefs.getFeatures();
+
+boolean requiresPubsub = features.containsKey("pubsub-2");
+
 String secureToken = ShindigUtil.createSecurityToken(ownerId, themeDisplay.getUserId(), appId, PortalUtil.getPortalURL(themeDisplay), gadgetUrl, moduleId, currentURL);
-
-ModulePrefs modulePrefs = ShindigUtil.getGadgetSpec(gadgetUrl).getModulePrefs();
-
-int height = modulePrefs.getHeight();
-boolean requiresPubsub = modulePrefs.getFeatures().containsKey("pubsub-2");
-boolean scrolling = modulePrefs.getScrolling();
 %>
 
 <div class="gadgets-gadget-chrome" id="<portlet:namespace />gadget"></div>
@@ -41,12 +43,12 @@ boolean scrolling = modulePrefs.getScrolling();
 		{
 			appId: '<%= gadgetUrl %>',
 			debug: '<%= PortletPropsValues.SHINDIG_JS_DEBUG %>',
-			height: <%= height %>,
+			height: <%= modulePrefs.getHeight() %>,
 			moduleId: '<%= moduleId %>',
 			nocache: '<%= PortletPropsValues.SHINDIG_NO_CACHE %>',
 			portletId: '<%= portletDisplay.getId() %>',
 			requiresPubsub: <%= requiresPubsub %>,
-			scrolling: <%= scrolling %>,
+			scrolling: <%= modulePrefs.getScrolling() %>,
 			secureToken: '<%= secureToken %>',
 			serverBase: '<%= renderRequest.getContextPath() %>/gadgets/',
 			specUrl: '<%= gadgetUrl %>',
