@@ -60,7 +60,25 @@ AUI().use(
 				return instance._popup;
 			},
 
-			updateMicroblogs: function(url) {
+			updateMicroblogs: function(form) {
+				var instance = this;
+
+				A.io.request(
+					form.getAttribute('action'),
+					{
+						form: {
+							id: form.getDOM()
+						},
+						on: {
+							success: function() {
+								instance.updateMicroblogsList();
+							}
+						}
+					}
+				);
+			},
+
+			updateMicroblogsList: function(url) {
 				var instance = this;
 
 				instance._micrblogsEntries = A.one('.microblogs-portlet .portlet-body');
@@ -82,6 +100,19 @@ AUI().use(
 
 				instance._micrblogsEntries.io.start();
 			}
-		}
+		};
+
+		Liferay.on(
+			'sessionExpired',
+			function(event) {
+				var reload = function() {
+					window.location.reload();
+				};
+
+				Liferay.Microblogs.displayPopup = reload;
+				Liferay.Microblogs.updateMicroblogs = reload;
+				Liferay.Microblogs.updateMicroblogsList = reload;
+			}
+		);
 	}
 );

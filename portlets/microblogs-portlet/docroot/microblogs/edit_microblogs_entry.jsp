@@ -203,33 +203,21 @@ header = LanguageUtil.format(pageContext, header, receiverUserFullName);
 		function(event) {
 			event.halt(true);
 
-			A.io.request(
-				form.getAttribute('action'),
-				{
-					form: {
-						id: form.getDOM()
-					},
-					method: 'POST',
-					on: {
-						success: function() {
-							<c:if test="<%= view %>">
-								contentInput.setStyle('height', '18px');
-								contentInput.set('value', '');
+			Liferay.Microblogs.updateMicroblogs(form);
 
-								countContent();
+			<c:choose>
+				<c:when test="<%= view %>">
+					contentInput.setStyle('height', '18px');
+					contentInput.set('value', '');
 
-								buttonContainer.hide();
-							</c:if>
+					countContent();
 
-							Liferay.Microblogs.updateMicroblogs();
-						}
-					}
-				}
-			);
-
-			<c:if test="<%= !view %>">
-				Liferay.Microblogs.closePopup();
-			</c:if>
+					buttonContainer.hide();
+				</c:when>
+				<c:otherwise>
+					Liferay.Microblogs.closePopup();
+				</c:otherwise>
+			</c:choose>
 		}
 	);
 
