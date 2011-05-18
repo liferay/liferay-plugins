@@ -54,34 +54,41 @@
 		</actions>
 		<assignments>
 			<scripted-assignment>
-				<script><![CDATA[
-							import com.liferay.portal.service.GroupLocalServiceUtil;
-							import com.liferay.portal.model.Group;
+				<script>
+					<![CDATA[
+							import com.liferay.portal.kernel.util.GetterUtil;
 							import com.liferay.portal.kernel.workflow.WorkflowConstants;
-							import com.liferay.portal.service.RoleLocalServiceUtil;
+							import com.liferay.portal.model.Group;
 							import com.liferay.portal.model.Role;
+							import com.liferay.portal.service.GroupLocalServiceUtil;
+							import com.liferay.portal.service.RoleLocalServiceUtil;
 
-							Long companyId = Long.parseLong((String)workflowContext.get(WorkflowConstants.CONTEXT_COMPANY_ID));
+							long companyId = GetterUtil.getLong((String)workflowContext.get(WorkflowConstants.CONTEXT_COMPANY_ID));
 
-							Long groupId = Long.parseLong((String)workflowContext.get(WorkflowConstants.CONTEXT_GROUP_ID));
+							long groupId = GetterUtil.getLong((String)workflowContext.get(WorkflowConstants.CONTEXT_GROUP_ID));
+
 							Group group = GroupLocalServiceUtil.getGroup(groupId);
 
-							roles = new ArrayList();
+							List<Role> roles = new ArrayList<Role>();
 
 							Role adminRole = RoleLocalServiceUtil.getRole(companyId, "Administrator");
+
 							roles.add(adminRole);
 
-							if (group.organization) {
+							if (group.isOrganization()) {
 								Role role = RoleLocalServiceUtil.getRole(companyId, "Organization Content Reviewer");
+
 								roles.add(role);
 							}
 							else {
 								Role role = RoleLocalServiceUtil.getRole(companyId, "Site Content Reviewer");
+
 								roles.add(role);
 							}
 
 							user = null;
-						]]></script>
+						]]>
+					</script>
 				<script-language>groovy</script-language>
 			</scripted-assignment>
 		</assignments>
