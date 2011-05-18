@@ -289,7 +289,7 @@ else if (tabs2.equals("article-updated-email")) {
 			</c:when>
 			<c:when test='<%= tabs2.equals("display-settings") %>'>
 				<liferay-ui:tabs
-					names="article,template,structure"
+					names="article,template"
 					param="tabs3"
 					url="<%= portletURL %>"
 				/>

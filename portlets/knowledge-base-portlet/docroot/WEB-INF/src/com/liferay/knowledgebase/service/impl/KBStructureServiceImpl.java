@@ -97,12 +97,17 @@ public class KBStructureServiceImpl extends KBStructureServiceBaseImpl {
 			OrderByComparator orderByComparator)
 		throws SystemException {
 
-		return kbStructurePersistence.filterFindByGroupId(
+		/*return kbStructurePersistence.filterFindByGroupId(
+			groupId, start, end, orderByComparator);*/
+
+		return kbStructureLocalService.getGroupKBStructures(
 			groupId, start, end, orderByComparator);
 	}
 
 	public int getGroupKBStructuresCount(long groupId) throws SystemException {
-		return kbStructurePersistence.filterCountByGroupId(groupId);
+		/*return kbStructurePersistence.filterCountByGroupId(groupId);*/
+
+		return kbStructureLocalService.getGroupKBStructuresCount(groupId);
 	}
 
 	public KBStructure getKBStructure(long kbStructureId)

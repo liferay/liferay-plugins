@@ -20,7 +20,7 @@
 String jspPage = ParamUtil.getString(request, "jspPage");
 %>
 
-<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.VIEW_KB_STRUCTURES) || AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.VIEW_KB_TEMPLATES) %>">
+<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.VIEW_KB_TEMPLATES) %>">
 
 	<%
 	List<String> names = new ArrayList<String>();

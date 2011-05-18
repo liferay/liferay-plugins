@@ -115,7 +115,7 @@
 			</guest-unsupported>
 		</permissions>
 	</model-resource>
-	<model-resource>
+	<!--<model-resource>
 		<model-name>com.liferay.knowledgebase.model.KBStructure</model-name>
 		<portlet-ref>
 			<portlet-name>1</portlet-name>
@@ -139,7 +139,7 @@
 				<action-key>UPDATE</action-key>
 			</guest-unsupported>
 		</permissions>
-	</model-resource>
+	</model-resource>-->
 	<model-resource>
 		<model-name>com.liferay.knowledgebase.model.KBTemplate</model-name>
 		<portlet-ref>
