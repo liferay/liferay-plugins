@@ -27,6 +27,7 @@
 		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="kbTemplateId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="priority" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
+		<property name="sections" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="viewCount" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 		<property name="latest" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 		<property name="main" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />

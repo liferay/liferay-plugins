@@ -268,13 +268,14 @@ public class KBArticleLocalServiceWrapper implements KBArticleLocalService {
 	public com.liferay.knowledgebase.model.KBArticle addKBArticle(long userId,
 		long parentResourcePrimKey, java.lang.String title,
 		java.lang.String content, java.lang.String description,
-		long kbTemplateId, java.lang.String dirName,
+		long kbTemplateId, java.lang.String[] sections,
+		java.lang.String dirName,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _kbArticleLocalService.addKBArticle(userId,
 			parentResourcePrimKey, title, content, description, kbTemplateId,
-			dirName, serviceContext);
+			sections, dirName, serviceContext);
 	}
 
 	public void addKBArticleResources(
@@ -404,6 +405,22 @@ public class KBArticleLocalServiceWrapper implements KBArticleLocalService {
 		return _kbArticleLocalService.getLatestKBArticle(resourcePrimKey, status);
 	}
 
+	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getSectionsKBArticles(
+		long groupId, java.lang.String[] sections, int status, int start,
+		int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _kbArticleLocalService.getSectionsKBArticles(groupId, sections,
+			status, start, end, orderByComparator);
+	}
+
+	public int getSectionsKBArticlesCount(long groupId,
+		java.lang.String[] sections, int status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _kbArticleLocalService.getSectionsKBArticlesCount(groupId,
+			sections, status);
+	}
+
 	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getSiblingKBArticles(
 		long groupId, long parentResourcePrimKey, int status, int start,
 		int end,
@@ -476,12 +493,14 @@ public class KBArticleLocalServiceWrapper implements KBArticleLocalService {
 	public com.liferay.knowledgebase.model.KBArticle updateKBArticle(
 		long userId, long resourcePrimKey, java.lang.String title,
 		java.lang.String content, java.lang.String description,
-		long kbTemplateId, java.lang.String dirName,
+		long kbTemplateId, java.lang.String[] sections,
+		java.lang.String dirName,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _kbArticleLocalService.updateKBArticle(userId, resourcePrimKey,
-			title, content, description, kbTemplateId, dirName, serviceContext);
+			title, content, description, kbTemplateId, sections, dirName,
+			serviceContext);
 	}
 
 	public void updateKBArticleAsset(long userId,

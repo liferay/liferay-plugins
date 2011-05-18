@@ -26,6 +26,7 @@
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="content" type="tns:string"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="description" type="tns:string"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="kbTemplateId" type="tns:long"></parameter>
+			<parameter xmlns:tns="urn:http.service.knowledgebase.liferay.com" qname="sections" type="tns:ArrayOf_xsd_string"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="dirName" type="tns:string"></parameter>
 			<parameter xmlns:tns="http://service.portal.liferay.com" qname="serviceContext" type="tns:ServiceContext"></parameter>
 		</operation>
@@ -100,6 +101,19 @@
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="resourcePrimKey" type="tns:long"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="status" type="tns:int"></parameter>
 		</operation>
+		<operation xmlns:operNS="urn:http.service.knowledgebase.liferay.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getSectionsKBArticlesCount" qname="operNS:getSectionsKBArticlesCount" returnQName="getSectionsKBArticlesCountReturn" returnType="rtns:int" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="groupId" type="tns:long"></parameter>
+			<parameter xmlns:tns="urn:http.service.knowledgebase.liferay.com" qname="sections" type="tns:ArrayOf_xsd_string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="status" type="tns:int"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.knowledgebase.liferay.com" xmlns:rtns="urn:http.service.knowledgebase.liferay.com" xmlns:tns2="http://model.knowledgebase.liferay.com" name="getSectionsKBArticles" qname="operNS:getSectionsKBArticles" returnQName="getSectionsKBArticlesReturn" returnType="rtns:ArrayOf_tns4_KBArticleSoap" returnItemType="tns2:KBArticleSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="groupId" type="tns:long"></parameter>
+			<parameter xmlns:tns="urn:http.service.knowledgebase.liferay.com" qname="sections" type="tns:ArrayOf_xsd_string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="status" type="tns:int"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="start" type="tns:int"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="end" type="tns:int"></parameter>
+			<parameter xmlns:tns="http://util.kernel.portal.liferay.com" qname="orderByComparator" type="tns:OrderByComparator"></parameter>
+		</operation>
 		<operation xmlns:operNS="urn:http.service.knowledgebase.liferay.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getSiblingKBArticlesCount" qname="operNS:getSiblingKBArticlesCount" returnQName="getSiblingKBArticlesCountReturn" returnType="rtns:int" soapAction="">
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="groupId" type="tns:long"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="parentResourcePrimKey" type="tns:long"></parameter>
@@ -145,6 +159,7 @@
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="content" type="tns:string"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="description" type="tns:string"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="kbTemplateId" type="tns:long"></parameter>
+			<parameter xmlns:tns="urn:http.service.knowledgebase.liferay.com" qname="sections" type="tns:ArrayOf_xsd_string"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="dirName" type="tns:string"></parameter>
 			<parameter xmlns:tns="http://service.portal.liferay.com" qname="serviceContext" type="tns:ServiceContext"></parameter>
 		</operation>
@@ -152,7 +167,7 @@
 			<parameter xmlns:tns="urn:http.service.knowledgebase.liferay.com" qname="kbArticleIds" type="tns:ArrayOf_xsd_long"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="kbTemplateId" type="tns:long"></parameter>
 		</operation>
-		<parameter name="allowedMethods" value="addAttachment addKBArticle deleteAttachment deleteKBArticle deleteKBArticles getGroupKBArticles getGroupKBArticlesCount getKBArticle getKBArticleAndAllDescendants getKBArticleSearchDisplay getKBArticleVersions getKBArticleVersionsCount getKBArticles getLatestKBArticle getSiblingKBArticles getSiblingKBArticlesCount moveKBArticle subscribeGroupKBArticles subscribeKBArticle unsubscribeGroupKBArticles unsubscribeKBArticle updateAttachments updateKBArticle updateKBArticlesKBTemplates" />
+		<parameter name="allowedMethods" value="addAttachment addKBArticle deleteAttachment deleteKBArticle deleteKBArticles getGroupKBArticles getGroupKBArticlesCount getKBArticle getKBArticleAndAllDescendants getKBArticleSearchDisplay getKBArticleVersions getKBArticleVersionsCount getKBArticles getLatestKBArticle getSectionsKBArticles getSectionsKBArticlesCount getSiblingKBArticles getSiblingKBArticlesCount moveKBArticle subscribeGroupKBArticles subscribeKBArticle unsubscribeGroupKBArticles unsubscribeKBArticle updateAttachments updateKBArticle updateKBArticlesKBTemplates" />
 		<parameter name="className" value="com.liferay.knowledgebase.service.http.KBArticleServiceSoap" />
 		<parameter name="schemaUnqualified" value="http://model.knowledgebase.liferay.com,http://model.portal.liferay.com,http://service.portal.liferay.com,http://util.kernel.portal.liferay.com,http://xml.apache.org/xml-soap,urn:http.service.knowledgebase.liferay.com" />
 		<parameter name="typeMappingVersion" value="1.2" />

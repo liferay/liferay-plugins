@@ -16,6 +16,7 @@ create table KBArticle (
 	description STRING null,
 	kbTemplateId LONG,
 	priority DOUBLE,
+	sections STRING null,
 	viewCount INTEGER,
 	latest BOOLEAN,
 	main BOOLEAN,

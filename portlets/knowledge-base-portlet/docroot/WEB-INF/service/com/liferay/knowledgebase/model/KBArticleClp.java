@@ -211,6 +211,14 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 		_priority = priority;
 	}
 
+	public String getSections() {
+		return _sections;
+	}
+
+	public void setSections(String sections) {
+		_sections = sections;
+	}
+
 	public int getViewCount() {
 		return _viewCount;
 	}
@@ -385,6 +393,7 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 		clone.setDescription(getDescription());
 		clone.setKbTemplateId(getKbTemplateId());
 		clone.setPriority(getPriority());
+		clone.setSections(getSections());
 		clone.setViewCount(getViewCount());
 		clone.setLatest(getLatest());
 		clone.setMain(getMain());
@@ -440,7 +449,7 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(49);
+		StringBundler sb = new StringBundler(51);
 
 		sb.append("{uuid=");
 		sb.append(getUuid());
@@ -476,6 +485,8 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 		sb.append(getKbTemplateId());
 		sb.append(", priority=");
 		sb.append(getPriority());
+		sb.append(", sections=");
+		sb.append(getSections());
 		sb.append(", viewCount=");
 		sb.append(getViewCount());
 		sb.append(", latest=");
@@ -496,7 +507,7 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(76);
+		StringBundler sb = new StringBundler(79);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.knowledgebase.model.KBArticle");
@@ -571,6 +582,10 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 		sb.append(getPriority());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>sections</column-name><column-value><![CDATA[");
+		sb.append(getSections());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>viewCount</column-name><column-value><![CDATA[");
 		sb.append(getViewCount());
 		sb.append("]]></column-value></column>");
@@ -623,6 +638,7 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 	private String _description;
 	private long _kbTemplateId;
 	private double _priority;
+	private String _sections;
 	private int _viewCount;
 	private boolean _latest;
 	private boolean _main;

@@ -16,6 +16,8 @@ Liferay.Service.registerClass(
 		getKBArticleVersionsCount: true,
 		getKBArticles: true,
 		getLatestKBArticle: true,
+		getSectionsKBArticles: true,
+		getSectionsKBArticlesCount: true,
 		getSiblingKBArticles: true,
 		getSiblingKBArticlesCount: true,
 		moveKBArticle: true,

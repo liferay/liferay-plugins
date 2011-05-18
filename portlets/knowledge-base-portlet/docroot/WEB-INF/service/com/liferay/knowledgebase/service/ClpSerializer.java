@@ -268,54 +268,61 @@ public class ClpSerializer {
 
 				method16.invoke(newModel, value16);
 
-				Method method17 = newModelClass.getMethod("setViewCount",
-						new Class[] { Integer.TYPE });
+				Method method17 = newModelClass.getMethod("setSections",
+						new Class[] { String.class });
 
-				Integer value17 = new Integer(oldCplModel.getViewCount());
+				String value17 = oldCplModel.getSections();
 
 				method17.invoke(newModel, value17);
 
-				Method method18 = newModelClass.getMethod("setLatest",
-						new Class[] { Boolean.TYPE });
+				Method method18 = newModelClass.getMethod("setViewCount",
+						new Class[] { Integer.TYPE });
 
-				Boolean value18 = new Boolean(oldCplModel.getLatest());
+				Integer value18 = new Integer(oldCplModel.getViewCount());
 
 				method18.invoke(newModel, value18);
 
-				Method method19 = newModelClass.getMethod("setMain",
+				Method method19 = newModelClass.getMethod("setLatest",
 						new Class[] { Boolean.TYPE });
 
-				Boolean value19 = new Boolean(oldCplModel.getMain());
+				Boolean value19 = new Boolean(oldCplModel.getLatest());
 
 				method19.invoke(newModel, value19);
 
-				Method method20 = newModelClass.getMethod("setStatus",
-						new Class[] { Integer.TYPE });
+				Method method20 = newModelClass.getMethod("setMain",
+						new Class[] { Boolean.TYPE });
 
-				Integer value20 = new Integer(oldCplModel.getStatus());
+				Boolean value20 = new Boolean(oldCplModel.getMain());
 
 				method20.invoke(newModel, value20);
 
-				Method method21 = newModelClass.getMethod("setStatusByUserId",
-						new Class[] { Long.TYPE });
+				Method method21 = newModelClass.getMethod("setStatus",
+						new Class[] { Integer.TYPE });
 
-				Long value21 = new Long(oldCplModel.getStatusByUserId());
+				Integer value21 = new Integer(oldCplModel.getStatus());
 
 				method21.invoke(newModel, value21);
 
-				Method method22 = newModelClass.getMethod("setStatusByUserName",
-						new Class[] { String.class });
+				Method method22 = newModelClass.getMethod("setStatusByUserId",
+						new Class[] { Long.TYPE });
 
-				String value22 = oldCplModel.getStatusByUserName();
+				Long value22 = new Long(oldCplModel.getStatusByUserId());
 
 				method22.invoke(newModel, value22);
 
-				Method method23 = newModelClass.getMethod("setStatusDate",
-						new Class[] { Date.class });
+				Method method23 = newModelClass.getMethod("setStatusByUserName",
+						new Class[] { String.class });
 
-				Date value23 = oldCplModel.getStatusDate();
+				String value23 = oldCplModel.getStatusByUserName();
 
 				method23.invoke(newModel, value23);
+
+				Method method24 = newModelClass.getMethod("setStatusDate",
+						new Class[] { Date.class });
+
+				Date value24 = oldCplModel.getStatusDate();
+
+				method24.invoke(newModel, value24);
 
 				return newModel;
 			}
@@ -849,52 +856,59 @@ public class ClpSerializer {
 
 				newModel.setPriority(value16);
 
-				Method method17 = oldModelClass.getMethod("getViewCount");
+				Method method17 = oldModelClass.getMethod("getSections");
 
-				Integer value17 = (Integer)method17.invoke(oldModel,
+				String value17 = (String)method17.invoke(oldModel,
 						(Object[])null);
 
-				newModel.setViewCount(value17);
+				newModel.setSections(value17);
 
-				Method method18 = oldModelClass.getMethod("getLatest");
+				Method method18 = oldModelClass.getMethod("getViewCount");
 
-				Boolean value18 = (Boolean)method18.invoke(oldModel,
+				Integer value18 = (Integer)method18.invoke(oldModel,
 						(Object[])null);
 
-				newModel.setLatest(value18);
+				newModel.setViewCount(value18);
 
-				Method method19 = oldModelClass.getMethod("getMain");
+				Method method19 = oldModelClass.getMethod("getLatest");
 
 				Boolean value19 = (Boolean)method19.invoke(oldModel,
 						(Object[])null);
 
-				newModel.setMain(value19);
+				newModel.setLatest(value19);
 
-				Method method20 = oldModelClass.getMethod("getStatus");
+				Method method20 = oldModelClass.getMethod("getMain");
 
-				Integer value20 = (Integer)method20.invoke(oldModel,
+				Boolean value20 = (Boolean)method20.invoke(oldModel,
 						(Object[])null);
 
-				newModel.setStatus(value20);
+				newModel.setMain(value20);
 
-				Method method21 = oldModelClass.getMethod("getStatusByUserId");
+				Method method21 = oldModelClass.getMethod("getStatus");
 
-				Long value21 = (Long)method21.invoke(oldModel, (Object[])null);
-
-				newModel.setStatusByUserId(value21);
-
-				Method method22 = oldModelClass.getMethod("getStatusByUserName");
-
-				String value22 = (String)method22.invoke(oldModel,
+				Integer value21 = (Integer)method21.invoke(oldModel,
 						(Object[])null);
 
-				newModel.setStatusByUserName(value22);
+				newModel.setStatus(value21);
 
-				Method method23 = oldModelClass.getMethod("getStatusDate");
+				Method method22 = oldModelClass.getMethod("getStatusByUserId");
 
-				Date value23 = (Date)method23.invoke(oldModel, (Object[])null);
+				Long value22 = (Long)method22.invoke(oldModel, (Object[])null);
 
-				newModel.setStatusDate(value23);
+				newModel.setStatusByUserId(value22);
+
+				Method method23 = oldModelClass.getMethod("getStatusByUserName");
+
+				String value23 = (String)method23.invoke(oldModel,
+						(Object[])null);
+
+				newModel.setStatusByUserName(value23);
+
+				Method method24 = oldModelClass.getMethod("getStatusDate");
+
+				Date value24 = (Date)method24.invoke(oldModel, (Object[])null);
+
+				newModel.setStatusDate(value24);
 
 				return newModel;
 			}

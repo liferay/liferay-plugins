@@ -48,6 +48,7 @@ public class KBArticleSoap implements Serializable {
 		soapModel.setDescription(model.getDescription());
 		soapModel.setKbTemplateId(model.getKbTemplateId());
 		soapModel.setPriority(model.getPriority());
+		soapModel.setSections(model.getSections());
 		soapModel.setViewCount(model.getViewCount());
 		soapModel.setLatest(model.getLatest());
 		soapModel.setMain(model.getMain());
@@ -243,6 +244,14 @@ public class KBArticleSoap implements Serializable {
 		_priority = priority;
 	}
 
+	public String getSections() {
+		return _sections;
+	}
+
+	public void setSections(String sections) {
+		_sections = sections;
+	}
+
 	public int getViewCount() {
 		return _viewCount;
 	}
@@ -324,6 +333,7 @@ public class KBArticleSoap implements Serializable {
 	private String _description;
 	private long _kbTemplateId;
 	private double _priority;
+	private String _sections;
 	private int _viewCount;
 	private boolean _latest;
 	private boolean _main;

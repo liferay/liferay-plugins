@@ -323,6 +323,21 @@ public interface KBArticleModel extends BaseModel<KBArticle>, GroupedModel,
 	public void setPriority(double priority);
 
 	/**
+	 * Gets the sections of this k b article.
+	 *
+	 * @return the sections of this k b article
+	 */
+	@AutoEscape
+	public String getSections();
+
+	/**
+	 * Sets the sections of this k b article.
+	 *
+	 * @param sections the sections of this k b article
+	 */
+	public void setSections(String sections);
+
+	/**
 	 * Gets the view count of this k b article.
 	 *
 	 * @return the view count of this k b article

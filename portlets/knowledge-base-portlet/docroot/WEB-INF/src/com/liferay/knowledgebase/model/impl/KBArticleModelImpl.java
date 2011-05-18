@@ -81,6 +81,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 			{ "description", Types.VARCHAR },
 			{ "kbTemplateId", Types.BIGINT },
 			{ "priority", Types.DOUBLE },
+			{ "sections", Types.VARCHAR },
 			{ "viewCount", Types.INTEGER },
 			{ "latest", Types.BOOLEAN },
 			{ "main", Types.BOOLEAN },
@@ -89,7 +90,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 			{ "statusByUserName", Types.VARCHAR },
 			{ "statusDate", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table KBArticle (uuid_ VARCHAR(75) null,kbArticleId LONG not null primary key,resourcePrimKey LONG,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,rootResourcePrimKey LONG,parentResourcePrimKey LONG,version INTEGER,title STRING null,content TEXT null,description STRING null,kbTemplateId LONG,priority DOUBLE,viewCount INTEGER,latest BOOLEAN,main BOOLEAN,status INTEGER,statusByUserId LONG,statusByUserName VARCHAR(75) null,statusDate DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table KBArticle (uuid_ VARCHAR(75) null,kbArticleId LONG not null primary key,resourcePrimKey LONG,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,rootResourcePrimKey LONG,parentResourcePrimKey LONG,version INTEGER,title STRING null,content TEXT null,description STRING null,kbTemplateId LONG,priority DOUBLE,sections STRING null,viewCount INTEGER,latest BOOLEAN,main BOOLEAN,status INTEGER,statusByUserId LONG,statusByUserName VARCHAR(75) null,statusDate DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table KBArticle";
 	public static final String ORDER_BY_JPQL = " ORDER BY kbArticle.modifiedDate DESC";
 	public static final String ORDER_BY_SQL = " ORDER BY KBArticle.modifiedDate DESC";
@@ -129,6 +130,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		model.setDescription(soapModel.getDescription());
 		model.setKbTemplateId(soapModel.getKbTemplateId());
 		model.setPriority(soapModel.getPriority());
+		model.setSections(soapModel.getSections());
 		model.setViewCount(soapModel.getViewCount());
 		model.setLatest(soapModel.getLatest());
 		model.setMain(soapModel.getMain());
@@ -397,6 +399,19 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		_priority = priority;
 	}
 
+	public String getSections() {
+		if (_sections == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _sections;
+		}
+	}
+
+	public void setSections(String sections) {
+		_sections = sections;
+	}
+
 	public int getViewCount() {
 		return _viewCount;
 	}
@@ -561,6 +576,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		kbArticleImpl.setDescription(getDescription());
 		kbArticleImpl.setKbTemplateId(getKbTemplateId());
 		kbArticleImpl.setPriority(getPriority());
+		kbArticleImpl.setSections(getSections());
 		kbArticleImpl.setViewCount(getViewCount());
 		kbArticleImpl.setLatest(getLatest());
 		kbArticleImpl.setMain(getMain());
@@ -636,7 +652,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(49);
+		StringBundler sb = new StringBundler(51);
 
 		sb.append("{uuid=");
 		sb.append(getUuid());
@@ -672,6 +688,8 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		sb.append(getKbTemplateId());
 		sb.append(", priority=");
 		sb.append(getPriority());
+		sb.append(", sections=");
+		sb.append(getSections());
 		sb.append(", viewCount=");
 		sb.append(getViewCount());
 		sb.append(", latest=");
@@ -692,7 +710,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(76);
+		StringBundler sb = new StringBundler(79);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.knowledgebase.model.KBArticle");
@@ -767,6 +785,10 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		sb.append(getPriority());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>sections</column-name><column-value><![CDATA[");
+		sb.append(getSections());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>viewCount</column-name><column-value><![CDATA[");
 		sb.append(getViewCount());
 		sb.append("]]></column-value></column>");
@@ -825,6 +847,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 	private String _description;
 	private long _kbTemplateId;
 	private double _priority;
+	private String _sections;
 	private int _viewCount;
 	private boolean _latest;
 	private boolean _main;

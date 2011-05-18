@@ -33,7 +33,8 @@ public class KBArticleServiceClp implements KBArticleService {
 		_addKBArticleMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
 				"addKBArticle", java.lang.String.class, long.class,
 				java.lang.String.class, java.lang.String.class,
-				java.lang.String.class, long.class, java.lang.String.class,
+				java.lang.String.class, long.class, java.lang.String[].class,
+				java.lang.String.class,
 				com.liferay.portal.service.ServiceContext.class);
 
 		_deleteAttachmentMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
@@ -94,44 +95,53 @@ public class KBArticleServiceClp implements KBArticleService {
 		_getLatestKBArticleMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getLatestKBArticle", long.class, int.class);
 
-		_getSiblingKBArticlesMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getSectionsKBArticlesMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getSectionsKBArticles", long.class, java.lang.String[].class,
+				int.class, int.class, int.class,
+				com.liferay.portal.kernel.util.OrderByComparator.class);
+
+		_getSectionsKBArticlesCountMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getSectionsKBArticlesCount", long.class,
+				java.lang.String[].class, int.class);
+
+		_getSiblingKBArticlesMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getSiblingKBArticles", long.class, long.class, int.class,
 				int.class, int.class,
 				com.liferay.portal.kernel.util.OrderByComparator.class);
 
-		_getSiblingKBArticlesCountMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getSiblingKBArticlesCountMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getSiblingKBArticlesCount", long.class, long.class, int.class);
 
-		_moveKBArticleMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
+		_moveKBArticleMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
 				"moveKBArticle", long.class, long.class, double.class);
 
-		_subscribeGroupKBArticlesMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
+		_subscribeGroupKBArticlesMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
 				"subscribeGroupKBArticles", long.class, java.lang.String.class);
 
-		_subscribeKBArticleMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
+		_subscribeKBArticleMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
 				"subscribeKBArticle", long.class, long.class);
 
-		_unsubscribeGroupKBArticlesMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
+		_unsubscribeGroupKBArticlesMethodKey23 = new MethodKey(_classLoaderProxy.getClassName(),
 				"unsubscribeGroupKBArticles", long.class, java.lang.String.class);
 
-		_unsubscribeKBArticleMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
+		_unsubscribeKBArticleMethodKey24 = new MethodKey(_classLoaderProxy.getClassName(),
 				"unsubscribeKBArticle", long.class);
 
-		_updateAttachmentsMethodKey23 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateAttachmentsMethodKey25 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateAttachments", java.lang.String.class, long.class,
 				java.lang.String.class,
 				com.liferay.portal.service.ServiceContext.class);
 
-		_updateKBArticleMethodKey24 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateKBArticleMethodKey26 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateKBArticle", long.class, java.lang.String.class,
 				java.lang.String.class, java.lang.String.class, long.class,
-				java.lang.String.class,
+				java.lang.String[].class, java.lang.String.class,
 				com.liferay.portal.service.ServiceContext.class);
 
-		_updateKBArticlesKBTemplatesMethodKey25 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateKBArticlesKBTemplatesMethodKey27 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateKBArticlesKBTemplates", long[].class, long.class);
 
-		_updateKBArticlesPrioritiesMethodKey26 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateKBArticlesPrioritiesMethodKey28 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateKBArticlesPriorities", long.class, java.util.Map.class);
 	}
 
@@ -173,7 +183,7 @@ public class KBArticleServiceClp implements KBArticleService {
 		java.lang.String portletId, long parentResourcePrimKey,
 		java.lang.String title, java.lang.String content,
 		java.lang.String description, long kbTemplateId,
-		java.lang.String dirName,
+		java.lang.String[] sections, java.lang.String dirName,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -184,6 +194,7 @@ public class KBArticleServiceClp implements KBArticleService {
 				ClpSerializer.translateInput(title),
 				ClpSerializer.translateInput(content),
 				ClpSerializer.translateInput(description), kbTemplateId,
+				ClpSerializer.translateInput(sections),
 				ClpSerializer.translateInput(dirName),
 				ClpSerializer.translateInput(serviceContext));
 
@@ -654,6 +665,65 @@ public class KBArticleServiceClp implements KBArticleService {
 		return (com.liferay.knowledgebase.model.KBArticle)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getSectionsKBArticles(
+		long groupId, java.lang.String[] sections, int status, int start,
+		int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_getSectionsKBArticlesMethodKey16,
+				groupId, ClpSerializer.translateInput(sections), status, start,
+				end, ClpSerializer.translateInput(orderByComparator));
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.liferay.knowledgebase.model.KBArticle>)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public int getSectionsKBArticlesCount(long groupId,
+		java.lang.String[] sections, int status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_getSectionsKBArticlesCountMethodKey17,
+				groupId, ClpSerializer.translateInput(sections), status);
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return ((Integer)returnObj).intValue();
+	}
+
 	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getSiblingKBArticles(
 		long groupId, long parentResourcePrimKey, int status, int start,
 		int end,
@@ -661,7 +731,7 @@ public class KBArticleServiceClp implements KBArticleService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getSiblingKBArticlesMethodKey16,
+		MethodHandler methodHandler = new MethodHandler(_getSiblingKBArticlesMethodKey18,
 				groupId, parentResourcePrimKey, status, start, end,
 				ClpSerializer.translateInput(orderByComparator));
 
@@ -690,7 +760,7 @@ public class KBArticleServiceClp implements KBArticleService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getSiblingKBArticlesCountMethodKey17,
+		MethodHandler methodHandler = new MethodHandler(_getSiblingKBArticlesCountMethodKey19,
 				groupId, parentResourcePrimKey, status);
 
 		try {
@@ -717,7 +787,7 @@ public class KBArticleServiceClp implements KBArticleService {
 		double priority)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_moveKBArticleMethodKey18,
+		MethodHandler methodHandler = new MethodHandler(_moveKBArticleMethodKey20,
 				resourcePrimKey, parentResourcePrimKey, priority);
 
 		try {
@@ -746,7 +816,7 @@ public class KBArticleServiceClp implements KBArticleService {
 		java.lang.String portletId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_subscribeGroupKBArticlesMethodKey19,
+		MethodHandler methodHandler = new MethodHandler(_subscribeGroupKBArticlesMethodKey21,
 				groupId, ClpSerializer.translateInput(portletId));
 
 		try {
@@ -774,7 +844,7 @@ public class KBArticleServiceClp implements KBArticleService {
 	public void subscribeKBArticle(long groupId, long resourcePrimKey)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_subscribeKBArticleMethodKey20,
+		MethodHandler methodHandler = new MethodHandler(_subscribeKBArticleMethodKey22,
 				groupId, resourcePrimKey);
 
 		try {
@@ -803,7 +873,7 @@ public class KBArticleServiceClp implements KBArticleService {
 		java.lang.String portletId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_unsubscribeGroupKBArticlesMethodKey21,
+		MethodHandler methodHandler = new MethodHandler(_unsubscribeGroupKBArticlesMethodKey23,
 				groupId, ClpSerializer.translateInput(portletId));
 
 		try {
@@ -831,7 +901,7 @@ public class KBArticleServiceClp implements KBArticleService {
 	public void unsubscribeKBArticle(long resourcePrimKey)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_unsubscribeKBArticleMethodKey22,
+		MethodHandler methodHandler = new MethodHandler(_unsubscribeKBArticleMethodKey24,
 				resourcePrimKey);
 
 		try {
@@ -863,7 +933,7 @@ public class KBArticleServiceClp implements KBArticleService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateAttachmentsMethodKey23,
+		MethodHandler methodHandler = new MethodHandler(_updateAttachmentsMethodKey25,
 				ClpSerializer.translateInput(portletId), resourcePrimKey,
 				ClpSerializer.translateInput(dirName),
 				ClpSerializer.translateInput(serviceContext));
@@ -895,16 +965,17 @@ public class KBArticleServiceClp implements KBArticleService {
 	public com.liferay.knowledgebase.model.KBArticle updateKBArticle(
 		long resourcePrimKey, java.lang.String title, java.lang.String content,
 		java.lang.String description, long kbTemplateId,
-		java.lang.String dirName,
+		java.lang.String[] sections, java.lang.String dirName,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateKBArticleMethodKey24,
+		MethodHandler methodHandler = new MethodHandler(_updateKBArticleMethodKey26,
 				resourcePrimKey, ClpSerializer.translateInput(title),
 				ClpSerializer.translateInput(content),
 				ClpSerializer.translateInput(description), kbTemplateId,
+				ClpSerializer.translateInput(sections),
 				ClpSerializer.translateInput(dirName),
 				ClpSerializer.translateInput(serviceContext));
 
@@ -936,7 +1007,7 @@ public class KBArticleServiceClp implements KBArticleService {
 		long kbTemplateId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_updateKBArticlesKBTemplatesMethodKey25,
+		MethodHandler methodHandler = new MethodHandler(_updateKBArticlesKBTemplatesMethodKey27,
 				ClpSerializer.translateInput(kbArticleIds), kbTemplateId);
 
 		try {
@@ -965,7 +1036,7 @@ public class KBArticleServiceClp implements KBArticleService {
 		java.util.Map<java.lang.Long, java.lang.Double> resourcePrimKeyToPriorityMap)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_updateKBArticlesPrioritiesMethodKey26,
+		MethodHandler methodHandler = new MethodHandler(_updateKBArticlesPrioritiesMethodKey28,
 				groupId,
 				ClpSerializer.translateInput(resourcePrimKeyToPriorityMap));
 
@@ -1012,15 +1083,17 @@ public class KBArticleServiceClp implements KBArticleService {
 	private MethodKey _getKBArticleVersionsCountMethodKey13;
 	private MethodKey _getKBArticlesMethodKey14;
 	private MethodKey _getLatestKBArticleMethodKey15;
-	private MethodKey _getSiblingKBArticlesMethodKey16;
-	private MethodKey _getSiblingKBArticlesCountMethodKey17;
-	private MethodKey _moveKBArticleMethodKey18;
-	private MethodKey _subscribeGroupKBArticlesMethodKey19;
-	private MethodKey _subscribeKBArticleMethodKey20;
-	private MethodKey _unsubscribeGroupKBArticlesMethodKey21;
-	private MethodKey _unsubscribeKBArticleMethodKey22;
-	private MethodKey _updateAttachmentsMethodKey23;
-	private MethodKey _updateKBArticleMethodKey24;
-	private MethodKey _updateKBArticlesKBTemplatesMethodKey25;
-	private MethodKey _updateKBArticlesPrioritiesMethodKey26;
+	private MethodKey _getSectionsKBArticlesMethodKey16;
+	private MethodKey _getSectionsKBArticlesCountMethodKey17;
+	private MethodKey _getSiblingKBArticlesMethodKey18;
+	private MethodKey _getSiblingKBArticlesCountMethodKey19;
+	private MethodKey _moveKBArticleMethodKey20;
+	private MethodKey _subscribeGroupKBArticlesMethodKey21;
+	private MethodKey _subscribeKBArticleMethodKey22;
+	private MethodKey _unsubscribeGroupKBArticlesMethodKey23;
+	private MethodKey _unsubscribeKBArticleMethodKey24;
+	private MethodKey _updateAttachmentsMethodKey25;
+	private MethodKey _updateKBArticleMethodKey26;
+	private MethodKey _updateKBArticlesKBTemplatesMethodKey27;
+	private MethodKey _updateKBArticlesPrioritiesMethodKey28;
 }
