@@ -179,13 +179,9 @@ public class ShindigUtil {
 	}
 
 	public static GadgetSpec getGadgetSpec(String url) throws Exception {
-		boolean debug = GetterUtil.getBoolean(
-			PortletPropsValues.SHINDIG_JS_DEBUG);
-
-		boolean ignoreCache = GetterUtil.getBoolean(
+		return getGadgetSpec(
+			url, PortletPropsValues.SHINDIG_JS_DEBUG,
 			PortletPropsValues.SHINDIG_NO_CACHE);
-
-		return getGadgetSpec(url, debug, ignoreCache);
 	}
 
 	public static GadgetSpec getGadgetSpec(

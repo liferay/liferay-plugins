@@ -209,10 +209,10 @@ AUI().add(
 					dirtyIndicatorNode: {},
 					editor: {},
 					entryId: {
-						value: '',
 						setter: function(v) {
 							return String(v);
-						}
+						},
+						value: ''
 					},
 					isDirty: {
 						value: false

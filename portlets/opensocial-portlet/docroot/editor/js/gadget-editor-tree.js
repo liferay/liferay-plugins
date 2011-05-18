@@ -541,21 +541,20 @@ AUI().add(
 
 						var contextMenuOverlay = new A.OverlayContext(
 							{
-								boundingBox: contextMenu.get(BOUNDING_BOX),
-								trigger: contextMenuIcon,
-								hideOn: CLICK,
-								showOn: CLICK,
 								after: {
 									visibleChange: function(event) {
 										contextMenuIcon.toggleClass(CSS_CONTEXT_MENU_OPEN, event.target.get(VISIBLE));
 									}
 								},
+								boundingBox: contextMenu.get(BOUNDING_BOX),
+								hideOn: CLICK,
 								on: {
 									show: function(event) {
 										var overlayContext = event.target;
 
 										if (!overlayContext.get(RENDERED)) {
 											contextMenu.render();
+
 											overlayContext.render();
 										}
 
@@ -567,7 +566,9 @@ AUI().add(
 											activeEditable.fire('stopEditing', true);
 										}
 									}
-								}
+								},
+								showOn: CLICK,
+								trigger: contextMenuIcon
 							}
 						);
 
@@ -647,10 +648,10 @@ AUI().add(
 
 				ATTRS: {
 					entryId: {
-						value: '',
 						setter: function(v) {
 							return String(v);
-						}
+						},
+						value: ''
 					}
 				},
 

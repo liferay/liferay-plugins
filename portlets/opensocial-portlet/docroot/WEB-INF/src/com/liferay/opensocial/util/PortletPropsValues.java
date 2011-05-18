@@ -22,10 +22,10 @@ import com.liferay.util.portlet.PortletProps;
  */
 public class PortletPropsValues {
 
-	public static final String SHINDIG_JS_DEBUG = GetterUtil.getString(
+	public static final boolean SHINDIG_JS_DEBUG = GetterUtil.getBoolean(
 		PortletProps.get(PortletPropsKeys.SHINDIG_JS_DEBUG));
 
-	public static final String SHINDIG_NO_CACHE = GetterUtil.getString(
+	public static final boolean SHINDIG_NO_CACHE = GetterUtil.getBoolean(
 		PortletProps.get(PortletPropsKeys.SHINDIG_NO_CACHE));
 
 	public static final String SHINDIG_OAUTH_CALLBACK_URL =

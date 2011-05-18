@@ -318,9 +318,7 @@ public class EditorPortlet extends MVCPortlet {
 
 		ModulePrefs modulePrefs = gadgetSpec.getModulePrefs();
 
-		int height = modulePrefs.getHeight();
-
-		jsonObject.put("height", height);
+		jsonObject.put("height", modulePrefs.getHeight());
 
 		long moduleId = ShindigUtil.getModuleId(
 			resourceResponse.getNamespace());
@@ -346,6 +344,7 @@ public class EditorPortlet extends MVCPortlet {
 			fileEntryURL, moduleId, currentURL);
 
 		jsonObject.put("secureToken", secureToken);
+
 		jsonObject.put("specUrl", fileEntryURL);
 
 		writeJSON(resourceRequest, resourceResponse, jsonObject.toString());
