@@ -55,10 +55,10 @@
 		<assignments>
 			<roles>
 				<role>
-                    <role-type>organization</role-type>
-                    <name>Organization Administrator</name>
-                </role>
-                <role>
+					<role-type>organization</role-type>
+					<name>Organization Administrator</name>
+				</role>
+				<role>
 					<role-type>organization</role-type>
 					<name>Organization Marketing Content Reviewer</name>
 				</role>
@@ -74,10 +74,10 @@
 					<role-type>regular</role-type>
 					<name>Portal Marketing Content Reviewer</name>
 				</role>
-                <role>
-                    <role-type>site</role-type>
-                    <name>Community Administrator</name>
-                </role>
+				<role>
+					<role-type>site</role-type>
+					<name>Community Administrator</name>
+				</role>
 				<role>
 					<role-type>site</role-type>
 					<name>Community Marketing Content Reviewer</name>
@@ -115,10 +115,10 @@
 		<assignments>
 			<roles>
 				<role>
-                    <role-type>organization</role-type>
-                    <name>Organization Administrator</name>
-                </role>
-                <role>
+					<role-type>organization</role-type>
+					<name>Organization Administrator</name>
+				</role>
+				<role>
 					<role-type>organization</role-type>
 					<name>Organization Legal Content Reviewer</name>
 				</role>
@@ -134,10 +134,10 @@
 					<role-type>regular</role-type>
 					<name>Portal Legal Content Reviewer</name>
 				</role>
-                <role>
-                    <role-type>site</role-type>
-                    <name>Community Administrator</name>
-                </role>
+				<role>
+					<role-type>site</role-type>
+					<name>Community Administrator</name>
+				</role>
 				<role>
 					<role-type>site</role-type>
 					<name>Community Legal Content Reviewer</name>
