@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.1//EN" "http://www.openmobilealliance.org/Tech/DTD/xhtml-mobile12.dtd">
 
-#parse($init)
+##parse ($init)
 
 <html class="#language ("lang.dir")" xmlns="http://www.w3.org/1999/xhtml">
 
@@ -16,7 +16,7 @@
 #end
 
 #if ($has_navigation)
-	#parse("$full_templates_path/navigation.vm")
+	##parse ("$full_templates_path/navigation.vm")
 #end
 
 $theme.include($content_include)
