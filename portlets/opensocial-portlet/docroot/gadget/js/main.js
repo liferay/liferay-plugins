@@ -35,7 +35,16 @@ AUI().add(
 						value: 'ALL'
 					},
 					debug: {},
-					height: {},
+					height: {
+						setter: function(v) {
+							if (v > 0) {
+								return v;
+							}
+							else {
+								return null;
+							}
+						}
+					},
 					iframeId: {
 						getter: '_getIframeId'
 					},
@@ -90,7 +99,16 @@ AUI().add(
 						value: 'default'
 					},
 					viewParams: {},
-					width: {}
+					width: {
+						setter: function(v) {
+							if (v > 0) {
+								return v;
+							}
+							else {
+								return null;
+							}
+						}
+					}
 				},
 
 				UI_ATTRS: ['iframeUrl'],
