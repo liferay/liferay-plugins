@@ -52,14 +52,14 @@ import net.htmlparser.jericho.Source;
 public class AdminUtil {
 
 	public static String[] escapeSections(String[] sections) {
-		String[] array = sections.clone();
+		sections = ArrayUtil.clone(sections);
 
-		for (int i = 0; i < array.length; i++) {
-			array[i] = StringPool.UNDERLINE.concat(array[i]).concat(
+		for (int i = 0; i < sections.length; i++) {
+			sections[i] = StringPool.UNDERLINE.concat(sections[i]).concat(
 				StringPool.UNDERLINE);
 		}
 
-		return array;
+		return sections;
 	}
 
 	public static String getEmailFromAddress(PortletPreferences preferences) {
@@ -269,17 +269,19 @@ public class AdminUtil {
 	}
 
 	public static String[] unescapeSections(String sections) {
-		String[] array = StringUtil.split(sections);
+		String[] sectionsArray = StringUtil.split(sections);
 
-		for (int i = 0; i < array.length; i++) {
-			if (StringUtil.startsWith(array[i], StringPool.UNDERLINE) &&
-				StringUtil.endsWith(array[i], StringPool.UNDERLINE)) {
+		for (int i = 0; i < sectionsArray.length; i++) {
+			String section = sectionsArray[i];
 
-				array[i] = array[i].substring(1, array[i].length() - 1);
+			if (StringUtil.startsWith(section, StringPool.UNDERLINE) &&
+				StringUtil.endsWith(section, StringPool.UNDERLINE)) {
+
+				sectionsArray[i] = section.substring(1, section.length() - 1);
 			}
 		}
 
-		return array;
+		return sectionsArray;
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(AdminUtil.class);
