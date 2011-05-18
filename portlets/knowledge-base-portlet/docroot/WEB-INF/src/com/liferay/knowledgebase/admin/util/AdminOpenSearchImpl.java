@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.search.Document;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.HitsOpenSearchImpl;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.theme.ThemeDisplay;
 
 import javax.portlet.PortletURL;
@@ -53,19 +54,14 @@ public class AdminOpenSearchImpl extends HitsOpenSearchImpl {
 
 		long resourcePrimKey = GetterUtil.getLong(
 			result.get(Field.ENTRY_CLASS_PK));
+		int status = WorkflowConstants.STATUS_APPROVED;
 
 		WindowState windowState = portletURL.getWindowState();
 
-		if (windowState.equals(LiferayWindowState.MAXIMIZED)) {
-			return KnowledgeBaseUtil.getKBArticleURL(
-				themeDisplay.getPlid(), resourcePrimKey,
-				themeDisplay.getPortalURL(), true);
-		}
-		else {
-			return KnowledgeBaseUtil.getKBArticleURL(
-				themeDisplay.getPlid(), resourcePrimKey,
-				themeDisplay.getPortalURL(), false);
-		}
+		return KnowledgeBaseUtil.getKBArticleURL(
+			themeDisplay.getPlid(), resourcePrimKey, status,
+			themeDisplay.getPortalURL(),
+			windowState.equals(LiferayWindowState.MAXIMIZED));
 	}
 
 }

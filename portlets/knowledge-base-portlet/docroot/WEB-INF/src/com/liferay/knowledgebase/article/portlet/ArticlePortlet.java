@@ -21,6 +21,7 @@ import com.liferay.documentlibrary.NoSuchFileException;
 import com.liferay.documentlibrary.service.DLLocalServiceUtil;
 import com.liferay.knowledgebase.KBArticleContentException;
 import com.liferay.knowledgebase.KBArticlePriorityException;
+import com.liferay.knowledgebase.KBArticleSectionException;
 import com.liferay.knowledgebase.KBArticleTitleException;
 import com.liferay.knowledgebase.KBCommentContentException;
 import com.liferay.knowledgebase.KBTemplateContentException;
@@ -52,7 +53,6 @@ import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.security.auth.PrincipalException;
@@ -351,6 +351,7 @@ public class ArticlePortlet extends MVCPortlet {
 		String content = ParamUtil.getString(actionRequest, "content");
 		String description = ParamUtil.getString(actionRequest, "description");
 		long kbTemplateId = ParamUtil.getLong(actionRequest, "kbTemplateId");
+		String[] sections = actionRequest.getParameterValues("sections");
 		String dirName = ParamUtil.getString(actionRequest, "dirName");
 		int workflowAction = ParamUtil.getInteger(
 			actionRequest, "workflowAction");
@@ -363,12 +364,12 @@ public class ArticlePortlet extends MVCPortlet {
 		if (cmd.equals(Constants.ADD)) {
 			kbArticle = KBArticleServiceUtil.addKBArticle(
 				portletId, parentResourcePrimKey, title, content, description,
-				kbTemplateId, dirName, serviceContext);
+				kbTemplateId, sections, dirName, serviceContext);
 		}
 		else if (cmd.equals(Constants.UPDATE)) {
 			kbArticle = KBArticleServiceUtil.updateKBArticle(
 				resourcePrimKey, title, content, description, kbTemplateId,
-				dirName, serviceContext);
+				sections, dirName, serviceContext);
 		}
 
 		if (!cmd.equals(Constants.ADD) && !cmd.equals(Constants.UPDATE)) {
@@ -513,13 +514,14 @@ public class ArticlePortlet extends MVCPortlet {
 		ThemeDisplay themeDisplay = (ThemeDisplay)renderRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		String value = renderRequest.getParameter("status");
-
-		if (Validator.isNotNull(value)) {
-			return GetterUtil.getInteger(value);
+		if (!themeDisplay.isSignedIn()) {
+			return WorkflowConstants.STATUS_APPROVED;
 		}
 
-		if (!themeDisplay.isSignedIn()) {
+		String value = renderRequest.getParameter("status");
+		int status = GetterUtil.getInteger(value);
+
+		if ((value != null) && (status == WorkflowConstants.STATUS_APPROVED)) {
 			return WorkflowConstants.STATUS_APPROVED;
 		}
 
@@ -535,7 +537,8 @@ public class ArticlePortlet extends MVCPortlet {
 		if (KBArticlePermission.contains(
 				permissionChecker, resourcePrimKey, ActionKeys.UPDATE)) {
 
-			return WorkflowConstants.STATUS_ANY;
+			return ParamUtil.getInteger(
+				renderRequest, "status", WorkflowConstants.STATUS_ANY);
 		}
 
 		return WorkflowConstants.STATUS_APPROVED;
@@ -547,6 +550,7 @@ public class ArticlePortlet extends MVCPortlet {
 			cause instanceof FileSizeException ||
 			cause instanceof KBArticleContentException ||
 			cause instanceof KBArticlePriorityException ||
+			cause instanceof KBArticleSectionException ||
 			cause instanceof KBArticleTitleException ||
 			cause instanceof KBCommentContentException ||
 			cause instanceof KBTemplateContentException ||

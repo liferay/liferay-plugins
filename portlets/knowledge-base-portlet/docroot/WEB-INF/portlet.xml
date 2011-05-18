@@ -51,7 +51,7 @@
 			</preference>
 			<preference>
 				<name>enableKBArticleAssetCategories</name>
-				<value>true</value>
+				<value>false</value>
 			</preference>
 			<preference>
 				<name>enableKBArticleAssetTags</name>
@@ -152,7 +152,7 @@
 			</preference>
 			<preference>
 				<name>enableKBArticleAssetCategories</name>
-				<value>true</value>
+				<value>false</value>
 			</preference>
 			<preference>
 				<name>enableKBArticleAssetTags</name>
@@ -255,7 +255,124 @@
 			</preference>
 			<preference>
 				<name>enableKBArticleAssetCategories</name>
+				<value>false</value>
+			</preference>
+			<preference>
+				<name>enableKBArticleAssetTags</name>
 				<value>true</value>
+			</preference>
+			<preference>
+				<name>enableKBArticleRatings</name>
+				<value>false</value>
+			</preference>
+			<preference>
+				<name>showKBArticleAssetEntries</name>
+				<value>true</value>
+			</preference>
+			<preference>
+				<name>enableKBArticleKBComments</name>
+				<value>true</value>
+			</preference>
+			<preference>
+				<name>showKBArticleKBComments</name>
+				<value>true</value>
+			</preference>
+			<preference>
+				<name>enableKBArticleViewCountIncrement</name>
+				<value>true</value>
+			</preference>
+			<preference>
+				<name>rssDelta</name>
+				<value>20</value>
+			</preference>
+			<preference>
+				<name>rssDisplayStyle</name>
+				<value>full-content</value>
+			</preference>
+			<preference>
+				<name>rssFormat</name>
+				<value>atom10</value>
+			</preference>
+		</portlet-preferences>
+		<security-role-ref>
+			<role-name>administrator</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>guest</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>power-user</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>user</role-name>
+		</security-role-ref>
+	</portlet>
+	<portlet>
+		<portlet-name>4</portlet-name>
+		<display-name>Knowledge Base Section</display-name>
+		<portlet-class>com.liferay.knowledgebase.section.portlet.SectionPortlet</portlet-class>
+		<init-param>
+			<name>config-jsp</name>
+			<value>/section/configuration.jsp</value>
+		</init-param>
+		<init-param>
+			<name>jsp-path</name>
+			<value>/section/</value>
+		</init-param>
+		<init-param>
+			<name>view-jsp</name>
+			<value>/section/view.jsp</value>
+		</init-param>
+		<init-param>
+			<name>copy-request-parameters</name>
+			<value>true</value>
+		</init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+		</supports>
+		<resource-bundle>content.Language</resource-bundle>
+		<portlet-info>
+			<title>Knowledge Base Section</title>
+			<short-title>Knowledge Base Section</short-title>
+			<keywords>Knowledge Base Section</keywords>
+		</portlet-info>
+		<portlet-preferences>
+			<preference>
+				<name>showKBArticlesSectionsTitle</name>
+				<value>true</value>
+			</preference>
+			<preference>
+				<name>kbArticlesSections</name>
+				<value>general</value>
+			</preference>
+			<preference>
+				<name>kbArticleDisplayStyle</name>
+				<value>title</value>
+			</preference>
+			<preference>
+				<name>kbArticleWindowState</name>
+				<value>maximized</value>
+			</preference>
+			<preference>
+				<name>kbArticlesDelta</name>
+				<value>10</value>
+			</preference>
+			<preference>
+				<name>kbArticlesOrderByCol</name>
+				<value>modified-date</value>
+			</preference>
+			<preference>
+				<name>kbArticlesOrderByType</name>
+				<value>desc</value>
+			</preference>
+			<preference>
+				<name>enableKBArticleDescription</name>
+				<value>false</value>
+			</preference>
+			<preference>
+				<name>enableKBArticleAssetCategories</name>
+				<value>false</value>
 			</preference>
 			<preference>
 				<name>enableKBArticleAssetTags</name>

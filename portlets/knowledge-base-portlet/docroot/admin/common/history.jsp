@@ -145,7 +145,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 					<liferay-ui:search-container-column-text
 						align="right"
 					>
-						<liferay-portlet:actionURL name="updateKBArticle" var="revertURL">
+						<liferay-portlet:actionURL name="updateKBArticle" varImpl="revertURL">
 							<portlet:param name="jspPage" value='<%= jspPath + "history.jsp" %>' />
 							<portlet:param name="redirect" value="<%= redirect %>" />
 							<portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
@@ -159,11 +159,15 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 							<portlet:param name="workflowAction" value="<%= String.valueOf(WorkflowConstants.ACTION_PUBLISH) %>" />
 						</liferay-portlet:actionURL>
 
+						<%
+						revertURL.setParameter("section", AdminUtil.unescapeSections(curKBArticle.getSections()));
+						%>
+
 						<liferay-ui:icon
 							image="undo"
 							label="<%= true %>"
 							message="revert"
-							url="<%= revertURL %>"
+							url="<%= revertURL.toString() %>"
 						/>
 					</liferay-ui:search-container-column-text>
 				</c:if>

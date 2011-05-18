@@ -37,7 +37,6 @@ import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.SortFactoryUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
@@ -45,6 +44,7 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.util.UniqueList;
 
@@ -168,9 +168,10 @@ public class KnowledgeBaseUtil {
 	}
 
 	public static String getKBArticleURL(
-		long plid, long resourcePrimKey, String portalURL, boolean maximized) {
+		long plid, long resourcePrimKey, int status, String portalURL,
+		boolean maximized) {
 
-		StringBundler sb = new StringBundler(15);
+		StringBundler sb = new StringBundler(11);
 
 		sb.append(portalURL);
 		sb.append(PortalUtil.getPathMain());
@@ -178,17 +179,25 @@ public class KnowledgeBaseUtil {
 		sb.append(StringPool.QUESTION);
 		sb.append("plid");
 		sb.append(StringPool.EQUAL);
-		sb.append(HttpUtil.encodeURL(String.valueOf(plid)));
+		sb.append(String.valueOf(plid));
 		sb.append(StringPool.AMPERSAND);
 		sb.append("resourcePrimKey");
 		sb.append(StringPool.EQUAL);
-		sb.append(HttpUtil.encodeURL(String.valueOf(resourcePrimKey)));
-		sb.append(StringPool.AMPERSAND);
-		sb.append("maximized");
-		sb.append(StringPool.EQUAL);
-		sb.append(HttpUtil.encodeURL(String.valueOf(maximized)));
+		sb.append(String.valueOf(resourcePrimKey));
 
-		return sb.toString();
+		String url = sb.toString();
+
+		if (status != WorkflowConstants.STATUS_APPROVED) {
+			url = url.concat(StringPool.AMPERSAND).concat("status").concat(
+				StringPool.EQUAL).concat(String.valueOf(status));
+		}
+
+		if (maximized) {
+			url = url.concat(StringPool.AMPERSAND).concat("maximized").concat(
+				StringPool.EQUAL).concat(String.valueOf(maximized));
+		}
+
+		return url;
 	}
 
 	public static OrderByComparator getKBStructureOrderByComparator(

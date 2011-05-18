@@ -15,6 +15,7 @@
 package com.liferay.knowledgebase.hook.action;
 
 import com.liferay.knowledgebase.NoSuchArticleException;
+import com.liferay.knowledgebase.admin.util.AdminUtil;
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
 import com.liferay.knowledgebase.service.permission.KBArticlePermission;
@@ -24,6 +25,7 @@ import com.liferay.portal.NoSuchLayoutException;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.struts.BaseStrutsAction;
 import com.liferay.portal.kernel.struts.StrutsAction;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -70,6 +72,8 @@ public class FindKBArticleAction extends BaseStrutsAction {
 
 		long plid = ParamUtil.getLong(request, "plid");
 		long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
+		int status = ParamUtil.getInteger(
+			request, "status", WorkflowConstants.STATUS_APPROVED);
 		boolean maximized = ParamUtil.getBoolean(request, "maximized");
 
 		if (!isValidPlid(plid)) {
@@ -78,10 +82,14 @@ public class FindKBArticleAction extends BaseStrutsAction {
 
 		PortletURL portletURL = null;
 
-		KBArticle kbArticle = getKBArticle(resourcePrimKey);
+		KBArticle kbArticle = getKBArticle(resourcePrimKey, status);
 
 		if (kbArticle == null) {
-			portletURL = getDynamicPortletURL(plid, request);
+			portletURL = getDynamicPortletURL(plid, status, request);
+		}
+
+		if (status != WorkflowConstants.STATUS_APPROVED) {
+			portletURL = getDynamicPortletURL(plid, status, request);
 		}
 
 		if (portletURL == null) {
@@ -93,11 +101,12 @@ public class FindKBArticleAction extends BaseStrutsAction {
 		}
 
 		if (portletURL == null) {
-			portletURL = getDynamicPortletURL(plid, request);
+			portletURL = getDynamicPortletURL(plid, status, request);
 		}
 
 		if (maximized) {
 			portletURL.setWindowState(LiferayWindowState.MAXIMIZED);
+			portletURL.setPortletMode(PortletMode.VIEW);
 		}
 
 		response.sendRedirect(portletURL.toString());
@@ -106,7 +115,7 @@ public class FindKBArticleAction extends BaseStrutsAction {
 	}
 
 	protected PortletURL getDynamicPortletURL(
-			long plid, HttpServletRequest request)
+			long plid, int status, HttpServletRequest request)
 		throws Exception {
 
 		String portletId = PortletKeys.KNOWLEDGE_BASE_ARTICLE_DEFAULT_INSTANCE;
@@ -114,23 +123,29 @@ public class FindKBArticleAction extends BaseStrutsAction {
 		PortletURL portletURL = getKBArticleURL(plid, portletId, request);
 
 		portletURL.setWindowState(LiferayWindowState.MAXIMIZED);
+		portletURL.setPortletMode(PortletMode.VIEW);
 
-		if (!_PORTLET_ADD_DEFAULT_RESOURCE_CHECK_ENABLED) {
-			return portletURL;
+		if (status != WorkflowConstants.STATUS_APPROVED) {
+			portletURL.setParameter("status", String.valueOf(status));
 		}
 
-		portletURL.setParameter(
-			"p_p_auth", AuthTokenUtil.getToken(request, plid, portletId));
+		if (_PORTLET_ADD_DEFAULT_RESOURCE_CHECK_ENABLED) {
+			String token = AuthTokenUtil.getToken(request, plid, portletId);
+
+			portletURL.setParameter("p_p_auth", token);
+		}
 
 		return portletURL;
 	}
 
-	protected KBArticle getKBArticle(long resourcePrimKey) throws Exception {
+	protected KBArticle getKBArticle(long resourcePrimKey, int status)
+		throws Exception {
+
 		KBArticle kbArticle = null;
 
 		try {
 			kbArticle = KBArticleLocalServiceUtil.getLatestKBArticle(
-				resourcePrimKey, WorkflowConstants.STATUS_ANY);
+				resourcePrimKey, status);
 		}
 		catch (NoSuchArticleException nsae) {
 			return null;
@@ -163,6 +178,9 @@ public class FindKBArticleAction extends BaseStrutsAction {
 		}
 		else if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_DISPLAY)) {
 			jspPage = "/display/view_article.jsp";
+		}
+		else if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_SECTION)) {
+			jspPage = "/section/view_article.jsp";
 		}
 
 		PortletURL portletURL = PortletURLFactoryUtil.create(
@@ -213,33 +231,68 @@ public class FindKBArticleAction extends BaseStrutsAction {
 						layout.getPlid(), portlet.getPortletId(), request);
 				}
 
-				if (!rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_ARTICLE)) {
-					continue;
+				if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_SECTION)) {
+					PortletPreferences preferences =
+						PortletPreferencesFactoryUtil.getPortletSetup(
+							layout, portlet.getPortletId(), StringPool.BLANK);
+
+					String[] kbArticlesSections = preferences.getValues(
+						"kbArticlesSections", new String[0]);
+
+					KBArticle rootKBArticle = null;
+
+					try {
+						rootKBArticle =
+							KBArticleLocalServiceUtil.getLatestKBArticle(
+								kbArticle.getRootResourcePrimKey(),
+								WorkflowConstants.STATUS_APPROVED);
+					}
+					catch (NoSuchArticleException nsae) {
+						continue;
+					}
+
+					String[] sections = AdminUtil.unescapeSections(
+						rootKBArticle.getSections());
+
+					for (String section : sections) {
+						if (!ArrayUtil.contains(kbArticlesSections, section)) {
+							continue;
+						}
+
+						return getKBArticleURL(
+							layout.getPlid(), portlet.getPortletId(), request);
+					}
 				}
 
-				PortletPreferences preferences =
-					PortletPreferencesFactoryUtil.getPortletSetup(
-						layout, portlet.getPortletId(), StringPool.BLANK);
+				if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_ARTICLE)) {
+					PortletPreferences preferences =
+						PortletPreferencesFactoryUtil.getPortletSetup(
+							layout, portlet.getPortletId(), StringPool.BLANK);
 
-				long resourcePrimKey = GetterUtil.getLong(
-					preferences.getValue("resourcePrimKey", null));
+					long resourcePrimKey = GetterUtil.getLong(
+						preferences.getValue("resourcePrimKey", null));
 
-				KBArticle selKBArticle = null;
+					KBArticle selKBArticle = null;
 
-				try {
-					selKBArticle = KBArticleLocalServiceUtil.getLatestKBArticle(
-						resourcePrimKey, WorkflowConstants.STATUS_ANY);
-				}
-				catch (NoSuchArticleException nsae) {
-					continue;
-				}
+					try {
+						selKBArticle =
+							KBArticleLocalServiceUtil.getLatestKBArticle(
+								resourcePrimKey,
+								WorkflowConstants.STATUS_APPROVED);
+					}
+					catch (NoSuchArticleException nsae) {
+						continue;
+					}
 
-				long rootResourcePrimKey =
-					selKBArticle.getRootResourcePrimKey();
+					long rootResourcePrimKey =
+						kbArticle.getRootResourcePrimKey();
+					long selRootResourcePrimKey =
+						selKBArticle.getRootResourcePrimKey();
 
-				if (kbArticle.getRootResourcePrimKey() == rootResourcePrimKey) {
-					return getKBArticleURL(
-						layout.getPlid(), portlet.getPortletId(), request);
+					if (rootResourcePrimKey == selRootResourcePrimKey) {
+						return getKBArticleURL(
+							layout.getPlid(), portlet.getPortletId(), request);
+					}
 				}
 			}
 		}

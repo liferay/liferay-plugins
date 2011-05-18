@@ -18,10 +18,10 @@ import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.workflow.BaseWorkflowHandler;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
+import com.liferay.portal.security.permission.ResourceActionsUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.theme.ThemeDisplay;
 
@@ -42,7 +42,7 @@ public class KBArticleWorkflowHandler extends BaseWorkflowHandler {
 	}
 
 	public String getType(Locale locale) {
-		return LanguageUtil.get(locale, "model.resource." + CLASS_NAME);
+		return ResourceActionsUtil.getModelResource(locale, CLASS_NAME);
 	}
 
 	public KBArticle updateStatus(

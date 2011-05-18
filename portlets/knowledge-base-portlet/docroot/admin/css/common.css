@@ -1,5 +1,9 @@
 /* ---------- Configuration ---------- */
 
+.portlet-configuration .kb-block-labels .yui3-aui-field-label {
+	display: block;
+}
+
 .portlet-configuration .kb-field-wrapper {
 	margin: 10px 0;
 }
@@ -15,8 +19,8 @@
 
 /* ---------- Portal ---------- */
 
-.knowledge-base-portlet .yui3-aui-field-assetcategories .yui3-aui-field-content {
-	margin: 10px 0 20px;
+.knowledge-base-portlet .yui3-aui-field-inline {
+	display: inline-block;
 }
 
 .knowledge-base-portlet .yui3-aui-fieldset {
@@ -258,25 +262,6 @@
 
 .knowledge-base-portlet .kb-priority {
 	padding-left: 10px;
-}
-
-.knowledge-base-portlet .kb-results-body {
-	padding: 0 0 0 20px;
-}
-
-.knowledge-base-portlet .kb-results-body .kb-article-icons,
-.knowledge-base-portlet .kb-results-body .kb-structure-icons,
-.knowledge-base-portlet .kb-results-body .kb-template-icons {
-	padding: 5px 0;
-}
-
-.knowledge-base-portlet .kb-results-body .kb-title {
-	margin: 5px 0 0 0;
-}
-
-.knowledge-base-portlet .kb-results-body .kb-title a {
-	font-weight: bold;
-	margin: 0 0 0 -20px;
 }
 
 .knowledge-base-portlet .kb-select-article-breadcrumbs {

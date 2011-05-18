@@ -25,6 +25,9 @@
 		</field>
 		<field name="kbTemplateId" type="long" />
 		<field name="priority" type="double" />
+		<field name="sections" type="String">
+			<hint name="max-length">4000</hint>
+		</field>
 		<field name="viewCount" type="int" />
 		<field name="latest" type="boolean" />
 		<field name="main" type="boolean" />

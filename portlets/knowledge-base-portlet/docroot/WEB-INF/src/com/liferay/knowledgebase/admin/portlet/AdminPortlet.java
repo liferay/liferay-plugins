@@ -25,6 +25,7 @@ import com.liferay.knowledgebase.DuplicateKBStructureOptionLabelException;
 import com.liferay.knowledgebase.DuplicateKBStructureOptionValueException;
 import com.liferay.knowledgebase.KBArticleContentException;
 import com.liferay.knowledgebase.KBArticlePriorityException;
+import com.liferay.knowledgebase.KBArticleSectionException;
 import com.liferay.knowledgebase.KBArticleTitleException;
 import com.liferay.knowledgebase.KBCommentContentException;
 import com.liferay.knowledgebase.KBStructureFieldLabelException;
@@ -457,6 +458,7 @@ public class AdminPortlet extends MVCPortlet {
 		String content = ParamUtil.getString(actionRequest, "content");
 		String description = ParamUtil.getString(actionRequest, "description");
 		long kbTemplateId = ParamUtil.getLong(actionRequest, "kbTemplateId");
+		String[] sections = actionRequest.getParameterValues("sections");
 		String dirName = ParamUtil.getString(actionRequest, "dirName");
 		int workflowAction = ParamUtil.getInteger(
 			actionRequest, "workflowAction");
@@ -469,12 +471,12 @@ public class AdminPortlet extends MVCPortlet {
 		if (cmd.equals(Constants.ADD)) {
 			kbArticle = KBArticleServiceUtil.addKBArticle(
 				portletId, parentResourcePrimKey, title, content, description,
-				kbTemplateId, dirName, serviceContext);
+				kbTemplateId, sections, dirName, serviceContext);
 		}
 		else if (cmd.equals(Constants.UPDATE)) {
 			kbArticle = KBArticleServiceUtil.updateKBArticle(
 				resourcePrimKey, title, content, description, kbTemplateId,
-				dirName, serviceContext);
+				sections, dirName, serviceContext);
 		}
 
 		if (!cmd.equals(Constants.ADD) && !cmd.equals(Constants.UPDATE)) {
@@ -691,6 +693,7 @@ public class AdminPortlet extends MVCPortlet {
 			cause instanceof FileSizeException ||
 			cause instanceof KBArticleContentException ||
 			cause instanceof KBArticlePriorityException ||
+			cause instanceof KBArticleSectionException ||
 			cause instanceof KBArticleTitleException ||
 			cause instanceof KBCommentContentException ||
 			cause instanceof KBStructureFieldLabelException ||

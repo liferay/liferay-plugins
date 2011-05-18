@@ -19,6 +19,7 @@ import com.liferay.documentlibrary.DuplicateFileException;
 import com.liferay.documentlibrary.NoSuchDirectoryException;
 import com.liferay.knowledgebase.KBArticleContentException;
 import com.liferay.knowledgebase.KBArticlePriorityException;
+import com.liferay.knowledgebase.KBArticleSectionException;
 import com.liferay.knowledgebase.KBArticleTitleException;
 import com.liferay.knowledgebase.NoSuchArticleException;
 import com.liferay.knowledgebase.admin.social.AdminActivityKeys;
@@ -102,7 +103,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	public KBArticle addKBArticle(
 			long userId, long parentResourcePrimKey, String title,
 			String content, String description, long kbTemplateId,
-			String dirName, ServiceContext serviceContext)
+			String[] sections, String dirName, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		// KB article
@@ -112,7 +113,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		double priority = getPriority(groupId, parentResourcePrimKey);
 		Date now = new Date();
 
-		validate(title, content);
+		validate(title, content, sections);
 
 		long kbArticleId = counterLocalService.increment();
 
@@ -139,6 +140,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		kbArticle.setDescription(description);
 		kbArticle.setKbTemplateId(kbTemplateId);
 		kbArticle.setPriority(priority);
+		kbArticle.setSections(
+			StringUtil.merge(AdminUtil.escapeSections(sections)));
 		kbArticle.setViewCount(0);
 		kbArticle.setLatest(true);
 		kbArticle.setMain(false);
@@ -531,6 +534,59 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			resourcePrimKey, status, new KBArticleVersionComparator());
 	}
 
+	public List<KBArticle> getSectionsKBArticles(
+			long groupId, String[] sections, int status, int start, int end,
+			OrderByComparator orderByComparator)
+		throws SystemException {
+
+		String[] array = AdminUtil.escapeSections(sections);
+
+		for (int i = 0; i < array.length; i++) {
+			array[i] = StringUtil.quote(array[i], StringPool.PERCENT);
+		}
+
+		if (status == WorkflowConstants.STATUS_ANY) {
+			return kbArticlePersistence.findByG_P_S_L(
+				groupId, KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY,
+				array, true, start, end, orderByComparator);
+		}
+		else if (status == WorkflowConstants.STATUS_APPROVED) {
+			return kbArticlePersistence.findByG_P_S_M(
+				groupId, KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY,
+				array, true, start, end, orderByComparator);
+		}
+
+		return kbArticlePersistence.findByG_P_S_S(
+			groupId, KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY, array,
+			status, start, end, orderByComparator);
+	}
+
+	public int getSectionsKBArticlesCount(
+			long groupId, String[] sections, int status)
+		throws SystemException {
+
+		String[] array = AdminUtil.escapeSections(sections);
+
+		for (int i = 0; i < array.length; i++) {
+			array[i] = StringUtil.quote(array[i], StringPool.PERCENT);
+		}
+
+		if (status == WorkflowConstants.STATUS_ANY) {
+			return kbArticlePersistence.countByG_P_S_L(
+				groupId, KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY,
+				array, true);
+		}
+		else if (status == WorkflowConstants.STATUS_APPROVED) {
+			return kbArticlePersistence.countByG_P_S_M(
+				groupId, KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY,
+				array, true);
+		}
+
+		return kbArticlePersistence.countByG_P_S_S(
+			groupId, KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY, array,
+			status);
+	}
+
 	public List<KBArticle> getSiblingKBArticles(
 			long groupId, long parentResourcePrimKey, int status, int start,
 			int end, OrderByComparator orderByComparator)
@@ -680,8 +736,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 	public KBArticle updateKBArticle(
 			long userId, long resourcePrimKey, String title, String content,
-			String description, long kbTemplateId, String dirName,
-			ServiceContext serviceContext)
+			String description, long kbTemplateId, String[] sections,
+			String dirName, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		// KB article
@@ -690,7 +746,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		int version = KBArticleConstants.DEFAULT_VERSION;
 		int status = WorkflowConstants.STATUS_DRAFT;
 
-		validate(title, content);
+		validate(title, content, sections);
 
 		KBArticle oldKBArticle = getLatestKBArticle(
 			resourcePrimKey, WorkflowConstants.STATUS_ANY);
@@ -737,6 +793,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		kbArticle.setDescription(description);
 		kbArticle.setKbTemplateId(kbTemplateId);
 		kbArticle.setPriority(oldPriority);
+		kbArticle.setSections(
+			StringUtil.merge(AdminUtil.escapeSections(sections)));
 		kbArticle.setViewCount(oldViewCount);
 		kbArticle.setLatest(true);
 		kbArticle.setMain(false);
@@ -1412,7 +1470,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		}
 	}
 
-	protected void validate(String title, String content)
+	protected void validate(String title, String content, String[] sections)
 		throws PortalException {
 
 		if (Validator.isNull(title)) {
@@ -1421,6 +1479,10 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		if (Validator.isNull(content)) {
 			throw new KBArticleContentException();
+		}
+
+		if (Validator.isNull(sections)) {
+			throw new KBArticleSectionException();
 		}
 	}
 

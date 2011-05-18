@@ -14,7 +14,9 @@
 
 package com.liferay.knowledgebase.service.impl;
 
+import com.liferay.knowledgebase.admin.util.AdminUtil;
 import com.liferay.knowledgebase.model.KBArticle;
+import com.liferay.knowledgebase.model.KBArticleConstants;
 import com.liferay.knowledgebase.model.KBArticleSearchDisplay;
 import com.liferay.knowledgebase.model.impl.KBArticleSearchDisplayImpl;
 import com.liferay.knowledgebase.service.base.KBArticleServiceBaseImpl;
@@ -95,7 +97,7 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 	public KBArticle addKBArticle(
 			String portletId, long parentResourcePrimKey, String title,
 			String content, String description, long kbTemplateId,
-			String dirName, ServiceContext serviceContext)
+			String[] sections, String dirName, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		if (portletId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN)) {
@@ -111,7 +113,7 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 
 		return kbArticleLocalService.addKBArticle(
 			getUserId(), parentResourcePrimKey, title, content, description,
-			kbTemplateId, dirName, serviceContext);
+			kbTemplateId, sections, dirName, serviceContext);
 	}
 
 	public void deleteAttachment(
@@ -277,7 +279,7 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 
 		String feedURL = KnowledgeBaseUtil.getKBArticleURL(
 			themeDisplay.getPlid(), resourcePrimKey,
-			themeDisplay.getPortalURL(), false);
+			status, themeDisplay.getPortalURL(), false);
 
 		List<KBArticle> kbArticles = getKBArticleAndAllDescendants(
 			kbArticle.getGroupId(), resourcePrimKey, status,
@@ -436,6 +438,59 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 			resourcePrimKey, status);
 	}
 
+	public List<KBArticle> getSectionsKBArticles(
+			long groupId, String[] sections, int status, int start, int end,
+			OrderByComparator orderByComparator)
+		throws SystemException {
+
+		String[] array = AdminUtil.escapeSections(sections);
+
+		for (int i = 0; i < array.length; i++) {
+			array[i] = StringUtil.quote(array[i], StringPool.PERCENT);
+		}
+
+		if (status == WorkflowConstants.STATUS_ANY) {
+			return kbArticlePersistence.filterFindByG_P_S_L(
+				groupId, KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY,
+				array, true, start, end, orderByComparator);
+		}
+		else if (status == WorkflowConstants.STATUS_APPROVED) {
+			return kbArticlePersistence.filterFindByG_P_S_M(
+				groupId, KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY,
+				array, true, start, end, orderByComparator);
+		}
+
+		return kbArticlePersistence.filterFindByG_P_S_S(
+			groupId, KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY, array,
+			status, start, end, orderByComparator);
+	}
+
+	public int getSectionsKBArticlesCount(
+			long groupId, String[] sections, int status)
+		throws SystemException {
+
+		String[] array = AdminUtil.escapeSections(sections);
+
+		for (int i = 0; i < array.length; i++) {
+			array[i] = StringUtil.quote(array[i], StringPool.PERCENT);
+		}
+
+		if (status == WorkflowConstants.STATUS_ANY) {
+			return kbArticlePersistence.filterCountByG_P_S_L(
+				groupId, KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY,
+				array, true);
+		}
+		else if (status == WorkflowConstants.STATUS_APPROVED) {
+			return kbArticlePersistence.filterCountByG_P_S_M(
+				groupId, KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY,
+				array, true);
+		}
+
+		return kbArticlePersistence.filterCountByG_P_S_S(
+			groupId, KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY, array,
+			status);
+	}
+
 	public List<KBArticle> getSiblingKBArticles(
 			long groupId, long parentResourcePrimKey, int status, int start,
 			int end, OrderByComparator orderByComparator)
@@ -566,8 +621,8 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 
 	public KBArticle updateKBArticle(
 			long resourcePrimKey, String title, String content,
-			String description, long kbTemplateId, String dirName,
-			ServiceContext serviceContext)
+			String description, long kbTemplateId, String[] sections,
+			String dirName, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		KBArticlePermission.check(
@@ -575,7 +630,7 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 
 		return kbArticleLocalService.updateKBArticle(
 			getUserId(), resourcePrimKey, title, content, description,
-			kbTemplateId, dirName, serviceContext);
+			kbTemplateId, sections, dirName, serviceContext);
 	}
 
 	public void updateKBArticlesKBTemplates(
@@ -649,7 +704,7 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 
 			String link = KnowledgeBaseUtil.getKBArticleURL(
 				themeDisplay.getPlid(), kbArticle.getResourcePrimKey(),
-				themeDisplay.getPortalURL(), false);
+				kbArticle.getStatus(), themeDisplay.getPortalURL(), false);
 
 			SyndContent syndContent = new SyndContentImpl();
 

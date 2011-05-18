@@ -16,6 +16,7 @@ package com.liferay.knowledgebase.admin.lar;
 
 import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.documentlibrary.service.DLLocalServiceUtil;
+import com.liferay.knowledgebase.admin.util.AdminUtil;
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.model.KBArticleConstants;
 import com.liferay.knowledgebase.model.KBComment;
@@ -378,6 +379,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			kbArticlePKs, kbArticle.getParentResourcePrimKey());
 		long kbTemplateId = MapUtil.getLong(
 			kbTemplatePKs, kbArticle.getKbTemplateId());
+		String[] sections = AdminUtil.unescapeSections(kbArticle.getSections());
 		String dirName = MapUtil.getString(
 			dirNames, String.valueOf(kbArticle.getResourcePrimKey()));
 
@@ -399,7 +401,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 				KBArticleLocalServiceUtil.updateKBArticle(
 					userId, existingKBArticle.getResourcePrimKey(),
 					kbArticle.getTitle(), kbArticle.getContent(),
-					kbArticle.getDescription(), kbTemplateId, dirName,
+					kbArticle.getDescription(), kbTemplateId, sections, dirName,
 					serviceContext);
 
 				KBArticleLocalServiceUtil.moveKBArticle(
@@ -499,6 +501,8 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 				curKBArticle.getUserUuid());
 			long curKBTemplateId = MapUtil.getLong(
 				kbTemplatePKs, curKBArticle.getKbTemplateId());
+			String[] curSections = AdminUtil.unescapeSections(
+				curKBArticle.getSections());
 			String curDirName = StringPool.BLANK;
 
 			if (curKBArticle.isMain()) {
@@ -515,14 +519,14 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 				importedKBArticle = KBArticleLocalServiceUtil.addKBArticle(
 					curUserId, parentResourcePrimKey, curKBArticle.getTitle(),
 					curKBArticle.getContent(), curKBArticle.getDescription(),
-					curKBTemplateId, curDirName, serviceContext);
+					curKBTemplateId, curSections, curDirName, serviceContext);
 			}
 			else {
 				importedKBArticle = KBArticleLocalServiceUtil.updateKBArticle(
 					curUserId, importedKBArticle.getResourcePrimKey(),
 					curKBArticle.getTitle(), curKBArticle.getContent(),
-					curKBArticle.getDescription(), curKBTemplateId, curDirName,
-					serviceContext);
+					curKBArticle.getDescription(), curKBTemplateId, curSections,
+					curDirName, serviceContext);
 			}
 		}
 

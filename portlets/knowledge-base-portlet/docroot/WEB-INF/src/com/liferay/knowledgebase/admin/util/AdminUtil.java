@@ -31,6 +31,7 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.InstanceFactory;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.util.ContentUtil;
 
@@ -49,6 +50,17 @@ import net.htmlparser.jericho.Source;
  * @author Brian Wing Shun Chan
  */
 public class AdminUtil {
+
+	public static String[] escapeSections(String[] sections) {
+		String[] array = sections.clone();
+
+		for (int i = 0; i < array.length; i++) {
+			array[i] = StringPool.UNDERLINE.concat(array[i]).concat(
+				StringPool.UNDERLINE);
+		}
+
+		return array;
+	}
 
 	public static String getEmailFromAddress(PortletPreferences preferences) {
 		return preferences.getValue(
@@ -254,6 +266,20 @@ public class AdminUtil {
 		}
 
 		return null;
+	}
+
+	public static String[] unescapeSections(String sections) {
+		String[] array = StringUtil.split(sections);
+
+		for (int i = 0; i < array.length; i++) {
+			if (StringUtil.startsWith(array[i], StringPool.UNDERLINE) &&
+				StringUtil.endsWith(array[i], StringPool.UNDERLINE)) {
+
+				array[i] = array[i].substring(1, array[i].length() - 1);
+			}
+		}
+
+		return array;
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(AdminUtil.class);

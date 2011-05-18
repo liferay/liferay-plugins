@@ -14,6 +14,7 @@
 
 package com.liferay.knowledgebase.admin.asset;
 
+import com.liferay.knowledgebase.NoSuchArticleException;
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
 import com.liferay.knowledgebase.service.permission.AdminPermission;
@@ -49,14 +50,22 @@ public class KBArticleAssetRendererFactory extends BaseAssetRendererFactory {
 	public AssetRenderer getAssetRenderer(long classPK, int type)
 		throws PortalException, SystemException {
 
-		int status = WorkflowConstants.STATUS_ANY;
+		KBArticle kbArticle = null;
 
 		if (type == TYPE_LATEST_APPROVED) {
-			status = WorkflowConstants.STATUS_APPROVED;
+			kbArticle = KBArticleLocalServiceUtil.getLatestKBArticle(
+				classPK, WorkflowConstants.STATUS_APPROVED);
+
+			return new KBArticleAssetRenderer(kbArticle);
 		}
 
-		KBArticle kbArticle = KBArticleLocalServiceUtil.getLatestKBArticle(
-			classPK, status);
+		try {
+			kbArticle = KBArticleLocalServiceUtil.getKBArticle(classPK);
+		}
+		catch (NoSuchArticleException nsae) {
+			kbArticle = KBArticleLocalServiceUtil.getLatestKBArticle(
+				classPK, WorkflowConstants.STATUS_ANY);
+		}
 
 		return new KBArticleAssetRenderer(kbArticle);
 	}

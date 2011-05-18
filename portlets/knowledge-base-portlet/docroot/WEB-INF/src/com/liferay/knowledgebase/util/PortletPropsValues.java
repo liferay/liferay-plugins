@@ -49,6 +49,13 @@ public class PortletPropsValues {
 		PortletProps.get(
 			PortletPropsKeys.ADMIN_EMAIL_KB_ARTICLE_UPDATED_SUBJECT);
 
+	public static final String[] ADMIN_KB_ARTICLE_DEFAULT_SECTIONS =
+		PortletProps.getArray(
+			PortletPropsKeys.ADMIN_KB_ARTICLE_DEFAULT_SECTIONS);
+
+	public static final String[] ADMIN_KB_ARTICLE_SECTIONS =
+		PortletProps.getArray(PortletPropsKeys.ADMIN_KB_ARTICLE_SECTIONS);
+
 	public static final String ADMIN_KB_STRUCTURE_CONTENT = PortletProps.get(
 		PortletPropsKeys.ADMIN_KB_STRUCTURE_CONTENT);
 

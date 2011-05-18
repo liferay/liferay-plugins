@@ -12,27 +12,29 @@
  * details.
  */
 
-package com.liferay.knowledgebase.util;
+package com.liferay.knowledgebase;
 
-import com.liferay.portal.model.PortletConstants;
+import com.liferay.portal.kernel.exception.PortalException;
 
 /**
  * @author Brian Wing Shun Chan
- * @author Peter Shin
  */
-public class PortletKeys extends com.liferay.portal.util.PortletKeys {
+public class KBArticleSectionException extends PortalException {
 
-	public static final String KNOWLEDGE_BASE_ARTICLE =
-		"3_WAR_knowledgebaseportlet";
+	public KBArticleSectionException() {
+		super();
+	}
 
-	public static final String KNOWLEDGE_BASE_ARTICLE_DEFAULT_INSTANCE =
-		PortletKeys.KNOWLEDGE_BASE_ARTICLE +
-			PortletConstants.INSTANCE_SEPARATOR + "0000";
+	public KBArticleSectionException(String msg) {
+		super(msg);
+	}
 
-	public static final String KNOWLEDGE_BASE_DISPLAY =
-		"2_WAR_knowledgebaseportlet";
+	public KBArticleSectionException(String msg, Throwable cause) {
+		super(msg, cause);
+	}
 
-	public static final String KNOWLEDGE_BASE_SECTION =
-		"4_WAR_knowledgebaseportlet";
+	public KBArticleSectionException(Throwable cause) {
+		super(cause);
+	}
 
 }

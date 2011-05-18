@@ -1,0 +1,30 @@
+/* ---------- Portlet ---------- */
+
+.knowledge-base-portlet-section .kb-article-content {
+	margin: 5px 0 0;
+}
+
+.knowledge-base-portlet-section .kb-article-title {
+	margin: 5px 0 0;
+}
+
+.knowledge-base-portlet-section .kb-article-title a {
+	font-weight: bold;
+	margin: 0 0 0 -20px;
+}
+
+.knowledge-base-portlet-section .kb-article-title-first {
+	margin-top: 0;
+}
+
+.knowledge-base-portlet-section .kb-articles {
+	padding: 0 0 0 20px;
+}
+
+.knowledge-base-portlet-section .kb-articles-sections-title {
+	border-bottom: 1px solid #CCC;
+	font-size: 1.2em;
+	font-weight: bold;
+	margin: 0 -5px 5px;
+	padding: 0 5px 3px;
+}

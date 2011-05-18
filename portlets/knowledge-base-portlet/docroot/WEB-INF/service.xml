@@ -35,6 +35,7 @@
 		<column name="description" type="String" />
 		<column name="kbTemplateId" type="long" />
 		<column name="priority" type="double" />
+		<column name="sections" type="String" />
 		<column name="viewCount" type="int" />
 		<column name="latest" type="boolean" />
 		<column name="main" type="boolean" />
@@ -138,6 +139,24 @@
 		<finder name="G_P_S" return-type="Collection">
 			<finder-column name="groupId" />
 			<finder-column name="parentResourcePrimKey" arrayable-operator="OR" />
+			<finder-column name="status" />
+		</finder>
+		<finder name="G_P_S_L" return-type="Collection" db-index="false">
+			<finder-column name="groupId" />
+			<finder-column name="parentResourcePrimKey" />
+			<finder-column name="sections" comparator="LIKE" arrayable-operator="OR" />
+			<finder-column name="latest" />
+		</finder>
+		<finder name="G_P_S_M" return-type="Collection" db-index="false">
+			<finder-column name="groupId" />
+			<finder-column name="parentResourcePrimKey" />
+			<finder-column name="sections" comparator="LIKE" arrayable-operator="OR" />
+			<finder-column name="main" />
+		</finder>
+		<finder name="G_P_S_S" return-type="Collection" db-index="false">
+			<finder-column name="groupId" />
+			<finder-column name="parentResourcePrimKey" />
+			<finder-column name="sections" comparator="LIKE" arrayable-operator="OR" />
 			<finder-column name="status" />
 		</finder>
 
@@ -299,6 +318,7 @@
 		<exception>DuplicateKBStructureOptionValue</exception>
 		<exception>KBArticleContent</exception>
 		<exception>KBArticlePriority</exception>
+		<exception>KBArticleSection</exception>
 		<exception>KBArticleTitle</exception>
 		<exception>KBCommentContent</exception>
 		<exception>KBStructureFieldLabel</exception>

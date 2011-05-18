@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.knowledgebase.display.portlet;
+package com.liferay.knowledgebase.section.portlet;
 
 import com.liferay.documentlibrary.DuplicateFileException;
 import com.liferay.documentlibrary.FileNameException;
@@ -29,7 +29,6 @@ import com.liferay.knowledgebase.KBTemplateTitleException;
 import com.liferay.knowledgebase.NoSuchArticleException;
 import com.liferay.knowledgebase.NoSuchCommentException;
 import com.liferay.knowledgebase.NoSuchTemplateException;
-import com.liferay.knowledgebase.RequiredKBTemplateException;
 import com.liferay.knowledgebase.admin.util.AdminUtil;
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.model.KBComment;
@@ -54,8 +53,6 @@ import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.security.auth.PrincipalException;
@@ -85,7 +82,7 @@ import javax.servlet.http.HttpServletRequest;
  * @author Peter Shin
  * @author Brian Wing Shun Chan
  */
-public class DisplayPortlet extends MVCPortlet {
+public class SectionPortlet extends MVCPortlet {
 
 	public void addAttachment(
 			ActionRequest actionRequest, ActionResponse actionResponse)
@@ -154,15 +151,6 @@ public class DisplayPortlet extends MVCPortlet {
 		long kbCommentId = ParamUtil.getLong(actionRequest, "kbCommentId");
 
 		KBCommentLocalServiceUtil.deleteKBComment(kbCommentId);
-	}
-
-	public void deleteKBTemplate(
-			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws Exception {
-
-		long kbTemplateId = ParamUtil.getLong(actionRequest, "kbTemplateId");
-
-		KBTemplateServiceUtil.deleteKBTemplate(kbTemplateId);
 	}
 
 	public void moveKBArticle(
@@ -245,27 +233,6 @@ public class DisplayPortlet extends MVCPortlet {
 			resourceRequest, resourceResponse, shortFileName, is, contentType);
 	}
 
-	public void serveGroupKBArticlesRSS(
-			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
-		throws Exception {
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		int rssDelta = ParamUtil.getInteger(resourceRequest, "rssDelta");
-		String rssDisplayStyle = ParamUtil.getString(
-			resourceRequest, "rssDisplayStyle");
-		String rssFormat = ParamUtil.getString(resourceRequest, "rssFormat");
-
-		String rss = KBArticleServiceUtil.getGroupKBArticlesRSS(
-			WorkflowConstants.STATUS_APPROVED, rssDelta, rssDisplayStyle,
-			rssFormat, themeDisplay);
-
-		PortletResponseUtil.sendFile(
-			resourceRequest, resourceResponse, null,
-			rss.getBytes(StringPool.UTF8), ContentTypes.TEXT_XML_UTF8);
-	}
-
 	public void serveKBArticleRSS(
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws Exception {
@@ -303,9 +270,6 @@ public class DisplayPortlet extends MVCPortlet {
 			else if (resourceID.equals("kbArticleRSS")) {
 				serveKBArticleRSS(resourceRequest, resourceResponse);
 			}
-			else if (resourceID.equals("groupKBArticlesRSS")) {
-				serveGroupKBArticlesRSS(resourceRequest, resourceResponse);
-			}
 		}
 		catch (IOException ioe) {
 			throw ioe;
@@ -316,19 +280,6 @@ public class DisplayPortlet extends MVCPortlet {
 		catch (Exception e) {
 			throw new PortletException(e);
 		}
-	}
-
-	public void subscribeGroupKBArticles(
-			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws Exception {
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		String portletId = PortalUtil.getPortletId(actionRequest);
-
-		KBArticleServiceUtil.subscribeGroupKBArticles(
-			themeDisplay.getScopeGroupId(), portletId);
 	}
 
 	public void subscribeKBArticle(
@@ -343,19 +294,6 @@ public class DisplayPortlet extends MVCPortlet {
 
 		KBArticleServiceUtil.subscribeKBArticle(
 			themeDisplay.getScopeGroupId(), resourcePrimKey);
-	}
-
-	public void unsubscribeGroupKBArticles(
-			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws Exception {
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		String portletId = PortalUtil.getPortletId(actionRequest);
-
-		KBArticleServiceUtil.unsubscribeGroupKBArticles(
-			themeDisplay.getScopeGroupId(), portletId);
 	}
 
 	public void unsubscribeKBArticle(
@@ -416,7 +354,7 @@ public class DisplayPortlet extends MVCPortlet {
 		String[] sections = actionRequest.getParameterValues("sections");
 		String dirName = ParamUtil.getString(actionRequest, "dirName");
 		int workflowAction = ParamUtil.getInteger(
-			actionRequest, "workflowAction", WorkflowConstants.ACTION_PUBLISH);
+			actionRequest, "workflowAction");
 
 		KBArticle kbArticle = null;
 
@@ -445,7 +383,7 @@ public class DisplayPortlet extends MVCPortlet {
 			String editURL = PortalUtil.getLayoutFullURL(themeDisplay);
 
 			editURL = HttpUtil.setParameter(
-				editURL, "p_p_id", PortletKeys.KNOWLEDGE_BASE_DISPLAY);
+				editURL, "p_p_id", PortletKeys.KNOWLEDGE_BASE_SECTION);
 			editURL = HttpUtil.setParameter(
 				editURL, namespace + "jspPage", jspPath + "edit_article.jsp");
 			editURL = HttpUtil.setParameter(
@@ -458,18 +396,6 @@ public class DisplayPortlet extends MVCPortlet {
 
 			actionRequest.setAttribute(WebKeys.REDIRECT, editURL);
 		}
-	}
-
-	public void updateKBArticlesKBTemplates(
-			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws Exception {
-
-		long[] kbArticleIds = StringUtil.split(
-			ParamUtil.getString(actionRequest, "kbArticleIds"), 0L);
-		long kbTemplateId = ParamUtil.getLong(actionRequest, "kbTemplateId");
-
-		KBArticleServiceUtil.updateKBArticlesKBTemplates(
-			kbArticleIds, kbTemplateId);
 	}
 
 	public void updateKBComment(
@@ -556,19 +482,7 @@ public class DisplayPortlet extends MVCPortlet {
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws IOException, PortletException {
 
-		String jspPage = ParamUtil.getString(renderRequest, "jspPage", viewJSP);
-
-		long assetCategoryId = ParamUtil.getLong(renderRequest, "categoryId");
-		String assetTagName = ParamUtil.getString(renderRequest, "tag");
-
-		if ((jspPage.equals(viewJSP) && (assetCategoryId > 0)) ||
-			(jspPage.equals(viewJSP) && Validator.isNotNull(assetTagName))) {
-
-			String path = jspPath + "view_prp_articles.jsp";
-
-			include(path, renderRequest, renderResponse);
-		}
-		else if (SessionErrors.contains(
+		if (SessionErrors.contains(
 				renderRequest, NoSuchArticleException.class.getName()) ||
 			SessionErrors.contains(
 				renderRequest, NoSuchCommentException.class.getName()) ||
@@ -636,8 +550,7 @@ public class DisplayPortlet extends MVCPortlet {
 			cause instanceof NoSuchCommentException ||
 			cause instanceof NoSuchFileException ||
 			cause instanceof NoSuchTemplateException ||
-			cause instanceof PrincipalException ||
-			cause instanceof RequiredKBTemplateException) {
+			cause instanceof PrincipalException) {
 
 			return true;
 		}

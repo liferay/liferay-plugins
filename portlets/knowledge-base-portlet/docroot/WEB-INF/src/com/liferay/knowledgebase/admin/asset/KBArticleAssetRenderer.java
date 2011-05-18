@@ -43,7 +43,7 @@ public class KBArticleAssetRenderer extends BaseAssetRenderer {
 	}
 
 	public long getClassPK() {
-		return _kbArticle.getResourcePrimKey();
+		return _kbArticle.getClassPK();
 	}
 
 	public long getGroupId() {
@@ -83,7 +83,7 @@ public class KBArticleAssetRenderer extends BaseAssetRenderer {
 
 		return KnowledgeBaseUtil.getKBArticleURL(
 			themeDisplay.getPlid(), _kbArticle.getResourcePrimKey(),
-			themeDisplay.getPortalURL(), false);
+			_kbArticle.getStatus(), themeDisplay.getPortalURL(), false);
 	}
 
 	public long getUserId() {
