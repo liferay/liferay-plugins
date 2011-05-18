@@ -19,7 +19,6 @@ import com.liferay.portal.kernel.io.unsync.UnsyncPrintWriter;
 import com.liferay.portal.kernel.io.unsync.UnsyncStringWriter;
 import com.liferay.portal.kernel.util.StringPool;
 
-import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
@@ -33,11 +32,11 @@ import javax.portlet.filter.RenderResponseWrapper;
  */
 public class TestRenderResponse extends RenderResponseWrapper {
 
-	public TestRenderResponse(RenderResponse response) {
-		super(response);
+	public TestRenderResponse(RenderResponse renderResponse) {
+		super(renderResponse);
 	}
 
-	public OutputStream getPortletOutputStream() throws IOException {
+	public OutputStream getPortletOutputStream() {
 		if (_printWriter != null) {
 			throw new IllegalStateException(
 				"Cannot obtain OutputStream because Writer is already in use");
@@ -75,7 +74,7 @@ public class TestRenderResponse extends RenderResponseWrapper {
 		return _string;
 	}
 
-	public PrintWriter getWriter() throws IOException {
+	public PrintWriter getWriter() {
 		if (_byteArrayOutputStream != null) {
 			throw new IllegalStateException(
 				"Cannot obtain Writer because OutputStream is already in use");

@@ -64,7 +64,7 @@ public class TestPortlet extends LiferayPortlet {
 
 	public void processAction(
 			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws IOException, PortletException {
+		throws IOException {
 
 		HttpServletRequest request = PortalUtil.getHttpServletRequest(
 			actionRequest);
@@ -86,19 +86,17 @@ public class TestPortlet extends LiferayPortlet {
 
 	public void serveResource(
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
-		throws IOException, PortletException {
+		throws IOException {
 
 		String fileName = resourceRequest.getResourceID();
 
 		InputStream inputStream = getPortletContext().getResourceAsStream(
 			"/WEB-INF/images/logo.png");
 
-		PortletContext portletContext = getPortletContext();
-
 		String contentType = MimeTypesUtil.getContentType(fileName);
 
 		PortletResponseUtil.sendFile(
-			resourceResponse, fileName, inputStream, contentType);
+			null, resourceResponse, fileName, inputStream, contentType);
 	}
 
 	public void uploadForm1(

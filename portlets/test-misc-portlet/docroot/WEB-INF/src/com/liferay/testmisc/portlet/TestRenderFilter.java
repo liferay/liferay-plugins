@@ -32,7 +32,7 @@ import javax.portlet.filter.RenderFilter;
  */
 public class TestRenderFilter implements RenderFilter {
 
-	public void init(FilterConfig filterConfig) throws PortletException {
+	public void init(FilterConfig filterConfig) {
 		_log.info("Init");
 	}
 
@@ -48,9 +48,9 @@ public class TestRenderFilter implements RenderFilter {
 
 		filterChain.doFilter(renderRequest, testRenderResponse);
 
-		PrintWriter writer = renderResponse.getWriter();
+		PrintWriter printWriter = renderResponse.getWriter();
 
-		writer.print(testRenderResponse.getString());
+		printWriter.print(testRenderResponse.getString());
 
 		_log.info("After filter");
 	}
