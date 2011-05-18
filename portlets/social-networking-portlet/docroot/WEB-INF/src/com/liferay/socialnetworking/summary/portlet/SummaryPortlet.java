@@ -22,14 +22,12 @@ import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
-import com.liferay.portal.model.Contact;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.GroupConstants;
 import com.liferay.portal.model.Organization;
 import com.liferay.portal.model.Role;
 import com.liferay.portal.model.User;
 import com.liferay.portal.security.permission.ActionKeys;
-import com.liferay.portal.service.ContactLocalServiceUtil;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.OrganizationLocalServiceUtil;
 import com.liferay.portal.service.RoleLocalServiceUtil;
@@ -224,22 +222,14 @@ public class SummaryPortlet extends MVCPortlet {
 		}
 
 		String jobTitle = ParamUtil.getString(actionRequest, "jobTitle");
+
+		UserLocalServiceUtil.updateJobTitle(user.getUserId(), jobTitle);
+
 		String aboutMe = ParamUtil.getString(actionRequest, "aboutMe");
 
-		try {
-			ExpandoValueLocalServiceUtil.addValue(
-				themeDisplay.getCompanyId(), User.class.getName(), "SN",
-				"aboutMe", user.getUserId(), aboutMe);
-
-			Contact contact = user.getContact();
-
-			contact.setJobTitle(jobTitle);
-
-			ContactLocalServiceUtil.updateContact(contact);
-		}
-		catch (Exception e) {
-			_log.error(e, e);
-		}
+		ExpandoValueLocalServiceUtil.addValue(
+			themeDisplay.getCompanyId(), User.class.getName(), "SN", "aboutMe",
+			user.getUserId(), aboutMe);
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(SummaryPortlet.class);
