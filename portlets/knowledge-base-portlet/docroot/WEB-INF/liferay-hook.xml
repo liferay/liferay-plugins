@@ -3,6 +3,7 @@
 
 <hook>
 	<portal-properties>portal.properties</portal-properties>
+	<language-properties>content/Language.properties</language-properties>
 	<struts-action>
 		<struts-action-path>/portal/knowledge_base/find_kb_article</struts-action-path>
 		<struts-action-impl>com.liferay.knowledgebase.hook.action.FindKBArticleAction</struts-action-impl>
