@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.portlet.PortletException;
 import javax.portlet.RenderRequest;
@@ -42,7 +43,14 @@ public class TestRenderFilter implements RenderFilter {
 
 		_log.info("Before filter");
 
-		filterChain.doFilter(renderRequest, renderResponse);
+		TestRenderResponse testRenderResponse = new TestRenderResponse(
+			renderResponse);
+
+		filterChain.doFilter(renderRequest, testRenderResponse);
+
+		PrintWriter writer = renderResponse.getWriter();
+
+		writer.print(testRenderResponse.getString());
 
 		_log.info("After filter");
 	}
