@@ -58,9 +58,9 @@ public class UpgradeKBArticle extends UpgradeProcess {
 			runSQL("update KB_Article set kbTemplateId = 0");
 		}
 
-		if (!tableHasColumn("KB_Article", "section")) {
-			runSQL("alter table KB_Article add section STRING null");
-			runSQL("update KB_Article set section = 'general'");
+		if (!tableHasColumn("KB_Article", "sections")) {
+			runSQL("alter table KB_Article add sections STRING null");
+			runSQL("update KB_Article set sections = '_general_'");
 		}
 
 		if (!tableHasColumn("KB_Article", "viewCount")) {
