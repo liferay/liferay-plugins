@@ -246,7 +246,7 @@
 						</c:when>
 						<c:otherwise>
 							<liferay-portlet:actionURL var="addAsFriendURL" name="addFriend" portletName="1_WAR_socialnetworkingportlet">
-								<liferay-portlet:param name="redirect" value='<%= currentURL %>' />
+								<portlet:param name="redirect" value='<%= currentURL %>' />
 							</liferay-portlet:actionURL>
 
 							<a href="<%= addAsFriendURL %>"><%= LanguageUtil.format(pageContext, "ask-x-to-be-your-friend", HtmlUtil.escape(user2.getFirstName())) %></a>

@@ -58,8 +58,8 @@ MailManager mailManager = MailManager.getInstance(request);
 			%>
 
 				<liferay-portlet:resourceURL var="attachmentURL">
-					<liferay-portlet:param name="jspPage" value="/attachment.jsp" />
-					<liferay-portlet:param name="attachmentId" value="<%= String.valueOf(attachment.getAttachmentId()) %>" />
+					<portlet:param name="jspPage" value="/attachment.jsp" />
+					<portlet:param name="attachmentId" value="<%= String.valueOf(attachment.getAttachmentId()) %>" />
 				</liferay-portlet:resourceURL>
 
 				<li>
