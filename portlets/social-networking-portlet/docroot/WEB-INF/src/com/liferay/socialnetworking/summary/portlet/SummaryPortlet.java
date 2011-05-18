@@ -227,6 +227,10 @@ public class SummaryPortlet extends MVCPortlet {
 		String aboutMe = ParamUtil.getString(actionRequest, "aboutMe");
 
 		try {
+			user.setJobTitle(jobTitle);
+
+			UserLocalServiceUtil.updateUser(user);
+
 			ExpandoValueLocalServiceUtil.addValue(
 				themeDisplay.getCompanyId(), User.class.getName(), "SN",
 				"aboutMe", user.getUserId(), aboutMe);
