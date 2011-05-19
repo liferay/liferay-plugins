@@ -116,7 +116,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 
 	<c:if test="<%= kbTemplateId != KBArticleConstants.DEFAULT_KB_TEMPLATE_ID %>">
 		<aui:button-row>
-			<%= BeanPropertiesUtil.getString(kbArticle.getKBTemplate(), "title") %>
+			<%= BeanPropertiesUtil.getString(KBTemplateLocalServiceUtil.getKBTemplate(kbTemplateId), "title") %>
 
 			<%
 			String taglibOnClick = "opener." + renderResponse.getNamespace() + "selectKBTemplate('" + KBArticleConstants.DEFAULT_KB_TEMPLATE_ID + "', ''); window.close();";
