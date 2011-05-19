@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-##parse ($init)
+#parse ($init)
 
 <html class="#language("lang.dir")" dir="#language("lang.dir")" lang="$w3c_language_id">
 
@@ -49,7 +49,7 @@
 		#end
 
 		#if ($has_navigation)
-			##parse ("$full_templates_path/navigation.vm")
+			#parse ("$full_templates_path/navigation.vm")
 		#end
 	</header>
 
