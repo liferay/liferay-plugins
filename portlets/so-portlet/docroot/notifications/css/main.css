@@ -29,7 +29,6 @@
 
 .so-portlet-notifications .thumbnail {
 	float: left;
-	padding-right: 10px;
 }
 
 .so-portlet-notifications .lfr-user-action-item a {
@@ -38,6 +37,9 @@
 
 .so-portlet-notifications .notification-entry {
 	clear: both;
-	height: 50px;
+	margin-bottom: 1.5em;
 }
 
+.so-portlet-notifications .notification-content {
+	margin-left: 50px;
+}

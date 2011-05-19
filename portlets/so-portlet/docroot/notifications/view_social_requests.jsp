@@ -55,36 +55,38 @@ for (SocialRequest socialRequest : socialRequests) {
 					</a>
 				</div>
 
-				<div>
-					<%= requestFeedEntry.getTitle() %>
-				</div>
-
-				<c:if test="<%= Validator.isNotNull(requestFeedEntry.getBody()) %>">
+				<div class="notification-content">
 					<div>
-						<%= requestFeedEntry.getBody() %>
+						<%= requestFeedEntry.getTitle() %>
 					</div>
-				</c:if>
 
-				<div class="lfr-user-action">
-					<portlet:actionURL name="updateSocialRequest" var="confirmURL">
-						<portlet:param name="redirect" value="<%= currentURL %>" />
-						<portlet:param name="requestId" value="<%= String.valueOf(socialRequest.getRequestId()) %>" />
-						<portlet:param name="status" value="<%= String.valueOf(SocialRequestConstants.STATUS_CONFIRM) %>" />
-					</portlet:actionURL >
+					<c:if test="<%= Validator.isNotNull(requestFeedEntry.getBody()) %>">
+						<div>
+							<%= requestFeedEntry.getBody() %>
+						</div>
+					</c:if>
 
-					<span class="lfr-user-action-item lfr-user-action-confirm">
-						<a href="<%= confirmURL %>"><liferay-ui:message key="confirm" /></a>
-					</span>
+					<div class="lfr-user-action">
+						<portlet:actionURL name="updateSocialRequest" var="confirmURL">
+							<portlet:param name="redirect" value="<%= currentURL %>" />
+							<portlet:param name="requestId" value="<%= String.valueOf(socialRequest.getRequestId()) %>" />
+							<portlet:param name="status" value="<%= String.valueOf(SocialRequestConstants.STATUS_CONFIRM) %>" />
+						</portlet:actionURL >
 
-					<portlet:actionURL name="updateSocialRequest" var="ignoreURL">
-						<portlet:param name="redirect" value="<%= currentURL %>" />
-						<portlet:param name="requestId" value="<%= String.valueOf(socialRequest.getRequestId()) %>" />
-						<portlet:param name="status" value="<%= String.valueOf(SocialRequestConstants.STATUS_IGNORE) %>" />
-					</portlet:actionURL >
+						<span class="lfr-user-action-item lfr-user-action-confirm">
+							<a href="<%= confirmURL %>"><liferay-ui:message key="confirm" /></a>
+						</span>
 
-					<span class="lfr-user-action-item lfr-user-action-ignore">
-						<a href="<%= ignoreURL %>"><liferay-ui:message key="ignore" /></a>
-					</span>
+						<portlet:actionURL name="updateSocialRequest" var="ignoreURL">
+							<portlet:param name="redirect" value="<%= currentURL %>" />
+							<portlet:param name="requestId" value="<%= String.valueOf(socialRequest.getRequestId()) %>" />
+							<portlet:param name="status" value="<%= String.valueOf(SocialRequestConstants.STATUS_IGNORE) %>" />
+						</portlet:actionURL >
+
+						<span class="lfr-user-action-item lfr-user-action-ignore">
+							<a href="<%= ignoreURL %>"><liferay-ui:message key="ignore" /></a>
+						</span>
+					</div>
 				</div>
 			</div>
 		</c:otherwise>

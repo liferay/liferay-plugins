@@ -63,30 +63,32 @@ for (MemberRequest memberRequest : memberRequests) {
 		}
 		%>
 
-		<div>
-			<%= themeDisplay.translate("x-has-invited-you-to-join-x", new Object[] {userFullName, HtmlUtil.escape(curGroup.getDescriptiveName())}) %>
-		</div>
+		<div class="notification-content">
+			<div>
+				<%= themeDisplay.translate("x-has-invited-you-to-join-x", new Object[] {userFullName, HtmlUtil.escape(curGroup.getDescriptiveName())}) %>
+			</div>
 
-		<div class="lfr-user-action">
-			<portlet:actionURL name="updateMemberRequest" var="confirmURL">
-				<portlet:param name="redirect" value="<%= currentURL %>" />
-				<portlet:param name="memberRequestId" value="<%= String.valueOf(memberRequest.getMemberRequestId()) %>" />
-				<portlet:param name="status" value="<%= String.valueOf(InviteMembersConstants.STATUS_ACCEPTED) %>" />
-			</portlet:actionURL>
+			<div class="lfr-user-action">
+				<portlet:actionURL name="updateMemberRequest" var="confirmURL">
+					<portlet:param name="redirect" value="<%= currentURL %>" />
+					<portlet:param name="memberRequestId" value="<%= String.valueOf(memberRequest.getMemberRequestId()) %>" />
+					<portlet:param name="status" value="<%= String.valueOf(InviteMembersConstants.STATUS_ACCEPTED) %>" />
+				</portlet:actionURL>
 
-			<span class="lfr-user-action-item lfr-user-action-confirm">
-				<a href="<%= confirmURL %>"><liferay-ui:message key="confirm" /></a>
-			</span>
+				<span class="lfr-user-action-item lfr-user-action-confirm">
+					<a href="<%= confirmURL %>"><liferay-ui:message key="confirm" /></a>
+				</span>
 
-			<portlet:actionURL name="updateMemberRequest" var="ignoreURL">
-				<portlet:param name="redirect" value="<%= currentURL %>" />
-				<portlet:param name="memberRequestId" value="<%= String.valueOf(memberRequest.getMemberRequestId()) %>" />
-				<portlet:param name="status" value="<%= String.valueOf(InviteMembersConstants.STATUS_DECLINED) %>" />
-			</portlet:actionURL>
+				<portlet:actionURL name="updateMemberRequest" var="ignoreURL">
+					<portlet:param name="redirect" value="<%= currentURL %>" />
+					<portlet:param name="memberRequestId" value="<%= String.valueOf(memberRequest.getMemberRequestId()) %>" />
+					<portlet:param name="status" value="<%= String.valueOf(InviteMembersConstants.STATUS_DECLINED) %>" />
+				</portlet:actionURL>
 
-			<span class="lfr-user-action-item lfr-user-action-ignore">
-				<a href="<%= ignoreURL %>"><liferay-ui:message key="ignore" /></a>
-			</span>
+				<span class="lfr-user-action-item lfr-user-action-ignore">
+					<a href="<%= ignoreURL %>"><liferay-ui:message key="ignore" /></a>
+				</span>
+			</div>
 		</div>
 	</div>
 
