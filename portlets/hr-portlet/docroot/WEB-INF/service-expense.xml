@@ -78,8 +78,32 @@
 
 		<!-- Other fields -->
 
-		<column name="fromCurrencyCode" type="String" />
-		<column name="toCurrencyCode" type="String" />
+		<column name="code" type="String" />
+		<column name="name" type="String" />
+		<column name="description" type="String" />
+	</entity>
+	<entity name="HRExpenseCurrencyConversion" local-service="true" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="hrExpenseCurrencyConversionId" type="long" primary="true" />
+
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="fromCurrencyCodeId" type="long" />
+		<column name="toCurrencyCodeId" type="long" />
 		<column name="conversionDate" type="Date" />
 		<column name="conversionValue" type="double" />
 
@@ -93,8 +117,8 @@
 
 		<finder name="G_F_T_C" return-type="HRExpenseCurrency" unique="true">
 			<finder-column name="groupId" />
-			<finder-column name="fromCurrencyCode" />
-			<finder-column name="toCurrencyCode" />
+			<finder-column name="fromCurrencyCodeId" />
+			<finder-column name="toCurrencyCodeId" />
 			<finder-column name="conversionDate" comparator="&lt;" />
 		</finder>
 	</entity>
