@@ -27,9 +27,9 @@
 		<column name="hrUserId" type="long" />
 		<column name="expenseDate" type="Date" />
 		<column name="expenseAmount" type="double" />
-		<column name="expenseCurrencyCode" type="String" />
+		<column name="expenseCurrencyCodeId" type="long" />
 		<column name="reimbursementAmount" type="double" />
-		<column name="reimbursementCurrencyCode" type="String" />
+		<column name="reimbursementCurrencyCodeId" type="long" />
 		<column name="status" type="int" />
 		<column name="statusByUserId" type="long" />
 		<column name="statusByUserName" type="String" />
@@ -115,7 +115,7 @@
 
 		<!-- Finder methods -->
 
-		<finder name="G_F_T_C" return-type="HRExpenseCurrency" unique="true">
+		<finder name="G_F_T_C" return-type="HRExpenseCurrencyConversion" unique="true">
 			<finder-column name="groupId" />
 			<finder-column name="fromCurrencyCodeId" />
 			<finder-column name="toCurrencyCodeId" />
