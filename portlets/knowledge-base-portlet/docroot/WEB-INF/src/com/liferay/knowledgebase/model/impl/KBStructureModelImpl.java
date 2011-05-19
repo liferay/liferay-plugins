@@ -20,6 +20,7 @@ import com.liferay.knowledgebase.model.KBStructureSoap;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.json.JSON;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -61,6 +62,7 @@ import java.util.Map;
  * @see com.liferay.knowledgebase.model.KBStructureModel
  * @generated
  */
+@JSON(strict = true)
 public class KBStructureModelImpl extends BaseModelImpl<KBStructure>
 	implements KBStructureModel {
 	/*
@@ -164,6 +166,7 @@ public class KBStructureModelImpl extends BaseModelImpl<KBStructure>
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
+	@JSON
 	public String getUuid() {
 		if (_uuid == null) {
 			return StringPool.BLANK;
@@ -185,6 +188,7 @@ public class KBStructureModelImpl extends BaseModelImpl<KBStructure>
 		return GetterUtil.getString(_originalUuid);
 	}
 
+	@JSON
 	public long getKbStructureId() {
 		return _kbStructureId;
 	}
@@ -193,6 +197,7 @@ public class KBStructureModelImpl extends BaseModelImpl<KBStructure>
 		_kbStructureId = kbStructureId;
 	}
 
+	@JSON
 	public long getGroupId() {
 		return _groupId;
 	}
@@ -211,6 +216,7 @@ public class KBStructureModelImpl extends BaseModelImpl<KBStructure>
 		return _originalGroupId;
 	}
 
+	@JSON
 	public long getCompanyId() {
 		return _companyId;
 	}
@@ -219,6 +225,7 @@ public class KBStructureModelImpl extends BaseModelImpl<KBStructure>
 		_companyId = companyId;
 	}
 
+	@JSON
 	public long getUserId() {
 		return _userId;
 	}
@@ -235,6 +242,7 @@ public class KBStructureModelImpl extends BaseModelImpl<KBStructure>
 		_userUuid = userUuid;
 	}
 
+	@JSON
 	public String getUserName() {
 		if (_userName == null) {
 			return StringPool.BLANK;
@@ -248,6 +256,7 @@ public class KBStructureModelImpl extends BaseModelImpl<KBStructure>
 		_userName = userName;
 	}
 
+	@JSON
 	public Date getCreateDate() {
 		return _createDate;
 	}
@@ -256,6 +265,7 @@ public class KBStructureModelImpl extends BaseModelImpl<KBStructure>
 		_createDate = createDate;
 	}
 
+	@JSON
 	public Date getModifiedDate() {
 		return _modifiedDate;
 	}
@@ -264,6 +274,7 @@ public class KBStructureModelImpl extends BaseModelImpl<KBStructure>
 		_modifiedDate = modifiedDate;
 	}
 
+	@JSON
 	public String getTitle() {
 		if (_title == null) {
 			return StringPool.BLANK;
@@ -352,6 +363,7 @@ public class KBStructureModelImpl extends BaseModelImpl<KBStructure>
 		}
 	}
 
+	@JSON
 	public String getContent() {
 		if (_content == null) {
 			return StringPool.BLANK;

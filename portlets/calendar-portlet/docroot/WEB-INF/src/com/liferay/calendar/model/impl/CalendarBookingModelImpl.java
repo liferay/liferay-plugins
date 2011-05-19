@@ -20,6 +20,7 @@ import com.liferay.calendar.model.CalendarBookingSoap;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.json.JSON;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
@@ -61,6 +62,7 @@ import java.util.Map;
  * @see com.liferay.calendar.model.CalendarBookingModel
  * @generated
  */
+@JSON(strict = true)
 public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 	implements CalendarBookingModel {
 	/*
@@ -199,6 +201,7 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
+	@JSON
 	public String getUuid() {
 		if (_uuid == null) {
 			return StringPool.BLANK;
@@ -220,6 +223,7 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		return GetterUtil.getString(_originalUuid);
 	}
 
+	@JSON
 	public long getCalendarBookingId() {
 		return _calendarBookingId;
 	}
@@ -228,6 +232,7 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		_calendarBookingId = calendarBookingId;
 	}
 
+	@JSON
 	public long getGroupId() {
 		return _groupId;
 	}
@@ -246,6 +251,7 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		return _originalGroupId;
 	}
 
+	@JSON
 	public long getCompanyId() {
 		return _companyId;
 	}
@@ -254,6 +260,7 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		_companyId = companyId;
 	}
 
+	@JSON
 	public long getUserId() {
 		return _userId;
 	}
@@ -270,6 +277,7 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		_userUuid = userUuid;
 	}
 
+	@JSON
 	public String getUserName() {
 		if (_userName == null) {
 			return StringPool.BLANK;
@@ -283,6 +291,7 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		_userName = userName;
 	}
 
+	@JSON
 	public Date getCreateDate() {
 		return _createDate;
 	}
@@ -291,6 +300,7 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		_createDate = createDate;
 	}
 
+	@JSON
 	public Date getModifiedDate() {
 		return _modifiedDate;
 	}
@@ -299,6 +309,7 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		_modifiedDate = modifiedDate;
 	}
 
+	@JSON
 	public long getCalendarEventId() {
 		return _calendarEventId;
 	}
@@ -307,6 +318,7 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		_calendarEventId = calendarEventId;
 	}
 
+	@JSON
 	public long getCalendarResourceId() {
 		return _calendarResourceId;
 	}
@@ -323,6 +335,7 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		return PortalUtil.getClassName(getClassNameId());
 	}
 
+	@JSON
 	public long getClassNameId() {
 		return _classNameId;
 	}
@@ -331,6 +344,7 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		_classNameId = classNameId;
 	}
 
+	@JSON
 	public long getClassPK() {
 		return _classPK;
 	}
@@ -339,6 +353,7 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		_classPK = classPK;
 	}
 
+	@JSON
 	public String getTitle() {
 		if (_title == null) {
 			return StringPool.BLANK;
@@ -427,6 +442,7 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		}
 	}
 
+	@JSON
 	public String getName() {
 		if (_name == null) {
 			return StringPool.BLANK;
@@ -515,6 +531,7 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		}
 	}
 
+	@JSON
 	public String getDescription() {
 		if (_description == null) {
 			return StringPool.BLANK;
@@ -607,6 +624,7 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		}
 	}
 
+	@JSON
 	public String getLocation() {
 		if (_location == null) {
 			return StringPool.BLANK;
@@ -620,6 +638,7 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		_location = location;
 	}
 
+	@JSON
 	public Date getStartDate() {
 		return _startDate;
 	}
@@ -628,6 +647,7 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		_startDate = startDate;
 	}
 
+	@JSON
 	public Date getEndDate() {
 		return _endDate;
 	}
@@ -636,6 +656,7 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		_endDate = endDate;
 	}
 
+	@JSON
 	public int getDurationHour() {
 		return _durationHour;
 	}
@@ -644,6 +665,7 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		_durationHour = durationHour;
 	}
 
+	@JSON
 	public int getDurationMinute() {
 		return _durationMinute;
 	}
@@ -652,6 +674,7 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		_durationMinute = durationMinute;
 	}
 
+	@JSON
 	public String getRecurrence() {
 		if (_recurrence == null) {
 			return StringPool.BLANK;
@@ -665,6 +688,7 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		_recurrence = recurrence;
 	}
 
+	@JSON
 	public String getType() {
 		if (_type == null) {
 			return StringPool.BLANK;
@@ -678,6 +702,7 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		_type = type;
 	}
 
+	@JSON
 	public boolean getRequired() {
 		return _required;
 	}
@@ -690,6 +715,7 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		_required = required;
 	}
 
+	@JSON
 	public int getStatus() {
 		return _status;
 	}
@@ -698,6 +724,7 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		_status = status;
 	}
 
+	@JSON
 	public long getStatusByUserId() {
 		return _statusByUserId;
 	}
@@ -715,6 +742,7 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		_statusByUserUuid = statusByUserUuid;
 	}
 
+	@JSON
 	public String getStatusByUserName() {
 		if (_statusByUserName == null) {
 			return StringPool.BLANK;
@@ -728,6 +756,7 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		_statusByUserName = statusByUserName;
 	}
 
+	@JSON
 	public Date getStatusDate() {
 		return _statusDate;
 	}

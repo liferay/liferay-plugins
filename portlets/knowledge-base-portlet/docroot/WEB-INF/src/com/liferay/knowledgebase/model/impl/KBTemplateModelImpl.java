@@ -20,6 +20,7 @@ import com.liferay.knowledgebase.model.KBTemplateSoap;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.json.JSON;
 import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -54,6 +55,7 @@ import java.util.List;
  * @see com.liferay.knowledgebase.model.KBTemplateModel
  * @generated
  */
+@JSON(strict = true)
 public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 	implements KBTemplateModel {
 	/*
@@ -161,6 +163,7 @@ public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
+	@JSON
 	public String getUuid() {
 		if (_uuid == null) {
 			return StringPool.BLANK;
@@ -182,6 +185,7 @@ public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 		return GetterUtil.getString(_originalUuid);
 	}
 
+	@JSON
 	public long getKbTemplateId() {
 		return _kbTemplateId;
 	}
@@ -190,6 +194,7 @@ public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 		_kbTemplateId = kbTemplateId;
 	}
 
+	@JSON
 	public long getGroupId() {
 		return _groupId;
 	}
@@ -208,6 +213,7 @@ public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 		return _originalGroupId;
 	}
 
+	@JSON
 	public long getCompanyId() {
 		return _companyId;
 	}
@@ -216,6 +222,7 @@ public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 		_companyId = companyId;
 	}
 
+	@JSON
 	public long getUserId() {
 		return _userId;
 	}
@@ -232,6 +239,7 @@ public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 		_userUuid = userUuid;
 	}
 
+	@JSON
 	public String getUserName() {
 		if (_userName == null) {
 			return StringPool.BLANK;
@@ -245,6 +253,7 @@ public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 		_userName = userName;
 	}
 
+	@JSON
 	public Date getCreateDate() {
 		return _createDate;
 	}
@@ -253,6 +262,7 @@ public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 		_createDate = createDate;
 	}
 
+	@JSON
 	public Date getModifiedDate() {
 		return _modifiedDate;
 	}
@@ -261,6 +271,7 @@ public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 		_modifiedDate = modifiedDate;
 	}
 
+	@JSON
 	public String getTitle() {
 		if (_title == null) {
 			return StringPool.BLANK;
@@ -274,6 +285,7 @@ public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 		_title = title;
 	}
 
+	@JSON
 	public String getContent() {
 		if (_content == null) {
 			return StringPool.BLANK;
@@ -287,6 +299,7 @@ public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 		_content = content;
 	}
 
+	@JSON
 	public int getEngineType() {
 		return _engineType;
 	}
@@ -295,6 +308,7 @@ public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 		_engineType = engineType;
 	}
 
+	@JSON
 	public boolean getCacheable() {
 		return _cacheable;
 	}

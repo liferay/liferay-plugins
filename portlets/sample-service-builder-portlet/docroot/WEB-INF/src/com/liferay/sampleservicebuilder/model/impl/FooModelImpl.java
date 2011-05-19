@@ -16,6 +16,7 @@ package com.liferay.sampleservicebuilder.model.impl;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.json.JSON;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
@@ -53,6 +54,7 @@ import java.util.List;
  * @see com.liferay.sampleservicebuilder.model.FooModel
  * @generated
  */
+@JSON(strict = true)
 public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
@@ -161,6 +163,7 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
+	@JSON
 	public String getUuid() {
 		if (_uuid == null) {
 			return StringPool.BLANK;
@@ -182,6 +185,7 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 		return GetterUtil.getString(_originalUuid);
 	}
 
+	@JSON
 	public long getFooId() {
 		return _fooId;
 	}
@@ -190,6 +194,7 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 		_fooId = fooId;
 	}
 
+	@JSON
 	public long getGroupId() {
 		return _groupId;
 	}
@@ -208,6 +213,7 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 		return _originalGroupId;
 	}
 
+	@JSON
 	public long getCompanyId() {
 		return _companyId;
 	}
@@ -216,6 +222,7 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 		_companyId = companyId;
 	}
 
+	@JSON
 	public long getUserId() {
 		return _userId;
 	}
@@ -232,6 +239,7 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 		_userUuid = userUuid;
 	}
 
+	@JSON
 	public String getUserName() {
 		if (_userName == null) {
 			return StringPool.BLANK;
@@ -245,6 +253,7 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 		_userName = userName;
 	}
 
+	@JSON
 	public Date getCreateDate() {
 		return _createDate;
 	}
@@ -253,6 +262,7 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 		_createDate = createDate;
 	}
 
+	@JSON
 	public Date getModifiedDate() {
 		return _modifiedDate;
 	}
@@ -261,6 +271,7 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 		_modifiedDate = modifiedDate;
 	}
 
+	@JSON
 	public String getField1() {
 		if (_field1 == null) {
 			return StringPool.BLANK;
@@ -274,6 +285,7 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 		_field1 = field1;
 	}
 
+	@JSON
 	public boolean getField2() {
 		return _field2;
 	}
@@ -286,6 +298,7 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 		_field2 = field2;
 	}
 
+	@JSON
 	public int getField3() {
 		return _field3;
 	}
@@ -294,6 +307,7 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 		_field3 = field3;
 	}
 
+	@JSON
 	public Date getField4() {
 		return _field4;
 	}
@@ -302,6 +316,7 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 		_field4 = field4;
 	}
 
+	@JSON
 	public String getField5() {
 		if (_field5 == null) {
 			return StringPool.BLANK;

@@ -19,6 +19,7 @@ import com.liferay.opensocial.model.GadgetModel;
 import com.liferay.opensocial.model.GadgetSoap;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
+import com.liferay.portal.kernel.json.JSON;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
@@ -51,6 +52,7 @@ import java.util.List;
  * @see com.liferay.opensocial.model.GadgetModel
  * @generated
  */
+@JSON(strict = true)
 public class GadgetModelImpl extends BaseModelImpl<Gadget>
 	implements GadgetModel {
 	/*
@@ -150,6 +152,7 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
+	@JSON
 	public String getUuid() {
 		if (_uuid == null) {
 			return StringPool.BLANK;
@@ -163,6 +166,7 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 		_uuid = uuid;
 	}
 
+	@JSON
 	public long getGadgetId() {
 		return _gadgetId;
 	}
@@ -171,6 +175,7 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 		_gadgetId = gadgetId;
 	}
 
+	@JSON
 	public long getCompanyId() {
 		return _companyId;
 	}
@@ -189,6 +194,7 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 		return _originalCompanyId;
 	}
 
+	@JSON
 	public Date getCreateDate() {
 		return _createDate;
 	}
@@ -197,6 +203,7 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 		_createDate = createDate;
 	}
 
+	@JSON
 	public Date getModifiedDate() {
 		return _modifiedDate;
 	}
@@ -205,6 +212,7 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 		_modifiedDate = modifiedDate;
 	}
 
+	@JSON
 	public String getName() {
 		if (_name == null) {
 			return StringPool.BLANK;
@@ -218,6 +226,7 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 		_name = name;
 	}
 
+	@JSON
 	public String getUrl() {
 		if (_url == null) {
 			return StringPool.BLANK;
@@ -239,6 +248,7 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 		return GetterUtil.getString(_originalUrl);
 	}
 
+	@JSON
 	public String getPortletCategoryNames() {
 		if (_portletCategoryNames == null) {
 			return StringPool.BLANK;

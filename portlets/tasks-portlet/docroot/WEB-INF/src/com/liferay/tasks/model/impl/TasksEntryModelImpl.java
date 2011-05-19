@@ -16,6 +16,7 @@ package com.liferay.tasks.model.impl;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.json.JSON;
 import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -54,6 +55,7 @@ import java.util.List;
  * @see com.liferay.tasks.model.TasksEntryModel
  * @generated
  */
+@JSON(strict = true)
 public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 	implements TasksEntryModel {
 	/*
@@ -165,6 +167,7 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
+	@JSON
 	public long getTasksEntryId() {
 		return _tasksEntryId;
 	}
@@ -173,6 +176,7 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 		_tasksEntryId = tasksEntryId;
 	}
 
+	@JSON
 	public long getGroupId() {
 		return _groupId;
 	}
@@ -181,6 +185,7 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 		_groupId = groupId;
 	}
 
+	@JSON
 	public long getCompanyId() {
 		return _companyId;
 	}
@@ -189,6 +194,7 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 		_companyId = companyId;
 	}
 
+	@JSON
 	public long getUserId() {
 		return _userId;
 	}
@@ -205,6 +211,7 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 		_userUuid = userUuid;
 	}
 
+	@JSON
 	public String getUserName() {
 		if (_userName == null) {
 			return StringPool.BLANK;
@@ -218,6 +225,7 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 		_userName = userName;
 	}
 
+	@JSON
 	public Date getCreateDate() {
 		return _createDate;
 	}
@@ -226,6 +234,7 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 		_createDate = createDate;
 	}
 
+	@JSON
 	public Date getModifiedDate() {
 		return _modifiedDate;
 	}
@@ -234,6 +243,7 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 		_modifiedDate = modifiedDate;
 	}
 
+	@JSON
 	public String getTitle() {
 		if (_title == null) {
 			return StringPool.BLANK;
@@ -247,6 +257,7 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 		_title = title;
 	}
 
+	@JSON
 	public int getPriority() {
 		return _priority;
 	}
@@ -255,6 +266,7 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 		_priority = priority;
 	}
 
+	@JSON
 	public long getAssigneeUserId() {
 		return _assigneeUserId;
 	}
@@ -272,6 +284,7 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 		_assigneeUserUuid = assigneeUserUuid;
 	}
 
+	@JSON
 	public long getResolverUserId() {
 		return _resolverUserId;
 	}
@@ -289,6 +302,7 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 		_resolverUserUuid = resolverUserUuid;
 	}
 
+	@JSON
 	public Date getDueDate() {
 		return _dueDate;
 	}
@@ -297,6 +311,7 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 		_dueDate = dueDate;
 	}
 
+	@JSON
 	public Date getFinishDate() {
 		return _finishDate;
 	}
@@ -305,6 +320,7 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 		_finishDate = finishDate;
 	}
 
+	@JSON
 	public int getStatus() {
 		return _status;
 	}

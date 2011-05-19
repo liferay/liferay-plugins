@@ -20,6 +20,7 @@ import com.liferay.knowledgebase.model.KBArticleSoap;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.json.JSON;
 import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -55,6 +56,7 @@ import java.util.List;
  * @see com.liferay.knowledgebase.model.KBArticleModel
  * @generated
  */
+@JSON(strict = true)
 public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 	implements KBArticleModel {
 	/*
@@ -188,6 +190,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
+	@JSON
 	public String getUuid() {
 		if (_uuid == null) {
 			return StringPool.BLANK;
@@ -209,6 +212,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		return GetterUtil.getString(_originalUuid);
 	}
 
+	@JSON
 	public long getKbArticleId() {
 		return _kbArticleId;
 	}
@@ -217,6 +221,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		_kbArticleId = kbArticleId;
 	}
 
+	@JSON
 	public long getResourcePrimKey() {
 		return _resourcePrimKey;
 	}
@@ -239,6 +244,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		return _originalResourcePrimKey;
 	}
 
+	@JSON
 	public long getGroupId() {
 		return _groupId;
 	}
@@ -257,6 +263,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		return _originalGroupId;
 	}
 
+	@JSON
 	public long getCompanyId() {
 		return _companyId;
 	}
@@ -265,6 +272,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		_companyId = companyId;
 	}
 
+	@JSON
 	public long getUserId() {
 		return _userId;
 	}
@@ -281,6 +289,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		_userUuid = userUuid;
 	}
 
+	@JSON
 	public String getUserName() {
 		if (_userName == null) {
 			return StringPool.BLANK;
@@ -294,6 +303,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		_userName = userName;
 	}
 
+	@JSON
 	public Date getCreateDate() {
 		return _createDate;
 	}
@@ -302,6 +312,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		_createDate = createDate;
 	}
 
+	@JSON
 	public Date getModifiedDate() {
 		return _modifiedDate;
 	}
@@ -310,6 +321,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		_modifiedDate = modifiedDate;
 	}
 
+	@JSON
 	public long getRootResourcePrimKey() {
 		return _rootResourcePrimKey;
 	}
@@ -318,6 +330,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		_rootResourcePrimKey = rootResourcePrimKey;
 	}
 
+	@JSON
 	public long getParentResourcePrimKey() {
 		return _parentResourcePrimKey;
 	}
@@ -326,6 +339,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		_parentResourcePrimKey = parentResourcePrimKey;
 	}
 
+	@JSON
 	public int getVersion() {
 		return _version;
 	}
@@ -344,6 +358,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		return _originalVersion;
 	}
 
+	@JSON
 	public String getTitle() {
 		if (_title == null) {
 			return StringPool.BLANK;
@@ -357,6 +372,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		_title = title;
 	}
 
+	@JSON
 	public String getContent() {
 		if (_content == null) {
 			return StringPool.BLANK;
@@ -370,6 +386,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		_content = content;
 	}
 
+	@JSON
 	public String getDescription() {
 		if (_description == null) {
 			return StringPool.BLANK;
@@ -383,6 +400,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		_description = description;
 	}
 
+	@JSON
 	public long getKbTemplateId() {
 		return _kbTemplateId;
 	}
@@ -391,6 +409,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		_kbTemplateId = kbTemplateId;
 	}
 
+	@JSON
 	public double getPriority() {
 		return _priority;
 	}
@@ -399,6 +418,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		_priority = priority;
 	}
 
+	@JSON
 	public String getSections() {
 		if (_sections == null) {
 			return StringPool.BLANK;
@@ -412,6 +432,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		_sections = sections;
 	}
 
+	@JSON
 	public int getViewCount() {
 		return _viewCount;
 	}
@@ -420,6 +441,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		_viewCount = viewCount;
 	}
 
+	@JSON
 	public boolean getLatest() {
 		return _latest;
 	}
@@ -432,6 +454,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		_latest = latest;
 	}
 
+	@JSON
 	public boolean getMain() {
 		return _main;
 	}
@@ -444,6 +467,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		_main = main;
 	}
 
+	@JSON
 	public int getStatus() {
 		return _status;
 	}
@@ -452,6 +476,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		_status = status;
 	}
 
+	@JSON
 	public long getStatusByUserId() {
 		return _statusByUserId;
 	}
@@ -469,6 +494,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		_statusByUserUuid = statusByUserUuid;
 	}
 
+	@JSON
 	public String getStatusByUserName() {
 		if (_statusByUserName == null) {
 			return StringPool.BLANK;
@@ -482,6 +508,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		_statusByUserName = statusByUserName;
 	}
 
+	@JSON
 	public Date getStatusDate() {
 		return _statusDate;
 	}

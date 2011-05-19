@@ -20,6 +20,7 @@ import com.liferay.calendar.model.CalendarResourceSoap;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.json.JSON;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
@@ -60,6 +61,7 @@ import java.util.Map;
  * @see com.liferay.calendar.model.CalendarResourceModel
  * @generated
  */
+@JSON(strict = true)
 public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 	implements CalendarResourceModel {
 	/*
@@ -172,6 +174,7 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
+	@JSON
 	public String getUuid() {
 		if (_uuid == null) {
 			return StringPool.BLANK;
@@ -193,6 +196,7 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 		return GetterUtil.getString(_originalUuid);
 	}
 
+	@JSON
 	public long getCalendarResourceId() {
 		return _calendarResourceId;
 	}
@@ -201,6 +205,7 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 		_calendarResourceId = calendarResourceId;
 	}
 
+	@JSON
 	public long getGroupId() {
 		return _groupId;
 	}
@@ -219,6 +224,7 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 		return _originalGroupId;
 	}
 
+	@JSON
 	public long getCompanyId() {
 		return _companyId;
 	}
@@ -227,6 +233,7 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 		_companyId = companyId;
 	}
 
+	@JSON
 	public long getUserId() {
 		return _userId;
 	}
@@ -243,6 +250,7 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 		_userUuid = userUuid;
 	}
 
+	@JSON
 	public String getUserName() {
 		if (_userName == null) {
 			return StringPool.BLANK;
@@ -256,6 +264,7 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 		_userName = userName;
 	}
 
+	@JSON
 	public Date getCreateDate() {
 		return _createDate;
 	}
@@ -264,6 +273,7 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 		_createDate = createDate;
 	}
 
+	@JSON
 	public Date getModifiedDate() {
 		return _modifiedDate;
 	}
@@ -280,6 +290,7 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 		return PortalUtil.getClassName(getClassNameId());
 	}
 
+	@JSON
 	public long getClassNameId() {
 		return _classNameId;
 	}
@@ -298,6 +309,7 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 		return _originalClassNameId;
 	}
 
+	@JSON
 	public long getClassPK() {
 		return _classPK;
 	}
@@ -316,6 +328,7 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 		return _originalClassPK;
 	}
 
+	@JSON
 	public String getClassUuid() {
 		if (_classUuid == null) {
 			return StringPool.BLANK;
@@ -329,6 +342,7 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 		_classUuid = classUuid;
 	}
 
+	@JSON
 	public String getName() {
 		if (_name == null) {
 			return StringPool.BLANK;
@@ -417,6 +431,7 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 		}
 	}
 
+	@JSON
 	public String getDescription() {
 		if (_description == null) {
 			return StringPool.BLANK;
@@ -509,6 +524,7 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 		}
 	}
 
+	@JSON
 	public boolean getActive() {
 		return _active;
 	}
