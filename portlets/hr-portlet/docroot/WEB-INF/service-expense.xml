@@ -27,9 +27,9 @@
 		<column name="hrUserId" type="long" />
 		<column name="expenseDate" type="Date" />
 		<column name="expenseAmount" type="double" />
-		<column name="expenseCurrencyCodeId" type="long" />
+		<column name="expenseHRExpenseCurrencyId" type="long" />
 		<column name="reimbursementAmount" type="double" />
-		<column name="reimbursementCurrencyCodeId" type="long" />
+		<column name="reimbursementHRExpenseCurrencyId" type="long" />
 		<column name="status" type="int" />
 		<column name="statusByUserId" type="long" />
 		<column name="statusByUserName" type="String" />
@@ -102,8 +102,8 @@
 
 		<!-- Other fields -->
 
-		<column name="fromCurrencyCodeId" type="long" />
-		<column name="toCurrencyCodeId" type="long" />
+		<column name="fromHRExpenseCurrencyId" type="long" />
+		<column name="toHRExpenseCurrencyId" type="long" />
 		<column name="conversionDate" type="Date" />
 		<column name="conversionValue" type="double" />
 
@@ -117,8 +117,8 @@
 
 		<finder name="G_F_T_C" return-type="HRExpenseCurrencyConversion" unique="true">
 			<finder-column name="groupId" />
-			<finder-column name="fromCurrencyCodeId" />
-			<finder-column name="toCurrencyCodeId" />
+			<finder-column name="fromHRExpenseCurrencyId" />
+			<finder-column name="toHRExpenseCurrencyId" />
 			<finder-column name="conversionDate" comparator="&lt;" />
 		</finder>
 	</entity>
