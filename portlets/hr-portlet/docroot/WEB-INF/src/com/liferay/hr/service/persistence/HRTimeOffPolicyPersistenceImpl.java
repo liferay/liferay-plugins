@@ -607,6 +607,8 @@ public class HRTimeOffPolicyPersistenceImpl extends BasePersistenceImpl<HRTimeOf
 	protected HRExpenseAccountPersistence hrExpenseAccountPersistence;
 	@BeanReference(type = HRExpenseCurrencyPersistence.class)
 	protected HRExpenseCurrencyPersistence hrExpenseCurrencyPersistence;
+	@BeanReference(type = HRExpenseCurrencyConversionPersistence.class)
+	protected HRExpenseCurrencyConversionPersistence hrExpenseCurrencyConversionPersistence;
 	@BeanReference(type = HRExpenseTypePersistence.class)
 	protected HRExpenseTypePersistence hrExpenseTypePersistence;
 	@BeanReference(type = HRHolidayPersistence.class)

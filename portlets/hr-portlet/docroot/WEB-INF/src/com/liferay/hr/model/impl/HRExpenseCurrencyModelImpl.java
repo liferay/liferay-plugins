@@ -19,7 +19,6 @@ import com.liferay.hr.model.HRExpenseCurrencyModel;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
@@ -67,15 +66,12 @@ public class HRExpenseCurrencyModelImpl extends BaseModelImpl<HRExpenseCurrency>
 			{ "userName", Types.VARCHAR },
 			{ "createDate", Types.TIMESTAMP },
 			{ "modifiedDate", Types.TIMESTAMP },
-			{ "fromCurrencyCode", Types.VARCHAR },
-			{ "toCurrencyCode", Types.VARCHAR },
-			{ "conversionDate", Types.TIMESTAMP },
-			{ "conversionValue", Types.DOUBLE }
+			{ "code_", Types.VARCHAR },
+			{ "name", Types.VARCHAR },
+			{ "description", Types.VARCHAR }
 		};
-	public static final String TABLE_SQL_CREATE = "create table HRExpenseCurrency (hrExpenseCurrencyId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,fromCurrencyCode VARCHAR(75) null,toCurrencyCode VARCHAR(75) null,conversionDate DATE null,conversionValue DOUBLE)";
+	public static final String TABLE_SQL_CREATE = "create table HRExpenseCurrency (hrExpenseCurrencyId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,code_ VARCHAR(75) null,name VARCHAR(75) null,description VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table HRExpenseCurrency";
-	public static final String ORDER_BY_JPQL = " ORDER BY hrExpenseCurrency.conversionDate DESC";
-	public static final String ORDER_BY_SQL = " ORDER BY HRExpenseCurrency.conversionDate DESC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
@@ -129,17 +125,7 @@ public class HRExpenseCurrencyModelImpl extends BaseModelImpl<HRExpenseCurrency>
 	}
 
 	public void setGroupId(long groupId) {
-		if (!_setOriginalGroupId) {
-			_setOriginalGroupId = true;
-
-			_originalGroupId = _groupId;
-		}
-
 		_groupId = groupId;
-	}
-
-	public long getOriginalGroupId() {
-		return _originalGroupId;
 	}
 
 	public long getCompanyId() {
@@ -195,70 +181,43 @@ public class HRExpenseCurrencyModelImpl extends BaseModelImpl<HRExpenseCurrency>
 		_modifiedDate = modifiedDate;
 	}
 
-	public String getFromCurrencyCode() {
-		if (_fromCurrencyCode == null) {
+	public String getCode() {
+		if (_code == null) {
 			return StringPool.BLANK;
 		}
 		else {
-			return _fromCurrencyCode;
+			return _code;
 		}
 	}
 
-	public void setFromCurrencyCode(String fromCurrencyCode) {
-		if (_originalFromCurrencyCode == null) {
-			_originalFromCurrencyCode = _fromCurrencyCode;
-		}
-
-		_fromCurrencyCode = fromCurrencyCode;
+	public void setCode(String code) {
+		_code = code;
 	}
 
-	public String getOriginalFromCurrencyCode() {
-		return GetterUtil.getString(_originalFromCurrencyCode);
-	}
-
-	public String getToCurrencyCode() {
-		if (_toCurrencyCode == null) {
+	public String getName() {
+		if (_name == null) {
 			return StringPool.BLANK;
 		}
 		else {
-			return _toCurrencyCode;
+			return _name;
 		}
 	}
 
-	public void setToCurrencyCode(String toCurrencyCode) {
-		if (_originalToCurrencyCode == null) {
-			_originalToCurrencyCode = _toCurrencyCode;
+	public void setName(String name) {
+		_name = name;
+	}
+
+	public String getDescription() {
+		if (_description == null) {
+			return StringPool.BLANK;
 		}
-
-		_toCurrencyCode = toCurrencyCode;
-	}
-
-	public String getOriginalToCurrencyCode() {
-		return GetterUtil.getString(_originalToCurrencyCode);
-	}
-
-	public Date getConversionDate() {
-		return _conversionDate;
-	}
-
-	public void setConversionDate(Date conversionDate) {
-		if (_originalConversionDate == null) {
-			_originalConversionDate = _conversionDate;
+		else {
+			return _description;
 		}
-
-		_conversionDate = conversionDate;
 	}
 
-	public Date getOriginalConversionDate() {
-		return _originalConversionDate;
-	}
-
-	public double getConversionValue() {
-		return _conversionValue;
-	}
-
-	public void setConversionValue(double conversionValue) {
-		_conversionValue = conversionValue;
+	public void setDescription(String description) {
+		_description = description;
 	}
 
 	public HRExpenseCurrency toEscapedModel() {
@@ -295,10 +254,9 @@ public class HRExpenseCurrencyModelImpl extends BaseModelImpl<HRExpenseCurrency>
 		hrExpenseCurrencyImpl.setUserName(getUserName());
 		hrExpenseCurrencyImpl.setCreateDate(getCreateDate());
 		hrExpenseCurrencyImpl.setModifiedDate(getModifiedDate());
-		hrExpenseCurrencyImpl.setFromCurrencyCode(getFromCurrencyCode());
-		hrExpenseCurrencyImpl.setToCurrencyCode(getToCurrencyCode());
-		hrExpenseCurrencyImpl.setConversionDate(getConversionDate());
-		hrExpenseCurrencyImpl.setConversionValue(getConversionValue());
+		hrExpenseCurrencyImpl.setCode(getCode());
+		hrExpenseCurrencyImpl.setName(getName());
+		hrExpenseCurrencyImpl.setDescription(getDescription());
 
 		hrExpenseCurrencyImpl.resetOriginalValues();
 
@@ -306,18 +264,17 @@ public class HRExpenseCurrencyModelImpl extends BaseModelImpl<HRExpenseCurrency>
 	}
 
 	public int compareTo(HRExpenseCurrency hrExpenseCurrency) {
-		int value = 0;
+		long primaryKey = hrExpenseCurrency.getPrimaryKey();
 
-		value = DateUtil.compareTo(getConversionDate(),
-				hrExpenseCurrency.getConversionDate());
-
-		value = value * -1;
-
-		if (value != 0) {
-			return value;
+		if (getPrimaryKey() < primaryKey) {
+			return -1;
 		}
-
-		return 0;
+		else if (getPrimaryKey() > primaryKey) {
+			return 1;
+		}
+		else {
+			return 0;
+		}
 	}
 
 	public boolean equals(Object obj) {
@@ -349,21 +306,10 @@ public class HRExpenseCurrencyModelImpl extends BaseModelImpl<HRExpenseCurrency>
 	}
 
 	public void resetOriginalValues() {
-		HRExpenseCurrencyModelImpl hrExpenseCurrencyModelImpl = this;
-
-		hrExpenseCurrencyModelImpl._originalGroupId = hrExpenseCurrencyModelImpl._groupId;
-
-		hrExpenseCurrencyModelImpl._setOriginalGroupId = false;
-
-		hrExpenseCurrencyModelImpl._originalFromCurrencyCode = hrExpenseCurrencyModelImpl._fromCurrencyCode;
-
-		hrExpenseCurrencyModelImpl._originalToCurrencyCode = hrExpenseCurrencyModelImpl._toCurrencyCode;
-
-		hrExpenseCurrencyModelImpl._originalConversionDate = hrExpenseCurrencyModelImpl._conversionDate;
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(23);
+		StringBundler sb = new StringBundler(21);
 
 		sb.append("{hrExpenseCurrencyId=");
 		sb.append(getHrExpenseCurrencyId());
@@ -379,21 +325,19 @@ public class HRExpenseCurrencyModelImpl extends BaseModelImpl<HRExpenseCurrency>
 		sb.append(getCreateDate());
 		sb.append(", modifiedDate=");
 		sb.append(getModifiedDate());
-		sb.append(", fromCurrencyCode=");
-		sb.append(getFromCurrencyCode());
-		sb.append(", toCurrencyCode=");
-		sb.append(getToCurrencyCode());
-		sb.append(", conversionDate=");
-		sb.append(getConversionDate());
-		sb.append(", conversionValue=");
-		sb.append(getConversionValue());
+		sb.append(", code=");
+		sb.append(getCode());
+		sb.append(", name=");
+		sb.append(getName());
+		sb.append(", description=");
+		sb.append(getDescription());
 		sb.append("}");
 
 		return sb.toString();
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(37);
+		StringBundler sb = new StringBundler(34);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.hr.model.HRExpenseCurrency");
@@ -428,20 +372,16 @@ public class HRExpenseCurrencyModelImpl extends BaseModelImpl<HRExpenseCurrency>
 		sb.append(getModifiedDate());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>fromCurrencyCode</column-name><column-value><![CDATA[");
-		sb.append(getFromCurrencyCode());
+			"<column><column-name>code</column-name><column-value><![CDATA[");
+		sb.append(getCode());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>toCurrencyCode</column-name><column-value><![CDATA[");
-		sb.append(getToCurrencyCode());
+			"<column><column-name>name</column-name><column-value><![CDATA[");
+		sb.append(getName());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>conversionDate</column-name><column-value><![CDATA[");
-		sb.append(getConversionDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>conversionValue</column-name><column-value><![CDATA[");
-		sb.append(getConversionValue());
+			"<column><column-name>description</column-name><column-value><![CDATA[");
+		sb.append(getDescription());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -451,20 +391,14 @@ public class HRExpenseCurrencyModelImpl extends BaseModelImpl<HRExpenseCurrency>
 
 	private long _hrExpenseCurrencyId;
 	private long _groupId;
-	private long _originalGroupId;
-	private boolean _setOriginalGroupId;
 	private long _companyId;
 	private long _userId;
 	private String _userUuid;
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
-	private String _fromCurrencyCode;
-	private String _originalFromCurrencyCode;
-	private String _toCurrencyCode;
-	private String _originalToCurrencyCode;
-	private Date _conversionDate;
-	private Date _originalConversionDate;
-	private double _conversionValue;
+	private String _code;
+	private String _name;
+	private String _description;
 	private transient ExpandoBridge _expandoBridge;
 }

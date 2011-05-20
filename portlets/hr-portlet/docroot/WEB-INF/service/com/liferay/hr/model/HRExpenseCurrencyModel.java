@@ -176,62 +176,49 @@ public interface HRExpenseCurrencyModel extends BaseModel<HRExpenseCurrency>,
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Gets the from currency code of this h r expense currency.
+	 * Gets the code of this h r expense currency.
 	 *
-	 * @return the from currency code of this h r expense currency
+	 * @return the code of this h r expense currency
 	 */
 	@AutoEscape
-	public String getFromCurrencyCode();
+	public String getCode();
 
 	/**
-	 * Sets the from currency code of this h r expense currency.
+	 * Sets the code of this h r expense currency.
 	 *
-	 * @param fromCurrencyCode the from currency code of this h r expense currency
+	 * @param code the code of this h r expense currency
 	 */
-	public void setFromCurrencyCode(String fromCurrencyCode);
+	public void setCode(String code);
 
 	/**
-	 * Gets the to currency code of this h r expense currency.
+	 * Gets the name of this h r expense currency.
 	 *
-	 * @return the to currency code of this h r expense currency
+	 * @return the name of this h r expense currency
 	 */
 	@AutoEscape
-	public String getToCurrencyCode();
+	public String getName();
 
 	/**
-	 * Sets the to currency code of this h r expense currency.
+	 * Sets the name of this h r expense currency.
 	 *
-	 * @param toCurrencyCode the to currency code of this h r expense currency
+	 * @param name the name of this h r expense currency
 	 */
-	public void setToCurrencyCode(String toCurrencyCode);
+	public void setName(String name);
 
 	/**
-	 * Gets the conversion date of this h r expense currency.
+	 * Gets the description of this h r expense currency.
 	 *
-	 * @return the conversion date of this h r expense currency
+	 * @return the description of this h r expense currency
 	 */
-	public Date getConversionDate();
+	@AutoEscape
+	public String getDescription();
 
 	/**
-	 * Sets the conversion date of this h r expense currency.
+	 * Sets the description of this h r expense currency.
 	 *
-	 * @param conversionDate the conversion date of this h r expense currency
+	 * @param description the description of this h r expense currency
 	 */
-	public void setConversionDate(Date conversionDate);
-
-	/**
-	 * Gets the conversion value of this h r expense currency.
-	 *
-	 * @return the conversion value of this h r expense currency
-	 */
-	public double getConversionValue();
-
-	/**
-	 * Sets the conversion value of this h r expense currency.
-	 *
-	 * @param conversionValue the conversion value of this h r expense currency
-	 */
-	public void setConversionValue(double conversionValue);
+	public void setDescription(String description);
 
 	public boolean isNew();
 

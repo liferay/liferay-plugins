@@ -15,6 +15,7 @@
 	<import class="com.liferay.hr.model.HRExpense" />
 	<import class="com.liferay.hr.model.HRExpenseAccount" />
 	<import class="com.liferay.hr.model.HRExpenseCurrency" />
+	<import class="com.liferay.hr.model.HRExpenseCurrencyConversion" />
 	<import class="com.liferay.hr.model.HRExpenseType" />
 	<import class="com.liferay.hr.model.HRHoliday" />
 	<import class="com.liferay.hr.model.HRJobTitle" />
@@ -208,9 +209,9 @@
 		<property name="hrUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="expenseDate" type="org.hibernate.type.TimestampType" />
 		<property name="expenseAmount" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
-		<property name="expenseCurrencyCode" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="expenseHRExpenseCurrencyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="reimbursementAmount" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
-		<property name="reimbursementCurrencyCode" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="reimbursementHRExpenseCurrencyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="status" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 		<property name="statusByUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="statusByUserName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
@@ -241,8 +242,23 @@
 		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="createDate" type="org.hibernate.type.TimestampType" />
 		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
-		<property name="fromCurrencyCode" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="toCurrencyCode" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="code" column="code_" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="com.liferay.hr.model.impl.HRExpenseCurrencyConversionImpl" table="HRExpenseCurrencyConversion">
+		<cache usage="read-write" />
+		<id name="hrExpenseCurrencyConversionId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="fromHRExpenseCurrencyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="toHRExpenseCurrencyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="conversionDate" type="org.hibernate.type.TimestampType" />
 		<property name="conversionValue" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
 	</class>

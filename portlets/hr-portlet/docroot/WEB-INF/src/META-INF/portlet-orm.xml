@@ -257,9 +257,9 @@
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<basic name="expenseAmount" />
-			<basic name="expenseCurrencyCode" />
+			<basic name="expenseHRExpenseCurrencyId" />
 			<basic name="reimbursementAmount" />
-			<basic name="reimbursementCurrencyCode" />
+			<basic name="reimbursementHRExpenseCurrencyId" />
 			<basic name="status" />
 			<basic name="statusByUserId" />
 			<basic name="statusByUserName" />
@@ -306,8 +306,31 @@
 			<basic name="modifiedDate">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
-			<basic name="fromCurrencyCode" />
-			<basic name="toCurrencyCode" />
+			<basic name="code">
+				<column name="CODE_" />
+			</basic>
+			<basic name="name" />
+			<basic name="description" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.liferay.hr.model.impl.HRExpenseCurrencyConversionModelImpl">
+		<attributes>
+			<id name="hrExpenseCurrencyConversionId" />
+			<basic name="groupId" />
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="userName" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="fromHRExpenseCurrencyId" />
+			<basic name="toHRExpenseCurrencyId" />
 			<basic name="conversionDate">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
@@ -990,6 +1013,10 @@
 	</entity>
 	<entity class="com.liferay.hr.model.impl.HRExpenseCurrencyImpl" name="HRExpenseCurrency">
 		<table name="HRExpenseCurrency" />
+		<attributes />
+	</entity>
+	<entity class="com.liferay.hr.model.impl.HRExpenseCurrencyConversionImpl" name="HRExpenseCurrencyConversion">
+		<table name="HRExpenseCurrencyConversion" />
 		<attributes />
 	</entity>
 	<entity class="com.liferay.hr.model.impl.HRExpenseTypeImpl" name="HRExpenseType">

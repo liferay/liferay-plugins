@@ -16,7 +16,6 @@ package com.liferay.hr.model;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
@@ -123,36 +122,28 @@ public class HRExpenseCurrencyClp extends BaseModelImpl<HRExpenseCurrency>
 		_modifiedDate = modifiedDate;
 	}
 
-	public String getFromCurrencyCode() {
-		return _fromCurrencyCode;
+	public String getCode() {
+		return _code;
 	}
 
-	public void setFromCurrencyCode(String fromCurrencyCode) {
-		_fromCurrencyCode = fromCurrencyCode;
+	public void setCode(String code) {
+		_code = code;
 	}
 
-	public String getToCurrencyCode() {
-		return _toCurrencyCode;
+	public String getName() {
+		return _name;
 	}
 
-	public void setToCurrencyCode(String toCurrencyCode) {
-		_toCurrencyCode = toCurrencyCode;
+	public void setName(String name) {
+		_name = name;
 	}
 
-	public Date getConversionDate() {
-		return _conversionDate;
+	public String getDescription() {
+		return _description;
 	}
 
-	public void setConversionDate(Date conversionDate) {
-		_conversionDate = conversionDate;
-	}
-
-	public double getConversionValue() {
-		return _conversionValue;
-	}
-
-	public void setConversionValue(double conversionValue) {
-		_conversionValue = conversionValue;
+	public void setDescription(String description) {
+		_description = description;
 	}
 
 	public HRExpenseCurrency toEscapedModel() {
@@ -176,27 +167,25 @@ public class HRExpenseCurrencyClp extends BaseModelImpl<HRExpenseCurrency>
 		clone.setUserName(getUserName());
 		clone.setCreateDate(getCreateDate());
 		clone.setModifiedDate(getModifiedDate());
-		clone.setFromCurrencyCode(getFromCurrencyCode());
-		clone.setToCurrencyCode(getToCurrencyCode());
-		clone.setConversionDate(getConversionDate());
-		clone.setConversionValue(getConversionValue());
+		clone.setCode(getCode());
+		clone.setName(getName());
+		clone.setDescription(getDescription());
 
 		return clone;
 	}
 
 	public int compareTo(HRExpenseCurrency hrExpenseCurrency) {
-		int value = 0;
+		long primaryKey = hrExpenseCurrency.getPrimaryKey();
 
-		value = DateUtil.compareTo(getConversionDate(),
-				hrExpenseCurrency.getConversionDate());
-
-		value = value * -1;
-
-		if (value != 0) {
-			return value;
+		if (getPrimaryKey() < primaryKey) {
+			return -1;
 		}
-
-		return 0;
+		else if (getPrimaryKey() > primaryKey) {
+			return 1;
+		}
+		else {
+			return 0;
+		}
 	}
 
 	public boolean equals(Object obj) {
@@ -228,7 +217,7 @@ public class HRExpenseCurrencyClp extends BaseModelImpl<HRExpenseCurrency>
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(23);
+		StringBundler sb = new StringBundler(21);
 
 		sb.append("{hrExpenseCurrencyId=");
 		sb.append(getHrExpenseCurrencyId());
@@ -244,21 +233,19 @@ public class HRExpenseCurrencyClp extends BaseModelImpl<HRExpenseCurrency>
 		sb.append(getCreateDate());
 		sb.append(", modifiedDate=");
 		sb.append(getModifiedDate());
-		sb.append(", fromCurrencyCode=");
-		sb.append(getFromCurrencyCode());
-		sb.append(", toCurrencyCode=");
-		sb.append(getToCurrencyCode());
-		sb.append(", conversionDate=");
-		sb.append(getConversionDate());
-		sb.append(", conversionValue=");
-		sb.append(getConversionValue());
+		sb.append(", code=");
+		sb.append(getCode());
+		sb.append(", name=");
+		sb.append(getName());
+		sb.append(", description=");
+		sb.append(getDescription());
 		sb.append("}");
 
 		return sb.toString();
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(37);
+		StringBundler sb = new StringBundler(34);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.hr.model.HRExpenseCurrency");
@@ -293,20 +280,16 @@ public class HRExpenseCurrencyClp extends BaseModelImpl<HRExpenseCurrency>
 		sb.append(getModifiedDate());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>fromCurrencyCode</column-name><column-value><![CDATA[");
-		sb.append(getFromCurrencyCode());
+			"<column><column-name>code</column-name><column-value><![CDATA[");
+		sb.append(getCode());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>toCurrencyCode</column-name><column-value><![CDATA[");
-		sb.append(getToCurrencyCode());
+			"<column><column-name>name</column-name><column-value><![CDATA[");
+		sb.append(getName());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>conversionDate</column-name><column-value><![CDATA[");
-		sb.append(getConversionDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>conversionValue</column-name><column-value><![CDATA[");
-		sb.append(getConversionValue());
+			"<column><column-name>description</column-name><column-value><![CDATA[");
+		sb.append(getDescription());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -322,8 +305,7 @@ public class HRExpenseCurrencyClp extends BaseModelImpl<HRExpenseCurrency>
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
-	private String _fromCurrencyCode;
-	private String _toCurrencyCode;
-	private Date _conversionDate;
-	private double _conversionValue;
+	private String _code;
+	private String _name;
+	private String _description;
 }

@@ -27,6 +27,7 @@ import com.liferay.hr.model.HREmploymentTypeClp;
 import com.liferay.hr.model.HRExpenseAccountClp;
 import com.liferay.hr.model.HRExpenseClp;
 import com.liferay.hr.model.HRExpenseCurrencyClp;
+import com.liferay.hr.model.HRExpenseCurrencyConversionClp;
 import com.liferay.hr.model.HRExpenseTypeClp;
 import com.liferay.hr.model.HRHolidayClp;
 import com.liferay.hr.model.HRJobTitleClp;
@@ -185,6 +186,11 @@ public class ClpSerializer {
 
 		if (oldModelClassName.equals(HRExpenseCurrencyClp.class.getName())) {
 			return translateInputHRExpenseCurrency(oldModel);
+		}
+
+		if (oldModelClassName.equals(
+					HRExpenseCurrencyConversionClp.class.getName())) {
+			return translateInputHRExpenseCurrencyConversion(oldModel);
 		}
 
 		if (oldModelClassName.equals(HRExpenseTypeClp.class.getName())) {
@@ -1409,10 +1415,10 @@ public class ClpSerializer {
 
 				method11.invoke(newModel, value11);
 
-				Method method12 = newModelClass.getMethod("setExpenseCurrencyCode",
-						new Class[] { String.class });
+				Method method12 = newModelClass.getMethod("setExpenseHRExpenseCurrencyId",
+						new Class[] { Long.TYPE });
 
-				String value12 = oldCplModel.getExpenseCurrencyCode();
+				Long value12 = new Long(oldCplModel.getExpenseHRExpenseCurrencyId());
 
 				method12.invoke(newModel, value12);
 
@@ -1423,10 +1429,10 @@ public class ClpSerializer {
 
 				method13.invoke(newModel, value13);
 
-				Method method14 = newModelClass.getMethod("setReimbursementCurrencyCode",
-						new Class[] { String.class });
+				Method method14 = newModelClass.getMethod("setReimbursementHRExpenseCurrencyId",
+						new Class[] { Long.TYPE });
 
-				String value14 = oldCplModel.getReimbursementCurrencyCode();
+				Long value14 = new Long(oldCplModel.getReimbursementHRExpenseCurrencyId());
 
 				method14.invoke(newModel, value14);
 
@@ -1628,17 +1634,117 @@ public class ClpSerializer {
 
 				method6.invoke(newModel, value6);
 
-				Method method7 = newModelClass.getMethod("setFromCurrencyCode",
+				Method method7 = newModelClass.getMethod("setCode",
 						new Class[] { String.class });
 
-				String value7 = oldCplModel.getFromCurrencyCode();
+				String value7 = oldCplModel.getCode();
 
 				method7.invoke(newModel, value7);
 
-				Method method8 = newModelClass.getMethod("setToCurrencyCode",
+				Method method8 = newModelClass.getMethod("setName",
 						new Class[] { String.class });
 
-				String value8 = oldCplModel.getToCurrencyCode();
+				String value8 = oldCplModel.getName();
+
+				method8.invoke(newModel, value8);
+
+				Method method9 = newModelClass.getMethod("setDescription",
+						new Class[] { String.class });
+
+				String value9 = oldCplModel.getDescription();
+
+				method9.invoke(newModel, value9);
+
+				return newModel;
+			}
+			catch (Exception e) {
+				_log.error(e, e);
+			}
+		}
+		finally {
+			currentThread.setContextClassLoader(contextClassLoader);
+		}
+
+		return oldModel;
+	}
+
+	public static Object translateInputHRExpenseCurrencyConversion(
+		BaseModel<?> oldModel) {
+		HRExpenseCurrencyConversionClp oldCplModel = (HRExpenseCurrencyConversionClp)oldModel;
+
+		Thread currentThread = Thread.currentThread();
+
+		ClassLoader contextClassLoader = currentThread.getContextClassLoader();
+
+		try {
+			currentThread.setContextClassLoader(_classLoader);
+
+			try {
+				Class<?> newModelClass = Class.forName("com.liferay.hr.model.impl.HRExpenseCurrencyConversionImpl",
+						true, _classLoader);
+
+				Object newModel = newModelClass.newInstance();
+
+				Method method0 = newModelClass.getMethod("setHrExpenseCurrencyConversionId",
+						new Class[] { Long.TYPE });
+
+				Long value0 = new Long(oldCplModel.getHrExpenseCurrencyConversionId());
+
+				method0.invoke(newModel, value0);
+
+				Method method1 = newModelClass.getMethod("setGroupId",
+						new Class[] { Long.TYPE });
+
+				Long value1 = new Long(oldCplModel.getGroupId());
+
+				method1.invoke(newModel, value1);
+
+				Method method2 = newModelClass.getMethod("setCompanyId",
+						new Class[] { Long.TYPE });
+
+				Long value2 = new Long(oldCplModel.getCompanyId());
+
+				method2.invoke(newModel, value2);
+
+				Method method3 = newModelClass.getMethod("setUserId",
+						new Class[] { Long.TYPE });
+
+				Long value3 = new Long(oldCplModel.getUserId());
+
+				method3.invoke(newModel, value3);
+
+				Method method4 = newModelClass.getMethod("setUserName",
+						new Class[] { String.class });
+
+				String value4 = oldCplModel.getUserName();
+
+				method4.invoke(newModel, value4);
+
+				Method method5 = newModelClass.getMethod("setCreateDate",
+						new Class[] { Date.class });
+
+				Date value5 = oldCplModel.getCreateDate();
+
+				method5.invoke(newModel, value5);
+
+				Method method6 = newModelClass.getMethod("setModifiedDate",
+						new Class[] { Date.class });
+
+				Date value6 = oldCplModel.getModifiedDate();
+
+				method6.invoke(newModel, value6);
+
+				Method method7 = newModelClass.getMethod("setFromHRExpenseCurrencyId",
+						new Class[] { Long.TYPE });
+
+				Long value7 = new Long(oldCplModel.getFromHRExpenseCurrencyId());
+
+				method7.invoke(newModel, value7);
+
+				Method method8 = newModelClass.getMethod("setToHRExpenseCurrencyId",
+						new Class[] { Long.TYPE });
+
+				Long value8 = new Long(oldCplModel.getToHRExpenseCurrencyId());
 
 				method8.invoke(newModel, value8);
 
@@ -4624,6 +4730,11 @@ public class ClpSerializer {
 		}
 
 		if (oldModelClassName.equals(
+					"com.liferay.hr.model.impl.HRExpenseCurrencyConversionImpl")) {
+			return translateOutputHRExpenseCurrencyConversion(oldModel);
+		}
+
+		if (oldModelClassName.equals(
 					"com.liferay.hr.model.impl.HRExpenseTypeImpl")) {
 			return translateOutputHRExpenseType(oldModel);
 		}
@@ -5735,12 +5846,11 @@ public class ClpSerializer {
 				newModel.setExpenseAmount(value11);
 
 				Method method12 = oldModelClass.getMethod(
-						"getExpenseCurrencyCode");
+						"getExpenseHRExpenseCurrencyId");
 
-				String value12 = (String)method12.invoke(oldModel,
-						(Object[])null);
+				Long value12 = (Long)method12.invoke(oldModel, (Object[])null);
 
-				newModel.setExpenseCurrencyCode(value12);
+				newModel.setExpenseHRExpenseCurrencyId(value12);
 
 				Method method13 = oldModelClass.getMethod(
 						"getReimbursementAmount");
@@ -5751,12 +5861,11 @@ public class ClpSerializer {
 				newModel.setReimbursementAmount(value13);
 
 				Method method14 = oldModelClass.getMethod(
-						"getReimbursementCurrencyCode");
+						"getReimbursementHRExpenseCurrencyId");
 
-				String value14 = (String)method14.invoke(oldModel,
-						(Object[])null);
+				Long value14 = (Long)method14.invoke(oldModel, (Object[])null);
 
-				newModel.setReimbursementCurrencyCode(value14);
+				newModel.setReimbursementHRExpenseCurrencyId(value14);
 
 				Method method15 = oldModelClass.getMethod("getStatus");
 
@@ -5934,17 +6043,107 @@ public class ClpSerializer {
 
 				newModel.setModifiedDate(value6);
 
-				Method method7 = oldModelClass.getMethod("getFromCurrencyCode");
+				Method method7 = oldModelClass.getMethod("getCode");
 
 				String value7 = (String)method7.invoke(oldModel, (Object[])null);
 
-				newModel.setFromCurrencyCode(value7);
+				newModel.setCode(value7);
 
-				Method method8 = oldModelClass.getMethod("getToCurrencyCode");
+				Method method8 = oldModelClass.getMethod("getName");
 
 				String value8 = (String)method8.invoke(oldModel, (Object[])null);
 
-				newModel.setToCurrencyCode(value8);
+				newModel.setName(value8);
+
+				Method method9 = oldModelClass.getMethod("getDescription");
+
+				String value9 = (String)method9.invoke(oldModel, (Object[])null);
+
+				newModel.setDescription(value9);
+
+				return newModel;
+			}
+			catch (Exception e) {
+				_log.error(e, e);
+			}
+		}
+		finally {
+			currentThread.setContextClassLoader(contextClassLoader);
+		}
+
+		return oldModel;
+	}
+
+	public static Object translateOutputHRExpenseCurrencyConversion(
+		BaseModel<?> oldModel) {
+		Thread currentThread = Thread.currentThread();
+
+		ClassLoader contextClassLoader = currentThread.getContextClassLoader();
+
+		try {
+			currentThread.setContextClassLoader(_classLoader);
+
+			try {
+				HRExpenseCurrencyConversionClp newModel = new HRExpenseCurrencyConversionClp();
+
+				Class<?> oldModelClass = oldModel.getClass();
+
+				Method method0 = oldModelClass.getMethod(
+						"getHrExpenseCurrencyConversionId");
+
+				Long value0 = (Long)method0.invoke(oldModel, (Object[])null);
+
+				newModel.setHrExpenseCurrencyConversionId(value0);
+
+				Method method1 = oldModelClass.getMethod("getGroupId");
+
+				Long value1 = (Long)method1.invoke(oldModel, (Object[])null);
+
+				newModel.setGroupId(value1);
+
+				Method method2 = oldModelClass.getMethod("getCompanyId");
+
+				Long value2 = (Long)method2.invoke(oldModel, (Object[])null);
+
+				newModel.setCompanyId(value2);
+
+				Method method3 = oldModelClass.getMethod("getUserId");
+
+				Long value3 = (Long)method3.invoke(oldModel, (Object[])null);
+
+				newModel.setUserId(value3);
+
+				Method method4 = oldModelClass.getMethod("getUserName");
+
+				String value4 = (String)method4.invoke(oldModel, (Object[])null);
+
+				newModel.setUserName(value4);
+
+				Method method5 = oldModelClass.getMethod("getCreateDate");
+
+				Date value5 = (Date)method5.invoke(oldModel, (Object[])null);
+
+				newModel.setCreateDate(value5);
+
+				Method method6 = oldModelClass.getMethod("getModifiedDate");
+
+				Date value6 = (Date)method6.invoke(oldModel, (Object[])null);
+
+				newModel.setModifiedDate(value6);
+
+				Method method7 = oldModelClass.getMethod(
+						"getFromHRExpenseCurrencyId");
+
+				Long value7 = (Long)method7.invoke(oldModel, (Object[])null);
+
+				newModel.setFromHRExpenseCurrencyId(value7);
+
+				Method method8 = oldModelClass.getMethod(
+						"getToHRExpenseCurrencyId");
+
+				Long value8 = (Long)method8.invoke(oldModel, (Object[])null);
+
+				newModel.setToHRExpenseCurrencyId(value8);
 
 				Method method9 = oldModelClass.getMethod("getConversionDate");
 

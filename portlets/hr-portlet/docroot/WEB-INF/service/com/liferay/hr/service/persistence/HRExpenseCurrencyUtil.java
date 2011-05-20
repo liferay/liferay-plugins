@@ -201,66 +201,6 @@ public class HRExpenseCurrencyUtil {
 	}
 
 	/**
-	* Finds the h r expense currency where groupId = &#63; and fromCurrencyCode = &#63; and toCurrencyCode = &#63; and conversionDate &lt; &#63; or throws a {@link com.liferay.hr.NoSuchExpenseCurrencyException} if it could not be found.
-	*
-	* @param groupId the group ID to search with
-	* @param fromCurrencyCode the from currency code to search with
-	* @param toCurrencyCode the to currency code to search with
-	* @param conversionDate the conversion date to search with
-	* @return the matching h r expense currency
-	* @throws com.liferay.hr.NoSuchExpenseCurrencyException if a matching h r expense currency could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.hr.model.HRExpenseCurrency findByG_F_T_C(
-		long groupId, java.lang.String fromCurrencyCode,
-		java.lang.String toCurrencyCode, java.util.Date conversionDate)
-		throws com.liferay.hr.NoSuchExpenseCurrencyException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence()
-				   .findByG_F_T_C(groupId, fromCurrencyCode, toCurrencyCode,
-			conversionDate);
-	}
-
-	/**
-	* Finds the h r expense currency where groupId = &#63; and fromCurrencyCode = &#63; and toCurrencyCode = &#63; and conversionDate &lt; &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
-	*
-	* @param groupId the group ID to search with
-	* @param fromCurrencyCode the from currency code to search with
-	* @param toCurrencyCode the to currency code to search with
-	* @param conversionDate the conversion date to search with
-	* @return the matching h r expense currency, or <code>null</code> if a matching h r expense currency could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.hr.model.HRExpenseCurrency fetchByG_F_T_C(
-		long groupId, java.lang.String fromCurrencyCode,
-		java.lang.String toCurrencyCode, java.util.Date conversionDate)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence()
-				   .fetchByG_F_T_C(groupId, fromCurrencyCode, toCurrencyCode,
-			conversionDate);
-	}
-
-	/**
-	* Finds the h r expense currency where groupId = &#63; and fromCurrencyCode = &#63; and toCurrencyCode = &#63; and conversionDate &lt; &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
-	*
-	* @param groupId the group ID to search with
-	* @param fromCurrencyCode the from currency code to search with
-	* @param toCurrencyCode the to currency code to search with
-	* @param conversionDate the conversion date to search with
-	* @return the matching h r expense currency, or <code>null</code> if a matching h r expense currency could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.hr.model.HRExpenseCurrency fetchByG_F_T_C(
-		long groupId, java.lang.String fromCurrencyCode,
-		java.lang.String toCurrencyCode, java.util.Date conversionDate,
-		boolean retrieveFromCache)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence()
-				   .fetchByG_F_T_C(groupId, fromCurrencyCode, toCurrencyCode,
-			conversionDate, retrieveFromCache);
-	}
-
-	/**
 	* Finds all the h r expense currencies.
 	*
 	* @return the h r expense currencies
@@ -310,25 +250,6 @@ public class HRExpenseCurrencyUtil {
 	}
 
 	/**
-	* Removes the h r expense currency where groupId = &#63; and fromCurrencyCode = &#63; and toCurrencyCode = &#63; and conversionDate &lt; &#63; from the database.
-	*
-	* @param groupId the group ID to search with
-	* @param fromCurrencyCode the from currency code to search with
-	* @param toCurrencyCode the to currency code to search with
-	* @param conversionDate the conversion date to search with
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void removeByG_F_T_C(long groupId,
-		java.lang.String fromCurrencyCode, java.lang.String toCurrencyCode,
-		java.util.Date conversionDate)
-		throws com.liferay.hr.NoSuchExpenseCurrencyException,
-			com.liferay.portal.kernel.exception.SystemException {
-		getPersistence()
-			.removeByG_F_T_C(groupId, fromCurrencyCode, toCurrencyCode,
-			conversionDate);
-	}
-
-	/**
 	* Removes all the h r expense currencies from the database.
 	*
 	* @throws SystemException if a system exception occurred
@@ -336,25 +257,6 @@ public class HRExpenseCurrencyUtil {
 	public static void removeAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		getPersistence().removeAll();
-	}
-
-	/**
-	* Counts all the h r expense currencies where groupId = &#63; and fromCurrencyCode = &#63; and toCurrencyCode = &#63; and conversionDate &lt; &#63;.
-	*
-	* @param groupId the group ID to search with
-	* @param fromCurrencyCode the from currency code to search with
-	* @param toCurrencyCode the to currency code to search with
-	* @param conversionDate the conversion date to search with
-	* @return the number of matching h r expense currencies
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByG_F_T_C(long groupId,
-		java.lang.String fromCurrencyCode, java.lang.String toCurrencyCode,
-		java.util.Date conversionDate)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence()
-				   .countByG_F_T_C(groupId, fromCurrencyCode, toCurrencyCode,
-			conversionDate);
 	}
 
 	/**

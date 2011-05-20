@@ -137,9 +137,9 @@
 		<field name="hrUserId" type="long" />
 		<field name="expenseDate" type="Date" />
 		<field name="expenseAmount" type="double" />
-		<field name="expenseCurrencyCode" type="String" />
+		<field name="expenseHRExpenseCurrencyId" type="long" />
 		<field name="reimbursementAmount" type="double" />
-		<field name="reimbursementCurrencyCode" type="String" />
+		<field name="reimbursementHRExpenseCurrencyId" type="long" />
 		<field name="status" type="int" />
 		<field name="statusByUserId" type="long" />
 		<field name="statusByUserName" type="String" />
@@ -164,8 +164,20 @@
 		<field name="userName" type="String" />
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
-		<field name="fromCurrencyCode" type="String" />
-		<field name="toCurrencyCode" type="String" />
+		<field name="code" type="String" />
+		<field name="name" type="String" />
+		<field name="description" type="String" />
+	</model>
+	<model name="com.liferay.hr.model.HRExpenseCurrencyConversion">
+		<field name="hrExpenseCurrencyConversionId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="fromHRExpenseCurrencyId" type="long" />
+		<field name="toHRExpenseCurrencyId" type="long" />
 		<field name="conversionDate" type="Date" />
 		<field name="conversionValue" type="double" />
 	</model>

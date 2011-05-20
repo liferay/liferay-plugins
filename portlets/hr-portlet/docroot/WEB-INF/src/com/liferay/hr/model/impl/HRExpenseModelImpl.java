@@ -72,15 +72,15 @@ public class HRExpenseModelImpl extends BaseModelImpl<HRExpense>
 			{ "hrUserId", Types.BIGINT },
 			{ "expenseDate", Types.TIMESTAMP },
 			{ "expenseAmount", Types.DOUBLE },
-			{ "expenseCurrencyCode", Types.VARCHAR },
+			{ "expenseHRExpenseCurrencyId", Types.BIGINT },
 			{ "reimbursementAmount", Types.DOUBLE },
-			{ "reimbursementCurrencyCode", Types.VARCHAR },
+			{ "reimbursementHRExpenseCurrencyId", Types.BIGINT },
 			{ "status", Types.INTEGER },
 			{ "statusByUserId", Types.BIGINT },
 			{ "statusByUserName", Types.VARCHAR },
 			{ "statusDate", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table HRExpense (hrExpenseId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,hrExpenseAccountId LONG,hrExpenseTypeId LONG,hrUserId LONG,expenseDate DATE null,expenseAmount DOUBLE,expenseCurrencyCode VARCHAR(75) null,reimbursementAmount DOUBLE,reimbursementCurrencyCode VARCHAR(75) null,status INTEGER,statusByUserId LONG,statusByUserName VARCHAR(75) null,statusDate DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table HRExpense (hrExpenseId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,hrExpenseAccountId LONG,hrExpenseTypeId LONG,hrUserId LONG,expenseDate DATE null,expenseAmount DOUBLE,expenseHRExpenseCurrencyId LONG,reimbursementAmount DOUBLE,reimbursementHRExpenseCurrencyId LONG,status INTEGER,statusByUserId LONG,statusByUserName VARCHAR(75) null,statusDate DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table HRExpense";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
@@ -239,17 +239,12 @@ public class HRExpenseModelImpl extends BaseModelImpl<HRExpense>
 		_expenseAmount = expenseAmount;
 	}
 
-	public String getExpenseCurrencyCode() {
-		if (_expenseCurrencyCode == null) {
-			return StringPool.BLANK;
-		}
-		else {
-			return _expenseCurrencyCode;
-		}
+	public long getExpenseHRExpenseCurrencyId() {
+		return _expenseHRExpenseCurrencyId;
 	}
 
-	public void setExpenseCurrencyCode(String expenseCurrencyCode) {
-		_expenseCurrencyCode = expenseCurrencyCode;
+	public void setExpenseHRExpenseCurrencyId(long expenseHRExpenseCurrencyId) {
+		_expenseHRExpenseCurrencyId = expenseHRExpenseCurrencyId;
 	}
 
 	public double getReimbursementAmount() {
@@ -260,17 +255,13 @@ public class HRExpenseModelImpl extends BaseModelImpl<HRExpense>
 		_reimbursementAmount = reimbursementAmount;
 	}
 
-	public String getReimbursementCurrencyCode() {
-		if (_reimbursementCurrencyCode == null) {
-			return StringPool.BLANK;
-		}
-		else {
-			return _reimbursementCurrencyCode;
-		}
+	public long getReimbursementHRExpenseCurrencyId() {
+		return _reimbursementHRExpenseCurrencyId;
 	}
 
-	public void setReimbursementCurrencyCode(String reimbursementCurrencyCode) {
-		_reimbursementCurrencyCode = reimbursementCurrencyCode;
+	public void setReimbursementHRExpenseCurrencyId(
+		long reimbursementHRExpenseCurrencyId) {
+		_reimbursementHRExpenseCurrencyId = reimbursementHRExpenseCurrencyId;
 	}
 
 	public int getStatus() {
@@ -400,9 +391,9 @@ public class HRExpenseModelImpl extends BaseModelImpl<HRExpense>
 		hrExpenseImpl.setHrUserId(getHrUserId());
 		hrExpenseImpl.setExpenseDate(getExpenseDate());
 		hrExpenseImpl.setExpenseAmount(getExpenseAmount());
-		hrExpenseImpl.setExpenseCurrencyCode(getExpenseCurrencyCode());
+		hrExpenseImpl.setExpenseHRExpenseCurrencyId(getExpenseHRExpenseCurrencyId());
 		hrExpenseImpl.setReimbursementAmount(getReimbursementAmount());
-		hrExpenseImpl.setReimbursementCurrencyCode(getReimbursementCurrencyCode());
+		hrExpenseImpl.setReimbursementHRExpenseCurrencyId(getReimbursementHRExpenseCurrencyId());
 		hrExpenseImpl.setStatus(getStatus());
 		hrExpenseImpl.setStatusByUserId(getStatusByUserId());
 		hrExpenseImpl.setStatusByUserName(getStatusByUserName());
@@ -485,12 +476,12 @@ public class HRExpenseModelImpl extends BaseModelImpl<HRExpense>
 		sb.append(getExpenseDate());
 		sb.append(", expenseAmount=");
 		sb.append(getExpenseAmount());
-		sb.append(", expenseCurrencyCode=");
-		sb.append(getExpenseCurrencyCode());
+		sb.append(", expenseHRExpenseCurrencyId=");
+		sb.append(getExpenseHRExpenseCurrencyId());
 		sb.append(", reimbursementAmount=");
 		sb.append(getReimbursementAmount());
-		sb.append(", reimbursementCurrencyCode=");
-		sb.append(getReimbursementCurrencyCode());
+		sb.append(", reimbursementHRExpenseCurrencyId=");
+		sb.append(getReimbursementHRExpenseCurrencyId());
 		sb.append(", status=");
 		sb.append(getStatus());
 		sb.append(", statusByUserId=");
@@ -560,16 +551,16 @@ public class HRExpenseModelImpl extends BaseModelImpl<HRExpense>
 		sb.append(getExpenseAmount());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>expenseCurrencyCode</column-name><column-value><![CDATA[");
-		sb.append(getExpenseCurrencyCode());
+			"<column><column-name>expenseHRExpenseCurrencyId</column-name><column-value><![CDATA[");
+		sb.append(getExpenseHRExpenseCurrencyId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>reimbursementAmount</column-name><column-value><![CDATA[");
 		sb.append(getReimbursementAmount());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>reimbursementCurrencyCode</column-name><column-value><![CDATA[");
-		sb.append(getReimbursementCurrencyCode());
+			"<column><column-name>reimbursementHRExpenseCurrencyId</column-name><column-value><![CDATA[");
+		sb.append(getReimbursementHRExpenseCurrencyId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>status</column-name><column-value><![CDATA[");
@@ -607,9 +598,9 @@ public class HRExpenseModelImpl extends BaseModelImpl<HRExpense>
 	private String _hrUserUuid;
 	private Date _expenseDate;
 	private double _expenseAmount;
-	private String _expenseCurrencyCode;
+	private long _expenseHRExpenseCurrencyId;
 	private double _reimbursementAmount;
-	private String _reimbursementCurrencyCode;
+	private long _reimbursementHRExpenseCurrencyId;
 	private int _status;
 	private long _statusByUserId;
 	private String _statusByUserUuid;

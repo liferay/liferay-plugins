@@ -26,6 +26,11 @@
 		<property name="service" ref="com.liferay.hr.service.HRExpenseCurrencyLocalService" />
 	</bean>
 	<bean id="com.liferay.hr.service.persistence.HRExpenseCurrencyPersistence" class="com.liferay.hr.service.persistence.HRExpenseCurrencyPersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.hr.service.HRExpenseCurrencyConversionLocalService" class="com.liferay.hr.service.impl.HRExpenseCurrencyConversionLocalServiceImpl" />
+	<bean id="com.liferay.hr.service.HRExpenseCurrencyConversionLocalServiceUtil" class="com.liferay.hr.service.HRExpenseCurrencyConversionLocalServiceUtil">
+		<property name="service" ref="com.liferay.hr.service.HRExpenseCurrencyConversionLocalService" />
+	</bean>
+	<bean id="com.liferay.hr.service.persistence.HRExpenseCurrencyConversionPersistence" class="com.liferay.hr.service.persistence.HRExpenseCurrencyConversionPersistenceImpl" parent="basePersistence" />
 	<bean id="com.liferay.hr.service.HRExpenseTypeLocalService" class="com.liferay.hr.service.impl.HRExpenseTypeLocalServiceImpl" />
 	<bean id="com.liferay.hr.service.HRExpenseTypeLocalServiceUtil" class="com.liferay.hr.service.HRExpenseTypeLocalServiceUtil">
 		<property name="service" ref="com.liferay.hr.service.HRExpenseTypeLocalService" />

@@ -290,9 +290,9 @@ public class HRExpensePersistenceImpl extends BasePersistenceImpl<HRExpense>
 		hrExpenseImpl.setHrUserId(hrExpense.getHrUserId());
 		hrExpenseImpl.setExpenseDate(hrExpense.getExpenseDate());
 		hrExpenseImpl.setExpenseAmount(hrExpense.getExpenseAmount());
-		hrExpenseImpl.setExpenseCurrencyCode(hrExpense.getExpenseCurrencyCode());
+		hrExpenseImpl.setExpenseHRExpenseCurrencyId(hrExpense.getExpenseHRExpenseCurrencyId());
 		hrExpenseImpl.setReimbursementAmount(hrExpense.getReimbursementAmount());
-		hrExpenseImpl.setReimbursementCurrencyCode(hrExpense.getReimbursementCurrencyCode());
+		hrExpenseImpl.setReimbursementHRExpenseCurrencyId(hrExpense.getReimbursementHRExpenseCurrencyId());
 		hrExpenseImpl.setStatus(hrExpense.getStatus());
 		hrExpenseImpl.setStatusByUserId(hrExpense.getStatusByUserId());
 		hrExpenseImpl.setStatusByUserName(hrExpense.getStatusByUserName());
@@ -603,6 +603,8 @@ public class HRExpensePersistenceImpl extends BasePersistenceImpl<HRExpense>
 	protected HRExpenseAccountPersistence hrExpenseAccountPersistence;
 	@BeanReference(type = HRExpenseCurrencyPersistence.class)
 	protected HRExpenseCurrencyPersistence hrExpenseCurrencyPersistence;
+	@BeanReference(type = HRExpenseCurrencyConversionPersistence.class)
+	protected HRExpenseCurrencyConversionPersistence hrExpenseCurrencyConversionPersistence;
 	@BeanReference(type = HRExpenseTypePersistence.class)
 	protected HRExpenseTypePersistence hrExpenseTypePersistence;
 	@BeanReference(type = HRHolidayPersistence.class)

@@ -150,9 +150,9 @@ create table HRExpense (
 	hrUserId LONG,
 	expenseDate DATE null,
 	expenseAmount DOUBLE,
-	expenseCurrencyCode VARCHAR(75) null,
+	expenseHRExpenseCurrencyId LONG,
 	reimbursementAmount DOUBLE,
-	reimbursementCurrencyCode VARCHAR(75) null,
+	reimbursementHRExpenseCurrencyId LONG,
 	status INTEGER,
 	statusByUserId LONG,
 	statusByUserName VARCHAR(75) null,
@@ -179,8 +179,21 @@ create table HRExpenseCurrency (
 	userName VARCHAR(75) null,
 	createDate DATE null,
 	modifiedDate DATE null,
-	fromCurrencyCode VARCHAR(75) null,
-	toCurrencyCode VARCHAR(75) null,
+	code_ VARCHAR(75) null,
+	name VARCHAR(75) null,
+	description VARCHAR(75) null
+);
+
+create table HRExpenseCurrencyConversion (
+	hrExpenseCurrencyConversionId LONG not null primary key,
+	groupId LONG,
+	companyId LONG,
+	userId LONG,
+	userName VARCHAR(75) null,
+	createDate DATE null,
+	modifiedDate DATE null,
+	fromHRExpenseCurrencyId LONG,
+	toHRExpenseCurrencyId LONG,
 	conversionDate DATE null,
 	conversionValue DOUBLE
 );

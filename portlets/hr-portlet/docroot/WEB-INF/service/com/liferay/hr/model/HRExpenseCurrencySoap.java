@@ -37,10 +37,9 @@ public class HRExpenseCurrencySoap implements Serializable {
 		soapModel.setUserName(model.getUserName());
 		soapModel.setCreateDate(model.getCreateDate());
 		soapModel.setModifiedDate(model.getModifiedDate());
-		soapModel.setFromCurrencyCode(model.getFromCurrencyCode());
-		soapModel.setToCurrencyCode(model.getToCurrencyCode());
-		soapModel.setConversionDate(model.getConversionDate());
-		soapModel.setConversionValue(model.getConversionValue());
+		soapModel.setCode(model.getCode());
+		soapModel.setName(model.getName());
+		soapModel.setDescription(model.getDescription());
 
 		return soapModel;
 	}
@@ -152,36 +151,28 @@ public class HRExpenseCurrencySoap implements Serializable {
 		_modifiedDate = modifiedDate;
 	}
 
-	public String getFromCurrencyCode() {
-		return _fromCurrencyCode;
+	public String getCode() {
+		return _code;
 	}
 
-	public void setFromCurrencyCode(String fromCurrencyCode) {
-		_fromCurrencyCode = fromCurrencyCode;
+	public void setCode(String code) {
+		_code = code;
 	}
 
-	public String getToCurrencyCode() {
-		return _toCurrencyCode;
+	public String getName() {
+		return _name;
 	}
 
-	public void setToCurrencyCode(String toCurrencyCode) {
-		_toCurrencyCode = toCurrencyCode;
+	public void setName(String name) {
+		_name = name;
 	}
 
-	public Date getConversionDate() {
-		return _conversionDate;
+	public String getDescription() {
+		return _description;
 	}
 
-	public void setConversionDate(Date conversionDate) {
-		_conversionDate = conversionDate;
-	}
-
-	public double getConversionValue() {
-		return _conversionValue;
-	}
-
-	public void setConversionValue(double conversionValue) {
-		_conversionValue = conversionValue;
+	public void setDescription(String description) {
+		_description = description;
 	}
 
 	private long _hrExpenseCurrencyId;
@@ -191,8 +182,7 @@ public class HRExpenseCurrencySoap implements Serializable {
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
-	private String _fromCurrencyCode;
-	private String _toCurrencyCode;
-	private Date _conversionDate;
-	private double _conversionValue;
+	private String _code;
+	private String _name;
+	private String _description;
 }

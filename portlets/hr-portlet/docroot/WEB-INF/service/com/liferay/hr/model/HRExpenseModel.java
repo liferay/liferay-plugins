@@ -260,19 +260,18 @@ public interface HRExpenseModel extends BaseModel<HRExpense>, GroupedModel {
 	public void setExpenseAmount(double expenseAmount);
 
 	/**
-	 * Gets the expense currency code of this h r expense.
+	 * Gets the expense h r expense currency ID of this h r expense.
 	 *
-	 * @return the expense currency code of this h r expense
+	 * @return the expense h r expense currency ID of this h r expense
 	 */
-	@AutoEscape
-	public String getExpenseCurrencyCode();
+	public long getExpenseHRExpenseCurrencyId();
 
 	/**
-	 * Sets the expense currency code of this h r expense.
+	 * Sets the expense h r expense currency ID of this h r expense.
 	 *
-	 * @param expenseCurrencyCode the expense currency code of this h r expense
+	 * @param expenseHRExpenseCurrencyId the expense h r expense currency ID of this h r expense
 	 */
-	public void setExpenseCurrencyCode(String expenseCurrencyCode);
+	public void setExpenseHRExpenseCurrencyId(long expenseHRExpenseCurrencyId);
 
 	/**
 	 * Gets the reimbursement amount of this h r expense.
@@ -289,19 +288,19 @@ public interface HRExpenseModel extends BaseModel<HRExpense>, GroupedModel {
 	public void setReimbursementAmount(double reimbursementAmount);
 
 	/**
-	 * Gets the reimbursement currency code of this h r expense.
+	 * Gets the reimbursement h r expense currency ID of this h r expense.
 	 *
-	 * @return the reimbursement currency code of this h r expense
+	 * @return the reimbursement h r expense currency ID of this h r expense
 	 */
-	@AutoEscape
-	public String getReimbursementCurrencyCode();
+	public long getReimbursementHRExpenseCurrencyId();
 
 	/**
-	 * Sets the reimbursement currency code of this h r expense.
+	 * Sets the reimbursement h r expense currency ID of this h r expense.
 	 *
-	 * @param reimbursementCurrencyCode the reimbursement currency code of this h r expense
+	 * @param reimbursementHRExpenseCurrencyId the reimbursement h r expense currency ID of this h r expense
 	 */
-	public void setReimbursementCurrencyCode(String reimbursementCurrencyCode);
+	public void setReimbursementHRExpenseCurrencyId(
+		long reimbursementHRExpenseCurrencyId);
 
 	/**
 	 * Gets the status of this h r expense.

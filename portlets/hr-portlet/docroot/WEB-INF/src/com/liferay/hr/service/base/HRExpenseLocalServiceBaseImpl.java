@@ -18,6 +18,7 @@ import com.liferay.counter.service.CounterLocalService;
 
 import com.liferay.hr.model.HRExpense;
 import com.liferay.hr.service.HRExpenseAccountLocalService;
+import com.liferay.hr.service.HRExpenseCurrencyConversionLocalService;
 import com.liferay.hr.service.HRExpenseCurrencyLocalService;
 import com.liferay.hr.service.HRExpenseLocalService;
 import com.liferay.hr.service.HRExpenseTypeLocalService;
@@ -32,6 +33,7 @@ import com.liferay.hr.service.persistence.HRBranchPersistence;
 import com.liferay.hr.service.persistence.HRClientPersistence;
 import com.liferay.hr.service.persistence.HREmploymentTypePersistence;
 import com.liferay.hr.service.persistence.HRExpenseAccountPersistence;
+import com.liferay.hr.service.persistence.HRExpenseCurrencyConversionPersistence;
 import com.liferay.hr.service.persistence.HRExpenseCurrencyPersistence;
 import com.liferay.hr.service.persistence.HRExpensePersistence;
 import com.liferay.hr.service.persistence.HRExpenseTypePersistence;
@@ -578,6 +580,44 @@ public abstract class HRExpenseLocalServiceBaseImpl
 	public void setHRExpenseCurrencyPersistence(
 		HRExpenseCurrencyPersistence hrExpenseCurrencyPersistence) {
 		this.hrExpenseCurrencyPersistence = hrExpenseCurrencyPersistence;
+	}
+
+	/**
+	 * Gets the h r expense currency conversion local service.
+	 *
+	 * @return the h r expense currency conversion local service
+	 */
+	public HRExpenseCurrencyConversionLocalService getHRExpenseCurrencyConversionLocalService() {
+		return hrExpenseCurrencyConversionLocalService;
+	}
+
+	/**
+	 * Sets the h r expense currency conversion local service.
+	 *
+	 * @param hrExpenseCurrencyConversionLocalService the h r expense currency conversion local service
+	 */
+	public void setHRExpenseCurrencyConversionLocalService(
+		HRExpenseCurrencyConversionLocalService hrExpenseCurrencyConversionLocalService) {
+		this.hrExpenseCurrencyConversionLocalService = hrExpenseCurrencyConversionLocalService;
+	}
+
+	/**
+	 * Gets the h r expense currency conversion persistence.
+	 *
+	 * @return the h r expense currency conversion persistence
+	 */
+	public HRExpenseCurrencyConversionPersistence getHRExpenseCurrencyConversionPersistence() {
+		return hrExpenseCurrencyConversionPersistence;
+	}
+
+	/**
+	 * Sets the h r expense currency conversion persistence.
+	 *
+	 * @param hrExpenseCurrencyConversionPersistence the h r expense currency conversion persistence
+	 */
+	public void setHRExpenseCurrencyConversionPersistence(
+		HRExpenseCurrencyConversionPersistence hrExpenseCurrencyConversionPersistence) {
+		this.hrExpenseCurrencyConversionPersistence = hrExpenseCurrencyConversionPersistence;
 	}
 
 	/**
@@ -1248,6 +1288,10 @@ public abstract class HRExpenseLocalServiceBaseImpl
 	protected HRExpenseCurrencyLocalService hrExpenseCurrencyLocalService;
 	@BeanReference(type = HRExpenseCurrencyPersistence.class)
 	protected HRExpenseCurrencyPersistence hrExpenseCurrencyPersistence;
+	@BeanReference(type = HRExpenseCurrencyConversionLocalService.class)
+	protected HRExpenseCurrencyConversionLocalService hrExpenseCurrencyConversionLocalService;
+	@BeanReference(type = HRExpenseCurrencyConversionPersistence.class)
+	protected HRExpenseCurrencyConversionPersistence hrExpenseCurrencyConversionPersistence;
 	@BeanReference(type = HRExpenseTypeLocalService.class)
 	protected HRExpenseTypeLocalService hrExpenseTypeLocalService;
 	@BeanReference(type = HRExpenseTypePersistence.class)

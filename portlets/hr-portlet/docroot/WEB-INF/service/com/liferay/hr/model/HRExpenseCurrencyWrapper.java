@@ -201,75 +201,57 @@ public class HRExpenseCurrencyWrapper implements HRExpenseCurrency {
 	}
 
 	/**
-	* Gets the from currency code of this h r expense currency.
+	* Gets the code of this h r expense currency.
 	*
-	* @return the from currency code of this h r expense currency
+	* @return the code of this h r expense currency
 	*/
-	public java.lang.String getFromCurrencyCode() {
-		return _hrExpenseCurrency.getFromCurrencyCode();
+	public java.lang.String getCode() {
+		return _hrExpenseCurrency.getCode();
 	}
 
 	/**
-	* Sets the from currency code of this h r expense currency.
+	* Sets the code of this h r expense currency.
 	*
-	* @param fromCurrencyCode the from currency code of this h r expense currency
+	* @param code the code of this h r expense currency
 	*/
-	public void setFromCurrencyCode(java.lang.String fromCurrencyCode) {
-		_hrExpenseCurrency.setFromCurrencyCode(fromCurrencyCode);
+	public void setCode(java.lang.String code) {
+		_hrExpenseCurrency.setCode(code);
 	}
 
 	/**
-	* Gets the to currency code of this h r expense currency.
+	* Gets the name of this h r expense currency.
 	*
-	* @return the to currency code of this h r expense currency
+	* @return the name of this h r expense currency
 	*/
-	public java.lang.String getToCurrencyCode() {
-		return _hrExpenseCurrency.getToCurrencyCode();
+	public java.lang.String getName() {
+		return _hrExpenseCurrency.getName();
 	}
 
 	/**
-	* Sets the to currency code of this h r expense currency.
+	* Sets the name of this h r expense currency.
 	*
-	* @param toCurrencyCode the to currency code of this h r expense currency
+	* @param name the name of this h r expense currency
 	*/
-	public void setToCurrencyCode(java.lang.String toCurrencyCode) {
-		_hrExpenseCurrency.setToCurrencyCode(toCurrencyCode);
+	public void setName(java.lang.String name) {
+		_hrExpenseCurrency.setName(name);
 	}
 
 	/**
-	* Gets the conversion date of this h r expense currency.
+	* Gets the description of this h r expense currency.
 	*
-	* @return the conversion date of this h r expense currency
+	* @return the description of this h r expense currency
 	*/
-	public java.util.Date getConversionDate() {
-		return _hrExpenseCurrency.getConversionDate();
+	public java.lang.String getDescription() {
+		return _hrExpenseCurrency.getDescription();
 	}
 
 	/**
-	* Sets the conversion date of this h r expense currency.
+	* Sets the description of this h r expense currency.
 	*
-	* @param conversionDate the conversion date of this h r expense currency
+	* @param description the description of this h r expense currency
 	*/
-	public void setConversionDate(java.util.Date conversionDate) {
-		_hrExpenseCurrency.setConversionDate(conversionDate);
-	}
-
-	/**
-	* Gets the conversion value of this h r expense currency.
-	*
-	* @return the conversion value of this h r expense currency
-	*/
-	public double getConversionValue() {
-		return _hrExpenseCurrency.getConversionValue();
-	}
-
-	/**
-	* Sets the conversion value of this h r expense currency.
-	*
-	* @param conversionValue the conversion value of this h r expense currency
-	*/
-	public void setConversionValue(double conversionValue) {
-		_hrExpenseCurrency.setConversionValue(conversionValue);
+	public void setDescription(java.lang.String description) {
+		_hrExpenseCurrency.setDescription(description);
 	}
 
 	public boolean isNew() {

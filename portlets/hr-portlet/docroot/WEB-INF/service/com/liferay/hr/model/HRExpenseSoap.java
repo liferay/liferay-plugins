@@ -42,9 +42,9 @@ public class HRExpenseSoap implements Serializable {
 		soapModel.setHrUserId(model.getHrUserId());
 		soapModel.setExpenseDate(model.getExpenseDate());
 		soapModel.setExpenseAmount(model.getExpenseAmount());
-		soapModel.setExpenseCurrencyCode(model.getExpenseCurrencyCode());
+		soapModel.setExpenseHRExpenseCurrencyId(model.getExpenseHRExpenseCurrencyId());
 		soapModel.setReimbursementAmount(model.getReimbursementAmount());
-		soapModel.setReimbursementCurrencyCode(model.getReimbursementCurrencyCode());
+		soapModel.setReimbursementHRExpenseCurrencyId(model.getReimbursementHRExpenseCurrencyId());
 		soapModel.setStatus(model.getStatus());
 		soapModel.setStatusByUserId(model.getStatusByUserId());
 		soapModel.setStatusByUserName(model.getStatusByUserName());
@@ -197,12 +197,12 @@ public class HRExpenseSoap implements Serializable {
 		_expenseAmount = expenseAmount;
 	}
 
-	public String getExpenseCurrencyCode() {
-		return _expenseCurrencyCode;
+	public long getExpenseHRExpenseCurrencyId() {
+		return _expenseHRExpenseCurrencyId;
 	}
 
-	public void setExpenseCurrencyCode(String expenseCurrencyCode) {
-		_expenseCurrencyCode = expenseCurrencyCode;
+	public void setExpenseHRExpenseCurrencyId(long expenseHRExpenseCurrencyId) {
+		_expenseHRExpenseCurrencyId = expenseHRExpenseCurrencyId;
 	}
 
 	public double getReimbursementAmount() {
@@ -213,12 +213,13 @@ public class HRExpenseSoap implements Serializable {
 		_reimbursementAmount = reimbursementAmount;
 	}
 
-	public String getReimbursementCurrencyCode() {
-		return _reimbursementCurrencyCode;
+	public long getReimbursementHRExpenseCurrencyId() {
+		return _reimbursementHRExpenseCurrencyId;
 	}
 
-	public void setReimbursementCurrencyCode(String reimbursementCurrencyCode) {
-		_reimbursementCurrencyCode = reimbursementCurrencyCode;
+	public void setReimbursementHRExpenseCurrencyId(
+		long reimbursementHRExpenseCurrencyId) {
+		_reimbursementHRExpenseCurrencyId = reimbursementHRExpenseCurrencyId;
 	}
 
 	public int getStatus() {
@@ -265,9 +266,9 @@ public class HRExpenseSoap implements Serializable {
 	private long _hrUserId;
 	private Date _expenseDate;
 	private double _expenseAmount;
-	private String _expenseCurrencyCode;
+	private long _expenseHRExpenseCurrencyId;
 	private double _reimbursementAmount;
-	private String _reimbursementCurrencyCode;
+	private long _reimbursementHRExpenseCurrencyId;
 	private int _status;
 	private long _statusByUserId;
 	private String _statusByUserName;

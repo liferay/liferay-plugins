@@ -311,21 +311,21 @@ public class HRExpenseWrapper implements HRExpense {
 	}
 
 	/**
-	* Gets the expense currency code of this h r expense.
+	* Gets the expense h r expense currency ID of this h r expense.
 	*
-	* @return the expense currency code of this h r expense
+	* @return the expense h r expense currency ID of this h r expense
 	*/
-	public java.lang.String getExpenseCurrencyCode() {
-		return _hrExpense.getExpenseCurrencyCode();
+	public long getExpenseHRExpenseCurrencyId() {
+		return _hrExpense.getExpenseHRExpenseCurrencyId();
 	}
 
 	/**
-	* Sets the expense currency code of this h r expense.
+	* Sets the expense h r expense currency ID of this h r expense.
 	*
-	* @param expenseCurrencyCode the expense currency code of this h r expense
+	* @param expenseHRExpenseCurrencyId the expense h r expense currency ID of this h r expense
 	*/
-	public void setExpenseCurrencyCode(java.lang.String expenseCurrencyCode) {
-		_hrExpense.setExpenseCurrencyCode(expenseCurrencyCode);
+	public void setExpenseHRExpenseCurrencyId(long expenseHRExpenseCurrencyId) {
+		_hrExpense.setExpenseHRExpenseCurrencyId(expenseHRExpenseCurrencyId);
 	}
 
 	/**
@@ -347,22 +347,22 @@ public class HRExpenseWrapper implements HRExpense {
 	}
 
 	/**
-	* Gets the reimbursement currency code of this h r expense.
+	* Gets the reimbursement h r expense currency ID of this h r expense.
 	*
-	* @return the reimbursement currency code of this h r expense
+	* @return the reimbursement h r expense currency ID of this h r expense
 	*/
-	public java.lang.String getReimbursementCurrencyCode() {
-		return _hrExpense.getReimbursementCurrencyCode();
+	public long getReimbursementHRExpenseCurrencyId() {
+		return _hrExpense.getReimbursementHRExpenseCurrencyId();
 	}
 
 	/**
-	* Sets the reimbursement currency code of this h r expense.
+	* Sets the reimbursement h r expense currency ID of this h r expense.
 	*
-	* @param reimbursementCurrencyCode the reimbursement currency code of this h r expense
+	* @param reimbursementHRExpenseCurrencyId the reimbursement h r expense currency ID of this h r expense
 	*/
-	public void setReimbursementCurrencyCode(
-		java.lang.String reimbursementCurrencyCode) {
-		_hrExpense.setReimbursementCurrencyCode(reimbursementCurrencyCode);
+	public void setReimbursementHRExpenseCurrencyId(
+		long reimbursementHRExpenseCurrencyId) {
+		_hrExpense.setReimbursementHRExpenseCurrencyId(reimbursementHRExpenseCurrencyId);
 	}
 
 	/**
