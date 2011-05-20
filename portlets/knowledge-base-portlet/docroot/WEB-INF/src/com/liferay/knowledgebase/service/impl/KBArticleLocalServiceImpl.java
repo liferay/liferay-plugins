@@ -847,7 +847,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		assetEntryLocalService.updateEntry(
 			userId, kbArticle.getGroupId(), KBArticle.class.getName(),
 			kbArticle.getClassPK(), kbArticle.getUuid(), assetCategoryIds,
-			assetTagNames, kbArticle.isApproved(), null, null, null, null,
+			assetTagNames, false, null, null, null, null,
 			ContentTypes.TEXT_HTML, kbArticle.getTitle(),
 			kbArticle.getDescription(), null, null, null, 0, 0, null, false);
 	}
@@ -964,6 +964,9 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		assetEntryLocalService.deleteEntry(
 			KBArticle.class.getName(), kbArticle.getKbArticleId());
+
+		assetEntryLocalService.updateVisible(
+			KBArticle.class.getName(), kbArticle.getResourcePrimKey(), true);
 
 		// Social
 
