@@ -17,24 +17,8 @@ package com.liferay.hr.service.impl;
 import com.liferay.hr.service.base.HRExpenseCurrencyConversionLocalServiceBaseImpl;
 
 /**
- * The implementation of the h r expense currency conversion local service.
- *
- * <p>
- * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link com.liferay.hr.service.HRExpenseCurrencyConversionLocalService} interface.
- *
- * <p>
- * This is a local service. Methods of this service will not have security checks based on the propagated JAAS credentials because this service can only be accessed from within the same VM.
- * </p>
- *
  * @author Wesley Gong
- * @see com.liferay.hr.service.base.HRExpenseCurrencyConversionLocalServiceBaseImpl
- * @see com.liferay.hr.service.HRExpenseCurrencyConversionLocalServiceUtil
  */
 public class HRExpenseCurrencyConversionLocalServiceImpl
 	extends HRExpenseCurrencyConversionLocalServiceBaseImpl {
-	/*
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this interface directly. Always use {@link com.liferay.hr.service.HRExpenseCurrencyConversionLocalServiceUtil} to access the h r expense currency conversion local service.
-	 */
 }
