@@ -58,6 +58,18 @@ String tabs3 = ParamUtil.getString(request, "tabs3", "article");
 							<aui:option label="descending" selected='<%= kbArticlesOrderByType.equals("desc") %>' value="desc" />
 						</aui:select>
 					</aui:field-wrapper>
+
+					<aui:input label="show-priority-column" name="preferences--showKBArticlePriorityColumn--" type="checkbox" value="<%= showKBArticlePriorityColumn %>" />
+
+					<aui:input label="show-author-column" name="preferences--showKBArticleAuthorColumn--" type="checkbox" value="<%= showKBArticleAuthorColumn %>" />
+
+					<aui:input label="show-create-date-column" name="preferences--showKBArticleCreateDateColumn--" type="checkbox" value="<%= showKBArticleCreateDateColumn %>" />
+
+					<aui:input label="show-modified-date-column" name="preferences--showKBArticleModifiedDateColumn--" type="checkbox" value="<%= showKBArticleModifiedDateColumn %>" />
+
+					<aui:input label="show-status-column" name="preferences--showKBArticleStatusColumn--" type="checkbox" value="<%= showKBArticleStatusColumn %>" />
+
+					<aui:input label="show-views-column" name="preferences--showKBArticleViewsColumn--" type="checkbox" value="<%= showKBArticleViewsColumn %>" />
 				</div>
 			</c:when>
 			<c:when test='<%= tabs2.equals("display-settings") %>'>

@@ -61,31 +61,37 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 					property="title"
 				/>
 
-				<liferay-ui:search-container-column-text
-					href="<%= rowURL %>"
-					name="author"
-					orderable="<%= true %>"
-					orderableProperty="user-name"
-					property="userName"
-				/>
+				<c:if test="<%= showKBArticleAuthorColumn %>">
+					<liferay-ui:search-container-column-text
+						href="<%= rowURL %>"
+						name="author"
+						orderable="<%= true %>"
+						orderableProperty="user-name"
+						property="userName"
+					/>
+				</c:if>
 
-				<liferay-ui:search-container-column-text
-					cssClass="kb-column-no-wrap"
-					href="<%= rowURL %>"
-					name="create-date"
-					orderable="<%= true %>"
-					value='<%= dateFormatDate.format(kbArticle.getCreateDate()) + "<br />" + dateFormatTime.format(kbArticle.getCreateDate()) %>'
-				/>
+				<c:if test="<%= showKBArticleCreateDateColumn %>">
+					<liferay-ui:search-container-column-text
+						cssClass="kb-column-no-wrap"
+						href="<%= rowURL %>"
+						name="create-date"
+						orderable="<%= true %>"
+						value='<%= dateFormatDate.format(kbArticle.getCreateDate()) + "<br />" + dateFormatTime.format(kbArticle.getCreateDate()) %>'
+					/>
+				</c:if>
 
-				<liferay-ui:search-container-column-text
-					cssClass="kb-column-no-wrap"
-					href="<%= rowURL %>"
-					name="modified-date"
-					orderable="<%= true %>"
-					value='<%= dateFormatDate.format(kbArticle.getModifiedDate()) + "<br />" + dateFormatTime.format(kbArticle.getModifiedDate()) %>'
-				/>
+				<c:if test="<%= showKBArticleModifiedDateColumn %>">
+					<liferay-ui:search-container-column-text
+						cssClass="kb-column-no-wrap"
+						href="<%= rowURL %>"
+						name="modified-date"
+						orderable="<%= true %>"
+						value='<%= dateFormatDate.format(kbArticle.getModifiedDate()) + "<br />" + dateFormatTime.format(kbArticle.getModifiedDate()) %>'
+					/>
+				</c:if>
 
-				<c:if test="<%= DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADMINISTRATOR) %>">
+				<c:if test="<%= showKBArticleStatusColumn && DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADMINISTRATOR) %>">
 					<liferay-ui:search-container-column-text
 						cssClass="kb-column-no-wrap"
 						href="<%= rowURL %>"
@@ -95,14 +101,16 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 					/>
 				</c:if>
 
-				<liferay-ui:search-container-column-text
-					cssClass="kb-column-no-wrap"
-					href="<%= rowURL %>"
-					name="views"
-					orderable="<%= true %>"
-					orderableProperty="view-count"
-					property="viewCount"
-				/>
+				<c:if test="<%= showKBArticleViewsColumn %>">
+					<liferay-ui:search-container-column-text
+						cssClass="kb-column-no-wrap"
+						href="<%= rowURL %>"
+						name="views"
+						orderable="<%= true %>"
+						orderableProperty="view-count"
+						property="viewCount"
+					/>
+				</c:if>
 
 				<c:if test="<%= KBArticlePermission.contains(permissionChecker, kbArticle, ActionKeys.SUBSCRIBE) %>">
 					<liferay-ui:search-container-column-text

@@ -29,6 +29,12 @@ if (Validator.isNotNull(portletResource)) {
 
 String kbArticlesOrderByCol = preferences.getValue("kbArticlesOrderByCol", StringPool.BLANK);
 String kbArticlesOrderByType = preferences.getValue("kbArticlesOrderByType", StringPool.BLANK);
+boolean showKBArticlePriorityColumn = GetterUtil.getBoolean(preferences.getValue("showKBArticlePriorityColumn", null));
+boolean showKBArticleAuthorColumn = GetterUtil.getBoolean(preferences.getValue("showKBArticleAuthorColumn", null));
+boolean showKBArticleCreateDateColumn = GetterUtil.getBoolean(preferences.getValue("showKBArticleCreateDateColumn", null));
+boolean showKBArticleModifiedDateColumn = GetterUtil.getBoolean(preferences.getValue("showKBArticleModifiedDateColumn", null));
+boolean showKBArticleStatusColumn = GetterUtil.getBoolean(preferences.getValue("showKBArticleStatusColumn", null));
+boolean showKBArticleViewsColumn = GetterUtil.getBoolean(preferences.getValue("showKBArticleViewsColumn", null));
 
 boolean enableKBArticleDescription = GetterUtil.getBoolean(preferences.getValue("enableKBArticleDescription", null));
 boolean enableKBArticleAssetCategories = GetterUtil.getBoolean(preferences.getValue("enableKBArticleAssetCategories", null));

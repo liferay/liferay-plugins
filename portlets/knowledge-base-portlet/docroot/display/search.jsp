@@ -87,31 +87,37 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 			value="<%= (String)tuple.getObject(1) %>"
 		/>
 
-		<liferay-ui:search-container-column-text
-			href="<%= rowURL %>"
-			name="author"
-			orderable="<%= true %>"
-			orderableProperty="user-name"
-			value="<%= (String)tuple.getObject(2) %>"
-		/>
+		<c:if test="<%= showKBArticleAuthorColumn %>">
+			<liferay-ui:search-container-column-text
+				href="<%= rowURL %>"
+				name="author"
+				orderable="<%= true %>"
+				orderableProperty="user-name"
+				value="<%= (String)tuple.getObject(2) %>"
+			/>
+		</c:if>
 
-		<liferay-ui:search-container-column-text
-			cssClass="kb-column-no-wrap"
-			href="<%= rowURL %>"
-			name="create-date"
-			orderable="<%= true %>"
-			value='<%= dateFormatDate.format(tuple.getObject(3)) + "<br />" + dateFormatTime.format(tuple.getObject(3)) %>'
-		/>
+		<c:if test="<%= showKBArticleCreateDateColumn %>">
+			<liferay-ui:search-container-column-text
+				cssClass="kb-column-no-wrap"
+				href="<%= rowURL %>"
+				name="create-date"
+				orderable="<%= true %>"
+				value='<%= dateFormatDate.format(tuple.getObject(3)) + "<br />" + dateFormatTime.format(tuple.getObject(3)) %>'
+			/>
+		</c:if>
 
-		<liferay-ui:search-container-column-text
-			cssClass="kb-column-no-wrap"
-			href="<%= rowURL %>"
-			name="modified-date"
-			orderable="<%= true %>"
-			value='<%= dateFormatDate.format(tuple.getObject(4)) + "<br />" + dateFormatTime.format(tuple.getObject(4)) %>'
-		/>
+		<c:if test="<%= showKBArticleModifiedDateColumn %>">
+			<liferay-ui:search-container-column-text
+				cssClass="kb-column-no-wrap"
+				href="<%= rowURL %>"
+				name="modified-date"
+				orderable="<%= true %>"
+				value='<%= dateFormatDate.format(tuple.getObject(4)) + "<br />" + dateFormatTime.format(tuple.getObject(4)) %>'
+			/>
+		</c:if>
 
-		<c:if test="<%= DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADMINISTRATOR) %>">
+		<c:if test="<%= showKBArticleStatusColumn && DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADMINISTRATOR) %>">
 			<liferay-ui:search-container-column-text
 				cssClass="kb-column-no-wrap"
 				href="<%= rowURL %>"
@@ -121,29 +127,31 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 			/>
 		</c:if>
 
-		<liferay-ui:search-container-column-text
-			buffer="buffer"
-			cssClass="kb-column-no-wrap"
-			href="<%= rowURL %>"
-		>
+		<c:if test="<%= showKBArticleViewsColumn %>">
+			<liferay-ui:search-container-column-text
+				buffer="buffer"
+				cssClass="kb-column-no-wrap"
+				href="<%= rowURL %>"
+			>
 
-			<%
-			KBArticle kbArticle = null;
+				<%
+				KBArticle kbArticle = null;
 
-			try {
-				kbArticle = KBArticleLocalServiceUtil.getLatestKBArticle(GetterUtil.getLong((String)tuple.getObject(0)), WorkflowConstants.STATUS_APPROVED);
-			}
-			catch (NoSuchArticleException nsae) {
-			}
+				try {
+					kbArticle = KBArticleLocalServiceUtil.getLatestKBArticle(GetterUtil.getLong((String)tuple.getObject(0)), WorkflowConstants.STATUS_APPROVED);
+				}
+				catch (NoSuchArticleException nsae) {
+				}
 
-			int viewCount = (kbArticle != null) ? kbArticle.getViewCount() : 0;
+				int viewCount = (kbArticle != null) ? kbArticle.getViewCount() : 0;
 
-			buffer.append(viewCount);
-			buffer.append(StringPool.SPACE);
-			buffer.append((viewCount == 1) ? LanguageUtil.get(pageContext, "view") : LanguageUtil.get(pageContext, "views"));
-			%>
+				buffer.append(viewCount);
+				buffer.append(StringPool.SPACE);
+				buffer.append((viewCount == 1) ? LanguageUtil.get(pageContext, "view") : LanguageUtil.get(pageContext, "views"));
+				%>
 
-		</liferay-ui:search-container-column-text>
+			</liferay-ui:search-container-column-text>
+		</c:if>
 
 		<liferay-ui:search-container-column-text
 			cssClass="kb-column-score"

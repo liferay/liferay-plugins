@@ -40,13 +40,15 @@
 			<portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
 		</liferay-portlet:renderURL>
 
-		<liferay-ui:search-container-column-text
-			cssClass="kb-column-no-wrap"
-			href="<%= rowURL %>"
-			name="priority"
-			orderable="<%= true %>"
-			value="<%= BigDecimal.valueOf(kbArticle.getPriority()).toPlainString() %>"
-		/>
+		<c:if test="<%= showKBArticlePriorityColumn %>">
+			<liferay-ui:search-container-column-text
+				cssClass="kb-column-no-wrap"
+				href="<%= rowURL %>"
+				name="priority"
+				orderable="<%= true %>"
+				value="<%= BigDecimal.valueOf(kbArticle.getPriority()).toPlainString() %>"
+			/>
+		</c:if>
 
 		<liferay-ui:search-container-column-text
 			href="<%= rowURL %>"
@@ -54,31 +56,37 @@
 			property="title"
 		/>
 
-		<liferay-ui:search-container-column-text
-			href="<%= rowURL %>"
-			name="author"
-			orderable="<%= true %>"
-			orderableProperty="user-name"
-			property="userName"
-		/>
+		<c:if test="<%= showKBArticleAuthorColumn %>">
+			<liferay-ui:search-container-column-text
+				href="<%= rowURL %>"
+				name="author"
+				orderable="<%= true %>"
+				orderableProperty="user-name"
+				property="userName"
+			/>
+		</c:if>
 
-		<liferay-ui:search-container-column-text
-			cssClass="kb-column-no-wrap"
-			href="<%= rowURL %>"
-			name="create-date"
-			orderable="<%= true %>"
-			value='<%= dateFormatDate.format(kbArticle.getCreateDate()) + "<br />" + dateFormatTime.format(kbArticle.getCreateDate()) %>'
-		/>
+		<c:if test="<%= showKBArticleCreateDateColumn %>">
+			<liferay-ui:search-container-column-text
+				cssClass="kb-column-no-wrap"
+				href="<%= rowURL %>"
+				name="create-date"
+				orderable="<%= true %>"
+				value='<%= dateFormatDate.format(kbArticle.getCreateDate()) + "<br />" + dateFormatTime.format(kbArticle.getCreateDate()) %>'
+			/>
+		</c:if>
 
-		<liferay-ui:search-container-column-text
-			cssClass="kb-column-no-wrap"
-			href="<%= rowURL %>"
-			name="modified-date"
-			orderable="<%= true %>"
-			value='<%= dateFormatDate.format(kbArticle.getModifiedDate()) + "<br />" + dateFormatTime.format(kbArticle.getModifiedDate()) %>'
-		/>
+		<c:if test="<%= showKBArticleModifiedDateColumn %>">
+			<liferay-ui:search-container-column-text
+				cssClass="kb-column-no-wrap"
+				href="<%= rowURL %>"
+				name="modified-date"
+				orderable="<%= true %>"
+				value='<%= dateFormatDate.format(kbArticle.getModifiedDate()) + "<br />" + dateFormatTime.format(kbArticle.getModifiedDate()) %>'
+			/>
+		</c:if>
 
-		<c:if test="<%= DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADMINISTRATOR) %>">
+		<c:if test="<%= showKBArticleStatusColumn && DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADMINISTRATOR) %>">
 			<liferay-ui:search-container-column-text
 				cssClass="kb-column-no-wrap"
 				href="<%= rowURL %>"
@@ -88,14 +96,16 @@
 			/>
 		</c:if>
 
-		<liferay-ui:search-container-column-text
-			cssClass="kb-column-no-wrap"
-			href="<%= rowURL %>"
-			name="views"
-			orderable="<%= true %>"
-			orderableProperty="view-count"
-			property="viewCount"
-		/>
+		<c:if test="<%= showKBArticleViewsColumn %>">
+			<liferay-ui:search-container-column-text
+				cssClass="kb-column-no-wrap"
+				href="<%= rowURL %>"
+				name="views"
+				orderable="<%= true %>"
+				orderableProperty="view-count"
+				property="viewCount"
+			/>
+		</c:if>
 
 		<liferay-ui:search-container-column-jsp
 			align="right"

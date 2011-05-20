@@ -141,13 +141,14 @@ public class UpgradePortletPreferences
 		_adminDefaultPreferencesMap.put("showKBArticleKBComments", "true");
 		_adminDefaultPreferencesMap.put(
 			"enableKBArticleViewCountIncrement", "true");
+		_adminDefaultPreferencesMap.put("enableKBStructureKBComments", "true");
+		_adminDefaultPreferencesMap.put("showKBStructureKBComments", "true");
 		_adminDefaultPreferencesMap.put("enableKBTemplateKBComments", "true");
 		_adminDefaultPreferencesMap.put("showKBTemplateKBComments", "true");
 
 		_articleDefaultPreferencesMap = new HashMap<String, String>();
 
-		_articleDefaultPreferencesMap.put("kbArticlesOrderByCol", "priority");
-		_articleDefaultPreferencesMap.put("kbArticlesOrderByType", "desc");
+		_articleDefaultPreferencesMap.put("resourcePrimKey", "0");
 		_articleDefaultPreferencesMap.put(
 			"enableKBArticleDescription", "false");
 		_articleDefaultPreferencesMap.put(
@@ -159,15 +160,23 @@ public class UpgradePortletPreferences
 		_articleDefaultPreferencesMap.put("showKBArticleKBComments", "true");
 		_articleDefaultPreferencesMap.put(
 			"enableKBArticleViewCountIncrement", "true");
-		_articleDefaultPreferencesMap.put("enableKBTemplateKBComments", "true");
-		_articleDefaultPreferencesMap.put("showKBTemplateKBComments", "true");
 		_articleDefaultPreferencesMap.put("rssDelta", "20");
 		_articleDefaultPreferencesMap.put("rssDisplayStyle", "full-content");
 		_articleDefaultPreferencesMap.put("rssFormat", "atom10");
 
 		_displayDefaultPreferencesMap = new HashMap<String, String>();
 
-		_displayDefaultPreferencesMap.put("resourcePrimKey", "0");
+		_displayDefaultPreferencesMap.put("kbArticlesOrderByCol", "priority");
+		_displayDefaultPreferencesMap.put("kbArticlesOrderByType", "desc");
+		_displayDefaultPreferencesMap.put(
+			"showKBArticlePriorityColumn", "true");
+		_displayDefaultPreferencesMap.put("showKBArticleAuthorColumn", "true");
+		_displayDefaultPreferencesMap.put(
+			"showKBArticleCreateDateColumn", "true");
+		_displayDefaultPreferencesMap.put(
+			"showKBArticleModifiedDateColumn", "true");
+		_displayDefaultPreferencesMap.put("showKBArticleStatusColumn", "true");
+		_displayDefaultPreferencesMap.put("showKBArticleViewsColumn", "true");
 		_displayDefaultPreferencesMap.put(
 			"enableKBArticleDescription", "false");
 		_displayDefaultPreferencesMap.put(
@@ -179,6 +188,8 @@ public class UpgradePortletPreferences
 		_displayDefaultPreferencesMap.put("showKBArticleKBComments", "true");
 		_displayDefaultPreferencesMap.put(
 			"enableKBArticleViewCountIncrement", "true");
+		_displayDefaultPreferencesMap.put("enableKBTemplateKBComments", "true");
+		_displayDefaultPreferencesMap.put("showKBTemplateKBComments", "true");
 		_displayDefaultPreferencesMap.put("rssDelta", "20");
 		_displayDefaultPreferencesMap.put("rssDisplayStyle", "full-content");
 		_displayDefaultPreferencesMap.put("rssFormat", "atom10");
@@ -212,10 +223,6 @@ public class UpgradePortletPreferences
 		_oldArticlePreferenceNamesMap = new HashMap<String, String>();
 
 		_oldArticlePreferenceNamesMap.put(
-			"articlesOrderByCol", "kbArticlesOrderByCol");
-		_oldArticlePreferenceNamesMap.put(
-			"articlesOrderByType", "kbArticlesOrderByType");
-		_oldArticlePreferenceNamesMap.put(
 			"enableArticleDescription", "enableKBArticleDescription");
 		_oldArticlePreferenceNamesMap.put(
 			"enableArticleAssetCategories", "enableKBArticleAssetCategories");
@@ -230,17 +237,13 @@ public class UpgradePortletPreferences
 		_oldArticlePreferenceNamesMap.put(
 			"enableArticleViewCountIncrement",
 			"enableKBArticleViewCountIncrement");
-		_oldArticlePreferenceNamesMap.put(
-			"enableTemplateComments", "enableKBTemplateKBComments");
-		_oldArticlePreferenceNamesMap.put(
-			"showTemplateComments", "showKBTemplateKBComments");
-		_oldArticlePreferenceNamesMap.put("rssDelta", "rssDelta");
-		_oldArticlePreferenceNamesMap.put("rssDisplayStyle", "rssDisplayStyle");
-		_oldArticlePreferenceNamesMap.put("rssFormat", "rssFormat");
 
 		_oldDisplayPreferenceNamesMap = new HashMap<String, String>();
 
-		_oldDisplayPreferenceNamesMap.put("resourcePrimKey", "resourcePrimKey");
+		_oldDisplayPreferenceNamesMap.put(
+			"articlesOrderByCol", "kbArticlesOrderByCol");
+		_oldDisplayPreferenceNamesMap.put(
+			"articlesOrderByType", "kbArticlesOrderByType");
 		_oldDisplayPreferenceNamesMap.put(
 			"enableArticleDescription", "enableKBArticleDescription");
 		_oldDisplayPreferenceNamesMap.put(
@@ -256,9 +259,10 @@ public class UpgradePortletPreferences
 		_oldDisplayPreferenceNamesMap.put(
 			"enableArticleViewCountIncrement",
 			"enableKBArticleViewCountIncrement");
-		_oldDisplayPreferenceNamesMap.put("rssDelta", "rssDelta");
-		_oldDisplayPreferenceNamesMap.put("rssDisplayStyle", "rssDisplayStyle");
-		_oldDisplayPreferenceNamesMap.put("rssFormat", "rssFormat");
+		_oldDisplayPreferenceNamesMap.put(
+			"enableTemplateComments", "enableKBTemplateKBComments");
+		_oldDisplayPreferenceNamesMap.put(
+			"showTemplateComments", "showKBTemplateKBComments");
 	}
 
 }

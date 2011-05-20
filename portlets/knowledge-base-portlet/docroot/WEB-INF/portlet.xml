@@ -147,6 +147,30 @@
 				<value>desc</value>
 			</preference>
 			<preference>
+				<name>showKBArticlePriorityColumn</name>
+				<value>true</value>
+			</preference>
+			<preference>
+				<name>showKBArticleAuthorColumn</name>
+				<value>true</value>
+			</preference>
+			<preference>
+				<name>showKBArticleCreateDateColumn</name>
+				<value>true</value>
+			</preference>
+			<preference>
+				<name>showKBArticleModifiedDateColumn</name>
+				<value>true</value>
+			</preference>
+			<preference>
+				<name>showKBArticleStatusColumn</name>
+				<value>true</value>
+			</preference>
+			<preference>
+				<name>showKBArticleViewsColumn</name>
+				<value>true</value>
+			</preference>
+			<preference>
 				<name>enableKBArticleDescription</name>
 				<value>false</value>
 			</preference>
