@@ -90,7 +90,7 @@
 
 	</div>
 
-	<c:if test="<%= total > searchContainer.getDelta() %>">
+	<c:if test="<%= showKBArticlesPagination && (total > searchContainer.getDelta()) %>">
 		<div class="taglib-search-iterator-page-iterator-bottom">
 			<liferay-ui:search-paginator searchContainer="<%= searchContainer %>" />
 		</div>

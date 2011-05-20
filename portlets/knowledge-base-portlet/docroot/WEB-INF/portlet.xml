@@ -379,16 +379,20 @@
 				<value>maximized</value>
 			</preference>
 			<preference>
-				<name>kbArticlesDelta</name>
-				<value>10</value>
-			</preference>
-			<preference>
 				<name>kbArticlesOrderByCol</name>
 				<value>modified-date</value>
 			</preference>
 			<preference>
 				<name>kbArticlesOrderByType</name>
 				<value>desc</value>
+			</preference>
+			<preference>
+				<name>kbArticlesDelta</name>
+				<value>10</value>
+			</preference>
+			<preference>
+				<name>showKBArticlesPagination</name>
+				<value>true</value>
 			</preference>
 			<preference>
 				<name>enableKBArticleDescription</name>

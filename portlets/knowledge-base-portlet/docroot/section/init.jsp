@@ -31,9 +31,10 @@ boolean showKBArticlesSectionsTitle = GetterUtil.getBoolean(preferences.getValue
 String[] kbArticlesSections = preferences.getValues("kbArticlesSections", new String[0]);
 String kbArticleDisplayStyle = preferences.getValue("kbArticleDisplayStyle", StringPool.BLANK);
 String kbArticleWindowState = preferences.getValue("kbArticleWindowState", StringPool.BLANK);
-int kbArticlesDelta = GetterUtil.getInteger(preferences.getValue("kbArticlesDelta", null));
 String kbArticlesOrderByCol = preferences.getValue("kbArticlesOrderByCol", StringPool.BLANK);
 String kbArticlesOrderByType = preferences.getValue("kbArticlesOrderByType", StringPool.BLANK);
+int kbArticlesDelta = GetterUtil.getInteger(preferences.getValue("kbArticlesDelta", null));
+boolean showKBArticlesPagination = GetterUtil.getBoolean(preferences.getValue("showKBArticlesPagination", null));
 
 boolean enableKBArticleDescription = GetterUtil.getBoolean(preferences.getValue("enableKBArticleDescription", null));
 boolean enableKBArticleAssetCategories = GetterUtil.getBoolean(preferences.getValue("enableKBArticleAssetCategories", null));

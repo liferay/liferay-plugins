@@ -105,6 +105,8 @@ String tabs2 = ParamUtil.getString(request, "tabs2", "general");
 					%>
 
 				</aui:select>
+
+				<aui:input label="show-pagination" name="preferences--showKBArticlesPagination--" type="checkbox" value="<%= showKBArticlesPagination %>" />
 			</c:when>
 			<c:when test='<%= tabs2.equals("display-settings") %>'>
 				<aui:input label="enable-description" name="preferences--enableKBArticleDescription--" type="checkbox" value="<%= enableKBArticleDescription %>" />
