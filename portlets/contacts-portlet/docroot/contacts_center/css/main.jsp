@@ -235,3 +235,53 @@
 .contacts-portlet .filter-input {
 	margin-bottom: 1em;
 }
+
+.contacts-portlet .members-container {
+	clear: both;
+}
+
+.contacts-portlet .letter-anchors {
+	border-bottom: 1px solid #999;
+	clear: both;
+	font-size: 1.2em;
+	margin-bottom: 1em;
+	padding-left: 5px;
+}
+
+.contacts-portlet .lfr-members-grid-item {
+	float: left;
+	height: 50px;
+	margin-bottom: 10px;
+	max-width: 300px;
+	min-width: 200px;
+	overflow: hidden;
+	width: 25%;
+}
+
+.contacts-portlet .lfr-members-grid-item .lfr-members-thumb {
+	float: left;
+	margin: 0 5px;
+}
+
+.contacts-portlet lfr-members-grid-item .lfr-members-thumb a {
+	clip: rect(0 50px 50px 0);
+	position: absolute;
+}
+
+.contacts-portlet .lfr-members-thumb img{
+	width: 50px;
+}
+
+.contacts-portlet .lfr-members-grid-item .lfr-user-data-info {
+	margin-left: 60px;
+}
+
+.contacts-portlet .lfr-members-grid-item .lfr-user-data-name {
+	font-weight: bold;
+}
+
+.contacts-portlet .lfr-members-grid-item .lfr-user-data-name,
+.contacts-portlet .lfr-members-grid-item .lfr-user-data-job-title,
+.contacts-portlet .lfr-members-grid-item .lfr-user-data-extra {
+	white-space: nowrap
+}

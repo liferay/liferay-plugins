@@ -6,7 +6,9 @@
 		<portlet id="1" />
 	</category>
 	<category name="category.social">
+		<portlet id="1" />
 		<portlet id="2" />
 		<portlet id="3" />
+		<portlet id="4" />
 	</category>
 </display>
