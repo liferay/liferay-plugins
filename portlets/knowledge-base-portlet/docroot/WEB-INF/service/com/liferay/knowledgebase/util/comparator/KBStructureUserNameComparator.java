@@ -23,9 +23,9 @@ import com.liferay.portal.kernel.util.OrderByComparator;
  */
 public class KBStructureUserNameComparator extends OrderByComparator {
 
-	public static String ORDER_BY_ASC = "userName ASC";
+	public static String ORDER_BY_ASC = "KBStructure.userName ASC";
 
-	public static String ORDER_BY_DESC = "userName DESC";
+	public static String ORDER_BY_DESC = "KBStructure.userName DESC";
 
 	public static String[] ORDER_BY_FIELDS = {"userName"};
 

@@ -23,9 +23,9 @@ import com.liferay.portal.kernel.util.OrderByComparator;
  */
 public class KBArticleStatusComparator extends OrderByComparator {
 
-	public static String ORDER_BY_ASC = "status ASC";
+	public static String ORDER_BY_ASC = "KBArticle.status ASC";
 
-	public static String ORDER_BY_DESC = "status DESC";
+	public static String ORDER_BY_DESC = "KBArticle.status DESC";
 
 	public static String[] ORDER_BY_FIELDS = {"status"};
 

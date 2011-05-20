@@ -24,9 +24,9 @@ import com.liferay.portal.kernel.util.OrderByComparator;
  */
 public class KBStructureModifiedDateComparator extends OrderByComparator {
 
-	public static String ORDER_BY_ASC = "modifiedDate ASC";
+	public static String ORDER_BY_ASC = "KBStructure.modifiedDate ASC";
 
-	public static String ORDER_BY_DESC = "modifiedDate DESC";
+	public static String ORDER_BY_DESC = "KBStructure.modifiedDate DESC";
 
 	public static String[] ORDER_BY_FIELDS = {"modifiedDate"};
 

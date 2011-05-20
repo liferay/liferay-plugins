@@ -23,9 +23,9 @@ import com.liferay.portal.kernel.util.OrderByComparator;
  */
 public class KBTemplateEngineTypeComparator extends OrderByComparator {
 
-	public static String ORDER_BY_ASC = "engineType ASC";
+	public static String ORDER_BY_ASC = "KBTemplate.engineType ASC";
 
-	public static String ORDER_BY_DESC = "engineType DESC";
+	public static String ORDER_BY_DESC = "KBTemplate.engineType DESC";
 
 	public static String[] ORDER_BY_FIELDS = {"engineType"};
 
