@@ -55,7 +55,7 @@ portletURL.setParameter("jspPage", "/members/view.jsp");
 
 		param.put("usersGroups", new Long(group.getGroupId()));
 
-		List<User> users= UserLocalServiceUtil.search(company.getCompanyId(), keywords, WorkflowConstants.STATUS_APPROVED, param, searchContainer.getStart(), searchContainer.getEnd(), new UserLastNameComparator(true));
+		List<User> users = UserLocalServiceUtil.search(company.getCompanyId(), keywords, WorkflowConstants.STATUS_APPROVED, param, searchContainer.getStart(), searchContainer.getEnd(), new UserLastNameComparator(true));
 
 		searchContainer.setResults(users);
 
@@ -67,14 +67,15 @@ portletURL.setParameter("jspPage", "/members/view.jsp");
 			PortletURL viewUserURL = renderResponse.createRenderURL();
 
 			viewUserURL.setParameter("jspPage", "/members/view_user.jsp");
-			viewUserURL.setParameter("userId", String.valueOf(user2.getUserId()));
 			viewUserURL.setParameter("backURL", currentURL);
+			viewUserURL.setParameter("userId", String.valueOf(user2.getUserId()));
 		%>
 
 			<div class="lfr-members-grid-item">
 				<div class="lfr-members-thumb">
-					<a href="<%= viewUserURL.toString() %>"><img style="" alt="<%= HtmlUtil.escape(user2.getFullName()) %>" src="<%= user2.getPortraitURL(themeDisplay) %>" /></a>
+					<a href="<%= viewUserURL.toString() %>"><img alt="<%= HtmlUtil.escape(user2.getFullName()) %>" src="<%= user2.getPortraitURL(themeDisplay) %>" style="" /></a>
 				</div>
+
 				<div class="lfr-user-data-info">
 					<div class="lfr-user-data-name">
 						<a href="<%= viewUserURL.toString() %>"><%= HtmlUtil.escape(user2.getFullName()) %></a>
