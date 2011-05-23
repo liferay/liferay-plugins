@@ -57,6 +57,13 @@
 
 		<column name="name" type="String" />
 		<column name="description" type="String" />
+
+		<!-- Finder methods -->
+
+		<finder name="G_N" return-type="HRExpenseAccount" unique="true">
+			<finder-column name="groupId" />
+			<finder-column name="name" />
+		</finder>
 	</entity>
 	<entity name="HRExpenseCurrency" local-service="true" remote-service="false">
 
@@ -144,5 +151,12 @@
 
 		<column name="name" type="String" />
 		<column name="description" type="String" />
+
+		<!-- Finder methods -->
+
+		<finder name="G_N" return-type="HRExpenseType" unique="true">
+			<finder-column name="groupId" />
+			<finder-column name="name" />
+		</finder>
 	</entity>
 </service-builder>
