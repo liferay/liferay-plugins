@@ -135,10 +135,22 @@
 		<field name="hrExpenseAccountId" type="long" />
 		<field name="hrExpenseTypeId" type="long" />
 		<field name="hrUserId" type="long" />
-		<field name="expenseDate" type="Date" />
-		<field name="expenseAmount" type="double" />
-		<field name="expenseHRExpenseCurrencyId" type="long" />
-		<field name="reimbursementAmount" type="double" />
+		<field name="expenseDate" type="Date">
+			<hint name="year-range-delta">70</hint>
+			<hint name="year-range-future">false</hint>
+			<hint name="show-time">false</hint>
+			<validator name="required" />
+		</field>
+		<field name="expenseAmount" type="double">
+			<hint name="display-width">50</hint>
+			<validator name="required" />
+		</field>
+		<field name="expenseHRExpenseCurrencyId" type="long">
+			<validator name="required" />
+		</field>
+		<field name="reimbursementAmount" type="double">
+			<hint name="display-width">50</hint>
+		</field>
 		<field name="reimbursementHRExpenseCurrencyId" type="long" />
 		<field name="status" type="int" />
 		<field name="statusByUserId" type="long" />
@@ -153,8 +165,12 @@
 		<field name="userName" type="String" />
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
-		<field name="name" type="String" />
-		<field name="description" type="String" />
+		<field name="name" type="String">
+			<validator name="required" />
+		</field>
+		<field name="description" type="String">
+			<hint-collection name="TEXTAREA" />
+		</field>
 	</model>
 	<model name="com.liferay.hr.model.HRExpenseCurrency">
 		<field name="hrExpenseCurrencyId" type="long" />
@@ -164,9 +180,16 @@
 		<field name="userName" type="String" />
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
-		<field name="code" type="String" />
-		<field name="name" type="String" />
-		<field name="description" type="String" />
+		<field name="code" type="String">
+			<hint name="display-width">50</hint>
+			<validator name="required" />
+		</field>
+		<field name="name" type="String">
+			<validator name="required" />
+		</field>
+		<field name="description" type="String">
+			<hint-collection name="TEXTAREA" />
+		</field>
 	</model>
 	<model name="com.liferay.hr.model.HRExpenseCurrencyConversion">
 		<field name="hrExpenseCurrencyConversionId" type="long" />
@@ -176,10 +199,22 @@
 		<field name="userName" type="String" />
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
-		<field name="fromHRExpenseCurrencyId" type="long" />
-		<field name="toHRExpenseCurrencyId" type="long" />
-		<field name="conversionDate" type="Date" />
-		<field name="conversionValue" type="double" />
+		<field name="fromHRExpenseCurrencyId" type="long">
+			<validator name="required" />
+		</field>
+		<field name="toHRExpenseCurrencyId" type="long">
+			<validator name="required" />
+		</field>
+		<field name="conversionDate" type="Date">
+			<hint name="year-range-delta">70</hint>
+			<hint name="year-range-future">false</hint>
+			<hint name="show-time">false</hint>
+			<validator name="required" />
+		</field>
+		<field name="conversionValue" type="double">
+			<hint name="display-width">50</hint>
+			<validator name="required" />
+		</field>
 	</model>
 	<model name="com.liferay.hr.model.HRExpenseType">
 		<field name="hrExpenseTypeId" type="long" />
@@ -189,8 +224,12 @@
 		<field name="userName" type="String" />
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
-		<field name="name" type="String" />
-		<field name="description" type="String" />
+		<field name="name" type="String">
+			<validator name="required" />
+		</field>
+		<field name="description" type="String">
+			<hint-collection name="TEXTAREA" />
+		</field>
 	</model>
 	<model name="com.liferay.hr.model.HRHoliday">
 		<field name="hrHolidayId" type="long" />
