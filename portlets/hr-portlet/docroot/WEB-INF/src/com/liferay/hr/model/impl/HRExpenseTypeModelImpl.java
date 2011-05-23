@@ -69,7 +69,7 @@ public class HRExpenseTypeModelImpl extends BaseModelImpl<HRExpenseType>
 			{ "name", Types.VARCHAR },
 			{ "description", Types.VARCHAR }
 		};
-	public static final String TABLE_SQL_CREATE = "create table HRExpenseType (hrExpenseTypeId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,name VARCHAR(75) null,description VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table HRExpenseType (hrExpenseTypeId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,name VARCHAR(75) null,description STRING null)";
 	public static final String TABLE_SQL_DROP = "drop table HRExpenseType";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
@@ -124,7 +124,17 @@ public class HRExpenseTypeModelImpl extends BaseModelImpl<HRExpenseType>
 	}
 
 	public void setGroupId(long groupId) {
+		if (!_setOriginalGroupId) {
+			_setOriginalGroupId = true;
+
+			_originalGroupId = _groupId;
+		}
+
 		_groupId = groupId;
+	}
+
+	public long getOriginalGroupId() {
+		return _originalGroupId;
 	}
 
 	public long getCompanyId() {
@@ -190,7 +200,15 @@ public class HRExpenseTypeModelImpl extends BaseModelImpl<HRExpenseType>
 	}
 
 	public void setName(String name) {
+		if (_originalName == null) {
+			_originalName = _name;
+		}
+
 		_name = name;
+	}
+
+	public String getOriginalName() {
+		return GetterUtil.getString(_originalName);
 	}
 
 	public String getDescription() {
@@ -291,6 +309,13 @@ public class HRExpenseTypeModelImpl extends BaseModelImpl<HRExpenseType>
 	}
 
 	public void resetOriginalValues() {
+		HRExpenseTypeModelImpl hrExpenseTypeModelImpl = this;
+
+		hrExpenseTypeModelImpl._originalGroupId = hrExpenseTypeModelImpl._groupId;
+
+		hrExpenseTypeModelImpl._setOriginalGroupId = false;
+
+		hrExpenseTypeModelImpl._originalName = hrExpenseTypeModelImpl._name;
 	}
 
 	public String toString() {
@@ -370,6 +395,8 @@ public class HRExpenseTypeModelImpl extends BaseModelImpl<HRExpenseType>
 
 	private long _hrExpenseTypeId;
 	private long _groupId;
+	private long _originalGroupId;
+	private boolean _setOriginalGroupId;
 	private long _companyId;
 	private long _userId;
 	private String _userUuid;
@@ -377,6 +404,7 @@ public class HRExpenseTypeModelImpl extends BaseModelImpl<HRExpenseType>
 	private Date _createDate;
 	private Date _modifiedDate;
 	private String _name;
+	private String _originalName;
 	private String _description;
 	private transient ExpandoBridge _expandoBridge;
 }

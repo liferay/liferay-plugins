@@ -199,6 +199,50 @@ public class HRExpenseAccountUtil {
 	}
 
 	/**
+	* Finds the h r expense account where groupId = &#63; and name = &#63; or throws a {@link com.liferay.hr.NoSuchExpenseAccountException} if it could not be found.
+	*
+	* @param groupId the group ID to search with
+	* @param name the name to search with
+	* @return the matching h r expense account
+	* @throws com.liferay.hr.NoSuchExpenseAccountException if a matching h r expense account could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.hr.model.HRExpenseAccount findByG_N(
+		long groupId, java.lang.String name)
+		throws com.liferay.hr.NoSuchExpenseAccountException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByG_N(groupId, name);
+	}
+
+	/**
+	* Finds the h r expense account where groupId = &#63; and name = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	*
+	* @param groupId the group ID to search with
+	* @param name the name to search with
+	* @return the matching h r expense account, or <code>null</code> if a matching h r expense account could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.hr.model.HRExpenseAccount fetchByG_N(
+		long groupId, java.lang.String name)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByG_N(groupId, name);
+	}
+
+	/**
+	* Finds the h r expense account where groupId = &#63; and name = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	*
+	* @param groupId the group ID to search with
+	* @param name the name to search with
+	* @return the matching h r expense account, or <code>null</code> if a matching h r expense account could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.hr.model.HRExpenseAccount fetchByG_N(
+		long groupId, java.lang.String name, boolean retrieveFromCache)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByG_N(groupId, name, retrieveFromCache);
+	}
+
+	/**
 	* Finds all the h r expense accounts.
 	*
 	* @return the h r expense accounts
@@ -248,6 +292,19 @@ public class HRExpenseAccountUtil {
 	}
 
 	/**
+	* Removes the h r expense account where groupId = &#63; and name = &#63; from the database.
+	*
+	* @param groupId the group ID to search with
+	* @param name the name to search with
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByG_N(long groupId, java.lang.String name)
+		throws com.liferay.hr.NoSuchExpenseAccountException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByG_N(groupId, name);
+	}
+
+	/**
 	* Removes all the h r expense accounts from the database.
 	*
 	* @throws SystemException if a system exception occurred
@@ -255,6 +312,19 @@ public class HRExpenseAccountUtil {
 	public static void removeAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		getPersistence().removeAll();
+	}
+
+	/**
+	* Counts all the h r expense accounts where groupId = &#63; and name = &#63;.
+	*
+	* @param groupId the group ID to search with
+	* @param name the name to search with
+	* @return the number of matching h r expense accounts
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByG_N(long groupId, java.lang.String name)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByG_N(groupId, name);
 	}
 
 	/**

@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
 import com.liferay.portal.kernel.dao.orm.Query;
+import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -37,7 +38,9 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.ResourcePersistence;
@@ -72,6 +75,14 @@ public class HRExpenseTypePersistenceImpl extends BasePersistenceImpl<HRExpenseT
 	public static final String FINDER_CLASS_NAME_ENTITY = HRExpenseTypeImpl.class.getName();
 	public static final String FINDER_CLASS_NAME_LIST = FINDER_CLASS_NAME_ENTITY +
 		".List";
+	public static final FinderPath FINDER_PATH_FETCH_BY_G_N = new FinderPath(HRExpenseTypeModelImpl.ENTITY_CACHE_ENABLED,
+			HRExpenseTypeModelImpl.FINDER_CACHE_ENABLED,
+			FINDER_CLASS_NAME_ENTITY, "fetchByG_N",
+			new String[] { Long.class.getName(), String.class.getName() });
+	public static final FinderPath FINDER_PATH_COUNT_BY_G_N = new FinderPath(HRExpenseTypeModelImpl.ENTITY_CACHE_ENABLED,
+			HRExpenseTypeModelImpl.FINDER_CACHE_ENABLED,
+			FINDER_CLASS_NAME_LIST, "countByG_N",
+			new String[] { Long.class.getName(), String.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(HRExpenseTypeModelImpl.ENTITY_CACHE_ENABLED,
 			HRExpenseTypeModelImpl.FINDER_CACHE_ENABLED,
 			FINDER_CLASS_NAME_LIST, "findAll", new String[0]);
@@ -88,6 +99,13 @@ public class HRExpenseTypePersistenceImpl extends BasePersistenceImpl<HRExpenseT
 		EntityCacheUtil.putResult(HRExpenseTypeModelImpl.ENTITY_CACHE_ENABLED,
 			HRExpenseTypeImpl.class, hrExpenseType.getPrimaryKey(),
 			hrExpenseType);
+
+		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_G_N,
+			new Object[] {
+				Long.valueOf(hrExpenseType.getGroupId()),
+				
+			hrExpenseType.getName()
+			}, hrExpenseType);
 
 		hrExpenseType.resetOriginalValues();
 	}
@@ -135,6 +153,13 @@ public class HRExpenseTypePersistenceImpl extends BasePersistenceImpl<HRExpenseT
 	public void clearCache(HRExpenseType hrExpenseType) {
 		EntityCacheUtil.removeResult(HRExpenseTypeModelImpl.ENTITY_CACHE_ENABLED,
 			HRExpenseTypeImpl.class, hrExpenseType.getPrimaryKey());
+
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_G_N,
+			new Object[] {
+				Long.valueOf(hrExpenseType.getGroupId()),
+				
+			hrExpenseType.getName()
+			});
 	}
 
 	/**
@@ -238,6 +263,15 @@ public class HRExpenseTypePersistenceImpl extends BasePersistenceImpl<HRExpenseT
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
+		HRExpenseTypeModelImpl hrExpenseTypeModelImpl = (HRExpenseTypeModelImpl)hrExpenseType;
+
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_G_N,
+			new Object[] {
+				Long.valueOf(hrExpenseTypeModelImpl.getGroupId()),
+				
+			hrExpenseTypeModelImpl.getName()
+			});
+
 		EntityCacheUtil.removeResult(HRExpenseTypeModelImpl.ENTITY_CACHE_ENABLED,
 			HRExpenseTypeImpl.class, hrExpenseType.getPrimaryKey());
 
@@ -248,6 +282,10 @@ public class HRExpenseTypePersistenceImpl extends BasePersistenceImpl<HRExpenseT
 		com.liferay.hr.model.HRExpenseType hrExpenseType, boolean merge)
 		throws SystemException {
 		hrExpenseType = toUnwrappedModel(hrExpenseType);
+
+		boolean isNew = hrExpenseType.isNew();
+
+		HRExpenseTypeModelImpl hrExpenseTypeModelImpl = (HRExpenseTypeModelImpl)hrExpenseType;
 
 		Session session = null;
 
@@ -270,6 +308,30 @@ public class HRExpenseTypePersistenceImpl extends BasePersistenceImpl<HRExpenseT
 		EntityCacheUtil.putResult(HRExpenseTypeModelImpl.ENTITY_CACHE_ENABLED,
 			HRExpenseTypeImpl.class, hrExpenseType.getPrimaryKey(),
 			hrExpenseType);
+
+		if (!isNew &&
+				((hrExpenseType.getGroupId() != hrExpenseTypeModelImpl.getOriginalGroupId()) ||
+				!Validator.equals(hrExpenseType.getName(),
+					hrExpenseTypeModelImpl.getOriginalName()))) {
+			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_G_N,
+				new Object[] {
+					Long.valueOf(hrExpenseTypeModelImpl.getOriginalGroupId()),
+					
+				hrExpenseTypeModelImpl.getOriginalName()
+				});
+		}
+
+		if (isNew ||
+				((hrExpenseType.getGroupId() != hrExpenseTypeModelImpl.getOriginalGroupId()) ||
+				!Validator.equals(hrExpenseType.getName(),
+					hrExpenseTypeModelImpl.getOriginalName()))) {
+			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_G_N,
+				new Object[] {
+					Long.valueOf(hrExpenseType.getGroupId()),
+					
+				hrExpenseType.getName()
+				}, hrExpenseType);
+		}
 
 		return hrExpenseType;
 	}
@@ -383,6 +445,157 @@ public class HRExpenseTypePersistenceImpl extends BasePersistenceImpl<HRExpenseT
 	}
 
 	/**
+	 * Finds the h r expense type where groupId = &#63; and name = &#63; or throws a {@link com.liferay.hr.NoSuchExpenseTypeException} if it could not be found.
+	 *
+	 * @param groupId the group ID to search with
+	 * @param name the name to search with
+	 * @return the matching h r expense type
+	 * @throws com.liferay.hr.NoSuchExpenseTypeException if a matching h r expense type could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public HRExpenseType findByG_N(long groupId, String name)
+		throws NoSuchExpenseTypeException, SystemException {
+		HRExpenseType hrExpenseType = fetchByG_N(groupId, name);
+
+		if (hrExpenseType == null) {
+			StringBundler msg = new StringBundler(6);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("groupId=");
+			msg.append(groupId);
+
+			msg.append(", name=");
+			msg.append(name);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			if (_log.isWarnEnabled()) {
+				_log.warn(msg.toString());
+			}
+
+			throw new NoSuchExpenseTypeException(msg.toString());
+		}
+
+		return hrExpenseType;
+	}
+
+	/**
+	 * Finds the h r expense type where groupId = &#63; and name = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 *
+	 * @param groupId the group ID to search with
+	 * @param name the name to search with
+	 * @return the matching h r expense type, or <code>null</code> if a matching h r expense type could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public HRExpenseType fetchByG_N(long groupId, String name)
+		throws SystemException {
+		return fetchByG_N(groupId, name, true);
+	}
+
+	/**
+	 * Finds the h r expense type where groupId = &#63; and name = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 *
+	 * @param groupId the group ID to search with
+	 * @param name the name to search with
+	 * @return the matching h r expense type, or <code>null</code> if a matching h r expense type could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public HRExpenseType fetchByG_N(long groupId, String name,
+		boolean retrieveFromCache) throws SystemException {
+		Object[] finderArgs = new Object[] { groupId, name };
+
+		Object result = null;
+
+		if (retrieveFromCache) {
+			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_G_N,
+					finderArgs, this);
+		}
+
+		if (result == null) {
+			StringBundler query = new StringBundler(3);
+
+			query.append(_SQL_SELECT_HREXPENSETYPE_WHERE);
+
+			query.append(_FINDER_COLUMN_G_N_GROUPID_2);
+
+			if (name == null) {
+				query.append(_FINDER_COLUMN_G_N_NAME_1);
+			}
+			else {
+				if (name.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_G_N_NAME_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_G_N_NAME_2);
+				}
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(groupId);
+
+				if (name != null) {
+					qPos.add(name);
+				}
+
+				List<HRExpenseType> list = q.list();
+
+				result = list;
+
+				HRExpenseType hrExpenseType = null;
+
+				if (list.isEmpty()) {
+					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_G_N,
+						finderArgs, list);
+				}
+				else {
+					hrExpenseType = list.get(0);
+
+					cacheResult(hrExpenseType);
+
+					if ((hrExpenseType.getGroupId() != groupId) ||
+							(hrExpenseType.getName() == null) ||
+							!hrExpenseType.getName().equals(name)) {
+						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_G_N,
+							finderArgs, hrExpenseType);
+					}
+				}
+
+				return hrExpenseType;
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (result == null) {
+					FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_G_N,
+						finderArgs);
+				}
+
+				closeSession(session);
+			}
+		}
+		else {
+			if (result instanceof List<?>) {
+				return null;
+			}
+			else {
+				return (HRExpenseType)result;
+			}
+		}
+	}
+
+	/**
 	 * Finds all the h r expense types.
 	 *
 	 * @return the h r expense types
@@ -492,6 +705,20 @@ public class HRExpenseTypePersistenceImpl extends BasePersistenceImpl<HRExpenseT
 	}
 
 	/**
+	 * Removes the h r expense type where groupId = &#63; and name = &#63; from the database.
+	 *
+	 * @param groupId the group ID to search with
+	 * @param name the name to search with
+	 * @throws SystemException if a system exception occurred
+	 */
+	public void removeByG_N(long groupId, String name)
+		throws NoSuchExpenseTypeException, SystemException {
+		HRExpenseType hrExpenseType = findByG_N(groupId, name);
+
+		hrExpenseTypePersistence.remove(hrExpenseType);
+	}
+
+	/**
 	 * Removes all the h r expense types from the database.
 	 *
 	 * @throws SystemException if a system exception occurred
@@ -500,6 +727,76 @@ public class HRExpenseTypePersistenceImpl extends BasePersistenceImpl<HRExpenseT
 		for (HRExpenseType hrExpenseType : findAll()) {
 			hrExpenseTypePersistence.remove(hrExpenseType);
 		}
+	}
+
+	/**
+	 * Counts all the h r expense types where groupId = &#63; and name = &#63;.
+	 *
+	 * @param groupId the group ID to search with
+	 * @param name the name to search with
+	 * @return the number of matching h r expense types
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int countByG_N(long groupId, String name) throws SystemException {
+		Object[] finderArgs = new Object[] { groupId, name };
+
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_G_N,
+				finderArgs, this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(3);
+
+			query.append(_SQL_COUNT_HREXPENSETYPE_WHERE);
+
+			query.append(_FINDER_COLUMN_G_N_GROUPID_2);
+
+			if (name == null) {
+				query.append(_FINDER_COLUMN_G_N_NAME_1);
+			}
+			else {
+				if (name.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_G_N_NAME_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_G_N_NAME_2);
+				}
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(groupId);
+
+				if (name != null) {
+					qPos.add(name);
+				}
+
+				count = (Long)q.uniqueResult();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_G_N, finderArgs,
+					count);
+
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
 	}
 
 	/**
@@ -654,9 +951,16 @@ public class HRExpenseTypePersistenceImpl extends BasePersistenceImpl<HRExpenseT
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
 	private static final String _SQL_SELECT_HREXPENSETYPE = "SELECT hrExpenseType FROM HRExpenseType hrExpenseType";
+	private static final String _SQL_SELECT_HREXPENSETYPE_WHERE = "SELECT hrExpenseType FROM HRExpenseType hrExpenseType WHERE ";
 	private static final String _SQL_COUNT_HREXPENSETYPE = "SELECT COUNT(hrExpenseType) FROM HRExpenseType hrExpenseType";
+	private static final String _SQL_COUNT_HREXPENSETYPE_WHERE = "SELECT COUNT(hrExpenseType) FROM HRExpenseType hrExpenseType WHERE ";
+	private static final String _FINDER_COLUMN_G_N_GROUPID_2 = "hrExpenseType.groupId = ? AND ";
+	private static final String _FINDER_COLUMN_G_N_NAME_1 = "hrExpenseType.name IS NULL";
+	private static final String _FINDER_COLUMN_G_N_NAME_2 = "hrExpenseType.name = ?";
+	private static final String _FINDER_COLUMN_G_N_NAME_3 = "(hrExpenseType.name IS NULL OR hrExpenseType.name = ?)";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "hrExpenseType.";
 	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No HRExpenseType exists with the primary key ";
+	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No HRExpenseType exists with the key {";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(HRExpenseTypePersistenceImpl.class);

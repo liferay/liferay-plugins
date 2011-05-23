@@ -102,6 +102,44 @@ public interface HRExpenseTypePersistence extends BasePersistence<HRExpenseType>
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
+	* Finds the h r expense type where groupId = &#63; and name = &#63; or throws a {@link com.liferay.hr.NoSuchExpenseTypeException} if it could not be found.
+	*
+	* @param groupId the group ID to search with
+	* @param name the name to search with
+	* @return the matching h r expense type
+	* @throws com.liferay.hr.NoSuchExpenseTypeException if a matching h r expense type could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.hr.model.HRExpenseType findByG_N(long groupId,
+		java.lang.String name)
+		throws com.liferay.hr.NoSuchExpenseTypeException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Finds the h r expense type where groupId = &#63; and name = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	*
+	* @param groupId the group ID to search with
+	* @param name the name to search with
+	* @return the matching h r expense type, or <code>null</code> if a matching h r expense type could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.hr.model.HRExpenseType fetchByG_N(long groupId,
+		java.lang.String name)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Finds the h r expense type where groupId = &#63; and name = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	*
+	* @param groupId the group ID to search with
+	* @param name the name to search with
+	* @return the matching h r expense type, or <code>null</code> if a matching h r expense type could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.hr.model.HRExpenseType fetchByG_N(long groupId,
+		java.lang.String name, boolean retrieveFromCache)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
 	* Finds all the h r expense types.
 	*
 	* @return the h r expense types
@@ -145,11 +183,33 @@ public interface HRExpenseTypePersistence extends BasePersistence<HRExpenseType>
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
+	* Removes the h r expense type where groupId = &#63; and name = &#63; from the database.
+	*
+	* @param groupId the group ID to search with
+	* @param name the name to search with
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByG_N(long groupId, java.lang.String name)
+		throws com.liferay.hr.NoSuchExpenseTypeException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	/**
 	* Removes all the h r expense types from the database.
 	*
 	* @throws SystemException if a system exception occurred
 	*/
 	public void removeAll()
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Counts all the h r expense types where groupId = &#63; and name = &#63;.
+	*
+	* @param groupId the group ID to search with
+	* @param name the name to search with
+	* @return the number of matching h r expense types
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByG_N(long groupId, java.lang.String name)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

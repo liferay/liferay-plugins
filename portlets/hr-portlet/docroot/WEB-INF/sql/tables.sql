@@ -168,7 +168,7 @@ create table HRExpenseAccount (
 	createDate DATE null,
 	modifiedDate DATE null,
 	name VARCHAR(75) null,
-	description VARCHAR(75) null
+	description STRING null
 );
 
 create table HRExpenseCurrency (
@@ -181,7 +181,7 @@ create table HRExpenseCurrency (
 	modifiedDate DATE null,
 	code_ VARCHAR(75) null,
 	name VARCHAR(75) null,
-	description VARCHAR(75) null
+	description STRING null
 );
 
 create table HRExpenseCurrencyConversion (
@@ -207,7 +207,7 @@ create table HRExpenseType (
 	createDate DATE null,
 	modifiedDate DATE null,
 	name VARCHAR(75) null,
-	description VARCHAR(75) null
+	description STRING null
 );
 
 create table HRHoliday (
