@@ -1220,43 +1220,8 @@ table.calendar {
 
 /* SO: Sites */
 
-.so-portlet-sites {
-	.control-wrapper {
-		margin-top: 1em;
-		position: relative;
-	}
-
-	.add-site {
-		background: url(../images/arrows/01_plus.png) no-repeat 100% 50%;
-		display: block;
-		font-size: 11px;
-		padding: 0 16px 0 0;
-		position: absolute;
-		right: 5px;
-		top: 9px;
-	}
-
-	.description-toggle {
-		position: relative;
-		top: 1px;
-	}
-
-	.description {
-		font-size: .9em;
-		color: #555;
-		padding-left: 20px;
-	}
-
-	.results-grid .col-1 a {
-		font-size: 11px;
-		font-weight: bold;
-		padding: 2px 0;
-	}
-
-	.taglib-page-iterator .search-results,
-	th {
-		display: none;
-	}
+.so-portlet-sites .site-list-container span {
+	display: block;
 }
 
 .so-portlet-sites-dialog {
@@ -1302,15 +1267,6 @@ table.calendar {
 		margin: 1em 0;
 		padding: 0.5em;
 	}
-}
-
-.page-maximized .so-portlet-sites th {
-	display: table-cell;
-}
-
-.ie6 .so-portlet-sites .control-wrapper {
-	height: 22px;
-	margin-bottom: 1em;
 }
 
 /* TMS: Tasks */

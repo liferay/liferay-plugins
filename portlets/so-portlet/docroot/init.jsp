@@ -72,6 +72,7 @@
 <%@ page import="com.liferay.portal.util.PortalUtil" %>
 <%@ page import="com.liferay.portal.util.PortletKeys" %>
 <%@ page import="com.liferay.portal.util.comparator.ContactFirstNameComparator" %>
+<%@ page import="com.liferay.portal.util.comparator.GroupNameComparator" %>
 <%@ page import="com.liferay.portal.util.comparator.RoleNameComparator" %>
 <%@ page import="com.liferay.portlet.PortletPreferencesFactoryUtil" %>
 <%@ page import="com.liferay.portlet.enterpriseadmin.util.EnterpriseAdminUtil" %>
@@ -92,6 +93,7 @@
 <%@ page import="com.liferay.so.model.impl.ProjectsEntryImpl" %>
 <%@ page import="com.liferay.so.service.MemberRequestLocalServiceUtil" %>
 <%@ page import="com.liferay.so.service.ProjectsEntryLocalServiceUtil" %>
+<%@ page import="com.liferay.so.sites.util.SitesUtil" %>
 
 <%@ page import="java.text.Format" %>
 

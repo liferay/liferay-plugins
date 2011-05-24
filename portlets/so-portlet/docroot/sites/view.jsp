@@ -22,6 +22,9 @@
 <%
 String tabs1 = ParamUtil.getString(request, "tabs1", "my-sites");
 
+String name = ParamUtil.getString(request, "name");
+String searchName = DAOParamUtil.getLike(request, "name");
+
 PortletURL portletURL = renderResponse.createRenderURL();
 
 portletURL.setWindowState(WindowState.NORMAL);
@@ -34,134 +37,184 @@ pageContext.setAttribute("portletURL", portletURL);
 <form action="<%= portletURL.toString() %>" method="get" name="<portlet:namespace />fm">
 <liferay-portlet:renderURLParams varImpl="portletURL" />
 
-<liferay-ui:search-container
-	delta="<%= 30 %>"
-	emptyResultsMessage="no-sites-were-found"
->
-
-	<%
-	String name = ParamUtil.getString(request, "name");
-	String searchName = DAOParamUtil.getLike(request, "name");
-	%>
-
-	<div>
+<div class="site-list-container">
+	<div class="search">
 		<input id="<portlet:namespace />name" name="<portlet:namespace />name" size="30" type="text" value="<%= HtmlUtil.escape(name) %>" />
 
 		<input type="submit" value="<liferay-ui:message key="search" />" />
 	</div>
 
-	<div class="control-wrapper">
-		<liferay-ui:tabs
-			names="my-sites,open-sites"
-			url="<%= portletURL.toString() %>"
-		/>
-
-		<c:if test="<%= PortalPermissionUtil.contains(permissionChecker, ActionKeys.ADD_COMMUNITY) %>">
-			<liferay-portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>" var="addSiteURL">
-				<portlet:param name="jspPage" value="/sites/edit_site.jsp" />
-			</liferay-portlet:renderURL>
-
-			<a class="add-site" href="javascript:;" onClick="Liferay.SO.Sites.displayPopup('<%= addSiteURL %>','<liferay-ui:message key="add-site" />');"><liferay-ui:message key="add-site" /></a>
-		</c:if>
-	</div>
-
 	<%
-	LinkedHashMap groupParams = new LinkedHashMap();
-
-	groupParams.put("usersGroups", new Long(user.getUserId()));
-
-	List<Group> displayGroups = null;
-
-	List<Group> myGroups = GroupLocalServiceUtil.search(company.getCompanyId(), searchName, null, groupParams, searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator());
-
-	if (tabs1.equals("my-sites")) {
-		displayGroups = myGroups;
-	}
-	else {
-		groupParams = new LinkedHashMap();
-
-		List types = new ArrayList();
-
-		types.add(new Integer(GroupConstants.TYPE_COMMUNITY_OPEN));
-
-		groupParams.put("types", types);
-
-		List<Group> allGroups = GroupLocalServiceUtil.search(company.getCompanyId(), searchName, null, groupParams, searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator());
-
-		List<Group> openGroups = new ArrayList<Group>(allGroups.size());
-
-		for (Group group : allGroups) {
-			if (!myGroups.contains(group) && !group.getName().equals(GroupConstants.GUEST)) {
-				openGroups.add(group);
-			}
-		}
-
-		displayGroups = openGroups;
-	}
+	List<Group> groups = SitesUtil.getVisibleSites(themeDisplay.getCompanyId(), themeDisplay.getUserId(), searchName);
+	int count = SitesUtil.getVisibleSitesCount(themeDisplay.getCompanyId(), themeDisplay.getUserId(), searchName);
 	%>
 
-	<liferay-ui:search-container-results
-		results="<%= displayGroups %>"
-		total="<%= displayGroups.size() %>"
-	/>
+	<ul class="site-list">
 
-	<liferay-ui:search-container-row
-		className="com.liferay.portal.model.Group"
-		keyProperty="groupId"
-		modelVar="group"
-	>
-		<liferay-ui:search-container-column-text>
-			<liferay-portlet:actionURL windowState="<%= LiferayWindowState.NORMAL.toString() %>" portletName="<%= PortletKeys.MY_PLACES %>" var="rowURL">
-				<portlet:param name="struts_action" value="/my_places/view" />
-				<portlet:param name="groupId" value="<%= String.valueOf(group.getGroupId()) %>" />
-			</liferay-portlet:actionURL>
+		<c:choose>
+			<c:when test="<%= !groups.isEmpty() %>">
 
-			<%
-			boolean socialOfficeEnabled = GetterUtil.getBoolean(group.getExpandoBridge().getAttribute("socialOfficeEnabled"));
-			%>
+				<%
+				boolean alternate = false;
 
-			<div>
-				<a href="<%= rowURL %>">
-					<c:if test="<%= group.isCommunity() %>">
-						<c:choose>
-							<c:when test="<%= socialOfficeEnabled %>">
-								<liferay-ui:icon message="<%= group.getDescriptiveName() %>" src='<%= themeDisplay.getPathContext() + "/html/icons/social_office.png" %>' />
-							</c:when>
-							<c:otherwise>
-								<liferay-ui:icon message="<%= group.getDescriptiveName() %>" src='<%= themeDisplay.getPathContext() + "/html/icons/enterprise_admin_communities.png" %>' />
-							</c:otherwise>
-						</c:choose>
-					</c:if>
+				for (Group group : groups) {
+					String className = StringPool.BLANK;
 
-					<%= HtmlUtil.escape(group.getDescriptiveName()) %>
-				</a>
+					if (GetterUtil.getBoolean(group.getExpandoBridge().getAttribute("socialOfficeEnabled"))) {
+						className += "social-office-enabled ";
+					}
 
-				<c:if test="<%= Validator.isNotNull(group.getDescription()) %>">
-					<img alt="arrow" class="description-toggle" src="<%= themeDisplay.getPathThemeImage() %>/custom/arrow_right.png" />
+					boolean member = GroupLocalServiceUtil.hasUserGroup(themeDisplay.getUserId(), group.getGroupId());
 
-					<div class="yui3-aui-helper-hidden description">
-						<%= StringUtil.shorten(HtmlUtil.escape(group.getDescription()), 200) %>
-					</div>
+					if (member) {
+						className += "member ";
+					}
+
+					if (alternate) {
+						className += "alt";
+					}
+				%>
+
+					<liferay-portlet:actionURL windowState="<%= LiferayWindowState.NORMAL.toString() %>" portletName="<%= PortletKeys.MY_PLACES %>" var="rowURL">
+						<liferay-portlet:param name="struts_action" value="/my_places/view" />
+						<liferay-portlet:param name="groupId" value="<%= String.valueOf(group.getGroupId()) %>" />
+					</liferay-portlet:actionURL>
+
+					<li class="<%= className %>">
+						<c:if test="<%= !member %>">
+							<span class="join">
+								<liferay-portlet:actionURL windowState="<%= WindowState.NORMAL.toString() %>" portletName="<%= PortletKeys.ENTERPRISE_ADMIN_COMMUNITIES %>" var="joinURL">
+									<portlet:param name="struts_action" value="/enterprise_admin_sites/edit_site_assignments" />
+									<portlet:param name="<%= Constants.CMD %>" value="group_users" />
+									<portlet:param name="redirect" value="<%= currentURL %>" />
+									<portlet:param name="groupId" value="<%= String.valueOf(group.getGroupId()) %>" />
+									<portlet:param name="addUserIds" value="<%= String.valueOf(user.getUserId()) %>" />
+								</liferay-portlet:actionURL>
+
+								<a href="<%= joinURL %>"><liferay-ui:message key="join" /></a>
+							</span>
+						</c:if>
+
+						<span class="name">
+							<a href="<%= rowURL %>"><%= group.getDescriptiveName() %></a>
+						</span>
+					</li>
+
+				<%
+					alternate = !alternate;
+				}
+				%>
+
+				<c:if test="<%= count > SitesUtil.MAX_RESULT_SIZE %>">
+					<li class="more">
+						<a href="javascript:;"><liferay-ui:message key="view-all" /> (<%= count %>)</a>
+					</li>
 				</c:if>
-			</div>
-		</liferay-ui:search-container-column-text>
+			</c:when>
+			<c:otherwise>
+				<li class="empty">
+					<liferay-ui:message key="there-are-no-results" />
+				</li>
+			</c:otherwise>
+		</c:choose>
+	</ul>
+</div>
 
-		<liferay-ui:search-container-column-jsp
-			align="right"
-			path="/sites/site_action.jsp"
-			valign="top"
-		/>
-	</liferay-ui:search-container-row>
-
-	<liferay-ui:search-iterator />
-</liferay-ui:search-container>
+<div class="control-container">
+</div>
 
 </form>
 
 <aui:script>
 	AUI().ready(
-		function() {
-			Liferay.SO.Sites.init();
+		'aui-base', 'aui-io', 'aui-toolbar',
+		function(A) {
+			Liferay.SO.Sites.init(
+				{
+					siteList: '.so-portlet-sites .site-list',
+					siteListContainer: '.so-portlet-sites .site-list-container',
+					siteListURL: '<portlet:resourceURL id="getSites" />',
+					siteSearchInput: '#<portlet:namespace />name'
+				}
+			);
+
+			<c:if test="<%= PortalPermissionUtil.contains(permissionChecker, ActionKeys.ADD_COMMUNITY) %>">
+				var controlContainer = A.one('.so-portlet-sites .control-container');
+
+				var addSiteButton = new A.Toolbar(
+					{
+						children: [
+							{
+								icon: 'plusthick',
+								label: '<liferay-ui:message key="add-site" />',
+								on: {
+									click: function(event) {
+										<liferay-portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>" var="addSiteURL">
+											<portlet:param name="jspPage" value="/sites/edit_site.jsp" />
+										</liferay-portlet:renderURL>
+
+										Liferay.SO.Sites.displayPopup('<%= addSiteURL %>', '<liferay-ui:message key="add-site" />');
+									}
+								}
+							},
+							{
+								label: '<liferay-ui:message key="directory" />',
+								on: {
+									click: function(event) {
+										<liferay-portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>" var="viewSitesURL">
+											<portlet:param name="jspPage" value="/sites/view_sites.jsp" />
+										</liferay-portlet:renderURL>
+
+										Liferay.SO.Sites.displayPopup('<%= viewSitesURL %>', '<liferay-ui:message key="sites" />');
+									}
+								}
+							}
+						]
+					}
+				).render(controlContainer);
+			</c:if>
+
+			var searchInput = A.one('#<portlet:namespace />name');
+
+			var siteList = A.one('.so-portlet-sites .site-list');
+
+			siteList.delegate(
+				'click',
+				function(event) {
+					var keywords = searchInput.get('value');
+
+					var data = {
+						keywords: keywords,
+						userSites: (keywords == '')
+					};
+
+					<liferay-portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>" var="viewSitesURL">
+						<portlet:param name="jspPage" value="/sites/view_sites.jsp" />
+					</liferay-portlet:renderURL>
+
+					Liferay.SO.Sites.displayPopup('<%= viewSitesURL %>', '<liferay-ui:message key="sites" />', data);
+				},
+				'.more a'
+			);
+
+			siteList.delegate(
+				'click',
+				function(event) {
+					event.preventDefault();
+
+					A.io.request(
+						event.currentTarget.get('href'),
+						{
+							after: {
+								success: function(event, id, obj) {
+									Liferay.SO.Sites.updateSites();
+								}
+							}
+						}
+					);
+				},
+				'.join a'
+			);
 		}
-	)
+	);
 </aui:script>
