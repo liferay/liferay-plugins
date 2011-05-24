@@ -325,6 +325,12 @@ a:active {
 	padding: 5px;
 }
 
+/* Buttons */
+
+.yui3-aui-toolbar-item {
+	min-height: 25px;
+}
+
 /* Detail column */
 
 .detail-column {
