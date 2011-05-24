@@ -56,7 +56,7 @@ $theme.include($body_top_include)
 			</div>
 		#end
 
-		#if ($has_navigation)
+		#if ($has_navigation || ($page_group.isUser() && ($page_group.getClassPK() == $user_id)))
 			#parse ("$full_templates_path/navigation.vm")
 		#end
 	</header>
