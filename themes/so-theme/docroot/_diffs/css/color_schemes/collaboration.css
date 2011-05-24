@@ -40,6 +40,7 @@
 			float: none;
 			margin: 0;
 			position: absolute;
+			padding-bottom: 2px;
 			right: 0;
 			z-index: 9999;
 			
@@ -77,6 +78,10 @@
 	}
 }
 
-.ie7 #banner {
+.ie7 .collaboration #banner {
 	z-index: 10;
+}
+
+.ie .collaboration #navigation ul {
+	height: auto;
 }
