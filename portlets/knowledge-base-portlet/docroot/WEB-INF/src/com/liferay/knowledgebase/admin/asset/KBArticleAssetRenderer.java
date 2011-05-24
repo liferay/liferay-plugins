@@ -29,6 +29,7 @@ import com.liferay.portlet.asset.model.BaseAssetRenderer;
 
 import java.util.Locale;
 
+import javax.portlet.PortletRequest;
 import javax.portlet.PortletURL;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
@@ -59,11 +60,13 @@ public class KBArticleAssetRenderer extends BaseAssetRenderer {
 	}
 
 	public PortletURL getURLEdit(
-		LiferayPortletRequest liferayPortletRequest,
-		LiferayPortletResponse liferayPortletResponse) {
+			LiferayPortletRequest liferayPortletRequest,
+			LiferayPortletResponse liferayPortletResponse)
+		throws Exception {
 
-		PortletURL portletURL = liferayPortletResponse.createRenderURL(
-			PortletKeys.KNOWLEDGE_BASE_ADMIN);
+		PortletURL portletURL = liferayPortletResponse.createLiferayPortletURL(
+			getControlPanelPlid(liferayPortletRequest),
+			PortletKeys.KNOWLEDGE_BASE_ADMIN, PortletRequest.RENDER_PHASE);
 
 		portletURL.setParameter("jspPage", "/admin/edit_article.jsp");
 		portletURL.setParameter(
