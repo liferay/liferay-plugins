@@ -109,6 +109,10 @@
 			background-color: #F0F5F7;
 		}
 
+		li.empty {
+			background-image: url(<%= themeImagesPath %>/messages/alert.png);
+		}
+
 		li.social-office-enabled {
 			background-image: url(<%= PortalUtil.getPathContext() %>/html/icons/social_office.png);
 		}
