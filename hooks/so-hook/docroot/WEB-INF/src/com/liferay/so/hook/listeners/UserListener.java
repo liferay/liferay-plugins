@@ -59,8 +59,10 @@ public class UserListener extends BaseModelListener<User> {
 		Group group = user.getGroup();
 
 		LayoutSetLocalServiceUtil.deleteLayoutSet(group.getGroupId(), false);
+		LayoutSetLocalServiceUtil.deleteLayoutSet(group.getGroupId(), true);
 
 		LayoutSetLocalServiceUtil.addLayoutSet(group.getGroupId(), false);
+		LayoutSetLocalServiceUtil.addLayoutSet(group.getGroupId(), true);
 	}
 
 }

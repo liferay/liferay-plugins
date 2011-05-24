@@ -68,50 +68,23 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 		throws ModelListenerException {
 
 		try {
-			if (layoutSet.isPrivateLayout()) {
-				return;
-			}
-
 			Group group = GroupLocalServiceUtil.getGroup(
 				layoutSet.getGroupId());
 
-			if (group.isUser()) {
-				addUserLayouts(group);
+			if (!group.isUser()) {
+				return;
+			}
+
+			if (layoutSet.isPrivateLayout()) {
+				addPrivateUserLayouts(group);
+			}
+			else {
+				addPublicUserLayouts(group);
 			}
 		}
 		catch (Exception e) {
 			throw new ModelListenerException(e);
 		}
-	}
-
-	protected void addUserLayouts(Group group) throws Exception {
-
-		// Look and Feel
-
-		LayoutSetLocalServiceUtil.updateLookAndFeel(
-			group.getGroupId(), "so_WAR_sotheme", "01", "", false);
-
-		// Home
-
-		Layout layout = addLayout(
-			group, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, "Home",
-			"2_columns_ii");
-
-		addPortlets(group, layout, "/home");
-
-		updatePermissions(layout, false);
-
-		addApplications(group, layout.getLayoutId());
-
-		// Profile
-
-		layout = addLayout(
-			group, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, "Profile",
-			"2_columns_ii");
-
-		addPortlets(group, layout, "/profile");
-
-		updatePermissions(layout, true);
 	}
 
 	protected void addApplications(Group group, long parentLayoutId)
@@ -126,7 +99,7 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 			}
 
 			Layout layout = addLayout(
-				group, parentLayoutId, portlet.getDisplayName(),
+				group, true, parentLayoutId, portlet.getDisplayName(),
 				"2_columns_ii");
 
 			LayoutTypePortlet layoutTypePortlet =
@@ -165,15 +138,15 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 	}
 
 	protected Layout addLayout(
-			Group group, long parentLayoutId, String name,
-			String layoutTemplateId)
+			Group group, boolean privateLayout, long parentLayoutId,
+			String name, String layoutTemplateId)
 		throws Exception {
 
 		ServiceContext serviceContext = new ServiceContext();
 
 		Layout layout = LayoutLocalServiceUtil.addLayout(
-			group.getCreatorUserId(), group.getGroupId(), false, parentLayoutId,
-			name, StringPool.BLANK, StringPool.BLANK,
+			group.getCreatorUserId(), group.getGroupId(), privateLayout,
+			parentLayoutId, name, StringPool.BLANK, StringPool.BLANK,
 			LayoutConstants.TYPE_PORTLET, false, null, serviceContext);
 
 		LayoutTypePortlet layoutTypePortlet =
@@ -184,6 +157,21 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 		return LayoutLocalServiceUtil.updateLayout(
 			layout.getGroupId(), layout.isPrivateLayout(), layout.getLayoutId(),
 			layout.getTypeSettings());
+	}
+
+	protected void addPrivateUserLayouts(Group group) throws Exception {
+		LayoutSetLocalServiceUtil.updateLookAndFeel(
+			group.getGroupId(), true, "so_WAR_sotheme", "01", "", false);
+
+		Layout layout = addLayout(
+			group, true, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, "Home",
+			"2_columns_ii");
+
+		addPortlets(group, layout, "/home");
+
+		updatePermissions(layout, false);
+
+		addApplications(group, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID);
 	}
 
 	protected void addPortlets(Group group, Layout layout, String name)
@@ -240,6 +228,19 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 				updatePortletTitle(layout, portletId, "Announcements");
 			}
 		}
+	}
+
+	protected void addPublicUserLayouts(Group group) throws Exception {
+		LayoutSetLocalServiceUtil.updateLookAndFeel(
+			group.getGroupId(), false, "so_WAR_sotheme", "01", "", false);
+
+		Layout layout = addLayout(
+			group, false, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, "Profile",
+			"2_columns_ii");
+
+		addPortlets(group, layout, "/profile");
+
+		updatePermissions(layout, true);
 	}
 
 	protected void addResources(Layout layout, String portletId)
