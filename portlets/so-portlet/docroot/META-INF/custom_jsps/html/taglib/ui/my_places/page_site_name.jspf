@@ -22,7 +22,7 @@ boolean socialOfficeEnabled = GetterUtil.getBoolean(myPlace.getExpandoBridge().g
 %>
 
 <span class="site-name">
-	<c:if test="<%= regularSite %>">
+	<c:if test="<%= regularSite && !myPlace.isControlPanel() %>">
 		<c:choose>
 			<c:when test="<%= socialOfficeEnabled %>">
 				<liferay-ui:icon message="<%= myPlace.getDescriptiveName() %>" src='<%= themeDisplay.getPathContext() + "/html/icons/social_office.png" %>' />
