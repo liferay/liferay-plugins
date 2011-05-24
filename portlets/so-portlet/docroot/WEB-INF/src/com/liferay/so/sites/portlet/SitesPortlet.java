@@ -226,7 +226,7 @@ public class SitesPortlet extends MVCPortlet {
 
 		boolean privateLayout = false;
 
-		if (type != GroupConstants.TYPE_COMMUNITY_OPEN) {
+		if (type != GroupConstants.TYPE_SITE_OPEN) {
 			privateLayout = true;
 		}
 

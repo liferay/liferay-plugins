@@ -81,13 +81,13 @@ public class UpgradeGroup extends UpgradeProcess {
 			return;
 		}
 
-		if ((group.getType() == GroupConstants.TYPE_COMMUNITY_PRIVATE) &&
+		if ((group.getType() == GroupConstants.TYPE_SITE_PRIVATE) &&
 			group.hasPrivateLayouts()) {
 
 			return;
 		}
 
-		if ((group.getType() == GroupConstants.TYPE_COMMUNITY_OPEN) &&
+		if ((group.getType() == GroupConstants.TYPE_SITE_OPEN) &&
 			group.hasPublicLayouts()) {
 
 			return;

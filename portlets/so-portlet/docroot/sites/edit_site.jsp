@@ -86,9 +86,9 @@ portletURL.setParameter("jspPage", "/sites/edit_site.jsp");
 					</aui:select>
 
 					<aui:select name="type">
-						<aui:option label="open" value="<%= GroupConstants.TYPE_COMMUNITY_OPEN %>" />
-						<aui:option label="restricted" value="<%= GroupConstants.TYPE_COMMUNITY_RESTRICTED %>" />
-						<aui:option label="private" value="<%= GroupConstants.TYPE_COMMUNITY_PRIVATE %>" />
+						<aui:option label="open" value="<%= GroupConstants.TYPE_SITE_OPEN %>" />
+						<aui:option label="restricted" value="<%= GroupConstants.TYPE_SITE_RESTRICTED %>" />
+						<aui:option label="private" value="<%= GroupConstants.TYPE_SITE_PRIVATE %>" />
 					</aui:select>
 				</aui:fieldset>
 			</aui:column>
