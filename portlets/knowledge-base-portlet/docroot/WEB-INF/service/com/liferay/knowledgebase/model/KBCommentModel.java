@@ -16,6 +16,7 @@ package com.liferay.knowledgebase.model;
 
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.model.AttachedModel;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.GroupedModel;
 import com.liferay.portal.service.ServiceContext;
@@ -39,7 +40,8 @@ import java.util.Date;
  * @see com.liferay.knowledgebase.model.impl.KBCommentModelImpl
  * @generated
  */
-public interface KBCommentModel extends BaseModel<KBComment>, GroupedModel {
+public interface KBCommentModel extends AttachedModel, BaseModel<KBComment>,
+	GroupedModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
