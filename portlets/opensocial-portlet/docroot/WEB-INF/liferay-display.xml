@@ -5,6 +5,7 @@
 	<category name="category.hidden">
 		<portlet id="1" />
 		<portlet id="2" />
+		<portlet id="3" />
 	</category>
 	<category name="category.gadgets">
 		<portlet id="4" />

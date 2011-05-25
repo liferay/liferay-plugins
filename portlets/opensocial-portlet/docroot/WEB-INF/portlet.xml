@@ -47,10 +47,11 @@
 		<supports>
 			<mime-type>text/html</mime-type>
 		</supports>
+		<resource-bundle>content.Language</resource-bundle>
 		<portlet-info>
-			<title>OpenSocial</title>
-			<short-title>OpenSocial</short-title>
-			<keywords>OpenSocial</keywords>
+			<title>OpenSocial Gadget</title>
+			<short-title>OpenSocial Gadget</short-title>
+			<keywords>OpenSocial Gadget</keywords>
 		</portlet-info>
 		<security-role-ref>
 			<role-name>administrator</role-name>
@@ -67,10 +68,10 @@
 	</portlet>
 	<portlet>
 		<portlet-name>3</portlet-name>
-		<portlet-class>com.liferay.util.bridges.mvc.MVCPortlet</portlet-class>
+		<portlet-class>com.liferay.opensocial.adhocgadget.portlet.AdhocGadgetPortlet</portlet-class>
 		<init-param>
 			<name>view-jsp</name>
-			<value>/add_gadget/view.jsp</value>
+			<value>/adhoc_gadget/view.jsp</value>
 		</init-param>
 		<init-param>
 			<name>copy-request-parameters</name>
@@ -80,10 +81,11 @@
 		<supports>
 			<mime-type>text/html</mime-type>
 		</supports>
+		<resource-bundle>content.Language</resource-bundle>
 		<portlet-info>
-			<title>Add Gadget</title>
-			<short-title>Add Gadget</short-title>
-			<keywords>Add Gadget</keywords>
+			<title>OpenSocial Gadget</title>
+			<short-title>OpenSocial Gadget</short-title>
+			<keywords>OpenSocial Gadget</keywords>
 		</portlet-info>
 	</portlet>
 	<portlet>
@@ -102,10 +104,12 @@
 		<supports>
 			<mime-type>text/html</mime-type>
 		</supports>
+		<resource-bundle>content.Language</resource-bundle>
 		<portlet-info>
 			<title>OpenSocial Gadget Editor</title>
 			<short-title>OpenSocial Gadget Editor</short-title>
 			<keywords>OpenSocial Gadget Editor</keywords>
 		</portlet-info>
 	</portlet>
+
 </portlet-app>

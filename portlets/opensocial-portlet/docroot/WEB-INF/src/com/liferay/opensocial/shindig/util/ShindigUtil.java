@@ -16,6 +16,8 @@ package com.liferay.opensocial.shindig.util;
 
 import com.google.inject.Inject;
 
+import com.liferay.opensocial.GadgetURLException;
+import com.liferay.opensocial.model.impl.GadgetImpl;
 import com.liferay.opensocial.service.GadgetLocalServiceUtil;
 import com.liferay.opensocial.util.PortletPropsValues;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -27,11 +29,10 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Layout;
-import com.liferay.portal.model.Portlet;
-import com.liferay.portal.service.PortletLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
@@ -42,6 +43,7 @@ import java.io.File;
 
 import java.util.Map;
 
+import javax.portlet.PortletPreferences;
 import javax.portlet.PortletRequest;
 
 import org.apache.shindig.auth.BasicSecurityToken;
@@ -57,6 +59,7 @@ import org.apache.shindig.gadgets.spec.GadgetSpec;
 import org.apache.shindig.gadgets.spec.ModulePrefs;
 import org.apache.shindig.gadgets.spec.OAuthService;
 import org.apache.shindig.gadgets.spec.OAuthSpec;
+import org.apache.shindig.gadgets.spec.UserPref;
 
 import org.json.JSONObject;
 
@@ -149,6 +152,35 @@ public class ShindigUtil {
 		return gadget;
 	}
 
+	public static com.liferay.opensocial.model.Gadget getGadget(
+			PortletPreferences portletPreferences)
+		throws Exception {
+
+		String url = portletPreferences.getValue("url", StringPool.BLANK);
+
+		if (Validator.isNull(url)) {
+			return null;
+		}
+
+		com.liferay.opensocial.model.Gadget gadget = new GadgetImpl();
+
+		GadgetSpec gadgetSpec = null;
+
+		try {
+			gadgetSpec = ShindigUtil.getGadgetSpec(url);
+		}
+		catch (Exception e) {
+			throw new GadgetURLException(e);
+		}
+
+		ModulePrefs modulePrefs = gadgetSpec.getModulePrefs();
+
+		gadget.setName(modulePrefs.getTitle());
+		gadget.setUrl(url);
+
+		return gadget;
+	}
+
 	public static Folder getGadgetEditorRootFolder(long repositoryId)
 		throws Exception {
 
@@ -187,6 +219,10 @@ public class ShindigUtil {
 	public static GadgetSpec getGadgetSpec(
 			String url, boolean debug, boolean ignoreCache)
 		throws Exception {
+
+		if (Validator.isNull(url)) {
+			return null;
+		}
 
 		JSONObject gadgetContextJSONObject = new JSONObject();
 
@@ -254,10 +290,7 @@ public class ShindigUtil {
 		String portletId = ParamUtil.getString(
 			portletRequest, "portletResource");
 
-		Portlet portlet = PortletLocalServiceUtil.getPortletById(
-			themeDisplay.getCompanyId(), portletId);
-
-		return PortalUtil.getPortletNamespace(portlet.getPortletName());
+		return PortalUtil.getPortletNamespace(portletId);
 	}
 
 	public static String getTableOpenSocial() {
@@ -271,6 +304,32 @@ public class ShindigUtil {
 			return true;
 		}
 		catch (Exception e) {
+		}
+
+		return false;
+	}
+
+	public static boolean hasUserPrefs(GadgetSpec gadgetSpec) throws Exception {
+		if (gadgetSpec == null) {
+			return false;
+		}
+
+		return hasUserPrefs(gadgetSpec.getUserPrefs());
+	}
+
+	public static boolean hasUserPrefs(Map<String, UserPref> userPrefs)
+		throws Exception {
+
+		if (userPrefs == null) {
+			return false;
+		}
+
+		if ((userPrefs != null) && !userPrefs.isEmpty()) {
+			for (UserPref userPref : userPrefs.values()) {
+				if (userPref.getDataType() != UserPref.DataType.HIDDEN) {
+					return true;
+				}
+			}
 		}
 
 		return false;

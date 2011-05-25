@@ -21,12 +21,14 @@
 	</portlet>
 	<portlet>
 		<portlet-name>3</portlet-name>
-		<use-default-template>false</use-default-template>
-		<header-portlet-javascript>/add_gadget/js/main.js</header-portlet-javascript>
-		<footer-portlet-javascript>/js/service.js</footer-portlet-javascript>
-		<css-class-wrapper>opensocial-portlet-add-gadget</css-class-wrapper>
-		<add-default-resource>true</add-default-resource>
-		<system>true</system>
+		<icon>/icon.png</icon>
+		<configuration-action-class>com.liferay.opensocial.adhocgadget.action.ConfigurationActionImpl</configuration-action-class>
+		<instanceable>true</instanceable>
+		<header-portlet-css>/gadget/css/main.css</header-portlet-css>
+		<footer-portlet-javascript>/gadgets/js/shindig-container:pubsub-2.js?c=1&amp;debug=1&amp;nocache=1</footer-portlet-javascript>
+		<footer-portlet-javascript>/gadget/js/OpenAjax_Hub_2.0.5_r1293/src/containers/inline/inline.js</footer-portlet-javascript>
+		<footer-portlet-javascript>/gadget/js/main.js</footer-portlet-javascript>
+		<css-class-wrapper>opensocial-portlet-gadget</css-class-wrapper>
 	</portlet>
 	<portlet>
 		<portlet-name>4</portlet-name>

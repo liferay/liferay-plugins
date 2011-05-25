@@ -11,16 +11,18 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
+package com.liferay.opensocial.adhocgadget.action;
 
-package com.liferay.opensocial.gadget.action;
-
+import com.liferay.opensocial.gadget.action.BaseConfigurationAction;
 import com.liferay.opensocial.model.Gadget;
 import com.liferay.opensocial.shindig.util.ShindigUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portlet.PortletPreferencesFactoryUtil;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletConfig;
+import javax.portlet.PortletPreferences;
 import javax.portlet.PortletRequest;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
@@ -35,18 +37,29 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 			ActionResponse actionResponse)
 		throws Exception {
 
-		doProcessAction(
-			portletConfig, actionRequest, actionResponse);
+		String tabs2 = ParamUtil.get(actionRequest, "tabs2", "gadget");
+
+		if (tabs2.equals("preferences")) {
+			doProcessAction(portletConfig, actionRequest, actionResponse);
+		}
+		else {
+			String url = getParameter(actionRequest, "url");
+
+			setPreference(actionRequest, "url", url);
+
+			super.processAction(portletConfig, actionRequest, actionResponse);
+		}
 	}
 
 	public String render(PortletConfig portletConfig,
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws Exception {
 
-		doRender(
-			portletConfig, renderRequest, renderResponse);
+		if (hasUserPrefs(portletConfig, renderRequest)) {
+			doRender(portletConfig, renderRequest, renderResponse);
+		}
 
-		return "/gadget/configuration.jsp";
+		return "/adhoc_gadget/configuration.jsp";
 	}
 
 	protected Gadget getGadget(
@@ -56,7 +69,11 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 		String portletResource = ParamUtil.getString(
 			portletRequest, "portletResource");
 
-		return ShindigUtil.getGadget(portletResource);
+		PortletPreferences portletPreferences =
+			PortletPreferencesFactoryUtil.getPortletSetup(
+				portletRequest, portletResource);
+
+		return ShindigUtil.getGadget(portletPreferences);
 	}
 
 }

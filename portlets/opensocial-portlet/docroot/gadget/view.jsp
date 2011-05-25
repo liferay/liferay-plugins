@@ -22,10 +22,10 @@ String view = (String)renderRequest.getAttribute(WebKeys.VIEW);
 
 String ownerId = ShindigUtil.getOwnerId(layout);
 String appId = gadget.getUrl();
-String gadgetUrl = gadget.getUrl();
+String url = gadget.getUrl();
 long moduleId = ShindigUtil.getModuleId(renderResponse.getNamespace());
 
-GadgetSpec gadgetSpec = ShindigUtil.getGadgetSpec(gadgetUrl);
+GadgetSpec gadgetSpec = ShindigUtil.getGadgetSpec(url);
 
 ModulePrefs modulePrefs = gadgetSpec.getModulePrefs();
 
@@ -33,7 +33,7 @@ Map<String, Feature> features = modulePrefs.getFeatures();
 
 boolean requiresPubsub = features.containsKey("pubsub-2");
 
-String secureToken = ShindigUtil.createSecurityToken(ownerId, themeDisplay.getUserId(), appId, PortalUtil.getPortalURL(themeDisplay), gadgetUrl, moduleId, currentURL);
+String secureToken = ShindigUtil.createSecurityToken(ownerId, themeDisplay.getUserId(), appId, PortalUtil.getPortalURL(themeDisplay), url, moduleId, currentURL);
 %>
 
 <div class="gadgets-gadget-chrome" id="<portlet:namespace />gadget"></div>
@@ -41,7 +41,7 @@ String secureToken = ShindigUtil.createSecurityToken(ownerId, themeDisplay.getUs
 <aui:script use="liferay-open-social-gadget">
 	new Liferay.OpenSocial.Gadget(
 		{
-			appId: '<%= gadgetUrl %>',
+			appId: '<%= url %>',
 			debug: '<%= PortletPropsValues.SHINDIG_JS_DEBUG %>',
 			height: <%= modulePrefs.getHeight() %>,
 			moduleId: '<%= moduleId %>',
@@ -51,7 +51,7 @@ String secureToken = ShindigUtil.createSecurityToken(ownerId, themeDisplay.getUs
 			scrolling: <%= modulePrefs.getScrolling() %>,
 			secureToken: '<%= secureToken %>',
 			serverBase: '<%= renderRequest.getContextPath() %>/gadgets/',
-			specUrl: '<%= gadgetUrl %>',
+			specUrl: '<%= url %>',
 			store: new Liferay.OpenSocial.Store.Expando(
 				{
 					userPrefsKey: '<%= ShindigUtil.getColumnUserPrefs(renderResponse.getNamespace()) %>'
