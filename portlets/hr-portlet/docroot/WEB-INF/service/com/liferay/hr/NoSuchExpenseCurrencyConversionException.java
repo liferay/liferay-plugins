@@ -19,7 +19,8 @@ import com.liferay.portal.NoSuchModelException;
 /**
  * @author Wesley Gong
  */
-public class NoSuchExpenseCurrencyConversionException extends NoSuchModelException {
+public class NoSuchExpenseCurrencyConversionException
+	extends NoSuchModelException {
 
 	public NoSuchExpenseCurrencyConversionException() {
 		super();
@@ -29,7 +30,9 @@ public class NoSuchExpenseCurrencyConversionException extends NoSuchModelExcepti
 		super(msg);
 	}
 
-	public NoSuchExpenseCurrencyConversionException(String msg, Throwable cause) {
+	public NoSuchExpenseCurrencyConversionException(
+		String msg, Throwable cause) {
+
 		super(msg, cause);
 	}
 
