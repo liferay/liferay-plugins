@@ -482,14 +482,12 @@ public class IMAPMailbox extends BaseMailbox {
 		List<javax.mail.Folder> jxFolders = _imapAccessor.getFolders();
 
 		for (javax.mail.Folder jxFolder : jxFolders) {
-			Folder folder = null;
-
 			try {
-				folder = FolderLocalServiceUtil.getFolder(
+				FolderLocalServiceUtil.getFolder(
 					account.getAccountId(), jxFolder.getFullName());
 			}
 			catch (NoSuchFolderException nsfe) {
-				folder = FolderLocalServiceUtil.addFolder(
+				FolderLocalServiceUtil.addFolder(
 					user.getUserId(), account.getAccountId(),
 					jxFolder.getFullName(), jxFolder.getName(), 0);
 			}

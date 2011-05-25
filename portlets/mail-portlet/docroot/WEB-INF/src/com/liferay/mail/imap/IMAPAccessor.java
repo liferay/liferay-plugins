@@ -647,9 +647,8 @@ public class IMAPAccessor {
 				long remoteMessageId = imapFolder.getUID(jxMessage);
 
 				try {
-					com.liferay.mail.model.Message message =
-						MessageLocalServiceUtil.getMessage(
-							folderId, remoteMessageId);
+					MessageLocalServiceUtil.getMessage(
+						folderId, remoteMessageId);
 				}
 				catch (NoSuchMessageException nsme) {
 					MessageLocalServiceUtil.addMessage(
