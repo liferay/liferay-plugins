@@ -53,9 +53,9 @@ public interface AttachmentModel extends BaseModel<Attachment> {
 	/**
 	 * Sets the primary key of this attachment
 	 *
-	 * @param pk the primary key of this attachment
+	 * @param primaryKey the primary key of this attachment
 	 */
-	public void setPrimaryKey(long pk);
+	public void setPrimaryKey(long primaryKey);
 
 	/**
 	 * Gets the attachment ID of this attachment.
@@ -213,6 +213,8 @@ public interface AttachmentModel extends BaseModel<Attachment> {
 	public void setEscapedModel(boolean escapedModel);
 
 	public Serializable getPrimaryKeyObj();
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj);
 
 	public ExpandoBridge getExpandoBridge();
 

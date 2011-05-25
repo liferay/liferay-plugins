@@ -46,12 +46,16 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 		return _messageId;
 	}
 
-	public void setPrimaryKey(long pk) {
-		setMessageId(pk);
+	public void setPrimaryKey(long primaryKey) {
+		setMessageId(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_messageId);
+	}
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public long getMessageId() {
@@ -284,9 +288,9 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 			return false;
 		}
 
-		long pk = message.getPrimaryKey();
+		long primaryKey = message.getPrimaryKey();
 
-		if (getPrimaryKey() == pk) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {

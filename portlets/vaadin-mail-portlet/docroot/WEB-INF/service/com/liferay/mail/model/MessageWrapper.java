@@ -48,10 +48,10 @@ public class MessageWrapper implements Message {
 	/**
 	* Sets the primary key of this message
 	*
-	* @param pk the primary key of this message
+	* @param primaryKey the primary key of this message
 	*/
-	public void setPrimaryKey(long pk) {
-		_message.setPrimaryKey(pk);
+	public void setPrimaryKey(long primaryKey) {
+		_message.setPrimaryKey(primaryKey);
 	}
 
 	/**
@@ -442,6 +442,10 @@ public class MessageWrapper implements Message {
 
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _message.getPrimaryKeyObj();
+	}
+
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_message.setPrimaryKeyObj(primaryKeyObj);
 	}
 
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
