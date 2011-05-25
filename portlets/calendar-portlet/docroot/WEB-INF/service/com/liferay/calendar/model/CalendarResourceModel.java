@@ -16,6 +16,7 @@ package com.liferay.calendar.model;
 
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.model.AttachedModel;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.GroupedModel;
 import com.liferay.portal.service.ServiceContext;
@@ -41,8 +42,8 @@ import java.util.Map;
  * @see com.liferay.calendar.model.impl.CalendarResourceModelImpl
  * @generated
  */
-public interface CalendarResourceModel extends BaseModel<CalendarResource>,
-	GroupedModel {
+public interface CalendarResourceModel extends AttachedModel,
+	BaseModel<CalendarResource>, GroupedModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
