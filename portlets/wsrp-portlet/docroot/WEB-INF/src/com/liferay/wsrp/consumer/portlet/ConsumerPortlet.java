@@ -1596,7 +1596,7 @@ public class ConsumerPortlet extends GenericPortlet {
 			if (cacheControl.getExpires() == 0) {
 				resourceResponse.setProperty(
 					HttpHeaders.CACHE_CONTROL,
-					HttpHeaders.CACHE_CONTROL_NO_CACHE_NO_STORE_VALUE);
+					HttpHeaders.CACHE_CONTROL_NO_CACHE_VALUE);
 			}
 			else if (cacheControl.getExpires() > 0) {
 				resourceResponse.setProperty(

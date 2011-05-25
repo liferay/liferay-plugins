@@ -168,7 +168,7 @@ public class WSRPProducerLocalServiceImpl
 		LinkedHashMap<String, Object> params =
 			new LinkedHashMap<String, Object>();
 
-		int type = GroupConstants.TYPE_COMMUNITY_SYSTEM;
+		int type = GroupConstants.TYPE_SITE_SYSTEM;
 
 		params.put("type", type);
 
