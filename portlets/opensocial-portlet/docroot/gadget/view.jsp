@@ -23,7 +23,7 @@ String view = (String)renderRequest.getAttribute(WebKeys.VIEW);
 String ownerId = ShindigUtil.getOwnerId(layout);
 long moduleId = ShindigUtil.getModuleId(renderResponse.getNamespace());
 
-GadgetSpec gadgetSpec = ShindigUtil.getGadgetSpec(url);
+GadgetSpec gadgetSpec = ShindigUtil.getGadgetSpec(gadget.getUrl());
 
 ModulePrefs modulePrefs = gadgetSpec.getModulePrefs();
 
