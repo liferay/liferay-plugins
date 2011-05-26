@@ -19,6 +19,7 @@ import com.liferay.opensocial.service.GadgetLocalServiceUtil;
 import com.liferay.opensocial.service.OAuthConsumerLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.servlet.SessionErrors;
+import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.WebKeys;
@@ -47,7 +48,12 @@ public class AdminPortlet extends MVCPortlet {
 
 		long gadgetId = ParamUtil.getLong(actionRequest, "gadgetId");
 
-		GadgetLocalServiceUtil.deleteGadget(gadgetId);
+		try {
+			GadgetLocalServiceUtil.deleteGadget(gadgetId);
+		}
+		catch (PortalException pe) {
+			SessionErrors.add(actionRequest, pe.getClass().getName());
+		}
 	}
 
 	public void deleteOAuthConsumer(
@@ -59,7 +65,12 @@ public class AdminPortlet extends MVCPortlet {
 		long oAuthConsumerId = ParamUtil.getLong(
 			actionRequest, "oAuthConsumerId");
 
-		OAuthConsumerLocalServiceUtil.deleteOAuthConsumer(oAuthConsumerId);
+		try {
+			OAuthConsumerLocalServiceUtil.deleteOAuthConsumer(oAuthConsumerId);
+		}
+		catch (PortalException pe) {
+			SessionErrors.add(actionRequest, pe.getClass().getName());
+		}
 	}
 
 	public void updateGadget(
@@ -69,7 +80,14 @@ public class AdminPortlet extends MVCPortlet {
 		checkPermissions(actionRequest);
 
 		try {
-			doUpdateGadget(actionRequest, actionResponse);
+			String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
+
+			if (cmd.equals(Constants.ADD)) {
+				doAddGadget(actionRequest, actionResponse);
+			}
+			else if (cmd.equals(Constants.UPDATE)) {
+				doUpdateGadget(actionRequest, actionResponse);
+			}
 		}
 		catch (PortalException pe) {
 			SessionErrors.add(actionRequest, pe.getClass().getName());
@@ -83,7 +101,14 @@ public class AdminPortlet extends MVCPortlet {
 		checkPermissions(actionRequest);
 
 		try {
-			doUpdateOAuthConsumer(actionRequest, actionResponse);
+			String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
+
+			if (cmd.equals(Constants.ADD)) {
+				doAddOAuthConsumer(actionRequest, actionResponse);
+			}
+			else if (cmd.equals(Constants.UPDATE)) {
+				doUpdateOAuthConsumer(actionRequest, actionResponse);
+			}
 		}
 		catch (PortalException pe) {
 			SessionErrors.add(actionRequest, pe.getClass().getName());
@@ -104,61 +129,71 @@ public class AdminPortlet extends MVCPortlet {
 		}
 	}
 
-	protected void doUpdateGadget(
+	protected Gadget doAddGadget(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
-
-		long gadgetId = ParamUtil.getLong(actionRequest, "gadgetId");
 
 		String url = ParamUtil.getString(actionRequest, "url");
 		String portletCategoryNames = ParamUtil.getString(
 			actionRequest, "portletCategoryNames");
 
-		if (gadgetId <= 0) {
-			ServiceContext serviceContext = ServiceContextFactory.getInstance(
-				Gadget.class.getName(), actionRequest);
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(
+			Gadget.class.getName(), actionRequest);
 
-			GadgetLocalServiceUtil.addGadget(
-				themeDisplay.getCompanyId(), url, portletCategoryNames,
-				serviceContext);
-		}
-		else {
-			GadgetLocalServiceUtil.updateGadget(
-				gadgetId, portletCategoryNames);
-		}
-
+		return GadgetLocalServiceUtil.addGadget(
+			themeDisplay.getCompanyId(), url, portletCategoryNames,
+			serviceContext);
 	}
 
-	protected void doUpdateOAuthConsumer(
+	protected void doAddOAuthConsumer(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
-
+	
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
-
-		long oAuthConsumerId = ParamUtil.getLong(
-			actionRequest, "oAuthConsumerId");
-
+	
 		long gadgetId = ParamUtil.getLong(actionRequest, "gadgetId");
 		String serviceName = ParamUtil.getString(actionRequest, "serviceName");
 		String consumerKey = ParamUtil.getString(actionRequest, "consumerKey");
 		String consumerSecret = ParamUtil.getString(
 			actionRequest, "consumerSecret");
 		String keyType = ParamUtil.getString(actionRequest, "keyType");
+	
+		OAuthConsumerLocalServiceUtil.addOAuthConsumer(
+			themeDisplay.getCompanyId(), gadgetId, serviceName, consumerKey,
+			consumerSecret, keyType);
+	}
 
-		if (oAuthConsumerId <= 0) {
-			OAuthConsumerLocalServiceUtil.addOAuthConsumer(
-				themeDisplay.getCompanyId(), gadgetId, serviceName, consumerKey,
-				consumerSecret, keyType);
-		}
-		else {
-			OAuthConsumerLocalServiceUtil.updateOAuthConsumer(
-				oAuthConsumerId, consumerKey, consumerSecret, keyType,
-				StringPool.BLANK, StringPool.BLANK);
-		}
+	protected void doUpdateGadget(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		long gadgetId = ParamUtil.getLong(actionRequest, "gadgetId");
+
+		String portletCategoryNames = ParamUtil.getString(
+			actionRequest, "portletCategoryNames");
+
+		GadgetLocalServiceUtil.updateGadget(gadgetId, portletCategoryNames);
+	}
+
+	protected void doUpdateOAuthConsumer(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		long oAuthConsumerId = ParamUtil.getLong(
+			actionRequest, "oAuthConsumerId");
+
+		String consumerKey = ParamUtil.getString(actionRequest, "consumerKey");
+		String consumerSecret = ParamUtil.getString(
+			actionRequest, "consumerSecret");
+		String keyType = ParamUtil.getString(actionRequest, "keyType");
+
+		OAuthConsumerLocalServiceUtil.updateOAuthConsumer(
+			oAuthConsumerId, consumerKey, consumerSecret, keyType,
+			StringPool.BLANK, StringPool.BLANK);
 	}
 
 }

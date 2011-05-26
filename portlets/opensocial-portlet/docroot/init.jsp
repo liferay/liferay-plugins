@@ -20,6 +20,7 @@
 
 <%@ taglib uri="http://liferay.com/tld/aui" prefix="aui" %>
 <%@ taglib uri="http://liferay.com/tld/portlet" prefix="liferay-portlet" %>
+<%@ taglib uri="http://liferay.com/tld/security" prefix="liferay-security" %>
 <%@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 <%@ taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
@@ -34,7 +35,9 @@
 <%@ page import="com.liferay.opensocial.model.OAuthConsumerConstants" %>
 <%@ page import="com.liferay.opensocial.service.GadgetLocalServiceUtil" %>
 <%@ page import="com.liferay.opensocial.service.OAuthConsumerLocalServiceUtil" %>
+<%@ page import="com.liferay.opensocial.service.permission.GadgetPermission" %>
 <%@ page import="com.liferay.opensocial.shindig.util.ShindigUtil" %>
+<%@ page import="com.liferay.opensocial.util.ActionKeys" %>
 <%@ page import="com.liferay.opensocial.util.PortletPropsValues" %>
 <%@ page import="com.liferay.opensocial.util.WebKeys" %>
 <%@ page import="com.liferay.portal.kernel.bean.BeanParamUtil" %>
@@ -42,6 +45,7 @@
 <%@ page import="com.liferay.portal.kernel.dao.search.SearchContainer" %>
 <%@ page import="com.liferay.portal.kernel.json.JSONObject" %>
 <%@ page import="com.liferay.portal.kernel.language.LanguageUtil" %>
+<%@ page import="com.liferay.portal.kernel.portlet.LiferayWindowState" %>
 <%@ page import="com.liferay.portal.kernel.repository.model.Folder" %>
 <%@ page import="com.liferay.portal.kernel.util.Constants" %>
 <%@ page import="com.liferay.portal.kernel.util.GetterUtil" %>
@@ -52,6 +56,7 @@
 <%@ page import="com.liferay.portal.kernel.util.TreeNodeView" %>
 <%@ page import="com.liferay.portal.kernel.util.TreeView" %>
 <%@ page import="com.liferay.portal.kernel.util.UnicodeFormatter" %>
+<%@ page import="com.liferay.portal.kernel.util.Validator" %>
 <%@ page import="com.liferay.portal.model.Portlet" %>
 <%@ page import="com.liferay.portal.model.User" %>
 <%@ page import="com.liferay.portal.service.PortletLocalServiceUtil" %>

@@ -21,12 +21,12 @@ ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_
 
 Gadget gadget = (Gadget)row.getObject();
 
-GadgetSpec gadgetSpec = null;
+long gadgetId = gadget.getGadgetId();
 
 Map<String, OAuthService> oAuthServices = null;
 
 try {
-	gadgetSpec = ShindigUtil.getGadgetSpec(gadget.getUrl());
+	GadgetSpec gadgetSpec = ShindigUtil.getGadgetSpec(gadget.getUrl());
 
 	oAuthServices = ShindigUtil.getOAuthServices(gadgetSpec);
 }
@@ -36,28 +36,43 @@ catch (Exception e) {
 %>
 
 <liferay-ui:icon-menu>
-	<portlet:renderURL var="updateGadgetURL">
-		<portlet:param name="jspPage" value="/admin/edit_gadget.jsp" />
-		<portlet:param name="redirect" value="<%= currentURL %>" />
-		<portlet:param name="gadgetId" value="<%= String.valueOf(gadget.getGadgetId()) %>" />
-	</portlet:renderURL>
-
-	<liferay-ui:icon image="edit" url="<%= updateGadgetURL %>" />
-
-	<c:if test="<%= (oAuthServices != null) && (oAuthServices.size() > 0) %>">
-		<portlet:renderURL var="configureOAuthURL">
-			<portlet:param name="jspPage" value="/admin/view_oauth_consumers.jsp" />
+	<c:if test="<%= GadgetPermission.contains(permissionChecker, themeDisplay.getScopeGroupId(), gadgetId, ActionKeys.UPDATE) %>">
+		<portlet:renderURL var="updateGadgetURL">
+			<portlet:param name="jspPage" value="/admin/edit_gadget.jsp" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
-			<portlet:param name="gadgetId" value="<%= String.valueOf(gadget.getGadgetId()) %>" />
+			<portlet:param name="gadgetId" value="<%= String.valueOf(gadgetId) %>" />
 		</portlet:renderURL>
 
-		<liferay-ui:icon image="portlet" message="manage-oauth" url="<%= configureOAuthURL %>" />
+		<liferay-ui:icon image="edit" url="<%= updateGadgetURL %>" />
+
+		<c:if test="<%= (oAuthServices != null) && (oAuthServices.size() > 0) %>">
+			<portlet:renderURL var="configureOAuthURL">
+				<portlet:param name="jspPage" value="/admin/view_oauth_consumers.jsp" />
+				<portlet:param name="redirect" value="<%= currentURL %>" />
+				<portlet:param name="gadgetId" value="<%= String.valueOf(gadgetId) %>" />
+			</portlet:renderURL>
+
+			<liferay-ui:icon image="portlet" message="manage-oauth" url="<%= configureOAuthURL %>" />
+		</c:if>
 	</c:if>
 
-	<portlet:actionURL name="deleteGadget" var="deleteURL">
-		<portlet:param name="redirect" value="<%= currentURL %>" />
-		<portlet:param name="gadgetId" value="<%= String.valueOf(gadget.getGadgetId()) %>" />
-	</portlet:actionURL>
+	<c:if test="<%= GadgetPermission.contains(permissionChecker, themeDisplay.getScopeGroupId(), gadgetId, ActionKeys.PERMISSIONS) %>">
+		<liferay-security:permissionsURL
+			modelResource="<%= Gadget.class.getName() %>"
+			modelResourceDescription="<%= gadget.getName() %>"
+			resourcePrimKey="<%= String.valueOf(gadgetId) %>"
+			var="permissionsURL"
+		/>
 
-	<liferay-ui:icon-delete url="<%= deleteURL %>" />
+		<liferay-ui:icon image="permissions" url="<%= permissionsURL %>" />
+	</c:if>
+
+	<c:if test="<%= GadgetPermission.contains(permissionChecker, themeDisplay.getScopeGroupId(), gadgetId, ActionKeys.DELETE) %>">
+		<portlet:actionURL name="deleteGadget" var="deleteURL">
+			<portlet:param name="redirect" value="<%= currentURL %>" />
+			<portlet:param name="gadgetId" value="<%= String.valueOf(gadgetId) %>" />
+		</portlet:actionURL>
+
+		<liferay-ui:icon-delete url="<%= deleteURL %>" />
+	</c:if>
 </liferay-ui:icon-menu>

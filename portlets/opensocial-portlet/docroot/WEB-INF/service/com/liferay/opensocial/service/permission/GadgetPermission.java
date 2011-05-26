@@ -14,6 +14,7 @@
 
 package com.liferay.opensocial.service.permission;
 
+import com.liferay.opensocial.model.Gadget;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.security.permission.PermissionChecker;
@@ -32,11 +33,29 @@ public class GadgetPermission {
 		}
 	}
 
+	public static void check(
+			PermissionChecker permissionChecker, long groupId, long gadgetId,
+			String actionId)
+		throws PortalException {
+
+		if (!contains(permissionChecker, groupId, gadgetId, actionId)) {
+			throw new PrincipalException();
+		}
+	}
+
 	public static boolean contains(
 		PermissionChecker permissionChecker, long groupId, String actionId) {
 
 		return permissionChecker.hasPermission(
 			groupId, _NAME, groupId, actionId);
+	}
+
+	public static boolean contains(
+		PermissionChecker permissionChecker, long groupId, long gadgetId,
+		String actionId) {
+
+		return permissionChecker.hasPermission(
+			groupId, Gadget.class.getName(), gadgetId, actionId);
 	}
 
 	private static final String _NAME = "com.liferay.opensocial";

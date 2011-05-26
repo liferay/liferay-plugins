@@ -19,6 +19,24 @@
 <%
 String redirect = ParamUtil.getString(request, "redirect");
 
+String editorGadgetURL = ParamUtil.getString(request, "editorGadgetURL");
+
+boolean editorGadget = false;
+
+String publishGadgetRedirect = StringPool.BLANK;
+
+if (Validator.isNotNull(editorGadgetURL)) {
+	editorGadget = true;
+
+	PortletURL publishGadgetRedirectURL = renderResponse.createRenderURL();
+
+	publishGadgetRedirectURL.setParameter("jspPage", "/editor/publish_gadget_redirect.jsp");
+
+	publishGadgetRedirectURL.setWindowState(LiferayWindowState.POP_UP);
+
+	publishGadgetRedirect = publishGadgetRedirectURL.toString();
+}
+
 long gadgetId = ParamUtil.getLong(request, "gadgetId");
 
 Gadget gadget = null;
@@ -37,20 +55,21 @@ if (gadget != null) {
 %>
 
 <liferay-ui:header
-	backURL="<%= redirect %>"
+	backURL="<%= editorGadget ? StringPool.BLANK : redirect %>"
 	title='<%= (gadget != null) ? gadget.getName() : "new-gadget" %>'
 />
 
 <portlet:actionURL name="updateGadget" var="updateGadgetURL">
 	<portlet:param name="jspPage" value="/admin/edit_gadget.jsp" />
 	<portlet:param name="redirect" value="<%= redirect %>" />
+	<portlet:param name="editorGadgetURL" value="<%= editorGadgetURL %>" />
 </portlet:actionURL>
 
 <aui:form action="<%= updateGadgetURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveGadget();" %>'>
-	<aui:input name="<%= Constants.CMD %>" type="hidden" />
-	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
+	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= (gadget == null) ? Constants.ADD : Constants.UPDATE %>" />
 	<aui:input name="gadgetId" type="hidden" value="<%= gadgetId %>" />
 	<aui:input name="portletCategoryNames" type="hidden" value="<%= portletCategoryNames %>" />
+	<aui:input name="publishGadgetRedirect" type="hidden" value="<%= publishGadgetRedirect %>" />
 
 	<liferay-ui:error exception="<%= DuplicateGadgetURLException.class %>" message="url-already-points-to-an-existing-gadget" />
 	<liferay-ui:error exception="<%= GadgetPortletCategoryNamesException.class %>" message="select-at-least-one-category" />
@@ -60,6 +79,13 @@ if (gadget != null) {
 
 	<aui:fieldset>
 		<c:choose>
+			<c:when test="<%= editorGadget %>">
+				<aui:input name="url" type="hidden" value="<%= editorGadgetURL %>" />
+
+				<aui:field-wrapper label="url">
+					<aui:a href="<%= editorGadgetURL %>" label="<%= editorGadgetURL %>" />
+				</aui:field-wrapper>
+			</c:when>
 			<c:when test="<%= gadget != null %>">
 				<aui:input name="url" type="hidden" />
 
@@ -86,7 +112,6 @@ if (gadget != null) {
 
 <aui:script>
 	function <portlet:namespace />saveGadget() {
-		document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = '<%= (gadget == null) ? Constants.ADD : Constants.UPDATE %>';
 		submitForm(document.<portlet:namespace />fm);
 	}
 
@@ -186,7 +211,7 @@ if (gadget != null) {
 
 <%
 if (gadget == null) {
-	PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(pageContext, "add-gadget"), currentURL);
+	PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(pageContext, "publish-gadget"), currentURL);
 }
 else {
 	PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(pageContext, "edit"), currentURL);

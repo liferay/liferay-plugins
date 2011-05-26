@@ -44,6 +44,7 @@ String keyType = BeanParamUtil.getString(oAuthConsumer, request, "keyType");
 />
 
 <form action="<portlet:actionURL name="updateOAuthConsumer"><portlet:param name="jspPage" value="/admin/edit_oauth_consumer.jsp" /><portlet:param name="redirect" value="<%= redirect %>" /></portlet:actionURL>" method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />saveOAuthConsumer(); return false;">
+<input name="<%= Constants.CMD %>" type="hidden" value="<%= (oAuthConsumer == null) ? Constants.ADD : Constants.UPDATE %>" />
 <input name="<portlet:namespace />gadgetId" type="hidden" value="<%= gadgetId %>" />
 <input name="<portlet:namespace />oAuthConsumerId" type="hidden" value="<%= oAuthConsumerId %>" />
 

@@ -57,9 +57,11 @@ PortletURL portletURL = renderResponse.createRenderURL();
 		/>
 	</liferay-ui:search-container-row>
 
-	<div>
-		<input type="button" value="<liferay-ui:message key="add-gadget" />" onClick="location.href = '<portlet:renderURL><portlet:param name="jspPage" value="/admin/edit_gadget.jsp" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:renderURL>';" />
-	</div>
+	<c:if test="<%= GadgetPermission.contains(permissionChecker, themeDisplay.getScopeGroupId(), ActionKeys.PUBLISH_GADGET) %>">
+		<div>
+			<input type="button" value="<liferay-ui:message key="publish-gadget" />" onClick="location.href = '<portlet:renderURL><portlet:param name="jspPage" value="/admin/edit_gadget.jsp" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:renderURL>';" />
+		</div>
+	</c:if>
 
 	<br />
 
