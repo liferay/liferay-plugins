@@ -159,19 +159,18 @@ public class EditorPortlet extends AdminPortlet {
 
 			Gadget gadget = doAddGadget(actionRequest, actionResponse);
 
-			long gadgetId = gadget.getGadgetId();
-
 			String publishGadgetRedirect = ParamUtil.getString(
 				actionRequest, "publishGadgetRedirect");
 
 			boolean deletePermission = GadgetPermission.contains(
-				permissionChecker, groupId, gadgetId, ActionKeys.DELETE);
+				permissionChecker, groupId, gadget.getGadgetId(),
+				ActionKeys.DELETE);
 
 			publishGadgetRedirect = HttpUtil.addParameter(
 				publishGadgetRedirect, "deletePermission", deletePermission);
 
 			publishGadgetRedirect = HttpUtil.addParameter(
-				publishGadgetRedirect, "gadgetId", gadgetId);
+				publishGadgetRedirect, "gadgetId", gadget.getGadgetId());
 
 			actionResponse.sendRedirect(publishGadgetRedirect);
 		}
@@ -350,10 +349,9 @@ public class EditorPortlet extends AdminPortlet {
 			PermissionChecker permissionChecker =
 				themeDisplay.getPermissionChecker();
 
-			long groupId = themeDisplay.getScopeGroupId();
-
 			boolean publishGadgetPermission = GadgetPermission.contains(
-				permissionChecker, groupId, ActionKeys.PUBLISH_GADGET);
+				permissionChecker, themeDisplay.getScopeGroupId(),
+				ActionKeys.PUBLISH_GADGET);
 
 			List<FileEntry> fileEntries = DLAppServiceUtil.getFileEntries(
 				repositoryId, folderId);
@@ -397,8 +395,8 @@ public class EditorPortlet extends AdminPortlet {
 
 				if (gadgetId > 0) {
 					boolean unpublishPermission = GadgetPermission.contains(
-						permissionChecker, groupId, gadgetId,
-						ActionKeys.DELETE);
+						permissionChecker, themeDisplay.getScopeGroupId(),
+						gadgetId, ActionKeys.DELETE);
 
 					jsonPermissions.put(
 						"unpublishPermission", unpublishPermission);
