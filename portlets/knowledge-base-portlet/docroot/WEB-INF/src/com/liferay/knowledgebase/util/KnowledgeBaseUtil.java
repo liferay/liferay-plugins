@@ -124,7 +124,7 @@ public class KnowledgeBaseUtil {
 			};
 		}
 		else if (orderByCol.equals("modified-date")) {
-			String fieldName = Field.MODIFIED;
+			String fieldName = Field.MODIFIED_DATE;
 
 			return new Sort[] {
 				SortFactoryUtil.create(fieldName, Sort.LONG_TYPE, reverse),
@@ -136,7 +136,8 @@ public class KnowledgeBaseUtil {
 
 			return new Sort[] {
 				SortFactoryUtil.create(fieldName, Sort.SCORE_TYPE, !reverse),
-				SortFactoryUtil.create(Field.MODIFIED, Sort.LONG_TYPE, true)
+				SortFactoryUtil.create(
+					Field.MODIFIED_DATE, Sort.LONG_TYPE, true)
 			};
 		}
 		else if (orderByCol.equals("template-id")) {
@@ -156,7 +157,7 @@ public class KnowledgeBaseUtil {
 			};
 		}
 		else if (orderByCol.equals("user-name")) {
-			String fieldName = Field.USER_NAME + "Keyword";
+			String fieldName = Field.USER_NAME;
 
 			return new Sort[] {
 				SortFactoryUtil.create(fieldName, Sort.STRING_TYPE, reverse),

@@ -38,7 +38,6 @@ import com.liferay.portlet.expando.util.ExpandoBridgeIndexerUtil;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -113,42 +112,17 @@ public class MessageIndexer extends BaseIndexer {
 	protected Document doGetDocument(Object obj) throws Exception {
 		Message message = (Message)obj;
 
-		long companyId = message.getCompanyId();
-		long groupId = message.getGroupId();
-		long scopeGroupId = groupId;
-		long userId = message.getUserId();
-		long accountId = message.getAccountId();
-		long folderId = message.getFolderId();
-		long messageId = message.getMessageId();
-		String subject = message.getSubject();
-		String body = HtmlUtil.extractText(message.getBody());
-		long remoteMessageId = message.getRemoteMessageId();
-		Date modifiedDate = message.getModifiedDate();
+		Document document = getBaseModelDocument(PORTLET_ID, message);
 
 		ExpandoBridge expandoBridge = message.getExpandoBridge();
 
-		Document document = new DocumentImpl();
+		document.addText(
+			Field.CONTENT, HtmlUtil.extractText(message.getBody()));
+		document.addKeyword(Field.FOLDER_ID, message.getFolderId());
+		document.addText(Field.TITLE, message.getSubject());
 
-		document.addUID(PORTLET_ID, message.getMessageId());
-
-		document.addModifiedDate(modifiedDate);
-
-		document.addKeyword(Field.COMPANY_ID, companyId);
-		document.addKeyword(Field.PORTLET_ID, PORTLET_ID);
-		document.addKeyword(Field.GROUP_ID, groupId);
-		document.addKeyword(Field.SCOPE_GROUP_ID, scopeGroupId);
-		document.addKeyword(Field.USER_ID, userId);
-
-		document.addText(Field.TITLE, subject);
-		document.addText(Field.CONTENT, body);
-
-		document.addKeyword(
-			Field.ENTRY_CLASS_NAME, Message.class.getName());
-		document.addKeyword(Field.ENTRY_CLASS_PK, messageId);
-
-		document.addKeyword("accountId", accountId);
-		document.addKeyword("folderId", folderId);
-		document.addKeyword("remoteMessageId", remoteMessageId);
+		document.addKeyword("accountId", message.getAccountId());
+		document.addKeyword("remoteMessageId", message.getRemoteMessageId());
 
 		ExpandoBridgeIndexerUtil.addAttributes(document, expandoBridge);
 

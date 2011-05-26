@@ -36,13 +36,9 @@ import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
-import com.liferay.portal.util.PortalUtil;
-import com.liferay.portlet.asset.service.AssetCategoryLocalServiceUtil;
-import com.liferay.portlet.asset.service.AssetTagLocalServiceUtil;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -99,57 +95,18 @@ public class AdminIndexer extends BaseIndexer {
 	protected Document doGetDocument(Object obj) throws Exception {
 		KBArticle kbArticle = (KBArticle)obj;
 
-		long companyId = kbArticle.getCompanyId();
-		long groupId = getParentGroupId(kbArticle.getGroupId());
-		long scopeGroupId = kbArticle.getGroupId();
-		long userId = kbArticle.getUserId();
-		String userName = PortalUtil.getUserName(
-			userId, kbArticle.getUserName());
-		long resourcePrimKey = kbArticle.getResourcePrimKey();
-		long rootResourcePrimKey = kbArticle.getRootResourcePrimKey();
-		String title = kbArticle.getTitle();
-		String content = HtmlUtil.extractText(kbArticle.getContent());
-		String description = kbArticle.getDescription();
-		Date createDate = kbArticle.getCreateDate();
-		Date modifiedDate = kbArticle.getModifiedDate();
-		long kbTemplateId = kbArticle.getKbTemplateId();
+		Document document = getBaseModelDocument(PORTLET_ID, kbArticle);
 
-		long[] assetCategoryIds = AssetCategoryLocalServiceUtil.getCategoryIds(
-			KBArticle.class.getName(), resourcePrimKey);
-		String[] assetCategoryNames =
-			AssetCategoryLocalServiceUtil.getCategoryNames(
-				KBArticle.class.getName(), resourcePrimKey);
-		String[] assetTagNames = AssetTagLocalServiceUtil.getTagNames(
-			KBArticle.class.getName(), resourcePrimKey);
+		document.addText(
+			Field.CONTENT, HtmlUtil.extractText(kbArticle.getContent()));
+		document.addText(Field.DESCRIPTION, kbArticle.getDescription());
+		document.addKeyword(
+			Field.ROOT_ENTRY_CLASS_PK, kbArticle.getRootResourcePrimKey());
+		document.addText(Field.TITLE, kbArticle.getTitle());
+		document.addKeyword(
+			Field.TITLE + "Keyword", kbArticle.getTitle(), true);
 
-		Document document = new DocumentImpl();
-
-		document.addUID(PORTLET_ID, resourcePrimKey);
-
-		document.addDate("createDate", createDate);
-		document.addDate(Field.MODIFIED, modifiedDate);
-
-		document.addKeyword(Field.COMPANY_ID, companyId);
-		document.addKeyword(Field.PORTLET_ID, PORTLET_ID);
-		document.addKeyword(Field.GROUP_ID, groupId);
-		document.addKeyword(Field.SCOPE_GROUP_ID, scopeGroupId);
-		document.addKeyword(Field.USER_ID, userId);
-		document.addText(Field.USER_NAME, userName);
-
-		document.addText(Field.TITLE, title);
-		document.addText(Field.CONTENT, content);
-		document.addText(Field.DESCRIPTION, description);
-		document.addKeyword(Field.ASSET_CATEGORY_IDS, assetCategoryIds);
-		document.addKeyword(Field.ASSET_CATEGORY_NAMES, assetCategoryNames);
-		document.addKeyword(Field.ASSET_TAG_NAMES, assetTagNames);
-
-		document.addKeyword(Field.ENTRY_CLASS_NAME, KBArticle.class.getName());
-		document.addKeyword(Field.ENTRY_CLASS_PK, resourcePrimKey);
-		document.addKeyword(Field.ROOT_ENTRY_CLASS_PK, rootResourcePrimKey);
-
-		document.addKeyword(Field.USER_NAME + "Keyword", userName, true);
-		document.addKeyword(Field.TITLE + "Keyword", title, true);
-		document.addKeyword("kbTemplateId", kbTemplateId);
+		document.addKeyword("kbTemplateId", kbArticle.getKbTemplateId());
 
 		return document;
 	}
