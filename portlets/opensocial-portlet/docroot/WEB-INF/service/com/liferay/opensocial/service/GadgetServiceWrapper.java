@@ -37,13 +37,6 @@ public class GadgetServiceWrapper implements GadgetService {
 			serviceContext);
 	}
 
-	public void deleteGadget(long gadgetId,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		_gadgetService.deleteGadget(gadgetId, serviceContext);
-	}
-
 	public GadgetService getWrappedGadgetService() {
 		return _gadgetService;
 	}

@@ -3,7 +3,6 @@ Liferay.Service.register("Liferay.Service.OpenSocial", "com.liferay.opensocial.s
 Liferay.Service.registerClass(
 	Liferay.Service.OpenSocial, "Gadget",
 	{
-		addGadget: true,
-		deleteGadget: true
+		addGadget: true
 	}
 );
