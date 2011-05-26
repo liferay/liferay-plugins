@@ -48,6 +48,7 @@
 		<footer-portlet-javascript>/editor/js/gadget-editor-tabs.js</footer-portlet-javascript>
 		<footer-portlet-javascript>/editor/js/gadget-editor-tree.js</footer-portlet-javascript>
 		<footer-portlet-javascript>/editor/js/main.js</footer-portlet-javascript>
+		<footer-portlet-javascript>/js/service.js</footer-portlet-javascript>
 		<css-class-wrapper>opensocial-portlet-editor</css-class-wrapper>
 	</portlet>
 	<role-mapper>

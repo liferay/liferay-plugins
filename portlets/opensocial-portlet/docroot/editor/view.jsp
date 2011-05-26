@@ -24,20 +24,17 @@ Folder rootFolder = ShindigUtil.getGadgetEditorRootFolder(repositoryId);
 
 <div id="<portlet:namespace />editor"></div>
 
+<portlet:renderURL windowState="<%= LiferayWindowState.POP_UP.toString() %>" var="editorGadgetURL">
+	<portlet:param name="jspPage" value="/admin/edit_gadget.jsp" />
+	<portlet:param name="editorGadgetURL" value="editorGadgetURLPlaceholder" />
+</portlet:renderURL>
+
 <aui:script use="opensocial-editor">
 	new Liferay.OpenSocial.Editor(
 		{
-			gadgetDebug: '<%= PortletPropsValues.SHINDIG_JS_DEBUG %>',
-			gadgetNocache: '<%= PortletPropsValues.SHINDIG_NO_CACHE %>',
+			editorGadgetURL: '<%= editorGadgetURL %>',
 			gadgetPortletId: '<%= portletDisplay.getId() %>',
 			gadgetServerBase: '<%= renderRequest.getContextPath() %>/gadgets/',
-			gadgetStore: new Liferay.OpenSocial.Store.Expando(
-				{
-					userPrefsKey: '<%= ShindigUtil.getColumnUserPrefs(renderResponse.getNamespace()) %>'
-				}
-			),
-			gadgetView: '<%= renderRequest.getAttribute(WebKeys.VIEW) %>',
-			gadgetViewParams: '<%= ParamUtil.getString(renderRequest, "viewParams") %>',
 			repositoryId: '<%= repositoryId %>',
 			resourceURL: '<portlet:resourceURL />',
 			rootFolderId: '<%= rootFolder.getFolderId() %>'

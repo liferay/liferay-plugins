@@ -158,6 +158,10 @@
 	background-image: url(../images/disk.png);
 }
 
+.yui3-aui-icon-gadgeteditor-publish {
+	background-image: url(../images/publish.png);
+}
+
 .yui3-aui-icon-gadgeteditor-refresh {
 	background-image: url(../images/refresh.png);
 }

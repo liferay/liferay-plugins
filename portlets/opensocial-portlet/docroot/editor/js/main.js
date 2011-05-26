@@ -53,6 +53,8 @@ AUI().add(
 
 		var FILE_ENTRY_URL = 'fileEntryURL';
 
+		var GADGET_ID = 'gadgetId';
+
 		var GET_FOLDER_CHILDREN = 'getFolderChildren';
 
 		var HEIGHT = 'height';
@@ -126,24 +128,9 @@ AUI().add(
 				NAME: 'gadget-editor',
 
 				ATTRS: {
-					gadgetDebug: {},
-					gadgetNocache: {
-						value: 1
-					},
-					gadgetPortletId:{},
+					editorGadgetURL: {},
+					gadgetPortletId: {},
 					gadgetServerBase: {},
-					gadgetStore: {
-						valueFn: function() {
-							return new OpenSocial.Store.Expando();
-						}
-					},
-					gadgetUserPrefs: {
-						value: {}
-					},
-					gadgetView: {
-						value: 'default'
-					},
-					gadgetViewParams: {},
 					repositoryId: {},
 					resourceURL: {},
 					rootFolderId: {}
@@ -191,9 +178,11 @@ AUI().add(
 						instance.after('tree-node-editor:closeFileEntry', instance._afterTreeNodeCloseFileEntry);
 						instance.after('tree-node-editor:deleteEntry', instance._afterTreeNodeDeleteEntry);
 						instance.after('tree-node-editor:entryIdChange', instance._afterTreeNodeEntryIdChange);
+						instance.after('tree-node-editor:publish', instance._afterTreeNodePublish);
 						instance.after('tree-node-editor:renameEntry', instance._afterTreeNodeRenameEntry);
 						instance.after('tree-node-editor:select', instance._afterTreeNodeSelect);
 						instance.after('tree-node-editor:showURL', instance._afterTreeNodeShowURL);
+						instance.after('tree-node-editor:unpublish', instance._afterTreeNodeUnpublish);
 
 						instance.after('editable-editor:cancel', instance._afterEditableCancel);
 
@@ -207,8 +196,10 @@ AUI().add(
 						instance.after('tab-editor:isDirtyChange', instance._afterTabIsDirtyChange);
 						instance.after('tab-editor:isNewChange', instance._afterTabIsNewChange);
 
-						instance.on('tab-editor:onEditorFocus', instance._onTabViewEditorFocus);
-						instance.on('tab-editor:onEditorChange', instance._onTabViewEditorChange);
+						instance.on('tab-editor:onEditorChange', instance._onTabEditorChange);
+						instance.on('tab-editor:onEditorFocus', instance._onTabEditorFocus);
+
+						Liferay.after('publishGadgetSuccess', instance._afterPublishGadgetSuccess, instance);
 					},
 
 					syncUI: function() {
@@ -356,6 +347,27 @@ AUI().add(
 						);
 					},
 
+					_afterPublishGadgetSuccess: function(event) {
+						var instance = this;
+
+						var entryId = instance._publishGadgetDialog.get(ID);
+
+						var node = instance._getNodeFromDataSet(entryId);
+
+						var permissions = node.get('permissions');
+
+						permissions.deletePermission = event.deletePermission;
+
+						node.setAttrs(
+							{
+								gadgetId: event.gadgetId,
+								permissions: permissions
+							}
+						);
+
+						instance._publishGadgetDialog.close();
+					},
+
 					_afterTabAdd: function(event) {
 						var instance = this;
 
@@ -488,6 +500,45 @@ AUI().add(
 						instance._addEntryToDataSet(event.target);
 					},
 
+					_afterTreeNodePublish: function(event) {
+						var instance = this;
+
+						var entryId = event.entryId;
+
+						var tab = instance._getTabFromDataSet(entryId);
+
+						if (tab && tab.get(IS_DIRTY)) {
+							var error = 'Save the gadget before publishing.';
+
+							instance._showErrorDialog(error);
+						}
+						else {
+							var node = instance._getNodeFromDataSet(entryId);
+
+							var uri = instance.get('editorGadgetURL').replace('editorGadgetURLPlaceholder', node.get(FILE_ENTRY_URL));
+
+							var publishGadgetDialog = Liferay.Util._openWindow(
+								{
+									cache: false,
+									dialog: {
+										centered: true,
+										destroyOnClose: true,
+										id: entryId,
+										modal: true,
+										width: 700
+									},
+									dialogIframe: {
+										uri: uri
+									},
+									title: 'Publish Gadget',
+									uri: uri
+								}
+							);
+
+							instance._publishGadgetDialog = publishGadgetDialog;
+						}
+					},
+
 					_afterTreeNodeRenameEntry: function(event) {
 						var instance = this;
 
@@ -524,6 +575,18 @@ AUI().add(
 						instance._createDialog('URL', bodyContent, false, true, null).render();
 					},
 
+					_afterTreeNodeUnpublish: function(event) {
+						var instance = this;
+
+						var entryId = event.entryId;
+
+						var node = instance._getNodeFromDataSet(entryId);
+
+						var gadgetId = node.get(GADGET_ID);
+
+						instance._showConfirmationDialog('Are you sure you want to unpublish the gadget "' + node.get(LABEL) + '"?', instance._unpublishGadget, node, gadgetId);
+					},
+
 					_afterTreeViewAppend: function(event) {
 						var instance = this;
 
@@ -546,8 +609,10 @@ AUI().add(
 										{
 											entryId: item.entryId,
 											fileEntryURL: item.fileEntryURL,
+											gadgetId: item.gadgetId,
 											label: item.label,
 											leaf: item.leaf,
+											permissions: item.permissions,
 											type: item.type
 										}
 									);
@@ -790,9 +855,15 @@ AUI().add(
 
 						var entryId = event.entryId;
 
+						var unpublish = '';
+
 						var node = instance._getNodeFromDataSet(entryId);
 
-						instance._showConfirmationDialog('Are you sure you want to delete "' + node.get(LABEL) + '"?', instance._deleteEntry, node, entryId);
+						if (node.get(GADGET_ID) > 0) {
+							unpublish = 'unpublish and ';
+						}
+
+						instance._showConfirmationDialog('Are you sure you want to ' + unpublish + 'delete "' + node.get(LABEL) + '"?', instance._deleteEntry, node, entryId);
 					},
 
 					_defLoadContentFn: function(event) {
@@ -837,7 +908,7 @@ AUI().add(
 						if (tab.get(IS_DIRTY) || tab.get(IS_NEW)) {
 							previewPanelBodyNode.empty();
 
-							var error = 'The gadget content is not valid.';
+							var error = 'Save the gadget before previewing.';
 
 							previewPanel.set(BODY_CONTENT, error);
 
@@ -857,7 +928,7 @@ AUI().add(
 
 									previewPanel.set(BODY_CONTENT, data.error.message);
 
-									instance._showPreviewPanel()
+									instance._showPreviewPanel();
 								}
 								else {
 									instance._showErrorDialog(data.error);
@@ -879,9 +950,7 @@ AUI().add(
 										secureToken: data.secureToken,
 										serverBase: instance.get('gadgetServerBase'),
 										specUrl: fileEntryURL,
-										store: instance.get('gadgetStore'),
-										view: instance.get('gadgetView'),
-										viewParams: instance.get('gadgetViewParams')
+										view: 'default'
 									}
 								).render(previewPanelBodyNode);
 
@@ -993,6 +1062,12 @@ AUI().add(
 						};
 
 						if (node.isLeaf()) {
+							var gadgetId = node.get(GADGET_ID);
+
+							if (gadgetId > 0) {
+								instance._unpublishGadget(node, gadgetId);
+							}
+
 							instance._requestDeleteFileEntry(entryId, deleteEntryCallback);
 						}
 						else {
@@ -1141,13 +1216,13 @@ AUI().add(
 						);
 					},
 
-					_onTabViewEditorChange: function(event) {
+					_onTabEditorChange: function(event) {
 						var instance = this;
 
 						instance._updateUndoButtons();
 					},
 
-					_onTabViewEditorFocus: function(event) {
+					_onTabEditorFocus: function(event) {
 						var instance = this;
 
 						instance._treeViewEditor.get('treeActionOverlayManager').hideAll();
@@ -1991,6 +2066,29 @@ AUI().add(
 						}
 					},
 
+					_unpublishGadget: function(node, gadgetId) {
+						var instance = this;
+
+						instance._loadingMask.show();
+
+						Liferay.Service.OpenSocial.Gadget.deleteGadget(
+							{
+								gadgetId: gadgetId,
+								serviceContext: '{}'
+							},
+							function(response) {
+								instance._loadingMask.hide();
+
+								if (response.exception) {
+									instance._showErrorDialog(response.exception);
+								}
+								else {
+									node.set(GADGET_ID, 0);
+								}
+							}
+						);
+					},
+
 					_updateUndoButtons: function() {
 						var instance = this;
 
@@ -2015,6 +2113,6 @@ AUI().add(
 	},
 	'',
 	{
-		requires: [ 'gadget-editor-tree','gadget-editor-tabs','aui-toolbar','aui-loading-mask','aui-dialog','aui-resize','aui-panel','stylesheet','liferay-open-social-gadget' ]
+		requires: [ 'gadget-editor-tree','gadget-editor-tabs','aui-toolbar','aui-loading-mask','aui-dialog','aui-resize','aui-panel','stylesheet','liferay-open-social-gadget','liferay-util-window' ]
 	}
 );

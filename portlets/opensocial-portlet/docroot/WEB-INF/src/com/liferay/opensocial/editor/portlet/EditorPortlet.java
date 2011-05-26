@@ -14,26 +14,35 @@
 
 package com.liferay.opensocial.editor.portlet;
 
+import com.liferay.opensocial.admin.portlet.AdminPortlet;
+import com.liferay.opensocial.model.Gadget;
+import com.liferay.opensocial.service.GadgetLocalServiceUtil;
+import com.liferay.opensocial.service.permission.GadgetPermission;
 import com.liferay.opensocial.shindig.util.ShindigUtil;
+import com.liferay.opensocial.util.ActionKeys;
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayInputStream;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.Folder;
+import com.liferay.portal.kernel.servlet.SessionErrors;
+import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.FileUtil;
+import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.WebKeys;
+import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.documentlibrary.service.DLAppServiceUtil;
 import com.liferay.portlet.documentlibrary.util.comparator.RepositoryModelNameComparator;
-import com.liferay.util.bridges.mvc.MVCPortlet;
 import com.liferay.util.servlet.PortletResponseUtil;
 
 import java.io.IOException;
@@ -42,6 +51,8 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
 
+import javax.portlet.ActionRequest;
+import javax.portlet.ActionResponse;
 import javax.portlet.PortletException;
 import javax.portlet.ResourceRequest;
 import javax.portlet.ResourceResponse;
@@ -53,7 +64,32 @@ import org.apache.shindig.gadgets.spec.ModulePrefs;
 /**
  * @author Dennis Ju
  */
-public class EditorPortlet extends MVCPortlet {
+public class EditorPortlet extends AdminPortlet {
+
+	public void deleteGadget(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		PermissionChecker permissionChecker =
+			themeDisplay.getPermissionChecker();
+
+		long groupId = themeDisplay.getScopeGroupId();
+
+		long gadgetId = ParamUtil.getLong(actionRequest, "gadgetId");
+
+		GadgetPermission.check(
+			permissionChecker, groupId, gadgetId, ActionKeys.DELETE);
+
+		try {
+			GadgetLocalServiceUtil.deleteGadget(gadgetId);
+		}
+		catch (PortalException pe) {
+			SessionErrors.add(actionRequest, pe.getClass().getName());
+		}
+	}
 
 	public void serveResource(
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
@@ -109,6 +145,63 @@ public class EditorPortlet extends MVCPortlet {
 			throw new PortletException(e);
 		}
   	}
+
+	public void updateGadget(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		PermissionChecker permissionChecker =
+			themeDisplay.getPermissionChecker();
+
+		long groupId = themeDisplay.getScopeGroupId();
+
+		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
+
+		if (cmd.equals(Constants.ADD)) {
+			GadgetPermission.check(
+				permissionChecker, groupId, ActionKeys.PUBLISH_GADGET);
+
+			try {
+				Gadget gadget = doAddGadget(actionRequest, actionResponse);
+
+				long gadgetId = gadget.getGadgetId();
+
+				String publishGadgetRedirect = ParamUtil.getString(
+					actionRequest, "publishGadgetRedirect");
+
+				boolean deletePermission = GadgetPermission.contains(
+					permissionChecker, groupId, gadgetId, ActionKeys.DELETE);
+
+				publishGadgetRedirect = HttpUtil.addParameter(
+					publishGadgetRedirect, "deletePermission",
+					deletePermission);
+
+				publishGadgetRedirect = HttpUtil.addParameter(
+					publishGadgetRedirect, "gadgetId", gadgetId);
+
+				actionResponse.sendRedirect(publishGadgetRedirect);
+			}
+			catch (PortalException pe) {
+				SessionErrors.add(actionRequest, pe.getClass().getName());
+			}
+		}
+		else {
+			long gadgetId = ParamUtil.getLong(actionRequest, "gadgetId");
+
+			GadgetPermission.check(
+				permissionChecker, groupId, gadgetId, ActionKeys.UPDATE);
+
+			try {
+				doUpdateGadget(actionRequest, actionResponse);
+			}
+			catch (PortalException pe) {
+				SessionErrors.add(actionRequest, pe.getClass().getName());
+			}
+		}
+	}
 
 	protected void serveAddFileEntry(
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
@@ -272,6 +365,14 @@ public class EditorPortlet extends MVCPortlet {
 			resourceRequest, "getFileEntries");
 
 		if (getFileEntries) {
+			PermissionChecker permissionChecker =
+				themeDisplay.getPermissionChecker();
+
+			long groupId = themeDisplay.getScopeGroupId();
+
+			boolean publishGadgetPermission = GadgetPermission.contains(
+				permissionChecker, groupId, ActionKeys.PUBLISH_GADGET);
+
 			List<FileEntry> fileEntries = DLAppServiceUtil.getFileEntries(
 				repositoryId, folderId);
 
@@ -290,8 +391,39 @@ public class EditorPortlet extends MVCPortlet {
 
 				jsonObject.put("fileEntryURL", fileEntryURL);
 
+				long gadgetId = 0;
+
+				try {
+					Gadget gadget = GadgetLocalServiceUtil.getGadget(
+						themeDisplay.getCompanyId(), fileEntryURL);
+
+					gadgetId = gadget.getGadgetId();
+				}
+				catch (Exception e) {
+				}
+
+				jsonObject.put("gadgetId", gadgetId);
+
 				jsonObject.put("label", fileEntry.getTitle());
 				jsonObject.put("leaf", true);
+
+				JSONObject jsonPermissions =
+					JSONFactoryUtil.createJSONObject();
+
+				jsonPermissions.put(
+					"publishGadgetPermission", publishGadgetPermission);
+
+				if (gadgetId > 0) {
+					boolean unpublishPermission = GadgetPermission.contains(
+						permissionChecker, groupId, gadgetId,
+						ActionKeys.DELETE);
+
+					jsonPermissions.put(
+						"unpublishPermission", unpublishPermission);
+				}
+
+				jsonObject.put("permissions", jsonPermissions);
+
 				jsonObject.put("type", "editor");
 
 				jsonArray.put(jsonObject);

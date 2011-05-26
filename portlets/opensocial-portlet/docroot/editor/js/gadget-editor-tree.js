@@ -15,13 +15,15 @@ AUI().add(
 
 		var CONTENT_BOX = 'contentBox';
 
+		var CSS_CONTEXT_MENU_OPEN = 'gadget-editor-tree-node-contextmenuicon-open';
+
 		var DISABLED = 'disabled';
 
 		var EDITABLE = 'editable';
 
 		var ENTRY_ID = 'entryId';
 
-		var CSS_CONTEXT_MENU_OPEN = 'gadget-editor-tree-node-contextmenuicon-open';
+		var GADGET_ID = 'gadgetId';
 
 		var ID = 'id';
 
@@ -36,6 +38,8 @@ AUI().add(
 		var OVERFLOW = 'overflow';
 
 		var PARENT_NODE = 'parentNode';
+
+		var PERMISSIONS = 'permissions';
 
 		var RENDERED = 'rendered';
 
@@ -135,8 +139,6 @@ AUI().add(
 							}
 						);
 
-						var arraySort = instance._arraySort;
-
 						folderChildren.sort(arraySort);
 						fileEntryChildren.sort(arraySort);
 
@@ -193,8 +195,16 @@ AUI().add(
 						value: ''
 					},
 
+					gadgetId: {
+						value: 0
+					},
+
 					isNewEntry: {
 						value: false
+					},
+
+					permissions: {
+						value: {}
 					}
 				},
 
@@ -204,9 +214,12 @@ AUI().add(
 
 						TreeNodeEditor.superclass.bindUI.apply(this, arguments);
 
-						instance.after('fileEntryLoadedChange', instance._afterFileEntryLoadedChange, instance);
+						instance.after('fileEntryLoadedChange', instance._afterFileEntryLoadedChange);
+						instance.after('gadgetIdChange', instance._afterGadgetIdChange);
+						instance.after('labelChange', instance._afterLabelChange);
+						instance.after('permissionsChange', instance._afterPermissionsChange);
 
-						instance.on('entryIdChange', instance._onEntryIdChange, instance);
+						instance.on('entryIdChange', instance._onEntryIdChange);
 					},
 
 					renderUI: function() {
@@ -249,6 +262,8 @@ AUI().add(
 									}
 								}
 							);
+
+							filteredSiblings.sort(arraySort);
 
 							if (filteredSiblings.length == 1) {
 								if (siblings.length > 1) {
@@ -303,8 +318,6 @@ AUI().add(
 							}
 						);
 
-						var arraySort = instance._arraySort;
-
 						folderChildren.sort(arraySort);
 						fileEntryChildren.sort(arraySort);
 
@@ -338,39 +351,22 @@ AUI().add(
 						instance._renderFileEntryLoaded();
 					},
 
-					_arraySort: function(node1, node2) {
+					_afterGadgetIdChange: function(event) {
 						var instance = this;
 
-						var label1 = node1.get(LABEL);
-						var label2 = node2.get(LABEL);
+						instance._updatePublishButtons();
+					},
 
-						var returnValue = 0;
+					_afterLabelChange: function(event) {
+						var instance = this;
 
-						if (!isValue(label1)) {
-							if (isValue(label2)) {
-								returnValue = 1;
-							}
-						}
-						else if (!isValue(label2)) {
-							returnValue = -1;
-						}
+						instance._updatePublishButtons();
+					},
 
-						if (isString(label1)) {
-							label1 = label1.toLowerCase();
-						}
+					_afterPermissionsChange: function(event) {
+						var instance = this;
 
-						if (isString(label2)) {
-							label2 = label2.toLowerCase();
-						}
-
-						if (label1 < label2) {
-							returnValue = -1;
-						}
-						else if (label1 > label2) {
-							returnValue = 1;
-						}
-
-						return returnValue;
+						instance._updatePublishButtons();
 					},
 
 					_onEntryIdChange: function(event) {
@@ -379,106 +375,132 @@ AUI().add(
 						event.target.get(EDITABLE).set(ENTRY_ID, event.newVal);
 					},
 
-					_renderContextMenu: function() {
+					_renderButtonItems: function(isLeaf) {
 						var instance = this;
 
-						var ownerTree = instance.get(OWNER_TREE);
+						if (isLeaf) {
+							var closeContextMenuButton = new A.ButtonItem(
+								{
+									disabled: true,
+									handler: function(event) {
+										var buttonItem = event.target;
 
-						var newFolderContextMenuButton = new A.ButtonItem(
-							{
-								handler: function(event) {
-									var buttonItem = event.target;
+										if (!buttonItem.get(DISABLED)) {
+											instance.fire(
+												'closeFileEntry',
+												{
+													entryId: instance.get(ENTRY_ID)
+												}
+											);
 
-									if (!buttonItem.get(DISABLED)) {
+											instance._contextMenuOverlay.hide();
+										}
+									},
+									icon: 'gadgeteditor-close',
+									label: 'Close'
+								}
+							);
 
-										instance.fire(
-											'addFolderNode',
-											{
-												parentFolderId: instance.get(ID)
-											}
-										);
+							var publishMenuButton= new A.ButtonItem(
+								{
+									handler: function(event) {
+										var buttonItem = event.target;
 
-										contextMenuOverlay.hide();
-									}
-								},
-								icon: 'gadgeteditor-addfolder',
-								label: NEW_FOLDER
-							}
-						);
+										if (!buttonItem.get(DISABLED)) {
+											instance.fire(
+												'publish',
+												{
+													entryId: instance.get(ENTRY_ID)
+												}
+											);
 
-						newFolderContextMenuButton.addTarget(instance);
+											instance._contextMenuOverlay.hide();
+										}
+									},
+									icon: 'gadgeteditor-publish',
+									label: 'Publish'
+								}
+							);
 
-						var closeContextMenuButton = new A.ButtonItem(
-							{
-								disabled: true,
-								handler: function(event) {
-									var buttonItem = event.target;
+							var showURLContextMenuButton= new A.ButtonItem(
+								{
+									handler: function(event) {
+										var buttonItem = event.target;
 
-									if (!buttonItem.get(DISABLED)) {
-										instance.fire(
-											'closeFileEntry',
-											{
-												entryId: instance.get(ENTRY_ID)
-											}
-										);
+										if (!buttonItem.get(DISABLED)) {
+											instance.fire(
+												'showURL',
+												{
+													entryId: instance.get(ENTRY_ID)
+												}
+											);
 
-										contextMenuOverlay.hide();
-									}
-								},
-								icon: 'gadgeteditor-close',
-								label: 'Close'
-							}
-						);
+											instance._contextMenuOverlay.hide();
+										}
+									},
+									icon: 'gadgeteditor-url',
+									label: 'Show URL'
+								}
+							);
 
-						instance._closeContextMenuButton = closeContextMenuButton;
+							var unpublishMenuButton= new A.ButtonItem(
+								{
+									handler: function(event) {
+										var buttonItem = event.target;
 
-						closeContextMenuButton.addTarget(instance);
+										if (!buttonItem.get(DISABLED)) {
+											instance.fire(
+												'unpublish',
+												{
+													entryId: instance.get(ENTRY_ID)
+												}
+											);
 
-						var showURLContextMenuButton= new A.ButtonItem(
-							{
-								handler: function(event) {
-									var buttonItem = event.target;
+											instance._contextMenuOverlay.hide();
+										}
+									},
+									icon: 'gadgeteditor-publish',
+									label: 'Unpublish'
+								}
+							);
 
-									if (!buttonItem.get(DISABLED)) {
-										instance.fire(
-											'showURL',
-											{
-												entryId: instance.get(ENTRY_ID)
-											}
-										);
+							closeContextMenuButton.addTarget(instance);
+							publishMenuButton.addTarget(instance);
+							showURLContextMenuButton.addTarget(instance);
+							unpublishMenuButton.addTarget(instance);
 
-										contextMenuOverlay.hide();
-									}
-								},
-								icon: 'gadgeteditor-url',
-								label: 'Show URL'
-							}
-						);
+							instance._closeContextMenuButton = closeContextMenuButton;
+							instance._publishMenuButton = publishMenuButton;
+							instance._showURLContextMenuButton = showURLContextMenuButton;
+							instance._unpublishMenuButton = unpublishMenuButton;
+						}
+						else {
+							var newFolderContextMenuButton = new A.ButtonItem(
+								{
+									handler: function(event) {
+										var buttonItem = event.target;
 
-						showURLContextMenuButton.addTarget(instance);
+										if (!buttonItem.get(DISABLED)) {
 
-						var renameContextMenuButton = new A.ButtonItem(
-							{
-								handler: function(event) {
-									var buttonItem = event.target;
+											instance.fire(
+												'addFolderNode',
+												{
+													parentFolderId: instance.get(ID)
+												}
+											);
 
-									if (!buttonItem.get(DISABLED)) {
-										instance.fire(
-											'renameEntry',
-											{
-												entryId: instance.get(ENTRY_ID)
-											}
-										);
+											instance._contextMenuOverlay.hide();
+										}
+									},
+									icon: 'gadgeteditor-addfolder',
+									label: NEW_FOLDER
+								}
+							);
 
-										contextMenuOverlay.hide();
-									}
-								},
-								icon: 'gadgeteditor-rename',
-								label: 'Rename'
-							}
-						);
+							newFolderContextMenuButton.addTarget(instance);
 
-						renameContextMenuButton.addTarget(instance);
+							instance._newFolderContextMenuButton = newFolderContextMenuButton;
+						}
 
 						var deleteContextMenuButton = new A.ButtonItem(
 							{
@@ -493,7 +515,7 @@ AUI().add(
 											}
 										);
 
-										contextMenuOverlay.hide();
+										instance._contextMenuOverlay.hide();
 									}
 								},
 								icon: 'gadgeteditor-delete',
@@ -501,33 +523,49 @@ AUI().add(
 							}
 						);
 
-						deleteContextMenuButton.addTarget(instance);
-
-						var children = [];
-
-						children.push(renameContextMenuButton, deleteContextMenuButton);
-
-						if (instance.isLeaf()) {
-							children.unshift(closeContextMenuButton);
-
-							children.push(
-								{
-									type: 'ToolbarSpacer'
-								}
-							);
-
-							children.push(showURLContextMenuButton);
-						}
-						else {
-							children.unshift(newFolderContextMenuButton);
-						}
-
-						var contextMenu = new A.Toolbar(
+						var renameContextMenuButton = new A.ButtonItem(
 							{
-								children: children,
-								orientation: 'vertical'
+								handler: function(event) {
+									var buttonItem = event.target;
+
+									if (!buttonItem.get(DISABLED)) {
+										instance.fire(
+											'renameEntry',
+											{
+												entryId: instance.get(ENTRY_ID)
+											}
+										);
+
+										instance._contextMenuOverlay.hide();
+									}
+								},
+								icon: 'gadgeteditor-rename',
+								label: 'Rename'
 							}
 						);
+
+						deleteContextMenuButton.addTarget(instance);
+						renameContextMenuButton.addTarget(instance);
+
+						instance._deleteContextMenuButton = deleteContextMenuButton;
+						instance._renameContextMenuButton = renameContextMenuButton;
+					},
+
+					_renderContextMenu: function() {
+						var instance = this;
+
+						var isLeaf = instance.isLeaf();
+
+						instance._renderButtonItems(isLeaf);
+
+						if (isLeaf) {
+							instance._renderFileEntryContextMenu();
+						}
+						else {
+							instance._renderFolderContextMenu();
+						}
+
+						var contextMenu = instance._contextMenu;
 
 						contextMenu.get(CONTENT_BOX).addClass('gadget-editor-contextmenu-toolbar');
 
@@ -536,6 +574,8 @@ AUI().add(
 						contextMenuIcon.addClass('gadget-editor-tree-node-contextmenuicon');
 
 						instance.get(CONTENT_BOX).append(contextMenuIcon);
+
+						var ownerTree = instance.get(OWNER_TREE);
 
 						var treeActionOverlayManager = ownerTree.get('treeActionOverlayManager');
 
@@ -573,6 +613,8 @@ AUI().add(
 						);
 
 						treeActionOverlayManager.register(contextMenuOverlay);
+
+						instance._contextMenuOverlay = contextMenuOverlay;
 					},
 
 					_renderEditable: function() {
@@ -625,6 +667,30 @@ AUI().add(
 						instance.set(EDITABLE, editable);
 					},
 
+					_renderFileEntryContextMenu: function() {
+						var instance = this;
+
+						instance._updatePublishButtons();
+
+						var children = [
+							instance._closeContextMenuButton,
+							instance._renameContextMenuButton,
+							instance._deleteContextMenuButton,
+							instance._publishMenuButton,
+							instance._unpublishMenuButton,
+							instance._showURLContextMenuButton
+						];
+
+						var contextMenu = new A.Toolbar(
+							{
+								children: children,
+								orientation: 'vertical'
+							}
+						);
+
+						instance._contextMenu = contextMenu;
+					},
+
 					_renderFileEntryLoaded: function() {
 						var instance = this;
 
@@ -634,6 +700,61 @@ AUI().add(
 							instance._closeContextMenuButton.set(DISABLED, !fileEntryLoaded);
 
 							instance.get(CONTENT_BOX).toggleClass('aui-tree-node-loaded', fileEntryLoaded);
+						}
+					},
+
+					_renderFolderContextMenu: function() {
+						var instance = this;
+
+						var children = [
+							instance._newFolderContextMenuButton,
+							instance._renameContextMenuButton,
+							instance._deleteContextMenuButton
+						];
+
+						var contextMenu = new A.Toolbar(
+							{
+								children: children,
+								orientation: 'vertical'
+							}
+						);
+
+						instance._contextMenu = contextMenu;
+					},
+
+					_updatePublishButtons: function() {
+						var instance = this;
+
+						var publishMenuButton = instance._publishMenuButton;
+						var showURLContextMenuButton = instance._showURLContextMenuButton;
+						var unpublishMenuButton = instance._unpublishMenuButton;
+
+						var label = instance.get(LABEL);
+
+						var extension = label.substr(label.lastIndexOf('.') + 1);
+
+						if (extension == 'xml') {
+							if (instance.get(GADGET_ID) > 0) {
+								var unpublishPermission = instance.get(PERMISSIONS).unpublishPermission;
+
+								unpublishMenuButton.set(DISABLED, !unpublishPermission);
+
+								publishMenuButton.hide();
+								unpublishMenuButton.show();
+							}
+							else {
+								var publishGadgetPermission = instance.get(PERMISSIONS).publishGadgetPermission;
+
+								publishMenuButton.set(DISABLED, !publishGadgetPermission);
+
+								publishMenuButton.show();
+								publishMenuButton.get('boundingBox').addClass('last', true)
+								unpublishMenuButton.hide();
+							}
+						}
+						else {
+							publishMenuButton.hide();
+							unpublishMenuButton.hide();
 						}
 					}
 				}
@@ -678,6 +799,41 @@ AUI().add(
 				}
 			}
 		);
+
+		var arraySort = function(node1, node2) {
+			var instance = this;
+
+			var label1 = node1.get(LABEL);
+			var label2 = node2.get(LABEL);
+
+			var returnValue = 0;
+
+			if (!isValue(label1)) {
+				if (isValue(label2)) {
+					returnValue = 1;
+				}
+			}
+			else if (!isValue(label2)) {
+				returnValue = -1;
+			}
+
+			if (isString(label1)) {
+				label1 = label1.toLowerCase();
+			}
+
+			if (isString(label2)) {
+				label2 = label2.toLowerCase();
+			}
+
+			if (label1 < label2) {
+				returnValue = -1;
+			}
+			else if (label1 > label2) {
+				returnValue = 1;
+			}
+
+			return returnValue;
+		};
 
 		A.TreeNodeEditor = TreeNodeEditor;
 

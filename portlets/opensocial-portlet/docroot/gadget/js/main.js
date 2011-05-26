@@ -430,7 +430,9 @@ AUI().add(
 							},
 							function(userPrefs) {
 								if (Lang.isFunction(callback)) {
-									callback(userPrefs || {});
+									if (!userPrefs.exception) {
+										callback(userPrefs || {});
+									}
 								}
 							}
 						);
