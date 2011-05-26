@@ -68,9 +68,10 @@ public class SitesUtil {
 
 		List<Group> groups = new ArrayList<Group>(MAX_RESULT_SIZE);
 
-		LinkedHashMap params = new LinkedHashMap();
+		LinkedHashMap<String, Object> params =
+			new LinkedHashMap<String, Object>();
 
-		params.put("usersGroups", new Long(userId));
+		params.put("usersGroups", userId);
 
 		List<Group> usersGroups = GroupLocalServiceUtil.search(
 			companyId, keywords, null, params, 0, MAX_RESULT_SIZE,
@@ -82,12 +83,12 @@ public class SitesUtil {
 			return groups;
 		}
 
-		params = new LinkedHashMap();
+		params.clear();
 
-		List types = new ArrayList();
+		List<Integer> types = new ArrayList<Integer>();
 
-		types.add(new Integer(GroupConstants.TYPE_SITE_OPEN));
-		types.add(new Integer(GroupConstants.TYPE_SITE_RESTRICTED));
+		types.add(GroupConstants.TYPE_SITE_OPEN);
+		types.add(GroupConstants.TYPE_SITE_RESTRICTED);
 
 		params.put("types", types);
 
@@ -113,38 +114,43 @@ public class SitesUtil {
 		throws Exception {
 
 		if (Validator.isNull(keywords)) {
-			LinkedHashMap params = new LinkedHashMap();
+			LinkedHashMap<String, Object> params =
+				new LinkedHashMap<String, Object>();
 
-			params.put("usersGroups", new Long(userId));
+			params.put("usersGroups", userId);
 
 			return GroupLocalServiceUtil.searchCount(
 				comapnyId, keywords, null, params);
 		}
 		else{
-			LinkedHashMap params = new LinkedHashMap();
+			LinkedHashMap<String, Object> params =
+				new LinkedHashMap<String, Object>();
 
-			List types = new ArrayList();
+			List<Integer> types = new ArrayList<Integer>();
 
-			types.add(new Integer(GroupConstants.TYPE_SITE_OPEN));
-			types.add(new Integer(GroupConstants.TYPE_SITE_RESTRICTED));
+			types.add(GroupConstants.TYPE_SITE_OPEN);
+			types.add(GroupConstants.TYPE_SITE_RESTRICTED);
 
 			params.put("types", types);
 
 			int count = GroupLocalServiceUtil.searchCount(
 				comapnyId, keywords, null, params);
 
-			params = new LinkedHashMap();
+			params.clear();
 
-			params.put("usersGroups", new Long(userId));
+			params.put("usersGroups", userId);
 
-			types = new ArrayList();
+			types.clear();
 
-			types.add(new Integer(GroupConstants.TYPE_SITE_PRIVATE));
+			types.add(GroupConstants.TYPE_SITE_PRIVATE);
 
 			params.put("types", types);
 
-			return count + GroupLocalServiceUtil.searchCount(
-				comapnyId, keywords, null, params);
+			count +=
+				GroupLocalServiceUtil.searchCount(
+					comapnyId, keywords, null, params);
+
+			return count;
 		}
 	}
 

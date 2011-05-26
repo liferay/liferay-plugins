@@ -25,16 +25,16 @@ boolean userSites = ParamUtil.getBoolean(request, "userSites");
 
 String searchKeywords = DAOParamUtil.getLike(request, "keywords");
 
-LinkedHashMap params = new LinkedHashMap();
+LinkedHashMap<String, Object> params = new LinkedHashMap<String, Object>();
 
 if (userSites) {
-	params.put("usersGroups", new Long(themeDisplay.getUserId()));
+	params.put("usersGroups", themeDisplay.getUserId());
 }
 else {
-	List types = new ArrayList();
+	List<Integer> types = new ArrayList<Integer>();
 
-	types.add(new Integer(GroupConstants.TYPE_SITE_OPEN));
-	types.add(new Integer(GroupConstants.TYPE_SITE_RESTRICTED));
+	types.add(GroupConstants.TYPE_SITE_OPEN);
+	types.add(GroupConstants.TYPE_SITE_RESTRICTED);
 
 	params.put("types", types);
 }

@@ -209,17 +209,17 @@ public class SitesPortlet extends MVCPortlet {
 		int count = 0;
 
 		if (directory) {
-			LinkedHashMap params = new LinkedHashMap();
+			LinkedHashMap<String, Object> params =
+				new LinkedHashMap<String, Object>();
 
 			if (userGroups) {
-				params.put("usersGroups", new Long(themeDisplay.getUserId()));
+				params.put("usersGroups", themeDisplay.getUserId());
 			}
 			else {
-				List types = new ArrayList();
+				List<Integer> types = new ArrayList<Integer>();
 
-				types.add(new Integer(GroupConstants.TYPE_SITE_OPEN));
-				types.add(
-					new Integer(GroupConstants.TYPE_SITE_RESTRICTED));
+				types.add(GroupConstants.TYPE_SITE_OPEN);
+				types.add(GroupConstants.TYPE_SITE_RESTRICTED);
 
 				params.put("types", types);
 			}
@@ -338,9 +338,6 @@ public class SitesPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
 		String name = ParamUtil.getString(actionRequest, "name");
 		String description = ParamUtil.getString(actionRequest, "description");
 		int type = ParamUtil.getInteger(actionRequest, "type");
@@ -394,7 +391,7 @@ public class SitesPortlet extends MVCPortlet {
 
 		long[] deleteLayoutIds = getLongArray(actionRequest, "deleteLayoutIds");
 
-		List<Layout> layouts = new ArrayList(deleteLayoutIds.length);
+		List<Layout> layouts = new ArrayList<Layout>(deleteLayoutIds.length);
 
 		for (long deleteLayoutId : deleteLayoutIds) {
 			Layout layout = LayoutLocalServiceUtil.getLayout(
