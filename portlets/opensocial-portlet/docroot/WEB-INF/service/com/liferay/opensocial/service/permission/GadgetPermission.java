@@ -25,15 +25,6 @@ import com.liferay.portal.security.permission.PermissionChecker;
 public class GadgetPermission {
 
 	public static void check(
-			PermissionChecker permissionChecker, long groupId, String actionId)
-		throws PortalException {
-
-		if (!contains(permissionChecker, groupId, actionId)) {
-			throw new PrincipalException();
-		}
-	}
-
-	public static void check(
 			PermissionChecker permissionChecker, long groupId, long gadgetId,
 			String actionId)
 		throws PortalException {
@@ -43,11 +34,13 @@ public class GadgetPermission {
 		}
 	}
 
-	public static boolean contains(
-		PermissionChecker permissionChecker, long groupId, String actionId) {
+	public static void check(
+			PermissionChecker permissionChecker, long groupId, String actionId)
+		throws PortalException {
 
-		return permissionChecker.hasPermission(
-			groupId, _NAME, groupId, actionId);
+		if (!contains(permissionChecker, groupId, actionId)) {
+			throw new PrincipalException();
+		}
 	}
 
 	public static boolean contains(
@@ -56,6 +49,13 @@ public class GadgetPermission {
 
 		return permissionChecker.hasPermission(
 			groupId, Gadget.class.getName(), gadgetId, actionId);
+	}
+
+	public static boolean contains(
+		PermissionChecker permissionChecker, long groupId, String actionId) {
+
+		return permissionChecker.hasPermission(
+			groupId, _NAME, groupId, actionId);
 	}
 
 	private static final String _NAME = "com.liferay.opensocial";

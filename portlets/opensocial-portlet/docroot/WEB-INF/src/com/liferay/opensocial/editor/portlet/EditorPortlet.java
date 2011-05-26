@@ -20,14 +20,12 @@ import com.liferay.opensocial.service.GadgetLocalServiceUtil;
 import com.liferay.opensocial.service.permission.GadgetPermission;
 import com.liferay.opensocial.shindig.util.ShindigUtil;
 import com.liferay.opensocial.util.ActionKeys;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayInputStream;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.Folder;
-import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.FileUtil;
@@ -83,12 +81,7 @@ public class EditorPortlet extends AdminPortlet {
 		GadgetPermission.check(
 			permissionChecker, groupId, gadgetId, ActionKeys.DELETE);
 
-		try {
-			GadgetLocalServiceUtil.deleteGadget(gadgetId);
-		}
-		catch (PortalException pe) {
-			SessionErrors.add(actionRequest, pe.getClass().getName());
-		}
+		GadgetLocalServiceUtil.deleteGadget(gadgetId);
 	}
 
 	public void serveResource(
@@ -164,29 +157,23 @@ public class EditorPortlet extends AdminPortlet {
 			GadgetPermission.check(
 				permissionChecker, groupId, ActionKeys.PUBLISH_GADGET);
 
-			try {
-				Gadget gadget = doAddGadget(actionRequest, actionResponse);
+			Gadget gadget = doAddGadget(actionRequest, actionResponse);
 
-				long gadgetId = gadget.getGadgetId();
+			long gadgetId = gadget.getGadgetId();
 
-				String publishGadgetRedirect = ParamUtil.getString(
-					actionRequest, "publishGadgetRedirect");
+			String publishGadgetRedirect = ParamUtil.getString(
+				actionRequest, "publishGadgetRedirect");
 
-				boolean deletePermission = GadgetPermission.contains(
-					permissionChecker, groupId, gadgetId, ActionKeys.DELETE);
+			boolean deletePermission = GadgetPermission.contains(
+				permissionChecker, groupId, gadgetId, ActionKeys.DELETE);
 
-				publishGadgetRedirect = HttpUtil.addParameter(
-					publishGadgetRedirect, "deletePermission",
-					deletePermission);
+			publishGadgetRedirect = HttpUtil.addParameter(
+				publishGadgetRedirect, "deletePermission", deletePermission);
 
-				publishGadgetRedirect = HttpUtil.addParameter(
-					publishGadgetRedirect, "gadgetId", gadgetId);
+			publishGadgetRedirect = HttpUtil.addParameter(
+				publishGadgetRedirect, "gadgetId", gadgetId);
 
-				actionResponse.sendRedirect(publishGadgetRedirect);
-			}
-			catch (PortalException pe) {
-				SessionErrors.add(actionRequest, pe.getClass().getName());
-			}
+			actionResponse.sendRedirect(publishGadgetRedirect);
 		}
 		else {
 			long gadgetId = ParamUtil.getLong(actionRequest, "gadgetId");
@@ -194,12 +181,7 @@ public class EditorPortlet extends AdminPortlet {
 			GadgetPermission.check(
 				permissionChecker, groupId, gadgetId, ActionKeys.UPDATE);
 
-			try {
-				doUpdateGadget(actionRequest, actionResponse);
-			}
-			catch (PortalException pe) {
-				SessionErrors.add(actionRequest, pe.getClass().getName());
-			}
+			doUpdateGadget(actionRequest, actionResponse);
 		}
 	}
 

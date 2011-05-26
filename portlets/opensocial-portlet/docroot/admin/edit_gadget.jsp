@@ -19,6 +19,22 @@
 <%
 String redirect = ParamUtil.getString(request, "redirect");
 
+long gadgetId = ParamUtil.getLong(request, "gadgetId");
+
+Gadget gadget = null;
+
+try {
+	gadget = GadgetLocalServiceUtil.getGadget(gadgetId);
+}
+catch (NoSuchGadgetException nsge) {
+}
+
+String portletCategoryNames = StringPool.BLANK;
+
+if (gadget != null) {
+	portletCategoryNames = gadget.getPortletCategoryNames();
+}
+
 String editorGadgetURL = ParamUtil.getString(request, "editorGadgetURL");
 
 boolean editorGadget = false;
@@ -35,22 +51,6 @@ if (Validator.isNotNull(editorGadgetURL)) {
 	publishGadgetRedirectURL.setWindowState(LiferayWindowState.POP_UP);
 
 	publishGadgetRedirect = publishGadgetRedirectURL.toString();
-}
-
-long gadgetId = ParamUtil.getLong(request, "gadgetId");
-
-Gadget gadget = null;
-
-try {
-	gadget = GadgetLocalServiceUtil.getGadget(gadgetId);
-}
-catch (NoSuchGadgetException nsge) {
-}
-
-String portletCategoryNames = StringPool.BLANK;
-
-if (gadget != null) {
-	portletCategoryNames = gadget.getPortletCategoryNames();
 }
 %>
 

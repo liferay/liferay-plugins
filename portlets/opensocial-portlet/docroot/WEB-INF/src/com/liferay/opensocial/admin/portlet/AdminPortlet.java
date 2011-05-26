@@ -17,8 +17,6 @@ package com.liferay.opensocial.admin.portlet;
 import com.liferay.opensocial.model.Gadget;
 import com.liferay.opensocial.service.GadgetLocalServiceUtil;
 import com.liferay.opensocial.service.OAuthConsumerLocalServiceUtil;
-import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
@@ -48,12 +46,7 @@ public class AdminPortlet extends MVCPortlet {
 
 		long gadgetId = ParamUtil.getLong(actionRequest, "gadgetId");
 
-		try {
-			GadgetLocalServiceUtil.deleteGadget(gadgetId);
-		}
-		catch (PortalException pe) {
-			SessionErrors.add(actionRequest, pe.getClass().getName());
-		}
+		GadgetLocalServiceUtil.deleteGadget(gadgetId);
 	}
 
 	public void deleteOAuthConsumer(
@@ -65,12 +58,7 @@ public class AdminPortlet extends MVCPortlet {
 		long oAuthConsumerId = ParamUtil.getLong(
 			actionRequest, "oAuthConsumerId");
 
-		try {
-			OAuthConsumerLocalServiceUtil.deleteOAuthConsumer(oAuthConsumerId);
-		}
-		catch (PortalException pe) {
-			SessionErrors.add(actionRequest, pe.getClass().getName());
-		}
+		OAuthConsumerLocalServiceUtil.deleteOAuthConsumer(oAuthConsumerId);
 	}
 
 	public void updateGadget(
@@ -79,18 +67,13 @@ public class AdminPortlet extends MVCPortlet {
 
 		checkPermissions(actionRequest);
 
-		try {
-			String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
+		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
 
-			if (cmd.equals(Constants.ADD)) {
-				doAddGadget(actionRequest, actionResponse);
-			}
-			else if (cmd.equals(Constants.UPDATE)) {
-				doUpdateGadget(actionRequest, actionResponse);
-			}
+		if (cmd.equals(Constants.ADD)) {
+			doAddGadget(actionRequest, actionResponse);
 		}
-		catch (PortalException pe) {
-			SessionErrors.add(actionRequest, pe.getClass().getName());
+		else if (cmd.equals(Constants.UPDATE)) {
+			doUpdateGadget(actionRequest, actionResponse);
 		}
 	}
 
@@ -100,18 +83,13 @@ public class AdminPortlet extends MVCPortlet {
 
 		checkPermissions(actionRequest);
 
-		try {
-			String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
+		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
 
-			if (cmd.equals(Constants.ADD)) {
-				doAddOAuthConsumer(actionRequest, actionResponse);
-			}
-			else if (cmd.equals(Constants.UPDATE)) {
-				doUpdateOAuthConsumer(actionRequest, actionResponse);
-			}
+		if (cmd.equals(Constants.ADD)) {
+			doAddOAuthConsumer(actionRequest, actionResponse);
 		}
-		catch (PortalException pe) {
-			SessionErrors.add(actionRequest, pe.getClass().getName());
+		else if (cmd.equals(Constants.UPDATE)) {
+			doUpdateOAuthConsumer(actionRequest, actionResponse);
 		}
 	}
 

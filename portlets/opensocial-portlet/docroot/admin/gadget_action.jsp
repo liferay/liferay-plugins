@@ -21,8 +21,6 @@ ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_
 
 Gadget gadget = (Gadget)row.getObject();
 
-long gadgetId = gadget.getGadgetId();
-
 Map<String, OAuthService> oAuthServices = null;
 
 try {
@@ -36,11 +34,11 @@ catch (Exception e) {
 %>
 
 <liferay-ui:icon-menu>
-	<c:if test="<%= GadgetPermission.contains(permissionChecker, themeDisplay.getScopeGroupId(), gadgetId, ActionKeys.UPDATE) %>">
+	<c:if test="<%= GadgetPermission.contains(permissionChecker, themeDisplay.getScopeGroupId(), gadget.getGadgetId(), ActionKeys.UPDATE) %>">
 		<portlet:renderURL var="updateGadgetURL">
 			<portlet:param name="jspPage" value="/admin/edit_gadget.jsp" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
-			<portlet:param name="gadgetId" value="<%= String.valueOf(gadgetId) %>" />
+			<portlet:param name="gadgetId" value="<%= String.valueOf(gadget.getGadgetId()) %>" />
 		</portlet:renderURL>
 
 		<liferay-ui:icon image="edit" url="<%= updateGadgetURL %>" />
@@ -49,28 +47,28 @@ catch (Exception e) {
 			<portlet:renderURL var="configureOAuthURL">
 				<portlet:param name="jspPage" value="/admin/view_oauth_consumers.jsp" />
 				<portlet:param name="redirect" value="<%= currentURL %>" />
-				<portlet:param name="gadgetId" value="<%= String.valueOf(gadgetId) %>" />
+				<portlet:param name="gadgetId" value="<%= String.valueOf(gadget.getGadgetId()) %>" />
 			</portlet:renderURL>
 
 			<liferay-ui:icon image="portlet" message="manage-oauth" url="<%= configureOAuthURL %>" />
 		</c:if>
 	</c:if>
 
-	<c:if test="<%= GadgetPermission.contains(permissionChecker, themeDisplay.getScopeGroupId(), gadgetId, ActionKeys.PERMISSIONS) %>">
+	<c:if test="<%= GadgetPermission.contains(permissionChecker, themeDisplay.getScopeGroupId(), gadget.getGadgetId(), ActionKeys.PERMISSIONS) %>">
 		<liferay-security:permissionsURL
 			modelResource="<%= Gadget.class.getName() %>"
 			modelResourceDescription="<%= gadget.getName() %>"
-			resourcePrimKey="<%= String.valueOf(gadgetId) %>"
+			resourcePrimKey="<%= String.valueOf(gadget.getGadgetId()) %>"
 			var="permissionsURL"
 		/>
 
 		<liferay-ui:icon image="permissions" url="<%= permissionsURL %>" />
 	</c:if>
 
-	<c:if test="<%= GadgetPermission.contains(permissionChecker, themeDisplay.getScopeGroupId(), gadgetId, ActionKeys.DELETE) %>">
+	<c:if test="<%= GadgetPermission.contains(permissionChecker, themeDisplay.getScopeGroupId(), gadget.getGadgetId(), ActionKeys.DELETE) %>">
 		<portlet:actionURL name="deleteGadget" var="deleteURL">
 			<portlet:param name="redirect" value="<%= currentURL %>" />
-			<portlet:param name="gadgetId" value="<%= String.valueOf(gadgetId) %>" />
+			<portlet:param name="gadgetId" value="<%= String.valueOf(gadget.getGadgetId()) %>" />
 		</portlet:actionURL>
 
 		<liferay-ui:icon-delete url="<%= deleteURL %>" />
