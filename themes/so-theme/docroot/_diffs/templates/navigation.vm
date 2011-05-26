@@ -34,7 +34,7 @@
 			#else
 				<li>
 			#end
-					<a href="$community_default_public_url"><span>Profile</span></a>
+				<a href="$community_default_public_url"><span>Profile</span></a>
 			</li>
 		</ul>
 	</nav>
