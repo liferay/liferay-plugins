@@ -83,5 +83,18 @@ public class GadgetServiceSoap {
 		}
 	}
 
+	public static void deleteGadget(long gadgetId,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws RemoteException {
+		try {
+			GadgetServiceUtil.deleteGadget(gadgetId, serviceContext);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
 	private static Log _log = LogFactoryUtil.getLog(GadgetServiceSoap.class);
 }

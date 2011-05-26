@@ -29,6 +29,10 @@ public class GadgetServiceClp implements GadgetService {
 				"addGadget", long.class, java.lang.String.class,
 				java.lang.String.class,
 				com.liferay.portal.service.ServiceContext.class);
+
+		_deleteGadgetMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteGadget", long.class,
+				com.liferay.portal.service.ServiceContext.class);
 	}
 
 	public com.liferay.opensocial.model.Gadget addGadget(long companyId,
@@ -67,10 +71,40 @@ public class GadgetServiceClp implements GadgetService {
 		return (com.liferay.opensocial.model.Gadget)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public void deleteGadget(long gadgetId,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		MethodHandler methodHandler = new MethodHandler(_deleteGadgetMethodKey1,
+				gadgetId, ClpSerializer.translateInput(serviceContext));
+
+		try {
+			_classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
 	public ClassLoaderProxy getClassLoaderProxy() {
 		return _classLoaderProxy;
 	}
 
 	private ClassLoaderProxy _classLoaderProxy;
 	private MethodKey _addGadgetMethodKey0;
+	private MethodKey _deleteGadgetMethodKey1;
 }
