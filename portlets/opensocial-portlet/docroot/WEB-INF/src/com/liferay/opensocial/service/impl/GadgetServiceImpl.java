@@ -24,6 +24,7 @@ import com.liferay.portal.service.ServiceContext;
 
 /**
  * @author Brian Wing Shun Chan
+ * @author Dennis Ju
  */
 public class GadgetServiceImpl extends GadgetServiceBaseImpl {
 
@@ -38,6 +39,16 @@ public class GadgetServiceImpl extends GadgetServiceBaseImpl {
 
 		return gadgetLocalService.addGadget(
 			companyId, url, portletCategoryNames, serviceContext);
+	}
+
+	public void deleteGadget(long gadgetId, ServiceContext serviceContext)
+		throws PortalException, SystemException {
+
+		GadgetPermission.check(
+			getPermissionChecker(), serviceContext.getScopeGroupId(), gadgetId,
+			ActionKeys.DELETE);
+
+		gadgetLocalService.deleteGadget(gadgetId);
 	}
 
 }
