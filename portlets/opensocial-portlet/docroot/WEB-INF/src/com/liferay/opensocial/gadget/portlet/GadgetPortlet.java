@@ -34,10 +34,10 @@ public class GadgetPortlet extends BaseGadgetPortlet {
 	}
 
 	protected void overrideConfiguration(
-			GadgetSpec gadgetSpec, Portlet portlet, 
+			GadgetSpec gadgetSpec, Portlet portlet,
 			PortletDisplay portletDisplay)
 		throws Exception {
-		
+
 		String urlConfiguration = portletDisplay.getURLConfiguration();
 
 		if (ShindigUtil.hasUserPrefs(gadgetSpec)) {
