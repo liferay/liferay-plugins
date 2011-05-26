@@ -324,11 +324,9 @@ public class ShindigUtil {
 			return false;
 		}
 
-		if ((userPrefs != null) && !userPrefs.isEmpty()) {
-			for (UserPref userPref : userPrefs.values()) {
-				if (userPref.getDataType() != UserPref.DataType.HIDDEN) {
-					return true;
-				}
+		for (UserPref userPref : userPrefs.values()) {
+			if (userPref.getDataType() != UserPref.DataType.HIDDEN) {
+				return true;
 			}
 		}
 

@@ -35,16 +35,14 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 			ActionResponse actionResponse)
 		throws Exception {
 
-		doProcessAction(
-			portletConfig, actionRequest, actionResponse);
+		doProcessAction(portletConfig, actionRequest, actionResponse);
 	}
 
 	public String render(PortletConfig portletConfig,
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws Exception {
 
-		doRender(
-			portletConfig, renderRequest, renderResponse);
+		doRender(portletConfig, renderRequest, renderResponse);
 
 		return "/gadget/configuration.jsp";
 	}

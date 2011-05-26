@@ -151,17 +151,17 @@ public class AdminPortlet extends MVCPortlet {
 	protected void doAddOAuthConsumer(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
-	
+
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
-	
+
 		long gadgetId = ParamUtil.getLong(actionRequest, "gadgetId");
 		String serviceName = ParamUtil.getString(actionRequest, "serviceName");
 		String consumerKey = ParamUtil.getString(actionRequest, "consumerKey");
 		String consumerSecret = ParamUtil.getString(
 			actionRequest, "consumerSecret");
 		String keyType = ParamUtil.getString(actionRequest, "keyType");
-	
+
 		OAuthConsumerLocalServiceUtil.addOAuthConsumer(
 			themeDisplay.getCompanyId(), gadgetId, serviceName, consumerKey,
 			consumerSecret, keyType);

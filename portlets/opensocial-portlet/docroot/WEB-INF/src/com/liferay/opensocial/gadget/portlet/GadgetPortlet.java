@@ -20,6 +20,7 @@ import com.liferay.opensocial.shindig.util.ShindigUtil;
 import com.liferay.portal.model.Portlet;
 import com.liferay.portal.theme.PortletDisplay;
 
+import javax.portlet.PortletConfig;
 import javax.portlet.RenderRequest;
 
 import org.apache.shindig.gadgets.spec.GadgetSpec;
@@ -30,7 +31,9 @@ import org.apache.shindig.gadgets.spec.GadgetSpec;
 public class GadgetPortlet extends BaseGadgetPortlet {
 
 	protected Gadget getGadget(RenderRequest renderRequest) throws Exception {
-		return ShindigUtil.getGadget(getPortletConfig().getPortletName());
+		PortletConfig portletConfig = getPortletConfig();
+
+		return ShindigUtil.getGadget(portletConfig.getPortletName());
 	}
 
 	protected void overrideConfiguration(

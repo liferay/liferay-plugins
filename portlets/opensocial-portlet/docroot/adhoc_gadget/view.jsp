@@ -25,6 +25,7 @@ Gadget gadget = (Gadget)renderRequest.getAttribute(WebKeys.GADGET);
 		<div class="portlet-msg-info">
 			<liferay-ui:message key="configure-a-gadget-to-be-displayed-in-this-portlet" />
 		</div>
+
 		<liferay-ui:icon
 			cssClass="portlet-configuration"
 			image="configuration"

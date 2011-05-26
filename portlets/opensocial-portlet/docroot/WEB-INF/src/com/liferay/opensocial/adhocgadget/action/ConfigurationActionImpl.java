@@ -11,6 +11,7 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
+
 package com.liferay.opensocial.adhocgadget.action;
 
 import com.liferay.opensocial.gadget.action.BaseConfigurationAction;
@@ -51,8 +52,9 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 		}
 	}
 
-	public String render(PortletConfig portletConfig,
-			RenderRequest renderRequest, RenderResponse renderResponse)
+	public String render(
+			PortletConfig portletConfig, RenderRequest renderRequest,
+			RenderResponse renderResponse)
 		throws Exception {
 
 		if (hasUserPrefs(portletConfig, renderRequest)) {

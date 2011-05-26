@@ -71,7 +71,7 @@ public abstract class BaseGadgetPortlet extends MVCPortlet {
 		throws Exception {
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)renderRequest.getAttribute(
-				WebKeys.THEME_DISPLAY);
+			WebKeys.THEME_DISPLAY);
 
 		ExpandoTable expandoTable = ExpandoTableLocalServiceUtil.getTable(
 			themeDisplay.getCompanyId(), User.class.getName(),
