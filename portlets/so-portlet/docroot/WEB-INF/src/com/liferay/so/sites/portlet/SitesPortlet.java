@@ -353,9 +353,6 @@ public class SitesPortlet extends MVCPortlet {
 
 		expandoBridge.setAttribute("socialOfficeEnabled", Boolean.TRUE);
 
-		String customJspServletContextName = ParamUtil.getString(
-			actionRequest, "customJspServletContextName");
-
 		UnicodeProperties typeSettingsProperties =
 			group.getTypeSettingsProperties();
 
