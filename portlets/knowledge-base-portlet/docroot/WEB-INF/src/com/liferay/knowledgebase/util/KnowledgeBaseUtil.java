@@ -149,7 +149,7 @@ public class KnowledgeBaseUtil {
 			};
 		}
 		else if (orderByCol.equals("title")) {
-			String fieldName = Field.TITLE + "Keyword";
+			String fieldName = "titleKeyword";
 
 			return new Sort[] {
 				SortFactoryUtil.create(fieldName, Sort.STRING_TYPE, reverse),
