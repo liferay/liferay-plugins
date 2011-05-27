@@ -16,16 +16,34 @@
 
 <%@ include file="/init.jsp" %>
 
+<h3>Subscribe</h3>
 <div>
-	<input id="<portlet:namespace />subscribe" type="button" value="Subscribe" />
+	Topic as:
+	<aui:select name="subscribeTopic" label="">
+		<aui:option label="String"/>
+		<aui:option label="Array"/>
+	</aui:select>
 
-	<input id="<portlet:namespace />unsubscribe" type="button" value="Unsubscribe" />
+	<aui:button name="subscribe" value="Subscribe" />
+</div>
+
+<h3>Unsubscribe</h3>
+<div>
+	Topic as:
+	<aui:select name="unsubscribeTopic" label="">
+		<aui:option value="string_callback_fn" label="String w/ callback fn" />
+		<aui:option value="string" label="String w/o callback fn" />
+		<aui:option value="handle" label="Topic Handle" />
+		<aui:option value="handle_detach" label="Handle.detach()" />
+	</aui:select>
+
+	<aui:button name="unsubscribe" value="Unsubscribe" />
 </div>
 
 <div id="<portlet:namespace />message"></div>
 
 <aui:script use="aui-base">
-	var topic = null;
+	var handle = null;
 
 	function callback(topic, data, subscriberData) {
 		A.one('#<portlet:namespace />message').set('innerHTML', 'Message: ' + data + '<br />Received: ' + new Date().toString());
@@ -34,16 +52,51 @@
 	A.one('#<portlet:namespace />subscribe').on(
 		'click',
 		function () {
-			topic = Liferay.on('gadget:org.apache.shindig.random-number', callback);
+			var subscribeTopic = 'gadget:org.apache.shindig.random-number';
+
+			var topicType = A.one('#<portlet:namespace />subscribeTopic').val();
+
+			if (topicType == 'Array') {
+				subscribeTopic = [subscribeTopic];
+			}
+
+			handle = Liferay.on(subscribeTopic, callback);
 		}
 	);
 
 	A.one('#<portlet:namespace />unsubscribe').on(
 		'click',
 		function () {
-			Liferay.detach(topic);
+			var lfrDetach = false;
+			var unsubscribeFn, unsubscribeTopic;
 
-			A.one('#<portlet:namespace />message').set('innerHTML', '');
+			var topicType = A.one('#<portlet:namespace />unsubscribeTopic').val();
+
+			if (topicType == 'string_callback_fn') {
+				lfrDetach = true;
+
+				unsubscribeFn = callback;
+				unsubscribeTopic= 'gadget:org.apache.shindig.random-number';
+			}
+			else if (topicType == 'string') {
+				lfrDetach = true;
+
+				unsubscribeTopic= 'gadget:org.apache.shindig.random-number';
+			}
+			else if (topicType == 'handle') {
+				lfrDetach = true;
+
+				unsubscribeTopic = handle;
+			}
+
+			if (lfrDetach) {
+				Liferay.detach(unsubscribeTopic, unsubscribeFn);
+			}
+			else {
+				handle.detach();
+			}
+
+			A.one('#<portlet:namespace />message').empty();
 		}
 	);
 </aui:script>
