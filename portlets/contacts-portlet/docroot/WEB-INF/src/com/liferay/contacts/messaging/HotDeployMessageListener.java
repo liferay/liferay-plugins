@@ -30,14 +30,14 @@ public class HotDeployMessageListener extends BaseMessageListener {
 		String command = message.getString("command");
 
 		if (command.equals("deploy")) {
-			doReceiveDeploy(message);
+			deploy(message);
 		}
 		else if (command.equals("undeploy")) {
-			doReceiveUndeploy(message);
+			undeploy(message);
 		}
 	}
 
-	protected void doReceiveDeploy(Message message) throws Exception {
+	protected void deploy(Message message) throws Exception {
 		String servletContextName = message.getString("servletContextName");
 
 		if (servletContextName.equals("chat-portlet")) {
@@ -54,7 +54,7 @@ public class HotDeployMessageListener extends BaseMessageListener {
 		}
 	}
 
-	protected void doReceiveUndeploy(Message message) throws Exception {
+	protected void undeploy(Message message) throws Exception {
 		String servletContextName = message.getString("servletContextName");
 
 		ContactsExtensionsUtil.unregister(servletContextName);

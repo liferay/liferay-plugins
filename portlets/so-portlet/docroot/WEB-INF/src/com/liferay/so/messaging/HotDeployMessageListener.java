@@ -25,15 +25,7 @@ import com.liferay.portal.service.PortletLocalServiceUtil;
  */
 public class HotDeployMessageListener extends BaseMessageListener {
 
-	protected void doReceive(Message message) throws Exception {
-		String command = message.getString("command");
-
-		if (command.equals("deploy")) {
-			doReceiveDeploy(message);
-		}
-	}
-
-	protected void doReceiveDeploy(Message message) throws Exception {
+	protected void deploy(Message message) throws Exception {
 		String servletContextName = message.getString("servletContextName");
 
 		if (servletContextName.equals("contacts-portlet")) {
@@ -47,6 +39,14 @@ public class HotDeployMessageListener extends BaseMessageListener {
 
 				registerContactsExtension();
 			}
+		}
+	}
+
+	protected void doReceive(Message message) throws Exception {
+		String command = message.getString("command");
+
+		if (command.equals("deploy")) {
+			deploy(message);
 		}
 	}
 

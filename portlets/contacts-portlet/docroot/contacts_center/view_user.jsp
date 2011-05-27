@@ -110,6 +110,7 @@ request.setAttribute("view_user.jsp-viewUser", Boolean.TRUE.toString());
 
 				for (String servletContextName : servletContextNames) {
 					String extensionPath = extensions.get(servletContextName);
+
 					ServletContext extensionServletContext = ServletContextPool.get(servletContextName);
 
 					String title = fileName.substring(extensionPath.lastIndexOf(StringPool.SLASH), extensionPath.lastIndexOf(StringPool.PERIOD));
