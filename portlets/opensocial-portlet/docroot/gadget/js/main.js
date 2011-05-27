@@ -599,6 +599,7 @@ AUI().add(
 						}
 						else if (eventMap[i] == fn) {
 							subscriptionId = i;
+
 							break;
 						}
 					}
