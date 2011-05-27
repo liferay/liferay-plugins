@@ -244,10 +244,10 @@ if (!fieldsEditingDisabled) {
 	webFields.all('select').each(toggleOptions);
 
 	<c:if test="<%= !fieldsEditingDisabled %>">
-		A.delegate('change', toggleOptions, webFields, 'select');
-		A.delegate('click', toggleValidationOptions, webFields, '.validation-link');
+		webFields.delegate(['click', 'keydown'], toggleOptions, 'select');
+		webFields.delegate('click', toggleValidationOptions, '.validation-link');
 
-		A.delegate(
+		webFields.delegate(
 			'change',
 			function(event) {
 				var input = event.currentTarget;
@@ -258,7 +258,6 @@ if (!fieldsEditingDisabled) {
 					label.html(input.get('value'));
 				}
 			},
-			webFields,
 			'.label-name input'
 		);
 
