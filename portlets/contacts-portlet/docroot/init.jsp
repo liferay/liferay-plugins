@@ -24,6 +24,7 @@
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 <%@ taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 
+<%@ page import="com.liferay.contacts.util.ContactsExtensionsUtil" %>
 <%@ page import="com.liferay.contacts.util.PortletKeys" %>
 <%@ page import="com.liferay.contacts.util.WebKeys" %>
 <%@ page import="com.liferay.portal.kernel.dao.search.DisplayTerms" %>
@@ -31,6 +32,7 @@
 <%@ page import="com.liferay.portal.kernel.dao.search.SearchContainer" %>
 <%@ page import="com.liferay.portal.kernel.language.LanguageUtil" %>
 <%@ page import="com.liferay.portal.kernel.portlet.LiferayWindowState" %>
+<%@ page import="com.liferay.portal.kernel.servlet.ServletContextPool" %>
 <%@ page import="com.liferay.portal.kernel.util.CharPool" %>
 <%@ page import="com.liferay.portal.kernel.util.Constants" %>
 <%@ page import="com.liferay.portal.kernel.util.FileUtil" %>
@@ -69,6 +71,8 @@
 
 <%@ page import="java.util.LinkedHashMap" %>
 <%@ page import="java.util.List" %>
+<%@ page import="java.util.Map" %>
+<%@ page import="java.util.Set" %>
 
 <%@ page import="javax.portlet.PortletPreferences" %>
 <%@ page import="javax.portlet.PortletURL" %>

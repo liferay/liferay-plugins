@@ -104,14 +104,15 @@ request.setAttribute("view_user.jsp-viewUser", Boolean.TRUE.toString());
 				</liferay-ui:panel>
 
 				<%
-				String[] fileNames = FileUtil.listFiles(PortalUtil.getPortalWebDir() + "/html/portlet/enterprise_admin/contacts_center/");
+				Map<String, String> extensions = ContactsExtensionsUtil.getExtensions();
 
-				for (String fileName : fileNames) {
-					if (!fileName.endsWith(".jsp")) {
-						continue;
-					}
+				Set<String> servletContextNames = extensions.keySet();
 
-					String title = fileName.substring(0, fileName.lastIndexOf(StringPool.PERIOD));
+				for (String servletContextName : servletContextNames) {
+					String extensionPath = extensions.get(servletContextName);
+					ServletContext extensionServletContext = ServletContextPool.get(servletContextName);
+
+					String title = fileName.substring(extensionPath.lastIndexOf(StringPool.SLASH), extensionPath.lastIndexOf(StringPool.PERIOD));
 
 					title = title.replace(CharPool.UNDERLINE, CharPool.DASH);
 
@@ -120,7 +121,7 @@ request.setAttribute("view_user.jsp-viewUser", Boolean.TRUE.toString());
 
 					<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" persistState="<%= true %>" title="<%= title %>">
 						<div class="<%= cssClass %>">
-							<liferay-util:include page='<%= "/html/portlet/enterprise_admin/contacts_center/" + fileName %>' />
+							<liferay-util:include page="<%= extensionPath %>" servletContext="<%= extensionServletContext %>" />
 						</div>
 					</liferay-ui:panel>
 

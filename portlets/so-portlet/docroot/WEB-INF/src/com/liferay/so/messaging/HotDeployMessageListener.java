@@ -12,14 +12,13 @@
  * details.
  */
 
-package com.liferay.contacts.messaging;
+package com.liferay.so.messaging;
 
 import com.liferay.portal.kernel.messaging.BaseMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.util.MethodKey;
 import com.liferay.portal.kernel.util.PortletClassInvoker;
 import com.liferay.portal.service.PortletLocalServiceUtil;
-import com.liferay.contacts.util.ContactsExtensionsUtil;
 
 /**
  * @author Ryan Park
@@ -32,42 +31,33 @@ public class HotDeployMessageListener extends BaseMessageListener {
 		if (command.equals("deploy")) {
 			doReceiveDeploy(message);
 		}
-		else if (command.equals("undeploy")) {
-			doReceiveUndeploy(message);
-		}
 	}
 
 	protected void doReceiveDeploy(Message message) throws Exception {
 		String servletContextName = message.getString("servletContextName");
 
-		if (servletContextName.equals("chat-portlet")) {
-			registerChatExtension();
+		if (servletContextName.equals("contacts-portlet")) {
+			registerContactsExtension();
 		}
-		else if (servletContextName.equals("contacts-portlet")) {
+		else if (servletContextName.equals("so-portlet")) {
 			long companyId = message.getLong("companyId");
 
 			if (PortletLocalServiceUtil.hasPortlet(
-					companyId, "1_WAR_chatportlet")) {
+					companyId, "1_WAR_contactsportlet")) {
 
-				registerChatExtension();
+				registerContactsExtension();
 			}
 		}
 	}
 
-	protected void doReceiveUndeploy(Message message) throws Exception {
-		String servletContextName = message.getString("servletContextName");
-
-		ContactsExtensionsUtil.unregister(servletContextName);
-	}
-
-	protected void registerChatExtension() throws Exception {
+	protected void registerContactsExtension() throws Exception {
 		PortletClassInvoker.invoke(
-			false, "1_WAR_chatportlet", _registerMethodKey, "contacts-portlet",
-			"/chat/view.jsp");
+			false, "1_WAR_contactsportlet", _registerMethodKey, "so-portlet",
+			"/contacts/expertise.jsp");
 	}
 
 	private MethodKey _registerMethodKey = new MethodKey(
-		"com.liferay.chat.util.ChatExtensionsUtil", "register", String.class,
-		String.class);
+		"com.liferay.contacts.util.ContactsExtensionsUtil", "register",
+		String.class, String.class);
 
 }
