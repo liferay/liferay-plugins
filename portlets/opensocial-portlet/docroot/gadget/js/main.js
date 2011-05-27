@@ -7,6 +7,10 @@ AUI().add(
 
 		var getClassName = A.getClassName;
 
+		var isArray = Lang.isArray;
+
+		var isString = Lang.isString;
+
 		var CSS_CLASS_GADGET = getClassName('gadget');
 
 		var GADGET_IFRAME_PREFIX = 'remote_iframe_';
@@ -503,27 +507,15 @@ AUI().add(
 
 		Liferay.detach = function(topic, fn) {
 			var handle = topic;
+			var gadgetTopic = topic;
+			var subscriptionId;
 
-			if (handle && handle.detach) {
-				fn = handle.sub.fn;
-
-				topic = handle.evt.type;
+			if (handle && !handle.detach) {
+				subscriptionId = getSubscriptionId(topic, fn);
 			}
 
-			if (containsString(topic, PREFIX)) {
-				var eventType = topic.replace(PREFIX, STR_EMPTY);
-
-				var eventMap = MAP[eventType];
-
-				if (eventMap) {
-					for (var i in eventMap) {
-						if (!fn || eventMap[i] == fn) {
-							gadgets.pubsub2router.hub.unsubscribe(i);
-
-							delete eventMap[i];
-						}
-					}
-				}
+			if (subscriptionId) {
+				unsubscribeTopic(gadgetTopic, subscriptionId);
 			}
 
 			return Liferay._detachInitialFn.apply(Liferay, arguments);
@@ -541,25 +533,121 @@ AUI().add(
 
 		Liferay.on = function(topic, fn) {
 			var handle;
+			var gadgetTopic;
+			var subscriptionId;
 
-			if (containsString(topic, PREFIX)) {
-				var eventType = topic.replace(PREFIX, STR_EMPTY);
+			if (isArray(topic)) {
+				gadgetTopic = [];
+				subscriptionId = [];
 
-				var eventMap = MAP[eventType] || {};
+				var eventName;
 
-				var subscriptionId = gadgets.pubsub2router.hub.subscribe(eventType, fn);
+				for (var i = 0; i < topic.length; i++) {
+					eventName = topic[i];
 
-				eventMap[subscriptionId] = fn;
+					if (containsString(eventName, PREFIX)) {
+						gadgetTopic.push(eventName);
+						subscriptionId.push(subscribeGadgetEvent(eventName, fn));
+					}
+				}
+			}
+			else if (containsString(topic, PREFIX)) {
+				gadgetTopic = topic;
+				subscriptionId = subscribeGadgetEvent(topic, fn);
+			}
 
-				MAP[eventType] = eventMap;
-
+			if (subscriptionId && subscriptionId.length) {
 				handle = Liferay._onInitialFn(topic, Lang.emptyFn);
+
+				handle._LFR_HANDLE_DETACH = handle.detach;
+
+				handle._LFR_GADGET_TOPIC = gadgetTopic;
+
+				handle._LFR_SUB_ID = subscriptionId;
+
+				handle.detach = function() {
+					handle.detach = handle._LFR_HANDLE_DETACH;
+
+					unsubscribeTopic(topic, subscriptionId);
+				};
 			}
 			else {
 				handle = Liferay._onInitialFn.apply(Liferay, arguments);
 			}
 
 			return handle;
+		};
+
+		var getSubscriptionId = function(topic, fn) {
+			var subscriptionId = null;
+
+			if (topic) {
+				var eventType = topic.replace(PREFIX, STR_EMPTY);
+
+				var eventMap = MAP[eventType];
+
+				var allIds = (!fn);
+
+				if (allIds) {
+					subscriptionId = [];
+				}
+
+				if (eventMap) {
+					for (var i in eventMap) {
+						if (allIds) {
+							subscriptionId.push(i);
+						}
+						else if (eventMap[i] == fn) {
+							subscriptionId = i;
+							break;
+						}
+					}
+				}
+			}
+
+			return subscriptionId;
+		};
+
+		var subscribeGadgetEvent = function(topic, fn) {
+			var eventType = topic.replace(PREFIX, STR_EMPTY);
+
+			var eventMap = MAP[eventType] || {};
+
+			var subscriptionId = gadgets.pubsub2router.hub.subscribe(eventType, fn);
+
+			eventMap[subscriptionId] = fn;
+
+			MAP[eventType] = eventMap;
+
+			return subscriptionId;
+		};
+
+		var unsubscribeGadgetEvent = function(topic, subscriptionId, fn) {
+			var eventType = topic.replace(PREFIX, STR_EMPTY);
+
+			var eventMap = MAP[eventType];
+
+			if (!fn || eventMap[subscriptionId] == fn) {
+				gadgets.pubsub2router.hub.unsubscribe(subscriptionId);
+
+				delete eventMap[subscriptionId];
+			}
+		};
+
+		var unsubscribeTopic = function(topic, subscriptionId, fn) {
+			if (isString(topic) && isString(subscriptionId)) {
+				unsubscribeGadgetEvent(topic, subscriptionId, fn);
+			}
+			else if (isString(topic) && isArray(subscriptionId)) {
+				for (var i = 0; i < subscriptionId.length; i++) {
+					unsubscribeGadgetEvent(topic, subscriptionId[i], fn);
+				}
+			}
+			else if (isArray(topic) && isArray(subscriptionId)) {
+				for (var i = 0; i < subscriptionId.length; i++) {
+					unsubscribeGadgetEvent(topic[i], subscriptionId[i]);
+				}
+			}
 		};
 
 		var managedHub = new OpenAjax.hub.ManagedHub(
