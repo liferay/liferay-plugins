@@ -127,7 +127,7 @@ String dirName = ParamUtil.getString(request, "dirName");
 
 		<aui:model-context bean="<%= null %>" model="<%= KBArticle.class %>" />
 
-		<aui:select cssClass='<%= (parentResourcePrimKey != KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) ? "yui3-aui-helper-hidden" : StringPool.BLANK %>' ignoreRequestValue="<%= true %>" multiple="<%= true %>" name="sections">
+		<aui:select cssClass='<%= (parentResourcePrimKey != KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) ? "aui-helper-hidden" : StringPool.BLANK %>' ignoreRequestValue="<%= true %>" multiple="<%= true %>" name="sections">
 
 			<%
 			Map<String, String> sectionsMap = new TreeMap<String, String>();
@@ -158,7 +158,7 @@ String dirName = ParamUtil.getString(request, "dirName");
 		</c:if>
 
 		<c:if test="<%= kbArticle == null %>">
-			<aui:field-wrapper cssClass='<%= (parentResourcePrimKey != KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) ? "yui3-aui-helper-hidden" : StringPool.BLANK %>' label="permissions">
+			<aui:field-wrapper cssClass='<%= (parentResourcePrimKey != KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) ? "aui-helper-hidden" : StringPool.BLANK %>' label="permissions">
 				<liferay-ui:input-permissions
 					modelName="<%= KBArticle.class.getName() %>"
 				/>

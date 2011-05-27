@@ -37,7 +37,7 @@ String localizedLanguageId = ParamUtil.getString(request, "localizedLanguageId",
 
 		<aui:input inlineField="<%= true %>" label="value" name='<%= "kbStructureField" + kbStructureFieldIndex + "kbStructureOptionValue" + kbStructureOptionIndex %>' value="<%= value %>" />
 
-		<aui:field-wrapper cssClass='<%= !localizedLanguageId.equals(defaultLanguageId) ? "yui3-aui-helper-hidden" : StringPool.BLANK %>' inlineField="<%= true %>" label="<%= StringPool.NBSP %>">
+		<aui:field-wrapper cssClass='<%= !localizedLanguageId.equals(defaultLanguageId) ? "aui-helper-hidden" : StringPool.BLANK %>' inlineField="<%= true %>" label="<%= StringPool.NBSP %>">
 
 			<%
 			String taglibURL = "javascript:" + renderResponse.getNamespace() + "moveKBStructureOptionUp(" + kbStructureFieldIndex + ", " + kbStructureOptionIndex + ");";

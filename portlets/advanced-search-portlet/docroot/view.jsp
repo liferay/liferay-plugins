@@ -263,7 +263,7 @@ int rightColumn = 100;
 								}
 								%>
 
-								<table class="lfr-table document-fields yui3-aui-helper-hidden">
+								<table class="lfr-table document-fields aui-helper-hidden">
 									<thead>
 										<tr>
 											<th class="key"><liferay-ui:message key="key" /></th>

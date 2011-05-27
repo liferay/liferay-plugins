@@ -23,11 +23,11 @@
 
 	<aui:layout>
 		<aui:column id="controls" columnWidth="50">
-			<div class="yui3-aui-field-row">
+			<div class="aui-field-row">
 				<aui:input cssClass="url" inlineField="true" label="url" name="preferences--url--" value="<%= url %>" />
 			</div>
 
-			<div class="yui3-aui-field-row">
+			<div class="aui-field-row">
 				<aui:select label="preset-frame-size" name="preferences--presetSize--" inlineField="true" cssClass="preset-size">
 					<aui:option label="Custom" value="custom" />
 					<aui:option label="Standard 360 4:3" selected='<%= presetSize.equals("480x360") %>' value="480x360" />
@@ -47,19 +47,19 @@
 
 			<liferay-ui:panel-container extended="<%= false %>" persistState="<%= true %>">
 				<liferay-ui:panel collapsible="<%= true %>" defaultState="closed" extended="<%= false %>" persistState="<%= true %>" title="advanced-options">
-					<div class="yui3-aui-field-row">
+					<div class="aui-field-row">
 						<aui:input cssClass="player-color" inlineField="true" label="player-color" name="preferences--playerColor--" value="<%= playerColor %>" />
 					</div>
 
-					<div class="yui3-aui-field-row">
+					<div class="aui-field-row">
 						<aui:input cssClass="autoplay" inlineField="true" label="auto-play" name="preferences--autoplay--" value="<%= autoplay %>" type="checkbox" />
 					</div>
 
-					<div class="yui3-aui-field-row">
+					<div class="aui-field-row">
 						<aui:input cssClass="enable-fullscreen" inlineField="true" label="enable-fullscreen-option" name="preferences--enableFullscreen--" value="<%= enableFullscreen %>" type="checkbox" />
 					</div>
 
-					<div class="yui3-aui-field-row">
+					<div class="aui-field-row">
 						<aui:input cssClass="show-byline" inlineField="true" label="show-byline" name="preferences--showByline--" value="<%= showByline %>" type="checkbox" />
 
 						<aui:input cssClass="show-portrait" inlineField="true" label="show-portrait" name="preferences--showPortrait--" value="<%= showPortrait %>" type="checkbox" />
@@ -71,7 +71,7 @@
 		</aui:column>
 
 		<aui:column columnWidth="50">
-			<div class="yui3-aui-field-wrapper-content" id="preview"></div>
+			<div class="aui-field-wrapper-content" id="preview"></div>
 		</aui:column>
 	</aui:layout>
 
@@ -104,8 +104,8 @@
 
 	function presetChange(e) {
 		if (this.val().indexOf('x') < 0) {
-			A.one('.yui3-aui-field.height').removeClass('invisible');
-			A.one('.yui3-aui-field.width').removeClass('invisible');
+			A.one('.aui-field.height').removeClass('invisible');
+			A.one('.aui-field.width').removeClass('invisible');
 
 			return;
 		}
@@ -221,7 +221,7 @@
 
 			submitForm(document['<portlet:namespace />fm']);
 		},
-		'input.yui3-aui-button-input-submit'
+		'input.aui-button-input-submit'
 	);
 
 	A.on(
@@ -247,8 +247,8 @@
 	).render();
 
 	if (presetSizeNode.val() == 'custom') {
-		A.one('.yui3-aui-field.height').removeClass('invisible');
-		A.one('.yui3-aui-field.width').removeClass('invisible');
+		A.one('.aui-field.height').removeClass('invisible');
+		A.one('.aui-field.width').removeClass('invisible');
 	}
 
 	createPlayer();

@@ -27,7 +27,7 @@ Account mailAccount = AccountLocalServiceUtil.getAccount(accountId);
 <aui:layout cssClass="mail-status" />
 
 <aui:form name="dialogFm" onSubmit="event.preventDefault();">
-	<aui:fieldset column="<%= true %>" cssClass="yui3-aui-w50" label="general">
+	<aui:fieldset column="<%= true %>" cssClass="aui-w50" label="general">
 		<aui:input name="accountId" type="hidden" value="<%= mailAccount.getAccountId() %>" />
 		<aui:input name="signature" type="hidden" value="<%= mailAccount.getSignature() %>" />
 		<aui:input name="useSignature" type="hidden" value="<%= mailAccount.getUseSignature() %>" />
@@ -41,7 +41,7 @@ Account mailAccount = AccountLocalServiceUtil.getAccount(accountId);
 		<aui:input name="savePassword" type="checkbox" value="<%= mailAccount.isSavePassword() %>" />
 	</aui:fieldset>
 
-	<aui:fieldset column="<%= true %>" cssClass="yui3-aui-w50" label="folders">
+	<aui:fieldset column="<%= true %>" cssClass="aui-w50" label="folders">
 		<aui:select name="inboxFolderId" label="inbox">
 
 			<%

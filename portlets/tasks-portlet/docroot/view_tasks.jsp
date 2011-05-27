@@ -193,7 +193,7 @@ taskListURL.setParameter("tabs2", tabs2);
 
 				buffer.append("</div>");
 				buffer.append("</div>");
-				buffer.append("<div class=\"progress-picker yui3-aui-helper-hidden\">");
+				buffer.append("<div class=\"progress-picker aui-helper-hidden\">");
 				buffer.append("<div class=\"new-progress\"><!-- --></div>");
 				buffer.append("<div class=\"progress-indicator\"></div>");
 				buffer.append("<div class=\"progress-selector");
@@ -242,7 +242,7 @@ taskListURL.setParameter("tabs2", tabs2);
 			List<AssetTag> assetTags = AssetTagLocalServiceUtil.getTags(TasksEntry.class.getName(), tasksEntry.getTasksEntryId());
 
 			if (!assetTags.isEmpty()) {
-				buffer.append("<div class=\"tags-wrapper\"><div class=\"icon\"><!-- --></div><div class=\"tags yui3-aui-helper-hidden\">");
+				buffer.append("<div class=\"tags-wrapper\"><div class=\"icon\"><!-- --></div><div class=\"tags aui-helper-hidden\">");
 			}
 
 			Iterator<AssetTag> itr = assetTags.iterator();

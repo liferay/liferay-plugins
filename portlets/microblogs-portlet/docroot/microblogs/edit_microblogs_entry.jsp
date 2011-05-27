@@ -144,7 +144,7 @@ header = LanguageUtil.format(pageContext, header, receiverUserFullName);
 		<aui:input label="" type="textarea" name="content" />
 	</c:if>
 
-	<aui:button-row cssClass='<%= view ? "yui3-aui-helper-hidden" : StringPool.BLANK %>'>
+	<aui:button-row cssClass='<%= view ? "aui-helper-hidden" : StringPool.BLANK %>'>
 		<c:if test="<%= !repost && !reply %>">
 
 			<%
@@ -181,10 +181,10 @@ header = LanguageUtil.format(pageContext, header, receiverUserFullName);
 	var form = A.one(document.<portlet:namespace /><%= formName %>);
 
 	<c:if test="<%= !repost %>">
-		var buttonContainer = form.one('.yui3-aui-button-holder');
+		var buttonContainer = form.one('.aui-button-holder');
 		var contentInput = form.one('textarea[name=<portlet:namespace />content]');
 		var countdown = form.one('.microblogs-countdown');
-		var submitButton = form.one('.yui3-aui-button-input-submit');
+		var submitButton = form.one('.aui-button-input-submit');
 	</c:if>
 
 	<c:if test="<%= view %>">

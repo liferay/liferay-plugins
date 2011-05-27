@@ -30,20 +30,20 @@ MailManager mailManager = MailManager.getInstance(request);
 		<div id="mailContainer">
 			<aui:layout>
 				<aui:column columnWidth="20">
-					<div class="yui3-aui-helper-hidden" id="controlContainer">
+					<div class="aui-helper-hidden" id="controlContainer">
 						<div id="foldersContainer"></div>
 					</div>
 				</aui:column>
 
 				<aui:column columnWidth="80">
 					<div id="contentContainer">
-						<div class="yui3-aui-helper-hidden" id="manageFoldersContainer"></div>
+						<div class="aui-helper-hidden" id="manageFoldersContainer"></div>
 
 						<div id="messagesContainer"></div>
 
-						<div class="yui3-aui-helper-hidden" id="messageContainer"></div>
+						<div class="aui-helper-hidden" id="messageContainer"></div>
 
-						<div class="yui3-aui-helper-hidden" id="composeContainer"></div>
+						<div class="aui-helper-hidden" id="composeContainer"></div>
 					</div>
 				</aui:column>
 			</aui:layout>

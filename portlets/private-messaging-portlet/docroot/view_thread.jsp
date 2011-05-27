@@ -217,7 +217,7 @@ UserThreadLocalServiceUtil.markUserThreadAsRead(user.getUserId(), mbThreadId);
 			</td>
 			<td>
 				<aui:layout>
-					<label class="yui3-aui-field-label">
+					<label class="aui-field-label">
 						<liferay-ui:message key="attachments" />
 					</label>
 

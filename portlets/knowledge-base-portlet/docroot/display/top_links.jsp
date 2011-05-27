@@ -133,7 +133,7 @@ String assetTagName = ParamUtil.getString(request, "tag");
 				<liferay-portlet:renderURLParams varImpl="searchURL" />
 
 				<aui:fieldset>
-					<span class="yui3-aui-search-bar">
+					<span class="aui-search-bar">
 						<aui:input inlineField="<%= true %>" label="" name="keywords" size="30" title="search-articles" type="text" />
 
 						<aui:button type="submit" value="search" />

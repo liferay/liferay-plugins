@@ -36,7 +36,7 @@ if (WebFormUtil.VALIDATION_SCRIPT_ENABLED) {
 }
 %>
 
-<div class="yui3-aui-field-row field-row">
+<div class="aui-field-row field-row">
 	<div class="field-title">
 		<c:choose>
 			<c:when test='<%= fieldType.equals("paragraph") %>'>
@@ -107,7 +107,7 @@ if (WebFormUtil.VALIDATION_SCRIPT_ENABLED) {
 
 	<c:choose>
 		<c:when test="<%= !fieldsEditingDisabled %>">
-			<aui:field-wrapper cssClass='<%= "options" + ((Validator.isNull(fieldType) || (!fieldType.equals("options") && !fieldType.equals("radio"))) ? " yui3-aui-helper-hidden" : StringPool.BLANK) %>' helpMessage="add-options-separated-by-commas" label="options">
+			<aui:field-wrapper cssClass='<%= "options" + ((Validator.isNull(fieldType) || (!fieldType.equals("options") && !fieldType.equals("radio"))) ? " aui-helper-hidden" : StringPool.BLANK) %>' helpMessage="add-options-separated-by-commas" label="options">
 				<liferay-ui:input-localized name='<%= "fieldOptions" + index %>' xml="<%= fieldOptionsXml %>" />
 			</aui:field-wrapper>
 		</c:when>
@@ -129,7 +129,7 @@ if (WebFormUtil.VALIDATION_SCRIPT_ENABLED) {
 
 					<aui:a cssClass="validation-link" href="javascript:;"><liferay-ui:message key="validation" /> &raquo;</aui:a>
 
-					<div class='validation-input <%= Validator.isNull(fieldValidationScript) ? "yui3-aui-helper-hidden" : "" %>'>
+					<div class='validation-input <%= Validator.isNull(fieldValidationScript) ? "aui-helper-hidden" : "" %>'>
 						<aui:column columnWidth="50">
 							<aui:input cssClass="validation-script" cols="80" label="validation-script" name='<%= "fieldValidationScript" + index %>' style="width: 95%" type="textarea" value="<%= fieldValidationScript %>" wrap="off" />
 

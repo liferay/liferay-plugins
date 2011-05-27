@@ -78,7 +78,7 @@ AUI().use(
 				button = button.one('input') || button;
 
 				button.set('disabled', true);
-				button.ancestor('.yui3-aui-button').addClass('yui3-aui-button-disabled');
+				button.ancestor('.aui-button').addClass('aui-button-disabled');
 			},
 
 			displayPopup: function(url, title, data) {
@@ -103,7 +103,7 @@ AUI().use(
 				button = button.one('input') || button;
 
 				button.set('disabled', false);
-				button.ancestor('.yui3-aui-button').removeClass('yui3-aui-button-disabled');
+				button.ancestor('.aui-button').removeClass('aui-button-disabled');
 			},
 
 			getPopup: function() {

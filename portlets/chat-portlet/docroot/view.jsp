@@ -144,7 +144,7 @@
 		<input id="activePanelId" type="hidden" value="<%= activePanelId %>" />
 		<input id="chatPortletId" type="hidden" value="<%= portletDisplay.getId() %>" />
 
-		<div class="chat-extensions yui3-aui-helper-hidden">
+		<div class="chat-extensions aui-helper-hidden">
 
 			<%
 			Map<String, String> extensions = ChatExtensionsUtil.getExtensions();

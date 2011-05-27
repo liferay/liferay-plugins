@@ -51,7 +51,7 @@ else if (kbStructureField != null) {
 	<aui:input name='<%= "kbStructureOptionsIndexes" + kbStructureFieldIndex %>' type="hidden" value="<%= StringUtil.merge(kbStructureOptionsIndexes) %>" />
 
 	<div class="kb-block-labels kb-field-wrapper">
-		<aui:input cssClass='<%= !localizedLanguageId.equals(defaultLanguageId) ? "yui3-aui-helper-hidden" : StringPool.BLANK %>' inlineField="<%= true %>" label="name" name='<%= "kbStructureFieldName" + kbStructureFieldIndex %>' value="<%= name %>" />
+		<aui:input cssClass='<%= !localizedLanguageId.equals(defaultLanguageId) ? "aui-helper-hidden" : StringPool.BLANK %>' inlineField="<%= true %>" label="name" name='<%= "kbStructureFieldName" + kbStructureFieldIndex %>' value="<%= name %>" />
 
 		<c:if test="<%= !localizedLanguageId.equals(defaultLanguageId) %>">
 			<aui:input disabled="<%= true %>" inlineField="<%= true %>" label="name" name='<%= "disabledKBStructureFieldName" + kbStructureFieldIndex %>' value="<%= name %>" />
@@ -63,7 +63,7 @@ else if (kbStructureField != null) {
 		String taglibOnChange = renderResponse.getNamespace() + "updateKBStructureFieldType(" + kbStructureFieldIndex + ", this.value);";
 		%>
 
-		<aui:select cssClass='<%= !localizedLanguageId.equals(defaultLanguageId) ? "yui3-aui-helper-hidden" : StringPool.BLANK %>' ignoreRequestValue="<%= true %>" inlineField="<%= true %>" label="type" name='<%= "kbStructureFieldType" + kbStructureFieldIndex %>' onChange="<%= taglibOnChange %>">
+		<aui:select cssClass='<%= !localizedLanguageId.equals(defaultLanguageId) ? "aui-helper-hidden" : StringPool.BLANK %>' ignoreRequestValue="<%= true %>" inlineField="<%= true %>" label="type" name='<%= "kbStructureFieldType" + kbStructureFieldIndex %>' onChange="<%= taglibOnChange %>">
 
 			<%
 			for (String curType : KBStructureFieldConstants.TYPES) {
@@ -83,7 +83,7 @@ else if (kbStructureField != null) {
 			</aui:select>
 		</c:if>
 
-		<aui:field-wrapper cssClass='<%= !localizedLanguageId.equals(defaultLanguageId) ? "yui3-aui-helper-hidden" : StringPool.BLANK %>' inlineField="<%= true %>" label="<%= StringPool.NBSP %>">
+		<aui:field-wrapper cssClass='<%= !localizedLanguageId.equals(defaultLanguageId) ? "aui-helper-hidden" : StringPool.BLANK %>' inlineField="<%= true %>" label="<%= StringPool.NBSP %>">
 
 			<%
 			String taglibURL = "javascript:" + renderResponse.getNamespace() + "moveKBStructureFieldUp(" + kbStructureFieldIndex + ");";
