@@ -36,30 +36,30 @@
 
 /* ---------- Page template selector ---------- */
 
-.yui3-aui-form-options {
+.aui-form-options {
 	border: 1px solid #AAA;
 	display: inline-block;
 	vertical-align: middle;
 }
 
-.yui3-aui-form-options input {
+.aui-form-options input {
 	border-width: 0;
 	display: inline;
 	float: left;
 }
 
-.yui3-aui-form-triggers {
+.aui-form-triggers {
 	float: left;
 }
 
-.yui3-aui-form-trigger {
+.aui-form-trigger {
 	background: #C4C4C4 url(../images/application/button_bg.png) repeat-x 0 0;
 	border-left: 1px solid #BBB;
 	display: inline-block;
 	float: left;
 }
 
-.yui3-aui-form-trigger img {
+.aui-form-trigger img {
 	background: url() no-repeat 50% 40%;
 	height: 25px;
 	padding: 0 3px;
@@ -67,25 +67,25 @@
 	width: 16px;
 }
 
-.yui3-aui-form-trigger:hover, .yui3-aui-form-trigger:focus {
+.aui-form-trigger:hover, .aui-form-trigger:focus {
 	background-color: #83B0CA;
 	background-image: url(../images/application/button_bg_over.png);
 }
 
-.yui3-aui-trigger-selected {
+.aui-trigger-selected {
 	background-color: #EBEBEB;
 	background-image: url(../images/application/button_bg_selected.png);
 }
 
-.yui3-aui-trigger-selected:hover, .yui3-aui-trigger-selected:focus {
+.aui-trigger-selected:hover, .aui-trigger-selected:focus {
 	background-color: #B7DEF4;
 	background-image: url(../images/application/button_bg_selected_over.png);
 }
 
-.yui3-aui-options-trigger img {
+.aui-options-trigger img {
 	background-image: url(../images/common/configuration.png);
 }
 
-.yui3-aui-save-trigger img {
+.aui-save-trigger img {
 	background-image: url(../images/dock/my_place_current.png);
 }

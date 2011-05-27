@@ -128,7 +128,7 @@
 	text-align: right;
 }
 
-.mail-portlet .recipient-fields .yui3-aui-field-input {
+.mail-portlet .recipient-fields .aui-field-input {
 	width: 95%;
 }
 
@@ -138,7 +138,7 @@
 	text-decoration: underline;
 }
 
-.mail-portlet .add-folder-container .yui3-aui-field-content,
-.mail-portlet .search .yui3-aui-field-content {
+.mail-portlet .add-folder-container .aui-field-content,
+.mail-portlet .search .aui-field-content {
 	display: inline-block;
 }

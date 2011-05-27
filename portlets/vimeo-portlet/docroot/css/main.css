@@ -11,38 +11,38 @@
 	padding: 4px;
 }
 
-.portlet-configuration .yui3-aui-field-inline {
+.portlet-configuration .aui-field-inline {
 	vertical-align: text-top;
 }
 
-.portlet-configuration .yui3-aui-field-label {
+.portlet-configuration .aui-field-label {
 	vertical-align: bottom;
 }
 
-.portlet-configuration .yui3-aui-field-row .yui3-aui-field-content {
+.portlet-configuration .aui-field-row .aui-field-content {
 	margin-right: 1em;
 }
 
-.portlet-configuration .yui3-aui-field-input-choice {
+.portlet-configuration .aui-field-input-choice {
 	margin-right: 0.3em;
 }
 
-.portlet-configuration .url .yui3-aui-field-input {
+.portlet-configuration .url .aui-field-input {
 	width: 30em;
 }
 
-.portlet-configuration .height .yui3-aui-field-input,
-.portlet-configuration .start-time .yui3-aui-field-input,
-.portlet-configuration .width .yui3-aui-field-input {
+.portlet-configuration .height .aui-field-input,
+.portlet-configuration .start-time .aui-field-input,
+.portlet-configuration .width .aui-field-input {
 	width: 4.9em;
 }
 
-.portlet-configuration .yui3-aui-colorpicker-trigger {
+.portlet-configuration .aui-colorpicker-trigger {
 	vertical-align: top;
 }
 
-.portlet-configuration .yui3-aui-field-text .yui3-aui-field-label,
-.portlet-configuration .yui3-aui-field-select .yui3-aui-field-label {
+.portlet-configuration .aui-field-text .aui-field-label,
+.portlet-configuration .aui-field-select .aui-field-label {
 	display: block;
 }
 
@@ -50,8 +50,8 @@
 	border: 0;
 }
 
-.portlet-configuration .annotations .yui3-aui-field-input,
-.portlet-configuration .closed-captioning .yui3-aui-field-input {
+.portlet-configuration .annotations .aui-field-input,
+.portlet-configuration .closed-captioning .aui-field-input {
 	width: 11em;
 }
 

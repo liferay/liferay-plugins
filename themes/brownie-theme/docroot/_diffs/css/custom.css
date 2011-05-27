@@ -148,7 +148,7 @@ body {
 
 /* -------- Tabs -------- */
 
-.ie6 .yui3-aui-tabview-list {
+.ie6 .aui-tabview-list {
 	position: relative;
 }
 

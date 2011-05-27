@@ -205,13 +205,13 @@ body.signed-in {
 
 /* -------- Tabs -------- */
 
-.yui3-aui-tab-active .yui3-aui-tab-label a,
-.yui3-aui-tab-active .yui3-aui-tab-label a:visited {
+.aui-tab-active .aui-tab-label a,
+.aui-tab-active .aui-tab-label a:visited {
 	color: #FFF;
 	text-shadow: none;
 }
 
-.yui3-aui-tab-active:after {
+.aui-tab-active:after {
     display: none;
 }
 
@@ -222,7 +222,7 @@ body.signed-in {
 .portlet-enterprise-admin .lfr-current-theme,
 .portlet-communities .lfr-available-themes h3,
 .portlet-enterprise-admin .lfr-available-themes h3,
-.yui3-aui-tree-node-selected,
+.aui-tree-node-selected,
 .portlet-login .navigation {
 	background: none;
 }
@@ -230,7 +230,7 @@ body.signed-in {
 /* -------- Extra Settings -------- */
 
 .page-extra-settings .lfr-extended .lfr-panel-content,
-.yui3-aui-helper-unselectable, .yui3-aui-helper-unselectable * {
+.aui-helper-unselectable, .aui-helper-unselectable * {
 	color: #141414;
 }
 

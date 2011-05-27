@@ -168,7 +168,7 @@ html body {
 
 /* ---------- Online Users ---------- */
 
-.buddy-list .search-buddies .yui3-aui-field-content {
+.buddy-list .search-buddies .aui-field-content {
 	padding: 2px;
 }
 

@@ -285,18 +285,18 @@ body #banner .logo a {
 	background-color: transparent;
 }
 
-.yui3-aui-combobox .yui3-aui-field-input {
+.aui-combobox .aui-field-input {
 	padding: 4px 3px 3px;
 	font-size: 11px;
 	height: 15px;
 }
 
-.yui3-aui-combobox .yui3-aui-field {
+.aui-combobox .aui-field {
 	float: left;
 	line-height: 0;
 }
 
-.lfr-portlet-title-editable-content .yui3-aui-field {
+.lfr-portlet-title-editable-content .aui-field {
 	float: none;
 	display: inline;
 }
@@ -330,7 +330,7 @@ body #banner .logo a {
 	box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.8);
 }
 
-.yui3-aui-combobox .yui3-aui-toolbar-first {
+.aui-combobox .aui-toolbar-first {
 	-moz-border-radius-topleft: 0;
 	-moz-border-radius-bottomleft: 0;
 	-webkit-border-top-left-radius: 0;

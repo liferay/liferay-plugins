@@ -4,11 +4,11 @@
 			border-right: 1px solid #CCC;
 		}
 
-		#column-1.yui3-aui-w70 {
+		#column-1.aui-w70 {
 			width: 75%;
 		}
 
-		#column-2.yui3-aui-w30 {
+		#column-2.aui-w30 {
 			width: 25%;
 		}
 	}

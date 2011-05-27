@@ -16,7 +16,7 @@
 	height: 600px;
 }
 
-.opensocial-portlet-editor .yui3-aui-tree-view-editor {
+.opensocial-portlet-editor .aui-tree-view-editor {
 	background: #FFF;
 	height: 100%;
 }
@@ -33,40 +33,40 @@
 	width: 80%;
 }
 
-.opensocial-portlet-editor .yui3-aui-tree-view-editor .yui3-aui-tree-node, .yui3-aui-tree-label {
+.opensocial-portlet-editor .aui-tree-view-editor .aui-tree-node, .aui-tree-label {
 	cursor: pointer;
 }
 
-.opensocial-portlet-editor .yui3-aui-tree-view-editor .yui3-aui-tree-node-selected {
+.opensocial-portlet-editor .aui-tree-view-editor .aui-tree-node-selected {
 	background: #f0fcff;
 }
 
-.opensocial-portlet-editor .yui3-aui-tree-view-editor .yui3-aui-tree-node-selected .yui3-aui-tree-label {
+.opensocial-portlet-editor .aui-tree-view-editor .aui-tree-node-selected .aui-tree-label {
 	font-weight: normal
 }
 
-.opensocial-portlet-editor .yui3-aui-tree-view-editor .yui3-aui-tree-label:hover {
+.opensocial-portlet-editor .aui-tree-view-editor .aui-tree-label:hover {
 	color: #06c;
 }
 
-.opensocial-portlet-editor .yui3-aui-tree-view-editor .yui3-aui-tree-node .aui-tree-node-loaded {
+.opensocial-portlet-editor .aui-tree-view-editor .aui-tree-node .aui-tree-node-loaded {
 	color: #06c;
 	font-weight: bold;
 	text-decoration: underline;
 }
 
-.opensocial-portlet-editor .yui3-aui-tree-view-editor .yui3-aui-tree-node .aui-tree-node-loaded .yui3-aui-tree-label {
+.opensocial-portlet-editor .aui-tree-view-editor .aui-tree-node .aui-tree-node-loaded .aui-tree-label {
 	font-weight: bold;
 }
 
-.opensocial-portlet-editor .yui3-aui-tree-node-content:hover .gadget-editor-tree-node-contextmenuicon, .opensocial-portlet-editor .gadget-editor-tree-node-contextmenuicon-open, .opensocial-portlet-editor .yui3-aui-tabview-list .yui3-aui-tab-content .gadget-editor-tab-close {
+.opensocial-portlet-editor .aui-tree-node-content:hover .gadget-editor-tree-node-contextmenuicon, .opensocial-portlet-editor .gadget-editor-tree-node-contextmenuicon-open, .opensocial-portlet-editor .aui-tabview-list .aui-tab-content .gadget-editor-tab-close {
 	background-repeat: no-repeat;
 	float: right;
 	height: 16px;
 	width: 16px;
 }
 
-.opensocial-portlet-editor .yui3-aui-tree-node-content:hover .gadget-editor-tree-node-contextmenuicon {
+.opensocial-portlet-editor .aui-tree-node-content:hover .gadget-editor-tree-node-contextmenuicon {
 	background-image: url(../images/tool.png);
 }
 
@@ -74,7 +74,7 @@
 	background: #EEF0F2;
 }
 
-.yui3-aui-editable {
+.aui-editable {
 	z-index: 1;
 }
 
@@ -96,30 +96,30 @@
 	background-image: url(../images/tool.png);
 }
 
-.opensocial-portlet-editor .yui3-aui-panel-bd {
+.opensocial-portlet-editor .aui-panel-bd {
 	background: #FFFFFF;
 	overflow: auto;
 }
 
-.opensocial-portlet-editor .yui3-aui-tabview-list .yui3-aui-tab-content:hover {
+.opensocial-portlet-editor .aui-tabview-list .aui-tab-content:hover {
 	background: #D3D3D3;
 }
 
-.opensocial-portlet-editor .yui3-aui-tabview-list .yui3-aui-tab-active .yui3-aui-tab-content:hover {
+.opensocial-portlet-editor .aui-tabview-list .aui-tab-active .aui-tab-content:hover {
 	background: none;
 	color: #D3D3D3;
 }
 
-.opensocial-portlet-editor .yui3-aui-tabview-list .yui3-aui-tab-content .gadget-editor-tab-close {
+.opensocial-portlet-editor .aui-tabview-list .aui-tab-content .gadget-editor-tab-close {
 	background-image: url(../images/close.png);
 	opacity: 0.2;
 }
 
-.opensocial-portlet-editor .yui3-aui-tabview-list .yui3-aui-tab-content .gadget-editor-tab-close:hover {
+.opensocial-portlet-editor .aui-tabview-list .aui-tab-content .gadget-editor-tab-close:hover {
 	opacity: 1;
 }
 
-.opensocial-portlet-editor .yui3-aui-tabview-list, .opensocial-portlet-editor .yui3-aui-tabview-list-content {
+.opensocial-portlet-editor .aui-tabview-list, .opensocial-portlet-editor .aui-tabview-list-content {
 	margin-bottom: 0px;
 }
 
@@ -127,62 +127,62 @@
 	padding-top: 8px;
 }
 
-.opensocial-portlet-editor .yui3-aui-gadget {
+.opensocial-portlet-editor .aui-gadget {
 	height: 100%;
 	width: 100%;
 }
 
-.yui3-aui-icon-gadgeteditor-addfile, .yui3-aui-icon-gadgeteditor-addfolder, .yui3-aui-icon-gadgeteditor-close, .yui3-aui-icon-gadgeteditor-delete, .yui3-aui-icon-gadgeteditor-disk, .yui3-aui-icon-gadgeteditor-refresh, .yui3-aui-icon-gadgeteditor-rename, .yui3-aui-icon-gadgeteditor-tool, .yui3-aui-icon-gadgeteditor-url {
+.aui-icon-gadgeteditor-addfile, .aui-icon-gadgeteditor-addfolder, .aui-icon-gadgeteditor-close, .aui-icon-gadgeteditor-delete, .aui-icon-gadgeteditor-disk, .aui-icon-gadgeteditor-refresh, .aui-icon-gadgeteditor-rename, .aui-icon-gadgeteditor-tool, .aui-icon-gadgeteditor-url {
 	background-repeat: no-repeat;
 	height: 16px;
 	width: 16px;
 }
 
-.yui3-aui-icon-gadgeteditor-addfile {
+.aui-icon-gadgeteditor-addfile {
 	background-image: url(../images/add_file.png);
 }
 
-.yui3-aui-icon-gadgeteditor-addfolder {
+.aui-icon-gadgeteditor-addfolder {
 	background-image: url(../images/add_folder.png);
 }
 
-.yui3-aui-icon-gadgeteditor-close {
+.aui-icon-gadgeteditor-close {
 	background-image: url(../images/close.png);
 }
 
-.yui3-aui-icon-gadgeteditor-delete {
+.aui-icon-gadgeteditor-delete {
 	background-image: url(../images/delete.png);
 }
 
-.yui3-aui-icon-gadgeteditor-disk {
+.aui-icon-gadgeteditor-disk {
 	background-image: url(../images/disk.png);
 }
 
-.yui3-aui-icon-gadgeteditor-publish {
+.aui-icon-gadgeteditor-publish {
 	background-image: url(../images/publish.png);
 }
 
-.yui3-aui-icon-gadgeteditor-refresh {
+.aui-icon-gadgeteditor-refresh {
 	background-image: url(../images/refresh.png);
 }
 
-.yui3-aui-icon-gadgeteditor-rename {
+.aui-icon-gadgeteditor-rename {
 	background-image: url(../images/rename.png);
 }
 
-.yui3-aui-icon-gadgeteditor-tool {
+.aui-icon-gadgeteditor-tool {
 	background-image: url(../images/disk_dirty.png);
 }
 
-.yui3-aui-icon-gadgeteditor-url {
+.aui-icon-gadgeteditor-url {
 	background-image: url(../images/url.png);
 }
 
-.ie .opensocial-portlet-editor .yui3-aui-tabview-list .yui3-aui-tab-content .gadget-editor-tab-close {
+.ie .opensocial-portlet-editor .aui-tabview-list .aui-tab-content .gadget-editor-tab-close {
 	filter: alpha(opacity=20);
 }
 
-.ie .opensocial-portlet-editor .yui3-aui-tabview-list .yui3-aui-tab-content .gadget-editor-tab-close:hover {
+.ie .opensocial-portlet-editor .aui-tabview-list .aui-tab-content .gadget-editor-tab-close:hover {
 	filter: alpha(opacity=100);
 	zoom: 1;
 }

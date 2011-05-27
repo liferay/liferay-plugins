@@ -12,10 +12,10 @@
  * details.
  */
 
-.opensocial-portlet-admin .category-treeview .yui3-aui-tree-label {
+.opensocial-portlet-admin .category-treeview .aui-tree-label {
 	cursor: pointer;
 }
 
-.opensocial-portlet-admin .category-treeview .yui3-aui-tree-label:hover {
+.opensocial-portlet-admin .category-treeview .aui-tree-label:hover {
 	color: #06c;
 }
