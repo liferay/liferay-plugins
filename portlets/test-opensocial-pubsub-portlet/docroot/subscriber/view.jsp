@@ -17,8 +17,8 @@
 <%@ include file="/init.jsp" %>
 
 <h3>Subscribe</h3>
+
 <div>
-	Topic as:
 	<aui:select name="subscribeTopic" label="">
 		<aui:option label="String"/>
 		<aui:option label="Array"/>
@@ -28,13 +28,13 @@
 </div>
 
 <h3>Unsubscribe</h3>
+
 <div>
-	Topic as:
 	<aui:select name="unsubscribeTopic" label="">
-		<aui:option value="string_callback_fn" label="String w/ callback fn" />
-		<aui:option value="string" label="String w/o callback fn" />
+		<aui:option value="string_callback_fn" label="String with Callback Function" />
+		<aui:option value="string" label="String without Callback Function" />
 		<aui:option value="handle" label="Topic Handle" />
-		<aui:option value="handle_detach" label="Handle.detach()" />
+		<aui:option value="handle_detach" label="Handle.detach();" />
 	</aui:select>
 
 	<aui:button name="unsubscribe" value="Unsubscribe" />
@@ -68,7 +68,9 @@
 		'click',
 		function () {
 			var lfrDetach = false;
-			var unsubscribeFn, unsubscribeTopic;
+
+			var unsubscribeFn;
+			var unsubscribeTopic;
 
 			var topicType = A.one('#<portlet:namespace />unsubscribeTopic').val();
 
