@@ -22,8 +22,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.solr.client.solrj.response.FacetField;
 import org.apache.solr.client.solrj.response.FacetField.Count;
+import org.apache.solr.client.solrj.response.FacetField;
 
 /**
  * @author Raymond Augé
@@ -33,11 +33,11 @@ public class SolrFacetFieldCollector implements FacetCollector {
 	public SolrFacetFieldCollector(String fieldName, FacetField facetField) {
 		_fieldName = fieldName;
 
-		_countMap = new HashMap<String,Count>();
+		List<Count> counts = facetField.getValues();
 
-		if (facetField.getValues() != null) {
-			for (Count count : facetField.getValues()) {
-				_countMap.put(count.getName(), count);
+		if (counts != null) {
+			for (Count count : counts) {
+				_counts.put(count.getName(), count);
 			}
 		}
 	}
@@ -47,27 +47,34 @@ public class SolrFacetFieldCollector implements FacetCollector {
 	}
 
 	public TermCollector getTermCollector(String term) {
-		return new SolrTermCollector(term, (int)_countMap.get(term).getCount());
+		Count count = _counts.get(term);
+
+		return new SolrTermCollector(term, (int)count.getCount());
 	}
 
 	public List<TermCollector> getTermCollectors() {
-		if (_termCollectors == null) {
-			List<TermCollector> list = new ArrayList<TermCollector>();
-
-			for (Map.Entry<String, Count> entry : _countMap.entrySet()) {
-				list.add(
-					new SolrTermCollector(
-						entry.getKey(), (int)entry.getValue().getCount()));
-			}
-
-			_termCollectors = list;
+		if (_termCollectors != null) {
+			return _termCollectors;
 		}
+
+		List<TermCollector> termCollectors = new ArrayList<TermCollector>();
+
+		for (Map.Entry<String, Count> entry : _counts.entrySet()) {
+			Count count = entry.getValue();
+
+			TermCollector termCollector = new SolrTermCollector(
+				entry.getKey(), (int)count.getCount());
+
+			termCollectors.add(termCollector);
+		}
+
+		_termCollectors = termCollectors;
 
 		return _termCollectors;
 	}
 
-	private Map<String,Count> _countMap;
-	private List<TermCollector> _termCollectors;
+	private Map<String, Count> _counts = new HashMap<String, Count>();
 	private String _fieldName;
+	private List<TermCollector> _termCollectors;
 
 }

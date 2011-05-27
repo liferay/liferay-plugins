@@ -31,12 +31,12 @@ public class SolrFacetQueryCollector implements FacetCollector {
 		String fieldName, Map<String, Integer> facetQueries) {
 
 		_fieldName = fieldName;
-		_termMap = new HashMap<String,Integer>();
 
-		if (!facetQueries.isEmpty()) {
-			for (Map.Entry<String,Integer> entry : facetQueries.entrySet()) {
-				_termMap.put(_getTerm(entry.getKey()), entry.getValue());
-			}
+		for (Map.Entry<String, Integer> entry : facetQueries.entrySet()) {
+			String term = _getTerm(entry.getKey());
+			Integer count = entry.getValue();
+
+			_counts.put(term, count);
 		}
 	}
 
@@ -45,21 +45,28 @@ public class SolrFacetQueryCollector implements FacetCollector {
 	}
 
 	public TermCollector getTermCollector(String term) {
-		return new SolrTermCollector(term, _termMap.get(term).intValue());
+		Integer count = _counts.get(term);
+
+		return new SolrTermCollector(term, count.intValue());
 	}
 
 	public List<TermCollector> getTermCollectors() {
-		if (_termCollectors == null) {
-			List<TermCollector> list = new ArrayList<TermCollector>();
-
-			for (Map.Entry<String, Integer> entry : _termMap.entrySet()) {
-				list.add(
-					new SolrTermCollector(
-						entry.getKey(), entry.getValue().intValue()));
-			}
-
-			_termCollectors = list;
+		if (_termCollectors != null) {
+			return _termCollectors;
 		}
+
+		List<TermCollector> termCollectors = new ArrayList<TermCollector>();
+
+		for (Map.Entry<String, Integer> entry : _counts.entrySet()) {
+			Integer count = entry.getValue();
+
+			TermCollector termCollector = new SolrTermCollector(
+				entry.getKey(), count.intValue());
+
+			termCollectors.add(termCollector);
+		}
+
+		_termCollectors = termCollectors;
 
 		return _termCollectors;
 	}
@@ -68,8 +75,8 @@ public class SolrFacetQueryCollector implements FacetCollector {
 		return term.substring(_fieldName.length() + 1);
 	}
 
-	private List<TermCollector> _termCollectors;
-	private Map<String,Integer> _termMap;
+	private Map<String, Integer> _counts = new HashMap<String, Integer>();
 	private String _fieldName;
+	private List<TermCollector> _termCollectors;
 
 }
