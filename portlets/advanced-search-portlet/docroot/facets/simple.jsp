@@ -1,4 +1,4 @@
-<%@page import="com.liferay.portal.kernel.search.facet.collector.FacetCollector"%>
+<%@ page import="com.liferay.portal.kernel.search.facet.collector.FacetCollector" %>
 <%
 /**
  * Copyright (c) 2000-2009 Liferay, Inc. All rights reserved.
