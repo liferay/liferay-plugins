@@ -31,7 +31,7 @@ AUI().add(
 
 				var field = document[namespace + 'fm'][namespace + fieldName];
 
-				var currentTerms = A.all('.advancedsearch-portlet .menu .' + randomNamespace + 'asset_tags .entry.current-term a');
+				var currentTerms = A.all('.advanced-search-portlet .menu .' + randomNamespace + 'asset_tags .entry.current-term a');
 
 				if (currentTerms) {
 					currentTerms.each(

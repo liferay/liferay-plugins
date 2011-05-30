@@ -75,7 +75,7 @@ FacetCollector facetCollector = facet.getFacetCollector();
 </aui:field-wrapper>
 
 <aui:script position="inline" use="aui-base">
-	var container = A.one('.advancedsearch-portlet .menu .search-vocabulary .<%= randomNamespace %>vocabulary');
+	var container = A.one('.advanced-search-portlet .menu .search-vocabulary .<%= randomNamespace %>vocabulary');
 
 	if (container) {
 		container.delegate(
@@ -86,7 +86,7 @@ FacetCollector facetCollector = facet.getFacetCollector();
 
 				var field = document.<portlet:namespace />fm['<portlet:namespace /><%= fieldName %>'];
 
-				var currentTerms = A.all('.advancedsearch-portlet .menu .search-vocabulary .<%= randomNamespace %>vocabulary .entry.current-term a');
+				var currentTerms = A.all('.advanced-search-portlet .menu .search-vocabulary .<%= randomNamespace %>vocabulary .entry.current-term a');
 
 				if (currentTerms) {
 					currentTerms.each(

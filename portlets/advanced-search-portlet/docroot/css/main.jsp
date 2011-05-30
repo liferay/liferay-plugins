@@ -16,7 +16,7 @@
 
 <%@ include file="/css_init.jsp" %>
 
-.advancedsearch-portlet {
+.advanced-search-portlet {
 	.taglib-asset-categories-summary .asset-vocabulary {
 		background: url(<%= themeImagesPath %>/common/folder.png) no-repeat 0 50%;
 		padding: 2px 5px 2px 20px;
@@ -172,10 +172,10 @@
 	}
 }
 
-.ie .advancedsearch-portlet .full-query .container {
+.ie .advanced-search-portlet .full-query .container {
 	height: expression( this.scrollHeight > 100 ? "100px" : "auto" );
 }
 
-.ie .advancedsearch-portlet .result td.value .container {
+.ie .advanced-search-portlet .result td.value .container {
 	height: expression( this.scrollHeight > 100 ? "100px" : "auto" );
 }

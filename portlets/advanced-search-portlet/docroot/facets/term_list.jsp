@@ -68,7 +68,7 @@ else {
 %>
 
 <aui:script position="inline" use="aui-base">
-	var container = A.one('.advancedsearch-portlet .menu .search-term_list .<%= randomNamespace %>term_list');
+	var container = A.one('.advanced-search-portlet .menu .search-term_list .<%= randomNamespace %>term_list');
 
 	if (container) {
 		container.delegate(
@@ -79,7 +79,7 @@ else {
 
 				var field = document.<portlet:namespace />fm['<portlet:namespace /><%= fieldName %>'];
 
-				var currentTerms = A.all('.advancedsearch-portlet .menu .search-term_list .<%= randomNamespace %>term_list .entry.current-term a');
+				var currentTerms = A.all('.advanced-search-portlet .menu .search-term_list .<%= randomNamespace %>term_list .entry.current-term a');
 
 				if (currentTerms) {
 					currentTerms.each(

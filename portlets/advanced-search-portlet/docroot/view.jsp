@@ -355,7 +355,7 @@ int rightColumn = 100;
 </aui:form>
 
 <aui:script use="aui-base">
-	var pageLinks = A.one('.advancedsearch-portlet .result .page-links');
+	var pageLinks = A.one('.advanced-search-portlet .result .page-links');
 
 	if (pageLinks) {
 		pageLinks.delegate(
@@ -395,7 +395,7 @@ int rightColumn = 100;
 		);
 	}
 
-	A.one('.advancedsearch-portlet .result').delegate(
+	A.one('.advanced-search-portlet .result').delegate(
 		'click',
 		function(event) {
 			var handle = event.currentTarget;

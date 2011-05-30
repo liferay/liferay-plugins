@@ -70,7 +70,7 @@ else {
 %>
 
 <aui:script position="inline" use="aui-base">
-	var container = A.one('.advancedsearch-portlet .menu .search-asset_entries .asset_entries');
+	var container = A.one('.advanced-search-portlet .menu .search-asset_entries .asset_entries');
 
 	console.log('container', container);
 
@@ -83,7 +83,7 @@ else {
 
 				var field = document.<portlet:namespace />fm['<portlet:namespace /><%= fieldName %>'];
 
-				var currentTerms = A.all('.advancedsearch-portlet .menu .search-asset_entries .asset_entries .entry.current-term a');
+				var currentTerms = A.all('.advanced-search-portlet .menu .search-asset_entries .asset_entries .entry.current-term a');
 
 				if (currentTerms) {
 					currentTerms.each(
