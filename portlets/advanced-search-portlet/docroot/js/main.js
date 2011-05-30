@@ -21,7 +21,7 @@
  */
 
 AUI().add(
-	'advancedsearch',
+	'liferay-plugin-advancedsearch',
 	function(A) {
 		Liferay.AdvancedSearch = {
 			handleTagEvent: function(term, fieldName, namespace, randomNamespace) {
