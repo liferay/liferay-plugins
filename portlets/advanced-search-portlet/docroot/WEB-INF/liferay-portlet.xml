@@ -5,7 +5,7 @@
 	<portlet>
 		<portlet-name>1</portlet-name>
 		<icon>/icon.png</icon>
-		<configuration-action-class>com.liferay.advancedsearch.action.ConfigurationActionImpl</configuration-action-class>
+		<configuration-action-class>com.liferay.portal.kernel.portlet.DefaultConfigurationAction</configuration-action-class>
 		<friendly-url-mapper-class>com.liferay.portal.kernel.portlet.DefaultFriendlyURLMapper</friendly-url-mapper-class>
 		<friendly-url-mapping>advancedsearch</friendly-url-mapping>
 		<friendly-url-routes>com/liferay/advancedsearch/portlet/advancedsearch-friendly-url-routes.xml</friendly-url-routes>
