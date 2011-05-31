@@ -173,9 +173,9 @@
 }
 
 .ie .advanced-search-portlet .full-query .container {
-	height: expression( this.scrollHeight > 100 ? "100px" : "auto" );
+	height: expression(this.scrollHeight > 100 ? "100px" : "auto");
 }
 
 .ie .advanced-search-portlet .result td.value .container {
-	height: expression( this.scrollHeight > 100 ? "100px" : "auto" );
+	height: expression(this.scrollHeight > 100 ? "100px" : "auto");
 }

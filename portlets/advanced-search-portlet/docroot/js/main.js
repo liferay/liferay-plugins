@@ -49,6 +49,7 @@ AUI().add(
 
 				if (!wasSelfSelected) {
 					term.ancestor('.entry').addClass('current-term');
+
 					field.value = term.text();
 				}
 

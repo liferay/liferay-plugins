@@ -32,7 +32,9 @@ Calendar cal = Calendar.getInstance();
 if (Validator.isNotNull(fieldParam)) {
 	range = RangeParserUtil.parserRange(fieldParam);
 
-	Date date = indexDateFormatDate.parse(range[0]);
+	DateFormat dateFormat = DateFormatFactoryUtil.getSimpleDateFormat("yyyyMMddHHmmss", timeZone);
+
+	Date date = dateFormat.parse(range[0]);
 
 	cal.setTime(date);
 
@@ -42,7 +44,7 @@ if (Validator.isNotNull(fieldParam)) {
 		date = new Date();
 	}
 	else {
-		date = indexDateFormatDate.parse(range[1]);
+		date = dateFormat.parse(range[1]);
 	}
 
 	cal.setTime(date);

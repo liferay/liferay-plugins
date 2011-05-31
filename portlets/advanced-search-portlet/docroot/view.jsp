@@ -43,7 +43,9 @@ facet = new AssetEntriesFacet(searchContext);
 facet.setStatic(true);
 searchContext.addFacet(facet);
 
-for (FacetConfiguration facetConfiguration : facetConfigurationList) {
+List<FacetConfiguration> facetConfigurations = FacetConfigurationUtil.load(searchConfiguration);
+
+for (FacetConfiguration facetConfiguration : facetConfigurations) {
 	facet = FacetFactoryUtil.create(searchContext, facetConfiguration);
 
 	searchContext.addFacet(facet);

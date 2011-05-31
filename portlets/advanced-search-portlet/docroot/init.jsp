@@ -30,8 +30,8 @@
 <%@ page import="com.liferay.portal.NoSuchLayoutException" %>
 <%@ page import="com.liferay.portal.kernel.dao.orm.QueryUtil" %>
 <%@ page import="com.liferay.portal.kernel.dao.search.SearchContainer" %>
-<%@ page import="com.liferay.portal.kernel.exception.SystemException" %>
 <%@ page import="com.liferay.portal.kernel.exception.PortalException" %>
+<%@ page import="com.liferay.portal.kernel.exception.SystemException" %>
 <%@ page import="com.liferay.portal.kernel.json.JSONArray" %>
 <%@ page import="com.liferay.portal.kernel.json.JSONFactoryUtil" %>
 <%@ page import="com.liferay.portal.kernel.json.JSONObject" %>
@@ -45,14 +45,14 @@
 <%@ page import="com.liferay.portal.kernel.search.FacetedSearcher" %>
 <%@ page import="com.liferay.portal.kernel.search.Field" %>
 <%@ page import="com.liferay.portal.kernel.search.Hits" %>
-<%@ page import="com.liferay.portal.kernel.search.IndexerRegistryUtil" %>
 <%@ page import="com.liferay.portal.kernel.search.Indexer" %>
+<%@ page import="com.liferay.portal.kernel.search.IndexerRegistryUtil" %>
 <%@ page import="com.liferay.portal.kernel.search.Query" %>
 <%@ page import="com.liferay.portal.kernel.search.SearchContext" %>
 <%@ page import="com.liferay.portal.kernel.search.SearchContextFactory" %>
 <%@ page import="com.liferay.portal.kernel.search.SearchEngineUtil" %>
-<%@ page import="com.liferay.portal.kernel.search.SortFactoryUtil" %>
 <%@ page import="com.liferay.portal.kernel.search.Sort" %>
+<%@ page import="com.liferay.portal.kernel.search.SortFactoryUtil" %>
 <%@ page import="com.liferay.portal.kernel.search.StringQueryImpl" %>
 <%@ page import="com.liferay.portal.kernel.search.facet.AssetEntriesFacet" %>
 <%@ page import="com.liferay.portal.kernel.search.facet.Facet" %>
@@ -88,15 +88,17 @@
 <%@ page import="com.liferay.portlet.asset.model.AssetCategory" %>
 <%@ page import="com.liferay.portlet.asset.model.AssetEntry" %>
 <%@ page import="com.liferay.portlet.asset.model.AssetVocabulary" %>
-<%@ page import="com.liferay.portlet.asset.service.AssetCategoryServiceUtil" %>
 <%@ page import="com.liferay.portlet.asset.service.AssetCategoryLocalServiceUtil" %>
-<%@ page import="com.liferay.portlet.asset.service.AssetVocabularyServiceUtil" %>
+<%@ page import="com.liferay.portlet.asset.service.AssetCategoryServiceUtil" %>
 <%@ page import="com.liferay.portlet.asset.service.AssetVocabularyLocalServiceUtil" %>
+<%@ page import="com.liferay.portlet.asset.service.AssetVocabularyServiceUtil" %>
 <%@ page import="com.liferay.util.PropertyComparator" %>
 
 <%@ page import="java.lang.NumberFormatException" %>
+
 <%@ page import="java.text.DateFormat" %>
 <%@ page import="java.text.SimpleDateFormat" %>
+
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.Calendar" %>
 <%@ page import="java.util.Collections" %>
@@ -124,7 +126,6 @@
 <liferay-theme:defineObjects />
 
 <%
-
 WindowState windowState = renderRequest.getWindowState();
 
 String currentURL = PortalUtil.getCurrentURL(request);
@@ -137,11 +138,5 @@ if (Validator.isNotNull(portletResource)) {
 	preferences = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
 }
 
-List<Indexer> indexers = IndexerRegistryUtil.getIndexers();
-
 String searchConfiguration = preferences.getValue("searchConfiguration", StringPool.BLANK);
-
-List<FacetConfiguration> facetConfigurationList = FacetConfigurationUtil.load(searchConfiguration);
-
-DateFormat indexDateFormatDate = DateFormatFactoryUtil.getSimpleDateFormat("yyyyMMddHHmmss", timeZone);
 %>
