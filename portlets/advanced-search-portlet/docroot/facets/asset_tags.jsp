@@ -21,42 +21,43 @@ String randomNamespace = PortalUtil.generateRandomKey(request, "search-range.jsp
 
 Facet facet = (Facet)request.getAttribute("search-search.jsp-facet");
 
-String fieldName = facet.getFieldName();
-String fieldParam = ParamUtil.getString(request, fieldName);
+String fieldParam = ParamUtil.getString(request, facet.getFieldName());
+
+FacetConfiguration facetConfiguration = facet.getFacetConfiguration();
+
+JSONObject dataJSONObject = facetConfiguration.getData();
+
+String tagDisplayStyle = "cloud";
+
+if (dataJSONObject.has("displayStyle")) {
+	tagDisplayStyle = dataJSONObject.getString("displayStyle");
+}
 
 int frequencyThreshold = 0;
-String tagDisplayStyle = "cloud";
+
+if (dataJSONObject.has("frequencyThreshold")) {
+	frequencyThreshold = dataJSONObject.getInt("frequencyThreshold");
+}
+
 int maxTerms = 10;
+
+if (dataJSONObject.has("maxTerms")) {
+	maxTerms = dataJSONObject.getInt("maxTerms");
+}
+
 boolean showAssetCount = true;
-boolean showZeroAssetCount = false;
 
-JSONObject data = facet.getFacetConfiguration().getData();
-
-if (data.has("displayStyle")) {
-	tagDisplayStyle = data.getString("displayStyle");
-}
-
-if (data.has("frequencyThreshold")) {
-	frequencyThreshold = data.getInt("frequencyThreshold");
-}
-
-if (data.has("maxTerms")) {
-	maxTerms = data.getInt("maxTerms");
-}
-
-if (data.has("showAssetCount")) {
-	showAssetCount = data.getBoolean("showAssetCount");
+if (dataJSONObject.has("showAssetCount")) {
+	showAssetCount = dataJSONObject.getBoolean("showAssetCount");
 }
 
 FacetCollector facetCollector = facet.getFacetCollector();
-
-List<TermCollector> termCollectors = facetCollector.getTermCollectors();
 %>
 
-<aui:input name="<%= fieldName %>" type="hidden" value="<%= fieldParam %>" />
+<aui:input name="<%= facet.getFieldName() %>" type="hidden" value="<%= fieldParam %>" />
 
 <%
-String tagsNavigation = _buildTagsNavigation(fieldParam, tagDisplayStyle, frequencyThreshold, maxTerms, showAssetCount, termCollectors);
+String tagsNavigation = _buildTagsNavigation(fieldParam, tagDisplayStyle, frequencyThreshold, maxTerms, showAssetCount, facetCollector.getTermCollectors());
 
 if (Validator.isNotNull(tagsNavigation)) {
 %>
@@ -86,9 +87,10 @@ else {
 			'click',
 			function(event) {
 				var term = event.currentTarget;
+
 				var wasSelfSelected = false;
 
-				var field = document.<portlet:namespace />fm['<portlet:namespace /><%= fieldName %>'];
+				var field = document.<portlet:namespace />fm['<portlet:namespace /><%= facet.getFieldName() %>'];
 
 				var currentTerms = A.all('.advanced-search-portlet .menu .search-asset_tags .<%= randomNamespace %>asset_tags .entry.current-term a');
 
@@ -108,6 +110,7 @@ else {
 
 				if (!wasSelfSelected) {
 					term.ancestor('.entry').addClass('current-term');
+
 					field.value = term.text();
 				}
 

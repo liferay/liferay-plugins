@@ -19,20 +19,22 @@
 <%
 Facet facet = (Facet)request.getAttribute("search-search.jsp-facet");
 
-String fieldName = facet.getFieldName();
-String fieldParam = ParamUtil.getString(request, fieldName);
+String fieldParam = ParamUtil.getString(request, facet.getFieldName());
+
+FacetConfiguration facetConfiguration = facet.getFacetConfiguration();
+
+JSONObject dataJSONObject = facetConfiguration.getData();
 
 int frequencyThreshold = 0;
-String[] values = new String[0];
 
-JSONObject data = facet.getFacetConfiguration().getData();
-
-if (data.has("frequencyThreshold")) {
-	frequencyThreshold = data.getInt("frequencyThreshold");
+if (dataJSONObject.has("frequencyThreshold")) {
+	frequencyThreshold = dataJSONObject.getInt("frequencyThreshold");
 }
 
-if (data.has("values")) {
-	JSONArray valuesJSONArray = data.getJSONArray("values");
+String[] values = new String[0];
+
+if (dataJSONObject.has("values")) {
+	JSONArray valuesJSONArray = dataJSONObject.getJSONArray("values");
 
 	values = new String[valuesJSONArray.length()];
 
@@ -40,14 +42,12 @@ if (data.has("values")) {
 		values[i] = valuesJSONArray.getString(i);
 	}
 }
-
-FacetCollector facetCollector = facet.getFacetCollector();
 %>
 
-<aui:input name="<%= fieldName %>" type="hidden" value="<%= fieldParam %>" />
+<aui:input name="<%= facet.getFieldName() %>" type="hidden" value="<%= fieldParam %>" />
 
 <%
-String assetEntriesNavigation = _buildAssetEntriesNavigation(pageContext, locale, fieldParam, frequencyThreshold, values, facetCollector);
+String assetEntriesNavigation = _buildAssetEntriesNavigation(pageContext, locale, fieldParam, frequencyThreshold, values, facet.getFacetCollector());
 
 if (Validator.isNotNull(assetEntriesNavigation)) {
 %>
@@ -79,9 +79,10 @@ else {
 			'click',
 			function(event) {
 				var term = event.currentTarget;
+
 				var wasSelfSelected = false;
 
-				var field = document.<portlet:namespace />fm['<portlet:namespace /><%= fieldName %>'];
+				var field = document.<portlet:namespace />fm['<portlet:namespace /><%= facet.getFieldName() %>'];
 
 				var currentTerms = A.all('.advanced-search-portlet .menu .search-asset_entries .asset_entries .entry.current-term a');
 
@@ -101,6 +102,7 @@ else {
 
 				if (!wasSelfSelected) {
 					term.ancestor('.entry').addClass('current-term');
+
 					field.value = term.attr('data-value');
 				}
 

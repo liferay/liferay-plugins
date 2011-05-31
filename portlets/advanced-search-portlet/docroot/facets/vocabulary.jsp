@@ -21,20 +21,22 @@ String randomNamespace = PortalUtil.generateRandomKey(request, "advanced_search-
 
 Facet facet = (Facet)request.getAttribute("search-search.jsp-facet");
 
-String fieldName = facet.getFieldName();
-String[] assetCategoryIds = StringUtil.split(ParamUtil.getString(request, fieldName));
+String[] assetCategoryIds = StringUtil.split(ParamUtil.getString(request, facet.getFieldName()));
+
+FacetConfiguration facetConfiguration = facet.getFacetConfiguration();
+
+JSONObject dataJSONObject = facetConfiguration.getData();
 
 boolean matchByName = false;
-long vocabularyId = 0;
 
-JSONObject data = facet.getFacetConfiguration().getData();
-
-if (data.has("matchByName")) {
-	matchByName = data.getBoolean("matchByName");
+if (dataJSONObject.has("matchByName")) {
+	matchByName = dataJSONObject.getBoolean("matchByName");
 }
 
-if (data.has("vocabularyId")) {
-	vocabularyId = data.getLong("vocabularyId");
+long vocabularyId = 0;
+
+if (dataJSONObject.has("vocabularyId")) {
+	vocabularyId = dataJSONObject.getLong("vocabularyId");
 }
 
 List<AssetVocabulary> vocabularies = new ArrayList<AssetVocabulary>();
@@ -45,13 +47,11 @@ if (vocabularyId > 0) {
 else {
 	vocabularies = AssetVocabularyServiceUtil.getGroupsVocabularies(new long[] {themeDisplay.getScopeGroupId(), themeDisplay.getParentGroupId()});
 }
-
-FacetCollector facetCollector = facet.getFacetCollector();
 %>
 
-<aui:input name="<%= fieldName %>" type="hidden" value="<%= StringUtil.merge(assetCategoryIds) %>" />
+<aui:input name="<%= facet.getFieldName() %>" type="hidden" value="<%= StringUtil.merge(assetCategoryIds) %>" />
 
-<aui:field-wrapper cssClass='<%= randomNamespace + "vocabulary vocabulary" %>' label="" name="<%= fieldName %>">
+<aui:field-wrapper cssClass='<%= randomNamespace + "vocabulary vocabulary" %>' label="" name="<%= facet.getFieldName() %>">
 
 	<%
 	for (AssetVocabulary vocabulary : vocabularies) {
@@ -61,7 +61,7 @@ FacetCollector facetCollector = facet.getFacetCollector();
 			name = StringPool.BLANK;
 		}
 
-		String vocabularyNavigation = _buildVocabularyNavigation(vocabulary, assetCategoryIds, matchByName, facetCollector);
+		String vocabularyNavigation = _buildVocabularyNavigation(vocabulary, assetCategoryIds, matchByName, facet.getFacetCollector());
 	%>
 
 		<c:if test="<%= Validator.isNotNull(vocabularyNavigation) %>">
@@ -82,9 +82,10 @@ FacetCollector facetCollector = facet.getFacetCollector();
 			'click',
 			function(event) {
 				var term = event.currentTarget;
+
 				var wasSelfSelected = false;
 
-				var field = document.<portlet:namespace />fm['<portlet:namespace /><%= fieldName %>'];
+				var field = document.<portlet:namespace />fm['<portlet:namespace /><%= facet.getFieldName() %>'];
 
 				var currentTerms = A.all('.advanced-search-portlet .menu .search-vocabulary .<%= randomNamespace %>vocabulary .entry.current-term a');
 
@@ -104,6 +105,7 @@ FacetCollector facetCollector = facet.getFacetCollector();
 
 				if (!wasSelfSelected) {
 					term.ancestor('.entry').addClass('current-term');
+
 					field.value = term.attr('data-value');
 				}
 

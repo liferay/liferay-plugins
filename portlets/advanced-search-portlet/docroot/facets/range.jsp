@@ -21,34 +21,34 @@ String randomNamespace = PortalUtil.generateRandomKey(request, "search-range.jsp
 
 Facet facet = (Facet)request.getAttribute("search-search.jsp-facet");
 
-String fieldName = facet.getFieldName();
-String fieldParam = ParamUtil.getString(request, fieldName);
+String fieldParam = ParamUtil.getString(request, facet.getFieldName());
+
+FacetConfiguration facetConfiguration = facet.getFacetConfiguration();
+
+JSONObject dataJSONObject = facetConfiguration.getData();
 
 int frequencyThreshold = 0;
+
+if (dataJSONObject.has("frequencyThreshold")) {
+	frequencyThreshold = dataJSONObject.getInt("frequencyThreshold");
+}
+
 JSONArray rangesJSONArray = null;
 
-JSONObject data = facet.getFacetConfiguration().getData();
-
-if (data.has("frequencyThreshold")) {
-	frequencyThreshold = data.getInt("frequencyThreshold");
+if (dataJSONObject.has("ranges")) {
+	rangesJSONArray = dataJSONObject.getJSONArray("ranges");
 }
-
-if (data.has("ranges")) {
-	rangesJSONArray = data.getJSONArray("ranges");
-}
-
-FacetCollector facetCollector = facet.getFacetCollector();
 %>
 
-<aui:input name="<%= fieldName %>" type="hidden" value="<%= fieldParam %>" />
+<aui:input name="<%= facet.getFieldName() %>" type="hidden" value="<%= fieldParam %>" />
 
 <%
-String rangeNavigation = _buildRangeNavigation(pageContext, fieldParam, frequencyThreshold, rangesJSONArray, facetCollector);
+String rangeNavigation = _buildRangeNavigation(pageContext, fieldParam, frequencyThreshold, rangesJSONArray, facet.getFacetCollector());
 
 if (Validator.isNotNull(rangeNavigation)) {
 %>
 
-	<aui:field-wrapper cssClass='<%= randomNamespace + "range range" %>' label="" name="<%= fieldName %>">
+	<aui:field-wrapper cssClass='<%= randomNamespace + "range range" %>' label="" name="<%= facet.getFieldName() %>">
 		<%= rangeNavigation %>
 	</aui:field-wrapper>
 
@@ -73,9 +73,10 @@ else {
 			'click',
 			function(event) {
 				var term = event.currentTarget;
+
 				var wasSelfSelected = false;
 
-				var field = document.<portlet:namespace />fm['<portlet:namespace /><%= fieldName %>'];
+				var field = document.<portlet:namespace />fm['<portlet:namespace /><%= facet.getFieldName() %>'];
 
 				var currentTerms = A.all('.advanced-search-portlet .menu .search-range .<%= randomNamespace %>range .entry.current-term a');
 
@@ -95,6 +96,7 @@ else {
 
 				if (!wasSelfSelected) {
 					term.ancestor('.entry').addClass('current-term');
+
 					field.value = term.attr('data-value');
 				}
 

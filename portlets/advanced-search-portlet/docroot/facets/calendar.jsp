@@ -19,8 +19,7 @@
 <%
 Facet facet = (Facet)request.getAttribute("search-search.jsp-facet");
 
-String fieldName = facet.getFieldName();
-String fieldParam = ParamUtil.getString(request, fieldName);
+String fieldParam = ParamUtil.getString(request, facet.getFieldName());
 
 JSONObject data = facet.getFacetConfiguration().getData();
 
@@ -53,9 +52,9 @@ if (Validator.isNotNull(fieldParam)) {
 }
 %>
 
-<aui:input name='<%= fieldName %>' type="hidden" value="<%= fieldParam %>" />
+<aui:input name="<%= facet.getFieldName() %>" type="hidden" value="<%= fieldParam %>" />
 
-<div class="date" id="<portlet:namespace /><%= fieldName %>PlaceHolder"></div>
+<div class="date" id="<portlet:namespace /><%= facet.getFieldName() %>PlaceHolder"></div>
 
 <aui:script position="inline" use="aui-calendar">
 	var now = new Date();
@@ -102,18 +101,18 @@ if (Validator.isNotNull(fieldParam)) {
 				var dates = instance.get('dates');
 
 				if (dates.length == 0) {
-					document.<portlet:namespace />fm.<portlet:namespace /><%= fieldName %>.value = null;
+					document.<portlet:namespace />fm.<portlet:namespace /><%= facet.getFieldName() %>.value = null;
 				}
 				else if (dates.length == 1) {
 					var firstSelected = dates[0];
 
-					document.<portlet:namespace />fm.<portlet:namespace /><%= fieldName %>.value = '[' + A.DataType.Date.format(firstSelected, {format: format}) + ' TO ' + A.DataType.Date.format(now, {format: format}) + ']';
+					document.<portlet:namespace />fm.<portlet:namespace /><%= facet.getFieldName() %>.value = '[' + A.DataType.Date.format(firstSelected, {format: format}) + ' TO ' + A.DataType.Date.format(now, {format: format}) + ']';
 				}
 				else if (dates.length > 1) {
 					var firstSelected = dates[0];
 					var lastSelected = dates[dates.length-1];
 
-					document.<portlet:namespace />fm.<portlet:namespace /><%= fieldName %>.value = '[' + A.DataType.Date.format(firstSelected, {format: format}) + ' TO ' + A.DataType.Date.format(lastSelected, {format: format}) + ']';
+					document.<portlet:namespace />fm.<portlet:namespace /><%= facet.getFieldName() %>.value = '[' + A.DataType.Date.format(firstSelected, {format: format}) + ' TO ' + A.DataType.Date.format(lastSelected, {format: format}) + ']';
 				}
 
 				// Checking range
@@ -121,5 +120,5 @@ if (Validator.isNotNull(fieldParam)) {
 			}
 		}
 	})
-	.render('#<portlet:namespace /><%= fieldName %>PlaceHolder');
+	.render('#<portlet:namespace /><%= facet.getFieldName() %>PlaceHolder');
 </aui:script>

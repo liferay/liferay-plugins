@@ -19,11 +19,7 @@
 <%
 Facet facet = (Facet)request.getAttribute("search-search.jsp-facet");
 
-String fieldName = facet.getFieldName();
-
-String fieldParam = ParamUtil.getString(request, fieldName);
-
-FacetCollector facetCollector = facet.getFacetCollector();
+String fieldParam = ParamUtil.getString(request, facet.getFieldName());
 %>
 
-<aui:input name="<%= fieldName %>" label="" type="text" value="<%= fieldParam %>" />
+<aui:input name="<%= facet.getFieldName() %>" label="" type="text" value="<%= fieldParam %>" />
