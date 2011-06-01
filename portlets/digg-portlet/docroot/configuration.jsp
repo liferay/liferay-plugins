@@ -19,74 +19,75 @@
 <liferay-portlet:actionURL portletConfiguration="true" var="configurationURL" />
 
 <style>
-/* Digg Widget Configuration */
 
-.digg-portlet-configuration {
-	color: #5C5C5C;
-	font: bold 11px/normal Arial, Helvetica;
-}
+	/* Digg Widget Configuration */
 
-.digg-portlet-configuration .fld,
-.digg-portlet-configuration .pfld {
-	border-bottom: 1px solid #B8B8B8;
-	padding: 15px 10px;
-}
+	.digg-portlet-configuration {
+		color: #5C5C5C;
+		font: bold 11px/normal Arial, Helvetica;
+	}
 
-.digg-portlet-configuration .fld.selected {
-	background: #FFF0C5;
-}
+	.digg-portlet-configuration .fld,
+	.digg-portlet-configuration .pfld {
+		border-bottom: 1px solid #B8B8B8;
+		padding: 15px 10px;
+	}
 
-.digg-portlet-configuration .fld .ffld {
-	border: 0;
-	padding: 5px 0 0;
-}
+	.digg-portlet-configuration .fld.selected {
+		background: #FFF0C5;
+	}
 
-.digg-portlet-configuration .url-sort {
-	margin-left: 2em;
-}
+	.digg-portlet-configuration .fld .ffld {
+		border: 0;
+		padding: 5px 0 0;
+	}
 
-.digg-portlet-configuration .story-count {
-	margin-right: 1em;
-}
+	.digg-portlet-configuration .url-sort {
+		margin-left: 2em;
+	}
 
-.digg-portlet-configuration .height,
-.digg-portlet-configuration .width {
-	margin-right: 0.25em;
-}
+	.digg-portlet-configuration .story-count {
+		margin-right: 1em;
+	}
 
-.digg-portlet-configuration .story-count .aui-field-input {
-	width: 2em;
-	text-align: center;
-}
+	.digg-portlet-configuration .height,
+	.digg-portlet-configuration .width {
+		margin-right: 0.25em;
+	}
 
-.digg-portlet-configuration .height .aui-field-input,
-.digg-portlet-configuration .width .aui-field-input {
-	width: 4em;
-}
+	.digg-portlet-configuration .story-count .aui-field-input {
+		width: 2em;
+		text-align: center;
+	}
 
-.digg-portlet-configuration .aui-field-content,
-.digg-portlet-configuration .fallback .aui-field-input {
-	margin-right: 0.1em;
-}
+	.digg-portlet-configuration .height .aui-field-input,
+	.digg-portlet-configuration .width .aui-field-input {
+		width: 4em;
+	}
 
-.digg-portlet-configuration .min-date {
-	margin-right: 0.3em;
-}
+	.digg-portlet-configuration .aui-field-content,
+	.digg-portlet-configuration .fallback .aui-field-input {
+		margin-right: 0.1em;
+	}
 
-.digg-portlet-configuration .polling .aui-field-content,
-.polling .aui-field-inline {
-	margin: 0;
-}
+	.digg-portlet-configuration .min-date {
+		margin-right: 0.3em;
+	}
 
-.digg-portlet-configuration .polling .aui-field-input-choice {
-	width: auto;
-}
+	.digg-portlet-configuration .polling .aui-field-content,
+	.polling .aui-field-inline {
+		margin: 0;
+	}
 
-.digg-portlet-configuration .polling .aui-field-input-text {
-	margin: 0 0.1em 0 0;
-	text-align: center;
-	width: 3em;
-}
+	.digg-portlet-configuration .polling .aui-field-input-choice {
+		width: auto;
+	}
+
+	.digg-portlet-configuration .polling .aui-field-input-text {
+		margin: 0 0.1em 0 0;
+		text-align: center;
+		width: 3em;
+	}
 </style>
 
 <aui:form action="<%= configurationURL %>" cssClass="digg-portlet-configuration" method="post">
