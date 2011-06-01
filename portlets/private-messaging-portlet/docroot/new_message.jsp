@@ -93,7 +93,7 @@ if (mbThreadId != 0) {
 			return false;
 		}
 
-		submitForm(document.<portlet:namespace />fm, '<liferay-portlet:actionURL name="sendMessage" windowState="<%= WindowState.NORMAL.toString() %>" />');
+		submitForm(document.<portlet:namespace />fm, '<liferay-portlet:actionURL name="sendMessage"><portlet:param name="redirect" value="<%= PortalUtil.getLayoutURL(themeDisplay) %>" /></liferay-portlet:actionURL>');
 	}
 </aui:script>
 

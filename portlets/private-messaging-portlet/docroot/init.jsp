@@ -45,6 +45,7 @@
 <%@ page import="com.liferay.portal.kernel.workflow.WorkflowConstants" %>
 <%@ page import="com.liferay.portal.model.CompanyConstants" %>
 <%@ page import="com.liferay.portal.model.User" %>
+<%@ page import="com.liferay.portal.util.PortalUtil" %>
 <%@ page import="com.liferay.portal.util.PortletKeys" %>
 <%@ page import="com.liferay.portal.service.UserLocalServiceUtil" %>
 <%@ page import="com.liferay.portlet.messageboards.model.MBMessage" %>
