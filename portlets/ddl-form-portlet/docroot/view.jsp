@@ -22,7 +22,7 @@ String redirect = ParamUtil.getString(request, "redirect");
 DDLRecordSet recordSet = null;
 
 try {
-	if (Validator.isNotNull(recordSetId)) {
+	if (recordSetId > 0) {
 		recordSet = DDLRecordSetLocalServiceUtil.getRecordSet(recordSetId);
 	}
 %>
@@ -51,7 +51,7 @@ try {
 
 							ddmStructure.setXsd(ddmTemplate.getScript());
 						}
-						catch(NoSuchTemplateException nste) {
+						catch (NoSuchTemplateException nste) {
 						}
 					}
 					%>

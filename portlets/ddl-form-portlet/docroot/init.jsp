@@ -79,9 +79,9 @@ if (Validator.isNotNull(portletResource)) {
 	preferences = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
 }
 
-long recordSetId = GetterUtil.getLong(preferences.getValue("recordSetId", StringPool.BLANK));
+long recordSetId = GetterUtil.getLong(preferences.getValue("recordSetId", null));
 
-long detailDDMTemplateId = GetterUtil.getLong(preferences.getValue("detailDDMTemplateId", StringPool.BLANK));
+long detailDDMTemplateId = GetterUtil.getLong(preferences.getValue("detailDDMTemplateId", null));
 
 Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZone);
 %>

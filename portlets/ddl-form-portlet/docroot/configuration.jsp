@@ -23,11 +23,11 @@ String redirect = ParamUtil.getString(renderRequest, "redirect");
 
 String keywords = ParamUtil.getString(request, "keywords");
 
-DDLRecordSet selRecordSet = null;
+DDLRecordSet recordSet = null;
 
 try {
-	if (Validator.isNotNull(recordSetId)) {
-		selRecordSet = DDLRecordSetLocalServiceUtil.getRecordSet(recordSetId);
+	if (recordSetId > 0) {
+		recordSet = DDLRecordSetLocalServiceUtil.getRecordSet(recordSetId);
 	}
 }
 catch (NoSuchRecordSetException nsrse) {
@@ -41,34 +41,34 @@ catch (NoSuchRecordSetException nsrse) {
 	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
 
 	<div class="portlet-msg-info">
-		<span class="displaying-help-message-holder <%= selRecordSet == null ? StringPool.BLANK : "aui-helper-hidden" %>">
+		<span class="displaying-help-message-holder <%= (recordSet == null) ? StringPool.BLANK : "aui-helper-hidden" %>">
 			<liferay-ui:message key="please-select-a-list-entry-from-the-list-below" />
 		</span>
 
-		<span class="displaying-record-set-id-holder <%= selRecordSet == null ? "aui-helper-hidden" : StringPool.BLANK %>">
-			<liferay-ui:message key="displaying-list" />: <span class="displaying-record-set-id"><%= selRecordSet != null ? HtmlUtil.escape(selRecordSet.getName(locale)) : StringPool.BLANK %></span>
+		<span class="displaying-record-set-id-holder <%= (recordSet == null) ? "aui-helper-hidden" : StringPool.BLANK %>">
+			<liferay-ui:message key="displaying-list" />: <span class="displaying-record-set-id"><%= (recordSet != null) ? HtmlUtil.escape(recordSet.getName(locale)) : StringPool.BLANK %></span>
 		</span>
 	</div>
 
-	<c:if test="<%= selRecordSet != null %>">
+	<c:if test="<%= recordSet != null %>">
 		<aui:fieldset label="templates">
 			<aui:select helpMessage="select-the-detail-template-used-to-add-records-to-the-list" label="detail-template" name="detailTemplateId" onChange='<%= "document." + renderResponse.getNamespace() + "fm." + renderResponse.getNamespace() + "detailDDMTemplateId.value = this.value;" %>'>
 				<aui:option label="default" value="<%= 0 %>" />
 
 				<%
-				long ddmStructureId = selRecordSet.getDDMStructureId();
+				long ddmStructureId = recordSet.getDDMStructureId();
 
-				List<DDMTemplate> templates = DDMTemplateLocalServiceUtil.getTemplates(ddmStructureId, DDMTemplateConstants.TEMPLATE_TYPE_DETAIL);
+				List<DDMTemplate> ddmTemplates = DDMTemplateLocalServiceUtil.getTemplates(ddmStructureId, DDMTemplateConstants.TEMPLATE_TYPE_DETAIL);
 
-				for (DDMTemplate template : templates) {
+				for (DDMTemplate ddmTemplate : ddmTemplates) {
 					boolean selected = false;
 
-					if (detailDDMTemplateId == template.getTemplateId()) {
+					if (detailDDMTemplateId == ddmTemplate.getTemplateId()) {
 						selected = true;
 					}
 				%>
 
-					<aui:option label="<%= template.getName() %>" selected="<%= selected %>" value="<%= template.getTemplateId() %>" />
+					<aui:option label="<%= ddmTemplate.getName() %>" selected="<%= selected %>" value="<%= ddmTemplate.getTemplateId() %>" />
 
 				<%
 				}
@@ -86,7 +86,7 @@ catch (NoSuchRecordSetException nsrse) {
 			iteratorURL="<%= portletURL %>"
 		>
 			<div>
-				<aui:input inlineField="<%= true %>" id="keywords" label="" name="keywords" size="30" title="search-lists" type="text" />
+				<aui:input id="keywords" inlineField="<%= true %>" label="" name="keywords" size="30" title="search-lists" type="text" />
 
 				<aui:button type="submit" value="search" />
 			</div>
@@ -102,17 +102,18 @@ catch (NoSuchRecordSetException nsrse) {
 				className="com.liferay.portlet.dynamicdatalists.model.DDLRecordSet"
 				escapedModel="<%= true %>"
 				keyProperty="recordSetId"
-				modelVar="recordSet"
+				modelVar="curRecordSet"
 			>
+
 				<%
 				StringBundler sb = new StringBundler(7);
 
 				sb.append("javascript:");
 				sb.append(renderResponse.getNamespace());
 				sb.append("selectRecordSet('");
-				sb.append(recordSet.getRecordSetId());
+				sb.append(curRecordSet.getRecordSetId());
 				sb.append("','");
-				sb.append(recordSet.getName(locale));
+				sb.append(curRecordSet.getName(locale));
 				sb.append("');");
 
 				String rowURL = sb.toString();
@@ -140,7 +141,7 @@ catch (NoSuchRecordSetException nsrse) {
 				>
 
 					<%
-					buffer.append(StringUtil.shorten(recordSet.getDescription(), 100));
+					buffer.append(StringUtil.shorten(curRecordSet.getDescription(), 100));
 					%>
 
 				</liferay-ui:search-container-column-text>
@@ -153,7 +154,7 @@ catch (NoSuchRecordSetException nsrse) {
 				>
 
 					<%
-					buffer.append(dateFormatDateTime.format(recordSet.getModifiedDate()));
+					buffer.append(dateFormatDateTime.format(curRecordSet.getModifiedDate()));
 					%>
 
 				</liferay-ui:search-container-column-text>
