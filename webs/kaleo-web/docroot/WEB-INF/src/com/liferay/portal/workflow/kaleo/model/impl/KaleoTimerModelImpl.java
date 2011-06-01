@@ -74,7 +74,7 @@ public class KaleoTimerModelImpl extends BaseModelImpl<KaleoTimer>
 			{ "duration", Types.DOUBLE },
 			{ "scale", Types.VARCHAR }
 		};
-	public static final String TABLE_SQL_CREATE = "create table KaleoTimer (kaleoTimerId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoDefinitionId LONG,kaleoNodeId LONG,parentKaleoNodeId LONG,name VARCHAR(75) null,defaultTimer BOOLEAN,description VARCHAR(75) null,duration DOUBLE,scale VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table KaleoTimer (kaleoTimerId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoDefinitionId LONG,kaleoNodeId LONG,parentKaleoNodeId LONG,name VARCHAR(75) null,defaultTimer BOOLEAN,description STRING null,duration DOUBLE,scale VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table KaleoTimer";
 	public static final String ORDER_BY_JPQL = " ORDER BY kaleoTimer.kaleoTimerId ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY KaleoTimer.kaleoTimerId ASC";

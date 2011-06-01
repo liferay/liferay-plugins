@@ -22,7 +22,7 @@ create table KaleoCondition (
 	groupId LONG,
 	companyId LONG,
 	userId LONG,
-	userName VARCHAR(75) null,
+	userName VARCHAR(200) null,
 	createDate DATE null,
 	modifiedDate DATE null,
 	kaleoDefinitionId LONG,
@@ -79,7 +79,7 @@ create table KaleoInstanceToken (
 	parentKaleoInstanceTokenId LONG,
 	currentKaleoNodeId LONG,
 	currentKaleoNodeName VARCHAR(200) null,
-	className VARCHAR(75) null,
+	className VARCHAR(200) null,
 	classPK LONG,
 	completed BOOLEAN,
 	completionDate DATE null
@@ -157,15 +157,15 @@ create table KaleoNotificationRecipient (
 	groupId LONG,
 	companyId LONG,
 	userId LONG,
-	userName VARCHAR(75) null,
+	userName VARCHAR(200) null,
 	createDate DATE null,
 	modifiedDate DATE null,
 	kaleoDefinitionId LONG,
 	kaleoNotificationId LONG,
-	recipientClassName VARCHAR(75) null,
+	recipientClassName VARCHAR(200) null,
 	recipientClassPK LONG,
 	recipientRoleType INTEGER,
-	address VARCHAR(75) null
+	address VARCHAR(255) null
 );
 
 create table KaleoTask (
@@ -178,8 +178,8 @@ create table KaleoTask (
 	modifiedDate DATE null,
 	kaleoDefinitionId LONG,
 	kaleoNodeId LONG,
-	name VARCHAR(75) null,
-	description VARCHAR(75) null
+	name VARCHAR(200) null,
+	description STRING null
 );
 
 create table KaleoTaskAssignment (
@@ -205,7 +205,7 @@ create table KaleoTaskAssignmentInstance (
 	groupId LONG,
 	companyId LONG,
 	userId LONG,
-	userName VARCHAR(75) null,
+	userName VARCHAR(200) null,
 	createDate DATE null,
 	modifiedDate DATE null,
 	kaleoDefinitionId LONG,
@@ -213,8 +213,8 @@ create table KaleoTaskAssignmentInstance (
 	kaleoInstanceTokenId LONG,
 	kaleoTaskInstanceTokenId LONG,
 	kaleoTaskId LONG,
-	kaleoTaskName VARCHAR(75) null,
-	assigneeClassName VARCHAR(75) null,
+	kaleoTaskName VARCHAR(200) null,
+	assigneeClassName VARCHAR(200) null,
 	assigneeClassPK LONG,
 	completed BOOLEAN,
 	completionDate DATE null
@@ -233,7 +233,7 @@ create table KaleoTaskInstanceToken (
 	kaleoInstanceTokenId LONG,
 	kaleoTaskId LONG,
 	kaleoTaskName VARCHAR(200) null,
-	className VARCHAR(75) null,
+	className VARCHAR(200) null,
 	classPK LONG,
 	completionUserId LONG,
 	completed BOOLEAN,
@@ -255,7 +255,7 @@ create table KaleoTimer (
 	parentKaleoNodeId LONG,
 	name VARCHAR(75) null,
 	defaultTimer BOOLEAN,
-	description VARCHAR(75) null,
+	description STRING null,
 	duration DOUBLE,
 	scale VARCHAR(75) null
 );
