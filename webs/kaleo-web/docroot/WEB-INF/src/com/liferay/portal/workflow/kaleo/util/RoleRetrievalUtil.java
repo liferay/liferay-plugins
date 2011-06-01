@@ -81,7 +81,7 @@ public class RoleRetrievalUtil {
 			return RoleConstants.TYPE_ORGANIZATION;
 		}
 		else if (roleType.equals(RoleConstants.TYPE_SITE_LABEL) ||
-			roleType.equals(_LEGACY_TYPE_COMMUNITY_LABEL)) {
+				 roleType.equals(_LEGACY_TYPE_COMMUNITY_LABEL)) {
 
 			return RoleConstants.TYPE_SITE;
 		}

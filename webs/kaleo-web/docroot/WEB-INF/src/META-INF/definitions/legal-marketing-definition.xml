@@ -76,15 +76,15 @@
 				</role>
 				<role>
 					<role-type>site</role-type>
-					<name>Community Administrator</name>
+					<name>Site Administrator</name>
 				</role>
 				<role>
 					<role-type>site</role-type>
-					<name>Community Marketing Content Reviewer</name>
+					<name>Site Marketing Content Reviewer</name>
 				</role>
 				<role>
 					<role-type>site</role-type>
-					<name>Community Owner</name>
+					<name>Site Owner</name>
 				</role>
 			</roles>
 		</assignments>
@@ -136,15 +136,15 @@
 				</role>
 				<role>
 					<role-type>site</role-type>
-					<name>Community Administrator</name>
+					<name>Site Administrator</name>
 				</role>
 				<role>
 					<role-type>site</role-type>
-					<name>Community Legal Content Reviewer</name>
+					<name>Site Legal Content Reviewer</name>
 				</role>
 				<role>
 					<role-type>site</role-type>
-					<name>Community Owner</name>
+					<name>Site Owner</name>
 				</role>
 			</roles>
 		</assignments>
