@@ -154,22 +154,26 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 				allResults = true;
 			}
 
-			for (FacetField facetField : queryResponse.getFacetFields()) {
-				Facet facet = facets.get(facetField.getName());
+			List<FacetField> facetFields = queryResponse.getFacetFields();
 
-				FacetCollector facetCollector = null;
+			if (facetFields != null) {
+				for (FacetField facetField : facetFields) {
+					Facet facet = facets.get(facetField.getName());
 
-				if (facet instanceof RangeFacet) {
-					facetCollector = new SolrFacetQueryCollector(
-						facetField.getName(),
-						queryResponse.getFacetQuery());
+					FacetCollector facetCollector = null;
+
+					if (facet instanceof RangeFacet) {
+						facetCollector = new SolrFacetQueryCollector(
+							facetField.getName(),
+							queryResponse.getFacetQuery());
+					}
+					else {
+						facetCollector = new SolrFacetFieldCollector(
+							facetField.getName(), facetField);
+					}
+
+					facet.setFacetCollector(facetCollector);
 				}
-				else {
-					facetCollector = new SolrFacetFieldCollector(
-						facetField.getName(), facetField);
-				}
-
-				facet.setFacetCollector(facetCollector);
 			}
 
 			return subset(
