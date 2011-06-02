@@ -113,7 +113,7 @@ request.setAttribute("view_user.jsp-viewUser", Boolean.TRUE.toString());
 
 					ServletContext extensionServletContext = ServletContextPool.get(servletContextName);
 
-					String title = extensionPath.substring(extensionPath.lastIndexOf(StringPool.SLASH), extensionPath.lastIndexOf(StringPool.PERIOD));
+					String title = extensionPath.substring(extensionPath.lastIndexOf(StringPool.SLASH) + 1, extensionPath.lastIndexOf(StringPool.PERIOD));
 
 					title = title.replace(CharPool.UNDERLINE, CharPool.DASH);
 
