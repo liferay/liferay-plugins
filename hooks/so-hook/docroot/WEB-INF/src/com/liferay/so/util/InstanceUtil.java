@@ -173,7 +173,7 @@ public class InstanceUtil {
 
 		localeNamesMap.put(defaultLocale, name);
 
-		String description = name + " Site Template";
+		String description = name;
 		boolean active = true;
 		long defaultUserId = UserLocalServiceUtil.getDefaultUserId(companyId);
 
@@ -181,8 +181,19 @@ public class InstanceUtil {
 
 		LayoutSetPrototype layoutSetPrototype =
 			LayoutSetPrototypeLocalServiceUtil.addLayoutSetPrototype(
-			defaultUserId, companyId, localeNamesMap, description, active,
-			serviceContext);
+				defaultUserId, companyId, localeNamesMap, description, active,
+				serviceContext);
+
+		UnicodeProperties settingsProperties =
+			layoutSetPrototype.getSettingsProperties();
+
+		settingsProperties.setProperty(
+			"customJspServletContextName", "so-hook");
+
+		layoutSetPrototype =
+			LayoutSetPrototypeLocalServiceUtil.updateLayoutSetPrototype(
+				layoutSetPrototype.getLayoutSetPrototypeId(),
+				settingsProperties.toString());
 
 		return layoutSetPrototype;
 	}
@@ -375,7 +386,7 @@ public class InstanceUtil {
 		throws Exception {
 
 		LayoutSetPrototype layoutSetPrototype = addLayoutSetPrototype(
-			companyId, "Social Office Community");
+			companyId, "Default Social Office Site");
 
 		ExpandoValueLocalServiceUtil.addValue(
 			LayoutSetPrototype.class.getName(),
