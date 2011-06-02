@@ -291,17 +291,6 @@ a:active {
 
 /* ---------- Application ---------- */
 
-/* Actions */
-
-.lfr-actions {
-	overflow: hidden;
-	width: 40px;
-}
-
-.lfr-actions img {
-	margin-right: 1em;
-}
-
 /* Autocomplete */
 
 .ui-autocomplete-even {
