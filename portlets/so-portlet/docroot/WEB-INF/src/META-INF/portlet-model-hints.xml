@@ -25,6 +25,7 @@
 		<field name="title" type="String" />
 		<field name="description" type="String">
 			<hint-collection name="TEXTAREA" />
+			<hint name="display-width">400</hint>
 		</field>
 		<field name="startDate" type="Date">
 			<hint name="year-range-delta">70</hint>
