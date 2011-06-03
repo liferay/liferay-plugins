@@ -161,9 +161,11 @@ public class JabberImpl implements Jabber {
 					connect(userId, password);
 				}
 				catch (XMPPException xmppe2) {
+					message = xmppe2.getMessage();
+
 					if (message.contains("conflict(409)")) {
 						_log.error(
-							"User " + userId + "already exists but password " +
+							"User " + userId + " already exists but password " +
 								"is not synchronized with Jabber");
 					}
 				}
