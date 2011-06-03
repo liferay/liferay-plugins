@@ -266,8 +266,7 @@ public class StatusLocalServiceUtil {
 	}
 
 	public static com.liferay.chat.model.Status getUserStatus(long userId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().getUserStatus(userId);
 	}
 

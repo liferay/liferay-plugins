@@ -16,7 +16,6 @@ package com.liferay.chat.service.impl;
 
 import com.liferay.chat.model.Status;
 import com.liferay.chat.service.base.StatusLocalServiceBaseImpl;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -52,9 +51,7 @@ public class StatusLocalServiceImpl extends StatusLocalServiceBaseImpl {
 			userId, type, modifiedDate, start, end);
 	}
 
-	public Status getUserStatus(long userId)
-		throws PortalException, SystemException {
-
+	public Status getUserStatus(long userId) throws SystemException {
 		Status status = statusPersistence.fetchByUserId(userId);
 
 		if (status == null) {
