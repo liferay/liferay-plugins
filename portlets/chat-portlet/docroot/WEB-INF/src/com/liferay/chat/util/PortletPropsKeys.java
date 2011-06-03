@@ -24,4 +24,20 @@ public interface PortletPropsKeys {
 
 	public static final String BUDDY_LIST_STRATEGY = "buddy.list.strategy";
 
+	public static final String JABBER_ENABLED = "jabber.enabled";
+
+	public static final String JABBER_HOST = "jabber.host";
+
+	public static final String JABBER_PORT = "jabber.port";
+
+	public static final String JABBER_RESOURCE = "jabber.resource";
+
+	public static final String JABBER_SERVICE_NAME = "jabber.service.name";
+
+	public static final String JABBER_SOCK5_PROXY_ENABLED =
+		"jabber.sock5.proxy.enabled";
+
+	public static final String JABBER_SOCK5_PROXY_PORT =
+		"jabber.sock5.proxy.port";
+
 }

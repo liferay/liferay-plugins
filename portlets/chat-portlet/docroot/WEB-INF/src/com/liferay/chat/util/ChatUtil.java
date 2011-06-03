@@ -14,6 +14,7 @@
 
 package com.liferay.chat.util;
 
+import com.liferay.chat.jabber.JabberUtil;
 import com.liferay.chat.service.StatusLocalServiceUtil;
 import com.liferay.chat.util.comparator.BuddyComparator;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -87,6 +88,8 @@ public class ChatUtil {
 		else {
 			buddies = new ArrayList<Object[]>();
 		}
+
+		buddies = JabberUtil.getStatuses(companyId, userId, buddies);
 
 		return buddies;
 	}

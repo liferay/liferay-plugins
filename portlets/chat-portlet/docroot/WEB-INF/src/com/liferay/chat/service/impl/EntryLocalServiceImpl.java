@@ -14,6 +14,7 @@
 
 package com.liferay.chat.service.impl;
 
+import com.liferay.chat.jabber.JabberUtil;
 import com.liferay.chat.model.Entry;
 import com.liferay.chat.service.base.EntryLocalServiceBaseImpl;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -65,6 +66,8 @@ public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 		entry.setContent(content);
 
 		entryPersistence.update(entry, false);
+
+		JabberUtil.sendMessage(fromUserId, toUserId, content);
 
 		return entry;
 	}

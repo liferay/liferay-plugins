@@ -14,6 +14,7 @@
 
 package com.liferay.chat.service.impl;
 
+import com.liferay.chat.jabber.JabberUtil;
 import com.liferay.chat.model.Status;
 import com.liferay.chat.service.base.StatusLocalServiceBaseImpl;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -122,6 +123,8 @@ public class StatusLocalServiceImpl extends StatusLocalServiceBaseImpl {
 				throw se;
 			}
 		}
+
+		JabberUtil.updateStatus(userId, online);
 
 		return status;
 	}

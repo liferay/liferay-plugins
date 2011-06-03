@@ -28,4 +28,26 @@ public class PortletPropsValues {
 	public static final String BUDDY_LIST_STRATEGY = GetterUtil.getString(
 		PortletProps.get(PortletPropsKeys.BUDDY_LIST_STRATEGY));
 
+	public static final boolean JABBER_ENABLED = GetterUtil.getBoolean(
+		PortletProps.get(PortletPropsKeys.JABBER_ENABLED));
+
+	public static final String JABBER_HOST = GetterUtil.getString(
+		PortletProps.get(PortletPropsKeys.JABBER_HOST));
+
+	public static final int JABBER_PORT = GetterUtil.getInteger(
+		PortletProps.get(PortletPropsKeys.JABBER_PORT));
+
+	public static final String JABBER_RESOURCE = GetterUtil.getString(
+			PortletProps.get(PortletPropsKeys.JABBER_RESOURCE));
+
+	public static final String JABBER_SERVICE_NAME = GetterUtil.getString(
+		PortletProps.get(PortletPropsKeys.JABBER_SERVICE_NAME));
+
+	public static final boolean JABBER_SOCK5_PROXY_ENABLED =
+		GetterUtil.getBoolean(
+			PortletProps.get(PortletPropsKeys.JABBER_SOCK5_PROXY_ENABLED));
+
+	public static final int JABBER_SOCK5_PROXY_PORT = GetterUtil.getInteger(
+		PortletProps.get(PortletPropsKeys.JABBER_SOCK5_PROXY_PORT));
+
 }
