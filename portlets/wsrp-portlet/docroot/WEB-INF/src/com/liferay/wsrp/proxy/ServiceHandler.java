@@ -63,7 +63,7 @@ public class ServiceHandler implements InvocationHandler {
 			_version = "v2";
 		}
 		else {
-			_serviceLocator = new WSRPServiceLocator(_engineConfiguration);;
+			_serviceLocator = new WSRPServiceLocator(_engineConfiguration);
 			_version = "v1";
 		}
 
