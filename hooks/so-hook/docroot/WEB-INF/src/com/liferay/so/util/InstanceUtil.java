@@ -499,19 +499,17 @@ public class InstanceUtil {
 	protected static void updatePermissions(ExpandoColumn expandoColumn)
 		throws Exception {
 
-		long companyId = expandoColumn.getCompanyId();
-
 		Role role = RoleLocalServiceUtil.getRole(
-			companyId, RoleConstants.USER);
-
-		String[] actionIds = new String[] {ActionKeys.VIEW};
+			expandoColumn.getCompanyId(), RoleConstants.USER);
 
 		String name = ExpandoColumn.class.getName();
 		int scope = ResourceConstants.SCOPE_INDIVIDUAL;
 		String primKey = String.valueOf(expandoColumn.getPrimaryKey());
+		String[] actionIds = {ActionKeys.VIEW};
 
 		ResourcePermissionLocalServiceUtil.setResourcePermissions(
-			companyId, name, scope, primKey, role.getRoleId(), actionIds);
+			expandoColumn.getCompanyId(), name, scope, primKey,
+			role.getRoleId(), actionIds);
 	}
 
 	protected static void updatePermissions(
