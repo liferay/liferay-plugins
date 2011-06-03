@@ -57,6 +57,7 @@ import com.liferay.portal.service.permission.PortletPermissionUtil;
 import com.liferay.portal.util.PortletKeys;
 import com.liferay.portlet.PortletPreferencesFactoryUtil;
 import com.liferay.portlet.PortletPreferencesThreadLocal;
+import com.liferay.portlet.expando.model.ExpandoColumn;
 import com.liferay.portlet.expando.model.ExpandoColumnConstants;
 import com.liferay.portlet.expando.model.ExpandoTable;
 import com.liferay.portlet.expando.model.ExpandoTableConstants;
@@ -340,9 +341,12 @@ public class InstanceUtil {
 		}
 
 		try {
-			ExpandoColumnLocalServiceUtil.addColumn(
-				expandoTable.getTableId(), "socialOfficeEnabled",
-				ExpandoColumnConstants.BOOLEAN);
+			ExpandoColumn expandoColumn =
+				ExpandoColumnLocalServiceUtil.addColumn(
+					expandoTable.getTableId(), "socialOfficeEnabled",
+					ExpandoColumnConstants.BOOLEAN);
+
+			updatePermissions(expandoColumn);
 		}
 		catch (Exception e) {
 		}
@@ -361,9 +365,12 @@ public class InstanceUtil {
 		}
 
 		try {
-			ExpandoColumnLocalServiceUtil.addColumn(
-				expandoTable.getTableId(), "socialOfficeDefault",
-				ExpandoColumnConstants.BOOLEAN);
+			ExpandoColumn expandoColumn =
+				ExpandoColumnLocalServiceUtil.addColumn(
+					expandoTable.getTableId(), "socialOfficeDefault",
+					ExpandoColumnConstants.BOOLEAN);
+
+			updatePermissions(expandoColumn);
 		}
 		catch (Exception e) {
 		}
@@ -487,6 +494,24 @@ public class InstanceUtil {
 			LayoutSetLocalServiceUtil.addLayoutSet(group.getGroupId(), true);
 			LayoutSetLocalServiceUtil.addLayoutSet(group.getGroupId(), false);
 		}
+	}
+
+	protected static void updatePermissions(ExpandoColumn expandoColumn)
+		throws Exception {
+
+		long companyId = expandoColumn.getCompanyId();
+
+		Role role = RoleLocalServiceUtil.getRole(
+			companyId, RoleConstants.USER);
+
+		String[] actionIds = new String[] {ActionKeys.VIEW};
+
+		String name = ExpandoColumn.class.getName();
+		int scope = ResourceConstants.SCOPE_INDIVIDUAL;
+		String primKey = String.valueOf(expandoColumn.getPrimaryKey());
+
+		ResourcePermissionLocalServiceUtil.setResourcePermissions(
+			companyId, name, scope, primKey, role.getRoleId(), actionIds);
 	}
 
 	protected static void updatePermissions(
