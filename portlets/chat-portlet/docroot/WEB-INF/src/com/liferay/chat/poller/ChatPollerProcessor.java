@@ -14,7 +14,6 @@
 
 package com.liferay.chat.poller;
 
-import com.liferay.chat.NoSuchStatusException;
 import com.liferay.chat.model.Entry;
 import com.liferay.chat.model.Status;
 import com.liferay.chat.service.EntryLocalServiceUtil;
@@ -78,17 +77,11 @@ public class ChatPollerProcessor extends BasePollerProcessor {
 				continue;
 			}
 
-			String statusMessage = null;
+			Status buddyStatus = StatusLocalServiceUtil.getUserStatus(
+				userId);
 
-			try {
-				Status buddyStatus = StatusLocalServiceUtil.getUserStatus(
-					userId);
-
-				awake = buddyStatus.getAwake();
-				statusMessage = buddyStatus.getMessage();
-			}
-			catch (NoSuchStatusException nsse) {
-			}
+			awake = buddyStatus.getAwake();
+			String statusMessage = buddyStatus.getMessage();
 
 			JSONObject curUserJSON = JSONFactoryUtil.createJSONObject();
 
