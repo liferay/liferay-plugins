@@ -145,10 +145,10 @@ public class JabberImpl implements Jabber {
 			connect(userId, password);
 		}
 		catch (XMPPException xmppe1) {
-			String message = xmppe1.getMessage();
+			String message1 = xmppe1.getMessage();
 
-			if (Validator.isNotNull(message) &&
-				message.contains("not-authorized")) {
+			if (Validator.isNotNull(message1) &&
+				message1.contains("not-authorized")) {
 
 				if (_log.isDebugEnabled()) {
 					_log.debug(
@@ -161,9 +161,9 @@ public class JabberImpl implements Jabber {
 					connect(userId, password);
 				}
 				catch (XMPPException xmppe2) {
-					message = xmppe2.getMessage();
+					String message2 = xmppe2.getMessage();
 
-					if (message.contains("conflict(409)")) {
+					if (message2.contains("conflict(409)")) {
 						_log.error(
 							"User " + userId + " already exists but password " +
 								"is not synchronized with Jabber");
