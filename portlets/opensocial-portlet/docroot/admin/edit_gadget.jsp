@@ -143,30 +143,32 @@ if (Validator.isNotNull(editorGadgetURL)) {
 		}
 	);
 
-	var treeView = new A.TreeView(
-		{
-			boundingBox: '#<portlet:namespace />categoryTreeView',
-			type: 'normal'
-		}
-	).render();
-
-	var setSelectedPortlet = function(event) {
+	var onCheckedChange = function(event) {
 		var category = event.target.get('category')
 
-		if (A.Array.indexOf(selectedPortletCategoryNames, category) == -1) {
-			selectedPortletCategoryNames.push(category);
+		if (event.newVal) {
+			if (A.Array.indexOf(selectedPortletCategoryNames, category) == -1) {
+				selectedPortletCategoryNames.push(category);
+
+				selectedPortletCategoryNamesNode.val(selectedPortletCategoryNames.join());
+			}
+		}
+		else {
+			A.Array.removeItem(selectedPortletCategoryNames, category);
 
 			selectedPortletCategoryNamesNode.val(selectedPortletCategoryNames.join());
 		}
 	};
 
-	var setUnselectedPortlet = function(event) {
-		var category = event.target.get('category')
-
-		A.Array.removeItem(selectedPortletCategoryNames, category);
-
-		selectedPortletCategoryNamesNode.val(selectedPortletCategoryNames.join());
-	};
+	var treeView = new A.TreeView(
+		{
+			boundingBox: '#<portlet:namespace />categoryTreeView',
+			on: {
+				'*:checkedChange': onCheckedChange
+			},
+			type: 'normal'
+		}
+	).render();
 
 	<%
 	PortletLister portletLister = PortletListerFactoryUtil.getPortletLister();
@@ -190,11 +192,7 @@ if (Validator.isNotNull(editorGadgetURL)) {
 				category: category,
 				id: '<%= treeNodeView.getId() %>',
 				label: '<%= UnicodeFormatter.toString(LanguageUtil.get(user.getLocale(), treeNodeView.getName())) %>',
-				leaf: false,
-				on: {
-					check: setSelectedPortlet,
-					uncheck: setUnselectedPortlet
-				}
+				leaf: false
 			}
 		);
 
