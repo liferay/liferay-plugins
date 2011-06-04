@@ -1421,7 +1421,7 @@ public class ConsumerPortlet extends GenericPortlet {
 				portletRequest, "wsrp-requiresRewrite");
 		}
 
-		if (requiresRewriting && contentType.contains("text")) {
+		if (requiresRewriting && contentType.contains(ContentTypes.TEXT)) {
 			if (itemBinary != null) {
 				itemString = new String(itemBinary, charSet);
 			}
