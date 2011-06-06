@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.BaseModelListener;
 import com.liferay.portal.model.Group;
@@ -77,6 +78,8 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 
 			if (layoutSet.isPrivateLayout()) {
 				addPrivateUserLayouts(group);
+
+				setCustomJspServletContextName(group);
 			}
 			else {
 				addPublicUserLayouts(group);
@@ -284,6 +287,19 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 			"portlet-setup-show-borders", String.valueOf(Boolean.FALSE));
 
 		portletSetup.store();
+	}
+
+	protected void setCustomJspServletContextName(Group group)
+		throws Exception {
+
+		UnicodeProperties typeSettingsProperties =
+			group.getTypeSettingsProperties();
+
+		typeSettingsProperties.setProperty(
+			"customJspServletContextName", "so-hook");
+
+		GroupLocalServiceUtil.updateGroup(
+			group.getGroupId(), typeSettingsProperties.toString());
 	}
 
 	protected void updatePermissions(Layout layout, boolean addDefaultActionIds)
