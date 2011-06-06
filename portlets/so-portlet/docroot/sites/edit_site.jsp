@@ -229,7 +229,7 @@ portletURL.setParameter("jspPage", "/sites/edit_site.jsp");
 									dialog.hide();
 								}
 
-								setTimeout(callback, 3000);
+								setTimeout(callback, 1000);
 							}
 							else if (data.result == 'failure') {
 								var errorMsg = form.one('.portlet-msg-error');
@@ -315,6 +315,15 @@ portletURL.setParameter("jspPage", "/sites/edit_site.jsp");
 </aui:script>
 
 <aui:script use="aui-base,aui-io">
+	var form = A.one(document.<portlet:namespace />dialogFm);
+
+	form.on(
+		'submit',
+		function(event) {
+			event.halt();
+		}
+	);
+
 	var templateSelect = A.one('.so-portlet-sites-dialog #<portlet:namespace />layoutSetPrototypeSelect');
 
 	var descriptionContainer = A.one('.so-portlet-sites-dialog .template-details');
