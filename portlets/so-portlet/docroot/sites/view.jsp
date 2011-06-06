@@ -75,11 +75,6 @@ pageContext.setAttribute("portletURL", portletURL);
 					}
 				%>
 
-					<liferay-portlet:actionURL windowState="<%= LiferayWindowState.NORMAL.toString() %>" portletName="<%= PortletKeys.MY_PLACES %>" var="rowURL">
-						<liferay-portlet:param name="struts_action" value="/my_places/view" />
-						<liferay-portlet:param name="groupId" value="<%= String.valueOf(group.getGroupId()) %>" />
-					</liferay-portlet:actionURL>
-
 					<li class="<%= className %>">
 						<c:if test="<%= !member %>">
 							<span class="join">
@@ -96,7 +91,20 @@ pageContext.setAttribute("portletURL", portletURL);
 						</c:if>
 
 						<span class="name">
-							<a href="<%= rowURL %>"><%= group.getDescriptiveName() %></a>
+							<c:choose>
+								<c:when test="<%= group.hasPrivateLayouts() || group.hasPublicLayouts() %>">
+									<liferay-portlet:actionURL windowState="<%= LiferayWindowState.NORMAL.toString() %>" portletName="<%= PortletKeys.MY_PLACES %>" var="siteURL">
+										<liferay-portlet:param name="struts_action" value="/my_places/view" />
+										<liferay-portlet:param name="groupId" value="<%= String.valueOf(group.getGroupId()) %>" />
+										<liferay-portlet:param name="privateLayout" value="<%= String.valueOf(!group.hasPublicLayouts()) %>" />
+									</liferay-portlet:actionURL>
+
+									<a href="<%= siteURL %>"><%= group.getDescriptiveName() %></a>
+								</c:when>
+								<c:otherwise>
+									<%= group.getDescriptiveName() %>
+								</c:otherwise>
+							</c:choose>
 						</span>
 					</li>
 

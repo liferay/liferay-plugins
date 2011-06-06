@@ -206,7 +206,7 @@ AUI().use(
 					var siteTemplate =
 						'<li class="{classNames}">' +
 							'{joinHtml}' +
-							'<span class="name"><a href="{siteURL}">{siteName}</a></span>' +
+							'<span class="name">{siteName}</span>' +
 						'</li>';
 
 					buffer.push(
@@ -224,13 +224,18 @@ AUI().use(
 									classNames.push('member');
 								}
 
+								var name = result.name;
+
+								if (result.url) {
+									name = '<a href="' + result.url + '">' + name + '</a>';
+								}
+
 								return A.Lang.sub(
 									siteTemplate,
 									{
 										classNames: classNames.join(' '),
 										joinHtml: (result.joinUrl ? '<span class="join"><a href="' + result.joinUrl + '">' + Liferay.Language.get('join') + '</a></span>' : ''),
-										siteName: result.name,
-										siteURL: result.url
+										siteName: name
 									}
 								);
 							}

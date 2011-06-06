@@ -106,12 +106,20 @@ int totalGroups = GroupLocalServiceUtil.searchCount(themeDisplay.getCompanyId(),
 				</c:if>
 
 				<span class="name">
-					<liferay-portlet:actionURL windowState="<%= LiferayWindowState.NORMAL.toString() %>" portletName="<%= PortletKeys.MY_PLACES %>" var="siteURL">
-						<liferay-portlet:param name="struts_action" value="/my_places/view" />
-						<liferay-portlet:param name="groupId" value="<%= String.valueOf(group.getGroupId()) %>" />
-					</liferay-portlet:actionURL>
+					<c:choose>
+						<c:when test="<%= group.hasPrivateLayouts() || group.hasPublicLayouts() %>">
+							<liferay-portlet:actionURL windowState="<%= LiferayWindowState.NORMAL.toString() %>" portletName="<%= PortletKeys.MY_PLACES %>" var="siteURL">
+								<liferay-portlet:param name="struts_action" value="/my_places/view" />
+								<liferay-portlet:param name="groupId" value="<%= String.valueOf(group.getGroupId()) %>" />
+								<liferay-portlet:param name="privateLayout" value="<%= String.valueOf(!group.hasPublicLayouts()) %>" />
+							</liferay-portlet:actionURL>
 
-					<a href="<%= siteURL %>"><%= group.getDescriptiveName() %></a>
+							<a href="<%= siteURL %>"><%= group.getDescriptiveName() %></a>
+						</c:when>
+						<c:otherwise>
+							<%= group.getDescriptiveName() %>
+						</c:otherwise>
+					</c:choose>
 				</span>
 
 				<span class="description">
@@ -190,7 +198,7 @@ int totalGroups = GroupLocalServiceUtil.searchCount(themeDisplay.getCompanyId(),
 			var siteTemplate =
 				'<li class="{classNames}">' +
 					'{joinHtml}' +
-					'<span class="name"><a href="{siteURL}">{siteName}</a></span>' +
+					'<span class="name">{siteName}</span>' +
 					'<span class="description">{siteDescription}</span>'
 				'</li>';
 
@@ -213,14 +221,19 @@ int totalGroups = GroupLocalServiceUtil.searchCount(themeDisplay.getCompanyId(),
 							classNames.push('alt');
 						}
 
+						var name = result.name;
+
+						if (result.url) {
+							name = '<a href="' + result.url + '">' + name + '</a>';
+						}
+
 						return A.Lang.sub(
 							siteTemplate,
 							{
 								classNames: classNames.join(' '),
 								joinHtml: (result.joinUrl ? '<span class="join"><a href="' + result.joinUrl + '">' + Liferay.Language.get('join') + '</a></span>' : ''),
 								siteDescription: result.description,
-								siteName: result.name,
-								siteURL: result.url
+								siteName: name
 							}
 						);
 					}

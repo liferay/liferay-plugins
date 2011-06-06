@@ -251,53 +251,55 @@ public class SitesPortlet extends MVCPortlet {
 			groupJSONObject.put("name", group.getDescriptiveName());
 			groupJSONObject.put("description", group.getDescription());
 
-			PortletURL portletURL = PortletURLFactoryUtil.create(
-				PortalUtil.getHttpServletRequest(resourceRequest),
-				PortletKeys.MY_PLACES, themeDisplay.getLayout().getPlid(),
-				PortletRequest.ACTION_PHASE);
+			if (group.hasPrivateLayouts() || group.hasPublicLayouts()) {
+				PortletURL portletURL = PortletURLFactoryUtil.create(
+					PortalUtil.getHttpServletRequest(resourceRequest),
+					PortletKeys.MY_PLACES, themeDisplay.getLayout().getPlid(),
+					PortletRequest.ACTION_PHASE);
 
-			portletURL.setWindowState(WindowState.NORMAL);
+				portletURL.setWindowState(WindowState.NORMAL);
 
-			portletURL.setParameter("struts_action", "/my_places/view");
-			portletURL.setParameter(
-				"groupId", String.valueOf(group.getGroupId()));
+				portletURL.setParameter("struts_action", "/my_places/view");
+				portletURL.setParameter(
+					"groupId", String.valueOf(group.getGroupId()));
+				portletURL.setParameter(
+					"privateLayout", String.valueOf(!group.hasPublicLayouts()));
 
-			groupJSONObject.put("url", portletURL.toString());
+				groupJSONObject.put("url", portletURL.toString());
+			}
 
 			boolean socialOfficeEnabled = GetterUtil.getBoolean(
 				group.getExpandoBridge().getAttribute("socialOfficeEnabled"));
 
 			groupJSONObject.put("socialOfficeEnabled", socialOfficeEnabled);
 
-			if (GroupLocalServiceUtil.hasUserGroup(
+			if (!GroupLocalServiceUtil.hasUserGroup(
 					themeDisplay.getUserId(), group.getGroupId()) &&
 				GroupPermissionUtil.contains(
 					themeDisplay.getPermissionChecker(), group.getGroupId(),
 					ActionKeys.ASSIGN_MEMBERS)) {
 
-				jsonArray.put(groupJSONObject);
+				PortletURL portletURL = PortletURLFactoryUtil.create(
+					PortalUtil.getHttpServletRequest(resourceRequest),
+					PortletKeys.ENTERPRISE_ADMIN_COMMUNITIES,
+					themeDisplay.getLayout().getPlid(),
+					PortletRequest.ACTION_PHASE);
 
-				continue;
+				portletURL.setWindowState(WindowState.NORMAL);
+
+				portletURL.setParameter(
+					"struts_action",
+					"/enterprise_admin_sites/edit_site_assignments");
+				portletURL.setParameter(Constants.CMD, "group_users");
+				portletURL.setParameter(
+					"redirect", themeDisplay.getURLCurrent());
+				portletURL.setParameter(
+					"groupId", String.valueOf(group.getGroupId()));
+				portletURL.setParameter(
+					"addUserIds", String.valueOf(themeDisplay.getUserId()));
+
+				groupJSONObject.put("joinUrl", portletURL.toString());
 			}
-
-			portletURL = PortletURLFactoryUtil.create(
-				PortalUtil.getHttpServletRequest(resourceRequest),
-				PortletKeys.ENTERPRISE_ADMIN_COMMUNITIES,
-				themeDisplay.getLayout().getPlid(),
-				PortletRequest.ACTION_PHASE);
-
-			portletURL.setWindowState(WindowState.NORMAL);
-
-			portletURL.setParameter("struts_action",
-				"/enterprise_admin_sites/edit_site_assignments");
-			portletURL.setParameter(Constants.CMD, "group_users");
-			portletURL.setParameter("redirect", themeDisplay.getURLCurrent());
-			portletURL.setParameter(
-				"groupId", String.valueOf(group.getGroupId()));
-			portletURL.setParameter(
-				"addUserIds", String.valueOf(themeDisplay.getUserId()));
-
-			groupJSONObject.put("joinUrl", portletURL.toString());
 
 			jsonArray.put(groupJSONObject);
 		}
