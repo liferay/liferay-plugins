@@ -93,11 +93,11 @@ int totalGroups = GroupLocalServiceUtil.searchCount(themeDisplay.getCompanyId(),
 			<li class="<%= classNames %>">
 				<c:if test="<%= !GroupLocalServiceUtil.hasUserGroup(themeDisplay.getUserId(), group.getGroupId()) && GroupPermissionUtil.contains(permissionChecker, group.getGroupId(), ActionKeys.ASSIGN_MEMBERS) %>">
 					<liferay-portlet:actionURL windowState="<%= WindowState.NORMAL.toString() %>" portletName="<%= PortletKeys.ENTERPRISE_ADMIN_COMMUNITIES %>" var="joinURL">
-						<liferay-portlet:param name="struts_action" value="/enterprise_admin_sites/edit_site_assignments" />
-						<liferay-portlet:param name="<%= Constants.CMD %>" value="group_users" />
-						<liferay-portlet:param name="redirect" value="<%= currentURL %>" />
-						<liferay-portlet:param name="groupId" value="<%= String.valueOf(group.getGroupId()) %>" />
-						<liferay-portlet:param name="addUserIds" value="<%= String.valueOf(user.getUserId()) %>" />
+						<portlet:param name="struts_action" value="/enterprise_admin_sites/edit_site_assignments" />
+						<portlet:param name="<%= Constants.CMD %>" value="group_users" />
+						<portlet:param name="redirect" value="<%= currentURL %>" />
+						<portlet:param name="groupId" value="<%= String.valueOf(group.getGroupId()) %>" />
+						<portlet:param name="addUserIds" value="<%= String.valueOf(user.getUserId()) %>" />
 					</liferay-portlet:actionURL>
 
 					<span class="join">
@@ -109,9 +109,9 @@ int totalGroups = GroupLocalServiceUtil.searchCount(themeDisplay.getCompanyId(),
 					<c:choose>
 						<c:when test="<%= group.hasPrivateLayouts() || group.hasPublicLayouts() %>">
 							<liferay-portlet:actionURL windowState="<%= LiferayWindowState.NORMAL.toString() %>" portletName="<%= PortletKeys.MY_PLACES %>" var="siteURL">
-								<liferay-portlet:param name="struts_action" value="/my_places/view" />
-								<liferay-portlet:param name="groupId" value="<%= String.valueOf(group.getGroupId()) %>" />
-								<liferay-portlet:param name="privateLayout" value="<%= String.valueOf(!group.hasPublicLayouts()) %>" />
+								<portlet:param name="struts_action" value="/my_places/view" />
+								<portlet:param name="groupId" value="<%= String.valueOf(group.getGroupId()) %>" />
+								<portlet:param name="privateLayout" value="<%= String.valueOf(!group.hasPublicLayouts()) %>" />
 							</liferay-portlet:actionURL>
 
 							<a href="<%= siteURL %>"><%= group.getDescriptiveName() %></a>
