@@ -38,7 +38,7 @@ String keywords = ParamUtil.getString(request, "keywords");
 	</div>
 
 	<%
-	List<BlogsEntry> results = BlogsEntryLocalServiceUtil.getGroupEntries(scopeGroupId, WorkflowConstants.STATUS_APPROVED, 0, 5);
+	List<BlogsEntry> results = BlogsEntryServiceUtil.getGroupEntries(scopeGroupId, WorkflowConstants.STATUS_APPROVED, 0, 5);
 	%>
 
 	<c:choose>
