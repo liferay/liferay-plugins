@@ -37,7 +37,7 @@ public class KaleoTimerWrapper implements KaleoTimer {
 	}
 
 	/**
-	* Gets the primary key of this kaleo timer.
+	* Returns the primary key of this kaleo timer.
 	*
 	* @return the primary key of this kaleo timer
 	*/
@@ -46,7 +46,7 @@ public class KaleoTimerWrapper implements KaleoTimer {
 	}
 
 	/**
-	* Sets the primary key of this kaleo timer
+	* Sets the primary key of this kaleo timer.
 	*
 	* @param primaryKey the primary key of this kaleo timer
 	*/
@@ -55,7 +55,7 @@ public class KaleoTimerWrapper implements KaleoTimer {
 	}
 
 	/**
-	* Gets the kaleo timer ID of this kaleo timer.
+	* Returns the kaleo timer ID of this kaleo timer.
 	*
 	* @return the kaleo timer ID of this kaleo timer
 	*/
@@ -73,7 +73,7 @@ public class KaleoTimerWrapper implements KaleoTimer {
 	}
 
 	/**
-	* Gets the group ID of this kaleo timer.
+	* Returns the group ID of this kaleo timer.
 	*
 	* @return the group ID of this kaleo timer
 	*/
@@ -91,7 +91,7 @@ public class KaleoTimerWrapper implements KaleoTimer {
 	}
 
 	/**
-	* Gets the company ID of this kaleo timer.
+	* Returns the company ID of this kaleo timer.
 	*
 	* @return the company ID of this kaleo timer
 	*/
@@ -109,7 +109,7 @@ public class KaleoTimerWrapper implements KaleoTimer {
 	}
 
 	/**
-	* Gets the user ID of this kaleo timer.
+	* Returns the user ID of this kaleo timer.
 	*
 	* @return the user ID of this kaleo timer
 	*/
@@ -127,7 +127,7 @@ public class KaleoTimerWrapper implements KaleoTimer {
 	}
 
 	/**
-	* Gets the user uuid of this kaleo timer.
+	* Returns the user uuid of this kaleo timer.
 	*
 	* @return the user uuid of this kaleo timer
 	* @throws SystemException if a system exception occurred
@@ -147,7 +147,7 @@ public class KaleoTimerWrapper implements KaleoTimer {
 	}
 
 	/**
-	* Gets the user name of this kaleo timer.
+	* Returns the user name of this kaleo timer.
 	*
 	* @return the user name of this kaleo timer
 	*/
@@ -165,7 +165,7 @@ public class KaleoTimerWrapper implements KaleoTimer {
 	}
 
 	/**
-	* Gets the create date of this kaleo timer.
+	* Returns the create date of this kaleo timer.
 	*
 	* @return the create date of this kaleo timer
 	*/
@@ -183,7 +183,7 @@ public class KaleoTimerWrapper implements KaleoTimer {
 	}
 
 	/**
-	* Gets the modified date of this kaleo timer.
+	* Returns the modified date of this kaleo timer.
 	*
 	* @return the modified date of this kaleo timer
 	*/
@@ -201,7 +201,7 @@ public class KaleoTimerWrapper implements KaleoTimer {
 	}
 
 	/**
-	* Gets the kaleo definition ID of this kaleo timer.
+	* Returns the kaleo definition ID of this kaleo timer.
 	*
 	* @return the kaleo definition ID of this kaleo timer
 	*/
@@ -219,7 +219,7 @@ public class KaleoTimerWrapper implements KaleoTimer {
 	}
 
 	/**
-	* Gets the kaleo node ID of this kaleo timer.
+	* Returns the kaleo node ID of this kaleo timer.
 	*
 	* @return the kaleo node ID of this kaleo timer
 	*/
@@ -237,7 +237,7 @@ public class KaleoTimerWrapper implements KaleoTimer {
 	}
 
 	/**
-	* Gets the parent kaleo node ID of this kaleo timer.
+	* Returns the parent kaleo node ID of this kaleo timer.
 	*
 	* @return the parent kaleo node ID of this kaleo timer
 	*/
@@ -255,7 +255,7 @@ public class KaleoTimerWrapper implements KaleoTimer {
 	}
 
 	/**
-	* Gets the name of this kaleo timer.
+	* Returns the name of this kaleo timer.
 	*
 	* @return the name of this kaleo timer
 	*/
@@ -273,7 +273,7 @@ public class KaleoTimerWrapper implements KaleoTimer {
 	}
 
 	/**
-	* Gets the default timer of this kaleo timer.
+	* Returns the default timer of this kaleo timer.
 	*
 	* @return the default timer of this kaleo timer
 	*/
@@ -300,7 +300,7 @@ public class KaleoTimerWrapper implements KaleoTimer {
 	}
 
 	/**
-	* Gets the description of this kaleo timer.
+	* Returns the description of this kaleo timer.
 	*
 	* @return the description of this kaleo timer
 	*/
@@ -318,7 +318,7 @@ public class KaleoTimerWrapper implements KaleoTimer {
 	}
 
 	/**
-	* Gets the duration of this kaleo timer.
+	* Returns the duration of this kaleo timer.
 	*
 	* @return the duration of this kaleo timer
 	*/
@@ -336,7 +336,7 @@ public class KaleoTimerWrapper implements KaleoTimer {
 	}
 
 	/**
-	* Gets the scale of this kaleo timer.
+	* Returns the scale of this kaleo timer.
 	*
 	* @return the scale of this kaleo timer
 	*/

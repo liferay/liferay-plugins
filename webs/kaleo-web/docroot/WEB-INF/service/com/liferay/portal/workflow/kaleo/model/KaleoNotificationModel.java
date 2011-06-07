@@ -48,21 +48,21 @@ public interface KaleoNotificationModel extends BaseModel<KaleoNotification>,
 	 */
 
 	/**
-	 * Gets the primary key of this kaleo notification.
+	 * Returns the primary key of this kaleo notification.
 	 *
 	 * @return the primary key of this kaleo notification
 	 */
 	public long getPrimaryKey();
 
 	/**
-	 * Sets the primary key of this kaleo notification
+	 * Sets the primary key of this kaleo notification.
 	 *
 	 * @param primaryKey the primary key of this kaleo notification
 	 */
 	public void setPrimaryKey(long primaryKey);
 
 	/**
-	 * Gets the kaleo notification ID of this kaleo notification.
+	 * Returns the kaleo notification ID of this kaleo notification.
 	 *
 	 * @return the kaleo notification ID of this kaleo notification
 	 */
@@ -76,7 +76,7 @@ public interface KaleoNotificationModel extends BaseModel<KaleoNotification>,
 	public void setKaleoNotificationId(long kaleoNotificationId);
 
 	/**
-	 * Gets the group ID of this kaleo notification.
+	 * Returns the group ID of this kaleo notification.
 	 *
 	 * @return the group ID of this kaleo notification
 	 */
@@ -90,7 +90,7 @@ public interface KaleoNotificationModel extends BaseModel<KaleoNotification>,
 	public void setGroupId(long groupId);
 
 	/**
-	 * Gets the company ID of this kaleo notification.
+	 * Returns the company ID of this kaleo notification.
 	 *
 	 * @return the company ID of this kaleo notification
 	 */
@@ -104,7 +104,7 @@ public interface KaleoNotificationModel extends BaseModel<KaleoNotification>,
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the user ID of this kaleo notification.
+	 * Returns the user ID of this kaleo notification.
 	 *
 	 * @return the user ID of this kaleo notification
 	 */
@@ -118,7 +118,7 @@ public interface KaleoNotificationModel extends BaseModel<KaleoNotification>,
 	public void setUserId(long userId);
 
 	/**
-	 * Gets the user uuid of this kaleo notification.
+	 * Returns the user uuid of this kaleo notification.
 	 *
 	 * @return the user uuid of this kaleo notification
 	 * @throws SystemException if a system exception occurred
@@ -133,7 +133,7 @@ public interface KaleoNotificationModel extends BaseModel<KaleoNotification>,
 	public void setUserUuid(String userUuid);
 
 	/**
-	 * Gets the user name of this kaleo notification.
+	 * Returns the user name of this kaleo notification.
 	 *
 	 * @return the user name of this kaleo notification
 	 */
@@ -148,7 +148,7 @@ public interface KaleoNotificationModel extends BaseModel<KaleoNotification>,
 	public void setUserName(String userName);
 
 	/**
-	 * Gets the create date of this kaleo notification.
+	 * Returns the create date of this kaleo notification.
 	 *
 	 * @return the create date of this kaleo notification
 	 */
@@ -162,7 +162,7 @@ public interface KaleoNotificationModel extends BaseModel<KaleoNotification>,
 	public void setCreateDate(Date createDate);
 
 	/**
-	 * Gets the modified date of this kaleo notification.
+	 * Returns the modified date of this kaleo notification.
 	 *
 	 * @return the modified date of this kaleo notification
 	 */
@@ -176,7 +176,7 @@ public interface KaleoNotificationModel extends BaseModel<KaleoNotification>,
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Gets the kaleo definition ID of this kaleo notification.
+	 * Returns the kaleo definition ID of this kaleo notification.
 	 *
 	 * @return the kaleo definition ID of this kaleo notification
 	 */
@@ -190,7 +190,7 @@ public interface KaleoNotificationModel extends BaseModel<KaleoNotification>,
 	public void setKaleoDefinitionId(long kaleoDefinitionId);
 
 	/**
-	 * Gets the kaleo node ID of this kaleo notification.
+	 * Returns the kaleo node ID of this kaleo notification.
 	 *
 	 * @return the kaleo node ID of this kaleo notification
 	 */
@@ -204,7 +204,7 @@ public interface KaleoNotificationModel extends BaseModel<KaleoNotification>,
 	public void setKaleoNodeId(long kaleoNodeId);
 
 	/**
-	 * Gets the kaleo node name of this kaleo notification.
+	 * Returns the kaleo node name of this kaleo notification.
 	 *
 	 * @return the kaleo node name of this kaleo notification
 	 */
@@ -219,7 +219,7 @@ public interface KaleoNotificationModel extends BaseModel<KaleoNotification>,
 	public void setKaleoNodeName(String kaleoNodeName);
 
 	/**
-	 * Gets the name of this kaleo notification.
+	 * Returns the name of this kaleo notification.
 	 *
 	 * @return the name of this kaleo notification
 	 */
@@ -234,7 +234,7 @@ public interface KaleoNotificationModel extends BaseModel<KaleoNotification>,
 	public void setName(String name);
 
 	/**
-	 * Gets the description of this kaleo notification.
+	 * Returns the description of this kaleo notification.
 	 *
 	 * @return the description of this kaleo notification
 	 */
@@ -249,7 +249,7 @@ public interface KaleoNotificationModel extends BaseModel<KaleoNotification>,
 	public void setDescription(String description);
 
 	/**
-	 * Gets the execution type of this kaleo notification.
+	 * Returns the execution type of this kaleo notification.
 	 *
 	 * @return the execution type of this kaleo notification
 	 */
@@ -264,7 +264,7 @@ public interface KaleoNotificationModel extends BaseModel<KaleoNotification>,
 	public void setExecutionType(String executionType);
 
 	/**
-	 * Gets the template of this kaleo notification.
+	 * Returns the template of this kaleo notification.
 	 *
 	 * @return the template of this kaleo notification
 	 */
@@ -279,7 +279,7 @@ public interface KaleoNotificationModel extends BaseModel<KaleoNotification>,
 	public void setTemplate(String template);
 
 	/**
-	 * Gets the template language of this kaleo notification.
+	 * Returns the template language of this kaleo notification.
 	 *
 	 * @return the template language of this kaleo notification
 	 */
@@ -294,7 +294,7 @@ public interface KaleoNotificationModel extends BaseModel<KaleoNotification>,
 	public void setTemplateLanguage(String templateLanguage);
 
 	/**
-	 * Gets the notification types of this kaleo notification.
+	 * Returns the notification types of this kaleo notification.
 	 *
 	 * @return the notification types of this kaleo notification
 	 */

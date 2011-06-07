@@ -38,7 +38,7 @@ public class KaleoTimerInstanceTokenWrapper implements KaleoTimerInstanceToken {
 	}
 
 	/**
-	* Gets the primary key of this kaleo timer instance token.
+	* Returns the primary key of this kaleo timer instance token.
 	*
 	* @return the primary key of this kaleo timer instance token
 	*/
@@ -47,7 +47,7 @@ public class KaleoTimerInstanceTokenWrapper implements KaleoTimerInstanceToken {
 	}
 
 	/**
-	* Sets the primary key of this kaleo timer instance token
+	* Sets the primary key of this kaleo timer instance token.
 	*
 	* @param primaryKey the primary key of this kaleo timer instance token
 	*/
@@ -56,7 +56,7 @@ public class KaleoTimerInstanceTokenWrapper implements KaleoTimerInstanceToken {
 	}
 
 	/**
-	* Gets the kaleo timer instance token ID of this kaleo timer instance token.
+	* Returns the kaleo timer instance token ID of this kaleo timer instance token.
 	*
 	* @return the kaleo timer instance token ID of this kaleo timer instance token
 	*/
@@ -74,7 +74,7 @@ public class KaleoTimerInstanceTokenWrapper implements KaleoTimerInstanceToken {
 	}
 
 	/**
-	* Gets the group ID of this kaleo timer instance token.
+	* Returns the group ID of this kaleo timer instance token.
 	*
 	* @return the group ID of this kaleo timer instance token
 	*/
@@ -92,7 +92,7 @@ public class KaleoTimerInstanceTokenWrapper implements KaleoTimerInstanceToken {
 	}
 
 	/**
-	* Gets the company ID of this kaleo timer instance token.
+	* Returns the company ID of this kaleo timer instance token.
 	*
 	* @return the company ID of this kaleo timer instance token
 	*/
@@ -110,7 +110,7 @@ public class KaleoTimerInstanceTokenWrapper implements KaleoTimerInstanceToken {
 	}
 
 	/**
-	* Gets the user ID of this kaleo timer instance token.
+	* Returns the user ID of this kaleo timer instance token.
 	*
 	* @return the user ID of this kaleo timer instance token
 	*/
@@ -128,7 +128,7 @@ public class KaleoTimerInstanceTokenWrapper implements KaleoTimerInstanceToken {
 	}
 
 	/**
-	* Gets the user uuid of this kaleo timer instance token.
+	* Returns the user uuid of this kaleo timer instance token.
 	*
 	* @return the user uuid of this kaleo timer instance token
 	* @throws SystemException if a system exception occurred
@@ -148,7 +148,7 @@ public class KaleoTimerInstanceTokenWrapper implements KaleoTimerInstanceToken {
 	}
 
 	/**
-	* Gets the user name of this kaleo timer instance token.
+	* Returns the user name of this kaleo timer instance token.
 	*
 	* @return the user name of this kaleo timer instance token
 	*/
@@ -166,7 +166,7 @@ public class KaleoTimerInstanceTokenWrapper implements KaleoTimerInstanceToken {
 	}
 
 	/**
-	* Gets the create date of this kaleo timer instance token.
+	* Returns the create date of this kaleo timer instance token.
 	*
 	* @return the create date of this kaleo timer instance token
 	*/
@@ -184,7 +184,7 @@ public class KaleoTimerInstanceTokenWrapper implements KaleoTimerInstanceToken {
 	}
 
 	/**
-	* Gets the modified date of this kaleo timer instance token.
+	* Returns the modified date of this kaleo timer instance token.
 	*
 	* @return the modified date of this kaleo timer instance token
 	*/
@@ -202,7 +202,7 @@ public class KaleoTimerInstanceTokenWrapper implements KaleoTimerInstanceToken {
 	}
 
 	/**
-	* Gets the kaleo definition ID of this kaleo timer instance token.
+	* Returns the kaleo definition ID of this kaleo timer instance token.
 	*
 	* @return the kaleo definition ID of this kaleo timer instance token
 	*/
@@ -220,7 +220,7 @@ public class KaleoTimerInstanceTokenWrapper implements KaleoTimerInstanceToken {
 	}
 
 	/**
-	* Gets the kaleo instance ID of this kaleo timer instance token.
+	* Returns the kaleo instance ID of this kaleo timer instance token.
 	*
 	* @return the kaleo instance ID of this kaleo timer instance token
 	*/
@@ -238,7 +238,7 @@ public class KaleoTimerInstanceTokenWrapper implements KaleoTimerInstanceToken {
 	}
 
 	/**
-	* Gets the kaleo instance token ID of this kaleo timer instance token.
+	* Returns the kaleo instance token ID of this kaleo timer instance token.
 	*
 	* @return the kaleo instance token ID of this kaleo timer instance token
 	*/
@@ -256,7 +256,7 @@ public class KaleoTimerInstanceTokenWrapper implements KaleoTimerInstanceToken {
 	}
 
 	/**
-	* Gets the kaleo timer ID of this kaleo timer instance token.
+	* Returns the kaleo timer ID of this kaleo timer instance token.
 	*
 	* @return the kaleo timer ID of this kaleo timer instance token
 	*/
@@ -274,7 +274,7 @@ public class KaleoTimerInstanceTokenWrapper implements KaleoTimerInstanceToken {
 	}
 
 	/**
-	* Gets the kaleo timer name of this kaleo timer instance token.
+	* Returns the kaleo timer name of this kaleo timer instance token.
 	*
 	* @return the kaleo timer name of this kaleo timer instance token
 	*/
@@ -292,7 +292,7 @@ public class KaleoTimerInstanceTokenWrapper implements KaleoTimerInstanceToken {
 	}
 
 	/**
-	* Gets the completion user ID of this kaleo timer instance token.
+	* Returns the completion user ID of this kaleo timer instance token.
 	*
 	* @return the completion user ID of this kaleo timer instance token
 	*/
@@ -310,7 +310,7 @@ public class KaleoTimerInstanceTokenWrapper implements KaleoTimerInstanceToken {
 	}
 
 	/**
-	* Gets the completion user uuid of this kaleo timer instance token.
+	* Returns the completion user uuid of this kaleo timer instance token.
 	*
 	* @return the completion user uuid of this kaleo timer instance token
 	* @throws SystemException if a system exception occurred
@@ -330,7 +330,7 @@ public class KaleoTimerInstanceTokenWrapper implements KaleoTimerInstanceToken {
 	}
 
 	/**
-	* Gets the completed of this kaleo timer instance token.
+	* Returns the completed of this kaleo timer instance token.
 	*
 	* @return the completed of this kaleo timer instance token
 	*/
@@ -357,7 +357,7 @@ public class KaleoTimerInstanceTokenWrapper implements KaleoTimerInstanceToken {
 	}
 
 	/**
-	* Gets the completion date of this kaleo timer instance token.
+	* Returns the completion date of this kaleo timer instance token.
 	*
 	* @return the completion date of this kaleo timer instance token
 	*/
@@ -375,7 +375,7 @@ public class KaleoTimerInstanceTokenWrapper implements KaleoTimerInstanceToken {
 	}
 
 	/**
-	* Gets the workflow context of this kaleo timer instance token.
+	* Returns the workflow context of this kaleo timer instance token.
 	*
 	* @return the workflow context of this kaleo timer instance token
 	*/

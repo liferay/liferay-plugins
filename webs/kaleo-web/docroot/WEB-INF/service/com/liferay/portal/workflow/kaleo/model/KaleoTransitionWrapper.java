@@ -37,7 +37,7 @@ public class KaleoTransitionWrapper implements KaleoTransition {
 	}
 
 	/**
-	* Gets the primary key of this kaleo transition.
+	* Returns the primary key of this kaleo transition.
 	*
 	* @return the primary key of this kaleo transition
 	*/
@@ -46,7 +46,7 @@ public class KaleoTransitionWrapper implements KaleoTransition {
 	}
 
 	/**
-	* Sets the primary key of this kaleo transition
+	* Sets the primary key of this kaleo transition.
 	*
 	* @param primaryKey the primary key of this kaleo transition
 	*/
@@ -55,7 +55,7 @@ public class KaleoTransitionWrapper implements KaleoTransition {
 	}
 
 	/**
-	* Gets the kaleo transition ID of this kaleo transition.
+	* Returns the kaleo transition ID of this kaleo transition.
 	*
 	* @return the kaleo transition ID of this kaleo transition
 	*/
@@ -73,7 +73,7 @@ public class KaleoTransitionWrapper implements KaleoTransition {
 	}
 
 	/**
-	* Gets the group ID of this kaleo transition.
+	* Returns the group ID of this kaleo transition.
 	*
 	* @return the group ID of this kaleo transition
 	*/
@@ -91,7 +91,7 @@ public class KaleoTransitionWrapper implements KaleoTransition {
 	}
 
 	/**
-	* Gets the company ID of this kaleo transition.
+	* Returns the company ID of this kaleo transition.
 	*
 	* @return the company ID of this kaleo transition
 	*/
@@ -109,7 +109,7 @@ public class KaleoTransitionWrapper implements KaleoTransition {
 	}
 
 	/**
-	* Gets the user ID of this kaleo transition.
+	* Returns the user ID of this kaleo transition.
 	*
 	* @return the user ID of this kaleo transition
 	*/
@@ -127,7 +127,7 @@ public class KaleoTransitionWrapper implements KaleoTransition {
 	}
 
 	/**
-	* Gets the user uuid of this kaleo transition.
+	* Returns the user uuid of this kaleo transition.
 	*
 	* @return the user uuid of this kaleo transition
 	* @throws SystemException if a system exception occurred
@@ -147,7 +147,7 @@ public class KaleoTransitionWrapper implements KaleoTransition {
 	}
 
 	/**
-	* Gets the user name of this kaleo transition.
+	* Returns the user name of this kaleo transition.
 	*
 	* @return the user name of this kaleo transition
 	*/
@@ -165,7 +165,7 @@ public class KaleoTransitionWrapper implements KaleoTransition {
 	}
 
 	/**
-	* Gets the create date of this kaleo transition.
+	* Returns the create date of this kaleo transition.
 	*
 	* @return the create date of this kaleo transition
 	*/
@@ -183,7 +183,7 @@ public class KaleoTransitionWrapper implements KaleoTransition {
 	}
 
 	/**
-	* Gets the modified date of this kaleo transition.
+	* Returns the modified date of this kaleo transition.
 	*
 	* @return the modified date of this kaleo transition
 	*/
@@ -201,7 +201,7 @@ public class KaleoTransitionWrapper implements KaleoTransition {
 	}
 
 	/**
-	* Gets the kaleo definition ID of this kaleo transition.
+	* Returns the kaleo definition ID of this kaleo transition.
 	*
 	* @return the kaleo definition ID of this kaleo transition
 	*/
@@ -219,7 +219,7 @@ public class KaleoTransitionWrapper implements KaleoTransition {
 	}
 
 	/**
-	* Gets the kaleo node ID of this kaleo transition.
+	* Returns the kaleo node ID of this kaleo transition.
 	*
 	* @return the kaleo node ID of this kaleo transition
 	*/
@@ -237,7 +237,7 @@ public class KaleoTransitionWrapper implements KaleoTransition {
 	}
 
 	/**
-	* Gets the name of this kaleo transition.
+	* Returns the name of this kaleo transition.
 	*
 	* @return the name of this kaleo transition
 	*/
@@ -255,7 +255,7 @@ public class KaleoTransitionWrapper implements KaleoTransition {
 	}
 
 	/**
-	* Gets the description of this kaleo transition.
+	* Returns the description of this kaleo transition.
 	*
 	* @return the description of this kaleo transition
 	*/
@@ -273,7 +273,7 @@ public class KaleoTransitionWrapper implements KaleoTransition {
 	}
 
 	/**
-	* Gets the source kaleo node ID of this kaleo transition.
+	* Returns the source kaleo node ID of this kaleo transition.
 	*
 	* @return the source kaleo node ID of this kaleo transition
 	*/
@@ -291,7 +291,7 @@ public class KaleoTransitionWrapper implements KaleoTransition {
 	}
 
 	/**
-	* Gets the source kaleo node name of this kaleo transition.
+	* Returns the source kaleo node name of this kaleo transition.
 	*
 	* @return the source kaleo node name of this kaleo transition
 	*/
@@ -309,7 +309,7 @@ public class KaleoTransitionWrapper implements KaleoTransition {
 	}
 
 	/**
-	* Gets the target kaleo node ID of this kaleo transition.
+	* Returns the target kaleo node ID of this kaleo transition.
 	*
 	* @return the target kaleo node ID of this kaleo transition
 	*/
@@ -327,7 +327,7 @@ public class KaleoTransitionWrapper implements KaleoTransition {
 	}
 
 	/**
-	* Gets the target kaleo node name of this kaleo transition.
+	* Returns the target kaleo node name of this kaleo transition.
 	*
 	* @return the target kaleo node name of this kaleo transition
 	*/
@@ -345,7 +345,7 @@ public class KaleoTransitionWrapper implements KaleoTransition {
 	}
 
 	/**
-	* Gets the default transition of this kaleo transition.
+	* Returns the default transition of this kaleo transition.
 	*
 	* @return the default transition of this kaleo transition
 	*/

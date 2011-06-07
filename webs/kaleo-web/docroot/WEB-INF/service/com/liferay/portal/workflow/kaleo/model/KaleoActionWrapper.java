@@ -37,7 +37,7 @@ public class KaleoActionWrapper implements KaleoAction {
 	}
 
 	/**
-	* Gets the primary key of this kaleo action.
+	* Returns the primary key of this kaleo action.
 	*
 	* @return the primary key of this kaleo action
 	*/
@@ -46,7 +46,7 @@ public class KaleoActionWrapper implements KaleoAction {
 	}
 
 	/**
-	* Sets the primary key of this kaleo action
+	* Sets the primary key of this kaleo action.
 	*
 	* @param primaryKey the primary key of this kaleo action
 	*/
@@ -55,7 +55,7 @@ public class KaleoActionWrapper implements KaleoAction {
 	}
 
 	/**
-	* Gets the kaleo action ID of this kaleo action.
+	* Returns the kaleo action ID of this kaleo action.
 	*
 	* @return the kaleo action ID of this kaleo action
 	*/
@@ -73,7 +73,7 @@ public class KaleoActionWrapper implements KaleoAction {
 	}
 
 	/**
-	* Gets the group ID of this kaleo action.
+	* Returns the group ID of this kaleo action.
 	*
 	* @return the group ID of this kaleo action
 	*/
@@ -91,7 +91,7 @@ public class KaleoActionWrapper implements KaleoAction {
 	}
 
 	/**
-	* Gets the company ID of this kaleo action.
+	* Returns the company ID of this kaleo action.
 	*
 	* @return the company ID of this kaleo action
 	*/
@@ -109,7 +109,7 @@ public class KaleoActionWrapper implements KaleoAction {
 	}
 
 	/**
-	* Gets the user ID of this kaleo action.
+	* Returns the user ID of this kaleo action.
 	*
 	* @return the user ID of this kaleo action
 	*/
@@ -127,7 +127,7 @@ public class KaleoActionWrapper implements KaleoAction {
 	}
 
 	/**
-	* Gets the user uuid of this kaleo action.
+	* Returns the user uuid of this kaleo action.
 	*
 	* @return the user uuid of this kaleo action
 	* @throws SystemException if a system exception occurred
@@ -147,7 +147,7 @@ public class KaleoActionWrapper implements KaleoAction {
 	}
 
 	/**
-	* Gets the user name of this kaleo action.
+	* Returns the user name of this kaleo action.
 	*
 	* @return the user name of this kaleo action
 	*/
@@ -165,7 +165,7 @@ public class KaleoActionWrapper implements KaleoAction {
 	}
 
 	/**
-	* Gets the create date of this kaleo action.
+	* Returns the create date of this kaleo action.
 	*
 	* @return the create date of this kaleo action
 	*/
@@ -183,7 +183,7 @@ public class KaleoActionWrapper implements KaleoAction {
 	}
 
 	/**
-	* Gets the modified date of this kaleo action.
+	* Returns the modified date of this kaleo action.
 	*
 	* @return the modified date of this kaleo action
 	*/
@@ -201,7 +201,7 @@ public class KaleoActionWrapper implements KaleoAction {
 	}
 
 	/**
-	* Gets the kaleo definition ID of this kaleo action.
+	* Returns the kaleo definition ID of this kaleo action.
 	*
 	* @return the kaleo definition ID of this kaleo action
 	*/
@@ -219,7 +219,7 @@ public class KaleoActionWrapper implements KaleoAction {
 	}
 
 	/**
-	* Gets the kaleo node ID of this kaleo action.
+	* Returns the kaleo node ID of this kaleo action.
 	*
 	* @return the kaleo node ID of this kaleo action
 	*/
@@ -237,7 +237,7 @@ public class KaleoActionWrapper implements KaleoAction {
 	}
 
 	/**
-	* Gets the kaleo node name of this kaleo action.
+	* Returns the kaleo node name of this kaleo action.
 	*
 	* @return the kaleo node name of this kaleo action
 	*/
@@ -255,7 +255,7 @@ public class KaleoActionWrapper implements KaleoAction {
 	}
 
 	/**
-	* Gets the name of this kaleo action.
+	* Returns the name of this kaleo action.
 	*
 	* @return the name of this kaleo action
 	*/
@@ -273,7 +273,7 @@ public class KaleoActionWrapper implements KaleoAction {
 	}
 
 	/**
-	* Gets the description of this kaleo action.
+	* Returns the description of this kaleo action.
 	*
 	* @return the description of this kaleo action
 	*/
@@ -291,7 +291,7 @@ public class KaleoActionWrapper implements KaleoAction {
 	}
 
 	/**
-	* Gets the execution type of this kaleo action.
+	* Returns the execution type of this kaleo action.
 	*
 	* @return the execution type of this kaleo action
 	*/
@@ -309,7 +309,7 @@ public class KaleoActionWrapper implements KaleoAction {
 	}
 
 	/**
-	* Gets the script of this kaleo action.
+	* Returns the script of this kaleo action.
 	*
 	* @return the script of this kaleo action
 	*/
@@ -327,7 +327,7 @@ public class KaleoActionWrapper implements KaleoAction {
 	}
 
 	/**
-	* Gets the script language of this kaleo action.
+	* Returns the script language of this kaleo action.
 	*
 	* @return the script language of this kaleo action
 	*/
@@ -345,7 +345,7 @@ public class KaleoActionWrapper implements KaleoAction {
 	}
 
 	/**
-	* Gets the priority of this kaleo action.
+	* Returns the priority of this kaleo action.
 	*
 	* @return the priority of this kaleo action
 	*/

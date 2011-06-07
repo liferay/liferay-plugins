@@ -37,7 +37,7 @@ public class KaleoNodeWrapper implements KaleoNode {
 	}
 
 	/**
-	* Gets the primary key of this kaleo node.
+	* Returns the primary key of this kaleo node.
 	*
 	* @return the primary key of this kaleo node
 	*/
@@ -46,7 +46,7 @@ public class KaleoNodeWrapper implements KaleoNode {
 	}
 
 	/**
-	* Sets the primary key of this kaleo node
+	* Sets the primary key of this kaleo node.
 	*
 	* @param primaryKey the primary key of this kaleo node
 	*/
@@ -55,7 +55,7 @@ public class KaleoNodeWrapper implements KaleoNode {
 	}
 
 	/**
-	* Gets the kaleo node ID of this kaleo node.
+	* Returns the kaleo node ID of this kaleo node.
 	*
 	* @return the kaleo node ID of this kaleo node
 	*/
@@ -73,7 +73,7 @@ public class KaleoNodeWrapper implements KaleoNode {
 	}
 
 	/**
-	* Gets the group ID of this kaleo node.
+	* Returns the group ID of this kaleo node.
 	*
 	* @return the group ID of this kaleo node
 	*/
@@ -91,7 +91,7 @@ public class KaleoNodeWrapper implements KaleoNode {
 	}
 
 	/**
-	* Gets the company ID of this kaleo node.
+	* Returns the company ID of this kaleo node.
 	*
 	* @return the company ID of this kaleo node
 	*/
@@ -109,7 +109,7 @@ public class KaleoNodeWrapper implements KaleoNode {
 	}
 
 	/**
-	* Gets the user ID of this kaleo node.
+	* Returns the user ID of this kaleo node.
 	*
 	* @return the user ID of this kaleo node
 	*/
@@ -127,7 +127,7 @@ public class KaleoNodeWrapper implements KaleoNode {
 	}
 
 	/**
-	* Gets the user uuid of this kaleo node.
+	* Returns the user uuid of this kaleo node.
 	*
 	* @return the user uuid of this kaleo node
 	* @throws SystemException if a system exception occurred
@@ -147,7 +147,7 @@ public class KaleoNodeWrapper implements KaleoNode {
 	}
 
 	/**
-	* Gets the user name of this kaleo node.
+	* Returns the user name of this kaleo node.
 	*
 	* @return the user name of this kaleo node
 	*/
@@ -165,7 +165,7 @@ public class KaleoNodeWrapper implements KaleoNode {
 	}
 
 	/**
-	* Gets the create date of this kaleo node.
+	* Returns the create date of this kaleo node.
 	*
 	* @return the create date of this kaleo node
 	*/
@@ -183,7 +183,7 @@ public class KaleoNodeWrapper implements KaleoNode {
 	}
 
 	/**
-	* Gets the modified date of this kaleo node.
+	* Returns the modified date of this kaleo node.
 	*
 	* @return the modified date of this kaleo node
 	*/
@@ -201,7 +201,7 @@ public class KaleoNodeWrapper implements KaleoNode {
 	}
 
 	/**
-	* Gets the kaleo definition ID of this kaleo node.
+	* Returns the kaleo definition ID of this kaleo node.
 	*
 	* @return the kaleo definition ID of this kaleo node
 	*/
@@ -219,7 +219,7 @@ public class KaleoNodeWrapper implements KaleoNode {
 	}
 
 	/**
-	* Gets the name of this kaleo node.
+	* Returns the name of this kaleo node.
 	*
 	* @return the name of this kaleo node
 	*/
@@ -237,7 +237,7 @@ public class KaleoNodeWrapper implements KaleoNode {
 	}
 
 	/**
-	* Gets the description of this kaleo node.
+	* Returns the description of this kaleo node.
 	*
 	* @return the description of this kaleo node
 	*/
@@ -255,7 +255,7 @@ public class KaleoNodeWrapper implements KaleoNode {
 	}
 
 	/**
-	* Gets the type of this kaleo node.
+	* Returns the type of this kaleo node.
 	*
 	* @return the type of this kaleo node
 	*/
@@ -273,7 +273,7 @@ public class KaleoNodeWrapper implements KaleoNode {
 	}
 
 	/**
-	* Gets the initial of this kaleo node.
+	* Returns the initial of this kaleo node.
 	*
 	* @return the initial of this kaleo node
 	*/
@@ -300,7 +300,7 @@ public class KaleoNodeWrapper implements KaleoNode {
 	}
 
 	/**
-	* Gets the terminal of this kaleo node.
+	* Returns the terminal of this kaleo node.
 	*
 	* @return the terminal of this kaleo node
 	*/

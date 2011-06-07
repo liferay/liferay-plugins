@@ -42,7 +42,7 @@ public class KaleoDefinitionLocalServiceUtil {
 	/**
 	* Adds the kaleo definition to the database. Also notifies the appropriate model listeners.
 	*
-	* @param kaleoDefinition the kaleo definition to add
+	* @param kaleoDefinition the kaleo definition
 	* @return the kaleo definition that was added
 	* @throws SystemException if a system exception occurred
 	*/
@@ -66,7 +66,7 @@ public class KaleoDefinitionLocalServiceUtil {
 	/**
 	* Deletes the kaleo definition with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param kaleoDefinitionId the primary key of the kaleo definition to delete
+	* @param kaleoDefinitionId the primary key of the kaleo definition
 	* @throws PortalException if a kaleo definition with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -79,7 +79,7 @@ public class KaleoDefinitionLocalServiceUtil {
 	/**
 	* Deletes the kaleo definition from the database. Also notifies the appropriate model listeners.
 	*
-	* @param kaleoDefinition the kaleo definition to delete
+	* @param kaleoDefinition the kaleo definition
 	* @throws SystemException if a system exception occurred
 	*/
 	public static void deleteKaleoDefinition(
@@ -91,7 +91,7 @@ public class KaleoDefinitionLocalServiceUtil {
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
 	*
-	* @param dynamicQuery the dynamic query to search with
+	* @param dynamicQuery the dynamic query
 	* @return the matching rows
 	* @throws SystemException if a system exception occurred
 	*/
@@ -109,9 +109,9 @@ public class KaleoDefinitionLocalServiceUtil {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param dynamicQuery the dynamic query to search with
-	* @param start the lower bound of the range of model instances to return
-	* @param end the upper bound of the range of model instances to return (not inclusive)
+	* @param dynamicQuery the dynamic query
+	* @param start the lower bound of the range of model instances
+	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
 	* @throws SystemException if a system exception occurred
 	*/
@@ -129,9 +129,9 @@ public class KaleoDefinitionLocalServiceUtil {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param dynamicQuery the dynamic query to search with
-	* @param start the lower bound of the range of model instances to return
-	* @param end the upper bound of the range of model instances to return (not inclusive)
+	* @param dynamicQuery the dynamic query
+	* @param start the lower bound of the range of model instances
+	* @param end the upper bound of the range of model instances (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
 	* @throws SystemException if a system exception occurred
@@ -147,9 +147,9 @@ public class KaleoDefinitionLocalServiceUtil {
 	}
 
 	/**
-	* Counts the number of rows that match the dynamic query.
+	* Returns the number of rows that match the dynamic query.
 	*
-	* @param dynamicQuery the dynamic query to search with
+	* @param dynamicQuery the dynamic query
 	* @return the number of rows that match the dynamic query
 	* @throws SystemException if a system exception occurred
 	*/
@@ -160,9 +160,9 @@ public class KaleoDefinitionLocalServiceUtil {
 	}
 
 	/**
-	* Gets the kaleo definition with the primary key.
+	* Returns the kaleo definition with the primary key.
 	*
-	* @param kaleoDefinitionId the primary key of the kaleo definition to get
+	* @param kaleoDefinitionId the primary key of the kaleo definition
 	* @return the kaleo definition
 	* @throws PortalException if a kaleo definition with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -175,14 +175,14 @@ public class KaleoDefinitionLocalServiceUtil {
 	}
 
 	/**
-	* Gets a range of all the kaleo definitions.
+	* Returns a range of all the kaleo definitions.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of kaleo definitions to return
-	* @param end the upper bound of the range of kaleo definitions to return (not inclusive)
+	* @param start the lower bound of the range of kaleo definitions
+	* @param end the upper bound of the range of kaleo definitions (not inclusive)
 	* @return the range of kaleo definitions
 	* @throws SystemException if a system exception occurred
 	*/
@@ -193,7 +193,7 @@ public class KaleoDefinitionLocalServiceUtil {
 	}
 
 	/**
-	* Gets the number of kaleo definitions.
+	* Returns the number of kaleo definitions.
 	*
 	* @return the number of kaleo definitions
 	* @throws SystemException if a system exception occurred
@@ -206,7 +206,7 @@ public class KaleoDefinitionLocalServiceUtil {
 	/**
 	* Updates the kaleo definition in the database. Also notifies the appropriate model listeners.
 	*
-	* @param kaleoDefinition the kaleo definition to update
+	* @param kaleoDefinition the kaleo definition
 	* @return the kaleo definition that was updated
 	* @throws SystemException if a system exception occurred
 	*/
@@ -219,7 +219,7 @@ public class KaleoDefinitionLocalServiceUtil {
 	/**
 	* Updates the kaleo definition in the database. Also notifies the appropriate model listeners.
 	*
-	* @param kaleoDefinition the kaleo definition to update
+	* @param kaleoDefinition the kaleo definition
 	* @param merge whether to merge the kaleo definition with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
 	* @return the kaleo definition that was updated
 	* @throws SystemException if a system exception occurred
@@ -232,7 +232,7 @@ public class KaleoDefinitionLocalServiceUtil {
 	}
 
 	/**
-	* Gets the Spring bean ID for this bean.
+	* Returns the Spring bean ID for this bean.
 	*
 	* @return the Spring bean ID for this bean
 	*/

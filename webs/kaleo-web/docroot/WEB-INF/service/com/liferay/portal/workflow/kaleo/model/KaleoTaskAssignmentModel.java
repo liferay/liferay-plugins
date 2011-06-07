@@ -48,21 +48,21 @@ public interface KaleoTaskAssignmentModel extends BaseModel<KaleoTaskAssignment>
 	 */
 
 	/**
-	 * Gets the primary key of this kaleo task assignment.
+	 * Returns the primary key of this kaleo task assignment.
 	 *
 	 * @return the primary key of this kaleo task assignment
 	 */
 	public long getPrimaryKey();
 
 	/**
-	 * Sets the primary key of this kaleo task assignment
+	 * Sets the primary key of this kaleo task assignment.
 	 *
 	 * @param primaryKey the primary key of this kaleo task assignment
 	 */
 	public void setPrimaryKey(long primaryKey);
 
 	/**
-	 * Gets the kaleo task assignment ID of this kaleo task assignment.
+	 * Returns the kaleo task assignment ID of this kaleo task assignment.
 	 *
 	 * @return the kaleo task assignment ID of this kaleo task assignment
 	 */
@@ -76,7 +76,7 @@ public interface KaleoTaskAssignmentModel extends BaseModel<KaleoTaskAssignment>
 	public void setKaleoTaskAssignmentId(long kaleoTaskAssignmentId);
 
 	/**
-	 * Gets the group ID of this kaleo task assignment.
+	 * Returns the group ID of this kaleo task assignment.
 	 *
 	 * @return the group ID of this kaleo task assignment
 	 */
@@ -90,7 +90,7 @@ public interface KaleoTaskAssignmentModel extends BaseModel<KaleoTaskAssignment>
 	public void setGroupId(long groupId);
 
 	/**
-	 * Gets the company ID of this kaleo task assignment.
+	 * Returns the company ID of this kaleo task assignment.
 	 *
 	 * @return the company ID of this kaleo task assignment
 	 */
@@ -104,7 +104,7 @@ public interface KaleoTaskAssignmentModel extends BaseModel<KaleoTaskAssignment>
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the user ID of this kaleo task assignment.
+	 * Returns the user ID of this kaleo task assignment.
 	 *
 	 * @return the user ID of this kaleo task assignment
 	 */
@@ -118,7 +118,7 @@ public interface KaleoTaskAssignmentModel extends BaseModel<KaleoTaskAssignment>
 	public void setUserId(long userId);
 
 	/**
-	 * Gets the user uuid of this kaleo task assignment.
+	 * Returns the user uuid of this kaleo task assignment.
 	 *
 	 * @return the user uuid of this kaleo task assignment
 	 * @throws SystemException if a system exception occurred
@@ -133,7 +133,7 @@ public interface KaleoTaskAssignmentModel extends BaseModel<KaleoTaskAssignment>
 	public void setUserUuid(String userUuid);
 
 	/**
-	 * Gets the user name of this kaleo task assignment.
+	 * Returns the user name of this kaleo task assignment.
 	 *
 	 * @return the user name of this kaleo task assignment
 	 */
@@ -148,7 +148,7 @@ public interface KaleoTaskAssignmentModel extends BaseModel<KaleoTaskAssignment>
 	public void setUserName(String userName);
 
 	/**
-	 * Gets the create date of this kaleo task assignment.
+	 * Returns the create date of this kaleo task assignment.
 	 *
 	 * @return the create date of this kaleo task assignment
 	 */
@@ -162,7 +162,7 @@ public interface KaleoTaskAssignmentModel extends BaseModel<KaleoTaskAssignment>
 	public void setCreateDate(Date createDate);
 
 	/**
-	 * Gets the modified date of this kaleo task assignment.
+	 * Returns the modified date of this kaleo task assignment.
 	 *
 	 * @return the modified date of this kaleo task assignment
 	 */
@@ -176,7 +176,7 @@ public interface KaleoTaskAssignmentModel extends BaseModel<KaleoTaskAssignment>
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Gets the kaleo definition ID of this kaleo task assignment.
+	 * Returns the kaleo definition ID of this kaleo task assignment.
 	 *
 	 * @return the kaleo definition ID of this kaleo task assignment
 	 */
@@ -190,7 +190,7 @@ public interface KaleoTaskAssignmentModel extends BaseModel<KaleoTaskAssignment>
 	public void setKaleoDefinitionId(long kaleoDefinitionId);
 
 	/**
-	 * Gets the kaleo node ID of this kaleo task assignment.
+	 * Returns the kaleo node ID of this kaleo task assignment.
 	 *
 	 * @return the kaleo node ID of this kaleo task assignment
 	 */
@@ -204,7 +204,7 @@ public interface KaleoTaskAssignmentModel extends BaseModel<KaleoTaskAssignment>
 	public void setKaleoNodeId(long kaleoNodeId);
 
 	/**
-	 * Gets the kaleo task ID of this kaleo task assignment.
+	 * Returns the kaleo task ID of this kaleo task assignment.
 	 *
 	 * @return the kaleo task ID of this kaleo task assignment
 	 */
@@ -218,7 +218,7 @@ public interface KaleoTaskAssignmentModel extends BaseModel<KaleoTaskAssignment>
 	public void setKaleoTaskId(long kaleoTaskId);
 
 	/**
-	 * Gets the assignee class name of this kaleo task assignment.
+	 * Returns the assignee class name of this kaleo task assignment.
 	 *
 	 * @return the assignee class name of this kaleo task assignment
 	 */
@@ -233,7 +233,7 @@ public interface KaleoTaskAssignmentModel extends BaseModel<KaleoTaskAssignment>
 	public void setAssigneeClassName(String assigneeClassName);
 
 	/**
-	 * Gets the assignee class p k of this kaleo task assignment.
+	 * Returns the assignee class p k of this kaleo task assignment.
 	 *
 	 * @return the assignee class p k of this kaleo task assignment
 	 */
@@ -247,7 +247,7 @@ public interface KaleoTaskAssignmentModel extends BaseModel<KaleoTaskAssignment>
 	public void setAssigneeClassPK(long assigneeClassPK);
 
 	/**
-	 * Gets the assignee action ID of this kaleo task assignment.
+	 * Returns the assignee action ID of this kaleo task assignment.
 	 *
 	 * @return the assignee action ID of this kaleo task assignment
 	 */
@@ -262,7 +262,7 @@ public interface KaleoTaskAssignmentModel extends BaseModel<KaleoTaskAssignment>
 	public void setAssigneeActionId(String assigneeActionId);
 
 	/**
-	 * Gets the assignee script of this kaleo task assignment.
+	 * Returns the assignee script of this kaleo task assignment.
 	 *
 	 * @return the assignee script of this kaleo task assignment
 	 */
@@ -277,7 +277,7 @@ public interface KaleoTaskAssignmentModel extends BaseModel<KaleoTaskAssignment>
 	public void setAssigneeScript(String assigneeScript);
 
 	/**
-	 * Gets the assignee script language of this kaleo task assignment.
+	 * Returns the assignee script language of this kaleo task assignment.
 	 *
 	 * @return the assignee script language of this kaleo task assignment
 	 */

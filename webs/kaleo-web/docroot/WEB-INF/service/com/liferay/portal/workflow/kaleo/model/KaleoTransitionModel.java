@@ -48,21 +48,21 @@ public interface KaleoTransitionModel extends BaseModel<KaleoTransition>,
 	 */
 
 	/**
-	 * Gets the primary key of this kaleo transition.
+	 * Returns the primary key of this kaleo transition.
 	 *
 	 * @return the primary key of this kaleo transition
 	 */
 	public long getPrimaryKey();
 
 	/**
-	 * Sets the primary key of this kaleo transition
+	 * Sets the primary key of this kaleo transition.
 	 *
 	 * @param primaryKey the primary key of this kaleo transition
 	 */
 	public void setPrimaryKey(long primaryKey);
 
 	/**
-	 * Gets the kaleo transition ID of this kaleo transition.
+	 * Returns the kaleo transition ID of this kaleo transition.
 	 *
 	 * @return the kaleo transition ID of this kaleo transition
 	 */
@@ -76,7 +76,7 @@ public interface KaleoTransitionModel extends BaseModel<KaleoTransition>,
 	public void setKaleoTransitionId(long kaleoTransitionId);
 
 	/**
-	 * Gets the group ID of this kaleo transition.
+	 * Returns the group ID of this kaleo transition.
 	 *
 	 * @return the group ID of this kaleo transition
 	 */
@@ -90,7 +90,7 @@ public interface KaleoTransitionModel extends BaseModel<KaleoTransition>,
 	public void setGroupId(long groupId);
 
 	/**
-	 * Gets the company ID of this kaleo transition.
+	 * Returns the company ID of this kaleo transition.
 	 *
 	 * @return the company ID of this kaleo transition
 	 */
@@ -104,7 +104,7 @@ public interface KaleoTransitionModel extends BaseModel<KaleoTransition>,
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the user ID of this kaleo transition.
+	 * Returns the user ID of this kaleo transition.
 	 *
 	 * @return the user ID of this kaleo transition
 	 */
@@ -118,7 +118,7 @@ public interface KaleoTransitionModel extends BaseModel<KaleoTransition>,
 	public void setUserId(long userId);
 
 	/**
-	 * Gets the user uuid of this kaleo transition.
+	 * Returns the user uuid of this kaleo transition.
 	 *
 	 * @return the user uuid of this kaleo transition
 	 * @throws SystemException if a system exception occurred
@@ -133,7 +133,7 @@ public interface KaleoTransitionModel extends BaseModel<KaleoTransition>,
 	public void setUserUuid(String userUuid);
 
 	/**
-	 * Gets the user name of this kaleo transition.
+	 * Returns the user name of this kaleo transition.
 	 *
 	 * @return the user name of this kaleo transition
 	 */
@@ -148,7 +148,7 @@ public interface KaleoTransitionModel extends BaseModel<KaleoTransition>,
 	public void setUserName(String userName);
 
 	/**
-	 * Gets the create date of this kaleo transition.
+	 * Returns the create date of this kaleo transition.
 	 *
 	 * @return the create date of this kaleo transition
 	 */
@@ -162,7 +162,7 @@ public interface KaleoTransitionModel extends BaseModel<KaleoTransition>,
 	public void setCreateDate(Date createDate);
 
 	/**
-	 * Gets the modified date of this kaleo transition.
+	 * Returns the modified date of this kaleo transition.
 	 *
 	 * @return the modified date of this kaleo transition
 	 */
@@ -176,7 +176,7 @@ public interface KaleoTransitionModel extends BaseModel<KaleoTransition>,
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Gets the kaleo definition ID of this kaleo transition.
+	 * Returns the kaleo definition ID of this kaleo transition.
 	 *
 	 * @return the kaleo definition ID of this kaleo transition
 	 */
@@ -190,7 +190,7 @@ public interface KaleoTransitionModel extends BaseModel<KaleoTransition>,
 	public void setKaleoDefinitionId(long kaleoDefinitionId);
 
 	/**
-	 * Gets the kaleo node ID of this kaleo transition.
+	 * Returns the kaleo node ID of this kaleo transition.
 	 *
 	 * @return the kaleo node ID of this kaleo transition
 	 */
@@ -204,7 +204,7 @@ public interface KaleoTransitionModel extends BaseModel<KaleoTransition>,
 	public void setKaleoNodeId(long kaleoNodeId);
 
 	/**
-	 * Gets the name of this kaleo transition.
+	 * Returns the name of this kaleo transition.
 	 *
 	 * @return the name of this kaleo transition
 	 */
@@ -219,7 +219,7 @@ public interface KaleoTransitionModel extends BaseModel<KaleoTransition>,
 	public void setName(String name);
 
 	/**
-	 * Gets the description of this kaleo transition.
+	 * Returns the description of this kaleo transition.
 	 *
 	 * @return the description of this kaleo transition
 	 */
@@ -234,7 +234,7 @@ public interface KaleoTransitionModel extends BaseModel<KaleoTransition>,
 	public void setDescription(String description);
 
 	/**
-	 * Gets the source kaleo node ID of this kaleo transition.
+	 * Returns the source kaleo node ID of this kaleo transition.
 	 *
 	 * @return the source kaleo node ID of this kaleo transition
 	 */
@@ -248,7 +248,7 @@ public interface KaleoTransitionModel extends BaseModel<KaleoTransition>,
 	public void setSourceKaleoNodeId(long sourceKaleoNodeId);
 
 	/**
-	 * Gets the source kaleo node name of this kaleo transition.
+	 * Returns the source kaleo node name of this kaleo transition.
 	 *
 	 * @return the source kaleo node name of this kaleo transition
 	 */
@@ -263,7 +263,7 @@ public interface KaleoTransitionModel extends BaseModel<KaleoTransition>,
 	public void setSourceKaleoNodeName(String sourceKaleoNodeName);
 
 	/**
-	 * Gets the target kaleo node ID of this kaleo transition.
+	 * Returns the target kaleo node ID of this kaleo transition.
 	 *
 	 * @return the target kaleo node ID of this kaleo transition
 	 */
@@ -277,7 +277,7 @@ public interface KaleoTransitionModel extends BaseModel<KaleoTransition>,
 	public void setTargetKaleoNodeId(long targetKaleoNodeId);
 
 	/**
-	 * Gets the target kaleo node name of this kaleo transition.
+	 * Returns the target kaleo node name of this kaleo transition.
 	 *
 	 * @return the target kaleo node name of this kaleo transition
 	 */
@@ -292,7 +292,7 @@ public interface KaleoTransitionModel extends BaseModel<KaleoTransition>,
 	public void setTargetKaleoNodeName(String targetKaleoNodeName);
 
 	/**
-	 * Gets the default transition of this kaleo transition.
+	 * Returns the default transition of this kaleo transition.
 	 *
 	 * @return the default transition of this kaleo transition
 	 */

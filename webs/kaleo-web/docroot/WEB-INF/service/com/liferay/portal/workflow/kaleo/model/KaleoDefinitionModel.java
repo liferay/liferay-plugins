@@ -50,21 +50,21 @@ public interface KaleoDefinitionModel extends BaseModel<KaleoDefinition>,
 	 */
 
 	/**
-	 * Gets the primary key of this kaleo definition.
+	 * Returns the primary key of this kaleo definition.
 	 *
 	 * @return the primary key of this kaleo definition
 	 */
 	public long getPrimaryKey();
 
 	/**
-	 * Sets the primary key of this kaleo definition
+	 * Sets the primary key of this kaleo definition.
 	 *
 	 * @param primaryKey the primary key of this kaleo definition
 	 */
 	public void setPrimaryKey(long primaryKey);
 
 	/**
-	 * Gets the kaleo definition ID of this kaleo definition.
+	 * Returns the kaleo definition ID of this kaleo definition.
 	 *
 	 * @return the kaleo definition ID of this kaleo definition
 	 */
@@ -78,7 +78,7 @@ public interface KaleoDefinitionModel extends BaseModel<KaleoDefinition>,
 	public void setKaleoDefinitionId(long kaleoDefinitionId);
 
 	/**
-	 * Gets the group ID of this kaleo definition.
+	 * Returns the group ID of this kaleo definition.
 	 *
 	 * @return the group ID of this kaleo definition
 	 */
@@ -92,7 +92,7 @@ public interface KaleoDefinitionModel extends BaseModel<KaleoDefinition>,
 	public void setGroupId(long groupId);
 
 	/**
-	 * Gets the company ID of this kaleo definition.
+	 * Returns the company ID of this kaleo definition.
 	 *
 	 * @return the company ID of this kaleo definition
 	 */
@@ -106,7 +106,7 @@ public interface KaleoDefinitionModel extends BaseModel<KaleoDefinition>,
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the user ID of this kaleo definition.
+	 * Returns the user ID of this kaleo definition.
 	 *
 	 * @return the user ID of this kaleo definition
 	 */
@@ -120,7 +120,7 @@ public interface KaleoDefinitionModel extends BaseModel<KaleoDefinition>,
 	public void setUserId(long userId);
 
 	/**
-	 * Gets the user uuid of this kaleo definition.
+	 * Returns the user uuid of this kaleo definition.
 	 *
 	 * @return the user uuid of this kaleo definition
 	 * @throws SystemException if a system exception occurred
@@ -135,7 +135,7 @@ public interface KaleoDefinitionModel extends BaseModel<KaleoDefinition>,
 	public void setUserUuid(String userUuid);
 
 	/**
-	 * Gets the user name of this kaleo definition.
+	 * Returns the user name of this kaleo definition.
 	 *
 	 * @return the user name of this kaleo definition
 	 */
@@ -150,7 +150,7 @@ public interface KaleoDefinitionModel extends BaseModel<KaleoDefinition>,
 	public void setUserName(String userName);
 
 	/**
-	 * Gets the create date of this kaleo definition.
+	 * Returns the create date of this kaleo definition.
 	 *
 	 * @return the create date of this kaleo definition
 	 */
@@ -164,7 +164,7 @@ public interface KaleoDefinitionModel extends BaseModel<KaleoDefinition>,
 	public void setCreateDate(Date createDate);
 
 	/**
-	 * Gets the modified date of this kaleo definition.
+	 * Returns the modified date of this kaleo definition.
 	 *
 	 * @return the modified date of this kaleo definition
 	 */
@@ -178,7 +178,7 @@ public interface KaleoDefinitionModel extends BaseModel<KaleoDefinition>,
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Gets the name of this kaleo definition.
+	 * Returns the name of this kaleo definition.
 	 *
 	 * @return the name of this kaleo definition
 	 */
@@ -193,50 +193,50 @@ public interface KaleoDefinitionModel extends BaseModel<KaleoDefinition>,
 	public void setName(String name);
 
 	/**
-	 * Gets the title of this kaleo definition.
+	 * Returns the title of this kaleo definition.
 	 *
 	 * @return the title of this kaleo definition
 	 */
 	public String getTitle();
 
 	/**
-	 * Gets the localized title of this kaleo definition. Uses the default language if no localization exists for the requested language.
+	 * Returns the localized title of this kaleo definition in the language. Uses the default language if no localization exists for the requested language.
 	 *
-	 * @param locale the locale to get the localized title for
+	 * @param locale the locale of the language
 	 * @return the localized title of this kaleo definition
 	 */
 	public String getTitle(Locale locale);
 
 	/**
-	 * Gets the localized title of this kaleo definition, optionally using the default language if no localization exists for the requested language.
+	 * Returns the localized title of this kaleo definition in the language, optionally using the default language if no localization exists for the requested language.
 	 *
-	 * @param locale the local to get the localized title for
+	 * @param locale the local of the language
 	 * @param useDefault whether to use the default language if no localization exists for the requested language
 	 * @return the localized title of this kaleo definition. If <code>useDefault</code> is <code>false</code> and no localization exists for the requested language, an empty string will be returned.
 	 */
 	public String getTitle(Locale locale, boolean useDefault);
 
 	/**
-	 * Gets the localized title of this kaleo definition. Uses the default language if no localization exists for the requested language.
+	 * Returns the localized title of this kaleo definition in the language. Uses the default language if no localization exists for the requested language.
 	 *
-	 * @param languageId the id of the language to get the localized title for
+	 * @param languageId the ID of the language
 	 * @return the localized title of this kaleo definition
 	 */
 	public String getTitle(String languageId);
 
 	/**
-	 * Gets the localized title of this kaleo definition, optionally using the default language if no localization exists for the requested language.
+	 * Returns the localized title of this kaleo definition in the language, optionally using the default language if no localization exists for the requested language.
 	 *
-	 * @param languageId the id of the language to get the localized title for
+	 * @param languageId the ID of the language
 	 * @param useDefault whether to use the default language if no localization exists for the requested language
 	 * @return the localized title of this kaleo definition
 	 */
 	public String getTitle(String languageId, boolean useDefault);
 
 	/**
-	 * Gets a map of the locales and localized title of this kaleo definition.
+	 * Returns a map of the locales and localized titles of this kaleo definition.
 	 *
-	 * @return the locales and localized title
+	 * @return the locales and localized titles of this kaleo definition
 	 */
 	public Map<Locale, String> getTitleMap();
 
@@ -248,13 +248,20 @@ public interface KaleoDefinitionModel extends BaseModel<KaleoDefinition>,
 	public void setTitle(String title);
 
 	/**
-	 * Sets the localized title of this kaleo definition.
+	 * Sets the localized title of this kaleo definition in the language.
 	 *
 	 * @param title the localized title of this kaleo definition
-	 * @param locale the locale to set the localized title for
+	 * @param locale the locale of the language
 	 */
 	public void setTitle(String title, Locale locale);
 
+	/**
+	 * Sets the localized title of this kaleo definition in the language, and sets the default locale.
+	 *
+	 * @param title the localized title of this kaleo definition
+	 * @param locale the locale of the language
+	 * @param defaultLocale the default locale
+	 */
 	public void setTitle(String title, Locale locale, Locale defaultLocale);
 
 	/**
@@ -264,10 +271,16 @@ public interface KaleoDefinitionModel extends BaseModel<KaleoDefinition>,
 	 */
 	public void setTitleMap(Map<Locale, String> titleMap);
 
+	/**
+	 * Sets the localized titles of this kaleo definition from the map of locales and localized titles, and sets the default locale.
+	 *
+	 * @param titleMap the locales and localized titles of this kaleo definition
+	 * @param defaultLocale the default locale
+	 */
 	public void setTitleMap(Map<Locale, String> titleMap, Locale defaultLocale);
 
 	/**
-	 * Gets the description of this kaleo definition.
+	 * Returns the description of this kaleo definition.
 	 *
 	 * @return the description of this kaleo definition
 	 */
@@ -282,7 +295,7 @@ public interface KaleoDefinitionModel extends BaseModel<KaleoDefinition>,
 	public void setDescription(String description);
 
 	/**
-	 * Gets the version of this kaleo definition.
+	 * Returns the version of this kaleo definition.
 	 *
 	 * @return the version of this kaleo definition
 	 */
@@ -296,7 +309,7 @@ public interface KaleoDefinitionModel extends BaseModel<KaleoDefinition>,
 	public void setVersion(int version);
 
 	/**
-	 * Gets the active of this kaleo definition.
+	 * Returns the active of this kaleo definition.
 	 *
 	 * @return the active of this kaleo definition
 	 */
@@ -317,7 +330,7 @@ public interface KaleoDefinitionModel extends BaseModel<KaleoDefinition>,
 	public void setActive(boolean active);
 
 	/**
-	 * Gets the start kaleo node ID of this kaleo definition.
+	 * Returns the start kaleo node ID of this kaleo definition.
 	 *
 	 * @return the start kaleo node ID of this kaleo definition
 	 */

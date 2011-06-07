@@ -158,7 +158,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	/**
 	 * Caches the kaleo definition in the entity cache if it is enabled.
 	 *
-	 * @param kaleoDefinition the kaleo definition to cache
+	 * @param kaleoDefinition the kaleo definition
 	 */
 	public void cacheResult(KaleoDefinition kaleoDefinition) {
 		EntityCacheUtil.putResult(KaleoDefinitionModelImpl.ENTITY_CACHE_ENABLED,
@@ -179,7 +179,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	/**
 	 * Caches the kaleo definitions in the entity cache if it is enabled.
 	 *
-	 * @param kaleoDefinitions the kaleo definitions to cache
+	 * @param kaleoDefinitions the kaleo definitions
 	 */
 	public void cacheResult(List<KaleoDefinition> kaleoDefinitions) {
 		for (KaleoDefinition kaleoDefinition : kaleoDefinitions) {
@@ -247,7 +247,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	/**
 	 * Removes the kaleo definition with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param primaryKey the primary key of the kaleo definition to remove
+	 * @param primaryKey the primary key of the kaleo definition
 	 * @return the kaleo definition that was removed
 	 * @throws com.liferay.portal.NoSuchModelException if a kaleo definition with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -260,7 +260,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	/**
 	 * Removes the kaleo definition with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param kaleoDefinitionId the primary key of the kaleo definition to remove
+	 * @param kaleoDefinitionId the primary key of the kaleo definition
 	 * @return the kaleo definition that was removed
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchDefinitionException if a kaleo definition with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -301,7 +301,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	/**
 	 * Removes the kaleo definition from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param kaleoDefinition the kaleo definition to remove
+	 * @param kaleoDefinition the kaleo definition
 	 * @return the kaleo definition that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -438,9 +438,9 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	}
 
 	/**
-	 * Finds the kaleo definition with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
+	 * Returns the kaleo definition with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
 	 *
-	 * @param primaryKey the primary key of the kaleo definition to find
+	 * @param primaryKey the primary key of the kaleo definition
 	 * @return the kaleo definition
 	 * @throws com.liferay.portal.NoSuchModelException if a kaleo definition with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -451,9 +451,9 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	}
 
 	/**
-	 * Finds the kaleo definition with the primary key or throws a {@link com.liferay.portal.workflow.kaleo.NoSuchDefinitionException} if it could not be found.
+	 * Returns the kaleo definition with the primary key or throws a {@link com.liferay.portal.workflow.kaleo.NoSuchDefinitionException} if it could not be found.
 	 *
-	 * @param kaleoDefinitionId the primary key of the kaleo definition to find
+	 * @param kaleoDefinitionId the primary key of the kaleo definition
 	 * @return the kaleo definition
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchDefinitionException if a kaleo definition with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -475,9 +475,9 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	}
 
 	/**
-	 * Finds the kaleo definition with the primary key or returns <code>null</code> if it could not be found.
+	 * Returns the kaleo definition with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param primaryKey the primary key of the kaleo definition to find
+	 * @param primaryKey the primary key of the kaleo definition
 	 * @return the kaleo definition, or <code>null</code> if a kaleo definition with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -487,9 +487,9 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	}
 
 	/**
-	 * Finds the kaleo definition with the primary key or returns <code>null</code> if it could not be found.
+	 * Returns the kaleo definition with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param kaleoDefinitionId the primary key of the kaleo definition to find
+	 * @param kaleoDefinitionId the primary key of the kaleo definition
 	 * @return the kaleo definition, or <code>null</code> if a kaleo definition with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -523,9 +523,9 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	}
 
 	/**
-	 * Finds all the kaleo definitions where companyId = &#63;.
+	 * Returns all the kaleo definitions where companyId = &#63;.
 	 *
-	 * @param companyId the company ID to search with
+	 * @param companyId the company ID
 	 * @return the matching kaleo definitions
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -536,15 +536,15 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	}
 
 	/**
-	 * Finds a range of all the kaleo definitions where companyId = &#63;.
+	 * Returns a range of all the kaleo definitions where companyId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param companyId the company ID to search with
-	 * @param start the lower bound of the range of kaleo definitions to return
-	 * @param end the upper bound of the range of kaleo definitions to return (not inclusive)
+	 * @param companyId the company ID
+	 * @param start the lower bound of the range of kaleo definitions
+	 * @param end the upper bound of the range of kaleo definitions (not inclusive)
 	 * @return the range of matching kaleo definitions
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -554,15 +554,15 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	}
 
 	/**
-	 * Finds an ordered range of all the kaleo definitions where companyId = &#63;.
+	 * Returns an ordered range of all the kaleo definitions where companyId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param companyId the company ID to search with
-	 * @param start the lower bound of the range of kaleo definitions to return
-	 * @param end the upper bound of the range of kaleo definitions to return (not inclusive)
+	 * @param companyId the company ID
+	 * @param start the lower bound of the range of kaleo definitions
+	 * @param end the upper bound of the range of kaleo definitions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching kaleo definitions
 	 * @throws SystemException if a system exception occurred
@@ -642,13 +642,13 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	}
 
 	/**
-	 * Finds the first kaleo definition in the ordered set where companyId = &#63;.
+	 * Returns the first kaleo definition in the ordered set where companyId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param companyId the company ID to search with
+	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching kaleo definition
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchDefinitionException if a matching kaleo definition could not be found
@@ -678,13 +678,13 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	}
 
 	/**
-	 * Finds the last kaleo definition in the ordered set where companyId = &#63;.
+	 * Returns the last kaleo definition in the ordered set where companyId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param companyId the company ID to search with
+	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching kaleo definition
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchDefinitionException if a matching kaleo definition could not be found
@@ -716,14 +716,14 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	}
 
 	/**
-	 * Finds the kaleo definitions before and after the current kaleo definition in the ordered set where companyId = &#63;.
+	 * Returns the kaleo definitions before and after the current kaleo definition in the ordered set where companyId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
 	 * @param kaleoDefinitionId the primary key of the current kaleo definition
-	 * @param companyId the company ID to search with
+	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next kaleo definition
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchDefinitionException if a kaleo definition with the primary key could not be found
@@ -865,10 +865,10 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	}
 
 	/**
-	 * Finds all the kaleo definitions where companyId = &#63; and name = &#63;.
+	 * Returns all the kaleo definitions where companyId = &#63; and name = &#63;.
 	 *
-	 * @param companyId the company ID to search with
-	 * @param name the name to search with
+	 * @param companyId the company ID
+	 * @param name the name
 	 * @return the matching kaleo definitions
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -879,16 +879,16 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	}
 
 	/**
-	 * Finds a range of all the kaleo definitions where companyId = &#63; and name = &#63;.
+	 * Returns a range of all the kaleo definitions where companyId = &#63; and name = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param companyId the company ID to search with
-	 * @param name the name to search with
-	 * @param start the lower bound of the range of kaleo definitions to return
-	 * @param end the upper bound of the range of kaleo definitions to return (not inclusive)
+	 * @param companyId the company ID
+	 * @param name the name
+	 * @param start the lower bound of the range of kaleo definitions
+	 * @param end the upper bound of the range of kaleo definitions (not inclusive)
 	 * @return the range of matching kaleo definitions
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -898,16 +898,16 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	}
 
 	/**
-	 * Finds an ordered range of all the kaleo definitions where companyId = &#63; and name = &#63;.
+	 * Returns an ordered range of all the kaleo definitions where companyId = &#63; and name = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param companyId the company ID to search with
-	 * @param name the name to search with
-	 * @param start the lower bound of the range of kaleo definitions to return
-	 * @param end the upper bound of the range of kaleo definitions to return (not inclusive)
+	 * @param companyId the company ID
+	 * @param name the name
+	 * @param start the lower bound of the range of kaleo definitions
+	 * @param end the upper bound of the range of kaleo definitions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching kaleo definitions
 	 * @throws SystemException if a system exception occurred
@@ -1004,14 +1004,14 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	}
 
 	/**
-	 * Finds the first kaleo definition in the ordered set where companyId = &#63; and name = &#63;.
+	 * Returns the first kaleo definition in the ordered set where companyId = &#63; and name = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param companyId the company ID to search with
-	 * @param name the name to search with
+	 * @param companyId the company ID
+	 * @param name the name
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching kaleo definition
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchDefinitionException if a matching kaleo definition could not be found
@@ -1044,14 +1044,14 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	}
 
 	/**
-	 * Finds the last kaleo definition in the ordered set where companyId = &#63; and name = &#63;.
+	 * Returns the last kaleo definition in the ordered set where companyId = &#63; and name = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param companyId the company ID to search with
-	 * @param name the name to search with
+	 * @param companyId the company ID
+	 * @param name the name
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching kaleo definition
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchDefinitionException if a matching kaleo definition could not be found
@@ -1086,15 +1086,15 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	}
 
 	/**
-	 * Finds the kaleo definitions before and after the current kaleo definition in the ordered set where companyId = &#63; and name = &#63;.
+	 * Returns the kaleo definitions before and after the current kaleo definition in the ordered set where companyId = &#63; and name = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
 	 * @param kaleoDefinitionId the primary key of the current kaleo definition
-	 * @param companyId the company ID to search with
-	 * @param name the name to search with
+	 * @param companyId the company ID
+	 * @param name the name
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next kaleo definition
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchDefinitionException if a kaleo definition with the primary key could not be found
@@ -1251,10 +1251,10 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	}
 
 	/**
-	 * Finds all the kaleo definitions where companyId = &#63; and active = &#63;.
+	 * Returns all the kaleo definitions where companyId = &#63; and active = &#63;.
 	 *
-	 * @param companyId the company ID to search with
-	 * @param active the active to search with
+	 * @param companyId the company ID
+	 * @param active the active
 	 * @return the matching kaleo definitions
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -1265,16 +1265,16 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	}
 
 	/**
-	 * Finds a range of all the kaleo definitions where companyId = &#63; and active = &#63;.
+	 * Returns a range of all the kaleo definitions where companyId = &#63; and active = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param companyId the company ID to search with
-	 * @param active the active to search with
-	 * @param start the lower bound of the range of kaleo definitions to return
-	 * @param end the upper bound of the range of kaleo definitions to return (not inclusive)
+	 * @param companyId the company ID
+	 * @param active the active
+	 * @param start the lower bound of the range of kaleo definitions
+	 * @param end the upper bound of the range of kaleo definitions (not inclusive)
 	 * @return the range of matching kaleo definitions
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -1284,16 +1284,16 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	}
 
 	/**
-	 * Finds an ordered range of all the kaleo definitions where companyId = &#63; and active = &#63;.
+	 * Returns an ordered range of all the kaleo definitions where companyId = &#63; and active = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param companyId the company ID to search with
-	 * @param active the active to search with
-	 * @param start the lower bound of the range of kaleo definitions to return
-	 * @param end the upper bound of the range of kaleo definitions to return (not inclusive)
+	 * @param companyId the company ID
+	 * @param active the active
+	 * @param start the lower bound of the range of kaleo definitions
+	 * @param end the upper bound of the range of kaleo definitions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching kaleo definitions
 	 * @throws SystemException if a system exception occurred
@@ -1378,14 +1378,14 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	}
 
 	/**
-	 * Finds the first kaleo definition in the ordered set where companyId = &#63; and active = &#63;.
+	 * Returns the first kaleo definition in the ordered set where companyId = &#63; and active = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param companyId the company ID to search with
-	 * @param active the active to search with
+	 * @param companyId the company ID
+	 * @param active the active
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching kaleo definition
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchDefinitionException if a matching kaleo definition could not be found
@@ -1418,14 +1418,14 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	}
 
 	/**
-	 * Finds the last kaleo definition in the ordered set where companyId = &#63; and active = &#63;.
+	 * Returns the last kaleo definition in the ordered set where companyId = &#63; and active = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param companyId the company ID to search with
-	 * @param active the active to search with
+	 * @param companyId the company ID
+	 * @param active the active
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching kaleo definition
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchDefinitionException if a matching kaleo definition could not be found
@@ -1460,15 +1460,15 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	}
 
 	/**
-	 * Finds the kaleo definitions before and after the current kaleo definition in the ordered set where companyId = &#63; and active = &#63;.
+	 * Returns the kaleo definitions before and after the current kaleo definition in the ordered set where companyId = &#63; and active = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
 	 * @param kaleoDefinitionId the primary key of the current kaleo definition
-	 * @param companyId the company ID to search with
-	 * @param active the active to search with
+	 * @param companyId the company ID
+	 * @param active the active
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next kaleo definition
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchDefinitionException if a kaleo definition with the primary key could not be found
@@ -1613,11 +1613,11 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	}
 
 	/**
-	 * Finds the kaleo definition where companyId = &#63; and name = &#63; and version = &#63; or throws a {@link com.liferay.portal.workflow.kaleo.NoSuchDefinitionException} if it could not be found.
+	 * Returns the kaleo definition where companyId = &#63; and name = &#63; and version = &#63; or throws a {@link com.liferay.portal.workflow.kaleo.NoSuchDefinitionException} if it could not be found.
 	 *
-	 * @param companyId the company ID to search with
-	 * @param name the name to search with
-	 * @param version the version to search with
+	 * @param companyId the company ID
+	 * @param name the name
+	 * @param version the version
 	 * @return the matching kaleo definition
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchDefinitionException if a matching kaleo definition could not be found
 	 * @throws SystemException if a system exception occurred
@@ -1653,11 +1653,11 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	}
 
 	/**
-	 * Finds the kaleo definition where companyId = &#63; and name = &#63; and version = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the kaleo definition where companyId = &#63; and name = &#63; and version = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @param companyId the company ID to search with
-	 * @param name the name to search with
-	 * @param version the version to search with
+	 * @param companyId the company ID
+	 * @param name the name
+	 * @param version the version
 	 * @return the matching kaleo definition, or <code>null</code> if a matching kaleo definition could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -1667,11 +1667,11 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	}
 
 	/**
-	 * Finds the kaleo definition where companyId = &#63; and name = &#63; and version = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the kaleo definition where companyId = &#63; and name = &#63; and version = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
-	 * @param companyId the company ID to search with
-	 * @param name the name to search with
-	 * @param version the version to search with
+	 * @param companyId the company ID
+	 * @param name the name
+	 * @param version the version
 	 * @return the matching kaleo definition, or <code>null</code> if a matching kaleo definition could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -1777,11 +1777,11 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	}
 
 	/**
-	 * Finds all the kaleo definitions where companyId = &#63; and name = &#63; and active = &#63;.
+	 * Returns all the kaleo definitions where companyId = &#63; and name = &#63; and active = &#63;.
 	 *
-	 * @param companyId the company ID to search with
-	 * @param name the name to search with
-	 * @param active the active to search with
+	 * @param companyId the company ID
+	 * @param name the name
+	 * @param active the active
 	 * @return the matching kaleo definitions
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -1792,17 +1792,17 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	}
 
 	/**
-	 * Finds a range of all the kaleo definitions where companyId = &#63; and name = &#63; and active = &#63;.
+	 * Returns a range of all the kaleo definitions where companyId = &#63; and name = &#63; and active = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param companyId the company ID to search with
-	 * @param name the name to search with
-	 * @param active the active to search with
-	 * @param start the lower bound of the range of kaleo definitions to return
-	 * @param end the upper bound of the range of kaleo definitions to return (not inclusive)
+	 * @param companyId the company ID
+	 * @param name the name
+	 * @param active the active
+	 * @param start the lower bound of the range of kaleo definitions
+	 * @param end the upper bound of the range of kaleo definitions (not inclusive)
 	 * @return the range of matching kaleo definitions
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -1812,17 +1812,17 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	}
 
 	/**
-	 * Finds an ordered range of all the kaleo definitions where companyId = &#63; and name = &#63; and active = &#63;.
+	 * Returns an ordered range of all the kaleo definitions where companyId = &#63; and name = &#63; and active = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param companyId the company ID to search with
-	 * @param name the name to search with
-	 * @param active the active to search with
-	 * @param start the lower bound of the range of kaleo definitions to return
-	 * @param end the upper bound of the range of kaleo definitions to return (not inclusive)
+	 * @param companyId the company ID
+	 * @param name the name
+	 * @param active the active
+	 * @param start the lower bound of the range of kaleo definitions
+	 * @param end the upper bound of the range of kaleo definitions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching kaleo definitions
 	 * @throws SystemException if a system exception occurred
@@ -1923,15 +1923,15 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	}
 
 	/**
-	 * Finds the first kaleo definition in the ordered set where companyId = &#63; and name = &#63; and active = &#63;.
+	 * Returns the first kaleo definition in the ordered set where companyId = &#63; and name = &#63; and active = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param companyId the company ID to search with
-	 * @param name the name to search with
-	 * @param active the active to search with
+	 * @param companyId the company ID
+	 * @param name the name
+	 * @param active the active
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching kaleo definition
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchDefinitionException if a matching kaleo definition could not be found
@@ -1967,15 +1967,15 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	}
 
 	/**
-	 * Finds the last kaleo definition in the ordered set where companyId = &#63; and name = &#63; and active = &#63;.
+	 * Returns the last kaleo definition in the ordered set where companyId = &#63; and name = &#63; and active = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param companyId the company ID to search with
-	 * @param name the name to search with
-	 * @param active the active to search with
+	 * @param companyId the company ID
+	 * @param name the name
+	 * @param active the active
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching kaleo definition
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchDefinitionException if a matching kaleo definition could not be found
@@ -2013,16 +2013,16 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	}
 
 	/**
-	 * Finds the kaleo definitions before and after the current kaleo definition in the ordered set where companyId = &#63; and name = &#63; and active = &#63;.
+	 * Returns the kaleo definitions before and after the current kaleo definition in the ordered set where companyId = &#63; and name = &#63; and active = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
 	 * @param kaleoDefinitionId the primary key of the current kaleo definition
-	 * @param companyId the company ID to search with
-	 * @param name the name to search with
-	 * @param active the active to search with
+	 * @param companyId the company ID
+	 * @param name the name
+	 * @param active the active
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next kaleo definition
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchDefinitionException if a kaleo definition with the primary key could not be found
@@ -2184,7 +2184,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	}
 
 	/**
-	 * Finds all the kaleo definitions.
+	 * Returns all the kaleo definitions.
 	 *
 	 * @return the kaleo definitions
 	 * @throws SystemException if a system exception occurred
@@ -2194,14 +2194,14 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	}
 
 	/**
-	 * Finds a range of all the kaleo definitions.
+	 * Returns a range of all the kaleo definitions.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of kaleo definitions to return
-	 * @param end the upper bound of the range of kaleo definitions to return (not inclusive)
+	 * @param start the lower bound of the range of kaleo definitions
+	 * @param end the upper bound of the range of kaleo definitions (not inclusive)
 	 * @return the range of kaleo definitions
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -2211,14 +2211,14 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	}
 
 	/**
-	 * Finds an ordered range of all the kaleo definitions.
+	 * Returns an ordered range of all the kaleo definitions.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of kaleo definitions to return
-	 * @param end the upper bound of the range of kaleo definitions to return (not inclusive)
+	 * @param start the lower bound of the range of kaleo definitions
+	 * @param end the upper bound of the range of kaleo definitions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of kaleo definitions
 	 * @throws SystemException if a system exception occurred
@@ -2295,7 +2295,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	/**
 	 * Removes all the kaleo definitions where companyId = &#63; from the database.
 	 *
-	 * @param companyId the company ID to search with
+	 * @param companyId the company ID
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeByCompanyId(long companyId) throws SystemException {
@@ -2307,8 +2307,8 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	/**
 	 * Removes all the kaleo definitions where companyId = &#63; and name = &#63; from the database.
 	 *
-	 * @param companyId the company ID to search with
-	 * @param name the name to search with
+	 * @param companyId the company ID
+	 * @param name the name
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeByC_N(long companyId, String name)
@@ -2321,8 +2321,8 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	/**
 	 * Removes all the kaleo definitions where companyId = &#63; and active = &#63; from the database.
 	 *
-	 * @param companyId the company ID to search with
-	 * @param active the active to search with
+	 * @param companyId the company ID
+	 * @param active the active
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeByC_A(long companyId, boolean active)
@@ -2335,9 +2335,9 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	/**
 	 * Removes the kaleo definition where companyId = &#63; and name = &#63; and version = &#63; from the database.
 	 *
-	 * @param companyId the company ID to search with
-	 * @param name the name to search with
-	 * @param version the version to search with
+	 * @param companyId the company ID
+	 * @param name the name
+	 * @param version the version
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeByC_N_V(long companyId, String name, int version)
@@ -2350,9 +2350,9 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	/**
 	 * Removes all the kaleo definitions where companyId = &#63; and name = &#63; and active = &#63; from the database.
 	 *
-	 * @param companyId the company ID to search with
-	 * @param name the name to search with
-	 * @param active the active to search with
+	 * @param companyId the company ID
+	 * @param name the name
+	 * @param active the active
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeByC_N_A(long companyId, String name, boolean active)
@@ -2375,9 +2375,9 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	}
 
 	/**
-	 * Counts all the kaleo definitions where companyId = &#63;.
+	 * Returns the number of kaleo definitions where companyId = &#63;.
 	 *
-	 * @param companyId the company ID to search with
+	 * @param companyId the company ID
 	 * @return the number of matching kaleo definitions
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -2428,10 +2428,10 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	}
 
 	/**
-	 * Counts all the kaleo definitions where companyId = &#63; and name = &#63;.
+	 * Returns the number of kaleo definitions where companyId = &#63; and name = &#63;.
 	 *
-	 * @param companyId the company ID to search with
-	 * @param name the name to search with
+	 * @param companyId the company ID
+	 * @param name the name
 	 * @return the number of matching kaleo definitions
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -2499,10 +2499,10 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	}
 
 	/**
-	 * Counts all the kaleo definitions where companyId = &#63; and active = &#63;.
+	 * Returns the number of kaleo definitions where companyId = &#63; and active = &#63;.
 	 *
-	 * @param companyId the company ID to search with
-	 * @param active the active to search with
+	 * @param companyId the company ID
+	 * @param active the active
 	 * @return the number of matching kaleo definitions
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -2558,11 +2558,11 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	}
 
 	/**
-	 * Counts all the kaleo definitions where companyId = &#63; and name = &#63; and version = &#63;.
+	 * Returns the number of kaleo definitions where companyId = &#63; and name = &#63; and version = &#63;.
 	 *
-	 * @param companyId the company ID to search with
-	 * @param name the name to search with
-	 * @param version the version to search with
+	 * @param companyId the company ID
+	 * @param name the name
+	 * @param version the version
 	 * @return the number of matching kaleo definitions
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -2634,11 +2634,11 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	}
 
 	/**
-	 * Counts all the kaleo definitions where companyId = &#63; and name = &#63; and active = &#63;.
+	 * Returns the number of kaleo definitions where companyId = &#63; and name = &#63; and active = &#63;.
 	 *
-	 * @param companyId the company ID to search with
-	 * @param name the name to search with
-	 * @param active the active to search with
+	 * @param companyId the company ID
+	 * @param name the name
+	 * @param active the active
 	 * @return the number of matching kaleo definitions
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -2710,7 +2710,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	}
 
 	/**
-	 * Counts all the kaleo definitions.
+	 * Returns the number of kaleo definitions.
 	 *
 	 * @return the number of kaleo definitions
 	 * @throws SystemException if a system exception occurred
@@ -2750,9 +2750,9 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	}
 
 	/**
-	 * Gets all the kaleo nodes associated with the kaleo definition.
+	 * Returns all the kaleo nodes associated with the kaleo definition.
 	 *
-	 * @param pk the primary key of the kaleo definition to get the associated kaleo nodes for
+	 * @param pk the primary key of the kaleo definition
 	 * @return the kaleo nodes associated with the kaleo definition
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -2762,15 +2762,15 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	}
 
 	/**
-	 * Gets a range of all the kaleo nodes associated with the kaleo definition.
+	 * Returns a range of all the kaleo nodes associated with the kaleo definition.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param pk the primary key of the kaleo definition to get the associated kaleo nodes for
-	 * @param start the lower bound of the range of kaleo definitions to return
-	 * @param end the upper bound of the range of kaleo definitions to return (not inclusive)
+	 * @param pk the primary key of the kaleo definition
+	 * @param start the lower bound of the range of kaleo definitions
+	 * @param end the upper bound of the range of kaleo definitions (not inclusive)
 	 * @return the range of kaleo nodes associated with the kaleo definition
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -2789,15 +2789,15 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 			});
 
 	/**
-	 * Gets an ordered range of all the kaleo nodes associated with the kaleo definition.
+	 * Returns an ordered range of all the kaleo nodes associated with the kaleo definition.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param pk the primary key of the kaleo definition to get the associated kaleo nodes for
-	 * @param start the lower bound of the range of kaleo definitions to return
-	 * @param end the upper bound of the range of kaleo definitions to return (not inclusive)
+	 * @param pk the primary key of the kaleo definition
+	 * @param start the lower bound of the range of kaleo definitions
+	 * @param end the upper bound of the range of kaleo definitions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of kaleo nodes associated with the kaleo definition
 	 * @throws SystemException if a system exception occurred
@@ -2869,9 +2869,9 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 			"getKaleoNodesSize", new String[] { Long.class.getName() });
 
 	/**
-	 * Gets the number of kaleo nodes associated with the kaleo definition.
+	 * Returns the number of kaleo nodes associated with the kaleo definition.
 	 *
-	 * @param pk the primary key of the kaleo definition to get the number of associated kaleo nodes for
+	 * @param pk the primary key of the kaleo definition
 	 * @return the number of kaleo nodes associated with the kaleo definition
 	 * @throws SystemException if a system exception occurred
 	 */

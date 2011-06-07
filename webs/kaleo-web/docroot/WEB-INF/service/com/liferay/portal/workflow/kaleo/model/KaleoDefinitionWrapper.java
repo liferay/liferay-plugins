@@ -37,7 +37,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition {
 	}
 
 	/**
-	* Gets the primary key of this kaleo definition.
+	* Returns the primary key of this kaleo definition.
 	*
 	* @return the primary key of this kaleo definition
 	*/
@@ -46,7 +46,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition {
 	}
 
 	/**
-	* Sets the primary key of this kaleo definition
+	* Sets the primary key of this kaleo definition.
 	*
 	* @param primaryKey the primary key of this kaleo definition
 	*/
@@ -55,7 +55,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition {
 	}
 
 	/**
-	* Gets the kaleo definition ID of this kaleo definition.
+	* Returns the kaleo definition ID of this kaleo definition.
 	*
 	* @return the kaleo definition ID of this kaleo definition
 	*/
@@ -73,7 +73,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition {
 	}
 
 	/**
-	* Gets the group ID of this kaleo definition.
+	* Returns the group ID of this kaleo definition.
 	*
 	* @return the group ID of this kaleo definition
 	*/
@@ -91,7 +91,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition {
 	}
 
 	/**
-	* Gets the company ID of this kaleo definition.
+	* Returns the company ID of this kaleo definition.
 	*
 	* @return the company ID of this kaleo definition
 	*/
@@ -109,7 +109,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition {
 	}
 
 	/**
-	* Gets the user ID of this kaleo definition.
+	* Returns the user ID of this kaleo definition.
 	*
 	* @return the user ID of this kaleo definition
 	*/
@@ -127,7 +127,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition {
 	}
 
 	/**
-	* Gets the user uuid of this kaleo definition.
+	* Returns the user uuid of this kaleo definition.
 	*
 	* @return the user uuid of this kaleo definition
 	* @throws SystemException if a system exception occurred
@@ -147,7 +147,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition {
 	}
 
 	/**
-	* Gets the user name of this kaleo definition.
+	* Returns the user name of this kaleo definition.
 	*
 	* @return the user name of this kaleo definition
 	*/
@@ -165,7 +165,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition {
 	}
 
 	/**
-	* Gets the create date of this kaleo definition.
+	* Returns the create date of this kaleo definition.
 	*
 	* @return the create date of this kaleo definition
 	*/
@@ -183,7 +183,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition {
 	}
 
 	/**
-	* Gets the modified date of this kaleo definition.
+	* Returns the modified date of this kaleo definition.
 	*
 	* @return the modified date of this kaleo definition
 	*/
@@ -201,7 +201,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition {
 	}
 
 	/**
-	* Gets the name of this kaleo definition.
+	* Returns the name of this kaleo definition.
 	*
 	* @return the name of this kaleo definition
 	*/
@@ -219,7 +219,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition {
 	}
 
 	/**
-	* Gets the title of this kaleo definition.
+	* Returns the title of this kaleo definition.
 	*
 	* @return the title of this kaleo definition
 	*/
@@ -228,9 +228,9 @@ public class KaleoDefinitionWrapper implements KaleoDefinition {
 	}
 
 	/**
-	* Gets the localized title of this kaleo definition. Uses the default language if no localization exists for the requested language.
+	* Returns the localized title of this kaleo definition in the language. Uses the default language if no localization exists for the requested language.
 	*
-	* @param locale the locale to get the localized title for
+	* @param locale the locale of the language
 	* @return the localized title of this kaleo definition
 	*/
 	public java.lang.String getTitle(java.util.Locale locale) {
@@ -238,9 +238,9 @@ public class KaleoDefinitionWrapper implements KaleoDefinition {
 	}
 
 	/**
-	* Gets the localized title of this kaleo definition, optionally using the default language if no localization exists for the requested language.
+	* Returns the localized title of this kaleo definition in the language, optionally using the default language if no localization exists for the requested language.
 	*
-	* @param locale the local to get the localized title for
+	* @param locale the local of the language
 	* @param useDefault whether to use the default language if no localization exists for the requested language
 	* @return the localized title of this kaleo definition. If <code>useDefault</code> is <code>false</code> and no localization exists for the requested language, an empty string will be returned.
 	*/
@@ -249,9 +249,9 @@ public class KaleoDefinitionWrapper implements KaleoDefinition {
 	}
 
 	/**
-	* Gets the localized title of this kaleo definition. Uses the default language if no localization exists for the requested language.
+	* Returns the localized title of this kaleo definition in the language. Uses the default language if no localization exists for the requested language.
 	*
-	* @param languageId the id of the language to get the localized title for
+	* @param languageId the ID of the language
 	* @return the localized title of this kaleo definition
 	*/
 	public java.lang.String getTitle(java.lang.String languageId) {
@@ -259,9 +259,9 @@ public class KaleoDefinitionWrapper implements KaleoDefinition {
 	}
 
 	/**
-	* Gets the localized title of this kaleo definition, optionally using the default language if no localization exists for the requested language.
+	* Returns the localized title of this kaleo definition in the language, optionally using the default language if no localization exists for the requested language.
 	*
-	* @param languageId the id of the language to get the localized title for
+	* @param languageId the ID of the language
 	* @param useDefault whether to use the default language if no localization exists for the requested language
 	* @return the localized title of this kaleo definition
 	*/
@@ -271,9 +271,9 @@ public class KaleoDefinitionWrapper implements KaleoDefinition {
 	}
 
 	/**
-	* Gets a map of the locales and localized title of this kaleo definition.
+	* Returns a map of the locales and localized titles of this kaleo definition.
 	*
-	* @return the locales and localized title
+	* @return the locales and localized titles of this kaleo definition
 	*/
 	public java.util.Map<java.util.Locale, java.lang.String> getTitleMap() {
 		return _kaleoDefinition.getTitleMap();
@@ -289,15 +289,22 @@ public class KaleoDefinitionWrapper implements KaleoDefinition {
 	}
 
 	/**
-	* Sets the localized title of this kaleo definition.
+	* Sets the localized title of this kaleo definition in the language.
 	*
 	* @param title the localized title of this kaleo definition
-	* @param locale the locale to set the localized title for
+	* @param locale the locale of the language
 	*/
 	public void setTitle(java.lang.String title, java.util.Locale locale) {
 		_kaleoDefinition.setTitle(title, locale);
 	}
 
+	/**
+	* Sets the localized title of this kaleo definition in the language, and sets the default locale.
+	*
+	* @param title the localized title of this kaleo definition
+	* @param locale the locale of the language
+	* @param defaultLocale the default locale
+	*/
 	public void setTitle(java.lang.String title, java.util.Locale locale,
 		java.util.Locale defaultLocale) {
 		_kaleoDefinition.setTitle(title, locale, defaultLocale);
@@ -313,6 +320,12 @@ public class KaleoDefinitionWrapper implements KaleoDefinition {
 		_kaleoDefinition.setTitleMap(titleMap);
 	}
 
+	/**
+	* Sets the localized titles of this kaleo definition from the map of locales and localized titles, and sets the default locale.
+	*
+	* @param titleMap the locales and localized titles of this kaleo definition
+	* @param defaultLocale the default locale
+	*/
 	public void setTitleMap(
 		java.util.Map<java.util.Locale, java.lang.String> titleMap,
 		java.util.Locale defaultLocale) {
@@ -320,7 +333,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition {
 	}
 
 	/**
-	* Gets the description of this kaleo definition.
+	* Returns the description of this kaleo definition.
 	*
 	* @return the description of this kaleo definition
 	*/
@@ -338,7 +351,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition {
 	}
 
 	/**
-	* Gets the version of this kaleo definition.
+	* Returns the version of this kaleo definition.
 	*
 	* @return the version of this kaleo definition
 	*/
@@ -356,7 +369,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition {
 	}
 
 	/**
-	* Gets the active of this kaleo definition.
+	* Returns the active of this kaleo definition.
 	*
 	* @return the active of this kaleo definition
 	*/
@@ -383,7 +396,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition {
 	}
 
 	/**
-	* Gets the start kaleo node ID of this kaleo definition.
+	* Returns the start kaleo node ID of this kaleo definition.
 	*
 	* @return the start kaleo node ID of this kaleo definition
 	*/

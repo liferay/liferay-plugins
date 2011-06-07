@@ -47,21 +47,21 @@ public interface KaleoLogModel extends BaseModel<KaleoLog>, GroupedModel {
 	 */
 
 	/**
-	 * Gets the primary key of this kaleo log.
+	 * Returns the primary key of this kaleo log.
 	 *
 	 * @return the primary key of this kaleo log
 	 */
 	public long getPrimaryKey();
 
 	/**
-	 * Sets the primary key of this kaleo log
+	 * Sets the primary key of this kaleo log.
 	 *
 	 * @param primaryKey the primary key of this kaleo log
 	 */
 	public void setPrimaryKey(long primaryKey);
 
 	/**
-	 * Gets the kaleo log ID of this kaleo log.
+	 * Returns the kaleo log ID of this kaleo log.
 	 *
 	 * @return the kaleo log ID of this kaleo log
 	 */
@@ -75,7 +75,7 @@ public interface KaleoLogModel extends BaseModel<KaleoLog>, GroupedModel {
 	public void setKaleoLogId(long kaleoLogId);
 
 	/**
-	 * Gets the group ID of this kaleo log.
+	 * Returns the group ID of this kaleo log.
 	 *
 	 * @return the group ID of this kaleo log
 	 */
@@ -89,7 +89,7 @@ public interface KaleoLogModel extends BaseModel<KaleoLog>, GroupedModel {
 	public void setGroupId(long groupId);
 
 	/**
-	 * Gets the company ID of this kaleo log.
+	 * Returns the company ID of this kaleo log.
 	 *
 	 * @return the company ID of this kaleo log
 	 */
@@ -103,7 +103,7 @@ public interface KaleoLogModel extends BaseModel<KaleoLog>, GroupedModel {
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the user ID of this kaleo log.
+	 * Returns the user ID of this kaleo log.
 	 *
 	 * @return the user ID of this kaleo log
 	 */
@@ -117,7 +117,7 @@ public interface KaleoLogModel extends BaseModel<KaleoLog>, GroupedModel {
 	public void setUserId(long userId);
 
 	/**
-	 * Gets the user uuid of this kaleo log.
+	 * Returns the user uuid of this kaleo log.
 	 *
 	 * @return the user uuid of this kaleo log
 	 * @throws SystemException if a system exception occurred
@@ -132,7 +132,7 @@ public interface KaleoLogModel extends BaseModel<KaleoLog>, GroupedModel {
 	public void setUserUuid(String userUuid);
 
 	/**
-	 * Gets the user name of this kaleo log.
+	 * Returns the user name of this kaleo log.
 	 *
 	 * @return the user name of this kaleo log
 	 */
@@ -147,7 +147,7 @@ public interface KaleoLogModel extends BaseModel<KaleoLog>, GroupedModel {
 	public void setUserName(String userName);
 
 	/**
-	 * Gets the create date of this kaleo log.
+	 * Returns the create date of this kaleo log.
 	 *
 	 * @return the create date of this kaleo log
 	 */
@@ -161,7 +161,7 @@ public interface KaleoLogModel extends BaseModel<KaleoLog>, GroupedModel {
 	public void setCreateDate(Date createDate);
 
 	/**
-	 * Gets the modified date of this kaleo log.
+	 * Returns the modified date of this kaleo log.
 	 *
 	 * @return the modified date of this kaleo log
 	 */
@@ -175,7 +175,7 @@ public interface KaleoLogModel extends BaseModel<KaleoLog>, GroupedModel {
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Gets the kaleo definition ID of this kaleo log.
+	 * Returns the kaleo definition ID of this kaleo log.
 	 *
 	 * @return the kaleo definition ID of this kaleo log
 	 */
@@ -189,7 +189,7 @@ public interface KaleoLogModel extends BaseModel<KaleoLog>, GroupedModel {
 	public void setKaleoDefinitionId(long kaleoDefinitionId);
 
 	/**
-	 * Gets the kaleo instance ID of this kaleo log.
+	 * Returns the kaleo instance ID of this kaleo log.
 	 *
 	 * @return the kaleo instance ID of this kaleo log
 	 */
@@ -203,7 +203,7 @@ public interface KaleoLogModel extends BaseModel<KaleoLog>, GroupedModel {
 	public void setKaleoInstanceId(long kaleoInstanceId);
 
 	/**
-	 * Gets the kaleo instance token ID of this kaleo log.
+	 * Returns the kaleo instance token ID of this kaleo log.
 	 *
 	 * @return the kaleo instance token ID of this kaleo log
 	 */
@@ -217,7 +217,7 @@ public interface KaleoLogModel extends BaseModel<KaleoLog>, GroupedModel {
 	public void setKaleoInstanceTokenId(long kaleoInstanceTokenId);
 
 	/**
-	 * Gets the kaleo task instance token ID of this kaleo log.
+	 * Returns the kaleo task instance token ID of this kaleo log.
 	 *
 	 * @return the kaleo task instance token ID of this kaleo log
 	 */
@@ -231,7 +231,7 @@ public interface KaleoLogModel extends BaseModel<KaleoLog>, GroupedModel {
 	public void setKaleoTaskInstanceTokenId(long kaleoTaskInstanceTokenId);
 
 	/**
-	 * Gets the kaleo node ID of this kaleo log.
+	 * Returns the kaleo node ID of this kaleo log.
 	 *
 	 * @return the kaleo node ID of this kaleo log
 	 */
@@ -245,7 +245,7 @@ public interface KaleoLogModel extends BaseModel<KaleoLog>, GroupedModel {
 	public void setKaleoNodeId(long kaleoNodeId);
 
 	/**
-	 * Gets the kaleo node name of this kaleo log.
+	 * Returns the kaleo node name of this kaleo log.
 	 *
 	 * @return the kaleo node name of this kaleo log
 	 */
@@ -260,7 +260,7 @@ public interface KaleoLogModel extends BaseModel<KaleoLog>, GroupedModel {
 	public void setKaleoNodeName(String kaleoNodeName);
 
 	/**
-	 * Gets the terminal kaleo node of this kaleo log.
+	 * Returns the terminal kaleo node of this kaleo log.
 	 *
 	 * @return the terminal kaleo node of this kaleo log
 	 */
@@ -281,7 +281,7 @@ public interface KaleoLogModel extends BaseModel<KaleoLog>, GroupedModel {
 	public void setTerminalKaleoNode(boolean terminalKaleoNode);
 
 	/**
-	 * Gets the kaleo action ID of this kaleo log.
+	 * Returns the kaleo action ID of this kaleo log.
 	 *
 	 * @return the kaleo action ID of this kaleo log
 	 */
@@ -295,7 +295,7 @@ public interface KaleoLogModel extends BaseModel<KaleoLog>, GroupedModel {
 	public void setKaleoActionId(long kaleoActionId);
 
 	/**
-	 * Gets the kaleo action name of this kaleo log.
+	 * Returns the kaleo action name of this kaleo log.
 	 *
 	 * @return the kaleo action name of this kaleo log
 	 */
@@ -310,7 +310,7 @@ public interface KaleoLogModel extends BaseModel<KaleoLog>, GroupedModel {
 	public void setKaleoActionName(String kaleoActionName);
 
 	/**
-	 * Gets the kaleo action description of this kaleo log.
+	 * Returns the kaleo action description of this kaleo log.
 	 *
 	 * @return the kaleo action description of this kaleo log
 	 */
@@ -325,7 +325,7 @@ public interface KaleoLogModel extends BaseModel<KaleoLog>, GroupedModel {
 	public void setKaleoActionDescription(String kaleoActionDescription);
 
 	/**
-	 * Gets the previous kaleo node ID of this kaleo log.
+	 * Returns the previous kaleo node ID of this kaleo log.
 	 *
 	 * @return the previous kaleo node ID of this kaleo log
 	 */
@@ -339,7 +339,7 @@ public interface KaleoLogModel extends BaseModel<KaleoLog>, GroupedModel {
 	public void setPreviousKaleoNodeId(long previousKaleoNodeId);
 
 	/**
-	 * Gets the previous kaleo node name of this kaleo log.
+	 * Returns the previous kaleo node name of this kaleo log.
 	 *
 	 * @return the previous kaleo node name of this kaleo log
 	 */
@@ -354,7 +354,7 @@ public interface KaleoLogModel extends BaseModel<KaleoLog>, GroupedModel {
 	public void setPreviousKaleoNodeName(String previousKaleoNodeName);
 
 	/**
-	 * Gets the previous assignee class name of this kaleo log.
+	 * Returns the previous assignee class name of this kaleo log.
 	 *
 	 * @return the previous assignee class name of this kaleo log
 	 */
@@ -369,7 +369,7 @@ public interface KaleoLogModel extends BaseModel<KaleoLog>, GroupedModel {
 	public void setPreviousAssigneeClassName(String previousAssigneeClassName);
 
 	/**
-	 * Gets the previous assignee class p k of this kaleo log.
+	 * Returns the previous assignee class p k of this kaleo log.
 	 *
 	 * @return the previous assignee class p k of this kaleo log
 	 */
@@ -383,7 +383,7 @@ public interface KaleoLogModel extends BaseModel<KaleoLog>, GroupedModel {
 	public void setPreviousAssigneeClassPK(long previousAssigneeClassPK);
 
 	/**
-	 * Gets the current assignee class name of this kaleo log.
+	 * Returns the current assignee class name of this kaleo log.
 	 *
 	 * @return the current assignee class name of this kaleo log
 	 */
@@ -398,7 +398,7 @@ public interface KaleoLogModel extends BaseModel<KaleoLog>, GroupedModel {
 	public void setCurrentAssigneeClassName(String currentAssigneeClassName);
 
 	/**
-	 * Gets the current assignee class p k of this kaleo log.
+	 * Returns the current assignee class p k of this kaleo log.
 	 *
 	 * @return the current assignee class p k of this kaleo log
 	 */
@@ -412,7 +412,7 @@ public interface KaleoLogModel extends BaseModel<KaleoLog>, GroupedModel {
 	public void setCurrentAssigneeClassPK(long currentAssigneeClassPK);
 
 	/**
-	 * Gets the type of this kaleo log.
+	 * Returns the type of this kaleo log.
 	 *
 	 * @return the type of this kaleo log
 	 */
@@ -427,7 +427,7 @@ public interface KaleoLogModel extends BaseModel<KaleoLog>, GroupedModel {
 	public void setType(String type);
 
 	/**
-	 * Gets the comment of this kaleo log.
+	 * Returns the comment of this kaleo log.
 	 *
 	 * @return the comment of this kaleo log
 	 */
@@ -442,7 +442,7 @@ public interface KaleoLogModel extends BaseModel<KaleoLog>, GroupedModel {
 	public void setComment(String comment);
 
 	/**
-	 * Gets the start date of this kaleo log.
+	 * Returns the start date of this kaleo log.
 	 *
 	 * @return the start date of this kaleo log
 	 */
@@ -456,7 +456,7 @@ public interface KaleoLogModel extends BaseModel<KaleoLog>, GroupedModel {
 	public void setStartDate(Date startDate);
 
 	/**
-	 * Gets the end date of this kaleo log.
+	 * Returns the end date of this kaleo log.
 	 *
 	 * @return the end date of this kaleo log
 	 */
@@ -470,7 +470,7 @@ public interface KaleoLogModel extends BaseModel<KaleoLog>, GroupedModel {
 	public void setEndDate(Date endDate);
 
 	/**
-	 * Gets the duration of this kaleo log.
+	 * Returns the duration of this kaleo log.
 	 *
 	 * @return the duration of this kaleo log
 	 */
@@ -484,7 +484,7 @@ public interface KaleoLogModel extends BaseModel<KaleoLog>, GroupedModel {
 	public void setDuration(long duration);
 
 	/**
-	 * Gets the workflow context of this kaleo log.
+	 * Returns the workflow context of this kaleo log.
 	 *
 	 * @return the workflow context of this kaleo log
 	 */

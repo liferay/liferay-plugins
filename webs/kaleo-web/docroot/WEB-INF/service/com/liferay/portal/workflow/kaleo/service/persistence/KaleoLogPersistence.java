@@ -40,7 +40,7 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 	/**
 	* Caches the kaleo log in the entity cache if it is enabled.
 	*
-	* @param kaleoLog the kaleo log to cache
+	* @param kaleoLog the kaleo log
 	*/
 	public void cacheResult(
 		com.liferay.portal.workflow.kaleo.model.KaleoLog kaleoLog);
@@ -48,7 +48,7 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 	/**
 	* Caches the kaleo logs in the entity cache if it is enabled.
 	*
-	* @param kaleoLogs the kaleo logs to cache
+	* @param kaleoLogs the kaleo logs
 	*/
 	public void cacheResult(
 		java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoLog> kaleoLogs);
@@ -65,7 +65,7 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 	/**
 	* Removes the kaleo log with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param kaleoLogId the primary key of the kaleo log to remove
+	* @param kaleoLogId the primary key of the kaleo log
 	* @return the kaleo log that was removed
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchLogException if a kaleo log with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -80,9 +80,9 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the kaleo log with the primary key or throws a {@link com.liferay.portal.workflow.kaleo.NoSuchLogException} if it could not be found.
+	* Returns the kaleo log with the primary key or throws a {@link com.liferay.portal.workflow.kaleo.NoSuchLogException} if it could not be found.
 	*
-	* @param kaleoLogId the primary key of the kaleo log to find
+	* @param kaleoLogId the primary key of the kaleo log
 	* @return the kaleo log
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchLogException if a kaleo log with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -93,9 +93,9 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 			com.liferay.portal.workflow.kaleo.NoSuchLogException;
 
 	/**
-	* Finds the kaleo log with the primary key or returns <code>null</code> if it could not be found.
+	* Returns the kaleo log with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param kaleoLogId the primary key of the kaleo log to find
+	* @param kaleoLogId the primary key of the kaleo log
 	* @return the kaleo log, or <code>null</code> if a kaleo log with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -104,9 +104,9 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds all the kaleo logs where companyId = &#63;.
+	* Returns all the kaleo logs where companyId = &#63;.
 	*
-	* @param companyId the company ID to search with
+	* @param companyId the company ID
 	* @return the matching kaleo logs
 	* @throws SystemException if a system exception occurred
 	*/
@@ -115,15 +115,15 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds a range of all the kaleo logs where companyId = &#63;.
+	* Returns a range of all the kaleo logs where companyId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param companyId the company ID to search with
-	* @param start the lower bound of the range of kaleo logs to return
-	* @param end the upper bound of the range of kaleo logs to return (not inclusive)
+	* @param companyId the company ID
+	* @param start the lower bound of the range of kaleo logs
+	* @param end the upper bound of the range of kaleo logs (not inclusive)
 	* @return the range of matching kaleo logs
 	* @throws SystemException if a system exception occurred
 	*/
@@ -132,15 +132,15 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds an ordered range of all the kaleo logs where companyId = &#63;.
+	* Returns an ordered range of all the kaleo logs where companyId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param companyId the company ID to search with
-	* @param start the lower bound of the range of kaleo logs to return
-	* @param end the upper bound of the range of kaleo logs to return (not inclusive)
+	* @param companyId the company ID
+	* @param start the lower bound of the range of kaleo logs
+	* @param end the upper bound of the range of kaleo logs (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching kaleo logs
 	* @throws SystemException if a system exception occurred
@@ -151,13 +151,13 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the first kaleo log in the ordered set where companyId = &#63;.
+	* Returns the first kaleo log in the ordered set where companyId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param companyId the company ID to search with
+	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo log
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchLogException if a matching kaleo log could not be found
@@ -170,13 +170,13 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 			com.liferay.portal.workflow.kaleo.NoSuchLogException;
 
 	/**
-	* Finds the last kaleo log in the ordered set where companyId = &#63;.
+	* Returns the last kaleo log in the ordered set where companyId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param companyId the company ID to search with
+	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching kaleo log
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchLogException if a matching kaleo log could not be found
@@ -189,14 +189,14 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 			com.liferay.portal.workflow.kaleo.NoSuchLogException;
 
 	/**
-	* Finds the kaleo logs before and after the current kaleo log in the ordered set where companyId = &#63;.
+	* Returns the kaleo logs before and after the current kaleo log in the ordered set where companyId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
 	* @param kaleoLogId the primary key of the current kaleo log
-	* @param companyId the company ID to search with
+	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next kaleo log
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchLogException if a kaleo log with the primary key could not be found
@@ -209,9 +209,9 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 			com.liferay.portal.workflow.kaleo.NoSuchLogException;
 
 	/**
-	* Finds all the kaleo logs where kaleoDefinitionId = &#63;.
+	* Returns all the kaleo logs where kaleoDefinitionId = &#63;.
 	*
-	* @param kaleoDefinitionId the kaleo definition ID to search with
+	* @param kaleoDefinitionId the kaleo definition ID
 	* @return the matching kaleo logs
 	* @throws SystemException if a system exception occurred
 	*/
@@ -220,15 +220,15 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds a range of all the kaleo logs where kaleoDefinitionId = &#63;.
+	* Returns a range of all the kaleo logs where kaleoDefinitionId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param kaleoDefinitionId the kaleo definition ID to search with
-	* @param start the lower bound of the range of kaleo logs to return
-	* @param end the upper bound of the range of kaleo logs to return (not inclusive)
+	* @param kaleoDefinitionId the kaleo definition ID
+	* @param start the lower bound of the range of kaleo logs
+	* @param end the upper bound of the range of kaleo logs (not inclusive)
 	* @return the range of matching kaleo logs
 	* @throws SystemException if a system exception occurred
 	*/
@@ -237,15 +237,15 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds an ordered range of all the kaleo logs where kaleoDefinitionId = &#63;.
+	* Returns an ordered range of all the kaleo logs where kaleoDefinitionId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param kaleoDefinitionId the kaleo definition ID to search with
-	* @param start the lower bound of the range of kaleo logs to return
-	* @param end the upper bound of the range of kaleo logs to return (not inclusive)
+	* @param kaleoDefinitionId the kaleo definition ID
+	* @param start the lower bound of the range of kaleo logs
+	* @param end the upper bound of the range of kaleo logs (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching kaleo logs
 	* @throws SystemException if a system exception occurred
@@ -256,13 +256,13 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the first kaleo log in the ordered set where kaleoDefinitionId = &#63;.
+	* Returns the first kaleo log in the ordered set where kaleoDefinitionId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param kaleoDefinitionId the kaleo definition ID to search with
+	* @param kaleoDefinitionId the kaleo definition ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo log
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchLogException if a matching kaleo log could not be found
@@ -275,13 +275,13 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 			com.liferay.portal.workflow.kaleo.NoSuchLogException;
 
 	/**
-	* Finds the last kaleo log in the ordered set where kaleoDefinitionId = &#63;.
+	* Returns the last kaleo log in the ordered set where kaleoDefinitionId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param kaleoDefinitionId the kaleo definition ID to search with
+	* @param kaleoDefinitionId the kaleo definition ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching kaleo log
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchLogException if a matching kaleo log could not be found
@@ -294,14 +294,14 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 			com.liferay.portal.workflow.kaleo.NoSuchLogException;
 
 	/**
-	* Finds the kaleo logs before and after the current kaleo log in the ordered set where kaleoDefinitionId = &#63;.
+	* Returns the kaleo logs before and after the current kaleo log in the ordered set where kaleoDefinitionId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
 	* @param kaleoLogId the primary key of the current kaleo log
-	* @param kaleoDefinitionId the kaleo definition ID to search with
+	* @param kaleoDefinitionId the kaleo definition ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next kaleo log
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchLogException if a kaleo log with the primary key could not be found
@@ -314,9 +314,9 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 			com.liferay.portal.workflow.kaleo.NoSuchLogException;
 
 	/**
-	* Finds all the kaleo logs where kaleoInstanceId = &#63;.
+	* Returns all the kaleo logs where kaleoInstanceId = &#63;.
 	*
-	* @param kaleoInstanceId the kaleo instance ID to search with
+	* @param kaleoInstanceId the kaleo instance ID
 	* @return the matching kaleo logs
 	* @throws SystemException if a system exception occurred
 	*/
@@ -325,15 +325,15 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds a range of all the kaleo logs where kaleoInstanceId = &#63;.
+	* Returns a range of all the kaleo logs where kaleoInstanceId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param kaleoInstanceId the kaleo instance ID to search with
-	* @param start the lower bound of the range of kaleo logs to return
-	* @param end the upper bound of the range of kaleo logs to return (not inclusive)
+	* @param kaleoInstanceId the kaleo instance ID
+	* @param start the lower bound of the range of kaleo logs
+	* @param end the upper bound of the range of kaleo logs (not inclusive)
 	* @return the range of matching kaleo logs
 	* @throws SystemException if a system exception occurred
 	*/
@@ -342,15 +342,15 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds an ordered range of all the kaleo logs where kaleoInstanceId = &#63;.
+	* Returns an ordered range of all the kaleo logs where kaleoInstanceId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param kaleoInstanceId the kaleo instance ID to search with
-	* @param start the lower bound of the range of kaleo logs to return
-	* @param end the upper bound of the range of kaleo logs to return (not inclusive)
+	* @param kaleoInstanceId the kaleo instance ID
+	* @param start the lower bound of the range of kaleo logs
+	* @param end the upper bound of the range of kaleo logs (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching kaleo logs
 	* @throws SystemException if a system exception occurred
@@ -361,13 +361,13 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the first kaleo log in the ordered set where kaleoInstanceId = &#63;.
+	* Returns the first kaleo log in the ordered set where kaleoInstanceId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param kaleoInstanceId the kaleo instance ID to search with
+	* @param kaleoInstanceId the kaleo instance ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo log
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchLogException if a matching kaleo log could not be found
@@ -380,13 +380,13 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 			com.liferay.portal.workflow.kaleo.NoSuchLogException;
 
 	/**
-	* Finds the last kaleo log in the ordered set where kaleoInstanceId = &#63;.
+	* Returns the last kaleo log in the ordered set where kaleoInstanceId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param kaleoInstanceId the kaleo instance ID to search with
+	* @param kaleoInstanceId the kaleo instance ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching kaleo log
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchLogException if a matching kaleo log could not be found
@@ -399,14 +399,14 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 			com.liferay.portal.workflow.kaleo.NoSuchLogException;
 
 	/**
-	* Finds the kaleo logs before and after the current kaleo log in the ordered set where kaleoInstanceId = &#63;.
+	* Returns the kaleo logs before and after the current kaleo log in the ordered set where kaleoInstanceId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
 	* @param kaleoLogId the primary key of the current kaleo log
-	* @param kaleoInstanceId the kaleo instance ID to search with
+	* @param kaleoInstanceId the kaleo instance ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next kaleo log
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchLogException if a kaleo log with the primary key could not be found
@@ -419,9 +419,9 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 			com.liferay.portal.workflow.kaleo.NoSuchLogException;
 
 	/**
-	* Finds all the kaleo logs where kaleoTaskInstanceTokenId = &#63;.
+	* Returns all the kaleo logs where kaleoTaskInstanceTokenId = &#63;.
 	*
-	* @param kaleoTaskInstanceTokenId the kaleo task instance token ID to search with
+	* @param kaleoTaskInstanceTokenId the kaleo task instance token ID
 	* @return the matching kaleo logs
 	* @throws SystemException if a system exception occurred
 	*/
@@ -430,15 +430,15 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds a range of all the kaleo logs where kaleoTaskInstanceTokenId = &#63;.
+	* Returns a range of all the kaleo logs where kaleoTaskInstanceTokenId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param kaleoTaskInstanceTokenId the kaleo task instance token ID to search with
-	* @param start the lower bound of the range of kaleo logs to return
-	* @param end the upper bound of the range of kaleo logs to return (not inclusive)
+	* @param kaleoTaskInstanceTokenId the kaleo task instance token ID
+	* @param start the lower bound of the range of kaleo logs
+	* @param end the upper bound of the range of kaleo logs (not inclusive)
 	* @return the range of matching kaleo logs
 	* @throws SystemException if a system exception occurred
 	*/
@@ -447,15 +447,15 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds an ordered range of all the kaleo logs where kaleoTaskInstanceTokenId = &#63;.
+	* Returns an ordered range of all the kaleo logs where kaleoTaskInstanceTokenId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param kaleoTaskInstanceTokenId the kaleo task instance token ID to search with
-	* @param start the lower bound of the range of kaleo logs to return
-	* @param end the upper bound of the range of kaleo logs to return (not inclusive)
+	* @param kaleoTaskInstanceTokenId the kaleo task instance token ID
+	* @param start the lower bound of the range of kaleo logs
+	* @param end the upper bound of the range of kaleo logs (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching kaleo logs
 	* @throws SystemException if a system exception occurred
@@ -466,13 +466,13 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the first kaleo log in the ordered set where kaleoTaskInstanceTokenId = &#63;.
+	* Returns the first kaleo log in the ordered set where kaleoTaskInstanceTokenId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param kaleoTaskInstanceTokenId the kaleo task instance token ID to search with
+	* @param kaleoTaskInstanceTokenId the kaleo task instance token ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo log
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchLogException if a matching kaleo log could not be found
@@ -485,13 +485,13 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 			com.liferay.portal.workflow.kaleo.NoSuchLogException;
 
 	/**
-	* Finds the last kaleo log in the ordered set where kaleoTaskInstanceTokenId = &#63;.
+	* Returns the last kaleo log in the ordered set where kaleoTaskInstanceTokenId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param kaleoTaskInstanceTokenId the kaleo task instance token ID to search with
+	* @param kaleoTaskInstanceTokenId the kaleo task instance token ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching kaleo log
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchLogException if a matching kaleo log could not be found
@@ -504,14 +504,14 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 			com.liferay.portal.workflow.kaleo.NoSuchLogException;
 
 	/**
-	* Finds the kaleo logs before and after the current kaleo log in the ordered set where kaleoTaskInstanceTokenId = &#63;.
+	* Returns the kaleo logs before and after the current kaleo log in the ordered set where kaleoTaskInstanceTokenId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
 	* @param kaleoLogId the primary key of the current kaleo log
-	* @param kaleoTaskInstanceTokenId the kaleo task instance token ID to search with
+	* @param kaleoTaskInstanceTokenId the kaleo task instance token ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next kaleo log
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchLogException if a kaleo log with the primary key could not be found
@@ -524,10 +524,10 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 			com.liferay.portal.workflow.kaleo.NoSuchLogException;
 
 	/**
-	* Finds all the kaleo logs where kaleoInstanceTokenId = &#63; and type = &#63;.
+	* Returns all the kaleo logs where kaleoInstanceTokenId = &#63; and type = &#63;.
 	*
-	* @param kaleoInstanceTokenId the kaleo instance token ID to search with
-	* @param type the type to search with
+	* @param kaleoInstanceTokenId the kaleo instance token ID
+	* @param type the type
 	* @return the matching kaleo logs
 	* @throws SystemException if a system exception occurred
 	*/
@@ -536,16 +536,16 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds a range of all the kaleo logs where kaleoInstanceTokenId = &#63; and type = &#63;.
+	* Returns a range of all the kaleo logs where kaleoInstanceTokenId = &#63; and type = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param kaleoInstanceTokenId the kaleo instance token ID to search with
-	* @param type the type to search with
-	* @param start the lower bound of the range of kaleo logs to return
-	* @param end the upper bound of the range of kaleo logs to return (not inclusive)
+	* @param kaleoInstanceTokenId the kaleo instance token ID
+	* @param type the type
+	* @param start the lower bound of the range of kaleo logs
+	* @param end the upper bound of the range of kaleo logs (not inclusive)
 	* @return the range of matching kaleo logs
 	* @throws SystemException if a system exception occurred
 	*/
@@ -554,16 +554,16 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds an ordered range of all the kaleo logs where kaleoInstanceTokenId = &#63; and type = &#63;.
+	* Returns an ordered range of all the kaleo logs where kaleoInstanceTokenId = &#63; and type = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param kaleoInstanceTokenId the kaleo instance token ID to search with
-	* @param type the type to search with
-	* @param start the lower bound of the range of kaleo logs to return
-	* @param end the upper bound of the range of kaleo logs to return (not inclusive)
+	* @param kaleoInstanceTokenId the kaleo instance token ID
+	* @param type the type
+	* @param start the lower bound of the range of kaleo logs
+	* @param end the upper bound of the range of kaleo logs (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching kaleo logs
 	* @throws SystemException if a system exception occurred
@@ -574,14 +574,14 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the first kaleo log in the ordered set where kaleoInstanceTokenId = &#63; and type = &#63;.
+	* Returns the first kaleo log in the ordered set where kaleoInstanceTokenId = &#63; and type = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param kaleoInstanceTokenId the kaleo instance token ID to search with
-	* @param type the type to search with
+	* @param kaleoInstanceTokenId the kaleo instance token ID
+	* @param type the type
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo log
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchLogException if a matching kaleo log could not be found
@@ -594,14 +594,14 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 			com.liferay.portal.workflow.kaleo.NoSuchLogException;
 
 	/**
-	* Finds the last kaleo log in the ordered set where kaleoInstanceTokenId = &#63; and type = &#63;.
+	* Returns the last kaleo log in the ordered set where kaleoInstanceTokenId = &#63; and type = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param kaleoInstanceTokenId the kaleo instance token ID to search with
-	* @param type the type to search with
+	* @param kaleoInstanceTokenId the kaleo instance token ID
+	* @param type the type
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching kaleo log
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchLogException if a matching kaleo log could not be found
@@ -614,15 +614,15 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 			com.liferay.portal.workflow.kaleo.NoSuchLogException;
 
 	/**
-	* Finds the kaleo logs before and after the current kaleo log in the ordered set where kaleoInstanceTokenId = &#63; and type = &#63;.
+	* Returns the kaleo logs before and after the current kaleo log in the ordered set where kaleoInstanceTokenId = &#63; and type = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
 	* @param kaleoLogId the primary key of the current kaleo log
-	* @param kaleoInstanceTokenId the kaleo instance token ID to search with
-	* @param type the type to search with
+	* @param kaleoInstanceTokenId the kaleo instance token ID
+	* @param type the type
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next kaleo log
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchLogException if a kaleo log with the primary key could not be found
@@ -635,11 +635,11 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 			com.liferay.portal.workflow.kaleo.NoSuchLogException;
 
 	/**
-	* Finds all the kaleo logs where kaleoInstanceTokenId = &#63; and kaleoNodeId = &#63; and type = &#63;.
+	* Returns all the kaleo logs where kaleoInstanceTokenId = &#63; and kaleoNodeId = &#63; and type = &#63;.
 	*
-	* @param kaleoInstanceTokenId the kaleo instance token ID to search with
-	* @param kaleoNodeId the kaleo node ID to search with
-	* @param type the type to search with
+	* @param kaleoInstanceTokenId the kaleo instance token ID
+	* @param kaleoNodeId the kaleo node ID
+	* @param type the type
 	* @return the matching kaleo logs
 	* @throws SystemException if a system exception occurred
 	*/
@@ -648,17 +648,17 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds a range of all the kaleo logs where kaleoInstanceTokenId = &#63; and kaleoNodeId = &#63; and type = &#63;.
+	* Returns a range of all the kaleo logs where kaleoInstanceTokenId = &#63; and kaleoNodeId = &#63; and type = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param kaleoInstanceTokenId the kaleo instance token ID to search with
-	* @param kaleoNodeId the kaleo node ID to search with
-	* @param type the type to search with
-	* @param start the lower bound of the range of kaleo logs to return
-	* @param end the upper bound of the range of kaleo logs to return (not inclusive)
+	* @param kaleoInstanceTokenId the kaleo instance token ID
+	* @param kaleoNodeId the kaleo node ID
+	* @param type the type
+	* @param start the lower bound of the range of kaleo logs
+	* @param end the upper bound of the range of kaleo logs (not inclusive)
 	* @return the range of matching kaleo logs
 	* @throws SystemException if a system exception occurred
 	*/
@@ -668,17 +668,17 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds an ordered range of all the kaleo logs where kaleoInstanceTokenId = &#63; and kaleoNodeId = &#63; and type = &#63;.
+	* Returns an ordered range of all the kaleo logs where kaleoInstanceTokenId = &#63; and kaleoNodeId = &#63; and type = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param kaleoInstanceTokenId the kaleo instance token ID to search with
-	* @param kaleoNodeId the kaleo node ID to search with
-	* @param type the type to search with
-	* @param start the lower bound of the range of kaleo logs to return
-	* @param end the upper bound of the range of kaleo logs to return (not inclusive)
+	* @param kaleoInstanceTokenId the kaleo instance token ID
+	* @param kaleoNodeId the kaleo node ID
+	* @param type the type
+	* @param start the lower bound of the range of kaleo logs
+	* @param end the upper bound of the range of kaleo logs (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching kaleo logs
 	* @throws SystemException if a system exception occurred
@@ -690,15 +690,15 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the first kaleo log in the ordered set where kaleoInstanceTokenId = &#63; and kaleoNodeId = &#63; and type = &#63;.
+	* Returns the first kaleo log in the ordered set where kaleoInstanceTokenId = &#63; and kaleoNodeId = &#63; and type = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param kaleoInstanceTokenId the kaleo instance token ID to search with
-	* @param kaleoNodeId the kaleo node ID to search with
-	* @param type the type to search with
+	* @param kaleoInstanceTokenId the kaleo instance token ID
+	* @param kaleoNodeId the kaleo node ID
+	* @param type the type
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo log
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchLogException if a matching kaleo log could not be found
@@ -711,15 +711,15 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 			com.liferay.portal.workflow.kaleo.NoSuchLogException;
 
 	/**
-	* Finds the last kaleo log in the ordered set where kaleoInstanceTokenId = &#63; and kaleoNodeId = &#63; and type = &#63;.
+	* Returns the last kaleo log in the ordered set where kaleoInstanceTokenId = &#63; and kaleoNodeId = &#63; and type = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param kaleoInstanceTokenId the kaleo instance token ID to search with
-	* @param kaleoNodeId the kaleo node ID to search with
-	* @param type the type to search with
+	* @param kaleoInstanceTokenId the kaleo instance token ID
+	* @param kaleoNodeId the kaleo node ID
+	* @param type the type
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching kaleo log
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchLogException if a matching kaleo log could not be found
@@ -732,16 +732,16 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 			com.liferay.portal.workflow.kaleo.NoSuchLogException;
 
 	/**
-	* Finds the kaleo logs before and after the current kaleo log in the ordered set where kaleoInstanceTokenId = &#63; and kaleoNodeId = &#63; and type = &#63;.
+	* Returns the kaleo logs before and after the current kaleo log in the ordered set where kaleoInstanceTokenId = &#63; and kaleoNodeId = &#63; and type = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
 	* @param kaleoLogId the primary key of the current kaleo log
-	* @param kaleoInstanceTokenId the kaleo instance token ID to search with
-	* @param kaleoNodeId the kaleo node ID to search with
-	* @param type the type to search with
+	* @param kaleoInstanceTokenId the kaleo instance token ID
+	* @param kaleoNodeId the kaleo node ID
+	* @param type the type
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next kaleo log
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchLogException if a kaleo log with the primary key could not be found
@@ -755,7 +755,7 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 			com.liferay.portal.workflow.kaleo.NoSuchLogException;
 
 	/**
-	* Finds all the kaleo logs.
+	* Returns all the kaleo logs.
 	*
 	* @return the kaleo logs
 	* @throws SystemException if a system exception occurred
@@ -764,14 +764,14 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds a range of all the kaleo logs.
+	* Returns a range of all the kaleo logs.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of kaleo logs to return
-	* @param end the upper bound of the range of kaleo logs to return (not inclusive)
+	* @param start the lower bound of the range of kaleo logs
+	* @param end the upper bound of the range of kaleo logs (not inclusive)
 	* @return the range of kaleo logs
 	* @throws SystemException if a system exception occurred
 	*/
@@ -780,14 +780,14 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds an ordered range of all the kaleo logs.
+	* Returns an ordered range of all the kaleo logs.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of kaleo logs to return
-	* @param end the upper bound of the range of kaleo logs to return (not inclusive)
+	* @param start the lower bound of the range of kaleo logs
+	* @param end the upper bound of the range of kaleo logs (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of kaleo logs
 	* @throws SystemException if a system exception occurred
@@ -800,7 +800,7 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 	/**
 	* Removes all the kaleo logs where companyId = &#63; from the database.
 	*
-	* @param companyId the company ID to search with
+	* @param companyId the company ID
 	* @throws SystemException if a system exception occurred
 	*/
 	public void removeByCompanyId(long companyId)
@@ -809,7 +809,7 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 	/**
 	* Removes all the kaleo logs where kaleoDefinitionId = &#63; from the database.
 	*
-	* @param kaleoDefinitionId the kaleo definition ID to search with
+	* @param kaleoDefinitionId the kaleo definition ID
 	* @throws SystemException if a system exception occurred
 	*/
 	public void removeByKaleoDefinitionId(long kaleoDefinitionId)
@@ -818,7 +818,7 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 	/**
 	* Removes all the kaleo logs where kaleoInstanceId = &#63; from the database.
 	*
-	* @param kaleoInstanceId the kaleo instance ID to search with
+	* @param kaleoInstanceId the kaleo instance ID
 	* @throws SystemException if a system exception occurred
 	*/
 	public void removeByKaleoInstanceId(long kaleoInstanceId)
@@ -827,7 +827,7 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 	/**
 	* Removes all the kaleo logs where kaleoTaskInstanceTokenId = &#63; from the database.
 	*
-	* @param kaleoTaskInstanceTokenId the kaleo task instance token ID to search with
+	* @param kaleoTaskInstanceTokenId the kaleo task instance token ID
 	* @throws SystemException if a system exception occurred
 	*/
 	public void removeByKaleoTaskInstanceTokenId(long kaleoTaskInstanceTokenId)
@@ -836,8 +836,8 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 	/**
 	* Removes all the kaleo logs where kaleoInstanceTokenId = &#63; and type = &#63; from the database.
 	*
-	* @param kaleoInstanceTokenId the kaleo instance token ID to search with
-	* @param type the type to search with
+	* @param kaleoInstanceTokenId the kaleo instance token ID
+	* @param type the type
 	* @throws SystemException if a system exception occurred
 	*/
 	public void removeByKITI_T(long kaleoInstanceTokenId, java.lang.String type)
@@ -846,9 +846,9 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 	/**
 	* Removes all the kaleo logs where kaleoInstanceTokenId = &#63; and kaleoNodeId = &#63; and type = &#63; from the database.
 	*
-	* @param kaleoInstanceTokenId the kaleo instance token ID to search with
-	* @param kaleoNodeId the kaleo node ID to search with
-	* @param type the type to search with
+	* @param kaleoInstanceTokenId the kaleo instance token ID
+	* @param kaleoNodeId the kaleo node ID
+	* @param type the type
 	* @throws SystemException if a system exception occurred
 	*/
 	public void removeByKITI_KNI_T(long kaleoInstanceTokenId, long kaleoNodeId,
@@ -864,9 +864,9 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Counts all the kaleo logs where companyId = &#63;.
+	* Returns the number of kaleo logs where companyId = &#63;.
 	*
-	* @param companyId the company ID to search with
+	* @param companyId the company ID
 	* @return the number of matching kaleo logs
 	* @throws SystemException if a system exception occurred
 	*/
@@ -874,9 +874,9 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Counts all the kaleo logs where kaleoDefinitionId = &#63;.
+	* Returns the number of kaleo logs where kaleoDefinitionId = &#63;.
 	*
-	* @param kaleoDefinitionId the kaleo definition ID to search with
+	* @param kaleoDefinitionId the kaleo definition ID
 	* @return the number of matching kaleo logs
 	* @throws SystemException if a system exception occurred
 	*/
@@ -884,9 +884,9 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Counts all the kaleo logs where kaleoInstanceId = &#63;.
+	* Returns the number of kaleo logs where kaleoInstanceId = &#63;.
 	*
-	* @param kaleoInstanceId the kaleo instance ID to search with
+	* @param kaleoInstanceId the kaleo instance ID
 	* @return the number of matching kaleo logs
 	* @throws SystemException if a system exception occurred
 	*/
@@ -894,9 +894,9 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Counts all the kaleo logs where kaleoTaskInstanceTokenId = &#63;.
+	* Returns the number of kaleo logs where kaleoTaskInstanceTokenId = &#63;.
 	*
-	* @param kaleoTaskInstanceTokenId the kaleo task instance token ID to search with
+	* @param kaleoTaskInstanceTokenId the kaleo task instance token ID
 	* @return the number of matching kaleo logs
 	* @throws SystemException if a system exception occurred
 	*/
@@ -904,10 +904,10 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Counts all the kaleo logs where kaleoInstanceTokenId = &#63; and type = &#63;.
+	* Returns the number of kaleo logs where kaleoInstanceTokenId = &#63; and type = &#63;.
 	*
-	* @param kaleoInstanceTokenId the kaleo instance token ID to search with
-	* @param type the type to search with
+	* @param kaleoInstanceTokenId the kaleo instance token ID
+	* @param type the type
 	* @return the number of matching kaleo logs
 	* @throws SystemException if a system exception occurred
 	*/
@@ -915,11 +915,11 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Counts all the kaleo logs where kaleoInstanceTokenId = &#63; and kaleoNodeId = &#63; and type = &#63;.
+	* Returns the number of kaleo logs where kaleoInstanceTokenId = &#63; and kaleoNodeId = &#63; and type = &#63;.
 	*
-	* @param kaleoInstanceTokenId the kaleo instance token ID to search with
-	* @param kaleoNodeId the kaleo node ID to search with
-	* @param type the type to search with
+	* @param kaleoInstanceTokenId the kaleo instance token ID
+	* @param kaleoNodeId the kaleo node ID
+	* @param type the type
 	* @return the number of matching kaleo logs
 	* @throws SystemException if a system exception occurred
 	*/
@@ -928,7 +928,7 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Counts all the kaleo logs.
+	* Returns the number of kaleo logs.
 	*
 	* @return the number of kaleo logs
 	* @throws SystemException if a system exception occurred

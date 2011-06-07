@@ -39,7 +39,7 @@ public class KaleoTaskAssignmentInstanceWrapper
 	}
 
 	/**
-	* Gets the primary key of this kaleo task assignment instance.
+	* Returns the primary key of this kaleo task assignment instance.
 	*
 	* @return the primary key of this kaleo task assignment instance
 	*/
@@ -48,7 +48,7 @@ public class KaleoTaskAssignmentInstanceWrapper
 	}
 
 	/**
-	* Sets the primary key of this kaleo task assignment instance
+	* Sets the primary key of this kaleo task assignment instance.
 	*
 	* @param primaryKey the primary key of this kaleo task assignment instance
 	*/
@@ -57,7 +57,7 @@ public class KaleoTaskAssignmentInstanceWrapper
 	}
 
 	/**
-	* Gets the kaleo task assignment instance ID of this kaleo task assignment instance.
+	* Returns the kaleo task assignment instance ID of this kaleo task assignment instance.
 	*
 	* @return the kaleo task assignment instance ID of this kaleo task assignment instance
 	*/
@@ -76,7 +76,7 @@ public class KaleoTaskAssignmentInstanceWrapper
 	}
 
 	/**
-	* Gets the group ID of this kaleo task assignment instance.
+	* Returns the group ID of this kaleo task assignment instance.
 	*
 	* @return the group ID of this kaleo task assignment instance
 	*/
@@ -94,7 +94,7 @@ public class KaleoTaskAssignmentInstanceWrapper
 	}
 
 	/**
-	* Gets the company ID of this kaleo task assignment instance.
+	* Returns the company ID of this kaleo task assignment instance.
 	*
 	* @return the company ID of this kaleo task assignment instance
 	*/
@@ -112,7 +112,7 @@ public class KaleoTaskAssignmentInstanceWrapper
 	}
 
 	/**
-	* Gets the user ID of this kaleo task assignment instance.
+	* Returns the user ID of this kaleo task assignment instance.
 	*
 	* @return the user ID of this kaleo task assignment instance
 	*/
@@ -130,7 +130,7 @@ public class KaleoTaskAssignmentInstanceWrapper
 	}
 
 	/**
-	* Gets the user uuid of this kaleo task assignment instance.
+	* Returns the user uuid of this kaleo task assignment instance.
 	*
 	* @return the user uuid of this kaleo task assignment instance
 	* @throws SystemException if a system exception occurred
@@ -150,7 +150,7 @@ public class KaleoTaskAssignmentInstanceWrapper
 	}
 
 	/**
-	* Gets the user name of this kaleo task assignment instance.
+	* Returns the user name of this kaleo task assignment instance.
 	*
 	* @return the user name of this kaleo task assignment instance
 	*/
@@ -168,7 +168,7 @@ public class KaleoTaskAssignmentInstanceWrapper
 	}
 
 	/**
-	* Gets the create date of this kaleo task assignment instance.
+	* Returns the create date of this kaleo task assignment instance.
 	*
 	* @return the create date of this kaleo task assignment instance
 	*/
@@ -186,7 +186,7 @@ public class KaleoTaskAssignmentInstanceWrapper
 	}
 
 	/**
-	* Gets the modified date of this kaleo task assignment instance.
+	* Returns the modified date of this kaleo task assignment instance.
 	*
 	* @return the modified date of this kaleo task assignment instance
 	*/
@@ -204,7 +204,7 @@ public class KaleoTaskAssignmentInstanceWrapper
 	}
 
 	/**
-	* Gets the kaleo definition ID of this kaleo task assignment instance.
+	* Returns the kaleo definition ID of this kaleo task assignment instance.
 	*
 	* @return the kaleo definition ID of this kaleo task assignment instance
 	*/
@@ -222,7 +222,7 @@ public class KaleoTaskAssignmentInstanceWrapper
 	}
 
 	/**
-	* Gets the kaleo instance ID of this kaleo task assignment instance.
+	* Returns the kaleo instance ID of this kaleo task assignment instance.
 	*
 	* @return the kaleo instance ID of this kaleo task assignment instance
 	*/
@@ -240,7 +240,7 @@ public class KaleoTaskAssignmentInstanceWrapper
 	}
 
 	/**
-	* Gets the kaleo instance token ID of this kaleo task assignment instance.
+	* Returns the kaleo instance token ID of this kaleo task assignment instance.
 	*
 	* @return the kaleo instance token ID of this kaleo task assignment instance
 	*/
@@ -258,7 +258,7 @@ public class KaleoTaskAssignmentInstanceWrapper
 	}
 
 	/**
-	* Gets the kaleo task instance token ID of this kaleo task assignment instance.
+	* Returns the kaleo task instance token ID of this kaleo task assignment instance.
 	*
 	* @return the kaleo task instance token ID of this kaleo task assignment instance
 	*/
@@ -276,7 +276,7 @@ public class KaleoTaskAssignmentInstanceWrapper
 	}
 
 	/**
-	* Gets the kaleo task ID of this kaleo task assignment instance.
+	* Returns the kaleo task ID of this kaleo task assignment instance.
 	*
 	* @return the kaleo task ID of this kaleo task assignment instance
 	*/
@@ -294,7 +294,7 @@ public class KaleoTaskAssignmentInstanceWrapper
 	}
 
 	/**
-	* Gets the kaleo task name of this kaleo task assignment instance.
+	* Returns the kaleo task name of this kaleo task assignment instance.
 	*
 	* @return the kaleo task name of this kaleo task assignment instance
 	*/
@@ -312,7 +312,7 @@ public class KaleoTaskAssignmentInstanceWrapper
 	}
 
 	/**
-	* Gets the assignee class name of this kaleo task assignment instance.
+	* Returns the assignee class name of this kaleo task assignment instance.
 	*
 	* @return the assignee class name of this kaleo task assignment instance
 	*/
@@ -330,7 +330,7 @@ public class KaleoTaskAssignmentInstanceWrapper
 	}
 
 	/**
-	* Gets the assignee class p k of this kaleo task assignment instance.
+	* Returns the assignee class p k of this kaleo task assignment instance.
 	*
 	* @return the assignee class p k of this kaleo task assignment instance
 	*/
@@ -348,7 +348,7 @@ public class KaleoTaskAssignmentInstanceWrapper
 	}
 
 	/**
-	* Gets the completed of this kaleo task assignment instance.
+	* Returns the completed of this kaleo task assignment instance.
 	*
 	* @return the completed of this kaleo task assignment instance
 	*/
@@ -375,7 +375,7 @@ public class KaleoTaskAssignmentInstanceWrapper
 	}
 
 	/**
-	* Gets the completion date of this kaleo task assignment instance.
+	* Returns the completion date of this kaleo task assignment instance.
 	*
 	* @return the completion date of this kaleo task assignment instance
 	*/

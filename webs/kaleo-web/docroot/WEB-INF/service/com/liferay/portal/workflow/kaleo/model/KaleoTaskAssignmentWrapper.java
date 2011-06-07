@@ -37,7 +37,7 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment {
 	}
 
 	/**
-	* Gets the primary key of this kaleo task assignment.
+	* Returns the primary key of this kaleo task assignment.
 	*
 	* @return the primary key of this kaleo task assignment
 	*/
@@ -46,7 +46,7 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment {
 	}
 
 	/**
-	* Sets the primary key of this kaleo task assignment
+	* Sets the primary key of this kaleo task assignment.
 	*
 	* @param primaryKey the primary key of this kaleo task assignment
 	*/
@@ -55,7 +55,7 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment {
 	}
 
 	/**
-	* Gets the kaleo task assignment ID of this kaleo task assignment.
+	* Returns the kaleo task assignment ID of this kaleo task assignment.
 	*
 	* @return the kaleo task assignment ID of this kaleo task assignment
 	*/
@@ -73,7 +73,7 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment {
 	}
 
 	/**
-	* Gets the group ID of this kaleo task assignment.
+	* Returns the group ID of this kaleo task assignment.
 	*
 	* @return the group ID of this kaleo task assignment
 	*/
@@ -91,7 +91,7 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment {
 	}
 
 	/**
-	* Gets the company ID of this kaleo task assignment.
+	* Returns the company ID of this kaleo task assignment.
 	*
 	* @return the company ID of this kaleo task assignment
 	*/
@@ -109,7 +109,7 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment {
 	}
 
 	/**
-	* Gets the user ID of this kaleo task assignment.
+	* Returns the user ID of this kaleo task assignment.
 	*
 	* @return the user ID of this kaleo task assignment
 	*/
@@ -127,7 +127,7 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment {
 	}
 
 	/**
-	* Gets the user uuid of this kaleo task assignment.
+	* Returns the user uuid of this kaleo task assignment.
 	*
 	* @return the user uuid of this kaleo task assignment
 	* @throws SystemException if a system exception occurred
@@ -147,7 +147,7 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment {
 	}
 
 	/**
-	* Gets the user name of this kaleo task assignment.
+	* Returns the user name of this kaleo task assignment.
 	*
 	* @return the user name of this kaleo task assignment
 	*/
@@ -165,7 +165,7 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment {
 	}
 
 	/**
-	* Gets the create date of this kaleo task assignment.
+	* Returns the create date of this kaleo task assignment.
 	*
 	* @return the create date of this kaleo task assignment
 	*/
@@ -183,7 +183,7 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment {
 	}
 
 	/**
-	* Gets the modified date of this kaleo task assignment.
+	* Returns the modified date of this kaleo task assignment.
 	*
 	* @return the modified date of this kaleo task assignment
 	*/
@@ -201,7 +201,7 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment {
 	}
 
 	/**
-	* Gets the kaleo definition ID of this kaleo task assignment.
+	* Returns the kaleo definition ID of this kaleo task assignment.
 	*
 	* @return the kaleo definition ID of this kaleo task assignment
 	*/
@@ -219,7 +219,7 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment {
 	}
 
 	/**
-	* Gets the kaleo node ID of this kaleo task assignment.
+	* Returns the kaleo node ID of this kaleo task assignment.
 	*
 	* @return the kaleo node ID of this kaleo task assignment
 	*/
@@ -237,7 +237,7 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment {
 	}
 
 	/**
-	* Gets the kaleo task ID of this kaleo task assignment.
+	* Returns the kaleo task ID of this kaleo task assignment.
 	*
 	* @return the kaleo task ID of this kaleo task assignment
 	*/
@@ -255,7 +255,7 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment {
 	}
 
 	/**
-	* Gets the assignee class name of this kaleo task assignment.
+	* Returns the assignee class name of this kaleo task assignment.
 	*
 	* @return the assignee class name of this kaleo task assignment
 	*/
@@ -273,7 +273,7 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment {
 	}
 
 	/**
-	* Gets the assignee class p k of this kaleo task assignment.
+	* Returns the assignee class p k of this kaleo task assignment.
 	*
 	* @return the assignee class p k of this kaleo task assignment
 	*/
@@ -291,7 +291,7 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment {
 	}
 
 	/**
-	* Gets the assignee action ID of this kaleo task assignment.
+	* Returns the assignee action ID of this kaleo task assignment.
 	*
 	* @return the assignee action ID of this kaleo task assignment
 	*/
@@ -309,7 +309,7 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment {
 	}
 
 	/**
-	* Gets the assignee script of this kaleo task assignment.
+	* Returns the assignee script of this kaleo task assignment.
 	*
 	* @return the assignee script of this kaleo task assignment
 	*/
@@ -327,7 +327,7 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment {
 	}
 
 	/**
-	* Gets the assignee script language of this kaleo task assignment.
+	* Returns the assignee script language of this kaleo task assignment.
 	*
 	* @return the assignee script language of this kaleo task assignment
 	*/

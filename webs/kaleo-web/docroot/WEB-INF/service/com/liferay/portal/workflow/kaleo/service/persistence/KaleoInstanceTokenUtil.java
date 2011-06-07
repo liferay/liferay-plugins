@@ -122,7 +122,7 @@ public class KaleoInstanceTokenUtil {
 	/**
 	* Caches the kaleo instance token in the entity cache if it is enabled.
 	*
-	* @param kaleoInstanceToken the kaleo instance token to cache
+	* @param kaleoInstanceToken the kaleo instance token
 	*/
 	public static void cacheResult(
 		com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken kaleoInstanceToken) {
@@ -132,7 +132,7 @@ public class KaleoInstanceTokenUtil {
 	/**
 	* Caches the kaleo instance tokens in the entity cache if it is enabled.
 	*
-	* @param kaleoInstanceTokens the kaleo instance tokens to cache
+	* @param kaleoInstanceTokens the kaleo instance tokens
 	*/
 	public static void cacheResult(
 		java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken> kaleoInstanceTokens) {
@@ -153,7 +153,7 @@ public class KaleoInstanceTokenUtil {
 	/**
 	* Removes the kaleo instance token with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param kaleoInstanceTokenId the primary key of the kaleo instance token to remove
+	* @param kaleoInstanceTokenId the primary key of the kaleo instance token
 	* @return the kaleo instance token that was removed
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchInstanceTokenException if a kaleo instance token with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -173,9 +173,9 @@ public class KaleoInstanceTokenUtil {
 	}
 
 	/**
-	* Finds the kaleo instance token with the primary key or throws a {@link com.liferay.portal.workflow.kaleo.NoSuchInstanceTokenException} if it could not be found.
+	* Returns the kaleo instance token with the primary key or throws a {@link com.liferay.portal.workflow.kaleo.NoSuchInstanceTokenException} if it could not be found.
 	*
-	* @param kaleoInstanceTokenId the primary key of the kaleo instance token to find
+	* @param kaleoInstanceTokenId the primary key of the kaleo instance token
 	* @return the kaleo instance token
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchInstanceTokenException if a kaleo instance token with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -188,9 +188,9 @@ public class KaleoInstanceTokenUtil {
 	}
 
 	/**
-	* Finds the kaleo instance token with the primary key or returns <code>null</code> if it could not be found.
+	* Returns the kaleo instance token with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param kaleoInstanceTokenId the primary key of the kaleo instance token to find
+	* @param kaleoInstanceTokenId the primary key of the kaleo instance token
 	* @return the kaleo instance token, or <code>null</code> if a kaleo instance token with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -201,9 +201,9 @@ public class KaleoInstanceTokenUtil {
 	}
 
 	/**
-	* Finds all the kaleo instance tokens where companyId = &#63;.
+	* Returns all the kaleo instance tokens where companyId = &#63;.
 	*
-	* @param companyId the company ID to search with
+	* @param companyId the company ID
 	* @return the matching kaleo instance tokens
 	* @throws SystemException if a system exception occurred
 	*/
@@ -214,15 +214,15 @@ public class KaleoInstanceTokenUtil {
 	}
 
 	/**
-	* Finds a range of all the kaleo instance tokens where companyId = &#63;.
+	* Returns a range of all the kaleo instance tokens where companyId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param companyId the company ID to search with
-	* @param start the lower bound of the range of kaleo instance tokens to return
-	* @param end the upper bound of the range of kaleo instance tokens to return (not inclusive)
+	* @param companyId the company ID
+	* @param start the lower bound of the range of kaleo instance tokens
+	* @param end the upper bound of the range of kaleo instance tokens (not inclusive)
 	* @return the range of matching kaleo instance tokens
 	* @throws SystemException if a system exception occurred
 	*/
@@ -233,15 +233,15 @@ public class KaleoInstanceTokenUtil {
 	}
 
 	/**
-	* Finds an ordered range of all the kaleo instance tokens where companyId = &#63;.
+	* Returns an ordered range of all the kaleo instance tokens where companyId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param companyId the company ID to search with
-	* @param start the lower bound of the range of kaleo instance tokens to return
-	* @param end the upper bound of the range of kaleo instance tokens to return (not inclusive)
+	* @param companyId the company ID
+	* @param start the lower bound of the range of kaleo instance tokens
+	* @param end the upper bound of the range of kaleo instance tokens (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching kaleo instance tokens
 	* @throws SystemException if a system exception occurred
@@ -255,13 +255,13 @@ public class KaleoInstanceTokenUtil {
 	}
 
 	/**
-	* Finds the first kaleo instance token in the ordered set where companyId = &#63;.
+	* Returns the first kaleo instance token in the ordered set where companyId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param companyId the company ID to search with
+	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo instance token
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchInstanceTokenException if a matching kaleo instance token could not be found
@@ -277,13 +277,13 @@ public class KaleoInstanceTokenUtil {
 	}
 
 	/**
-	* Finds the last kaleo instance token in the ordered set where companyId = &#63;.
+	* Returns the last kaleo instance token in the ordered set where companyId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param companyId the company ID to search with
+	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching kaleo instance token
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchInstanceTokenException if a matching kaleo instance token could not be found
@@ -299,14 +299,14 @@ public class KaleoInstanceTokenUtil {
 	}
 
 	/**
-	* Finds the kaleo instance tokens before and after the current kaleo instance token in the ordered set where companyId = &#63;.
+	* Returns the kaleo instance tokens before and after the current kaleo instance token in the ordered set where companyId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
 	* @param kaleoInstanceTokenId the primary key of the current kaleo instance token
-	* @param companyId the company ID to search with
+	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next kaleo instance token
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchInstanceTokenException if a kaleo instance token with the primary key could not be found
@@ -323,9 +323,9 @@ public class KaleoInstanceTokenUtil {
 	}
 
 	/**
-	* Finds all the kaleo instance tokens where kaleoDefinitionId = &#63;.
+	* Returns all the kaleo instance tokens where kaleoDefinitionId = &#63;.
 	*
-	* @param kaleoDefinitionId the kaleo definition ID to search with
+	* @param kaleoDefinitionId the kaleo definition ID
 	* @return the matching kaleo instance tokens
 	* @throws SystemException if a system exception occurred
 	*/
@@ -336,15 +336,15 @@ public class KaleoInstanceTokenUtil {
 	}
 
 	/**
-	* Finds a range of all the kaleo instance tokens where kaleoDefinitionId = &#63;.
+	* Returns a range of all the kaleo instance tokens where kaleoDefinitionId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param kaleoDefinitionId the kaleo definition ID to search with
-	* @param start the lower bound of the range of kaleo instance tokens to return
-	* @param end the upper bound of the range of kaleo instance tokens to return (not inclusive)
+	* @param kaleoDefinitionId the kaleo definition ID
+	* @param start the lower bound of the range of kaleo instance tokens
+	* @param end the upper bound of the range of kaleo instance tokens (not inclusive)
 	* @return the range of matching kaleo instance tokens
 	* @throws SystemException if a system exception occurred
 	*/
@@ -356,15 +356,15 @@ public class KaleoInstanceTokenUtil {
 	}
 
 	/**
-	* Finds an ordered range of all the kaleo instance tokens where kaleoDefinitionId = &#63;.
+	* Returns an ordered range of all the kaleo instance tokens where kaleoDefinitionId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param kaleoDefinitionId the kaleo definition ID to search with
-	* @param start the lower bound of the range of kaleo instance tokens to return
-	* @param end the upper bound of the range of kaleo instance tokens to return (not inclusive)
+	* @param kaleoDefinitionId the kaleo definition ID
+	* @param start the lower bound of the range of kaleo instance tokens
+	* @param end the upper bound of the range of kaleo instance tokens (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching kaleo instance tokens
 	* @throws SystemException if a system exception occurred
@@ -379,13 +379,13 @@ public class KaleoInstanceTokenUtil {
 	}
 
 	/**
-	* Finds the first kaleo instance token in the ordered set where kaleoDefinitionId = &#63;.
+	* Returns the first kaleo instance token in the ordered set where kaleoDefinitionId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param kaleoDefinitionId the kaleo definition ID to search with
+	* @param kaleoDefinitionId the kaleo definition ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo instance token
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchInstanceTokenException if a matching kaleo instance token could not be found
@@ -402,13 +402,13 @@ public class KaleoInstanceTokenUtil {
 	}
 
 	/**
-	* Finds the last kaleo instance token in the ordered set where kaleoDefinitionId = &#63;.
+	* Returns the last kaleo instance token in the ordered set where kaleoDefinitionId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param kaleoDefinitionId the kaleo definition ID to search with
+	* @param kaleoDefinitionId the kaleo definition ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching kaleo instance token
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchInstanceTokenException if a matching kaleo instance token could not be found
@@ -425,14 +425,14 @@ public class KaleoInstanceTokenUtil {
 	}
 
 	/**
-	* Finds the kaleo instance tokens before and after the current kaleo instance token in the ordered set where kaleoDefinitionId = &#63;.
+	* Returns the kaleo instance tokens before and after the current kaleo instance token in the ordered set where kaleoDefinitionId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
 	* @param kaleoInstanceTokenId the primary key of the current kaleo instance token
-	* @param kaleoDefinitionId the kaleo definition ID to search with
+	* @param kaleoDefinitionId the kaleo definition ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next kaleo instance token
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchInstanceTokenException if a kaleo instance token with the primary key could not be found
@@ -449,9 +449,9 @@ public class KaleoInstanceTokenUtil {
 	}
 
 	/**
-	* Finds all the kaleo instance tokens where kaleoInstanceId = &#63;.
+	* Returns all the kaleo instance tokens where kaleoInstanceId = &#63;.
 	*
-	* @param kaleoInstanceId the kaleo instance ID to search with
+	* @param kaleoInstanceId the kaleo instance ID
 	* @return the matching kaleo instance tokens
 	* @throws SystemException if a system exception occurred
 	*/
@@ -462,15 +462,15 @@ public class KaleoInstanceTokenUtil {
 	}
 
 	/**
-	* Finds a range of all the kaleo instance tokens where kaleoInstanceId = &#63;.
+	* Returns a range of all the kaleo instance tokens where kaleoInstanceId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param kaleoInstanceId the kaleo instance ID to search with
-	* @param start the lower bound of the range of kaleo instance tokens to return
-	* @param end the upper bound of the range of kaleo instance tokens to return (not inclusive)
+	* @param kaleoInstanceId the kaleo instance ID
+	* @param start the lower bound of the range of kaleo instance tokens
+	* @param end the upper bound of the range of kaleo instance tokens (not inclusive)
 	* @return the range of matching kaleo instance tokens
 	* @throws SystemException if a system exception occurred
 	*/
@@ -482,15 +482,15 @@ public class KaleoInstanceTokenUtil {
 	}
 
 	/**
-	* Finds an ordered range of all the kaleo instance tokens where kaleoInstanceId = &#63;.
+	* Returns an ordered range of all the kaleo instance tokens where kaleoInstanceId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param kaleoInstanceId the kaleo instance ID to search with
-	* @param start the lower bound of the range of kaleo instance tokens to return
-	* @param end the upper bound of the range of kaleo instance tokens to return (not inclusive)
+	* @param kaleoInstanceId the kaleo instance ID
+	* @param start the lower bound of the range of kaleo instance tokens
+	* @param end the upper bound of the range of kaleo instance tokens (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching kaleo instance tokens
 	* @throws SystemException if a system exception occurred
@@ -505,13 +505,13 @@ public class KaleoInstanceTokenUtil {
 	}
 
 	/**
-	* Finds the first kaleo instance token in the ordered set where kaleoInstanceId = &#63;.
+	* Returns the first kaleo instance token in the ordered set where kaleoInstanceId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param kaleoInstanceId the kaleo instance ID to search with
+	* @param kaleoInstanceId the kaleo instance ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo instance token
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchInstanceTokenException if a matching kaleo instance token could not be found
@@ -528,13 +528,13 @@ public class KaleoInstanceTokenUtil {
 	}
 
 	/**
-	* Finds the last kaleo instance token in the ordered set where kaleoInstanceId = &#63;.
+	* Returns the last kaleo instance token in the ordered set where kaleoInstanceId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param kaleoInstanceId the kaleo instance ID to search with
+	* @param kaleoInstanceId the kaleo instance ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching kaleo instance token
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchInstanceTokenException if a matching kaleo instance token could not be found
@@ -551,14 +551,14 @@ public class KaleoInstanceTokenUtil {
 	}
 
 	/**
-	* Finds the kaleo instance tokens before and after the current kaleo instance token in the ordered set where kaleoInstanceId = &#63;.
+	* Returns the kaleo instance tokens before and after the current kaleo instance token in the ordered set where kaleoInstanceId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
 	* @param kaleoInstanceTokenId the primary key of the current kaleo instance token
-	* @param kaleoInstanceId the kaleo instance ID to search with
+	* @param kaleoInstanceId the kaleo instance ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next kaleo instance token
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchInstanceTokenException if a kaleo instance token with the primary key could not be found
@@ -575,10 +575,10 @@ public class KaleoInstanceTokenUtil {
 	}
 
 	/**
-	* Finds all the kaleo instance tokens where companyId = &#63; and parentKaleoInstanceTokenId = &#63;.
+	* Returns all the kaleo instance tokens where companyId = &#63; and parentKaleoInstanceTokenId = &#63;.
 	*
-	* @param companyId the company ID to search with
-	* @param parentKaleoInstanceTokenId the parent kaleo instance token ID to search with
+	* @param companyId the company ID
+	* @param parentKaleoInstanceTokenId the parent kaleo instance token ID
 	* @return the matching kaleo instance tokens
 	* @throws SystemException if a system exception occurred
 	*/
@@ -590,16 +590,16 @@ public class KaleoInstanceTokenUtil {
 	}
 
 	/**
-	* Finds a range of all the kaleo instance tokens where companyId = &#63; and parentKaleoInstanceTokenId = &#63;.
+	* Returns a range of all the kaleo instance tokens where companyId = &#63; and parentKaleoInstanceTokenId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param companyId the company ID to search with
-	* @param parentKaleoInstanceTokenId the parent kaleo instance token ID to search with
-	* @param start the lower bound of the range of kaleo instance tokens to return
-	* @param end the upper bound of the range of kaleo instance tokens to return (not inclusive)
+	* @param companyId the company ID
+	* @param parentKaleoInstanceTokenId the parent kaleo instance token ID
+	* @param start the lower bound of the range of kaleo instance tokens
+	* @param end the upper bound of the range of kaleo instance tokens (not inclusive)
 	* @return the range of matching kaleo instance tokens
 	* @throws SystemException if a system exception occurred
 	*/
@@ -612,16 +612,16 @@ public class KaleoInstanceTokenUtil {
 	}
 
 	/**
-	* Finds an ordered range of all the kaleo instance tokens where companyId = &#63; and parentKaleoInstanceTokenId = &#63;.
+	* Returns an ordered range of all the kaleo instance tokens where companyId = &#63; and parentKaleoInstanceTokenId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param companyId the company ID to search with
-	* @param parentKaleoInstanceTokenId the parent kaleo instance token ID to search with
-	* @param start the lower bound of the range of kaleo instance tokens to return
-	* @param end the upper bound of the range of kaleo instance tokens to return (not inclusive)
+	* @param companyId the company ID
+	* @param parentKaleoInstanceTokenId the parent kaleo instance token ID
+	* @param start the lower bound of the range of kaleo instance tokens
+	* @param end the upper bound of the range of kaleo instance tokens (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching kaleo instance tokens
 	* @throws SystemException if a system exception occurred
@@ -636,14 +636,14 @@ public class KaleoInstanceTokenUtil {
 	}
 
 	/**
-	* Finds the first kaleo instance token in the ordered set where companyId = &#63; and parentKaleoInstanceTokenId = &#63;.
+	* Returns the first kaleo instance token in the ordered set where companyId = &#63; and parentKaleoInstanceTokenId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param companyId the company ID to search with
-	* @param parentKaleoInstanceTokenId the parent kaleo instance token ID to search with
+	* @param companyId the company ID
+	* @param parentKaleoInstanceTokenId the parent kaleo instance token ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo instance token
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchInstanceTokenException if a matching kaleo instance token could not be found
@@ -660,14 +660,14 @@ public class KaleoInstanceTokenUtil {
 	}
 
 	/**
-	* Finds the last kaleo instance token in the ordered set where companyId = &#63; and parentKaleoInstanceTokenId = &#63;.
+	* Returns the last kaleo instance token in the ordered set where companyId = &#63; and parentKaleoInstanceTokenId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param companyId the company ID to search with
-	* @param parentKaleoInstanceTokenId the parent kaleo instance token ID to search with
+	* @param companyId the company ID
+	* @param parentKaleoInstanceTokenId the parent kaleo instance token ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching kaleo instance token
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchInstanceTokenException if a matching kaleo instance token could not be found
@@ -684,15 +684,15 @@ public class KaleoInstanceTokenUtil {
 	}
 
 	/**
-	* Finds the kaleo instance tokens before and after the current kaleo instance token in the ordered set where companyId = &#63; and parentKaleoInstanceTokenId = &#63;.
+	* Returns the kaleo instance tokens before and after the current kaleo instance token in the ordered set where companyId = &#63; and parentKaleoInstanceTokenId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
 	* @param kaleoInstanceTokenId the primary key of the current kaleo instance token
-	* @param companyId the company ID to search with
-	* @param parentKaleoInstanceTokenId the parent kaleo instance token ID to search with
+	* @param companyId the company ID
+	* @param parentKaleoInstanceTokenId the parent kaleo instance token ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next kaleo instance token
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchInstanceTokenException if a kaleo instance token with the primary key could not be found
@@ -710,11 +710,11 @@ public class KaleoInstanceTokenUtil {
 	}
 
 	/**
-	* Finds all the kaleo instance tokens where companyId = &#63; and parentKaleoInstanceTokenId = &#63; and completionDate = &#63;.
+	* Returns all the kaleo instance tokens where companyId = &#63; and parentKaleoInstanceTokenId = &#63; and completionDate = &#63;.
 	*
-	* @param companyId the company ID to search with
-	* @param parentKaleoInstanceTokenId the parent kaleo instance token ID to search with
-	* @param completionDate the completion date to search with
+	* @param companyId the company ID
+	* @param parentKaleoInstanceTokenId the parent kaleo instance token ID
+	* @param completionDate the completion date
 	* @return the matching kaleo instance tokens
 	* @throws SystemException if a system exception occurred
 	*/
@@ -728,17 +728,17 @@ public class KaleoInstanceTokenUtil {
 	}
 
 	/**
-	* Finds a range of all the kaleo instance tokens where companyId = &#63; and parentKaleoInstanceTokenId = &#63; and completionDate = &#63;.
+	* Returns a range of all the kaleo instance tokens where companyId = &#63; and parentKaleoInstanceTokenId = &#63; and completionDate = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param companyId the company ID to search with
-	* @param parentKaleoInstanceTokenId the parent kaleo instance token ID to search with
-	* @param completionDate the completion date to search with
-	* @param start the lower bound of the range of kaleo instance tokens to return
-	* @param end the upper bound of the range of kaleo instance tokens to return (not inclusive)
+	* @param companyId the company ID
+	* @param parentKaleoInstanceTokenId the parent kaleo instance token ID
+	* @param completionDate the completion date
+	* @param start the lower bound of the range of kaleo instance tokens
+	* @param end the upper bound of the range of kaleo instance tokens (not inclusive)
 	* @return the range of matching kaleo instance tokens
 	* @throws SystemException if a system exception occurred
 	*/
@@ -752,17 +752,17 @@ public class KaleoInstanceTokenUtil {
 	}
 
 	/**
-	* Finds an ordered range of all the kaleo instance tokens where companyId = &#63; and parentKaleoInstanceTokenId = &#63; and completionDate = &#63;.
+	* Returns an ordered range of all the kaleo instance tokens where companyId = &#63; and parentKaleoInstanceTokenId = &#63; and completionDate = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param companyId the company ID to search with
-	* @param parentKaleoInstanceTokenId the parent kaleo instance token ID to search with
-	* @param completionDate the completion date to search with
-	* @param start the lower bound of the range of kaleo instance tokens to return
-	* @param end the upper bound of the range of kaleo instance tokens to return (not inclusive)
+	* @param companyId the company ID
+	* @param parentKaleoInstanceTokenId the parent kaleo instance token ID
+	* @param completionDate the completion date
+	* @param start the lower bound of the range of kaleo instance tokens
+	* @param end the upper bound of the range of kaleo instance tokens (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching kaleo instance tokens
 	* @throws SystemException if a system exception occurred
@@ -778,15 +778,15 @@ public class KaleoInstanceTokenUtil {
 	}
 
 	/**
-	* Finds the first kaleo instance token in the ordered set where companyId = &#63; and parentKaleoInstanceTokenId = &#63; and completionDate = &#63;.
+	* Returns the first kaleo instance token in the ordered set where companyId = &#63; and parentKaleoInstanceTokenId = &#63; and completionDate = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param companyId the company ID to search with
-	* @param parentKaleoInstanceTokenId the parent kaleo instance token ID to search with
-	* @param completionDate the completion date to search with
+	* @param companyId the company ID
+	* @param parentKaleoInstanceTokenId the parent kaleo instance token ID
+	* @param completionDate the completion date
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo instance token
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchInstanceTokenException if a matching kaleo instance token could not be found
@@ -804,15 +804,15 @@ public class KaleoInstanceTokenUtil {
 	}
 
 	/**
-	* Finds the last kaleo instance token in the ordered set where companyId = &#63; and parentKaleoInstanceTokenId = &#63; and completionDate = &#63;.
+	* Returns the last kaleo instance token in the ordered set where companyId = &#63; and parentKaleoInstanceTokenId = &#63; and completionDate = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param companyId the company ID to search with
-	* @param parentKaleoInstanceTokenId the parent kaleo instance token ID to search with
-	* @param completionDate the completion date to search with
+	* @param companyId the company ID
+	* @param parentKaleoInstanceTokenId the parent kaleo instance token ID
+	* @param completionDate the completion date
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching kaleo instance token
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchInstanceTokenException if a matching kaleo instance token could not be found
@@ -830,16 +830,16 @@ public class KaleoInstanceTokenUtil {
 	}
 
 	/**
-	* Finds the kaleo instance tokens before and after the current kaleo instance token in the ordered set where companyId = &#63; and parentKaleoInstanceTokenId = &#63; and completionDate = &#63;.
+	* Returns the kaleo instance tokens before and after the current kaleo instance token in the ordered set where companyId = &#63; and parentKaleoInstanceTokenId = &#63; and completionDate = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
 	* @param kaleoInstanceTokenId the primary key of the current kaleo instance token
-	* @param companyId the company ID to search with
-	* @param parentKaleoInstanceTokenId the parent kaleo instance token ID to search with
-	* @param completionDate the completion date to search with
+	* @param companyId the company ID
+	* @param parentKaleoInstanceTokenId the parent kaleo instance token ID
+	* @param completionDate the completion date
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next kaleo instance token
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchInstanceTokenException if a kaleo instance token with the primary key could not be found
@@ -858,7 +858,7 @@ public class KaleoInstanceTokenUtil {
 	}
 
 	/**
-	* Finds all the kaleo instance tokens.
+	* Returns all the kaleo instance tokens.
 	*
 	* @return the kaleo instance tokens
 	* @throws SystemException if a system exception occurred
@@ -869,14 +869,14 @@ public class KaleoInstanceTokenUtil {
 	}
 
 	/**
-	* Finds a range of all the kaleo instance tokens.
+	* Returns a range of all the kaleo instance tokens.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of kaleo instance tokens to return
-	* @param end the upper bound of the range of kaleo instance tokens to return (not inclusive)
+	* @param start the lower bound of the range of kaleo instance tokens
+	* @param end the upper bound of the range of kaleo instance tokens (not inclusive)
 	* @return the range of kaleo instance tokens
 	* @throws SystemException if a system exception occurred
 	*/
@@ -887,14 +887,14 @@ public class KaleoInstanceTokenUtil {
 	}
 
 	/**
-	* Finds an ordered range of all the kaleo instance tokens.
+	* Returns an ordered range of all the kaleo instance tokens.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of kaleo instance tokens to return
-	* @param end the upper bound of the range of kaleo instance tokens to return (not inclusive)
+	* @param start the lower bound of the range of kaleo instance tokens
+	* @param end the upper bound of the range of kaleo instance tokens (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of kaleo instance tokens
 	* @throws SystemException if a system exception occurred
@@ -909,7 +909,7 @@ public class KaleoInstanceTokenUtil {
 	/**
 	* Removes all the kaleo instance tokens where companyId = &#63; from the database.
 	*
-	* @param companyId the company ID to search with
+	* @param companyId the company ID
 	* @throws SystemException if a system exception occurred
 	*/
 	public static void removeByCompanyId(long companyId)
@@ -920,7 +920,7 @@ public class KaleoInstanceTokenUtil {
 	/**
 	* Removes all the kaleo instance tokens where kaleoDefinitionId = &#63; from the database.
 	*
-	* @param kaleoDefinitionId the kaleo definition ID to search with
+	* @param kaleoDefinitionId the kaleo definition ID
 	* @throws SystemException if a system exception occurred
 	*/
 	public static void removeByKaleoDefinitionId(long kaleoDefinitionId)
@@ -931,7 +931,7 @@ public class KaleoInstanceTokenUtil {
 	/**
 	* Removes all the kaleo instance tokens where kaleoInstanceId = &#63; from the database.
 	*
-	* @param kaleoInstanceId the kaleo instance ID to search with
+	* @param kaleoInstanceId the kaleo instance ID
 	* @throws SystemException if a system exception occurred
 	*/
 	public static void removeByKaleoInstanceId(long kaleoInstanceId)
@@ -942,8 +942,8 @@ public class KaleoInstanceTokenUtil {
 	/**
 	* Removes all the kaleo instance tokens where companyId = &#63; and parentKaleoInstanceTokenId = &#63; from the database.
 	*
-	* @param companyId the company ID to search with
-	* @param parentKaleoInstanceTokenId the parent kaleo instance token ID to search with
+	* @param companyId the company ID
+	* @param parentKaleoInstanceTokenId the parent kaleo instance token ID
 	* @throws SystemException if a system exception occurred
 	*/
 	public static void removeByC_PKITI(long companyId,
@@ -955,9 +955,9 @@ public class KaleoInstanceTokenUtil {
 	/**
 	* Removes all the kaleo instance tokens where companyId = &#63; and parentKaleoInstanceTokenId = &#63; and completionDate = &#63; from the database.
 	*
-	* @param companyId the company ID to search with
-	* @param parentKaleoInstanceTokenId the parent kaleo instance token ID to search with
-	* @param completionDate the completion date to search with
+	* @param companyId the company ID
+	* @param parentKaleoInstanceTokenId the parent kaleo instance token ID
+	* @param completionDate the completion date
 	* @throws SystemException if a system exception occurred
 	*/
 	public static void removeByC_PKITI_CD(long companyId,
@@ -979,9 +979,9 @@ public class KaleoInstanceTokenUtil {
 	}
 
 	/**
-	* Counts all the kaleo instance tokens where companyId = &#63;.
+	* Returns the number of kaleo instance tokens where companyId = &#63;.
 	*
-	* @param companyId the company ID to search with
+	* @param companyId the company ID
 	* @return the number of matching kaleo instance tokens
 	* @throws SystemException if a system exception occurred
 	*/
@@ -991,9 +991,9 @@ public class KaleoInstanceTokenUtil {
 	}
 
 	/**
-	* Counts all the kaleo instance tokens where kaleoDefinitionId = &#63;.
+	* Returns the number of kaleo instance tokens where kaleoDefinitionId = &#63;.
 	*
-	* @param kaleoDefinitionId the kaleo definition ID to search with
+	* @param kaleoDefinitionId the kaleo definition ID
 	* @return the number of matching kaleo instance tokens
 	* @throws SystemException if a system exception occurred
 	*/
@@ -1003,9 +1003,9 @@ public class KaleoInstanceTokenUtil {
 	}
 
 	/**
-	* Counts all the kaleo instance tokens where kaleoInstanceId = &#63;.
+	* Returns the number of kaleo instance tokens where kaleoInstanceId = &#63;.
 	*
-	* @param kaleoInstanceId the kaleo instance ID to search with
+	* @param kaleoInstanceId the kaleo instance ID
 	* @return the number of matching kaleo instance tokens
 	* @throws SystemException if a system exception occurred
 	*/
@@ -1015,10 +1015,10 @@ public class KaleoInstanceTokenUtil {
 	}
 
 	/**
-	* Counts all the kaleo instance tokens where companyId = &#63; and parentKaleoInstanceTokenId = &#63;.
+	* Returns the number of kaleo instance tokens where companyId = &#63; and parentKaleoInstanceTokenId = &#63;.
 	*
-	* @param companyId the company ID to search with
-	* @param parentKaleoInstanceTokenId the parent kaleo instance token ID to search with
+	* @param companyId the company ID
+	* @param parentKaleoInstanceTokenId the parent kaleo instance token ID
 	* @return the number of matching kaleo instance tokens
 	* @throws SystemException if a system exception occurred
 	*/
@@ -1030,11 +1030,11 @@ public class KaleoInstanceTokenUtil {
 	}
 
 	/**
-	* Counts all the kaleo instance tokens where companyId = &#63; and parentKaleoInstanceTokenId = &#63; and completionDate = &#63;.
+	* Returns the number of kaleo instance tokens where companyId = &#63; and parentKaleoInstanceTokenId = &#63; and completionDate = &#63;.
 	*
-	* @param companyId the company ID to search with
-	* @param parentKaleoInstanceTokenId the parent kaleo instance token ID to search with
-	* @param completionDate the completion date to search with
+	* @param companyId the company ID
+	* @param parentKaleoInstanceTokenId the parent kaleo instance token ID
+	* @param completionDate the completion date
 	* @return the number of matching kaleo instance tokens
 	* @throws SystemException if a system exception occurred
 	*/
@@ -1047,7 +1047,7 @@ public class KaleoInstanceTokenUtil {
 	}
 
 	/**
-	* Counts all the kaleo instance tokens.
+	* Returns the number of kaleo instance tokens.
 	*
 	* @return the number of kaleo instance tokens
 	* @throws SystemException if a system exception occurred

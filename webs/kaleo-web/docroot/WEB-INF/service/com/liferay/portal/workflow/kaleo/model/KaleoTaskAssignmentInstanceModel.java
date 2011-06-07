@@ -48,21 +48,21 @@ public interface KaleoTaskAssignmentInstanceModel extends BaseModel<KaleoTaskAss
 	 */
 
 	/**
-	 * Gets the primary key of this kaleo task assignment instance.
+	 * Returns the primary key of this kaleo task assignment instance.
 	 *
 	 * @return the primary key of this kaleo task assignment instance
 	 */
 	public long getPrimaryKey();
 
 	/**
-	 * Sets the primary key of this kaleo task assignment instance
+	 * Sets the primary key of this kaleo task assignment instance.
 	 *
 	 * @param primaryKey the primary key of this kaleo task assignment instance
 	 */
 	public void setPrimaryKey(long primaryKey);
 
 	/**
-	 * Gets the kaleo task assignment instance ID of this kaleo task assignment instance.
+	 * Returns the kaleo task assignment instance ID of this kaleo task assignment instance.
 	 *
 	 * @return the kaleo task assignment instance ID of this kaleo task assignment instance
 	 */
@@ -77,7 +77,7 @@ public interface KaleoTaskAssignmentInstanceModel extends BaseModel<KaleoTaskAss
 		long kaleoTaskAssignmentInstanceId);
 
 	/**
-	 * Gets the group ID of this kaleo task assignment instance.
+	 * Returns the group ID of this kaleo task assignment instance.
 	 *
 	 * @return the group ID of this kaleo task assignment instance
 	 */
@@ -91,7 +91,7 @@ public interface KaleoTaskAssignmentInstanceModel extends BaseModel<KaleoTaskAss
 	public void setGroupId(long groupId);
 
 	/**
-	 * Gets the company ID of this kaleo task assignment instance.
+	 * Returns the company ID of this kaleo task assignment instance.
 	 *
 	 * @return the company ID of this kaleo task assignment instance
 	 */
@@ -105,7 +105,7 @@ public interface KaleoTaskAssignmentInstanceModel extends BaseModel<KaleoTaskAss
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the user ID of this kaleo task assignment instance.
+	 * Returns the user ID of this kaleo task assignment instance.
 	 *
 	 * @return the user ID of this kaleo task assignment instance
 	 */
@@ -119,7 +119,7 @@ public interface KaleoTaskAssignmentInstanceModel extends BaseModel<KaleoTaskAss
 	public void setUserId(long userId);
 
 	/**
-	 * Gets the user uuid of this kaleo task assignment instance.
+	 * Returns the user uuid of this kaleo task assignment instance.
 	 *
 	 * @return the user uuid of this kaleo task assignment instance
 	 * @throws SystemException if a system exception occurred
@@ -134,7 +134,7 @@ public interface KaleoTaskAssignmentInstanceModel extends BaseModel<KaleoTaskAss
 	public void setUserUuid(String userUuid);
 
 	/**
-	 * Gets the user name of this kaleo task assignment instance.
+	 * Returns the user name of this kaleo task assignment instance.
 	 *
 	 * @return the user name of this kaleo task assignment instance
 	 */
@@ -149,7 +149,7 @@ public interface KaleoTaskAssignmentInstanceModel extends BaseModel<KaleoTaskAss
 	public void setUserName(String userName);
 
 	/**
-	 * Gets the create date of this kaleo task assignment instance.
+	 * Returns the create date of this kaleo task assignment instance.
 	 *
 	 * @return the create date of this kaleo task assignment instance
 	 */
@@ -163,7 +163,7 @@ public interface KaleoTaskAssignmentInstanceModel extends BaseModel<KaleoTaskAss
 	public void setCreateDate(Date createDate);
 
 	/**
-	 * Gets the modified date of this kaleo task assignment instance.
+	 * Returns the modified date of this kaleo task assignment instance.
 	 *
 	 * @return the modified date of this kaleo task assignment instance
 	 */
@@ -177,7 +177,7 @@ public interface KaleoTaskAssignmentInstanceModel extends BaseModel<KaleoTaskAss
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Gets the kaleo definition ID of this kaleo task assignment instance.
+	 * Returns the kaleo definition ID of this kaleo task assignment instance.
 	 *
 	 * @return the kaleo definition ID of this kaleo task assignment instance
 	 */
@@ -191,7 +191,7 @@ public interface KaleoTaskAssignmentInstanceModel extends BaseModel<KaleoTaskAss
 	public void setKaleoDefinitionId(long kaleoDefinitionId);
 
 	/**
-	 * Gets the kaleo instance ID of this kaleo task assignment instance.
+	 * Returns the kaleo instance ID of this kaleo task assignment instance.
 	 *
 	 * @return the kaleo instance ID of this kaleo task assignment instance
 	 */
@@ -205,7 +205,7 @@ public interface KaleoTaskAssignmentInstanceModel extends BaseModel<KaleoTaskAss
 	public void setKaleoInstanceId(long kaleoInstanceId);
 
 	/**
-	 * Gets the kaleo instance token ID of this kaleo task assignment instance.
+	 * Returns the kaleo instance token ID of this kaleo task assignment instance.
 	 *
 	 * @return the kaleo instance token ID of this kaleo task assignment instance
 	 */
@@ -219,7 +219,7 @@ public interface KaleoTaskAssignmentInstanceModel extends BaseModel<KaleoTaskAss
 	public void setKaleoInstanceTokenId(long kaleoInstanceTokenId);
 
 	/**
-	 * Gets the kaleo task instance token ID of this kaleo task assignment instance.
+	 * Returns the kaleo task instance token ID of this kaleo task assignment instance.
 	 *
 	 * @return the kaleo task instance token ID of this kaleo task assignment instance
 	 */
@@ -233,7 +233,7 @@ public interface KaleoTaskAssignmentInstanceModel extends BaseModel<KaleoTaskAss
 	public void setKaleoTaskInstanceTokenId(long kaleoTaskInstanceTokenId);
 
 	/**
-	 * Gets the kaleo task ID of this kaleo task assignment instance.
+	 * Returns the kaleo task ID of this kaleo task assignment instance.
 	 *
 	 * @return the kaleo task ID of this kaleo task assignment instance
 	 */
@@ -247,7 +247,7 @@ public interface KaleoTaskAssignmentInstanceModel extends BaseModel<KaleoTaskAss
 	public void setKaleoTaskId(long kaleoTaskId);
 
 	/**
-	 * Gets the kaleo task name of this kaleo task assignment instance.
+	 * Returns the kaleo task name of this kaleo task assignment instance.
 	 *
 	 * @return the kaleo task name of this kaleo task assignment instance
 	 */
@@ -262,7 +262,7 @@ public interface KaleoTaskAssignmentInstanceModel extends BaseModel<KaleoTaskAss
 	public void setKaleoTaskName(String kaleoTaskName);
 
 	/**
-	 * Gets the assignee class name of this kaleo task assignment instance.
+	 * Returns the assignee class name of this kaleo task assignment instance.
 	 *
 	 * @return the assignee class name of this kaleo task assignment instance
 	 */
@@ -277,7 +277,7 @@ public interface KaleoTaskAssignmentInstanceModel extends BaseModel<KaleoTaskAss
 	public void setAssigneeClassName(String assigneeClassName);
 
 	/**
-	 * Gets the assignee class p k of this kaleo task assignment instance.
+	 * Returns the assignee class p k of this kaleo task assignment instance.
 	 *
 	 * @return the assignee class p k of this kaleo task assignment instance
 	 */
@@ -291,7 +291,7 @@ public interface KaleoTaskAssignmentInstanceModel extends BaseModel<KaleoTaskAss
 	public void setAssigneeClassPK(long assigneeClassPK);
 
 	/**
-	 * Gets the completed of this kaleo task assignment instance.
+	 * Returns the completed of this kaleo task assignment instance.
 	 *
 	 * @return the completed of this kaleo task assignment instance
 	 */
@@ -312,7 +312,7 @@ public interface KaleoTaskAssignmentInstanceModel extends BaseModel<KaleoTaskAss
 	public void setCompleted(boolean completed);
 
 	/**
-	 * Gets the completion date of this kaleo task assignment instance.
+	 * Returns the completion date of this kaleo task assignment instance.
 	 *
 	 * @return the completion date of this kaleo task assignment instance
 	 */

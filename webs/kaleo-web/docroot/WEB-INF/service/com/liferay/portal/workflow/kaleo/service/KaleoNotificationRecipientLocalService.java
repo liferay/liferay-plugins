@@ -45,7 +45,7 @@ public interface KaleoNotificationRecipientLocalService {
 	/**
 	* Adds the kaleo notification recipient to the database. Also notifies the appropriate model listeners.
 	*
-	* @param kaleoNotificationRecipient the kaleo notification recipient to add
+	* @param kaleoNotificationRecipient the kaleo notification recipient
 	* @return the kaleo notification recipient that was added
 	* @throws SystemException if a system exception occurred
 	*/
@@ -65,7 +65,7 @@ public interface KaleoNotificationRecipientLocalService {
 	/**
 	* Deletes the kaleo notification recipient with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param kaleoNotificationRecipientId the primary key of the kaleo notification recipient to delete
+	* @param kaleoNotificationRecipientId the primary key of the kaleo notification recipient
 	* @throws PortalException if a kaleo notification recipient with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -77,7 +77,7 @@ public interface KaleoNotificationRecipientLocalService {
 	/**
 	* Deletes the kaleo notification recipient from the database. Also notifies the appropriate model listeners.
 	*
-	* @param kaleoNotificationRecipient the kaleo notification recipient to delete
+	* @param kaleoNotificationRecipient the kaleo notification recipient
 	* @throws SystemException if a system exception occurred
 	*/
 	public void deleteKaleoNotificationRecipient(
@@ -87,7 +87,7 @@ public interface KaleoNotificationRecipientLocalService {
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
 	*
-	* @param dynamicQuery the dynamic query to search with
+	* @param dynamicQuery the dynamic query
 	* @return the matching rows
 	* @throws SystemException if a system exception occurred
 	*/
@@ -103,9 +103,9 @@ public interface KaleoNotificationRecipientLocalService {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param dynamicQuery the dynamic query to search with
-	* @param start the lower bound of the range of model instances to return
-	* @param end the upper bound of the range of model instances to return (not inclusive)
+	* @param dynamicQuery the dynamic query
+	* @param start the lower bound of the range of model instances
+	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
 	* @throws SystemException if a system exception occurred
 	*/
@@ -121,9 +121,9 @@ public interface KaleoNotificationRecipientLocalService {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param dynamicQuery the dynamic query to search with
-	* @param start the lower bound of the range of model instances to return
-	* @param end the upper bound of the range of model instances to return (not inclusive)
+	* @param dynamicQuery the dynamic query
+	* @param start the lower bound of the range of model instances
+	* @param end the upper bound of the range of model instances (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
 	* @throws SystemException if a system exception occurred
@@ -136,9 +136,9 @@ public interface KaleoNotificationRecipientLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Counts the number of rows that match the dynamic query.
+	* Returns the number of rows that match the dynamic query.
 	*
-	* @param dynamicQuery the dynamic query to search with
+	* @param dynamicQuery the dynamic query
 	* @return the number of rows that match the dynamic query
 	* @throws SystemException if a system exception occurred
 	*/
@@ -147,9 +147,9 @@ public interface KaleoNotificationRecipientLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Gets the kaleo notification recipient with the primary key.
+	* Returns the kaleo notification recipient with the primary key.
 	*
-	* @param kaleoNotificationRecipientId the primary key of the kaleo notification recipient to get
+	* @param kaleoNotificationRecipientId the primary key of the kaleo notification recipient
 	* @return the kaleo notification recipient
 	* @throws PortalException if a kaleo notification recipient with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -161,14 +161,14 @@ public interface KaleoNotificationRecipientLocalService {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Gets a range of all the kaleo notification recipients.
+	* Returns a range of all the kaleo notification recipients.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of kaleo notification recipients to return
-	* @param end the upper bound of the range of kaleo notification recipients to return (not inclusive)
+	* @param start the lower bound of the range of kaleo notification recipients
+	* @param end the upper bound of the range of kaleo notification recipients (not inclusive)
 	* @return the range of kaleo notification recipients
 	* @throws SystemException if a system exception occurred
 	*/
@@ -178,7 +178,7 @@ public interface KaleoNotificationRecipientLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Gets the number of kaleo notification recipients.
+	* Returns the number of kaleo notification recipients.
 	*
 	* @return the number of kaleo notification recipients
 	* @throws SystemException if a system exception occurred
@@ -190,7 +190,7 @@ public interface KaleoNotificationRecipientLocalService {
 	/**
 	* Updates the kaleo notification recipient in the database. Also notifies the appropriate model listeners.
 	*
-	* @param kaleoNotificationRecipient the kaleo notification recipient to update
+	* @param kaleoNotificationRecipient the kaleo notification recipient
 	* @return the kaleo notification recipient that was updated
 	* @throws SystemException if a system exception occurred
 	*/
@@ -201,7 +201,7 @@ public interface KaleoNotificationRecipientLocalService {
 	/**
 	* Updates the kaleo notification recipient in the database. Also notifies the appropriate model listeners.
 	*
-	* @param kaleoNotificationRecipient the kaleo notification recipient to update
+	* @param kaleoNotificationRecipient the kaleo notification recipient
 	* @param merge whether to merge the kaleo notification recipient with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
 	* @return the kaleo notification recipient that was updated
 	* @throws SystemException if a system exception occurred
@@ -212,7 +212,7 @@ public interface KaleoNotificationRecipientLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Gets the Spring bean ID for this bean.
+	* Returns the Spring bean ID for this bean.
 	*
 	* @return the Spring bean ID for this bean
 	*/

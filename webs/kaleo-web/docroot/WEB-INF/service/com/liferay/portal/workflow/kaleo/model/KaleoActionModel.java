@@ -47,21 +47,21 @@ public interface KaleoActionModel extends BaseModel<KaleoAction>, GroupedModel {
 	 */
 
 	/**
-	 * Gets the primary key of this kaleo action.
+	 * Returns the primary key of this kaleo action.
 	 *
 	 * @return the primary key of this kaleo action
 	 */
 	public long getPrimaryKey();
 
 	/**
-	 * Sets the primary key of this kaleo action
+	 * Sets the primary key of this kaleo action.
 	 *
 	 * @param primaryKey the primary key of this kaleo action
 	 */
 	public void setPrimaryKey(long primaryKey);
 
 	/**
-	 * Gets the kaleo action ID of this kaleo action.
+	 * Returns the kaleo action ID of this kaleo action.
 	 *
 	 * @return the kaleo action ID of this kaleo action
 	 */
@@ -75,7 +75,7 @@ public interface KaleoActionModel extends BaseModel<KaleoAction>, GroupedModel {
 	public void setKaleoActionId(long kaleoActionId);
 
 	/**
-	 * Gets the group ID of this kaleo action.
+	 * Returns the group ID of this kaleo action.
 	 *
 	 * @return the group ID of this kaleo action
 	 */
@@ -89,7 +89,7 @@ public interface KaleoActionModel extends BaseModel<KaleoAction>, GroupedModel {
 	public void setGroupId(long groupId);
 
 	/**
-	 * Gets the company ID of this kaleo action.
+	 * Returns the company ID of this kaleo action.
 	 *
 	 * @return the company ID of this kaleo action
 	 */
@@ -103,7 +103,7 @@ public interface KaleoActionModel extends BaseModel<KaleoAction>, GroupedModel {
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the user ID of this kaleo action.
+	 * Returns the user ID of this kaleo action.
 	 *
 	 * @return the user ID of this kaleo action
 	 */
@@ -117,7 +117,7 @@ public interface KaleoActionModel extends BaseModel<KaleoAction>, GroupedModel {
 	public void setUserId(long userId);
 
 	/**
-	 * Gets the user uuid of this kaleo action.
+	 * Returns the user uuid of this kaleo action.
 	 *
 	 * @return the user uuid of this kaleo action
 	 * @throws SystemException if a system exception occurred
@@ -132,7 +132,7 @@ public interface KaleoActionModel extends BaseModel<KaleoAction>, GroupedModel {
 	public void setUserUuid(String userUuid);
 
 	/**
-	 * Gets the user name of this kaleo action.
+	 * Returns the user name of this kaleo action.
 	 *
 	 * @return the user name of this kaleo action
 	 */
@@ -147,7 +147,7 @@ public interface KaleoActionModel extends BaseModel<KaleoAction>, GroupedModel {
 	public void setUserName(String userName);
 
 	/**
-	 * Gets the create date of this kaleo action.
+	 * Returns the create date of this kaleo action.
 	 *
 	 * @return the create date of this kaleo action
 	 */
@@ -161,7 +161,7 @@ public interface KaleoActionModel extends BaseModel<KaleoAction>, GroupedModel {
 	public void setCreateDate(Date createDate);
 
 	/**
-	 * Gets the modified date of this kaleo action.
+	 * Returns the modified date of this kaleo action.
 	 *
 	 * @return the modified date of this kaleo action
 	 */
@@ -175,7 +175,7 @@ public interface KaleoActionModel extends BaseModel<KaleoAction>, GroupedModel {
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Gets the kaleo definition ID of this kaleo action.
+	 * Returns the kaleo definition ID of this kaleo action.
 	 *
 	 * @return the kaleo definition ID of this kaleo action
 	 */
@@ -189,7 +189,7 @@ public interface KaleoActionModel extends BaseModel<KaleoAction>, GroupedModel {
 	public void setKaleoDefinitionId(long kaleoDefinitionId);
 
 	/**
-	 * Gets the kaleo node ID of this kaleo action.
+	 * Returns the kaleo node ID of this kaleo action.
 	 *
 	 * @return the kaleo node ID of this kaleo action
 	 */
@@ -203,7 +203,7 @@ public interface KaleoActionModel extends BaseModel<KaleoAction>, GroupedModel {
 	public void setKaleoNodeId(long kaleoNodeId);
 
 	/**
-	 * Gets the kaleo node name of this kaleo action.
+	 * Returns the kaleo node name of this kaleo action.
 	 *
 	 * @return the kaleo node name of this kaleo action
 	 */
@@ -218,7 +218,7 @@ public interface KaleoActionModel extends BaseModel<KaleoAction>, GroupedModel {
 	public void setKaleoNodeName(String kaleoNodeName);
 
 	/**
-	 * Gets the name of this kaleo action.
+	 * Returns the name of this kaleo action.
 	 *
 	 * @return the name of this kaleo action
 	 */
@@ -233,7 +233,7 @@ public interface KaleoActionModel extends BaseModel<KaleoAction>, GroupedModel {
 	public void setName(String name);
 
 	/**
-	 * Gets the description of this kaleo action.
+	 * Returns the description of this kaleo action.
 	 *
 	 * @return the description of this kaleo action
 	 */
@@ -248,7 +248,7 @@ public interface KaleoActionModel extends BaseModel<KaleoAction>, GroupedModel {
 	public void setDescription(String description);
 
 	/**
-	 * Gets the execution type of this kaleo action.
+	 * Returns the execution type of this kaleo action.
 	 *
 	 * @return the execution type of this kaleo action
 	 */
@@ -263,7 +263,7 @@ public interface KaleoActionModel extends BaseModel<KaleoAction>, GroupedModel {
 	public void setExecutionType(String executionType);
 
 	/**
-	 * Gets the script of this kaleo action.
+	 * Returns the script of this kaleo action.
 	 *
 	 * @return the script of this kaleo action
 	 */
@@ -278,7 +278,7 @@ public interface KaleoActionModel extends BaseModel<KaleoAction>, GroupedModel {
 	public void setScript(String script);
 
 	/**
-	 * Gets the script language of this kaleo action.
+	 * Returns the script language of this kaleo action.
 	 *
 	 * @return the script language of this kaleo action
 	 */
@@ -293,7 +293,7 @@ public interface KaleoActionModel extends BaseModel<KaleoAction>, GroupedModel {
 	public void setScriptLanguage(String scriptLanguage);
 
 	/**
-	 * Gets the priority of this kaleo action.
+	 * Returns the priority of this kaleo action.
 	 *
 	 * @return the priority of this kaleo action
 	 */

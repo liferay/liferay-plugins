@@ -117,7 +117,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	/**
 	 * Caches the kaleo task in the entity cache if it is enabled.
 	 *
-	 * @param kaleoTask the kaleo task to cache
+	 * @param kaleoTask the kaleo task
 	 */
 	public void cacheResult(KaleoTask kaleoTask) {
 		EntityCacheUtil.putResult(KaleoTaskModelImpl.ENTITY_CACHE_ENABLED,
@@ -132,7 +132,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	/**
 	 * Caches the kaleo tasks in the entity cache if it is enabled.
 	 *
-	 * @param kaleoTasks the kaleo tasks to cache
+	 * @param kaleoTasks the kaleo tasks
 	 */
 	public void cacheResult(List<KaleoTask> kaleoTasks) {
 		for (KaleoTask kaleoTask : kaleoTasks) {
@@ -194,7 +194,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	/**
 	 * Removes the kaleo task with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param primaryKey the primary key of the kaleo task to remove
+	 * @param primaryKey the primary key of the kaleo task
 	 * @return the kaleo task that was removed
 	 * @throws com.liferay.portal.NoSuchModelException if a kaleo task with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -207,7 +207,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	/**
 	 * Removes the kaleo task with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param kaleoTaskId the primary key of the kaleo task to remove
+	 * @param kaleoTaskId the primary key of the kaleo task
 	 * @return the kaleo task that was removed
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTaskException if a kaleo task with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -247,7 +247,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	/**
 	 * Removes the kaleo task from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param kaleoTask the kaleo task to remove
+	 * @param kaleoTask the kaleo task
 	 * @return the kaleo task that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -360,9 +360,9 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	}
 
 	/**
-	 * Finds the kaleo task with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
+	 * Returns the kaleo task with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
 	 *
-	 * @param primaryKey the primary key of the kaleo task to find
+	 * @param primaryKey the primary key of the kaleo task
 	 * @return the kaleo task
 	 * @throws com.liferay.portal.NoSuchModelException if a kaleo task with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -373,9 +373,9 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	}
 
 	/**
-	 * Finds the kaleo task with the primary key or throws a {@link com.liferay.portal.workflow.kaleo.NoSuchTaskException} if it could not be found.
+	 * Returns the kaleo task with the primary key or throws a {@link com.liferay.portal.workflow.kaleo.NoSuchTaskException} if it could not be found.
 	 *
-	 * @param kaleoTaskId the primary key of the kaleo task to find
+	 * @param kaleoTaskId the primary key of the kaleo task
 	 * @return the kaleo task
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTaskException if a kaleo task with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -397,9 +397,9 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	}
 
 	/**
-	 * Finds the kaleo task with the primary key or returns <code>null</code> if it could not be found.
+	 * Returns the kaleo task with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param primaryKey the primary key of the kaleo task to find
+	 * @param primaryKey the primary key of the kaleo task
 	 * @return the kaleo task, or <code>null</code> if a kaleo task with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -409,9 +409,9 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	}
 
 	/**
-	 * Finds the kaleo task with the primary key or returns <code>null</code> if it could not be found.
+	 * Returns the kaleo task with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param kaleoTaskId the primary key of the kaleo task to find
+	 * @param kaleoTaskId the primary key of the kaleo task
 	 * @return the kaleo task, or <code>null</code> if a kaleo task with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -445,9 +445,9 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	}
 
 	/**
-	 * Finds all the kaleo tasks where companyId = &#63;.
+	 * Returns all the kaleo tasks where companyId = &#63;.
 	 *
-	 * @param companyId the company ID to search with
+	 * @param companyId the company ID
 	 * @return the matching kaleo tasks
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -458,15 +458,15 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	}
 
 	/**
-	 * Finds a range of all the kaleo tasks where companyId = &#63;.
+	 * Returns a range of all the kaleo tasks where companyId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param companyId the company ID to search with
-	 * @param start the lower bound of the range of kaleo tasks to return
-	 * @param end the upper bound of the range of kaleo tasks to return (not inclusive)
+	 * @param companyId the company ID
+	 * @param start the lower bound of the range of kaleo tasks
+	 * @param end the upper bound of the range of kaleo tasks (not inclusive)
 	 * @return the range of matching kaleo tasks
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -476,15 +476,15 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	}
 
 	/**
-	 * Finds an ordered range of all the kaleo tasks where companyId = &#63;.
+	 * Returns an ordered range of all the kaleo tasks where companyId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param companyId the company ID to search with
-	 * @param start the lower bound of the range of kaleo tasks to return
-	 * @param end the upper bound of the range of kaleo tasks to return (not inclusive)
+	 * @param companyId the company ID
+	 * @param start the lower bound of the range of kaleo tasks
+	 * @param end the upper bound of the range of kaleo tasks (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching kaleo tasks
 	 * @throws SystemException if a system exception occurred
@@ -564,13 +564,13 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	}
 
 	/**
-	 * Finds the first kaleo task in the ordered set where companyId = &#63;.
+	 * Returns the first kaleo task in the ordered set where companyId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param companyId the company ID to search with
+	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching kaleo task
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTaskException if a matching kaleo task could not be found
@@ -600,13 +600,13 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	}
 
 	/**
-	 * Finds the last kaleo task in the ordered set where companyId = &#63;.
+	 * Returns the last kaleo task in the ordered set where companyId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param companyId the company ID to search with
+	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching kaleo task
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTaskException if a matching kaleo task could not be found
@@ -638,14 +638,14 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	}
 
 	/**
-	 * Finds the kaleo tasks before and after the current kaleo task in the ordered set where companyId = &#63;.
+	 * Returns the kaleo tasks before and after the current kaleo task in the ordered set where companyId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
 	 * @param kaleoTaskId the primary key of the current kaleo task
-	 * @param companyId the company ID to search with
+	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next kaleo task
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTaskException if a kaleo task with the primary key could not be found
@@ -786,9 +786,9 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	}
 
 	/**
-	 * Finds all the kaleo tasks where kaleoDefinitionId = &#63;.
+	 * Returns all the kaleo tasks where kaleoDefinitionId = &#63;.
 	 *
-	 * @param kaleoDefinitionId the kaleo definition ID to search with
+	 * @param kaleoDefinitionId the kaleo definition ID
 	 * @return the matching kaleo tasks
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -799,15 +799,15 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	}
 
 	/**
-	 * Finds a range of all the kaleo tasks where kaleoDefinitionId = &#63;.
+	 * Returns a range of all the kaleo tasks where kaleoDefinitionId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param kaleoDefinitionId the kaleo definition ID to search with
-	 * @param start the lower bound of the range of kaleo tasks to return
-	 * @param end the upper bound of the range of kaleo tasks to return (not inclusive)
+	 * @param kaleoDefinitionId the kaleo definition ID
+	 * @param start the lower bound of the range of kaleo tasks
+	 * @param end the upper bound of the range of kaleo tasks (not inclusive)
 	 * @return the range of matching kaleo tasks
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -817,15 +817,15 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	}
 
 	/**
-	 * Finds an ordered range of all the kaleo tasks where kaleoDefinitionId = &#63;.
+	 * Returns an ordered range of all the kaleo tasks where kaleoDefinitionId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param kaleoDefinitionId the kaleo definition ID to search with
-	 * @param start the lower bound of the range of kaleo tasks to return
-	 * @param end the upper bound of the range of kaleo tasks to return (not inclusive)
+	 * @param kaleoDefinitionId the kaleo definition ID
+	 * @param start the lower bound of the range of kaleo tasks
+	 * @param end the upper bound of the range of kaleo tasks (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching kaleo tasks
 	 * @throws SystemException if a system exception occurred
@@ -906,13 +906,13 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	}
 
 	/**
-	 * Finds the first kaleo task in the ordered set where kaleoDefinitionId = &#63;.
+	 * Returns the first kaleo task in the ordered set where kaleoDefinitionId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param kaleoDefinitionId the kaleo definition ID to search with
+	 * @param kaleoDefinitionId the kaleo definition ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching kaleo task
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTaskException if a matching kaleo task could not be found
@@ -942,13 +942,13 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	}
 
 	/**
-	 * Finds the last kaleo task in the ordered set where kaleoDefinitionId = &#63;.
+	 * Returns the last kaleo task in the ordered set where kaleoDefinitionId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param kaleoDefinitionId the kaleo definition ID to search with
+	 * @param kaleoDefinitionId the kaleo definition ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching kaleo task
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTaskException if a matching kaleo task could not be found
@@ -980,14 +980,14 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	}
 
 	/**
-	 * Finds the kaleo tasks before and after the current kaleo task in the ordered set where kaleoDefinitionId = &#63;.
+	 * Returns the kaleo tasks before and after the current kaleo task in the ordered set where kaleoDefinitionId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
 	 * @param kaleoTaskId the primary key of the current kaleo task
-	 * @param kaleoDefinitionId the kaleo definition ID to search with
+	 * @param kaleoDefinitionId the kaleo definition ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next kaleo task
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTaskException if a kaleo task with the primary key could not be found
@@ -1128,9 +1128,9 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	}
 
 	/**
-	 * Finds the kaleo task where kaleoNodeId = &#63; or throws a {@link com.liferay.portal.workflow.kaleo.NoSuchTaskException} if it could not be found.
+	 * Returns the kaleo task where kaleoNodeId = &#63; or throws a {@link com.liferay.portal.workflow.kaleo.NoSuchTaskException} if it could not be found.
 	 *
-	 * @param kaleoNodeId the kaleo node ID to search with
+	 * @param kaleoNodeId the kaleo node ID
 	 * @return the matching kaleo task
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTaskException if a matching kaleo task could not be found
 	 * @throws SystemException if a system exception occurred
@@ -1160,9 +1160,9 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	}
 
 	/**
-	 * Finds the kaleo task where kaleoNodeId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the kaleo task where kaleoNodeId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @param kaleoNodeId the kaleo node ID to search with
+	 * @param kaleoNodeId the kaleo node ID
 	 * @return the matching kaleo task, or <code>null</code> if a matching kaleo task could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -1172,9 +1172,9 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	}
 
 	/**
-	 * Finds the kaleo task where kaleoNodeId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the kaleo task where kaleoNodeId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
-	 * @param kaleoNodeId the kaleo node ID to search with
+	 * @param kaleoNodeId the kaleo node ID
 	 * @return the matching kaleo task, or <code>null</code> if a matching kaleo task could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -1257,7 +1257,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	}
 
 	/**
-	 * Finds all the kaleo tasks.
+	 * Returns all the kaleo tasks.
 	 *
 	 * @return the kaleo tasks
 	 * @throws SystemException if a system exception occurred
@@ -1267,14 +1267,14 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	}
 
 	/**
-	 * Finds a range of all the kaleo tasks.
+	 * Returns a range of all the kaleo tasks.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of kaleo tasks to return
-	 * @param end the upper bound of the range of kaleo tasks to return (not inclusive)
+	 * @param start the lower bound of the range of kaleo tasks
+	 * @param end the upper bound of the range of kaleo tasks (not inclusive)
 	 * @return the range of kaleo tasks
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -1284,14 +1284,14 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	}
 
 	/**
-	 * Finds an ordered range of all the kaleo tasks.
+	 * Returns an ordered range of all the kaleo tasks.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of kaleo tasks to return
-	 * @param end the upper bound of the range of kaleo tasks to return (not inclusive)
+	 * @param start the lower bound of the range of kaleo tasks
+	 * @param end the upper bound of the range of kaleo tasks (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of kaleo tasks
 	 * @throws SystemException if a system exception occurred
@@ -1368,7 +1368,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	/**
 	 * Removes all the kaleo tasks where companyId = &#63; from the database.
 	 *
-	 * @param companyId the company ID to search with
+	 * @param companyId the company ID
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeByCompanyId(long companyId) throws SystemException {
@@ -1380,7 +1380,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	/**
 	 * Removes all the kaleo tasks where kaleoDefinitionId = &#63; from the database.
 	 *
-	 * @param kaleoDefinitionId the kaleo definition ID to search with
+	 * @param kaleoDefinitionId the kaleo definition ID
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeByKaleoDefinitionId(long kaleoDefinitionId)
@@ -1393,7 +1393,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	/**
 	 * Removes the kaleo task where kaleoNodeId = &#63; from the database.
 	 *
-	 * @param kaleoNodeId the kaleo node ID to search with
+	 * @param kaleoNodeId the kaleo node ID
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeByKaleoNodeId(long kaleoNodeId)
@@ -1415,9 +1415,9 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	}
 
 	/**
-	 * Counts all the kaleo tasks where companyId = &#63;.
+	 * Returns the number of kaleo tasks where companyId = &#63;.
 	 *
-	 * @param companyId the company ID to search with
+	 * @param companyId the company ID
 	 * @return the number of matching kaleo tasks
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -1468,9 +1468,9 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	}
 
 	/**
-	 * Counts all the kaleo tasks where kaleoDefinitionId = &#63;.
+	 * Returns the number of kaleo tasks where kaleoDefinitionId = &#63;.
 	 *
-	 * @param kaleoDefinitionId the kaleo definition ID to search with
+	 * @param kaleoDefinitionId the kaleo definition ID
 	 * @return the number of matching kaleo tasks
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -1522,9 +1522,9 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	}
 
 	/**
-	 * Counts all the kaleo tasks where kaleoNodeId = &#63;.
+	 * Returns the number of kaleo tasks where kaleoNodeId = &#63;.
 	 *
-	 * @param kaleoNodeId the kaleo node ID to search with
+	 * @param kaleoNodeId the kaleo node ID
 	 * @return the number of matching kaleo tasks
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -1575,7 +1575,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	}
 
 	/**
-	 * Counts all the kaleo tasks.
+	 * Returns the number of kaleo tasks.
 	 *
 	 * @return the number of kaleo tasks
 	 * @throws SystemException if a system exception occurred
@@ -1615,9 +1615,9 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	}
 
 	/**
-	 * Gets all the kaleo task assignments associated with the kaleo task.
+	 * Returns all the kaleo task assignments associated with the kaleo task.
 	 *
-	 * @param pk the primary key of the kaleo task to get the associated kaleo task assignments for
+	 * @param pk the primary key of the kaleo task
 	 * @return the kaleo task assignments associated with the kaleo task
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -1627,15 +1627,15 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	}
 
 	/**
-	 * Gets a range of all the kaleo task assignments associated with the kaleo task.
+	 * Returns a range of all the kaleo task assignments associated with the kaleo task.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param pk the primary key of the kaleo task to get the associated kaleo task assignments for
-	 * @param start the lower bound of the range of kaleo tasks to return
-	 * @param end the upper bound of the range of kaleo tasks to return (not inclusive)
+	 * @param pk the primary key of the kaleo task
+	 * @param start the lower bound of the range of kaleo tasks
+	 * @param end the upper bound of the range of kaleo tasks (not inclusive)
 	 * @return the range of kaleo task assignments associated with the kaleo task
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -1654,15 +1654,15 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 			});
 
 	/**
-	 * Gets an ordered range of all the kaleo task assignments associated with the kaleo task.
+	 * Returns an ordered range of all the kaleo task assignments associated with the kaleo task.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param pk the primary key of the kaleo task to get the associated kaleo task assignments for
-	 * @param start the lower bound of the range of kaleo tasks to return
-	 * @param end the upper bound of the range of kaleo tasks to return (not inclusive)
+	 * @param pk the primary key of the kaleo task
+	 * @param start the lower bound of the range of kaleo tasks
+	 * @param end the upper bound of the range of kaleo tasks (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of kaleo task assignments associated with the kaleo task
 	 * @throws SystemException if a system exception occurred
@@ -1734,9 +1734,9 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 			"getKaleoTaskAssignmentsSize", new String[] { Long.class.getName() });
 
 	/**
-	 * Gets the number of kaleo task assignments associated with the kaleo task.
+	 * Returns the number of kaleo task assignments associated with the kaleo task.
 	 *
-	 * @param pk the primary key of the kaleo task to get the number of associated kaleo task assignments for
+	 * @param pk the primary key of the kaleo task
 	 * @return the number of kaleo task assignments associated with the kaleo task
 	 * @throws SystemException if a system exception occurred
 	 */

@@ -39,7 +39,7 @@ public class KaleoNotificationRecipientWrapper
 	}
 
 	/**
-	* Gets the primary key of this kaleo notification recipient.
+	* Returns the primary key of this kaleo notification recipient.
 	*
 	* @return the primary key of this kaleo notification recipient
 	*/
@@ -48,7 +48,7 @@ public class KaleoNotificationRecipientWrapper
 	}
 
 	/**
-	* Sets the primary key of this kaleo notification recipient
+	* Sets the primary key of this kaleo notification recipient.
 	*
 	* @param primaryKey the primary key of this kaleo notification recipient
 	*/
@@ -57,7 +57,7 @@ public class KaleoNotificationRecipientWrapper
 	}
 
 	/**
-	* Gets the kaleo notification recipient ID of this kaleo notification recipient.
+	* Returns the kaleo notification recipient ID of this kaleo notification recipient.
 	*
 	* @return the kaleo notification recipient ID of this kaleo notification recipient
 	*/
@@ -76,7 +76,7 @@ public class KaleoNotificationRecipientWrapper
 	}
 
 	/**
-	* Gets the group ID of this kaleo notification recipient.
+	* Returns the group ID of this kaleo notification recipient.
 	*
 	* @return the group ID of this kaleo notification recipient
 	*/
@@ -94,7 +94,7 @@ public class KaleoNotificationRecipientWrapper
 	}
 
 	/**
-	* Gets the company ID of this kaleo notification recipient.
+	* Returns the company ID of this kaleo notification recipient.
 	*
 	* @return the company ID of this kaleo notification recipient
 	*/
@@ -112,7 +112,7 @@ public class KaleoNotificationRecipientWrapper
 	}
 
 	/**
-	* Gets the user ID of this kaleo notification recipient.
+	* Returns the user ID of this kaleo notification recipient.
 	*
 	* @return the user ID of this kaleo notification recipient
 	*/
@@ -130,7 +130,7 @@ public class KaleoNotificationRecipientWrapper
 	}
 
 	/**
-	* Gets the user uuid of this kaleo notification recipient.
+	* Returns the user uuid of this kaleo notification recipient.
 	*
 	* @return the user uuid of this kaleo notification recipient
 	* @throws SystemException if a system exception occurred
@@ -150,7 +150,7 @@ public class KaleoNotificationRecipientWrapper
 	}
 
 	/**
-	* Gets the user name of this kaleo notification recipient.
+	* Returns the user name of this kaleo notification recipient.
 	*
 	* @return the user name of this kaleo notification recipient
 	*/
@@ -168,7 +168,7 @@ public class KaleoNotificationRecipientWrapper
 	}
 
 	/**
-	* Gets the create date of this kaleo notification recipient.
+	* Returns the create date of this kaleo notification recipient.
 	*
 	* @return the create date of this kaleo notification recipient
 	*/
@@ -186,7 +186,7 @@ public class KaleoNotificationRecipientWrapper
 	}
 
 	/**
-	* Gets the modified date of this kaleo notification recipient.
+	* Returns the modified date of this kaleo notification recipient.
 	*
 	* @return the modified date of this kaleo notification recipient
 	*/
@@ -204,7 +204,7 @@ public class KaleoNotificationRecipientWrapper
 	}
 
 	/**
-	* Gets the kaleo definition ID of this kaleo notification recipient.
+	* Returns the kaleo definition ID of this kaleo notification recipient.
 	*
 	* @return the kaleo definition ID of this kaleo notification recipient
 	*/
@@ -222,7 +222,7 @@ public class KaleoNotificationRecipientWrapper
 	}
 
 	/**
-	* Gets the kaleo notification ID of this kaleo notification recipient.
+	* Returns the kaleo notification ID of this kaleo notification recipient.
 	*
 	* @return the kaleo notification ID of this kaleo notification recipient
 	*/
@@ -240,7 +240,7 @@ public class KaleoNotificationRecipientWrapper
 	}
 
 	/**
-	* Gets the recipient class name of this kaleo notification recipient.
+	* Returns the recipient class name of this kaleo notification recipient.
 	*
 	* @return the recipient class name of this kaleo notification recipient
 	*/
@@ -258,7 +258,7 @@ public class KaleoNotificationRecipientWrapper
 	}
 
 	/**
-	* Gets the recipient class p k of this kaleo notification recipient.
+	* Returns the recipient class p k of this kaleo notification recipient.
 	*
 	* @return the recipient class p k of this kaleo notification recipient
 	*/
@@ -276,7 +276,7 @@ public class KaleoNotificationRecipientWrapper
 	}
 
 	/**
-	* Gets the recipient role type of this kaleo notification recipient.
+	* Returns the recipient role type of this kaleo notification recipient.
 	*
 	* @return the recipient role type of this kaleo notification recipient
 	*/
@@ -294,7 +294,7 @@ public class KaleoNotificationRecipientWrapper
 	}
 
 	/**
-	* Gets the address of this kaleo notification recipient.
+	* Returns the address of this kaleo notification recipient.
 	*
 	* @return the address of this kaleo notification recipient
 	*/

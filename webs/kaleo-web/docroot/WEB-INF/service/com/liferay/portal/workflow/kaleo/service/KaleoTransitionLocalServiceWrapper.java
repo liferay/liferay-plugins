@@ -33,7 +33,7 @@ public class KaleoTransitionLocalServiceWrapper
 	/**
 	* Adds the kaleo transition to the database. Also notifies the appropriate model listeners.
 	*
-	* @param kaleoTransition the kaleo transition to add
+	* @param kaleoTransition the kaleo transition
 	* @return the kaleo transition that was added
 	* @throws SystemException if a system exception occurred
 	*/
@@ -57,7 +57,7 @@ public class KaleoTransitionLocalServiceWrapper
 	/**
 	* Deletes the kaleo transition with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param kaleoTransitionId the primary key of the kaleo transition to delete
+	* @param kaleoTransitionId the primary key of the kaleo transition
 	* @throws PortalException if a kaleo transition with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -70,7 +70,7 @@ public class KaleoTransitionLocalServiceWrapper
 	/**
 	* Deletes the kaleo transition from the database. Also notifies the appropriate model listeners.
 	*
-	* @param kaleoTransition the kaleo transition to delete
+	* @param kaleoTransition the kaleo transition
 	* @throws SystemException if a system exception occurred
 	*/
 	public void deleteKaleoTransition(
@@ -82,7 +82,7 @@ public class KaleoTransitionLocalServiceWrapper
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
 	*
-	* @param dynamicQuery the dynamic query to search with
+	* @param dynamicQuery the dynamic query
 	* @return the matching rows
 	* @throws SystemException if a system exception occurred
 	*/
@@ -100,9 +100,9 @@ public class KaleoTransitionLocalServiceWrapper
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param dynamicQuery the dynamic query to search with
-	* @param start the lower bound of the range of model instances to return
-	* @param end the upper bound of the range of model instances to return (not inclusive)
+	* @param dynamicQuery the dynamic query
+	* @param start the lower bound of the range of model instances
+	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
 	* @throws SystemException if a system exception occurred
 	*/
@@ -121,9 +121,9 @@ public class KaleoTransitionLocalServiceWrapper
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param dynamicQuery the dynamic query to search with
-	* @param start the lower bound of the range of model instances to return
-	* @param end the upper bound of the range of model instances to return (not inclusive)
+	* @param dynamicQuery the dynamic query
+	* @param start the lower bound of the range of model instances
+	* @param end the upper bound of the range of model instances (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
 	* @throws SystemException if a system exception occurred
@@ -139,9 +139,9 @@ public class KaleoTransitionLocalServiceWrapper
 	}
 
 	/**
-	* Counts the number of rows that match the dynamic query.
+	* Returns the number of rows that match the dynamic query.
 	*
-	* @param dynamicQuery the dynamic query to search with
+	* @param dynamicQuery the dynamic query
 	* @return the number of rows that match the dynamic query
 	* @throws SystemException if a system exception occurred
 	*/
@@ -152,9 +152,9 @@ public class KaleoTransitionLocalServiceWrapper
 	}
 
 	/**
-	* Gets the kaleo transition with the primary key.
+	* Returns the kaleo transition with the primary key.
 	*
-	* @param kaleoTransitionId the primary key of the kaleo transition to get
+	* @param kaleoTransitionId the primary key of the kaleo transition
 	* @return the kaleo transition
 	* @throws PortalException if a kaleo transition with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -167,14 +167,14 @@ public class KaleoTransitionLocalServiceWrapper
 	}
 
 	/**
-	* Gets a range of all the kaleo transitions.
+	* Returns a range of all the kaleo transitions.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of kaleo transitions to return
-	* @param end the upper bound of the range of kaleo transitions to return (not inclusive)
+	* @param start the lower bound of the range of kaleo transitions
+	* @param end the upper bound of the range of kaleo transitions (not inclusive)
 	* @return the range of kaleo transitions
 	* @throws SystemException if a system exception occurred
 	*/
@@ -185,7 +185,7 @@ public class KaleoTransitionLocalServiceWrapper
 	}
 
 	/**
-	* Gets the number of kaleo transitions.
+	* Returns the number of kaleo transitions.
 	*
 	* @return the number of kaleo transitions
 	* @throws SystemException if a system exception occurred
@@ -198,7 +198,7 @@ public class KaleoTransitionLocalServiceWrapper
 	/**
 	* Updates the kaleo transition in the database. Also notifies the appropriate model listeners.
 	*
-	* @param kaleoTransition the kaleo transition to update
+	* @param kaleoTransition the kaleo transition
 	* @return the kaleo transition that was updated
 	* @throws SystemException if a system exception occurred
 	*/
@@ -211,7 +211,7 @@ public class KaleoTransitionLocalServiceWrapper
 	/**
 	* Updates the kaleo transition in the database. Also notifies the appropriate model listeners.
 	*
-	* @param kaleoTransition the kaleo transition to update
+	* @param kaleoTransition the kaleo transition
 	* @param merge whether to merge the kaleo transition with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
 	* @return the kaleo transition that was updated
 	* @throws SystemException if a system exception occurred
@@ -225,7 +225,7 @@ public class KaleoTransitionLocalServiceWrapper
 	}
 
 	/**
-	* Gets the Spring bean ID for this bean.
+	* Returns the Spring bean ID for this bean.
 	*
 	* @return the Spring bean ID for this bean
 	*/

@@ -37,7 +37,7 @@ public class KaleoConditionWrapper implements KaleoCondition {
 	}
 
 	/**
-	* Gets the primary key of this kaleo condition.
+	* Returns the primary key of this kaleo condition.
 	*
 	* @return the primary key of this kaleo condition
 	*/
@@ -46,7 +46,7 @@ public class KaleoConditionWrapper implements KaleoCondition {
 	}
 
 	/**
-	* Sets the primary key of this kaleo condition
+	* Sets the primary key of this kaleo condition.
 	*
 	* @param primaryKey the primary key of this kaleo condition
 	*/
@@ -55,7 +55,7 @@ public class KaleoConditionWrapper implements KaleoCondition {
 	}
 
 	/**
-	* Gets the kaleo condition ID of this kaleo condition.
+	* Returns the kaleo condition ID of this kaleo condition.
 	*
 	* @return the kaleo condition ID of this kaleo condition
 	*/
@@ -73,7 +73,7 @@ public class KaleoConditionWrapper implements KaleoCondition {
 	}
 
 	/**
-	* Gets the group ID of this kaleo condition.
+	* Returns the group ID of this kaleo condition.
 	*
 	* @return the group ID of this kaleo condition
 	*/
@@ -91,7 +91,7 @@ public class KaleoConditionWrapper implements KaleoCondition {
 	}
 
 	/**
-	* Gets the company ID of this kaleo condition.
+	* Returns the company ID of this kaleo condition.
 	*
 	* @return the company ID of this kaleo condition
 	*/
@@ -109,7 +109,7 @@ public class KaleoConditionWrapper implements KaleoCondition {
 	}
 
 	/**
-	* Gets the user ID of this kaleo condition.
+	* Returns the user ID of this kaleo condition.
 	*
 	* @return the user ID of this kaleo condition
 	*/
@@ -127,7 +127,7 @@ public class KaleoConditionWrapper implements KaleoCondition {
 	}
 
 	/**
-	* Gets the user uuid of this kaleo condition.
+	* Returns the user uuid of this kaleo condition.
 	*
 	* @return the user uuid of this kaleo condition
 	* @throws SystemException if a system exception occurred
@@ -147,7 +147,7 @@ public class KaleoConditionWrapper implements KaleoCondition {
 	}
 
 	/**
-	* Gets the user name of this kaleo condition.
+	* Returns the user name of this kaleo condition.
 	*
 	* @return the user name of this kaleo condition
 	*/
@@ -165,7 +165,7 @@ public class KaleoConditionWrapper implements KaleoCondition {
 	}
 
 	/**
-	* Gets the create date of this kaleo condition.
+	* Returns the create date of this kaleo condition.
 	*
 	* @return the create date of this kaleo condition
 	*/
@@ -183,7 +183,7 @@ public class KaleoConditionWrapper implements KaleoCondition {
 	}
 
 	/**
-	* Gets the modified date of this kaleo condition.
+	* Returns the modified date of this kaleo condition.
 	*
 	* @return the modified date of this kaleo condition
 	*/
@@ -201,7 +201,7 @@ public class KaleoConditionWrapper implements KaleoCondition {
 	}
 
 	/**
-	* Gets the kaleo definition ID of this kaleo condition.
+	* Returns the kaleo definition ID of this kaleo condition.
 	*
 	* @return the kaleo definition ID of this kaleo condition
 	*/
@@ -219,7 +219,7 @@ public class KaleoConditionWrapper implements KaleoCondition {
 	}
 
 	/**
-	* Gets the kaleo node ID of this kaleo condition.
+	* Returns the kaleo node ID of this kaleo condition.
 	*
 	* @return the kaleo node ID of this kaleo condition
 	*/
@@ -237,7 +237,7 @@ public class KaleoConditionWrapper implements KaleoCondition {
 	}
 
 	/**
-	* Gets the script of this kaleo condition.
+	* Returns the script of this kaleo condition.
 	*
 	* @return the script of this kaleo condition
 	*/
@@ -255,7 +255,7 @@ public class KaleoConditionWrapper implements KaleoCondition {
 	}
 
 	/**
-	* Gets the script language of this kaleo condition.
+	* Returns the script language of this kaleo condition.
 	*
 	* @return the script language of this kaleo condition
 	*/

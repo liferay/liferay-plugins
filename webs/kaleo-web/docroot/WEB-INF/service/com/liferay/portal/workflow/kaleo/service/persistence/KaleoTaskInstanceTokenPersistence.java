@@ -40,7 +40,7 @@ public interface KaleoTaskInstanceTokenPersistence extends BasePersistence<Kaleo
 	/**
 	* Caches the kaleo task instance token in the entity cache if it is enabled.
 	*
-	* @param kaleoTaskInstanceToken the kaleo task instance token to cache
+	* @param kaleoTaskInstanceToken the kaleo task instance token
 	*/
 	public void cacheResult(
 		com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken kaleoTaskInstanceToken);
@@ -48,7 +48,7 @@ public interface KaleoTaskInstanceTokenPersistence extends BasePersistence<Kaleo
 	/**
 	* Caches the kaleo task instance tokens in the entity cache if it is enabled.
 	*
-	* @param kaleoTaskInstanceTokens the kaleo task instance tokens to cache
+	* @param kaleoTaskInstanceTokens the kaleo task instance tokens
 	*/
 	public void cacheResult(
 		java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken> kaleoTaskInstanceTokens);
@@ -65,7 +65,7 @@ public interface KaleoTaskInstanceTokenPersistence extends BasePersistence<Kaleo
 	/**
 	* Removes the kaleo task instance token with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param kaleoTaskInstanceTokenId the primary key of the kaleo task instance token to remove
+	* @param kaleoTaskInstanceTokenId the primary key of the kaleo task instance token
 	* @return the kaleo task instance token that was removed
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchTaskInstanceTokenException if a kaleo task instance token with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -81,9 +81,9 @@ public interface KaleoTaskInstanceTokenPersistence extends BasePersistence<Kaleo
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the kaleo task instance token with the primary key or throws a {@link com.liferay.portal.workflow.kaleo.NoSuchTaskInstanceTokenException} if it could not be found.
+	* Returns the kaleo task instance token with the primary key or throws a {@link com.liferay.portal.workflow.kaleo.NoSuchTaskInstanceTokenException} if it could not be found.
 	*
-	* @param kaleoTaskInstanceTokenId the primary key of the kaleo task instance token to find
+	* @param kaleoTaskInstanceTokenId the primary key of the kaleo task instance token
 	* @return the kaleo task instance token
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchTaskInstanceTokenException if a kaleo task instance token with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -94,9 +94,9 @@ public interface KaleoTaskInstanceTokenPersistence extends BasePersistence<Kaleo
 			com.liferay.portal.workflow.kaleo.NoSuchTaskInstanceTokenException;
 
 	/**
-	* Finds the kaleo task instance token with the primary key or returns <code>null</code> if it could not be found.
+	* Returns the kaleo task instance token with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param kaleoTaskInstanceTokenId the primary key of the kaleo task instance token to find
+	* @param kaleoTaskInstanceTokenId the primary key of the kaleo task instance token
 	* @return the kaleo task instance token, or <code>null</code> if a kaleo task instance token with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -105,9 +105,9 @@ public interface KaleoTaskInstanceTokenPersistence extends BasePersistence<Kaleo
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds all the kaleo task instance tokens where companyId = &#63;.
+	* Returns all the kaleo task instance tokens where companyId = &#63;.
 	*
-	* @param companyId the company ID to search with
+	* @param companyId the company ID
 	* @return the matching kaleo task instance tokens
 	* @throws SystemException if a system exception occurred
 	*/
@@ -116,15 +116,15 @@ public interface KaleoTaskInstanceTokenPersistence extends BasePersistence<Kaleo
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds a range of all the kaleo task instance tokens where companyId = &#63;.
+	* Returns a range of all the kaleo task instance tokens where companyId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param companyId the company ID to search with
-	* @param start the lower bound of the range of kaleo task instance tokens to return
-	* @param end the upper bound of the range of kaleo task instance tokens to return (not inclusive)
+	* @param companyId the company ID
+	* @param start the lower bound of the range of kaleo task instance tokens
+	* @param end the upper bound of the range of kaleo task instance tokens (not inclusive)
 	* @return the range of matching kaleo task instance tokens
 	* @throws SystemException if a system exception occurred
 	*/
@@ -133,15 +133,15 @@ public interface KaleoTaskInstanceTokenPersistence extends BasePersistence<Kaleo
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds an ordered range of all the kaleo task instance tokens where companyId = &#63;.
+	* Returns an ordered range of all the kaleo task instance tokens where companyId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param companyId the company ID to search with
-	* @param start the lower bound of the range of kaleo task instance tokens to return
-	* @param end the upper bound of the range of kaleo task instance tokens to return (not inclusive)
+	* @param companyId the company ID
+	* @param start the lower bound of the range of kaleo task instance tokens
+	* @param end the upper bound of the range of kaleo task instance tokens (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching kaleo task instance tokens
 	* @throws SystemException if a system exception occurred
@@ -152,13 +152,13 @@ public interface KaleoTaskInstanceTokenPersistence extends BasePersistence<Kaleo
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the first kaleo task instance token in the ordered set where companyId = &#63;.
+	* Returns the first kaleo task instance token in the ordered set where companyId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param companyId the company ID to search with
+	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo task instance token
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchTaskInstanceTokenException if a matching kaleo task instance token could not be found
@@ -171,13 +171,13 @@ public interface KaleoTaskInstanceTokenPersistence extends BasePersistence<Kaleo
 			com.liferay.portal.workflow.kaleo.NoSuchTaskInstanceTokenException;
 
 	/**
-	* Finds the last kaleo task instance token in the ordered set where companyId = &#63;.
+	* Returns the last kaleo task instance token in the ordered set where companyId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param companyId the company ID to search with
+	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching kaleo task instance token
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchTaskInstanceTokenException if a matching kaleo task instance token could not be found
@@ -190,14 +190,14 @@ public interface KaleoTaskInstanceTokenPersistence extends BasePersistence<Kaleo
 			com.liferay.portal.workflow.kaleo.NoSuchTaskInstanceTokenException;
 
 	/**
-	* Finds the kaleo task instance tokens before and after the current kaleo task instance token in the ordered set where companyId = &#63;.
+	* Returns the kaleo task instance tokens before and after the current kaleo task instance token in the ordered set where companyId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
 	* @param kaleoTaskInstanceTokenId the primary key of the current kaleo task instance token
-	* @param companyId the company ID to search with
+	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next kaleo task instance token
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchTaskInstanceTokenException if a kaleo task instance token with the primary key could not be found
@@ -210,9 +210,9 @@ public interface KaleoTaskInstanceTokenPersistence extends BasePersistence<Kaleo
 			com.liferay.portal.workflow.kaleo.NoSuchTaskInstanceTokenException;
 
 	/**
-	* Finds all the kaleo task instance tokens where kaleoDefinitionId = &#63;.
+	* Returns all the kaleo task instance tokens where kaleoDefinitionId = &#63;.
 	*
-	* @param kaleoDefinitionId the kaleo definition ID to search with
+	* @param kaleoDefinitionId the kaleo definition ID
 	* @return the matching kaleo task instance tokens
 	* @throws SystemException if a system exception occurred
 	*/
@@ -221,15 +221,15 @@ public interface KaleoTaskInstanceTokenPersistence extends BasePersistence<Kaleo
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds a range of all the kaleo task instance tokens where kaleoDefinitionId = &#63;.
+	* Returns a range of all the kaleo task instance tokens where kaleoDefinitionId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param kaleoDefinitionId the kaleo definition ID to search with
-	* @param start the lower bound of the range of kaleo task instance tokens to return
-	* @param end the upper bound of the range of kaleo task instance tokens to return (not inclusive)
+	* @param kaleoDefinitionId the kaleo definition ID
+	* @param start the lower bound of the range of kaleo task instance tokens
+	* @param end the upper bound of the range of kaleo task instance tokens (not inclusive)
 	* @return the range of matching kaleo task instance tokens
 	* @throws SystemException if a system exception occurred
 	*/
@@ -238,15 +238,15 @@ public interface KaleoTaskInstanceTokenPersistence extends BasePersistence<Kaleo
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds an ordered range of all the kaleo task instance tokens where kaleoDefinitionId = &#63;.
+	* Returns an ordered range of all the kaleo task instance tokens where kaleoDefinitionId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param kaleoDefinitionId the kaleo definition ID to search with
-	* @param start the lower bound of the range of kaleo task instance tokens to return
-	* @param end the upper bound of the range of kaleo task instance tokens to return (not inclusive)
+	* @param kaleoDefinitionId the kaleo definition ID
+	* @param start the lower bound of the range of kaleo task instance tokens
+	* @param end the upper bound of the range of kaleo task instance tokens (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching kaleo task instance tokens
 	* @throws SystemException if a system exception occurred
@@ -257,13 +257,13 @@ public interface KaleoTaskInstanceTokenPersistence extends BasePersistence<Kaleo
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the first kaleo task instance token in the ordered set where kaleoDefinitionId = &#63;.
+	* Returns the first kaleo task instance token in the ordered set where kaleoDefinitionId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param kaleoDefinitionId the kaleo definition ID to search with
+	* @param kaleoDefinitionId the kaleo definition ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo task instance token
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchTaskInstanceTokenException if a matching kaleo task instance token could not be found
@@ -276,13 +276,13 @@ public interface KaleoTaskInstanceTokenPersistence extends BasePersistence<Kaleo
 			com.liferay.portal.workflow.kaleo.NoSuchTaskInstanceTokenException;
 
 	/**
-	* Finds the last kaleo task instance token in the ordered set where kaleoDefinitionId = &#63;.
+	* Returns the last kaleo task instance token in the ordered set where kaleoDefinitionId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param kaleoDefinitionId the kaleo definition ID to search with
+	* @param kaleoDefinitionId the kaleo definition ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching kaleo task instance token
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchTaskInstanceTokenException if a matching kaleo task instance token could not be found
@@ -295,14 +295,14 @@ public interface KaleoTaskInstanceTokenPersistence extends BasePersistence<Kaleo
 			com.liferay.portal.workflow.kaleo.NoSuchTaskInstanceTokenException;
 
 	/**
-	* Finds the kaleo task instance tokens before and after the current kaleo task instance token in the ordered set where kaleoDefinitionId = &#63;.
+	* Returns the kaleo task instance tokens before and after the current kaleo task instance token in the ordered set where kaleoDefinitionId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
 	* @param kaleoTaskInstanceTokenId the primary key of the current kaleo task instance token
-	* @param kaleoDefinitionId the kaleo definition ID to search with
+	* @param kaleoDefinitionId the kaleo definition ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next kaleo task instance token
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchTaskInstanceTokenException if a kaleo task instance token with the primary key could not be found
@@ -315,9 +315,9 @@ public interface KaleoTaskInstanceTokenPersistence extends BasePersistence<Kaleo
 			com.liferay.portal.workflow.kaleo.NoSuchTaskInstanceTokenException;
 
 	/**
-	* Finds all the kaleo task instance tokens where kaleoInstanceId = &#63;.
+	* Returns all the kaleo task instance tokens where kaleoInstanceId = &#63;.
 	*
-	* @param kaleoInstanceId the kaleo instance ID to search with
+	* @param kaleoInstanceId the kaleo instance ID
 	* @return the matching kaleo task instance tokens
 	* @throws SystemException if a system exception occurred
 	*/
@@ -326,15 +326,15 @@ public interface KaleoTaskInstanceTokenPersistence extends BasePersistence<Kaleo
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds a range of all the kaleo task instance tokens where kaleoInstanceId = &#63;.
+	* Returns a range of all the kaleo task instance tokens where kaleoInstanceId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param kaleoInstanceId the kaleo instance ID to search with
-	* @param start the lower bound of the range of kaleo task instance tokens to return
-	* @param end the upper bound of the range of kaleo task instance tokens to return (not inclusive)
+	* @param kaleoInstanceId the kaleo instance ID
+	* @param start the lower bound of the range of kaleo task instance tokens
+	* @param end the upper bound of the range of kaleo task instance tokens (not inclusive)
 	* @return the range of matching kaleo task instance tokens
 	* @throws SystemException if a system exception occurred
 	*/
@@ -343,15 +343,15 @@ public interface KaleoTaskInstanceTokenPersistence extends BasePersistence<Kaleo
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds an ordered range of all the kaleo task instance tokens where kaleoInstanceId = &#63;.
+	* Returns an ordered range of all the kaleo task instance tokens where kaleoInstanceId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param kaleoInstanceId the kaleo instance ID to search with
-	* @param start the lower bound of the range of kaleo task instance tokens to return
-	* @param end the upper bound of the range of kaleo task instance tokens to return (not inclusive)
+	* @param kaleoInstanceId the kaleo instance ID
+	* @param start the lower bound of the range of kaleo task instance tokens
+	* @param end the upper bound of the range of kaleo task instance tokens (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching kaleo task instance tokens
 	* @throws SystemException if a system exception occurred
@@ -362,13 +362,13 @@ public interface KaleoTaskInstanceTokenPersistence extends BasePersistence<Kaleo
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the first kaleo task instance token in the ordered set where kaleoInstanceId = &#63;.
+	* Returns the first kaleo task instance token in the ordered set where kaleoInstanceId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param kaleoInstanceId the kaleo instance ID to search with
+	* @param kaleoInstanceId the kaleo instance ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo task instance token
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchTaskInstanceTokenException if a matching kaleo task instance token could not be found
@@ -381,13 +381,13 @@ public interface KaleoTaskInstanceTokenPersistence extends BasePersistence<Kaleo
 			com.liferay.portal.workflow.kaleo.NoSuchTaskInstanceTokenException;
 
 	/**
-	* Finds the last kaleo task instance token in the ordered set where kaleoInstanceId = &#63;.
+	* Returns the last kaleo task instance token in the ordered set where kaleoInstanceId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param kaleoInstanceId the kaleo instance ID to search with
+	* @param kaleoInstanceId the kaleo instance ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching kaleo task instance token
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchTaskInstanceTokenException if a matching kaleo task instance token could not be found
@@ -400,14 +400,14 @@ public interface KaleoTaskInstanceTokenPersistence extends BasePersistence<Kaleo
 			com.liferay.portal.workflow.kaleo.NoSuchTaskInstanceTokenException;
 
 	/**
-	* Finds the kaleo task instance tokens before and after the current kaleo task instance token in the ordered set where kaleoInstanceId = &#63;.
+	* Returns the kaleo task instance tokens before and after the current kaleo task instance token in the ordered set where kaleoInstanceId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
 	* @param kaleoTaskInstanceTokenId the primary key of the current kaleo task instance token
-	* @param kaleoInstanceId the kaleo instance ID to search with
+	* @param kaleoInstanceId the kaleo instance ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next kaleo task instance token
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchTaskInstanceTokenException if a kaleo task instance token with the primary key could not be found
@@ -420,10 +420,10 @@ public interface KaleoTaskInstanceTokenPersistence extends BasePersistence<Kaleo
 			com.liferay.portal.workflow.kaleo.NoSuchTaskInstanceTokenException;
 
 	/**
-	* Finds the kaleo task instance token where kaleoInstanceId = &#63; and kaleoTaskId = &#63; or throws a {@link com.liferay.portal.workflow.kaleo.NoSuchTaskInstanceTokenException} if it could not be found.
+	* Returns the kaleo task instance token where kaleoInstanceId = &#63; and kaleoTaskId = &#63; or throws a {@link com.liferay.portal.workflow.kaleo.NoSuchTaskInstanceTokenException} if it could not be found.
 	*
-	* @param kaleoInstanceId the kaleo instance ID to search with
-	* @param kaleoTaskId the kaleo task ID to search with
+	* @param kaleoInstanceId the kaleo instance ID
+	* @param kaleoTaskId the kaleo task ID
 	* @return the matching kaleo task instance token
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchTaskInstanceTokenException if a matching kaleo task instance token could not be found
 	* @throws SystemException if a system exception occurred
@@ -434,10 +434,10 @@ public interface KaleoTaskInstanceTokenPersistence extends BasePersistence<Kaleo
 			com.liferay.portal.workflow.kaleo.NoSuchTaskInstanceTokenException;
 
 	/**
-	* Finds the kaleo task instance token where kaleoInstanceId = &#63; and kaleoTaskId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	* Returns the kaleo task instance token where kaleoInstanceId = &#63; and kaleoTaskId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	*
-	* @param kaleoInstanceId the kaleo instance ID to search with
-	* @param kaleoTaskId the kaleo task ID to search with
+	* @param kaleoInstanceId the kaleo instance ID
+	* @param kaleoTaskId the kaleo task ID
 	* @return the matching kaleo task instance token, or <code>null</code> if a matching kaleo task instance token could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -446,10 +446,10 @@ public interface KaleoTaskInstanceTokenPersistence extends BasePersistence<Kaleo
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the kaleo task instance token where kaleoInstanceId = &#63; and kaleoTaskId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	* Returns the kaleo task instance token where kaleoInstanceId = &#63; and kaleoTaskId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	*
-	* @param kaleoInstanceId the kaleo instance ID to search with
-	* @param kaleoTaskId the kaleo task ID to search with
+	* @param kaleoInstanceId the kaleo instance ID
+	* @param kaleoTaskId the kaleo task ID
 	* @return the matching kaleo task instance token, or <code>null</code> if a matching kaleo task instance token could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -458,7 +458,7 @@ public interface KaleoTaskInstanceTokenPersistence extends BasePersistence<Kaleo
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds all the kaleo task instance tokens.
+	* Returns all the kaleo task instance tokens.
 	*
 	* @return the kaleo task instance tokens
 	* @throws SystemException if a system exception occurred
@@ -467,14 +467,14 @@ public interface KaleoTaskInstanceTokenPersistence extends BasePersistence<Kaleo
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds a range of all the kaleo task instance tokens.
+	* Returns a range of all the kaleo task instance tokens.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of kaleo task instance tokens to return
-	* @param end the upper bound of the range of kaleo task instance tokens to return (not inclusive)
+	* @param start the lower bound of the range of kaleo task instance tokens
+	* @param end the upper bound of the range of kaleo task instance tokens (not inclusive)
 	* @return the range of kaleo task instance tokens
 	* @throws SystemException if a system exception occurred
 	*/
@@ -483,14 +483,14 @@ public interface KaleoTaskInstanceTokenPersistence extends BasePersistence<Kaleo
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds an ordered range of all the kaleo task instance tokens.
+	* Returns an ordered range of all the kaleo task instance tokens.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of kaleo task instance tokens to return
-	* @param end the upper bound of the range of kaleo task instance tokens to return (not inclusive)
+	* @param start the lower bound of the range of kaleo task instance tokens
+	* @param end the upper bound of the range of kaleo task instance tokens (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of kaleo task instance tokens
 	* @throws SystemException if a system exception occurred
@@ -503,7 +503,7 @@ public interface KaleoTaskInstanceTokenPersistence extends BasePersistence<Kaleo
 	/**
 	* Removes all the kaleo task instance tokens where companyId = &#63; from the database.
 	*
-	* @param companyId the company ID to search with
+	* @param companyId the company ID
 	* @throws SystemException if a system exception occurred
 	*/
 	public void removeByCompanyId(long companyId)
@@ -512,7 +512,7 @@ public interface KaleoTaskInstanceTokenPersistence extends BasePersistence<Kaleo
 	/**
 	* Removes all the kaleo task instance tokens where kaleoDefinitionId = &#63; from the database.
 	*
-	* @param kaleoDefinitionId the kaleo definition ID to search with
+	* @param kaleoDefinitionId the kaleo definition ID
 	* @throws SystemException if a system exception occurred
 	*/
 	public void removeByKaleoDefinitionId(long kaleoDefinitionId)
@@ -521,7 +521,7 @@ public interface KaleoTaskInstanceTokenPersistence extends BasePersistence<Kaleo
 	/**
 	* Removes all the kaleo task instance tokens where kaleoInstanceId = &#63; from the database.
 	*
-	* @param kaleoInstanceId the kaleo instance ID to search with
+	* @param kaleoInstanceId the kaleo instance ID
 	* @throws SystemException if a system exception occurred
 	*/
 	public void removeByKaleoInstanceId(long kaleoInstanceId)
@@ -530,8 +530,8 @@ public interface KaleoTaskInstanceTokenPersistence extends BasePersistence<Kaleo
 	/**
 	* Removes the kaleo task instance token where kaleoInstanceId = &#63; and kaleoTaskId = &#63; from the database.
 	*
-	* @param kaleoInstanceId the kaleo instance ID to search with
-	* @param kaleoTaskId the kaleo task ID to search with
+	* @param kaleoInstanceId the kaleo instance ID
+	* @param kaleoTaskId the kaleo task ID
 	* @throws SystemException if a system exception occurred
 	*/
 	public void removeByKII_KTI(long kaleoInstanceId, long kaleoTaskId)
@@ -547,9 +547,9 @@ public interface KaleoTaskInstanceTokenPersistence extends BasePersistence<Kaleo
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Counts all the kaleo task instance tokens where companyId = &#63;.
+	* Returns the number of kaleo task instance tokens where companyId = &#63;.
 	*
-	* @param companyId the company ID to search with
+	* @param companyId the company ID
 	* @return the number of matching kaleo task instance tokens
 	* @throws SystemException if a system exception occurred
 	*/
@@ -557,9 +557,9 @@ public interface KaleoTaskInstanceTokenPersistence extends BasePersistence<Kaleo
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Counts all the kaleo task instance tokens where kaleoDefinitionId = &#63;.
+	* Returns the number of kaleo task instance tokens where kaleoDefinitionId = &#63;.
 	*
-	* @param kaleoDefinitionId the kaleo definition ID to search with
+	* @param kaleoDefinitionId the kaleo definition ID
 	* @return the number of matching kaleo task instance tokens
 	* @throws SystemException if a system exception occurred
 	*/
@@ -567,9 +567,9 @@ public interface KaleoTaskInstanceTokenPersistence extends BasePersistence<Kaleo
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Counts all the kaleo task instance tokens where kaleoInstanceId = &#63;.
+	* Returns the number of kaleo task instance tokens where kaleoInstanceId = &#63;.
 	*
-	* @param kaleoInstanceId the kaleo instance ID to search with
+	* @param kaleoInstanceId the kaleo instance ID
 	* @return the number of matching kaleo task instance tokens
 	* @throws SystemException if a system exception occurred
 	*/
@@ -577,10 +577,10 @@ public interface KaleoTaskInstanceTokenPersistence extends BasePersistence<Kaleo
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Counts all the kaleo task instance tokens where kaleoInstanceId = &#63; and kaleoTaskId = &#63;.
+	* Returns the number of kaleo task instance tokens where kaleoInstanceId = &#63; and kaleoTaskId = &#63;.
 	*
-	* @param kaleoInstanceId the kaleo instance ID to search with
-	* @param kaleoTaskId the kaleo task ID to search with
+	* @param kaleoInstanceId the kaleo instance ID
+	* @param kaleoTaskId the kaleo task ID
 	* @return the number of matching kaleo task instance tokens
 	* @throws SystemException if a system exception occurred
 	*/
@@ -588,7 +588,7 @@ public interface KaleoTaskInstanceTokenPersistence extends BasePersistence<Kaleo
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Counts all the kaleo task instance tokens.
+	* Returns the number of kaleo task instance tokens.
 	*
 	* @return the number of kaleo task instance tokens
 	* @throws SystemException if a system exception occurred
@@ -597,9 +597,9 @@ public interface KaleoTaskInstanceTokenPersistence extends BasePersistence<Kaleo
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Gets all the kaleo task assignment instances associated with the kaleo task instance token.
+	* Returns all the kaleo task assignment instances associated with the kaleo task instance token.
 	*
-	* @param pk the primary key of the kaleo task instance token to get the associated kaleo task assignment instances for
+	* @param pk the primary key of the kaleo task instance token
 	* @return the kaleo task assignment instances associated with the kaleo task instance token
 	* @throws SystemException if a system exception occurred
 	*/
@@ -607,15 +607,15 @@ public interface KaleoTaskInstanceTokenPersistence extends BasePersistence<Kaleo
 		long pk) throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Gets a range of all the kaleo task assignment instances associated with the kaleo task instance token.
+	* Returns a range of all the kaleo task assignment instances associated with the kaleo task instance token.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param pk the primary key of the kaleo task instance token to get the associated kaleo task assignment instances for
-	* @param start the lower bound of the range of kaleo task instance tokens to return
-	* @param end the upper bound of the range of kaleo task instance tokens to return (not inclusive)
+	* @param pk the primary key of the kaleo task instance token
+	* @param start the lower bound of the range of kaleo task instance tokens
+	* @param end the upper bound of the range of kaleo task instance tokens (not inclusive)
 	* @return the range of kaleo task assignment instances associated with the kaleo task instance token
 	* @throws SystemException if a system exception occurred
 	*/
@@ -624,15 +624,15 @@ public interface KaleoTaskInstanceTokenPersistence extends BasePersistence<Kaleo
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Gets an ordered range of all the kaleo task assignment instances associated with the kaleo task instance token.
+	* Returns an ordered range of all the kaleo task assignment instances associated with the kaleo task instance token.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param pk the primary key of the kaleo task instance token to get the associated kaleo task assignment instances for
-	* @param start the lower bound of the range of kaleo task instance tokens to return
-	* @param end the upper bound of the range of kaleo task instance tokens to return (not inclusive)
+	* @param pk the primary key of the kaleo task instance token
+	* @param start the lower bound of the range of kaleo task instance tokens
+	* @param end the upper bound of the range of kaleo task instance tokens (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of kaleo task assignment instances associated with the kaleo task instance token
 	* @throws SystemException if a system exception occurred
@@ -643,9 +643,9 @@ public interface KaleoTaskInstanceTokenPersistence extends BasePersistence<Kaleo
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Gets the number of kaleo task assignment instances associated with the kaleo task instance token.
+	* Returns the number of kaleo task assignment instances associated with the kaleo task instance token.
 	*
-	* @param pk the primary key of the kaleo task instance token to get the number of associated kaleo task assignment instances for
+	* @param pk the primary key of the kaleo task instance token
 	* @return the number of kaleo task assignment instances associated with the kaleo task instance token
 	* @throws SystemException if a system exception occurred
 	*/

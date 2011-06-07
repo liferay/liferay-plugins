@@ -47,21 +47,21 @@ public interface KaleoTaskModel extends BaseModel<KaleoTask>, GroupedModel {
 	 */
 
 	/**
-	 * Gets the primary key of this kaleo task.
+	 * Returns the primary key of this kaleo task.
 	 *
 	 * @return the primary key of this kaleo task
 	 */
 	public long getPrimaryKey();
 
 	/**
-	 * Sets the primary key of this kaleo task
+	 * Sets the primary key of this kaleo task.
 	 *
 	 * @param primaryKey the primary key of this kaleo task
 	 */
 	public void setPrimaryKey(long primaryKey);
 
 	/**
-	 * Gets the kaleo task ID of this kaleo task.
+	 * Returns the kaleo task ID of this kaleo task.
 	 *
 	 * @return the kaleo task ID of this kaleo task
 	 */
@@ -75,7 +75,7 @@ public interface KaleoTaskModel extends BaseModel<KaleoTask>, GroupedModel {
 	public void setKaleoTaskId(long kaleoTaskId);
 
 	/**
-	 * Gets the group ID of this kaleo task.
+	 * Returns the group ID of this kaleo task.
 	 *
 	 * @return the group ID of this kaleo task
 	 */
@@ -89,7 +89,7 @@ public interface KaleoTaskModel extends BaseModel<KaleoTask>, GroupedModel {
 	public void setGroupId(long groupId);
 
 	/**
-	 * Gets the company ID of this kaleo task.
+	 * Returns the company ID of this kaleo task.
 	 *
 	 * @return the company ID of this kaleo task
 	 */
@@ -103,7 +103,7 @@ public interface KaleoTaskModel extends BaseModel<KaleoTask>, GroupedModel {
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the user ID of this kaleo task.
+	 * Returns the user ID of this kaleo task.
 	 *
 	 * @return the user ID of this kaleo task
 	 */
@@ -117,7 +117,7 @@ public interface KaleoTaskModel extends BaseModel<KaleoTask>, GroupedModel {
 	public void setUserId(long userId);
 
 	/**
-	 * Gets the user uuid of this kaleo task.
+	 * Returns the user uuid of this kaleo task.
 	 *
 	 * @return the user uuid of this kaleo task
 	 * @throws SystemException if a system exception occurred
@@ -132,7 +132,7 @@ public interface KaleoTaskModel extends BaseModel<KaleoTask>, GroupedModel {
 	public void setUserUuid(String userUuid);
 
 	/**
-	 * Gets the user name of this kaleo task.
+	 * Returns the user name of this kaleo task.
 	 *
 	 * @return the user name of this kaleo task
 	 */
@@ -147,7 +147,7 @@ public interface KaleoTaskModel extends BaseModel<KaleoTask>, GroupedModel {
 	public void setUserName(String userName);
 
 	/**
-	 * Gets the create date of this kaleo task.
+	 * Returns the create date of this kaleo task.
 	 *
 	 * @return the create date of this kaleo task
 	 */
@@ -161,7 +161,7 @@ public interface KaleoTaskModel extends BaseModel<KaleoTask>, GroupedModel {
 	public void setCreateDate(Date createDate);
 
 	/**
-	 * Gets the modified date of this kaleo task.
+	 * Returns the modified date of this kaleo task.
 	 *
 	 * @return the modified date of this kaleo task
 	 */
@@ -175,7 +175,7 @@ public interface KaleoTaskModel extends BaseModel<KaleoTask>, GroupedModel {
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Gets the kaleo definition ID of this kaleo task.
+	 * Returns the kaleo definition ID of this kaleo task.
 	 *
 	 * @return the kaleo definition ID of this kaleo task
 	 */
@@ -189,7 +189,7 @@ public interface KaleoTaskModel extends BaseModel<KaleoTask>, GroupedModel {
 	public void setKaleoDefinitionId(long kaleoDefinitionId);
 
 	/**
-	 * Gets the kaleo node ID of this kaleo task.
+	 * Returns the kaleo node ID of this kaleo task.
 	 *
 	 * @return the kaleo node ID of this kaleo task
 	 */
@@ -203,7 +203,7 @@ public interface KaleoTaskModel extends BaseModel<KaleoTask>, GroupedModel {
 	public void setKaleoNodeId(long kaleoNodeId);
 
 	/**
-	 * Gets the name of this kaleo task.
+	 * Returns the name of this kaleo task.
 	 *
 	 * @return the name of this kaleo task
 	 */
@@ -218,7 +218,7 @@ public interface KaleoTaskModel extends BaseModel<KaleoTask>, GroupedModel {
 	public void setName(String name);
 
 	/**
-	 * Gets the description of this kaleo task.
+	 * Returns the description of this kaleo task.
 	 *
 	 * @return the description of this kaleo task
 	 */

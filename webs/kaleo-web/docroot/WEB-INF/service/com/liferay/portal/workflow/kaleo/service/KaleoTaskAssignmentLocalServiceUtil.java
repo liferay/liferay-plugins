@@ -42,7 +42,7 @@ public class KaleoTaskAssignmentLocalServiceUtil {
 	/**
 	* Adds the kaleo task assignment to the database. Also notifies the appropriate model listeners.
 	*
-	* @param kaleoTaskAssignment the kaleo task assignment to add
+	* @param kaleoTaskAssignment the kaleo task assignment
 	* @return the kaleo task assignment that was added
 	* @throws SystemException if a system exception occurred
 	*/
@@ -66,7 +66,7 @@ public class KaleoTaskAssignmentLocalServiceUtil {
 	/**
 	* Deletes the kaleo task assignment with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param kaleoTaskAssignmentId the primary key of the kaleo task assignment to delete
+	* @param kaleoTaskAssignmentId the primary key of the kaleo task assignment
 	* @throws PortalException if a kaleo task assignment with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -79,7 +79,7 @@ public class KaleoTaskAssignmentLocalServiceUtil {
 	/**
 	* Deletes the kaleo task assignment from the database. Also notifies the appropriate model listeners.
 	*
-	* @param kaleoTaskAssignment the kaleo task assignment to delete
+	* @param kaleoTaskAssignment the kaleo task assignment
 	* @throws SystemException if a system exception occurred
 	*/
 	public static void deleteKaleoTaskAssignment(
@@ -91,7 +91,7 @@ public class KaleoTaskAssignmentLocalServiceUtil {
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
 	*
-	* @param dynamicQuery the dynamic query to search with
+	* @param dynamicQuery the dynamic query
 	* @return the matching rows
 	* @throws SystemException if a system exception occurred
 	*/
@@ -109,9 +109,9 @@ public class KaleoTaskAssignmentLocalServiceUtil {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param dynamicQuery the dynamic query to search with
-	* @param start the lower bound of the range of model instances to return
-	* @param end the upper bound of the range of model instances to return (not inclusive)
+	* @param dynamicQuery the dynamic query
+	* @param start the lower bound of the range of model instances
+	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
 	* @throws SystemException if a system exception occurred
 	*/
@@ -129,9 +129,9 @@ public class KaleoTaskAssignmentLocalServiceUtil {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param dynamicQuery the dynamic query to search with
-	* @param start the lower bound of the range of model instances to return
-	* @param end the upper bound of the range of model instances to return (not inclusive)
+	* @param dynamicQuery the dynamic query
+	* @param start the lower bound of the range of model instances
+	* @param end the upper bound of the range of model instances (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
 	* @throws SystemException if a system exception occurred
@@ -147,9 +147,9 @@ public class KaleoTaskAssignmentLocalServiceUtil {
 	}
 
 	/**
-	* Counts the number of rows that match the dynamic query.
+	* Returns the number of rows that match the dynamic query.
 	*
-	* @param dynamicQuery the dynamic query to search with
+	* @param dynamicQuery the dynamic query
 	* @return the number of rows that match the dynamic query
 	* @throws SystemException if a system exception occurred
 	*/
@@ -160,9 +160,9 @@ public class KaleoTaskAssignmentLocalServiceUtil {
 	}
 
 	/**
-	* Gets the kaleo task assignment with the primary key.
+	* Returns the kaleo task assignment with the primary key.
 	*
-	* @param kaleoTaskAssignmentId the primary key of the kaleo task assignment to get
+	* @param kaleoTaskAssignmentId the primary key of the kaleo task assignment
 	* @return the kaleo task assignment
 	* @throws PortalException if a kaleo task assignment with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -175,14 +175,14 @@ public class KaleoTaskAssignmentLocalServiceUtil {
 	}
 
 	/**
-	* Gets a range of all the kaleo task assignments.
+	* Returns a range of all the kaleo task assignments.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of kaleo task assignments to return
-	* @param end the upper bound of the range of kaleo task assignments to return (not inclusive)
+	* @param start the lower bound of the range of kaleo task assignments
+	* @param end the upper bound of the range of kaleo task assignments (not inclusive)
 	* @return the range of kaleo task assignments
 	* @throws SystemException if a system exception occurred
 	*/
@@ -193,7 +193,7 @@ public class KaleoTaskAssignmentLocalServiceUtil {
 	}
 
 	/**
-	* Gets the number of kaleo task assignments.
+	* Returns the number of kaleo task assignments.
 	*
 	* @return the number of kaleo task assignments
 	* @throws SystemException if a system exception occurred
@@ -206,7 +206,7 @@ public class KaleoTaskAssignmentLocalServiceUtil {
 	/**
 	* Updates the kaleo task assignment in the database. Also notifies the appropriate model listeners.
 	*
-	* @param kaleoTaskAssignment the kaleo task assignment to update
+	* @param kaleoTaskAssignment the kaleo task assignment
 	* @return the kaleo task assignment that was updated
 	* @throws SystemException if a system exception occurred
 	*/
@@ -219,7 +219,7 @@ public class KaleoTaskAssignmentLocalServiceUtil {
 	/**
 	* Updates the kaleo task assignment in the database. Also notifies the appropriate model listeners.
 	*
-	* @param kaleoTaskAssignment the kaleo task assignment to update
+	* @param kaleoTaskAssignment the kaleo task assignment
 	* @param merge whether to merge the kaleo task assignment with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
 	* @return the kaleo task assignment that was updated
 	* @throws SystemException if a system exception occurred
@@ -232,7 +232,7 @@ public class KaleoTaskAssignmentLocalServiceUtil {
 	}
 
 	/**
-	* Gets the Spring bean ID for this bean.
+	* Returns the Spring bean ID for this bean.
 	*
 	* @return the Spring bean ID for this bean
 	*/

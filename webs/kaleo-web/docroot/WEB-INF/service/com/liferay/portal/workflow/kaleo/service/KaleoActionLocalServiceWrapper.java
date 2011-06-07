@@ -32,7 +32,7 @@ public class KaleoActionLocalServiceWrapper implements KaleoActionLocalService {
 	/**
 	* Adds the kaleo action to the database. Also notifies the appropriate model listeners.
 	*
-	* @param kaleoAction the kaleo action to add
+	* @param kaleoAction the kaleo action
 	* @return the kaleo action that was added
 	* @throws SystemException if a system exception occurred
 	*/
@@ -56,7 +56,7 @@ public class KaleoActionLocalServiceWrapper implements KaleoActionLocalService {
 	/**
 	* Deletes the kaleo action with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param kaleoActionId the primary key of the kaleo action to delete
+	* @param kaleoActionId the primary key of the kaleo action
 	* @throws PortalException if a kaleo action with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -69,7 +69,7 @@ public class KaleoActionLocalServiceWrapper implements KaleoActionLocalService {
 	/**
 	* Deletes the kaleo action from the database. Also notifies the appropriate model listeners.
 	*
-	* @param kaleoAction the kaleo action to delete
+	* @param kaleoAction the kaleo action
 	* @throws SystemException if a system exception occurred
 	*/
 	public void deleteKaleoAction(
@@ -81,7 +81,7 @@ public class KaleoActionLocalServiceWrapper implements KaleoActionLocalService {
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
 	*
-	* @param dynamicQuery the dynamic query to search with
+	* @param dynamicQuery the dynamic query
 	* @return the matching rows
 	* @throws SystemException if a system exception occurred
 	*/
@@ -99,9 +99,9 @@ public class KaleoActionLocalServiceWrapper implements KaleoActionLocalService {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param dynamicQuery the dynamic query to search with
-	* @param start the lower bound of the range of model instances to return
-	* @param end the upper bound of the range of model instances to return (not inclusive)
+	* @param dynamicQuery the dynamic query
+	* @param start the lower bound of the range of model instances
+	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
 	* @throws SystemException if a system exception occurred
 	*/
@@ -119,9 +119,9 @@ public class KaleoActionLocalServiceWrapper implements KaleoActionLocalService {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param dynamicQuery the dynamic query to search with
-	* @param start the lower bound of the range of model instances to return
-	* @param end the upper bound of the range of model instances to return (not inclusive)
+	* @param dynamicQuery the dynamic query
+	* @param start the lower bound of the range of model instances
+	* @param end the upper bound of the range of model instances (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
 	* @throws SystemException if a system exception occurred
@@ -137,9 +137,9 @@ public class KaleoActionLocalServiceWrapper implements KaleoActionLocalService {
 	}
 
 	/**
-	* Counts the number of rows that match the dynamic query.
+	* Returns the number of rows that match the dynamic query.
 	*
-	* @param dynamicQuery the dynamic query to search with
+	* @param dynamicQuery the dynamic query
 	* @return the number of rows that match the dynamic query
 	* @throws SystemException if a system exception occurred
 	*/
@@ -150,9 +150,9 @@ public class KaleoActionLocalServiceWrapper implements KaleoActionLocalService {
 	}
 
 	/**
-	* Gets the kaleo action with the primary key.
+	* Returns the kaleo action with the primary key.
 	*
-	* @param kaleoActionId the primary key of the kaleo action to get
+	* @param kaleoActionId the primary key of the kaleo action
 	* @return the kaleo action
 	* @throws PortalException if a kaleo action with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -165,14 +165,14 @@ public class KaleoActionLocalServiceWrapper implements KaleoActionLocalService {
 	}
 
 	/**
-	* Gets a range of all the kaleo actions.
+	* Returns a range of all the kaleo actions.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of kaleo actions to return
-	* @param end the upper bound of the range of kaleo actions to return (not inclusive)
+	* @param start the lower bound of the range of kaleo actions
+	* @param end the upper bound of the range of kaleo actions (not inclusive)
 	* @return the range of kaleo actions
 	* @throws SystemException if a system exception occurred
 	*/
@@ -183,7 +183,7 @@ public class KaleoActionLocalServiceWrapper implements KaleoActionLocalService {
 	}
 
 	/**
-	* Gets the number of kaleo actions.
+	* Returns the number of kaleo actions.
 	*
 	* @return the number of kaleo actions
 	* @throws SystemException if a system exception occurred
@@ -196,7 +196,7 @@ public class KaleoActionLocalServiceWrapper implements KaleoActionLocalService {
 	/**
 	* Updates the kaleo action in the database. Also notifies the appropriate model listeners.
 	*
-	* @param kaleoAction the kaleo action to update
+	* @param kaleoAction the kaleo action
 	* @return the kaleo action that was updated
 	* @throws SystemException if a system exception occurred
 	*/
@@ -209,7 +209,7 @@ public class KaleoActionLocalServiceWrapper implements KaleoActionLocalService {
 	/**
 	* Updates the kaleo action in the database. Also notifies the appropriate model listeners.
 	*
-	* @param kaleoAction the kaleo action to update
+	* @param kaleoAction the kaleo action
 	* @param merge whether to merge the kaleo action with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
 	* @return the kaleo action that was updated
 	* @throws SystemException if a system exception occurred
@@ -222,7 +222,7 @@ public class KaleoActionLocalServiceWrapper implements KaleoActionLocalService {
 	}
 
 	/**
-	* Gets the Spring bean ID for this bean.
+	* Returns the Spring bean ID for this bean.
 	*
 	* @return the Spring bean ID for this bean
 	*/

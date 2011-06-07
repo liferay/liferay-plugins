@@ -48,21 +48,21 @@ public interface KaleoConditionModel extends BaseModel<KaleoCondition>,
 	 */
 
 	/**
-	 * Gets the primary key of this kaleo condition.
+	 * Returns the primary key of this kaleo condition.
 	 *
 	 * @return the primary key of this kaleo condition
 	 */
 	public long getPrimaryKey();
 
 	/**
-	 * Sets the primary key of this kaleo condition
+	 * Sets the primary key of this kaleo condition.
 	 *
 	 * @param primaryKey the primary key of this kaleo condition
 	 */
 	public void setPrimaryKey(long primaryKey);
 
 	/**
-	 * Gets the kaleo condition ID of this kaleo condition.
+	 * Returns the kaleo condition ID of this kaleo condition.
 	 *
 	 * @return the kaleo condition ID of this kaleo condition
 	 */
@@ -76,7 +76,7 @@ public interface KaleoConditionModel extends BaseModel<KaleoCondition>,
 	public void setKaleoConditionId(long kaleoConditionId);
 
 	/**
-	 * Gets the group ID of this kaleo condition.
+	 * Returns the group ID of this kaleo condition.
 	 *
 	 * @return the group ID of this kaleo condition
 	 */
@@ -90,7 +90,7 @@ public interface KaleoConditionModel extends BaseModel<KaleoCondition>,
 	public void setGroupId(long groupId);
 
 	/**
-	 * Gets the company ID of this kaleo condition.
+	 * Returns the company ID of this kaleo condition.
 	 *
 	 * @return the company ID of this kaleo condition
 	 */
@@ -104,7 +104,7 @@ public interface KaleoConditionModel extends BaseModel<KaleoCondition>,
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the user ID of this kaleo condition.
+	 * Returns the user ID of this kaleo condition.
 	 *
 	 * @return the user ID of this kaleo condition
 	 */
@@ -118,7 +118,7 @@ public interface KaleoConditionModel extends BaseModel<KaleoCondition>,
 	public void setUserId(long userId);
 
 	/**
-	 * Gets the user uuid of this kaleo condition.
+	 * Returns the user uuid of this kaleo condition.
 	 *
 	 * @return the user uuid of this kaleo condition
 	 * @throws SystemException if a system exception occurred
@@ -133,7 +133,7 @@ public interface KaleoConditionModel extends BaseModel<KaleoCondition>,
 	public void setUserUuid(String userUuid);
 
 	/**
-	 * Gets the user name of this kaleo condition.
+	 * Returns the user name of this kaleo condition.
 	 *
 	 * @return the user name of this kaleo condition
 	 */
@@ -148,7 +148,7 @@ public interface KaleoConditionModel extends BaseModel<KaleoCondition>,
 	public void setUserName(String userName);
 
 	/**
-	 * Gets the create date of this kaleo condition.
+	 * Returns the create date of this kaleo condition.
 	 *
 	 * @return the create date of this kaleo condition
 	 */
@@ -162,7 +162,7 @@ public interface KaleoConditionModel extends BaseModel<KaleoCondition>,
 	public void setCreateDate(Date createDate);
 
 	/**
-	 * Gets the modified date of this kaleo condition.
+	 * Returns the modified date of this kaleo condition.
 	 *
 	 * @return the modified date of this kaleo condition
 	 */
@@ -176,7 +176,7 @@ public interface KaleoConditionModel extends BaseModel<KaleoCondition>,
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Gets the kaleo definition ID of this kaleo condition.
+	 * Returns the kaleo definition ID of this kaleo condition.
 	 *
 	 * @return the kaleo definition ID of this kaleo condition
 	 */
@@ -190,7 +190,7 @@ public interface KaleoConditionModel extends BaseModel<KaleoCondition>,
 	public void setKaleoDefinitionId(long kaleoDefinitionId);
 
 	/**
-	 * Gets the kaleo node ID of this kaleo condition.
+	 * Returns the kaleo node ID of this kaleo condition.
 	 *
 	 * @return the kaleo node ID of this kaleo condition
 	 */
@@ -204,7 +204,7 @@ public interface KaleoConditionModel extends BaseModel<KaleoCondition>,
 	public void setKaleoNodeId(long kaleoNodeId);
 
 	/**
-	 * Gets the script of this kaleo condition.
+	 * Returns the script of this kaleo condition.
 	 *
 	 * @return the script of this kaleo condition
 	 */
@@ -219,7 +219,7 @@ public interface KaleoConditionModel extends BaseModel<KaleoCondition>,
 	public void setScript(String script);
 
 	/**
-	 * Gets the script language of this kaleo condition.
+	 * Returns the script language of this kaleo condition.
 	 *
 	 * @return the script language of this kaleo condition
 	 */

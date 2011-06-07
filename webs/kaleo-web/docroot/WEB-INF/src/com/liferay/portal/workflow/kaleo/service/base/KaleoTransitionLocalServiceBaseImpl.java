@@ -23,6 +23,11 @@ import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.search.Indexer;
+import com.liferay.portal.kernel.search.IndexerRegistryUtil;
+import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.service.ResourceLocalService;
 import com.liferay.portal.service.ResourceService;
@@ -92,7 +97,7 @@ public abstract class KaleoTransitionLocalServiceBaseImpl
 	/**
 	 * Adds the kaleo transition to the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param kaleoTransition the kaleo transition to add
+	 * @param kaleoTransition the kaleo transition
 	 * @return the kaleo transition that was added
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -100,7 +105,23 @@ public abstract class KaleoTransitionLocalServiceBaseImpl
 		throws SystemException {
 		kaleoTransition.setNew(true);
 
-		return kaleoTransitionPersistence.update(kaleoTransition, false);
+		kaleoTransition = kaleoTransitionPersistence.update(kaleoTransition,
+				false);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.reindex(kaleoTransition);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
+
+		return kaleoTransition;
 	}
 
 	/**
@@ -116,30 +137,56 @@ public abstract class KaleoTransitionLocalServiceBaseImpl
 	/**
 	 * Deletes the kaleo transition with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param kaleoTransitionId the primary key of the kaleo transition to delete
+	 * @param kaleoTransitionId the primary key of the kaleo transition
 	 * @throws PortalException if a kaleo transition with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void deleteKaleoTransition(long kaleoTransitionId)
 		throws PortalException, SystemException {
-		kaleoTransitionPersistence.remove(kaleoTransitionId);
+		KaleoTransition kaleoTransition = kaleoTransitionPersistence.remove(kaleoTransitionId);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.delete(kaleoTransition);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
 	}
 
 	/**
 	 * Deletes the kaleo transition from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param kaleoTransition the kaleo transition to delete
+	 * @param kaleoTransition the kaleo transition
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void deleteKaleoTransition(KaleoTransition kaleoTransition)
 		throws SystemException {
 		kaleoTransitionPersistence.remove(kaleoTransition);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.delete(kaleoTransition);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
 	}
 
 	/**
 	 * Performs a dynamic query on the database and returns the matching rows.
 	 *
-	 * @param dynamicQuery the dynamic query to search with
+	 * @param dynamicQuery the dynamic query
 	 * @return the matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -156,9 +203,9 @@ public abstract class KaleoTransitionLocalServiceBaseImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param dynamicQuery the dynamic query to search with
-	 * @param start the lower bound of the range of model instances to return
-	 * @param end the upper bound of the range of model instances to return (not inclusive)
+	 * @param dynamicQuery the dynamic query
+	 * @param start the lower bound of the range of model instances
+	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @return the range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -176,9 +223,9 @@ public abstract class KaleoTransitionLocalServiceBaseImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param dynamicQuery the dynamic query to search with
-	 * @param start the lower bound of the range of model instances to return
-	 * @param end the upper bound of the range of model instances to return (not inclusive)
+	 * @param dynamicQuery the dynamic query
+	 * @param start the lower bound of the range of model instances
+	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching rows
 	 * @throws SystemException if a system exception occurred
@@ -191,9 +238,9 @@ public abstract class KaleoTransitionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Counts the number of rows that match the dynamic query.
+	 * Returns the number of rows that match the dynamic query.
 	 *
-	 * @param dynamicQuery the dynamic query to search with
+	 * @param dynamicQuery the dynamic query
 	 * @return the number of rows that match the dynamic query
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -203,9 +250,9 @@ public abstract class KaleoTransitionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the kaleo transition with the primary key.
+	 * Returns the kaleo transition with the primary key.
 	 *
-	 * @param kaleoTransitionId the primary key of the kaleo transition to get
+	 * @param kaleoTransitionId the primary key of the kaleo transition
 	 * @return the kaleo transition
 	 * @throws PortalException if a kaleo transition with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -216,14 +263,14 @@ public abstract class KaleoTransitionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets a range of all the kaleo transitions.
+	 * Returns a range of all the kaleo transitions.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of kaleo transitions to return
-	 * @param end the upper bound of the range of kaleo transitions to return (not inclusive)
+	 * @param start the lower bound of the range of kaleo transitions
+	 * @param end the upper bound of the range of kaleo transitions (not inclusive)
 	 * @return the range of kaleo transitions
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -233,7 +280,7 @@ public abstract class KaleoTransitionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the number of kaleo transitions.
+	 * Returns the number of kaleo transitions.
 	 *
 	 * @return the number of kaleo transitions
 	 * @throws SystemException if a system exception occurred
@@ -245,21 +292,19 @@ public abstract class KaleoTransitionLocalServiceBaseImpl
 	/**
 	 * Updates the kaleo transition in the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param kaleoTransition the kaleo transition to update
+	 * @param kaleoTransition the kaleo transition
 	 * @return the kaleo transition that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
 	public KaleoTransition updateKaleoTransition(
 		KaleoTransition kaleoTransition) throws SystemException {
-		kaleoTransition.setNew(false);
-
-		return kaleoTransitionPersistence.update(kaleoTransition, true);
+		return updateKaleoTransition(kaleoTransition, true);
 	}
 
 	/**
 	 * Updates the kaleo transition in the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param kaleoTransition the kaleo transition to update
+	 * @param kaleoTransition the kaleo transition
 	 * @param merge whether to merge the kaleo transition with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
 	 * @return the kaleo transition that was updated
 	 * @throws SystemException if a system exception occurred
@@ -269,11 +314,27 @@ public abstract class KaleoTransitionLocalServiceBaseImpl
 		throws SystemException {
 		kaleoTransition.setNew(false);
 
-		return kaleoTransitionPersistence.update(kaleoTransition, merge);
+		kaleoTransition = kaleoTransitionPersistence.update(kaleoTransition,
+				merge);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.reindex(kaleoTransition);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
+
+		return kaleoTransition;
 	}
 
 	/**
-	 * Gets the kaleo action local service.
+	 * Returns the kaleo action local service.
 	 *
 	 * @return the kaleo action local service
 	 */
@@ -292,7 +353,7 @@ public abstract class KaleoTransitionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the kaleo action persistence.
+	 * Returns the kaleo action persistence.
 	 *
 	 * @return the kaleo action persistence
 	 */
@@ -311,7 +372,7 @@ public abstract class KaleoTransitionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the kaleo condition local service.
+	 * Returns the kaleo condition local service.
 	 *
 	 * @return the kaleo condition local service
 	 */
@@ -330,7 +391,7 @@ public abstract class KaleoTransitionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the kaleo condition persistence.
+	 * Returns the kaleo condition persistence.
 	 *
 	 * @return the kaleo condition persistence
 	 */
@@ -349,7 +410,7 @@ public abstract class KaleoTransitionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the kaleo definition local service.
+	 * Returns the kaleo definition local service.
 	 *
 	 * @return the kaleo definition local service
 	 */
@@ -368,7 +429,7 @@ public abstract class KaleoTransitionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the kaleo definition persistence.
+	 * Returns the kaleo definition persistence.
 	 *
 	 * @return the kaleo definition persistence
 	 */
@@ -387,7 +448,7 @@ public abstract class KaleoTransitionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the kaleo instance local service.
+	 * Returns the kaleo instance local service.
 	 *
 	 * @return the kaleo instance local service
 	 */
@@ -406,7 +467,7 @@ public abstract class KaleoTransitionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the kaleo instance persistence.
+	 * Returns the kaleo instance persistence.
 	 *
 	 * @return the kaleo instance persistence
 	 */
@@ -425,7 +486,7 @@ public abstract class KaleoTransitionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the kaleo instance token local service.
+	 * Returns the kaleo instance token local service.
 	 *
 	 * @return the kaleo instance token local service
 	 */
@@ -444,7 +505,7 @@ public abstract class KaleoTransitionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the kaleo instance token persistence.
+	 * Returns the kaleo instance token persistence.
 	 *
 	 * @return the kaleo instance token persistence
 	 */
@@ -463,7 +524,7 @@ public abstract class KaleoTransitionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the kaleo log local service.
+	 * Returns the kaleo log local service.
 	 *
 	 * @return the kaleo log local service
 	 */
@@ -482,7 +543,7 @@ public abstract class KaleoTransitionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the kaleo log persistence.
+	 * Returns the kaleo log persistence.
 	 *
 	 * @return the kaleo log persistence
 	 */
@@ -500,7 +561,7 @@ public abstract class KaleoTransitionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the kaleo node local service.
+	 * Returns the kaleo node local service.
 	 *
 	 * @return the kaleo node local service
 	 */
@@ -519,7 +580,7 @@ public abstract class KaleoTransitionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the kaleo node persistence.
+	 * Returns the kaleo node persistence.
 	 *
 	 * @return the kaleo node persistence
 	 */
@@ -538,7 +599,7 @@ public abstract class KaleoTransitionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the kaleo notification local service.
+	 * Returns the kaleo notification local service.
 	 *
 	 * @return the kaleo notification local service
 	 */
@@ -557,7 +618,7 @@ public abstract class KaleoTransitionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the kaleo notification persistence.
+	 * Returns the kaleo notification persistence.
 	 *
 	 * @return the kaleo notification persistence
 	 */
@@ -576,7 +637,7 @@ public abstract class KaleoTransitionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the kaleo notification recipient local service.
+	 * Returns the kaleo notification recipient local service.
 	 *
 	 * @return the kaleo notification recipient local service
 	 */
@@ -595,7 +656,7 @@ public abstract class KaleoTransitionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the kaleo notification recipient persistence.
+	 * Returns the kaleo notification recipient persistence.
 	 *
 	 * @return the kaleo notification recipient persistence
 	 */
@@ -614,7 +675,7 @@ public abstract class KaleoTransitionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the kaleo task local service.
+	 * Returns the kaleo task local service.
 	 *
 	 * @return the kaleo task local service
 	 */
@@ -633,7 +694,7 @@ public abstract class KaleoTransitionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the kaleo task persistence.
+	 * Returns the kaleo task persistence.
 	 *
 	 * @return the kaleo task persistence
 	 */
@@ -652,7 +713,7 @@ public abstract class KaleoTransitionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the kaleo task assignment local service.
+	 * Returns the kaleo task assignment local service.
 	 *
 	 * @return the kaleo task assignment local service
 	 */
@@ -671,7 +732,7 @@ public abstract class KaleoTransitionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the kaleo task assignment persistence.
+	 * Returns the kaleo task assignment persistence.
 	 *
 	 * @return the kaleo task assignment persistence
 	 */
@@ -690,7 +751,7 @@ public abstract class KaleoTransitionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the kaleo task assignment instance local service.
+	 * Returns the kaleo task assignment instance local service.
 	 *
 	 * @return the kaleo task assignment instance local service
 	 */
@@ -709,7 +770,7 @@ public abstract class KaleoTransitionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the kaleo task assignment instance persistence.
+	 * Returns the kaleo task assignment instance persistence.
 	 *
 	 * @return the kaleo task assignment instance persistence
 	 */
@@ -728,7 +789,7 @@ public abstract class KaleoTransitionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the kaleo task instance token local service.
+	 * Returns the kaleo task instance token local service.
 	 *
 	 * @return the kaleo task instance token local service
 	 */
@@ -747,7 +808,7 @@ public abstract class KaleoTransitionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the kaleo task instance token persistence.
+	 * Returns the kaleo task instance token persistence.
 	 *
 	 * @return the kaleo task instance token persistence
 	 */
@@ -766,7 +827,7 @@ public abstract class KaleoTransitionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the kaleo task instance token finder.
+	 * Returns the kaleo task instance token finder.
 	 *
 	 * @return the kaleo task instance token finder
 	 */
@@ -785,7 +846,7 @@ public abstract class KaleoTransitionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the kaleo timer local service.
+	 * Returns the kaleo timer local service.
 	 *
 	 * @return the kaleo timer local service
 	 */
@@ -804,7 +865,7 @@ public abstract class KaleoTransitionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the kaleo timer persistence.
+	 * Returns the kaleo timer persistence.
 	 *
 	 * @return the kaleo timer persistence
 	 */
@@ -823,7 +884,7 @@ public abstract class KaleoTransitionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the kaleo timer instance token local service.
+	 * Returns the kaleo timer instance token local service.
 	 *
 	 * @return the kaleo timer instance token local service
 	 */
@@ -842,7 +903,7 @@ public abstract class KaleoTransitionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the kaleo timer instance token persistence.
+	 * Returns the kaleo timer instance token persistence.
 	 *
 	 * @return the kaleo timer instance token persistence
 	 */
@@ -861,7 +922,7 @@ public abstract class KaleoTransitionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the kaleo transition local service.
+	 * Returns the kaleo transition local service.
 	 *
 	 * @return the kaleo transition local service
 	 */
@@ -880,7 +941,7 @@ public abstract class KaleoTransitionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the kaleo transition persistence.
+	 * Returns the kaleo transition persistence.
 	 *
 	 * @return the kaleo transition persistence
 	 */
@@ -899,7 +960,7 @@ public abstract class KaleoTransitionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the counter local service.
+	 * Returns the counter local service.
 	 *
 	 * @return the counter local service
 	 */
@@ -917,7 +978,7 @@ public abstract class KaleoTransitionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the resource local service.
+	 * Returns the resource local service.
 	 *
 	 * @return the resource local service
 	 */
@@ -936,7 +997,7 @@ public abstract class KaleoTransitionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the resource remote service.
+	 * Returns the resource remote service.
 	 *
 	 * @return the resource remote service
 	 */
@@ -954,7 +1015,7 @@ public abstract class KaleoTransitionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the resource persistence.
+	 * Returns the resource persistence.
 	 *
 	 * @return the resource persistence
 	 */
@@ -972,7 +1033,7 @@ public abstract class KaleoTransitionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the user local service.
+	 * Returns the user local service.
 	 *
 	 * @return the user local service
 	 */
@@ -990,7 +1051,7 @@ public abstract class KaleoTransitionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the user remote service.
+	 * Returns the user remote service.
 	 *
 	 * @return the user remote service
 	 */
@@ -1008,7 +1069,7 @@ public abstract class KaleoTransitionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the user persistence.
+	 * Returns the user persistence.
 	 *
 	 * @return the user persistence
 	 */
@@ -1026,7 +1087,7 @@ public abstract class KaleoTransitionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the Spring bean ID for this bean.
+	 * Returns the Spring bean ID for this bean.
 	 *
 	 * @return the Spring bean ID for this bean
 	 */
@@ -1043,10 +1104,18 @@ public abstract class KaleoTransitionLocalServiceBaseImpl
 		_beanIdentifier = beanIdentifier;
 	}
 
+	protected Class<?> getModelClass() {
+		return KaleoTransition.class;
+	}
+
+	protected String getModelClassName() {
+		return KaleoTransition.class.getName();
+	}
+
 	/**
 	 * Performs an SQL query.
 	 *
-	 * @param sql the sql query to perform
+	 * @param sql the sql query
 	 */
 	protected void runSQL(String sql) throws SystemException {
 		try {
@@ -1142,5 +1211,6 @@ public abstract class KaleoTransitionLocalServiceBaseImpl
 	protected UserService userService;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
+	private static Log _log = LogFactoryUtil.getLog(KaleoTransitionLocalServiceBaseImpl.class);
 	private String _beanIdentifier;
 }
