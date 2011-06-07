@@ -36,6 +36,11 @@ import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.search.Indexer;
+import com.liferay.portal.kernel.search.IndexerRegistryUtil;
+import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.service.ResourceLocalService;
 import com.liferay.portal.service.ResourceService;
@@ -74,7 +79,7 @@ public abstract class KBCommentLocalServiceBaseImpl
 	/**
 	 * Adds the k b comment to the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param kbComment the k b comment to add
+	 * @param kbComment the k b comment
 	 * @return the k b comment that was added
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -82,7 +87,22 @@ public abstract class KBCommentLocalServiceBaseImpl
 		throws SystemException {
 		kbComment.setNew(true);
 
-		return kbCommentPersistence.update(kbComment, false);
+		kbComment = kbCommentPersistence.update(kbComment, false);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.reindex(kbComment);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
+
+		return kbComment;
 	}
 
 	/**
@@ -98,29 +118,55 @@ public abstract class KBCommentLocalServiceBaseImpl
 	/**
 	 * Deletes the k b comment with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param kbCommentId the primary key of the k b comment to delete
+	 * @param kbCommentId the primary key of the k b comment
 	 * @throws PortalException if a k b comment with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void deleteKBComment(long kbCommentId)
 		throws PortalException, SystemException {
-		kbCommentPersistence.remove(kbCommentId);
+		KBComment kbComment = kbCommentPersistence.remove(kbCommentId);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.delete(kbComment);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
 	}
 
 	/**
 	 * Deletes the k b comment from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param kbComment the k b comment to delete
+	 * @param kbComment the k b comment
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void deleteKBComment(KBComment kbComment) throws SystemException {
 		kbCommentPersistence.remove(kbComment);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.delete(kbComment);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
 	}
 
 	/**
 	 * Performs a dynamic query on the database and returns the matching rows.
 	 *
-	 * @param dynamicQuery the dynamic query to search with
+	 * @param dynamicQuery the dynamic query
 	 * @return the matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -137,9 +183,9 @@ public abstract class KBCommentLocalServiceBaseImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param dynamicQuery the dynamic query to search with
-	 * @param start the lower bound of the range of model instances to return
-	 * @param end the upper bound of the range of model instances to return (not inclusive)
+	 * @param dynamicQuery the dynamic query
+	 * @param start the lower bound of the range of model instances
+	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @return the range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -157,9 +203,9 @@ public abstract class KBCommentLocalServiceBaseImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param dynamicQuery the dynamic query to search with
-	 * @param start the lower bound of the range of model instances to return
-	 * @param end the upper bound of the range of model instances to return (not inclusive)
+	 * @param dynamicQuery the dynamic query
+	 * @param start the lower bound of the range of model instances
+	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching rows
 	 * @throws SystemException if a system exception occurred
@@ -172,9 +218,9 @@ public abstract class KBCommentLocalServiceBaseImpl
 	}
 
 	/**
-	 * Counts the number of rows that match the dynamic query.
+	 * Returns the number of rows that match the dynamic query.
 	 *
-	 * @param dynamicQuery the dynamic query to search with
+	 * @param dynamicQuery the dynamic query
 	 * @return the number of rows that match the dynamic query
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -184,9 +230,9 @@ public abstract class KBCommentLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the k b comment with the primary key.
+	 * Returns the k b comment with the primary key.
 	 *
-	 * @param kbCommentId the primary key of the k b comment to get
+	 * @param kbCommentId the primary key of the k b comment
 	 * @return the k b comment
 	 * @throws PortalException if a k b comment with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -197,12 +243,12 @@ public abstract class KBCommentLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the k b comment with the UUID and group id.
+	 * Returns the k b comment with the UUID in the group.
 	 *
-	 * @param uuid the UUID of k b comment to get
-	 * @param groupId the group id of the k b comment to get
+	 * @param uuid the UUID of k b comment
+	 * @param groupId the group id of the k b comment
 	 * @return the k b comment
-	 * @throws PortalException if a k b comment with the UUID and group id could not be found
+	 * @throws PortalException if a k b comment with the UUID in the group could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	public KBComment getKBCommentByUuidAndGroupId(String uuid, long groupId)
@@ -211,14 +257,14 @@ public abstract class KBCommentLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets a range of all the k b comments.
+	 * Returns a range of all the k b comments.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of k b comments to return
-	 * @param end the upper bound of the range of k b comments to return (not inclusive)
+	 * @param start the lower bound of the range of k b comments
+	 * @param end the upper bound of the range of k b comments (not inclusive)
 	 * @return the range of k b comments
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -228,7 +274,7 @@ public abstract class KBCommentLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the number of k b comments.
+	 * Returns the number of k b comments.
 	 *
 	 * @return the number of k b comments
 	 * @throws SystemException if a system exception occurred
@@ -240,21 +286,19 @@ public abstract class KBCommentLocalServiceBaseImpl
 	/**
 	 * Updates the k b comment in the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param kbComment the k b comment to update
+	 * @param kbComment the k b comment
 	 * @return the k b comment that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
 	public KBComment updateKBComment(KBComment kbComment)
 		throws SystemException {
-		kbComment.setNew(false);
-
-		return kbCommentPersistence.update(kbComment, true);
+		return updateKBComment(kbComment, true);
 	}
 
 	/**
 	 * Updates the k b comment in the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param kbComment the k b comment to update
+	 * @param kbComment the k b comment
 	 * @param merge whether to merge the k b comment with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
 	 * @return the k b comment that was updated
 	 * @throws SystemException if a system exception occurred
@@ -263,11 +307,26 @@ public abstract class KBCommentLocalServiceBaseImpl
 		throws SystemException {
 		kbComment.setNew(false);
 
-		return kbCommentPersistence.update(kbComment, merge);
+		kbComment = kbCommentPersistence.update(kbComment, merge);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.reindex(kbComment);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
+
+		return kbComment;
 	}
 
 	/**
-	 * Gets the k b article local service.
+	 * Returns the k b article local service.
 	 *
 	 * @return the k b article local service
 	 */
@@ -286,7 +345,7 @@ public abstract class KBCommentLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the k b article remote service.
+	 * Returns the k b article remote service.
 	 *
 	 * @return the k b article remote service
 	 */
@@ -304,7 +363,7 @@ public abstract class KBCommentLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the k b article persistence.
+	 * Returns the k b article persistence.
 	 *
 	 * @return the k b article persistence
 	 */
@@ -323,7 +382,7 @@ public abstract class KBCommentLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the k b comment local service.
+	 * Returns the k b comment local service.
 	 *
 	 * @return the k b comment local service
 	 */
@@ -342,7 +401,7 @@ public abstract class KBCommentLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the k b comment persistence.
+	 * Returns the k b comment persistence.
 	 *
 	 * @return the k b comment persistence
 	 */
@@ -361,7 +420,7 @@ public abstract class KBCommentLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the k b structure local service.
+	 * Returns the k b structure local service.
 	 *
 	 * @return the k b structure local service
 	 */
@@ -380,7 +439,7 @@ public abstract class KBCommentLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the k b structure remote service.
+	 * Returns the k b structure remote service.
 	 *
 	 * @return the k b structure remote service
 	 */
@@ -398,7 +457,7 @@ public abstract class KBCommentLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the k b structure persistence.
+	 * Returns the k b structure persistence.
 	 *
 	 * @return the k b structure persistence
 	 */
@@ -417,7 +476,7 @@ public abstract class KBCommentLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the k b template local service.
+	 * Returns the k b template local service.
 	 *
 	 * @return the k b template local service
 	 */
@@ -436,7 +495,7 @@ public abstract class KBCommentLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the k b template remote service.
+	 * Returns the k b template remote service.
 	 *
 	 * @return the k b template remote service
 	 */
@@ -454,7 +513,7 @@ public abstract class KBCommentLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the k b template persistence.
+	 * Returns the k b template persistence.
 	 *
 	 * @return the k b template persistence
 	 */
@@ -473,7 +532,7 @@ public abstract class KBCommentLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the counter local service.
+	 * Returns the counter local service.
 	 *
 	 * @return the counter local service
 	 */
@@ -491,7 +550,7 @@ public abstract class KBCommentLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the resource local service.
+	 * Returns the resource local service.
 	 *
 	 * @return the resource local service
 	 */
@@ -510,7 +569,7 @@ public abstract class KBCommentLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the resource remote service.
+	 * Returns the resource remote service.
 	 *
 	 * @return the resource remote service
 	 */
@@ -528,7 +587,7 @@ public abstract class KBCommentLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the resource persistence.
+	 * Returns the resource persistence.
 	 *
 	 * @return the resource persistence
 	 */
@@ -546,7 +605,7 @@ public abstract class KBCommentLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the user local service.
+	 * Returns the user local service.
 	 *
 	 * @return the user local service
 	 */
@@ -564,7 +623,7 @@ public abstract class KBCommentLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the user remote service.
+	 * Returns the user remote service.
 	 *
 	 * @return the user remote service
 	 */
@@ -582,7 +641,7 @@ public abstract class KBCommentLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the user persistence.
+	 * Returns the user persistence.
 	 *
 	 * @return the user persistence
 	 */
@@ -600,7 +659,7 @@ public abstract class KBCommentLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the social activity local service.
+	 * Returns the social activity local service.
 	 *
 	 * @return the social activity local service
 	 */
@@ -619,7 +678,7 @@ public abstract class KBCommentLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the social activity persistence.
+	 * Returns the social activity persistence.
 	 *
 	 * @return the social activity persistence
 	 */
@@ -638,7 +697,7 @@ public abstract class KBCommentLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the Spring bean ID for this bean.
+	 * Returns the Spring bean ID for this bean.
 	 *
 	 * @return the Spring bean ID for this bean
 	 */
@@ -655,10 +714,18 @@ public abstract class KBCommentLocalServiceBaseImpl
 		_beanIdentifier = beanIdentifier;
 	}
 
+	protected Class<?> getModelClass() {
+		return KBComment.class;
+	}
+
+	protected String getModelClassName() {
+		return KBComment.class.getName();
+	}
+
 	/**
 	 * Performs an SQL query.
 	 *
-	 * @param sql the sql query to perform
+	 * @param sql the sql query
 	 */
 	protected void runSQL(String sql) throws SystemException {
 		try {
@@ -714,5 +781,6 @@ public abstract class KBCommentLocalServiceBaseImpl
 	protected SocialActivityLocalService socialActivityLocalService;
 	@BeanReference(type = SocialActivityPersistence.class)
 	protected SocialActivityPersistence socialActivityPersistence;
+	private static Log _log = LogFactoryUtil.getLog(KBCommentLocalServiceBaseImpl.class);
 	private String _beanIdentifier;
 }

@@ -33,6 +33,11 @@ import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.search.Indexer;
+import com.liferay.portal.kernel.search.IndexerRegistryUtil;
+import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.service.ResourceLocalService;
 import com.liferay.portal.service.ResourceService;
@@ -68,7 +73,7 @@ public abstract class AttachmentLocalServiceBaseImpl
 	/**
 	 * Adds the attachment to the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param attachment the attachment to add
+	 * @param attachment the attachment
 	 * @return the attachment that was added
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -76,7 +81,22 @@ public abstract class AttachmentLocalServiceBaseImpl
 		throws SystemException {
 		attachment.setNew(true);
 
-		return attachmentPersistence.update(attachment, false);
+		attachment = attachmentPersistence.update(attachment, false);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.reindex(attachment);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
+
+		return attachment;
 	}
 
 	/**
@@ -92,30 +112,56 @@ public abstract class AttachmentLocalServiceBaseImpl
 	/**
 	 * Deletes the attachment with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param attachmentId the primary key of the attachment to delete
+	 * @param attachmentId the primary key of the attachment
 	 * @throws PortalException if a attachment with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void deleteAttachment(long attachmentId)
 		throws PortalException, SystemException {
-		attachmentPersistence.remove(attachmentId);
+		Attachment attachment = attachmentPersistence.remove(attachmentId);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.delete(attachment);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
 	}
 
 	/**
 	 * Deletes the attachment from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param attachment the attachment to delete
+	 * @param attachment the attachment
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void deleteAttachment(Attachment attachment)
 		throws SystemException {
 		attachmentPersistence.remove(attachment);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.delete(attachment);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
 	}
 
 	/**
 	 * Performs a dynamic query on the database and returns the matching rows.
 	 *
-	 * @param dynamicQuery the dynamic query to search with
+	 * @param dynamicQuery the dynamic query
 	 * @return the matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -132,9 +178,9 @@ public abstract class AttachmentLocalServiceBaseImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param dynamicQuery the dynamic query to search with
-	 * @param start the lower bound of the range of model instances to return
-	 * @param end the upper bound of the range of model instances to return (not inclusive)
+	 * @param dynamicQuery the dynamic query
+	 * @param start the lower bound of the range of model instances
+	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @return the range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -152,9 +198,9 @@ public abstract class AttachmentLocalServiceBaseImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param dynamicQuery the dynamic query to search with
-	 * @param start the lower bound of the range of model instances to return
-	 * @param end the upper bound of the range of model instances to return (not inclusive)
+	 * @param dynamicQuery the dynamic query
+	 * @param start the lower bound of the range of model instances
+	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching rows
 	 * @throws SystemException if a system exception occurred
@@ -167,9 +213,9 @@ public abstract class AttachmentLocalServiceBaseImpl
 	}
 
 	/**
-	 * Counts the number of rows that match the dynamic query.
+	 * Returns the number of rows that match the dynamic query.
 	 *
-	 * @param dynamicQuery the dynamic query to search with
+	 * @param dynamicQuery the dynamic query
 	 * @return the number of rows that match the dynamic query
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -179,9 +225,9 @@ public abstract class AttachmentLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the attachment with the primary key.
+	 * Returns the attachment with the primary key.
 	 *
-	 * @param attachmentId the primary key of the attachment to get
+	 * @param attachmentId the primary key of the attachment
 	 * @return the attachment
 	 * @throws PortalException if a attachment with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -192,14 +238,14 @@ public abstract class AttachmentLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets a range of all the attachments.
+	 * Returns a range of all the attachments.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of attachments to return
-	 * @param end the upper bound of the range of attachments to return (not inclusive)
+	 * @param start the lower bound of the range of attachments
+	 * @param end the upper bound of the range of attachments (not inclusive)
 	 * @return the range of attachments
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -209,7 +255,7 @@ public abstract class AttachmentLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the number of attachments.
+	 * Returns the number of attachments.
 	 *
 	 * @return the number of attachments
 	 * @throws SystemException if a system exception occurred
@@ -221,21 +267,19 @@ public abstract class AttachmentLocalServiceBaseImpl
 	/**
 	 * Updates the attachment in the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param attachment the attachment to update
+	 * @param attachment the attachment
 	 * @return the attachment that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
 	public Attachment updateAttachment(Attachment attachment)
 		throws SystemException {
-		attachment.setNew(false);
-
-		return attachmentPersistence.update(attachment, true);
+		return updateAttachment(attachment, true);
 	}
 
 	/**
 	 * Updates the attachment in the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param attachment the attachment to update
+	 * @param attachment the attachment
 	 * @param merge whether to merge the attachment with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
 	 * @return the attachment that was updated
 	 * @throws SystemException if a system exception occurred
@@ -244,11 +288,26 @@ public abstract class AttachmentLocalServiceBaseImpl
 		throws SystemException {
 		attachment.setNew(false);
 
-		return attachmentPersistence.update(attachment, merge);
+		attachment = attachmentPersistence.update(attachment, merge);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.reindex(attachment);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
+
+		return attachment;
 	}
 
 	/**
-	 * Gets the account local service.
+	 * Returns the account local service.
 	 *
 	 * @return the account local service
 	 */
@@ -266,7 +325,7 @@ public abstract class AttachmentLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the account persistence.
+	 * Returns the account persistence.
 	 *
 	 * @return the account persistence
 	 */
@@ -284,7 +343,7 @@ public abstract class AttachmentLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the attachment local service.
+	 * Returns the attachment local service.
 	 *
 	 * @return the attachment local service
 	 */
@@ -303,7 +362,7 @@ public abstract class AttachmentLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the attachment persistence.
+	 * Returns the attachment persistence.
 	 *
 	 * @return the attachment persistence
 	 */
@@ -322,7 +381,7 @@ public abstract class AttachmentLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the folder local service.
+	 * Returns the folder local service.
 	 *
 	 * @return the folder local service
 	 */
@@ -340,7 +399,7 @@ public abstract class AttachmentLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the folder persistence.
+	 * Returns the folder persistence.
 	 *
 	 * @return the folder persistence
 	 */
@@ -358,7 +417,7 @@ public abstract class AttachmentLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the message local service.
+	 * Returns the message local service.
 	 *
 	 * @return the message local service
 	 */
@@ -376,7 +435,7 @@ public abstract class AttachmentLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the message persistence.
+	 * Returns the message persistence.
 	 *
 	 * @return the message persistence
 	 */
@@ -394,7 +453,7 @@ public abstract class AttachmentLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the counter local service.
+	 * Returns the counter local service.
 	 *
 	 * @return the counter local service
 	 */
@@ -412,7 +471,7 @@ public abstract class AttachmentLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the resource local service.
+	 * Returns the resource local service.
 	 *
 	 * @return the resource local service
 	 */
@@ -431,7 +490,7 @@ public abstract class AttachmentLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the resource remote service.
+	 * Returns the resource remote service.
 	 *
 	 * @return the resource remote service
 	 */
@@ -449,7 +508,7 @@ public abstract class AttachmentLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the resource persistence.
+	 * Returns the resource persistence.
 	 *
 	 * @return the resource persistence
 	 */
@@ -467,7 +526,7 @@ public abstract class AttachmentLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the user local service.
+	 * Returns the user local service.
 	 *
 	 * @return the user local service
 	 */
@@ -485,7 +544,7 @@ public abstract class AttachmentLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the user remote service.
+	 * Returns the user remote service.
 	 *
 	 * @return the user remote service
 	 */
@@ -503,7 +562,7 @@ public abstract class AttachmentLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the user persistence.
+	 * Returns the user persistence.
 	 *
 	 * @return the user persistence
 	 */
@@ -521,7 +580,7 @@ public abstract class AttachmentLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the Spring bean ID for this bean.
+	 * Returns the Spring bean ID for this bean.
 	 *
 	 * @return the Spring bean ID for this bean
 	 */
@@ -538,10 +597,18 @@ public abstract class AttachmentLocalServiceBaseImpl
 		_beanIdentifier = beanIdentifier;
 	}
 
+	protected Class<?> getModelClass() {
+		return Attachment.class;
+	}
+
+	protected String getModelClassName() {
+		return Attachment.class.getName();
+	}
+
 	/**
 	 * Performs an SQL query.
 	 *
-	 * @param sql the sql query to perform
+	 * @param sql the sql query
 	 */
 	protected void runSQL(String sql) throws SystemException {
 		try {
@@ -587,5 +654,6 @@ public abstract class AttachmentLocalServiceBaseImpl
 	protected UserService userService;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
+	private static Log _log = LogFactoryUtil.getLog(AttachmentLocalServiceBaseImpl.class);
 	private String _beanIdentifier;
 }

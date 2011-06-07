@@ -37,7 +37,7 @@ public class HROfficeWrapper implements HROffice {
 	}
 
 	/**
-	* Gets the primary key of this h r office.
+	* Returns the primary key of this h r office.
 	*
 	* @return the primary key of this h r office
 	*/
@@ -46,7 +46,7 @@ public class HROfficeWrapper implements HROffice {
 	}
 
 	/**
-	* Sets the primary key of this h r office
+	* Sets the primary key of this h r office.
 	*
 	* @param primaryKey the primary key of this h r office
 	*/
@@ -55,7 +55,7 @@ public class HROfficeWrapper implements HROffice {
 	}
 
 	/**
-	* Gets the hr office ID of this h r office.
+	* Returns the hr office ID of this h r office.
 	*
 	* @return the hr office ID of this h r office
 	*/
@@ -73,7 +73,7 @@ public class HROfficeWrapper implements HROffice {
 	}
 
 	/**
-	* Gets the group ID of this h r office.
+	* Returns the group ID of this h r office.
 	*
 	* @return the group ID of this h r office
 	*/
@@ -91,7 +91,7 @@ public class HROfficeWrapper implements HROffice {
 	}
 
 	/**
-	* Gets the company ID of this h r office.
+	* Returns the company ID of this h r office.
 	*
 	* @return the company ID of this h r office
 	*/
@@ -109,7 +109,7 @@ public class HROfficeWrapper implements HROffice {
 	}
 
 	/**
-	* Gets the user ID of this h r office.
+	* Returns the user ID of this h r office.
 	*
 	* @return the user ID of this h r office
 	*/
@@ -127,7 +127,7 @@ public class HROfficeWrapper implements HROffice {
 	}
 
 	/**
-	* Gets the user uuid of this h r office.
+	* Returns the user uuid of this h r office.
 	*
 	* @return the user uuid of this h r office
 	* @throws SystemException if a system exception occurred
@@ -147,7 +147,7 @@ public class HROfficeWrapper implements HROffice {
 	}
 
 	/**
-	* Gets the user name of this h r office.
+	* Returns the user name of this h r office.
 	*
 	* @return the user name of this h r office
 	*/
@@ -165,7 +165,7 @@ public class HROfficeWrapper implements HROffice {
 	}
 
 	/**
-	* Gets the create date of this h r office.
+	* Returns the create date of this h r office.
 	*
 	* @return the create date of this h r office
 	*/
@@ -183,7 +183,7 @@ public class HROfficeWrapper implements HROffice {
 	}
 
 	/**
-	* Gets the modified date of this h r office.
+	* Returns the modified date of this h r office.
 	*
 	* @return the modified date of this h r office
 	*/
@@ -201,7 +201,7 @@ public class HROfficeWrapper implements HROffice {
 	}
 
 	/**
-	* Gets the organization ID of this h r office.
+	* Returns the organization ID of this h r office.
 	*
 	* @return the organization ID of this h r office
 	*/

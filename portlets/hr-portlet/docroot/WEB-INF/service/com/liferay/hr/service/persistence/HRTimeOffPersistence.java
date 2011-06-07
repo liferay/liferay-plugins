@@ -41,14 +41,14 @@ public interface HRTimeOffPersistence extends BasePersistence<HRTimeOff> {
 	/**
 	* Caches the h r time off in the entity cache if it is enabled.
 	*
-	* @param hrTimeOff the h r time off to cache
+	* @param hrTimeOff the h r time off
 	*/
 	public void cacheResult(com.liferay.hr.model.HRTimeOff hrTimeOff);
 
 	/**
 	* Caches the h r time offs in the entity cache if it is enabled.
 	*
-	* @param hrTimeOffs the h r time offs to cache
+	* @param hrTimeOffs the h r time offs
 	*/
 	public void cacheResult(
 		java.util.List<com.liferay.hr.model.HRTimeOff> hrTimeOffs);
@@ -64,7 +64,7 @@ public interface HRTimeOffPersistence extends BasePersistence<HRTimeOff> {
 	/**
 	* Removes the h r time off with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param hrTimeOffId the primary key of the h r time off to remove
+	* @param hrTimeOffId the primary key of the h r time off
 	* @return the h r time off that was removed
 	* @throws com.liferay.hr.NoSuchTimeOffException if a h r time off with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -78,9 +78,9 @@ public interface HRTimeOffPersistence extends BasePersistence<HRTimeOff> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the h r time off with the primary key or throws a {@link com.liferay.hr.NoSuchTimeOffException} if it could not be found.
+	* Returns the h r time off with the primary key or throws a {@link com.liferay.hr.NoSuchTimeOffException} if it could not be found.
 	*
-	* @param hrTimeOffId the primary key of the h r time off to find
+	* @param hrTimeOffId the primary key of the h r time off
 	* @return the h r time off
 	* @throws com.liferay.hr.NoSuchTimeOffException if a h r time off with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -90,9 +90,9 @@ public interface HRTimeOffPersistence extends BasePersistence<HRTimeOff> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the h r time off with the primary key or returns <code>null</code> if it could not be found.
+	* Returns the h r time off with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param hrTimeOffId the primary key of the h r time off to find
+	* @param hrTimeOffId the primary key of the h r time off
 	* @return the h r time off, or <code>null</code> if a h r time off with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -100,7 +100,7 @@ public interface HRTimeOffPersistence extends BasePersistence<HRTimeOff> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds all the h r time offs.
+	* Returns all the h r time offs.
 	*
 	* @return the h r time offs
 	* @throws SystemException if a system exception occurred
@@ -109,14 +109,14 @@ public interface HRTimeOffPersistence extends BasePersistence<HRTimeOff> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds a range of all the h r time offs.
+	* Returns a range of all the h r time offs.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of h r time offs to return
-	* @param end the upper bound of the range of h r time offs to return (not inclusive)
+	* @param start the lower bound of the range of h r time offs
+	* @param end the upper bound of the range of h r time offs (not inclusive)
 	* @return the range of h r time offs
 	* @throws SystemException if a system exception occurred
 	*/
@@ -124,14 +124,14 @@ public interface HRTimeOffPersistence extends BasePersistence<HRTimeOff> {
 		int end) throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds an ordered range of all the h r time offs.
+	* Returns an ordered range of all the h r time offs.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of h r time offs to return
-	* @param end the upper bound of the range of h r time offs to return (not inclusive)
+	* @param start the lower bound of the range of h r time offs
+	* @param end the upper bound of the range of h r time offs (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of h r time offs
 	* @throws SystemException if a system exception occurred
@@ -150,7 +150,7 @@ public interface HRTimeOffPersistence extends BasePersistence<HRTimeOff> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Counts all the h r time offs.
+	* Returns the number of h r time offs.
 	*
 	* @return the number of h r time offs
 	* @throws SystemException if a system exception occurred

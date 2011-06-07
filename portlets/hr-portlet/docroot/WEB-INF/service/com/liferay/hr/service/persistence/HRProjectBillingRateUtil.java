@@ -124,7 +124,7 @@ public class HRProjectBillingRateUtil {
 	/**
 	* Caches the h r project billing rate in the entity cache if it is enabled.
 	*
-	* @param hrProjectBillingRate the h r project billing rate to cache
+	* @param hrProjectBillingRate the h r project billing rate
 	*/
 	public static void cacheResult(
 		com.liferay.hr.model.HRProjectBillingRate hrProjectBillingRate) {
@@ -134,7 +134,7 @@ public class HRProjectBillingRateUtil {
 	/**
 	* Caches the h r project billing rates in the entity cache if it is enabled.
 	*
-	* @param hrProjectBillingRates the h r project billing rates to cache
+	* @param hrProjectBillingRates the h r project billing rates
 	*/
 	public static void cacheResult(
 		java.util.List<com.liferay.hr.model.HRProjectBillingRate> hrProjectBillingRates) {
@@ -155,7 +155,7 @@ public class HRProjectBillingRateUtil {
 	/**
 	* Removes the h r project billing rate with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param hrProjectBillingRateId the primary key of the h r project billing rate to remove
+	* @param hrProjectBillingRateId the primary key of the h r project billing rate
 	* @return the h r project billing rate that was removed
 	* @throws com.liferay.hr.NoSuchProjectBillingRateException if a h r project billing rate with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -175,9 +175,9 @@ public class HRProjectBillingRateUtil {
 	}
 
 	/**
-	* Finds the h r project billing rate with the primary key or throws a {@link com.liferay.hr.NoSuchProjectBillingRateException} if it could not be found.
+	* Returns the h r project billing rate with the primary key or throws a {@link com.liferay.hr.NoSuchProjectBillingRateException} if it could not be found.
 	*
-	* @param hrProjectBillingRateId the primary key of the h r project billing rate to find
+	* @param hrProjectBillingRateId the primary key of the h r project billing rate
 	* @return the h r project billing rate
 	* @throws com.liferay.hr.NoSuchProjectBillingRateException if a h r project billing rate with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -190,9 +190,9 @@ public class HRProjectBillingRateUtil {
 	}
 
 	/**
-	* Finds the h r project billing rate with the primary key or returns <code>null</code> if it could not be found.
+	* Returns the h r project billing rate with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param hrProjectBillingRateId the primary key of the h r project billing rate to find
+	* @param hrProjectBillingRateId the primary key of the h r project billing rate
 	* @return the h r project billing rate, or <code>null</code> if a h r project billing rate with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -203,7 +203,7 @@ public class HRProjectBillingRateUtil {
 	}
 
 	/**
-	* Finds all the h r project billing rates.
+	* Returns all the h r project billing rates.
 	*
 	* @return the h r project billing rates
 	* @throws SystemException if a system exception occurred
@@ -214,14 +214,14 @@ public class HRProjectBillingRateUtil {
 	}
 
 	/**
-	* Finds a range of all the h r project billing rates.
+	* Returns a range of all the h r project billing rates.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of h r project billing rates to return
-	* @param end the upper bound of the range of h r project billing rates to return (not inclusive)
+	* @param start the lower bound of the range of h r project billing rates
+	* @param end the upper bound of the range of h r project billing rates (not inclusive)
 	* @return the range of h r project billing rates
 	* @throws SystemException if a system exception occurred
 	*/
@@ -232,14 +232,14 @@ public class HRProjectBillingRateUtil {
 	}
 
 	/**
-	* Finds an ordered range of all the h r project billing rates.
+	* Returns an ordered range of all the h r project billing rates.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of h r project billing rates to return
-	* @param end the upper bound of the range of h r project billing rates to return (not inclusive)
+	* @param start the lower bound of the range of h r project billing rates
+	* @param end the upper bound of the range of h r project billing rates (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of h r project billing rates
 	* @throws SystemException if a system exception occurred
@@ -262,7 +262,7 @@ public class HRProjectBillingRateUtil {
 	}
 
 	/**
-	* Counts all the h r project billing rates.
+	* Returns the number of h r project billing rates.
 	*
 	* @return the number of h r project billing rates
 	* @throws SystemException if a system exception occurred

@@ -23,6 +23,11 @@ import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.search.Indexer;
+import com.liferay.portal.kernel.search.IndexerRegistryUtil;
+import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.service.ResourceLocalService;
 import com.liferay.portal.service.ResourceService;
@@ -62,14 +67,29 @@ public abstract class FeedLocalServiceBaseImpl implements FeedLocalService,
 	/**
 	 * Adds the feed to the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param feed the feed to add
+	 * @param feed the feed
 	 * @return the feed that was added
 	 * @throws SystemException if a system exception occurred
 	 */
 	public Feed addFeed(Feed feed) throws SystemException {
 		feed.setNew(true);
 
-		return feedPersistence.update(feed, false);
+		feed = feedPersistence.update(feed, false);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.reindex(feed);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
+
+		return feed;
 	}
 
 	/**
@@ -85,28 +105,54 @@ public abstract class FeedLocalServiceBaseImpl implements FeedLocalService,
 	/**
 	 * Deletes the feed with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param feedId the primary key of the feed to delete
+	 * @param feedId the primary key of the feed
 	 * @throws PortalException if a feed with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void deleteFeed(long feedId) throws PortalException, SystemException {
-		feedPersistence.remove(feedId);
+		Feed feed = feedPersistence.remove(feedId);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.delete(feed);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
 	}
 
 	/**
 	 * Deletes the feed from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param feed the feed to delete
+	 * @param feed the feed
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void deleteFeed(Feed feed) throws SystemException {
 		feedPersistence.remove(feed);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.delete(feed);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
 	}
 
 	/**
 	 * Performs a dynamic query on the database and returns the matching rows.
 	 *
-	 * @param dynamicQuery the dynamic query to search with
+	 * @param dynamicQuery the dynamic query
 	 * @return the matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -123,9 +169,9 @@ public abstract class FeedLocalServiceBaseImpl implements FeedLocalService,
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param dynamicQuery the dynamic query to search with
-	 * @param start the lower bound of the range of model instances to return
-	 * @param end the upper bound of the range of model instances to return (not inclusive)
+	 * @param dynamicQuery the dynamic query
+	 * @param start the lower bound of the range of model instances
+	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @return the range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -142,9 +188,9 @@ public abstract class FeedLocalServiceBaseImpl implements FeedLocalService,
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param dynamicQuery the dynamic query to search with
-	 * @param start the lower bound of the range of model instances to return
-	 * @param end the upper bound of the range of model instances to return (not inclusive)
+	 * @param dynamicQuery the dynamic query
+	 * @param start the lower bound of the range of model instances
+	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching rows
 	 * @throws SystemException if a system exception occurred
@@ -157,9 +203,9 @@ public abstract class FeedLocalServiceBaseImpl implements FeedLocalService,
 	}
 
 	/**
-	 * Counts the number of rows that match the dynamic query.
+	 * Returns the number of rows that match the dynamic query.
 	 *
-	 * @param dynamicQuery the dynamic query to search with
+	 * @param dynamicQuery the dynamic query
 	 * @return the number of rows that match the dynamic query
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -169,9 +215,9 @@ public abstract class FeedLocalServiceBaseImpl implements FeedLocalService,
 	}
 
 	/**
-	 * Gets the feed with the primary key.
+	 * Returns the feed with the primary key.
 	 *
-	 * @param feedId the primary key of the feed to get
+	 * @param feedId the primary key of the feed
 	 * @return the feed
 	 * @throws PortalException if a feed with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -181,14 +227,14 @@ public abstract class FeedLocalServiceBaseImpl implements FeedLocalService,
 	}
 
 	/**
-	 * Gets a range of all the feeds.
+	 * Returns a range of all the feeds.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of feeds to return
-	 * @param end the upper bound of the range of feeds to return (not inclusive)
+	 * @param start the lower bound of the range of feeds
+	 * @param end the upper bound of the range of feeds (not inclusive)
 	 * @return the range of feeds
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -197,7 +243,7 @@ public abstract class FeedLocalServiceBaseImpl implements FeedLocalService,
 	}
 
 	/**
-	 * Gets the number of feeds.
+	 * Returns the number of feeds.
 	 *
 	 * @return the number of feeds
 	 * @throws SystemException if a system exception occurred
@@ -209,20 +255,18 @@ public abstract class FeedLocalServiceBaseImpl implements FeedLocalService,
 	/**
 	 * Updates the feed in the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param feed the feed to update
+	 * @param feed the feed
 	 * @return the feed that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
 	public Feed updateFeed(Feed feed) throws SystemException {
-		feed.setNew(false);
-
-		return feedPersistence.update(feed, true);
+		return updateFeed(feed, true);
 	}
 
 	/**
 	 * Updates the feed in the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param feed the feed to update
+	 * @param feed the feed
 	 * @param merge whether to merge the feed with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
 	 * @return the feed that was updated
 	 * @throws SystemException if a system exception occurred
@@ -230,11 +274,26 @@ public abstract class FeedLocalServiceBaseImpl implements FeedLocalService,
 	public Feed updateFeed(Feed feed, boolean merge) throws SystemException {
 		feed.setNew(false);
 
-		return feedPersistence.update(feed, merge);
+		feed = feedPersistence.update(feed, merge);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.reindex(feed);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
+
+		return feed;
 	}
 
 	/**
-	 * Gets the feed local service.
+	 * Returns the feed local service.
 	 *
 	 * @return the feed local service
 	 */
@@ -252,7 +311,7 @@ public abstract class FeedLocalServiceBaseImpl implements FeedLocalService,
 	}
 
 	/**
-	 * Gets the feed persistence.
+	 * Returns the feed persistence.
 	 *
 	 * @return the feed persistence
 	 */
@@ -270,7 +329,7 @@ public abstract class FeedLocalServiceBaseImpl implements FeedLocalService,
 	}
 
 	/**
-	 * Gets the counter local service.
+	 * Returns the counter local service.
 	 *
 	 * @return the counter local service
 	 */
@@ -288,7 +347,7 @@ public abstract class FeedLocalServiceBaseImpl implements FeedLocalService,
 	}
 
 	/**
-	 * Gets the resource local service.
+	 * Returns the resource local service.
 	 *
 	 * @return the resource local service
 	 */
@@ -307,7 +366,7 @@ public abstract class FeedLocalServiceBaseImpl implements FeedLocalService,
 	}
 
 	/**
-	 * Gets the resource remote service.
+	 * Returns the resource remote service.
 	 *
 	 * @return the resource remote service
 	 */
@@ -325,7 +384,7 @@ public abstract class FeedLocalServiceBaseImpl implements FeedLocalService,
 	}
 
 	/**
-	 * Gets the resource persistence.
+	 * Returns the resource persistence.
 	 *
 	 * @return the resource persistence
 	 */
@@ -343,7 +402,7 @@ public abstract class FeedLocalServiceBaseImpl implements FeedLocalService,
 	}
 
 	/**
-	 * Gets the user local service.
+	 * Returns the user local service.
 	 *
 	 * @return the user local service
 	 */
@@ -361,7 +420,7 @@ public abstract class FeedLocalServiceBaseImpl implements FeedLocalService,
 	}
 
 	/**
-	 * Gets the user remote service.
+	 * Returns the user remote service.
 	 *
 	 * @return the user remote service
 	 */
@@ -379,7 +438,7 @@ public abstract class FeedLocalServiceBaseImpl implements FeedLocalService,
 	}
 
 	/**
-	 * Gets the user persistence.
+	 * Returns the user persistence.
 	 *
 	 * @return the user persistence
 	 */
@@ -397,7 +456,7 @@ public abstract class FeedLocalServiceBaseImpl implements FeedLocalService,
 	}
 
 	/**
-	 * Gets the Spring bean ID for this bean.
+	 * Returns the Spring bean ID for this bean.
 	 *
 	 * @return the Spring bean ID for this bean
 	 */
@@ -414,10 +473,18 @@ public abstract class FeedLocalServiceBaseImpl implements FeedLocalService,
 		_beanIdentifier = beanIdentifier;
 	}
 
+	protected Class<?> getModelClass() {
+		return Feed.class;
+	}
+
+	protected String getModelClassName() {
+		return Feed.class.getName();
+	}
+
 	/**
 	 * Performs an SQL query.
 	 *
-	 * @param sql the sql query to perform
+	 * @param sql the sql query
 	 */
 	protected void runSQL(String sql) throws SystemException {
 		try {
@@ -451,5 +518,6 @@ public abstract class FeedLocalServiceBaseImpl implements FeedLocalService,
 	protected UserService userService;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
+	private static Log _log = LogFactoryUtil.getLog(FeedLocalServiceBaseImpl.class);
 	private String _beanIdentifier;
 }

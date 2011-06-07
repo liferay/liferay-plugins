@@ -33,7 +33,7 @@ public class MeetupsRegistrationLocalServiceWrapper
 	/**
 	* Adds the meetups registration to the database. Also notifies the appropriate model listeners.
 	*
-	* @param meetupsRegistration the meetups registration to add
+	* @param meetupsRegistration the meetups registration
 	* @return the meetups registration that was added
 	* @throws SystemException if a system exception occurred
 	*/
@@ -57,7 +57,7 @@ public class MeetupsRegistrationLocalServiceWrapper
 	/**
 	* Deletes the meetups registration with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param meetupsRegistrationId the primary key of the meetups registration to delete
+	* @param meetupsRegistrationId the primary key of the meetups registration
 	* @throws PortalException if a meetups registration with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -70,7 +70,7 @@ public class MeetupsRegistrationLocalServiceWrapper
 	/**
 	* Deletes the meetups registration from the database. Also notifies the appropriate model listeners.
 	*
-	* @param meetupsRegistration the meetups registration to delete
+	* @param meetupsRegistration the meetups registration
 	* @throws SystemException if a system exception occurred
 	*/
 	public void deleteMeetupsRegistration(
@@ -82,7 +82,7 @@ public class MeetupsRegistrationLocalServiceWrapper
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
 	*
-	* @param dynamicQuery the dynamic query to search with
+	* @param dynamicQuery the dynamic query
 	* @return the matching rows
 	* @throws SystemException if a system exception occurred
 	*/
@@ -100,9 +100,9 @@ public class MeetupsRegistrationLocalServiceWrapper
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param dynamicQuery the dynamic query to search with
-	* @param start the lower bound of the range of model instances to return
-	* @param end the upper bound of the range of model instances to return (not inclusive)
+	* @param dynamicQuery the dynamic query
+	* @param start the lower bound of the range of model instances
+	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
 	* @throws SystemException if a system exception occurred
 	*/
@@ -121,9 +121,9 @@ public class MeetupsRegistrationLocalServiceWrapper
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param dynamicQuery the dynamic query to search with
-	* @param start the lower bound of the range of model instances to return
-	* @param end the upper bound of the range of model instances to return (not inclusive)
+	* @param dynamicQuery the dynamic query
+	* @param start the lower bound of the range of model instances
+	* @param end the upper bound of the range of model instances (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
 	* @throws SystemException if a system exception occurred
@@ -139,9 +139,9 @@ public class MeetupsRegistrationLocalServiceWrapper
 	}
 
 	/**
-	* Counts the number of rows that match the dynamic query.
+	* Returns the number of rows that match the dynamic query.
 	*
-	* @param dynamicQuery the dynamic query to search with
+	* @param dynamicQuery the dynamic query
 	* @return the number of rows that match the dynamic query
 	* @throws SystemException if a system exception occurred
 	*/
@@ -152,9 +152,9 @@ public class MeetupsRegistrationLocalServiceWrapper
 	}
 
 	/**
-	* Gets the meetups registration with the primary key.
+	* Returns the meetups registration with the primary key.
 	*
-	* @param meetupsRegistrationId the primary key of the meetups registration to get
+	* @param meetupsRegistrationId the primary key of the meetups registration
 	* @return the meetups registration
 	* @throws PortalException if a meetups registration with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -167,14 +167,14 @@ public class MeetupsRegistrationLocalServiceWrapper
 	}
 
 	/**
-	* Gets a range of all the meetups registrations.
+	* Returns a range of all the meetups registrations.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of meetups registrations to return
-	* @param end the upper bound of the range of meetups registrations to return (not inclusive)
+	* @param start the lower bound of the range of meetups registrations
+	* @param end the upper bound of the range of meetups registrations (not inclusive)
 	* @return the range of meetups registrations
 	* @throws SystemException if a system exception occurred
 	*/
@@ -186,7 +186,7 @@ public class MeetupsRegistrationLocalServiceWrapper
 	}
 
 	/**
-	* Gets the number of meetups registrations.
+	* Returns the number of meetups registrations.
 	*
 	* @return the number of meetups registrations
 	* @throws SystemException if a system exception occurred
@@ -199,7 +199,7 @@ public class MeetupsRegistrationLocalServiceWrapper
 	/**
 	* Updates the meetups registration in the database. Also notifies the appropriate model listeners.
 	*
-	* @param meetupsRegistration the meetups registration to update
+	* @param meetupsRegistration the meetups registration
 	* @return the meetups registration that was updated
 	* @throws SystemException if a system exception occurred
 	*/
@@ -212,7 +212,7 @@ public class MeetupsRegistrationLocalServiceWrapper
 	/**
 	* Updates the meetups registration in the database. Also notifies the appropriate model listeners.
 	*
-	* @param meetupsRegistration the meetups registration to update
+	* @param meetupsRegistration the meetups registration
 	* @param merge whether to merge the meetups registration with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
 	* @return the meetups registration that was updated
 	* @throws SystemException if a system exception occurred
@@ -226,7 +226,7 @@ public class MeetupsRegistrationLocalServiceWrapper
 	}
 
 	/**
-	* Gets the Spring bean ID for this bean.
+	* Returns the Spring bean ID for this bean.
 	*
 	* @return the Spring bean ID for this bean
 	*/

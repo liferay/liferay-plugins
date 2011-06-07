@@ -41,14 +41,14 @@ public interface HRExpensePersistence extends BasePersistence<HRExpense> {
 	/**
 	* Caches the h r expense in the entity cache if it is enabled.
 	*
-	* @param hrExpense the h r expense to cache
+	* @param hrExpense the h r expense
 	*/
 	public void cacheResult(com.liferay.hr.model.HRExpense hrExpense);
 
 	/**
 	* Caches the h r expenses in the entity cache if it is enabled.
 	*
-	* @param hrExpenses the h r expenses to cache
+	* @param hrExpenses the h r expenses
 	*/
 	public void cacheResult(
 		java.util.List<com.liferay.hr.model.HRExpense> hrExpenses);
@@ -64,7 +64,7 @@ public interface HRExpensePersistence extends BasePersistence<HRExpense> {
 	/**
 	* Removes the h r expense with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param hrExpenseId the primary key of the h r expense to remove
+	* @param hrExpenseId the primary key of the h r expense
 	* @return the h r expense that was removed
 	* @throws com.liferay.hr.NoSuchExpenseException if a h r expense with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -78,9 +78,9 @@ public interface HRExpensePersistence extends BasePersistence<HRExpense> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the h r expense with the primary key or throws a {@link com.liferay.hr.NoSuchExpenseException} if it could not be found.
+	* Returns the h r expense with the primary key or throws a {@link com.liferay.hr.NoSuchExpenseException} if it could not be found.
 	*
-	* @param hrExpenseId the primary key of the h r expense to find
+	* @param hrExpenseId the primary key of the h r expense
 	* @return the h r expense
 	* @throws com.liferay.hr.NoSuchExpenseException if a h r expense with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -90,9 +90,9 @@ public interface HRExpensePersistence extends BasePersistence<HRExpense> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the h r expense with the primary key or returns <code>null</code> if it could not be found.
+	* Returns the h r expense with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param hrExpenseId the primary key of the h r expense to find
+	* @param hrExpenseId the primary key of the h r expense
 	* @return the h r expense, or <code>null</code> if a h r expense with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -100,7 +100,7 @@ public interface HRExpensePersistence extends BasePersistence<HRExpense> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds all the h r expenses.
+	* Returns all the h r expenses.
 	*
 	* @return the h r expenses
 	* @throws SystemException if a system exception occurred
@@ -109,14 +109,14 @@ public interface HRExpensePersistence extends BasePersistence<HRExpense> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds a range of all the h r expenses.
+	* Returns a range of all the h r expenses.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of h r expenses to return
-	* @param end the upper bound of the range of h r expenses to return (not inclusive)
+	* @param start the lower bound of the range of h r expenses
+	* @param end the upper bound of the range of h r expenses (not inclusive)
 	* @return the range of h r expenses
 	* @throws SystemException if a system exception occurred
 	*/
@@ -124,14 +124,14 @@ public interface HRExpensePersistence extends BasePersistence<HRExpense> {
 		int end) throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds an ordered range of all the h r expenses.
+	* Returns an ordered range of all the h r expenses.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of h r expenses to return
-	* @param end the upper bound of the range of h r expenses to return (not inclusive)
+	* @param start the lower bound of the range of h r expenses
+	* @param end the upper bound of the range of h r expenses (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of h r expenses
 	* @throws SystemException if a system exception occurred
@@ -150,7 +150,7 @@ public interface HRExpensePersistence extends BasePersistence<HRExpense> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Counts all the h r expenses.
+	* Returns the number of h r expenses.
 	*
 	* @return the number of h r expenses
 	* @throws SystemException if a system exception occurred

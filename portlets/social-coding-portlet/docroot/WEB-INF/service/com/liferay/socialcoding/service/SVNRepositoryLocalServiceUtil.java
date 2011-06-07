@@ -42,7 +42,7 @@ public class SVNRepositoryLocalServiceUtil {
 	/**
 	* Adds the s v n repository to the database. Also notifies the appropriate model listeners.
 	*
-	* @param svnRepository the s v n repository to add
+	* @param svnRepository the s v n repository
 	* @return the s v n repository that was added
 	* @throws SystemException if a system exception occurred
 	*/
@@ -66,7 +66,7 @@ public class SVNRepositoryLocalServiceUtil {
 	/**
 	* Deletes the s v n repository with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param svnRepositoryId the primary key of the s v n repository to delete
+	* @param svnRepositoryId the primary key of the s v n repository
 	* @throws PortalException if a s v n repository with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -79,7 +79,7 @@ public class SVNRepositoryLocalServiceUtil {
 	/**
 	* Deletes the s v n repository from the database. Also notifies the appropriate model listeners.
 	*
-	* @param svnRepository the s v n repository to delete
+	* @param svnRepository the s v n repository
 	* @throws SystemException if a system exception occurred
 	*/
 	public static void deleteSVNRepository(
@@ -91,7 +91,7 @@ public class SVNRepositoryLocalServiceUtil {
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
 	*
-	* @param dynamicQuery the dynamic query to search with
+	* @param dynamicQuery the dynamic query
 	* @return the matching rows
 	* @throws SystemException if a system exception occurred
 	*/
@@ -109,9 +109,9 @@ public class SVNRepositoryLocalServiceUtil {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param dynamicQuery the dynamic query to search with
-	* @param start the lower bound of the range of model instances to return
-	* @param end the upper bound of the range of model instances to return (not inclusive)
+	* @param dynamicQuery the dynamic query
+	* @param start the lower bound of the range of model instances
+	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
 	* @throws SystemException if a system exception occurred
 	*/
@@ -129,9 +129,9 @@ public class SVNRepositoryLocalServiceUtil {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param dynamicQuery the dynamic query to search with
-	* @param start the lower bound of the range of model instances to return
-	* @param end the upper bound of the range of model instances to return (not inclusive)
+	* @param dynamicQuery the dynamic query
+	* @param start the lower bound of the range of model instances
+	* @param end the upper bound of the range of model instances (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
 	* @throws SystemException if a system exception occurred
@@ -147,9 +147,9 @@ public class SVNRepositoryLocalServiceUtil {
 	}
 
 	/**
-	* Counts the number of rows that match the dynamic query.
+	* Returns the number of rows that match the dynamic query.
 	*
-	* @param dynamicQuery the dynamic query to search with
+	* @param dynamicQuery the dynamic query
 	* @return the number of rows that match the dynamic query
 	* @throws SystemException if a system exception occurred
 	*/
@@ -160,9 +160,9 @@ public class SVNRepositoryLocalServiceUtil {
 	}
 
 	/**
-	* Gets the s v n repository with the primary key.
+	* Returns the s v n repository with the primary key.
 	*
-	* @param svnRepositoryId the primary key of the s v n repository to get
+	* @param svnRepositoryId the primary key of the s v n repository
 	* @return the s v n repository
 	* @throws PortalException if a s v n repository with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -175,14 +175,14 @@ public class SVNRepositoryLocalServiceUtil {
 	}
 
 	/**
-	* Gets a range of all the s v n repositories.
+	* Returns a range of all the s v n repositories.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of s v n repositories to return
-	* @param end the upper bound of the range of s v n repositories to return (not inclusive)
+	* @param start the lower bound of the range of s v n repositories
+	* @param end the upper bound of the range of s v n repositories (not inclusive)
 	* @return the range of s v n repositories
 	* @throws SystemException if a system exception occurred
 	*/
@@ -193,7 +193,7 @@ public class SVNRepositoryLocalServiceUtil {
 	}
 
 	/**
-	* Gets the number of s v n repositories.
+	* Returns the number of s v n repositories.
 	*
 	* @return the number of s v n repositories
 	* @throws SystemException if a system exception occurred
@@ -206,7 +206,7 @@ public class SVNRepositoryLocalServiceUtil {
 	/**
 	* Updates the s v n repository in the database. Also notifies the appropriate model listeners.
 	*
-	* @param svnRepository the s v n repository to update
+	* @param svnRepository the s v n repository
 	* @return the s v n repository that was updated
 	* @throws SystemException if a system exception occurred
 	*/
@@ -219,7 +219,7 @@ public class SVNRepositoryLocalServiceUtil {
 	/**
 	* Updates the s v n repository in the database. Also notifies the appropriate model listeners.
 	*
-	* @param svnRepository the s v n repository to update
+	* @param svnRepository the s v n repository
 	* @param merge whether to merge the s v n repository with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
 	* @return the s v n repository that was updated
 	* @throws SystemException if a system exception occurred
@@ -232,7 +232,7 @@ public class SVNRepositoryLocalServiceUtil {
 	}
 
 	/**
-	* Gets the Spring bean ID for this bean.
+	* Returns the Spring bean ID for this bean.
 	*
 	* @return the Spring bean ID for this bean
 	*/

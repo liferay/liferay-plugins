@@ -37,7 +37,7 @@ public class HRUserTaskWrapper implements HRUserTask {
 	}
 
 	/**
-	* Gets the primary key of this h r user task.
+	* Returns the primary key of this h r user task.
 	*
 	* @return the primary key of this h r user task
 	*/
@@ -46,7 +46,7 @@ public class HRUserTaskWrapper implements HRUserTask {
 	}
 
 	/**
-	* Sets the primary key of this h r user task
+	* Sets the primary key of this h r user task.
 	*
 	* @param primaryKey the primary key of this h r user task
 	*/
@@ -55,7 +55,7 @@ public class HRUserTaskWrapper implements HRUserTask {
 	}
 
 	/**
-	* Gets the hr user task ID of this h r user task.
+	* Returns the hr user task ID of this h r user task.
 	*
 	* @return the hr user task ID of this h r user task
 	*/
@@ -73,7 +73,7 @@ public class HRUserTaskWrapper implements HRUserTask {
 	}
 
 	/**
-	* Gets the group ID of this h r user task.
+	* Returns the group ID of this h r user task.
 	*
 	* @return the group ID of this h r user task
 	*/
@@ -91,7 +91,7 @@ public class HRUserTaskWrapper implements HRUserTask {
 	}
 
 	/**
-	* Gets the company ID of this h r user task.
+	* Returns the company ID of this h r user task.
 	*
 	* @return the company ID of this h r user task
 	*/
@@ -109,7 +109,7 @@ public class HRUserTaskWrapper implements HRUserTask {
 	}
 
 	/**
-	* Gets the user ID of this h r user task.
+	* Returns the user ID of this h r user task.
 	*
 	* @return the user ID of this h r user task
 	*/
@@ -127,7 +127,7 @@ public class HRUserTaskWrapper implements HRUserTask {
 	}
 
 	/**
-	* Gets the user uuid of this h r user task.
+	* Returns the user uuid of this h r user task.
 	*
 	* @return the user uuid of this h r user task
 	* @throws SystemException if a system exception occurred
@@ -147,7 +147,7 @@ public class HRUserTaskWrapper implements HRUserTask {
 	}
 
 	/**
-	* Gets the user name of this h r user task.
+	* Returns the user name of this h r user task.
 	*
 	* @return the user name of this h r user task
 	*/
@@ -165,7 +165,7 @@ public class HRUserTaskWrapper implements HRUserTask {
 	}
 
 	/**
-	* Gets the create date of this h r user task.
+	* Returns the create date of this h r user task.
 	*
 	* @return the create date of this h r user task
 	*/
@@ -183,7 +183,7 @@ public class HRUserTaskWrapper implements HRUserTask {
 	}
 
 	/**
-	* Gets the modified date of this h r user task.
+	* Returns the modified date of this h r user task.
 	*
 	* @return the modified date of this h r user task
 	*/
@@ -201,7 +201,7 @@ public class HRUserTaskWrapper implements HRUserTask {
 	}
 
 	/**
-	* Gets the hr billability ID of this h r user task.
+	* Returns the hr billability ID of this h r user task.
 	*
 	* @return the hr billability ID of this h r user task
 	*/
@@ -219,7 +219,7 @@ public class HRUserTaskWrapper implements HRUserTask {
 	}
 
 	/**
-	* Gets the hr task ID of this h r user task.
+	* Returns the hr task ID of this h r user task.
 	*
 	* @return the hr task ID of this h r user task
 	*/
@@ -237,7 +237,7 @@ public class HRUserTaskWrapper implements HRUserTask {
 	}
 
 	/**
-	* Gets the hr timesheet ID of this h r user task.
+	* Returns the hr timesheet ID of this h r user task.
 	*
 	* @return the hr timesheet ID of this h r user task
 	*/
@@ -255,7 +255,7 @@ public class HRUserTaskWrapper implements HRUserTask {
 	}
 
 	/**
-	* Gets the hr user ID of this h r user task.
+	* Returns the hr user ID of this h r user task.
 	*
 	* @return the hr user ID of this h r user task
 	*/
@@ -273,7 +273,7 @@ public class HRUserTaskWrapper implements HRUserTask {
 	}
 
 	/**
-	* Gets the hr user uuid of this h r user task.
+	* Returns the hr user uuid of this h r user task.
 	*
 	* @return the hr user uuid of this h r user task
 	* @throws SystemException if a system exception occurred

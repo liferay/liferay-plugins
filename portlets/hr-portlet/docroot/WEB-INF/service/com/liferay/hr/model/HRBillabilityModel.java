@@ -48,21 +48,21 @@ public interface HRBillabilityModel extends BaseModel<HRBillability>,
 	 */
 
 	/**
-	 * Gets the primary key of this h r billability.
+	 * Returns the primary key of this h r billability.
 	 *
 	 * @return the primary key of this h r billability
 	 */
 	public long getPrimaryKey();
 
 	/**
-	 * Sets the primary key of this h r billability
+	 * Sets the primary key of this h r billability.
 	 *
 	 * @param primaryKey the primary key of this h r billability
 	 */
 	public void setPrimaryKey(long primaryKey);
 
 	/**
-	 * Gets the hr billability ID of this h r billability.
+	 * Returns the hr billability ID of this h r billability.
 	 *
 	 * @return the hr billability ID of this h r billability
 	 */
@@ -76,7 +76,7 @@ public interface HRBillabilityModel extends BaseModel<HRBillability>,
 	public void setHrBillabilityId(long hrBillabilityId);
 
 	/**
-	 * Gets the group ID of this h r billability.
+	 * Returns the group ID of this h r billability.
 	 *
 	 * @return the group ID of this h r billability
 	 */
@@ -90,7 +90,7 @@ public interface HRBillabilityModel extends BaseModel<HRBillability>,
 	public void setGroupId(long groupId);
 
 	/**
-	 * Gets the company ID of this h r billability.
+	 * Returns the company ID of this h r billability.
 	 *
 	 * @return the company ID of this h r billability
 	 */
@@ -104,7 +104,7 @@ public interface HRBillabilityModel extends BaseModel<HRBillability>,
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the user ID of this h r billability.
+	 * Returns the user ID of this h r billability.
 	 *
 	 * @return the user ID of this h r billability
 	 */
@@ -118,7 +118,7 @@ public interface HRBillabilityModel extends BaseModel<HRBillability>,
 	public void setUserId(long userId);
 
 	/**
-	 * Gets the user uuid of this h r billability.
+	 * Returns the user uuid of this h r billability.
 	 *
 	 * @return the user uuid of this h r billability
 	 * @throws SystemException if a system exception occurred
@@ -133,7 +133,7 @@ public interface HRBillabilityModel extends BaseModel<HRBillability>,
 	public void setUserUuid(String userUuid);
 
 	/**
-	 * Gets the user name of this h r billability.
+	 * Returns the user name of this h r billability.
 	 *
 	 * @return the user name of this h r billability
 	 */
@@ -148,7 +148,7 @@ public interface HRBillabilityModel extends BaseModel<HRBillability>,
 	public void setUserName(String userName);
 
 	/**
-	 * Gets the create date of this h r billability.
+	 * Returns the create date of this h r billability.
 	 *
 	 * @return the create date of this h r billability
 	 */
@@ -162,7 +162,7 @@ public interface HRBillabilityModel extends BaseModel<HRBillability>,
 	public void setCreateDate(Date createDate);
 
 	/**
-	 * Gets the modified date of this h r billability.
+	 * Returns the modified date of this h r billability.
 	 *
 	 * @return the modified date of this h r billability
 	 */
@@ -176,7 +176,7 @@ public interface HRBillabilityModel extends BaseModel<HRBillability>,
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Gets the code of this h r billability.
+	 * Returns the code of this h r billability.
 	 *
 	 * @return the code of this h r billability
 	 */
@@ -191,7 +191,7 @@ public interface HRBillabilityModel extends BaseModel<HRBillability>,
 	public void setCode(String code);
 
 	/**
-	 * Gets the name of this h r billability.
+	 * Returns the name of this h r billability.
 	 *
 	 * @return the name of this h r billability
 	 */
@@ -206,7 +206,7 @@ public interface HRBillabilityModel extends BaseModel<HRBillability>,
 	public void setName(String name);
 
 	/**
-	 * Gets the description of this h r billability.
+	 * Returns the description of this h r billability.
 	 *
 	 * @return the description of this h r billability
 	 */

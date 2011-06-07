@@ -48,21 +48,21 @@ public interface HRTimeSheetHoursPerDayModel extends BaseModel<HRTimeSheetHoursP
 	 */
 
 	/**
-	 * Gets the primary key of this h r time sheet hours per day.
+	 * Returns the primary key of this h r time sheet hours per day.
 	 *
 	 * @return the primary key of this h r time sheet hours per day
 	 */
 	public long getPrimaryKey();
 
 	/**
-	 * Sets the primary key of this h r time sheet hours per day
+	 * Sets the primary key of this h r time sheet hours per day.
 	 *
 	 * @param primaryKey the primary key of this h r time sheet hours per day
 	 */
 	public void setPrimaryKey(long primaryKey);
 
 	/**
-	 * Gets the hr time sheet hours per day ID of this h r time sheet hours per day.
+	 * Returns the hr time sheet hours per day ID of this h r time sheet hours per day.
 	 *
 	 * @return the hr time sheet hours per day ID of this h r time sheet hours per day
 	 */
@@ -76,7 +76,7 @@ public interface HRTimeSheetHoursPerDayModel extends BaseModel<HRTimeSheetHoursP
 	public void setHrTimeSheetHoursPerDayId(long hrTimeSheetHoursPerDayId);
 
 	/**
-	 * Gets the group ID of this h r time sheet hours per day.
+	 * Returns the group ID of this h r time sheet hours per day.
 	 *
 	 * @return the group ID of this h r time sheet hours per day
 	 */
@@ -90,7 +90,7 @@ public interface HRTimeSheetHoursPerDayModel extends BaseModel<HRTimeSheetHoursP
 	public void setGroupId(long groupId);
 
 	/**
-	 * Gets the company ID of this h r time sheet hours per day.
+	 * Returns the company ID of this h r time sheet hours per day.
 	 *
 	 * @return the company ID of this h r time sheet hours per day
 	 */
@@ -104,7 +104,7 @@ public interface HRTimeSheetHoursPerDayModel extends BaseModel<HRTimeSheetHoursP
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the user ID of this h r time sheet hours per day.
+	 * Returns the user ID of this h r time sheet hours per day.
 	 *
 	 * @return the user ID of this h r time sheet hours per day
 	 */
@@ -118,7 +118,7 @@ public interface HRTimeSheetHoursPerDayModel extends BaseModel<HRTimeSheetHoursP
 	public void setUserId(long userId);
 
 	/**
-	 * Gets the user uuid of this h r time sheet hours per day.
+	 * Returns the user uuid of this h r time sheet hours per day.
 	 *
 	 * @return the user uuid of this h r time sheet hours per day
 	 * @throws SystemException if a system exception occurred
@@ -133,7 +133,7 @@ public interface HRTimeSheetHoursPerDayModel extends BaseModel<HRTimeSheetHoursP
 	public void setUserUuid(String userUuid);
 
 	/**
-	 * Gets the user name of this h r time sheet hours per day.
+	 * Returns the user name of this h r time sheet hours per day.
 	 *
 	 * @return the user name of this h r time sheet hours per day
 	 */
@@ -148,7 +148,7 @@ public interface HRTimeSheetHoursPerDayModel extends BaseModel<HRTimeSheetHoursP
 	public void setUserName(String userName);
 
 	/**
-	 * Gets the create date of this h r time sheet hours per day.
+	 * Returns the create date of this h r time sheet hours per day.
 	 *
 	 * @return the create date of this h r time sheet hours per day
 	 */
@@ -162,7 +162,7 @@ public interface HRTimeSheetHoursPerDayModel extends BaseModel<HRTimeSheetHoursP
 	public void setCreateDate(Date createDate);
 
 	/**
-	 * Gets the modified date of this h r time sheet hours per day.
+	 * Returns the modified date of this h r time sheet hours per day.
 	 *
 	 * @return the modified date of this h r time sheet hours per day
 	 */
@@ -176,7 +176,7 @@ public interface HRTimeSheetHoursPerDayModel extends BaseModel<HRTimeSheetHoursP
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Gets the hr office ID of this h r time sheet hours per day.
+	 * Returns the hr office ID of this h r time sheet hours per day.
 	 *
 	 * @return the hr office ID of this h r time sheet hours per day
 	 */
@@ -190,7 +190,7 @@ public interface HRTimeSheetHoursPerDayModel extends BaseModel<HRTimeSheetHoursP
 	public void setHrOfficeId(long hrOfficeId);
 
 	/**
-	 * Gets the hours per day of this h r time sheet hours per day.
+	 * Returns the hours per day of this h r time sheet hours per day.
 	 *
 	 * @return the hours per day of this h r time sheet hours per day
 	 */

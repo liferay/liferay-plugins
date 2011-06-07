@@ -41,7 +41,7 @@ public interface HREmploymentTypePersistence extends BasePersistence<HREmploymen
 	/**
 	* Caches the h r employment type in the entity cache if it is enabled.
 	*
-	* @param hrEmploymentType the h r employment type to cache
+	* @param hrEmploymentType the h r employment type
 	*/
 	public void cacheResult(
 		com.liferay.hr.model.HREmploymentType hrEmploymentType);
@@ -49,7 +49,7 @@ public interface HREmploymentTypePersistence extends BasePersistence<HREmploymen
 	/**
 	* Caches the h r employment types in the entity cache if it is enabled.
 	*
-	* @param hrEmploymentTypes the h r employment types to cache
+	* @param hrEmploymentTypes the h r employment types
 	*/
 	public void cacheResult(
 		java.util.List<com.liferay.hr.model.HREmploymentType> hrEmploymentTypes);
@@ -65,7 +65,7 @@ public interface HREmploymentTypePersistence extends BasePersistence<HREmploymen
 	/**
 	* Removes the h r employment type with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param hrEmploymentTypeId the primary key of the h r employment type to remove
+	* @param hrEmploymentTypeId the primary key of the h r employment type
 	* @return the h r employment type that was removed
 	* @throws com.liferay.hr.NoSuchEmploymentTypeException if a h r employment type with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -79,9 +79,9 @@ public interface HREmploymentTypePersistence extends BasePersistence<HREmploymen
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the h r employment type with the primary key or throws a {@link com.liferay.hr.NoSuchEmploymentTypeException} if it could not be found.
+	* Returns the h r employment type with the primary key or throws a {@link com.liferay.hr.NoSuchEmploymentTypeException} if it could not be found.
 	*
-	* @param hrEmploymentTypeId the primary key of the h r employment type to find
+	* @param hrEmploymentTypeId the primary key of the h r employment type
 	* @return the h r employment type
 	* @throws com.liferay.hr.NoSuchEmploymentTypeException if a h r employment type with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -92,9 +92,9 @@ public interface HREmploymentTypePersistence extends BasePersistence<HREmploymen
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the h r employment type with the primary key or returns <code>null</code> if it could not be found.
+	* Returns the h r employment type with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param hrEmploymentTypeId the primary key of the h r employment type to find
+	* @param hrEmploymentTypeId the primary key of the h r employment type
 	* @return the h r employment type, or <code>null</code> if a h r employment type with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -103,10 +103,10 @@ public interface HREmploymentTypePersistence extends BasePersistence<HREmploymen
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the h r employment type where groupId = &#63; and code = &#63; or throws a {@link com.liferay.hr.NoSuchEmploymentTypeException} if it could not be found.
+	* Returns the h r employment type where groupId = &#63; and code = &#63; or throws a {@link com.liferay.hr.NoSuchEmploymentTypeException} if it could not be found.
 	*
-	* @param groupId the group ID to search with
-	* @param code the code to search with
+	* @param groupId the group ID
+	* @param code the code
 	* @return the matching h r employment type
 	* @throws com.liferay.hr.NoSuchEmploymentTypeException if a matching h r employment type could not be found
 	* @throws SystemException if a system exception occurred
@@ -117,10 +117,10 @@ public interface HREmploymentTypePersistence extends BasePersistence<HREmploymen
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the h r employment type where groupId = &#63; and code = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	* Returns the h r employment type where groupId = &#63; and code = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	*
-	* @param groupId the group ID to search with
-	* @param code the code to search with
+	* @param groupId the group ID
+	* @param code the code
 	* @return the matching h r employment type, or <code>null</code> if a matching h r employment type could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -129,10 +129,10 @@ public interface HREmploymentTypePersistence extends BasePersistence<HREmploymen
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the h r employment type where groupId = &#63; and code = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	* Returns the h r employment type where groupId = &#63; and code = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	*
-	* @param groupId the group ID to search with
-	* @param code the code to search with
+	* @param groupId the group ID
+	* @param code the code
 	* @return the matching h r employment type, or <code>null</code> if a matching h r employment type could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -141,7 +141,7 @@ public interface HREmploymentTypePersistence extends BasePersistence<HREmploymen
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds all the h r employment types.
+	* Returns all the h r employment types.
 	*
 	* @return the h r employment types
 	* @throws SystemException if a system exception occurred
@@ -150,14 +150,14 @@ public interface HREmploymentTypePersistence extends BasePersistence<HREmploymen
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds a range of all the h r employment types.
+	* Returns a range of all the h r employment types.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of h r employment types to return
-	* @param end the upper bound of the range of h r employment types to return (not inclusive)
+	* @param start the lower bound of the range of h r employment types
+	* @param end the upper bound of the range of h r employment types (not inclusive)
 	* @return the range of h r employment types
 	* @throws SystemException if a system exception occurred
 	*/
@@ -166,14 +166,14 @@ public interface HREmploymentTypePersistence extends BasePersistence<HREmploymen
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds an ordered range of all the h r employment types.
+	* Returns an ordered range of all the h r employment types.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of h r employment types to return
-	* @param end the upper bound of the range of h r employment types to return (not inclusive)
+	* @param start the lower bound of the range of h r employment types
+	* @param end the upper bound of the range of h r employment types (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of h r employment types
 	* @throws SystemException if a system exception occurred
@@ -186,8 +186,8 @@ public interface HREmploymentTypePersistence extends BasePersistence<HREmploymen
 	/**
 	* Removes the h r employment type where groupId = &#63; and code = &#63; from the database.
 	*
-	* @param groupId the group ID to search with
-	* @param code the code to search with
+	* @param groupId the group ID
+	* @param code the code
 	* @throws SystemException if a system exception occurred
 	*/
 	public void removeByG_C(long groupId, java.lang.String code)
@@ -203,10 +203,10 @@ public interface HREmploymentTypePersistence extends BasePersistence<HREmploymen
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Counts all the h r employment types where groupId = &#63; and code = &#63;.
+	* Returns the number of h r employment types where groupId = &#63; and code = &#63;.
 	*
-	* @param groupId the group ID to search with
-	* @param code the code to search with
+	* @param groupId the group ID
+	* @param code the code
 	* @return the number of matching h r employment types
 	* @throws SystemException if a system exception occurred
 	*/
@@ -214,7 +214,7 @@ public interface HREmploymentTypePersistence extends BasePersistence<HREmploymen
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Counts all the h r employment types.
+	* Returns the number of h r employment types.
 	*
 	* @return the number of h r employment types
 	* @throws SystemException if a system exception occurred

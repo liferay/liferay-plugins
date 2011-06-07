@@ -37,7 +37,7 @@ public class OAuthConsumerWrapper implements OAuthConsumer {
 	}
 
 	/**
-	* Gets the primary key of this o auth consumer.
+	* Returns the primary key of this o auth consumer.
 	*
 	* @return the primary key of this o auth consumer
 	*/
@@ -46,7 +46,7 @@ public class OAuthConsumerWrapper implements OAuthConsumer {
 	}
 
 	/**
-	* Sets the primary key of this o auth consumer
+	* Sets the primary key of this o auth consumer.
 	*
 	* @param primaryKey the primary key of this o auth consumer
 	*/
@@ -55,7 +55,7 @@ public class OAuthConsumerWrapper implements OAuthConsumer {
 	}
 
 	/**
-	* Gets the o auth consumer ID of this o auth consumer.
+	* Returns the o auth consumer ID of this o auth consumer.
 	*
 	* @return the o auth consumer ID of this o auth consumer
 	*/
@@ -73,7 +73,7 @@ public class OAuthConsumerWrapper implements OAuthConsumer {
 	}
 
 	/**
-	* Gets the company ID of this o auth consumer.
+	* Returns the company ID of this o auth consumer.
 	*
 	* @return the company ID of this o auth consumer
 	*/
@@ -91,7 +91,7 @@ public class OAuthConsumerWrapper implements OAuthConsumer {
 	}
 
 	/**
-	* Gets the create date of this o auth consumer.
+	* Returns the create date of this o auth consumer.
 	*
 	* @return the create date of this o auth consumer
 	*/
@@ -109,7 +109,7 @@ public class OAuthConsumerWrapper implements OAuthConsumer {
 	}
 
 	/**
-	* Gets the modified date of this o auth consumer.
+	* Returns the modified date of this o auth consumer.
 	*
 	* @return the modified date of this o auth consumer
 	*/
@@ -127,7 +127,7 @@ public class OAuthConsumerWrapper implements OAuthConsumer {
 	}
 
 	/**
-	* Gets the gadget ID of this o auth consumer.
+	* Returns the gadget ID of this o auth consumer.
 	*
 	* @return the gadget ID of this o auth consumer
 	*/
@@ -145,7 +145,7 @@ public class OAuthConsumerWrapper implements OAuthConsumer {
 	}
 
 	/**
-	* Gets the service name of this o auth consumer.
+	* Returns the service name of this o auth consumer.
 	*
 	* @return the service name of this o auth consumer
 	*/
@@ -163,7 +163,7 @@ public class OAuthConsumerWrapper implements OAuthConsumer {
 	}
 
 	/**
-	* Gets the consumer key of this o auth consumer.
+	* Returns the consumer key of this o auth consumer.
 	*
 	* @return the consumer key of this o auth consumer
 	*/
@@ -181,7 +181,7 @@ public class OAuthConsumerWrapper implements OAuthConsumer {
 	}
 
 	/**
-	* Gets the consumer secret of this o auth consumer.
+	* Returns the consumer secret of this o auth consumer.
 	*
 	* @return the consumer secret of this o auth consumer
 	*/
@@ -199,7 +199,7 @@ public class OAuthConsumerWrapper implements OAuthConsumer {
 	}
 
 	/**
-	* Gets the key type of this o auth consumer.
+	* Returns the key type of this o auth consumer.
 	*
 	* @return the key type of this o auth consumer
 	*/

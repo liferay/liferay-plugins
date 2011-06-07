@@ -33,6 +33,11 @@ import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.search.Indexer;
+import com.liferay.portal.kernel.search.IndexerRegistryUtil;
+import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.service.ResourceLocalService;
 import com.liferay.portal.service.ResourceService;
@@ -68,14 +73,29 @@ public abstract class AssetLocalServiceBaseImpl implements AssetLocalService,
 	/**
 	 * Adds the asset to the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param asset the asset to add
+	 * @param asset the asset
 	 * @return the asset that was added
 	 * @throws SystemException if a system exception occurred
 	 */
 	public Asset addAsset(Asset asset) throws SystemException {
 		asset.setNew(true);
 
-		return assetPersistence.update(asset, false);
+		asset = assetPersistence.update(asset, false);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.reindex(asset);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
+
+		return asset;
 	}
 
 	/**
@@ -91,29 +111,55 @@ public abstract class AssetLocalServiceBaseImpl implements AssetLocalService,
 	/**
 	 * Deletes the asset with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param assetId the primary key of the asset to delete
+	 * @param assetId the primary key of the asset
 	 * @throws PortalException if a asset with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void deleteAsset(long assetId)
 		throws PortalException, SystemException {
-		assetPersistence.remove(assetId);
+		Asset asset = assetPersistence.remove(assetId);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.delete(asset);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
 	}
 
 	/**
 	 * Deletes the asset from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param asset the asset to delete
+	 * @param asset the asset
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void deleteAsset(Asset asset) throws SystemException {
 		assetPersistence.remove(asset);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.delete(asset);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
 	}
 
 	/**
 	 * Performs a dynamic query on the database and returns the matching rows.
 	 *
-	 * @param dynamicQuery the dynamic query to search with
+	 * @param dynamicQuery the dynamic query
 	 * @return the matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -130,9 +176,9 @@ public abstract class AssetLocalServiceBaseImpl implements AssetLocalService,
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param dynamicQuery the dynamic query to search with
-	 * @param start the lower bound of the range of model instances to return
-	 * @param end the upper bound of the range of model instances to return (not inclusive)
+	 * @param dynamicQuery the dynamic query
+	 * @param start the lower bound of the range of model instances
+	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @return the range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -149,9 +195,9 @@ public abstract class AssetLocalServiceBaseImpl implements AssetLocalService,
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param dynamicQuery the dynamic query to search with
-	 * @param start the lower bound of the range of model instances to return
-	 * @param end the upper bound of the range of model instances to return (not inclusive)
+	 * @param dynamicQuery the dynamic query
+	 * @param start the lower bound of the range of model instances
+	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching rows
 	 * @throws SystemException if a system exception occurred
@@ -164,9 +210,9 @@ public abstract class AssetLocalServiceBaseImpl implements AssetLocalService,
 	}
 
 	/**
-	 * Counts the number of rows that match the dynamic query.
+	 * Returns the number of rows that match the dynamic query.
 	 *
-	 * @param dynamicQuery the dynamic query to search with
+	 * @param dynamicQuery the dynamic query
 	 * @return the number of rows that match the dynamic query
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -176,9 +222,9 @@ public abstract class AssetLocalServiceBaseImpl implements AssetLocalService,
 	}
 
 	/**
-	 * Gets the asset with the primary key.
+	 * Returns the asset with the primary key.
 	 *
-	 * @param assetId the primary key of the asset to get
+	 * @param assetId the primary key of the asset
 	 * @return the asset
 	 * @throws PortalException if a asset with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -188,14 +234,14 @@ public abstract class AssetLocalServiceBaseImpl implements AssetLocalService,
 	}
 
 	/**
-	 * Gets a range of all the assets.
+	 * Returns a range of all the assets.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of assets to return
-	 * @param end the upper bound of the range of assets to return (not inclusive)
+	 * @param start the lower bound of the range of assets
+	 * @param end the upper bound of the range of assets (not inclusive)
 	 * @return the range of assets
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -204,7 +250,7 @@ public abstract class AssetLocalServiceBaseImpl implements AssetLocalService,
 	}
 
 	/**
-	 * Gets the number of assets.
+	 * Returns the number of assets.
 	 *
 	 * @return the number of assets
 	 * @throws SystemException if a system exception occurred
@@ -216,20 +262,18 @@ public abstract class AssetLocalServiceBaseImpl implements AssetLocalService,
 	/**
 	 * Updates the asset in the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param asset the asset to update
+	 * @param asset the asset
 	 * @return the asset that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
 	public Asset updateAsset(Asset asset) throws SystemException {
-		asset.setNew(false);
-
-		return assetPersistence.update(asset, true);
+		return updateAsset(asset, true);
 	}
 
 	/**
 	 * Updates the asset in the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param asset the asset to update
+	 * @param asset the asset
 	 * @param merge whether to merge the asset with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
 	 * @return the asset that was updated
 	 * @throws SystemException if a system exception occurred
@@ -238,11 +282,26 @@ public abstract class AssetLocalServiceBaseImpl implements AssetLocalService,
 		throws SystemException {
 		asset.setNew(false);
 
-		return assetPersistence.update(asset, merge);
+		asset = assetPersistence.update(asset, merge);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.reindex(asset);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
+
+		return asset;
 	}
 
 	/**
-	 * Gets the asset local service.
+	 * Returns the asset local service.
 	 *
 	 * @return the asset local service
 	 */
@@ -260,7 +319,7 @@ public abstract class AssetLocalServiceBaseImpl implements AssetLocalService,
 	}
 
 	/**
-	 * Gets the asset persistence.
+	 * Returns the asset persistence.
 	 *
 	 * @return the asset persistence
 	 */
@@ -278,7 +337,7 @@ public abstract class AssetLocalServiceBaseImpl implements AssetLocalService,
 	}
 
 	/**
-	 * Gets the checkout local service.
+	 * Returns the checkout local service.
 	 *
 	 * @return the checkout local service
 	 */
@@ -297,7 +356,7 @@ public abstract class AssetLocalServiceBaseImpl implements AssetLocalService,
 	}
 
 	/**
-	 * Gets the checkout persistence.
+	 * Returns the checkout persistence.
 	 *
 	 * @return the checkout persistence
 	 */
@@ -315,7 +374,7 @@ public abstract class AssetLocalServiceBaseImpl implements AssetLocalService,
 	}
 
 	/**
-	 * Gets the definition local service.
+	 * Returns the definition local service.
 	 *
 	 * @return the definition local service
 	 */
@@ -334,7 +393,7 @@ public abstract class AssetLocalServiceBaseImpl implements AssetLocalService,
 	}
 
 	/**
-	 * Gets the definition persistence.
+	 * Returns the definition persistence.
 	 *
 	 * @return the definition persistence
 	 */
@@ -353,7 +412,7 @@ public abstract class AssetLocalServiceBaseImpl implements AssetLocalService,
 	}
 
 	/**
-	 * Gets the type local service.
+	 * Returns the type local service.
 	 *
 	 * @return the type local service
 	 */
@@ -371,7 +430,7 @@ public abstract class AssetLocalServiceBaseImpl implements AssetLocalService,
 	}
 
 	/**
-	 * Gets the type persistence.
+	 * Returns the type persistence.
 	 *
 	 * @return the type persistence
 	 */
@@ -389,7 +448,7 @@ public abstract class AssetLocalServiceBaseImpl implements AssetLocalService,
 	}
 
 	/**
-	 * Gets the counter local service.
+	 * Returns the counter local service.
 	 *
 	 * @return the counter local service
 	 */
@@ -407,7 +466,7 @@ public abstract class AssetLocalServiceBaseImpl implements AssetLocalService,
 	}
 
 	/**
-	 * Gets the resource local service.
+	 * Returns the resource local service.
 	 *
 	 * @return the resource local service
 	 */
@@ -426,7 +485,7 @@ public abstract class AssetLocalServiceBaseImpl implements AssetLocalService,
 	}
 
 	/**
-	 * Gets the resource remote service.
+	 * Returns the resource remote service.
 	 *
 	 * @return the resource remote service
 	 */
@@ -444,7 +503,7 @@ public abstract class AssetLocalServiceBaseImpl implements AssetLocalService,
 	}
 
 	/**
-	 * Gets the resource persistence.
+	 * Returns the resource persistence.
 	 *
 	 * @return the resource persistence
 	 */
@@ -462,7 +521,7 @@ public abstract class AssetLocalServiceBaseImpl implements AssetLocalService,
 	}
 
 	/**
-	 * Gets the user local service.
+	 * Returns the user local service.
 	 *
 	 * @return the user local service
 	 */
@@ -480,7 +539,7 @@ public abstract class AssetLocalServiceBaseImpl implements AssetLocalService,
 	}
 
 	/**
-	 * Gets the user remote service.
+	 * Returns the user remote service.
 	 *
 	 * @return the user remote service
 	 */
@@ -498,7 +557,7 @@ public abstract class AssetLocalServiceBaseImpl implements AssetLocalService,
 	}
 
 	/**
-	 * Gets the user persistence.
+	 * Returns the user persistence.
 	 *
 	 * @return the user persistence
 	 */
@@ -516,7 +575,7 @@ public abstract class AssetLocalServiceBaseImpl implements AssetLocalService,
 	}
 
 	/**
-	 * Gets the Spring bean ID for this bean.
+	 * Returns the Spring bean ID for this bean.
 	 *
 	 * @return the Spring bean ID for this bean
 	 */
@@ -533,10 +592,18 @@ public abstract class AssetLocalServiceBaseImpl implements AssetLocalService,
 		_beanIdentifier = beanIdentifier;
 	}
 
+	protected Class<?> getModelClass() {
+		return Asset.class;
+	}
+
+	protected String getModelClassName() {
+		return Asset.class.getName();
+	}
+
 	/**
 	 * Performs an SQL query.
 	 *
-	 * @param sql the sql query to perform
+	 * @param sql the sql query
 	 */
 	protected void runSQL(String sql) throws SystemException {
 		try {
@@ -582,5 +649,6 @@ public abstract class AssetLocalServiceBaseImpl implements AssetLocalService,
 	protected UserService userService;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
+	private static Log _log = LogFactoryUtil.getLog(AssetLocalServiceBaseImpl.class);
 	private String _beanIdentifier;
 }

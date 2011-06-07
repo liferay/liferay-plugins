@@ -42,7 +42,7 @@ public class JIRAActionLocalServiceUtil {
 	/**
 	* Adds the j i r a action to the database. Also notifies the appropriate model listeners.
 	*
-	* @param jiraAction the j i r a action to add
+	* @param jiraAction the j i r a action
 	* @return the j i r a action that was added
 	* @throws SystemException if a system exception occurred
 	*/
@@ -66,7 +66,7 @@ public class JIRAActionLocalServiceUtil {
 	/**
 	* Deletes the j i r a action with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param jiraActionId the primary key of the j i r a action to delete
+	* @param jiraActionId the primary key of the j i r a action
 	* @throws PortalException if a j i r a action with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -79,7 +79,7 @@ public class JIRAActionLocalServiceUtil {
 	/**
 	* Deletes the j i r a action from the database. Also notifies the appropriate model listeners.
 	*
-	* @param jiraAction the j i r a action to delete
+	* @param jiraAction the j i r a action
 	* @throws SystemException if a system exception occurred
 	*/
 	public static void deleteJIRAAction(
@@ -91,7 +91,7 @@ public class JIRAActionLocalServiceUtil {
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
 	*
-	* @param dynamicQuery the dynamic query to search with
+	* @param dynamicQuery the dynamic query
 	* @return the matching rows
 	* @throws SystemException if a system exception occurred
 	*/
@@ -109,9 +109,9 @@ public class JIRAActionLocalServiceUtil {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param dynamicQuery the dynamic query to search with
-	* @param start the lower bound of the range of model instances to return
-	* @param end the upper bound of the range of model instances to return (not inclusive)
+	* @param dynamicQuery the dynamic query
+	* @param start the lower bound of the range of model instances
+	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
 	* @throws SystemException if a system exception occurred
 	*/
@@ -129,9 +129,9 @@ public class JIRAActionLocalServiceUtil {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param dynamicQuery the dynamic query to search with
-	* @param start the lower bound of the range of model instances to return
-	* @param end the upper bound of the range of model instances to return (not inclusive)
+	* @param dynamicQuery the dynamic query
+	* @param start the lower bound of the range of model instances
+	* @param end the upper bound of the range of model instances (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
 	* @throws SystemException if a system exception occurred
@@ -147,9 +147,9 @@ public class JIRAActionLocalServiceUtil {
 	}
 
 	/**
-	* Counts the number of rows that match the dynamic query.
+	* Returns the number of rows that match the dynamic query.
 	*
-	* @param dynamicQuery the dynamic query to search with
+	* @param dynamicQuery the dynamic query
 	* @return the number of rows that match the dynamic query
 	* @throws SystemException if a system exception occurred
 	*/
@@ -160,9 +160,9 @@ public class JIRAActionLocalServiceUtil {
 	}
 
 	/**
-	* Gets the j i r a action with the primary key.
+	* Returns the j i r a action with the primary key.
 	*
-	* @param jiraActionId the primary key of the j i r a action to get
+	* @param jiraActionId the primary key of the j i r a action
 	* @return the j i r a action
 	* @throws PortalException if a j i r a action with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -175,14 +175,14 @@ public class JIRAActionLocalServiceUtil {
 	}
 
 	/**
-	* Gets a range of all the j i r a actions.
+	* Returns a range of all the j i r a actions.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of j i r a actions to return
-	* @param end the upper bound of the range of j i r a actions to return (not inclusive)
+	* @param start the lower bound of the range of j i r a actions
+	* @param end the upper bound of the range of j i r a actions (not inclusive)
 	* @return the range of j i r a actions
 	* @throws SystemException if a system exception occurred
 	*/
@@ -193,7 +193,7 @@ public class JIRAActionLocalServiceUtil {
 	}
 
 	/**
-	* Gets the number of j i r a actions.
+	* Returns the number of j i r a actions.
 	*
 	* @return the number of j i r a actions
 	* @throws SystemException if a system exception occurred
@@ -206,7 +206,7 @@ public class JIRAActionLocalServiceUtil {
 	/**
 	* Updates the j i r a action in the database. Also notifies the appropriate model listeners.
 	*
-	* @param jiraAction the j i r a action to update
+	* @param jiraAction the j i r a action
 	* @return the j i r a action that was updated
 	* @throws SystemException if a system exception occurred
 	*/
@@ -219,7 +219,7 @@ public class JIRAActionLocalServiceUtil {
 	/**
 	* Updates the j i r a action in the database. Also notifies the appropriate model listeners.
 	*
-	* @param jiraAction the j i r a action to update
+	* @param jiraAction the j i r a action
 	* @param merge whether to merge the j i r a action with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
 	* @return the j i r a action that was updated
 	* @throws SystemException if a system exception occurred
@@ -231,7 +231,7 @@ public class JIRAActionLocalServiceUtil {
 	}
 
 	/**
-	* Gets the Spring bean ID for this bean.
+	* Returns the Spring bean ID for this bean.
 	*
 	* @return the Spring bean ID for this bean
 	*/

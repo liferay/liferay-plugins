@@ -37,7 +37,7 @@ public class HRProjectRoleWrapper implements HRProjectRole {
 	}
 
 	/**
-	* Gets the primary key of this h r project role.
+	* Returns the primary key of this h r project role.
 	*
 	* @return the primary key of this h r project role
 	*/
@@ -46,7 +46,7 @@ public class HRProjectRoleWrapper implements HRProjectRole {
 	}
 
 	/**
-	* Sets the primary key of this h r project role
+	* Sets the primary key of this h r project role.
 	*
 	* @param primaryKey the primary key of this h r project role
 	*/
@@ -55,7 +55,7 @@ public class HRProjectRoleWrapper implements HRProjectRole {
 	}
 
 	/**
-	* Gets the hr project role ID of this h r project role.
+	* Returns the hr project role ID of this h r project role.
 	*
 	* @return the hr project role ID of this h r project role
 	*/
@@ -73,7 +73,7 @@ public class HRProjectRoleWrapper implements HRProjectRole {
 	}
 
 	/**
-	* Gets the group ID of this h r project role.
+	* Returns the group ID of this h r project role.
 	*
 	* @return the group ID of this h r project role
 	*/
@@ -91,7 +91,7 @@ public class HRProjectRoleWrapper implements HRProjectRole {
 	}
 
 	/**
-	* Gets the company ID of this h r project role.
+	* Returns the company ID of this h r project role.
 	*
 	* @return the company ID of this h r project role
 	*/
@@ -109,7 +109,7 @@ public class HRProjectRoleWrapper implements HRProjectRole {
 	}
 
 	/**
-	* Gets the user ID of this h r project role.
+	* Returns the user ID of this h r project role.
 	*
 	* @return the user ID of this h r project role
 	*/
@@ -127,7 +127,7 @@ public class HRProjectRoleWrapper implements HRProjectRole {
 	}
 
 	/**
-	* Gets the user uuid of this h r project role.
+	* Returns the user uuid of this h r project role.
 	*
 	* @return the user uuid of this h r project role
 	* @throws SystemException if a system exception occurred
@@ -147,7 +147,7 @@ public class HRProjectRoleWrapper implements HRProjectRole {
 	}
 
 	/**
-	* Gets the user name of this h r project role.
+	* Returns the user name of this h r project role.
 	*
 	* @return the user name of this h r project role
 	*/
@@ -165,7 +165,7 @@ public class HRProjectRoleWrapper implements HRProjectRole {
 	}
 
 	/**
-	* Gets the create date of this h r project role.
+	* Returns the create date of this h r project role.
 	*
 	* @return the create date of this h r project role
 	*/
@@ -183,7 +183,7 @@ public class HRProjectRoleWrapper implements HRProjectRole {
 	}
 
 	/**
-	* Gets the modified date of this h r project role.
+	* Returns the modified date of this h r project role.
 	*
 	* @return the modified date of this h r project role
 	*/
@@ -201,7 +201,7 @@ public class HRProjectRoleWrapper implements HRProjectRole {
 	}
 
 	/**
-	* Gets the name of this h r project role.
+	* Returns the name of this h r project role.
 	*
 	* @return the name of this h r project role
 	*/
@@ -219,7 +219,7 @@ public class HRProjectRoleWrapper implements HRProjectRole {
 	}
 
 	/**
-	* Gets the description of this h r project role.
+	* Returns the description of this h r project role.
 	*
 	* @return the description of this h r project role
 	*/

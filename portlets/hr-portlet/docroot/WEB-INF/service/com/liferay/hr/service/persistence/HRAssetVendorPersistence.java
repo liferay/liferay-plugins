@@ -41,14 +41,14 @@ public interface HRAssetVendorPersistence extends BasePersistence<HRAssetVendor>
 	/**
 	* Caches the h r asset vendor in the entity cache if it is enabled.
 	*
-	* @param hrAssetVendor the h r asset vendor to cache
+	* @param hrAssetVendor the h r asset vendor
 	*/
 	public void cacheResult(com.liferay.hr.model.HRAssetVendor hrAssetVendor);
 
 	/**
 	* Caches the h r asset vendors in the entity cache if it is enabled.
 	*
-	* @param hrAssetVendors the h r asset vendors to cache
+	* @param hrAssetVendors the h r asset vendors
 	*/
 	public void cacheResult(
 		java.util.List<com.liferay.hr.model.HRAssetVendor> hrAssetVendors);
@@ -64,7 +64,7 @@ public interface HRAssetVendorPersistence extends BasePersistence<HRAssetVendor>
 	/**
 	* Removes the h r asset vendor with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param hrAssetVendorId the primary key of the h r asset vendor to remove
+	* @param hrAssetVendorId the primary key of the h r asset vendor
 	* @return the h r asset vendor that was removed
 	* @throws com.liferay.hr.NoSuchAssetVendorException if a h r asset vendor with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -78,9 +78,9 @@ public interface HRAssetVendorPersistence extends BasePersistence<HRAssetVendor>
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the h r asset vendor with the primary key or throws a {@link com.liferay.hr.NoSuchAssetVendorException} if it could not be found.
+	* Returns the h r asset vendor with the primary key or throws a {@link com.liferay.hr.NoSuchAssetVendorException} if it could not be found.
 	*
-	* @param hrAssetVendorId the primary key of the h r asset vendor to find
+	* @param hrAssetVendorId the primary key of the h r asset vendor
 	* @return the h r asset vendor
 	* @throws com.liferay.hr.NoSuchAssetVendorException if a h r asset vendor with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -91,9 +91,9 @@ public interface HRAssetVendorPersistence extends BasePersistence<HRAssetVendor>
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the h r asset vendor with the primary key or returns <code>null</code> if it could not be found.
+	* Returns the h r asset vendor with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param hrAssetVendorId the primary key of the h r asset vendor to find
+	* @param hrAssetVendorId the primary key of the h r asset vendor
 	* @return the h r asset vendor, or <code>null</code> if a h r asset vendor with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -102,7 +102,7 @@ public interface HRAssetVendorPersistence extends BasePersistence<HRAssetVendor>
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds all the h r asset vendors.
+	* Returns all the h r asset vendors.
 	*
 	* @return the h r asset vendors
 	* @throws SystemException if a system exception occurred
@@ -111,14 +111,14 @@ public interface HRAssetVendorPersistence extends BasePersistence<HRAssetVendor>
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds a range of all the h r asset vendors.
+	* Returns a range of all the h r asset vendors.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of h r asset vendors to return
-	* @param end the upper bound of the range of h r asset vendors to return (not inclusive)
+	* @param start the lower bound of the range of h r asset vendors
+	* @param end the upper bound of the range of h r asset vendors (not inclusive)
 	* @return the range of h r asset vendors
 	* @throws SystemException if a system exception occurred
 	*/
@@ -127,14 +127,14 @@ public interface HRAssetVendorPersistence extends BasePersistence<HRAssetVendor>
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds an ordered range of all the h r asset vendors.
+	* Returns an ordered range of all the h r asset vendors.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of h r asset vendors to return
-	* @param end the upper bound of the range of h r asset vendors to return (not inclusive)
+	* @param start the lower bound of the range of h r asset vendors
+	* @param end the upper bound of the range of h r asset vendors (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of h r asset vendors
 	* @throws SystemException if a system exception occurred
@@ -153,7 +153,7 @@ public interface HRAssetVendorPersistence extends BasePersistence<HRAssetVendor>
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Counts all the h r asset vendors.
+	* Returns the number of h r asset vendors.
 	*
 	* @return the number of h r asset vendors
 	* @throws SystemException if a system exception occurred

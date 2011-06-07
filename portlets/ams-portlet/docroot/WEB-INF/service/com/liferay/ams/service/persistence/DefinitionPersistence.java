@@ -41,14 +41,14 @@ public interface DefinitionPersistence extends BasePersistence<Definition> {
 	/**
 	* Caches the definition in the entity cache if it is enabled.
 	*
-	* @param definition the definition to cache
+	* @param definition the definition
 	*/
 	public void cacheResult(com.liferay.ams.model.Definition definition);
 
 	/**
 	* Caches the definitions in the entity cache if it is enabled.
 	*
-	* @param definitions the definitions to cache
+	* @param definitions the definitions
 	*/
 	public void cacheResult(
 		java.util.List<com.liferay.ams.model.Definition> definitions);
@@ -64,7 +64,7 @@ public interface DefinitionPersistence extends BasePersistence<Definition> {
 	/**
 	* Removes the definition with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param definitionId the primary key of the definition to remove
+	* @param definitionId the primary key of the definition
 	* @return the definition that was removed
 	* @throws com.liferay.ams.NoSuchDefinitionException if a definition with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -78,9 +78,9 @@ public interface DefinitionPersistence extends BasePersistence<Definition> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the definition with the primary key or throws a {@link com.liferay.ams.NoSuchDefinitionException} if it could not be found.
+	* Returns the definition with the primary key or throws a {@link com.liferay.ams.NoSuchDefinitionException} if it could not be found.
 	*
-	* @param definitionId the primary key of the definition to find
+	* @param definitionId the primary key of the definition
 	* @return the definition
 	* @throws com.liferay.ams.NoSuchDefinitionException if a definition with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -90,9 +90,9 @@ public interface DefinitionPersistence extends BasePersistence<Definition> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the definition with the primary key or returns <code>null</code> if it could not be found.
+	* Returns the definition with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param definitionId the primary key of the definition to find
+	* @param definitionId the primary key of the definition
 	* @return the definition, or <code>null</code> if a definition with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -100,7 +100,7 @@ public interface DefinitionPersistence extends BasePersistence<Definition> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds all the definitions.
+	* Returns all the definitions.
 	*
 	* @return the definitions
 	* @throws SystemException if a system exception occurred
@@ -109,14 +109,14 @@ public interface DefinitionPersistence extends BasePersistence<Definition> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds a range of all the definitions.
+	* Returns a range of all the definitions.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of definitions to return
-	* @param end the upper bound of the range of definitions to return (not inclusive)
+	* @param start the lower bound of the range of definitions
+	* @param end the upper bound of the range of definitions (not inclusive)
 	* @return the range of definitions
 	* @throws SystemException if a system exception occurred
 	*/
@@ -124,14 +124,14 @@ public interface DefinitionPersistence extends BasePersistence<Definition> {
 		int end) throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds an ordered range of all the definitions.
+	* Returns an ordered range of all the definitions.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of definitions to return
-	* @param end the upper bound of the range of definitions to return (not inclusive)
+	* @param start the lower bound of the range of definitions
+	* @param end the upper bound of the range of definitions (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of definitions
 	* @throws SystemException if a system exception occurred
@@ -150,7 +150,7 @@ public interface DefinitionPersistence extends BasePersistence<Definition> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Counts all the definitions.
+	* Returns the number of definitions.
 	*
 	* @return the number of definitions
 	* @throws SystemException if a system exception occurred

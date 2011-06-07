@@ -47,21 +47,21 @@ public interface HROfficeModel extends BaseModel<HROffice>, GroupedModel {
 	 */
 
 	/**
-	 * Gets the primary key of this h r office.
+	 * Returns the primary key of this h r office.
 	 *
 	 * @return the primary key of this h r office
 	 */
 	public long getPrimaryKey();
 
 	/**
-	 * Sets the primary key of this h r office
+	 * Sets the primary key of this h r office.
 	 *
 	 * @param primaryKey the primary key of this h r office
 	 */
 	public void setPrimaryKey(long primaryKey);
 
 	/**
-	 * Gets the hr office ID of this h r office.
+	 * Returns the hr office ID of this h r office.
 	 *
 	 * @return the hr office ID of this h r office
 	 */
@@ -75,7 +75,7 @@ public interface HROfficeModel extends BaseModel<HROffice>, GroupedModel {
 	public void setHrOfficeId(long hrOfficeId);
 
 	/**
-	 * Gets the group ID of this h r office.
+	 * Returns the group ID of this h r office.
 	 *
 	 * @return the group ID of this h r office
 	 */
@@ -89,7 +89,7 @@ public interface HROfficeModel extends BaseModel<HROffice>, GroupedModel {
 	public void setGroupId(long groupId);
 
 	/**
-	 * Gets the company ID of this h r office.
+	 * Returns the company ID of this h r office.
 	 *
 	 * @return the company ID of this h r office
 	 */
@@ -103,7 +103,7 @@ public interface HROfficeModel extends BaseModel<HROffice>, GroupedModel {
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the user ID of this h r office.
+	 * Returns the user ID of this h r office.
 	 *
 	 * @return the user ID of this h r office
 	 */
@@ -117,7 +117,7 @@ public interface HROfficeModel extends BaseModel<HROffice>, GroupedModel {
 	public void setUserId(long userId);
 
 	/**
-	 * Gets the user uuid of this h r office.
+	 * Returns the user uuid of this h r office.
 	 *
 	 * @return the user uuid of this h r office
 	 * @throws SystemException if a system exception occurred
@@ -132,7 +132,7 @@ public interface HROfficeModel extends BaseModel<HROffice>, GroupedModel {
 	public void setUserUuid(String userUuid);
 
 	/**
-	 * Gets the user name of this h r office.
+	 * Returns the user name of this h r office.
 	 *
 	 * @return the user name of this h r office
 	 */
@@ -147,7 +147,7 @@ public interface HROfficeModel extends BaseModel<HROffice>, GroupedModel {
 	public void setUserName(String userName);
 
 	/**
-	 * Gets the create date of this h r office.
+	 * Returns the create date of this h r office.
 	 *
 	 * @return the create date of this h r office
 	 */
@@ -161,7 +161,7 @@ public interface HROfficeModel extends BaseModel<HROffice>, GroupedModel {
 	public void setCreateDate(Date createDate);
 
 	/**
-	 * Gets the modified date of this h r office.
+	 * Returns the modified date of this h r office.
 	 *
 	 * @return the modified date of this h r office
 	 */
@@ -175,7 +175,7 @@ public interface HROfficeModel extends BaseModel<HROffice>, GroupedModel {
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Gets the organization ID of this h r office.
+	 * Returns the organization ID of this h r office.
 	 *
 	 * @return the organization ID of this h r office
 	 */

@@ -46,21 +46,21 @@ public interface HRUserHistoryModel extends BaseModel<HRUserHistory> {
 	 */
 
 	/**
-	 * Gets the primary key of this h r user history.
+	 * Returns the primary key of this h r user history.
 	 *
 	 * @return the primary key of this h r user history
 	 */
 	public long getPrimaryKey();
 
 	/**
-	 * Sets the primary key of this h r user history
+	 * Sets the primary key of this h r user history.
 	 *
 	 * @param primaryKey the primary key of this h r user history
 	 */
 	public void setPrimaryKey(long primaryKey);
 
 	/**
-	 * Gets the hr user history ID of this h r user history.
+	 * Returns the hr user history ID of this h r user history.
 	 *
 	 * @return the hr user history ID of this h r user history
 	 */
@@ -74,7 +74,7 @@ public interface HRUserHistoryModel extends BaseModel<HRUserHistory> {
 	public void setHrUserHistoryId(long hrUserHistoryId);
 
 	/**
-	 * Gets the group ID of this h r user history.
+	 * Returns the group ID of this h r user history.
 	 *
 	 * @return the group ID of this h r user history
 	 */
@@ -88,7 +88,7 @@ public interface HRUserHistoryModel extends BaseModel<HRUserHistory> {
 	public void setGroupId(long groupId);
 
 	/**
-	 * Gets the company ID of this h r user history.
+	 * Returns the company ID of this h r user history.
 	 *
 	 * @return the company ID of this h r user history
 	 */
@@ -102,7 +102,7 @@ public interface HRUserHistoryModel extends BaseModel<HRUserHistory> {
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the user ID of this h r user history.
+	 * Returns the user ID of this h r user history.
 	 *
 	 * @return the user ID of this h r user history
 	 */
@@ -116,7 +116,7 @@ public interface HRUserHistoryModel extends BaseModel<HRUserHistory> {
 	public void setUserId(long userId);
 
 	/**
-	 * Gets the user uuid of this h r user history.
+	 * Returns the user uuid of this h r user history.
 	 *
 	 * @return the user uuid of this h r user history
 	 * @throws SystemException if a system exception occurred
@@ -131,7 +131,7 @@ public interface HRUserHistoryModel extends BaseModel<HRUserHistory> {
 	public void setUserUuid(String userUuid);
 
 	/**
-	 * Gets the user name of this h r user history.
+	 * Returns the user name of this h r user history.
 	 *
 	 * @return the user name of this h r user history
 	 */
@@ -146,7 +146,7 @@ public interface HRUserHistoryModel extends BaseModel<HRUserHistory> {
 	public void setUserName(String userName);
 
 	/**
-	 * Gets the create date of this h r user history.
+	 * Returns the create date of this h r user history.
 	 *
 	 * @return the create date of this h r user history
 	 */
@@ -160,7 +160,7 @@ public interface HRUserHistoryModel extends BaseModel<HRUserHistory> {
 	public void setCreateDate(Date createDate);
 
 	/**
-	 * Gets the hr employment type ID of this h r user history.
+	 * Returns the hr employment type ID of this h r user history.
 	 *
 	 * @return the hr employment type ID of this h r user history
 	 */
@@ -174,7 +174,7 @@ public interface HRUserHistoryModel extends BaseModel<HRUserHistory> {
 	public void setHrEmploymentTypeId(long hrEmploymentTypeId);
 
 	/**
-	 * Gets the hr job title ID of this h r user history.
+	 * Returns the hr job title ID of this h r user history.
 	 *
 	 * @return the hr job title ID of this h r user history
 	 */
@@ -188,7 +188,7 @@ public interface HRUserHistoryModel extends BaseModel<HRUserHistory> {
 	public void setHrJobTitleId(long hrJobTitleId);
 
 	/**
-	 * Gets the hr office ID of this h r user history.
+	 * Returns the hr office ID of this h r user history.
 	 *
 	 * @return the hr office ID of this h r user history
 	 */
@@ -202,7 +202,7 @@ public interface HRUserHistoryModel extends BaseModel<HRUserHistory> {
 	public void setHrOfficeId(long hrOfficeId);
 
 	/**
-	 * Gets the hr termination type ID of this h r user history.
+	 * Returns the hr termination type ID of this h r user history.
 	 *
 	 * @return the hr termination type ID of this h r user history
 	 */
@@ -216,7 +216,7 @@ public interface HRUserHistoryModel extends BaseModel<HRUserHistory> {
 	public void setHrTerminationTypeId(long hrTerminationTypeId);
 
 	/**
-	 * Gets the hr wage type ID of this h r user history.
+	 * Returns the hr wage type ID of this h r user history.
 	 *
 	 * @return the hr wage type ID of this h r user history
 	 */
@@ -230,7 +230,7 @@ public interface HRUserHistoryModel extends BaseModel<HRUserHistory> {
 	public void setHrWageTypeId(long hrWageTypeId);
 
 	/**
-	 * Gets the hire date of this h r user history.
+	 * Returns the hire date of this h r user history.
 	 *
 	 * @return the hire date of this h r user history
 	 */
@@ -244,7 +244,7 @@ public interface HRUserHistoryModel extends BaseModel<HRUserHistory> {
 	public void setHireDate(Date hireDate);
 
 	/**
-	 * Gets the termination date of this h r user history.
+	 * Returns the termination date of this h r user history.
 	 *
 	 * @return the termination date of this h r user history
 	 */
@@ -258,7 +258,7 @@ public interface HRUserHistoryModel extends BaseModel<HRUserHistory> {
 	public void setTerminationDate(Date terminationDate);
 
 	/**
-	 * Gets the wage amount of this h r user history.
+	 * Returns the wage amount of this h r user history.
 	 *
 	 * @return the wage amount of this h r user history
 	 */
@@ -272,7 +272,7 @@ public interface HRUserHistoryModel extends BaseModel<HRUserHistory> {
 	public void setWageAmount(double wageAmount);
 
 	/**
-	 * Gets the wage currency code of this h r user history.
+	 * Returns the wage currency code of this h r user history.
 	 *
 	 * @return the wage currency code of this h r user history
 	 */
@@ -287,7 +287,7 @@ public interface HRUserHistoryModel extends BaseModel<HRUserHistory> {
 	public void setWageCurrencyCode(String wageCurrencyCode);
 
 	/**
-	 * Gets the benefits exempt of this h r user history.
+	 * Returns the benefits exempt of this h r user history.
 	 *
 	 * @return the benefits exempt of this h r user history
 	 */
@@ -308,7 +308,7 @@ public interface HRUserHistoryModel extends BaseModel<HRUserHistory> {
 	public void setBenefitsExempt(boolean benefitsExempt);
 
 	/**
-	 * Gets the overtime exempt of this h r user history.
+	 * Returns the overtime exempt of this h r user history.
 	 *
 	 * @return the overtime exempt of this h r user history
 	 */

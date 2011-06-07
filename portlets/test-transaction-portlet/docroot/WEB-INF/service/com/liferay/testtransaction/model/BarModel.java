@@ -43,21 +43,21 @@ public interface BarModel extends BaseModel<Bar> {
 	 */
 
 	/**
-	 * Gets the primary key of this bar.
+	 * Returns the primary key of this bar.
 	 *
 	 * @return the primary key of this bar
 	 */
 	public long getPrimaryKey();
 
 	/**
-	 * Sets the primary key of this bar
+	 * Sets the primary key of this bar.
 	 *
 	 * @param primaryKey the primary key of this bar
 	 */
 	public void setPrimaryKey(long primaryKey);
 
 	/**
-	 * Gets the bar ID of this bar.
+	 * Returns the bar ID of this bar.
 	 *
 	 * @return the bar ID of this bar
 	 */
@@ -71,7 +71,7 @@ public interface BarModel extends BaseModel<Bar> {
 	public void setBarId(long barId);
 
 	/**
-	 * Gets the text of this bar.
+	 * Returns the text of this bar.
 	 *
 	 * @return the text of this bar
 	 */

@@ -41,7 +41,7 @@ public interface JIRAChangeItemPersistence extends BasePersistence<JIRAChangeIte
 	/**
 	* Caches the j i r a change item in the entity cache if it is enabled.
 	*
-	* @param jiraChangeItem the j i r a change item to cache
+	* @param jiraChangeItem the j i r a change item
 	*/
 	public void cacheResult(
 		com.liferay.socialcoding.model.JIRAChangeItem jiraChangeItem);
@@ -49,7 +49,7 @@ public interface JIRAChangeItemPersistence extends BasePersistence<JIRAChangeIte
 	/**
 	* Caches the j i r a change items in the entity cache if it is enabled.
 	*
-	* @param jiraChangeItems the j i r a change items to cache
+	* @param jiraChangeItems the j i r a change items
 	*/
 	public void cacheResult(
 		java.util.List<com.liferay.socialcoding.model.JIRAChangeItem> jiraChangeItems);
@@ -66,7 +66,7 @@ public interface JIRAChangeItemPersistence extends BasePersistence<JIRAChangeIte
 	/**
 	* Removes the j i r a change item with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param jiraChangeItemId the primary key of the j i r a change item to remove
+	* @param jiraChangeItemId the primary key of the j i r a change item
 	* @return the j i r a change item that was removed
 	* @throws com.liferay.socialcoding.NoSuchJIRAChangeItemException if a j i r a change item with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -82,9 +82,9 @@ public interface JIRAChangeItemPersistence extends BasePersistence<JIRAChangeIte
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the j i r a change item with the primary key or throws a {@link com.liferay.socialcoding.NoSuchJIRAChangeItemException} if it could not be found.
+	* Returns the j i r a change item with the primary key or throws a {@link com.liferay.socialcoding.NoSuchJIRAChangeItemException} if it could not be found.
 	*
-	* @param jiraChangeItemId the primary key of the j i r a change item to find
+	* @param jiraChangeItemId the primary key of the j i r a change item
 	* @return the j i r a change item
 	* @throws com.liferay.socialcoding.NoSuchJIRAChangeItemException if a j i r a change item with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -95,9 +95,9 @@ public interface JIRAChangeItemPersistence extends BasePersistence<JIRAChangeIte
 			com.liferay.socialcoding.NoSuchJIRAChangeItemException;
 
 	/**
-	* Finds the j i r a change item with the primary key or returns <code>null</code> if it could not be found.
+	* Returns the j i r a change item with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param jiraChangeItemId the primary key of the j i r a change item to find
+	* @param jiraChangeItemId the primary key of the j i r a change item
 	* @return the j i r a change item, or <code>null</code> if a j i r a change item with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -106,9 +106,9 @@ public interface JIRAChangeItemPersistence extends BasePersistence<JIRAChangeIte
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds all the j i r a change items where jiraChangeGroupId = &#63;.
+	* Returns all the j i r a change items where jiraChangeGroupId = &#63;.
 	*
-	* @param jiraChangeGroupId the jira change group ID to search with
+	* @param jiraChangeGroupId the jira change group ID
 	* @return the matching j i r a change items
 	* @throws SystemException if a system exception occurred
 	*/
@@ -117,15 +117,15 @@ public interface JIRAChangeItemPersistence extends BasePersistence<JIRAChangeIte
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds a range of all the j i r a change items where jiraChangeGroupId = &#63;.
+	* Returns a range of all the j i r a change items where jiraChangeGroupId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param jiraChangeGroupId the jira change group ID to search with
-	* @param start the lower bound of the range of j i r a change items to return
-	* @param end the upper bound of the range of j i r a change items to return (not inclusive)
+	* @param jiraChangeGroupId the jira change group ID
+	* @param start the lower bound of the range of j i r a change items
+	* @param end the upper bound of the range of j i r a change items (not inclusive)
 	* @return the range of matching j i r a change items
 	* @throws SystemException if a system exception occurred
 	*/
@@ -134,15 +134,15 @@ public interface JIRAChangeItemPersistence extends BasePersistence<JIRAChangeIte
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds an ordered range of all the j i r a change items where jiraChangeGroupId = &#63;.
+	* Returns an ordered range of all the j i r a change items where jiraChangeGroupId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param jiraChangeGroupId the jira change group ID to search with
-	* @param start the lower bound of the range of j i r a change items to return
-	* @param end the upper bound of the range of j i r a change items to return (not inclusive)
+	* @param jiraChangeGroupId the jira change group ID
+	* @param start the lower bound of the range of j i r a change items
+	* @param end the upper bound of the range of j i r a change items (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching j i r a change items
 	* @throws SystemException if a system exception occurred
@@ -153,13 +153,13 @@ public interface JIRAChangeItemPersistence extends BasePersistence<JIRAChangeIte
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the first j i r a change item in the ordered set where jiraChangeGroupId = &#63;.
+	* Returns the first j i r a change item in the ordered set where jiraChangeGroupId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param jiraChangeGroupId the jira change group ID to search with
+	* @param jiraChangeGroupId the jira change group ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching j i r a change item
 	* @throws com.liferay.socialcoding.NoSuchJIRAChangeItemException if a matching j i r a change item could not be found
@@ -172,13 +172,13 @@ public interface JIRAChangeItemPersistence extends BasePersistence<JIRAChangeIte
 			com.liferay.socialcoding.NoSuchJIRAChangeItemException;
 
 	/**
-	* Finds the last j i r a change item in the ordered set where jiraChangeGroupId = &#63;.
+	* Returns the last j i r a change item in the ordered set where jiraChangeGroupId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param jiraChangeGroupId the jira change group ID to search with
+	* @param jiraChangeGroupId the jira change group ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching j i r a change item
 	* @throws com.liferay.socialcoding.NoSuchJIRAChangeItemException if a matching j i r a change item could not be found
@@ -191,14 +191,14 @@ public interface JIRAChangeItemPersistence extends BasePersistence<JIRAChangeIte
 			com.liferay.socialcoding.NoSuchJIRAChangeItemException;
 
 	/**
-	* Finds the j i r a change items before and after the current j i r a change item in the ordered set where jiraChangeGroupId = &#63;.
+	* Returns the j i r a change items before and after the current j i r a change item in the ordered set where jiraChangeGroupId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
 	* @param jiraChangeItemId the primary key of the current j i r a change item
-	* @param jiraChangeGroupId the jira change group ID to search with
+	* @param jiraChangeGroupId the jira change group ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next j i r a change item
 	* @throws com.liferay.socialcoding.NoSuchJIRAChangeItemException if a j i r a change item with the primary key could not be found
@@ -211,7 +211,7 @@ public interface JIRAChangeItemPersistence extends BasePersistence<JIRAChangeIte
 			com.liferay.socialcoding.NoSuchJIRAChangeItemException;
 
 	/**
-	* Finds all the j i r a change items.
+	* Returns all the j i r a change items.
 	*
 	* @return the j i r a change items
 	* @throws SystemException if a system exception occurred
@@ -220,14 +220,14 @@ public interface JIRAChangeItemPersistence extends BasePersistence<JIRAChangeIte
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds a range of all the j i r a change items.
+	* Returns a range of all the j i r a change items.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of j i r a change items to return
-	* @param end the upper bound of the range of j i r a change items to return (not inclusive)
+	* @param start the lower bound of the range of j i r a change items
+	* @param end the upper bound of the range of j i r a change items (not inclusive)
 	* @return the range of j i r a change items
 	* @throws SystemException if a system exception occurred
 	*/
@@ -236,14 +236,14 @@ public interface JIRAChangeItemPersistence extends BasePersistence<JIRAChangeIte
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds an ordered range of all the j i r a change items.
+	* Returns an ordered range of all the j i r a change items.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of j i r a change items to return
-	* @param end the upper bound of the range of j i r a change items to return (not inclusive)
+	* @param start the lower bound of the range of j i r a change items
+	* @param end the upper bound of the range of j i r a change items (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of j i r a change items
 	* @throws SystemException if a system exception occurred
@@ -256,7 +256,7 @@ public interface JIRAChangeItemPersistence extends BasePersistence<JIRAChangeIte
 	/**
 	* Removes all the j i r a change items where jiraChangeGroupId = &#63; from the database.
 	*
-	* @param jiraChangeGroupId the jira change group ID to search with
+	* @param jiraChangeGroupId the jira change group ID
 	* @throws SystemException if a system exception occurred
 	*/
 	public void removeByJiraChangeGroupId(long jiraChangeGroupId)
@@ -271,9 +271,9 @@ public interface JIRAChangeItemPersistence extends BasePersistence<JIRAChangeIte
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Counts all the j i r a change items where jiraChangeGroupId = &#63;.
+	* Returns the number of j i r a change items where jiraChangeGroupId = &#63;.
 	*
-	* @param jiraChangeGroupId the jira change group ID to search with
+	* @param jiraChangeGroupId the jira change group ID
 	* @return the number of matching j i r a change items
 	* @throws SystemException if a system exception occurred
 	*/
@@ -281,7 +281,7 @@ public interface JIRAChangeItemPersistence extends BasePersistence<JIRAChangeIte
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Counts all the j i r a change items.
+	* Returns the number of j i r a change items.
 	*
 	* @return the number of j i r a change items
 	* @throws SystemException if a system exception occurred

@@ -121,7 +121,7 @@ public class AttachmentUtil {
 	/**
 	* Caches the attachment in the entity cache if it is enabled.
 	*
-	* @param attachment the attachment to cache
+	* @param attachment the attachment
 	*/
 	public static void cacheResult(com.liferay.mail.model.Attachment attachment) {
 		getPersistence().cacheResult(attachment);
@@ -130,7 +130,7 @@ public class AttachmentUtil {
 	/**
 	* Caches the attachments in the entity cache if it is enabled.
 	*
-	* @param attachments the attachments to cache
+	* @param attachments the attachments
 	*/
 	public static void cacheResult(
 		java.util.List<com.liferay.mail.model.Attachment> attachments) {
@@ -150,7 +150,7 @@ public class AttachmentUtil {
 	/**
 	* Removes the attachment with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param attachmentId the primary key of the attachment to remove
+	* @param attachmentId the primary key of the attachment
 	* @return the attachment that was removed
 	* @throws com.liferay.mail.NoSuchAttachmentException if a attachment with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -168,9 +168,9 @@ public class AttachmentUtil {
 	}
 
 	/**
-	* Finds the attachment with the primary key or throws a {@link com.liferay.mail.NoSuchAttachmentException} if it could not be found.
+	* Returns the attachment with the primary key or throws a {@link com.liferay.mail.NoSuchAttachmentException} if it could not be found.
 	*
-	* @param attachmentId the primary key of the attachment to find
+	* @param attachmentId the primary key of the attachment
 	* @return the attachment
 	* @throws com.liferay.mail.NoSuchAttachmentException if a attachment with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -183,9 +183,9 @@ public class AttachmentUtil {
 	}
 
 	/**
-	* Finds the attachment with the primary key or returns <code>null</code> if it could not be found.
+	* Returns the attachment with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param attachmentId the primary key of the attachment to find
+	* @param attachmentId the primary key of the attachment
 	* @return the attachment, or <code>null</code> if a attachment with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -196,9 +196,9 @@ public class AttachmentUtil {
 	}
 
 	/**
-	* Finds all the attachments where messageId = &#63;.
+	* Returns all the attachments where messageId = &#63;.
 	*
-	* @param messageId the message ID to search with
+	* @param messageId the message ID
 	* @return the matching attachments
 	* @throws SystemException if a system exception occurred
 	*/
@@ -209,15 +209,15 @@ public class AttachmentUtil {
 	}
 
 	/**
-	* Finds a range of all the attachments where messageId = &#63;.
+	* Returns a range of all the attachments where messageId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param messageId the message ID to search with
-	* @param start the lower bound of the range of attachments to return
-	* @param end the upper bound of the range of attachments to return (not inclusive)
+	* @param messageId the message ID
+	* @param start the lower bound of the range of attachments
+	* @param end the upper bound of the range of attachments (not inclusive)
 	* @return the range of matching attachments
 	* @throws SystemException if a system exception occurred
 	*/
@@ -228,15 +228,15 @@ public class AttachmentUtil {
 	}
 
 	/**
-	* Finds an ordered range of all the attachments where messageId = &#63;.
+	* Returns an ordered range of all the attachments where messageId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param messageId the message ID to search with
-	* @param start the lower bound of the range of attachments to return
-	* @param end the upper bound of the range of attachments to return (not inclusive)
+	* @param messageId the message ID
+	* @param start the lower bound of the range of attachments
+	* @param end the upper bound of the range of attachments (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching attachments
 	* @throws SystemException if a system exception occurred
@@ -250,13 +250,13 @@ public class AttachmentUtil {
 	}
 
 	/**
-	* Finds the first attachment in the ordered set where messageId = &#63;.
+	* Returns the first attachment in the ordered set where messageId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param messageId the message ID to search with
+	* @param messageId the message ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching attachment
 	* @throws com.liferay.mail.NoSuchAttachmentException if a matching attachment could not be found
@@ -272,13 +272,13 @@ public class AttachmentUtil {
 	}
 
 	/**
-	* Finds the last attachment in the ordered set where messageId = &#63;.
+	* Returns the last attachment in the ordered set where messageId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param messageId the message ID to search with
+	* @param messageId the message ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching attachment
 	* @throws com.liferay.mail.NoSuchAttachmentException if a matching attachment could not be found
@@ -294,14 +294,14 @@ public class AttachmentUtil {
 	}
 
 	/**
-	* Finds the attachments before and after the current attachment in the ordered set where messageId = &#63;.
+	* Returns the attachments before and after the current attachment in the ordered set where messageId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
 	* @param attachmentId the primary key of the current attachment
-	* @param messageId the message ID to search with
+	* @param messageId the message ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next attachment
 	* @throws com.liferay.mail.NoSuchAttachmentException if a attachment with the primary key could not be found
@@ -318,7 +318,7 @@ public class AttachmentUtil {
 	}
 
 	/**
-	* Finds all the attachments.
+	* Returns all the attachments.
 	*
 	* @return the attachments
 	* @throws SystemException if a system exception occurred
@@ -329,14 +329,14 @@ public class AttachmentUtil {
 	}
 
 	/**
-	* Finds a range of all the attachments.
+	* Returns a range of all the attachments.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of attachments to return
-	* @param end the upper bound of the range of attachments to return (not inclusive)
+	* @param start the lower bound of the range of attachments
+	* @param end the upper bound of the range of attachments (not inclusive)
 	* @return the range of attachments
 	* @throws SystemException if a system exception occurred
 	*/
@@ -347,14 +347,14 @@ public class AttachmentUtil {
 	}
 
 	/**
-	* Finds an ordered range of all the attachments.
+	* Returns an ordered range of all the attachments.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of attachments to return
-	* @param end the upper bound of the range of attachments to return (not inclusive)
+	* @param start the lower bound of the range of attachments
+	* @param end the upper bound of the range of attachments (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of attachments
 	* @throws SystemException if a system exception occurred
@@ -369,7 +369,7 @@ public class AttachmentUtil {
 	/**
 	* Removes all the attachments where messageId = &#63; from the database.
 	*
-	* @param messageId the message ID to search with
+	* @param messageId the message ID
 	* @throws SystemException if a system exception occurred
 	*/
 	public static void removeByMessageId(long messageId)
@@ -388,9 +388,9 @@ public class AttachmentUtil {
 	}
 
 	/**
-	* Counts all the attachments where messageId = &#63;.
+	* Returns the number of attachments where messageId = &#63;.
 	*
-	* @param messageId the message ID to search with
+	* @param messageId the message ID
 	* @return the number of matching attachments
 	* @throws SystemException if a system exception occurred
 	*/
@@ -400,7 +400,7 @@ public class AttachmentUtil {
 	}
 
 	/**
-	* Counts all the attachments.
+	* Returns the number of attachments.
 	*
 	* @return the number of attachments
 	* @throws SystemException if a system exception occurred

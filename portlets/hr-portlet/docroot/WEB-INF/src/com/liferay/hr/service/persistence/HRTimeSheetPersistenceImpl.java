@@ -82,7 +82,7 @@ public class HRTimeSheetPersistenceImpl extends BasePersistenceImpl<HRTimeSheet>
 	/**
 	 * Caches the h r time sheet in the entity cache if it is enabled.
 	 *
-	 * @param hrTimeSheet the h r time sheet to cache
+	 * @param hrTimeSheet the h r time sheet
 	 */
 	public void cacheResult(HRTimeSheet hrTimeSheet) {
 		EntityCacheUtil.putResult(HRTimeSheetModelImpl.ENTITY_CACHE_ENABLED,
@@ -94,7 +94,7 @@ public class HRTimeSheetPersistenceImpl extends BasePersistenceImpl<HRTimeSheet>
 	/**
 	 * Caches the h r time sheets in the entity cache if it is enabled.
 	 *
-	 * @param hrTimeSheets the h r time sheets to cache
+	 * @param hrTimeSheets the h r time sheets
 	 */
 	public void cacheResult(List<HRTimeSheet> hrTimeSheets) {
 		for (HRTimeSheet hrTimeSheet : hrTimeSheets) {
@@ -153,7 +153,7 @@ public class HRTimeSheetPersistenceImpl extends BasePersistenceImpl<HRTimeSheet>
 	/**
 	 * Removes the h r time sheet with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param primaryKey the primary key of the h r time sheet to remove
+	 * @param primaryKey the primary key of the h r time sheet
 	 * @return the h r time sheet that was removed
 	 * @throws com.liferay.portal.NoSuchModelException if a h r time sheet with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -166,7 +166,7 @@ public class HRTimeSheetPersistenceImpl extends BasePersistenceImpl<HRTimeSheet>
 	/**
 	 * Removes the h r time sheet with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param hrTimeSheetId the primary key of the h r time sheet to remove
+	 * @param hrTimeSheetId the primary key of the h r time sheet
 	 * @return the h r time sheet that was removed
 	 * @throws com.liferay.hr.NoSuchTimeSheetException if a h r time sheet with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -206,7 +206,7 @@ public class HRTimeSheetPersistenceImpl extends BasePersistenceImpl<HRTimeSheet>
 	/**
 	 * Removes the h r time sheet from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param hrTimeSheet the h r time sheet to remove
+	 * @param hrTimeSheet the h r time sheet
 	 * @return the h r time sheet that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -300,9 +300,9 @@ public class HRTimeSheetPersistenceImpl extends BasePersistenceImpl<HRTimeSheet>
 	}
 
 	/**
-	 * Finds the h r time sheet with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
+	 * Returns the h r time sheet with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
 	 *
-	 * @param primaryKey the primary key of the h r time sheet to find
+	 * @param primaryKey the primary key of the h r time sheet
 	 * @return the h r time sheet
 	 * @throws com.liferay.portal.NoSuchModelException if a h r time sheet with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -313,9 +313,9 @@ public class HRTimeSheetPersistenceImpl extends BasePersistenceImpl<HRTimeSheet>
 	}
 
 	/**
-	 * Finds the h r time sheet with the primary key or throws a {@link com.liferay.hr.NoSuchTimeSheetException} if it could not be found.
+	 * Returns the h r time sheet with the primary key or throws a {@link com.liferay.hr.NoSuchTimeSheetException} if it could not be found.
 	 *
-	 * @param hrTimeSheetId the primary key of the h r time sheet to find
+	 * @param hrTimeSheetId the primary key of the h r time sheet
 	 * @return the h r time sheet
 	 * @throws com.liferay.hr.NoSuchTimeSheetException if a h r time sheet with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -337,9 +337,9 @@ public class HRTimeSheetPersistenceImpl extends BasePersistenceImpl<HRTimeSheet>
 	}
 
 	/**
-	 * Finds the h r time sheet with the primary key or returns <code>null</code> if it could not be found.
+	 * Returns the h r time sheet with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param primaryKey the primary key of the h r time sheet to find
+	 * @param primaryKey the primary key of the h r time sheet
 	 * @return the h r time sheet, or <code>null</code> if a h r time sheet with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -349,9 +349,9 @@ public class HRTimeSheetPersistenceImpl extends BasePersistenceImpl<HRTimeSheet>
 	}
 
 	/**
-	 * Finds the h r time sheet with the primary key or returns <code>null</code> if it could not be found.
+	 * Returns the h r time sheet with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param hrTimeSheetId the primary key of the h r time sheet to find
+	 * @param hrTimeSheetId the primary key of the h r time sheet
 	 * @return the h r time sheet, or <code>null</code> if a h r time sheet with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -385,7 +385,7 @@ public class HRTimeSheetPersistenceImpl extends BasePersistenceImpl<HRTimeSheet>
 	}
 
 	/**
-	 * Finds all the h r time sheets.
+	 * Returns all the h r time sheets.
 	 *
 	 * @return the h r time sheets
 	 * @throws SystemException if a system exception occurred
@@ -395,14 +395,14 @@ public class HRTimeSheetPersistenceImpl extends BasePersistenceImpl<HRTimeSheet>
 	}
 
 	/**
-	 * Finds a range of all the h r time sheets.
+	 * Returns a range of all the h r time sheets.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of h r time sheets to return
-	 * @param end the upper bound of the range of h r time sheets to return (not inclusive)
+	 * @param start the lower bound of the range of h r time sheets
+	 * @param end the upper bound of the range of h r time sheets (not inclusive)
 	 * @return the range of h r time sheets
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -412,14 +412,14 @@ public class HRTimeSheetPersistenceImpl extends BasePersistenceImpl<HRTimeSheet>
 	}
 
 	/**
-	 * Finds an ordered range of all the h r time sheets.
+	 * Returns an ordered range of all the h r time sheets.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of h r time sheets to return
-	 * @param end the upper bound of the range of h r time sheets to return (not inclusive)
+	 * @param start the lower bound of the range of h r time sheets
+	 * @param end the upper bound of the range of h r time sheets (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of h r time sheets
 	 * @throws SystemException if a system exception occurred
@@ -505,7 +505,7 @@ public class HRTimeSheetPersistenceImpl extends BasePersistenceImpl<HRTimeSheet>
 	}
 
 	/**
-	 * Counts all the h r time sheets.
+	 * Returns the number of h r time sheets.
 	 *
 	 * @return the number of h r time sheets
 	 * @throws SystemException if a system exception occurred

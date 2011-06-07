@@ -23,6 +23,11 @@ import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.search.Indexer;
+import com.liferay.portal.kernel.search.IndexerRegistryUtil;
+import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.service.ResourceLocalService;
 import com.liferay.portal.service.ResourceService;
@@ -67,7 +72,7 @@ public abstract class WallEntryLocalServiceBaseImpl
 	/**
 	 * Adds the wall entry to the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param wallEntry the wall entry to add
+	 * @param wallEntry the wall entry
 	 * @return the wall entry that was added
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -75,7 +80,22 @@ public abstract class WallEntryLocalServiceBaseImpl
 		throws SystemException {
 		wallEntry.setNew(true);
 
-		return wallEntryPersistence.update(wallEntry, false);
+		wallEntry = wallEntryPersistence.update(wallEntry, false);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.reindex(wallEntry);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
+
+		return wallEntry;
 	}
 
 	/**
@@ -91,29 +111,55 @@ public abstract class WallEntryLocalServiceBaseImpl
 	/**
 	 * Deletes the wall entry with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param wallEntryId the primary key of the wall entry to delete
+	 * @param wallEntryId the primary key of the wall entry
 	 * @throws PortalException if a wall entry with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void deleteWallEntry(long wallEntryId)
 		throws PortalException, SystemException {
-		wallEntryPersistence.remove(wallEntryId);
+		WallEntry wallEntry = wallEntryPersistence.remove(wallEntryId);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.delete(wallEntry);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
 	}
 
 	/**
 	 * Deletes the wall entry from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param wallEntry the wall entry to delete
+	 * @param wallEntry the wall entry
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void deleteWallEntry(WallEntry wallEntry) throws SystemException {
 		wallEntryPersistence.remove(wallEntry);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.delete(wallEntry);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
 	}
 
 	/**
 	 * Performs a dynamic query on the database and returns the matching rows.
 	 *
-	 * @param dynamicQuery the dynamic query to search with
+	 * @param dynamicQuery the dynamic query
 	 * @return the matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -130,9 +176,9 @@ public abstract class WallEntryLocalServiceBaseImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param dynamicQuery the dynamic query to search with
-	 * @param start the lower bound of the range of model instances to return
-	 * @param end the upper bound of the range of model instances to return (not inclusive)
+	 * @param dynamicQuery the dynamic query
+	 * @param start the lower bound of the range of model instances
+	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @return the range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -150,9 +196,9 @@ public abstract class WallEntryLocalServiceBaseImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param dynamicQuery the dynamic query to search with
-	 * @param start the lower bound of the range of model instances to return
-	 * @param end the upper bound of the range of model instances to return (not inclusive)
+	 * @param dynamicQuery the dynamic query
+	 * @param start the lower bound of the range of model instances
+	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching rows
 	 * @throws SystemException if a system exception occurred
@@ -165,9 +211,9 @@ public abstract class WallEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Counts the number of rows that match the dynamic query.
+	 * Returns the number of rows that match the dynamic query.
 	 *
-	 * @param dynamicQuery the dynamic query to search with
+	 * @param dynamicQuery the dynamic query
 	 * @return the number of rows that match the dynamic query
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -177,9 +223,9 @@ public abstract class WallEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the wall entry with the primary key.
+	 * Returns the wall entry with the primary key.
 	 *
-	 * @param wallEntryId the primary key of the wall entry to get
+	 * @param wallEntryId the primary key of the wall entry
 	 * @return the wall entry
 	 * @throws PortalException if a wall entry with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -190,14 +236,14 @@ public abstract class WallEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets a range of all the wall entries.
+	 * Returns a range of all the wall entries.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of wall entries to return
-	 * @param end the upper bound of the range of wall entries to return (not inclusive)
+	 * @param start the lower bound of the range of wall entries
+	 * @param end the upper bound of the range of wall entries (not inclusive)
 	 * @return the range of wall entries
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -207,7 +253,7 @@ public abstract class WallEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the number of wall entries.
+	 * Returns the number of wall entries.
 	 *
 	 * @return the number of wall entries
 	 * @throws SystemException if a system exception occurred
@@ -219,21 +265,19 @@ public abstract class WallEntryLocalServiceBaseImpl
 	/**
 	 * Updates the wall entry in the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param wallEntry the wall entry to update
+	 * @param wallEntry the wall entry
 	 * @return the wall entry that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
 	public WallEntry updateWallEntry(WallEntry wallEntry)
 		throws SystemException {
-		wallEntry.setNew(false);
-
-		return wallEntryPersistence.update(wallEntry, true);
+		return updateWallEntry(wallEntry, true);
 	}
 
 	/**
 	 * Updates the wall entry in the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param wallEntry the wall entry to update
+	 * @param wallEntry the wall entry
 	 * @param merge whether to merge the wall entry with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
 	 * @return the wall entry that was updated
 	 * @throws SystemException if a system exception occurred
@@ -242,11 +286,26 @@ public abstract class WallEntryLocalServiceBaseImpl
 		throws SystemException {
 		wallEntry.setNew(false);
 
-		return wallEntryPersistence.update(wallEntry, merge);
+		wallEntry = wallEntryPersistence.update(wallEntry, merge);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.reindex(wallEntry);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
+
+		return wallEntry;
 	}
 
 	/**
-	 * Gets the meetups entry local service.
+	 * Returns the meetups entry local service.
 	 *
 	 * @return the meetups entry local service
 	 */
@@ -265,7 +324,7 @@ public abstract class WallEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the meetups entry persistence.
+	 * Returns the meetups entry persistence.
 	 *
 	 * @return the meetups entry persistence
 	 */
@@ -284,7 +343,7 @@ public abstract class WallEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the meetups registration local service.
+	 * Returns the meetups registration local service.
 	 *
 	 * @return the meetups registration local service
 	 */
@@ -303,7 +362,7 @@ public abstract class WallEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the meetups registration persistence.
+	 * Returns the meetups registration persistence.
 	 *
 	 * @return the meetups registration persistence
 	 */
@@ -322,7 +381,7 @@ public abstract class WallEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the wall entry local service.
+	 * Returns the wall entry local service.
 	 *
 	 * @return the wall entry local service
 	 */
@@ -341,7 +400,7 @@ public abstract class WallEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the wall entry persistence.
+	 * Returns the wall entry persistence.
 	 *
 	 * @return the wall entry persistence
 	 */
@@ -360,7 +419,7 @@ public abstract class WallEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the wall entry finder.
+	 * Returns the wall entry finder.
 	 *
 	 * @return the wall entry finder
 	 */
@@ -378,7 +437,7 @@ public abstract class WallEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the counter local service.
+	 * Returns the counter local service.
 	 *
 	 * @return the counter local service
 	 */
@@ -396,7 +455,7 @@ public abstract class WallEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the resource local service.
+	 * Returns the resource local service.
 	 *
 	 * @return the resource local service
 	 */
@@ -415,7 +474,7 @@ public abstract class WallEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the resource remote service.
+	 * Returns the resource remote service.
 	 *
 	 * @return the resource remote service
 	 */
@@ -433,7 +492,7 @@ public abstract class WallEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the resource persistence.
+	 * Returns the resource persistence.
 	 *
 	 * @return the resource persistence
 	 */
@@ -451,7 +510,7 @@ public abstract class WallEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the user local service.
+	 * Returns the user local service.
 	 *
 	 * @return the user local service
 	 */
@@ -469,7 +528,7 @@ public abstract class WallEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the user remote service.
+	 * Returns the user remote service.
 	 *
 	 * @return the user remote service
 	 */
@@ -487,7 +546,7 @@ public abstract class WallEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the user persistence.
+	 * Returns the user persistence.
 	 *
 	 * @return the user persistence
 	 */
@@ -505,7 +564,7 @@ public abstract class WallEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the Spring bean ID for this bean.
+	 * Returns the Spring bean ID for this bean.
 	 *
 	 * @return the Spring bean ID for this bean
 	 */
@@ -522,10 +581,18 @@ public abstract class WallEntryLocalServiceBaseImpl
 		_beanIdentifier = beanIdentifier;
 	}
 
+	protected Class<?> getModelClass() {
+		return WallEntry.class;
+	}
+
+	protected String getModelClassName() {
+		return WallEntry.class.getName();
+	}
+
 	/**
 	 * Performs an SQL query.
 	 *
-	 * @param sql the sql query to perform
+	 * @param sql the sql query
 	 */
 	protected void runSQL(String sql) throws SystemException {
 		try {
@@ -569,5 +636,6 @@ public abstract class WallEntryLocalServiceBaseImpl
 	protected UserService userService;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
+	private static Log _log = LogFactoryUtil.getLog(WallEntryLocalServiceBaseImpl.class);
 	private String _beanIdentifier;
 }

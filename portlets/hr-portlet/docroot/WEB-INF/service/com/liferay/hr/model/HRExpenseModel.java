@@ -49,21 +49,21 @@ public interface HRExpenseModel extends BaseModel<HRExpense>, GroupedModel,
 	 */
 
 	/**
-	 * Gets the primary key of this h r expense.
+	 * Returns the primary key of this h r expense.
 	 *
 	 * @return the primary key of this h r expense
 	 */
 	public long getPrimaryKey();
 
 	/**
-	 * Sets the primary key of this h r expense
+	 * Sets the primary key of this h r expense.
 	 *
 	 * @param primaryKey the primary key of this h r expense
 	 */
 	public void setPrimaryKey(long primaryKey);
 
 	/**
-	 * Gets the hr expense ID of this h r expense.
+	 * Returns the hr expense ID of this h r expense.
 	 *
 	 * @return the hr expense ID of this h r expense
 	 */
@@ -77,7 +77,7 @@ public interface HRExpenseModel extends BaseModel<HRExpense>, GroupedModel,
 	public void setHrExpenseId(long hrExpenseId);
 
 	/**
-	 * Gets the group ID of this h r expense.
+	 * Returns the group ID of this h r expense.
 	 *
 	 * @return the group ID of this h r expense
 	 */
@@ -91,7 +91,7 @@ public interface HRExpenseModel extends BaseModel<HRExpense>, GroupedModel,
 	public void setGroupId(long groupId);
 
 	/**
-	 * Gets the company ID of this h r expense.
+	 * Returns the company ID of this h r expense.
 	 *
 	 * @return the company ID of this h r expense
 	 */
@@ -105,7 +105,7 @@ public interface HRExpenseModel extends BaseModel<HRExpense>, GroupedModel,
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the user ID of this h r expense.
+	 * Returns the user ID of this h r expense.
 	 *
 	 * @return the user ID of this h r expense
 	 */
@@ -119,7 +119,7 @@ public interface HRExpenseModel extends BaseModel<HRExpense>, GroupedModel,
 	public void setUserId(long userId);
 
 	/**
-	 * Gets the user uuid of this h r expense.
+	 * Returns the user uuid of this h r expense.
 	 *
 	 * @return the user uuid of this h r expense
 	 * @throws SystemException if a system exception occurred
@@ -134,7 +134,7 @@ public interface HRExpenseModel extends BaseModel<HRExpense>, GroupedModel,
 	public void setUserUuid(String userUuid);
 
 	/**
-	 * Gets the user name of this h r expense.
+	 * Returns the user name of this h r expense.
 	 *
 	 * @return the user name of this h r expense
 	 */
@@ -149,7 +149,7 @@ public interface HRExpenseModel extends BaseModel<HRExpense>, GroupedModel,
 	public void setUserName(String userName);
 
 	/**
-	 * Gets the create date of this h r expense.
+	 * Returns the create date of this h r expense.
 	 *
 	 * @return the create date of this h r expense
 	 */
@@ -163,7 +163,7 @@ public interface HRExpenseModel extends BaseModel<HRExpense>, GroupedModel,
 	public void setCreateDate(Date createDate);
 
 	/**
-	 * Gets the modified date of this h r expense.
+	 * Returns the modified date of this h r expense.
 	 *
 	 * @return the modified date of this h r expense
 	 */
@@ -177,7 +177,7 @@ public interface HRExpenseModel extends BaseModel<HRExpense>, GroupedModel,
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Gets the hr expense account ID of this h r expense.
+	 * Returns the hr expense account ID of this h r expense.
 	 *
 	 * @return the hr expense account ID of this h r expense
 	 */
@@ -191,7 +191,7 @@ public interface HRExpenseModel extends BaseModel<HRExpense>, GroupedModel,
 	public void setHrExpenseAccountId(long hrExpenseAccountId);
 
 	/**
-	 * Gets the hr expense type ID of this h r expense.
+	 * Returns the hr expense type ID of this h r expense.
 	 *
 	 * @return the hr expense type ID of this h r expense
 	 */
@@ -205,7 +205,7 @@ public interface HRExpenseModel extends BaseModel<HRExpense>, GroupedModel,
 	public void setHrExpenseTypeId(long hrExpenseTypeId);
 
 	/**
-	 * Gets the hr user ID of this h r expense.
+	 * Returns the hr user ID of this h r expense.
 	 *
 	 * @return the hr user ID of this h r expense
 	 */
@@ -219,7 +219,7 @@ public interface HRExpenseModel extends BaseModel<HRExpense>, GroupedModel,
 	public void setHrUserId(long hrUserId);
 
 	/**
-	 * Gets the hr user uuid of this h r expense.
+	 * Returns the hr user uuid of this h r expense.
 	 *
 	 * @return the hr user uuid of this h r expense
 	 * @throws SystemException if a system exception occurred
@@ -234,7 +234,7 @@ public interface HRExpenseModel extends BaseModel<HRExpense>, GroupedModel,
 	public void setHrUserUuid(String hrUserUuid);
 
 	/**
-	 * Gets the expense date of this h r expense.
+	 * Returns the expense date of this h r expense.
 	 *
 	 * @return the expense date of this h r expense
 	 */
@@ -248,7 +248,7 @@ public interface HRExpenseModel extends BaseModel<HRExpense>, GroupedModel,
 	public void setExpenseDate(Date expenseDate);
 
 	/**
-	 * Gets the expense amount of this h r expense.
+	 * Returns the expense amount of this h r expense.
 	 *
 	 * @return the expense amount of this h r expense
 	 */
@@ -262,7 +262,7 @@ public interface HRExpenseModel extends BaseModel<HRExpense>, GroupedModel,
 	public void setExpenseAmount(double expenseAmount);
 
 	/**
-	 * Gets the expense h r expense currency ID of this h r expense.
+	 * Returns the expense h r expense currency ID of this h r expense.
 	 *
 	 * @return the expense h r expense currency ID of this h r expense
 	 */
@@ -276,7 +276,7 @@ public interface HRExpenseModel extends BaseModel<HRExpense>, GroupedModel,
 	public void setExpenseHRExpenseCurrencyId(long expenseHRExpenseCurrencyId);
 
 	/**
-	 * Gets the reimbursement amount of this h r expense.
+	 * Returns the reimbursement amount of this h r expense.
 	 *
 	 * @return the reimbursement amount of this h r expense
 	 */
@@ -290,7 +290,7 @@ public interface HRExpenseModel extends BaseModel<HRExpense>, GroupedModel,
 	public void setReimbursementAmount(double reimbursementAmount);
 
 	/**
-	 * Gets the reimbursement h r expense currency ID of this h r expense.
+	 * Returns the reimbursement h r expense currency ID of this h r expense.
 	 *
 	 * @return the reimbursement h r expense currency ID of this h r expense
 	 */
@@ -305,7 +305,7 @@ public interface HRExpenseModel extends BaseModel<HRExpense>, GroupedModel,
 		long reimbursementHRExpenseCurrencyId);
 
 	/**
-	 * Gets the status of this h r expense.
+	 * Returns the status of this h r expense.
 	 *
 	 * @return the status of this h r expense
 	 */
@@ -319,7 +319,7 @@ public interface HRExpenseModel extends BaseModel<HRExpense>, GroupedModel,
 	public void setStatus(int status);
 
 	/**
-	 * Gets the status by user ID of this h r expense.
+	 * Returns the status by user ID of this h r expense.
 	 *
 	 * @return the status by user ID of this h r expense
 	 */
@@ -333,7 +333,7 @@ public interface HRExpenseModel extends BaseModel<HRExpense>, GroupedModel,
 	public void setStatusByUserId(long statusByUserId);
 
 	/**
-	 * Gets the status by user uuid of this h r expense.
+	 * Returns the status by user uuid of this h r expense.
 	 *
 	 * @return the status by user uuid of this h r expense
 	 * @throws SystemException if a system exception occurred
@@ -348,7 +348,7 @@ public interface HRExpenseModel extends BaseModel<HRExpense>, GroupedModel,
 	public void setStatusByUserUuid(String statusByUserUuid);
 
 	/**
-	 * Gets the status by user name of this h r expense.
+	 * Returns the status by user name of this h r expense.
 	 *
 	 * @return the status by user name of this h r expense
 	 */
@@ -363,7 +363,7 @@ public interface HRExpenseModel extends BaseModel<HRExpense>, GroupedModel,
 	public void setStatusByUserName(String statusByUserName);
 
 	/**
-	 * Gets the status date of this h r expense.
+	 * Returns the status date of this h r expense.
 	 *
 	 * @return the status date of this h r expense
 	 */
@@ -377,7 +377,7 @@ public interface HRExpenseModel extends BaseModel<HRExpense>, GroupedModel,
 	public void setStatusDate(Date statusDate);
 
 	/**
-	 * @deprecated {@link #isApproved}
+	 * @deprecated Renamed to {@link #isApproved()}
 	 */
 	public boolean getApproved();
 

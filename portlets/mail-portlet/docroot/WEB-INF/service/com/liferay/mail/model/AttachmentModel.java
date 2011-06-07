@@ -44,21 +44,21 @@ public interface AttachmentModel extends BaseModel<Attachment> {
 	 */
 
 	/**
-	 * Gets the primary key of this attachment.
+	 * Returns the primary key of this attachment.
 	 *
 	 * @return the primary key of this attachment
 	 */
 	public long getPrimaryKey();
 
 	/**
-	 * Sets the primary key of this attachment
+	 * Sets the primary key of this attachment.
 	 *
 	 * @param primaryKey the primary key of this attachment
 	 */
 	public void setPrimaryKey(long primaryKey);
 
 	/**
-	 * Gets the attachment ID of this attachment.
+	 * Returns the attachment ID of this attachment.
 	 *
 	 * @return the attachment ID of this attachment
 	 */
@@ -72,7 +72,7 @@ public interface AttachmentModel extends BaseModel<Attachment> {
 	public void setAttachmentId(long attachmentId);
 
 	/**
-	 * Gets the company ID of this attachment.
+	 * Returns the company ID of this attachment.
 	 *
 	 * @return the company ID of this attachment
 	 */
@@ -86,7 +86,7 @@ public interface AttachmentModel extends BaseModel<Attachment> {
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the user ID of this attachment.
+	 * Returns the user ID of this attachment.
 	 *
 	 * @return the user ID of this attachment
 	 */
@@ -100,7 +100,7 @@ public interface AttachmentModel extends BaseModel<Attachment> {
 	public void setUserId(long userId);
 
 	/**
-	 * Gets the user uuid of this attachment.
+	 * Returns the user uuid of this attachment.
 	 *
 	 * @return the user uuid of this attachment
 	 * @throws SystemException if a system exception occurred
@@ -115,7 +115,7 @@ public interface AttachmentModel extends BaseModel<Attachment> {
 	public void setUserUuid(String userUuid);
 
 	/**
-	 * Gets the account ID of this attachment.
+	 * Returns the account ID of this attachment.
 	 *
 	 * @return the account ID of this attachment
 	 */
@@ -129,7 +129,7 @@ public interface AttachmentModel extends BaseModel<Attachment> {
 	public void setAccountId(long accountId);
 
 	/**
-	 * Gets the folder ID of this attachment.
+	 * Returns the folder ID of this attachment.
 	 *
 	 * @return the folder ID of this attachment
 	 */
@@ -143,7 +143,7 @@ public interface AttachmentModel extends BaseModel<Attachment> {
 	public void setFolderId(long folderId);
 
 	/**
-	 * Gets the message ID of this attachment.
+	 * Returns the message ID of this attachment.
 	 *
 	 * @return the message ID of this attachment
 	 */
@@ -157,7 +157,7 @@ public interface AttachmentModel extends BaseModel<Attachment> {
 	public void setMessageId(long messageId);
 
 	/**
-	 * Gets the content path of this attachment.
+	 * Returns the content path of this attachment.
 	 *
 	 * @return the content path of this attachment
 	 */
@@ -172,7 +172,7 @@ public interface AttachmentModel extends BaseModel<Attachment> {
 	public void setContentPath(String contentPath);
 
 	/**
-	 * Gets the file name of this attachment.
+	 * Returns the file name of this attachment.
 	 *
 	 * @return the file name of this attachment
 	 */
@@ -187,7 +187,7 @@ public interface AttachmentModel extends BaseModel<Attachment> {
 	public void setFileName(String fileName);
 
 	/**
-	 * Gets the size of this attachment.
+	 * Returns the size of this attachment.
 	 *
 	 * @return the size of this attachment
 	 */

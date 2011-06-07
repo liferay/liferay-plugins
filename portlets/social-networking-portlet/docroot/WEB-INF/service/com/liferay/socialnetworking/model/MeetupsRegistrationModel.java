@@ -48,21 +48,21 @@ public interface MeetupsRegistrationModel extends AuditedModel,
 	 */
 
 	/**
-	 * Gets the primary key of this meetups registration.
+	 * Returns the primary key of this meetups registration.
 	 *
 	 * @return the primary key of this meetups registration
 	 */
 	public long getPrimaryKey();
 
 	/**
-	 * Sets the primary key of this meetups registration
+	 * Sets the primary key of this meetups registration.
 	 *
 	 * @param primaryKey the primary key of this meetups registration
 	 */
 	public void setPrimaryKey(long primaryKey);
 
 	/**
-	 * Gets the meetups registration ID of this meetups registration.
+	 * Returns the meetups registration ID of this meetups registration.
 	 *
 	 * @return the meetups registration ID of this meetups registration
 	 */
@@ -76,7 +76,7 @@ public interface MeetupsRegistrationModel extends AuditedModel,
 	public void setMeetupsRegistrationId(long meetupsRegistrationId);
 
 	/**
-	 * Gets the company ID of this meetups registration.
+	 * Returns the company ID of this meetups registration.
 	 *
 	 * @return the company ID of this meetups registration
 	 */
@@ -90,7 +90,7 @@ public interface MeetupsRegistrationModel extends AuditedModel,
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the user ID of this meetups registration.
+	 * Returns the user ID of this meetups registration.
 	 *
 	 * @return the user ID of this meetups registration
 	 */
@@ -104,7 +104,7 @@ public interface MeetupsRegistrationModel extends AuditedModel,
 	public void setUserId(long userId);
 
 	/**
-	 * Gets the user uuid of this meetups registration.
+	 * Returns the user uuid of this meetups registration.
 	 *
 	 * @return the user uuid of this meetups registration
 	 * @throws SystemException if a system exception occurred
@@ -119,7 +119,7 @@ public interface MeetupsRegistrationModel extends AuditedModel,
 	public void setUserUuid(String userUuid);
 
 	/**
-	 * Gets the user name of this meetups registration.
+	 * Returns the user name of this meetups registration.
 	 *
 	 * @return the user name of this meetups registration
 	 */
@@ -134,7 +134,7 @@ public interface MeetupsRegistrationModel extends AuditedModel,
 	public void setUserName(String userName);
 
 	/**
-	 * Gets the create date of this meetups registration.
+	 * Returns the create date of this meetups registration.
 	 *
 	 * @return the create date of this meetups registration
 	 */
@@ -148,7 +148,7 @@ public interface MeetupsRegistrationModel extends AuditedModel,
 	public void setCreateDate(Date createDate);
 
 	/**
-	 * Gets the modified date of this meetups registration.
+	 * Returns the modified date of this meetups registration.
 	 *
 	 * @return the modified date of this meetups registration
 	 */
@@ -162,7 +162,7 @@ public interface MeetupsRegistrationModel extends AuditedModel,
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Gets the meetups entry ID of this meetups registration.
+	 * Returns the meetups entry ID of this meetups registration.
 	 *
 	 * @return the meetups entry ID of this meetups registration
 	 */
@@ -176,7 +176,7 @@ public interface MeetupsRegistrationModel extends AuditedModel,
 	public void setMeetupsEntryId(long meetupsEntryId);
 
 	/**
-	 * Gets the status of this meetups registration.
+	 * Returns the status of this meetups registration.
 	 *
 	 * @return the status of this meetups registration
 	 */
@@ -190,7 +190,7 @@ public interface MeetupsRegistrationModel extends AuditedModel,
 	public void setStatus(int status);
 
 	/**
-	 * Gets the comments of this meetups registration.
+	 * Returns the comments of this meetups registration.
 	 *
 	 * @return the comments of this meetups registration
 	 */

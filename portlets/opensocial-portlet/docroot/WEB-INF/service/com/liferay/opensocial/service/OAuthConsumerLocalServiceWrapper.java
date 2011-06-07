@@ -33,7 +33,7 @@ public class OAuthConsumerLocalServiceWrapper
 	/**
 	* Adds the o auth consumer to the database. Also notifies the appropriate model listeners.
 	*
-	* @param oAuthConsumer the o auth consumer to add
+	* @param oAuthConsumer the o auth consumer
 	* @return the o auth consumer that was added
 	* @throws SystemException if a system exception occurred
 	*/
@@ -57,7 +57,7 @@ public class OAuthConsumerLocalServiceWrapper
 	/**
 	* Deletes the o auth consumer with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param oAuthConsumerId the primary key of the o auth consumer to delete
+	* @param oAuthConsumerId the primary key of the o auth consumer
 	* @throws PortalException if a o auth consumer with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -70,7 +70,7 @@ public class OAuthConsumerLocalServiceWrapper
 	/**
 	* Deletes the o auth consumer from the database. Also notifies the appropriate model listeners.
 	*
-	* @param oAuthConsumer the o auth consumer to delete
+	* @param oAuthConsumer the o auth consumer
 	* @throws SystemException if a system exception occurred
 	*/
 	public void deleteOAuthConsumer(
@@ -82,7 +82,7 @@ public class OAuthConsumerLocalServiceWrapper
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
 	*
-	* @param dynamicQuery the dynamic query to search with
+	* @param dynamicQuery the dynamic query
 	* @return the matching rows
 	* @throws SystemException if a system exception occurred
 	*/
@@ -100,9 +100,9 @@ public class OAuthConsumerLocalServiceWrapper
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param dynamicQuery the dynamic query to search with
-	* @param start the lower bound of the range of model instances to return
-	* @param end the upper bound of the range of model instances to return (not inclusive)
+	* @param dynamicQuery the dynamic query
+	* @param start the lower bound of the range of model instances
+	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
 	* @throws SystemException if a system exception occurred
 	*/
@@ -120,9 +120,9 @@ public class OAuthConsumerLocalServiceWrapper
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param dynamicQuery the dynamic query to search with
-	* @param start the lower bound of the range of model instances to return
-	* @param end the upper bound of the range of model instances to return (not inclusive)
+	* @param dynamicQuery the dynamic query
+	* @param start the lower bound of the range of model instances
+	* @param end the upper bound of the range of model instances (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
 	* @throws SystemException if a system exception occurred
@@ -138,9 +138,9 @@ public class OAuthConsumerLocalServiceWrapper
 	}
 
 	/**
-	* Counts the number of rows that match the dynamic query.
+	* Returns the number of rows that match the dynamic query.
 	*
-	* @param dynamicQuery the dynamic query to search with
+	* @param dynamicQuery the dynamic query
 	* @return the number of rows that match the dynamic query
 	* @throws SystemException if a system exception occurred
 	*/
@@ -151,9 +151,9 @@ public class OAuthConsumerLocalServiceWrapper
 	}
 
 	/**
-	* Gets the o auth consumer with the primary key.
+	* Returns the o auth consumer with the primary key.
 	*
-	* @param oAuthConsumerId the primary key of the o auth consumer to get
+	* @param oAuthConsumerId the primary key of the o auth consumer
 	* @return the o auth consumer
 	* @throws PortalException if a o auth consumer with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -166,14 +166,14 @@ public class OAuthConsumerLocalServiceWrapper
 	}
 
 	/**
-	* Gets a range of all the o auth consumers.
+	* Returns a range of all the o auth consumers.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of o auth consumers to return
-	* @param end the upper bound of the range of o auth consumers to return (not inclusive)
+	* @param start the lower bound of the range of o auth consumers
+	* @param end the upper bound of the range of o auth consumers (not inclusive)
 	* @return the range of o auth consumers
 	* @throws SystemException if a system exception occurred
 	*/
@@ -184,7 +184,7 @@ public class OAuthConsumerLocalServiceWrapper
 	}
 
 	/**
-	* Gets the number of o auth consumers.
+	* Returns the number of o auth consumers.
 	*
 	* @return the number of o auth consumers
 	* @throws SystemException if a system exception occurred
@@ -197,7 +197,7 @@ public class OAuthConsumerLocalServiceWrapper
 	/**
 	* Updates the o auth consumer in the database. Also notifies the appropriate model listeners.
 	*
-	* @param oAuthConsumer the o auth consumer to update
+	* @param oAuthConsumer the o auth consumer
 	* @return the o auth consumer that was updated
 	* @throws SystemException if a system exception occurred
 	*/
@@ -210,7 +210,7 @@ public class OAuthConsumerLocalServiceWrapper
 	/**
 	* Updates the o auth consumer in the database. Also notifies the appropriate model listeners.
 	*
-	* @param oAuthConsumer the o auth consumer to update
+	* @param oAuthConsumer the o auth consumer
 	* @param merge whether to merge the o auth consumer with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
 	* @return the o auth consumer that was updated
 	* @throws SystemException if a system exception occurred
@@ -223,7 +223,7 @@ public class OAuthConsumerLocalServiceWrapper
 	}
 
 	/**
-	* Gets the Spring bean ID for this bean.
+	* Returns the Spring bean ID for this bean.
 	*
 	* @return the Spring bean ID for this bean
 	*/

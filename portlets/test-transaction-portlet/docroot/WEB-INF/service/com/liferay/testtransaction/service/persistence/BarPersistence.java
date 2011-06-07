@@ -41,14 +41,14 @@ public interface BarPersistence extends BasePersistence<Bar> {
 	/**
 	* Caches the bar in the entity cache if it is enabled.
 	*
-	* @param bar the bar to cache
+	* @param bar the bar
 	*/
 	public void cacheResult(com.liferay.testtransaction.model.Bar bar);
 
 	/**
 	* Caches the bars in the entity cache if it is enabled.
 	*
-	* @param bars the bars to cache
+	* @param bars the bars
 	*/
 	public void cacheResult(
 		java.util.List<com.liferay.testtransaction.model.Bar> bars);
@@ -64,7 +64,7 @@ public interface BarPersistence extends BasePersistence<Bar> {
 	/**
 	* Removes the bar with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param barId the primary key of the bar to remove
+	* @param barId the primary key of the bar
 	* @return the bar that was removed
 	* @throws com.liferay.testtransaction.NoSuchBarException if a bar with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -78,9 +78,9 @@ public interface BarPersistence extends BasePersistence<Bar> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the bar with the primary key or throws a {@link com.liferay.testtransaction.NoSuchBarException} if it could not be found.
+	* Returns the bar with the primary key or throws a {@link com.liferay.testtransaction.NoSuchBarException} if it could not be found.
 	*
-	* @param barId the primary key of the bar to find
+	* @param barId the primary key of the bar
 	* @return the bar
 	* @throws com.liferay.testtransaction.NoSuchBarException if a bar with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -90,9 +90,9 @@ public interface BarPersistence extends BasePersistence<Bar> {
 			com.liferay.testtransaction.NoSuchBarException;
 
 	/**
-	* Finds the bar with the primary key or returns <code>null</code> if it could not be found.
+	* Returns the bar with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param barId the primary key of the bar to find
+	* @param barId the primary key of the bar
 	* @return the bar, or <code>null</code> if a bar with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -100,9 +100,9 @@ public interface BarPersistence extends BasePersistence<Bar> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds all the bars where text = &#63;.
+	* Returns all the bars where text = &#63;.
 	*
-	* @param text the text to search with
+	* @param text the text
 	* @return the matching bars
 	* @throws SystemException if a system exception occurred
 	*/
@@ -111,15 +111,15 @@ public interface BarPersistence extends BasePersistence<Bar> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds a range of all the bars where text = &#63;.
+	* Returns a range of all the bars where text = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param text the text to search with
-	* @param start the lower bound of the range of bars to return
-	* @param end the upper bound of the range of bars to return (not inclusive)
+	* @param text the text
+	* @param start the lower bound of the range of bars
+	* @param end the upper bound of the range of bars (not inclusive)
 	* @return the range of matching bars
 	* @throws SystemException if a system exception occurred
 	*/
@@ -128,15 +128,15 @@ public interface BarPersistence extends BasePersistence<Bar> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds an ordered range of all the bars where text = &#63;.
+	* Returns an ordered range of all the bars where text = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param text the text to search with
-	* @param start the lower bound of the range of bars to return
-	* @param end the upper bound of the range of bars to return (not inclusive)
+	* @param text the text
+	* @param start the lower bound of the range of bars
+	* @param end the upper bound of the range of bars (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching bars
 	* @throws SystemException if a system exception occurred
@@ -147,13 +147,13 @@ public interface BarPersistence extends BasePersistence<Bar> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the first bar in the ordered set where text = &#63;.
+	* Returns the first bar in the ordered set where text = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param text the text to search with
+	* @param text the text
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching bar
 	* @throws com.liferay.testtransaction.NoSuchBarException if a matching bar could not be found
@@ -166,13 +166,13 @@ public interface BarPersistence extends BasePersistence<Bar> {
 			com.liferay.testtransaction.NoSuchBarException;
 
 	/**
-	* Finds the last bar in the ordered set where text = &#63;.
+	* Returns the last bar in the ordered set where text = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param text the text to search with
+	* @param text the text
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching bar
 	* @throws com.liferay.testtransaction.NoSuchBarException if a matching bar could not be found
@@ -185,14 +185,14 @@ public interface BarPersistence extends BasePersistence<Bar> {
 			com.liferay.testtransaction.NoSuchBarException;
 
 	/**
-	* Finds the bars before and after the current bar in the ordered set where text = &#63;.
+	* Returns the bars before and after the current bar in the ordered set where text = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
 	* @param barId the primary key of the current bar
-	* @param text the text to search with
+	* @param text the text
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next bar
 	* @throws com.liferay.testtransaction.NoSuchBarException if a bar with the primary key could not be found
@@ -205,7 +205,7 @@ public interface BarPersistence extends BasePersistence<Bar> {
 			com.liferay.testtransaction.NoSuchBarException;
 
 	/**
-	* Finds all the bars.
+	* Returns all the bars.
 	*
 	* @return the bars
 	* @throws SystemException if a system exception occurred
@@ -214,14 +214,14 @@ public interface BarPersistence extends BasePersistence<Bar> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds a range of all the bars.
+	* Returns a range of all the bars.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of bars to return
-	* @param end the upper bound of the range of bars to return (not inclusive)
+	* @param start the lower bound of the range of bars
+	* @param end the upper bound of the range of bars (not inclusive)
 	* @return the range of bars
 	* @throws SystemException if a system exception occurred
 	*/
@@ -230,14 +230,14 @@ public interface BarPersistence extends BasePersistence<Bar> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds an ordered range of all the bars.
+	* Returns an ordered range of all the bars.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of bars to return
-	* @param end the upper bound of the range of bars to return (not inclusive)
+	* @param start the lower bound of the range of bars
+	* @param end the upper bound of the range of bars (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of bars
 	* @throws SystemException if a system exception occurred
@@ -250,7 +250,7 @@ public interface BarPersistence extends BasePersistence<Bar> {
 	/**
 	* Removes all the bars where text = &#63; from the database.
 	*
-	* @param text the text to search with
+	* @param text the text
 	* @throws SystemException if a system exception occurred
 	*/
 	public void removeByText(java.lang.String text)
@@ -265,9 +265,9 @@ public interface BarPersistence extends BasePersistence<Bar> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Counts all the bars where text = &#63;.
+	* Returns the number of bars where text = &#63;.
 	*
-	* @param text the text to search with
+	* @param text the text
 	* @return the number of matching bars
 	* @throws SystemException if a system exception occurred
 	*/
@@ -275,7 +275,7 @@ public interface BarPersistence extends BasePersistence<Bar> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Counts all the bars.
+	* Returns the number of bars.
 	*
 	* @return the number of bars
 	* @throws SystemException if a system exception occurred

@@ -37,7 +37,7 @@ public class MemberRequestWrapper implements MemberRequest {
 	}
 
 	/**
-	* Gets the primary key of this member request.
+	* Returns the primary key of this member request.
 	*
 	* @return the primary key of this member request
 	*/
@@ -46,7 +46,7 @@ public class MemberRequestWrapper implements MemberRequest {
 	}
 
 	/**
-	* Sets the primary key of this member request
+	* Sets the primary key of this member request.
 	*
 	* @param primaryKey the primary key of this member request
 	*/
@@ -55,7 +55,7 @@ public class MemberRequestWrapper implements MemberRequest {
 	}
 
 	/**
-	* Gets the member request ID of this member request.
+	* Returns the member request ID of this member request.
 	*
 	* @return the member request ID of this member request
 	*/
@@ -73,7 +73,7 @@ public class MemberRequestWrapper implements MemberRequest {
 	}
 
 	/**
-	* Gets the group ID of this member request.
+	* Returns the group ID of this member request.
 	*
 	* @return the group ID of this member request
 	*/
@@ -91,7 +91,7 @@ public class MemberRequestWrapper implements MemberRequest {
 	}
 
 	/**
-	* Gets the company ID of this member request.
+	* Returns the company ID of this member request.
 	*
 	* @return the company ID of this member request
 	*/
@@ -109,7 +109,7 @@ public class MemberRequestWrapper implements MemberRequest {
 	}
 
 	/**
-	* Gets the user ID of this member request.
+	* Returns the user ID of this member request.
 	*
 	* @return the user ID of this member request
 	*/
@@ -127,7 +127,7 @@ public class MemberRequestWrapper implements MemberRequest {
 	}
 
 	/**
-	* Gets the user uuid of this member request.
+	* Returns the user uuid of this member request.
 	*
 	* @return the user uuid of this member request
 	* @throws SystemException if a system exception occurred
@@ -147,7 +147,7 @@ public class MemberRequestWrapper implements MemberRequest {
 	}
 
 	/**
-	* Gets the user name of this member request.
+	* Returns the user name of this member request.
 	*
 	* @return the user name of this member request
 	*/
@@ -165,7 +165,7 @@ public class MemberRequestWrapper implements MemberRequest {
 	}
 
 	/**
-	* Gets the create date of this member request.
+	* Returns the create date of this member request.
 	*
 	* @return the create date of this member request
 	*/
@@ -183,7 +183,7 @@ public class MemberRequestWrapper implements MemberRequest {
 	}
 
 	/**
-	* Gets the modified date of this member request.
+	* Returns the modified date of this member request.
 	*
 	* @return the modified date of this member request
 	*/
@@ -201,7 +201,7 @@ public class MemberRequestWrapper implements MemberRequest {
 	}
 
 	/**
-	* Gets the key of this member request.
+	* Returns the key of this member request.
 	*
 	* @return the key of this member request
 	*/
@@ -219,7 +219,7 @@ public class MemberRequestWrapper implements MemberRequest {
 	}
 
 	/**
-	* Gets the receiver user ID of this member request.
+	* Returns the receiver user ID of this member request.
 	*
 	* @return the receiver user ID of this member request
 	*/
@@ -237,7 +237,7 @@ public class MemberRequestWrapper implements MemberRequest {
 	}
 
 	/**
-	* Gets the receiver user uuid of this member request.
+	* Returns the receiver user uuid of this member request.
 	*
 	* @return the receiver user uuid of this member request
 	* @throws SystemException if a system exception occurred
@@ -257,7 +257,7 @@ public class MemberRequestWrapper implements MemberRequest {
 	}
 
 	/**
-	* Gets the invited role ID of this member request.
+	* Returns the invited role ID of this member request.
 	*
 	* @return the invited role ID of this member request
 	*/
@@ -275,7 +275,7 @@ public class MemberRequestWrapper implements MemberRequest {
 	}
 
 	/**
-	* Gets the invited team ID of this member request.
+	* Returns the invited team ID of this member request.
 	*
 	* @return the invited team ID of this member request
 	*/
@@ -293,7 +293,7 @@ public class MemberRequestWrapper implements MemberRequest {
 	}
 
 	/**
-	* Gets the status of this member request.
+	* Returns the status of this member request.
 	*
 	* @return the status of this member request
 	*/

@@ -45,7 +45,7 @@ public interface JIRAChangeGroupLocalService {
 	/**
 	* Adds the j i r a change group to the database. Also notifies the appropriate model listeners.
 	*
-	* @param jiraChangeGroup the j i r a change group to add
+	* @param jiraChangeGroup the j i r a change group
 	* @return the j i r a change group that was added
 	* @throws SystemException if a system exception occurred
 	*/
@@ -65,7 +65,7 @@ public interface JIRAChangeGroupLocalService {
 	/**
 	* Deletes the j i r a change group with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param jiraChangeGroupId the primary key of the j i r a change group to delete
+	* @param jiraChangeGroupId the primary key of the j i r a change group
 	* @throws PortalException if a j i r a change group with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -76,7 +76,7 @@ public interface JIRAChangeGroupLocalService {
 	/**
 	* Deletes the j i r a change group from the database. Also notifies the appropriate model listeners.
 	*
-	* @param jiraChangeGroup the j i r a change group to delete
+	* @param jiraChangeGroup the j i r a change group
 	* @throws SystemException if a system exception occurred
 	*/
 	public void deleteJIRAChangeGroup(
@@ -86,7 +86,7 @@ public interface JIRAChangeGroupLocalService {
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
 	*
-	* @param dynamicQuery the dynamic query to search with
+	* @param dynamicQuery the dynamic query
 	* @return the matching rows
 	* @throws SystemException if a system exception occurred
 	*/
@@ -102,9 +102,9 @@ public interface JIRAChangeGroupLocalService {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param dynamicQuery the dynamic query to search with
-	* @param start the lower bound of the range of model instances to return
-	* @param end the upper bound of the range of model instances to return (not inclusive)
+	* @param dynamicQuery the dynamic query
+	* @param start the lower bound of the range of model instances
+	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
 	* @throws SystemException if a system exception occurred
 	*/
@@ -120,9 +120,9 @@ public interface JIRAChangeGroupLocalService {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param dynamicQuery the dynamic query to search with
-	* @param start the lower bound of the range of model instances to return
-	* @param end the upper bound of the range of model instances to return (not inclusive)
+	* @param dynamicQuery the dynamic query
+	* @param start the lower bound of the range of model instances
+	* @param end the upper bound of the range of model instances (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
 	* @throws SystemException if a system exception occurred
@@ -135,9 +135,9 @@ public interface JIRAChangeGroupLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Counts the number of rows that match the dynamic query.
+	* Returns the number of rows that match the dynamic query.
 	*
-	* @param dynamicQuery the dynamic query to search with
+	* @param dynamicQuery the dynamic query
 	* @return the number of rows that match the dynamic query
 	* @throws SystemException if a system exception occurred
 	*/
@@ -146,9 +146,9 @@ public interface JIRAChangeGroupLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Gets the j i r a change group with the primary key.
+	* Returns the j i r a change group with the primary key.
 	*
-	* @param jiraChangeGroupId the primary key of the j i r a change group to get
+	* @param jiraChangeGroupId the primary key of the j i r a change group
 	* @return the j i r a change group
 	* @throws PortalException if a j i r a change group with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -160,14 +160,14 @@ public interface JIRAChangeGroupLocalService {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Gets a range of all the j i r a change groups.
+	* Returns a range of all the j i r a change groups.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of j i r a change groups to return
-	* @param end the upper bound of the range of j i r a change groups to return (not inclusive)
+	* @param start the lower bound of the range of j i r a change groups
+	* @param end the upper bound of the range of j i r a change groups (not inclusive)
 	* @return the range of j i r a change groups
 	* @throws SystemException if a system exception occurred
 	*/
@@ -177,7 +177,7 @@ public interface JIRAChangeGroupLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Gets the number of j i r a change groups.
+	* Returns the number of j i r a change groups.
 	*
 	* @return the number of j i r a change groups
 	* @throws SystemException if a system exception occurred
@@ -189,7 +189,7 @@ public interface JIRAChangeGroupLocalService {
 	/**
 	* Updates the j i r a change group in the database. Also notifies the appropriate model listeners.
 	*
-	* @param jiraChangeGroup the j i r a change group to update
+	* @param jiraChangeGroup the j i r a change group
 	* @return the j i r a change group that was updated
 	* @throws SystemException if a system exception occurred
 	*/
@@ -200,7 +200,7 @@ public interface JIRAChangeGroupLocalService {
 	/**
 	* Updates the j i r a change group in the database. Also notifies the appropriate model listeners.
 	*
-	* @param jiraChangeGroup the j i r a change group to update
+	* @param jiraChangeGroup the j i r a change group
 	* @param merge whether to merge the j i r a change group with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
 	* @return the j i r a change group that was updated
 	* @throws SystemException if a system exception occurred
@@ -211,7 +211,7 @@ public interface JIRAChangeGroupLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Gets the Spring bean ID for this bean.
+	* Returns the Spring bean ID for this bean.
 	*
 	* @return the Spring bean ID for this bean
 	*/

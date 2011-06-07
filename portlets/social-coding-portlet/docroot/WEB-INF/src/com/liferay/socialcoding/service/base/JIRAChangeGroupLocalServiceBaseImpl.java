@@ -23,6 +23,11 @@ import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.search.Indexer;
+import com.liferay.portal.kernel.search.IndexerRegistryUtil;
+import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.service.ResourceLocalService;
 import com.liferay.portal.service.ResourceService;
@@ -75,7 +80,7 @@ public abstract class JIRAChangeGroupLocalServiceBaseImpl
 	/**
 	 * Adds the j i r a change group to the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param jiraChangeGroup the j i r a change group to add
+	 * @param jiraChangeGroup the j i r a change group
 	 * @return the j i r a change group that was added
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -83,7 +88,23 @@ public abstract class JIRAChangeGroupLocalServiceBaseImpl
 		throws SystemException {
 		jiraChangeGroup.setNew(true);
 
-		return jiraChangeGroupPersistence.update(jiraChangeGroup, false);
+		jiraChangeGroup = jiraChangeGroupPersistence.update(jiraChangeGroup,
+				false);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.reindex(jiraChangeGroup);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
+
+		return jiraChangeGroup;
 	}
 
 	/**
@@ -99,30 +120,56 @@ public abstract class JIRAChangeGroupLocalServiceBaseImpl
 	/**
 	 * Deletes the j i r a change group with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param jiraChangeGroupId the primary key of the j i r a change group to delete
+	 * @param jiraChangeGroupId the primary key of the j i r a change group
 	 * @throws PortalException if a j i r a change group with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void deleteJIRAChangeGroup(long jiraChangeGroupId)
 		throws PortalException, SystemException {
-		jiraChangeGroupPersistence.remove(jiraChangeGroupId);
+		JIRAChangeGroup jiraChangeGroup = jiraChangeGroupPersistence.remove(jiraChangeGroupId);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.delete(jiraChangeGroup);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
 	}
 
 	/**
 	 * Deletes the j i r a change group from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param jiraChangeGroup the j i r a change group to delete
+	 * @param jiraChangeGroup the j i r a change group
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void deleteJIRAChangeGroup(JIRAChangeGroup jiraChangeGroup)
 		throws SystemException {
 		jiraChangeGroupPersistence.remove(jiraChangeGroup);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.delete(jiraChangeGroup);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
 	}
 
 	/**
 	 * Performs a dynamic query on the database and returns the matching rows.
 	 *
-	 * @param dynamicQuery the dynamic query to search with
+	 * @param dynamicQuery the dynamic query
 	 * @return the matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -139,9 +186,9 @@ public abstract class JIRAChangeGroupLocalServiceBaseImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param dynamicQuery the dynamic query to search with
-	 * @param start the lower bound of the range of model instances to return
-	 * @param end the upper bound of the range of model instances to return (not inclusive)
+	 * @param dynamicQuery the dynamic query
+	 * @param start the lower bound of the range of model instances
+	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @return the range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -159,9 +206,9 @@ public abstract class JIRAChangeGroupLocalServiceBaseImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param dynamicQuery the dynamic query to search with
-	 * @param start the lower bound of the range of model instances to return
-	 * @param end the upper bound of the range of model instances to return (not inclusive)
+	 * @param dynamicQuery the dynamic query
+	 * @param start the lower bound of the range of model instances
+	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching rows
 	 * @throws SystemException if a system exception occurred
@@ -174,9 +221,9 @@ public abstract class JIRAChangeGroupLocalServiceBaseImpl
 	}
 
 	/**
-	 * Counts the number of rows that match the dynamic query.
+	 * Returns the number of rows that match the dynamic query.
 	 *
-	 * @param dynamicQuery the dynamic query to search with
+	 * @param dynamicQuery the dynamic query
 	 * @return the number of rows that match the dynamic query
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -186,9 +233,9 @@ public abstract class JIRAChangeGroupLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the j i r a change group with the primary key.
+	 * Returns the j i r a change group with the primary key.
 	 *
-	 * @param jiraChangeGroupId the primary key of the j i r a change group to get
+	 * @param jiraChangeGroupId the primary key of the j i r a change group
 	 * @return the j i r a change group
 	 * @throws PortalException if a j i r a change group with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -199,14 +246,14 @@ public abstract class JIRAChangeGroupLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets a range of all the j i r a change groups.
+	 * Returns a range of all the j i r a change groups.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of j i r a change groups to return
-	 * @param end the upper bound of the range of j i r a change groups to return (not inclusive)
+	 * @param start the lower bound of the range of j i r a change groups
+	 * @param end the upper bound of the range of j i r a change groups (not inclusive)
 	 * @return the range of j i r a change groups
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -216,7 +263,7 @@ public abstract class JIRAChangeGroupLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the number of j i r a change groups.
+	 * Returns the number of j i r a change groups.
 	 *
 	 * @return the number of j i r a change groups
 	 * @throws SystemException if a system exception occurred
@@ -228,21 +275,19 @@ public abstract class JIRAChangeGroupLocalServiceBaseImpl
 	/**
 	 * Updates the j i r a change group in the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param jiraChangeGroup the j i r a change group to update
+	 * @param jiraChangeGroup the j i r a change group
 	 * @return the j i r a change group that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
 	public JIRAChangeGroup updateJIRAChangeGroup(
 		JIRAChangeGroup jiraChangeGroup) throws SystemException {
-		jiraChangeGroup.setNew(false);
-
-		return jiraChangeGroupPersistence.update(jiraChangeGroup, true);
+		return updateJIRAChangeGroup(jiraChangeGroup, true);
 	}
 
 	/**
 	 * Updates the j i r a change group in the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param jiraChangeGroup the j i r a change group to update
+	 * @param jiraChangeGroup the j i r a change group
 	 * @param merge whether to merge the j i r a change group with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
 	 * @return the j i r a change group that was updated
 	 * @throws SystemException if a system exception occurred
@@ -252,11 +297,27 @@ public abstract class JIRAChangeGroupLocalServiceBaseImpl
 		throws SystemException {
 		jiraChangeGroup.setNew(false);
 
-		return jiraChangeGroupPersistence.update(jiraChangeGroup, merge);
+		jiraChangeGroup = jiraChangeGroupPersistence.update(jiraChangeGroup,
+				merge);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.reindex(jiraChangeGroup);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
+
+		return jiraChangeGroup;
 	}
 
 	/**
-	 * Gets the j i r a action local service.
+	 * Returns the j i r a action local service.
 	 *
 	 * @return the j i r a action local service
 	 */
@@ -275,7 +336,7 @@ public abstract class JIRAChangeGroupLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the j i r a action persistence.
+	 * Returns the j i r a action persistence.
 	 *
 	 * @return the j i r a action persistence
 	 */
@@ -294,7 +355,7 @@ public abstract class JIRAChangeGroupLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the j i r a action finder.
+	 * Returns the j i r a action finder.
 	 *
 	 * @return the j i r a action finder
 	 */
@@ -312,7 +373,7 @@ public abstract class JIRAChangeGroupLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the j i r a change group local service.
+	 * Returns the j i r a change group local service.
 	 *
 	 * @return the j i r a change group local service
 	 */
@@ -331,7 +392,7 @@ public abstract class JIRAChangeGroupLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the j i r a change group persistence.
+	 * Returns the j i r a change group persistence.
 	 *
 	 * @return the j i r a change group persistence
 	 */
@@ -350,7 +411,7 @@ public abstract class JIRAChangeGroupLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the j i r a change group finder.
+	 * Returns the j i r a change group finder.
 	 *
 	 * @return the j i r a change group finder
 	 */
@@ -369,7 +430,7 @@ public abstract class JIRAChangeGroupLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the j i r a change item local service.
+	 * Returns the j i r a change item local service.
 	 *
 	 * @return the j i r a change item local service
 	 */
@@ -388,7 +449,7 @@ public abstract class JIRAChangeGroupLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the j i r a change item persistence.
+	 * Returns the j i r a change item persistence.
 	 *
 	 * @return the j i r a change item persistence
 	 */
@@ -407,7 +468,7 @@ public abstract class JIRAChangeGroupLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the j i r a issue local service.
+	 * Returns the j i r a issue local service.
 	 *
 	 * @return the j i r a issue local service
 	 */
@@ -426,7 +487,7 @@ public abstract class JIRAChangeGroupLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the j i r a issue persistence.
+	 * Returns the j i r a issue persistence.
 	 *
 	 * @return the j i r a issue persistence
 	 */
@@ -445,7 +506,7 @@ public abstract class JIRAChangeGroupLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the j i r a issue finder.
+	 * Returns the j i r a issue finder.
 	 *
 	 * @return the j i r a issue finder
 	 */
@@ -463,7 +524,7 @@ public abstract class JIRAChangeGroupLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the s v n repository local service.
+	 * Returns the s v n repository local service.
 	 *
 	 * @return the s v n repository local service
 	 */
@@ -482,7 +543,7 @@ public abstract class JIRAChangeGroupLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the s v n repository persistence.
+	 * Returns the s v n repository persistence.
 	 *
 	 * @return the s v n repository persistence
 	 */
@@ -501,7 +562,7 @@ public abstract class JIRAChangeGroupLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the s v n revision local service.
+	 * Returns the s v n revision local service.
 	 *
 	 * @return the s v n revision local service
 	 */
@@ -520,7 +581,7 @@ public abstract class JIRAChangeGroupLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the s v n revision persistence.
+	 * Returns the s v n revision persistence.
 	 *
 	 * @return the s v n revision persistence
 	 */
@@ -539,7 +600,7 @@ public abstract class JIRAChangeGroupLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the counter local service.
+	 * Returns the counter local service.
 	 *
 	 * @return the counter local service
 	 */
@@ -557,7 +618,7 @@ public abstract class JIRAChangeGroupLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the resource local service.
+	 * Returns the resource local service.
 	 *
 	 * @return the resource local service
 	 */
@@ -576,7 +637,7 @@ public abstract class JIRAChangeGroupLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the resource remote service.
+	 * Returns the resource remote service.
 	 *
 	 * @return the resource remote service
 	 */
@@ -594,7 +655,7 @@ public abstract class JIRAChangeGroupLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the resource persistence.
+	 * Returns the resource persistence.
 	 *
 	 * @return the resource persistence
 	 */
@@ -612,7 +673,7 @@ public abstract class JIRAChangeGroupLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the user local service.
+	 * Returns the user local service.
 	 *
 	 * @return the user local service
 	 */
@@ -630,7 +691,7 @@ public abstract class JIRAChangeGroupLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the user remote service.
+	 * Returns the user remote service.
 	 *
 	 * @return the user remote service
 	 */
@@ -648,7 +709,7 @@ public abstract class JIRAChangeGroupLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the user persistence.
+	 * Returns the user persistence.
 	 *
 	 * @return the user persistence
 	 */
@@ -666,7 +727,7 @@ public abstract class JIRAChangeGroupLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the Spring bean ID for this bean.
+	 * Returns the Spring bean ID for this bean.
 	 *
 	 * @return the Spring bean ID for this bean
 	 */
@@ -683,10 +744,18 @@ public abstract class JIRAChangeGroupLocalServiceBaseImpl
 		_beanIdentifier = beanIdentifier;
 	}
 
+	protected Class<?> getModelClass() {
+		return JIRAChangeGroup.class;
+	}
+
+	protected String getModelClassName() {
+		return JIRAChangeGroup.class.getName();
+	}
+
 	/**
 	 * Performs an SQL query.
 	 *
-	 * @param sql the sql query to perform
+	 * @param sql the sql query
 	 */
 	protected void runSQL(String sql) throws SystemException {
 		try {
@@ -746,5 +815,6 @@ public abstract class JIRAChangeGroupLocalServiceBaseImpl
 	protected UserService userService;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
+	private static Log _log = LogFactoryUtil.getLog(JIRAChangeGroupLocalServiceBaseImpl.class);
 	private String _beanIdentifier;
 }

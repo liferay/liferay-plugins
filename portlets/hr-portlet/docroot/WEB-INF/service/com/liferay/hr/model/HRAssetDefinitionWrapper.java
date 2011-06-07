@@ -37,7 +37,7 @@ public class HRAssetDefinitionWrapper implements HRAssetDefinition {
 	}
 
 	/**
-	* Gets the primary key of this h r asset definition.
+	* Returns the primary key of this h r asset definition.
 	*
 	* @return the primary key of this h r asset definition
 	*/
@@ -46,7 +46,7 @@ public class HRAssetDefinitionWrapper implements HRAssetDefinition {
 	}
 
 	/**
-	* Sets the primary key of this h r asset definition
+	* Sets the primary key of this h r asset definition.
 	*
 	* @param primaryKey the primary key of this h r asset definition
 	*/
@@ -55,7 +55,7 @@ public class HRAssetDefinitionWrapper implements HRAssetDefinition {
 	}
 
 	/**
-	* Gets the hr asset definition ID of this h r asset definition.
+	* Returns the hr asset definition ID of this h r asset definition.
 	*
 	* @return the hr asset definition ID of this h r asset definition
 	*/
@@ -73,7 +73,7 @@ public class HRAssetDefinitionWrapper implements HRAssetDefinition {
 	}
 
 	/**
-	* Gets the group ID of this h r asset definition.
+	* Returns the group ID of this h r asset definition.
 	*
 	* @return the group ID of this h r asset definition
 	*/
@@ -91,7 +91,7 @@ public class HRAssetDefinitionWrapper implements HRAssetDefinition {
 	}
 
 	/**
-	* Gets the company ID of this h r asset definition.
+	* Returns the company ID of this h r asset definition.
 	*
 	* @return the company ID of this h r asset definition
 	*/
@@ -109,7 +109,7 @@ public class HRAssetDefinitionWrapper implements HRAssetDefinition {
 	}
 
 	/**
-	* Gets the user ID of this h r asset definition.
+	* Returns the user ID of this h r asset definition.
 	*
 	* @return the user ID of this h r asset definition
 	*/
@@ -127,7 +127,7 @@ public class HRAssetDefinitionWrapper implements HRAssetDefinition {
 	}
 
 	/**
-	* Gets the user uuid of this h r asset definition.
+	* Returns the user uuid of this h r asset definition.
 	*
 	* @return the user uuid of this h r asset definition
 	* @throws SystemException if a system exception occurred
@@ -147,7 +147,7 @@ public class HRAssetDefinitionWrapper implements HRAssetDefinition {
 	}
 
 	/**
-	* Gets the user name of this h r asset definition.
+	* Returns the user name of this h r asset definition.
 	*
 	* @return the user name of this h r asset definition
 	*/
@@ -165,7 +165,7 @@ public class HRAssetDefinitionWrapper implements HRAssetDefinition {
 	}
 
 	/**
-	* Gets the create date of this h r asset definition.
+	* Returns the create date of this h r asset definition.
 	*
 	* @return the create date of this h r asset definition
 	*/
@@ -183,7 +183,7 @@ public class HRAssetDefinitionWrapper implements HRAssetDefinition {
 	}
 
 	/**
-	* Gets the modified date of this h r asset definition.
+	* Returns the modified date of this h r asset definition.
 	*
 	* @return the modified date of this h r asset definition
 	*/
@@ -201,7 +201,7 @@ public class HRAssetDefinitionWrapper implements HRAssetDefinition {
 	}
 
 	/**
-	* Gets the hr asset product ID of this h r asset definition.
+	* Returns the hr asset product ID of this h r asset definition.
 	*
 	* @return the hr asset product ID of this h r asset definition
 	*/
@@ -219,7 +219,7 @@ public class HRAssetDefinitionWrapper implements HRAssetDefinition {
 	}
 
 	/**
-	* Gets the hr asset type ID of this h r asset definition.
+	* Returns the hr asset type ID of this h r asset definition.
 	*
 	* @return the hr asset type ID of this h r asset definition
 	*/
@@ -237,7 +237,7 @@ public class HRAssetDefinitionWrapper implements HRAssetDefinition {
 	}
 
 	/**
-	* Gets the hr asset vendor ID of this h r asset definition.
+	* Returns the hr asset vendor ID of this h r asset definition.
 	*
 	* @return the hr asset vendor ID of this h r asset definition
 	*/
@@ -255,7 +255,7 @@ public class HRAssetDefinitionWrapper implements HRAssetDefinition {
 	}
 
 	/**
-	* Gets the definition number of this h r asset definition.
+	* Returns the definition number of this h r asset definition.
 	*
 	* @return the definition number of this h r asset definition
 	*/
@@ -273,7 +273,7 @@ public class HRAssetDefinitionWrapper implements HRAssetDefinition {
 	}
 
 	/**
-	* Gets the order ID of this h r asset definition.
+	* Returns the order ID of this h r asset definition.
 	*
 	* @return the order ID of this h r asset definition
 	*/
@@ -291,7 +291,7 @@ public class HRAssetDefinitionWrapper implements HRAssetDefinition {
 	}
 
 	/**
-	* Gets the order date of this h r asset definition.
+	* Returns the order date of this h r asset definition.
 	*
 	* @return the order date of this h r asset definition
 	*/
@@ -309,7 +309,7 @@ public class HRAssetDefinitionWrapper implements HRAssetDefinition {
 	}
 
 	/**
-	* Gets the quantity of this h r asset definition.
+	* Returns the quantity of this h r asset definition.
 	*
 	* @return the quantity of this h r asset definition
 	*/
@@ -327,7 +327,7 @@ public class HRAssetDefinitionWrapper implements HRAssetDefinition {
 	}
 
 	/**
-	* Gets the individual price of this h r asset definition.
+	* Returns the individual price of this h r asset definition.
 	*
 	* @return the individual price of this h r asset definition
 	*/

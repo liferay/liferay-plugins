@@ -119,7 +119,7 @@ public class EntryUtil {
 	/**
 	* Caches the entry in the entity cache if it is enabled.
 	*
-	* @param entry the entry to cache
+	* @param entry the entry
 	*/
 	public static void cacheResult(com.liferay.chat.model.Entry entry) {
 		getPersistence().cacheResult(entry);
@@ -128,7 +128,7 @@ public class EntryUtil {
 	/**
 	* Caches the entries in the entity cache if it is enabled.
 	*
-	* @param entries the entries to cache
+	* @param entries the entries
 	*/
 	public static void cacheResult(
 		java.util.List<com.liferay.chat.model.Entry> entries) {
@@ -148,7 +148,7 @@ public class EntryUtil {
 	/**
 	* Removes the entry with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param entryId the primary key of the entry to remove
+	* @param entryId the primary key of the entry
 	* @return the entry that was removed
 	* @throws com.liferay.chat.NoSuchEntryException if a entry with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -166,9 +166,9 @@ public class EntryUtil {
 	}
 
 	/**
-	* Finds the entry with the primary key or throws a {@link com.liferay.chat.NoSuchEntryException} if it could not be found.
+	* Returns the entry with the primary key or throws a {@link com.liferay.chat.NoSuchEntryException} if it could not be found.
 	*
-	* @param entryId the primary key of the entry to find
+	* @param entryId the primary key of the entry
 	* @return the entry
 	* @throws com.liferay.chat.NoSuchEntryException if a entry with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -180,9 +180,9 @@ public class EntryUtil {
 	}
 
 	/**
-	* Finds the entry with the primary key or returns <code>null</code> if it could not be found.
+	* Returns the entry with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param entryId the primary key of the entry to find
+	* @param entryId the primary key of the entry
 	* @return the entry, or <code>null</code> if a entry with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -192,9 +192,9 @@ public class EntryUtil {
 	}
 
 	/**
-	* Finds all the entries where createDate = &#63;.
+	* Returns all the entries where createDate = &#63;.
 	*
-	* @param createDate the create date to search with
+	* @param createDate the create date
 	* @return the matching entries
 	* @throws SystemException if a system exception occurred
 	*/
@@ -205,15 +205,15 @@ public class EntryUtil {
 	}
 
 	/**
-	* Finds a range of all the entries where createDate = &#63;.
+	* Returns a range of all the entries where createDate = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param createDate the create date to search with
-	* @param start the lower bound of the range of entries to return
-	* @param end the upper bound of the range of entries to return (not inclusive)
+	* @param createDate the create date
+	* @param start the lower bound of the range of entries
+	* @param end the upper bound of the range of entries (not inclusive)
 	* @return the range of matching entries
 	* @throws SystemException if a system exception occurred
 	*/
@@ -224,15 +224,15 @@ public class EntryUtil {
 	}
 
 	/**
-	* Finds an ordered range of all the entries where createDate = &#63;.
+	* Returns an ordered range of all the entries where createDate = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param createDate the create date to search with
-	* @param start the lower bound of the range of entries to return
-	* @param end the upper bound of the range of entries to return (not inclusive)
+	* @param createDate the create date
+	* @param start the lower bound of the range of entries
+	* @param end the upper bound of the range of entries (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching entries
 	* @throws SystemException if a system exception occurred
@@ -246,13 +246,13 @@ public class EntryUtil {
 	}
 
 	/**
-	* Finds the first entry in the ordered set where createDate = &#63;.
+	* Returns the first entry in the ordered set where createDate = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param createDate the create date to search with
+	* @param createDate the create date
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching entry
 	* @throws com.liferay.chat.NoSuchEntryException if a matching entry could not be found
@@ -268,13 +268,13 @@ public class EntryUtil {
 	}
 
 	/**
-	* Finds the last entry in the ordered set where createDate = &#63;.
+	* Returns the last entry in the ordered set where createDate = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param createDate the create date to search with
+	* @param createDate the create date
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching entry
 	* @throws com.liferay.chat.NoSuchEntryException if a matching entry could not be found
@@ -290,14 +290,14 @@ public class EntryUtil {
 	}
 
 	/**
-	* Finds the entries before and after the current entry in the ordered set where createDate = &#63;.
+	* Returns the entries before and after the current entry in the ordered set where createDate = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
 	* @param entryId the primary key of the current entry
-	* @param createDate the create date to search with
+	* @param createDate the create date
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next entry
 	* @throws com.liferay.chat.NoSuchEntryException if a entry with the primary key could not be found
@@ -314,9 +314,9 @@ public class EntryUtil {
 	}
 
 	/**
-	* Finds all the entries where fromUserId = &#63;.
+	* Returns all the entries where fromUserId = &#63;.
 	*
-	* @param fromUserId the from user ID to search with
+	* @param fromUserId the from user ID
 	* @return the matching entries
 	* @throws SystemException if a system exception occurred
 	*/
@@ -327,15 +327,15 @@ public class EntryUtil {
 	}
 
 	/**
-	* Finds a range of all the entries where fromUserId = &#63;.
+	* Returns a range of all the entries where fromUserId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param fromUserId the from user ID to search with
-	* @param start the lower bound of the range of entries to return
-	* @param end the upper bound of the range of entries to return (not inclusive)
+	* @param fromUserId the from user ID
+	* @param start the lower bound of the range of entries
+	* @param end the upper bound of the range of entries (not inclusive)
 	* @return the range of matching entries
 	* @throws SystemException if a system exception occurred
 	*/
@@ -346,15 +346,15 @@ public class EntryUtil {
 	}
 
 	/**
-	* Finds an ordered range of all the entries where fromUserId = &#63;.
+	* Returns an ordered range of all the entries where fromUserId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param fromUserId the from user ID to search with
-	* @param start the lower bound of the range of entries to return
-	* @param end the upper bound of the range of entries to return (not inclusive)
+	* @param fromUserId the from user ID
+	* @param start the lower bound of the range of entries
+	* @param end the upper bound of the range of entries (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching entries
 	* @throws SystemException if a system exception occurred
@@ -368,13 +368,13 @@ public class EntryUtil {
 	}
 
 	/**
-	* Finds the first entry in the ordered set where fromUserId = &#63;.
+	* Returns the first entry in the ordered set where fromUserId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param fromUserId the from user ID to search with
+	* @param fromUserId the from user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching entry
 	* @throws com.liferay.chat.NoSuchEntryException if a matching entry could not be found
@@ -390,13 +390,13 @@ public class EntryUtil {
 	}
 
 	/**
-	* Finds the last entry in the ordered set where fromUserId = &#63;.
+	* Returns the last entry in the ordered set where fromUserId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param fromUserId the from user ID to search with
+	* @param fromUserId the from user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching entry
 	* @throws com.liferay.chat.NoSuchEntryException if a matching entry could not be found
@@ -412,14 +412,14 @@ public class EntryUtil {
 	}
 
 	/**
-	* Finds the entries before and after the current entry in the ordered set where fromUserId = &#63;.
+	* Returns the entries before and after the current entry in the ordered set where fromUserId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
 	* @param entryId the primary key of the current entry
-	* @param fromUserId the from user ID to search with
+	* @param fromUserId the from user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next entry
 	* @throws com.liferay.chat.NoSuchEntryException if a entry with the primary key could not be found
@@ -436,9 +436,9 @@ public class EntryUtil {
 	}
 
 	/**
-	* Finds all the entries where toUserId = &#63;.
+	* Returns all the entries where toUserId = &#63;.
 	*
-	* @param toUserId the to user ID to search with
+	* @param toUserId the to user ID
 	* @return the matching entries
 	* @throws SystemException if a system exception occurred
 	*/
@@ -449,15 +449,15 @@ public class EntryUtil {
 	}
 
 	/**
-	* Finds a range of all the entries where toUserId = &#63;.
+	* Returns a range of all the entries where toUserId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param toUserId the to user ID to search with
-	* @param start the lower bound of the range of entries to return
-	* @param end the upper bound of the range of entries to return (not inclusive)
+	* @param toUserId the to user ID
+	* @param start the lower bound of the range of entries
+	* @param end the upper bound of the range of entries (not inclusive)
 	* @return the range of matching entries
 	* @throws SystemException if a system exception occurred
 	*/
@@ -468,15 +468,15 @@ public class EntryUtil {
 	}
 
 	/**
-	* Finds an ordered range of all the entries where toUserId = &#63;.
+	* Returns an ordered range of all the entries where toUserId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param toUserId the to user ID to search with
-	* @param start the lower bound of the range of entries to return
-	* @param end the upper bound of the range of entries to return (not inclusive)
+	* @param toUserId the to user ID
+	* @param start the lower bound of the range of entries
+	* @param end the upper bound of the range of entries (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching entries
 	* @throws SystemException if a system exception occurred
@@ -490,13 +490,13 @@ public class EntryUtil {
 	}
 
 	/**
-	* Finds the first entry in the ordered set where toUserId = &#63;.
+	* Returns the first entry in the ordered set where toUserId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param toUserId the to user ID to search with
+	* @param toUserId the to user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching entry
 	* @throws com.liferay.chat.NoSuchEntryException if a matching entry could not be found
@@ -511,13 +511,13 @@ public class EntryUtil {
 	}
 
 	/**
-	* Finds the last entry in the ordered set where toUserId = &#63;.
+	* Returns the last entry in the ordered set where toUserId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param toUserId the to user ID to search with
+	* @param toUserId the to user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching entry
 	* @throws com.liferay.chat.NoSuchEntryException if a matching entry could not be found
@@ -532,14 +532,14 @@ public class EntryUtil {
 	}
 
 	/**
-	* Finds the entries before and after the current entry in the ordered set where toUserId = &#63;.
+	* Returns the entries before and after the current entry in the ordered set where toUserId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
 	* @param entryId the primary key of the current entry
-	* @param toUserId the to user ID to search with
+	* @param toUserId the to user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next entry
 	* @throws com.liferay.chat.NoSuchEntryException if a entry with the primary key could not be found
@@ -556,10 +556,10 @@ public class EntryUtil {
 	}
 
 	/**
-	* Finds all the entries where createDate = &#63; and fromUserId = &#63;.
+	* Returns all the entries where createDate = &#63; and fromUserId = &#63;.
 	*
-	* @param createDate the create date to search with
-	* @param fromUserId the from user ID to search with
+	* @param createDate the create date
+	* @param fromUserId the from user ID
 	* @return the matching entries
 	* @throws SystemException if a system exception occurred
 	*/
@@ -570,16 +570,16 @@ public class EntryUtil {
 	}
 
 	/**
-	* Finds a range of all the entries where createDate = &#63; and fromUserId = &#63;.
+	* Returns a range of all the entries where createDate = &#63; and fromUserId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param createDate the create date to search with
-	* @param fromUserId the from user ID to search with
-	* @param start the lower bound of the range of entries to return
-	* @param end the upper bound of the range of entries to return (not inclusive)
+	* @param createDate the create date
+	* @param fromUserId the from user ID
+	* @param start the lower bound of the range of entries
+	* @param end the upper bound of the range of entries (not inclusive)
 	* @return the range of matching entries
 	* @throws SystemException if a system exception occurred
 	*/
@@ -590,16 +590,16 @@ public class EntryUtil {
 	}
 
 	/**
-	* Finds an ordered range of all the entries where createDate = &#63; and fromUserId = &#63;.
+	* Returns an ordered range of all the entries where createDate = &#63; and fromUserId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param createDate the create date to search with
-	* @param fromUserId the from user ID to search with
-	* @param start the lower bound of the range of entries to return
-	* @param end the upper bound of the range of entries to return (not inclusive)
+	* @param createDate the create date
+	* @param fromUserId the from user ID
+	* @param start the lower bound of the range of entries
+	* @param end the upper bound of the range of entries (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching entries
 	* @throws SystemException if a system exception occurred
@@ -614,14 +614,14 @@ public class EntryUtil {
 	}
 
 	/**
-	* Finds the first entry in the ordered set where createDate = &#63; and fromUserId = &#63;.
+	* Returns the first entry in the ordered set where createDate = &#63; and fromUserId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param createDate the create date to search with
-	* @param fromUserId the from user ID to search with
+	* @param createDate the create date
+	* @param fromUserId the from user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching entry
 	* @throws com.liferay.chat.NoSuchEntryException if a matching entry could not be found
@@ -637,14 +637,14 @@ public class EntryUtil {
 	}
 
 	/**
-	* Finds the last entry in the ordered set where createDate = &#63; and fromUserId = &#63;.
+	* Returns the last entry in the ordered set where createDate = &#63; and fromUserId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param createDate the create date to search with
-	* @param fromUserId the from user ID to search with
+	* @param createDate the create date
+	* @param fromUserId the from user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching entry
 	* @throws com.liferay.chat.NoSuchEntryException if a matching entry could not be found
@@ -660,15 +660,15 @@ public class EntryUtil {
 	}
 
 	/**
-	* Finds the entries before and after the current entry in the ordered set where createDate = &#63; and fromUserId = &#63;.
+	* Returns the entries before and after the current entry in the ordered set where createDate = &#63; and fromUserId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
 	* @param entryId the primary key of the current entry
-	* @param createDate the create date to search with
-	* @param fromUserId the from user ID to search with
+	* @param createDate the create date
+	* @param fromUserId the from user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next entry
 	* @throws com.liferay.chat.NoSuchEntryException if a entry with the primary key could not be found
@@ -685,10 +685,10 @@ public class EntryUtil {
 	}
 
 	/**
-	* Finds all the entries where createDate = &#63; and toUserId = &#63;.
+	* Returns all the entries where createDate = &#63; and toUserId = &#63;.
 	*
-	* @param createDate the create date to search with
-	* @param toUserId the to user ID to search with
+	* @param createDate the create date
+	* @param toUserId the to user ID
 	* @return the matching entries
 	* @throws SystemException if a system exception occurred
 	*/
@@ -699,16 +699,16 @@ public class EntryUtil {
 	}
 
 	/**
-	* Finds a range of all the entries where createDate = &#63; and toUserId = &#63;.
+	* Returns a range of all the entries where createDate = &#63; and toUserId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param createDate the create date to search with
-	* @param toUserId the to user ID to search with
-	* @param start the lower bound of the range of entries to return
-	* @param end the upper bound of the range of entries to return (not inclusive)
+	* @param createDate the create date
+	* @param toUserId the to user ID
+	* @param start the lower bound of the range of entries
+	* @param end the upper bound of the range of entries (not inclusive)
 	* @return the range of matching entries
 	* @throws SystemException if a system exception occurred
 	*/
@@ -719,16 +719,16 @@ public class EntryUtil {
 	}
 
 	/**
-	* Finds an ordered range of all the entries where createDate = &#63; and toUserId = &#63;.
+	* Returns an ordered range of all the entries where createDate = &#63; and toUserId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param createDate the create date to search with
-	* @param toUserId the to user ID to search with
-	* @param start the lower bound of the range of entries to return
-	* @param end the upper bound of the range of entries to return (not inclusive)
+	* @param createDate the create date
+	* @param toUserId the to user ID
+	* @param start the lower bound of the range of entries
+	* @param end the upper bound of the range of entries (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching entries
 	* @throws SystemException if a system exception occurred
@@ -743,14 +743,14 @@ public class EntryUtil {
 	}
 
 	/**
-	* Finds the first entry in the ordered set where createDate = &#63; and toUserId = &#63;.
+	* Returns the first entry in the ordered set where createDate = &#63; and toUserId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param createDate the create date to search with
-	* @param toUserId the to user ID to search with
+	* @param createDate the create date
+	* @param toUserId the to user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching entry
 	* @throws com.liferay.chat.NoSuchEntryException if a matching entry could not be found
@@ -766,14 +766,14 @@ public class EntryUtil {
 	}
 
 	/**
-	* Finds the last entry in the ordered set where createDate = &#63; and toUserId = &#63;.
+	* Returns the last entry in the ordered set where createDate = &#63; and toUserId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param createDate the create date to search with
-	* @param toUserId the to user ID to search with
+	* @param createDate the create date
+	* @param toUserId the to user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching entry
 	* @throws com.liferay.chat.NoSuchEntryException if a matching entry could not be found
@@ -789,15 +789,15 @@ public class EntryUtil {
 	}
 
 	/**
-	* Finds the entries before and after the current entry in the ordered set where createDate = &#63; and toUserId = &#63;.
+	* Returns the entries before and after the current entry in the ordered set where createDate = &#63; and toUserId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
 	* @param entryId the primary key of the current entry
-	* @param createDate the create date to search with
-	* @param toUserId the to user ID to search with
+	* @param createDate the create date
+	* @param toUserId the to user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next entry
 	* @throws com.liferay.chat.NoSuchEntryException if a entry with the primary key could not be found
@@ -814,11 +814,11 @@ public class EntryUtil {
 	}
 
 	/**
-	* Finds all the entries where createDate = &#63; and fromUserId = &#63; and toUserId = &#63;.
+	* Returns all the entries where createDate = &#63; and fromUserId = &#63; and toUserId = &#63;.
 	*
-	* @param createDate the create date to search with
-	* @param fromUserId the from user ID to search with
-	* @param toUserId the to user ID to search with
+	* @param createDate the create date
+	* @param fromUserId the from user ID
+	* @param toUserId the to user ID
 	* @return the matching entries
 	* @throws SystemException if a system exception occurred
 	*/
@@ -829,17 +829,17 @@ public class EntryUtil {
 	}
 
 	/**
-	* Finds a range of all the entries where createDate = &#63; and fromUserId = &#63; and toUserId = &#63;.
+	* Returns a range of all the entries where createDate = &#63; and fromUserId = &#63; and toUserId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param createDate the create date to search with
-	* @param fromUserId the from user ID to search with
-	* @param toUserId the to user ID to search with
-	* @param start the lower bound of the range of entries to return
-	* @param end the upper bound of the range of entries to return (not inclusive)
+	* @param createDate the create date
+	* @param fromUserId the from user ID
+	* @param toUserId the to user ID
+	* @param start the lower bound of the range of entries
+	* @param end the upper bound of the range of entries (not inclusive)
 	* @return the range of matching entries
 	* @throws SystemException if a system exception occurred
 	*/
@@ -851,17 +851,17 @@ public class EntryUtil {
 	}
 
 	/**
-	* Finds an ordered range of all the entries where createDate = &#63; and fromUserId = &#63; and toUserId = &#63;.
+	* Returns an ordered range of all the entries where createDate = &#63; and fromUserId = &#63; and toUserId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param createDate the create date to search with
-	* @param fromUserId the from user ID to search with
-	* @param toUserId the to user ID to search with
-	* @param start the lower bound of the range of entries to return
-	* @param end the upper bound of the range of entries to return (not inclusive)
+	* @param createDate the create date
+	* @param fromUserId the from user ID
+	* @param toUserId the to user ID
+	* @param start the lower bound of the range of entries
+	* @param end the upper bound of the range of entries (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching entries
 	* @throws SystemException if a system exception occurred
@@ -876,15 +876,15 @@ public class EntryUtil {
 	}
 
 	/**
-	* Finds the first entry in the ordered set where createDate = &#63; and fromUserId = &#63; and toUserId = &#63;.
+	* Returns the first entry in the ordered set where createDate = &#63; and fromUserId = &#63; and toUserId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param createDate the create date to search with
-	* @param fromUserId the from user ID to search with
-	* @param toUserId the to user ID to search with
+	* @param createDate the create date
+	* @param fromUserId the from user ID
+	* @param toUserId the to user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching entry
 	* @throws com.liferay.chat.NoSuchEntryException if a matching entry could not be found
@@ -901,15 +901,15 @@ public class EntryUtil {
 	}
 
 	/**
-	* Finds the last entry in the ordered set where createDate = &#63; and fromUserId = &#63; and toUserId = &#63;.
+	* Returns the last entry in the ordered set where createDate = &#63; and fromUserId = &#63; and toUserId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param createDate the create date to search with
-	* @param fromUserId the from user ID to search with
-	* @param toUserId the to user ID to search with
+	* @param createDate the create date
+	* @param fromUserId the from user ID
+	* @param toUserId the to user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching entry
 	* @throws com.liferay.chat.NoSuchEntryException if a matching entry could not be found
@@ -926,16 +926,16 @@ public class EntryUtil {
 	}
 
 	/**
-	* Finds the entries before and after the current entry in the ordered set where createDate = &#63; and fromUserId = &#63; and toUserId = &#63;.
+	* Returns the entries before and after the current entry in the ordered set where createDate = &#63; and fromUserId = &#63; and toUserId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
 	* @param entryId the primary key of the current entry
-	* @param createDate the create date to search with
-	* @param fromUserId the from user ID to search with
-	* @param toUserId the to user ID to search with
+	* @param createDate the create date
+	* @param fromUserId the from user ID
+	* @param toUserId the to user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next entry
 	* @throws com.liferay.chat.NoSuchEntryException if a entry with the primary key could not be found
@@ -952,11 +952,11 @@ public class EntryUtil {
 	}
 
 	/**
-	* Finds all the entries where fromUserId = &#63; and toUserId = &#63; and content = &#63;.
+	* Returns all the entries where fromUserId = &#63; and toUserId = &#63; and content = &#63;.
 	*
-	* @param fromUserId the from user ID to search with
-	* @param toUserId the to user ID to search with
-	* @param content the content to search with
+	* @param fromUserId the from user ID
+	* @param toUserId the to user ID
+	* @param content the content
 	* @return the matching entries
 	* @throws SystemException if a system exception occurred
 	*/
@@ -967,17 +967,17 @@ public class EntryUtil {
 	}
 
 	/**
-	* Finds a range of all the entries where fromUserId = &#63; and toUserId = &#63; and content = &#63;.
+	* Returns a range of all the entries where fromUserId = &#63; and toUserId = &#63; and content = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param fromUserId the from user ID to search with
-	* @param toUserId the to user ID to search with
-	* @param content the content to search with
-	* @param start the lower bound of the range of entries to return
-	* @param end the upper bound of the range of entries to return (not inclusive)
+	* @param fromUserId the from user ID
+	* @param toUserId the to user ID
+	* @param content the content
+	* @param start the lower bound of the range of entries
+	* @param end the upper bound of the range of entries (not inclusive)
 	* @return the range of matching entries
 	* @throws SystemException if a system exception occurred
 	*/
@@ -989,17 +989,17 @@ public class EntryUtil {
 	}
 
 	/**
-	* Finds an ordered range of all the entries where fromUserId = &#63; and toUserId = &#63; and content = &#63;.
+	* Returns an ordered range of all the entries where fromUserId = &#63; and toUserId = &#63; and content = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param fromUserId the from user ID to search with
-	* @param toUserId the to user ID to search with
-	* @param content the content to search with
-	* @param start the lower bound of the range of entries to return
-	* @param end the upper bound of the range of entries to return (not inclusive)
+	* @param fromUserId the from user ID
+	* @param toUserId the to user ID
+	* @param content the content
+	* @param start the lower bound of the range of entries
+	* @param end the upper bound of the range of entries (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching entries
 	* @throws SystemException if a system exception occurred
@@ -1015,15 +1015,15 @@ public class EntryUtil {
 	}
 
 	/**
-	* Finds the first entry in the ordered set where fromUserId = &#63; and toUserId = &#63; and content = &#63;.
+	* Returns the first entry in the ordered set where fromUserId = &#63; and toUserId = &#63; and content = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param fromUserId the from user ID to search with
-	* @param toUserId the to user ID to search with
-	* @param content the content to search with
+	* @param fromUserId the from user ID
+	* @param toUserId the to user ID
+	* @param content the content
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching entry
 	* @throws com.liferay.chat.NoSuchEntryException if a matching entry could not be found
@@ -1040,15 +1040,15 @@ public class EntryUtil {
 	}
 
 	/**
-	* Finds the last entry in the ordered set where fromUserId = &#63; and toUserId = &#63; and content = &#63;.
+	* Returns the last entry in the ordered set where fromUserId = &#63; and toUserId = &#63; and content = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param fromUserId the from user ID to search with
-	* @param toUserId the to user ID to search with
-	* @param content the content to search with
+	* @param fromUserId the from user ID
+	* @param toUserId the to user ID
+	* @param content the content
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching entry
 	* @throws com.liferay.chat.NoSuchEntryException if a matching entry could not be found
@@ -1065,16 +1065,16 @@ public class EntryUtil {
 	}
 
 	/**
-	* Finds the entries before and after the current entry in the ordered set where fromUserId = &#63; and toUserId = &#63; and content = &#63;.
+	* Returns the entries before and after the current entry in the ordered set where fromUserId = &#63; and toUserId = &#63; and content = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
 	* @param entryId the primary key of the current entry
-	* @param fromUserId the from user ID to search with
-	* @param toUserId the to user ID to search with
-	* @param content the content to search with
+	* @param fromUserId the from user ID
+	* @param toUserId the to user ID
+	* @param content the content
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next entry
 	* @throws com.liferay.chat.NoSuchEntryException if a entry with the primary key could not be found
@@ -1091,7 +1091,7 @@ public class EntryUtil {
 	}
 
 	/**
-	* Finds all the entries.
+	* Returns all the entries.
 	*
 	* @return the entries
 	* @throws SystemException if a system exception occurred
@@ -1102,14 +1102,14 @@ public class EntryUtil {
 	}
 
 	/**
-	* Finds a range of all the entries.
+	* Returns a range of all the entries.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of entries to return
-	* @param end the upper bound of the range of entries to return (not inclusive)
+	* @param start the lower bound of the range of entries
+	* @param end the upper bound of the range of entries (not inclusive)
 	* @return the range of entries
 	* @throws SystemException if a system exception occurred
 	*/
@@ -1120,14 +1120,14 @@ public class EntryUtil {
 	}
 
 	/**
-	* Finds an ordered range of all the entries.
+	* Returns an ordered range of all the entries.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of entries to return
-	* @param end the upper bound of the range of entries to return (not inclusive)
+	* @param start the lower bound of the range of entries
+	* @param end the upper bound of the range of entries (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of entries
 	* @throws SystemException if a system exception occurred
@@ -1142,7 +1142,7 @@ public class EntryUtil {
 	/**
 	* Removes all the entries where createDate = &#63; from the database.
 	*
-	* @param createDate the create date to search with
+	* @param createDate the create date
 	* @throws SystemException if a system exception occurred
 	*/
 	public static void removeByCreateDate(long createDate)
@@ -1153,7 +1153,7 @@ public class EntryUtil {
 	/**
 	* Removes all the entries where fromUserId = &#63; from the database.
 	*
-	* @param fromUserId the from user ID to search with
+	* @param fromUserId the from user ID
 	* @throws SystemException if a system exception occurred
 	*/
 	public static void removeByFromUserId(long fromUserId)
@@ -1164,7 +1164,7 @@ public class EntryUtil {
 	/**
 	* Removes all the entries where toUserId = &#63; from the database.
 	*
-	* @param toUserId the to user ID to search with
+	* @param toUserId the to user ID
 	* @throws SystemException if a system exception occurred
 	*/
 	public static void removeByToUserId(long toUserId)
@@ -1175,8 +1175,8 @@ public class EntryUtil {
 	/**
 	* Removes all the entries where createDate = &#63; and fromUserId = &#63; from the database.
 	*
-	* @param createDate the create date to search with
-	* @param fromUserId the from user ID to search with
+	* @param createDate the create date
+	* @param fromUserId the from user ID
 	* @throws SystemException if a system exception occurred
 	*/
 	public static void removeByC_F(long createDate, long fromUserId)
@@ -1187,8 +1187,8 @@ public class EntryUtil {
 	/**
 	* Removes all the entries where createDate = &#63; and toUserId = &#63; from the database.
 	*
-	* @param createDate the create date to search with
-	* @param toUserId the to user ID to search with
+	* @param createDate the create date
+	* @param toUserId the to user ID
 	* @throws SystemException if a system exception occurred
 	*/
 	public static void removeByC_T(long createDate, long toUserId)
@@ -1199,9 +1199,9 @@ public class EntryUtil {
 	/**
 	* Removes all the entries where createDate = &#63; and fromUserId = &#63; and toUserId = &#63; from the database.
 	*
-	* @param createDate the create date to search with
-	* @param fromUserId the from user ID to search with
-	* @param toUserId the to user ID to search with
+	* @param createDate the create date
+	* @param fromUserId the from user ID
+	* @param toUserId the to user ID
 	* @throws SystemException if a system exception occurred
 	*/
 	public static void removeByC_F_T(long createDate, long fromUserId,
@@ -1213,9 +1213,9 @@ public class EntryUtil {
 	/**
 	* Removes all the entries where fromUserId = &#63; and toUserId = &#63; and content = &#63; from the database.
 	*
-	* @param fromUserId the from user ID to search with
-	* @param toUserId the to user ID to search with
-	* @param content the content to search with
+	* @param fromUserId the from user ID
+	* @param toUserId the to user ID
+	* @param content the content
 	* @throws SystemException if a system exception occurred
 	*/
 	public static void removeByF_T_C(long fromUserId, long toUserId,
@@ -1235,9 +1235,9 @@ public class EntryUtil {
 	}
 
 	/**
-	* Counts all the entries where createDate = &#63;.
+	* Returns the number of entries where createDate = &#63;.
 	*
-	* @param createDate the create date to search with
+	* @param createDate the create date
 	* @return the number of matching entries
 	* @throws SystemException if a system exception occurred
 	*/
@@ -1247,9 +1247,9 @@ public class EntryUtil {
 	}
 
 	/**
-	* Counts all the entries where fromUserId = &#63;.
+	* Returns the number of entries where fromUserId = &#63;.
 	*
-	* @param fromUserId the from user ID to search with
+	* @param fromUserId the from user ID
 	* @return the number of matching entries
 	* @throws SystemException if a system exception occurred
 	*/
@@ -1259,9 +1259,9 @@ public class EntryUtil {
 	}
 
 	/**
-	* Counts all the entries where toUserId = &#63;.
+	* Returns the number of entries where toUserId = &#63;.
 	*
-	* @param toUserId the to user ID to search with
+	* @param toUserId the to user ID
 	* @return the number of matching entries
 	* @throws SystemException if a system exception occurred
 	*/
@@ -1271,10 +1271,10 @@ public class EntryUtil {
 	}
 
 	/**
-	* Counts all the entries where createDate = &#63; and fromUserId = &#63;.
+	* Returns the number of entries where createDate = &#63; and fromUserId = &#63;.
 	*
-	* @param createDate the create date to search with
-	* @param fromUserId the from user ID to search with
+	* @param createDate the create date
+	* @param fromUserId the from user ID
 	* @return the number of matching entries
 	* @throws SystemException if a system exception occurred
 	*/
@@ -1284,10 +1284,10 @@ public class EntryUtil {
 	}
 
 	/**
-	* Counts all the entries where createDate = &#63; and toUserId = &#63;.
+	* Returns the number of entries where createDate = &#63; and toUserId = &#63;.
 	*
-	* @param createDate the create date to search with
-	* @param toUserId the to user ID to search with
+	* @param createDate the create date
+	* @param toUserId the to user ID
 	* @return the number of matching entries
 	* @throws SystemException if a system exception occurred
 	*/
@@ -1297,11 +1297,11 @@ public class EntryUtil {
 	}
 
 	/**
-	* Counts all the entries where createDate = &#63; and fromUserId = &#63; and toUserId = &#63;.
+	* Returns the number of entries where createDate = &#63; and fromUserId = &#63; and toUserId = &#63;.
 	*
-	* @param createDate the create date to search with
-	* @param fromUserId the from user ID to search with
-	* @param toUserId the to user ID to search with
+	* @param createDate the create date
+	* @param fromUserId the from user ID
+	* @param toUserId the to user ID
 	* @return the number of matching entries
 	* @throws SystemException if a system exception occurred
 	*/
@@ -1312,11 +1312,11 @@ public class EntryUtil {
 	}
 
 	/**
-	* Counts all the entries where fromUserId = &#63; and toUserId = &#63; and content = &#63;.
+	* Returns the number of entries where fromUserId = &#63; and toUserId = &#63; and content = &#63;.
 	*
-	* @param fromUserId the from user ID to search with
-	* @param toUserId the to user ID to search with
-	* @param content the content to search with
+	* @param fromUserId the from user ID
+	* @param toUserId the to user ID
+	* @param content the content
 	* @return the number of matching entries
 	* @throws SystemException if a system exception occurred
 	*/
@@ -1327,7 +1327,7 @@ public class EntryUtil {
 	}
 
 	/**
-	* Counts all the entries.
+	* Returns the number of entries.
 	*
 	* @return the number of entries
 	* @throws SystemException if a system exception occurred

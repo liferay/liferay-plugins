@@ -41,7 +41,7 @@ public interface HRAssetCheckoutPersistence extends BasePersistence<HRAssetCheck
 	/**
 	* Caches the h r asset checkout in the entity cache if it is enabled.
 	*
-	* @param hrAssetCheckout the h r asset checkout to cache
+	* @param hrAssetCheckout the h r asset checkout
 	*/
 	public void cacheResult(
 		com.liferay.hr.model.HRAssetCheckout hrAssetCheckout);
@@ -49,7 +49,7 @@ public interface HRAssetCheckoutPersistence extends BasePersistence<HRAssetCheck
 	/**
 	* Caches the h r asset checkouts in the entity cache if it is enabled.
 	*
-	* @param hrAssetCheckouts the h r asset checkouts to cache
+	* @param hrAssetCheckouts the h r asset checkouts
 	*/
 	public void cacheResult(
 		java.util.List<com.liferay.hr.model.HRAssetCheckout> hrAssetCheckouts);
@@ -65,7 +65,7 @@ public interface HRAssetCheckoutPersistence extends BasePersistence<HRAssetCheck
 	/**
 	* Removes the h r asset checkout with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param hrAssetCheckoutId the primary key of the h r asset checkout to remove
+	* @param hrAssetCheckoutId the primary key of the h r asset checkout
 	* @return the h r asset checkout that was removed
 	* @throws com.liferay.hr.NoSuchAssetCheckoutException if a h r asset checkout with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -79,9 +79,9 @@ public interface HRAssetCheckoutPersistence extends BasePersistence<HRAssetCheck
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the h r asset checkout with the primary key or throws a {@link com.liferay.hr.NoSuchAssetCheckoutException} if it could not be found.
+	* Returns the h r asset checkout with the primary key or throws a {@link com.liferay.hr.NoSuchAssetCheckoutException} if it could not be found.
 	*
-	* @param hrAssetCheckoutId the primary key of the h r asset checkout to find
+	* @param hrAssetCheckoutId the primary key of the h r asset checkout
 	* @return the h r asset checkout
 	* @throws com.liferay.hr.NoSuchAssetCheckoutException if a h r asset checkout with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -92,9 +92,9 @@ public interface HRAssetCheckoutPersistence extends BasePersistence<HRAssetCheck
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the h r asset checkout with the primary key or returns <code>null</code> if it could not be found.
+	* Returns the h r asset checkout with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param hrAssetCheckoutId the primary key of the h r asset checkout to find
+	* @param hrAssetCheckoutId the primary key of the h r asset checkout
 	* @return the h r asset checkout, or <code>null</code> if a h r asset checkout with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -103,7 +103,7 @@ public interface HRAssetCheckoutPersistence extends BasePersistence<HRAssetCheck
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds all the h r asset checkouts.
+	* Returns all the h r asset checkouts.
 	*
 	* @return the h r asset checkouts
 	* @throws SystemException if a system exception occurred
@@ -112,14 +112,14 @@ public interface HRAssetCheckoutPersistence extends BasePersistence<HRAssetCheck
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds a range of all the h r asset checkouts.
+	* Returns a range of all the h r asset checkouts.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of h r asset checkouts to return
-	* @param end the upper bound of the range of h r asset checkouts to return (not inclusive)
+	* @param start the lower bound of the range of h r asset checkouts
+	* @param end the upper bound of the range of h r asset checkouts (not inclusive)
 	* @return the range of h r asset checkouts
 	* @throws SystemException if a system exception occurred
 	*/
@@ -128,14 +128,14 @@ public interface HRAssetCheckoutPersistence extends BasePersistence<HRAssetCheck
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds an ordered range of all the h r asset checkouts.
+	* Returns an ordered range of all the h r asset checkouts.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of h r asset checkouts to return
-	* @param end the upper bound of the range of h r asset checkouts to return (not inclusive)
+	* @param start the lower bound of the range of h r asset checkouts
+	* @param end the upper bound of the range of h r asset checkouts (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of h r asset checkouts
 	* @throws SystemException if a system exception occurred
@@ -154,7 +154,7 @@ public interface HRAssetCheckoutPersistence extends BasePersistence<HRAssetCheck
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Counts all the h r asset checkouts.
+	* Returns the number of h r asset checkouts.
 	*
 	* @return the number of h r asset checkouts
 	* @throws SystemException if a system exception occurred

@@ -121,7 +121,7 @@ public class CalendarEventUtil {
 	/**
 	* Caches the calendar event in the entity cache if it is enabled.
 	*
-	* @param calendarEvent the calendar event to cache
+	* @param calendarEvent the calendar event
 	*/
 	public static void cacheResult(
 		com.liferay.calendar.model.CalendarEvent calendarEvent) {
@@ -131,7 +131,7 @@ public class CalendarEventUtil {
 	/**
 	* Caches the calendar events in the entity cache if it is enabled.
 	*
-	* @param calendarEvents the calendar events to cache
+	* @param calendarEvents the calendar events
 	*/
 	public static void cacheResult(
 		java.util.List<com.liferay.calendar.model.CalendarEvent> calendarEvents) {
@@ -152,7 +152,7 @@ public class CalendarEventUtil {
 	/**
 	* Removes the calendar event with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param calendarEventId the primary key of the calendar event to remove
+	* @param calendarEventId the primary key of the calendar event
 	* @return the calendar event that was removed
 	* @throws com.liferay.calendar.NoSuchEventException if a calendar event with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -171,9 +171,9 @@ public class CalendarEventUtil {
 	}
 
 	/**
-	* Finds the calendar event with the primary key or throws a {@link com.liferay.calendar.NoSuchEventException} if it could not be found.
+	* Returns the calendar event with the primary key or throws a {@link com.liferay.calendar.NoSuchEventException} if it could not be found.
 	*
-	* @param calendarEventId the primary key of the calendar event to find
+	* @param calendarEventId the primary key of the calendar event
 	* @return the calendar event
 	* @throws com.liferay.calendar.NoSuchEventException if a calendar event with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -186,9 +186,9 @@ public class CalendarEventUtil {
 	}
 
 	/**
-	* Finds the calendar event with the primary key or returns <code>null</code> if it could not be found.
+	* Returns the calendar event with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param calendarEventId the primary key of the calendar event to find
+	* @param calendarEventId the primary key of the calendar event
 	* @return the calendar event, or <code>null</code> if a calendar event with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -199,9 +199,9 @@ public class CalendarEventUtil {
 	}
 
 	/**
-	* Finds all the calendar events where uuid = &#63;.
+	* Returns all the calendar events where uuid = &#63;.
 	*
-	* @param uuid the uuid to search with
+	* @param uuid the uuid
 	* @return the matching calendar events
 	* @throws SystemException if a system exception occurred
 	*/
@@ -212,15 +212,15 @@ public class CalendarEventUtil {
 	}
 
 	/**
-	* Finds a range of all the calendar events where uuid = &#63;.
+	* Returns a range of all the calendar events where uuid = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param uuid the uuid to search with
-	* @param start the lower bound of the range of calendar events to return
-	* @param end the upper bound of the range of calendar events to return (not inclusive)
+	* @param uuid the uuid
+	* @param start the lower bound of the range of calendar events
+	* @param end the upper bound of the range of calendar events (not inclusive)
 	* @return the range of matching calendar events
 	* @throws SystemException if a system exception occurred
 	*/
@@ -231,15 +231,15 @@ public class CalendarEventUtil {
 	}
 
 	/**
-	* Finds an ordered range of all the calendar events where uuid = &#63;.
+	* Returns an ordered range of all the calendar events where uuid = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param uuid the uuid to search with
-	* @param start the lower bound of the range of calendar events to return
-	* @param end the upper bound of the range of calendar events to return (not inclusive)
+	* @param uuid the uuid
+	* @param start the lower bound of the range of calendar events
+	* @param end the upper bound of the range of calendar events (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching calendar events
 	* @throws SystemException if a system exception occurred
@@ -252,13 +252,13 @@ public class CalendarEventUtil {
 	}
 
 	/**
-	* Finds the first calendar event in the ordered set where uuid = &#63;.
+	* Returns the first calendar event in the ordered set where uuid = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param uuid the uuid to search with
+	* @param uuid the uuid
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching calendar event
 	* @throws com.liferay.calendar.NoSuchEventException if a matching calendar event could not be found
@@ -273,13 +273,13 @@ public class CalendarEventUtil {
 	}
 
 	/**
-	* Finds the last calendar event in the ordered set where uuid = &#63;.
+	* Returns the last calendar event in the ordered set where uuid = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param uuid the uuid to search with
+	* @param uuid the uuid
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching calendar event
 	* @throws com.liferay.calendar.NoSuchEventException if a matching calendar event could not be found
@@ -294,14 +294,14 @@ public class CalendarEventUtil {
 	}
 
 	/**
-	* Finds the calendar events before and after the current calendar event in the ordered set where uuid = &#63;.
+	* Returns the calendar events before and after the current calendar event in the ordered set where uuid = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
 	* @param calendarEventId the primary key of the current calendar event
-	* @param uuid the uuid to search with
+	* @param uuid the uuid
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next calendar event
 	* @throws com.liferay.calendar.NoSuchEventException if a calendar event with the primary key could not be found
@@ -318,10 +318,10 @@ public class CalendarEventUtil {
 	}
 
 	/**
-	* Finds the calendar event where uuid = &#63; and groupId = &#63; or throws a {@link com.liferay.calendar.NoSuchEventException} if it could not be found.
+	* Returns the calendar event where uuid = &#63; and groupId = &#63; or throws a {@link com.liferay.calendar.NoSuchEventException} if it could not be found.
 	*
-	* @param uuid the uuid to search with
-	* @param groupId the group ID to search with
+	* @param uuid the uuid
+	* @param groupId the group ID
 	* @return the matching calendar event
 	* @throws com.liferay.calendar.NoSuchEventException if a matching calendar event could not be found
 	* @throws SystemException if a system exception occurred
@@ -334,10 +334,10 @@ public class CalendarEventUtil {
 	}
 
 	/**
-	* Finds the calendar event where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	* Returns the calendar event where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	*
-	* @param uuid the uuid to search with
-	* @param groupId the group ID to search with
+	* @param uuid the uuid
+	* @param groupId the group ID
 	* @return the matching calendar event, or <code>null</code> if a matching calendar event could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -348,10 +348,10 @@ public class CalendarEventUtil {
 	}
 
 	/**
-	* Finds the calendar event where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	* Returns the calendar event where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	*
-	* @param uuid the uuid to search with
-	* @param groupId the group ID to search with
+	* @param uuid the uuid
+	* @param groupId the group ID
 	* @return the matching calendar event, or <code>null</code> if a matching calendar event could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -362,7 +362,7 @@ public class CalendarEventUtil {
 	}
 
 	/**
-	* Finds all the calendar events.
+	* Returns all the calendar events.
 	*
 	* @return the calendar events
 	* @throws SystemException if a system exception occurred
@@ -373,14 +373,14 @@ public class CalendarEventUtil {
 	}
 
 	/**
-	* Finds a range of all the calendar events.
+	* Returns a range of all the calendar events.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of calendar events to return
-	* @param end the upper bound of the range of calendar events to return (not inclusive)
+	* @param start the lower bound of the range of calendar events
+	* @param end the upper bound of the range of calendar events (not inclusive)
 	* @return the range of calendar events
 	* @throws SystemException if a system exception occurred
 	*/
@@ -391,14 +391,14 @@ public class CalendarEventUtil {
 	}
 
 	/**
-	* Finds an ordered range of all the calendar events.
+	* Returns an ordered range of all the calendar events.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of calendar events to return
-	* @param end the upper bound of the range of calendar events to return (not inclusive)
+	* @param start the lower bound of the range of calendar events
+	* @param end the upper bound of the range of calendar events (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of calendar events
 	* @throws SystemException if a system exception occurred
@@ -413,7 +413,7 @@ public class CalendarEventUtil {
 	/**
 	* Removes all the calendar events where uuid = &#63; from the database.
 	*
-	* @param uuid the uuid to search with
+	* @param uuid the uuid
 	* @throws SystemException if a system exception occurred
 	*/
 	public static void removeByUuid(java.lang.String uuid)
@@ -424,8 +424,8 @@ public class CalendarEventUtil {
 	/**
 	* Removes the calendar event where uuid = &#63; and groupId = &#63; from the database.
 	*
-	* @param uuid the uuid to search with
-	* @param groupId the group ID to search with
+	* @param uuid the uuid
+	* @param groupId the group ID
 	* @throws SystemException if a system exception occurred
 	*/
 	public static void removeByUUID_G(java.lang.String uuid, long groupId)
@@ -445,9 +445,9 @@ public class CalendarEventUtil {
 	}
 
 	/**
-	* Counts all the calendar events where uuid = &#63;.
+	* Returns the number of calendar events where uuid = &#63;.
 	*
-	* @param uuid the uuid to search with
+	* @param uuid the uuid
 	* @return the number of matching calendar events
 	* @throws SystemException if a system exception occurred
 	*/
@@ -457,10 +457,10 @@ public class CalendarEventUtil {
 	}
 
 	/**
-	* Counts all the calendar events where uuid = &#63; and groupId = &#63;.
+	* Returns the number of calendar events where uuid = &#63; and groupId = &#63;.
 	*
-	* @param uuid the uuid to search with
-	* @param groupId the group ID to search with
+	* @param uuid the uuid
+	* @param groupId the group ID
 	* @return the number of matching calendar events
 	* @throws SystemException if a system exception occurred
 	*/
@@ -470,7 +470,7 @@ public class CalendarEventUtil {
 	}
 
 	/**
-	* Counts all the calendar events.
+	* Returns the number of calendar events.
 	*
 	* @return the number of calendar events
 	* @throws SystemException if a system exception occurred

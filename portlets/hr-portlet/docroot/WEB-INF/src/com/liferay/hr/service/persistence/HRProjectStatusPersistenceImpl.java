@@ -93,7 +93,7 @@ public class HRProjectStatusPersistenceImpl extends BasePersistenceImpl<HRProjec
 	/**
 	 * Caches the h r project status in the entity cache if it is enabled.
 	 *
-	 * @param hrProjectStatus the h r project status to cache
+	 * @param hrProjectStatus the h r project status
 	 */
 	public void cacheResult(HRProjectStatus hrProjectStatus) {
 		EntityCacheUtil.putResult(HRProjectStatusModelImpl.ENTITY_CACHE_ENABLED,
@@ -113,7 +113,7 @@ public class HRProjectStatusPersistenceImpl extends BasePersistenceImpl<HRProjec
 	/**
 	 * Caches the h r project statuses in the entity cache if it is enabled.
 	 *
-	 * @param hrProjectStatuses the h r project statuses to cache
+	 * @param hrProjectStatuses the h r project statuses
 	 */
 	public void cacheResult(List<HRProjectStatus> hrProjectStatuses) {
 		for (HRProjectStatus hrProjectStatus : hrProjectStatuses) {
@@ -180,7 +180,7 @@ public class HRProjectStatusPersistenceImpl extends BasePersistenceImpl<HRProjec
 	/**
 	 * Removes the h r project status with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param primaryKey the primary key of the h r project status to remove
+	 * @param primaryKey the primary key of the h r project status
 	 * @return the h r project status that was removed
 	 * @throws com.liferay.portal.NoSuchModelException if a h r project status with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -193,7 +193,7 @@ public class HRProjectStatusPersistenceImpl extends BasePersistenceImpl<HRProjec
 	/**
 	 * Removes the h r project status with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param hrProjectStatusId the primary key of the h r project status to remove
+	 * @param hrProjectStatusId the primary key of the h r project status
 	 * @return the h r project status that was removed
 	 * @throws com.liferay.hr.NoSuchProjectStatusException if a h r project status with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -234,7 +234,7 @@ public class HRProjectStatusPersistenceImpl extends BasePersistenceImpl<HRProjec
 	/**
 	 * Removes the h r project status from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param hrProjectStatus the h r project status to remove
+	 * @param hrProjectStatus the h r project status
 	 * @return the h r project status that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -361,9 +361,9 @@ public class HRProjectStatusPersistenceImpl extends BasePersistenceImpl<HRProjec
 	}
 
 	/**
-	 * Finds the h r project status with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
+	 * Returns the h r project status with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
 	 *
-	 * @param primaryKey the primary key of the h r project status to find
+	 * @param primaryKey the primary key of the h r project status
 	 * @return the h r project status
 	 * @throws com.liferay.portal.NoSuchModelException if a h r project status with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -374,9 +374,9 @@ public class HRProjectStatusPersistenceImpl extends BasePersistenceImpl<HRProjec
 	}
 
 	/**
-	 * Finds the h r project status with the primary key or throws a {@link com.liferay.hr.NoSuchProjectStatusException} if it could not be found.
+	 * Returns the h r project status with the primary key or throws a {@link com.liferay.hr.NoSuchProjectStatusException} if it could not be found.
 	 *
-	 * @param hrProjectStatusId the primary key of the h r project status to find
+	 * @param hrProjectStatusId the primary key of the h r project status
 	 * @return the h r project status
 	 * @throws com.liferay.hr.NoSuchProjectStatusException if a h r project status with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -398,9 +398,9 @@ public class HRProjectStatusPersistenceImpl extends BasePersistenceImpl<HRProjec
 	}
 
 	/**
-	 * Finds the h r project status with the primary key or returns <code>null</code> if it could not be found.
+	 * Returns the h r project status with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param primaryKey the primary key of the h r project status to find
+	 * @param primaryKey the primary key of the h r project status
 	 * @return the h r project status, or <code>null</code> if a h r project status with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -410,9 +410,9 @@ public class HRProjectStatusPersistenceImpl extends BasePersistenceImpl<HRProjec
 	}
 
 	/**
-	 * Finds the h r project status with the primary key or returns <code>null</code> if it could not be found.
+	 * Returns the h r project status with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param hrProjectStatusId the primary key of the h r project status to find
+	 * @param hrProjectStatusId the primary key of the h r project status
 	 * @return the h r project status, or <code>null</code> if a h r project status with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -446,10 +446,10 @@ public class HRProjectStatusPersistenceImpl extends BasePersistenceImpl<HRProjec
 	}
 
 	/**
-	 * Finds the h r project status where groupId = &#63; and code = &#63; or throws a {@link com.liferay.hr.NoSuchProjectStatusException} if it could not be found.
+	 * Returns the h r project status where groupId = &#63; and code = &#63; or throws a {@link com.liferay.hr.NoSuchProjectStatusException} if it could not be found.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param code the code to search with
+	 * @param groupId the group ID
+	 * @param code the code
 	 * @return the matching h r project status
 	 * @throws com.liferay.hr.NoSuchProjectStatusException if a matching h r project status could not be found
 	 * @throws SystemException if a system exception occurred
@@ -482,10 +482,10 @@ public class HRProjectStatusPersistenceImpl extends BasePersistenceImpl<HRProjec
 	}
 
 	/**
-	 * Finds the h r project status where groupId = &#63; and code = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the h r project status where groupId = &#63; and code = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param code the code to search with
+	 * @param groupId the group ID
+	 * @param code the code
 	 * @return the matching h r project status, or <code>null</code> if a matching h r project status could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -495,10 +495,10 @@ public class HRProjectStatusPersistenceImpl extends BasePersistenceImpl<HRProjec
 	}
 
 	/**
-	 * Finds the h r project status where groupId = &#63; and code = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the h r project status where groupId = &#63; and code = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param code the code to search with
+	 * @param groupId the group ID
+	 * @param code the code
 	 * @return the matching h r project status, or <code>null</code> if a matching h r project status could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -597,7 +597,7 @@ public class HRProjectStatusPersistenceImpl extends BasePersistenceImpl<HRProjec
 	}
 
 	/**
-	 * Finds all the h r project statuses.
+	 * Returns all the h r project statuses.
 	 *
 	 * @return the h r project statuses
 	 * @throws SystemException if a system exception occurred
@@ -607,14 +607,14 @@ public class HRProjectStatusPersistenceImpl extends BasePersistenceImpl<HRProjec
 	}
 
 	/**
-	 * Finds a range of all the h r project statuses.
+	 * Returns a range of all the h r project statuses.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of h r project statuses to return
-	 * @param end the upper bound of the range of h r project statuses to return (not inclusive)
+	 * @param start the lower bound of the range of h r project statuses
+	 * @param end the upper bound of the range of h r project statuses (not inclusive)
 	 * @return the range of h r project statuses
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -624,14 +624,14 @@ public class HRProjectStatusPersistenceImpl extends BasePersistenceImpl<HRProjec
 	}
 
 	/**
-	 * Finds an ordered range of all the h r project statuses.
+	 * Returns an ordered range of all the h r project statuses.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of h r project statuses to return
-	 * @param end the upper bound of the range of h r project statuses to return (not inclusive)
+	 * @param start the lower bound of the range of h r project statuses
+	 * @param end the upper bound of the range of h r project statuses (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of h r project statuses
 	 * @throws SystemException if a system exception occurred
@@ -708,8 +708,8 @@ public class HRProjectStatusPersistenceImpl extends BasePersistenceImpl<HRProjec
 	/**
 	 * Removes the h r project status where groupId = &#63; and code = &#63; from the database.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param code the code to search with
+	 * @param groupId the group ID
+	 * @param code the code
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeByG_C(long groupId, String code)
@@ -731,10 +731,10 @@ public class HRProjectStatusPersistenceImpl extends BasePersistenceImpl<HRProjec
 	}
 
 	/**
-	 * Counts all the h r project statuses where groupId = &#63; and code = &#63;.
+	 * Returns the number of h r project statuses where groupId = &#63; and code = &#63;.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param code the code to search with
+	 * @param groupId the group ID
+	 * @param code the code
 	 * @return the number of matching h r project statuses
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -801,7 +801,7 @@ public class HRProjectStatusPersistenceImpl extends BasePersistenceImpl<HRProjec
 	}
 
 	/**
-	 * Counts all the h r project statuses.
+	 * Returns the number of h r project statuses.
 	 *
 	 * @return the number of h r project statuses
 	 * @throws SystemException if a system exception occurred

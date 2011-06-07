@@ -37,7 +37,7 @@ public class HRUserWrapper implements HRUser {
 	}
 
 	/**
-	* Gets the primary key of this h r user.
+	* Returns the primary key of this h r user.
 	*
 	* @return the primary key of this h r user
 	*/
@@ -46,7 +46,7 @@ public class HRUserWrapper implements HRUser {
 	}
 
 	/**
-	* Sets the primary key of this h r user
+	* Sets the primary key of this h r user.
 	*
 	* @param primaryKey the primary key of this h r user
 	*/
@@ -55,7 +55,7 @@ public class HRUserWrapper implements HRUser {
 	}
 
 	/**
-	* Gets the hr user ID of this h r user.
+	* Returns the hr user ID of this h r user.
 	*
 	* @return the hr user ID of this h r user
 	*/
@@ -73,7 +73,7 @@ public class HRUserWrapper implements HRUser {
 	}
 
 	/**
-	* Gets the hr user uuid of this h r user.
+	* Returns the hr user uuid of this h r user.
 	*
 	* @return the hr user uuid of this h r user
 	* @throws SystemException if a system exception occurred
@@ -93,7 +93,7 @@ public class HRUserWrapper implements HRUser {
 	}
 
 	/**
-	* Gets the group ID of this h r user.
+	* Returns the group ID of this h r user.
 	*
 	* @return the group ID of this h r user
 	*/
@@ -111,7 +111,7 @@ public class HRUserWrapper implements HRUser {
 	}
 
 	/**
-	* Gets the company ID of this h r user.
+	* Returns the company ID of this h r user.
 	*
 	* @return the company ID of this h r user
 	*/
@@ -129,7 +129,7 @@ public class HRUserWrapper implements HRUser {
 	}
 
 	/**
-	* Gets the user ID of this h r user.
+	* Returns the user ID of this h r user.
 	*
 	* @return the user ID of this h r user
 	*/
@@ -147,7 +147,7 @@ public class HRUserWrapper implements HRUser {
 	}
 
 	/**
-	* Gets the user uuid of this h r user.
+	* Returns the user uuid of this h r user.
 	*
 	* @return the user uuid of this h r user
 	* @throws SystemException if a system exception occurred
@@ -167,7 +167,7 @@ public class HRUserWrapper implements HRUser {
 	}
 
 	/**
-	* Gets the user name of this h r user.
+	* Returns the user name of this h r user.
 	*
 	* @return the user name of this h r user
 	*/
@@ -185,7 +185,7 @@ public class HRUserWrapper implements HRUser {
 	}
 
 	/**
-	* Gets the create date of this h r user.
+	* Returns the create date of this h r user.
 	*
 	* @return the create date of this h r user
 	*/
@@ -203,7 +203,7 @@ public class HRUserWrapper implements HRUser {
 	}
 
 	/**
-	* Gets the modified date of this h r user.
+	* Returns the modified date of this h r user.
 	*
 	* @return the modified date of this h r user
 	*/
@@ -221,7 +221,7 @@ public class HRUserWrapper implements HRUser {
 	}
 
 	/**
-	* Gets the hr employment type ID of this h r user.
+	* Returns the hr employment type ID of this h r user.
 	*
 	* @return the hr employment type ID of this h r user
 	*/
@@ -239,7 +239,7 @@ public class HRUserWrapper implements HRUser {
 	}
 
 	/**
-	* Gets the hr job title ID of this h r user.
+	* Returns the hr job title ID of this h r user.
 	*
 	* @return the hr job title ID of this h r user
 	*/
@@ -257,7 +257,7 @@ public class HRUserWrapper implements HRUser {
 	}
 
 	/**
-	* Gets the hr office ID of this h r user.
+	* Returns the hr office ID of this h r user.
 	*
 	* @return the hr office ID of this h r user
 	*/
@@ -275,7 +275,7 @@ public class HRUserWrapper implements HRUser {
 	}
 
 	/**
-	* Gets the hr termination type ID of this h r user.
+	* Returns the hr termination type ID of this h r user.
 	*
 	* @return the hr termination type ID of this h r user
 	*/
@@ -293,7 +293,7 @@ public class HRUserWrapper implements HRUser {
 	}
 
 	/**
-	* Gets the hr wage type ID of this h r user.
+	* Returns the hr wage type ID of this h r user.
 	*
 	* @return the hr wage type ID of this h r user
 	*/
@@ -311,7 +311,7 @@ public class HRUserWrapper implements HRUser {
 	}
 
 	/**
-	* Gets the hire date of this h r user.
+	* Returns the hire date of this h r user.
 	*
 	* @return the hire date of this h r user
 	*/
@@ -329,7 +329,7 @@ public class HRUserWrapper implements HRUser {
 	}
 
 	/**
-	* Gets the termination date of this h r user.
+	* Returns the termination date of this h r user.
 	*
 	* @return the termination date of this h r user
 	*/
@@ -347,7 +347,7 @@ public class HRUserWrapper implements HRUser {
 	}
 
 	/**
-	* Gets the wage amount of this h r user.
+	* Returns the wage amount of this h r user.
 	*
 	* @return the wage amount of this h r user
 	*/
@@ -365,7 +365,7 @@ public class HRUserWrapper implements HRUser {
 	}
 
 	/**
-	* Gets the wage currency code of this h r user.
+	* Returns the wage currency code of this h r user.
 	*
 	* @return the wage currency code of this h r user
 	*/
@@ -383,7 +383,7 @@ public class HRUserWrapper implements HRUser {
 	}
 
 	/**
-	* Gets the benefits exempt of this h r user.
+	* Returns the benefits exempt of this h r user.
 	*
 	* @return the benefits exempt of this h r user
 	*/
@@ -410,7 +410,7 @@ public class HRUserWrapper implements HRUser {
 	}
 
 	/**
-	* Gets the overtime exempt of this h r user.
+	* Returns the overtime exempt of this h r user.
 	*
 	* @return the overtime exempt of this h r user
 	*/

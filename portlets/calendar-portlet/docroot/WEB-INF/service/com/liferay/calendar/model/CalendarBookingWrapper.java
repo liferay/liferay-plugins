@@ -37,7 +37,7 @@ public class CalendarBookingWrapper implements CalendarBooking {
 	}
 
 	/**
-	* Gets the primary key of this calendar booking.
+	* Returns the primary key of this calendar booking.
 	*
 	* @return the primary key of this calendar booking
 	*/
@@ -46,7 +46,7 @@ public class CalendarBookingWrapper implements CalendarBooking {
 	}
 
 	/**
-	* Sets the primary key of this calendar booking
+	* Sets the primary key of this calendar booking.
 	*
 	* @param primaryKey the primary key of this calendar booking
 	*/
@@ -55,7 +55,7 @@ public class CalendarBookingWrapper implements CalendarBooking {
 	}
 
 	/**
-	* Gets the uuid of this calendar booking.
+	* Returns the uuid of this calendar booking.
 	*
 	* @return the uuid of this calendar booking
 	*/
@@ -73,7 +73,7 @@ public class CalendarBookingWrapper implements CalendarBooking {
 	}
 
 	/**
-	* Gets the calendar booking ID of this calendar booking.
+	* Returns the calendar booking ID of this calendar booking.
 	*
 	* @return the calendar booking ID of this calendar booking
 	*/
@@ -91,7 +91,7 @@ public class CalendarBookingWrapper implements CalendarBooking {
 	}
 
 	/**
-	* Gets the group ID of this calendar booking.
+	* Returns the group ID of this calendar booking.
 	*
 	* @return the group ID of this calendar booking
 	*/
@@ -109,7 +109,7 @@ public class CalendarBookingWrapper implements CalendarBooking {
 	}
 
 	/**
-	* Gets the company ID of this calendar booking.
+	* Returns the company ID of this calendar booking.
 	*
 	* @return the company ID of this calendar booking
 	*/
@@ -127,7 +127,7 @@ public class CalendarBookingWrapper implements CalendarBooking {
 	}
 
 	/**
-	* Gets the user ID of this calendar booking.
+	* Returns the user ID of this calendar booking.
 	*
 	* @return the user ID of this calendar booking
 	*/
@@ -145,7 +145,7 @@ public class CalendarBookingWrapper implements CalendarBooking {
 	}
 
 	/**
-	* Gets the user uuid of this calendar booking.
+	* Returns the user uuid of this calendar booking.
 	*
 	* @return the user uuid of this calendar booking
 	* @throws SystemException if a system exception occurred
@@ -165,7 +165,7 @@ public class CalendarBookingWrapper implements CalendarBooking {
 	}
 
 	/**
-	* Gets the user name of this calendar booking.
+	* Returns the user name of this calendar booking.
 	*
 	* @return the user name of this calendar booking
 	*/
@@ -183,7 +183,7 @@ public class CalendarBookingWrapper implements CalendarBooking {
 	}
 
 	/**
-	* Gets the create date of this calendar booking.
+	* Returns the create date of this calendar booking.
 	*
 	* @return the create date of this calendar booking
 	*/
@@ -201,7 +201,7 @@ public class CalendarBookingWrapper implements CalendarBooking {
 	}
 
 	/**
-	* Gets the modified date of this calendar booking.
+	* Returns the modified date of this calendar booking.
 	*
 	* @return the modified date of this calendar booking
 	*/
@@ -219,7 +219,7 @@ public class CalendarBookingWrapper implements CalendarBooking {
 	}
 
 	/**
-	* Gets the calendar event ID of this calendar booking.
+	* Returns the calendar event ID of this calendar booking.
 	*
 	* @return the calendar event ID of this calendar booking
 	*/
@@ -237,7 +237,7 @@ public class CalendarBookingWrapper implements CalendarBooking {
 	}
 
 	/**
-	* Gets the calendar resource ID of this calendar booking.
+	* Returns the calendar resource ID of this calendar booking.
 	*
 	* @return the calendar resource ID of this calendar booking
 	*/
@@ -255,16 +255,16 @@ public class CalendarBookingWrapper implements CalendarBooking {
 	}
 
 	/**
-	* Gets the class name of the model instance this calendar booking is polymorphically associated with.
+	* Returns the fully qualified class name of this calendar booking.
 	*
-	* @return the class name of the model instance this calendar booking is polymorphically associated with
+	* @return the fully qualified class name of this calendar booking
 	*/
 	public java.lang.String getClassName() {
 		return _calendarBooking.getClassName();
 	}
 
 	/**
-	* Gets the class name ID of this calendar booking.
+	* Returns the class name ID of this calendar booking.
 	*
 	* @return the class name ID of this calendar booking
 	*/
@@ -282,7 +282,7 @@ public class CalendarBookingWrapper implements CalendarBooking {
 	}
 
 	/**
-	* Gets the class p k of this calendar booking.
+	* Returns the class p k of this calendar booking.
 	*
 	* @return the class p k of this calendar booking
 	*/
@@ -300,7 +300,7 @@ public class CalendarBookingWrapper implements CalendarBooking {
 	}
 
 	/**
-	* Gets the title of this calendar booking.
+	* Returns the title of this calendar booking.
 	*
 	* @return the title of this calendar booking
 	*/
@@ -309,9 +309,9 @@ public class CalendarBookingWrapper implements CalendarBooking {
 	}
 
 	/**
-	* Gets the localized title of this calendar booking. Uses the default language if no localization exists for the requested language.
+	* Returns the localized title of this calendar booking in the language. Uses the default language if no localization exists for the requested language.
 	*
-	* @param locale the locale to get the localized title for
+	* @param locale the locale of the language
 	* @return the localized title of this calendar booking
 	*/
 	public java.lang.String getTitle(java.util.Locale locale) {
@@ -319,9 +319,9 @@ public class CalendarBookingWrapper implements CalendarBooking {
 	}
 
 	/**
-	* Gets the localized title of this calendar booking, optionally using the default language if no localization exists for the requested language.
+	* Returns the localized title of this calendar booking in the language, optionally using the default language if no localization exists for the requested language.
 	*
-	* @param locale the local to get the localized title for
+	* @param locale the local of the language
 	* @param useDefault whether to use the default language if no localization exists for the requested language
 	* @return the localized title of this calendar booking. If <code>useDefault</code> is <code>false</code> and no localization exists for the requested language, an empty string will be returned.
 	*/
@@ -330,9 +330,9 @@ public class CalendarBookingWrapper implements CalendarBooking {
 	}
 
 	/**
-	* Gets the localized title of this calendar booking. Uses the default language if no localization exists for the requested language.
+	* Returns the localized title of this calendar booking in the language. Uses the default language if no localization exists for the requested language.
 	*
-	* @param languageId the id of the language to get the localized title for
+	* @param languageId the ID of the language
 	* @return the localized title of this calendar booking
 	*/
 	public java.lang.String getTitle(java.lang.String languageId) {
@@ -340,9 +340,9 @@ public class CalendarBookingWrapper implements CalendarBooking {
 	}
 
 	/**
-	* Gets the localized title of this calendar booking, optionally using the default language if no localization exists for the requested language.
+	* Returns the localized title of this calendar booking in the language, optionally using the default language if no localization exists for the requested language.
 	*
-	* @param languageId the id of the language to get the localized title for
+	* @param languageId the ID of the language
 	* @param useDefault whether to use the default language if no localization exists for the requested language
 	* @return the localized title of this calendar booking
 	*/
@@ -352,9 +352,9 @@ public class CalendarBookingWrapper implements CalendarBooking {
 	}
 
 	/**
-	* Gets a map of the locales and localized title of this calendar booking.
+	* Returns a map of the locales and localized titles of this calendar booking.
 	*
-	* @return the locales and localized title
+	* @return the locales and localized titles of this calendar booking
 	*/
 	public java.util.Map<java.util.Locale, java.lang.String> getTitleMap() {
 		return _calendarBooking.getTitleMap();
@@ -370,15 +370,22 @@ public class CalendarBookingWrapper implements CalendarBooking {
 	}
 
 	/**
-	* Sets the localized title of this calendar booking.
+	* Sets the localized title of this calendar booking in the language.
 	*
 	* @param title the localized title of this calendar booking
-	* @param locale the locale to set the localized title for
+	* @param locale the locale of the language
 	*/
 	public void setTitle(java.lang.String title, java.util.Locale locale) {
 		_calendarBooking.setTitle(title, locale);
 	}
 
+	/**
+	* Sets the localized title of this calendar booking in the language, and sets the default locale.
+	*
+	* @param title the localized title of this calendar booking
+	* @param locale the locale of the language
+	* @param defaultLocale the default locale
+	*/
 	public void setTitle(java.lang.String title, java.util.Locale locale,
 		java.util.Locale defaultLocale) {
 		_calendarBooking.setTitle(title, locale, defaultLocale);
@@ -394,6 +401,12 @@ public class CalendarBookingWrapper implements CalendarBooking {
 		_calendarBooking.setTitleMap(titleMap);
 	}
 
+	/**
+	* Sets the localized titles of this calendar booking from the map of locales and localized titles, and sets the default locale.
+	*
+	* @param titleMap the locales and localized titles of this calendar booking
+	* @param defaultLocale the default locale
+	*/
 	public void setTitleMap(
 		java.util.Map<java.util.Locale, java.lang.String> titleMap,
 		java.util.Locale defaultLocale) {
@@ -401,7 +414,7 @@ public class CalendarBookingWrapper implements CalendarBooking {
 	}
 
 	/**
-	* Gets the name of this calendar booking.
+	* Returns the name of this calendar booking.
 	*
 	* @return the name of this calendar booking
 	*/
@@ -410,9 +423,9 @@ public class CalendarBookingWrapper implements CalendarBooking {
 	}
 
 	/**
-	* Gets the localized name of this calendar booking. Uses the default language if no localization exists for the requested language.
+	* Returns the localized name of this calendar booking in the language. Uses the default language if no localization exists for the requested language.
 	*
-	* @param locale the locale to get the localized name for
+	* @param locale the locale of the language
 	* @return the localized name of this calendar booking
 	*/
 	public java.lang.String getName(java.util.Locale locale) {
@@ -420,9 +433,9 @@ public class CalendarBookingWrapper implements CalendarBooking {
 	}
 
 	/**
-	* Gets the localized name of this calendar booking, optionally using the default language if no localization exists for the requested language.
+	* Returns the localized name of this calendar booking in the language, optionally using the default language if no localization exists for the requested language.
 	*
-	* @param locale the local to get the localized name for
+	* @param locale the local of the language
 	* @param useDefault whether to use the default language if no localization exists for the requested language
 	* @return the localized name of this calendar booking. If <code>useDefault</code> is <code>false</code> and no localization exists for the requested language, an empty string will be returned.
 	*/
@@ -431,9 +444,9 @@ public class CalendarBookingWrapper implements CalendarBooking {
 	}
 
 	/**
-	* Gets the localized name of this calendar booking. Uses the default language if no localization exists for the requested language.
+	* Returns the localized name of this calendar booking in the language. Uses the default language if no localization exists for the requested language.
 	*
-	* @param languageId the id of the language to get the localized name for
+	* @param languageId the ID of the language
 	* @return the localized name of this calendar booking
 	*/
 	public java.lang.String getName(java.lang.String languageId) {
@@ -441,9 +454,9 @@ public class CalendarBookingWrapper implements CalendarBooking {
 	}
 
 	/**
-	* Gets the localized name of this calendar booking, optionally using the default language if no localization exists for the requested language.
+	* Returns the localized name of this calendar booking in the language, optionally using the default language if no localization exists for the requested language.
 	*
-	* @param languageId the id of the language to get the localized name for
+	* @param languageId the ID of the language
 	* @param useDefault whether to use the default language if no localization exists for the requested language
 	* @return the localized name of this calendar booking
 	*/
@@ -453,9 +466,9 @@ public class CalendarBookingWrapper implements CalendarBooking {
 	}
 
 	/**
-	* Gets a map of the locales and localized name of this calendar booking.
+	* Returns a map of the locales and localized names of this calendar booking.
 	*
-	* @return the locales and localized name
+	* @return the locales and localized names of this calendar booking
 	*/
 	public java.util.Map<java.util.Locale, java.lang.String> getNameMap() {
 		return _calendarBooking.getNameMap();
@@ -471,15 +484,22 @@ public class CalendarBookingWrapper implements CalendarBooking {
 	}
 
 	/**
-	* Sets the localized name of this calendar booking.
+	* Sets the localized name of this calendar booking in the language.
 	*
 	* @param name the localized name of this calendar booking
-	* @param locale the locale to set the localized name for
+	* @param locale the locale of the language
 	*/
 	public void setName(java.lang.String name, java.util.Locale locale) {
 		_calendarBooking.setName(name, locale);
 	}
 
+	/**
+	* Sets the localized name of this calendar booking in the language, and sets the default locale.
+	*
+	* @param name the localized name of this calendar booking
+	* @param locale the locale of the language
+	* @param defaultLocale the default locale
+	*/
 	public void setName(java.lang.String name, java.util.Locale locale,
 		java.util.Locale defaultLocale) {
 		_calendarBooking.setName(name, locale, defaultLocale);
@@ -495,6 +515,12 @@ public class CalendarBookingWrapper implements CalendarBooking {
 		_calendarBooking.setNameMap(nameMap);
 	}
 
+	/**
+	* Sets the localized names of this calendar booking from the map of locales and localized names, and sets the default locale.
+	*
+	* @param nameMap the locales and localized names of this calendar booking
+	* @param defaultLocale the default locale
+	*/
 	public void setNameMap(
 		java.util.Map<java.util.Locale, java.lang.String> nameMap,
 		java.util.Locale defaultLocale) {
@@ -502,7 +528,7 @@ public class CalendarBookingWrapper implements CalendarBooking {
 	}
 
 	/**
-	* Gets the description of this calendar booking.
+	* Returns the description of this calendar booking.
 	*
 	* @return the description of this calendar booking
 	*/
@@ -511,9 +537,9 @@ public class CalendarBookingWrapper implements CalendarBooking {
 	}
 
 	/**
-	* Gets the localized description of this calendar booking. Uses the default language if no localization exists for the requested language.
+	* Returns the localized description of this calendar booking in the language. Uses the default language if no localization exists for the requested language.
 	*
-	* @param locale the locale to get the localized description for
+	* @param locale the locale of the language
 	* @return the localized description of this calendar booking
 	*/
 	public java.lang.String getDescription(java.util.Locale locale) {
@@ -521,9 +547,9 @@ public class CalendarBookingWrapper implements CalendarBooking {
 	}
 
 	/**
-	* Gets the localized description of this calendar booking, optionally using the default language if no localization exists for the requested language.
+	* Returns the localized description of this calendar booking in the language, optionally using the default language if no localization exists for the requested language.
 	*
-	* @param locale the local to get the localized description for
+	* @param locale the local of the language
 	* @param useDefault whether to use the default language if no localization exists for the requested language
 	* @return the localized description of this calendar booking. If <code>useDefault</code> is <code>false</code> and no localization exists for the requested language, an empty string will be returned.
 	*/
@@ -533,9 +559,9 @@ public class CalendarBookingWrapper implements CalendarBooking {
 	}
 
 	/**
-	* Gets the localized description of this calendar booking. Uses the default language if no localization exists for the requested language.
+	* Returns the localized description of this calendar booking in the language. Uses the default language if no localization exists for the requested language.
 	*
-	* @param languageId the id of the language to get the localized description for
+	* @param languageId the ID of the language
 	* @return the localized description of this calendar booking
 	*/
 	public java.lang.String getDescription(java.lang.String languageId) {
@@ -543,9 +569,9 @@ public class CalendarBookingWrapper implements CalendarBooking {
 	}
 
 	/**
-	* Gets the localized description of this calendar booking, optionally using the default language if no localization exists for the requested language.
+	* Returns the localized description of this calendar booking in the language, optionally using the default language if no localization exists for the requested language.
 	*
-	* @param languageId the id of the language to get the localized description for
+	* @param languageId the ID of the language
 	* @param useDefault whether to use the default language if no localization exists for the requested language
 	* @return the localized description of this calendar booking
 	*/
@@ -555,9 +581,9 @@ public class CalendarBookingWrapper implements CalendarBooking {
 	}
 
 	/**
-	* Gets a map of the locales and localized description of this calendar booking.
+	* Returns a map of the locales and localized descriptions of this calendar booking.
 	*
-	* @return the locales and localized description
+	* @return the locales and localized descriptions of this calendar booking
 	*/
 	public java.util.Map<java.util.Locale, java.lang.String> getDescriptionMap() {
 		return _calendarBooking.getDescriptionMap();
@@ -573,16 +599,23 @@ public class CalendarBookingWrapper implements CalendarBooking {
 	}
 
 	/**
-	* Sets the localized description of this calendar booking.
+	* Sets the localized description of this calendar booking in the language.
 	*
 	* @param description the localized description of this calendar booking
-	* @param locale the locale to set the localized description for
+	* @param locale the locale of the language
 	*/
 	public void setDescription(java.lang.String description,
 		java.util.Locale locale) {
 		_calendarBooking.setDescription(description, locale);
 	}
 
+	/**
+	* Sets the localized description of this calendar booking in the language, and sets the default locale.
+	*
+	* @param description the localized description of this calendar booking
+	* @param locale the locale of the language
+	* @param defaultLocale the default locale
+	*/
 	public void setDescription(java.lang.String description,
 		java.util.Locale locale, java.util.Locale defaultLocale) {
 		_calendarBooking.setDescription(description, locale, defaultLocale);
@@ -598,6 +631,12 @@ public class CalendarBookingWrapper implements CalendarBooking {
 		_calendarBooking.setDescriptionMap(descriptionMap);
 	}
 
+	/**
+	* Sets the localized descriptions of this calendar booking from the map of locales and localized descriptions, and sets the default locale.
+	*
+	* @param descriptionMap the locales and localized descriptions of this calendar booking
+	* @param defaultLocale the default locale
+	*/
 	public void setDescriptionMap(
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
 		java.util.Locale defaultLocale) {
@@ -605,7 +644,7 @@ public class CalendarBookingWrapper implements CalendarBooking {
 	}
 
 	/**
-	* Gets the location of this calendar booking.
+	* Returns the location of this calendar booking.
 	*
 	* @return the location of this calendar booking
 	*/
@@ -623,7 +662,7 @@ public class CalendarBookingWrapper implements CalendarBooking {
 	}
 
 	/**
-	* Gets the start date of this calendar booking.
+	* Returns the start date of this calendar booking.
 	*
 	* @return the start date of this calendar booking
 	*/
@@ -641,7 +680,7 @@ public class CalendarBookingWrapper implements CalendarBooking {
 	}
 
 	/**
-	* Gets the end date of this calendar booking.
+	* Returns the end date of this calendar booking.
 	*
 	* @return the end date of this calendar booking
 	*/
@@ -659,7 +698,7 @@ public class CalendarBookingWrapper implements CalendarBooking {
 	}
 
 	/**
-	* Gets the duration hour of this calendar booking.
+	* Returns the duration hour of this calendar booking.
 	*
 	* @return the duration hour of this calendar booking
 	*/
@@ -677,7 +716,7 @@ public class CalendarBookingWrapper implements CalendarBooking {
 	}
 
 	/**
-	* Gets the duration minute of this calendar booking.
+	* Returns the duration minute of this calendar booking.
 	*
 	* @return the duration minute of this calendar booking
 	*/
@@ -695,7 +734,7 @@ public class CalendarBookingWrapper implements CalendarBooking {
 	}
 
 	/**
-	* Gets the recurrence of this calendar booking.
+	* Returns the recurrence of this calendar booking.
 	*
 	* @return the recurrence of this calendar booking
 	*/
@@ -713,7 +752,7 @@ public class CalendarBookingWrapper implements CalendarBooking {
 	}
 
 	/**
-	* Gets the type of this calendar booking.
+	* Returns the type of this calendar booking.
 	*
 	* @return the type of this calendar booking
 	*/
@@ -731,7 +770,7 @@ public class CalendarBookingWrapper implements CalendarBooking {
 	}
 
 	/**
-	* Gets the required of this calendar booking.
+	* Returns the required of this calendar booking.
 	*
 	* @return the required of this calendar booking
 	*/
@@ -758,7 +797,7 @@ public class CalendarBookingWrapper implements CalendarBooking {
 	}
 
 	/**
-	* Gets the status of this calendar booking.
+	* Returns the status of this calendar booking.
 	*
 	* @return the status of this calendar booking
 	*/
@@ -776,7 +815,7 @@ public class CalendarBookingWrapper implements CalendarBooking {
 	}
 
 	/**
-	* Gets the status by user ID of this calendar booking.
+	* Returns the status by user ID of this calendar booking.
 	*
 	* @return the status by user ID of this calendar booking
 	*/
@@ -794,7 +833,7 @@ public class CalendarBookingWrapper implements CalendarBooking {
 	}
 
 	/**
-	* Gets the status by user uuid of this calendar booking.
+	* Returns the status by user uuid of this calendar booking.
 	*
 	* @return the status by user uuid of this calendar booking
 	* @throws SystemException if a system exception occurred
@@ -814,7 +853,7 @@ public class CalendarBookingWrapper implements CalendarBooking {
 	}
 
 	/**
-	* Gets the status by user name of this calendar booking.
+	* Returns the status by user name of this calendar booking.
 	*
 	* @return the status by user name of this calendar booking
 	*/
@@ -832,7 +871,7 @@ public class CalendarBookingWrapper implements CalendarBooking {
 	}
 
 	/**
-	* Gets the status date of this calendar booking.
+	* Returns the status date of this calendar booking.
 	*
 	* @return the status date of this calendar booking
 	*/
@@ -850,7 +889,7 @@ public class CalendarBookingWrapper implements CalendarBooking {
 	}
 
 	/**
-	* @deprecated {@link #isApproved}
+	* @deprecated Renamed to {@link #isApproved()}
 	*/
 	public boolean getApproved() {
 		return _calendarBooking.getApproved();

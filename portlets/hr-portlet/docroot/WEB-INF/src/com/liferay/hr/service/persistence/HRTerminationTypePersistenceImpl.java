@@ -93,7 +93,7 @@ public class HRTerminationTypePersistenceImpl extends BasePersistenceImpl<HRTerm
 	/**
 	 * Caches the h r termination type in the entity cache if it is enabled.
 	 *
-	 * @param hrTerminationType the h r termination type to cache
+	 * @param hrTerminationType the h r termination type
 	 */
 	public void cacheResult(HRTerminationType hrTerminationType) {
 		EntityCacheUtil.putResult(HRTerminationTypeModelImpl.ENTITY_CACHE_ENABLED,
@@ -113,7 +113,7 @@ public class HRTerminationTypePersistenceImpl extends BasePersistenceImpl<HRTerm
 	/**
 	 * Caches the h r termination types in the entity cache if it is enabled.
 	 *
-	 * @param hrTerminationTypes the h r termination types to cache
+	 * @param hrTerminationTypes the h r termination types
 	 */
 	public void cacheResult(List<HRTerminationType> hrTerminationTypes) {
 		for (HRTerminationType hrTerminationType : hrTerminationTypes) {
@@ -180,7 +180,7 @@ public class HRTerminationTypePersistenceImpl extends BasePersistenceImpl<HRTerm
 	/**
 	 * Removes the h r termination type with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param primaryKey the primary key of the h r termination type to remove
+	 * @param primaryKey the primary key of the h r termination type
 	 * @return the h r termination type that was removed
 	 * @throws com.liferay.portal.NoSuchModelException if a h r termination type with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -193,7 +193,7 @@ public class HRTerminationTypePersistenceImpl extends BasePersistenceImpl<HRTerm
 	/**
 	 * Removes the h r termination type with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param hrTerminationTypeId the primary key of the h r termination type to remove
+	 * @param hrTerminationTypeId the primary key of the h r termination type
 	 * @return the h r termination type that was removed
 	 * @throws com.liferay.hr.NoSuchTerminationTypeException if a h r termination type with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -234,7 +234,7 @@ public class HRTerminationTypePersistenceImpl extends BasePersistenceImpl<HRTerm
 	/**
 	 * Removes the h r termination type from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param hrTerminationType the h r termination type to remove
+	 * @param hrTerminationType the h r termination type
 	 * @return the h r termination type that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -363,9 +363,9 @@ public class HRTerminationTypePersistenceImpl extends BasePersistenceImpl<HRTerm
 	}
 
 	/**
-	 * Finds the h r termination type with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
+	 * Returns the h r termination type with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
 	 *
-	 * @param primaryKey the primary key of the h r termination type to find
+	 * @param primaryKey the primary key of the h r termination type
 	 * @return the h r termination type
 	 * @throws com.liferay.portal.NoSuchModelException if a h r termination type with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -376,9 +376,9 @@ public class HRTerminationTypePersistenceImpl extends BasePersistenceImpl<HRTerm
 	}
 
 	/**
-	 * Finds the h r termination type with the primary key or throws a {@link com.liferay.hr.NoSuchTerminationTypeException} if it could not be found.
+	 * Returns the h r termination type with the primary key or throws a {@link com.liferay.hr.NoSuchTerminationTypeException} if it could not be found.
 	 *
-	 * @param hrTerminationTypeId the primary key of the h r termination type to find
+	 * @param hrTerminationTypeId the primary key of the h r termination type
 	 * @return the h r termination type
 	 * @throws com.liferay.hr.NoSuchTerminationTypeException if a h r termination type with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -401,9 +401,9 @@ public class HRTerminationTypePersistenceImpl extends BasePersistenceImpl<HRTerm
 	}
 
 	/**
-	 * Finds the h r termination type with the primary key or returns <code>null</code> if it could not be found.
+	 * Returns the h r termination type with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param primaryKey the primary key of the h r termination type to find
+	 * @param primaryKey the primary key of the h r termination type
 	 * @return the h r termination type, or <code>null</code> if a h r termination type with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -413,9 +413,9 @@ public class HRTerminationTypePersistenceImpl extends BasePersistenceImpl<HRTerm
 	}
 
 	/**
-	 * Finds the h r termination type with the primary key or returns <code>null</code> if it could not be found.
+	 * Returns the h r termination type with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param hrTerminationTypeId the primary key of the h r termination type to find
+	 * @param hrTerminationTypeId the primary key of the h r termination type
 	 * @return the h r termination type, or <code>null</code> if a h r termination type with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -449,10 +449,10 @@ public class HRTerminationTypePersistenceImpl extends BasePersistenceImpl<HRTerm
 	}
 
 	/**
-	 * Finds the h r termination type where groupId = &#63; and code = &#63; or throws a {@link com.liferay.hr.NoSuchTerminationTypeException} if it could not be found.
+	 * Returns the h r termination type where groupId = &#63; and code = &#63; or throws a {@link com.liferay.hr.NoSuchTerminationTypeException} if it could not be found.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param code the code to search with
+	 * @param groupId the group ID
+	 * @param code the code
 	 * @return the matching h r termination type
 	 * @throws com.liferay.hr.NoSuchTerminationTypeException if a matching h r termination type could not be found
 	 * @throws SystemException if a system exception occurred
@@ -485,10 +485,10 @@ public class HRTerminationTypePersistenceImpl extends BasePersistenceImpl<HRTerm
 	}
 
 	/**
-	 * Finds the h r termination type where groupId = &#63; and code = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the h r termination type where groupId = &#63; and code = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param code the code to search with
+	 * @param groupId the group ID
+	 * @param code the code
 	 * @return the matching h r termination type, or <code>null</code> if a matching h r termination type could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -498,10 +498,10 @@ public class HRTerminationTypePersistenceImpl extends BasePersistenceImpl<HRTerm
 	}
 
 	/**
-	 * Finds the h r termination type where groupId = &#63; and code = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the h r termination type where groupId = &#63; and code = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param code the code to search with
+	 * @param groupId the group ID
+	 * @param code the code
 	 * @return the matching h r termination type, or <code>null</code> if a matching h r termination type could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -600,7 +600,7 @@ public class HRTerminationTypePersistenceImpl extends BasePersistenceImpl<HRTerm
 	}
 
 	/**
-	 * Finds all the h r termination types.
+	 * Returns all the h r termination types.
 	 *
 	 * @return the h r termination types
 	 * @throws SystemException if a system exception occurred
@@ -610,14 +610,14 @@ public class HRTerminationTypePersistenceImpl extends BasePersistenceImpl<HRTerm
 	}
 
 	/**
-	 * Finds a range of all the h r termination types.
+	 * Returns a range of all the h r termination types.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of h r termination types to return
-	 * @param end the upper bound of the range of h r termination types to return (not inclusive)
+	 * @param start the lower bound of the range of h r termination types
+	 * @param end the upper bound of the range of h r termination types (not inclusive)
 	 * @return the range of h r termination types
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -627,14 +627,14 @@ public class HRTerminationTypePersistenceImpl extends BasePersistenceImpl<HRTerm
 	}
 
 	/**
-	 * Finds an ordered range of all the h r termination types.
+	 * Returns an ordered range of all the h r termination types.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of h r termination types to return
-	 * @param end the upper bound of the range of h r termination types to return (not inclusive)
+	 * @param start the lower bound of the range of h r termination types
+	 * @param end the upper bound of the range of h r termination types (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of h r termination types
 	 * @throws SystemException if a system exception occurred
@@ -711,8 +711,8 @@ public class HRTerminationTypePersistenceImpl extends BasePersistenceImpl<HRTerm
 	/**
 	 * Removes the h r termination type where groupId = &#63; and code = &#63; from the database.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param code the code to search with
+	 * @param groupId the group ID
+	 * @param code the code
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeByG_C(long groupId, String code)
@@ -734,10 +734,10 @@ public class HRTerminationTypePersistenceImpl extends BasePersistenceImpl<HRTerm
 	}
 
 	/**
-	 * Counts all the h r termination types where groupId = &#63; and code = &#63;.
+	 * Returns the number of h r termination types where groupId = &#63; and code = &#63;.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param code the code to search with
+	 * @param groupId the group ID
+	 * @param code the code
 	 * @return the number of matching h r termination types
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -804,7 +804,7 @@ public class HRTerminationTypePersistenceImpl extends BasePersistenceImpl<HRTerm
 	}
 
 	/**
-	 * Counts all the h r termination types.
+	 * Returns the number of h r termination types.
 	 *
 	 * @return the number of h r termination types
 	 * @throws SystemException if a system exception occurred

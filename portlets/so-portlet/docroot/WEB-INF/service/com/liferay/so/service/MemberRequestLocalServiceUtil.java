@@ -42,7 +42,7 @@ public class MemberRequestLocalServiceUtil {
 	/**
 	* Adds the member request to the database. Also notifies the appropriate model listeners.
 	*
-	* @param memberRequest the member request to add
+	* @param memberRequest the member request
 	* @return the member request that was added
 	* @throws SystemException if a system exception occurred
 	*/
@@ -66,7 +66,7 @@ public class MemberRequestLocalServiceUtil {
 	/**
 	* Deletes the member request with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param memberRequestId the primary key of the member request to delete
+	* @param memberRequestId the primary key of the member request
 	* @throws PortalException if a member request with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -79,7 +79,7 @@ public class MemberRequestLocalServiceUtil {
 	/**
 	* Deletes the member request from the database. Also notifies the appropriate model listeners.
 	*
-	* @param memberRequest the member request to delete
+	* @param memberRequest the member request
 	* @throws SystemException if a system exception occurred
 	*/
 	public static void deleteMemberRequest(
@@ -91,7 +91,7 @@ public class MemberRequestLocalServiceUtil {
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
 	*
-	* @param dynamicQuery the dynamic query to search with
+	* @param dynamicQuery the dynamic query
 	* @return the matching rows
 	* @throws SystemException if a system exception occurred
 	*/
@@ -109,9 +109,9 @@ public class MemberRequestLocalServiceUtil {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param dynamicQuery the dynamic query to search with
-	* @param start the lower bound of the range of model instances to return
-	* @param end the upper bound of the range of model instances to return (not inclusive)
+	* @param dynamicQuery the dynamic query
+	* @param start the lower bound of the range of model instances
+	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
 	* @throws SystemException if a system exception occurred
 	*/
@@ -129,9 +129,9 @@ public class MemberRequestLocalServiceUtil {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param dynamicQuery the dynamic query to search with
-	* @param start the lower bound of the range of model instances to return
-	* @param end the upper bound of the range of model instances to return (not inclusive)
+	* @param dynamicQuery the dynamic query
+	* @param start the lower bound of the range of model instances
+	* @param end the upper bound of the range of model instances (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
 	* @throws SystemException if a system exception occurred
@@ -147,9 +147,9 @@ public class MemberRequestLocalServiceUtil {
 	}
 
 	/**
-	* Counts the number of rows that match the dynamic query.
+	* Returns the number of rows that match the dynamic query.
 	*
-	* @param dynamicQuery the dynamic query to search with
+	* @param dynamicQuery the dynamic query
 	* @return the number of rows that match the dynamic query
 	* @throws SystemException if a system exception occurred
 	*/
@@ -160,9 +160,9 @@ public class MemberRequestLocalServiceUtil {
 	}
 
 	/**
-	* Gets the member request with the primary key.
+	* Returns the member request with the primary key.
 	*
-	* @param memberRequestId the primary key of the member request to get
+	* @param memberRequestId the primary key of the member request
 	* @return the member request
 	* @throws PortalException if a member request with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -175,14 +175,14 @@ public class MemberRequestLocalServiceUtil {
 	}
 
 	/**
-	* Gets a range of all the member requests.
+	* Returns a range of all the member requests.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of member requests to return
-	* @param end the upper bound of the range of member requests to return (not inclusive)
+	* @param start the lower bound of the range of member requests
+	* @param end the upper bound of the range of member requests (not inclusive)
 	* @return the range of member requests
 	* @throws SystemException if a system exception occurred
 	*/
@@ -193,7 +193,7 @@ public class MemberRequestLocalServiceUtil {
 	}
 
 	/**
-	* Gets the number of member requests.
+	* Returns the number of member requests.
 	*
 	* @return the number of member requests
 	* @throws SystemException if a system exception occurred
@@ -206,7 +206,7 @@ public class MemberRequestLocalServiceUtil {
 	/**
 	* Updates the member request in the database. Also notifies the appropriate model listeners.
 	*
-	* @param memberRequest the member request to update
+	* @param memberRequest the member request
 	* @return the member request that was updated
 	* @throws SystemException if a system exception occurred
 	*/
@@ -219,7 +219,7 @@ public class MemberRequestLocalServiceUtil {
 	/**
 	* Updates the member request in the database. Also notifies the appropriate model listeners.
 	*
-	* @param memberRequest the member request to update
+	* @param memberRequest the member request
 	* @param merge whether to merge the member request with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
 	* @return the member request that was updated
 	* @throws SystemException if a system exception occurred
@@ -231,7 +231,7 @@ public class MemberRequestLocalServiceUtil {
 	}
 
 	/**
-	* Gets the Spring bean ID for this bean.
+	* Returns the Spring bean ID for this bean.
 	*
 	* @return the Spring bean ID for this bean
 	*/

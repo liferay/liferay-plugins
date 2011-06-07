@@ -37,7 +37,7 @@ public class WSRPConsumerPortletWrapper implements WSRPConsumerPortlet {
 	}
 
 	/**
-	* Gets the primary key of this w s r p consumer portlet.
+	* Returns the primary key of this w s r p consumer portlet.
 	*
 	* @return the primary key of this w s r p consumer portlet
 	*/
@@ -46,7 +46,7 @@ public class WSRPConsumerPortletWrapper implements WSRPConsumerPortlet {
 	}
 
 	/**
-	* Sets the primary key of this w s r p consumer portlet
+	* Sets the primary key of this w s r p consumer portlet.
 	*
 	* @param primaryKey the primary key of this w s r p consumer portlet
 	*/
@@ -55,7 +55,7 @@ public class WSRPConsumerPortletWrapper implements WSRPConsumerPortlet {
 	}
 
 	/**
-	* Gets the uuid of this w s r p consumer portlet.
+	* Returns the uuid of this w s r p consumer portlet.
 	*
 	* @return the uuid of this w s r p consumer portlet
 	*/
@@ -73,7 +73,7 @@ public class WSRPConsumerPortletWrapper implements WSRPConsumerPortlet {
 	}
 
 	/**
-	* Gets the wsrp consumer portlet ID of this w s r p consumer portlet.
+	* Returns the wsrp consumer portlet ID of this w s r p consumer portlet.
 	*
 	* @return the wsrp consumer portlet ID of this w s r p consumer portlet
 	*/
@@ -91,7 +91,7 @@ public class WSRPConsumerPortletWrapper implements WSRPConsumerPortlet {
 	}
 
 	/**
-	* Gets the company ID of this w s r p consumer portlet.
+	* Returns the company ID of this w s r p consumer portlet.
 	*
 	* @return the company ID of this w s r p consumer portlet
 	*/
@@ -109,7 +109,7 @@ public class WSRPConsumerPortletWrapper implements WSRPConsumerPortlet {
 	}
 
 	/**
-	* Gets the create date of this w s r p consumer portlet.
+	* Returns the create date of this w s r p consumer portlet.
 	*
 	* @return the create date of this w s r p consumer portlet
 	*/
@@ -127,7 +127,7 @@ public class WSRPConsumerPortletWrapper implements WSRPConsumerPortlet {
 	}
 
 	/**
-	* Gets the modified date of this w s r p consumer portlet.
+	* Returns the modified date of this w s r p consumer portlet.
 	*
 	* @return the modified date of this w s r p consumer portlet
 	*/
@@ -145,7 +145,7 @@ public class WSRPConsumerPortletWrapper implements WSRPConsumerPortlet {
 	}
 
 	/**
-	* Gets the wsrp consumer ID of this w s r p consumer portlet.
+	* Returns the wsrp consumer ID of this w s r p consumer portlet.
 	*
 	* @return the wsrp consumer ID of this w s r p consumer portlet
 	*/
@@ -163,7 +163,7 @@ public class WSRPConsumerPortletWrapper implements WSRPConsumerPortlet {
 	}
 
 	/**
-	* Gets the name of this w s r p consumer portlet.
+	* Returns the name of this w s r p consumer portlet.
 	*
 	* @return the name of this w s r p consumer portlet
 	*/
@@ -181,7 +181,7 @@ public class WSRPConsumerPortletWrapper implements WSRPConsumerPortlet {
 	}
 
 	/**
-	* Gets the portlet handle of this w s r p consumer portlet.
+	* Returns the portlet handle of this w s r p consumer portlet.
 	*
 	* @return the portlet handle of this w s r p consumer portlet
 	*/

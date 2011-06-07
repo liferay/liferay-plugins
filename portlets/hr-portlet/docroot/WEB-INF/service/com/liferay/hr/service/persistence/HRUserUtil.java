@@ -119,7 +119,7 @@ public class HRUserUtil {
 	/**
 	* Caches the h r user in the entity cache if it is enabled.
 	*
-	* @param hrUser the h r user to cache
+	* @param hrUser the h r user
 	*/
 	public static void cacheResult(com.liferay.hr.model.HRUser hrUser) {
 		getPersistence().cacheResult(hrUser);
@@ -128,7 +128,7 @@ public class HRUserUtil {
 	/**
 	* Caches the h r users in the entity cache if it is enabled.
 	*
-	* @param hrUsers the h r users to cache
+	* @param hrUsers the h r users
 	*/
 	public static void cacheResult(
 		java.util.List<com.liferay.hr.model.HRUser> hrUsers) {
@@ -148,7 +148,7 @@ public class HRUserUtil {
 	/**
 	* Removes the h r user with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param hrUserId the primary key of the h r user to remove
+	* @param hrUserId the primary key of the h r user
 	* @return the h r user that was removed
 	* @throws com.liferay.hr.NoSuchUserException if a h r user with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -166,9 +166,9 @@ public class HRUserUtil {
 	}
 
 	/**
-	* Finds the h r user with the primary key or throws a {@link com.liferay.hr.NoSuchUserException} if it could not be found.
+	* Returns the h r user with the primary key or throws a {@link com.liferay.hr.NoSuchUserException} if it could not be found.
 	*
-	* @param hrUserId the primary key of the h r user to find
+	* @param hrUserId the primary key of the h r user
 	* @return the h r user
 	* @throws com.liferay.hr.NoSuchUserException if a h r user with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -180,9 +180,9 @@ public class HRUserUtil {
 	}
 
 	/**
-	* Finds the h r user with the primary key or returns <code>null</code> if it could not be found.
+	* Returns the h r user with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param hrUserId the primary key of the h r user to find
+	* @param hrUserId the primary key of the h r user
 	* @return the h r user, or <code>null</code> if a h r user with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -192,7 +192,7 @@ public class HRUserUtil {
 	}
 
 	/**
-	* Finds all the h r users.
+	* Returns all the h r users.
 	*
 	* @return the h r users
 	* @throws SystemException if a system exception occurred
@@ -203,14 +203,14 @@ public class HRUserUtil {
 	}
 
 	/**
-	* Finds a range of all the h r users.
+	* Returns a range of all the h r users.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of h r users to return
-	* @param end the upper bound of the range of h r users to return (not inclusive)
+	* @param start the lower bound of the range of h r users
+	* @param end the upper bound of the range of h r users (not inclusive)
 	* @return the range of h r users
 	* @throws SystemException if a system exception occurred
 	*/
@@ -221,14 +221,14 @@ public class HRUserUtil {
 	}
 
 	/**
-	* Finds an ordered range of all the h r users.
+	* Returns an ordered range of all the h r users.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of h r users to return
-	* @param end the upper bound of the range of h r users to return (not inclusive)
+	* @param start the lower bound of the range of h r users
+	* @param end the upper bound of the range of h r users (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of h r users
 	* @throws SystemException if a system exception occurred
@@ -251,7 +251,7 @@ public class HRUserUtil {
 	}
 
 	/**
-	* Counts all the h r users.
+	* Returns the number of h r users.
 	*
 	* @return the number of h r users
 	* @throws SystemException if a system exception occurred

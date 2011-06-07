@@ -37,7 +37,7 @@ public class FolderWrapper implements Folder {
 	}
 
 	/**
-	* Gets the primary key of this folder.
+	* Returns the primary key of this folder.
 	*
 	* @return the primary key of this folder
 	*/
@@ -46,7 +46,7 @@ public class FolderWrapper implements Folder {
 	}
 
 	/**
-	* Sets the primary key of this folder
+	* Sets the primary key of this folder.
 	*
 	* @param primaryKey the primary key of this folder
 	*/
@@ -55,7 +55,7 @@ public class FolderWrapper implements Folder {
 	}
 
 	/**
-	* Gets the folder ID of this folder.
+	* Returns the folder ID of this folder.
 	*
 	* @return the folder ID of this folder
 	*/
@@ -73,7 +73,7 @@ public class FolderWrapper implements Folder {
 	}
 
 	/**
-	* Gets the company ID of this folder.
+	* Returns the company ID of this folder.
 	*
 	* @return the company ID of this folder
 	*/
@@ -91,7 +91,7 @@ public class FolderWrapper implements Folder {
 	}
 
 	/**
-	* Gets the user ID of this folder.
+	* Returns the user ID of this folder.
 	*
 	* @return the user ID of this folder
 	*/
@@ -109,7 +109,7 @@ public class FolderWrapper implements Folder {
 	}
 
 	/**
-	* Gets the user uuid of this folder.
+	* Returns the user uuid of this folder.
 	*
 	* @return the user uuid of this folder
 	* @throws SystemException if a system exception occurred
@@ -129,7 +129,7 @@ public class FolderWrapper implements Folder {
 	}
 
 	/**
-	* Gets the user name of this folder.
+	* Returns the user name of this folder.
 	*
 	* @return the user name of this folder
 	*/
@@ -147,7 +147,7 @@ public class FolderWrapper implements Folder {
 	}
 
 	/**
-	* Gets the create date of this folder.
+	* Returns the create date of this folder.
 	*
 	* @return the create date of this folder
 	*/
@@ -165,7 +165,7 @@ public class FolderWrapper implements Folder {
 	}
 
 	/**
-	* Gets the modified date of this folder.
+	* Returns the modified date of this folder.
 	*
 	* @return the modified date of this folder
 	*/
@@ -183,7 +183,7 @@ public class FolderWrapper implements Folder {
 	}
 
 	/**
-	* Gets the account ID of this folder.
+	* Returns the account ID of this folder.
 	*
 	* @return the account ID of this folder
 	*/
@@ -201,7 +201,7 @@ public class FolderWrapper implements Folder {
 	}
 
 	/**
-	* Gets the full name of this folder.
+	* Returns the full name of this folder.
 	*
 	* @return the full name of this folder
 	*/
@@ -219,7 +219,7 @@ public class FolderWrapper implements Folder {
 	}
 
 	/**
-	* Gets the display name of this folder.
+	* Returns the display name of this folder.
 	*
 	* @return the display name of this folder
 	*/
@@ -237,7 +237,7 @@ public class FolderWrapper implements Folder {
 	}
 
 	/**
-	* Gets the remote message count of this folder.
+	* Returns the remote message count of this folder.
 	*
 	* @return the remote message count of this folder
 	*/

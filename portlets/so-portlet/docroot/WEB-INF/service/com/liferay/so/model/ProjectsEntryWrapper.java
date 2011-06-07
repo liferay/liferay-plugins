@@ -37,7 +37,7 @@ public class ProjectsEntryWrapper implements ProjectsEntry {
 	}
 
 	/**
-	* Gets the primary key of this projects entry.
+	* Returns the primary key of this projects entry.
 	*
 	* @return the primary key of this projects entry
 	*/
@@ -46,7 +46,7 @@ public class ProjectsEntryWrapper implements ProjectsEntry {
 	}
 
 	/**
-	* Sets the primary key of this projects entry
+	* Sets the primary key of this projects entry.
 	*
 	* @param primaryKey the primary key of this projects entry
 	*/
@@ -55,7 +55,7 @@ public class ProjectsEntryWrapper implements ProjectsEntry {
 	}
 
 	/**
-	* Gets the projects entry ID of this projects entry.
+	* Returns the projects entry ID of this projects entry.
 	*
 	* @return the projects entry ID of this projects entry
 	*/
@@ -73,7 +73,7 @@ public class ProjectsEntryWrapper implements ProjectsEntry {
 	}
 
 	/**
-	* Gets the company ID of this projects entry.
+	* Returns the company ID of this projects entry.
 	*
 	* @return the company ID of this projects entry
 	*/
@@ -91,7 +91,7 @@ public class ProjectsEntryWrapper implements ProjectsEntry {
 	}
 
 	/**
-	* Gets the user ID of this projects entry.
+	* Returns the user ID of this projects entry.
 	*
 	* @return the user ID of this projects entry
 	*/
@@ -109,7 +109,7 @@ public class ProjectsEntryWrapper implements ProjectsEntry {
 	}
 
 	/**
-	* Gets the user uuid of this projects entry.
+	* Returns the user uuid of this projects entry.
 	*
 	* @return the user uuid of this projects entry
 	* @throws SystemException if a system exception occurred
@@ -129,7 +129,7 @@ public class ProjectsEntryWrapper implements ProjectsEntry {
 	}
 
 	/**
-	* Gets the user name of this projects entry.
+	* Returns the user name of this projects entry.
 	*
 	* @return the user name of this projects entry
 	*/
@@ -147,7 +147,7 @@ public class ProjectsEntryWrapper implements ProjectsEntry {
 	}
 
 	/**
-	* Gets the create date of this projects entry.
+	* Returns the create date of this projects entry.
 	*
 	* @return the create date of this projects entry
 	*/
@@ -165,7 +165,7 @@ public class ProjectsEntryWrapper implements ProjectsEntry {
 	}
 
 	/**
-	* Gets the modified date of this projects entry.
+	* Returns the modified date of this projects entry.
 	*
 	* @return the modified date of this projects entry
 	*/
@@ -183,7 +183,7 @@ public class ProjectsEntryWrapper implements ProjectsEntry {
 	}
 
 	/**
-	* Gets the title of this projects entry.
+	* Returns the title of this projects entry.
 	*
 	* @return the title of this projects entry
 	*/
@@ -201,7 +201,7 @@ public class ProjectsEntryWrapper implements ProjectsEntry {
 	}
 
 	/**
-	* Gets the description of this projects entry.
+	* Returns the description of this projects entry.
 	*
 	* @return the description of this projects entry
 	*/
@@ -219,7 +219,7 @@ public class ProjectsEntryWrapper implements ProjectsEntry {
 	}
 
 	/**
-	* Gets the start date of this projects entry.
+	* Returns the start date of this projects entry.
 	*
 	* @return the start date of this projects entry
 	*/
@@ -237,7 +237,7 @@ public class ProjectsEntryWrapper implements ProjectsEntry {
 	}
 
 	/**
-	* Gets the end date of this projects entry.
+	* Returns the end date of this projects entry.
 	*
 	* @return the end date of this projects entry
 	*/
@@ -255,7 +255,7 @@ public class ProjectsEntryWrapper implements ProjectsEntry {
 	}
 
 	/**
-	* Gets the data of this projects entry.
+	* Returns the data of this projects entry.
 	*
 	* @return the data of this projects entry
 	*/

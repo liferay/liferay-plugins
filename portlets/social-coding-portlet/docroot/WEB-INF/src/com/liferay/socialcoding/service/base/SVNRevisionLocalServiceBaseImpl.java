@@ -23,6 +23,11 @@ import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.search.Indexer;
+import com.liferay.portal.kernel.search.IndexerRegistryUtil;
+import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.service.ResourceLocalService;
 import com.liferay.portal.service.ResourceService;
@@ -75,7 +80,7 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 	/**
 	 * Adds the s v n revision to the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param svnRevision the s v n revision to add
+	 * @param svnRevision the s v n revision
 	 * @return the s v n revision that was added
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -83,7 +88,22 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 		throws SystemException {
 		svnRevision.setNew(true);
 
-		return svnRevisionPersistence.update(svnRevision, false);
+		svnRevision = svnRevisionPersistence.update(svnRevision, false);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.reindex(svnRevision);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
+
+		return svnRevision;
 	}
 
 	/**
@@ -99,30 +119,56 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 	/**
 	 * Deletes the s v n revision with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param svnRevisionId the primary key of the s v n revision to delete
+	 * @param svnRevisionId the primary key of the s v n revision
 	 * @throws PortalException if a s v n revision with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void deleteSVNRevision(long svnRevisionId)
 		throws PortalException, SystemException {
-		svnRevisionPersistence.remove(svnRevisionId);
+		SVNRevision svnRevision = svnRevisionPersistence.remove(svnRevisionId);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.delete(svnRevision);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
 	}
 
 	/**
 	 * Deletes the s v n revision from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param svnRevision the s v n revision to delete
+	 * @param svnRevision the s v n revision
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void deleteSVNRevision(SVNRevision svnRevision)
 		throws SystemException {
 		svnRevisionPersistence.remove(svnRevision);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.delete(svnRevision);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
 	}
 
 	/**
 	 * Performs a dynamic query on the database and returns the matching rows.
 	 *
-	 * @param dynamicQuery the dynamic query to search with
+	 * @param dynamicQuery the dynamic query
 	 * @return the matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -139,9 +185,9 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param dynamicQuery the dynamic query to search with
-	 * @param start the lower bound of the range of model instances to return
-	 * @param end the upper bound of the range of model instances to return (not inclusive)
+	 * @param dynamicQuery the dynamic query
+	 * @param start the lower bound of the range of model instances
+	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @return the range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -159,9 +205,9 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param dynamicQuery the dynamic query to search with
-	 * @param start the lower bound of the range of model instances to return
-	 * @param end the upper bound of the range of model instances to return (not inclusive)
+	 * @param dynamicQuery the dynamic query
+	 * @param start the lower bound of the range of model instances
+	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching rows
 	 * @throws SystemException if a system exception occurred
@@ -174,9 +220,9 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Counts the number of rows that match the dynamic query.
+	 * Returns the number of rows that match the dynamic query.
 	 *
-	 * @param dynamicQuery the dynamic query to search with
+	 * @param dynamicQuery the dynamic query
 	 * @return the number of rows that match the dynamic query
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -186,9 +232,9 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the s v n revision with the primary key.
+	 * Returns the s v n revision with the primary key.
 	 *
-	 * @param svnRevisionId the primary key of the s v n revision to get
+	 * @param svnRevisionId the primary key of the s v n revision
 	 * @return the s v n revision
 	 * @throws PortalException if a s v n revision with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -199,14 +245,14 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets a range of all the s v n revisions.
+	 * Returns a range of all the s v n revisions.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of s v n revisions to return
-	 * @param end the upper bound of the range of s v n revisions to return (not inclusive)
+	 * @param start the lower bound of the range of s v n revisions
+	 * @param end the upper bound of the range of s v n revisions (not inclusive)
 	 * @return the range of s v n revisions
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -216,7 +262,7 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the number of s v n revisions.
+	 * Returns the number of s v n revisions.
 	 *
 	 * @return the number of s v n revisions
 	 * @throws SystemException if a system exception occurred
@@ -228,21 +274,19 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 	/**
 	 * Updates the s v n revision in the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param svnRevision the s v n revision to update
+	 * @param svnRevision the s v n revision
 	 * @return the s v n revision that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
 	public SVNRevision updateSVNRevision(SVNRevision svnRevision)
 		throws SystemException {
-		svnRevision.setNew(false);
-
-		return svnRevisionPersistence.update(svnRevision, true);
+		return updateSVNRevision(svnRevision, true);
 	}
 
 	/**
 	 * Updates the s v n revision in the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param svnRevision the s v n revision to update
+	 * @param svnRevision the s v n revision
 	 * @param merge whether to merge the s v n revision with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
 	 * @return the s v n revision that was updated
 	 * @throws SystemException if a system exception occurred
@@ -251,11 +295,26 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 		throws SystemException {
 		svnRevision.setNew(false);
 
-		return svnRevisionPersistence.update(svnRevision, merge);
+		svnRevision = svnRevisionPersistence.update(svnRevision, merge);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.reindex(svnRevision);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
+
+		return svnRevision;
 	}
 
 	/**
-	 * Gets the j i r a action local service.
+	 * Returns the j i r a action local service.
 	 *
 	 * @return the j i r a action local service
 	 */
@@ -274,7 +333,7 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the j i r a action persistence.
+	 * Returns the j i r a action persistence.
 	 *
 	 * @return the j i r a action persistence
 	 */
@@ -293,7 +352,7 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the j i r a action finder.
+	 * Returns the j i r a action finder.
 	 *
 	 * @return the j i r a action finder
 	 */
@@ -311,7 +370,7 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the j i r a change group local service.
+	 * Returns the j i r a change group local service.
 	 *
 	 * @return the j i r a change group local service
 	 */
@@ -330,7 +389,7 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the j i r a change group persistence.
+	 * Returns the j i r a change group persistence.
 	 *
 	 * @return the j i r a change group persistence
 	 */
@@ -349,7 +408,7 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the j i r a change group finder.
+	 * Returns the j i r a change group finder.
 	 *
 	 * @return the j i r a change group finder
 	 */
@@ -368,7 +427,7 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the j i r a change item local service.
+	 * Returns the j i r a change item local service.
 	 *
 	 * @return the j i r a change item local service
 	 */
@@ -387,7 +446,7 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the j i r a change item persistence.
+	 * Returns the j i r a change item persistence.
 	 *
 	 * @return the j i r a change item persistence
 	 */
@@ -406,7 +465,7 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the j i r a issue local service.
+	 * Returns the j i r a issue local service.
 	 *
 	 * @return the j i r a issue local service
 	 */
@@ -425,7 +484,7 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the j i r a issue persistence.
+	 * Returns the j i r a issue persistence.
 	 *
 	 * @return the j i r a issue persistence
 	 */
@@ -444,7 +503,7 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the j i r a issue finder.
+	 * Returns the j i r a issue finder.
 	 *
 	 * @return the j i r a issue finder
 	 */
@@ -462,7 +521,7 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the s v n repository local service.
+	 * Returns the s v n repository local service.
 	 *
 	 * @return the s v n repository local service
 	 */
@@ -481,7 +540,7 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the s v n repository persistence.
+	 * Returns the s v n repository persistence.
 	 *
 	 * @return the s v n repository persistence
 	 */
@@ -500,7 +559,7 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the s v n revision local service.
+	 * Returns the s v n revision local service.
 	 *
 	 * @return the s v n revision local service
 	 */
@@ -519,7 +578,7 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the s v n revision persistence.
+	 * Returns the s v n revision persistence.
 	 *
 	 * @return the s v n revision persistence
 	 */
@@ -538,7 +597,7 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the counter local service.
+	 * Returns the counter local service.
 	 *
 	 * @return the counter local service
 	 */
@@ -556,7 +615,7 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the resource local service.
+	 * Returns the resource local service.
 	 *
 	 * @return the resource local service
 	 */
@@ -575,7 +634,7 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the resource remote service.
+	 * Returns the resource remote service.
 	 *
 	 * @return the resource remote service
 	 */
@@ -593,7 +652,7 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the resource persistence.
+	 * Returns the resource persistence.
 	 *
 	 * @return the resource persistence
 	 */
@@ -611,7 +670,7 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the user local service.
+	 * Returns the user local service.
 	 *
 	 * @return the user local service
 	 */
@@ -629,7 +688,7 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the user remote service.
+	 * Returns the user remote service.
 	 *
 	 * @return the user remote service
 	 */
@@ -647,7 +706,7 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the user persistence.
+	 * Returns the user persistence.
 	 *
 	 * @return the user persistence
 	 */
@@ -665,7 +724,7 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the Spring bean ID for this bean.
+	 * Returns the Spring bean ID for this bean.
 	 *
 	 * @return the Spring bean ID for this bean
 	 */
@@ -682,10 +741,18 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 		_beanIdentifier = beanIdentifier;
 	}
 
+	protected Class<?> getModelClass() {
+		return SVNRevision.class;
+	}
+
+	protected String getModelClassName() {
+		return SVNRevision.class.getName();
+	}
+
 	/**
 	 * Performs an SQL query.
 	 *
-	 * @param sql the sql query to perform
+	 * @param sql the sql query
 	 */
 	protected void runSQL(String sql) throws SystemException {
 		try {
@@ -745,5 +812,6 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 	protected UserService userService;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
+	private static Log _log = LogFactoryUtil.getLog(SVNRevisionLocalServiceBaseImpl.class);
 	private String _beanIdentifier;
 }

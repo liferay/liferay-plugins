@@ -48,21 +48,21 @@ public interface HRExpenseAccountModel extends BaseModel<HRExpenseAccount>,
 	 */
 
 	/**
-	 * Gets the primary key of this h r expense account.
+	 * Returns the primary key of this h r expense account.
 	 *
 	 * @return the primary key of this h r expense account
 	 */
 	public long getPrimaryKey();
 
 	/**
-	 * Sets the primary key of this h r expense account
+	 * Sets the primary key of this h r expense account.
 	 *
 	 * @param primaryKey the primary key of this h r expense account
 	 */
 	public void setPrimaryKey(long primaryKey);
 
 	/**
-	 * Gets the hr expense account ID of this h r expense account.
+	 * Returns the hr expense account ID of this h r expense account.
 	 *
 	 * @return the hr expense account ID of this h r expense account
 	 */
@@ -76,7 +76,7 @@ public interface HRExpenseAccountModel extends BaseModel<HRExpenseAccount>,
 	public void setHrExpenseAccountId(long hrExpenseAccountId);
 
 	/**
-	 * Gets the group ID of this h r expense account.
+	 * Returns the group ID of this h r expense account.
 	 *
 	 * @return the group ID of this h r expense account
 	 */
@@ -90,7 +90,7 @@ public interface HRExpenseAccountModel extends BaseModel<HRExpenseAccount>,
 	public void setGroupId(long groupId);
 
 	/**
-	 * Gets the company ID of this h r expense account.
+	 * Returns the company ID of this h r expense account.
 	 *
 	 * @return the company ID of this h r expense account
 	 */
@@ -104,7 +104,7 @@ public interface HRExpenseAccountModel extends BaseModel<HRExpenseAccount>,
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the user ID of this h r expense account.
+	 * Returns the user ID of this h r expense account.
 	 *
 	 * @return the user ID of this h r expense account
 	 */
@@ -118,7 +118,7 @@ public interface HRExpenseAccountModel extends BaseModel<HRExpenseAccount>,
 	public void setUserId(long userId);
 
 	/**
-	 * Gets the user uuid of this h r expense account.
+	 * Returns the user uuid of this h r expense account.
 	 *
 	 * @return the user uuid of this h r expense account
 	 * @throws SystemException if a system exception occurred
@@ -133,7 +133,7 @@ public interface HRExpenseAccountModel extends BaseModel<HRExpenseAccount>,
 	public void setUserUuid(String userUuid);
 
 	/**
-	 * Gets the user name of this h r expense account.
+	 * Returns the user name of this h r expense account.
 	 *
 	 * @return the user name of this h r expense account
 	 */
@@ -148,7 +148,7 @@ public interface HRExpenseAccountModel extends BaseModel<HRExpenseAccount>,
 	public void setUserName(String userName);
 
 	/**
-	 * Gets the create date of this h r expense account.
+	 * Returns the create date of this h r expense account.
 	 *
 	 * @return the create date of this h r expense account
 	 */
@@ -162,7 +162,7 @@ public interface HRExpenseAccountModel extends BaseModel<HRExpenseAccount>,
 	public void setCreateDate(Date createDate);
 
 	/**
-	 * Gets the modified date of this h r expense account.
+	 * Returns the modified date of this h r expense account.
 	 *
 	 * @return the modified date of this h r expense account
 	 */
@@ -176,7 +176,7 @@ public interface HRExpenseAccountModel extends BaseModel<HRExpenseAccount>,
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Gets the name of this h r expense account.
+	 * Returns the name of this h r expense account.
 	 *
 	 * @return the name of this h r expense account
 	 */
@@ -191,7 +191,7 @@ public interface HRExpenseAccountModel extends BaseModel<HRExpenseAccount>,
 	public void setName(String name);
 
 	/**
-	 * Gets the description of this h r expense account.
+	 * Returns the description of this h r expense account.
 	 *
 	 * @return the description of this h r expense account
 	 */

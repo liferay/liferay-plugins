@@ -41,14 +41,14 @@ public interface HRBillabilityPersistence extends BasePersistence<HRBillability>
 	/**
 	* Caches the h r billability in the entity cache if it is enabled.
 	*
-	* @param hrBillability the h r billability to cache
+	* @param hrBillability the h r billability
 	*/
 	public void cacheResult(com.liferay.hr.model.HRBillability hrBillability);
 
 	/**
 	* Caches the h r billabilities in the entity cache if it is enabled.
 	*
-	* @param hrBillabilities the h r billabilities to cache
+	* @param hrBillabilities the h r billabilities
 	*/
 	public void cacheResult(
 		java.util.List<com.liferay.hr.model.HRBillability> hrBillabilities);
@@ -64,7 +64,7 @@ public interface HRBillabilityPersistence extends BasePersistence<HRBillability>
 	/**
 	* Removes the h r billability with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param hrBillabilityId the primary key of the h r billability to remove
+	* @param hrBillabilityId the primary key of the h r billability
 	* @return the h r billability that was removed
 	* @throws com.liferay.hr.NoSuchBillabilityException if a h r billability with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -78,9 +78,9 @@ public interface HRBillabilityPersistence extends BasePersistence<HRBillability>
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the h r billability with the primary key or throws a {@link com.liferay.hr.NoSuchBillabilityException} if it could not be found.
+	* Returns the h r billability with the primary key or throws a {@link com.liferay.hr.NoSuchBillabilityException} if it could not be found.
 	*
-	* @param hrBillabilityId the primary key of the h r billability to find
+	* @param hrBillabilityId the primary key of the h r billability
 	* @return the h r billability
 	* @throws com.liferay.hr.NoSuchBillabilityException if a h r billability with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -91,9 +91,9 @@ public interface HRBillabilityPersistence extends BasePersistence<HRBillability>
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the h r billability with the primary key or returns <code>null</code> if it could not be found.
+	* Returns the h r billability with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param hrBillabilityId the primary key of the h r billability to find
+	* @param hrBillabilityId the primary key of the h r billability
 	* @return the h r billability, or <code>null</code> if a h r billability with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -102,10 +102,10 @@ public interface HRBillabilityPersistence extends BasePersistence<HRBillability>
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the h r billability where groupId = &#63; and code = &#63; or throws a {@link com.liferay.hr.NoSuchBillabilityException} if it could not be found.
+	* Returns the h r billability where groupId = &#63; and code = &#63; or throws a {@link com.liferay.hr.NoSuchBillabilityException} if it could not be found.
 	*
-	* @param groupId the group ID to search with
-	* @param code the code to search with
+	* @param groupId the group ID
+	* @param code the code
 	* @return the matching h r billability
 	* @throws com.liferay.hr.NoSuchBillabilityException if a matching h r billability could not be found
 	* @throws SystemException if a system exception occurred
@@ -116,10 +116,10 @@ public interface HRBillabilityPersistence extends BasePersistence<HRBillability>
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the h r billability where groupId = &#63; and code = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	* Returns the h r billability where groupId = &#63; and code = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	*
-	* @param groupId the group ID to search with
-	* @param code the code to search with
+	* @param groupId the group ID
+	* @param code the code
 	* @return the matching h r billability, or <code>null</code> if a matching h r billability could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -128,10 +128,10 @@ public interface HRBillabilityPersistence extends BasePersistence<HRBillability>
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the h r billability where groupId = &#63; and code = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	* Returns the h r billability where groupId = &#63; and code = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	*
-	* @param groupId the group ID to search with
-	* @param code the code to search with
+	* @param groupId the group ID
+	* @param code the code
 	* @return the matching h r billability, or <code>null</code> if a matching h r billability could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -140,7 +140,7 @@ public interface HRBillabilityPersistence extends BasePersistence<HRBillability>
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds all the h r billabilities.
+	* Returns all the h r billabilities.
 	*
 	* @return the h r billabilities
 	* @throws SystemException if a system exception occurred
@@ -149,14 +149,14 @@ public interface HRBillabilityPersistence extends BasePersistence<HRBillability>
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds a range of all the h r billabilities.
+	* Returns a range of all the h r billabilities.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of h r billabilities to return
-	* @param end the upper bound of the range of h r billabilities to return (not inclusive)
+	* @param start the lower bound of the range of h r billabilities
+	* @param end the upper bound of the range of h r billabilities (not inclusive)
 	* @return the range of h r billabilities
 	* @throws SystemException if a system exception occurred
 	*/
@@ -165,14 +165,14 @@ public interface HRBillabilityPersistence extends BasePersistence<HRBillability>
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds an ordered range of all the h r billabilities.
+	* Returns an ordered range of all the h r billabilities.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of h r billabilities to return
-	* @param end the upper bound of the range of h r billabilities to return (not inclusive)
+	* @param start the lower bound of the range of h r billabilities
+	* @param end the upper bound of the range of h r billabilities (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of h r billabilities
 	* @throws SystemException if a system exception occurred
@@ -185,8 +185,8 @@ public interface HRBillabilityPersistence extends BasePersistence<HRBillability>
 	/**
 	* Removes the h r billability where groupId = &#63; and code = &#63; from the database.
 	*
-	* @param groupId the group ID to search with
-	* @param code the code to search with
+	* @param groupId the group ID
+	* @param code the code
 	* @throws SystemException if a system exception occurred
 	*/
 	public void removeByG_C(long groupId, java.lang.String code)
@@ -202,10 +202,10 @@ public interface HRBillabilityPersistence extends BasePersistence<HRBillability>
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Counts all the h r billabilities where groupId = &#63; and code = &#63;.
+	* Returns the number of h r billabilities where groupId = &#63; and code = &#63;.
 	*
-	* @param groupId the group ID to search with
-	* @param code the code to search with
+	* @param groupId the group ID
+	* @param code the code
 	* @return the number of matching h r billabilities
 	* @throws SystemException if a system exception occurred
 	*/
@@ -213,7 +213,7 @@ public interface HRBillabilityPersistence extends BasePersistence<HRBillability>
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Counts all the h r billabilities.
+	* Returns the number of h r billabilities.
 	*
 	* @return the number of h r billabilities
 	* @throws SystemException if a system exception occurred

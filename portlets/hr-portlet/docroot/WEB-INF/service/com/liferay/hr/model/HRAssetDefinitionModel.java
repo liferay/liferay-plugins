@@ -48,21 +48,21 @@ public interface HRAssetDefinitionModel extends BaseModel<HRAssetDefinition>,
 	 */
 
 	/**
-	 * Gets the primary key of this h r asset definition.
+	 * Returns the primary key of this h r asset definition.
 	 *
 	 * @return the primary key of this h r asset definition
 	 */
 	public long getPrimaryKey();
 
 	/**
-	 * Sets the primary key of this h r asset definition
+	 * Sets the primary key of this h r asset definition.
 	 *
 	 * @param primaryKey the primary key of this h r asset definition
 	 */
 	public void setPrimaryKey(long primaryKey);
 
 	/**
-	 * Gets the hr asset definition ID of this h r asset definition.
+	 * Returns the hr asset definition ID of this h r asset definition.
 	 *
 	 * @return the hr asset definition ID of this h r asset definition
 	 */
@@ -76,7 +76,7 @@ public interface HRAssetDefinitionModel extends BaseModel<HRAssetDefinition>,
 	public void setHrAssetDefinitionId(long hrAssetDefinitionId);
 
 	/**
-	 * Gets the group ID of this h r asset definition.
+	 * Returns the group ID of this h r asset definition.
 	 *
 	 * @return the group ID of this h r asset definition
 	 */
@@ -90,7 +90,7 @@ public interface HRAssetDefinitionModel extends BaseModel<HRAssetDefinition>,
 	public void setGroupId(long groupId);
 
 	/**
-	 * Gets the company ID of this h r asset definition.
+	 * Returns the company ID of this h r asset definition.
 	 *
 	 * @return the company ID of this h r asset definition
 	 */
@@ -104,7 +104,7 @@ public interface HRAssetDefinitionModel extends BaseModel<HRAssetDefinition>,
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the user ID of this h r asset definition.
+	 * Returns the user ID of this h r asset definition.
 	 *
 	 * @return the user ID of this h r asset definition
 	 */
@@ -118,7 +118,7 @@ public interface HRAssetDefinitionModel extends BaseModel<HRAssetDefinition>,
 	public void setUserId(long userId);
 
 	/**
-	 * Gets the user uuid of this h r asset definition.
+	 * Returns the user uuid of this h r asset definition.
 	 *
 	 * @return the user uuid of this h r asset definition
 	 * @throws SystemException if a system exception occurred
@@ -133,7 +133,7 @@ public interface HRAssetDefinitionModel extends BaseModel<HRAssetDefinition>,
 	public void setUserUuid(String userUuid);
 
 	/**
-	 * Gets the user name of this h r asset definition.
+	 * Returns the user name of this h r asset definition.
 	 *
 	 * @return the user name of this h r asset definition
 	 */
@@ -148,7 +148,7 @@ public interface HRAssetDefinitionModel extends BaseModel<HRAssetDefinition>,
 	public void setUserName(String userName);
 
 	/**
-	 * Gets the create date of this h r asset definition.
+	 * Returns the create date of this h r asset definition.
 	 *
 	 * @return the create date of this h r asset definition
 	 */
@@ -162,7 +162,7 @@ public interface HRAssetDefinitionModel extends BaseModel<HRAssetDefinition>,
 	public void setCreateDate(Date createDate);
 
 	/**
-	 * Gets the modified date of this h r asset definition.
+	 * Returns the modified date of this h r asset definition.
 	 *
 	 * @return the modified date of this h r asset definition
 	 */
@@ -176,7 +176,7 @@ public interface HRAssetDefinitionModel extends BaseModel<HRAssetDefinition>,
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Gets the hr asset product ID of this h r asset definition.
+	 * Returns the hr asset product ID of this h r asset definition.
 	 *
 	 * @return the hr asset product ID of this h r asset definition
 	 */
@@ -191,7 +191,7 @@ public interface HRAssetDefinitionModel extends BaseModel<HRAssetDefinition>,
 	public void setHrAssetProductId(String hrAssetProductId);
 
 	/**
-	 * Gets the hr asset type ID of this h r asset definition.
+	 * Returns the hr asset type ID of this h r asset definition.
 	 *
 	 * @return the hr asset type ID of this h r asset definition
 	 */
@@ -205,7 +205,7 @@ public interface HRAssetDefinitionModel extends BaseModel<HRAssetDefinition>,
 	public void setHrAssetTypeId(long hrAssetTypeId);
 
 	/**
-	 * Gets the hr asset vendor ID of this h r asset definition.
+	 * Returns the hr asset vendor ID of this h r asset definition.
 	 *
 	 * @return the hr asset vendor ID of this h r asset definition
 	 */
@@ -219,7 +219,7 @@ public interface HRAssetDefinitionModel extends BaseModel<HRAssetDefinition>,
 	public void setHrAssetVendorId(long hrAssetVendorId);
 
 	/**
-	 * Gets the definition number of this h r asset definition.
+	 * Returns the definition number of this h r asset definition.
 	 *
 	 * @return the definition number of this h r asset definition
 	 */
@@ -234,7 +234,7 @@ public interface HRAssetDefinitionModel extends BaseModel<HRAssetDefinition>,
 	public void setDefinitionNumber(String definitionNumber);
 
 	/**
-	 * Gets the order ID of this h r asset definition.
+	 * Returns the order ID of this h r asset definition.
 	 *
 	 * @return the order ID of this h r asset definition
 	 */
@@ -248,7 +248,7 @@ public interface HRAssetDefinitionModel extends BaseModel<HRAssetDefinition>,
 	public void setOrderId(Date orderId);
 
 	/**
-	 * Gets the order date of this h r asset definition.
+	 * Returns the order date of this h r asset definition.
 	 *
 	 * @return the order date of this h r asset definition
 	 */
@@ -262,7 +262,7 @@ public interface HRAssetDefinitionModel extends BaseModel<HRAssetDefinition>,
 	public void setOrderDate(Date orderDate);
 
 	/**
-	 * Gets the quantity of this h r asset definition.
+	 * Returns the quantity of this h r asset definition.
 	 *
 	 * @return the quantity of this h r asset definition
 	 */
@@ -276,7 +276,7 @@ public interface HRAssetDefinitionModel extends BaseModel<HRAssetDefinition>,
 	public void setQuantity(int quantity);
 
 	/**
-	 * Gets the individual price of this h r asset definition.
+	 * Returns the individual price of this h r asset definition.
 	 *
 	 * @return the individual price of this h r asset definition
 	 */

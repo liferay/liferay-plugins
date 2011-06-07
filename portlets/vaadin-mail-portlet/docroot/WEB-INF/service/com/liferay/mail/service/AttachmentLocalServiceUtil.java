@@ -42,7 +42,7 @@ public class AttachmentLocalServiceUtil {
 	/**
 	* Adds the attachment to the database. Also notifies the appropriate model listeners.
 	*
-	* @param attachment the attachment to add
+	* @param attachment the attachment
 	* @return the attachment that was added
 	* @throws SystemException if a system exception occurred
 	*/
@@ -66,7 +66,7 @@ public class AttachmentLocalServiceUtil {
 	/**
 	* Deletes the attachment with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param attachmentId the primary key of the attachment to delete
+	* @param attachmentId the primary key of the attachment
 	* @throws PortalException if a attachment with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -79,7 +79,7 @@ public class AttachmentLocalServiceUtil {
 	/**
 	* Deletes the attachment from the database. Also notifies the appropriate model listeners.
 	*
-	* @param attachment the attachment to delete
+	* @param attachment the attachment
 	* @throws SystemException if a system exception occurred
 	*/
 	public static void deleteAttachment(
@@ -91,7 +91,7 @@ public class AttachmentLocalServiceUtil {
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
 	*
-	* @param dynamicQuery the dynamic query to search with
+	* @param dynamicQuery the dynamic query
 	* @return the matching rows
 	* @throws SystemException if a system exception occurred
 	*/
@@ -109,9 +109,9 @@ public class AttachmentLocalServiceUtil {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param dynamicQuery the dynamic query to search with
-	* @param start the lower bound of the range of model instances to return
-	* @param end the upper bound of the range of model instances to return (not inclusive)
+	* @param dynamicQuery the dynamic query
+	* @param start the lower bound of the range of model instances
+	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
 	* @throws SystemException if a system exception occurred
 	*/
@@ -129,9 +129,9 @@ public class AttachmentLocalServiceUtil {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param dynamicQuery the dynamic query to search with
-	* @param start the lower bound of the range of model instances to return
-	* @param end the upper bound of the range of model instances to return (not inclusive)
+	* @param dynamicQuery the dynamic query
+	* @param start the lower bound of the range of model instances
+	* @param end the upper bound of the range of model instances (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
 	* @throws SystemException if a system exception occurred
@@ -147,9 +147,9 @@ public class AttachmentLocalServiceUtil {
 	}
 
 	/**
-	* Counts the number of rows that match the dynamic query.
+	* Returns the number of rows that match the dynamic query.
 	*
-	* @param dynamicQuery the dynamic query to search with
+	* @param dynamicQuery the dynamic query
 	* @return the number of rows that match the dynamic query
 	* @throws SystemException if a system exception occurred
 	*/
@@ -160,9 +160,9 @@ public class AttachmentLocalServiceUtil {
 	}
 
 	/**
-	* Gets the attachment with the primary key.
+	* Returns the attachment with the primary key.
 	*
-	* @param attachmentId the primary key of the attachment to get
+	* @param attachmentId the primary key of the attachment
 	* @return the attachment
 	* @throws PortalException if a attachment with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -175,14 +175,14 @@ public class AttachmentLocalServiceUtil {
 	}
 
 	/**
-	* Gets a range of all the attachments.
+	* Returns a range of all the attachments.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of attachments to return
-	* @param end the upper bound of the range of attachments to return (not inclusive)
+	* @param start the lower bound of the range of attachments
+	* @param end the upper bound of the range of attachments (not inclusive)
 	* @return the range of attachments
 	* @throws SystemException if a system exception occurred
 	*/
@@ -193,7 +193,7 @@ public class AttachmentLocalServiceUtil {
 	}
 
 	/**
-	* Gets the number of attachments.
+	* Returns the number of attachments.
 	*
 	* @return the number of attachments
 	* @throws SystemException if a system exception occurred
@@ -206,7 +206,7 @@ public class AttachmentLocalServiceUtil {
 	/**
 	* Updates the attachment in the database. Also notifies the appropriate model listeners.
 	*
-	* @param attachment the attachment to update
+	* @param attachment the attachment
 	* @return the attachment that was updated
 	* @throws SystemException if a system exception occurred
 	*/
@@ -219,7 +219,7 @@ public class AttachmentLocalServiceUtil {
 	/**
 	* Updates the attachment in the database. Also notifies the appropriate model listeners.
 	*
-	* @param attachment the attachment to update
+	* @param attachment the attachment
 	* @param merge whether to merge the attachment with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
 	* @return the attachment that was updated
 	* @throws SystemException if a system exception occurred
@@ -231,7 +231,7 @@ public class AttachmentLocalServiceUtil {
 	}
 
 	/**
-	* Gets the Spring bean ID for this bean.
+	* Returns the Spring bean ID for this bean.
 	*
 	* @return the Spring bean ID for this bean
 	*/

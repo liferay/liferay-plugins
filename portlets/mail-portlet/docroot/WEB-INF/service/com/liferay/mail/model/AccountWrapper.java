@@ -37,7 +37,7 @@ public class AccountWrapper implements Account {
 	}
 
 	/**
-	* Gets the primary key of this account.
+	* Returns the primary key of this account.
 	*
 	* @return the primary key of this account
 	*/
@@ -46,7 +46,7 @@ public class AccountWrapper implements Account {
 	}
 
 	/**
-	* Sets the primary key of this account
+	* Sets the primary key of this account.
 	*
 	* @param primaryKey the primary key of this account
 	*/
@@ -55,7 +55,7 @@ public class AccountWrapper implements Account {
 	}
 
 	/**
-	* Gets the account ID of this account.
+	* Returns the account ID of this account.
 	*
 	* @return the account ID of this account
 	*/
@@ -73,7 +73,7 @@ public class AccountWrapper implements Account {
 	}
 
 	/**
-	* Gets the company ID of this account.
+	* Returns the company ID of this account.
 	*
 	* @return the company ID of this account
 	*/
@@ -91,7 +91,7 @@ public class AccountWrapper implements Account {
 	}
 
 	/**
-	* Gets the user ID of this account.
+	* Returns the user ID of this account.
 	*
 	* @return the user ID of this account
 	*/
@@ -109,7 +109,7 @@ public class AccountWrapper implements Account {
 	}
 
 	/**
-	* Gets the user uuid of this account.
+	* Returns the user uuid of this account.
 	*
 	* @return the user uuid of this account
 	* @throws SystemException if a system exception occurred
@@ -129,7 +129,7 @@ public class AccountWrapper implements Account {
 	}
 
 	/**
-	* Gets the user name of this account.
+	* Returns the user name of this account.
 	*
 	* @return the user name of this account
 	*/
@@ -147,7 +147,7 @@ public class AccountWrapper implements Account {
 	}
 
 	/**
-	* Gets the create date of this account.
+	* Returns the create date of this account.
 	*
 	* @return the create date of this account
 	*/
@@ -165,7 +165,7 @@ public class AccountWrapper implements Account {
 	}
 
 	/**
-	* Gets the modified date of this account.
+	* Returns the modified date of this account.
 	*
 	* @return the modified date of this account
 	*/
@@ -183,7 +183,7 @@ public class AccountWrapper implements Account {
 	}
 
 	/**
-	* Gets the address of this account.
+	* Returns the address of this account.
 	*
 	* @return the address of this account
 	*/
@@ -201,7 +201,7 @@ public class AccountWrapper implements Account {
 	}
 
 	/**
-	* Gets the personal name of this account.
+	* Returns the personal name of this account.
 	*
 	* @return the personal name of this account
 	*/
@@ -219,7 +219,7 @@ public class AccountWrapper implements Account {
 	}
 
 	/**
-	* Gets the protocol of this account.
+	* Returns the protocol of this account.
 	*
 	* @return the protocol of this account
 	*/
@@ -237,7 +237,7 @@ public class AccountWrapper implements Account {
 	}
 
 	/**
-	* Gets the incoming host name of this account.
+	* Returns the incoming host name of this account.
 	*
 	* @return the incoming host name of this account
 	*/
@@ -255,7 +255,7 @@ public class AccountWrapper implements Account {
 	}
 
 	/**
-	* Gets the incoming port of this account.
+	* Returns the incoming port of this account.
 	*
 	* @return the incoming port of this account
 	*/
@@ -273,7 +273,7 @@ public class AccountWrapper implements Account {
 	}
 
 	/**
-	* Gets the incoming secure of this account.
+	* Returns the incoming secure of this account.
 	*
 	* @return the incoming secure of this account
 	*/
@@ -300,7 +300,7 @@ public class AccountWrapper implements Account {
 	}
 
 	/**
-	* Gets the outgoing host name of this account.
+	* Returns the outgoing host name of this account.
 	*
 	* @return the outgoing host name of this account
 	*/
@@ -318,7 +318,7 @@ public class AccountWrapper implements Account {
 	}
 
 	/**
-	* Gets the outgoing port of this account.
+	* Returns the outgoing port of this account.
 	*
 	* @return the outgoing port of this account
 	*/
@@ -336,7 +336,7 @@ public class AccountWrapper implements Account {
 	}
 
 	/**
-	* Gets the outgoing secure of this account.
+	* Returns the outgoing secure of this account.
 	*
 	* @return the outgoing secure of this account
 	*/
@@ -363,7 +363,7 @@ public class AccountWrapper implements Account {
 	}
 
 	/**
-	* Gets the login of this account.
+	* Returns the login of this account.
 	*
 	* @return the login of this account
 	*/
@@ -381,7 +381,7 @@ public class AccountWrapper implements Account {
 	}
 
 	/**
-	* Gets the password of this account.
+	* Returns the password of this account.
 	*
 	* @return the password of this account
 	*/
@@ -399,7 +399,7 @@ public class AccountWrapper implements Account {
 	}
 
 	/**
-	* Gets the save password of this account.
+	* Returns the save password of this account.
 	*
 	* @return the save password of this account
 	*/
@@ -426,7 +426,7 @@ public class AccountWrapper implements Account {
 	}
 
 	/**
-	* Gets the signature of this account.
+	* Returns the signature of this account.
 	*
 	* @return the signature of this account
 	*/
@@ -444,7 +444,7 @@ public class AccountWrapper implements Account {
 	}
 
 	/**
-	* Gets the use signature of this account.
+	* Returns the use signature of this account.
 	*
 	* @return the use signature of this account
 	*/
@@ -471,7 +471,7 @@ public class AccountWrapper implements Account {
 	}
 
 	/**
-	* Gets the folder prefix of this account.
+	* Returns the folder prefix of this account.
 	*
 	* @return the folder prefix of this account
 	*/
@@ -489,7 +489,7 @@ public class AccountWrapper implements Account {
 	}
 
 	/**
-	* Gets the inbox folder ID of this account.
+	* Returns the inbox folder ID of this account.
 	*
 	* @return the inbox folder ID of this account
 	*/
@@ -507,7 +507,7 @@ public class AccountWrapper implements Account {
 	}
 
 	/**
-	* Gets the draft folder ID of this account.
+	* Returns the draft folder ID of this account.
 	*
 	* @return the draft folder ID of this account
 	*/
@@ -525,7 +525,7 @@ public class AccountWrapper implements Account {
 	}
 
 	/**
-	* Gets the sent folder ID of this account.
+	* Returns the sent folder ID of this account.
 	*
 	* @return the sent folder ID of this account
 	*/
@@ -543,7 +543,7 @@ public class AccountWrapper implements Account {
 	}
 
 	/**
-	* Gets the trash folder ID of this account.
+	* Returns the trash folder ID of this account.
 	*
 	* @return the trash folder ID of this account
 	*/
@@ -561,7 +561,7 @@ public class AccountWrapper implements Account {
 	}
 
 	/**
-	* Gets the default sender of this account.
+	* Returns the default sender of this account.
 	*
 	* @return the default sender of this account
 	*/

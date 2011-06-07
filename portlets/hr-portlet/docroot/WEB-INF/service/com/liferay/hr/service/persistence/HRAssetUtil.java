@@ -120,7 +120,7 @@ public class HRAssetUtil {
 	/**
 	* Caches the h r asset in the entity cache if it is enabled.
 	*
-	* @param hrAsset the h r asset to cache
+	* @param hrAsset the h r asset
 	*/
 	public static void cacheResult(com.liferay.hr.model.HRAsset hrAsset) {
 		getPersistence().cacheResult(hrAsset);
@@ -129,7 +129,7 @@ public class HRAssetUtil {
 	/**
 	* Caches the h r assets in the entity cache if it is enabled.
 	*
-	* @param hrAssets the h r assets to cache
+	* @param hrAssets the h r assets
 	*/
 	public static void cacheResult(
 		java.util.List<com.liferay.hr.model.HRAsset> hrAssets) {
@@ -149,7 +149,7 @@ public class HRAssetUtil {
 	/**
 	* Removes the h r asset with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param hrAssetId the primary key of the h r asset to remove
+	* @param hrAssetId the primary key of the h r asset
 	* @return the h r asset that was removed
 	* @throws com.liferay.hr.NoSuchAssetException if a h r asset with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -167,9 +167,9 @@ public class HRAssetUtil {
 	}
 
 	/**
-	* Finds the h r asset with the primary key or throws a {@link com.liferay.hr.NoSuchAssetException} if it could not be found.
+	* Returns the h r asset with the primary key or throws a {@link com.liferay.hr.NoSuchAssetException} if it could not be found.
 	*
-	* @param hrAssetId the primary key of the h r asset to find
+	* @param hrAssetId the primary key of the h r asset
 	* @return the h r asset
 	* @throws com.liferay.hr.NoSuchAssetException if a h r asset with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -181,9 +181,9 @@ public class HRAssetUtil {
 	}
 
 	/**
-	* Finds the h r asset with the primary key or returns <code>null</code> if it could not be found.
+	* Returns the h r asset with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param hrAssetId the primary key of the h r asset to find
+	* @param hrAssetId the primary key of the h r asset
 	* @return the h r asset, or <code>null</code> if a h r asset with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -193,7 +193,7 @@ public class HRAssetUtil {
 	}
 
 	/**
-	* Finds all the h r assets.
+	* Returns all the h r assets.
 	*
 	* @return the h r assets
 	* @throws SystemException if a system exception occurred
@@ -204,14 +204,14 @@ public class HRAssetUtil {
 	}
 
 	/**
-	* Finds a range of all the h r assets.
+	* Returns a range of all the h r assets.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of h r assets to return
-	* @param end the upper bound of the range of h r assets to return (not inclusive)
+	* @param start the lower bound of the range of h r assets
+	* @param end the upper bound of the range of h r assets (not inclusive)
 	* @return the range of h r assets
 	* @throws SystemException if a system exception occurred
 	*/
@@ -222,14 +222,14 @@ public class HRAssetUtil {
 	}
 
 	/**
-	* Finds an ordered range of all the h r assets.
+	* Returns an ordered range of all the h r assets.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of h r assets to return
-	* @param end the upper bound of the range of h r assets to return (not inclusive)
+	* @param start the lower bound of the range of h r assets
+	* @param end the upper bound of the range of h r assets (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of h r assets
 	* @throws SystemException if a system exception occurred
@@ -252,7 +252,7 @@ public class HRAssetUtil {
 	}
 
 	/**
-	* Counts all the h r assets.
+	* Returns the number of h r assets.
 	*
 	* @return the number of h r assets
 	* @throws SystemException if a system exception occurred

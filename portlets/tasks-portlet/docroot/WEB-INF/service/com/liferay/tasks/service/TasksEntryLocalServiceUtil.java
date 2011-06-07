@@ -42,7 +42,7 @@ public class TasksEntryLocalServiceUtil {
 	/**
 	* Adds the tasks entry to the database. Also notifies the appropriate model listeners.
 	*
-	* @param tasksEntry the tasks entry to add
+	* @param tasksEntry the tasks entry
 	* @return the tasks entry that was added
 	* @throws SystemException if a system exception occurred
 	*/
@@ -66,7 +66,7 @@ public class TasksEntryLocalServiceUtil {
 	/**
 	* Deletes the tasks entry with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param tasksEntryId the primary key of the tasks entry to delete
+	* @param tasksEntryId the primary key of the tasks entry
 	* @throws PortalException if a tasks entry with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -79,7 +79,7 @@ public class TasksEntryLocalServiceUtil {
 	/**
 	* Deletes the tasks entry from the database. Also notifies the appropriate model listeners.
 	*
-	* @param tasksEntry the tasks entry to delete
+	* @param tasksEntry the tasks entry
 	* @throws PortalException
 	* @throws SystemException if a system exception occurred
 	*/
@@ -93,7 +93,7 @@ public class TasksEntryLocalServiceUtil {
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
 	*
-	* @param dynamicQuery the dynamic query to search with
+	* @param dynamicQuery the dynamic query
 	* @return the matching rows
 	* @throws SystemException if a system exception occurred
 	*/
@@ -111,9 +111,9 @@ public class TasksEntryLocalServiceUtil {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param dynamicQuery the dynamic query to search with
-	* @param start the lower bound of the range of model instances to return
-	* @param end the upper bound of the range of model instances to return (not inclusive)
+	* @param dynamicQuery the dynamic query
+	* @param start the lower bound of the range of model instances
+	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
 	* @throws SystemException if a system exception occurred
 	*/
@@ -131,9 +131,9 @@ public class TasksEntryLocalServiceUtil {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param dynamicQuery the dynamic query to search with
-	* @param start the lower bound of the range of model instances to return
-	* @param end the upper bound of the range of model instances to return (not inclusive)
+	* @param dynamicQuery the dynamic query
+	* @param start the lower bound of the range of model instances
+	* @param end the upper bound of the range of model instances (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
 	* @throws SystemException if a system exception occurred
@@ -149,9 +149,9 @@ public class TasksEntryLocalServiceUtil {
 	}
 
 	/**
-	* Counts the number of rows that match the dynamic query.
+	* Returns the number of rows that match the dynamic query.
 	*
-	* @param dynamicQuery the dynamic query to search with
+	* @param dynamicQuery the dynamic query
 	* @return the number of rows that match the dynamic query
 	* @throws SystemException if a system exception occurred
 	*/
@@ -162,9 +162,9 @@ public class TasksEntryLocalServiceUtil {
 	}
 
 	/**
-	* Gets the tasks entry with the primary key.
+	* Returns the tasks entry with the primary key.
 	*
-	* @param tasksEntryId the primary key of the tasks entry to get
+	* @param tasksEntryId the primary key of the tasks entry
 	* @return the tasks entry
 	* @throws PortalException if a tasks entry with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -177,14 +177,14 @@ public class TasksEntryLocalServiceUtil {
 	}
 
 	/**
-	* Gets a range of all the tasks entries.
+	* Returns a range of all the tasks entries.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of tasks entries to return
-	* @param end the upper bound of the range of tasks entries to return (not inclusive)
+	* @param start the lower bound of the range of tasks entries
+	* @param end the upper bound of the range of tasks entries (not inclusive)
 	* @return the range of tasks entries
 	* @throws SystemException if a system exception occurred
 	*/
@@ -195,7 +195,7 @@ public class TasksEntryLocalServiceUtil {
 	}
 
 	/**
-	* Gets the number of tasks entries.
+	* Returns the number of tasks entries.
 	*
 	* @return the number of tasks entries
 	* @throws SystemException if a system exception occurred
@@ -208,7 +208,7 @@ public class TasksEntryLocalServiceUtil {
 	/**
 	* Updates the tasks entry in the database. Also notifies the appropriate model listeners.
 	*
-	* @param tasksEntry the tasks entry to update
+	* @param tasksEntry the tasks entry
 	* @return the tasks entry that was updated
 	* @throws SystemException if a system exception occurred
 	*/
@@ -221,7 +221,7 @@ public class TasksEntryLocalServiceUtil {
 	/**
 	* Updates the tasks entry in the database. Also notifies the appropriate model listeners.
 	*
-	* @param tasksEntry the tasks entry to update
+	* @param tasksEntry the tasks entry
 	* @param merge whether to merge the tasks entry with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
 	* @return the tasks entry that was updated
 	* @throws SystemException if a system exception occurred
@@ -233,7 +233,7 @@ public class TasksEntryLocalServiceUtil {
 	}
 
 	/**
-	* Gets the Spring bean ID for this bean.
+	* Returns the Spring bean ID for this bean.
 	*
 	* @return the Spring bean ID for this bean
 	*/

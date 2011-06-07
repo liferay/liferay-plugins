@@ -47,21 +47,21 @@ public interface HRProjectModel extends BaseModel<HRProject>, GroupedModel {
 	 */
 
 	/**
-	 * Gets the primary key of this h r project.
+	 * Returns the primary key of this h r project.
 	 *
 	 * @return the primary key of this h r project
 	 */
 	public long getPrimaryKey();
 
 	/**
-	 * Sets the primary key of this h r project
+	 * Sets the primary key of this h r project.
 	 *
 	 * @param primaryKey the primary key of this h r project
 	 */
 	public void setPrimaryKey(long primaryKey);
 
 	/**
-	 * Gets the hr project ID of this h r project.
+	 * Returns the hr project ID of this h r project.
 	 *
 	 * @return the hr project ID of this h r project
 	 */
@@ -75,7 +75,7 @@ public interface HRProjectModel extends BaseModel<HRProject>, GroupedModel {
 	public void setHrProjectId(long hrProjectId);
 
 	/**
-	 * Gets the group ID of this h r project.
+	 * Returns the group ID of this h r project.
 	 *
 	 * @return the group ID of this h r project
 	 */
@@ -89,7 +89,7 @@ public interface HRProjectModel extends BaseModel<HRProject>, GroupedModel {
 	public void setGroupId(long groupId);
 
 	/**
-	 * Gets the company ID of this h r project.
+	 * Returns the company ID of this h r project.
 	 *
 	 * @return the company ID of this h r project
 	 */
@@ -103,7 +103,7 @@ public interface HRProjectModel extends BaseModel<HRProject>, GroupedModel {
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the user ID of this h r project.
+	 * Returns the user ID of this h r project.
 	 *
 	 * @return the user ID of this h r project
 	 */
@@ -117,7 +117,7 @@ public interface HRProjectModel extends BaseModel<HRProject>, GroupedModel {
 	public void setUserId(long userId);
 
 	/**
-	 * Gets the user uuid of this h r project.
+	 * Returns the user uuid of this h r project.
 	 *
 	 * @return the user uuid of this h r project
 	 * @throws SystemException if a system exception occurred
@@ -132,7 +132,7 @@ public interface HRProjectModel extends BaseModel<HRProject>, GroupedModel {
 	public void setUserUuid(String userUuid);
 
 	/**
-	 * Gets the user name of this h r project.
+	 * Returns the user name of this h r project.
 	 *
 	 * @return the user name of this h r project
 	 */
@@ -147,7 +147,7 @@ public interface HRProjectModel extends BaseModel<HRProject>, GroupedModel {
 	public void setUserName(String userName);
 
 	/**
-	 * Gets the create date of this h r project.
+	 * Returns the create date of this h r project.
 	 *
 	 * @return the create date of this h r project
 	 */
@@ -161,7 +161,7 @@ public interface HRProjectModel extends BaseModel<HRProject>, GroupedModel {
 	public void setCreateDate(Date createDate);
 
 	/**
-	 * Gets the modified date of this h r project.
+	 * Returns the modified date of this h r project.
 	 *
 	 * @return the modified date of this h r project
 	 */
@@ -175,7 +175,7 @@ public interface HRProjectModel extends BaseModel<HRProject>, GroupedModel {
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Gets the hr client ID of this h r project.
+	 * Returns the hr client ID of this h r project.
 	 *
 	 * @return the hr client ID of this h r project
 	 */
@@ -189,7 +189,7 @@ public interface HRProjectModel extends BaseModel<HRProject>, GroupedModel {
 	public void setHrClientId(long hrClientId);
 
 	/**
-	 * Gets the hr project status ID of this h r project.
+	 * Returns the hr project status ID of this h r project.
 	 *
 	 * @return the hr project status ID of this h r project
 	 */
@@ -203,7 +203,7 @@ public interface HRProjectModel extends BaseModel<HRProject>, GroupedModel {
 	public void setHrProjectStatusId(long hrProjectStatusId);
 
 	/**
-	 * Gets the name of this h r project.
+	 * Returns the name of this h r project.
 	 *
 	 * @return the name of this h r project
 	 */
@@ -218,7 +218,7 @@ public interface HRProjectModel extends BaseModel<HRProject>, GroupedModel {
 	public void setName(String name);
 
 	/**
-	 * Gets the description of this h r project.
+	 * Returns the description of this h r project.
 	 *
 	 * @return the description of this h r project
 	 */
@@ -233,7 +233,7 @@ public interface HRProjectModel extends BaseModel<HRProject>, GroupedModel {
 	public void setDescription(String description);
 
 	/**
-	 * Gets the estimated start date of this h r project.
+	 * Returns the estimated start date of this h r project.
 	 *
 	 * @return the estimated start date of this h r project
 	 */
@@ -247,7 +247,7 @@ public interface HRProjectModel extends BaseModel<HRProject>, GroupedModel {
 	public void setEstimatedStartDate(Date estimatedStartDate);
 
 	/**
-	 * Gets the estimated end date of this h r project.
+	 * Returns the estimated end date of this h r project.
 	 *
 	 * @return the estimated end date of this h r project
 	 */
@@ -261,7 +261,7 @@ public interface HRProjectModel extends BaseModel<HRProject>, GroupedModel {
 	public void setEstimatedEndDate(Date estimatedEndDate);
 
 	/**
-	 * Gets the estimated hours of this h r project.
+	 * Returns the estimated hours of this h r project.
 	 *
 	 * @return the estimated hours of this h r project
 	 */
@@ -275,7 +275,7 @@ public interface HRProjectModel extends BaseModel<HRProject>, GroupedModel {
 	public void setEstimatedHours(double estimatedHours);
 
 	/**
-	 * Gets the estimated hours cost of this h r project.
+	 * Returns the estimated hours cost of this h r project.
 	 *
 	 * @return the estimated hours cost of this h r project
 	 */
@@ -289,7 +289,7 @@ public interface HRProjectModel extends BaseModel<HRProject>, GroupedModel {
 	public void setEstimatedHoursCost(double estimatedHoursCost);
 
 	/**
-	 * Gets the estimated hours cost currency code of this h r project.
+	 * Returns the estimated hours cost currency code of this h r project.
 	 *
 	 * @return the estimated hours cost currency code of this h r project
 	 */
@@ -305,7 +305,7 @@ public interface HRProjectModel extends BaseModel<HRProject>, GroupedModel {
 		String estimatedHoursCostCurrencyCode);
 
 	/**
-	 * Gets the estimated expenses of this h r project.
+	 * Returns the estimated expenses of this h r project.
 	 *
 	 * @return the estimated expenses of this h r project
 	 */
@@ -319,7 +319,7 @@ public interface HRProjectModel extends BaseModel<HRProject>, GroupedModel {
 	public void setEstimatedExpenses(double estimatedExpenses);
 
 	/**
-	 * Gets the estimated expenses currency code of this h r project.
+	 * Returns the estimated expenses currency code of this h r project.
 	 *
 	 * @return the estimated expenses currency code of this h r project
 	 */
@@ -335,7 +335,7 @@ public interface HRProjectModel extends BaseModel<HRProject>, GroupedModel {
 		String estimatedExpensesCurrencyCode);
 
 	/**
-	 * Gets the actual start date of this h r project.
+	 * Returns the actual start date of this h r project.
 	 *
 	 * @return the actual start date of this h r project
 	 */
@@ -349,7 +349,7 @@ public interface HRProjectModel extends BaseModel<HRProject>, GroupedModel {
 	public void setActualStartDate(Date actualStartDate);
 
 	/**
-	 * Gets the actual end date of this h r project.
+	 * Returns the actual end date of this h r project.
 	 *
 	 * @return the actual end date of this h r project
 	 */
@@ -363,7 +363,7 @@ public interface HRProjectModel extends BaseModel<HRProject>, GroupedModel {
 	public void setActualEndDate(Date actualEndDate);
 
 	/**
-	 * Gets the actual hours of this h r project.
+	 * Returns the actual hours of this h r project.
 	 *
 	 * @return the actual hours of this h r project
 	 */
@@ -377,7 +377,7 @@ public interface HRProjectModel extends BaseModel<HRProject>, GroupedModel {
 	public void setActualHours(double actualHours);
 
 	/**
-	 * Gets the actual hours cost of this h r project.
+	 * Returns the actual hours cost of this h r project.
 	 *
 	 * @return the actual hours cost of this h r project
 	 */
@@ -391,7 +391,7 @@ public interface HRProjectModel extends BaseModel<HRProject>, GroupedModel {
 	public void setActualHoursCost(double actualHoursCost);
 
 	/**
-	 * Gets the actual hours cost currency code of this h r project.
+	 * Returns the actual hours cost currency code of this h r project.
 	 *
 	 * @return the actual hours cost currency code of this h r project
 	 */
@@ -407,7 +407,7 @@ public interface HRProjectModel extends BaseModel<HRProject>, GroupedModel {
 		String actualHoursCostCurrencyCode);
 
 	/**
-	 * Gets the actual expenses of this h r project.
+	 * Returns the actual expenses of this h r project.
 	 *
 	 * @return the actual expenses of this h r project
 	 */
@@ -421,7 +421,7 @@ public interface HRProjectModel extends BaseModel<HRProject>, GroupedModel {
 	public void setActualExpenses(double actualExpenses);
 
 	/**
-	 * Gets the actual expenses currency code of this h r project.
+	 * Returns the actual expenses currency code of this h r project.
 	 *
 	 * @return the actual expenses currency code of this h r project
 	 */

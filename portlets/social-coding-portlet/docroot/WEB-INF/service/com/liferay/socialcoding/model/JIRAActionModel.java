@@ -45,21 +45,21 @@ public interface JIRAActionModel extends BaseModel<JIRAAction> {
 	 */
 
 	/**
-	 * Gets the primary key of this j i r a action.
+	 * Returns the primary key of this j i r a action.
 	 *
 	 * @return the primary key of this j i r a action
 	 */
 	public long getPrimaryKey();
 
 	/**
-	 * Sets the primary key of this j i r a action
+	 * Sets the primary key of this j i r a action.
 	 *
 	 * @param primaryKey the primary key of this j i r a action
 	 */
 	public void setPrimaryKey(long primaryKey);
 
 	/**
-	 * Gets the jira action ID of this j i r a action.
+	 * Returns the jira action ID of this j i r a action.
 	 *
 	 * @return the jira action ID of this j i r a action
 	 */
@@ -73,7 +73,7 @@ public interface JIRAActionModel extends BaseModel<JIRAAction> {
 	public void setJiraActionId(long jiraActionId);
 
 	/**
-	 * Gets the jira user ID of this j i r a action.
+	 * Returns the jira user ID of this j i r a action.
 	 *
 	 * @return the jira user ID of this j i r a action
 	 */
@@ -88,7 +88,7 @@ public interface JIRAActionModel extends BaseModel<JIRAAction> {
 	public void setJiraUserId(String jiraUserId);
 
 	/**
-	 * Gets the create date of this j i r a action.
+	 * Returns the create date of this j i r a action.
 	 *
 	 * @return the create date of this j i r a action
 	 */
@@ -102,7 +102,7 @@ public interface JIRAActionModel extends BaseModel<JIRAAction> {
 	public void setCreateDate(Date createDate);
 
 	/**
-	 * Gets the modified date of this j i r a action.
+	 * Returns the modified date of this j i r a action.
 	 *
 	 * @return the modified date of this j i r a action
 	 */
@@ -116,7 +116,7 @@ public interface JIRAActionModel extends BaseModel<JIRAAction> {
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Gets the jira issue ID of this j i r a action.
+	 * Returns the jira issue ID of this j i r a action.
 	 *
 	 * @return the jira issue ID of this j i r a action
 	 */
@@ -130,7 +130,7 @@ public interface JIRAActionModel extends BaseModel<JIRAAction> {
 	public void setJiraIssueId(long jiraIssueId);
 
 	/**
-	 * Gets the type of this j i r a action.
+	 * Returns the type of this j i r a action.
 	 *
 	 * @return the type of this j i r a action
 	 */
@@ -145,7 +145,7 @@ public interface JIRAActionModel extends BaseModel<JIRAAction> {
 	public void setType(String type);
 
 	/**
-	 * Gets the body of this j i r a action.
+	 * Returns the body of this j i r a action.
 	 *
 	 * @return the body of this j i r a action
 	 */
@@ -160,7 +160,7 @@ public interface JIRAActionModel extends BaseModel<JIRAAction> {
 	public void setBody(String body);
 
 	/**
-	 * Gets the jira group name of this j i r a action.
+	 * Returns the jira group name of this j i r a action.
 	 *
 	 * @return the jira group name of this j i r a action
 	 */

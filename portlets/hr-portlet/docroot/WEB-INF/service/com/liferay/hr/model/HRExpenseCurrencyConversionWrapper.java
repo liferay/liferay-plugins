@@ -39,7 +39,7 @@ public class HRExpenseCurrencyConversionWrapper
 	}
 
 	/**
-	* Gets the primary key of this h r expense currency conversion.
+	* Returns the primary key of this h r expense currency conversion.
 	*
 	* @return the primary key of this h r expense currency conversion
 	*/
@@ -48,7 +48,7 @@ public class HRExpenseCurrencyConversionWrapper
 	}
 
 	/**
-	* Sets the primary key of this h r expense currency conversion
+	* Sets the primary key of this h r expense currency conversion.
 	*
 	* @param primaryKey the primary key of this h r expense currency conversion
 	*/
@@ -57,7 +57,7 @@ public class HRExpenseCurrencyConversionWrapper
 	}
 
 	/**
-	* Gets the hr expense currency conversion ID of this h r expense currency conversion.
+	* Returns the hr expense currency conversion ID of this h r expense currency conversion.
 	*
 	* @return the hr expense currency conversion ID of this h r expense currency conversion
 	*/
@@ -76,7 +76,7 @@ public class HRExpenseCurrencyConversionWrapper
 	}
 
 	/**
-	* Gets the group ID of this h r expense currency conversion.
+	* Returns the group ID of this h r expense currency conversion.
 	*
 	* @return the group ID of this h r expense currency conversion
 	*/
@@ -94,7 +94,7 @@ public class HRExpenseCurrencyConversionWrapper
 	}
 
 	/**
-	* Gets the company ID of this h r expense currency conversion.
+	* Returns the company ID of this h r expense currency conversion.
 	*
 	* @return the company ID of this h r expense currency conversion
 	*/
@@ -112,7 +112,7 @@ public class HRExpenseCurrencyConversionWrapper
 	}
 
 	/**
-	* Gets the user ID of this h r expense currency conversion.
+	* Returns the user ID of this h r expense currency conversion.
 	*
 	* @return the user ID of this h r expense currency conversion
 	*/
@@ -130,7 +130,7 @@ public class HRExpenseCurrencyConversionWrapper
 	}
 
 	/**
-	* Gets the user uuid of this h r expense currency conversion.
+	* Returns the user uuid of this h r expense currency conversion.
 	*
 	* @return the user uuid of this h r expense currency conversion
 	* @throws SystemException if a system exception occurred
@@ -150,7 +150,7 @@ public class HRExpenseCurrencyConversionWrapper
 	}
 
 	/**
-	* Gets the user name of this h r expense currency conversion.
+	* Returns the user name of this h r expense currency conversion.
 	*
 	* @return the user name of this h r expense currency conversion
 	*/
@@ -168,7 +168,7 @@ public class HRExpenseCurrencyConversionWrapper
 	}
 
 	/**
-	* Gets the create date of this h r expense currency conversion.
+	* Returns the create date of this h r expense currency conversion.
 	*
 	* @return the create date of this h r expense currency conversion
 	*/
@@ -186,7 +186,7 @@ public class HRExpenseCurrencyConversionWrapper
 	}
 
 	/**
-	* Gets the modified date of this h r expense currency conversion.
+	* Returns the modified date of this h r expense currency conversion.
 	*
 	* @return the modified date of this h r expense currency conversion
 	*/
@@ -204,7 +204,7 @@ public class HRExpenseCurrencyConversionWrapper
 	}
 
 	/**
-	* Gets the from h r expense currency ID of this h r expense currency conversion.
+	* Returns the from h r expense currency ID of this h r expense currency conversion.
 	*
 	* @return the from h r expense currency ID of this h r expense currency conversion
 	*/
@@ -222,7 +222,7 @@ public class HRExpenseCurrencyConversionWrapper
 	}
 
 	/**
-	* Gets the to h r expense currency ID of this h r expense currency conversion.
+	* Returns the to h r expense currency ID of this h r expense currency conversion.
 	*
 	* @return the to h r expense currency ID of this h r expense currency conversion
 	*/
@@ -240,7 +240,7 @@ public class HRExpenseCurrencyConversionWrapper
 	}
 
 	/**
-	* Gets the conversion date of this h r expense currency conversion.
+	* Returns the conversion date of this h r expense currency conversion.
 	*
 	* @return the conversion date of this h r expense currency conversion
 	*/
@@ -258,7 +258,7 @@ public class HRExpenseCurrencyConversionWrapper
 	}
 
 	/**
-	* Gets the conversion value of this h r expense currency conversion.
+	* Returns the conversion value of this h r expense currency conversion.
 	*
 	* @return the conversion value of this h r expense currency conversion
 	*/

@@ -121,7 +121,7 @@ public class HRAssetProductUtil {
 	/**
 	* Caches the h r asset product in the entity cache if it is enabled.
 	*
-	* @param hrAssetProduct the h r asset product to cache
+	* @param hrAssetProduct the h r asset product
 	*/
 	public static void cacheResult(
 		com.liferay.hr.model.HRAssetProduct hrAssetProduct) {
@@ -131,7 +131,7 @@ public class HRAssetProductUtil {
 	/**
 	* Caches the h r asset products in the entity cache if it is enabled.
 	*
-	* @param hrAssetProducts the h r asset products to cache
+	* @param hrAssetProducts the h r asset products
 	*/
 	public static void cacheResult(
 		java.util.List<com.liferay.hr.model.HRAssetProduct> hrAssetProducts) {
@@ -152,7 +152,7 @@ public class HRAssetProductUtil {
 	/**
 	* Removes the h r asset product with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param hrAssetProductId the primary key of the h r asset product to remove
+	* @param hrAssetProductId the primary key of the h r asset product
 	* @return the h r asset product that was removed
 	* @throws com.liferay.hr.NoSuchAssetProductException if a h r asset product with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -171,9 +171,9 @@ public class HRAssetProductUtil {
 	}
 
 	/**
-	* Finds the h r asset product with the primary key or throws a {@link com.liferay.hr.NoSuchAssetProductException} if it could not be found.
+	* Returns the h r asset product with the primary key or throws a {@link com.liferay.hr.NoSuchAssetProductException} if it could not be found.
 	*
-	* @param hrAssetProductId the primary key of the h r asset product to find
+	* @param hrAssetProductId the primary key of the h r asset product
 	* @return the h r asset product
 	* @throws com.liferay.hr.NoSuchAssetProductException if a h r asset product with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -186,9 +186,9 @@ public class HRAssetProductUtil {
 	}
 
 	/**
-	* Finds the h r asset product with the primary key or returns <code>null</code> if it could not be found.
+	* Returns the h r asset product with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param hrAssetProductId the primary key of the h r asset product to find
+	* @param hrAssetProductId the primary key of the h r asset product
 	* @return the h r asset product, or <code>null</code> if a h r asset product with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -199,7 +199,7 @@ public class HRAssetProductUtil {
 	}
 
 	/**
-	* Finds all the h r asset products.
+	* Returns all the h r asset products.
 	*
 	* @return the h r asset products
 	* @throws SystemException if a system exception occurred
@@ -210,14 +210,14 @@ public class HRAssetProductUtil {
 	}
 
 	/**
-	* Finds a range of all the h r asset products.
+	* Returns a range of all the h r asset products.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of h r asset products to return
-	* @param end the upper bound of the range of h r asset products to return (not inclusive)
+	* @param start the lower bound of the range of h r asset products
+	* @param end the upper bound of the range of h r asset products (not inclusive)
 	* @return the range of h r asset products
 	* @throws SystemException if a system exception occurred
 	*/
@@ -228,14 +228,14 @@ public class HRAssetProductUtil {
 	}
 
 	/**
-	* Finds an ordered range of all the h r asset products.
+	* Returns an ordered range of all the h r asset products.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of h r asset products to return
-	* @param end the upper bound of the range of h r asset products to return (not inclusive)
+	* @param start the lower bound of the range of h r asset products
+	* @param end the upper bound of the range of h r asset products (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of h r asset products
 	* @throws SystemException if a system exception occurred
@@ -258,7 +258,7 @@ public class HRAssetProductUtil {
 	}
 
 	/**
-	* Counts all the h r asset products.
+	* Returns the number of h r asset products.
 	*
 	* @return the number of h r asset products
 	* @throws SystemException if a system exception occurred

@@ -37,7 +37,7 @@ public class WallEntryWrapper implements WallEntry {
 	}
 
 	/**
-	* Gets the primary key of this wall entry.
+	* Returns the primary key of this wall entry.
 	*
 	* @return the primary key of this wall entry
 	*/
@@ -46,7 +46,7 @@ public class WallEntryWrapper implements WallEntry {
 	}
 
 	/**
-	* Sets the primary key of this wall entry
+	* Sets the primary key of this wall entry.
 	*
 	* @param primaryKey the primary key of this wall entry
 	*/
@@ -55,7 +55,7 @@ public class WallEntryWrapper implements WallEntry {
 	}
 
 	/**
-	* Gets the wall entry ID of this wall entry.
+	* Returns the wall entry ID of this wall entry.
 	*
 	* @return the wall entry ID of this wall entry
 	*/
@@ -73,7 +73,7 @@ public class WallEntryWrapper implements WallEntry {
 	}
 
 	/**
-	* Gets the group ID of this wall entry.
+	* Returns the group ID of this wall entry.
 	*
 	* @return the group ID of this wall entry
 	*/
@@ -91,7 +91,7 @@ public class WallEntryWrapper implements WallEntry {
 	}
 
 	/**
-	* Gets the company ID of this wall entry.
+	* Returns the company ID of this wall entry.
 	*
 	* @return the company ID of this wall entry
 	*/
@@ -109,7 +109,7 @@ public class WallEntryWrapper implements WallEntry {
 	}
 
 	/**
-	* Gets the user ID of this wall entry.
+	* Returns the user ID of this wall entry.
 	*
 	* @return the user ID of this wall entry
 	*/
@@ -127,7 +127,7 @@ public class WallEntryWrapper implements WallEntry {
 	}
 
 	/**
-	* Gets the user uuid of this wall entry.
+	* Returns the user uuid of this wall entry.
 	*
 	* @return the user uuid of this wall entry
 	* @throws SystemException if a system exception occurred
@@ -147,7 +147,7 @@ public class WallEntryWrapper implements WallEntry {
 	}
 
 	/**
-	* Gets the user name of this wall entry.
+	* Returns the user name of this wall entry.
 	*
 	* @return the user name of this wall entry
 	*/
@@ -165,7 +165,7 @@ public class WallEntryWrapper implements WallEntry {
 	}
 
 	/**
-	* Gets the create date of this wall entry.
+	* Returns the create date of this wall entry.
 	*
 	* @return the create date of this wall entry
 	*/
@@ -183,7 +183,7 @@ public class WallEntryWrapper implements WallEntry {
 	}
 
 	/**
-	* Gets the modified date of this wall entry.
+	* Returns the modified date of this wall entry.
 	*
 	* @return the modified date of this wall entry
 	*/
@@ -201,7 +201,7 @@ public class WallEntryWrapper implements WallEntry {
 	}
 
 	/**
-	* Gets the comments of this wall entry.
+	* Returns the comments of this wall entry.
 	*
 	* @return the comments of this wall entry
 	*/

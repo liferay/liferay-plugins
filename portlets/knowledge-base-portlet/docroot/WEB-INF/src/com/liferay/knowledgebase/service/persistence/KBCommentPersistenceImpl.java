@@ -158,7 +158,7 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	/**
 	 * Caches the k b comment in the entity cache if it is enabled.
 	 *
-	 * @param kbComment the k b comment to cache
+	 * @param kbComment the k b comment
 	 */
 	public void cacheResult(KBComment kbComment) {
 		EntityCacheUtil.putResult(KBCommentModelImpl.ENTITY_CACHE_ENABLED,
@@ -182,7 +182,7 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	/**
 	 * Caches the k b comments in the entity cache if it is enabled.
 	 *
-	 * @param kbComments the k b comments to cache
+	 * @param kbComments the k b comments
 	 */
 	public void cacheResult(List<KBComment> kbComments) {
 		for (KBComment kbComment : kbComments) {
@@ -257,7 +257,7 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	/**
 	 * Removes the k b comment with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param primaryKey the primary key of the k b comment to remove
+	 * @param primaryKey the primary key of the k b comment
 	 * @return the k b comment that was removed
 	 * @throws com.liferay.portal.NoSuchModelException if a k b comment with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -270,7 +270,7 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	/**
 	 * Removes the k b comment with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param kbCommentId the primary key of the k b comment to remove
+	 * @param kbCommentId the primary key of the k b comment
 	 * @return the k b comment that was removed
 	 * @throws com.liferay.knowledgebase.NoSuchCommentException if a k b comment with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -310,7 +310,7 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	/**
 	 * Removes the k b comment from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param kbComment the k b comment to remove
+	 * @param kbComment the k b comment
 	 * @return the k b comment that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -470,9 +470,9 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	}
 
 	/**
-	 * Finds the k b comment with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
+	 * Returns the k b comment with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
 	 *
-	 * @param primaryKey the primary key of the k b comment to find
+	 * @param primaryKey the primary key of the k b comment
 	 * @return the k b comment
 	 * @throws com.liferay.portal.NoSuchModelException if a k b comment with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -483,9 +483,9 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	}
 
 	/**
-	 * Finds the k b comment with the primary key or throws a {@link com.liferay.knowledgebase.NoSuchCommentException} if it could not be found.
+	 * Returns the k b comment with the primary key or throws a {@link com.liferay.knowledgebase.NoSuchCommentException} if it could not be found.
 	 *
-	 * @param kbCommentId the primary key of the k b comment to find
+	 * @param kbCommentId the primary key of the k b comment
 	 * @return the k b comment
 	 * @throws com.liferay.knowledgebase.NoSuchCommentException if a k b comment with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -507,9 +507,9 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	}
 
 	/**
-	 * Finds the k b comment with the primary key or returns <code>null</code> if it could not be found.
+	 * Returns the k b comment with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param primaryKey the primary key of the k b comment to find
+	 * @param primaryKey the primary key of the k b comment
 	 * @return the k b comment, or <code>null</code> if a k b comment with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -519,9 +519,9 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	}
 
 	/**
-	 * Finds the k b comment with the primary key or returns <code>null</code> if it could not be found.
+	 * Returns the k b comment with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param kbCommentId the primary key of the k b comment to find
+	 * @param kbCommentId the primary key of the k b comment
 	 * @return the k b comment, or <code>null</code> if a k b comment with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -555,9 +555,9 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	}
 
 	/**
-	 * Finds all the k b comments where uuid = &#63;.
+	 * Returns all the k b comments where uuid = &#63;.
 	 *
-	 * @param uuid the uuid to search with
+	 * @param uuid the uuid
 	 * @return the matching k b comments
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -566,15 +566,15 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	}
 
 	/**
-	 * Finds a range of all the k b comments where uuid = &#63;.
+	 * Returns a range of all the k b comments where uuid = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param uuid the uuid to search with
-	 * @param start the lower bound of the range of k b comments to return
-	 * @param end the upper bound of the range of k b comments to return (not inclusive)
+	 * @param uuid the uuid
+	 * @param start the lower bound of the range of k b comments
+	 * @param end the upper bound of the range of k b comments (not inclusive)
 	 * @return the range of matching k b comments
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -584,15 +584,15 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	}
 
 	/**
-	 * Finds an ordered range of all the k b comments where uuid = &#63;.
+	 * Returns an ordered range of all the k b comments where uuid = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param uuid the uuid to search with
-	 * @param start the lower bound of the range of k b comments to return
-	 * @param end the upper bound of the range of k b comments to return (not inclusive)
+	 * @param uuid the uuid
+	 * @param start the lower bound of the range of k b comments
+	 * @param end the upper bound of the range of k b comments (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching k b comments
 	 * @throws SystemException if a system exception occurred
@@ -684,13 +684,13 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	}
 
 	/**
-	 * Finds the first k b comment in the ordered set where uuid = &#63;.
+	 * Returns the first k b comment in the ordered set where uuid = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param uuid the uuid to search with
+	 * @param uuid the uuid
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching k b comment
 	 * @throws com.liferay.knowledgebase.NoSuchCommentException if a matching k b comment could not be found
@@ -719,13 +719,13 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	}
 
 	/**
-	 * Finds the last k b comment in the ordered set where uuid = &#63;.
+	 * Returns the last k b comment in the ordered set where uuid = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param uuid the uuid to search with
+	 * @param uuid the uuid
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching k b comment
 	 * @throws com.liferay.knowledgebase.NoSuchCommentException if a matching k b comment could not be found
@@ -757,14 +757,14 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	}
 
 	/**
-	 * Finds the k b comments before and after the current k b comment in the ordered set where uuid = &#63;.
+	 * Returns the k b comments before and after the current k b comment in the ordered set where uuid = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
 	 * @param kbCommentId the primary key of the current k b comment
-	 * @param uuid the uuid to search with
+	 * @param uuid the uuid
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next k b comment
 	 * @throws com.liferay.knowledgebase.NoSuchCommentException if a k b comment with the primary key could not be found
@@ -917,10 +917,10 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	}
 
 	/**
-	 * Finds the k b comment where uuid = &#63; and groupId = &#63; or throws a {@link com.liferay.knowledgebase.NoSuchCommentException} if it could not be found.
+	 * Returns the k b comment where uuid = &#63; and groupId = &#63; or throws a {@link com.liferay.knowledgebase.NoSuchCommentException} if it could not be found.
 	 *
-	 * @param uuid the uuid to search with
-	 * @param groupId the group ID to search with
+	 * @param uuid the uuid
+	 * @param groupId the group ID
 	 * @return the matching k b comment
 	 * @throws com.liferay.knowledgebase.NoSuchCommentException if a matching k b comment could not be found
 	 * @throws SystemException if a system exception occurred
@@ -953,10 +953,10 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	}
 
 	/**
-	 * Finds the k b comment where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the k b comment where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @param uuid the uuid to search with
-	 * @param groupId the group ID to search with
+	 * @param uuid the uuid
+	 * @param groupId the group ID
 	 * @return the matching k b comment, or <code>null</code> if a matching k b comment could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -966,10 +966,10 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	}
 
 	/**
-	 * Finds the k b comment where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the k b comment where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
-	 * @param uuid the uuid to search with
-	 * @param groupId the group ID to search with
+	 * @param uuid the uuid
+	 * @param groupId the group ID
 	 * @return the matching k b comment, or <code>null</code> if a matching k b comment could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -1070,9 +1070,9 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	}
 
 	/**
-	 * Finds all the k b comments where groupId = &#63;.
+	 * Returns all the k b comments where groupId = &#63;.
 	 *
-	 * @param groupId the group ID to search with
+	 * @param groupId the group ID
 	 * @return the matching k b comments
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -1082,15 +1082,15 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	}
 
 	/**
-	 * Finds a range of all the k b comments where groupId = &#63;.
+	 * Returns a range of all the k b comments where groupId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param start the lower bound of the range of k b comments to return
-	 * @param end the upper bound of the range of k b comments to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param start the lower bound of the range of k b comments
+	 * @param end the upper bound of the range of k b comments (not inclusive)
 	 * @return the range of matching k b comments
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -1100,15 +1100,15 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	}
 
 	/**
-	 * Finds an ordered range of all the k b comments where groupId = &#63;.
+	 * Returns an ordered range of all the k b comments where groupId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param start the lower bound of the range of k b comments to return
-	 * @param end the upper bound of the range of k b comments to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param start the lower bound of the range of k b comments
+	 * @param end the upper bound of the range of k b comments (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching k b comments
 	 * @throws SystemException if a system exception occurred
@@ -1188,13 +1188,13 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	}
 
 	/**
-	 * Finds the first k b comment in the ordered set where groupId = &#63;.
+	 * Returns the first k b comment in the ordered set where groupId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
+	 * @param groupId the group ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching k b comment
 	 * @throws com.liferay.knowledgebase.NoSuchCommentException if a matching k b comment could not be found
@@ -1223,13 +1223,13 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	}
 
 	/**
-	 * Finds the last k b comment in the ordered set where groupId = &#63;.
+	 * Returns the last k b comment in the ordered set where groupId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
+	 * @param groupId the group ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching k b comment
 	 * @throws com.liferay.knowledgebase.NoSuchCommentException if a matching k b comment could not be found
@@ -1261,14 +1261,14 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	}
 
 	/**
-	 * Finds the k b comments before and after the current k b comment in the ordered set where groupId = &#63;.
+	 * Returns the k b comments before and after the current k b comment in the ordered set where groupId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
 	 * @param kbCommentId the primary key of the current k b comment
-	 * @param groupId the group ID to search with
+	 * @param groupId the group ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next k b comment
 	 * @throws com.liferay.knowledgebase.NoSuchCommentException if a k b comment with the primary key could not be found
@@ -1409,10 +1409,10 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	}
 
 	/**
-	 * Finds all the k b comments where groupId = &#63; and classNameId = &#63;.
+	 * Returns all the k b comments where groupId = &#63; and classNameId = &#63;.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param classNameId the class name ID to search with
+	 * @param groupId the group ID
+	 * @param classNameId the class name ID
 	 * @return the matching k b comments
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -1423,16 +1423,16 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	}
 
 	/**
-	 * Finds a range of all the k b comments where groupId = &#63; and classNameId = &#63;.
+	 * Returns a range of all the k b comments where groupId = &#63; and classNameId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param classNameId the class name ID to search with
-	 * @param start the lower bound of the range of k b comments to return
-	 * @param end the upper bound of the range of k b comments to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param classNameId the class name ID
+	 * @param start the lower bound of the range of k b comments
+	 * @param end the upper bound of the range of k b comments (not inclusive)
 	 * @return the range of matching k b comments
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -1442,16 +1442,16 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	}
 
 	/**
-	 * Finds an ordered range of all the k b comments where groupId = &#63; and classNameId = &#63;.
+	 * Returns an ordered range of all the k b comments where groupId = &#63; and classNameId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param classNameId the class name ID to search with
-	 * @param start the lower bound of the range of k b comments to return
-	 * @param end the upper bound of the range of k b comments to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param classNameId the class name ID
+	 * @param start the lower bound of the range of k b comments
+	 * @param end the upper bound of the range of k b comments (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching k b comments
 	 * @throws SystemException if a system exception occurred
@@ -1535,14 +1535,14 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	}
 
 	/**
-	 * Finds the first k b comment in the ordered set where groupId = &#63; and classNameId = &#63;.
+	 * Returns the first k b comment in the ordered set where groupId = &#63; and classNameId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param classNameId the class name ID to search with
+	 * @param groupId the group ID
+	 * @param classNameId the class name ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching k b comment
 	 * @throws com.liferay.knowledgebase.NoSuchCommentException if a matching k b comment could not be found
@@ -1575,14 +1575,14 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	}
 
 	/**
-	 * Finds the last k b comment in the ordered set where groupId = &#63; and classNameId = &#63;.
+	 * Returns the last k b comment in the ordered set where groupId = &#63; and classNameId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param classNameId the class name ID to search with
+	 * @param groupId the group ID
+	 * @param classNameId the class name ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching k b comment
 	 * @throws com.liferay.knowledgebase.NoSuchCommentException if a matching k b comment could not be found
@@ -1617,15 +1617,15 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	}
 
 	/**
-	 * Finds the k b comments before and after the current k b comment in the ordered set where groupId = &#63; and classNameId = &#63;.
+	 * Returns the k b comments before and after the current k b comment in the ordered set where groupId = &#63; and classNameId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
 	 * @param kbCommentId the primary key of the current k b comment
-	 * @param groupId the group ID to search with
-	 * @param classNameId the class name ID to search with
+	 * @param groupId the group ID
+	 * @param classNameId the class name ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next k b comment
 	 * @throws com.liferay.knowledgebase.NoSuchCommentException if a k b comment with the primary key could not be found
@@ -1770,10 +1770,10 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	}
 
 	/**
-	 * Finds all the k b comments where classNameId = &#63; and classPK = &#63;.
+	 * Returns all the k b comments where classNameId = &#63; and classPK = &#63;.
 	 *
-	 * @param classNameId the class name ID to search with
-	 * @param classPK the class p k to search with
+	 * @param classNameId the class name ID
+	 * @param classPK the class p k
 	 * @return the matching k b comments
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -1784,16 +1784,16 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	}
 
 	/**
-	 * Finds a range of all the k b comments where classNameId = &#63; and classPK = &#63;.
+	 * Returns a range of all the k b comments where classNameId = &#63; and classPK = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param classNameId the class name ID to search with
-	 * @param classPK the class p k to search with
-	 * @param start the lower bound of the range of k b comments to return
-	 * @param end the upper bound of the range of k b comments to return (not inclusive)
+	 * @param classNameId the class name ID
+	 * @param classPK the class p k
+	 * @param start the lower bound of the range of k b comments
+	 * @param end the upper bound of the range of k b comments (not inclusive)
 	 * @return the range of matching k b comments
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -1803,16 +1803,16 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	}
 
 	/**
-	 * Finds an ordered range of all the k b comments where classNameId = &#63; and classPK = &#63;.
+	 * Returns an ordered range of all the k b comments where classNameId = &#63; and classPK = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param classNameId the class name ID to search with
-	 * @param classPK the class p k to search with
-	 * @param start the lower bound of the range of k b comments to return
-	 * @param end the upper bound of the range of k b comments to return (not inclusive)
+	 * @param classNameId the class name ID
+	 * @param classPK the class p k
+	 * @param start the lower bound of the range of k b comments
+	 * @param end the upper bound of the range of k b comments (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching k b comments
 	 * @throws SystemException if a system exception occurred
@@ -1896,14 +1896,14 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	}
 
 	/**
-	 * Finds the first k b comment in the ordered set where classNameId = &#63; and classPK = &#63;.
+	 * Returns the first k b comment in the ordered set where classNameId = &#63; and classPK = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param classNameId the class name ID to search with
-	 * @param classPK the class p k to search with
+	 * @param classNameId the class name ID
+	 * @param classPK the class p k
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching k b comment
 	 * @throws com.liferay.knowledgebase.NoSuchCommentException if a matching k b comment could not be found
@@ -1936,14 +1936,14 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	}
 
 	/**
-	 * Finds the last k b comment in the ordered set where classNameId = &#63; and classPK = &#63;.
+	 * Returns the last k b comment in the ordered set where classNameId = &#63; and classPK = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param classNameId the class name ID to search with
-	 * @param classPK the class p k to search with
+	 * @param classNameId the class name ID
+	 * @param classPK the class p k
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching k b comment
 	 * @throws com.liferay.knowledgebase.NoSuchCommentException if a matching k b comment could not be found
@@ -1978,15 +1978,15 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	}
 
 	/**
-	 * Finds the k b comments before and after the current k b comment in the ordered set where classNameId = &#63; and classPK = &#63;.
+	 * Returns the k b comments before and after the current k b comment in the ordered set where classNameId = &#63; and classPK = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
 	 * @param kbCommentId the primary key of the current k b comment
-	 * @param classNameId the class name ID to search with
-	 * @param classPK the class p k to search with
+	 * @param classNameId the class name ID
+	 * @param classPK the class p k
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next k b comment
 	 * @throws com.liferay.knowledgebase.NoSuchCommentException if a k b comment with the primary key could not be found
@@ -2131,11 +2131,11 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	}
 
 	/**
-	 * Finds the k b comment where userId = &#63; and classNameId = &#63; and classPK = &#63; or throws a {@link com.liferay.knowledgebase.NoSuchCommentException} if it could not be found.
+	 * Returns the k b comment where userId = &#63; and classNameId = &#63; and classPK = &#63; or throws a {@link com.liferay.knowledgebase.NoSuchCommentException} if it could not be found.
 	 *
-	 * @param userId the user ID to search with
-	 * @param classNameId the class name ID to search with
-	 * @param classPK the class p k to search with
+	 * @param userId the user ID
+	 * @param classNameId the class name ID
+	 * @param classPK the class p k
 	 * @return the matching k b comment
 	 * @throws com.liferay.knowledgebase.NoSuchCommentException if a matching k b comment could not be found
 	 * @throws SystemException if a system exception occurred
@@ -2171,11 +2171,11 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	}
 
 	/**
-	 * Finds the k b comment where userId = &#63; and classNameId = &#63; and classPK = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the k b comment where userId = &#63; and classNameId = &#63; and classPK = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @param userId the user ID to search with
-	 * @param classNameId the class name ID to search with
-	 * @param classPK the class p k to search with
+	 * @param userId the user ID
+	 * @param classNameId the class name ID
+	 * @param classPK the class p k
 	 * @return the matching k b comment, or <code>null</code> if a matching k b comment could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -2185,11 +2185,11 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	}
 
 	/**
-	 * Finds the k b comment where userId = &#63; and classNameId = &#63; and classPK = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the k b comment where userId = &#63; and classNameId = &#63; and classPK = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
-	 * @param userId the user ID to search with
-	 * @param classNameId the class name ID to search with
-	 * @param classPK the class p k to search with
+	 * @param userId the user ID
+	 * @param classNameId the class name ID
+	 * @param classPK the class p k
 	 * @return the matching k b comment, or <code>null</code> if a matching k b comment could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -2282,7 +2282,7 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	}
 
 	/**
-	 * Finds all the k b comments.
+	 * Returns all the k b comments.
 	 *
 	 * @return the k b comments
 	 * @throws SystemException if a system exception occurred
@@ -2292,14 +2292,14 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	}
 
 	/**
-	 * Finds a range of all the k b comments.
+	 * Returns a range of all the k b comments.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of k b comments to return
-	 * @param end the upper bound of the range of k b comments to return (not inclusive)
+	 * @param start the lower bound of the range of k b comments
+	 * @param end the upper bound of the range of k b comments (not inclusive)
 	 * @return the range of k b comments
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -2309,14 +2309,14 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	}
 
 	/**
-	 * Finds an ordered range of all the k b comments.
+	 * Returns an ordered range of all the k b comments.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of k b comments to return
-	 * @param end the upper bound of the range of k b comments to return (not inclusive)
+	 * @param start the lower bound of the range of k b comments
+	 * @param end the upper bound of the range of k b comments (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of k b comments
 	 * @throws SystemException if a system exception occurred
@@ -2393,7 +2393,7 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	/**
 	 * Removes all the k b comments where uuid = &#63; from the database.
 	 *
-	 * @param uuid the uuid to search with
+	 * @param uuid the uuid
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeByUuid(String uuid) throws SystemException {
@@ -2405,8 +2405,8 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	/**
 	 * Removes the k b comment where uuid = &#63; and groupId = &#63; from the database.
 	 *
-	 * @param uuid the uuid to search with
-	 * @param groupId the group ID to search with
+	 * @param uuid the uuid
+	 * @param groupId the group ID
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeByUUID_G(String uuid, long groupId)
@@ -2419,7 +2419,7 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	/**
 	 * Removes all the k b comments where groupId = &#63; from the database.
 	 *
-	 * @param groupId the group ID to search with
+	 * @param groupId the group ID
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeByGroupId(long groupId) throws SystemException {
@@ -2431,8 +2431,8 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	/**
 	 * Removes all the k b comments where groupId = &#63; and classNameId = &#63; from the database.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param classNameId the class name ID to search with
+	 * @param groupId the group ID
+	 * @param classNameId the class name ID
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeByG_C(long groupId, long classNameId)
@@ -2445,8 +2445,8 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	/**
 	 * Removes all the k b comments where classNameId = &#63; and classPK = &#63; from the database.
 	 *
-	 * @param classNameId the class name ID to search with
-	 * @param classPK the class p k to search with
+	 * @param classNameId the class name ID
+	 * @param classPK the class p k
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeByC_C(long classNameId, long classPK)
@@ -2459,9 +2459,9 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	/**
 	 * Removes the k b comment where userId = &#63; and classNameId = &#63; and classPK = &#63; from the database.
 	 *
-	 * @param userId the user ID to search with
-	 * @param classNameId the class name ID to search with
-	 * @param classPK the class p k to search with
+	 * @param userId the user ID
+	 * @param classNameId the class name ID
+	 * @param classPK the class p k
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeByU_C_C(long userId, long classNameId, long classPK)
@@ -2483,9 +2483,9 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	}
 
 	/**
-	 * Counts all the k b comments where uuid = &#63;.
+	 * Returns the number of k b comments where uuid = &#63;.
 	 *
-	 * @param uuid the uuid to search with
+	 * @param uuid the uuid
 	 * @return the number of matching k b comments
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -2548,10 +2548,10 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	}
 
 	/**
-	 * Counts all the k b comments where uuid = &#63; and groupId = &#63;.
+	 * Returns the number of k b comments where uuid = &#63; and groupId = &#63;.
 	 *
-	 * @param uuid the uuid to search with
-	 * @param groupId the group ID to search with
+	 * @param uuid the uuid
+	 * @param groupId the group ID
 	 * @return the number of matching k b comments
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -2619,9 +2619,9 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	}
 
 	/**
-	 * Counts all the k b comments where groupId = &#63;.
+	 * Returns the number of k b comments where groupId = &#63;.
 	 *
-	 * @param groupId the group ID to search with
+	 * @param groupId the group ID
 	 * @return the number of matching k b comments
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -2672,10 +2672,10 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	}
 
 	/**
-	 * Counts all the k b comments where groupId = &#63; and classNameId = &#63;.
+	 * Returns the number of k b comments where groupId = &#63; and classNameId = &#63;.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param classNameId the class name ID to search with
+	 * @param groupId the group ID
+	 * @param classNameId the class name ID
 	 * @return the number of matching k b comments
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -2731,10 +2731,10 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	}
 
 	/**
-	 * Counts all the k b comments where classNameId = &#63; and classPK = &#63;.
+	 * Returns the number of k b comments where classNameId = &#63; and classPK = &#63;.
 	 *
-	 * @param classNameId the class name ID to search with
-	 * @param classPK the class p k to search with
+	 * @param classNameId the class name ID
+	 * @param classPK the class p k
 	 * @return the number of matching k b comments
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -2790,11 +2790,11 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	}
 
 	/**
-	 * Counts all the k b comments where userId = &#63; and classNameId = &#63; and classPK = &#63;.
+	 * Returns the number of k b comments where userId = &#63; and classNameId = &#63; and classPK = &#63;.
 	 *
-	 * @param userId the user ID to search with
-	 * @param classNameId the class name ID to search with
-	 * @param classPK the class p k to search with
+	 * @param userId the user ID
+	 * @param classNameId the class name ID
+	 * @param classPK the class p k
 	 * @return the number of matching k b comments
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -2854,7 +2854,7 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	}
 
 	/**
-	 * Counts all the k b comments.
+	 * Returns the number of k b comments.
 	 *
 	 * @return the number of k b comments
 	 * @throws SystemException if a system exception occurred

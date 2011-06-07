@@ -47,21 +47,21 @@ public interface WallEntryModel extends BaseModel<WallEntry>, GroupedModel {
 	 */
 
 	/**
-	 * Gets the primary key of this wall entry.
+	 * Returns the primary key of this wall entry.
 	 *
 	 * @return the primary key of this wall entry
 	 */
 	public long getPrimaryKey();
 
 	/**
-	 * Sets the primary key of this wall entry
+	 * Sets the primary key of this wall entry.
 	 *
 	 * @param primaryKey the primary key of this wall entry
 	 */
 	public void setPrimaryKey(long primaryKey);
 
 	/**
-	 * Gets the wall entry ID of this wall entry.
+	 * Returns the wall entry ID of this wall entry.
 	 *
 	 * @return the wall entry ID of this wall entry
 	 */
@@ -75,7 +75,7 @@ public interface WallEntryModel extends BaseModel<WallEntry>, GroupedModel {
 	public void setWallEntryId(long wallEntryId);
 
 	/**
-	 * Gets the group ID of this wall entry.
+	 * Returns the group ID of this wall entry.
 	 *
 	 * @return the group ID of this wall entry
 	 */
@@ -89,7 +89,7 @@ public interface WallEntryModel extends BaseModel<WallEntry>, GroupedModel {
 	public void setGroupId(long groupId);
 
 	/**
-	 * Gets the company ID of this wall entry.
+	 * Returns the company ID of this wall entry.
 	 *
 	 * @return the company ID of this wall entry
 	 */
@@ -103,7 +103,7 @@ public interface WallEntryModel extends BaseModel<WallEntry>, GroupedModel {
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the user ID of this wall entry.
+	 * Returns the user ID of this wall entry.
 	 *
 	 * @return the user ID of this wall entry
 	 */
@@ -117,7 +117,7 @@ public interface WallEntryModel extends BaseModel<WallEntry>, GroupedModel {
 	public void setUserId(long userId);
 
 	/**
-	 * Gets the user uuid of this wall entry.
+	 * Returns the user uuid of this wall entry.
 	 *
 	 * @return the user uuid of this wall entry
 	 * @throws SystemException if a system exception occurred
@@ -132,7 +132,7 @@ public interface WallEntryModel extends BaseModel<WallEntry>, GroupedModel {
 	public void setUserUuid(String userUuid);
 
 	/**
-	 * Gets the user name of this wall entry.
+	 * Returns the user name of this wall entry.
 	 *
 	 * @return the user name of this wall entry
 	 */
@@ -147,7 +147,7 @@ public interface WallEntryModel extends BaseModel<WallEntry>, GroupedModel {
 	public void setUserName(String userName);
 
 	/**
-	 * Gets the create date of this wall entry.
+	 * Returns the create date of this wall entry.
 	 *
 	 * @return the create date of this wall entry
 	 */
@@ -161,7 +161,7 @@ public interface WallEntryModel extends BaseModel<WallEntry>, GroupedModel {
 	public void setCreateDate(Date createDate);
 
 	/**
-	 * Gets the modified date of this wall entry.
+	 * Returns the modified date of this wall entry.
 	 *
 	 * @return the modified date of this wall entry
 	 */
@@ -175,7 +175,7 @@ public interface WallEntryModel extends BaseModel<WallEntry>, GroupedModel {
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Gets the comments of this wall entry.
+	 * Returns the comments of this wall entry.
 	 *
 	 * @return the comments of this wall entry
 	 */

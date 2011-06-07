@@ -41,14 +41,14 @@ public interface HRClientPersistence extends BasePersistence<HRClient> {
 	/**
 	* Caches the h r client in the entity cache if it is enabled.
 	*
-	* @param hrClient the h r client to cache
+	* @param hrClient the h r client
 	*/
 	public void cacheResult(com.liferay.hr.model.HRClient hrClient);
 
 	/**
 	* Caches the h r clients in the entity cache if it is enabled.
 	*
-	* @param hrClients the h r clients to cache
+	* @param hrClients the h r clients
 	*/
 	public void cacheResult(
 		java.util.List<com.liferay.hr.model.HRClient> hrClients);
@@ -64,7 +64,7 @@ public interface HRClientPersistence extends BasePersistence<HRClient> {
 	/**
 	* Removes the h r client with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param hrClientId the primary key of the h r client to remove
+	* @param hrClientId the primary key of the h r client
 	* @return the h r client that was removed
 	* @throws com.liferay.hr.NoSuchClientException if a h r client with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -78,9 +78,9 @@ public interface HRClientPersistence extends BasePersistence<HRClient> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the h r client with the primary key or throws a {@link com.liferay.hr.NoSuchClientException} if it could not be found.
+	* Returns the h r client with the primary key or throws a {@link com.liferay.hr.NoSuchClientException} if it could not be found.
 	*
-	* @param hrClientId the primary key of the h r client to find
+	* @param hrClientId the primary key of the h r client
 	* @return the h r client
 	* @throws com.liferay.hr.NoSuchClientException if a h r client with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -90,9 +90,9 @@ public interface HRClientPersistence extends BasePersistence<HRClient> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the h r client with the primary key or returns <code>null</code> if it could not be found.
+	* Returns the h r client with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param hrClientId the primary key of the h r client to find
+	* @param hrClientId the primary key of the h r client
 	* @return the h r client, or <code>null</code> if a h r client with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -100,7 +100,7 @@ public interface HRClientPersistence extends BasePersistence<HRClient> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds all the h r clients.
+	* Returns all the h r clients.
 	*
 	* @return the h r clients
 	* @throws SystemException if a system exception occurred
@@ -109,14 +109,14 @@ public interface HRClientPersistence extends BasePersistence<HRClient> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds a range of all the h r clients.
+	* Returns a range of all the h r clients.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of h r clients to return
-	* @param end the upper bound of the range of h r clients to return (not inclusive)
+	* @param start the lower bound of the range of h r clients
+	* @param end the upper bound of the range of h r clients (not inclusive)
 	* @return the range of h r clients
 	* @throws SystemException if a system exception occurred
 	*/
@@ -124,14 +124,14 @@ public interface HRClientPersistence extends BasePersistence<HRClient> {
 		int end) throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds an ordered range of all the h r clients.
+	* Returns an ordered range of all the h r clients.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of h r clients to return
-	* @param end the upper bound of the range of h r clients to return (not inclusive)
+	* @param start the lower bound of the range of h r clients
+	* @param end the upper bound of the range of h r clients (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of h r clients
 	* @throws SystemException if a system exception occurred
@@ -150,7 +150,7 @@ public interface HRClientPersistence extends BasePersistence<HRClient> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Counts all the h r clients.
+	* Returns the number of h r clients.
 	*
 	* @return the number of h r clients
 	* @throws SystemException if a system exception occurred

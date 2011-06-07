@@ -121,7 +121,7 @@ public class WSRPConsumerUtil {
 	/**
 	* Caches the w s r p consumer in the entity cache if it is enabled.
 	*
-	* @param wsrpConsumer the w s r p consumer to cache
+	* @param wsrpConsumer the w s r p consumer
 	*/
 	public static void cacheResult(
 		com.liferay.wsrp.model.WSRPConsumer wsrpConsumer) {
@@ -131,7 +131,7 @@ public class WSRPConsumerUtil {
 	/**
 	* Caches the w s r p consumers in the entity cache if it is enabled.
 	*
-	* @param wsrpConsumers the w s r p consumers to cache
+	* @param wsrpConsumers the w s r p consumers
 	*/
 	public static void cacheResult(
 		java.util.List<com.liferay.wsrp.model.WSRPConsumer> wsrpConsumers) {
@@ -152,7 +152,7 @@ public class WSRPConsumerUtil {
 	/**
 	* Removes the w s r p consumer with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param wsrpConsumerId the primary key of the w s r p consumer to remove
+	* @param wsrpConsumerId the primary key of the w s r p consumer
 	* @return the w s r p consumer that was removed
 	* @throws com.liferay.wsrp.NoSuchConsumerException if a w s r p consumer with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -171,9 +171,9 @@ public class WSRPConsumerUtil {
 	}
 
 	/**
-	* Finds the w s r p consumer with the primary key or throws a {@link com.liferay.wsrp.NoSuchConsumerException} if it could not be found.
+	* Returns the w s r p consumer with the primary key or throws a {@link com.liferay.wsrp.NoSuchConsumerException} if it could not be found.
 	*
-	* @param wsrpConsumerId the primary key of the w s r p consumer to find
+	* @param wsrpConsumerId the primary key of the w s r p consumer
 	* @return the w s r p consumer
 	* @throws com.liferay.wsrp.NoSuchConsumerException if a w s r p consumer with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -186,9 +186,9 @@ public class WSRPConsumerUtil {
 	}
 
 	/**
-	* Finds the w s r p consumer with the primary key or returns <code>null</code> if it could not be found.
+	* Returns the w s r p consumer with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param wsrpConsumerId the primary key of the w s r p consumer to find
+	* @param wsrpConsumerId the primary key of the w s r p consumer
 	* @return the w s r p consumer, or <code>null</code> if a w s r p consumer with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -199,9 +199,9 @@ public class WSRPConsumerUtil {
 	}
 
 	/**
-	* Finds all the w s r p consumers where uuid = &#63;.
+	* Returns all the w s r p consumers where uuid = &#63;.
 	*
-	* @param uuid the uuid to search with
+	* @param uuid the uuid
 	* @return the matching w s r p consumers
 	* @throws SystemException if a system exception occurred
 	*/
@@ -212,15 +212,15 @@ public class WSRPConsumerUtil {
 	}
 
 	/**
-	* Finds a range of all the w s r p consumers where uuid = &#63;.
+	* Returns a range of all the w s r p consumers where uuid = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param uuid the uuid to search with
-	* @param start the lower bound of the range of w s r p consumers to return
-	* @param end the upper bound of the range of w s r p consumers to return (not inclusive)
+	* @param uuid the uuid
+	* @param start the lower bound of the range of w s r p consumers
+	* @param end the upper bound of the range of w s r p consumers (not inclusive)
 	* @return the range of matching w s r p consumers
 	* @throws SystemException if a system exception occurred
 	*/
@@ -231,15 +231,15 @@ public class WSRPConsumerUtil {
 	}
 
 	/**
-	* Finds an ordered range of all the w s r p consumers where uuid = &#63;.
+	* Returns an ordered range of all the w s r p consumers where uuid = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param uuid the uuid to search with
-	* @param start the lower bound of the range of w s r p consumers to return
-	* @param end the upper bound of the range of w s r p consumers to return (not inclusive)
+	* @param uuid the uuid
+	* @param start the lower bound of the range of w s r p consumers
+	* @param end the upper bound of the range of w s r p consumers (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching w s r p consumers
 	* @throws SystemException if a system exception occurred
@@ -252,13 +252,13 @@ public class WSRPConsumerUtil {
 	}
 
 	/**
-	* Finds the first w s r p consumer in the ordered set where uuid = &#63;.
+	* Returns the first w s r p consumer in the ordered set where uuid = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param uuid the uuid to search with
+	* @param uuid the uuid
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching w s r p consumer
 	* @throws com.liferay.wsrp.NoSuchConsumerException if a matching w s r p consumer could not be found
@@ -273,13 +273,13 @@ public class WSRPConsumerUtil {
 	}
 
 	/**
-	* Finds the last w s r p consumer in the ordered set where uuid = &#63;.
+	* Returns the last w s r p consumer in the ordered set where uuid = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param uuid the uuid to search with
+	* @param uuid the uuid
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching w s r p consumer
 	* @throws com.liferay.wsrp.NoSuchConsumerException if a matching w s r p consumer could not be found
@@ -294,14 +294,14 @@ public class WSRPConsumerUtil {
 	}
 
 	/**
-	* Finds the w s r p consumers before and after the current w s r p consumer in the ordered set where uuid = &#63;.
+	* Returns the w s r p consumers before and after the current w s r p consumer in the ordered set where uuid = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
 	* @param wsrpConsumerId the primary key of the current w s r p consumer
-	* @param uuid the uuid to search with
+	* @param uuid the uuid
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next w s r p consumer
 	* @throws com.liferay.wsrp.NoSuchConsumerException if a w s r p consumer with the primary key could not be found
@@ -318,9 +318,9 @@ public class WSRPConsumerUtil {
 	}
 
 	/**
-	* Finds all the w s r p consumers where companyId = &#63;.
+	* Returns all the w s r p consumers where companyId = &#63;.
 	*
-	* @param companyId the company ID to search with
+	* @param companyId the company ID
 	* @return the matching w s r p consumers
 	* @throws SystemException if a system exception occurred
 	*/
@@ -331,15 +331,15 @@ public class WSRPConsumerUtil {
 	}
 
 	/**
-	* Finds a range of all the w s r p consumers where companyId = &#63;.
+	* Returns a range of all the w s r p consumers where companyId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param companyId the company ID to search with
-	* @param start the lower bound of the range of w s r p consumers to return
-	* @param end the upper bound of the range of w s r p consumers to return (not inclusive)
+	* @param companyId the company ID
+	* @param start the lower bound of the range of w s r p consumers
+	* @param end the upper bound of the range of w s r p consumers (not inclusive)
 	* @return the range of matching w s r p consumers
 	* @throws SystemException if a system exception occurred
 	*/
@@ -350,15 +350,15 @@ public class WSRPConsumerUtil {
 	}
 
 	/**
-	* Finds an ordered range of all the w s r p consumers where companyId = &#63;.
+	* Returns an ordered range of all the w s r p consumers where companyId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param companyId the company ID to search with
-	* @param start the lower bound of the range of w s r p consumers to return
-	* @param end the upper bound of the range of w s r p consumers to return (not inclusive)
+	* @param companyId the company ID
+	* @param start the lower bound of the range of w s r p consumers
+	* @param end the upper bound of the range of w s r p consumers (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching w s r p consumers
 	* @throws SystemException if a system exception occurred
@@ -372,13 +372,13 @@ public class WSRPConsumerUtil {
 	}
 
 	/**
-	* Finds the first w s r p consumer in the ordered set where companyId = &#63;.
+	* Returns the first w s r p consumer in the ordered set where companyId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param companyId the company ID to search with
+	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching w s r p consumer
 	* @throws com.liferay.wsrp.NoSuchConsumerException if a matching w s r p consumer could not be found
@@ -394,13 +394,13 @@ public class WSRPConsumerUtil {
 	}
 
 	/**
-	* Finds the last w s r p consumer in the ordered set where companyId = &#63;.
+	* Returns the last w s r p consumer in the ordered set where companyId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param companyId the company ID to search with
+	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching w s r p consumer
 	* @throws com.liferay.wsrp.NoSuchConsumerException if a matching w s r p consumer could not be found
@@ -416,14 +416,14 @@ public class WSRPConsumerUtil {
 	}
 
 	/**
-	* Finds the w s r p consumers before and after the current w s r p consumer in the ordered set where companyId = &#63;.
+	* Returns the w s r p consumers before and after the current w s r p consumer in the ordered set where companyId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
 	* @param wsrpConsumerId the primary key of the current w s r p consumer
-	* @param companyId the company ID to search with
+	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next w s r p consumer
 	* @throws com.liferay.wsrp.NoSuchConsumerException if a w s r p consumer with the primary key could not be found
@@ -440,7 +440,7 @@ public class WSRPConsumerUtil {
 	}
 
 	/**
-	* Finds all the w s r p consumers.
+	* Returns all the w s r p consumers.
 	*
 	* @return the w s r p consumers
 	* @throws SystemException if a system exception occurred
@@ -451,14 +451,14 @@ public class WSRPConsumerUtil {
 	}
 
 	/**
-	* Finds a range of all the w s r p consumers.
+	* Returns a range of all the w s r p consumers.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of w s r p consumers to return
-	* @param end the upper bound of the range of w s r p consumers to return (not inclusive)
+	* @param start the lower bound of the range of w s r p consumers
+	* @param end the upper bound of the range of w s r p consumers (not inclusive)
 	* @return the range of w s r p consumers
 	* @throws SystemException if a system exception occurred
 	*/
@@ -469,14 +469,14 @@ public class WSRPConsumerUtil {
 	}
 
 	/**
-	* Finds an ordered range of all the w s r p consumers.
+	* Returns an ordered range of all the w s r p consumers.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of w s r p consumers to return
-	* @param end the upper bound of the range of w s r p consumers to return (not inclusive)
+	* @param start the lower bound of the range of w s r p consumers
+	* @param end the upper bound of the range of w s r p consumers (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of w s r p consumers
 	* @throws SystemException if a system exception occurred
@@ -491,7 +491,7 @@ public class WSRPConsumerUtil {
 	/**
 	* Removes all the w s r p consumers where uuid = &#63; from the database.
 	*
-	* @param uuid the uuid to search with
+	* @param uuid the uuid
 	* @throws SystemException if a system exception occurred
 	*/
 	public static void removeByUuid(java.lang.String uuid)
@@ -502,7 +502,7 @@ public class WSRPConsumerUtil {
 	/**
 	* Removes all the w s r p consumers where companyId = &#63; from the database.
 	*
-	* @param companyId the company ID to search with
+	* @param companyId the company ID
 	* @throws SystemException if a system exception occurred
 	*/
 	public static void removeByCompanyId(long companyId)
@@ -521,9 +521,9 @@ public class WSRPConsumerUtil {
 	}
 
 	/**
-	* Counts all the w s r p consumers where uuid = &#63;.
+	* Returns the number of w s r p consumers where uuid = &#63;.
 	*
-	* @param uuid the uuid to search with
+	* @param uuid the uuid
 	* @return the number of matching w s r p consumers
 	* @throws SystemException if a system exception occurred
 	*/
@@ -533,9 +533,9 @@ public class WSRPConsumerUtil {
 	}
 
 	/**
-	* Counts all the w s r p consumers where companyId = &#63;.
+	* Returns the number of w s r p consumers where companyId = &#63;.
 	*
-	* @param companyId the company ID to search with
+	* @param companyId the company ID
 	* @return the number of matching w s r p consumers
 	* @throws SystemException if a system exception occurred
 	*/
@@ -545,7 +545,7 @@ public class WSRPConsumerUtil {
 	}
 
 	/**
-	* Counts all the w s r p consumers.
+	* Returns the number of w s r p consumers.
 	*
 	* @return the number of w s r p consumers
 	* @throws SystemException if a system exception occurred

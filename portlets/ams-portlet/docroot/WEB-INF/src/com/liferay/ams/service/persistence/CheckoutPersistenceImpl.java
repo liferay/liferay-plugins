@@ -82,7 +82,7 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 	/**
 	 * Caches the checkout in the entity cache if it is enabled.
 	 *
-	 * @param checkout the checkout to cache
+	 * @param checkout the checkout
 	 */
 	public void cacheResult(Checkout checkout) {
 		EntityCacheUtil.putResult(CheckoutModelImpl.ENTITY_CACHE_ENABLED,
@@ -94,7 +94,7 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 	/**
 	 * Caches the checkouts in the entity cache if it is enabled.
 	 *
-	 * @param checkouts the checkouts to cache
+	 * @param checkouts the checkouts
 	 */
 	public void cacheResult(List<Checkout> checkouts) {
 		for (Checkout checkout : checkouts) {
@@ -153,7 +153,7 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 	/**
 	 * Removes the checkout with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param primaryKey the primary key of the checkout to remove
+	 * @param primaryKey the primary key of the checkout
 	 * @return the checkout that was removed
 	 * @throws com.liferay.portal.NoSuchModelException if a checkout with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -166,7 +166,7 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 	/**
 	 * Removes the checkout with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param checkoutId the primary key of the checkout to remove
+	 * @param checkoutId the primary key of the checkout
 	 * @return the checkout that was removed
 	 * @throws com.liferay.ams.NoSuchCheckoutException if a checkout with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -206,7 +206,7 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 	/**
 	 * Removes the checkout from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param checkout the checkout to remove
+	 * @param checkout the checkout
 	 * @return the checkout that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -292,9 +292,9 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 	}
 
 	/**
-	 * Finds the checkout with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
+	 * Returns the checkout with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
 	 *
-	 * @param primaryKey the primary key of the checkout to find
+	 * @param primaryKey the primary key of the checkout
 	 * @return the checkout
 	 * @throws com.liferay.portal.NoSuchModelException if a checkout with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -305,9 +305,9 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 	}
 
 	/**
-	 * Finds the checkout with the primary key or throws a {@link com.liferay.ams.NoSuchCheckoutException} if it could not be found.
+	 * Returns the checkout with the primary key or throws a {@link com.liferay.ams.NoSuchCheckoutException} if it could not be found.
 	 *
-	 * @param checkoutId the primary key of the checkout to find
+	 * @param checkoutId the primary key of the checkout
 	 * @return the checkout
 	 * @throws com.liferay.ams.NoSuchCheckoutException if a checkout with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -329,9 +329,9 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 	}
 
 	/**
-	 * Finds the checkout with the primary key or returns <code>null</code> if it could not be found.
+	 * Returns the checkout with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param primaryKey the primary key of the checkout to find
+	 * @param primaryKey the primary key of the checkout
 	 * @return the checkout, or <code>null</code> if a checkout with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -341,9 +341,9 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 	}
 
 	/**
-	 * Finds the checkout with the primary key or returns <code>null</code> if it could not be found.
+	 * Returns the checkout with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param checkoutId the primary key of the checkout to find
+	 * @param checkoutId the primary key of the checkout
 	 * @return the checkout, or <code>null</code> if a checkout with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -377,7 +377,7 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 	}
 
 	/**
-	 * Finds all the checkouts.
+	 * Returns all the checkouts.
 	 *
 	 * @return the checkouts
 	 * @throws SystemException if a system exception occurred
@@ -387,14 +387,14 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 	}
 
 	/**
-	 * Finds a range of all the checkouts.
+	 * Returns a range of all the checkouts.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of checkouts to return
-	 * @param end the upper bound of the range of checkouts to return (not inclusive)
+	 * @param start the lower bound of the range of checkouts
+	 * @param end the upper bound of the range of checkouts (not inclusive)
 	 * @return the range of checkouts
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -403,14 +403,14 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 	}
 
 	/**
-	 * Finds an ordered range of all the checkouts.
+	 * Returns an ordered range of all the checkouts.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of checkouts to return
-	 * @param end the upper bound of the range of checkouts to return (not inclusive)
+	 * @param start the lower bound of the range of checkouts
+	 * @param end the upper bound of the range of checkouts (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of checkouts
 	 * @throws SystemException if a system exception occurred
@@ -496,7 +496,7 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 	}
 
 	/**
-	 * Counts all the checkouts.
+	 * Returns the number of checkouts.
 	 *
 	 * @return the number of checkouts
 	 * @throws SystemException if a system exception occurred

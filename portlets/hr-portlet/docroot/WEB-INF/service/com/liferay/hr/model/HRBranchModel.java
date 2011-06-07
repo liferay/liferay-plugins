@@ -47,21 +47,21 @@ public interface HRBranchModel extends BaseModel<HRBranch>, GroupedModel {
 	 */
 
 	/**
-	 * Gets the primary key of this h r branch.
+	 * Returns the primary key of this h r branch.
 	 *
 	 * @return the primary key of this h r branch
 	 */
 	public long getPrimaryKey();
 
 	/**
-	 * Sets the primary key of this h r branch
+	 * Sets the primary key of this h r branch.
 	 *
 	 * @param primaryKey the primary key of this h r branch
 	 */
 	public void setPrimaryKey(long primaryKey);
 
 	/**
-	 * Gets the hr branch ID of this h r branch.
+	 * Returns the hr branch ID of this h r branch.
 	 *
 	 * @return the hr branch ID of this h r branch
 	 */
@@ -75,7 +75,7 @@ public interface HRBranchModel extends BaseModel<HRBranch>, GroupedModel {
 	public void setHrBranchId(long hrBranchId);
 
 	/**
-	 * Gets the group ID of this h r branch.
+	 * Returns the group ID of this h r branch.
 	 *
 	 * @return the group ID of this h r branch
 	 */
@@ -89,7 +89,7 @@ public interface HRBranchModel extends BaseModel<HRBranch>, GroupedModel {
 	public void setGroupId(long groupId);
 
 	/**
-	 * Gets the company ID of this h r branch.
+	 * Returns the company ID of this h r branch.
 	 *
 	 * @return the company ID of this h r branch
 	 */
@@ -103,7 +103,7 @@ public interface HRBranchModel extends BaseModel<HRBranch>, GroupedModel {
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the user ID of this h r branch.
+	 * Returns the user ID of this h r branch.
 	 *
 	 * @return the user ID of this h r branch
 	 */
@@ -117,7 +117,7 @@ public interface HRBranchModel extends BaseModel<HRBranch>, GroupedModel {
 	public void setUserId(long userId);
 
 	/**
-	 * Gets the user uuid of this h r branch.
+	 * Returns the user uuid of this h r branch.
 	 *
 	 * @return the user uuid of this h r branch
 	 * @throws SystemException if a system exception occurred
@@ -132,7 +132,7 @@ public interface HRBranchModel extends BaseModel<HRBranch>, GroupedModel {
 	public void setUserUuid(String userUuid);
 
 	/**
-	 * Gets the user name of this h r branch.
+	 * Returns the user name of this h r branch.
 	 *
 	 * @return the user name of this h r branch
 	 */
@@ -147,7 +147,7 @@ public interface HRBranchModel extends BaseModel<HRBranch>, GroupedModel {
 	public void setUserName(String userName);
 
 	/**
-	 * Gets the create date of this h r branch.
+	 * Returns the create date of this h r branch.
 	 *
 	 * @return the create date of this h r branch
 	 */
@@ -161,7 +161,7 @@ public interface HRBranchModel extends BaseModel<HRBranch>, GroupedModel {
 	public void setCreateDate(Date createDate);
 
 	/**
-	 * Gets the modified date of this h r branch.
+	 * Returns the modified date of this h r branch.
 	 *
 	 * @return the modified date of this h r branch
 	 */
@@ -175,7 +175,7 @@ public interface HRBranchModel extends BaseModel<HRBranch>, GroupedModel {
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Gets the organization ID of this h r branch.
+	 * Returns the organization ID of this h r branch.
 	 *
 	 * @return the organization ID of this h r branch
 	 */

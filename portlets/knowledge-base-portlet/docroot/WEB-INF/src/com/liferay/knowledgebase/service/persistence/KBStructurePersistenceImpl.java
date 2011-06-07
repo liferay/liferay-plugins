@@ -120,7 +120,7 @@ public class KBStructurePersistenceImpl extends BasePersistenceImpl<KBStructure>
 	/**
 	 * Caches the k b structure in the entity cache if it is enabled.
 	 *
-	 * @param kbStructure the k b structure to cache
+	 * @param kbStructure the k b structure
 	 */
 	public void cacheResult(KBStructure kbStructure) {
 		EntityCacheUtil.putResult(KBStructureModelImpl.ENTITY_CACHE_ENABLED,
@@ -137,7 +137,7 @@ public class KBStructurePersistenceImpl extends BasePersistenceImpl<KBStructure>
 	/**
 	 * Caches the k b structures in the entity cache if it is enabled.
 	 *
-	 * @param kbStructures the k b structures to cache
+	 * @param kbStructures the k b structures
 	 */
 	public void cacheResult(List<KBStructure> kbStructures) {
 		for (KBStructure kbStructure : kbStructures) {
@@ -205,7 +205,7 @@ public class KBStructurePersistenceImpl extends BasePersistenceImpl<KBStructure>
 	/**
 	 * Removes the k b structure with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param primaryKey the primary key of the k b structure to remove
+	 * @param primaryKey the primary key of the k b structure
 	 * @return the k b structure that was removed
 	 * @throws com.liferay.portal.NoSuchModelException if a k b structure with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -218,7 +218,7 @@ public class KBStructurePersistenceImpl extends BasePersistenceImpl<KBStructure>
 	/**
 	 * Removes the k b structure with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param kbStructureId the primary key of the k b structure to remove
+	 * @param kbStructureId the primary key of the k b structure
 	 * @return the k b structure that was removed
 	 * @throws com.liferay.knowledgebase.NoSuchStructureException if a k b structure with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -258,7 +258,7 @@ public class KBStructurePersistenceImpl extends BasePersistenceImpl<KBStructure>
 	/**
 	 * Removes the k b structure from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param kbStructure the k b structure to remove
+	 * @param kbStructure the k b structure
 	 * @return the k b structure that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -387,9 +387,9 @@ public class KBStructurePersistenceImpl extends BasePersistenceImpl<KBStructure>
 	}
 
 	/**
-	 * Finds the k b structure with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
+	 * Returns the k b structure with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
 	 *
-	 * @param primaryKey the primary key of the k b structure to find
+	 * @param primaryKey the primary key of the k b structure
 	 * @return the k b structure
 	 * @throws com.liferay.portal.NoSuchModelException if a k b structure with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -400,9 +400,9 @@ public class KBStructurePersistenceImpl extends BasePersistenceImpl<KBStructure>
 	}
 
 	/**
-	 * Finds the k b structure with the primary key or throws a {@link com.liferay.knowledgebase.NoSuchStructureException} if it could not be found.
+	 * Returns the k b structure with the primary key or throws a {@link com.liferay.knowledgebase.NoSuchStructureException} if it could not be found.
 	 *
-	 * @param kbStructureId the primary key of the k b structure to find
+	 * @param kbStructureId the primary key of the k b structure
 	 * @return the k b structure
 	 * @throws com.liferay.knowledgebase.NoSuchStructureException if a k b structure with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -424,9 +424,9 @@ public class KBStructurePersistenceImpl extends BasePersistenceImpl<KBStructure>
 	}
 
 	/**
-	 * Finds the k b structure with the primary key or returns <code>null</code> if it could not be found.
+	 * Returns the k b structure with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param primaryKey the primary key of the k b structure to find
+	 * @param primaryKey the primary key of the k b structure
 	 * @return the k b structure, or <code>null</code> if a k b structure with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -436,9 +436,9 @@ public class KBStructurePersistenceImpl extends BasePersistenceImpl<KBStructure>
 	}
 
 	/**
-	 * Finds the k b structure with the primary key or returns <code>null</code> if it could not be found.
+	 * Returns the k b structure with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param kbStructureId the primary key of the k b structure to find
+	 * @param kbStructureId the primary key of the k b structure
 	 * @return the k b structure, or <code>null</code> if a k b structure with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -472,9 +472,9 @@ public class KBStructurePersistenceImpl extends BasePersistenceImpl<KBStructure>
 	}
 
 	/**
-	 * Finds all the k b structures where uuid = &#63;.
+	 * Returns all the k b structures where uuid = &#63;.
 	 *
-	 * @param uuid the uuid to search with
+	 * @param uuid the uuid
 	 * @return the matching k b structures
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -483,15 +483,15 @@ public class KBStructurePersistenceImpl extends BasePersistenceImpl<KBStructure>
 	}
 
 	/**
-	 * Finds a range of all the k b structures where uuid = &#63;.
+	 * Returns a range of all the k b structures where uuid = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param uuid the uuid to search with
-	 * @param start the lower bound of the range of k b structures to return
-	 * @param end the upper bound of the range of k b structures to return (not inclusive)
+	 * @param uuid the uuid
+	 * @param start the lower bound of the range of k b structures
+	 * @param end the upper bound of the range of k b structures (not inclusive)
 	 * @return the range of matching k b structures
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -501,15 +501,15 @@ public class KBStructurePersistenceImpl extends BasePersistenceImpl<KBStructure>
 	}
 
 	/**
-	 * Finds an ordered range of all the k b structures where uuid = &#63;.
+	 * Returns an ordered range of all the k b structures where uuid = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param uuid the uuid to search with
-	 * @param start the lower bound of the range of k b structures to return
-	 * @param end the upper bound of the range of k b structures to return (not inclusive)
+	 * @param uuid the uuid
+	 * @param start the lower bound of the range of k b structures
+	 * @param end the upper bound of the range of k b structures (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching k b structures
 	 * @throws SystemException if a system exception occurred
@@ -601,13 +601,13 @@ public class KBStructurePersistenceImpl extends BasePersistenceImpl<KBStructure>
 	}
 
 	/**
-	 * Finds the first k b structure in the ordered set where uuid = &#63;.
+	 * Returns the first k b structure in the ordered set where uuid = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param uuid the uuid to search with
+	 * @param uuid the uuid
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching k b structure
 	 * @throws com.liferay.knowledgebase.NoSuchStructureException if a matching k b structure could not be found
@@ -636,13 +636,13 @@ public class KBStructurePersistenceImpl extends BasePersistenceImpl<KBStructure>
 	}
 
 	/**
-	 * Finds the last k b structure in the ordered set where uuid = &#63;.
+	 * Returns the last k b structure in the ordered set where uuid = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param uuid the uuid to search with
+	 * @param uuid the uuid
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching k b structure
 	 * @throws com.liferay.knowledgebase.NoSuchStructureException if a matching k b structure could not be found
@@ -674,14 +674,14 @@ public class KBStructurePersistenceImpl extends BasePersistenceImpl<KBStructure>
 	}
 
 	/**
-	 * Finds the k b structures before and after the current k b structure in the ordered set where uuid = &#63;.
+	 * Returns the k b structures before and after the current k b structure in the ordered set where uuid = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
 	 * @param kbStructureId the primary key of the current k b structure
-	 * @param uuid the uuid to search with
+	 * @param uuid the uuid
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next k b structure
 	 * @throws com.liferay.knowledgebase.NoSuchStructureException if a k b structure with the primary key could not be found
@@ -834,10 +834,10 @@ public class KBStructurePersistenceImpl extends BasePersistenceImpl<KBStructure>
 	}
 
 	/**
-	 * Finds the k b structure where uuid = &#63; and groupId = &#63; or throws a {@link com.liferay.knowledgebase.NoSuchStructureException} if it could not be found.
+	 * Returns the k b structure where uuid = &#63; and groupId = &#63; or throws a {@link com.liferay.knowledgebase.NoSuchStructureException} if it could not be found.
 	 *
-	 * @param uuid the uuid to search with
-	 * @param groupId the group ID to search with
+	 * @param uuid the uuid
+	 * @param groupId the group ID
 	 * @return the matching k b structure
 	 * @throws com.liferay.knowledgebase.NoSuchStructureException if a matching k b structure could not be found
 	 * @throws SystemException if a system exception occurred
@@ -870,10 +870,10 @@ public class KBStructurePersistenceImpl extends BasePersistenceImpl<KBStructure>
 	}
 
 	/**
-	 * Finds the k b structure where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the k b structure where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @param uuid the uuid to search with
-	 * @param groupId the group ID to search with
+	 * @param uuid the uuid
+	 * @param groupId the group ID
 	 * @return the matching k b structure, or <code>null</code> if a matching k b structure could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -883,10 +883,10 @@ public class KBStructurePersistenceImpl extends BasePersistenceImpl<KBStructure>
 	}
 
 	/**
-	 * Finds the k b structure where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the k b structure where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
-	 * @param uuid the uuid to search with
-	 * @param groupId the group ID to search with
+	 * @param uuid the uuid
+	 * @param groupId the group ID
 	 * @return the matching k b structure, or <code>null</code> if a matching k b structure could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -987,9 +987,9 @@ public class KBStructurePersistenceImpl extends BasePersistenceImpl<KBStructure>
 	}
 
 	/**
-	 * Finds all the k b structures where groupId = &#63;.
+	 * Returns all the k b structures where groupId = &#63;.
 	 *
-	 * @param groupId the group ID to search with
+	 * @param groupId the group ID
 	 * @return the matching k b structures
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -999,15 +999,15 @@ public class KBStructurePersistenceImpl extends BasePersistenceImpl<KBStructure>
 	}
 
 	/**
-	 * Finds a range of all the k b structures where groupId = &#63;.
+	 * Returns a range of all the k b structures where groupId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param start the lower bound of the range of k b structures to return
-	 * @param end the upper bound of the range of k b structures to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param start the lower bound of the range of k b structures
+	 * @param end the upper bound of the range of k b structures (not inclusive)
 	 * @return the range of matching k b structures
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -1017,15 +1017,15 @@ public class KBStructurePersistenceImpl extends BasePersistenceImpl<KBStructure>
 	}
 
 	/**
-	 * Finds an ordered range of all the k b structures where groupId = &#63;.
+	 * Returns an ordered range of all the k b structures where groupId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param start the lower bound of the range of k b structures to return
-	 * @param end the upper bound of the range of k b structures to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param start the lower bound of the range of k b structures
+	 * @param end the upper bound of the range of k b structures (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching k b structures
 	 * @throws SystemException if a system exception occurred
@@ -1105,13 +1105,13 @@ public class KBStructurePersistenceImpl extends BasePersistenceImpl<KBStructure>
 	}
 
 	/**
-	 * Finds the first k b structure in the ordered set where groupId = &#63;.
+	 * Returns the first k b structure in the ordered set where groupId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
+	 * @param groupId the group ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching k b structure
 	 * @throws com.liferay.knowledgebase.NoSuchStructureException if a matching k b structure could not be found
@@ -1140,13 +1140,13 @@ public class KBStructurePersistenceImpl extends BasePersistenceImpl<KBStructure>
 	}
 
 	/**
-	 * Finds the last k b structure in the ordered set where groupId = &#63;.
+	 * Returns the last k b structure in the ordered set where groupId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
+	 * @param groupId the group ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching k b structure
 	 * @throws com.liferay.knowledgebase.NoSuchStructureException if a matching k b structure could not be found
@@ -1178,14 +1178,14 @@ public class KBStructurePersistenceImpl extends BasePersistenceImpl<KBStructure>
 	}
 
 	/**
-	 * Finds the k b structures before and after the current k b structure in the ordered set where groupId = &#63;.
+	 * Returns the k b structures before and after the current k b structure in the ordered set where groupId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
 	 * @param kbStructureId the primary key of the current k b structure
-	 * @param groupId the group ID to search with
+	 * @param groupId the group ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next k b structure
 	 * @throws com.liferay.knowledgebase.NoSuchStructureException if a k b structure with the primary key could not be found
@@ -1326,7 +1326,7 @@ public class KBStructurePersistenceImpl extends BasePersistenceImpl<KBStructure>
 	}
 
 	/**
-	 * Finds all the k b structures.
+	 * Returns all the k b structures.
 	 *
 	 * @return the k b structures
 	 * @throws SystemException if a system exception occurred
@@ -1336,14 +1336,14 @@ public class KBStructurePersistenceImpl extends BasePersistenceImpl<KBStructure>
 	}
 
 	/**
-	 * Finds a range of all the k b structures.
+	 * Returns a range of all the k b structures.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of k b structures to return
-	 * @param end the upper bound of the range of k b structures to return (not inclusive)
+	 * @param start the lower bound of the range of k b structures
+	 * @param end the upper bound of the range of k b structures (not inclusive)
 	 * @return the range of k b structures
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -1353,14 +1353,14 @@ public class KBStructurePersistenceImpl extends BasePersistenceImpl<KBStructure>
 	}
 
 	/**
-	 * Finds an ordered range of all the k b structures.
+	 * Returns an ordered range of all the k b structures.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of k b structures to return
-	 * @param end the upper bound of the range of k b structures to return (not inclusive)
+	 * @param start the lower bound of the range of k b structures
+	 * @param end the upper bound of the range of k b structures (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of k b structures
 	 * @throws SystemException if a system exception occurred
@@ -1437,7 +1437,7 @@ public class KBStructurePersistenceImpl extends BasePersistenceImpl<KBStructure>
 	/**
 	 * Removes all the k b structures where uuid = &#63; from the database.
 	 *
-	 * @param uuid the uuid to search with
+	 * @param uuid the uuid
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeByUuid(String uuid) throws SystemException {
@@ -1449,8 +1449,8 @@ public class KBStructurePersistenceImpl extends BasePersistenceImpl<KBStructure>
 	/**
 	 * Removes the k b structure where uuid = &#63; and groupId = &#63; from the database.
 	 *
-	 * @param uuid the uuid to search with
-	 * @param groupId the group ID to search with
+	 * @param uuid the uuid
+	 * @param groupId the group ID
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeByUUID_G(String uuid, long groupId)
@@ -1463,7 +1463,7 @@ public class KBStructurePersistenceImpl extends BasePersistenceImpl<KBStructure>
 	/**
 	 * Removes all the k b structures where groupId = &#63; from the database.
 	 *
-	 * @param groupId the group ID to search with
+	 * @param groupId the group ID
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeByGroupId(long groupId) throws SystemException {
@@ -1484,9 +1484,9 @@ public class KBStructurePersistenceImpl extends BasePersistenceImpl<KBStructure>
 	}
 
 	/**
-	 * Counts all the k b structures where uuid = &#63;.
+	 * Returns the number of k b structures where uuid = &#63;.
 	 *
-	 * @param uuid the uuid to search with
+	 * @param uuid the uuid
 	 * @return the number of matching k b structures
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -1549,10 +1549,10 @@ public class KBStructurePersistenceImpl extends BasePersistenceImpl<KBStructure>
 	}
 
 	/**
-	 * Counts all the k b structures where uuid = &#63; and groupId = &#63;.
+	 * Returns the number of k b structures where uuid = &#63; and groupId = &#63;.
 	 *
-	 * @param uuid the uuid to search with
-	 * @param groupId the group ID to search with
+	 * @param uuid the uuid
+	 * @param groupId the group ID
 	 * @return the number of matching k b structures
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -1620,9 +1620,9 @@ public class KBStructurePersistenceImpl extends BasePersistenceImpl<KBStructure>
 	}
 
 	/**
-	 * Counts all the k b structures where groupId = &#63;.
+	 * Returns the number of k b structures where groupId = &#63;.
 	 *
-	 * @param groupId the group ID to search with
+	 * @param groupId the group ID
 	 * @return the number of matching k b structures
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -1673,7 +1673,7 @@ public class KBStructurePersistenceImpl extends BasePersistenceImpl<KBStructure>
 	}
 
 	/**
-	 * Counts all the k b structures.
+	 * Returns the number of k b structures.
 	 *
 	 * @return the number of k b structures
 	 * @throws SystemException if a system exception occurred

@@ -121,7 +121,7 @@ public class HRUserTaskUtil {
 	/**
 	* Caches the h r user task in the entity cache if it is enabled.
 	*
-	* @param hrUserTask the h r user task to cache
+	* @param hrUserTask the h r user task
 	*/
 	public static void cacheResult(com.liferay.hr.model.HRUserTask hrUserTask) {
 		getPersistence().cacheResult(hrUserTask);
@@ -130,7 +130,7 @@ public class HRUserTaskUtil {
 	/**
 	* Caches the h r user tasks in the entity cache if it is enabled.
 	*
-	* @param hrUserTasks the h r user tasks to cache
+	* @param hrUserTasks the h r user tasks
 	*/
 	public static void cacheResult(
 		java.util.List<com.liferay.hr.model.HRUserTask> hrUserTasks) {
@@ -150,7 +150,7 @@ public class HRUserTaskUtil {
 	/**
 	* Removes the h r user task with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param hrUserTaskId the primary key of the h r user task to remove
+	* @param hrUserTaskId the primary key of the h r user task
 	* @return the h r user task that was removed
 	* @throws com.liferay.hr.NoSuchUserTaskException if a h r user task with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -168,9 +168,9 @@ public class HRUserTaskUtil {
 	}
 
 	/**
-	* Finds the h r user task with the primary key or throws a {@link com.liferay.hr.NoSuchUserTaskException} if it could not be found.
+	* Returns the h r user task with the primary key or throws a {@link com.liferay.hr.NoSuchUserTaskException} if it could not be found.
 	*
-	* @param hrUserTaskId the primary key of the h r user task to find
+	* @param hrUserTaskId the primary key of the h r user task
 	* @return the h r user task
 	* @throws com.liferay.hr.NoSuchUserTaskException if a h r user task with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -183,9 +183,9 @@ public class HRUserTaskUtil {
 	}
 
 	/**
-	* Finds the h r user task with the primary key or returns <code>null</code> if it could not be found.
+	* Returns the h r user task with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param hrUserTaskId the primary key of the h r user task to find
+	* @param hrUserTaskId the primary key of the h r user task
 	* @return the h r user task, or <code>null</code> if a h r user task with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -196,7 +196,7 @@ public class HRUserTaskUtil {
 	}
 
 	/**
-	* Finds all the h r user tasks.
+	* Returns all the h r user tasks.
 	*
 	* @return the h r user tasks
 	* @throws SystemException if a system exception occurred
@@ -207,14 +207,14 @@ public class HRUserTaskUtil {
 	}
 
 	/**
-	* Finds a range of all the h r user tasks.
+	* Returns a range of all the h r user tasks.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of h r user tasks to return
-	* @param end the upper bound of the range of h r user tasks to return (not inclusive)
+	* @param start the lower bound of the range of h r user tasks
+	* @param end the upper bound of the range of h r user tasks (not inclusive)
 	* @return the range of h r user tasks
 	* @throws SystemException if a system exception occurred
 	*/
@@ -225,14 +225,14 @@ public class HRUserTaskUtil {
 	}
 
 	/**
-	* Finds an ordered range of all the h r user tasks.
+	* Returns an ordered range of all the h r user tasks.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of h r user tasks to return
-	* @param end the upper bound of the range of h r user tasks to return (not inclusive)
+	* @param start the lower bound of the range of h r user tasks
+	* @param end the upper bound of the range of h r user tasks (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of h r user tasks
 	* @throws SystemException if a system exception occurred
@@ -255,7 +255,7 @@ public class HRUserTaskUtil {
 	}
 
 	/**
-	* Counts all the h r user tasks.
+	* Returns the number of h r user tasks.
 	*
 	* @return the number of h r user tasks
 	* @throws SystemException if a system exception occurred

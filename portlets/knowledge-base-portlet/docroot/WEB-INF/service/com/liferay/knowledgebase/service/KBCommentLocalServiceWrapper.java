@@ -32,7 +32,7 @@ public class KBCommentLocalServiceWrapper implements KBCommentLocalService {
 	/**
 	* Adds the k b comment to the database. Also notifies the appropriate model listeners.
 	*
-	* @param kbComment the k b comment to add
+	* @param kbComment the k b comment
 	* @return the k b comment that was added
 	* @throws SystemException if a system exception occurred
 	*/
@@ -56,7 +56,7 @@ public class KBCommentLocalServiceWrapper implements KBCommentLocalService {
 	/**
 	* Deletes the k b comment with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param kbCommentId the primary key of the k b comment to delete
+	* @param kbCommentId the primary key of the k b comment
 	* @throws PortalException if a k b comment with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -69,7 +69,7 @@ public class KBCommentLocalServiceWrapper implements KBCommentLocalService {
 	/**
 	* Deletes the k b comment from the database. Also notifies the appropriate model listeners.
 	*
-	* @param kbComment the k b comment to delete
+	* @param kbComment the k b comment
 	* @throws SystemException if a system exception occurred
 	*/
 	public void deleteKBComment(
@@ -81,7 +81,7 @@ public class KBCommentLocalServiceWrapper implements KBCommentLocalService {
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
 	*
-	* @param dynamicQuery the dynamic query to search with
+	* @param dynamicQuery the dynamic query
 	* @return the matching rows
 	* @throws SystemException if a system exception occurred
 	*/
@@ -99,9 +99,9 @@ public class KBCommentLocalServiceWrapper implements KBCommentLocalService {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param dynamicQuery the dynamic query to search with
-	* @param start the lower bound of the range of model instances to return
-	* @param end the upper bound of the range of model instances to return (not inclusive)
+	* @param dynamicQuery the dynamic query
+	* @param start the lower bound of the range of model instances
+	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
 	* @throws SystemException if a system exception occurred
 	*/
@@ -119,9 +119,9 @@ public class KBCommentLocalServiceWrapper implements KBCommentLocalService {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param dynamicQuery the dynamic query to search with
-	* @param start the lower bound of the range of model instances to return
-	* @param end the upper bound of the range of model instances to return (not inclusive)
+	* @param dynamicQuery the dynamic query
+	* @param start the lower bound of the range of model instances
+	* @param end the upper bound of the range of model instances (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
 	* @throws SystemException if a system exception occurred
@@ -137,9 +137,9 @@ public class KBCommentLocalServiceWrapper implements KBCommentLocalService {
 	}
 
 	/**
-	* Counts the number of rows that match the dynamic query.
+	* Returns the number of rows that match the dynamic query.
 	*
-	* @param dynamicQuery the dynamic query to search with
+	* @param dynamicQuery the dynamic query
 	* @return the number of rows that match the dynamic query
 	* @throws SystemException if a system exception occurred
 	*/
@@ -150,9 +150,9 @@ public class KBCommentLocalServiceWrapper implements KBCommentLocalService {
 	}
 
 	/**
-	* Gets the k b comment with the primary key.
+	* Returns the k b comment with the primary key.
 	*
-	* @param kbCommentId the primary key of the k b comment to get
+	* @param kbCommentId the primary key of the k b comment
 	* @return the k b comment
 	* @throws PortalException if a k b comment with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -165,12 +165,12 @@ public class KBCommentLocalServiceWrapper implements KBCommentLocalService {
 	}
 
 	/**
-	* Gets the k b comment with the UUID and group id.
+	* Returns the k b comment with the UUID in the group.
 	*
-	* @param uuid the UUID of k b comment to get
-	* @param groupId the group id of the k b comment to get
+	* @param uuid the UUID of k b comment
+	* @param groupId the group id of the k b comment
 	* @return the k b comment
-	* @throws PortalException if a k b comment with the UUID and group id could not be found
+	* @throws PortalException if a k b comment with the UUID in the group could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.knowledgebase.model.KBComment getKBCommentByUuidAndGroupId(
@@ -181,14 +181,14 @@ public class KBCommentLocalServiceWrapper implements KBCommentLocalService {
 	}
 
 	/**
-	* Gets a range of all the k b comments.
+	* Returns a range of all the k b comments.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of k b comments to return
-	* @param end the upper bound of the range of k b comments to return (not inclusive)
+	* @param start the lower bound of the range of k b comments
+	* @param end the upper bound of the range of k b comments (not inclusive)
 	* @return the range of k b comments
 	* @throws SystemException if a system exception occurred
 	*/
@@ -199,7 +199,7 @@ public class KBCommentLocalServiceWrapper implements KBCommentLocalService {
 	}
 
 	/**
-	* Gets the number of k b comments.
+	* Returns the number of k b comments.
 	*
 	* @return the number of k b comments
 	* @throws SystemException if a system exception occurred
@@ -212,7 +212,7 @@ public class KBCommentLocalServiceWrapper implements KBCommentLocalService {
 	/**
 	* Updates the k b comment in the database. Also notifies the appropriate model listeners.
 	*
-	* @param kbComment the k b comment to update
+	* @param kbComment the k b comment
 	* @return the k b comment that was updated
 	* @throws SystemException if a system exception occurred
 	*/
@@ -225,7 +225,7 @@ public class KBCommentLocalServiceWrapper implements KBCommentLocalService {
 	/**
 	* Updates the k b comment in the database. Also notifies the appropriate model listeners.
 	*
-	* @param kbComment the k b comment to update
+	* @param kbComment the k b comment
 	* @param merge whether to merge the k b comment with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
 	* @return the k b comment that was updated
 	* @throws SystemException if a system exception occurred
@@ -237,7 +237,7 @@ public class KBCommentLocalServiceWrapper implements KBCommentLocalService {
 	}
 
 	/**
-	* Gets the Spring bean ID for this bean.
+	* Returns the Spring bean ID for this bean.
 	*
 	* @return the Spring bean ID for this bean
 	*/

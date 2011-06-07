@@ -37,7 +37,7 @@ public class AssetWrapper implements Asset {
 	}
 
 	/**
-	* Gets the primary key of this asset.
+	* Returns the primary key of this asset.
 	*
 	* @return the primary key of this asset
 	*/
@@ -46,7 +46,7 @@ public class AssetWrapper implements Asset {
 	}
 
 	/**
-	* Sets the primary key of this asset
+	* Sets the primary key of this asset.
 	*
 	* @param primaryKey the primary key of this asset
 	*/
@@ -55,7 +55,7 @@ public class AssetWrapper implements Asset {
 	}
 
 	/**
-	* Gets the asset ID of this asset.
+	* Returns the asset ID of this asset.
 	*
 	* @return the asset ID of this asset
 	*/
@@ -73,7 +73,7 @@ public class AssetWrapper implements Asset {
 	}
 
 	/**
-	* Gets the company ID of this asset.
+	* Returns the company ID of this asset.
 	*
 	* @return the company ID of this asset
 	*/
@@ -91,7 +91,7 @@ public class AssetWrapper implements Asset {
 	}
 
 	/**
-	* Gets the user ID of this asset.
+	* Returns the user ID of this asset.
 	*
 	* @return the user ID of this asset
 	*/
@@ -109,7 +109,7 @@ public class AssetWrapper implements Asset {
 	}
 
 	/**
-	* Gets the user uuid of this asset.
+	* Returns the user uuid of this asset.
 	*
 	* @return the user uuid of this asset
 	* @throws SystemException if a system exception occurred
@@ -129,7 +129,7 @@ public class AssetWrapper implements Asset {
 	}
 
 	/**
-	* Gets the user name of this asset.
+	* Returns the user name of this asset.
 	*
 	* @return the user name of this asset
 	*/
@@ -147,7 +147,7 @@ public class AssetWrapper implements Asset {
 	}
 
 	/**
-	* Gets the create date of this asset.
+	* Returns the create date of this asset.
 	*
 	* @return the create date of this asset
 	*/
@@ -165,7 +165,7 @@ public class AssetWrapper implements Asset {
 	}
 
 	/**
-	* Gets the modified date of this asset.
+	* Returns the modified date of this asset.
 	*
 	* @return the modified date of this asset
 	*/
@@ -183,7 +183,7 @@ public class AssetWrapper implements Asset {
 	}
 
 	/**
-	* Gets the definition ID of this asset.
+	* Returns the definition ID of this asset.
 	*
 	* @return the definition ID of this asset
 	*/
@@ -201,7 +201,7 @@ public class AssetWrapper implements Asset {
 	}
 
 	/**
-	* Gets the serial number of this asset.
+	* Returns the serial number of this asset.
 	*
 	* @return the serial number of this asset
 	*/
@@ -219,7 +219,7 @@ public class AssetWrapper implements Asset {
 	}
 
 	/**
-	* Gets the inactive date of this asset.
+	* Returns the inactive date of this asset.
 	*
 	* @return the inactive date of this asset
 	*/
@@ -237,7 +237,7 @@ public class AssetWrapper implements Asset {
 	}
 
 	/**
-	* Gets the active of this asset.
+	* Returns the active of this asset.
 	*
 	* @return the active of this asset
 	*/

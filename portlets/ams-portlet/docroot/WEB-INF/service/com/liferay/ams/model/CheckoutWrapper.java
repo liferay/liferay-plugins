@@ -37,7 +37,7 @@ public class CheckoutWrapper implements Checkout {
 	}
 
 	/**
-	* Gets the primary key of this checkout.
+	* Returns the primary key of this checkout.
 	*
 	* @return the primary key of this checkout
 	*/
@@ -46,7 +46,7 @@ public class CheckoutWrapper implements Checkout {
 	}
 
 	/**
-	* Sets the primary key of this checkout
+	* Sets the primary key of this checkout.
 	*
 	* @param primaryKey the primary key of this checkout
 	*/
@@ -55,7 +55,7 @@ public class CheckoutWrapper implements Checkout {
 	}
 
 	/**
-	* Gets the checkout ID of this checkout.
+	* Returns the checkout ID of this checkout.
 	*
 	* @return the checkout ID of this checkout
 	*/
@@ -73,7 +73,7 @@ public class CheckoutWrapper implements Checkout {
 	}
 
 	/**
-	* Gets the company ID of this checkout.
+	* Returns the company ID of this checkout.
 	*
 	* @return the company ID of this checkout
 	*/
@@ -91,7 +91,7 @@ public class CheckoutWrapper implements Checkout {
 	}
 
 	/**
-	* Gets the user ID of this checkout.
+	* Returns the user ID of this checkout.
 	*
 	* @return the user ID of this checkout
 	*/
@@ -109,7 +109,7 @@ public class CheckoutWrapper implements Checkout {
 	}
 
 	/**
-	* Gets the user uuid of this checkout.
+	* Returns the user uuid of this checkout.
 	*
 	* @return the user uuid of this checkout
 	* @throws SystemException if a system exception occurred
@@ -129,7 +129,7 @@ public class CheckoutWrapper implements Checkout {
 	}
 
 	/**
-	* Gets the user name of this checkout.
+	* Returns the user name of this checkout.
 	*
 	* @return the user name of this checkout
 	*/
@@ -147,7 +147,7 @@ public class CheckoutWrapper implements Checkout {
 	}
 
 	/**
-	* Gets the create date of this checkout.
+	* Returns the create date of this checkout.
 	*
 	* @return the create date of this checkout
 	*/
@@ -165,7 +165,7 @@ public class CheckoutWrapper implements Checkout {
 	}
 
 	/**
-	* Gets the modified date of this checkout.
+	* Returns the modified date of this checkout.
 	*
 	* @return the modified date of this checkout
 	*/
@@ -183,7 +183,7 @@ public class CheckoutWrapper implements Checkout {
 	}
 
 	/**
-	* Gets the asset ID of this checkout.
+	* Returns the asset ID of this checkout.
 	*
 	* @return the asset ID of this checkout
 	*/
@@ -201,7 +201,7 @@ public class CheckoutWrapper implements Checkout {
 	}
 
 	/**
-	* Gets the check out date of this checkout.
+	* Returns the check out date of this checkout.
 	*
 	* @return the check out date of this checkout
 	*/
@@ -219,7 +219,7 @@ public class CheckoutWrapper implements Checkout {
 	}
 
 	/**
-	* Gets the expected check in date of this checkout.
+	* Returns the expected check in date of this checkout.
 	*
 	* @return the expected check in date of this checkout
 	*/
@@ -237,7 +237,7 @@ public class CheckoutWrapper implements Checkout {
 	}
 
 	/**
-	* Gets the actual check in date of this checkout.
+	* Returns the actual check in date of this checkout.
 	*
 	* @return the actual check in date of this checkout
 	*/

@@ -37,7 +37,7 @@ public class SVNRevisionWrapper implements SVNRevision {
 	}
 
 	/**
-	* Gets the primary key of this s v n revision.
+	* Returns the primary key of this s v n revision.
 	*
 	* @return the primary key of this s v n revision
 	*/
@@ -46,7 +46,7 @@ public class SVNRevisionWrapper implements SVNRevision {
 	}
 
 	/**
-	* Sets the primary key of this s v n revision
+	* Sets the primary key of this s v n revision.
 	*
 	* @param primaryKey the primary key of this s v n revision
 	*/
@@ -55,7 +55,7 @@ public class SVNRevisionWrapper implements SVNRevision {
 	}
 
 	/**
-	* Gets the svn revision ID of this s v n revision.
+	* Returns the svn revision ID of this s v n revision.
 	*
 	* @return the svn revision ID of this s v n revision
 	*/
@@ -73,7 +73,7 @@ public class SVNRevisionWrapper implements SVNRevision {
 	}
 
 	/**
-	* Gets the svn user ID of this s v n revision.
+	* Returns the svn user ID of this s v n revision.
 	*
 	* @return the svn user ID of this s v n revision
 	*/
@@ -91,7 +91,7 @@ public class SVNRevisionWrapper implements SVNRevision {
 	}
 
 	/**
-	* Gets the create date of this s v n revision.
+	* Returns the create date of this s v n revision.
 	*
 	* @return the create date of this s v n revision
 	*/
@@ -109,7 +109,7 @@ public class SVNRevisionWrapper implements SVNRevision {
 	}
 
 	/**
-	* Gets the svn repository ID of this s v n revision.
+	* Returns the svn repository ID of this s v n revision.
 	*
 	* @return the svn repository ID of this s v n revision
 	*/
@@ -127,7 +127,7 @@ public class SVNRevisionWrapper implements SVNRevision {
 	}
 
 	/**
-	* Gets the revision number of this s v n revision.
+	* Returns the revision number of this s v n revision.
 	*
 	* @return the revision number of this s v n revision
 	*/
@@ -145,7 +145,7 @@ public class SVNRevisionWrapper implements SVNRevision {
 	}
 
 	/**
-	* Gets the comments of this s v n revision.
+	* Returns the comments of this s v n revision.
 	*
 	* @return the comments of this s v n revision
 	*/

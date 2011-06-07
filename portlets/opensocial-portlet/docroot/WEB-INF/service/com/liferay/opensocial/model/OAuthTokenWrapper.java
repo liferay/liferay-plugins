@@ -37,7 +37,7 @@ public class OAuthTokenWrapper implements OAuthToken {
 	}
 
 	/**
-	* Gets the primary key of this o auth token.
+	* Returns the primary key of this o auth token.
 	*
 	* @return the primary key of this o auth token
 	*/
@@ -46,7 +46,7 @@ public class OAuthTokenWrapper implements OAuthToken {
 	}
 
 	/**
-	* Sets the primary key of this o auth token
+	* Sets the primary key of this o auth token.
 	*
 	* @param primaryKey the primary key of this o auth token
 	*/
@@ -55,7 +55,7 @@ public class OAuthTokenWrapper implements OAuthToken {
 	}
 
 	/**
-	* Gets the o auth token ID of this o auth token.
+	* Returns the o auth token ID of this o auth token.
 	*
 	* @return the o auth token ID of this o auth token
 	*/
@@ -73,7 +73,7 @@ public class OAuthTokenWrapper implements OAuthToken {
 	}
 
 	/**
-	* Gets the company ID of this o auth token.
+	* Returns the company ID of this o auth token.
 	*
 	* @return the company ID of this o auth token
 	*/
@@ -91,7 +91,7 @@ public class OAuthTokenWrapper implements OAuthToken {
 	}
 
 	/**
-	* Gets the user ID of this o auth token.
+	* Returns the user ID of this o auth token.
 	*
 	* @return the user ID of this o auth token
 	*/
@@ -109,7 +109,7 @@ public class OAuthTokenWrapper implements OAuthToken {
 	}
 
 	/**
-	* Gets the user uuid of this o auth token.
+	* Returns the user uuid of this o auth token.
 	*
 	* @return the user uuid of this o auth token
 	* @throws SystemException if a system exception occurred
@@ -129,7 +129,7 @@ public class OAuthTokenWrapper implements OAuthToken {
 	}
 
 	/**
-	* Gets the user name of this o auth token.
+	* Returns the user name of this o auth token.
 	*
 	* @return the user name of this o auth token
 	*/
@@ -147,7 +147,7 @@ public class OAuthTokenWrapper implements OAuthToken {
 	}
 
 	/**
-	* Gets the create date of this o auth token.
+	* Returns the create date of this o auth token.
 	*
 	* @return the create date of this o auth token
 	*/
@@ -165,7 +165,7 @@ public class OAuthTokenWrapper implements OAuthToken {
 	}
 
 	/**
-	* Gets the modified date of this o auth token.
+	* Returns the modified date of this o auth token.
 	*
 	* @return the modified date of this o auth token
 	*/
@@ -183,7 +183,7 @@ public class OAuthTokenWrapper implements OAuthToken {
 	}
 
 	/**
-	* Gets the gadget ID of this o auth token.
+	* Returns the gadget ID of this o auth token.
 	*
 	* @return the gadget ID of this o auth token
 	*/
@@ -201,7 +201,7 @@ public class OAuthTokenWrapper implements OAuthToken {
 	}
 
 	/**
-	* Gets the service name of this o auth token.
+	* Returns the service name of this o auth token.
 	*
 	* @return the service name of this o auth token
 	*/
@@ -219,7 +219,7 @@ public class OAuthTokenWrapper implements OAuthToken {
 	}
 
 	/**
-	* Gets the module ID of this o auth token.
+	* Returns the module ID of this o auth token.
 	*
 	* @return the module ID of this o auth token
 	*/
@@ -237,7 +237,7 @@ public class OAuthTokenWrapper implements OAuthToken {
 	}
 
 	/**
-	* Gets the access token of this o auth token.
+	* Returns the access token of this o auth token.
 	*
 	* @return the access token of this o auth token
 	*/
@@ -255,7 +255,7 @@ public class OAuthTokenWrapper implements OAuthToken {
 	}
 
 	/**
-	* Gets the token name of this o auth token.
+	* Returns the token name of this o auth token.
 	*
 	* @return the token name of this o auth token
 	*/
@@ -273,7 +273,7 @@ public class OAuthTokenWrapper implements OAuthToken {
 	}
 
 	/**
-	* Gets the token secret of this o auth token.
+	* Returns the token secret of this o auth token.
 	*
 	* @return the token secret of this o auth token
 	*/
@@ -291,7 +291,7 @@ public class OAuthTokenWrapper implements OAuthToken {
 	}
 
 	/**
-	* Gets the session handle of this o auth token.
+	* Returns the session handle of this o auth token.
 	*
 	* @return the session handle of this o auth token
 	*/
@@ -309,7 +309,7 @@ public class OAuthTokenWrapper implements OAuthToken {
 	}
 
 	/**
-	* Gets the expiration of this o auth token.
+	* Returns the expiration of this o auth token.
 	*
 	* @return the expiration of this o auth token
 	*/

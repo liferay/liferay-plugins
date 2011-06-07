@@ -48,21 +48,21 @@ public interface HRUserProjectModel extends BaseModel<HRUserProject>,
 	 */
 
 	/**
-	 * Gets the primary key of this h r user project.
+	 * Returns the primary key of this h r user project.
 	 *
 	 * @return the primary key of this h r user project
 	 */
 	public long getPrimaryKey();
 
 	/**
-	 * Sets the primary key of this h r user project
+	 * Sets the primary key of this h r user project.
 	 *
 	 * @param primaryKey the primary key of this h r user project
 	 */
 	public void setPrimaryKey(long primaryKey);
 
 	/**
-	 * Gets the hr user project ID of this h r user project.
+	 * Returns the hr user project ID of this h r user project.
 	 *
 	 * @return the hr user project ID of this h r user project
 	 */
@@ -76,7 +76,7 @@ public interface HRUserProjectModel extends BaseModel<HRUserProject>,
 	public void setHrUserProjectId(long hrUserProjectId);
 
 	/**
-	 * Gets the group ID of this h r user project.
+	 * Returns the group ID of this h r user project.
 	 *
 	 * @return the group ID of this h r user project
 	 */
@@ -90,7 +90,7 @@ public interface HRUserProjectModel extends BaseModel<HRUserProject>,
 	public void setGroupId(long groupId);
 
 	/**
-	 * Gets the company ID of this h r user project.
+	 * Returns the company ID of this h r user project.
 	 *
 	 * @return the company ID of this h r user project
 	 */
@@ -104,7 +104,7 @@ public interface HRUserProjectModel extends BaseModel<HRUserProject>,
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the user ID of this h r user project.
+	 * Returns the user ID of this h r user project.
 	 *
 	 * @return the user ID of this h r user project
 	 */
@@ -118,7 +118,7 @@ public interface HRUserProjectModel extends BaseModel<HRUserProject>,
 	public void setUserId(long userId);
 
 	/**
-	 * Gets the user uuid of this h r user project.
+	 * Returns the user uuid of this h r user project.
 	 *
 	 * @return the user uuid of this h r user project
 	 * @throws SystemException if a system exception occurred
@@ -133,7 +133,7 @@ public interface HRUserProjectModel extends BaseModel<HRUserProject>,
 	public void setUserUuid(String userUuid);
 
 	/**
-	 * Gets the user name of this h r user project.
+	 * Returns the user name of this h r user project.
 	 *
 	 * @return the user name of this h r user project
 	 */
@@ -148,7 +148,7 @@ public interface HRUserProjectModel extends BaseModel<HRUserProject>,
 	public void setUserName(String userName);
 
 	/**
-	 * Gets the create date of this h r user project.
+	 * Returns the create date of this h r user project.
 	 *
 	 * @return the create date of this h r user project
 	 */
@@ -162,7 +162,7 @@ public interface HRUserProjectModel extends BaseModel<HRUserProject>,
 	public void setCreateDate(Date createDate);
 
 	/**
-	 * Gets the modified date of this h r user project.
+	 * Returns the modified date of this h r user project.
 	 *
 	 * @return the modified date of this h r user project
 	 */
@@ -176,7 +176,7 @@ public interface HRUserProjectModel extends BaseModel<HRUserProject>,
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Gets the hr project billing rate ID of this h r user project.
+	 * Returns the hr project billing rate ID of this h r user project.
 	 *
 	 * @return the hr project billing rate ID of this h r user project
 	 */
@@ -190,7 +190,7 @@ public interface HRUserProjectModel extends BaseModel<HRUserProject>,
 	public void setHrProjectBillingRateId(long hrProjectBillingRateId);
 
 	/**
-	 * Gets the hr project ID of this h r user project.
+	 * Returns the hr project ID of this h r user project.
 	 *
 	 * @return the hr project ID of this h r user project
 	 */
@@ -204,7 +204,7 @@ public interface HRUserProjectModel extends BaseModel<HRUserProject>,
 	public void setHrProjectId(long hrProjectId);
 
 	/**
-	 * Gets the hr project role ID of this h r user project.
+	 * Returns the hr project role ID of this h r user project.
 	 *
 	 * @return the hr project role ID of this h r user project
 	 */
@@ -218,7 +218,7 @@ public interface HRUserProjectModel extends BaseModel<HRUserProject>,
 	public void setHrProjectRoleId(long hrProjectRoleId);
 
 	/**
-	 * Gets the hr user ID of this h r user project.
+	 * Returns the hr user ID of this h r user project.
 	 *
 	 * @return the hr user ID of this h r user project
 	 */
@@ -232,7 +232,7 @@ public interface HRUserProjectModel extends BaseModel<HRUserProject>,
 	public void setHrUserId(long hrUserId);
 
 	/**
-	 * Gets the hr user uuid of this h r user project.
+	 * Returns the hr user uuid of this h r user project.
 	 *
 	 * @return the hr user uuid of this h r user project
 	 * @throws SystemException if a system exception occurred
@@ -247,7 +247,7 @@ public interface HRUserProjectModel extends BaseModel<HRUserProject>,
 	public void setHrUserUuid(String hrUserUuid);
 
 	/**
-	 * Gets the actual rate of this h r user project.
+	 * Returns the actual rate of this h r user project.
 	 *
 	 * @return the actual rate of this h r user project
 	 */

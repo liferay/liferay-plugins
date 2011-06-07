@@ -93,7 +93,7 @@ public class HRExpenseAccountPersistenceImpl extends BasePersistenceImpl<HRExpen
 	/**
 	 * Caches the h r expense account in the entity cache if it is enabled.
 	 *
-	 * @param hrExpenseAccount the h r expense account to cache
+	 * @param hrExpenseAccount the h r expense account
 	 */
 	public void cacheResult(HRExpenseAccount hrExpenseAccount) {
 		EntityCacheUtil.putResult(HRExpenseAccountModelImpl.ENTITY_CACHE_ENABLED,
@@ -113,7 +113,7 @@ public class HRExpenseAccountPersistenceImpl extends BasePersistenceImpl<HRExpen
 	/**
 	 * Caches the h r expense accounts in the entity cache if it is enabled.
 	 *
-	 * @param hrExpenseAccounts the h r expense accounts to cache
+	 * @param hrExpenseAccounts the h r expense accounts
 	 */
 	public void cacheResult(List<HRExpenseAccount> hrExpenseAccounts) {
 		for (HRExpenseAccount hrExpenseAccount : hrExpenseAccounts) {
@@ -180,7 +180,7 @@ public class HRExpenseAccountPersistenceImpl extends BasePersistenceImpl<HRExpen
 	/**
 	 * Removes the h r expense account with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param primaryKey the primary key of the h r expense account to remove
+	 * @param primaryKey the primary key of the h r expense account
 	 * @return the h r expense account that was removed
 	 * @throws com.liferay.portal.NoSuchModelException if a h r expense account with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -193,7 +193,7 @@ public class HRExpenseAccountPersistenceImpl extends BasePersistenceImpl<HRExpen
 	/**
 	 * Removes the h r expense account with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param hrExpenseAccountId the primary key of the h r expense account to remove
+	 * @param hrExpenseAccountId the primary key of the h r expense account
 	 * @return the h r expense account that was removed
 	 * @throws com.liferay.hr.NoSuchExpenseAccountException if a h r expense account with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -234,7 +234,7 @@ public class HRExpenseAccountPersistenceImpl extends BasePersistenceImpl<HRExpen
 	/**
 	 * Removes the h r expense account from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param hrExpenseAccount the h r expense account to remove
+	 * @param hrExpenseAccount the h r expense account
 	 * @return the h r expense account that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -361,9 +361,9 @@ public class HRExpenseAccountPersistenceImpl extends BasePersistenceImpl<HRExpen
 	}
 
 	/**
-	 * Finds the h r expense account with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
+	 * Returns the h r expense account with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
 	 *
-	 * @param primaryKey the primary key of the h r expense account to find
+	 * @param primaryKey the primary key of the h r expense account
 	 * @return the h r expense account
 	 * @throws com.liferay.portal.NoSuchModelException if a h r expense account with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -374,9 +374,9 @@ public class HRExpenseAccountPersistenceImpl extends BasePersistenceImpl<HRExpen
 	}
 
 	/**
-	 * Finds the h r expense account with the primary key or throws a {@link com.liferay.hr.NoSuchExpenseAccountException} if it could not be found.
+	 * Returns the h r expense account with the primary key or throws a {@link com.liferay.hr.NoSuchExpenseAccountException} if it could not be found.
 	 *
-	 * @param hrExpenseAccountId the primary key of the h r expense account to find
+	 * @param hrExpenseAccountId the primary key of the h r expense account
 	 * @return the h r expense account
 	 * @throws com.liferay.hr.NoSuchExpenseAccountException if a h r expense account with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -399,9 +399,9 @@ public class HRExpenseAccountPersistenceImpl extends BasePersistenceImpl<HRExpen
 	}
 
 	/**
-	 * Finds the h r expense account with the primary key or returns <code>null</code> if it could not be found.
+	 * Returns the h r expense account with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param primaryKey the primary key of the h r expense account to find
+	 * @param primaryKey the primary key of the h r expense account
 	 * @return the h r expense account, or <code>null</code> if a h r expense account with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -411,9 +411,9 @@ public class HRExpenseAccountPersistenceImpl extends BasePersistenceImpl<HRExpen
 	}
 
 	/**
-	 * Finds the h r expense account with the primary key or returns <code>null</code> if it could not be found.
+	 * Returns the h r expense account with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param hrExpenseAccountId the primary key of the h r expense account to find
+	 * @param hrExpenseAccountId the primary key of the h r expense account
 	 * @return the h r expense account, or <code>null</code> if a h r expense account with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -447,10 +447,10 @@ public class HRExpenseAccountPersistenceImpl extends BasePersistenceImpl<HRExpen
 	}
 
 	/**
-	 * Finds the h r expense account where groupId = &#63; and name = &#63; or throws a {@link com.liferay.hr.NoSuchExpenseAccountException} if it could not be found.
+	 * Returns the h r expense account where groupId = &#63; and name = &#63; or throws a {@link com.liferay.hr.NoSuchExpenseAccountException} if it could not be found.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param name the name to search with
+	 * @param groupId the group ID
+	 * @param name the name
 	 * @return the matching h r expense account
 	 * @throws com.liferay.hr.NoSuchExpenseAccountException if a matching h r expense account could not be found
 	 * @throws SystemException if a system exception occurred
@@ -483,10 +483,10 @@ public class HRExpenseAccountPersistenceImpl extends BasePersistenceImpl<HRExpen
 	}
 
 	/**
-	 * Finds the h r expense account where groupId = &#63; and name = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the h r expense account where groupId = &#63; and name = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param name the name to search with
+	 * @param groupId the group ID
+	 * @param name the name
 	 * @return the matching h r expense account, or <code>null</code> if a matching h r expense account could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -496,10 +496,10 @@ public class HRExpenseAccountPersistenceImpl extends BasePersistenceImpl<HRExpen
 	}
 
 	/**
-	 * Finds the h r expense account where groupId = &#63; and name = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the h r expense account where groupId = &#63; and name = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param name the name to search with
+	 * @param groupId the group ID
+	 * @param name the name
 	 * @return the matching h r expense account, or <code>null</code> if a matching h r expense account could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -598,7 +598,7 @@ public class HRExpenseAccountPersistenceImpl extends BasePersistenceImpl<HRExpen
 	}
 
 	/**
-	 * Finds all the h r expense accounts.
+	 * Returns all the h r expense accounts.
 	 *
 	 * @return the h r expense accounts
 	 * @throws SystemException if a system exception occurred
@@ -608,14 +608,14 @@ public class HRExpenseAccountPersistenceImpl extends BasePersistenceImpl<HRExpen
 	}
 
 	/**
-	 * Finds a range of all the h r expense accounts.
+	 * Returns a range of all the h r expense accounts.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of h r expense accounts to return
-	 * @param end the upper bound of the range of h r expense accounts to return (not inclusive)
+	 * @param start the lower bound of the range of h r expense accounts
+	 * @param end the upper bound of the range of h r expense accounts (not inclusive)
 	 * @return the range of h r expense accounts
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -625,14 +625,14 @@ public class HRExpenseAccountPersistenceImpl extends BasePersistenceImpl<HRExpen
 	}
 
 	/**
-	 * Finds an ordered range of all the h r expense accounts.
+	 * Returns an ordered range of all the h r expense accounts.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of h r expense accounts to return
-	 * @param end the upper bound of the range of h r expense accounts to return (not inclusive)
+	 * @param start the lower bound of the range of h r expense accounts
+	 * @param end the upper bound of the range of h r expense accounts (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of h r expense accounts
 	 * @throws SystemException if a system exception occurred
@@ -709,8 +709,8 @@ public class HRExpenseAccountPersistenceImpl extends BasePersistenceImpl<HRExpen
 	/**
 	 * Removes the h r expense account where groupId = &#63; and name = &#63; from the database.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param name the name to search with
+	 * @param groupId the group ID
+	 * @param name the name
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeByG_N(long groupId, String name)
@@ -732,10 +732,10 @@ public class HRExpenseAccountPersistenceImpl extends BasePersistenceImpl<HRExpen
 	}
 
 	/**
-	 * Counts all the h r expense accounts where groupId = &#63; and name = &#63;.
+	 * Returns the number of h r expense accounts where groupId = &#63; and name = &#63;.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param name the name to search with
+	 * @param groupId the group ID
+	 * @param name the name
 	 * @return the number of matching h r expense accounts
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -802,7 +802,7 @@ public class HRExpenseAccountPersistenceImpl extends BasePersistenceImpl<HRExpen
 	}
 
 	/**
-	 * Counts all the h r expense accounts.
+	 * Returns the number of h r expense accounts.
 	 *
 	 * @return the number of h r expense accounts
 	 * @throws SystemException if a system exception occurred

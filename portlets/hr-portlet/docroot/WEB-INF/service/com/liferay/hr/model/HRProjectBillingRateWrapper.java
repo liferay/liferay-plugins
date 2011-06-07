@@ -38,7 +38,7 @@ public class HRProjectBillingRateWrapper implements HRProjectBillingRate {
 	}
 
 	/**
-	* Gets the primary key of this h r project billing rate.
+	* Returns the primary key of this h r project billing rate.
 	*
 	* @return the primary key of this h r project billing rate
 	*/
@@ -47,7 +47,7 @@ public class HRProjectBillingRateWrapper implements HRProjectBillingRate {
 	}
 
 	/**
-	* Sets the primary key of this h r project billing rate
+	* Sets the primary key of this h r project billing rate.
 	*
 	* @param primaryKey the primary key of this h r project billing rate
 	*/
@@ -56,7 +56,7 @@ public class HRProjectBillingRateWrapper implements HRProjectBillingRate {
 	}
 
 	/**
-	* Gets the hr project billing rate ID of this h r project billing rate.
+	* Returns the hr project billing rate ID of this h r project billing rate.
 	*
 	* @return the hr project billing rate ID of this h r project billing rate
 	*/
@@ -74,7 +74,7 @@ public class HRProjectBillingRateWrapper implements HRProjectBillingRate {
 	}
 
 	/**
-	* Gets the group ID of this h r project billing rate.
+	* Returns the group ID of this h r project billing rate.
 	*
 	* @return the group ID of this h r project billing rate
 	*/
@@ -92,7 +92,7 @@ public class HRProjectBillingRateWrapper implements HRProjectBillingRate {
 	}
 
 	/**
-	* Gets the company ID of this h r project billing rate.
+	* Returns the company ID of this h r project billing rate.
 	*
 	* @return the company ID of this h r project billing rate
 	*/
@@ -110,7 +110,7 @@ public class HRProjectBillingRateWrapper implements HRProjectBillingRate {
 	}
 
 	/**
-	* Gets the user ID of this h r project billing rate.
+	* Returns the user ID of this h r project billing rate.
 	*
 	* @return the user ID of this h r project billing rate
 	*/
@@ -128,7 +128,7 @@ public class HRProjectBillingRateWrapper implements HRProjectBillingRate {
 	}
 
 	/**
-	* Gets the user uuid of this h r project billing rate.
+	* Returns the user uuid of this h r project billing rate.
 	*
 	* @return the user uuid of this h r project billing rate
 	* @throws SystemException if a system exception occurred
@@ -148,7 +148,7 @@ public class HRProjectBillingRateWrapper implements HRProjectBillingRate {
 	}
 
 	/**
-	* Gets the user name of this h r project billing rate.
+	* Returns the user name of this h r project billing rate.
 	*
 	* @return the user name of this h r project billing rate
 	*/
@@ -166,7 +166,7 @@ public class HRProjectBillingRateWrapper implements HRProjectBillingRate {
 	}
 
 	/**
-	* Gets the create date of this h r project billing rate.
+	* Returns the create date of this h r project billing rate.
 	*
 	* @return the create date of this h r project billing rate
 	*/
@@ -184,7 +184,7 @@ public class HRProjectBillingRateWrapper implements HRProjectBillingRate {
 	}
 
 	/**
-	* Gets the modified date of this h r project billing rate.
+	* Returns the modified date of this h r project billing rate.
 	*
 	* @return the modified date of this h r project billing rate
 	*/
@@ -202,7 +202,7 @@ public class HRProjectBillingRateWrapper implements HRProjectBillingRate {
 	}
 
 	/**
-	* Gets the hr project ID of this h r project billing rate.
+	* Returns the hr project ID of this h r project billing rate.
 	*
 	* @return the hr project ID of this h r project billing rate
 	*/
@@ -220,7 +220,7 @@ public class HRProjectBillingRateWrapper implements HRProjectBillingRate {
 	}
 
 	/**
-	* Gets the hr project role ID of this h r project billing rate.
+	* Returns the hr project role ID of this h r project billing rate.
 	*
 	* @return the hr project role ID of this h r project billing rate
 	*/
@@ -238,7 +238,7 @@ public class HRProjectBillingRateWrapper implements HRProjectBillingRate {
 	}
 
 	/**
-	* Gets the rate of this h r project billing rate.
+	* Returns the rate of this h r project billing rate.
 	*
 	* @return the rate of this h r project billing rate
 	*/

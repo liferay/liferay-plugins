@@ -37,7 +37,7 @@ public class HRAssetVendorWrapper implements HRAssetVendor {
 	}
 
 	/**
-	* Gets the primary key of this h r asset vendor.
+	* Returns the primary key of this h r asset vendor.
 	*
 	* @return the primary key of this h r asset vendor
 	*/
@@ -46,7 +46,7 @@ public class HRAssetVendorWrapper implements HRAssetVendor {
 	}
 
 	/**
-	* Sets the primary key of this h r asset vendor
+	* Sets the primary key of this h r asset vendor.
 	*
 	* @param primaryKey the primary key of this h r asset vendor
 	*/
@@ -55,7 +55,7 @@ public class HRAssetVendorWrapper implements HRAssetVendor {
 	}
 
 	/**
-	* Gets the hr asset vendor ID of this h r asset vendor.
+	* Returns the hr asset vendor ID of this h r asset vendor.
 	*
 	* @return the hr asset vendor ID of this h r asset vendor
 	*/
@@ -73,7 +73,7 @@ public class HRAssetVendorWrapper implements HRAssetVendor {
 	}
 
 	/**
-	* Gets the group ID of this h r asset vendor.
+	* Returns the group ID of this h r asset vendor.
 	*
 	* @return the group ID of this h r asset vendor
 	*/
@@ -91,7 +91,7 @@ public class HRAssetVendorWrapper implements HRAssetVendor {
 	}
 
 	/**
-	* Gets the company ID of this h r asset vendor.
+	* Returns the company ID of this h r asset vendor.
 	*
 	* @return the company ID of this h r asset vendor
 	*/
@@ -109,7 +109,7 @@ public class HRAssetVendorWrapper implements HRAssetVendor {
 	}
 
 	/**
-	* Gets the user ID of this h r asset vendor.
+	* Returns the user ID of this h r asset vendor.
 	*
 	* @return the user ID of this h r asset vendor
 	*/
@@ -127,7 +127,7 @@ public class HRAssetVendorWrapper implements HRAssetVendor {
 	}
 
 	/**
-	* Gets the user uuid of this h r asset vendor.
+	* Returns the user uuid of this h r asset vendor.
 	*
 	* @return the user uuid of this h r asset vendor
 	* @throws SystemException if a system exception occurred
@@ -147,7 +147,7 @@ public class HRAssetVendorWrapper implements HRAssetVendor {
 	}
 
 	/**
-	* Gets the user name of this h r asset vendor.
+	* Returns the user name of this h r asset vendor.
 	*
 	* @return the user name of this h r asset vendor
 	*/
@@ -165,7 +165,7 @@ public class HRAssetVendorWrapper implements HRAssetVendor {
 	}
 
 	/**
-	* Gets the create date of this h r asset vendor.
+	* Returns the create date of this h r asset vendor.
 	*
 	* @return the create date of this h r asset vendor
 	*/
@@ -183,7 +183,7 @@ public class HRAssetVendorWrapper implements HRAssetVendor {
 	}
 
 	/**
-	* Gets the modified date of this h r asset vendor.
+	* Returns the modified date of this h r asset vendor.
 	*
 	* @return the modified date of this h r asset vendor
 	*/
@@ -201,7 +201,7 @@ public class HRAssetVendorWrapper implements HRAssetVendor {
 	}
 
 	/**
-	* Gets the name of this h r asset vendor.
+	* Returns the name of this h r asset vendor.
 	*
 	* @return the name of this h r asset vendor
 	*/
@@ -219,7 +219,7 @@ public class HRAssetVendorWrapper implements HRAssetVendor {
 	}
 
 	/**
-	* Gets the description of this h r asset vendor.
+	* Returns the description of this h r asset vendor.
 	*
 	* @return the description of this h r asset vendor
 	*/

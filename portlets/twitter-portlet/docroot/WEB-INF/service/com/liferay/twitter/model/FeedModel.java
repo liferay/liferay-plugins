@@ -47,21 +47,21 @@ public interface FeedModel extends AuditedModel, BaseModel<Feed> {
 	 */
 
 	/**
-	 * Gets the primary key of this feed.
+	 * Returns the primary key of this feed.
 	 *
 	 * @return the primary key of this feed
 	 */
 	public long getPrimaryKey();
 
 	/**
-	 * Sets the primary key of this feed
+	 * Sets the primary key of this feed.
 	 *
 	 * @param primaryKey the primary key of this feed
 	 */
 	public void setPrimaryKey(long primaryKey);
 
 	/**
-	 * Gets the feed ID of this feed.
+	 * Returns the feed ID of this feed.
 	 *
 	 * @return the feed ID of this feed
 	 */
@@ -75,7 +75,7 @@ public interface FeedModel extends AuditedModel, BaseModel<Feed> {
 	public void setFeedId(long feedId);
 
 	/**
-	 * Gets the company ID of this feed.
+	 * Returns the company ID of this feed.
 	 *
 	 * @return the company ID of this feed
 	 */
@@ -89,7 +89,7 @@ public interface FeedModel extends AuditedModel, BaseModel<Feed> {
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the user ID of this feed.
+	 * Returns the user ID of this feed.
 	 *
 	 * @return the user ID of this feed
 	 */
@@ -103,7 +103,7 @@ public interface FeedModel extends AuditedModel, BaseModel<Feed> {
 	public void setUserId(long userId);
 
 	/**
-	 * Gets the user uuid of this feed.
+	 * Returns the user uuid of this feed.
 	 *
 	 * @return the user uuid of this feed
 	 * @throws SystemException if a system exception occurred
@@ -118,7 +118,7 @@ public interface FeedModel extends AuditedModel, BaseModel<Feed> {
 	public void setUserUuid(String userUuid);
 
 	/**
-	 * Gets the user name of this feed.
+	 * Returns the user name of this feed.
 	 *
 	 * @return the user name of this feed
 	 */
@@ -133,7 +133,7 @@ public interface FeedModel extends AuditedModel, BaseModel<Feed> {
 	public void setUserName(String userName);
 
 	/**
-	 * Gets the create date of this feed.
+	 * Returns the create date of this feed.
 	 *
 	 * @return the create date of this feed
 	 */
@@ -147,7 +147,7 @@ public interface FeedModel extends AuditedModel, BaseModel<Feed> {
 	public void setCreateDate(Date createDate);
 
 	/**
-	 * Gets the modified date of this feed.
+	 * Returns the modified date of this feed.
 	 *
 	 * @return the modified date of this feed
 	 */
@@ -161,7 +161,7 @@ public interface FeedModel extends AuditedModel, BaseModel<Feed> {
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Gets the twitter user ID of this feed.
+	 * Returns the twitter user ID of this feed.
 	 *
 	 * @return the twitter user ID of this feed
 	 */
@@ -175,7 +175,7 @@ public interface FeedModel extends AuditedModel, BaseModel<Feed> {
 	public void setTwitterUserId(long twitterUserId);
 
 	/**
-	 * Gets the twitter user uuid of this feed.
+	 * Returns the twitter user uuid of this feed.
 	 *
 	 * @return the twitter user uuid of this feed
 	 * @throws SystemException if a system exception occurred
@@ -190,7 +190,7 @@ public interface FeedModel extends AuditedModel, BaseModel<Feed> {
 	public void setTwitterUserUuid(String twitterUserUuid);
 
 	/**
-	 * Gets the twitter screen name of this feed.
+	 * Returns the twitter screen name of this feed.
 	 *
 	 * @return the twitter screen name of this feed
 	 */
@@ -205,7 +205,7 @@ public interface FeedModel extends AuditedModel, BaseModel<Feed> {
 	public void setTwitterScreenName(String twitterScreenName);
 
 	/**
-	 * Gets the last status ID of this feed.
+	 * Returns the last status ID of this feed.
 	 *
 	 * @return the last status ID of this feed
 	 */

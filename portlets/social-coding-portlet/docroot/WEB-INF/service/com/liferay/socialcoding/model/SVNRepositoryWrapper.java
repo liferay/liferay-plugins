@@ -37,7 +37,7 @@ public class SVNRepositoryWrapper implements SVNRepository {
 	}
 
 	/**
-	* Gets the primary key of this s v n repository.
+	* Returns the primary key of this s v n repository.
 	*
 	* @return the primary key of this s v n repository
 	*/
@@ -46,7 +46,7 @@ public class SVNRepositoryWrapper implements SVNRepository {
 	}
 
 	/**
-	* Sets the primary key of this s v n repository
+	* Sets the primary key of this s v n repository.
 	*
 	* @param primaryKey the primary key of this s v n repository
 	*/
@@ -55,7 +55,7 @@ public class SVNRepositoryWrapper implements SVNRepository {
 	}
 
 	/**
-	* Gets the svn repository ID of this s v n repository.
+	* Returns the svn repository ID of this s v n repository.
 	*
 	* @return the svn repository ID of this s v n repository
 	*/
@@ -73,7 +73,7 @@ public class SVNRepositoryWrapper implements SVNRepository {
 	}
 
 	/**
-	* Gets the url of this s v n repository.
+	* Returns the url of this s v n repository.
 	*
 	* @return the url of this s v n repository
 	*/
@@ -91,7 +91,7 @@ public class SVNRepositoryWrapper implements SVNRepository {
 	}
 
 	/**
-	* Gets the revision number of this s v n repository.
+	* Returns the revision number of this s v n repository.
 	*
 	* @return the revision number of this s v n repository
 	*/

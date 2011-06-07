@@ -82,7 +82,7 @@ public class HRUserProjectPersistenceImpl extends BasePersistenceImpl<HRUserProj
 	/**
 	 * Caches the h r user project in the entity cache if it is enabled.
 	 *
-	 * @param hrUserProject the h r user project to cache
+	 * @param hrUserProject the h r user project
 	 */
 	public void cacheResult(HRUserProject hrUserProject) {
 		EntityCacheUtil.putResult(HRUserProjectModelImpl.ENTITY_CACHE_ENABLED,
@@ -95,7 +95,7 @@ public class HRUserProjectPersistenceImpl extends BasePersistenceImpl<HRUserProj
 	/**
 	 * Caches the h r user projects in the entity cache if it is enabled.
 	 *
-	 * @param hrUserProjects the h r user projects to cache
+	 * @param hrUserProjects the h r user projects
 	 */
 	public void cacheResult(List<HRUserProject> hrUserProjects) {
 		for (HRUserProject hrUserProject : hrUserProjects) {
@@ -155,7 +155,7 @@ public class HRUserProjectPersistenceImpl extends BasePersistenceImpl<HRUserProj
 	/**
 	 * Removes the h r user project with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param primaryKey the primary key of the h r user project to remove
+	 * @param primaryKey the primary key of the h r user project
 	 * @return the h r user project that was removed
 	 * @throws com.liferay.portal.NoSuchModelException if a h r user project with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -168,7 +168,7 @@ public class HRUserProjectPersistenceImpl extends BasePersistenceImpl<HRUserProj
 	/**
 	 * Removes the h r user project with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param hrUserProjectId the primary key of the h r user project to remove
+	 * @param hrUserProjectId the primary key of the h r user project
 	 * @return the h r user project that was removed
 	 * @throws com.liferay.hr.NoSuchUserProjectException if a h r user project with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -209,7 +209,7 @@ public class HRUserProjectPersistenceImpl extends BasePersistenceImpl<HRUserProj
 	/**
 	 * Removes the h r user project from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param hrUserProject the h r user project to remove
+	 * @param hrUserProject the h r user project
 	 * @return the h r user project that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -301,9 +301,9 @@ public class HRUserProjectPersistenceImpl extends BasePersistenceImpl<HRUserProj
 	}
 
 	/**
-	 * Finds the h r user project with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
+	 * Returns the h r user project with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
 	 *
-	 * @param primaryKey the primary key of the h r user project to find
+	 * @param primaryKey the primary key of the h r user project
 	 * @return the h r user project
 	 * @throws com.liferay.portal.NoSuchModelException if a h r user project with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -314,9 +314,9 @@ public class HRUserProjectPersistenceImpl extends BasePersistenceImpl<HRUserProj
 	}
 
 	/**
-	 * Finds the h r user project with the primary key or throws a {@link com.liferay.hr.NoSuchUserProjectException} if it could not be found.
+	 * Returns the h r user project with the primary key or throws a {@link com.liferay.hr.NoSuchUserProjectException} if it could not be found.
 	 *
-	 * @param hrUserProjectId the primary key of the h r user project to find
+	 * @param hrUserProjectId the primary key of the h r user project
 	 * @return the h r user project
 	 * @throws com.liferay.hr.NoSuchUserProjectException if a h r user project with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -338,9 +338,9 @@ public class HRUserProjectPersistenceImpl extends BasePersistenceImpl<HRUserProj
 	}
 
 	/**
-	 * Finds the h r user project with the primary key or returns <code>null</code> if it could not be found.
+	 * Returns the h r user project with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param primaryKey the primary key of the h r user project to find
+	 * @param primaryKey the primary key of the h r user project
 	 * @return the h r user project, or <code>null</code> if a h r user project with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -350,9 +350,9 @@ public class HRUserProjectPersistenceImpl extends BasePersistenceImpl<HRUserProj
 	}
 
 	/**
-	 * Finds the h r user project with the primary key or returns <code>null</code> if it could not be found.
+	 * Returns the h r user project with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param hrUserProjectId the primary key of the h r user project to find
+	 * @param hrUserProjectId the primary key of the h r user project
 	 * @return the h r user project, or <code>null</code> if a h r user project with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -386,7 +386,7 @@ public class HRUserProjectPersistenceImpl extends BasePersistenceImpl<HRUserProj
 	}
 
 	/**
-	 * Finds all the h r user projects.
+	 * Returns all the h r user projects.
 	 *
 	 * @return the h r user projects
 	 * @throws SystemException if a system exception occurred
@@ -396,14 +396,14 @@ public class HRUserProjectPersistenceImpl extends BasePersistenceImpl<HRUserProj
 	}
 
 	/**
-	 * Finds a range of all the h r user projects.
+	 * Returns a range of all the h r user projects.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of h r user projects to return
-	 * @param end the upper bound of the range of h r user projects to return (not inclusive)
+	 * @param start the lower bound of the range of h r user projects
+	 * @param end the upper bound of the range of h r user projects (not inclusive)
 	 * @return the range of h r user projects
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -413,14 +413,14 @@ public class HRUserProjectPersistenceImpl extends BasePersistenceImpl<HRUserProj
 	}
 
 	/**
-	 * Finds an ordered range of all the h r user projects.
+	 * Returns an ordered range of all the h r user projects.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of h r user projects to return
-	 * @param end the upper bound of the range of h r user projects to return (not inclusive)
+	 * @param start the lower bound of the range of h r user projects
+	 * @param end the upper bound of the range of h r user projects (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of h r user projects
 	 * @throws SystemException if a system exception occurred
@@ -506,7 +506,7 @@ public class HRUserProjectPersistenceImpl extends BasePersistenceImpl<HRUserProj
 	}
 
 	/**
-	 * Counts all the h r user projects.
+	 * Returns the number of h r user projects.
 	 *
 	 * @return the number of h r user projects
 	 * @throws SystemException if a system exception occurred

@@ -37,7 +37,7 @@ public class HRTaskWrapper implements HRTask {
 	}
 
 	/**
-	* Gets the primary key of this h r task.
+	* Returns the primary key of this h r task.
 	*
 	* @return the primary key of this h r task
 	*/
@@ -46,7 +46,7 @@ public class HRTaskWrapper implements HRTask {
 	}
 
 	/**
-	* Sets the primary key of this h r task
+	* Sets the primary key of this h r task.
 	*
 	* @param primaryKey the primary key of this h r task
 	*/
@@ -55,7 +55,7 @@ public class HRTaskWrapper implements HRTask {
 	}
 
 	/**
-	* Gets the hr task ID of this h r task.
+	* Returns the hr task ID of this h r task.
 	*
 	* @return the hr task ID of this h r task
 	*/
@@ -73,7 +73,7 @@ public class HRTaskWrapper implements HRTask {
 	}
 
 	/**
-	* Gets the group ID of this h r task.
+	* Returns the group ID of this h r task.
 	*
 	* @return the group ID of this h r task
 	*/
@@ -91,7 +91,7 @@ public class HRTaskWrapper implements HRTask {
 	}
 
 	/**
-	* Gets the company ID of this h r task.
+	* Returns the company ID of this h r task.
 	*
 	* @return the company ID of this h r task
 	*/
@@ -109,7 +109,7 @@ public class HRTaskWrapper implements HRTask {
 	}
 
 	/**
-	* Gets the user ID of this h r task.
+	* Returns the user ID of this h r task.
 	*
 	* @return the user ID of this h r task
 	*/
@@ -127,7 +127,7 @@ public class HRTaskWrapper implements HRTask {
 	}
 
 	/**
-	* Gets the user uuid of this h r task.
+	* Returns the user uuid of this h r task.
 	*
 	* @return the user uuid of this h r task
 	* @throws SystemException if a system exception occurred
@@ -147,7 +147,7 @@ public class HRTaskWrapper implements HRTask {
 	}
 
 	/**
-	* Gets the user name of this h r task.
+	* Returns the user name of this h r task.
 	*
 	* @return the user name of this h r task
 	*/
@@ -165,7 +165,7 @@ public class HRTaskWrapper implements HRTask {
 	}
 
 	/**
-	* Gets the create date of this h r task.
+	* Returns the create date of this h r task.
 	*
 	* @return the create date of this h r task
 	*/
@@ -183,7 +183,7 @@ public class HRTaskWrapper implements HRTask {
 	}
 
 	/**
-	* Gets the modified date of this h r task.
+	* Returns the modified date of this h r task.
 	*
 	* @return the modified date of this h r task
 	*/
@@ -201,7 +201,7 @@ public class HRTaskWrapper implements HRTask {
 	}
 
 	/**
-	* Gets the hr billability ID of this h r task.
+	* Returns the hr billability ID of this h r task.
 	*
 	* @return the hr billability ID of this h r task
 	*/
@@ -219,7 +219,7 @@ public class HRTaskWrapper implements HRTask {
 	}
 
 	/**
-	* Gets the hr project ID of this h r task.
+	* Returns the hr project ID of this h r task.
 	*
 	* @return the hr project ID of this h r task
 	*/
@@ -237,7 +237,7 @@ public class HRTaskWrapper implements HRTask {
 	}
 
 	/**
-	* Gets the hr task status ID of this h r task.
+	* Returns the hr task status ID of this h r task.
 	*
 	* @return the hr task status ID of this h r task
 	*/
@@ -255,7 +255,7 @@ public class HRTaskWrapper implements HRTask {
 	}
 
 	/**
-	* Gets the parent h r task ID of this h r task.
+	* Returns the parent h r task ID of this h r task.
 	*
 	* @return the parent h r task ID of this h r task
 	*/
@@ -273,7 +273,7 @@ public class HRTaskWrapper implements HRTask {
 	}
 
 	/**
-	* Gets the name of this h r task.
+	* Returns the name of this h r task.
 	*
 	* @return the name of this h r task
 	*/
@@ -291,7 +291,7 @@ public class HRTaskWrapper implements HRTask {
 	}
 
 	/**
-	* Gets the description of this h r task.
+	* Returns the description of this h r task.
 	*
 	* @return the description of this h r task
 	*/
@@ -309,7 +309,7 @@ public class HRTaskWrapper implements HRTask {
 	}
 
 	/**
-	* Gets the estimated start date of this h r task.
+	* Returns the estimated start date of this h r task.
 	*
 	* @return the estimated start date of this h r task
 	*/
@@ -327,7 +327,7 @@ public class HRTaskWrapper implements HRTask {
 	}
 
 	/**
-	* Gets the estimated end date of this h r task.
+	* Returns the estimated end date of this h r task.
 	*
 	* @return the estimated end date of this h r task
 	*/
@@ -345,7 +345,7 @@ public class HRTaskWrapper implements HRTask {
 	}
 
 	/**
-	* Gets the estimated hours of this h r task.
+	* Returns the estimated hours of this h r task.
 	*
 	* @return the estimated hours of this h r task
 	*/
@@ -363,7 +363,7 @@ public class HRTaskWrapper implements HRTask {
 	}
 
 	/**
-	* Gets the estimated hours cost of this h r task.
+	* Returns the estimated hours cost of this h r task.
 	*
 	* @return the estimated hours cost of this h r task
 	*/
@@ -381,7 +381,7 @@ public class HRTaskWrapper implements HRTask {
 	}
 
 	/**
-	* Gets the estimated hours cost currency code of this h r task.
+	* Returns the estimated hours cost currency code of this h r task.
 	*
 	* @return the estimated hours cost currency code of this h r task
 	*/
@@ -400,7 +400,7 @@ public class HRTaskWrapper implements HRTask {
 	}
 
 	/**
-	* Gets the estimated expenses of this h r task.
+	* Returns the estimated expenses of this h r task.
 	*
 	* @return the estimated expenses of this h r task
 	*/
@@ -418,7 +418,7 @@ public class HRTaskWrapper implements HRTask {
 	}
 
 	/**
-	* Gets the estimated expenses currency code of this h r task.
+	* Returns the estimated expenses currency code of this h r task.
 	*
 	* @return the estimated expenses currency code of this h r task
 	*/
@@ -437,7 +437,7 @@ public class HRTaskWrapper implements HRTask {
 	}
 
 	/**
-	* Gets the actual start date of this h r task.
+	* Returns the actual start date of this h r task.
 	*
 	* @return the actual start date of this h r task
 	*/
@@ -455,7 +455,7 @@ public class HRTaskWrapper implements HRTask {
 	}
 
 	/**
-	* Gets the actual end date of this h r task.
+	* Returns the actual end date of this h r task.
 	*
 	* @return the actual end date of this h r task
 	*/
@@ -473,7 +473,7 @@ public class HRTaskWrapper implements HRTask {
 	}
 
 	/**
-	* Gets the actual hours of this h r task.
+	* Returns the actual hours of this h r task.
 	*
 	* @return the actual hours of this h r task
 	*/
@@ -491,7 +491,7 @@ public class HRTaskWrapper implements HRTask {
 	}
 
 	/**
-	* Gets the actual hours cost of this h r task.
+	* Returns the actual hours cost of this h r task.
 	*
 	* @return the actual hours cost of this h r task
 	*/
@@ -509,7 +509,7 @@ public class HRTaskWrapper implements HRTask {
 	}
 
 	/**
-	* Gets the actual hours cost currency code of this h r task.
+	* Returns the actual hours cost currency code of this h r task.
 	*
 	* @return the actual hours cost currency code of this h r task
 	*/
@@ -528,7 +528,7 @@ public class HRTaskWrapper implements HRTask {
 	}
 
 	/**
-	* Gets the actual expenses of this h r task.
+	* Returns the actual expenses of this h r task.
 	*
 	* @return the actual expenses of this h r task
 	*/
@@ -546,7 +546,7 @@ public class HRTaskWrapper implements HRTask {
 	}
 
 	/**
-	* Gets the actual expenses currency code of this h r task.
+	* Returns the actual expenses currency code of this h r task.
 	*
 	* @return the actual expenses currency code of this h r task
 	*/

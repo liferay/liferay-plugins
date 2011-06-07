@@ -97,7 +97,7 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	/**
 	 * Caches the projects entry in the entity cache if it is enabled.
 	 *
-	 * @param projectsEntry the projects entry to cache
+	 * @param projectsEntry the projects entry
 	 */
 	public void cacheResult(ProjectsEntry projectsEntry) {
 		EntityCacheUtil.putResult(ProjectsEntryModelImpl.ENTITY_CACHE_ENABLED,
@@ -110,7 +110,7 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	/**
 	 * Caches the projects entries in the entity cache if it is enabled.
 	 *
-	 * @param projectsEntries the projects entries to cache
+	 * @param projectsEntries the projects entries
 	 */
 	public void cacheResult(List<ProjectsEntry> projectsEntries) {
 		for (ProjectsEntry projectsEntry : projectsEntries) {
@@ -170,7 +170,7 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	/**
 	 * Removes the projects entry with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param primaryKey the primary key of the projects entry to remove
+	 * @param primaryKey the primary key of the projects entry
 	 * @return the projects entry that was removed
 	 * @throws com.liferay.portal.NoSuchModelException if a projects entry with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -183,7 +183,7 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	/**
 	 * Removes the projects entry with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param projectsEntryId the primary key of the projects entry to remove
+	 * @param projectsEntryId the primary key of the projects entry
 	 * @return the projects entry that was removed
 	 * @throws com.liferay.so.NoSuchProjectsEntryException if a projects entry with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -224,7 +224,7 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	/**
 	 * Removes the projects entry from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param projectsEntry the projects entry to remove
+	 * @param projectsEntry the projects entry
 	 * @return the projects entry that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -315,9 +315,9 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	}
 
 	/**
-	 * Finds the projects entry with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
+	 * Returns the projects entry with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
 	 *
-	 * @param primaryKey the primary key of the projects entry to find
+	 * @param primaryKey the primary key of the projects entry
 	 * @return the projects entry
 	 * @throws com.liferay.portal.NoSuchModelException if a projects entry with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -328,9 +328,9 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	}
 
 	/**
-	 * Finds the projects entry with the primary key or throws a {@link com.liferay.so.NoSuchProjectsEntryException} if it could not be found.
+	 * Returns the projects entry with the primary key or throws a {@link com.liferay.so.NoSuchProjectsEntryException} if it could not be found.
 	 *
-	 * @param projectsEntryId the primary key of the projects entry to find
+	 * @param projectsEntryId the primary key of the projects entry
 	 * @return the projects entry
 	 * @throws com.liferay.so.NoSuchProjectsEntryException if a projects entry with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -352,9 +352,9 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	}
 
 	/**
-	 * Finds the projects entry with the primary key or returns <code>null</code> if it could not be found.
+	 * Returns the projects entry with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param primaryKey the primary key of the projects entry to find
+	 * @param primaryKey the primary key of the projects entry
 	 * @return the projects entry, or <code>null</code> if a projects entry with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -364,9 +364,9 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	}
 
 	/**
-	 * Finds the projects entry with the primary key or returns <code>null</code> if it could not be found.
+	 * Returns the projects entry with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param projectsEntryId the primary key of the projects entry to find
+	 * @param projectsEntryId the primary key of the projects entry
 	 * @return the projects entry, or <code>null</code> if a projects entry with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -400,9 +400,9 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	}
 
 	/**
-	 * Finds all the projects entries where userId = &#63;.
+	 * Returns all the projects entries where userId = &#63;.
 	 *
-	 * @param userId the user ID to search with
+	 * @param userId the user ID
 	 * @return the matching projects entries
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -412,15 +412,15 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	}
 
 	/**
-	 * Finds a range of all the projects entries where userId = &#63;.
+	 * Returns a range of all the projects entries where userId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param userId the user ID to search with
-	 * @param start the lower bound of the range of projects entries to return
-	 * @param end the upper bound of the range of projects entries to return (not inclusive)
+	 * @param userId the user ID
+	 * @param start the lower bound of the range of projects entries
+	 * @param end the upper bound of the range of projects entries (not inclusive)
 	 * @return the range of matching projects entries
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -430,15 +430,15 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	}
 
 	/**
-	 * Finds an ordered range of all the projects entries where userId = &#63;.
+	 * Returns an ordered range of all the projects entries where userId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param userId the user ID to search with
-	 * @param start the lower bound of the range of projects entries to return
-	 * @param end the upper bound of the range of projects entries to return (not inclusive)
+	 * @param userId the user ID
+	 * @param start the lower bound of the range of projects entries
+	 * @param end the upper bound of the range of projects entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching projects entries
 	 * @throws SystemException if a system exception occurred
@@ -518,13 +518,13 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	}
 
 	/**
-	 * Finds the first projects entry in the ordered set where userId = &#63;.
+	 * Returns the first projects entry in the ordered set where userId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param userId the user ID to search with
+	 * @param userId the user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching projects entry
 	 * @throws com.liferay.so.NoSuchProjectsEntryException if a matching projects entry could not be found
@@ -553,13 +553,13 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	}
 
 	/**
-	 * Finds the last projects entry in the ordered set where userId = &#63;.
+	 * Returns the last projects entry in the ordered set where userId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param userId the user ID to search with
+	 * @param userId the user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching projects entry
 	 * @throws com.liferay.so.NoSuchProjectsEntryException if a matching projects entry could not be found
@@ -591,14 +591,14 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	}
 
 	/**
-	 * Finds the projects entries before and after the current projects entry in the ordered set where userId = &#63;.
+	 * Returns the projects entries before and after the current projects entry in the ordered set where userId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
 	 * @param projectsEntryId the primary key of the current projects entry
-	 * @param userId the user ID to search with
+	 * @param userId the user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next projects entry
 	 * @throws com.liferay.so.NoSuchProjectsEntryException if a projects entry with the primary key could not be found
@@ -739,7 +739,7 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	}
 
 	/**
-	 * Finds all the projects entries.
+	 * Returns all the projects entries.
 	 *
 	 * @return the projects entries
 	 * @throws SystemException if a system exception occurred
@@ -749,14 +749,14 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	}
 
 	/**
-	 * Finds a range of all the projects entries.
+	 * Returns a range of all the projects entries.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of projects entries to return
-	 * @param end the upper bound of the range of projects entries to return (not inclusive)
+	 * @param start the lower bound of the range of projects entries
+	 * @param end the upper bound of the range of projects entries (not inclusive)
 	 * @return the range of projects entries
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -766,14 +766,14 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	}
 
 	/**
-	 * Finds an ordered range of all the projects entries.
+	 * Returns an ordered range of all the projects entries.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of projects entries to return
-	 * @param end the upper bound of the range of projects entries to return (not inclusive)
+	 * @param start the lower bound of the range of projects entries
+	 * @param end the upper bound of the range of projects entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of projects entries
 	 * @throws SystemException if a system exception occurred
@@ -850,7 +850,7 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	/**
 	 * Removes all the projects entries where userId = &#63; from the database.
 	 *
-	 * @param userId the user ID to search with
+	 * @param userId the user ID
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeByUserId(long userId) throws SystemException {
@@ -871,9 +871,9 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	}
 
 	/**
-	 * Counts all the projects entries where userId = &#63;.
+	 * Returns the number of projects entries where userId = &#63;.
 	 *
-	 * @param userId the user ID to search with
+	 * @param userId the user ID
 	 * @return the number of matching projects entries
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -924,7 +924,7 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	}
 
 	/**
-	 * Counts all the projects entries.
+	 * Returns the number of projects entries.
 	 *
 	 * @return the number of projects entries
 	 * @throws SystemException if a system exception occurred

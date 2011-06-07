@@ -23,6 +23,11 @@ import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.search.Indexer;
+import com.liferay.portal.kernel.search.IndexerRegistryUtil;
+import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.service.ResourceLocalService;
 import com.liferay.portal.service.ResourceService;
@@ -75,7 +80,7 @@ public abstract class JIRAIssueLocalServiceBaseImpl
 	/**
 	 * Adds the j i r a issue to the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param jiraIssue the j i r a issue to add
+	 * @param jiraIssue the j i r a issue
 	 * @return the j i r a issue that was added
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -83,7 +88,22 @@ public abstract class JIRAIssueLocalServiceBaseImpl
 		throws SystemException {
 		jiraIssue.setNew(true);
 
-		return jiraIssuePersistence.update(jiraIssue, false);
+		jiraIssue = jiraIssuePersistence.update(jiraIssue, false);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.reindex(jiraIssue);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
+
+		return jiraIssue;
 	}
 
 	/**
@@ -99,29 +119,55 @@ public abstract class JIRAIssueLocalServiceBaseImpl
 	/**
 	 * Deletes the j i r a issue with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param jiraIssueId the primary key of the j i r a issue to delete
+	 * @param jiraIssueId the primary key of the j i r a issue
 	 * @throws PortalException if a j i r a issue with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void deleteJIRAIssue(long jiraIssueId)
 		throws PortalException, SystemException {
-		jiraIssuePersistence.remove(jiraIssueId);
+		JIRAIssue jiraIssue = jiraIssuePersistence.remove(jiraIssueId);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.delete(jiraIssue);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
 	}
 
 	/**
 	 * Deletes the j i r a issue from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param jiraIssue the j i r a issue to delete
+	 * @param jiraIssue the j i r a issue
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void deleteJIRAIssue(JIRAIssue jiraIssue) throws SystemException {
 		jiraIssuePersistence.remove(jiraIssue);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.delete(jiraIssue);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
 	}
 
 	/**
 	 * Performs a dynamic query on the database and returns the matching rows.
 	 *
-	 * @param dynamicQuery the dynamic query to search with
+	 * @param dynamicQuery the dynamic query
 	 * @return the matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -138,9 +184,9 @@ public abstract class JIRAIssueLocalServiceBaseImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param dynamicQuery the dynamic query to search with
-	 * @param start the lower bound of the range of model instances to return
-	 * @param end the upper bound of the range of model instances to return (not inclusive)
+	 * @param dynamicQuery the dynamic query
+	 * @param start the lower bound of the range of model instances
+	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @return the range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -158,9 +204,9 @@ public abstract class JIRAIssueLocalServiceBaseImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param dynamicQuery the dynamic query to search with
-	 * @param start the lower bound of the range of model instances to return
-	 * @param end the upper bound of the range of model instances to return (not inclusive)
+	 * @param dynamicQuery the dynamic query
+	 * @param start the lower bound of the range of model instances
+	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching rows
 	 * @throws SystemException if a system exception occurred
@@ -173,9 +219,9 @@ public abstract class JIRAIssueLocalServiceBaseImpl
 	}
 
 	/**
-	 * Counts the number of rows that match the dynamic query.
+	 * Returns the number of rows that match the dynamic query.
 	 *
-	 * @param dynamicQuery the dynamic query to search with
+	 * @param dynamicQuery the dynamic query
 	 * @return the number of rows that match the dynamic query
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -185,9 +231,9 @@ public abstract class JIRAIssueLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the j i r a issue with the primary key.
+	 * Returns the j i r a issue with the primary key.
 	 *
-	 * @param jiraIssueId the primary key of the j i r a issue to get
+	 * @param jiraIssueId the primary key of the j i r a issue
 	 * @return the j i r a issue
 	 * @throws PortalException if a j i r a issue with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -198,14 +244,14 @@ public abstract class JIRAIssueLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets a range of all the j i r a issues.
+	 * Returns a range of all the j i r a issues.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of j i r a issues to return
-	 * @param end the upper bound of the range of j i r a issues to return (not inclusive)
+	 * @param start the lower bound of the range of j i r a issues
+	 * @param end the upper bound of the range of j i r a issues (not inclusive)
 	 * @return the range of j i r a issues
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -215,7 +261,7 @@ public abstract class JIRAIssueLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the number of j i r a issues.
+	 * Returns the number of j i r a issues.
 	 *
 	 * @return the number of j i r a issues
 	 * @throws SystemException if a system exception occurred
@@ -227,21 +273,19 @@ public abstract class JIRAIssueLocalServiceBaseImpl
 	/**
 	 * Updates the j i r a issue in the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param jiraIssue the j i r a issue to update
+	 * @param jiraIssue the j i r a issue
 	 * @return the j i r a issue that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
 	public JIRAIssue updateJIRAIssue(JIRAIssue jiraIssue)
 		throws SystemException {
-		jiraIssue.setNew(false);
-
-		return jiraIssuePersistence.update(jiraIssue, true);
+		return updateJIRAIssue(jiraIssue, true);
 	}
 
 	/**
 	 * Updates the j i r a issue in the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param jiraIssue the j i r a issue to update
+	 * @param jiraIssue the j i r a issue
 	 * @param merge whether to merge the j i r a issue with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
 	 * @return the j i r a issue that was updated
 	 * @throws SystemException if a system exception occurred
@@ -250,11 +294,26 @@ public abstract class JIRAIssueLocalServiceBaseImpl
 		throws SystemException {
 		jiraIssue.setNew(false);
 
-		return jiraIssuePersistence.update(jiraIssue, merge);
+		jiraIssue = jiraIssuePersistence.update(jiraIssue, merge);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.reindex(jiraIssue);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
+
+		return jiraIssue;
 	}
 
 	/**
-	 * Gets the j i r a action local service.
+	 * Returns the j i r a action local service.
 	 *
 	 * @return the j i r a action local service
 	 */
@@ -273,7 +332,7 @@ public abstract class JIRAIssueLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the j i r a action persistence.
+	 * Returns the j i r a action persistence.
 	 *
 	 * @return the j i r a action persistence
 	 */
@@ -292,7 +351,7 @@ public abstract class JIRAIssueLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the j i r a action finder.
+	 * Returns the j i r a action finder.
 	 *
 	 * @return the j i r a action finder
 	 */
@@ -310,7 +369,7 @@ public abstract class JIRAIssueLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the j i r a change group local service.
+	 * Returns the j i r a change group local service.
 	 *
 	 * @return the j i r a change group local service
 	 */
@@ -329,7 +388,7 @@ public abstract class JIRAIssueLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the j i r a change group persistence.
+	 * Returns the j i r a change group persistence.
 	 *
 	 * @return the j i r a change group persistence
 	 */
@@ -348,7 +407,7 @@ public abstract class JIRAIssueLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the j i r a change group finder.
+	 * Returns the j i r a change group finder.
 	 *
 	 * @return the j i r a change group finder
 	 */
@@ -367,7 +426,7 @@ public abstract class JIRAIssueLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the j i r a change item local service.
+	 * Returns the j i r a change item local service.
 	 *
 	 * @return the j i r a change item local service
 	 */
@@ -386,7 +445,7 @@ public abstract class JIRAIssueLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the j i r a change item persistence.
+	 * Returns the j i r a change item persistence.
 	 *
 	 * @return the j i r a change item persistence
 	 */
@@ -405,7 +464,7 @@ public abstract class JIRAIssueLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the j i r a issue local service.
+	 * Returns the j i r a issue local service.
 	 *
 	 * @return the j i r a issue local service
 	 */
@@ -424,7 +483,7 @@ public abstract class JIRAIssueLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the j i r a issue persistence.
+	 * Returns the j i r a issue persistence.
 	 *
 	 * @return the j i r a issue persistence
 	 */
@@ -443,7 +502,7 @@ public abstract class JIRAIssueLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the j i r a issue finder.
+	 * Returns the j i r a issue finder.
 	 *
 	 * @return the j i r a issue finder
 	 */
@@ -461,7 +520,7 @@ public abstract class JIRAIssueLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the s v n repository local service.
+	 * Returns the s v n repository local service.
 	 *
 	 * @return the s v n repository local service
 	 */
@@ -480,7 +539,7 @@ public abstract class JIRAIssueLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the s v n repository persistence.
+	 * Returns the s v n repository persistence.
 	 *
 	 * @return the s v n repository persistence
 	 */
@@ -499,7 +558,7 @@ public abstract class JIRAIssueLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the s v n revision local service.
+	 * Returns the s v n revision local service.
 	 *
 	 * @return the s v n revision local service
 	 */
@@ -518,7 +577,7 @@ public abstract class JIRAIssueLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the s v n revision persistence.
+	 * Returns the s v n revision persistence.
 	 *
 	 * @return the s v n revision persistence
 	 */
@@ -537,7 +596,7 @@ public abstract class JIRAIssueLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the counter local service.
+	 * Returns the counter local service.
 	 *
 	 * @return the counter local service
 	 */
@@ -555,7 +614,7 @@ public abstract class JIRAIssueLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the resource local service.
+	 * Returns the resource local service.
 	 *
 	 * @return the resource local service
 	 */
@@ -574,7 +633,7 @@ public abstract class JIRAIssueLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the resource remote service.
+	 * Returns the resource remote service.
 	 *
 	 * @return the resource remote service
 	 */
@@ -592,7 +651,7 @@ public abstract class JIRAIssueLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the resource persistence.
+	 * Returns the resource persistence.
 	 *
 	 * @return the resource persistence
 	 */
@@ -610,7 +669,7 @@ public abstract class JIRAIssueLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the user local service.
+	 * Returns the user local service.
 	 *
 	 * @return the user local service
 	 */
@@ -628,7 +687,7 @@ public abstract class JIRAIssueLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the user remote service.
+	 * Returns the user remote service.
 	 *
 	 * @return the user remote service
 	 */
@@ -646,7 +705,7 @@ public abstract class JIRAIssueLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the user persistence.
+	 * Returns the user persistence.
 	 *
 	 * @return the user persistence
 	 */
@@ -664,7 +723,7 @@ public abstract class JIRAIssueLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the Spring bean ID for this bean.
+	 * Returns the Spring bean ID for this bean.
 	 *
 	 * @return the Spring bean ID for this bean
 	 */
@@ -681,10 +740,18 @@ public abstract class JIRAIssueLocalServiceBaseImpl
 		_beanIdentifier = beanIdentifier;
 	}
 
+	protected Class<?> getModelClass() {
+		return JIRAIssue.class;
+	}
+
+	protected String getModelClassName() {
+		return JIRAIssue.class.getName();
+	}
+
 	/**
 	 * Performs an SQL query.
 	 *
-	 * @param sql the sql query to perform
+	 * @param sql the sql query
 	 */
 	protected void runSQL(String sql) throws SystemException {
 		try {
@@ -744,5 +811,6 @@ public abstract class JIRAIssueLocalServiceBaseImpl
 	protected UserService userService;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
+	private static Log _log = LogFactoryUtil.getLog(JIRAIssueLocalServiceBaseImpl.class);
 	private String _beanIdentifier;
 }

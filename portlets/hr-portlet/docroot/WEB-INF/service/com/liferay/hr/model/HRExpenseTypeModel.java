@@ -48,21 +48,21 @@ public interface HRExpenseTypeModel extends BaseModel<HRExpenseType>,
 	 */
 
 	/**
-	 * Gets the primary key of this h r expense type.
+	 * Returns the primary key of this h r expense type.
 	 *
 	 * @return the primary key of this h r expense type
 	 */
 	public long getPrimaryKey();
 
 	/**
-	 * Sets the primary key of this h r expense type
+	 * Sets the primary key of this h r expense type.
 	 *
 	 * @param primaryKey the primary key of this h r expense type
 	 */
 	public void setPrimaryKey(long primaryKey);
 
 	/**
-	 * Gets the hr expense type ID of this h r expense type.
+	 * Returns the hr expense type ID of this h r expense type.
 	 *
 	 * @return the hr expense type ID of this h r expense type
 	 */
@@ -76,7 +76,7 @@ public interface HRExpenseTypeModel extends BaseModel<HRExpenseType>,
 	public void setHrExpenseTypeId(long hrExpenseTypeId);
 
 	/**
-	 * Gets the group ID of this h r expense type.
+	 * Returns the group ID of this h r expense type.
 	 *
 	 * @return the group ID of this h r expense type
 	 */
@@ -90,7 +90,7 @@ public interface HRExpenseTypeModel extends BaseModel<HRExpenseType>,
 	public void setGroupId(long groupId);
 
 	/**
-	 * Gets the company ID of this h r expense type.
+	 * Returns the company ID of this h r expense type.
 	 *
 	 * @return the company ID of this h r expense type
 	 */
@@ -104,7 +104,7 @@ public interface HRExpenseTypeModel extends BaseModel<HRExpenseType>,
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the user ID of this h r expense type.
+	 * Returns the user ID of this h r expense type.
 	 *
 	 * @return the user ID of this h r expense type
 	 */
@@ -118,7 +118,7 @@ public interface HRExpenseTypeModel extends BaseModel<HRExpenseType>,
 	public void setUserId(long userId);
 
 	/**
-	 * Gets the user uuid of this h r expense type.
+	 * Returns the user uuid of this h r expense type.
 	 *
 	 * @return the user uuid of this h r expense type
 	 * @throws SystemException if a system exception occurred
@@ -133,7 +133,7 @@ public interface HRExpenseTypeModel extends BaseModel<HRExpenseType>,
 	public void setUserUuid(String userUuid);
 
 	/**
-	 * Gets the user name of this h r expense type.
+	 * Returns the user name of this h r expense type.
 	 *
 	 * @return the user name of this h r expense type
 	 */
@@ -148,7 +148,7 @@ public interface HRExpenseTypeModel extends BaseModel<HRExpenseType>,
 	public void setUserName(String userName);
 
 	/**
-	 * Gets the create date of this h r expense type.
+	 * Returns the create date of this h r expense type.
 	 *
 	 * @return the create date of this h r expense type
 	 */
@@ -162,7 +162,7 @@ public interface HRExpenseTypeModel extends BaseModel<HRExpenseType>,
 	public void setCreateDate(Date createDate);
 
 	/**
-	 * Gets the modified date of this h r expense type.
+	 * Returns the modified date of this h r expense type.
 	 *
 	 * @return the modified date of this h r expense type
 	 */
@@ -176,7 +176,7 @@ public interface HRExpenseTypeModel extends BaseModel<HRExpenseType>,
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Gets the name of this h r expense type.
+	 * Returns the name of this h r expense type.
 	 *
 	 * @return the name of this h r expense type
 	 */
@@ -191,7 +191,7 @@ public interface HRExpenseTypeModel extends BaseModel<HRExpenseType>,
 	public void setName(String name);
 
 	/**
-	 * Gets the description of this h r expense type.
+	 * Returns the description of this h r expense type.
 	 *
 	 * @return the description of this h r expense type
 	 */

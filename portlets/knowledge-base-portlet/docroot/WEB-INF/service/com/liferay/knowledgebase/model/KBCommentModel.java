@@ -49,21 +49,21 @@ public interface KBCommentModel extends AttachedModel, BaseModel<KBComment>,
 	 */
 
 	/**
-	 * Gets the primary key of this k b comment.
+	 * Returns the primary key of this k b comment.
 	 *
 	 * @return the primary key of this k b comment
 	 */
 	public long getPrimaryKey();
 
 	/**
-	 * Sets the primary key of this k b comment
+	 * Sets the primary key of this k b comment.
 	 *
 	 * @param primaryKey the primary key of this k b comment
 	 */
 	public void setPrimaryKey(long primaryKey);
 
 	/**
-	 * Gets the uuid of this k b comment.
+	 * Returns the uuid of this k b comment.
 	 *
 	 * @return the uuid of this k b comment
 	 */
@@ -78,7 +78,7 @@ public interface KBCommentModel extends AttachedModel, BaseModel<KBComment>,
 	public void setUuid(String uuid);
 
 	/**
-	 * Gets the kb comment ID of this k b comment.
+	 * Returns the kb comment ID of this k b comment.
 	 *
 	 * @return the kb comment ID of this k b comment
 	 */
@@ -92,7 +92,7 @@ public interface KBCommentModel extends AttachedModel, BaseModel<KBComment>,
 	public void setKbCommentId(long kbCommentId);
 
 	/**
-	 * Gets the group ID of this k b comment.
+	 * Returns the group ID of this k b comment.
 	 *
 	 * @return the group ID of this k b comment
 	 */
@@ -106,7 +106,7 @@ public interface KBCommentModel extends AttachedModel, BaseModel<KBComment>,
 	public void setGroupId(long groupId);
 
 	/**
-	 * Gets the company ID of this k b comment.
+	 * Returns the company ID of this k b comment.
 	 *
 	 * @return the company ID of this k b comment
 	 */
@@ -120,7 +120,7 @@ public interface KBCommentModel extends AttachedModel, BaseModel<KBComment>,
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the user ID of this k b comment.
+	 * Returns the user ID of this k b comment.
 	 *
 	 * @return the user ID of this k b comment
 	 */
@@ -134,7 +134,7 @@ public interface KBCommentModel extends AttachedModel, BaseModel<KBComment>,
 	public void setUserId(long userId);
 
 	/**
-	 * Gets the user uuid of this k b comment.
+	 * Returns the user uuid of this k b comment.
 	 *
 	 * @return the user uuid of this k b comment
 	 * @throws SystemException if a system exception occurred
@@ -149,7 +149,7 @@ public interface KBCommentModel extends AttachedModel, BaseModel<KBComment>,
 	public void setUserUuid(String userUuid);
 
 	/**
-	 * Gets the user name of this k b comment.
+	 * Returns the user name of this k b comment.
 	 *
 	 * @return the user name of this k b comment
 	 */
@@ -164,7 +164,7 @@ public interface KBCommentModel extends AttachedModel, BaseModel<KBComment>,
 	public void setUserName(String userName);
 
 	/**
-	 * Gets the create date of this k b comment.
+	 * Returns the create date of this k b comment.
 	 *
 	 * @return the create date of this k b comment
 	 */
@@ -178,7 +178,7 @@ public interface KBCommentModel extends AttachedModel, BaseModel<KBComment>,
 	public void setCreateDate(Date createDate);
 
 	/**
-	 * Gets the modified date of this k b comment.
+	 * Returns the modified date of this k b comment.
 	 *
 	 * @return the modified date of this k b comment
 	 */
@@ -192,14 +192,14 @@ public interface KBCommentModel extends AttachedModel, BaseModel<KBComment>,
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Gets the class name of the model instance this k b comment is polymorphically associated with.
+	 * Returns the fully qualified class name of this k b comment.
 	 *
-	 * @return the class name of the model instance this k b comment is polymorphically associated with
+	 * @return the fully qualified class name of this k b comment
 	 */
 	public String getClassName();
 
 	/**
-	 * Gets the class name ID of this k b comment.
+	 * Returns the class name ID of this k b comment.
 	 *
 	 * @return the class name ID of this k b comment
 	 */
@@ -213,7 +213,7 @@ public interface KBCommentModel extends AttachedModel, BaseModel<KBComment>,
 	public void setClassNameId(long classNameId);
 
 	/**
-	 * Gets the class p k of this k b comment.
+	 * Returns the class p k of this k b comment.
 	 *
 	 * @return the class p k of this k b comment
 	 */
@@ -227,7 +227,7 @@ public interface KBCommentModel extends AttachedModel, BaseModel<KBComment>,
 	public void setClassPK(long classPK);
 
 	/**
-	 * Gets the content of this k b comment.
+	 * Returns the content of this k b comment.
 	 *
 	 * @return the content of this k b comment
 	 */
@@ -242,7 +242,7 @@ public interface KBCommentModel extends AttachedModel, BaseModel<KBComment>,
 	public void setContent(String content);
 
 	/**
-	 * Gets the helpful of this k b comment.
+	 * Returns the helpful of this k b comment.
 	 *
 	 * @return the helpful of this k b comment
 	 */

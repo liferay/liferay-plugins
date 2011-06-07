@@ -82,7 +82,7 @@ public class HRUserTimeOffPersistenceImpl extends BasePersistenceImpl<HRUserTime
 	/**
 	 * Caches the h r user time off in the entity cache if it is enabled.
 	 *
-	 * @param hrUserTimeOff the h r user time off to cache
+	 * @param hrUserTimeOff the h r user time off
 	 */
 	public void cacheResult(HRUserTimeOff hrUserTimeOff) {
 		EntityCacheUtil.putResult(HRUserTimeOffModelImpl.ENTITY_CACHE_ENABLED,
@@ -95,7 +95,7 @@ public class HRUserTimeOffPersistenceImpl extends BasePersistenceImpl<HRUserTime
 	/**
 	 * Caches the h r user time offs in the entity cache if it is enabled.
 	 *
-	 * @param hrUserTimeOffs the h r user time offs to cache
+	 * @param hrUserTimeOffs the h r user time offs
 	 */
 	public void cacheResult(List<HRUserTimeOff> hrUserTimeOffs) {
 		for (HRUserTimeOff hrUserTimeOff : hrUserTimeOffs) {
@@ -155,7 +155,7 @@ public class HRUserTimeOffPersistenceImpl extends BasePersistenceImpl<HRUserTime
 	/**
 	 * Removes the h r user time off with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param primaryKey the primary key of the h r user time off to remove
+	 * @param primaryKey the primary key of the h r user time off
 	 * @return the h r user time off that was removed
 	 * @throws com.liferay.portal.NoSuchModelException if a h r user time off with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -168,7 +168,7 @@ public class HRUserTimeOffPersistenceImpl extends BasePersistenceImpl<HRUserTime
 	/**
 	 * Removes the h r user time off with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param hrUserTimeOffId the primary key of the h r user time off to remove
+	 * @param hrUserTimeOffId the primary key of the h r user time off
 	 * @return the h r user time off that was removed
 	 * @throws com.liferay.hr.NoSuchUserTimeOffException if a h r user time off with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -209,7 +209,7 @@ public class HRUserTimeOffPersistenceImpl extends BasePersistenceImpl<HRUserTime
 	/**
 	 * Removes the h r user time off from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param hrUserTimeOff the h r user time off to remove
+	 * @param hrUserTimeOff the h r user time off
 	 * @return the h r user time off that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -303,9 +303,9 @@ public class HRUserTimeOffPersistenceImpl extends BasePersistenceImpl<HRUserTime
 	}
 
 	/**
-	 * Finds the h r user time off with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
+	 * Returns the h r user time off with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
 	 *
-	 * @param primaryKey the primary key of the h r user time off to find
+	 * @param primaryKey the primary key of the h r user time off
 	 * @return the h r user time off
 	 * @throws com.liferay.portal.NoSuchModelException if a h r user time off with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -316,9 +316,9 @@ public class HRUserTimeOffPersistenceImpl extends BasePersistenceImpl<HRUserTime
 	}
 
 	/**
-	 * Finds the h r user time off with the primary key or throws a {@link com.liferay.hr.NoSuchUserTimeOffException} if it could not be found.
+	 * Returns the h r user time off with the primary key or throws a {@link com.liferay.hr.NoSuchUserTimeOffException} if it could not be found.
 	 *
-	 * @param hrUserTimeOffId the primary key of the h r user time off to find
+	 * @param hrUserTimeOffId the primary key of the h r user time off
 	 * @return the h r user time off
 	 * @throws com.liferay.hr.NoSuchUserTimeOffException if a h r user time off with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -340,9 +340,9 @@ public class HRUserTimeOffPersistenceImpl extends BasePersistenceImpl<HRUserTime
 	}
 
 	/**
-	 * Finds the h r user time off with the primary key or returns <code>null</code> if it could not be found.
+	 * Returns the h r user time off with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param primaryKey the primary key of the h r user time off to find
+	 * @param primaryKey the primary key of the h r user time off
 	 * @return the h r user time off, or <code>null</code> if a h r user time off with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -352,9 +352,9 @@ public class HRUserTimeOffPersistenceImpl extends BasePersistenceImpl<HRUserTime
 	}
 
 	/**
-	 * Finds the h r user time off with the primary key or returns <code>null</code> if it could not be found.
+	 * Returns the h r user time off with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param hrUserTimeOffId the primary key of the h r user time off to find
+	 * @param hrUserTimeOffId the primary key of the h r user time off
 	 * @return the h r user time off, or <code>null</code> if a h r user time off with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -388,7 +388,7 @@ public class HRUserTimeOffPersistenceImpl extends BasePersistenceImpl<HRUserTime
 	}
 
 	/**
-	 * Finds all the h r user time offs.
+	 * Returns all the h r user time offs.
 	 *
 	 * @return the h r user time offs
 	 * @throws SystemException if a system exception occurred
@@ -398,14 +398,14 @@ public class HRUserTimeOffPersistenceImpl extends BasePersistenceImpl<HRUserTime
 	}
 
 	/**
-	 * Finds a range of all the h r user time offs.
+	 * Returns a range of all the h r user time offs.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of h r user time offs to return
-	 * @param end the upper bound of the range of h r user time offs to return (not inclusive)
+	 * @param start the lower bound of the range of h r user time offs
+	 * @param end the upper bound of the range of h r user time offs (not inclusive)
 	 * @return the range of h r user time offs
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -415,14 +415,14 @@ public class HRUserTimeOffPersistenceImpl extends BasePersistenceImpl<HRUserTime
 	}
 
 	/**
-	 * Finds an ordered range of all the h r user time offs.
+	 * Returns an ordered range of all the h r user time offs.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of h r user time offs to return
-	 * @param end the upper bound of the range of h r user time offs to return (not inclusive)
+	 * @param start the lower bound of the range of h r user time offs
+	 * @param end the upper bound of the range of h r user time offs (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of h r user time offs
 	 * @throws SystemException if a system exception occurred
@@ -508,7 +508,7 @@ public class HRUserTimeOffPersistenceImpl extends BasePersistenceImpl<HRUserTime
 	}
 
 	/**
-	 * Counts all the h r user time offs.
+	 * Returns the number of h r user time offs.
 	 *
 	 * @return the number of h r user time offs
 	 * @throws SystemException if a system exception occurred

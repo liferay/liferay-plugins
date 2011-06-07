@@ -48,21 +48,21 @@ public interface MicroblogsEntryModel extends AuditedModel,
 	 */
 
 	/**
-	 * Gets the primary key of this microblogs entry.
+	 * Returns the primary key of this microblogs entry.
 	 *
 	 * @return the primary key of this microblogs entry
 	 */
 	public long getPrimaryKey();
 
 	/**
-	 * Sets the primary key of this microblogs entry
+	 * Sets the primary key of this microblogs entry.
 	 *
 	 * @param primaryKey the primary key of this microblogs entry
 	 */
 	public void setPrimaryKey(long primaryKey);
 
 	/**
-	 * Gets the microblogs entry ID of this microblogs entry.
+	 * Returns the microblogs entry ID of this microblogs entry.
 	 *
 	 * @return the microblogs entry ID of this microblogs entry
 	 */
@@ -76,7 +76,7 @@ public interface MicroblogsEntryModel extends AuditedModel,
 	public void setMicroblogsEntryId(long microblogsEntryId);
 
 	/**
-	 * Gets the company ID of this microblogs entry.
+	 * Returns the company ID of this microblogs entry.
 	 *
 	 * @return the company ID of this microblogs entry
 	 */
@@ -90,7 +90,7 @@ public interface MicroblogsEntryModel extends AuditedModel,
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the user ID of this microblogs entry.
+	 * Returns the user ID of this microblogs entry.
 	 *
 	 * @return the user ID of this microblogs entry
 	 */
@@ -104,7 +104,7 @@ public interface MicroblogsEntryModel extends AuditedModel,
 	public void setUserId(long userId);
 
 	/**
-	 * Gets the user uuid of this microblogs entry.
+	 * Returns the user uuid of this microblogs entry.
 	 *
 	 * @return the user uuid of this microblogs entry
 	 * @throws SystemException if a system exception occurred
@@ -119,7 +119,7 @@ public interface MicroblogsEntryModel extends AuditedModel,
 	public void setUserUuid(String userUuid);
 
 	/**
-	 * Gets the user name of this microblogs entry.
+	 * Returns the user name of this microblogs entry.
 	 *
 	 * @return the user name of this microblogs entry
 	 */
@@ -134,7 +134,7 @@ public interface MicroblogsEntryModel extends AuditedModel,
 	public void setUserName(String userName);
 
 	/**
-	 * Gets the create date of this microblogs entry.
+	 * Returns the create date of this microblogs entry.
 	 *
 	 * @return the create date of this microblogs entry
 	 */
@@ -148,7 +148,7 @@ public interface MicroblogsEntryModel extends AuditedModel,
 	public void setCreateDate(Date createDate);
 
 	/**
-	 * Gets the modified date of this microblogs entry.
+	 * Returns the modified date of this microblogs entry.
 	 *
 	 * @return the modified date of this microblogs entry
 	 */
@@ -162,7 +162,7 @@ public interface MicroblogsEntryModel extends AuditedModel,
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Gets the content of this microblogs entry.
+	 * Returns the content of this microblogs entry.
 	 *
 	 * @return the content of this microblogs entry
 	 */
@@ -177,7 +177,7 @@ public interface MicroblogsEntryModel extends AuditedModel,
 	public void setContent(String content);
 
 	/**
-	 * Gets the type of this microblogs entry.
+	 * Returns the type of this microblogs entry.
 	 *
 	 * @return the type of this microblogs entry
 	 */
@@ -191,7 +191,7 @@ public interface MicroblogsEntryModel extends AuditedModel,
 	public void setType(int type);
 
 	/**
-	 * Gets the receiver user ID of this microblogs entry.
+	 * Returns the receiver user ID of this microblogs entry.
 	 *
 	 * @return the receiver user ID of this microblogs entry
 	 */
@@ -205,7 +205,7 @@ public interface MicroblogsEntryModel extends AuditedModel,
 	public void setReceiverUserId(long receiverUserId);
 
 	/**
-	 * Gets the receiver user uuid of this microblogs entry.
+	 * Returns the receiver user uuid of this microblogs entry.
 	 *
 	 * @return the receiver user uuid of this microblogs entry
 	 * @throws SystemException if a system exception occurred
@@ -220,7 +220,7 @@ public interface MicroblogsEntryModel extends AuditedModel,
 	public void setReceiverUserUuid(String receiverUserUuid);
 
 	/**
-	 * Gets the receiver microblogs entry ID of this microblogs entry.
+	 * Returns the receiver microblogs entry ID of this microblogs entry.
 	 *
 	 * @return the receiver microblogs entry ID of this microblogs entry
 	 */
@@ -234,7 +234,7 @@ public interface MicroblogsEntryModel extends AuditedModel,
 	public void setReceiverMicroblogsEntryId(long receiverMicroblogsEntryId);
 
 	/**
-	 * Gets the social relation type of this microblogs entry.
+	 * Returns the social relation type of this microblogs entry.
 	 *
 	 * @return the social relation type of this microblogs entry
 	 */

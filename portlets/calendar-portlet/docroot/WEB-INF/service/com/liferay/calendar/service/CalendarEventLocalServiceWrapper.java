@@ -33,7 +33,7 @@ public class CalendarEventLocalServiceWrapper
 	/**
 	* Adds the calendar event to the database. Also notifies the appropriate model listeners.
 	*
-	* @param calendarEvent the calendar event to add
+	* @param calendarEvent the calendar event
 	* @return the calendar event that was added
 	* @throws SystemException if a system exception occurred
 	*/
@@ -57,7 +57,7 @@ public class CalendarEventLocalServiceWrapper
 	/**
 	* Deletes the calendar event with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param calendarEventId the primary key of the calendar event to delete
+	* @param calendarEventId the primary key of the calendar event
 	* @throws PortalException if a calendar event with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -70,7 +70,7 @@ public class CalendarEventLocalServiceWrapper
 	/**
 	* Deletes the calendar event from the database. Also notifies the appropriate model listeners.
 	*
-	* @param calendarEvent the calendar event to delete
+	* @param calendarEvent the calendar event
 	* @throws PortalException
 	* @throws SystemException if a system exception occurred
 	*/
@@ -84,7 +84,7 @@ public class CalendarEventLocalServiceWrapper
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
 	*
-	* @param dynamicQuery the dynamic query to search with
+	* @param dynamicQuery the dynamic query
 	* @return the matching rows
 	* @throws SystemException if a system exception occurred
 	*/
@@ -102,9 +102,9 @@ public class CalendarEventLocalServiceWrapper
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param dynamicQuery the dynamic query to search with
-	* @param start the lower bound of the range of model instances to return
-	* @param end the upper bound of the range of model instances to return (not inclusive)
+	* @param dynamicQuery the dynamic query
+	* @param start the lower bound of the range of model instances
+	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
 	* @throws SystemException if a system exception occurred
 	*/
@@ -122,9 +122,9 @@ public class CalendarEventLocalServiceWrapper
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param dynamicQuery the dynamic query to search with
-	* @param start the lower bound of the range of model instances to return
-	* @param end the upper bound of the range of model instances to return (not inclusive)
+	* @param dynamicQuery the dynamic query
+	* @param start the lower bound of the range of model instances
+	* @param end the upper bound of the range of model instances (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
 	* @throws SystemException if a system exception occurred
@@ -140,9 +140,9 @@ public class CalendarEventLocalServiceWrapper
 	}
 
 	/**
-	* Counts the number of rows that match the dynamic query.
+	* Returns the number of rows that match the dynamic query.
 	*
-	* @param dynamicQuery the dynamic query to search with
+	* @param dynamicQuery the dynamic query
 	* @return the number of rows that match the dynamic query
 	* @throws SystemException if a system exception occurred
 	*/
@@ -153,9 +153,9 @@ public class CalendarEventLocalServiceWrapper
 	}
 
 	/**
-	* Gets the calendar event with the primary key.
+	* Returns the calendar event with the primary key.
 	*
-	* @param calendarEventId the primary key of the calendar event to get
+	* @param calendarEventId the primary key of the calendar event
 	* @return the calendar event
 	* @throws PortalException if a calendar event with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -168,12 +168,12 @@ public class CalendarEventLocalServiceWrapper
 	}
 
 	/**
-	* Gets the calendar event with the UUID and group id.
+	* Returns the calendar event with the UUID in the group.
 	*
-	* @param uuid the UUID of calendar event to get
-	* @param groupId the group id of the calendar event to get
+	* @param uuid the UUID of calendar event
+	* @param groupId the group id of the calendar event
 	* @return the calendar event
-	* @throws PortalException if a calendar event with the UUID and group id could not be found
+	* @throws PortalException if a calendar event with the UUID in the group could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.calendar.model.CalendarEvent getCalendarEventByUuidAndGroupId(
@@ -185,14 +185,14 @@ public class CalendarEventLocalServiceWrapper
 	}
 
 	/**
-	* Gets a range of all the calendar events.
+	* Returns a range of all the calendar events.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of calendar events to return
-	* @param end the upper bound of the range of calendar events to return (not inclusive)
+	* @param start the lower bound of the range of calendar events
+	* @param end the upper bound of the range of calendar events (not inclusive)
 	* @return the range of calendar events
 	* @throws SystemException if a system exception occurred
 	*/
@@ -203,7 +203,7 @@ public class CalendarEventLocalServiceWrapper
 	}
 
 	/**
-	* Gets the number of calendar events.
+	* Returns the number of calendar events.
 	*
 	* @return the number of calendar events
 	* @throws SystemException if a system exception occurred
@@ -216,7 +216,7 @@ public class CalendarEventLocalServiceWrapper
 	/**
 	* Updates the calendar event in the database. Also notifies the appropriate model listeners.
 	*
-	* @param calendarEvent the calendar event to update
+	* @param calendarEvent the calendar event
 	* @return the calendar event that was updated
 	* @throws SystemException if a system exception occurred
 	*/
@@ -229,7 +229,7 @@ public class CalendarEventLocalServiceWrapper
 	/**
 	* Updates the calendar event in the database. Also notifies the appropriate model listeners.
 	*
-	* @param calendarEvent the calendar event to update
+	* @param calendarEvent the calendar event
 	* @param merge whether to merge the calendar event with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
 	* @return the calendar event that was updated
 	* @throws SystemException if a system exception occurred
@@ -242,7 +242,7 @@ public class CalendarEventLocalServiceWrapper
 	}
 
 	/**
-	* Gets the Spring bean ID for this bean.
+	* Returns the Spring bean ID for this bean.
 	*
 	* @return the Spring bean ID for this bean
 	*/

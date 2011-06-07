@@ -45,7 +45,7 @@ public interface WSRPProducerLocalService {
 	/**
 	* Adds the w s r p producer to the database. Also notifies the appropriate model listeners.
 	*
-	* @param wsrpProducer the w s r p producer to add
+	* @param wsrpProducer the w s r p producer
 	* @return the w s r p producer that was added
 	* @throws SystemException if a system exception occurred
 	*/
@@ -65,7 +65,7 @@ public interface WSRPProducerLocalService {
 	/**
 	* Deletes the w s r p producer with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param wsrpProducerId the primary key of the w s r p producer to delete
+	* @param wsrpProducerId the primary key of the w s r p producer
 	* @throws PortalException if a w s r p producer with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -76,7 +76,7 @@ public interface WSRPProducerLocalService {
 	/**
 	* Deletes the w s r p producer from the database. Also notifies the appropriate model listeners.
 	*
-	* @param wsrpProducer the w s r p producer to delete
+	* @param wsrpProducer the w s r p producer
 	* @throws PortalException
 	* @throws SystemException if a system exception occurred
 	*/
@@ -88,7 +88,7 @@ public interface WSRPProducerLocalService {
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
 	*
-	* @param dynamicQuery the dynamic query to search with
+	* @param dynamicQuery the dynamic query
 	* @return the matching rows
 	* @throws SystemException if a system exception occurred
 	*/
@@ -104,9 +104,9 @@ public interface WSRPProducerLocalService {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param dynamicQuery the dynamic query to search with
-	* @param start the lower bound of the range of model instances to return
-	* @param end the upper bound of the range of model instances to return (not inclusive)
+	* @param dynamicQuery the dynamic query
+	* @param start the lower bound of the range of model instances
+	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
 	* @throws SystemException if a system exception occurred
 	*/
@@ -122,9 +122,9 @@ public interface WSRPProducerLocalService {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param dynamicQuery the dynamic query to search with
-	* @param start the lower bound of the range of model instances to return
-	* @param end the upper bound of the range of model instances to return (not inclusive)
+	* @param dynamicQuery the dynamic query
+	* @param start the lower bound of the range of model instances
+	* @param end the upper bound of the range of model instances (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
 	* @throws SystemException if a system exception occurred
@@ -137,9 +137,9 @@ public interface WSRPProducerLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Counts the number of rows that match the dynamic query.
+	* Returns the number of rows that match the dynamic query.
 	*
-	* @param dynamicQuery the dynamic query to search with
+	* @param dynamicQuery the dynamic query
 	* @return the number of rows that match the dynamic query
 	* @throws SystemException if a system exception occurred
 	*/
@@ -148,9 +148,9 @@ public interface WSRPProducerLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Gets the w s r p producer with the primary key.
+	* Returns the w s r p producer with the primary key.
 	*
-	* @param wsrpProducerId the primary key of the w s r p producer to get
+	* @param wsrpProducerId the primary key of the w s r p producer
 	* @return the w s r p producer
 	* @throws PortalException if a w s r p producer with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -162,12 +162,12 @@ public interface WSRPProducerLocalService {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Gets the w s r p producer with the UUID and group id.
+	* Returns the w s r p producer with the UUID in the group.
 	*
-	* @param uuid the UUID of w s r p producer to get
-	* @param groupId the group id of the w s r p producer to get
+	* @param uuid the UUID of w s r p producer
+	* @param groupId the group id of the w s r p producer
 	* @return the w s r p producer
-	* @throws PortalException if a w s r p producer with the UUID and group id could not be found
+	* @throws PortalException if a w s r p producer with the UUID in the group could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -177,14 +177,14 @@ public interface WSRPProducerLocalService {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Gets a range of all the w s r p producers.
+	* Returns a range of all the w s r p producers.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of w s r p producers to return
-	* @param end the upper bound of the range of w s r p producers to return (not inclusive)
+	* @param start the lower bound of the range of w s r p producers
+	* @param end the upper bound of the range of w s r p producers (not inclusive)
 	* @return the range of w s r p producers
 	* @throws SystemException if a system exception occurred
 	*/
@@ -194,7 +194,7 @@ public interface WSRPProducerLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Gets the number of w s r p producers.
+	* Returns the number of w s r p producers.
 	*
 	* @return the number of w s r p producers
 	* @throws SystemException if a system exception occurred
@@ -206,7 +206,7 @@ public interface WSRPProducerLocalService {
 	/**
 	* Updates the w s r p producer in the database. Also notifies the appropriate model listeners.
 	*
-	* @param wsrpProducer the w s r p producer to update
+	* @param wsrpProducer the w s r p producer
 	* @return the w s r p producer that was updated
 	* @throws SystemException if a system exception occurred
 	*/
@@ -217,7 +217,7 @@ public interface WSRPProducerLocalService {
 	/**
 	* Updates the w s r p producer in the database. Also notifies the appropriate model listeners.
 	*
-	* @param wsrpProducer the w s r p producer to update
+	* @param wsrpProducer the w s r p producer
 	* @param merge whether to merge the w s r p producer with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
 	* @return the w s r p producer that was updated
 	* @throws SystemException if a system exception occurred
@@ -227,7 +227,7 @@ public interface WSRPProducerLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Gets the Spring bean ID for this bean.
+	* Returns the Spring bean ID for this bean.
 	*
 	* @return the Spring bean ID for this bean
 	*/

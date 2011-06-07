@@ -37,7 +37,7 @@ public class BarWrapper implements Bar {
 	}
 
 	/**
-	* Gets the primary key of this bar.
+	* Returns the primary key of this bar.
 	*
 	* @return the primary key of this bar
 	*/
@@ -46,7 +46,7 @@ public class BarWrapper implements Bar {
 	}
 
 	/**
-	* Sets the primary key of this bar
+	* Sets the primary key of this bar.
 	*
 	* @param primaryKey the primary key of this bar
 	*/
@@ -55,7 +55,7 @@ public class BarWrapper implements Bar {
 	}
 
 	/**
-	* Gets the bar ID of this bar.
+	* Returns the bar ID of this bar.
 	*
 	* @return the bar ID of this bar
 	*/
@@ -73,7 +73,7 @@ public class BarWrapper implements Bar {
 	}
 
 	/**
-	* Gets the text of this bar.
+	* Returns the text of this bar.
 	*
 	* @return the text of this bar
 	*/

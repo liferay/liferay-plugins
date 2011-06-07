@@ -44,21 +44,21 @@ public interface EntryModel extends BaseModel<Entry> {
 	 */
 
 	/**
-	 * Gets the primary key of this entry.
+	 * Returns the primary key of this entry.
 	 *
 	 * @return the primary key of this entry
 	 */
 	public long getPrimaryKey();
 
 	/**
-	 * Sets the primary key of this entry
+	 * Sets the primary key of this entry.
 	 *
 	 * @param primaryKey the primary key of this entry
 	 */
 	public void setPrimaryKey(long primaryKey);
 
 	/**
-	 * Gets the entry ID of this entry.
+	 * Returns the entry ID of this entry.
 	 *
 	 * @return the entry ID of this entry
 	 */
@@ -72,7 +72,7 @@ public interface EntryModel extends BaseModel<Entry> {
 	public void setEntryId(long entryId);
 
 	/**
-	 * Gets the create date of this entry.
+	 * Returns the create date of this entry.
 	 *
 	 * @return the create date of this entry
 	 */
@@ -86,7 +86,7 @@ public interface EntryModel extends BaseModel<Entry> {
 	public void setCreateDate(long createDate);
 
 	/**
-	 * Gets the from user ID of this entry.
+	 * Returns the from user ID of this entry.
 	 *
 	 * @return the from user ID of this entry
 	 */
@@ -100,7 +100,7 @@ public interface EntryModel extends BaseModel<Entry> {
 	public void setFromUserId(long fromUserId);
 
 	/**
-	 * Gets the from user uuid of this entry.
+	 * Returns the from user uuid of this entry.
 	 *
 	 * @return the from user uuid of this entry
 	 * @throws SystemException if a system exception occurred
@@ -115,7 +115,7 @@ public interface EntryModel extends BaseModel<Entry> {
 	public void setFromUserUuid(String fromUserUuid);
 
 	/**
-	 * Gets the to user ID of this entry.
+	 * Returns the to user ID of this entry.
 	 *
 	 * @return the to user ID of this entry
 	 */
@@ -129,7 +129,7 @@ public interface EntryModel extends BaseModel<Entry> {
 	public void setToUserId(long toUserId);
 
 	/**
-	 * Gets the to user uuid of this entry.
+	 * Returns the to user uuid of this entry.
 	 *
 	 * @return the to user uuid of this entry
 	 * @throws SystemException if a system exception occurred
@@ -144,7 +144,7 @@ public interface EntryModel extends BaseModel<Entry> {
 	public void setToUserUuid(String toUserUuid);
 
 	/**
-	 * Gets the content of this entry.
+	 * Returns the content of this entry.
 	 *
 	 * @return the content of this entry
 	 */

@@ -45,21 +45,21 @@ public interface WSRPConsumerModel extends BaseModel<WSRPConsumer> {
 	 */
 
 	/**
-	 * Gets the primary key of this w s r p consumer.
+	 * Returns the primary key of this w s r p consumer.
 	 *
 	 * @return the primary key of this w s r p consumer
 	 */
 	public long getPrimaryKey();
 
 	/**
-	 * Sets the primary key of this w s r p consumer
+	 * Sets the primary key of this w s r p consumer.
 	 *
 	 * @param primaryKey the primary key of this w s r p consumer
 	 */
 	public void setPrimaryKey(long primaryKey);
 
 	/**
-	 * Gets the uuid of this w s r p consumer.
+	 * Returns the uuid of this w s r p consumer.
 	 *
 	 * @return the uuid of this w s r p consumer
 	 */
@@ -74,7 +74,7 @@ public interface WSRPConsumerModel extends BaseModel<WSRPConsumer> {
 	public void setUuid(String uuid);
 
 	/**
-	 * Gets the wsrp consumer ID of this w s r p consumer.
+	 * Returns the wsrp consumer ID of this w s r p consumer.
 	 *
 	 * @return the wsrp consumer ID of this w s r p consumer
 	 */
@@ -88,7 +88,7 @@ public interface WSRPConsumerModel extends BaseModel<WSRPConsumer> {
 	public void setWsrpConsumerId(long wsrpConsumerId);
 
 	/**
-	 * Gets the company ID of this w s r p consumer.
+	 * Returns the company ID of this w s r p consumer.
 	 *
 	 * @return the company ID of this w s r p consumer
 	 */
@@ -102,7 +102,7 @@ public interface WSRPConsumerModel extends BaseModel<WSRPConsumer> {
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the create date of this w s r p consumer.
+	 * Returns the create date of this w s r p consumer.
 	 *
 	 * @return the create date of this w s r p consumer
 	 */
@@ -116,7 +116,7 @@ public interface WSRPConsumerModel extends BaseModel<WSRPConsumer> {
 	public void setCreateDate(Date createDate);
 
 	/**
-	 * Gets the modified date of this w s r p consumer.
+	 * Returns the modified date of this w s r p consumer.
 	 *
 	 * @return the modified date of this w s r p consumer
 	 */
@@ -130,7 +130,7 @@ public interface WSRPConsumerModel extends BaseModel<WSRPConsumer> {
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Gets the name of this w s r p consumer.
+	 * Returns the name of this w s r p consumer.
 	 *
 	 * @return the name of this w s r p consumer
 	 */
@@ -145,7 +145,7 @@ public interface WSRPConsumerModel extends BaseModel<WSRPConsumer> {
 	public void setName(String name);
 
 	/**
-	 * Gets the url of this w s r p consumer.
+	 * Returns the url of this w s r p consumer.
 	 *
 	 * @return the url of this w s r p consumer
 	 */
@@ -160,7 +160,7 @@ public interface WSRPConsumerModel extends BaseModel<WSRPConsumer> {
 	public void setUrl(String url);
 
 	/**
-	 * Gets the wsdl of this w s r p consumer.
+	 * Returns the wsdl of this w s r p consumer.
 	 *
 	 * @return the wsdl of this w s r p consumer
 	 */
@@ -175,7 +175,7 @@ public interface WSRPConsumerModel extends BaseModel<WSRPConsumer> {
 	public void setWsdl(String wsdl);
 
 	/**
-	 * Gets the registration context string of this w s r p consumer.
+	 * Returns the registration context string of this w s r p consumer.
 	 *
 	 * @return the registration context string of this w s r p consumer
 	 */
@@ -190,7 +190,7 @@ public interface WSRPConsumerModel extends BaseModel<WSRPConsumer> {
 	public void setRegistrationContextString(String registrationContextString);
 
 	/**
-	 * Gets the registration properties string of this w s r p consumer.
+	 * Returns the registration properties string of this w s r p consumer.
 	 *
 	 * @return the registration properties string of this w s r p consumer
 	 */
@@ -206,7 +206,7 @@ public interface WSRPConsumerModel extends BaseModel<WSRPConsumer> {
 		String registrationPropertiesString);
 
 	/**
-	 * Gets the forward cookies of this w s r p consumer.
+	 * Returns the forward cookies of this w s r p consumer.
 	 *
 	 * @return the forward cookies of this w s r p consumer
 	 */

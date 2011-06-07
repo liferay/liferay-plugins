@@ -37,7 +37,7 @@ public class EntryWrapper implements Entry {
 	}
 
 	/**
-	* Gets the primary key of this entry.
+	* Returns the primary key of this entry.
 	*
 	* @return the primary key of this entry
 	*/
@@ -46,7 +46,7 @@ public class EntryWrapper implements Entry {
 	}
 
 	/**
-	* Sets the primary key of this entry
+	* Sets the primary key of this entry.
 	*
 	* @param primaryKey the primary key of this entry
 	*/
@@ -55,7 +55,7 @@ public class EntryWrapper implements Entry {
 	}
 
 	/**
-	* Gets the entry ID of this entry.
+	* Returns the entry ID of this entry.
 	*
 	* @return the entry ID of this entry
 	*/
@@ -73,7 +73,7 @@ public class EntryWrapper implements Entry {
 	}
 
 	/**
-	* Gets the create date of this entry.
+	* Returns the create date of this entry.
 	*
 	* @return the create date of this entry
 	*/
@@ -91,7 +91,7 @@ public class EntryWrapper implements Entry {
 	}
 
 	/**
-	* Gets the from user ID of this entry.
+	* Returns the from user ID of this entry.
 	*
 	* @return the from user ID of this entry
 	*/
@@ -109,7 +109,7 @@ public class EntryWrapper implements Entry {
 	}
 
 	/**
-	* Gets the from user uuid of this entry.
+	* Returns the from user uuid of this entry.
 	*
 	* @return the from user uuid of this entry
 	* @throws SystemException if a system exception occurred
@@ -129,7 +129,7 @@ public class EntryWrapper implements Entry {
 	}
 
 	/**
-	* Gets the to user ID of this entry.
+	* Returns the to user ID of this entry.
 	*
 	* @return the to user ID of this entry
 	*/
@@ -147,7 +147,7 @@ public class EntryWrapper implements Entry {
 	}
 
 	/**
-	* Gets the to user uuid of this entry.
+	* Returns the to user uuid of this entry.
 	*
 	* @return the to user uuid of this entry
 	* @throws SystemException if a system exception occurred
@@ -167,7 +167,7 @@ public class EntryWrapper implements Entry {
 	}
 
 	/**
-	* Gets the content of this entry.
+	* Returns the content of this entry.
 	*
 	* @return the content of this entry
 	*/

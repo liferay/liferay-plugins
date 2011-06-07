@@ -45,21 +45,21 @@ public interface UserThreadModel extends BaseModel<UserThread> {
 	 */
 
 	/**
-	 * Gets the primary key of this user thread.
+	 * Returns the primary key of this user thread.
 	 *
 	 * @return the primary key of this user thread
 	 */
 	public long getPrimaryKey();
 
 	/**
-	 * Sets the primary key of this user thread
+	 * Sets the primary key of this user thread.
 	 *
 	 * @param primaryKey the primary key of this user thread
 	 */
 	public void setPrimaryKey(long primaryKey);
 
 	/**
-	 * Gets the user thread ID of this user thread.
+	 * Returns the user thread ID of this user thread.
 	 *
 	 * @return the user thread ID of this user thread
 	 */
@@ -73,7 +73,7 @@ public interface UserThreadModel extends BaseModel<UserThread> {
 	public void setUserThreadId(long userThreadId);
 
 	/**
-	 * Gets the company ID of this user thread.
+	 * Returns the company ID of this user thread.
 	 *
 	 * @return the company ID of this user thread
 	 */
@@ -87,7 +87,7 @@ public interface UserThreadModel extends BaseModel<UserThread> {
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the user ID of this user thread.
+	 * Returns the user ID of this user thread.
 	 *
 	 * @return the user ID of this user thread
 	 */
@@ -101,7 +101,7 @@ public interface UserThreadModel extends BaseModel<UserThread> {
 	public void setUserId(long userId);
 
 	/**
-	 * Gets the user uuid of this user thread.
+	 * Returns the user uuid of this user thread.
 	 *
 	 * @return the user uuid of this user thread
 	 * @throws SystemException if a system exception occurred
@@ -116,7 +116,7 @@ public interface UserThreadModel extends BaseModel<UserThread> {
 	public void setUserUuid(String userUuid);
 
 	/**
-	 * Gets the create date of this user thread.
+	 * Returns the create date of this user thread.
 	 *
 	 * @return the create date of this user thread
 	 */
@@ -130,7 +130,7 @@ public interface UserThreadModel extends BaseModel<UserThread> {
 	public void setCreateDate(Date createDate);
 
 	/**
-	 * Gets the modified date of this user thread.
+	 * Returns the modified date of this user thread.
 	 *
 	 * @return the modified date of this user thread
 	 */
@@ -144,7 +144,7 @@ public interface UserThreadModel extends BaseModel<UserThread> {
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Gets the mb thread ID of this user thread.
+	 * Returns the mb thread ID of this user thread.
 	 *
 	 * @return the mb thread ID of this user thread
 	 */
@@ -158,7 +158,7 @@ public interface UserThreadModel extends BaseModel<UserThread> {
 	public void setMbThreadId(long mbThreadId);
 
 	/**
-	 * Gets the top m b message ID of this user thread.
+	 * Returns the top m b message ID of this user thread.
 	 *
 	 * @return the top m b message ID of this user thread
 	 */
@@ -172,7 +172,7 @@ public interface UserThreadModel extends BaseModel<UserThread> {
 	public void setTopMBMessageId(long topMBMessageId);
 
 	/**
-	 * Gets the read of this user thread.
+	 * Returns the read of this user thread.
 	 *
 	 * @return the read of this user thread
 	 */
@@ -193,7 +193,7 @@ public interface UserThreadModel extends BaseModel<UserThread> {
 	public void setRead(boolean read);
 
 	/**
-	 * Gets the deleted of this user thread.
+	 * Returns the deleted of this user thread.
 	 *
 	 * @return the deleted of this user thread
 	 */

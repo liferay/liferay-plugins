@@ -33,6 +33,11 @@ import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.search.Indexer;
+import com.liferay.portal.kernel.search.IndexerRegistryUtil;
+import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.service.ResourceLocalService;
 import com.liferay.portal.service.ResourceService;
@@ -68,14 +73,29 @@ public abstract class CheckoutLocalServiceBaseImpl
 	/**
 	 * Adds the checkout to the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param checkout the checkout to add
+	 * @param checkout the checkout
 	 * @return the checkout that was added
 	 * @throws SystemException if a system exception occurred
 	 */
 	public Checkout addCheckout(Checkout checkout) throws SystemException {
 		checkout.setNew(true);
 
-		return checkoutPersistence.update(checkout, false);
+		checkout = checkoutPersistence.update(checkout, false);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.reindex(checkout);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
+
+		return checkout;
 	}
 
 	/**
@@ -91,29 +111,55 @@ public abstract class CheckoutLocalServiceBaseImpl
 	/**
 	 * Deletes the checkout with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param checkoutId the primary key of the checkout to delete
+	 * @param checkoutId the primary key of the checkout
 	 * @throws PortalException if a checkout with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void deleteCheckout(long checkoutId)
 		throws PortalException, SystemException {
-		checkoutPersistence.remove(checkoutId);
+		Checkout checkout = checkoutPersistence.remove(checkoutId);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.delete(checkout);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
 	}
 
 	/**
 	 * Deletes the checkout from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param checkout the checkout to delete
+	 * @param checkout the checkout
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void deleteCheckout(Checkout checkout) throws SystemException {
 		checkoutPersistence.remove(checkout);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.delete(checkout);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
 	}
 
 	/**
 	 * Performs a dynamic query on the database and returns the matching rows.
 	 *
-	 * @param dynamicQuery the dynamic query to search with
+	 * @param dynamicQuery the dynamic query
 	 * @return the matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -130,9 +176,9 @@ public abstract class CheckoutLocalServiceBaseImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param dynamicQuery the dynamic query to search with
-	 * @param start the lower bound of the range of model instances to return
-	 * @param end the upper bound of the range of model instances to return (not inclusive)
+	 * @param dynamicQuery the dynamic query
+	 * @param start the lower bound of the range of model instances
+	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @return the range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -149,9 +195,9 @@ public abstract class CheckoutLocalServiceBaseImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param dynamicQuery the dynamic query to search with
-	 * @param start the lower bound of the range of model instances to return
-	 * @param end the upper bound of the range of model instances to return (not inclusive)
+	 * @param dynamicQuery the dynamic query
+	 * @param start the lower bound of the range of model instances
+	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching rows
 	 * @throws SystemException if a system exception occurred
@@ -164,9 +210,9 @@ public abstract class CheckoutLocalServiceBaseImpl
 	}
 
 	/**
-	 * Counts the number of rows that match the dynamic query.
+	 * Returns the number of rows that match the dynamic query.
 	 *
-	 * @param dynamicQuery the dynamic query to search with
+	 * @param dynamicQuery the dynamic query
 	 * @return the number of rows that match the dynamic query
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -176,9 +222,9 @@ public abstract class CheckoutLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the checkout with the primary key.
+	 * Returns the checkout with the primary key.
 	 *
-	 * @param checkoutId the primary key of the checkout to get
+	 * @param checkoutId the primary key of the checkout
 	 * @return the checkout
 	 * @throws PortalException if a checkout with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -189,14 +235,14 @@ public abstract class CheckoutLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets a range of all the checkouts.
+	 * Returns a range of all the checkouts.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of checkouts to return
-	 * @param end the upper bound of the range of checkouts to return (not inclusive)
+	 * @param start the lower bound of the range of checkouts
+	 * @param end the upper bound of the range of checkouts (not inclusive)
 	 * @return the range of checkouts
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -206,7 +252,7 @@ public abstract class CheckoutLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the number of checkouts.
+	 * Returns the number of checkouts.
 	 *
 	 * @return the number of checkouts
 	 * @throws SystemException if a system exception occurred
@@ -218,20 +264,18 @@ public abstract class CheckoutLocalServiceBaseImpl
 	/**
 	 * Updates the checkout in the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param checkout the checkout to update
+	 * @param checkout the checkout
 	 * @return the checkout that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
 	public Checkout updateCheckout(Checkout checkout) throws SystemException {
-		checkout.setNew(false);
-
-		return checkoutPersistence.update(checkout, true);
+		return updateCheckout(checkout, true);
 	}
 
 	/**
 	 * Updates the checkout in the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param checkout the checkout to update
+	 * @param checkout the checkout
 	 * @param merge whether to merge the checkout with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
 	 * @return the checkout that was updated
 	 * @throws SystemException if a system exception occurred
@@ -240,11 +284,26 @@ public abstract class CheckoutLocalServiceBaseImpl
 		throws SystemException {
 		checkout.setNew(false);
 
-		return checkoutPersistence.update(checkout, merge);
+		checkout = checkoutPersistence.update(checkout, merge);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.reindex(checkout);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
+
+		return checkout;
 	}
 
 	/**
-	 * Gets the asset local service.
+	 * Returns the asset local service.
 	 *
 	 * @return the asset local service
 	 */
@@ -262,7 +321,7 @@ public abstract class CheckoutLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the asset persistence.
+	 * Returns the asset persistence.
 	 *
 	 * @return the asset persistence
 	 */
@@ -280,7 +339,7 @@ public abstract class CheckoutLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the checkout local service.
+	 * Returns the checkout local service.
 	 *
 	 * @return the checkout local service
 	 */
@@ -299,7 +358,7 @@ public abstract class CheckoutLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the checkout persistence.
+	 * Returns the checkout persistence.
 	 *
 	 * @return the checkout persistence
 	 */
@@ -317,7 +376,7 @@ public abstract class CheckoutLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the definition local service.
+	 * Returns the definition local service.
 	 *
 	 * @return the definition local service
 	 */
@@ -336,7 +395,7 @@ public abstract class CheckoutLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the definition persistence.
+	 * Returns the definition persistence.
 	 *
 	 * @return the definition persistence
 	 */
@@ -355,7 +414,7 @@ public abstract class CheckoutLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the type local service.
+	 * Returns the type local service.
 	 *
 	 * @return the type local service
 	 */
@@ -373,7 +432,7 @@ public abstract class CheckoutLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the type persistence.
+	 * Returns the type persistence.
 	 *
 	 * @return the type persistence
 	 */
@@ -391,7 +450,7 @@ public abstract class CheckoutLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the counter local service.
+	 * Returns the counter local service.
 	 *
 	 * @return the counter local service
 	 */
@@ -409,7 +468,7 @@ public abstract class CheckoutLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the resource local service.
+	 * Returns the resource local service.
 	 *
 	 * @return the resource local service
 	 */
@@ -428,7 +487,7 @@ public abstract class CheckoutLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the resource remote service.
+	 * Returns the resource remote service.
 	 *
 	 * @return the resource remote service
 	 */
@@ -446,7 +505,7 @@ public abstract class CheckoutLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the resource persistence.
+	 * Returns the resource persistence.
 	 *
 	 * @return the resource persistence
 	 */
@@ -464,7 +523,7 @@ public abstract class CheckoutLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the user local service.
+	 * Returns the user local service.
 	 *
 	 * @return the user local service
 	 */
@@ -482,7 +541,7 @@ public abstract class CheckoutLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the user remote service.
+	 * Returns the user remote service.
 	 *
 	 * @return the user remote service
 	 */
@@ -500,7 +559,7 @@ public abstract class CheckoutLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the user persistence.
+	 * Returns the user persistence.
 	 *
 	 * @return the user persistence
 	 */
@@ -518,7 +577,7 @@ public abstract class CheckoutLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the Spring bean ID for this bean.
+	 * Returns the Spring bean ID for this bean.
 	 *
 	 * @return the Spring bean ID for this bean
 	 */
@@ -535,10 +594,18 @@ public abstract class CheckoutLocalServiceBaseImpl
 		_beanIdentifier = beanIdentifier;
 	}
 
+	protected Class<?> getModelClass() {
+		return Checkout.class;
+	}
+
+	protected String getModelClassName() {
+		return Checkout.class.getName();
+	}
+
 	/**
 	 * Performs an SQL query.
 	 *
-	 * @param sql the sql query to perform
+	 * @param sql the sql query
 	 */
 	protected void runSQL(String sql) throws SystemException {
 		try {
@@ -584,5 +651,6 @@ public abstract class CheckoutLocalServiceBaseImpl
 	protected UserService userService;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
+	private static Log _log = LogFactoryUtil.getLog(CheckoutLocalServiceBaseImpl.class);
 	private String _beanIdentifier;
 }

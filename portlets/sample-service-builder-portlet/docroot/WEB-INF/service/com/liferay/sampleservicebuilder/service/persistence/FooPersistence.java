@@ -41,14 +41,14 @@ public interface FooPersistence extends BasePersistence<Foo> {
 	/**
 	* Caches the foo in the entity cache if it is enabled.
 	*
-	* @param foo the foo to cache
+	* @param foo the foo
 	*/
 	public void cacheResult(com.liferay.sampleservicebuilder.model.Foo foo);
 
 	/**
 	* Caches the foos in the entity cache if it is enabled.
 	*
-	* @param foos the foos to cache
+	* @param foos the foos
 	*/
 	public void cacheResult(
 		java.util.List<com.liferay.sampleservicebuilder.model.Foo> foos);
@@ -64,7 +64,7 @@ public interface FooPersistence extends BasePersistence<Foo> {
 	/**
 	* Removes the foo with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param fooId the primary key of the foo to remove
+	* @param fooId the primary key of the foo
 	* @return the foo that was removed
 	* @throws com.liferay.sampleservicebuilder.NoSuchFooException if a foo with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -78,9 +78,9 @@ public interface FooPersistence extends BasePersistence<Foo> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the foo with the primary key or throws a {@link com.liferay.sampleservicebuilder.NoSuchFooException} if it could not be found.
+	* Returns the foo with the primary key or throws a {@link com.liferay.sampleservicebuilder.NoSuchFooException} if it could not be found.
 	*
-	* @param fooId the primary key of the foo to find
+	* @param fooId the primary key of the foo
 	* @return the foo
 	* @throws com.liferay.sampleservicebuilder.NoSuchFooException if a foo with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -91,9 +91,9 @@ public interface FooPersistence extends BasePersistence<Foo> {
 			com.liferay.sampleservicebuilder.NoSuchFooException;
 
 	/**
-	* Finds the foo with the primary key or returns <code>null</code> if it could not be found.
+	* Returns the foo with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param fooId the primary key of the foo to find
+	* @param fooId the primary key of the foo
 	* @return the foo, or <code>null</code> if a foo with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -101,9 +101,9 @@ public interface FooPersistence extends BasePersistence<Foo> {
 		long fooId) throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds all the foos where uuid = &#63;.
+	* Returns all the foos where uuid = &#63;.
 	*
-	* @param uuid the uuid to search with
+	* @param uuid the uuid
 	* @return the matching foos
 	* @throws SystemException if a system exception occurred
 	*/
@@ -112,15 +112,15 @@ public interface FooPersistence extends BasePersistence<Foo> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds a range of all the foos where uuid = &#63;.
+	* Returns a range of all the foos where uuid = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param uuid the uuid to search with
-	* @param start the lower bound of the range of foos to return
-	* @param end the upper bound of the range of foos to return (not inclusive)
+	* @param uuid the uuid
+	* @param start the lower bound of the range of foos
+	* @param end the upper bound of the range of foos (not inclusive)
 	* @return the range of matching foos
 	* @throws SystemException if a system exception occurred
 	*/
@@ -129,15 +129,15 @@ public interface FooPersistence extends BasePersistence<Foo> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds an ordered range of all the foos where uuid = &#63;.
+	* Returns an ordered range of all the foos where uuid = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param uuid the uuid to search with
-	* @param start the lower bound of the range of foos to return
-	* @param end the upper bound of the range of foos to return (not inclusive)
+	* @param uuid the uuid
+	* @param start the lower bound of the range of foos
+	* @param end the upper bound of the range of foos (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching foos
 	* @throws SystemException if a system exception occurred
@@ -148,13 +148,13 @@ public interface FooPersistence extends BasePersistence<Foo> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the first foo in the ordered set where uuid = &#63;.
+	* Returns the first foo in the ordered set where uuid = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param uuid the uuid to search with
+	* @param uuid the uuid
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching foo
 	* @throws com.liferay.sampleservicebuilder.NoSuchFooException if a matching foo could not be found
@@ -167,13 +167,13 @@ public interface FooPersistence extends BasePersistence<Foo> {
 			com.liferay.sampleservicebuilder.NoSuchFooException;
 
 	/**
-	* Finds the last foo in the ordered set where uuid = &#63;.
+	* Returns the last foo in the ordered set where uuid = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param uuid the uuid to search with
+	* @param uuid the uuid
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching foo
 	* @throws com.liferay.sampleservicebuilder.NoSuchFooException if a matching foo could not be found
@@ -186,14 +186,14 @@ public interface FooPersistence extends BasePersistence<Foo> {
 			com.liferay.sampleservicebuilder.NoSuchFooException;
 
 	/**
-	* Finds the foos before and after the current foo in the ordered set where uuid = &#63;.
+	* Returns the foos before and after the current foo in the ordered set where uuid = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
 	* @param fooId the primary key of the current foo
-	* @param uuid the uuid to search with
+	* @param uuid the uuid
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next foo
 	* @throws com.liferay.sampleservicebuilder.NoSuchFooException if a foo with the primary key could not be found
@@ -206,10 +206,10 @@ public interface FooPersistence extends BasePersistence<Foo> {
 			com.liferay.sampleservicebuilder.NoSuchFooException;
 
 	/**
-	* Finds the foo where uuid = &#63; and groupId = &#63; or throws a {@link com.liferay.sampleservicebuilder.NoSuchFooException} if it could not be found.
+	* Returns the foo where uuid = &#63; and groupId = &#63; or throws a {@link com.liferay.sampleservicebuilder.NoSuchFooException} if it could not be found.
 	*
-	* @param uuid the uuid to search with
-	* @param groupId the group ID to search with
+	* @param uuid the uuid
+	* @param groupId the group ID
 	* @return the matching foo
 	* @throws com.liferay.sampleservicebuilder.NoSuchFooException if a matching foo could not be found
 	* @throws SystemException if a system exception occurred
@@ -220,10 +220,10 @@ public interface FooPersistence extends BasePersistence<Foo> {
 			com.liferay.sampleservicebuilder.NoSuchFooException;
 
 	/**
-	* Finds the foo where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	* Returns the foo where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	*
-	* @param uuid the uuid to search with
-	* @param groupId the group ID to search with
+	* @param uuid the uuid
+	* @param groupId the group ID
 	* @return the matching foo, or <code>null</code> if a matching foo could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -232,10 +232,10 @@ public interface FooPersistence extends BasePersistence<Foo> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the foo where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	* Returns the foo where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	*
-	* @param uuid the uuid to search with
-	* @param groupId the group ID to search with
+	* @param uuid the uuid
+	* @param groupId the group ID
 	* @return the matching foo, or <code>null</code> if a matching foo could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -244,9 +244,9 @@ public interface FooPersistence extends BasePersistence<Foo> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds all the foos where field2 = &#63;.
+	* Returns all the foos where field2 = &#63;.
 	*
-	* @param field2 the field2 to search with
+	* @param field2 the field2
 	* @return the matching foos
 	* @throws SystemException if a system exception occurred
 	*/
@@ -255,15 +255,15 @@ public interface FooPersistence extends BasePersistence<Foo> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds a range of all the foos where field2 = &#63;.
+	* Returns a range of all the foos where field2 = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param field2 the field2 to search with
-	* @param start the lower bound of the range of foos to return
-	* @param end the upper bound of the range of foos to return (not inclusive)
+	* @param field2 the field2
+	* @param start the lower bound of the range of foos
+	* @param end the upper bound of the range of foos (not inclusive)
 	* @return the range of matching foos
 	* @throws SystemException if a system exception occurred
 	*/
@@ -272,15 +272,15 @@ public interface FooPersistence extends BasePersistence<Foo> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds an ordered range of all the foos where field2 = &#63;.
+	* Returns an ordered range of all the foos where field2 = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param field2 the field2 to search with
-	* @param start the lower bound of the range of foos to return
-	* @param end the upper bound of the range of foos to return (not inclusive)
+	* @param field2 the field2
+	* @param start the lower bound of the range of foos
+	* @param end the upper bound of the range of foos (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching foos
 	* @throws SystemException if a system exception occurred
@@ -291,13 +291,13 @@ public interface FooPersistence extends BasePersistence<Foo> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the first foo in the ordered set where field2 = &#63;.
+	* Returns the first foo in the ordered set where field2 = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param field2 the field2 to search with
+	* @param field2 the field2
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching foo
 	* @throws com.liferay.sampleservicebuilder.NoSuchFooException if a matching foo could not be found
@@ -310,13 +310,13 @@ public interface FooPersistence extends BasePersistence<Foo> {
 			com.liferay.sampleservicebuilder.NoSuchFooException;
 
 	/**
-	* Finds the last foo in the ordered set where field2 = &#63;.
+	* Returns the last foo in the ordered set where field2 = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param field2 the field2 to search with
+	* @param field2 the field2
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching foo
 	* @throws com.liferay.sampleservicebuilder.NoSuchFooException if a matching foo could not be found
@@ -329,14 +329,14 @@ public interface FooPersistence extends BasePersistence<Foo> {
 			com.liferay.sampleservicebuilder.NoSuchFooException;
 
 	/**
-	* Finds the foos before and after the current foo in the ordered set where field2 = &#63;.
+	* Returns the foos before and after the current foo in the ordered set where field2 = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
 	* @param fooId the primary key of the current foo
-	* @param field2 the field2 to search with
+	* @param field2 the field2
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next foo
 	* @throws com.liferay.sampleservicebuilder.NoSuchFooException if a foo with the primary key could not be found
@@ -349,7 +349,7 @@ public interface FooPersistence extends BasePersistence<Foo> {
 			com.liferay.sampleservicebuilder.NoSuchFooException;
 
 	/**
-	* Finds all the foos.
+	* Returns all the foos.
 	*
 	* @return the foos
 	* @throws SystemException if a system exception occurred
@@ -358,14 +358,14 @@ public interface FooPersistence extends BasePersistence<Foo> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds a range of all the foos.
+	* Returns a range of all the foos.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of foos to return
-	* @param end the upper bound of the range of foos to return (not inclusive)
+	* @param start the lower bound of the range of foos
+	* @param end the upper bound of the range of foos (not inclusive)
 	* @return the range of foos
 	* @throws SystemException if a system exception occurred
 	*/
@@ -374,14 +374,14 @@ public interface FooPersistence extends BasePersistence<Foo> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds an ordered range of all the foos.
+	* Returns an ordered range of all the foos.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of foos to return
-	* @param end the upper bound of the range of foos to return (not inclusive)
+	* @param start the lower bound of the range of foos
+	* @param end the upper bound of the range of foos (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of foos
 	* @throws SystemException if a system exception occurred
@@ -394,7 +394,7 @@ public interface FooPersistence extends BasePersistence<Foo> {
 	/**
 	* Removes all the foos where uuid = &#63; from the database.
 	*
-	* @param uuid the uuid to search with
+	* @param uuid the uuid
 	* @throws SystemException if a system exception occurred
 	*/
 	public void removeByUuid(java.lang.String uuid)
@@ -403,8 +403,8 @@ public interface FooPersistence extends BasePersistence<Foo> {
 	/**
 	* Removes the foo where uuid = &#63; and groupId = &#63; from the database.
 	*
-	* @param uuid the uuid to search with
-	* @param groupId the group ID to search with
+	* @param uuid the uuid
+	* @param groupId the group ID
 	* @throws SystemException if a system exception occurred
 	*/
 	public void removeByUUID_G(java.lang.String uuid, long groupId)
@@ -414,7 +414,7 @@ public interface FooPersistence extends BasePersistence<Foo> {
 	/**
 	* Removes all the foos where field2 = &#63; from the database.
 	*
-	* @param field2 the field2 to search with
+	* @param field2 the field2
 	* @throws SystemException if a system exception occurred
 	*/
 	public void removeByField2(boolean field2)
@@ -429,9 +429,9 @@ public interface FooPersistence extends BasePersistence<Foo> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Counts all the foos where uuid = &#63;.
+	* Returns the number of foos where uuid = &#63;.
 	*
-	* @param uuid the uuid to search with
+	* @param uuid the uuid
 	* @return the number of matching foos
 	* @throws SystemException if a system exception occurred
 	*/
@@ -439,10 +439,10 @@ public interface FooPersistence extends BasePersistence<Foo> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Counts all the foos where uuid = &#63; and groupId = &#63;.
+	* Returns the number of foos where uuid = &#63; and groupId = &#63;.
 	*
-	* @param uuid the uuid to search with
-	* @param groupId the group ID to search with
+	* @param uuid the uuid
+	* @param groupId the group ID
 	* @return the number of matching foos
 	* @throws SystemException if a system exception occurred
 	*/
@@ -450,9 +450,9 @@ public interface FooPersistence extends BasePersistence<Foo> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Counts all the foos where field2 = &#63;.
+	* Returns the number of foos where field2 = &#63;.
 	*
-	* @param field2 the field2 to search with
+	* @param field2 the field2
 	* @return the number of matching foos
 	* @throws SystemException if a system exception occurred
 	*/
@@ -460,7 +460,7 @@ public interface FooPersistence extends BasePersistence<Foo> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Counts all the foos.
+	* Returns the number of foos.
 	*
 	* @return the number of foos
 	* @throws SystemException if a system exception occurred

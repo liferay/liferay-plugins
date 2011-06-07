@@ -31,7 +31,7 @@ public class AssetLocalServiceWrapper implements AssetLocalService {
 	/**
 	* Adds the asset to the database. Also notifies the appropriate model listeners.
 	*
-	* @param asset the asset to add
+	* @param asset the asset
 	* @return the asset that was added
 	* @throws SystemException if a system exception occurred
 	*/
@@ -54,7 +54,7 @@ public class AssetLocalServiceWrapper implements AssetLocalService {
 	/**
 	* Deletes the asset with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param assetId the primary key of the asset to delete
+	* @param assetId the primary key of the asset
 	* @throws PortalException if a asset with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -67,7 +67,7 @@ public class AssetLocalServiceWrapper implements AssetLocalService {
 	/**
 	* Deletes the asset from the database. Also notifies the appropriate model listeners.
 	*
-	* @param asset the asset to delete
+	* @param asset the asset
 	* @throws SystemException if a system exception occurred
 	*/
 	public void deleteAsset(com.liferay.ams.model.Asset asset)
@@ -78,7 +78,7 @@ public class AssetLocalServiceWrapper implements AssetLocalService {
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
 	*
-	* @param dynamicQuery the dynamic query to search with
+	* @param dynamicQuery the dynamic query
 	* @return the matching rows
 	* @throws SystemException if a system exception occurred
 	*/
@@ -96,9 +96,9 @@ public class AssetLocalServiceWrapper implements AssetLocalService {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param dynamicQuery the dynamic query to search with
-	* @param start the lower bound of the range of model instances to return
-	* @param end the upper bound of the range of model instances to return (not inclusive)
+	* @param dynamicQuery the dynamic query
+	* @param start the lower bound of the range of model instances
+	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
 	* @throws SystemException if a system exception occurred
 	*/
@@ -116,9 +116,9 @@ public class AssetLocalServiceWrapper implements AssetLocalService {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param dynamicQuery the dynamic query to search with
-	* @param start the lower bound of the range of model instances to return
-	* @param end the upper bound of the range of model instances to return (not inclusive)
+	* @param dynamicQuery the dynamic query
+	* @param start the lower bound of the range of model instances
+	* @param end the upper bound of the range of model instances (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
 	* @throws SystemException if a system exception occurred
@@ -134,9 +134,9 @@ public class AssetLocalServiceWrapper implements AssetLocalService {
 	}
 
 	/**
-	* Counts the number of rows that match the dynamic query.
+	* Returns the number of rows that match the dynamic query.
 	*
-	* @param dynamicQuery the dynamic query to search with
+	* @param dynamicQuery the dynamic query
 	* @return the number of rows that match the dynamic query
 	* @throws SystemException if a system exception occurred
 	*/
@@ -147,9 +147,9 @@ public class AssetLocalServiceWrapper implements AssetLocalService {
 	}
 
 	/**
-	* Gets the asset with the primary key.
+	* Returns the asset with the primary key.
 	*
-	* @param assetId the primary key of the asset to get
+	* @param assetId the primary key of the asset
 	* @return the asset
 	* @throws PortalException if a asset with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -161,14 +161,14 @@ public class AssetLocalServiceWrapper implements AssetLocalService {
 	}
 
 	/**
-	* Gets a range of all the assets.
+	* Returns a range of all the assets.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of assets to return
-	* @param end the upper bound of the range of assets to return (not inclusive)
+	* @param start the lower bound of the range of assets
+	* @param end the upper bound of the range of assets (not inclusive)
 	* @return the range of assets
 	* @throws SystemException if a system exception occurred
 	*/
@@ -178,7 +178,7 @@ public class AssetLocalServiceWrapper implements AssetLocalService {
 	}
 
 	/**
-	* Gets the number of assets.
+	* Returns the number of assets.
 	*
 	* @return the number of assets
 	* @throws SystemException if a system exception occurred
@@ -191,7 +191,7 @@ public class AssetLocalServiceWrapper implements AssetLocalService {
 	/**
 	* Updates the asset in the database. Also notifies the appropriate model listeners.
 	*
-	* @param asset the asset to update
+	* @param asset the asset
 	* @return the asset that was updated
 	* @throws SystemException if a system exception occurred
 	*/
@@ -204,7 +204,7 @@ public class AssetLocalServiceWrapper implements AssetLocalService {
 	/**
 	* Updates the asset in the database. Also notifies the appropriate model listeners.
 	*
-	* @param asset the asset to update
+	* @param asset the asset
 	* @param merge whether to merge the asset with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
 	* @return the asset that was updated
 	* @throws SystemException if a system exception occurred
@@ -216,7 +216,7 @@ public class AssetLocalServiceWrapper implements AssetLocalService {
 	}
 
 	/**
-	* Gets the Spring bean ID for this bean.
+	* Returns the Spring bean ID for this bean.
 	*
 	* @return the Spring bean ID for this bean
 	*/

@@ -23,6 +23,11 @@ import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.search.Indexer;
+import com.liferay.portal.kernel.search.IndexerRegistryUtil;
+import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.service.ClassNameLocalService;
 import com.liferay.portal.service.ClassNameService;
@@ -65,14 +70,29 @@ public abstract class BarLocalServiceBaseImpl implements BarLocalService,
 	/**
 	 * Adds the bar to the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param bar the bar to add
+	 * @param bar the bar
 	 * @return the bar that was added
 	 * @throws SystemException if a system exception occurred
 	 */
 	public Bar addBar(Bar bar) throws SystemException {
 		bar.setNew(true);
 
-		return barPersistence.update(bar, false);
+		bar = barPersistence.update(bar, false);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.reindex(bar);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
+
+		return bar;
 	}
 
 	/**
@@ -88,28 +108,54 @@ public abstract class BarLocalServiceBaseImpl implements BarLocalService,
 	/**
 	 * Deletes the bar with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param barId the primary key of the bar to delete
+	 * @param barId the primary key of the bar
 	 * @throws PortalException if a bar with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void deleteBar(long barId) throws PortalException, SystemException {
-		barPersistence.remove(barId);
+		Bar bar = barPersistence.remove(barId);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.delete(bar);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
 	}
 
 	/**
 	 * Deletes the bar from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param bar the bar to delete
+	 * @param bar the bar
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void deleteBar(Bar bar) throws SystemException {
 		barPersistence.remove(bar);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.delete(bar);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
 	}
 
 	/**
 	 * Performs a dynamic query on the database and returns the matching rows.
 	 *
-	 * @param dynamicQuery the dynamic query to search with
+	 * @param dynamicQuery the dynamic query
 	 * @return the matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -126,9 +172,9 @@ public abstract class BarLocalServiceBaseImpl implements BarLocalService,
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param dynamicQuery the dynamic query to search with
-	 * @param start the lower bound of the range of model instances to return
-	 * @param end the upper bound of the range of model instances to return (not inclusive)
+	 * @param dynamicQuery the dynamic query
+	 * @param start the lower bound of the range of model instances
+	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @return the range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -145,9 +191,9 @@ public abstract class BarLocalServiceBaseImpl implements BarLocalService,
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param dynamicQuery the dynamic query to search with
-	 * @param start the lower bound of the range of model instances to return
-	 * @param end the upper bound of the range of model instances to return (not inclusive)
+	 * @param dynamicQuery the dynamic query
+	 * @param start the lower bound of the range of model instances
+	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching rows
 	 * @throws SystemException if a system exception occurred
@@ -160,9 +206,9 @@ public abstract class BarLocalServiceBaseImpl implements BarLocalService,
 	}
 
 	/**
-	 * Counts the number of rows that match the dynamic query.
+	 * Returns the number of rows that match the dynamic query.
 	 *
-	 * @param dynamicQuery the dynamic query to search with
+	 * @param dynamicQuery the dynamic query
 	 * @return the number of rows that match the dynamic query
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -172,9 +218,9 @@ public abstract class BarLocalServiceBaseImpl implements BarLocalService,
 	}
 
 	/**
-	 * Gets the bar with the primary key.
+	 * Returns the bar with the primary key.
 	 *
-	 * @param barId the primary key of the bar to get
+	 * @param barId the primary key of the bar
 	 * @return the bar
 	 * @throws PortalException if a bar with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -184,14 +230,14 @@ public abstract class BarLocalServiceBaseImpl implements BarLocalService,
 	}
 
 	/**
-	 * Gets a range of all the bars.
+	 * Returns a range of all the bars.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of bars to return
-	 * @param end the upper bound of the range of bars to return (not inclusive)
+	 * @param start the lower bound of the range of bars
+	 * @param end the upper bound of the range of bars (not inclusive)
 	 * @return the range of bars
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -200,7 +246,7 @@ public abstract class BarLocalServiceBaseImpl implements BarLocalService,
 	}
 
 	/**
-	 * Gets the number of bars.
+	 * Returns the number of bars.
 	 *
 	 * @return the number of bars
 	 * @throws SystemException if a system exception occurred
@@ -212,20 +258,18 @@ public abstract class BarLocalServiceBaseImpl implements BarLocalService,
 	/**
 	 * Updates the bar in the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param bar the bar to update
+	 * @param bar the bar
 	 * @return the bar that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
 	public Bar updateBar(Bar bar) throws SystemException {
-		bar.setNew(false);
-
-		return barPersistence.update(bar, true);
+		return updateBar(bar, true);
 	}
 
 	/**
 	 * Updates the bar in the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param bar the bar to update
+	 * @param bar the bar
 	 * @param merge whether to merge the bar with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
 	 * @return the bar that was updated
 	 * @throws SystemException if a system exception occurred
@@ -233,11 +277,26 @@ public abstract class BarLocalServiceBaseImpl implements BarLocalService,
 	public Bar updateBar(Bar bar, boolean merge) throws SystemException {
 		bar.setNew(false);
 
-		return barPersistence.update(bar, merge);
+		bar = barPersistence.update(bar, merge);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.reindex(bar);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
+
+		return bar;
 	}
 
 	/**
-	 * Gets the bar local service.
+	 * Returns the bar local service.
 	 *
 	 * @return the bar local service
 	 */
@@ -255,7 +314,7 @@ public abstract class BarLocalServiceBaseImpl implements BarLocalService,
 	}
 
 	/**
-	 * Gets the bar persistence.
+	 * Returns the bar persistence.
 	 *
 	 * @return the bar persistence
 	 */
@@ -273,7 +332,7 @@ public abstract class BarLocalServiceBaseImpl implements BarLocalService,
 	}
 
 	/**
-	 * Gets the counter local service.
+	 * Returns the counter local service.
 	 *
 	 * @return the counter local service
 	 */
@@ -291,7 +350,7 @@ public abstract class BarLocalServiceBaseImpl implements BarLocalService,
 	}
 
 	/**
-	 * Gets the class name local service.
+	 * Returns the class name local service.
 	 *
 	 * @return the class name local service
 	 */
@@ -310,7 +369,7 @@ public abstract class BarLocalServiceBaseImpl implements BarLocalService,
 	}
 
 	/**
-	 * Gets the class name remote service.
+	 * Returns the class name remote service.
 	 *
 	 * @return the class name remote service
 	 */
@@ -328,7 +387,7 @@ public abstract class BarLocalServiceBaseImpl implements BarLocalService,
 	}
 
 	/**
-	 * Gets the class name persistence.
+	 * Returns the class name persistence.
 	 *
 	 * @return the class name persistence
 	 */
@@ -347,7 +406,7 @@ public abstract class BarLocalServiceBaseImpl implements BarLocalService,
 	}
 
 	/**
-	 * Gets the resource local service.
+	 * Returns the resource local service.
 	 *
 	 * @return the resource local service
 	 */
@@ -366,7 +425,7 @@ public abstract class BarLocalServiceBaseImpl implements BarLocalService,
 	}
 
 	/**
-	 * Gets the resource remote service.
+	 * Returns the resource remote service.
 	 *
 	 * @return the resource remote service
 	 */
@@ -384,7 +443,7 @@ public abstract class BarLocalServiceBaseImpl implements BarLocalService,
 	}
 
 	/**
-	 * Gets the resource persistence.
+	 * Returns the resource persistence.
 	 *
 	 * @return the resource persistence
 	 */
@@ -402,7 +461,7 @@ public abstract class BarLocalServiceBaseImpl implements BarLocalService,
 	}
 
 	/**
-	 * Gets the user local service.
+	 * Returns the user local service.
 	 *
 	 * @return the user local service
 	 */
@@ -420,7 +479,7 @@ public abstract class BarLocalServiceBaseImpl implements BarLocalService,
 	}
 
 	/**
-	 * Gets the user remote service.
+	 * Returns the user remote service.
 	 *
 	 * @return the user remote service
 	 */
@@ -438,7 +497,7 @@ public abstract class BarLocalServiceBaseImpl implements BarLocalService,
 	}
 
 	/**
-	 * Gets the user persistence.
+	 * Returns the user persistence.
 	 *
 	 * @return the user persistence
 	 */
@@ -456,7 +515,7 @@ public abstract class BarLocalServiceBaseImpl implements BarLocalService,
 	}
 
 	/**
-	 * Gets the Spring bean ID for this bean.
+	 * Returns the Spring bean ID for this bean.
 	 *
 	 * @return the Spring bean ID for this bean
 	 */
@@ -473,10 +532,18 @@ public abstract class BarLocalServiceBaseImpl implements BarLocalService,
 		_beanIdentifier = beanIdentifier;
 	}
 
+	protected Class<?> getModelClass() {
+		return Bar.class;
+	}
+
+	protected String getModelClassName() {
+		return Bar.class.getName();
+	}
+
 	/**
 	 * Performs an SQL query.
 	 *
-	 * @param sql the sql query to perform
+	 * @param sql the sql query
 	 */
 	protected void runSQL(String sql) throws SystemException {
 		try {
@@ -516,5 +583,6 @@ public abstract class BarLocalServiceBaseImpl implements BarLocalService,
 	protected UserService userService;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
+	private static Log _log = LogFactoryUtil.getLog(BarLocalServiceBaseImpl.class);
 	private String _beanIdentifier;
 }

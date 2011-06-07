@@ -50,21 +50,21 @@ public interface CalendarEventModel extends BaseModel<CalendarEvent>,
 	 */
 
 	/**
-	 * Gets the primary key of this calendar event.
+	 * Returns the primary key of this calendar event.
 	 *
 	 * @return the primary key of this calendar event
 	 */
 	public long getPrimaryKey();
 
 	/**
-	 * Sets the primary key of this calendar event
+	 * Sets the primary key of this calendar event.
 	 *
 	 * @param primaryKey the primary key of this calendar event
 	 */
 	public void setPrimaryKey(long primaryKey);
 
 	/**
-	 * Gets the uuid of this calendar event.
+	 * Returns the uuid of this calendar event.
 	 *
 	 * @return the uuid of this calendar event
 	 */
@@ -79,7 +79,7 @@ public interface CalendarEventModel extends BaseModel<CalendarEvent>,
 	public void setUuid(String uuid);
 
 	/**
-	 * Gets the calendar event ID of this calendar event.
+	 * Returns the calendar event ID of this calendar event.
 	 *
 	 * @return the calendar event ID of this calendar event
 	 */
@@ -93,7 +93,7 @@ public interface CalendarEventModel extends BaseModel<CalendarEvent>,
 	public void setCalendarEventId(long calendarEventId);
 
 	/**
-	 * Gets the group ID of this calendar event.
+	 * Returns the group ID of this calendar event.
 	 *
 	 * @return the group ID of this calendar event
 	 */
@@ -107,7 +107,7 @@ public interface CalendarEventModel extends BaseModel<CalendarEvent>,
 	public void setGroupId(long groupId);
 
 	/**
-	 * Gets the company ID of this calendar event.
+	 * Returns the company ID of this calendar event.
 	 *
 	 * @return the company ID of this calendar event
 	 */
@@ -121,7 +121,7 @@ public interface CalendarEventModel extends BaseModel<CalendarEvent>,
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the user ID of this calendar event.
+	 * Returns the user ID of this calendar event.
 	 *
 	 * @return the user ID of this calendar event
 	 */
@@ -135,7 +135,7 @@ public interface CalendarEventModel extends BaseModel<CalendarEvent>,
 	public void setUserId(long userId);
 
 	/**
-	 * Gets the user uuid of this calendar event.
+	 * Returns the user uuid of this calendar event.
 	 *
 	 * @return the user uuid of this calendar event
 	 * @throws SystemException if a system exception occurred
@@ -150,7 +150,7 @@ public interface CalendarEventModel extends BaseModel<CalendarEvent>,
 	public void setUserUuid(String userUuid);
 
 	/**
-	 * Gets the user name of this calendar event.
+	 * Returns the user name of this calendar event.
 	 *
 	 * @return the user name of this calendar event
 	 */
@@ -165,7 +165,7 @@ public interface CalendarEventModel extends BaseModel<CalendarEvent>,
 	public void setUserName(String userName);
 
 	/**
-	 * Gets the create date of this calendar event.
+	 * Returns the create date of this calendar event.
 	 *
 	 * @return the create date of this calendar event
 	 */
@@ -179,7 +179,7 @@ public interface CalendarEventModel extends BaseModel<CalendarEvent>,
 	public void setCreateDate(Date createDate);
 
 	/**
-	 * Gets the modified date of this calendar event.
+	 * Returns the modified date of this calendar event.
 	 *
 	 * @return the modified date of this calendar event
 	 */
@@ -193,50 +193,50 @@ public interface CalendarEventModel extends BaseModel<CalendarEvent>,
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Gets the title of this calendar event.
+	 * Returns the title of this calendar event.
 	 *
 	 * @return the title of this calendar event
 	 */
 	public String getTitle();
 
 	/**
-	 * Gets the localized title of this calendar event. Uses the default language if no localization exists for the requested language.
+	 * Returns the localized title of this calendar event in the language. Uses the default language if no localization exists for the requested language.
 	 *
-	 * @param locale the locale to get the localized title for
+	 * @param locale the locale of the language
 	 * @return the localized title of this calendar event
 	 */
 	public String getTitle(Locale locale);
 
 	/**
-	 * Gets the localized title of this calendar event, optionally using the default language if no localization exists for the requested language.
+	 * Returns the localized title of this calendar event in the language, optionally using the default language if no localization exists for the requested language.
 	 *
-	 * @param locale the local to get the localized title for
+	 * @param locale the local of the language
 	 * @param useDefault whether to use the default language if no localization exists for the requested language
 	 * @return the localized title of this calendar event. If <code>useDefault</code> is <code>false</code> and no localization exists for the requested language, an empty string will be returned.
 	 */
 	public String getTitle(Locale locale, boolean useDefault);
 
 	/**
-	 * Gets the localized title of this calendar event. Uses the default language if no localization exists for the requested language.
+	 * Returns the localized title of this calendar event in the language. Uses the default language if no localization exists for the requested language.
 	 *
-	 * @param languageId the id of the language to get the localized title for
+	 * @param languageId the ID of the language
 	 * @return the localized title of this calendar event
 	 */
 	public String getTitle(String languageId);
 
 	/**
-	 * Gets the localized title of this calendar event, optionally using the default language if no localization exists for the requested language.
+	 * Returns the localized title of this calendar event in the language, optionally using the default language if no localization exists for the requested language.
 	 *
-	 * @param languageId the id of the language to get the localized title for
+	 * @param languageId the ID of the language
 	 * @param useDefault whether to use the default language if no localization exists for the requested language
 	 * @return the localized title of this calendar event
 	 */
 	public String getTitle(String languageId, boolean useDefault);
 
 	/**
-	 * Gets a map of the locales and localized title of this calendar event.
+	 * Returns a map of the locales and localized titles of this calendar event.
 	 *
-	 * @return the locales and localized title
+	 * @return the locales and localized titles of this calendar event
 	 */
 	public Map<Locale, String> getTitleMap();
 
@@ -248,13 +248,20 @@ public interface CalendarEventModel extends BaseModel<CalendarEvent>,
 	public void setTitle(String title);
 
 	/**
-	 * Sets the localized title of this calendar event.
+	 * Sets the localized title of this calendar event in the language.
 	 *
 	 * @param title the localized title of this calendar event
-	 * @param locale the locale to set the localized title for
+	 * @param locale the locale of the language
 	 */
 	public void setTitle(String title, Locale locale);
 
+	/**
+	 * Sets the localized title of this calendar event in the language, and sets the default locale.
+	 *
+	 * @param title the localized title of this calendar event
+	 * @param locale the locale of the language
+	 * @param defaultLocale the default locale
+	 */
 	public void setTitle(String title, Locale locale, Locale defaultLocale);
 
 	/**
@@ -264,53 +271,59 @@ public interface CalendarEventModel extends BaseModel<CalendarEvent>,
 	 */
 	public void setTitleMap(Map<Locale, String> titleMap);
 
+	/**
+	 * Sets the localized titles of this calendar event from the map of locales and localized titles, and sets the default locale.
+	 *
+	 * @param titleMap the locales and localized titles of this calendar event
+	 * @param defaultLocale the default locale
+	 */
 	public void setTitleMap(Map<Locale, String> titleMap, Locale defaultLocale);
 
 	/**
-	 * Gets the description of this calendar event.
+	 * Returns the description of this calendar event.
 	 *
 	 * @return the description of this calendar event
 	 */
 	public String getDescription();
 
 	/**
-	 * Gets the localized description of this calendar event. Uses the default language if no localization exists for the requested language.
+	 * Returns the localized description of this calendar event in the language. Uses the default language if no localization exists for the requested language.
 	 *
-	 * @param locale the locale to get the localized description for
+	 * @param locale the locale of the language
 	 * @return the localized description of this calendar event
 	 */
 	public String getDescription(Locale locale);
 
 	/**
-	 * Gets the localized description of this calendar event, optionally using the default language if no localization exists for the requested language.
+	 * Returns the localized description of this calendar event in the language, optionally using the default language if no localization exists for the requested language.
 	 *
-	 * @param locale the local to get the localized description for
+	 * @param locale the local of the language
 	 * @param useDefault whether to use the default language if no localization exists for the requested language
 	 * @return the localized description of this calendar event. If <code>useDefault</code> is <code>false</code> and no localization exists for the requested language, an empty string will be returned.
 	 */
 	public String getDescription(Locale locale, boolean useDefault);
 
 	/**
-	 * Gets the localized description of this calendar event. Uses the default language if no localization exists for the requested language.
+	 * Returns the localized description of this calendar event in the language. Uses the default language if no localization exists for the requested language.
 	 *
-	 * @param languageId the id of the language to get the localized description for
+	 * @param languageId the ID of the language
 	 * @return the localized description of this calendar event
 	 */
 	public String getDescription(String languageId);
 
 	/**
-	 * Gets the localized description of this calendar event, optionally using the default language if no localization exists for the requested language.
+	 * Returns the localized description of this calendar event in the language, optionally using the default language if no localization exists for the requested language.
 	 *
-	 * @param languageId the id of the language to get the localized description for
+	 * @param languageId the ID of the language
 	 * @param useDefault whether to use the default language if no localization exists for the requested language
 	 * @return the localized description of this calendar event
 	 */
 	public String getDescription(String languageId, boolean useDefault);
 
 	/**
-	 * Gets a map of the locales and localized description of this calendar event.
+	 * Returns a map of the locales and localized descriptions of this calendar event.
 	 *
-	 * @return the locales and localized description
+	 * @return the locales and localized descriptions of this calendar event
 	 */
 	public Map<Locale, String> getDescriptionMap();
 
@@ -322,13 +335,20 @@ public interface CalendarEventModel extends BaseModel<CalendarEvent>,
 	public void setDescription(String description);
 
 	/**
-	 * Sets the localized description of this calendar event.
+	 * Sets the localized description of this calendar event in the language.
 	 *
 	 * @param description the localized description of this calendar event
-	 * @param locale the locale to set the localized description for
+	 * @param locale the locale of the language
 	 */
 	public void setDescription(String description, Locale locale);
 
+	/**
+	 * Sets the localized description of this calendar event in the language, and sets the default locale.
+	 *
+	 * @param description the localized description of this calendar event
+	 * @param locale the locale of the language
+	 * @param defaultLocale the default locale
+	 */
 	public void setDescription(String description, Locale locale,
 		Locale defaultLocale);
 
@@ -339,11 +359,17 @@ public interface CalendarEventModel extends BaseModel<CalendarEvent>,
 	 */
 	public void setDescriptionMap(Map<Locale, String> descriptionMap);
 
+	/**
+	 * Sets the localized descriptions of this calendar event from the map of locales and localized descriptions, and sets the default locale.
+	 *
+	 * @param descriptionMap the locales and localized descriptions of this calendar event
+	 * @param defaultLocale the default locale
+	 */
 	public void setDescriptionMap(Map<Locale, String> descriptionMap,
 		Locale defaultLocale);
 
 	/**
-	 * Gets the location of this calendar event.
+	 * Returns the location of this calendar event.
 	 *
 	 * @return the location of this calendar event
 	 */
@@ -358,7 +384,7 @@ public interface CalendarEventModel extends BaseModel<CalendarEvent>,
 	public void setLocation(String location);
 
 	/**
-	 * Gets the start date of this calendar event.
+	 * Returns the start date of this calendar event.
 	 *
 	 * @return the start date of this calendar event
 	 */
@@ -372,7 +398,7 @@ public interface CalendarEventModel extends BaseModel<CalendarEvent>,
 	public void setStartDate(Date startDate);
 
 	/**
-	 * Gets the end date of this calendar event.
+	 * Returns the end date of this calendar event.
 	 *
 	 * @return the end date of this calendar event
 	 */
@@ -386,7 +412,7 @@ public interface CalendarEventModel extends BaseModel<CalendarEvent>,
 	public void setEndDate(Date endDate);
 
 	/**
-	 * Gets the duration hour of this calendar event.
+	 * Returns the duration hour of this calendar event.
 	 *
 	 * @return the duration hour of this calendar event
 	 */
@@ -400,7 +426,7 @@ public interface CalendarEventModel extends BaseModel<CalendarEvent>,
 	public void setDurationHour(int durationHour);
 
 	/**
-	 * Gets the duration minute of this calendar event.
+	 * Returns the duration minute of this calendar event.
 	 *
 	 * @return the duration minute of this calendar event
 	 */
@@ -414,7 +440,7 @@ public interface CalendarEventModel extends BaseModel<CalendarEvent>,
 	public void setDurationMinute(int durationMinute);
 
 	/**
-	 * Gets the all day of this calendar event.
+	 * Returns the all day of this calendar event.
 	 *
 	 * @return the all day of this calendar event
 	 */
@@ -435,7 +461,7 @@ public interface CalendarEventModel extends BaseModel<CalendarEvent>,
 	public void setAllDay(boolean allDay);
 
 	/**
-	 * Gets the recurrence of this calendar event.
+	 * Returns the recurrence of this calendar event.
 	 *
 	 * @return the recurrence of this calendar event
 	 */
@@ -450,7 +476,7 @@ public interface CalendarEventModel extends BaseModel<CalendarEvent>,
 	public void setRecurrence(String recurrence);
 
 	/**
-	 * Gets the type of this calendar event.
+	 * Returns the type of this calendar event.
 	 *
 	 * @return the type of this calendar event
 	 */
@@ -465,7 +491,7 @@ public interface CalendarEventModel extends BaseModel<CalendarEvent>,
 	public void setType(String type);
 
 	/**
-	 * Gets the remind by of this calendar event.
+	 * Returns the remind by of this calendar event.
 	 *
 	 * @return the remind by of this calendar event
 	 */
@@ -479,7 +505,7 @@ public interface CalendarEventModel extends BaseModel<CalendarEvent>,
 	public void setRemindBy(int remindBy);
 
 	/**
-	 * Gets the first reminder of this calendar event.
+	 * Returns the first reminder of this calendar event.
 	 *
 	 * @return the first reminder of this calendar event
 	 */
@@ -493,7 +519,7 @@ public interface CalendarEventModel extends BaseModel<CalendarEvent>,
 	public void setFirstReminder(int firstReminder);
 
 	/**
-	 * Gets the second reminder of this calendar event.
+	 * Returns the second reminder of this calendar event.
 	 *
 	 * @return the second reminder of this calendar event
 	 */

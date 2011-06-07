@@ -47,21 +47,21 @@ public interface TasksEntryModel extends BaseModel<TasksEntry>, GroupedModel {
 	 */
 
 	/**
-	 * Gets the primary key of this tasks entry.
+	 * Returns the primary key of this tasks entry.
 	 *
 	 * @return the primary key of this tasks entry
 	 */
 	public long getPrimaryKey();
 
 	/**
-	 * Sets the primary key of this tasks entry
+	 * Sets the primary key of this tasks entry.
 	 *
 	 * @param primaryKey the primary key of this tasks entry
 	 */
 	public void setPrimaryKey(long primaryKey);
 
 	/**
-	 * Gets the tasks entry ID of this tasks entry.
+	 * Returns the tasks entry ID of this tasks entry.
 	 *
 	 * @return the tasks entry ID of this tasks entry
 	 */
@@ -75,7 +75,7 @@ public interface TasksEntryModel extends BaseModel<TasksEntry>, GroupedModel {
 	public void setTasksEntryId(long tasksEntryId);
 
 	/**
-	 * Gets the group ID of this tasks entry.
+	 * Returns the group ID of this tasks entry.
 	 *
 	 * @return the group ID of this tasks entry
 	 */
@@ -89,7 +89,7 @@ public interface TasksEntryModel extends BaseModel<TasksEntry>, GroupedModel {
 	public void setGroupId(long groupId);
 
 	/**
-	 * Gets the company ID of this tasks entry.
+	 * Returns the company ID of this tasks entry.
 	 *
 	 * @return the company ID of this tasks entry
 	 */
@@ -103,7 +103,7 @@ public interface TasksEntryModel extends BaseModel<TasksEntry>, GroupedModel {
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the user ID of this tasks entry.
+	 * Returns the user ID of this tasks entry.
 	 *
 	 * @return the user ID of this tasks entry
 	 */
@@ -117,7 +117,7 @@ public interface TasksEntryModel extends BaseModel<TasksEntry>, GroupedModel {
 	public void setUserId(long userId);
 
 	/**
-	 * Gets the user uuid of this tasks entry.
+	 * Returns the user uuid of this tasks entry.
 	 *
 	 * @return the user uuid of this tasks entry
 	 * @throws SystemException if a system exception occurred
@@ -132,7 +132,7 @@ public interface TasksEntryModel extends BaseModel<TasksEntry>, GroupedModel {
 	public void setUserUuid(String userUuid);
 
 	/**
-	 * Gets the user name of this tasks entry.
+	 * Returns the user name of this tasks entry.
 	 *
 	 * @return the user name of this tasks entry
 	 */
@@ -147,7 +147,7 @@ public interface TasksEntryModel extends BaseModel<TasksEntry>, GroupedModel {
 	public void setUserName(String userName);
 
 	/**
-	 * Gets the create date of this tasks entry.
+	 * Returns the create date of this tasks entry.
 	 *
 	 * @return the create date of this tasks entry
 	 */
@@ -161,7 +161,7 @@ public interface TasksEntryModel extends BaseModel<TasksEntry>, GroupedModel {
 	public void setCreateDate(Date createDate);
 
 	/**
-	 * Gets the modified date of this tasks entry.
+	 * Returns the modified date of this tasks entry.
 	 *
 	 * @return the modified date of this tasks entry
 	 */
@@ -175,7 +175,7 @@ public interface TasksEntryModel extends BaseModel<TasksEntry>, GroupedModel {
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Gets the title of this tasks entry.
+	 * Returns the title of this tasks entry.
 	 *
 	 * @return the title of this tasks entry
 	 */
@@ -190,7 +190,7 @@ public interface TasksEntryModel extends BaseModel<TasksEntry>, GroupedModel {
 	public void setTitle(String title);
 
 	/**
-	 * Gets the priority of this tasks entry.
+	 * Returns the priority of this tasks entry.
 	 *
 	 * @return the priority of this tasks entry
 	 */
@@ -204,7 +204,7 @@ public interface TasksEntryModel extends BaseModel<TasksEntry>, GroupedModel {
 	public void setPriority(int priority);
 
 	/**
-	 * Gets the assignee user ID of this tasks entry.
+	 * Returns the assignee user ID of this tasks entry.
 	 *
 	 * @return the assignee user ID of this tasks entry
 	 */
@@ -218,7 +218,7 @@ public interface TasksEntryModel extends BaseModel<TasksEntry>, GroupedModel {
 	public void setAssigneeUserId(long assigneeUserId);
 
 	/**
-	 * Gets the assignee user uuid of this tasks entry.
+	 * Returns the assignee user uuid of this tasks entry.
 	 *
 	 * @return the assignee user uuid of this tasks entry
 	 * @throws SystemException if a system exception occurred
@@ -233,7 +233,7 @@ public interface TasksEntryModel extends BaseModel<TasksEntry>, GroupedModel {
 	public void setAssigneeUserUuid(String assigneeUserUuid);
 
 	/**
-	 * Gets the resolver user ID of this tasks entry.
+	 * Returns the resolver user ID of this tasks entry.
 	 *
 	 * @return the resolver user ID of this tasks entry
 	 */
@@ -247,7 +247,7 @@ public interface TasksEntryModel extends BaseModel<TasksEntry>, GroupedModel {
 	public void setResolverUserId(long resolverUserId);
 
 	/**
-	 * Gets the resolver user uuid of this tasks entry.
+	 * Returns the resolver user uuid of this tasks entry.
 	 *
 	 * @return the resolver user uuid of this tasks entry
 	 * @throws SystemException if a system exception occurred
@@ -262,7 +262,7 @@ public interface TasksEntryModel extends BaseModel<TasksEntry>, GroupedModel {
 	public void setResolverUserUuid(String resolverUserUuid);
 
 	/**
-	 * Gets the due date of this tasks entry.
+	 * Returns the due date of this tasks entry.
 	 *
 	 * @return the due date of this tasks entry
 	 */
@@ -276,7 +276,7 @@ public interface TasksEntryModel extends BaseModel<TasksEntry>, GroupedModel {
 	public void setDueDate(Date dueDate);
 
 	/**
-	 * Gets the finish date of this tasks entry.
+	 * Returns the finish date of this tasks entry.
 	 *
 	 * @return the finish date of this tasks entry
 	 */
@@ -290,7 +290,7 @@ public interface TasksEntryModel extends BaseModel<TasksEntry>, GroupedModel {
 	public void setFinishDate(Date finishDate);
 
 	/**
-	 * Gets the status of this tasks entry.
+	 * Returns the status of this tasks entry.
 	 *
 	 * @return the status of this tasks entry
 	 */

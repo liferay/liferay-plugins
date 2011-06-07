@@ -41,14 +41,14 @@ public interface TypePersistence extends BasePersistence<Type> {
 	/**
 	* Caches the type in the entity cache if it is enabled.
 	*
-	* @param type the type to cache
+	* @param type the type
 	*/
 	public void cacheResult(com.liferay.ams.model.Type type);
 
 	/**
 	* Caches the types in the entity cache if it is enabled.
 	*
-	* @param types the types to cache
+	* @param types the types
 	*/
 	public void cacheResult(java.util.List<com.liferay.ams.model.Type> types);
 
@@ -63,7 +63,7 @@ public interface TypePersistence extends BasePersistence<Type> {
 	/**
 	* Removes the type with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param typeId the primary key of the type to remove
+	* @param typeId the primary key of the type
 	* @return the type that was removed
 	* @throws com.liferay.ams.NoSuchTypeException if a type with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -77,9 +77,9 @@ public interface TypePersistence extends BasePersistence<Type> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the type with the primary key or throws a {@link com.liferay.ams.NoSuchTypeException} if it could not be found.
+	* Returns the type with the primary key or throws a {@link com.liferay.ams.NoSuchTypeException} if it could not be found.
 	*
-	* @param typeId the primary key of the type to find
+	* @param typeId the primary key of the type
 	* @return the type
 	* @throws com.liferay.ams.NoSuchTypeException if a type with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -89,9 +89,9 @@ public interface TypePersistence extends BasePersistence<Type> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the type with the primary key or returns <code>null</code> if it could not be found.
+	* Returns the type with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param typeId the primary key of the type to find
+	* @param typeId the primary key of the type
 	* @return the type, or <code>null</code> if a type with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -99,7 +99,7 @@ public interface TypePersistence extends BasePersistence<Type> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds all the types.
+	* Returns all the types.
 	*
 	* @return the types
 	* @throws SystemException if a system exception occurred
@@ -108,14 +108,14 @@ public interface TypePersistence extends BasePersistence<Type> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds a range of all the types.
+	* Returns a range of all the types.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of types to return
-	* @param end the upper bound of the range of types to return (not inclusive)
+	* @param start the lower bound of the range of types
+	* @param end the upper bound of the range of types (not inclusive)
 	* @return the range of types
 	* @throws SystemException if a system exception occurred
 	*/
@@ -123,14 +123,14 @@ public interface TypePersistence extends BasePersistence<Type> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds an ordered range of all the types.
+	* Returns an ordered range of all the types.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of types to return
-	* @param end the upper bound of the range of types to return (not inclusive)
+	* @param start the lower bound of the range of types
+	* @param end the upper bound of the range of types (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of types
 	* @throws SystemException if a system exception occurred
@@ -149,7 +149,7 @@ public interface TypePersistence extends BasePersistence<Type> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Counts all the types.
+	* Returns the number of types.
 	*
 	* @return the number of types
 	* @throws SystemException if a system exception occurred

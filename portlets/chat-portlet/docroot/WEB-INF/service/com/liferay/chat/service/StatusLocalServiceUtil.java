@@ -42,7 +42,7 @@ public class StatusLocalServiceUtil {
 	/**
 	* Adds the status to the database. Also notifies the appropriate model listeners.
 	*
-	* @param status the status to add
+	* @param status the status
 	* @return the status that was added
 	* @throws SystemException if a system exception occurred
 	*/
@@ -65,7 +65,7 @@ public class StatusLocalServiceUtil {
 	/**
 	* Deletes the status with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param statusId the primary key of the status to delete
+	* @param statusId the primary key of the status
 	* @throws PortalException if a status with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -78,7 +78,7 @@ public class StatusLocalServiceUtil {
 	/**
 	* Deletes the status from the database. Also notifies the appropriate model listeners.
 	*
-	* @param status the status to delete
+	* @param status the status
 	* @throws SystemException if a system exception occurred
 	*/
 	public static void deleteStatus(com.liferay.chat.model.Status status)
@@ -89,7 +89,7 @@ public class StatusLocalServiceUtil {
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
 	*
-	* @param dynamicQuery the dynamic query to search with
+	* @param dynamicQuery the dynamic query
 	* @return the matching rows
 	* @throws SystemException if a system exception occurred
 	*/
@@ -107,9 +107,9 @@ public class StatusLocalServiceUtil {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param dynamicQuery the dynamic query to search with
-	* @param start the lower bound of the range of model instances to return
-	* @param end the upper bound of the range of model instances to return (not inclusive)
+	* @param dynamicQuery the dynamic query
+	* @param start the lower bound of the range of model instances
+	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
 	* @throws SystemException if a system exception occurred
 	*/
@@ -127,9 +127,9 @@ public class StatusLocalServiceUtil {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param dynamicQuery the dynamic query to search with
-	* @param start the lower bound of the range of model instances to return
-	* @param end the upper bound of the range of model instances to return (not inclusive)
+	* @param dynamicQuery the dynamic query
+	* @param start the lower bound of the range of model instances
+	* @param end the upper bound of the range of model instances (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
 	* @throws SystemException if a system exception occurred
@@ -145,9 +145,9 @@ public class StatusLocalServiceUtil {
 	}
 
 	/**
-	* Counts the number of rows that match the dynamic query.
+	* Returns the number of rows that match the dynamic query.
 	*
-	* @param dynamicQuery the dynamic query to search with
+	* @param dynamicQuery the dynamic query
 	* @return the number of rows that match the dynamic query
 	* @throws SystemException if a system exception occurred
 	*/
@@ -158,9 +158,9 @@ public class StatusLocalServiceUtil {
 	}
 
 	/**
-	* Gets the status with the primary key.
+	* Returns the status with the primary key.
 	*
-	* @param statusId the primary key of the status to get
+	* @param statusId the primary key of the status
 	* @return the status
 	* @throws PortalException if a status with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -172,14 +172,14 @@ public class StatusLocalServiceUtil {
 	}
 
 	/**
-	* Gets a range of all the statuses.
+	* Returns a range of all the statuses.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of statuses to return
-	* @param end the upper bound of the range of statuses to return (not inclusive)
+	* @param start the lower bound of the range of statuses
+	* @param end the upper bound of the range of statuses (not inclusive)
 	* @return the range of statuses
 	* @throws SystemException if a system exception occurred
 	*/
@@ -190,7 +190,7 @@ public class StatusLocalServiceUtil {
 	}
 
 	/**
-	* Gets the number of statuses.
+	* Returns the number of statuses.
 	*
 	* @return the number of statuses
 	* @throws SystemException if a system exception occurred
@@ -203,7 +203,7 @@ public class StatusLocalServiceUtil {
 	/**
 	* Updates the status in the database. Also notifies the appropriate model listeners.
 	*
-	* @param status the status to update
+	* @param status the status
 	* @return the status that was updated
 	* @throws SystemException if a system exception occurred
 	*/
@@ -216,7 +216,7 @@ public class StatusLocalServiceUtil {
 	/**
 	* Updates the status in the database. Also notifies the appropriate model listeners.
 	*
-	* @param status the status to update
+	* @param status the status
 	* @param merge whether to merge the status with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
 	* @return the status that was updated
 	* @throws SystemException if a system exception occurred
@@ -228,7 +228,7 @@ public class StatusLocalServiceUtil {
 	}
 
 	/**
-	* Gets the Spring bean ID for this bean.
+	* Returns the Spring bean ID for this bean.
 	*
 	* @return the Spring bean ID for this bean
 	*/

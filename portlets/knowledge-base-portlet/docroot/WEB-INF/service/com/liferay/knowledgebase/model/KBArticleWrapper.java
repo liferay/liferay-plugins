@@ -37,7 +37,7 @@ public class KBArticleWrapper implements KBArticle {
 	}
 
 	/**
-	* Gets the primary key of this k b article.
+	* Returns the primary key of this k b article.
 	*
 	* @return the primary key of this k b article
 	*/
@@ -46,7 +46,7 @@ public class KBArticleWrapper implements KBArticle {
 	}
 
 	/**
-	* Sets the primary key of this k b article
+	* Sets the primary key of this k b article.
 	*
 	* @param primaryKey the primary key of this k b article
 	*/
@@ -55,7 +55,7 @@ public class KBArticleWrapper implements KBArticle {
 	}
 
 	/**
-	* Gets the uuid of this k b article.
+	* Returns the uuid of this k b article.
 	*
 	* @return the uuid of this k b article
 	*/
@@ -73,7 +73,7 @@ public class KBArticleWrapper implements KBArticle {
 	}
 
 	/**
-	* Gets the kb article ID of this k b article.
+	* Returns the kb article ID of this k b article.
 	*
 	* @return the kb article ID of this k b article
 	*/
@@ -91,7 +91,7 @@ public class KBArticleWrapper implements KBArticle {
 	}
 
 	/**
-	* Gets the resource prim key of this k b article.
+	* Returns the resource prim key of this k b article.
 	*
 	* @return the resource prim key of this k b article
 	*/
@@ -113,7 +113,7 @@ public class KBArticleWrapper implements KBArticle {
 	}
 
 	/**
-	* Gets the group ID of this k b article.
+	* Returns the group ID of this k b article.
 	*
 	* @return the group ID of this k b article
 	*/
@@ -131,7 +131,7 @@ public class KBArticleWrapper implements KBArticle {
 	}
 
 	/**
-	* Gets the company ID of this k b article.
+	* Returns the company ID of this k b article.
 	*
 	* @return the company ID of this k b article
 	*/
@@ -149,7 +149,7 @@ public class KBArticleWrapper implements KBArticle {
 	}
 
 	/**
-	* Gets the user ID of this k b article.
+	* Returns the user ID of this k b article.
 	*
 	* @return the user ID of this k b article
 	*/
@@ -167,7 +167,7 @@ public class KBArticleWrapper implements KBArticle {
 	}
 
 	/**
-	* Gets the user uuid of this k b article.
+	* Returns the user uuid of this k b article.
 	*
 	* @return the user uuid of this k b article
 	* @throws SystemException if a system exception occurred
@@ -187,7 +187,7 @@ public class KBArticleWrapper implements KBArticle {
 	}
 
 	/**
-	* Gets the user name of this k b article.
+	* Returns the user name of this k b article.
 	*
 	* @return the user name of this k b article
 	*/
@@ -205,7 +205,7 @@ public class KBArticleWrapper implements KBArticle {
 	}
 
 	/**
-	* Gets the create date of this k b article.
+	* Returns the create date of this k b article.
 	*
 	* @return the create date of this k b article
 	*/
@@ -223,7 +223,7 @@ public class KBArticleWrapper implements KBArticle {
 	}
 
 	/**
-	* Gets the modified date of this k b article.
+	* Returns the modified date of this k b article.
 	*
 	* @return the modified date of this k b article
 	*/
@@ -241,7 +241,7 @@ public class KBArticleWrapper implements KBArticle {
 	}
 
 	/**
-	* Gets the root resource prim key of this k b article.
+	* Returns the root resource prim key of this k b article.
 	*
 	* @return the root resource prim key of this k b article
 	*/
@@ -259,7 +259,7 @@ public class KBArticleWrapper implements KBArticle {
 	}
 
 	/**
-	* Gets the parent resource prim key of this k b article.
+	* Returns the parent resource prim key of this k b article.
 	*
 	* @return the parent resource prim key of this k b article
 	*/
@@ -277,7 +277,7 @@ public class KBArticleWrapper implements KBArticle {
 	}
 
 	/**
-	* Gets the version of this k b article.
+	* Returns the version of this k b article.
 	*
 	* @return the version of this k b article
 	*/
@@ -295,7 +295,7 @@ public class KBArticleWrapper implements KBArticle {
 	}
 
 	/**
-	* Gets the title of this k b article.
+	* Returns the title of this k b article.
 	*
 	* @return the title of this k b article
 	*/
@@ -313,7 +313,7 @@ public class KBArticleWrapper implements KBArticle {
 	}
 
 	/**
-	* Gets the content of this k b article.
+	* Returns the content of this k b article.
 	*
 	* @return the content of this k b article
 	*/
@@ -331,7 +331,7 @@ public class KBArticleWrapper implements KBArticle {
 	}
 
 	/**
-	* Gets the description of this k b article.
+	* Returns the description of this k b article.
 	*
 	* @return the description of this k b article
 	*/
@@ -349,7 +349,7 @@ public class KBArticleWrapper implements KBArticle {
 	}
 
 	/**
-	* Gets the kb template ID of this k b article.
+	* Returns the kb template ID of this k b article.
 	*
 	* @return the kb template ID of this k b article
 	*/
@@ -367,7 +367,7 @@ public class KBArticleWrapper implements KBArticle {
 	}
 
 	/**
-	* Gets the priority of this k b article.
+	* Returns the priority of this k b article.
 	*
 	* @return the priority of this k b article
 	*/
@@ -385,7 +385,7 @@ public class KBArticleWrapper implements KBArticle {
 	}
 
 	/**
-	* Gets the sections of this k b article.
+	* Returns the sections of this k b article.
 	*
 	* @return the sections of this k b article
 	*/
@@ -403,7 +403,7 @@ public class KBArticleWrapper implements KBArticle {
 	}
 
 	/**
-	* Gets the view count of this k b article.
+	* Returns the view count of this k b article.
 	*
 	* @return the view count of this k b article
 	*/
@@ -421,7 +421,7 @@ public class KBArticleWrapper implements KBArticle {
 	}
 
 	/**
-	* Gets the latest of this k b article.
+	* Returns the latest of this k b article.
 	*
 	* @return the latest of this k b article
 	*/
@@ -448,7 +448,7 @@ public class KBArticleWrapper implements KBArticle {
 	}
 
 	/**
-	* Gets the main of this k b article.
+	* Returns the main of this k b article.
 	*
 	* @return the main of this k b article
 	*/
@@ -475,7 +475,7 @@ public class KBArticleWrapper implements KBArticle {
 	}
 
 	/**
-	* Gets the status of this k b article.
+	* Returns the status of this k b article.
 	*
 	* @return the status of this k b article
 	*/
@@ -493,7 +493,7 @@ public class KBArticleWrapper implements KBArticle {
 	}
 
 	/**
-	* Gets the status by user ID of this k b article.
+	* Returns the status by user ID of this k b article.
 	*
 	* @return the status by user ID of this k b article
 	*/
@@ -511,7 +511,7 @@ public class KBArticleWrapper implements KBArticle {
 	}
 
 	/**
-	* Gets the status by user uuid of this k b article.
+	* Returns the status by user uuid of this k b article.
 	*
 	* @return the status by user uuid of this k b article
 	* @throws SystemException if a system exception occurred
@@ -531,7 +531,7 @@ public class KBArticleWrapper implements KBArticle {
 	}
 
 	/**
-	* Gets the status by user name of this k b article.
+	* Returns the status by user name of this k b article.
 	*
 	* @return the status by user name of this k b article
 	*/
@@ -549,7 +549,7 @@ public class KBArticleWrapper implements KBArticle {
 	}
 
 	/**
-	* Gets the status date of this k b article.
+	* Returns the status date of this k b article.
 	*
 	* @return the status date of this k b article
 	*/
@@ -567,7 +567,7 @@ public class KBArticleWrapper implements KBArticle {
 	}
 
 	/**
-	* @deprecated {@link #isApproved}
+	* @deprecated Renamed to {@link #isApproved()}
 	*/
 	public boolean getApproved() {
 		return _kbArticle.getApproved();

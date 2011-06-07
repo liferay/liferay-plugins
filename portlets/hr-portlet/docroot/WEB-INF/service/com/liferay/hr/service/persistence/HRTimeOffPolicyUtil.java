@@ -121,7 +121,7 @@ public class HRTimeOffPolicyUtil {
 	/**
 	* Caches the h r time off policy in the entity cache if it is enabled.
 	*
-	* @param hrTimeOffPolicy the h r time off policy to cache
+	* @param hrTimeOffPolicy the h r time off policy
 	*/
 	public static void cacheResult(
 		com.liferay.hr.model.HRTimeOffPolicy hrTimeOffPolicy) {
@@ -131,7 +131,7 @@ public class HRTimeOffPolicyUtil {
 	/**
 	* Caches the h r time off policies in the entity cache if it is enabled.
 	*
-	* @param hrTimeOffPolicies the h r time off policies to cache
+	* @param hrTimeOffPolicies the h r time off policies
 	*/
 	public static void cacheResult(
 		java.util.List<com.liferay.hr.model.HRTimeOffPolicy> hrTimeOffPolicies) {
@@ -152,7 +152,7 @@ public class HRTimeOffPolicyUtil {
 	/**
 	* Removes the h r time off policy with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param hrTimeOffPolicyId the primary key of the h r time off policy to remove
+	* @param hrTimeOffPolicyId the primary key of the h r time off policy
 	* @return the h r time off policy that was removed
 	* @throws com.liferay.hr.NoSuchTimeOffPolicyException if a h r time off policy with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -171,9 +171,9 @@ public class HRTimeOffPolicyUtil {
 	}
 
 	/**
-	* Finds the h r time off policy with the primary key or throws a {@link com.liferay.hr.NoSuchTimeOffPolicyException} if it could not be found.
+	* Returns the h r time off policy with the primary key or throws a {@link com.liferay.hr.NoSuchTimeOffPolicyException} if it could not be found.
 	*
-	* @param hrTimeOffPolicyId the primary key of the h r time off policy to find
+	* @param hrTimeOffPolicyId the primary key of the h r time off policy
 	* @return the h r time off policy
 	* @throws com.liferay.hr.NoSuchTimeOffPolicyException if a h r time off policy with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -186,9 +186,9 @@ public class HRTimeOffPolicyUtil {
 	}
 
 	/**
-	* Finds the h r time off policy with the primary key or returns <code>null</code> if it could not be found.
+	* Returns the h r time off policy with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param hrTimeOffPolicyId the primary key of the h r time off policy to find
+	* @param hrTimeOffPolicyId the primary key of the h r time off policy
 	* @return the h r time off policy, or <code>null</code> if a h r time off policy with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -199,7 +199,7 @@ public class HRTimeOffPolicyUtil {
 	}
 
 	/**
-	* Finds all the h r time off policies.
+	* Returns all the h r time off policies.
 	*
 	* @return the h r time off policies
 	* @throws SystemException if a system exception occurred
@@ -210,14 +210,14 @@ public class HRTimeOffPolicyUtil {
 	}
 
 	/**
-	* Finds a range of all the h r time off policies.
+	* Returns a range of all the h r time off policies.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of h r time off policies to return
-	* @param end the upper bound of the range of h r time off policies to return (not inclusive)
+	* @param start the lower bound of the range of h r time off policies
+	* @param end the upper bound of the range of h r time off policies (not inclusive)
 	* @return the range of h r time off policies
 	* @throws SystemException if a system exception occurred
 	*/
@@ -228,14 +228,14 @@ public class HRTimeOffPolicyUtil {
 	}
 
 	/**
-	* Finds an ordered range of all the h r time off policies.
+	* Returns an ordered range of all the h r time off policies.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of h r time off policies to return
-	* @param end the upper bound of the range of h r time off policies to return (not inclusive)
+	* @param start the lower bound of the range of h r time off policies
+	* @param end the upper bound of the range of h r time off policies (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of h r time off policies
 	* @throws SystemException if a system exception occurred
@@ -258,7 +258,7 @@ public class HRTimeOffPolicyUtil {
 	}
 
 	/**
-	* Counts all the h r time off policies.
+	* Returns the number of h r time off policies.
 	*
 	* @return the number of h r time off policies
 	* @throws SystemException if a system exception occurred

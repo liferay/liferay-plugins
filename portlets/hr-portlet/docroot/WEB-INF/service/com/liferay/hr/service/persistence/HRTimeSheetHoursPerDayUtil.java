@@ -125,7 +125,7 @@ public class HRTimeSheetHoursPerDayUtil {
 	/**
 	* Caches the h r time sheet hours per day in the entity cache if it is enabled.
 	*
-	* @param hrTimeSheetHoursPerDay the h r time sheet hours per day to cache
+	* @param hrTimeSheetHoursPerDay the h r time sheet hours per day
 	*/
 	public static void cacheResult(
 		com.liferay.hr.model.HRTimeSheetHoursPerDay hrTimeSheetHoursPerDay) {
@@ -135,7 +135,7 @@ public class HRTimeSheetHoursPerDayUtil {
 	/**
 	* Caches the h r time sheet hours per daies in the entity cache if it is enabled.
 	*
-	* @param hrTimeSheetHoursPerDaies the h r time sheet hours per daies to cache
+	* @param hrTimeSheetHoursPerDaies the h r time sheet hours per daies
 	*/
 	public static void cacheResult(
 		java.util.List<com.liferay.hr.model.HRTimeSheetHoursPerDay> hrTimeSheetHoursPerDaies) {
@@ -156,7 +156,7 @@ public class HRTimeSheetHoursPerDayUtil {
 	/**
 	* Removes the h r time sheet hours per day with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param hrTimeSheetHoursPerDayId the primary key of the h r time sheet hours per day to remove
+	* @param hrTimeSheetHoursPerDayId the primary key of the h r time sheet hours per day
 	* @return the h r time sheet hours per day that was removed
 	* @throws com.liferay.hr.NoSuchTimeSheetHoursPerDayException if a h r time sheet hours per day with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -176,9 +176,9 @@ public class HRTimeSheetHoursPerDayUtil {
 	}
 
 	/**
-	* Finds the h r time sheet hours per day with the primary key or throws a {@link com.liferay.hr.NoSuchTimeSheetHoursPerDayException} if it could not be found.
+	* Returns the h r time sheet hours per day with the primary key or throws a {@link com.liferay.hr.NoSuchTimeSheetHoursPerDayException} if it could not be found.
 	*
-	* @param hrTimeSheetHoursPerDayId the primary key of the h r time sheet hours per day to find
+	* @param hrTimeSheetHoursPerDayId the primary key of the h r time sheet hours per day
 	* @return the h r time sheet hours per day
 	* @throws com.liferay.hr.NoSuchTimeSheetHoursPerDayException if a h r time sheet hours per day with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -191,9 +191,9 @@ public class HRTimeSheetHoursPerDayUtil {
 	}
 
 	/**
-	* Finds the h r time sheet hours per day with the primary key or returns <code>null</code> if it could not be found.
+	* Returns the h r time sheet hours per day with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param hrTimeSheetHoursPerDayId the primary key of the h r time sheet hours per day to find
+	* @param hrTimeSheetHoursPerDayId the primary key of the h r time sheet hours per day
 	* @return the h r time sheet hours per day, or <code>null</code> if a h r time sheet hours per day with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -204,7 +204,7 @@ public class HRTimeSheetHoursPerDayUtil {
 	}
 
 	/**
-	* Finds all the h r time sheet hours per daies.
+	* Returns all the h r time sheet hours per daies.
 	*
 	* @return the h r time sheet hours per daies
 	* @throws SystemException if a system exception occurred
@@ -215,14 +215,14 @@ public class HRTimeSheetHoursPerDayUtil {
 	}
 
 	/**
-	* Finds a range of all the h r time sheet hours per daies.
+	* Returns a range of all the h r time sheet hours per daies.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of h r time sheet hours per daies to return
-	* @param end the upper bound of the range of h r time sheet hours per daies to return (not inclusive)
+	* @param start the lower bound of the range of h r time sheet hours per daies
+	* @param end the upper bound of the range of h r time sheet hours per daies (not inclusive)
 	* @return the range of h r time sheet hours per daies
 	* @throws SystemException if a system exception occurred
 	*/
@@ -233,14 +233,14 @@ public class HRTimeSheetHoursPerDayUtil {
 	}
 
 	/**
-	* Finds an ordered range of all the h r time sheet hours per daies.
+	* Returns an ordered range of all the h r time sheet hours per daies.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of h r time sheet hours per daies to return
-	* @param end the upper bound of the range of h r time sheet hours per daies to return (not inclusive)
+	* @param start the lower bound of the range of h r time sheet hours per daies
+	* @param end the upper bound of the range of h r time sheet hours per daies (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of h r time sheet hours per daies
 	* @throws SystemException if a system exception occurred
@@ -263,7 +263,7 @@ public class HRTimeSheetHoursPerDayUtil {
 	}
 
 	/**
-	* Counts all the h r time sheet hours per daies.
+	* Returns the number of h r time sheet hours per daies.
 	*
 	* @return the number of h r time sheet hours per daies
 	* @throws SystemException if a system exception occurred

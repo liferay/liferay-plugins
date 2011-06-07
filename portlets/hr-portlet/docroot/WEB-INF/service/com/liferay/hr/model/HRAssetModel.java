@@ -47,21 +47,21 @@ public interface HRAssetModel extends BaseModel<HRAsset>, GroupedModel {
 	 */
 
 	/**
-	 * Gets the primary key of this h r asset.
+	 * Returns the primary key of this h r asset.
 	 *
 	 * @return the primary key of this h r asset
 	 */
 	public long getPrimaryKey();
 
 	/**
-	 * Sets the primary key of this h r asset
+	 * Sets the primary key of this h r asset.
 	 *
 	 * @param primaryKey the primary key of this h r asset
 	 */
 	public void setPrimaryKey(long primaryKey);
 
 	/**
-	 * Gets the hr asset ID of this h r asset.
+	 * Returns the hr asset ID of this h r asset.
 	 *
 	 * @return the hr asset ID of this h r asset
 	 */
@@ -75,7 +75,7 @@ public interface HRAssetModel extends BaseModel<HRAsset>, GroupedModel {
 	public void setHrAssetId(long hrAssetId);
 
 	/**
-	 * Gets the group ID of this h r asset.
+	 * Returns the group ID of this h r asset.
 	 *
 	 * @return the group ID of this h r asset
 	 */
@@ -89,7 +89,7 @@ public interface HRAssetModel extends BaseModel<HRAsset>, GroupedModel {
 	public void setGroupId(long groupId);
 
 	/**
-	 * Gets the company ID of this h r asset.
+	 * Returns the company ID of this h r asset.
 	 *
 	 * @return the company ID of this h r asset
 	 */
@@ -103,7 +103,7 @@ public interface HRAssetModel extends BaseModel<HRAsset>, GroupedModel {
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the user ID of this h r asset.
+	 * Returns the user ID of this h r asset.
 	 *
 	 * @return the user ID of this h r asset
 	 */
@@ -117,7 +117,7 @@ public interface HRAssetModel extends BaseModel<HRAsset>, GroupedModel {
 	public void setUserId(long userId);
 
 	/**
-	 * Gets the user uuid of this h r asset.
+	 * Returns the user uuid of this h r asset.
 	 *
 	 * @return the user uuid of this h r asset
 	 * @throws SystemException if a system exception occurred
@@ -132,7 +132,7 @@ public interface HRAssetModel extends BaseModel<HRAsset>, GroupedModel {
 	public void setUserUuid(String userUuid);
 
 	/**
-	 * Gets the user name of this h r asset.
+	 * Returns the user name of this h r asset.
 	 *
 	 * @return the user name of this h r asset
 	 */
@@ -147,7 +147,7 @@ public interface HRAssetModel extends BaseModel<HRAsset>, GroupedModel {
 	public void setUserName(String userName);
 
 	/**
-	 * Gets the create date of this h r asset.
+	 * Returns the create date of this h r asset.
 	 *
 	 * @return the create date of this h r asset
 	 */
@@ -161,7 +161,7 @@ public interface HRAssetModel extends BaseModel<HRAsset>, GroupedModel {
 	public void setCreateDate(Date createDate);
 
 	/**
-	 * Gets the modified date of this h r asset.
+	 * Returns the modified date of this h r asset.
 	 *
 	 * @return the modified date of this h r asset
 	 */
@@ -175,7 +175,7 @@ public interface HRAssetModel extends BaseModel<HRAsset>, GroupedModel {
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Gets the hr asset definition ID of this h r asset.
+	 * Returns the hr asset definition ID of this h r asset.
 	 *
 	 * @return the hr asset definition ID of this h r asset
 	 */
@@ -189,7 +189,7 @@ public interface HRAssetModel extends BaseModel<HRAsset>, GroupedModel {
 	public void setHrAssetDefinitionId(long hrAssetDefinitionId);
 
 	/**
-	 * Gets the hr asset type ID of this h r asset.
+	 * Returns the hr asset type ID of this h r asset.
 	 *
 	 * @return the hr asset type ID of this h r asset
 	 */
@@ -203,7 +203,7 @@ public interface HRAssetModel extends BaseModel<HRAsset>, GroupedModel {
 	public void setHrAssetTypeId(long hrAssetTypeId);
 
 	/**
-	 * Gets the serial number of this h r asset.
+	 * Returns the serial number of this h r asset.
 	 *
 	 * @return the serial number of this h r asset
 	 */
@@ -218,7 +218,7 @@ public interface HRAssetModel extends BaseModel<HRAsset>, GroupedModel {
 	public void setSerialNumber(String serialNumber);
 
 	/**
-	 * Gets the inactive date of this h r asset.
+	 * Returns the inactive date of this h r asset.
 	 *
 	 * @return the inactive date of this h r asset
 	 */

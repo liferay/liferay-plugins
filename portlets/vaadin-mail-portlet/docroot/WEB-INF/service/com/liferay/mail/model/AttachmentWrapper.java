@@ -37,7 +37,7 @@ public class AttachmentWrapper implements Attachment {
 	}
 
 	/**
-	* Gets the primary key of this attachment.
+	* Returns the primary key of this attachment.
 	*
 	* @return the primary key of this attachment
 	*/
@@ -46,7 +46,7 @@ public class AttachmentWrapper implements Attachment {
 	}
 
 	/**
-	* Sets the primary key of this attachment
+	* Sets the primary key of this attachment.
 	*
 	* @param primaryKey the primary key of this attachment
 	*/
@@ -55,7 +55,7 @@ public class AttachmentWrapper implements Attachment {
 	}
 
 	/**
-	* Gets the attachment ID of this attachment.
+	* Returns the attachment ID of this attachment.
 	*
 	* @return the attachment ID of this attachment
 	*/
@@ -73,7 +73,7 @@ public class AttachmentWrapper implements Attachment {
 	}
 
 	/**
-	* Gets the company ID of this attachment.
+	* Returns the company ID of this attachment.
 	*
 	* @return the company ID of this attachment
 	*/
@@ -91,7 +91,7 @@ public class AttachmentWrapper implements Attachment {
 	}
 
 	/**
-	* Gets the user ID of this attachment.
+	* Returns the user ID of this attachment.
 	*
 	* @return the user ID of this attachment
 	*/
@@ -109,7 +109,7 @@ public class AttachmentWrapper implements Attachment {
 	}
 
 	/**
-	* Gets the user uuid of this attachment.
+	* Returns the user uuid of this attachment.
 	*
 	* @return the user uuid of this attachment
 	* @throws SystemException if a system exception occurred
@@ -129,7 +129,7 @@ public class AttachmentWrapper implements Attachment {
 	}
 
 	/**
-	* Gets the account ID of this attachment.
+	* Returns the account ID of this attachment.
 	*
 	* @return the account ID of this attachment
 	*/
@@ -147,7 +147,7 @@ public class AttachmentWrapper implements Attachment {
 	}
 
 	/**
-	* Gets the folder ID of this attachment.
+	* Returns the folder ID of this attachment.
 	*
 	* @return the folder ID of this attachment
 	*/
@@ -165,7 +165,7 @@ public class AttachmentWrapper implements Attachment {
 	}
 
 	/**
-	* Gets the message ID of this attachment.
+	* Returns the message ID of this attachment.
 	*
 	* @return the message ID of this attachment
 	*/
@@ -183,7 +183,7 @@ public class AttachmentWrapper implements Attachment {
 	}
 
 	/**
-	* Gets the content path of this attachment.
+	* Returns the content path of this attachment.
 	*
 	* @return the content path of this attachment
 	*/
@@ -201,7 +201,7 @@ public class AttachmentWrapper implements Attachment {
 	}
 
 	/**
-	* Gets the file name of this attachment.
+	* Returns the file name of this attachment.
 	*
 	* @return the file name of this attachment
 	*/
@@ -219,7 +219,7 @@ public class AttachmentWrapper implements Attachment {
 	}
 
 	/**
-	* Gets the size of this attachment.
+	* Returns the size of this attachment.
 	*
 	* @return the size of this attachment
 	*/

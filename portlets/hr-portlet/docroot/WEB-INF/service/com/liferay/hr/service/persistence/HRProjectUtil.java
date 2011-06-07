@@ -121,7 +121,7 @@ public class HRProjectUtil {
 	/**
 	* Caches the h r project in the entity cache if it is enabled.
 	*
-	* @param hrProject the h r project to cache
+	* @param hrProject the h r project
 	*/
 	public static void cacheResult(com.liferay.hr.model.HRProject hrProject) {
 		getPersistence().cacheResult(hrProject);
@@ -130,7 +130,7 @@ public class HRProjectUtil {
 	/**
 	* Caches the h r projects in the entity cache if it is enabled.
 	*
-	* @param hrProjects the h r projects to cache
+	* @param hrProjects the h r projects
 	*/
 	public static void cacheResult(
 		java.util.List<com.liferay.hr.model.HRProject> hrProjects) {
@@ -150,7 +150,7 @@ public class HRProjectUtil {
 	/**
 	* Removes the h r project with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param hrProjectId the primary key of the h r project to remove
+	* @param hrProjectId the primary key of the h r project
 	* @return the h r project that was removed
 	* @throws com.liferay.hr.NoSuchProjectException if a h r project with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -168,9 +168,9 @@ public class HRProjectUtil {
 	}
 
 	/**
-	* Finds the h r project with the primary key or throws a {@link com.liferay.hr.NoSuchProjectException} if it could not be found.
+	* Returns the h r project with the primary key or throws a {@link com.liferay.hr.NoSuchProjectException} if it could not be found.
 	*
-	* @param hrProjectId the primary key of the h r project to find
+	* @param hrProjectId the primary key of the h r project
 	* @return the h r project
 	* @throws com.liferay.hr.NoSuchProjectException if a h r project with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -183,9 +183,9 @@ public class HRProjectUtil {
 	}
 
 	/**
-	* Finds the h r project with the primary key or returns <code>null</code> if it could not be found.
+	* Returns the h r project with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param hrProjectId the primary key of the h r project to find
+	* @param hrProjectId the primary key of the h r project
 	* @return the h r project, or <code>null</code> if a h r project with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -196,7 +196,7 @@ public class HRProjectUtil {
 	}
 
 	/**
-	* Finds all the h r projects.
+	* Returns all the h r projects.
 	*
 	* @return the h r projects
 	* @throws SystemException if a system exception occurred
@@ -207,14 +207,14 @@ public class HRProjectUtil {
 	}
 
 	/**
-	* Finds a range of all the h r projects.
+	* Returns a range of all the h r projects.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of h r projects to return
-	* @param end the upper bound of the range of h r projects to return (not inclusive)
+	* @param start the lower bound of the range of h r projects
+	* @param end the upper bound of the range of h r projects (not inclusive)
 	* @return the range of h r projects
 	* @throws SystemException if a system exception occurred
 	*/
@@ -225,14 +225,14 @@ public class HRProjectUtil {
 	}
 
 	/**
-	* Finds an ordered range of all the h r projects.
+	* Returns an ordered range of all the h r projects.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of h r projects to return
-	* @param end the upper bound of the range of h r projects to return (not inclusive)
+	* @param start the lower bound of the range of h r projects
+	* @param end the upper bound of the range of h r projects (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of h r projects
 	* @throws SystemException if a system exception occurred
@@ -255,7 +255,7 @@ public class HRProjectUtil {
 	}
 
 	/**
-	* Counts all the h r projects.
+	* Returns the number of h r projects.
 	*
 	* @return the number of h r projects
 	* @throws SystemException if a system exception occurred

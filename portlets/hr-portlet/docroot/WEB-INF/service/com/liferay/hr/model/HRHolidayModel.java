@@ -47,21 +47,21 @@ public interface HRHolidayModel extends BaseModel<HRHoliday>, GroupedModel {
 	 */
 
 	/**
-	 * Gets the primary key of this h r holiday.
+	 * Returns the primary key of this h r holiday.
 	 *
 	 * @return the primary key of this h r holiday
 	 */
 	public long getPrimaryKey();
 
 	/**
-	 * Sets the primary key of this h r holiday
+	 * Sets the primary key of this h r holiday.
 	 *
 	 * @param primaryKey the primary key of this h r holiday
 	 */
 	public void setPrimaryKey(long primaryKey);
 
 	/**
-	 * Gets the hr holiday ID of this h r holiday.
+	 * Returns the hr holiday ID of this h r holiday.
 	 *
 	 * @return the hr holiday ID of this h r holiday
 	 */
@@ -75,7 +75,7 @@ public interface HRHolidayModel extends BaseModel<HRHoliday>, GroupedModel {
 	public void setHrHolidayId(long hrHolidayId);
 
 	/**
-	 * Gets the group ID of this h r holiday.
+	 * Returns the group ID of this h r holiday.
 	 *
 	 * @return the group ID of this h r holiday
 	 */
@@ -89,7 +89,7 @@ public interface HRHolidayModel extends BaseModel<HRHoliday>, GroupedModel {
 	public void setGroupId(long groupId);
 
 	/**
-	 * Gets the company ID of this h r holiday.
+	 * Returns the company ID of this h r holiday.
 	 *
 	 * @return the company ID of this h r holiday
 	 */
@@ -103,7 +103,7 @@ public interface HRHolidayModel extends BaseModel<HRHoliday>, GroupedModel {
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the user ID of this h r holiday.
+	 * Returns the user ID of this h r holiday.
 	 *
 	 * @return the user ID of this h r holiday
 	 */
@@ -117,7 +117,7 @@ public interface HRHolidayModel extends BaseModel<HRHoliday>, GroupedModel {
 	public void setUserId(long userId);
 
 	/**
-	 * Gets the user uuid of this h r holiday.
+	 * Returns the user uuid of this h r holiday.
 	 *
 	 * @return the user uuid of this h r holiday
 	 * @throws SystemException if a system exception occurred
@@ -132,7 +132,7 @@ public interface HRHolidayModel extends BaseModel<HRHoliday>, GroupedModel {
 	public void setUserUuid(String userUuid);
 
 	/**
-	 * Gets the user name of this h r holiday.
+	 * Returns the user name of this h r holiday.
 	 *
 	 * @return the user name of this h r holiday
 	 */
@@ -147,7 +147,7 @@ public interface HRHolidayModel extends BaseModel<HRHoliday>, GroupedModel {
 	public void setUserName(String userName);
 
 	/**
-	 * Gets the create date of this h r holiday.
+	 * Returns the create date of this h r holiday.
 	 *
 	 * @return the create date of this h r holiday
 	 */
@@ -161,7 +161,7 @@ public interface HRHolidayModel extends BaseModel<HRHoliday>, GroupedModel {
 	public void setCreateDate(Date createDate);
 
 	/**
-	 * Gets the modified date of this h r holiday.
+	 * Returns the modified date of this h r holiday.
 	 *
 	 * @return the modified date of this h r holiday
 	 */
@@ -175,7 +175,7 @@ public interface HRHolidayModel extends BaseModel<HRHoliday>, GroupedModel {
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Gets the name of this h r holiday.
+	 * Returns the name of this h r holiday.
 	 *
 	 * @return the name of this h r holiday
 	 */
@@ -190,7 +190,7 @@ public interface HRHolidayModel extends BaseModel<HRHoliday>, GroupedModel {
 	public void setName(String name);
 
 	/**
-	 * Gets the description of this h r holiday.
+	 * Returns the description of this h r holiday.
 	 *
 	 * @return the description of this h r holiday
 	 */
@@ -205,7 +205,7 @@ public interface HRHolidayModel extends BaseModel<HRHoliday>, GroupedModel {
 	public void setDescription(String description);
 
 	/**
-	 * Gets the day of year of this h r holiday.
+	 * Returns the day of year of this h r holiday.
 	 *
 	 * @return the day of year of this h r holiday
 	 */
@@ -219,7 +219,7 @@ public interface HRHolidayModel extends BaseModel<HRHoliday>, GroupedModel {
 	public void setDayOfYear(int dayOfYear);
 
 	/**
-	 * Gets the year of this h r holiday.
+	 * Returns the year of this h r holiday.
 	 *
 	 * @return the year of this h r holiday
 	 */
@@ -233,7 +233,7 @@ public interface HRHolidayModel extends BaseModel<HRHoliday>, GroupedModel {
 	public void setYear(int year);
 
 	/**
-	 * Gets the paid of this h r holiday.
+	 * Returns the paid of this h r holiday.
 	 *
 	 * @return the paid of this h r holiday
 	 */

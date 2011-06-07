@@ -43,21 +43,21 @@ public interface SVNRepositoryModel extends BaseModel<SVNRepository> {
 	 */
 
 	/**
-	 * Gets the primary key of this s v n repository.
+	 * Returns the primary key of this s v n repository.
 	 *
 	 * @return the primary key of this s v n repository
 	 */
 	public long getPrimaryKey();
 
 	/**
-	 * Sets the primary key of this s v n repository
+	 * Sets the primary key of this s v n repository.
 	 *
 	 * @param primaryKey the primary key of this s v n repository
 	 */
 	public void setPrimaryKey(long primaryKey);
 
 	/**
-	 * Gets the svn repository ID of this s v n repository.
+	 * Returns the svn repository ID of this s v n repository.
 	 *
 	 * @return the svn repository ID of this s v n repository
 	 */
@@ -71,7 +71,7 @@ public interface SVNRepositoryModel extends BaseModel<SVNRepository> {
 	public void setSvnRepositoryId(long svnRepositoryId);
 
 	/**
-	 * Gets the url of this s v n repository.
+	 * Returns the url of this s v n repository.
 	 *
 	 * @return the url of this s v n repository
 	 */
@@ -86,7 +86,7 @@ public interface SVNRepositoryModel extends BaseModel<SVNRepository> {
 	public void setUrl(String url);
 
 	/**
-	 * Gets the revision number of this s v n repository.
+	 * Returns the revision number of this s v n repository.
 	 *
 	 * @return the revision number of this s v n repository
 	 */

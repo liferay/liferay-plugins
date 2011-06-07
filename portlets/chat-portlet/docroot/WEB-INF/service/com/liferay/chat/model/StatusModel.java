@@ -44,21 +44,21 @@ public interface StatusModel extends BaseModel<Status> {
 	 */
 
 	/**
-	 * Gets the primary key of this status.
+	 * Returns the primary key of this status.
 	 *
 	 * @return the primary key of this status
 	 */
 	public long getPrimaryKey();
 
 	/**
-	 * Sets the primary key of this status
+	 * Sets the primary key of this status.
 	 *
 	 * @param primaryKey the primary key of this status
 	 */
 	public void setPrimaryKey(long primaryKey);
 
 	/**
-	 * Gets the status ID of this status.
+	 * Returns the status ID of this status.
 	 *
 	 * @return the status ID of this status
 	 */
@@ -72,7 +72,7 @@ public interface StatusModel extends BaseModel<Status> {
 	public void setStatusId(long statusId);
 
 	/**
-	 * Gets the user ID of this status.
+	 * Returns the user ID of this status.
 	 *
 	 * @return the user ID of this status
 	 */
@@ -86,7 +86,7 @@ public interface StatusModel extends BaseModel<Status> {
 	public void setUserId(long userId);
 
 	/**
-	 * Gets the user uuid of this status.
+	 * Returns the user uuid of this status.
 	 *
 	 * @return the user uuid of this status
 	 * @throws SystemException if a system exception occurred
@@ -101,7 +101,7 @@ public interface StatusModel extends BaseModel<Status> {
 	public void setUserUuid(String userUuid);
 
 	/**
-	 * Gets the modified date of this status.
+	 * Returns the modified date of this status.
 	 *
 	 * @return the modified date of this status
 	 */
@@ -115,7 +115,7 @@ public interface StatusModel extends BaseModel<Status> {
 	public void setModifiedDate(long modifiedDate);
 
 	/**
-	 * Gets the online of this status.
+	 * Returns the online of this status.
 	 *
 	 * @return the online of this status
 	 */
@@ -136,7 +136,7 @@ public interface StatusModel extends BaseModel<Status> {
 	public void setOnline(boolean online);
 
 	/**
-	 * Gets the awake of this status.
+	 * Returns the awake of this status.
 	 *
 	 * @return the awake of this status
 	 */
@@ -157,7 +157,7 @@ public interface StatusModel extends BaseModel<Status> {
 	public void setAwake(boolean awake);
 
 	/**
-	 * Gets the active panel ID of this status.
+	 * Returns the active panel ID of this status.
 	 *
 	 * @return the active panel ID of this status
 	 */
@@ -172,7 +172,7 @@ public interface StatusModel extends BaseModel<Status> {
 	public void setActivePanelId(String activePanelId);
 
 	/**
-	 * Gets the message of this status.
+	 * Returns the message of this status.
 	 *
 	 * @return the message of this status
 	 */
@@ -187,7 +187,7 @@ public interface StatusModel extends BaseModel<Status> {
 	public void setMessage(String message);
 
 	/**
-	 * Gets the play sound of this status.
+	 * Returns the play sound of this status.
 	 *
 	 * @return the play sound of this status
 	 */

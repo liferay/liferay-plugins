@@ -23,6 +23,11 @@ import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.search.Indexer;
+import com.liferay.portal.kernel.search.IndexerRegistryUtil;
+import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.service.ResourceLocalService;
 import com.liferay.portal.service.ResourceService;
@@ -67,7 +72,7 @@ public abstract class MeetupsEntryLocalServiceBaseImpl
 	/**
 	 * Adds the meetups entry to the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param meetupsEntry the meetups entry to add
+	 * @param meetupsEntry the meetups entry
 	 * @return the meetups entry that was added
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -75,7 +80,22 @@ public abstract class MeetupsEntryLocalServiceBaseImpl
 		throws SystemException {
 		meetupsEntry.setNew(true);
 
-		return meetupsEntryPersistence.update(meetupsEntry, false);
+		meetupsEntry = meetupsEntryPersistence.update(meetupsEntry, false);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.reindex(meetupsEntry);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
+
+		return meetupsEntry;
 	}
 
 	/**
@@ -91,30 +111,56 @@ public abstract class MeetupsEntryLocalServiceBaseImpl
 	/**
 	 * Deletes the meetups entry with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param meetupsEntryId the primary key of the meetups entry to delete
+	 * @param meetupsEntryId the primary key of the meetups entry
 	 * @throws PortalException if a meetups entry with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void deleteMeetupsEntry(long meetupsEntryId)
 		throws PortalException, SystemException {
-		meetupsEntryPersistence.remove(meetupsEntryId);
+		MeetupsEntry meetupsEntry = meetupsEntryPersistence.remove(meetupsEntryId);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.delete(meetupsEntry);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
 	}
 
 	/**
 	 * Deletes the meetups entry from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param meetupsEntry the meetups entry to delete
+	 * @param meetupsEntry the meetups entry
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void deleteMeetupsEntry(MeetupsEntry meetupsEntry)
 		throws SystemException {
 		meetupsEntryPersistence.remove(meetupsEntry);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.delete(meetupsEntry);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
 	}
 
 	/**
 	 * Performs a dynamic query on the database and returns the matching rows.
 	 *
-	 * @param dynamicQuery the dynamic query to search with
+	 * @param dynamicQuery the dynamic query
 	 * @return the matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -131,9 +177,9 @@ public abstract class MeetupsEntryLocalServiceBaseImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param dynamicQuery the dynamic query to search with
-	 * @param start the lower bound of the range of model instances to return
-	 * @param end the upper bound of the range of model instances to return (not inclusive)
+	 * @param dynamicQuery the dynamic query
+	 * @param start the lower bound of the range of model instances
+	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @return the range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -151,9 +197,9 @@ public abstract class MeetupsEntryLocalServiceBaseImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param dynamicQuery the dynamic query to search with
-	 * @param start the lower bound of the range of model instances to return
-	 * @param end the upper bound of the range of model instances to return (not inclusive)
+	 * @param dynamicQuery the dynamic query
+	 * @param start the lower bound of the range of model instances
+	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching rows
 	 * @throws SystemException if a system exception occurred
@@ -166,9 +212,9 @@ public abstract class MeetupsEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Counts the number of rows that match the dynamic query.
+	 * Returns the number of rows that match the dynamic query.
 	 *
-	 * @param dynamicQuery the dynamic query to search with
+	 * @param dynamicQuery the dynamic query
 	 * @return the number of rows that match the dynamic query
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -178,9 +224,9 @@ public abstract class MeetupsEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the meetups entry with the primary key.
+	 * Returns the meetups entry with the primary key.
 	 *
-	 * @param meetupsEntryId the primary key of the meetups entry to get
+	 * @param meetupsEntryId the primary key of the meetups entry
 	 * @return the meetups entry
 	 * @throws PortalException if a meetups entry with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -191,14 +237,14 @@ public abstract class MeetupsEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets a range of all the meetups entries.
+	 * Returns a range of all the meetups entries.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of meetups entries to return
-	 * @param end the upper bound of the range of meetups entries to return (not inclusive)
+	 * @param start the lower bound of the range of meetups entries
+	 * @param end the upper bound of the range of meetups entries (not inclusive)
 	 * @return the range of meetups entries
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -208,7 +254,7 @@ public abstract class MeetupsEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the number of meetups entries.
+	 * Returns the number of meetups entries.
 	 *
 	 * @return the number of meetups entries
 	 * @throws SystemException if a system exception occurred
@@ -220,21 +266,19 @@ public abstract class MeetupsEntryLocalServiceBaseImpl
 	/**
 	 * Updates the meetups entry in the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param meetupsEntry the meetups entry to update
+	 * @param meetupsEntry the meetups entry
 	 * @return the meetups entry that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
 	public MeetupsEntry updateMeetupsEntry(MeetupsEntry meetupsEntry)
 		throws SystemException {
-		meetupsEntry.setNew(false);
-
-		return meetupsEntryPersistence.update(meetupsEntry, true);
+		return updateMeetupsEntry(meetupsEntry, true);
 	}
 
 	/**
 	 * Updates the meetups entry in the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param meetupsEntry the meetups entry to update
+	 * @param meetupsEntry the meetups entry
 	 * @param merge whether to merge the meetups entry with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
 	 * @return the meetups entry that was updated
 	 * @throws SystemException if a system exception occurred
@@ -243,11 +287,26 @@ public abstract class MeetupsEntryLocalServiceBaseImpl
 		boolean merge) throws SystemException {
 		meetupsEntry.setNew(false);
 
-		return meetupsEntryPersistence.update(meetupsEntry, merge);
+		meetupsEntry = meetupsEntryPersistence.update(meetupsEntry, merge);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.reindex(meetupsEntry);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
+
+		return meetupsEntry;
 	}
 
 	/**
-	 * Gets the meetups entry local service.
+	 * Returns the meetups entry local service.
 	 *
 	 * @return the meetups entry local service
 	 */
@@ -266,7 +325,7 @@ public abstract class MeetupsEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the meetups entry persistence.
+	 * Returns the meetups entry persistence.
 	 *
 	 * @return the meetups entry persistence
 	 */
@@ -285,7 +344,7 @@ public abstract class MeetupsEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the meetups registration local service.
+	 * Returns the meetups registration local service.
 	 *
 	 * @return the meetups registration local service
 	 */
@@ -304,7 +363,7 @@ public abstract class MeetupsEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the meetups registration persistence.
+	 * Returns the meetups registration persistence.
 	 *
 	 * @return the meetups registration persistence
 	 */
@@ -323,7 +382,7 @@ public abstract class MeetupsEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the wall entry local service.
+	 * Returns the wall entry local service.
 	 *
 	 * @return the wall entry local service
 	 */
@@ -342,7 +401,7 @@ public abstract class MeetupsEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the wall entry persistence.
+	 * Returns the wall entry persistence.
 	 *
 	 * @return the wall entry persistence
 	 */
@@ -361,7 +420,7 @@ public abstract class MeetupsEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the wall entry finder.
+	 * Returns the wall entry finder.
 	 *
 	 * @return the wall entry finder
 	 */
@@ -379,7 +438,7 @@ public abstract class MeetupsEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the counter local service.
+	 * Returns the counter local service.
 	 *
 	 * @return the counter local service
 	 */
@@ -397,7 +456,7 @@ public abstract class MeetupsEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the resource local service.
+	 * Returns the resource local service.
 	 *
 	 * @return the resource local service
 	 */
@@ -416,7 +475,7 @@ public abstract class MeetupsEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the resource remote service.
+	 * Returns the resource remote service.
 	 *
 	 * @return the resource remote service
 	 */
@@ -434,7 +493,7 @@ public abstract class MeetupsEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the resource persistence.
+	 * Returns the resource persistence.
 	 *
 	 * @return the resource persistence
 	 */
@@ -452,7 +511,7 @@ public abstract class MeetupsEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the user local service.
+	 * Returns the user local service.
 	 *
 	 * @return the user local service
 	 */
@@ -470,7 +529,7 @@ public abstract class MeetupsEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the user remote service.
+	 * Returns the user remote service.
 	 *
 	 * @return the user remote service
 	 */
@@ -488,7 +547,7 @@ public abstract class MeetupsEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the user persistence.
+	 * Returns the user persistence.
 	 *
 	 * @return the user persistence
 	 */
@@ -506,7 +565,7 @@ public abstract class MeetupsEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the Spring bean ID for this bean.
+	 * Returns the Spring bean ID for this bean.
 	 *
 	 * @return the Spring bean ID for this bean
 	 */
@@ -523,10 +582,18 @@ public abstract class MeetupsEntryLocalServiceBaseImpl
 		_beanIdentifier = beanIdentifier;
 	}
 
+	protected Class<?> getModelClass() {
+		return MeetupsEntry.class;
+	}
+
+	protected String getModelClassName() {
+		return MeetupsEntry.class.getName();
+	}
+
 	/**
 	 * Performs an SQL query.
 	 *
-	 * @param sql the sql query to perform
+	 * @param sql the sql query
 	 */
 	protected void runSQL(String sql) throws SystemException {
 		try {
@@ -570,5 +637,6 @@ public abstract class MeetupsEntryLocalServiceBaseImpl
 	protected UserService userService;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
+	private static Log _log = LogFactoryUtil.getLog(MeetupsEntryLocalServiceBaseImpl.class);
 	private String _beanIdentifier;
 }

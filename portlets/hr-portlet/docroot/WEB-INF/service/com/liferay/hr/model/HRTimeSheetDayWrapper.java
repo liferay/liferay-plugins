@@ -37,7 +37,7 @@ public class HRTimeSheetDayWrapper implements HRTimeSheetDay {
 	}
 
 	/**
-	* Gets the primary key of this h r time sheet day.
+	* Returns the primary key of this h r time sheet day.
 	*
 	* @return the primary key of this h r time sheet day
 	*/
@@ -46,7 +46,7 @@ public class HRTimeSheetDayWrapper implements HRTimeSheetDay {
 	}
 
 	/**
-	* Sets the primary key of this h r time sheet day
+	* Sets the primary key of this h r time sheet day.
 	*
 	* @param primaryKey the primary key of this h r time sheet day
 	*/
@@ -55,7 +55,7 @@ public class HRTimeSheetDayWrapper implements HRTimeSheetDay {
 	}
 
 	/**
-	* Gets the hr time sheet day ID of this h r time sheet day.
+	* Returns the hr time sheet day ID of this h r time sheet day.
 	*
 	* @return the hr time sheet day ID of this h r time sheet day
 	*/
@@ -73,7 +73,7 @@ public class HRTimeSheetDayWrapper implements HRTimeSheetDay {
 	}
 
 	/**
-	* Gets the group ID of this h r time sheet day.
+	* Returns the group ID of this h r time sheet day.
 	*
 	* @return the group ID of this h r time sheet day
 	*/
@@ -91,7 +91,7 @@ public class HRTimeSheetDayWrapper implements HRTimeSheetDay {
 	}
 
 	/**
-	* Gets the company ID of this h r time sheet day.
+	* Returns the company ID of this h r time sheet day.
 	*
 	* @return the company ID of this h r time sheet day
 	*/
@@ -109,7 +109,7 @@ public class HRTimeSheetDayWrapper implements HRTimeSheetDay {
 	}
 
 	/**
-	* Gets the user ID of this h r time sheet day.
+	* Returns the user ID of this h r time sheet day.
 	*
 	* @return the user ID of this h r time sheet day
 	*/
@@ -127,7 +127,7 @@ public class HRTimeSheetDayWrapper implements HRTimeSheetDay {
 	}
 
 	/**
-	* Gets the user uuid of this h r time sheet day.
+	* Returns the user uuid of this h r time sheet day.
 	*
 	* @return the user uuid of this h r time sheet day
 	* @throws SystemException if a system exception occurred
@@ -147,7 +147,7 @@ public class HRTimeSheetDayWrapper implements HRTimeSheetDay {
 	}
 
 	/**
-	* Gets the user name of this h r time sheet day.
+	* Returns the user name of this h r time sheet day.
 	*
 	* @return the user name of this h r time sheet day
 	*/
@@ -165,7 +165,7 @@ public class HRTimeSheetDayWrapper implements HRTimeSheetDay {
 	}
 
 	/**
-	* Gets the create date of this h r time sheet day.
+	* Returns the create date of this h r time sheet day.
 	*
 	* @return the create date of this h r time sheet day
 	*/
@@ -183,7 +183,7 @@ public class HRTimeSheetDayWrapper implements HRTimeSheetDay {
 	}
 
 	/**
-	* Gets the modified date of this h r time sheet day.
+	* Returns the modified date of this h r time sheet day.
 	*
 	* @return the modified date of this h r time sheet day
 	*/
@@ -201,7 +201,7 @@ public class HRTimeSheetDayWrapper implements HRTimeSheetDay {
 	}
 
 	/**
-	* Gets the hr time sheet ID of this h r time sheet day.
+	* Returns the hr time sheet ID of this h r time sheet day.
 	*
 	* @return the hr time sheet ID of this h r time sheet day
 	*/
@@ -219,7 +219,7 @@ public class HRTimeSheetDayWrapper implements HRTimeSheetDay {
 	}
 
 	/**
-	* Gets the hr user ID of this h r time sheet day.
+	* Returns the hr user ID of this h r time sheet day.
 	*
 	* @return the hr user ID of this h r time sheet day
 	*/
@@ -237,7 +237,7 @@ public class HRTimeSheetDayWrapper implements HRTimeSheetDay {
 	}
 
 	/**
-	* Gets the hr user uuid of this h r time sheet day.
+	* Returns the hr user uuid of this h r time sheet day.
 	*
 	* @return the hr user uuid of this h r time sheet day
 	* @throws SystemException if a system exception occurred
@@ -257,7 +257,7 @@ public class HRTimeSheetDayWrapper implements HRTimeSheetDay {
 	}
 
 	/**
-	* Gets the day of year of this h r time sheet day.
+	* Returns the day of year of this h r time sheet day.
 	*
 	* @return the day of year of this h r time sheet day
 	*/
@@ -275,7 +275,7 @@ public class HRTimeSheetDayWrapper implements HRTimeSheetDay {
 	}
 
 	/**
-	* Gets the year of this h r time sheet day.
+	* Returns the year of this h r time sheet day.
 	*
 	* @return the year of this h r time sheet day
 	*/
@@ -293,7 +293,7 @@ public class HRTimeSheetDayWrapper implements HRTimeSheetDay {
 	}
 
 	/**
-	* Gets the hours of this h r time sheet day.
+	* Returns the hours of this h r time sheet day.
 	*
 	* @return the hours of this h r time sheet day
 	*/

@@ -82,7 +82,7 @@ public class HRTimeOffTypePersistenceImpl extends BasePersistenceImpl<HRTimeOffT
 	/**
 	 * Caches the h r time off type in the entity cache if it is enabled.
 	 *
-	 * @param hrTimeOffType the h r time off type to cache
+	 * @param hrTimeOffType the h r time off type
 	 */
 	public void cacheResult(HRTimeOffType hrTimeOffType) {
 		EntityCacheUtil.putResult(HRTimeOffTypeModelImpl.ENTITY_CACHE_ENABLED,
@@ -95,7 +95,7 @@ public class HRTimeOffTypePersistenceImpl extends BasePersistenceImpl<HRTimeOffT
 	/**
 	 * Caches the h r time off types in the entity cache if it is enabled.
 	 *
-	 * @param hrTimeOffTypes the h r time off types to cache
+	 * @param hrTimeOffTypes the h r time off types
 	 */
 	public void cacheResult(List<HRTimeOffType> hrTimeOffTypes) {
 		for (HRTimeOffType hrTimeOffType : hrTimeOffTypes) {
@@ -155,7 +155,7 @@ public class HRTimeOffTypePersistenceImpl extends BasePersistenceImpl<HRTimeOffT
 	/**
 	 * Removes the h r time off type with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param primaryKey the primary key of the h r time off type to remove
+	 * @param primaryKey the primary key of the h r time off type
 	 * @return the h r time off type that was removed
 	 * @throws com.liferay.portal.NoSuchModelException if a h r time off type with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -168,7 +168,7 @@ public class HRTimeOffTypePersistenceImpl extends BasePersistenceImpl<HRTimeOffT
 	/**
 	 * Removes the h r time off type with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param hrTimeOffTypeId the primary key of the h r time off type to remove
+	 * @param hrTimeOffTypeId the primary key of the h r time off type
 	 * @return the h r time off type that was removed
 	 * @throws com.liferay.hr.NoSuchTimeOffTypeException if a h r time off type with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -209,7 +209,7 @@ public class HRTimeOffTypePersistenceImpl extends BasePersistenceImpl<HRTimeOffT
 	/**
 	 * Removes the h r time off type from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param hrTimeOffType the h r time off type to remove
+	 * @param hrTimeOffType the h r time off type
 	 * @return the h r time off type that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -298,9 +298,9 @@ public class HRTimeOffTypePersistenceImpl extends BasePersistenceImpl<HRTimeOffT
 	}
 
 	/**
-	 * Finds the h r time off type with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
+	 * Returns the h r time off type with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
 	 *
-	 * @param primaryKey the primary key of the h r time off type to find
+	 * @param primaryKey the primary key of the h r time off type
 	 * @return the h r time off type
 	 * @throws com.liferay.portal.NoSuchModelException if a h r time off type with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -311,9 +311,9 @@ public class HRTimeOffTypePersistenceImpl extends BasePersistenceImpl<HRTimeOffT
 	}
 
 	/**
-	 * Finds the h r time off type with the primary key or throws a {@link com.liferay.hr.NoSuchTimeOffTypeException} if it could not be found.
+	 * Returns the h r time off type with the primary key or throws a {@link com.liferay.hr.NoSuchTimeOffTypeException} if it could not be found.
 	 *
-	 * @param hrTimeOffTypeId the primary key of the h r time off type to find
+	 * @param hrTimeOffTypeId the primary key of the h r time off type
 	 * @return the h r time off type
 	 * @throws com.liferay.hr.NoSuchTimeOffTypeException if a h r time off type with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -335,9 +335,9 @@ public class HRTimeOffTypePersistenceImpl extends BasePersistenceImpl<HRTimeOffT
 	}
 
 	/**
-	 * Finds the h r time off type with the primary key or returns <code>null</code> if it could not be found.
+	 * Returns the h r time off type with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param primaryKey the primary key of the h r time off type to find
+	 * @param primaryKey the primary key of the h r time off type
 	 * @return the h r time off type, or <code>null</code> if a h r time off type with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -347,9 +347,9 @@ public class HRTimeOffTypePersistenceImpl extends BasePersistenceImpl<HRTimeOffT
 	}
 
 	/**
-	 * Finds the h r time off type with the primary key or returns <code>null</code> if it could not be found.
+	 * Returns the h r time off type with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param hrTimeOffTypeId the primary key of the h r time off type to find
+	 * @param hrTimeOffTypeId the primary key of the h r time off type
 	 * @return the h r time off type, or <code>null</code> if a h r time off type with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -383,7 +383,7 @@ public class HRTimeOffTypePersistenceImpl extends BasePersistenceImpl<HRTimeOffT
 	}
 
 	/**
-	 * Finds all the h r time off types.
+	 * Returns all the h r time off types.
 	 *
 	 * @return the h r time off types
 	 * @throws SystemException if a system exception occurred
@@ -393,14 +393,14 @@ public class HRTimeOffTypePersistenceImpl extends BasePersistenceImpl<HRTimeOffT
 	}
 
 	/**
-	 * Finds a range of all the h r time off types.
+	 * Returns a range of all the h r time off types.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of h r time off types to return
-	 * @param end the upper bound of the range of h r time off types to return (not inclusive)
+	 * @param start the lower bound of the range of h r time off types
+	 * @param end the upper bound of the range of h r time off types (not inclusive)
 	 * @return the range of h r time off types
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -410,14 +410,14 @@ public class HRTimeOffTypePersistenceImpl extends BasePersistenceImpl<HRTimeOffT
 	}
 
 	/**
-	 * Finds an ordered range of all the h r time off types.
+	 * Returns an ordered range of all the h r time off types.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of h r time off types to return
-	 * @param end the upper bound of the range of h r time off types to return (not inclusive)
+	 * @param start the lower bound of the range of h r time off types
+	 * @param end the upper bound of the range of h r time off types (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of h r time off types
 	 * @throws SystemException if a system exception occurred
@@ -503,7 +503,7 @@ public class HRTimeOffTypePersistenceImpl extends BasePersistenceImpl<HRTimeOffT
 	}
 
 	/**
-	 * Counts all the h r time off types.
+	 * Returns the number of h r time off types.
 	 *
 	 * @return the number of h r time off types
 	 * @throws SystemException if a system exception occurred

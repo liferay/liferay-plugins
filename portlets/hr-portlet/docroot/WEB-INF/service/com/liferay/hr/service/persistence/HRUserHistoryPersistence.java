@@ -41,14 +41,14 @@ public interface HRUserHistoryPersistence extends BasePersistence<HRUserHistory>
 	/**
 	* Caches the h r user history in the entity cache if it is enabled.
 	*
-	* @param hrUserHistory the h r user history to cache
+	* @param hrUserHistory the h r user history
 	*/
 	public void cacheResult(com.liferay.hr.model.HRUserHistory hrUserHistory);
 
 	/**
 	* Caches the h r user histories in the entity cache if it is enabled.
 	*
-	* @param hrUserHistories the h r user histories to cache
+	* @param hrUserHistories the h r user histories
 	*/
 	public void cacheResult(
 		java.util.List<com.liferay.hr.model.HRUserHistory> hrUserHistories);
@@ -64,7 +64,7 @@ public interface HRUserHistoryPersistence extends BasePersistence<HRUserHistory>
 	/**
 	* Removes the h r user history with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param hrUserHistoryId the primary key of the h r user history to remove
+	* @param hrUserHistoryId the primary key of the h r user history
 	* @return the h r user history that was removed
 	* @throws com.liferay.hr.NoSuchUserHistoryException if a h r user history with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -78,9 +78,9 @@ public interface HRUserHistoryPersistence extends BasePersistence<HRUserHistory>
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the h r user history with the primary key or throws a {@link com.liferay.hr.NoSuchUserHistoryException} if it could not be found.
+	* Returns the h r user history with the primary key or throws a {@link com.liferay.hr.NoSuchUserHistoryException} if it could not be found.
 	*
-	* @param hrUserHistoryId the primary key of the h r user history to find
+	* @param hrUserHistoryId the primary key of the h r user history
 	* @return the h r user history
 	* @throws com.liferay.hr.NoSuchUserHistoryException if a h r user history with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -91,9 +91,9 @@ public interface HRUserHistoryPersistence extends BasePersistence<HRUserHistory>
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the h r user history with the primary key or returns <code>null</code> if it could not be found.
+	* Returns the h r user history with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param hrUserHistoryId the primary key of the h r user history to find
+	* @param hrUserHistoryId the primary key of the h r user history
 	* @return the h r user history, or <code>null</code> if a h r user history with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -102,7 +102,7 @@ public interface HRUserHistoryPersistence extends BasePersistence<HRUserHistory>
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds all the h r user histories.
+	* Returns all the h r user histories.
 	*
 	* @return the h r user histories
 	* @throws SystemException if a system exception occurred
@@ -111,14 +111,14 @@ public interface HRUserHistoryPersistence extends BasePersistence<HRUserHistory>
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds a range of all the h r user histories.
+	* Returns a range of all the h r user histories.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of h r user histories to return
-	* @param end the upper bound of the range of h r user histories to return (not inclusive)
+	* @param start the lower bound of the range of h r user histories
+	* @param end the upper bound of the range of h r user histories (not inclusive)
 	* @return the range of h r user histories
 	* @throws SystemException if a system exception occurred
 	*/
@@ -127,14 +127,14 @@ public interface HRUserHistoryPersistence extends BasePersistence<HRUserHistory>
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds an ordered range of all the h r user histories.
+	* Returns an ordered range of all the h r user histories.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of h r user histories to return
-	* @param end the upper bound of the range of h r user histories to return (not inclusive)
+	* @param start the lower bound of the range of h r user histories
+	* @param end the upper bound of the range of h r user histories (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of h r user histories
 	* @throws SystemException if a system exception occurred
@@ -153,7 +153,7 @@ public interface HRUserHistoryPersistence extends BasePersistence<HRUserHistory>
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Counts all the h r user histories.
+	* Returns the number of h r user histories.
 	*
 	* @return the number of h r user histories
 	* @throws SystemException if a system exception occurred

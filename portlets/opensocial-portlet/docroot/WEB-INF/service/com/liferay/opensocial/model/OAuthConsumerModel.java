@@ -45,21 +45,21 @@ public interface OAuthConsumerModel extends BaseModel<OAuthConsumer> {
 	 */
 
 	/**
-	 * Gets the primary key of this o auth consumer.
+	 * Returns the primary key of this o auth consumer.
 	 *
 	 * @return the primary key of this o auth consumer
 	 */
 	public long getPrimaryKey();
 
 	/**
-	 * Sets the primary key of this o auth consumer
+	 * Sets the primary key of this o auth consumer.
 	 *
 	 * @param primaryKey the primary key of this o auth consumer
 	 */
 	public void setPrimaryKey(long primaryKey);
 
 	/**
-	 * Gets the o auth consumer ID of this o auth consumer.
+	 * Returns the o auth consumer ID of this o auth consumer.
 	 *
 	 * @return the o auth consumer ID of this o auth consumer
 	 */
@@ -73,7 +73,7 @@ public interface OAuthConsumerModel extends BaseModel<OAuthConsumer> {
 	public void setOAuthConsumerId(long oAuthConsumerId);
 
 	/**
-	 * Gets the company ID of this o auth consumer.
+	 * Returns the company ID of this o auth consumer.
 	 *
 	 * @return the company ID of this o auth consumer
 	 */
@@ -87,7 +87,7 @@ public interface OAuthConsumerModel extends BaseModel<OAuthConsumer> {
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the create date of this o auth consumer.
+	 * Returns the create date of this o auth consumer.
 	 *
 	 * @return the create date of this o auth consumer
 	 */
@@ -101,7 +101,7 @@ public interface OAuthConsumerModel extends BaseModel<OAuthConsumer> {
 	public void setCreateDate(Date createDate);
 
 	/**
-	 * Gets the modified date of this o auth consumer.
+	 * Returns the modified date of this o auth consumer.
 	 *
 	 * @return the modified date of this o auth consumer
 	 */
@@ -115,7 +115,7 @@ public interface OAuthConsumerModel extends BaseModel<OAuthConsumer> {
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Gets the gadget ID of this o auth consumer.
+	 * Returns the gadget ID of this o auth consumer.
 	 *
 	 * @return the gadget ID of this o auth consumer
 	 */
@@ -129,7 +129,7 @@ public interface OAuthConsumerModel extends BaseModel<OAuthConsumer> {
 	public void setGadgetId(long gadgetId);
 
 	/**
-	 * Gets the service name of this o auth consumer.
+	 * Returns the service name of this o auth consumer.
 	 *
 	 * @return the service name of this o auth consumer
 	 */
@@ -144,7 +144,7 @@ public interface OAuthConsumerModel extends BaseModel<OAuthConsumer> {
 	public void setServiceName(String serviceName);
 
 	/**
-	 * Gets the consumer key of this o auth consumer.
+	 * Returns the consumer key of this o auth consumer.
 	 *
 	 * @return the consumer key of this o auth consumer
 	 */
@@ -159,7 +159,7 @@ public interface OAuthConsumerModel extends BaseModel<OAuthConsumer> {
 	public void setConsumerKey(String consumerKey);
 
 	/**
-	 * Gets the consumer secret of this o auth consumer.
+	 * Returns the consumer secret of this o auth consumer.
 	 *
 	 * @return the consumer secret of this o auth consumer
 	 */
@@ -174,7 +174,7 @@ public interface OAuthConsumerModel extends BaseModel<OAuthConsumer> {
 	public void setConsumerSecret(String consumerSecret);
 
 	/**
-	 * Gets the key type of this o auth consumer.
+	 * Returns the key type of this o auth consumer.
 	 *
 	 * @return the key type of this o auth consumer
 	 */

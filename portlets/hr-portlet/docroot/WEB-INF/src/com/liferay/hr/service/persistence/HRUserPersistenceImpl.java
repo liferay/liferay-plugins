@@ -82,7 +82,7 @@ public class HRUserPersistenceImpl extends BasePersistenceImpl<HRUser>
 	/**
 	 * Caches the h r user in the entity cache if it is enabled.
 	 *
-	 * @param hrUser the h r user to cache
+	 * @param hrUser the h r user
 	 */
 	public void cacheResult(HRUser hrUser) {
 		EntityCacheUtil.putResult(HRUserModelImpl.ENTITY_CACHE_ENABLED,
@@ -94,7 +94,7 @@ public class HRUserPersistenceImpl extends BasePersistenceImpl<HRUser>
 	/**
 	 * Caches the h r users in the entity cache if it is enabled.
 	 *
-	 * @param hrUsers the h r users to cache
+	 * @param hrUsers the h r users
 	 */
 	public void cacheResult(List<HRUser> hrUsers) {
 		for (HRUser hrUser : hrUsers) {
@@ -153,7 +153,7 @@ public class HRUserPersistenceImpl extends BasePersistenceImpl<HRUser>
 	/**
 	 * Removes the h r user with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param primaryKey the primary key of the h r user to remove
+	 * @param primaryKey the primary key of the h r user
 	 * @return the h r user that was removed
 	 * @throws com.liferay.portal.NoSuchModelException if a h r user with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -166,7 +166,7 @@ public class HRUserPersistenceImpl extends BasePersistenceImpl<HRUser>
 	/**
 	 * Removes the h r user with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param hrUserId the primary key of the h r user to remove
+	 * @param hrUserId the primary key of the h r user
 	 * @return the h r user that was removed
 	 * @throws com.liferay.hr.NoSuchUserException if a h r user with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -206,7 +206,7 @@ public class HRUserPersistenceImpl extends BasePersistenceImpl<HRUser>
 	/**
 	 * Removes the h r user from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param hrUser the h r user to remove
+	 * @param hrUser the h r user
 	 * @return the h r user that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -300,9 +300,9 @@ public class HRUserPersistenceImpl extends BasePersistenceImpl<HRUser>
 	}
 
 	/**
-	 * Finds the h r user with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
+	 * Returns the h r user with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
 	 *
-	 * @param primaryKey the primary key of the h r user to find
+	 * @param primaryKey the primary key of the h r user
 	 * @return the h r user
 	 * @throws com.liferay.portal.NoSuchModelException if a h r user with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -313,9 +313,9 @@ public class HRUserPersistenceImpl extends BasePersistenceImpl<HRUser>
 	}
 
 	/**
-	 * Finds the h r user with the primary key or throws a {@link com.liferay.hr.NoSuchUserException} if it could not be found.
+	 * Returns the h r user with the primary key or throws a {@link com.liferay.hr.NoSuchUserException} if it could not be found.
 	 *
-	 * @param hrUserId the primary key of the h r user to find
+	 * @param hrUserId the primary key of the h r user
 	 * @return the h r user
 	 * @throws com.liferay.hr.NoSuchUserException if a h r user with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -337,9 +337,9 @@ public class HRUserPersistenceImpl extends BasePersistenceImpl<HRUser>
 	}
 
 	/**
-	 * Finds the h r user with the primary key or returns <code>null</code> if it could not be found.
+	 * Returns the h r user with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param primaryKey the primary key of the h r user to find
+	 * @param primaryKey the primary key of the h r user
 	 * @return the h r user, or <code>null</code> if a h r user with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -349,9 +349,9 @@ public class HRUserPersistenceImpl extends BasePersistenceImpl<HRUser>
 	}
 
 	/**
-	 * Finds the h r user with the primary key or returns <code>null</code> if it could not be found.
+	 * Returns the h r user with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param hrUserId the primary key of the h r user to find
+	 * @param hrUserId the primary key of the h r user
 	 * @return the h r user, or <code>null</code> if a h r user with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -384,7 +384,7 @@ public class HRUserPersistenceImpl extends BasePersistenceImpl<HRUser>
 	}
 
 	/**
-	 * Finds all the h r users.
+	 * Returns all the h r users.
 	 *
 	 * @return the h r users
 	 * @throws SystemException if a system exception occurred
@@ -394,14 +394,14 @@ public class HRUserPersistenceImpl extends BasePersistenceImpl<HRUser>
 	}
 
 	/**
-	 * Finds a range of all the h r users.
+	 * Returns a range of all the h r users.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of h r users to return
-	 * @param end the upper bound of the range of h r users to return (not inclusive)
+	 * @param start the lower bound of the range of h r users
+	 * @param end the upper bound of the range of h r users (not inclusive)
 	 * @return the range of h r users
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -410,14 +410,14 @@ public class HRUserPersistenceImpl extends BasePersistenceImpl<HRUser>
 	}
 
 	/**
-	 * Finds an ordered range of all the h r users.
+	 * Returns an ordered range of all the h r users.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of h r users to return
-	 * @param end the upper bound of the range of h r users to return (not inclusive)
+	 * @param start the lower bound of the range of h r users
+	 * @param end the upper bound of the range of h r users (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of h r users
 	 * @throws SystemException if a system exception occurred
@@ -503,7 +503,7 @@ public class HRUserPersistenceImpl extends BasePersistenceImpl<HRUser>
 	}
 
 	/**
-	 * Counts all the h r users.
+	 * Returns the number of h r users.
 	 *
 	 * @return the number of h r users
 	 * @throws SystemException if a system exception occurred

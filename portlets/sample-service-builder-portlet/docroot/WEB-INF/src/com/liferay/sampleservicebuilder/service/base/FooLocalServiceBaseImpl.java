@@ -23,6 +23,11 @@ import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.search.Indexer;
+import com.liferay.portal.kernel.search.IndexerRegistryUtil;
+import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.service.ResourceLocalService;
 import com.liferay.portal.service.ResourceService;
@@ -70,14 +75,29 @@ public abstract class FooLocalServiceBaseImpl implements FooLocalService,
 	/**
 	 * Adds the foo to the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param foo the foo to add
+	 * @param foo the foo
 	 * @return the foo that was added
 	 * @throws SystemException if a system exception occurred
 	 */
 	public Foo addFoo(Foo foo) throws SystemException {
 		foo.setNew(true);
 
-		return fooPersistence.update(foo, false);
+		foo = fooPersistence.update(foo, false);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.reindex(foo);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
+
+		return foo;
 	}
 
 	/**
@@ -93,28 +113,54 @@ public abstract class FooLocalServiceBaseImpl implements FooLocalService,
 	/**
 	 * Deletes the foo with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param fooId the primary key of the foo to delete
+	 * @param fooId the primary key of the foo
 	 * @throws PortalException if a foo with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void deleteFoo(long fooId) throws PortalException, SystemException {
-		fooPersistence.remove(fooId);
+		Foo foo = fooPersistence.remove(fooId);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.delete(foo);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
 	}
 
 	/**
 	 * Deletes the foo from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param foo the foo to delete
+	 * @param foo the foo
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void deleteFoo(Foo foo) throws SystemException {
 		fooPersistence.remove(foo);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.delete(foo);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
 	}
 
 	/**
 	 * Performs a dynamic query on the database and returns the matching rows.
 	 *
-	 * @param dynamicQuery the dynamic query to search with
+	 * @param dynamicQuery the dynamic query
 	 * @return the matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -131,9 +177,9 @@ public abstract class FooLocalServiceBaseImpl implements FooLocalService,
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param dynamicQuery the dynamic query to search with
-	 * @param start the lower bound of the range of model instances to return
-	 * @param end the upper bound of the range of model instances to return (not inclusive)
+	 * @param dynamicQuery the dynamic query
+	 * @param start the lower bound of the range of model instances
+	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @return the range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -150,9 +196,9 @@ public abstract class FooLocalServiceBaseImpl implements FooLocalService,
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param dynamicQuery the dynamic query to search with
-	 * @param start the lower bound of the range of model instances to return
-	 * @param end the upper bound of the range of model instances to return (not inclusive)
+	 * @param dynamicQuery the dynamic query
+	 * @param start the lower bound of the range of model instances
+	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching rows
 	 * @throws SystemException if a system exception occurred
@@ -165,9 +211,9 @@ public abstract class FooLocalServiceBaseImpl implements FooLocalService,
 	}
 
 	/**
-	 * Counts the number of rows that match the dynamic query.
+	 * Returns the number of rows that match the dynamic query.
 	 *
-	 * @param dynamicQuery the dynamic query to search with
+	 * @param dynamicQuery the dynamic query
 	 * @return the number of rows that match the dynamic query
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -177,9 +223,9 @@ public abstract class FooLocalServiceBaseImpl implements FooLocalService,
 	}
 
 	/**
-	 * Gets the foo with the primary key.
+	 * Returns the foo with the primary key.
 	 *
-	 * @param fooId the primary key of the foo to get
+	 * @param fooId the primary key of the foo
 	 * @return the foo
 	 * @throws PortalException if a foo with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -189,12 +235,12 @@ public abstract class FooLocalServiceBaseImpl implements FooLocalService,
 	}
 
 	/**
-	 * Gets the foo with the UUID and group id.
+	 * Returns the foo with the UUID in the group.
 	 *
-	 * @param uuid the UUID of foo to get
-	 * @param groupId the group id of the foo to get
+	 * @param uuid the UUID of foo
+	 * @param groupId the group id of the foo
 	 * @return the foo
-	 * @throws PortalException if a foo with the UUID and group id could not be found
+	 * @throws PortalException if a foo with the UUID in the group could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	public Foo getFooByUuidAndGroupId(String uuid, long groupId)
@@ -203,14 +249,14 @@ public abstract class FooLocalServiceBaseImpl implements FooLocalService,
 	}
 
 	/**
-	 * Gets a range of all the foos.
+	 * Returns a range of all the foos.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of foos to return
-	 * @param end the upper bound of the range of foos to return (not inclusive)
+	 * @param start the lower bound of the range of foos
+	 * @param end the upper bound of the range of foos (not inclusive)
 	 * @return the range of foos
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -219,7 +265,7 @@ public abstract class FooLocalServiceBaseImpl implements FooLocalService,
 	}
 
 	/**
-	 * Gets the number of foos.
+	 * Returns the number of foos.
 	 *
 	 * @return the number of foos
 	 * @throws SystemException if a system exception occurred
@@ -231,20 +277,18 @@ public abstract class FooLocalServiceBaseImpl implements FooLocalService,
 	/**
 	 * Updates the foo in the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param foo the foo to update
+	 * @param foo the foo
 	 * @return the foo that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
 	public Foo updateFoo(Foo foo) throws SystemException {
-		foo.setNew(false);
-
-		return fooPersistence.update(foo, true);
+		return updateFoo(foo, true);
 	}
 
 	/**
 	 * Updates the foo in the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param foo the foo to update
+	 * @param foo the foo
 	 * @param merge whether to merge the foo with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
 	 * @return the foo that was updated
 	 * @throws SystemException if a system exception occurred
@@ -252,11 +296,26 @@ public abstract class FooLocalServiceBaseImpl implements FooLocalService,
 	public Foo updateFoo(Foo foo, boolean merge) throws SystemException {
 		foo.setNew(false);
 
-		return fooPersistence.update(foo, merge);
+		foo = fooPersistence.update(foo, merge);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.reindex(foo);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
+
+		return foo;
 	}
 
 	/**
-	 * Gets the foo local service.
+	 * Returns the foo local service.
 	 *
 	 * @return the foo local service
 	 */
@@ -274,7 +333,7 @@ public abstract class FooLocalServiceBaseImpl implements FooLocalService,
 	}
 
 	/**
-	 * Gets the foo remote service.
+	 * Returns the foo remote service.
 	 *
 	 * @return the foo remote service
 	 */
@@ -292,7 +351,7 @@ public abstract class FooLocalServiceBaseImpl implements FooLocalService,
 	}
 
 	/**
-	 * Gets the foo persistence.
+	 * Returns the foo persistence.
 	 *
 	 * @return the foo persistence
 	 */
@@ -310,7 +369,7 @@ public abstract class FooLocalServiceBaseImpl implements FooLocalService,
 	}
 
 	/**
-	 * Gets the counter local service.
+	 * Returns the counter local service.
 	 *
 	 * @return the counter local service
 	 */
@@ -328,7 +387,7 @@ public abstract class FooLocalServiceBaseImpl implements FooLocalService,
 	}
 
 	/**
-	 * Gets the resource local service.
+	 * Returns the resource local service.
 	 *
 	 * @return the resource local service
 	 */
@@ -347,7 +406,7 @@ public abstract class FooLocalServiceBaseImpl implements FooLocalService,
 	}
 
 	/**
-	 * Gets the resource remote service.
+	 * Returns the resource remote service.
 	 *
 	 * @return the resource remote service
 	 */
@@ -365,7 +424,7 @@ public abstract class FooLocalServiceBaseImpl implements FooLocalService,
 	}
 
 	/**
-	 * Gets the resource persistence.
+	 * Returns the resource persistence.
 	 *
 	 * @return the resource persistence
 	 */
@@ -383,7 +442,7 @@ public abstract class FooLocalServiceBaseImpl implements FooLocalService,
 	}
 
 	/**
-	 * Gets the user local service.
+	 * Returns the user local service.
 	 *
 	 * @return the user local service
 	 */
@@ -401,7 +460,7 @@ public abstract class FooLocalServiceBaseImpl implements FooLocalService,
 	}
 
 	/**
-	 * Gets the user remote service.
+	 * Returns the user remote service.
 	 *
 	 * @return the user remote service
 	 */
@@ -419,7 +478,7 @@ public abstract class FooLocalServiceBaseImpl implements FooLocalService,
 	}
 
 	/**
-	 * Gets the user persistence.
+	 * Returns the user persistence.
 	 *
 	 * @return the user persistence
 	 */
@@ -437,7 +496,7 @@ public abstract class FooLocalServiceBaseImpl implements FooLocalService,
 	}
 
 	/**
-	 * Gets the asset entry local service.
+	 * Returns the asset entry local service.
 	 *
 	 * @return the asset entry local service
 	 */
@@ -456,7 +515,7 @@ public abstract class FooLocalServiceBaseImpl implements FooLocalService,
 	}
 
 	/**
-	 * Gets the asset entry remote service.
+	 * Returns the asset entry remote service.
 	 *
 	 * @return the asset entry remote service
 	 */
@@ -474,7 +533,7 @@ public abstract class FooLocalServiceBaseImpl implements FooLocalService,
 	}
 
 	/**
-	 * Gets the asset entry persistence.
+	 * Returns the asset entry persistence.
 	 *
 	 * @return the asset entry persistence
 	 */
@@ -493,7 +552,7 @@ public abstract class FooLocalServiceBaseImpl implements FooLocalService,
 	}
 
 	/**
-	 * Gets the asset tag local service.
+	 * Returns the asset tag local service.
 	 *
 	 * @return the asset tag local service
 	 */
@@ -512,7 +571,7 @@ public abstract class FooLocalServiceBaseImpl implements FooLocalService,
 	}
 
 	/**
-	 * Gets the asset tag remote service.
+	 * Returns the asset tag remote service.
 	 *
 	 * @return the asset tag remote service
 	 */
@@ -530,7 +589,7 @@ public abstract class FooLocalServiceBaseImpl implements FooLocalService,
 	}
 
 	/**
-	 * Gets the asset tag persistence.
+	 * Returns the asset tag persistence.
 	 *
 	 * @return the asset tag persistence
 	 */
@@ -548,7 +607,7 @@ public abstract class FooLocalServiceBaseImpl implements FooLocalService,
 	}
 
 	/**
-	 * Gets the Spring bean ID for this bean.
+	 * Returns the Spring bean ID for this bean.
 	 *
 	 * @return the Spring bean ID for this bean
 	 */
@@ -565,10 +624,18 @@ public abstract class FooLocalServiceBaseImpl implements FooLocalService,
 		_beanIdentifier = beanIdentifier;
 	}
 
+	protected Class<?> getModelClass() {
+		return Foo.class;
+	}
+
+	protected String getModelClassName() {
+		return Foo.class.getName();
+	}
+
 	/**
 	 * Performs an SQL query.
 	 *
-	 * @param sql the sql query to perform
+	 * @param sql the sql query
 	 */
 	protected void runSQL(String sql) throws SystemException {
 		try {
@@ -616,5 +683,6 @@ public abstract class FooLocalServiceBaseImpl implements FooLocalService,
 	protected AssetTagService assetTagService;
 	@BeanReference(type = AssetTagPersistence.class)
 	protected AssetTagPersistence assetTagPersistence;
+	private static Log _log = LogFactoryUtil.getLog(FooLocalServiceBaseImpl.class);
 	private String _beanIdentifier;
 }

@@ -47,21 +47,21 @@ public interface HRUserTaskModel extends BaseModel<HRUserTask>, GroupedModel {
 	 */
 
 	/**
-	 * Gets the primary key of this h r user task.
+	 * Returns the primary key of this h r user task.
 	 *
 	 * @return the primary key of this h r user task
 	 */
 	public long getPrimaryKey();
 
 	/**
-	 * Sets the primary key of this h r user task
+	 * Sets the primary key of this h r user task.
 	 *
 	 * @param primaryKey the primary key of this h r user task
 	 */
 	public void setPrimaryKey(long primaryKey);
 
 	/**
-	 * Gets the hr user task ID of this h r user task.
+	 * Returns the hr user task ID of this h r user task.
 	 *
 	 * @return the hr user task ID of this h r user task
 	 */
@@ -75,7 +75,7 @@ public interface HRUserTaskModel extends BaseModel<HRUserTask>, GroupedModel {
 	public void setHrUserTaskId(long hrUserTaskId);
 
 	/**
-	 * Gets the group ID of this h r user task.
+	 * Returns the group ID of this h r user task.
 	 *
 	 * @return the group ID of this h r user task
 	 */
@@ -89,7 +89,7 @@ public interface HRUserTaskModel extends BaseModel<HRUserTask>, GroupedModel {
 	public void setGroupId(long groupId);
 
 	/**
-	 * Gets the company ID of this h r user task.
+	 * Returns the company ID of this h r user task.
 	 *
 	 * @return the company ID of this h r user task
 	 */
@@ -103,7 +103,7 @@ public interface HRUserTaskModel extends BaseModel<HRUserTask>, GroupedModel {
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the user ID of this h r user task.
+	 * Returns the user ID of this h r user task.
 	 *
 	 * @return the user ID of this h r user task
 	 */
@@ -117,7 +117,7 @@ public interface HRUserTaskModel extends BaseModel<HRUserTask>, GroupedModel {
 	public void setUserId(long userId);
 
 	/**
-	 * Gets the user uuid of this h r user task.
+	 * Returns the user uuid of this h r user task.
 	 *
 	 * @return the user uuid of this h r user task
 	 * @throws SystemException if a system exception occurred
@@ -132,7 +132,7 @@ public interface HRUserTaskModel extends BaseModel<HRUserTask>, GroupedModel {
 	public void setUserUuid(String userUuid);
 
 	/**
-	 * Gets the user name of this h r user task.
+	 * Returns the user name of this h r user task.
 	 *
 	 * @return the user name of this h r user task
 	 */
@@ -147,7 +147,7 @@ public interface HRUserTaskModel extends BaseModel<HRUserTask>, GroupedModel {
 	public void setUserName(String userName);
 
 	/**
-	 * Gets the create date of this h r user task.
+	 * Returns the create date of this h r user task.
 	 *
 	 * @return the create date of this h r user task
 	 */
@@ -161,7 +161,7 @@ public interface HRUserTaskModel extends BaseModel<HRUserTask>, GroupedModel {
 	public void setCreateDate(Date createDate);
 
 	/**
-	 * Gets the modified date of this h r user task.
+	 * Returns the modified date of this h r user task.
 	 *
 	 * @return the modified date of this h r user task
 	 */
@@ -175,7 +175,7 @@ public interface HRUserTaskModel extends BaseModel<HRUserTask>, GroupedModel {
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Gets the hr billability ID of this h r user task.
+	 * Returns the hr billability ID of this h r user task.
 	 *
 	 * @return the hr billability ID of this h r user task
 	 */
@@ -189,7 +189,7 @@ public interface HRUserTaskModel extends BaseModel<HRUserTask>, GroupedModel {
 	public void setHrBillabilityId(long hrBillabilityId);
 
 	/**
-	 * Gets the hr task ID of this h r user task.
+	 * Returns the hr task ID of this h r user task.
 	 *
 	 * @return the hr task ID of this h r user task
 	 */
@@ -203,7 +203,7 @@ public interface HRUserTaskModel extends BaseModel<HRUserTask>, GroupedModel {
 	public void setHrTaskId(long hrTaskId);
 
 	/**
-	 * Gets the hr timesheet ID of this h r user task.
+	 * Returns the hr timesheet ID of this h r user task.
 	 *
 	 * @return the hr timesheet ID of this h r user task
 	 */
@@ -217,7 +217,7 @@ public interface HRUserTaskModel extends BaseModel<HRUserTask>, GroupedModel {
 	public void setHrTimesheetId(long hrTimesheetId);
 
 	/**
-	 * Gets the hr user ID of this h r user task.
+	 * Returns the hr user ID of this h r user task.
 	 *
 	 * @return the hr user ID of this h r user task
 	 */
@@ -231,7 +231,7 @@ public interface HRUserTaskModel extends BaseModel<HRUserTask>, GroupedModel {
 	public void setHrUserId(long hrUserId);
 
 	/**
-	 * Gets the hr user uuid of this h r user task.
+	 * Returns the hr user uuid of this h r user task.
 	 *
 	 * @return the hr user uuid of this h r user task
 	 * @throws SystemException if a system exception occurred

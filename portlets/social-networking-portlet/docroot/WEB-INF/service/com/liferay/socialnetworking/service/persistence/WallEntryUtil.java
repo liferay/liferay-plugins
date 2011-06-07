@@ -121,7 +121,7 @@ public class WallEntryUtil {
 	/**
 	* Caches the wall entry in the entity cache if it is enabled.
 	*
-	* @param wallEntry the wall entry to cache
+	* @param wallEntry the wall entry
 	*/
 	public static void cacheResult(
 		com.liferay.socialnetworking.model.WallEntry wallEntry) {
@@ -131,7 +131,7 @@ public class WallEntryUtil {
 	/**
 	* Caches the wall entries in the entity cache if it is enabled.
 	*
-	* @param wallEntries the wall entries to cache
+	* @param wallEntries the wall entries
 	*/
 	public static void cacheResult(
 		java.util.List<com.liferay.socialnetworking.model.WallEntry> wallEntries) {
@@ -152,7 +152,7 @@ public class WallEntryUtil {
 	/**
 	* Removes the wall entry with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param wallEntryId the primary key of the wall entry to remove
+	* @param wallEntryId the primary key of the wall entry
 	* @return the wall entry that was removed
 	* @throws com.liferay.socialnetworking.NoSuchWallEntryException if a wall entry with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -171,9 +171,9 @@ public class WallEntryUtil {
 	}
 
 	/**
-	* Finds the wall entry with the primary key or throws a {@link com.liferay.socialnetworking.NoSuchWallEntryException} if it could not be found.
+	* Returns the wall entry with the primary key or throws a {@link com.liferay.socialnetworking.NoSuchWallEntryException} if it could not be found.
 	*
-	* @param wallEntryId the primary key of the wall entry to find
+	* @param wallEntryId the primary key of the wall entry
 	* @return the wall entry
 	* @throws com.liferay.socialnetworking.NoSuchWallEntryException if a wall entry with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -186,9 +186,9 @@ public class WallEntryUtil {
 	}
 
 	/**
-	* Finds the wall entry with the primary key or returns <code>null</code> if it could not be found.
+	* Returns the wall entry with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param wallEntryId the primary key of the wall entry to find
+	* @param wallEntryId the primary key of the wall entry
 	* @return the wall entry, or <code>null</code> if a wall entry with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -199,9 +199,9 @@ public class WallEntryUtil {
 	}
 
 	/**
-	* Finds all the wall entries where groupId = &#63;.
+	* Returns all the wall entries where groupId = &#63;.
 	*
-	* @param groupId the group ID to search with
+	* @param groupId the group ID
 	* @return the matching wall entries
 	* @throws SystemException if a system exception occurred
 	*/
@@ -212,15 +212,15 @@ public class WallEntryUtil {
 	}
 
 	/**
-	* Finds a range of all the wall entries where groupId = &#63;.
+	* Returns a range of all the wall entries where groupId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param groupId the group ID to search with
-	* @param start the lower bound of the range of wall entries to return
-	* @param end the upper bound of the range of wall entries to return (not inclusive)
+	* @param groupId the group ID
+	* @param start the lower bound of the range of wall entries
+	* @param end the upper bound of the range of wall entries (not inclusive)
 	* @return the range of matching wall entries
 	* @throws SystemException if a system exception occurred
 	*/
@@ -231,15 +231,15 @@ public class WallEntryUtil {
 	}
 
 	/**
-	* Finds an ordered range of all the wall entries where groupId = &#63;.
+	* Returns an ordered range of all the wall entries where groupId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param groupId the group ID to search with
-	* @param start the lower bound of the range of wall entries to return
-	* @param end the upper bound of the range of wall entries to return (not inclusive)
+	* @param groupId the group ID
+	* @param start the lower bound of the range of wall entries
+	* @param end the upper bound of the range of wall entries (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching wall entries
 	* @throws SystemException if a system exception occurred
@@ -253,13 +253,13 @@ public class WallEntryUtil {
 	}
 
 	/**
-	* Finds the first wall entry in the ordered set where groupId = &#63;.
+	* Returns the first wall entry in the ordered set where groupId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param groupId the group ID to search with
+	* @param groupId the group ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching wall entry
 	* @throws com.liferay.socialnetworking.NoSuchWallEntryException if a matching wall entry could not be found
@@ -274,13 +274,13 @@ public class WallEntryUtil {
 	}
 
 	/**
-	* Finds the last wall entry in the ordered set where groupId = &#63;.
+	* Returns the last wall entry in the ordered set where groupId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param groupId the group ID to search with
+	* @param groupId the group ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching wall entry
 	* @throws com.liferay.socialnetworking.NoSuchWallEntryException if a matching wall entry could not be found
@@ -295,14 +295,14 @@ public class WallEntryUtil {
 	}
 
 	/**
-	* Finds the wall entries before and after the current wall entry in the ordered set where groupId = &#63;.
+	* Returns the wall entries before and after the current wall entry in the ordered set where groupId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
 	* @param wallEntryId the primary key of the current wall entry
-	* @param groupId the group ID to search with
+	* @param groupId the group ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next wall entry
 	* @throws com.liferay.socialnetworking.NoSuchWallEntryException if a wall entry with the primary key could not be found
@@ -319,9 +319,9 @@ public class WallEntryUtil {
 	}
 
 	/**
-	* Finds all the wall entries where userId = &#63;.
+	* Returns all the wall entries where userId = &#63;.
 	*
-	* @param userId the user ID to search with
+	* @param userId the user ID
 	* @return the matching wall entries
 	* @throws SystemException if a system exception occurred
 	*/
@@ -331,15 +331,15 @@ public class WallEntryUtil {
 	}
 
 	/**
-	* Finds a range of all the wall entries where userId = &#63;.
+	* Returns a range of all the wall entries where userId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param userId the user ID to search with
-	* @param start the lower bound of the range of wall entries to return
-	* @param end the upper bound of the range of wall entries to return (not inclusive)
+	* @param userId the user ID
+	* @param start the lower bound of the range of wall entries
+	* @param end the upper bound of the range of wall entries (not inclusive)
 	* @return the range of matching wall entries
 	* @throws SystemException if a system exception occurred
 	*/
@@ -350,15 +350,15 @@ public class WallEntryUtil {
 	}
 
 	/**
-	* Finds an ordered range of all the wall entries where userId = &#63;.
+	* Returns an ordered range of all the wall entries where userId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param userId the user ID to search with
-	* @param start the lower bound of the range of wall entries to return
-	* @param end the upper bound of the range of wall entries to return (not inclusive)
+	* @param userId the user ID
+	* @param start the lower bound of the range of wall entries
+	* @param end the upper bound of the range of wall entries (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching wall entries
 	* @throws SystemException if a system exception occurred
@@ -372,13 +372,13 @@ public class WallEntryUtil {
 	}
 
 	/**
-	* Finds the first wall entry in the ordered set where userId = &#63;.
+	* Returns the first wall entry in the ordered set where userId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param userId the user ID to search with
+	* @param userId the user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching wall entry
 	* @throws com.liferay.socialnetworking.NoSuchWallEntryException if a matching wall entry could not be found
@@ -393,13 +393,13 @@ public class WallEntryUtil {
 	}
 
 	/**
-	* Finds the last wall entry in the ordered set where userId = &#63;.
+	* Returns the last wall entry in the ordered set where userId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param userId the user ID to search with
+	* @param userId the user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching wall entry
 	* @throws com.liferay.socialnetworking.NoSuchWallEntryException if a matching wall entry could not be found
@@ -414,14 +414,14 @@ public class WallEntryUtil {
 	}
 
 	/**
-	* Finds the wall entries before and after the current wall entry in the ordered set where userId = &#63;.
+	* Returns the wall entries before and after the current wall entry in the ordered set where userId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
 	* @param wallEntryId the primary key of the current wall entry
-	* @param userId the user ID to search with
+	* @param userId the user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next wall entry
 	* @throws com.liferay.socialnetworking.NoSuchWallEntryException if a wall entry with the primary key could not be found
@@ -438,10 +438,10 @@ public class WallEntryUtil {
 	}
 
 	/**
-	* Finds all the wall entries where groupId = &#63; and userId = &#63;.
+	* Returns all the wall entries where groupId = &#63; and userId = &#63;.
 	*
-	* @param groupId the group ID to search with
-	* @param userId the user ID to search with
+	* @param groupId the group ID
+	* @param userId the user ID
 	* @return the matching wall entries
 	* @throws SystemException if a system exception occurred
 	*/
@@ -452,16 +452,16 @@ public class WallEntryUtil {
 	}
 
 	/**
-	* Finds a range of all the wall entries where groupId = &#63; and userId = &#63;.
+	* Returns a range of all the wall entries where groupId = &#63; and userId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param groupId the group ID to search with
-	* @param userId the user ID to search with
-	* @param start the lower bound of the range of wall entries to return
-	* @param end the upper bound of the range of wall entries to return (not inclusive)
+	* @param groupId the group ID
+	* @param userId the user ID
+	* @param start the lower bound of the range of wall entries
+	* @param end the upper bound of the range of wall entries (not inclusive)
 	* @return the range of matching wall entries
 	* @throws SystemException if a system exception occurred
 	*/
@@ -472,16 +472,16 @@ public class WallEntryUtil {
 	}
 
 	/**
-	* Finds an ordered range of all the wall entries where groupId = &#63; and userId = &#63;.
+	* Returns an ordered range of all the wall entries where groupId = &#63; and userId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param groupId the group ID to search with
-	* @param userId the user ID to search with
-	* @param start the lower bound of the range of wall entries to return
-	* @param end the upper bound of the range of wall entries to return (not inclusive)
+	* @param groupId the group ID
+	* @param userId the user ID
+	* @param start the lower bound of the range of wall entries
+	* @param end the upper bound of the range of wall entries (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching wall entries
 	* @throws SystemException if a system exception occurred
@@ -495,14 +495,14 @@ public class WallEntryUtil {
 	}
 
 	/**
-	* Finds the first wall entry in the ordered set where groupId = &#63; and userId = &#63;.
+	* Returns the first wall entry in the ordered set where groupId = &#63; and userId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param groupId the group ID to search with
-	* @param userId the user ID to search with
+	* @param groupId the group ID
+	* @param userId the user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching wall entry
 	* @throws com.liferay.socialnetworking.NoSuchWallEntryException if a matching wall entry could not be found
@@ -518,14 +518,14 @@ public class WallEntryUtil {
 	}
 
 	/**
-	* Finds the last wall entry in the ordered set where groupId = &#63; and userId = &#63;.
+	* Returns the last wall entry in the ordered set where groupId = &#63; and userId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param groupId the group ID to search with
-	* @param userId the user ID to search with
+	* @param groupId the group ID
+	* @param userId the user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching wall entry
 	* @throws com.liferay.socialnetworking.NoSuchWallEntryException if a matching wall entry could not be found
@@ -541,15 +541,15 @@ public class WallEntryUtil {
 	}
 
 	/**
-	* Finds the wall entries before and after the current wall entry in the ordered set where groupId = &#63; and userId = &#63;.
+	* Returns the wall entries before and after the current wall entry in the ordered set where groupId = &#63; and userId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
 	* @param wallEntryId the primary key of the current wall entry
-	* @param groupId the group ID to search with
-	* @param userId the user ID to search with
+	* @param groupId the group ID
+	* @param userId the user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next wall entry
 	* @throws com.liferay.socialnetworking.NoSuchWallEntryException if a wall entry with the primary key could not be found
@@ -566,7 +566,7 @@ public class WallEntryUtil {
 	}
 
 	/**
-	* Finds all the wall entries.
+	* Returns all the wall entries.
 	*
 	* @return the wall entries
 	* @throws SystemException if a system exception occurred
@@ -577,14 +577,14 @@ public class WallEntryUtil {
 	}
 
 	/**
-	* Finds a range of all the wall entries.
+	* Returns a range of all the wall entries.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of wall entries to return
-	* @param end the upper bound of the range of wall entries to return (not inclusive)
+	* @param start the lower bound of the range of wall entries
+	* @param end the upper bound of the range of wall entries (not inclusive)
 	* @return the range of wall entries
 	* @throws SystemException if a system exception occurred
 	*/
@@ -595,14 +595,14 @@ public class WallEntryUtil {
 	}
 
 	/**
-	* Finds an ordered range of all the wall entries.
+	* Returns an ordered range of all the wall entries.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of wall entries to return
-	* @param end the upper bound of the range of wall entries to return (not inclusive)
+	* @param start the lower bound of the range of wall entries
+	* @param end the upper bound of the range of wall entries (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of wall entries
 	* @throws SystemException if a system exception occurred
@@ -617,7 +617,7 @@ public class WallEntryUtil {
 	/**
 	* Removes all the wall entries where groupId = &#63; from the database.
 	*
-	* @param groupId the group ID to search with
+	* @param groupId the group ID
 	* @throws SystemException if a system exception occurred
 	*/
 	public static void removeByGroupId(long groupId)
@@ -628,7 +628,7 @@ public class WallEntryUtil {
 	/**
 	* Removes all the wall entries where userId = &#63; from the database.
 	*
-	* @param userId the user ID to search with
+	* @param userId the user ID
 	* @throws SystemException if a system exception occurred
 	*/
 	public static void removeByUserId(long userId)
@@ -639,8 +639,8 @@ public class WallEntryUtil {
 	/**
 	* Removes all the wall entries where groupId = &#63; and userId = &#63; from the database.
 	*
-	* @param groupId the group ID to search with
-	* @param userId the user ID to search with
+	* @param groupId the group ID
+	* @param userId the user ID
 	* @throws SystemException if a system exception occurred
 	*/
 	public static void removeByG_U(long groupId, long userId)
@@ -659,9 +659,9 @@ public class WallEntryUtil {
 	}
 
 	/**
-	* Counts all the wall entries where groupId = &#63;.
+	* Returns the number of wall entries where groupId = &#63;.
 	*
-	* @param groupId the group ID to search with
+	* @param groupId the group ID
 	* @return the number of matching wall entries
 	* @throws SystemException if a system exception occurred
 	*/
@@ -671,9 +671,9 @@ public class WallEntryUtil {
 	}
 
 	/**
-	* Counts all the wall entries where userId = &#63;.
+	* Returns the number of wall entries where userId = &#63;.
 	*
-	* @param userId the user ID to search with
+	* @param userId the user ID
 	* @return the number of matching wall entries
 	* @throws SystemException if a system exception occurred
 	*/
@@ -683,10 +683,10 @@ public class WallEntryUtil {
 	}
 
 	/**
-	* Counts all the wall entries where groupId = &#63; and userId = &#63;.
+	* Returns the number of wall entries where groupId = &#63; and userId = &#63;.
 	*
-	* @param groupId the group ID to search with
-	* @param userId the user ID to search with
+	* @param groupId the group ID
+	* @param userId the user ID
 	* @return the number of matching wall entries
 	* @throws SystemException if a system exception occurred
 	*/
@@ -696,7 +696,7 @@ public class WallEntryUtil {
 	}
 
 	/**
-	* Counts all the wall entries.
+	* Returns the number of wall entries.
 	*
 	* @return the number of wall entries
 	* @throws SystemException if a system exception occurred

@@ -23,6 +23,11 @@ import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.search.Indexer;
+import com.liferay.portal.kernel.search.IndexerRegistryUtil;
+import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.service.ResourceLocalService;
 import com.liferay.portal.service.ResourceService;
@@ -64,7 +69,7 @@ public abstract class TasksEntryLocalServiceBaseImpl
 	/**
 	 * Adds the tasks entry to the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param tasksEntry the tasks entry to add
+	 * @param tasksEntry the tasks entry
 	 * @return the tasks entry that was added
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -72,7 +77,22 @@ public abstract class TasksEntryLocalServiceBaseImpl
 		throws SystemException {
 		tasksEntry.setNew(true);
 
-		return tasksEntryPersistence.update(tasksEntry, false);
+		tasksEntry = tasksEntryPersistence.update(tasksEntry, false);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.reindex(tasksEntry);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
+
+		return tasksEntry;
 	}
 
 	/**
@@ -88,31 +108,57 @@ public abstract class TasksEntryLocalServiceBaseImpl
 	/**
 	 * Deletes the tasks entry with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param tasksEntryId the primary key of the tasks entry to delete
+	 * @param tasksEntryId the primary key of the tasks entry
 	 * @throws PortalException if a tasks entry with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void deleteTasksEntry(long tasksEntryId)
 		throws PortalException, SystemException {
-		tasksEntryPersistence.remove(tasksEntryId);
+		TasksEntry tasksEntry = tasksEntryPersistence.remove(tasksEntryId);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.delete(tasksEntry);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
 	}
 
 	/**
 	 * Deletes the tasks entry from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param tasksEntry the tasks entry to delete
+	 * @param tasksEntry the tasks entry
 	 * @throws PortalException
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void deleteTasksEntry(TasksEntry tasksEntry)
 		throws PortalException, SystemException {
 		tasksEntryPersistence.remove(tasksEntry);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.delete(tasksEntry);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
 	}
 
 	/**
 	 * Performs a dynamic query on the database and returns the matching rows.
 	 *
-	 * @param dynamicQuery the dynamic query to search with
+	 * @param dynamicQuery the dynamic query
 	 * @return the matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -129,9 +175,9 @@ public abstract class TasksEntryLocalServiceBaseImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param dynamicQuery the dynamic query to search with
-	 * @param start the lower bound of the range of model instances to return
-	 * @param end the upper bound of the range of model instances to return (not inclusive)
+	 * @param dynamicQuery the dynamic query
+	 * @param start the lower bound of the range of model instances
+	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @return the range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -149,9 +195,9 @@ public abstract class TasksEntryLocalServiceBaseImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param dynamicQuery the dynamic query to search with
-	 * @param start the lower bound of the range of model instances to return
-	 * @param end the upper bound of the range of model instances to return (not inclusive)
+	 * @param dynamicQuery the dynamic query
+	 * @param start the lower bound of the range of model instances
+	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching rows
 	 * @throws SystemException if a system exception occurred
@@ -164,9 +210,9 @@ public abstract class TasksEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Counts the number of rows that match the dynamic query.
+	 * Returns the number of rows that match the dynamic query.
 	 *
-	 * @param dynamicQuery the dynamic query to search with
+	 * @param dynamicQuery the dynamic query
 	 * @return the number of rows that match the dynamic query
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -176,9 +222,9 @@ public abstract class TasksEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the tasks entry with the primary key.
+	 * Returns the tasks entry with the primary key.
 	 *
-	 * @param tasksEntryId the primary key of the tasks entry to get
+	 * @param tasksEntryId the primary key of the tasks entry
 	 * @return the tasks entry
 	 * @throws PortalException if a tasks entry with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -189,14 +235,14 @@ public abstract class TasksEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets a range of all the tasks entries.
+	 * Returns a range of all the tasks entries.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of tasks entries to return
-	 * @param end the upper bound of the range of tasks entries to return (not inclusive)
+	 * @param start the lower bound of the range of tasks entries
+	 * @param end the upper bound of the range of tasks entries (not inclusive)
 	 * @return the range of tasks entries
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -206,7 +252,7 @@ public abstract class TasksEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the number of tasks entries.
+	 * Returns the number of tasks entries.
 	 *
 	 * @return the number of tasks entries
 	 * @throws SystemException if a system exception occurred
@@ -218,21 +264,19 @@ public abstract class TasksEntryLocalServiceBaseImpl
 	/**
 	 * Updates the tasks entry in the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param tasksEntry the tasks entry to update
+	 * @param tasksEntry the tasks entry
 	 * @return the tasks entry that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
 	public TasksEntry updateTasksEntry(TasksEntry tasksEntry)
 		throws SystemException {
-		tasksEntry.setNew(false);
-
-		return tasksEntryPersistence.update(tasksEntry, true);
+		return updateTasksEntry(tasksEntry, true);
 	}
 
 	/**
 	 * Updates the tasks entry in the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param tasksEntry the tasks entry to update
+	 * @param tasksEntry the tasks entry
 	 * @param merge whether to merge the tasks entry with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
 	 * @return the tasks entry that was updated
 	 * @throws SystemException if a system exception occurred
@@ -241,11 +285,26 @@ public abstract class TasksEntryLocalServiceBaseImpl
 		throws SystemException {
 		tasksEntry.setNew(false);
 
-		return tasksEntryPersistence.update(tasksEntry, merge);
+		tasksEntry = tasksEntryPersistence.update(tasksEntry, merge);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.reindex(tasksEntry);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
+
+		return tasksEntry;
 	}
 
 	/**
-	 * Gets the tasks entry local service.
+	 * Returns the tasks entry local service.
 	 *
 	 * @return the tasks entry local service
 	 */
@@ -264,7 +323,7 @@ public abstract class TasksEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the tasks entry remote service.
+	 * Returns the tasks entry remote service.
 	 *
 	 * @return the tasks entry remote service
 	 */
@@ -282,7 +341,7 @@ public abstract class TasksEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the tasks entry persistence.
+	 * Returns the tasks entry persistence.
 	 *
 	 * @return the tasks entry persistence
 	 */
@@ -301,7 +360,7 @@ public abstract class TasksEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the tasks entry finder.
+	 * Returns the tasks entry finder.
 	 *
 	 * @return the tasks entry finder
 	 */
@@ -319,7 +378,7 @@ public abstract class TasksEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the counter local service.
+	 * Returns the counter local service.
 	 *
 	 * @return the counter local service
 	 */
@@ -337,7 +396,7 @@ public abstract class TasksEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the resource local service.
+	 * Returns the resource local service.
 	 *
 	 * @return the resource local service
 	 */
@@ -356,7 +415,7 @@ public abstract class TasksEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the resource remote service.
+	 * Returns the resource remote service.
 	 *
 	 * @return the resource remote service
 	 */
@@ -374,7 +433,7 @@ public abstract class TasksEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the resource persistence.
+	 * Returns the resource persistence.
 	 *
 	 * @return the resource persistence
 	 */
@@ -392,7 +451,7 @@ public abstract class TasksEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the user local service.
+	 * Returns the user local service.
 	 *
 	 * @return the user local service
 	 */
@@ -410,7 +469,7 @@ public abstract class TasksEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the user remote service.
+	 * Returns the user remote service.
 	 *
 	 * @return the user remote service
 	 */
@@ -428,7 +487,7 @@ public abstract class TasksEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the user persistence.
+	 * Returns the user persistence.
 	 *
 	 * @return the user persistence
 	 */
@@ -446,7 +505,7 @@ public abstract class TasksEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the Spring bean ID for this bean.
+	 * Returns the Spring bean ID for this bean.
 	 *
 	 * @return the Spring bean ID for this bean
 	 */
@@ -463,10 +522,18 @@ public abstract class TasksEntryLocalServiceBaseImpl
 		_beanIdentifier = beanIdentifier;
 	}
 
+	protected Class<?> getModelClass() {
+		return TasksEntry.class;
+	}
+
+	protected String getModelClassName() {
+		return TasksEntry.class.getName();
+	}
+
 	/**
 	 * Performs an SQL query.
 	 *
-	 * @param sql the sql query to perform
+	 * @param sql the sql query
 	 */
 	protected void runSQL(String sql) throws SystemException {
 		try {
@@ -504,5 +571,6 @@ public abstract class TasksEntryLocalServiceBaseImpl
 	protected UserService userService;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
+	private static Log _log = LogFactoryUtil.getLog(TasksEntryLocalServiceBaseImpl.class);
 	private String _beanIdentifier;
 }

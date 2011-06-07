@@ -45,21 +45,21 @@ public interface JIRAChangeGroupModel extends BaseModel<JIRAChangeGroup> {
 	 */
 
 	/**
-	 * Gets the primary key of this j i r a change group.
+	 * Returns the primary key of this j i r a change group.
 	 *
 	 * @return the primary key of this j i r a change group
 	 */
 	public long getPrimaryKey();
 
 	/**
-	 * Sets the primary key of this j i r a change group
+	 * Sets the primary key of this j i r a change group.
 	 *
 	 * @param primaryKey the primary key of this j i r a change group
 	 */
 	public void setPrimaryKey(long primaryKey);
 
 	/**
-	 * Gets the jira change group ID of this j i r a change group.
+	 * Returns the jira change group ID of this j i r a change group.
 	 *
 	 * @return the jira change group ID of this j i r a change group
 	 */
@@ -73,7 +73,7 @@ public interface JIRAChangeGroupModel extends BaseModel<JIRAChangeGroup> {
 	public void setJiraChangeGroupId(long jiraChangeGroupId);
 
 	/**
-	 * Gets the jira user ID of this j i r a change group.
+	 * Returns the jira user ID of this j i r a change group.
 	 *
 	 * @return the jira user ID of this j i r a change group
 	 */
@@ -88,7 +88,7 @@ public interface JIRAChangeGroupModel extends BaseModel<JIRAChangeGroup> {
 	public void setJiraUserId(String jiraUserId);
 
 	/**
-	 * Gets the create date of this j i r a change group.
+	 * Returns the create date of this j i r a change group.
 	 *
 	 * @return the create date of this j i r a change group
 	 */
@@ -102,7 +102,7 @@ public interface JIRAChangeGroupModel extends BaseModel<JIRAChangeGroup> {
 	public void setCreateDate(Date createDate);
 
 	/**
-	 * Gets the jira issue ID of this j i r a change group.
+	 * Returns the jira issue ID of this j i r a change group.
 	 *
 	 * @return the jira issue ID of this j i r a change group
 	 */

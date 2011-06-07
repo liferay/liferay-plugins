@@ -37,7 +37,7 @@ public class HRProjectStatusWrapper implements HRProjectStatus {
 	}
 
 	/**
-	* Gets the primary key of this h r project status.
+	* Returns the primary key of this h r project status.
 	*
 	* @return the primary key of this h r project status
 	*/
@@ -46,7 +46,7 @@ public class HRProjectStatusWrapper implements HRProjectStatus {
 	}
 
 	/**
-	* Sets the primary key of this h r project status
+	* Sets the primary key of this h r project status.
 	*
 	* @param primaryKey the primary key of this h r project status
 	*/
@@ -55,7 +55,7 @@ public class HRProjectStatusWrapper implements HRProjectStatus {
 	}
 
 	/**
-	* Gets the hr project status ID of this h r project status.
+	* Returns the hr project status ID of this h r project status.
 	*
 	* @return the hr project status ID of this h r project status
 	*/
@@ -73,7 +73,7 @@ public class HRProjectStatusWrapper implements HRProjectStatus {
 	}
 
 	/**
-	* Gets the group ID of this h r project status.
+	* Returns the group ID of this h r project status.
 	*
 	* @return the group ID of this h r project status
 	*/
@@ -91,7 +91,7 @@ public class HRProjectStatusWrapper implements HRProjectStatus {
 	}
 
 	/**
-	* Gets the company ID of this h r project status.
+	* Returns the company ID of this h r project status.
 	*
 	* @return the company ID of this h r project status
 	*/
@@ -109,7 +109,7 @@ public class HRProjectStatusWrapper implements HRProjectStatus {
 	}
 
 	/**
-	* Gets the user ID of this h r project status.
+	* Returns the user ID of this h r project status.
 	*
 	* @return the user ID of this h r project status
 	*/
@@ -127,7 +127,7 @@ public class HRProjectStatusWrapper implements HRProjectStatus {
 	}
 
 	/**
-	* Gets the user uuid of this h r project status.
+	* Returns the user uuid of this h r project status.
 	*
 	* @return the user uuid of this h r project status
 	* @throws SystemException if a system exception occurred
@@ -147,7 +147,7 @@ public class HRProjectStatusWrapper implements HRProjectStatus {
 	}
 
 	/**
-	* Gets the user name of this h r project status.
+	* Returns the user name of this h r project status.
 	*
 	* @return the user name of this h r project status
 	*/
@@ -165,7 +165,7 @@ public class HRProjectStatusWrapper implements HRProjectStatus {
 	}
 
 	/**
-	* Gets the create date of this h r project status.
+	* Returns the create date of this h r project status.
 	*
 	* @return the create date of this h r project status
 	*/
@@ -183,7 +183,7 @@ public class HRProjectStatusWrapper implements HRProjectStatus {
 	}
 
 	/**
-	* Gets the modified date of this h r project status.
+	* Returns the modified date of this h r project status.
 	*
 	* @return the modified date of this h r project status
 	*/
@@ -201,7 +201,7 @@ public class HRProjectStatusWrapper implements HRProjectStatus {
 	}
 
 	/**
-	* Gets the code of this h r project status.
+	* Returns the code of this h r project status.
 	*
 	* @return the code of this h r project status
 	*/
@@ -219,7 +219,7 @@ public class HRProjectStatusWrapper implements HRProjectStatus {
 	}
 
 	/**
-	* Gets the name of this h r project status.
+	* Returns the name of this h r project status.
 	*
 	* @return the name of this h r project status
 	*/
@@ -237,7 +237,7 @@ public class HRProjectStatusWrapper implements HRProjectStatus {
 	}
 
 	/**
-	* Gets the description of this h r project status.
+	* Returns the description of this h r project status.
 	*
 	* @return the description of this h r project status
 	*/

@@ -82,7 +82,7 @@ public class HRTimeSheetDayPersistenceImpl extends BasePersistenceImpl<HRTimeShe
 	/**
 	 * Caches the h r time sheet day in the entity cache if it is enabled.
 	 *
-	 * @param hrTimeSheetDay the h r time sheet day to cache
+	 * @param hrTimeSheetDay the h r time sheet day
 	 */
 	public void cacheResult(HRTimeSheetDay hrTimeSheetDay) {
 		EntityCacheUtil.putResult(HRTimeSheetDayModelImpl.ENTITY_CACHE_ENABLED,
@@ -95,7 +95,7 @@ public class HRTimeSheetDayPersistenceImpl extends BasePersistenceImpl<HRTimeShe
 	/**
 	 * Caches the h r time sheet daies in the entity cache if it is enabled.
 	 *
-	 * @param hrTimeSheetDaies the h r time sheet daies to cache
+	 * @param hrTimeSheetDaies the h r time sheet daies
 	 */
 	public void cacheResult(List<HRTimeSheetDay> hrTimeSheetDaies) {
 		for (HRTimeSheetDay hrTimeSheetDay : hrTimeSheetDaies) {
@@ -155,7 +155,7 @@ public class HRTimeSheetDayPersistenceImpl extends BasePersistenceImpl<HRTimeShe
 	/**
 	 * Removes the h r time sheet day with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param primaryKey the primary key of the h r time sheet day to remove
+	 * @param primaryKey the primary key of the h r time sheet day
 	 * @return the h r time sheet day that was removed
 	 * @throws com.liferay.portal.NoSuchModelException if a h r time sheet day with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -168,7 +168,7 @@ public class HRTimeSheetDayPersistenceImpl extends BasePersistenceImpl<HRTimeShe
 	/**
 	 * Removes the h r time sheet day with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param hrTimeSheetDayId the primary key of the h r time sheet day to remove
+	 * @param hrTimeSheetDayId the primary key of the h r time sheet day
 	 * @return the h r time sheet day that was removed
 	 * @throws com.liferay.hr.NoSuchTimeSheetDayException if a h r time sheet day with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -209,7 +209,7 @@ public class HRTimeSheetDayPersistenceImpl extends BasePersistenceImpl<HRTimeShe
 	/**
 	 * Removes the h r time sheet day from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param hrTimeSheetDay the h r time sheet day to remove
+	 * @param hrTimeSheetDay the h r time sheet day
 	 * @return the h r time sheet day that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -301,9 +301,9 @@ public class HRTimeSheetDayPersistenceImpl extends BasePersistenceImpl<HRTimeShe
 	}
 
 	/**
-	 * Finds the h r time sheet day with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
+	 * Returns the h r time sheet day with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
 	 *
-	 * @param primaryKey the primary key of the h r time sheet day to find
+	 * @param primaryKey the primary key of the h r time sheet day
 	 * @return the h r time sheet day
 	 * @throws com.liferay.portal.NoSuchModelException if a h r time sheet day with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -314,9 +314,9 @@ public class HRTimeSheetDayPersistenceImpl extends BasePersistenceImpl<HRTimeShe
 	}
 
 	/**
-	 * Finds the h r time sheet day with the primary key or throws a {@link com.liferay.hr.NoSuchTimeSheetDayException} if it could not be found.
+	 * Returns the h r time sheet day with the primary key or throws a {@link com.liferay.hr.NoSuchTimeSheetDayException} if it could not be found.
 	 *
-	 * @param hrTimeSheetDayId the primary key of the h r time sheet day to find
+	 * @param hrTimeSheetDayId the primary key of the h r time sheet day
 	 * @return the h r time sheet day
 	 * @throws com.liferay.hr.NoSuchTimeSheetDayException if a h r time sheet day with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -338,9 +338,9 @@ public class HRTimeSheetDayPersistenceImpl extends BasePersistenceImpl<HRTimeShe
 	}
 
 	/**
-	 * Finds the h r time sheet day with the primary key or returns <code>null</code> if it could not be found.
+	 * Returns the h r time sheet day with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param primaryKey the primary key of the h r time sheet day to find
+	 * @param primaryKey the primary key of the h r time sheet day
 	 * @return the h r time sheet day, or <code>null</code> if a h r time sheet day with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -350,9 +350,9 @@ public class HRTimeSheetDayPersistenceImpl extends BasePersistenceImpl<HRTimeShe
 	}
 
 	/**
-	 * Finds the h r time sheet day with the primary key or returns <code>null</code> if it could not be found.
+	 * Returns the h r time sheet day with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param hrTimeSheetDayId the primary key of the h r time sheet day to find
+	 * @param hrTimeSheetDayId the primary key of the h r time sheet day
 	 * @return the h r time sheet day, or <code>null</code> if a h r time sheet day with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -386,7 +386,7 @@ public class HRTimeSheetDayPersistenceImpl extends BasePersistenceImpl<HRTimeShe
 	}
 
 	/**
-	 * Finds all the h r time sheet daies.
+	 * Returns all the h r time sheet daies.
 	 *
 	 * @return the h r time sheet daies
 	 * @throws SystemException if a system exception occurred
@@ -396,14 +396,14 @@ public class HRTimeSheetDayPersistenceImpl extends BasePersistenceImpl<HRTimeShe
 	}
 
 	/**
-	 * Finds a range of all the h r time sheet daies.
+	 * Returns a range of all the h r time sheet daies.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of h r time sheet daies to return
-	 * @param end the upper bound of the range of h r time sheet daies to return (not inclusive)
+	 * @param start the lower bound of the range of h r time sheet daies
+	 * @param end the upper bound of the range of h r time sheet daies (not inclusive)
 	 * @return the range of h r time sheet daies
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -413,14 +413,14 @@ public class HRTimeSheetDayPersistenceImpl extends BasePersistenceImpl<HRTimeShe
 	}
 
 	/**
-	 * Finds an ordered range of all the h r time sheet daies.
+	 * Returns an ordered range of all the h r time sheet daies.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of h r time sheet daies to return
-	 * @param end the upper bound of the range of h r time sheet daies to return (not inclusive)
+	 * @param start the lower bound of the range of h r time sheet daies
+	 * @param end the upper bound of the range of h r time sheet daies (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of h r time sheet daies
 	 * @throws SystemException if a system exception occurred
@@ -506,7 +506,7 @@ public class HRTimeSheetDayPersistenceImpl extends BasePersistenceImpl<HRTimeShe
 	}
 
 	/**
-	 * Counts all the h r time sheet daies.
+	 * Returns the number of h r time sheet daies.
 	 *
 	 * @return the number of h r time sheet daies
 	 * @throws SystemException if a system exception occurred

@@ -47,21 +47,21 @@ public interface MessageModel extends AuditedModel, BaseModel<Message> {
 	 */
 
 	/**
-	 * Gets the primary key of this message.
+	 * Returns the primary key of this message.
 	 *
 	 * @return the primary key of this message
 	 */
 	public long getPrimaryKey();
 
 	/**
-	 * Sets the primary key of this message
+	 * Sets the primary key of this message.
 	 *
 	 * @param primaryKey the primary key of this message
 	 */
 	public void setPrimaryKey(long primaryKey);
 
 	/**
-	 * Gets the message ID of this message.
+	 * Returns the message ID of this message.
 	 *
 	 * @return the message ID of this message
 	 */
@@ -75,7 +75,7 @@ public interface MessageModel extends AuditedModel, BaseModel<Message> {
 	public void setMessageId(long messageId);
 
 	/**
-	 * Gets the company ID of this message.
+	 * Returns the company ID of this message.
 	 *
 	 * @return the company ID of this message
 	 */
@@ -89,7 +89,7 @@ public interface MessageModel extends AuditedModel, BaseModel<Message> {
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the user ID of this message.
+	 * Returns the user ID of this message.
 	 *
 	 * @return the user ID of this message
 	 */
@@ -103,7 +103,7 @@ public interface MessageModel extends AuditedModel, BaseModel<Message> {
 	public void setUserId(long userId);
 
 	/**
-	 * Gets the user uuid of this message.
+	 * Returns the user uuid of this message.
 	 *
 	 * @return the user uuid of this message
 	 * @throws SystemException if a system exception occurred
@@ -118,7 +118,7 @@ public interface MessageModel extends AuditedModel, BaseModel<Message> {
 	public void setUserUuid(String userUuid);
 
 	/**
-	 * Gets the user name of this message.
+	 * Returns the user name of this message.
 	 *
 	 * @return the user name of this message
 	 */
@@ -133,7 +133,7 @@ public interface MessageModel extends AuditedModel, BaseModel<Message> {
 	public void setUserName(String userName);
 
 	/**
-	 * Gets the create date of this message.
+	 * Returns the create date of this message.
 	 *
 	 * @return the create date of this message
 	 */
@@ -147,7 +147,7 @@ public interface MessageModel extends AuditedModel, BaseModel<Message> {
 	public void setCreateDate(Date createDate);
 
 	/**
-	 * Gets the modified date of this message.
+	 * Returns the modified date of this message.
 	 *
 	 * @return the modified date of this message
 	 */
@@ -161,7 +161,7 @@ public interface MessageModel extends AuditedModel, BaseModel<Message> {
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Gets the account ID of this message.
+	 * Returns the account ID of this message.
 	 *
 	 * @return the account ID of this message
 	 */
@@ -175,7 +175,7 @@ public interface MessageModel extends AuditedModel, BaseModel<Message> {
 	public void setAccountId(long accountId);
 
 	/**
-	 * Gets the folder ID of this message.
+	 * Returns the folder ID of this message.
 	 *
 	 * @return the folder ID of this message
 	 */
@@ -189,7 +189,7 @@ public interface MessageModel extends AuditedModel, BaseModel<Message> {
 	public void setFolderId(long folderId);
 
 	/**
-	 * Gets the sender of this message.
+	 * Returns the sender of this message.
 	 *
 	 * @return the sender of this message
 	 */
@@ -204,7 +204,7 @@ public interface MessageModel extends AuditedModel, BaseModel<Message> {
 	public void setSender(String sender);
 
 	/**
-	 * Gets the to of this message.
+	 * Returns the to of this message.
 	 *
 	 * @return the to of this message
 	 */
@@ -219,7 +219,7 @@ public interface MessageModel extends AuditedModel, BaseModel<Message> {
 	public void setTo(String to);
 
 	/**
-	 * Gets the cc of this message.
+	 * Returns the cc of this message.
 	 *
 	 * @return the cc of this message
 	 */
@@ -234,7 +234,7 @@ public interface MessageModel extends AuditedModel, BaseModel<Message> {
 	public void setCc(String cc);
 
 	/**
-	 * Gets the bcc of this message.
+	 * Returns the bcc of this message.
 	 *
 	 * @return the bcc of this message
 	 */
@@ -249,7 +249,7 @@ public interface MessageModel extends AuditedModel, BaseModel<Message> {
 	public void setBcc(String bcc);
 
 	/**
-	 * Gets the sent date of this message.
+	 * Returns the sent date of this message.
 	 *
 	 * @return the sent date of this message
 	 */
@@ -263,7 +263,7 @@ public interface MessageModel extends AuditedModel, BaseModel<Message> {
 	public void setSentDate(Date sentDate);
 
 	/**
-	 * Gets the subject of this message.
+	 * Returns the subject of this message.
 	 *
 	 * @return the subject of this message
 	 */
@@ -278,7 +278,7 @@ public interface MessageModel extends AuditedModel, BaseModel<Message> {
 	public void setSubject(String subject);
 
 	/**
-	 * Gets the preview of this message.
+	 * Returns the preview of this message.
 	 *
 	 * @return the preview of this message
 	 */
@@ -293,7 +293,7 @@ public interface MessageModel extends AuditedModel, BaseModel<Message> {
 	public void setPreview(String preview);
 
 	/**
-	 * Gets the body of this message.
+	 * Returns the body of this message.
 	 *
 	 * @return the body of this message
 	 */
@@ -308,7 +308,7 @@ public interface MessageModel extends AuditedModel, BaseModel<Message> {
 	public void setBody(String body);
 
 	/**
-	 * Gets the flags of this message.
+	 * Returns the flags of this message.
 	 *
 	 * @return the flags of this message
 	 */
@@ -323,7 +323,7 @@ public interface MessageModel extends AuditedModel, BaseModel<Message> {
 	public void setFlags(String flags);
 
 	/**
-	 * Gets the size of this message.
+	 * Returns the size of this message.
 	 *
 	 * @return the size of this message
 	 */
@@ -337,7 +337,7 @@ public interface MessageModel extends AuditedModel, BaseModel<Message> {
 	public void setSize(long size);
 
 	/**
-	 * Gets the remote message ID of this message.
+	 * Returns the remote message ID of this message.
 	 *
 	 * @return the remote message ID of this message
 	 */

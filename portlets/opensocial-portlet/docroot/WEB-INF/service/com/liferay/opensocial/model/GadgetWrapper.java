@@ -37,7 +37,7 @@ public class GadgetWrapper implements Gadget {
 	}
 
 	/**
-	* Gets the primary key of this gadget.
+	* Returns the primary key of this gadget.
 	*
 	* @return the primary key of this gadget
 	*/
@@ -46,7 +46,7 @@ public class GadgetWrapper implements Gadget {
 	}
 
 	/**
-	* Sets the primary key of this gadget
+	* Sets the primary key of this gadget.
 	*
 	* @param primaryKey the primary key of this gadget
 	*/
@@ -55,7 +55,7 @@ public class GadgetWrapper implements Gadget {
 	}
 
 	/**
-	* Gets the uuid of this gadget.
+	* Returns the uuid of this gadget.
 	*
 	* @return the uuid of this gadget
 	*/
@@ -73,7 +73,7 @@ public class GadgetWrapper implements Gadget {
 	}
 
 	/**
-	* Gets the gadget ID of this gadget.
+	* Returns the gadget ID of this gadget.
 	*
 	* @return the gadget ID of this gadget
 	*/
@@ -91,7 +91,7 @@ public class GadgetWrapper implements Gadget {
 	}
 
 	/**
-	* Gets the company ID of this gadget.
+	* Returns the company ID of this gadget.
 	*
 	* @return the company ID of this gadget
 	*/
@@ -109,7 +109,7 @@ public class GadgetWrapper implements Gadget {
 	}
 
 	/**
-	* Gets the create date of this gadget.
+	* Returns the create date of this gadget.
 	*
 	* @return the create date of this gadget
 	*/
@@ -127,7 +127,7 @@ public class GadgetWrapper implements Gadget {
 	}
 
 	/**
-	* Gets the modified date of this gadget.
+	* Returns the modified date of this gadget.
 	*
 	* @return the modified date of this gadget
 	*/
@@ -145,7 +145,7 @@ public class GadgetWrapper implements Gadget {
 	}
 
 	/**
-	* Gets the name of this gadget.
+	* Returns the name of this gadget.
 	*
 	* @return the name of this gadget
 	*/
@@ -163,7 +163,7 @@ public class GadgetWrapper implements Gadget {
 	}
 
 	/**
-	* Gets the url of this gadget.
+	* Returns the url of this gadget.
 	*
 	* @return the url of this gadget
 	*/
@@ -181,7 +181,7 @@ public class GadgetWrapper implements Gadget {
 	}
 
 	/**
-	* Gets the portlet category names of this gadget.
+	* Returns the portlet category names of this gadget.
 	*
 	* @return the portlet category names of this gadget
 	*/

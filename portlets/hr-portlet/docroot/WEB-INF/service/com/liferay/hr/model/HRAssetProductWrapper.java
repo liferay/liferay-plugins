@@ -37,7 +37,7 @@ public class HRAssetProductWrapper implements HRAssetProduct {
 	}
 
 	/**
-	* Gets the primary key of this h r asset product.
+	* Returns the primary key of this h r asset product.
 	*
 	* @return the primary key of this h r asset product
 	*/
@@ -46,7 +46,7 @@ public class HRAssetProductWrapper implements HRAssetProduct {
 	}
 
 	/**
-	* Sets the primary key of this h r asset product
+	* Sets the primary key of this h r asset product.
 	*
 	* @param primaryKey the primary key of this h r asset product
 	*/
@@ -55,7 +55,7 @@ public class HRAssetProductWrapper implements HRAssetProduct {
 	}
 
 	/**
-	* Gets the hr asset product ID of this h r asset product.
+	* Returns the hr asset product ID of this h r asset product.
 	*
 	* @return the hr asset product ID of this h r asset product
 	*/
@@ -73,7 +73,7 @@ public class HRAssetProductWrapper implements HRAssetProduct {
 	}
 
 	/**
-	* Gets the group ID of this h r asset product.
+	* Returns the group ID of this h r asset product.
 	*
 	* @return the group ID of this h r asset product
 	*/
@@ -91,7 +91,7 @@ public class HRAssetProductWrapper implements HRAssetProduct {
 	}
 
 	/**
-	* Gets the company ID of this h r asset product.
+	* Returns the company ID of this h r asset product.
 	*
 	* @return the company ID of this h r asset product
 	*/
@@ -109,7 +109,7 @@ public class HRAssetProductWrapper implements HRAssetProduct {
 	}
 
 	/**
-	* Gets the user ID of this h r asset product.
+	* Returns the user ID of this h r asset product.
 	*
 	* @return the user ID of this h r asset product
 	*/
@@ -127,7 +127,7 @@ public class HRAssetProductWrapper implements HRAssetProduct {
 	}
 
 	/**
-	* Gets the user uuid of this h r asset product.
+	* Returns the user uuid of this h r asset product.
 	*
 	* @return the user uuid of this h r asset product
 	* @throws SystemException if a system exception occurred
@@ -147,7 +147,7 @@ public class HRAssetProductWrapper implements HRAssetProduct {
 	}
 
 	/**
-	* Gets the user name of this h r asset product.
+	* Returns the user name of this h r asset product.
 	*
 	* @return the user name of this h r asset product
 	*/
@@ -165,7 +165,7 @@ public class HRAssetProductWrapper implements HRAssetProduct {
 	}
 
 	/**
-	* Gets the create date of this h r asset product.
+	* Returns the create date of this h r asset product.
 	*
 	* @return the create date of this h r asset product
 	*/
@@ -183,7 +183,7 @@ public class HRAssetProductWrapper implements HRAssetProduct {
 	}
 
 	/**
-	* Gets the modified date of this h r asset product.
+	* Returns the modified date of this h r asset product.
 	*
 	* @return the modified date of this h r asset product
 	*/
@@ -201,7 +201,7 @@ public class HRAssetProductWrapper implements HRAssetProduct {
 	}
 
 	/**
-	* Gets the hr asset vendor ID of this h r asset product.
+	* Returns the hr asset vendor ID of this h r asset product.
 	*
 	* @return the hr asset vendor ID of this h r asset product
 	*/
@@ -219,7 +219,7 @@ public class HRAssetProductWrapper implements HRAssetProduct {
 	}
 
 	/**
-	* Gets the name of this h r asset product.
+	* Returns the name of this h r asset product.
 	*
 	* @return the name of this h r asset product
 	*/
@@ -237,7 +237,7 @@ public class HRAssetProductWrapper implements HRAssetProduct {
 	}
 
 	/**
-	* Gets the description of this h r asset product.
+	* Returns the description of this h r asset product.
 	*
 	* @return the description of this h r asset product
 	*/

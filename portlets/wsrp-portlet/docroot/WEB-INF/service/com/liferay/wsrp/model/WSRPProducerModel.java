@@ -45,21 +45,21 @@ public interface WSRPProducerModel extends BaseModel<WSRPProducer> {
 	 */
 
 	/**
-	 * Gets the primary key of this w s r p producer.
+	 * Returns the primary key of this w s r p producer.
 	 *
 	 * @return the primary key of this w s r p producer
 	 */
 	public long getPrimaryKey();
 
 	/**
-	 * Sets the primary key of this w s r p producer
+	 * Sets the primary key of this w s r p producer.
 	 *
 	 * @param primaryKey the primary key of this w s r p producer
 	 */
 	public void setPrimaryKey(long primaryKey);
 
 	/**
-	 * Gets the uuid of this w s r p producer.
+	 * Returns the uuid of this w s r p producer.
 	 *
 	 * @return the uuid of this w s r p producer
 	 */
@@ -74,7 +74,7 @@ public interface WSRPProducerModel extends BaseModel<WSRPProducer> {
 	public void setUuid(String uuid);
 
 	/**
-	 * Gets the wsrp producer ID of this w s r p producer.
+	 * Returns the wsrp producer ID of this w s r p producer.
 	 *
 	 * @return the wsrp producer ID of this w s r p producer
 	 */
@@ -88,7 +88,7 @@ public interface WSRPProducerModel extends BaseModel<WSRPProducer> {
 	public void setWsrpProducerId(long wsrpProducerId);
 
 	/**
-	 * Gets the group ID of this w s r p producer.
+	 * Returns the group ID of this w s r p producer.
 	 *
 	 * @return the group ID of this w s r p producer
 	 */
@@ -102,7 +102,7 @@ public interface WSRPProducerModel extends BaseModel<WSRPProducer> {
 	public void setGroupId(long groupId);
 
 	/**
-	 * Gets the company ID of this w s r p producer.
+	 * Returns the company ID of this w s r p producer.
 	 *
 	 * @return the company ID of this w s r p producer
 	 */
@@ -116,7 +116,7 @@ public interface WSRPProducerModel extends BaseModel<WSRPProducer> {
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the create date of this w s r p producer.
+	 * Returns the create date of this w s r p producer.
 	 *
 	 * @return the create date of this w s r p producer
 	 */
@@ -130,7 +130,7 @@ public interface WSRPProducerModel extends BaseModel<WSRPProducer> {
 	public void setCreateDate(Date createDate);
 
 	/**
-	 * Gets the modified date of this w s r p producer.
+	 * Returns the modified date of this w s r p producer.
 	 *
 	 * @return the modified date of this w s r p producer
 	 */
@@ -144,7 +144,7 @@ public interface WSRPProducerModel extends BaseModel<WSRPProducer> {
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Gets the name of this w s r p producer.
+	 * Returns the name of this w s r p producer.
 	 *
 	 * @return the name of this w s r p producer
 	 */
@@ -159,7 +159,7 @@ public interface WSRPProducerModel extends BaseModel<WSRPProducer> {
 	public void setName(String name);
 
 	/**
-	 * Gets the version of this w s r p producer.
+	 * Returns the version of this w s r p producer.
 	 *
 	 * @return the version of this w s r p producer
 	 */
@@ -174,7 +174,7 @@ public interface WSRPProducerModel extends BaseModel<WSRPProducer> {
 	public void setVersion(String version);
 
 	/**
-	 * Gets the portlet IDs of this w s r p producer.
+	 * Returns the portlet IDs of this w s r p producer.
 	 *
 	 * @return the portlet IDs of this w s r p producer
 	 */

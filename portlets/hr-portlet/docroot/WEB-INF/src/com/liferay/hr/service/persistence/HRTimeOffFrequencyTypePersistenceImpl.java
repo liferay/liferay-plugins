@@ -93,7 +93,7 @@ public class HRTimeOffFrequencyTypePersistenceImpl extends BasePersistenceImpl<H
 	/**
 	 * Caches the h r time off frequency type in the entity cache if it is enabled.
 	 *
-	 * @param hrTimeOffFrequencyType the h r time off frequency type to cache
+	 * @param hrTimeOffFrequencyType the h r time off frequency type
 	 */
 	public void cacheResult(HRTimeOffFrequencyType hrTimeOffFrequencyType) {
 		EntityCacheUtil.putResult(HRTimeOffFrequencyTypeModelImpl.ENTITY_CACHE_ENABLED,
@@ -113,7 +113,7 @@ public class HRTimeOffFrequencyTypePersistenceImpl extends BasePersistenceImpl<H
 	/**
 	 * Caches the h r time off frequency types in the entity cache if it is enabled.
 	 *
-	 * @param hrTimeOffFrequencyTypes the h r time off frequency types to cache
+	 * @param hrTimeOffFrequencyTypes the h r time off frequency types
 	 */
 	public void cacheResult(
 		List<HRTimeOffFrequencyType> hrTimeOffFrequencyTypes) {
@@ -182,7 +182,7 @@ public class HRTimeOffFrequencyTypePersistenceImpl extends BasePersistenceImpl<H
 	/**
 	 * Removes the h r time off frequency type with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param primaryKey the primary key of the h r time off frequency type to remove
+	 * @param primaryKey the primary key of the h r time off frequency type
 	 * @return the h r time off frequency type that was removed
 	 * @throws com.liferay.portal.NoSuchModelException if a h r time off frequency type with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -195,7 +195,7 @@ public class HRTimeOffFrequencyTypePersistenceImpl extends BasePersistenceImpl<H
 	/**
 	 * Removes the h r time off frequency type with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param hrTimeOffFrequencyTypeId the primary key of the h r time off frequency type to remove
+	 * @param hrTimeOffFrequencyTypeId the primary key of the h r time off frequency type
 	 * @return the h r time off frequency type that was removed
 	 * @throws com.liferay.hr.NoSuchTimeOffFrequencyTypeException if a h r time off frequency type with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -236,7 +236,7 @@ public class HRTimeOffFrequencyTypePersistenceImpl extends BasePersistenceImpl<H
 	/**
 	 * Removes the h r time off frequency type from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param hrTimeOffFrequencyType the h r time off frequency type to remove
+	 * @param hrTimeOffFrequencyType the h r time off frequency type
 	 * @return the h r time off frequency type that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -368,9 +368,9 @@ public class HRTimeOffFrequencyTypePersistenceImpl extends BasePersistenceImpl<H
 	}
 
 	/**
-	 * Finds the h r time off frequency type with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
+	 * Returns the h r time off frequency type with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
 	 *
-	 * @param primaryKey the primary key of the h r time off frequency type to find
+	 * @param primaryKey the primary key of the h r time off frequency type
 	 * @return the h r time off frequency type
 	 * @throws com.liferay.portal.NoSuchModelException if a h r time off frequency type with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -381,9 +381,9 @@ public class HRTimeOffFrequencyTypePersistenceImpl extends BasePersistenceImpl<H
 	}
 
 	/**
-	 * Finds the h r time off frequency type with the primary key or throws a {@link com.liferay.hr.NoSuchTimeOffFrequencyTypeException} if it could not be found.
+	 * Returns the h r time off frequency type with the primary key or throws a {@link com.liferay.hr.NoSuchTimeOffFrequencyTypeException} if it could not be found.
 	 *
-	 * @param hrTimeOffFrequencyTypeId the primary key of the h r time off frequency type to find
+	 * @param hrTimeOffFrequencyTypeId the primary key of the h r time off frequency type
 	 * @return the h r time off frequency type
 	 * @throws com.liferay.hr.NoSuchTimeOffFrequencyTypeException if a h r time off frequency type with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -407,9 +407,9 @@ public class HRTimeOffFrequencyTypePersistenceImpl extends BasePersistenceImpl<H
 	}
 
 	/**
-	 * Finds the h r time off frequency type with the primary key or returns <code>null</code> if it could not be found.
+	 * Returns the h r time off frequency type with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param primaryKey the primary key of the h r time off frequency type to find
+	 * @param primaryKey the primary key of the h r time off frequency type
 	 * @return the h r time off frequency type, or <code>null</code> if a h r time off frequency type with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -419,9 +419,9 @@ public class HRTimeOffFrequencyTypePersistenceImpl extends BasePersistenceImpl<H
 	}
 
 	/**
-	 * Finds the h r time off frequency type with the primary key or returns <code>null</code> if it could not be found.
+	 * Returns the h r time off frequency type with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param hrTimeOffFrequencyTypeId the primary key of the h r time off frequency type to find
+	 * @param hrTimeOffFrequencyTypeId the primary key of the h r time off frequency type
 	 * @return the h r time off frequency type, or <code>null</code> if a h r time off frequency type with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -455,10 +455,10 @@ public class HRTimeOffFrequencyTypePersistenceImpl extends BasePersistenceImpl<H
 	}
 
 	/**
-	 * Finds the h r time off frequency type where groupId = &#63; and code = &#63; or throws a {@link com.liferay.hr.NoSuchTimeOffFrequencyTypeException} if it could not be found.
+	 * Returns the h r time off frequency type where groupId = &#63; and code = &#63; or throws a {@link com.liferay.hr.NoSuchTimeOffFrequencyTypeException} if it could not be found.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param code the code to search with
+	 * @param groupId the group ID
+	 * @param code the code
 	 * @return the matching h r time off frequency type
 	 * @throws com.liferay.hr.NoSuchTimeOffFrequencyTypeException if a matching h r time off frequency type could not be found
 	 * @throws SystemException if a system exception occurred
@@ -491,10 +491,10 @@ public class HRTimeOffFrequencyTypePersistenceImpl extends BasePersistenceImpl<H
 	}
 
 	/**
-	 * Finds the h r time off frequency type where groupId = &#63; and code = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the h r time off frequency type where groupId = &#63; and code = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param code the code to search with
+	 * @param groupId the group ID
+	 * @param code the code
 	 * @return the matching h r time off frequency type, or <code>null</code> if a matching h r time off frequency type could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -504,10 +504,10 @@ public class HRTimeOffFrequencyTypePersistenceImpl extends BasePersistenceImpl<H
 	}
 
 	/**
-	 * Finds the h r time off frequency type where groupId = &#63; and code = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the h r time off frequency type where groupId = &#63; and code = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param code the code to search with
+	 * @param groupId the group ID
+	 * @param code the code
 	 * @return the matching h r time off frequency type, or <code>null</code> if a matching h r time off frequency type could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -606,7 +606,7 @@ public class HRTimeOffFrequencyTypePersistenceImpl extends BasePersistenceImpl<H
 	}
 
 	/**
-	 * Finds all the h r time off frequency types.
+	 * Returns all the h r time off frequency types.
 	 *
 	 * @return the h r time off frequency types
 	 * @throws SystemException if a system exception occurred
@@ -616,14 +616,14 @@ public class HRTimeOffFrequencyTypePersistenceImpl extends BasePersistenceImpl<H
 	}
 
 	/**
-	 * Finds a range of all the h r time off frequency types.
+	 * Returns a range of all the h r time off frequency types.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of h r time off frequency types to return
-	 * @param end the upper bound of the range of h r time off frequency types to return (not inclusive)
+	 * @param start the lower bound of the range of h r time off frequency types
+	 * @param end the upper bound of the range of h r time off frequency types (not inclusive)
 	 * @return the range of h r time off frequency types
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -633,14 +633,14 @@ public class HRTimeOffFrequencyTypePersistenceImpl extends BasePersistenceImpl<H
 	}
 
 	/**
-	 * Finds an ordered range of all the h r time off frequency types.
+	 * Returns an ordered range of all the h r time off frequency types.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of h r time off frequency types to return
-	 * @param end the upper bound of the range of h r time off frequency types to return (not inclusive)
+	 * @param start the lower bound of the range of h r time off frequency types
+	 * @param end the upper bound of the range of h r time off frequency types (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of h r time off frequency types
 	 * @throws SystemException if a system exception occurred
@@ -717,8 +717,8 @@ public class HRTimeOffFrequencyTypePersistenceImpl extends BasePersistenceImpl<H
 	/**
 	 * Removes the h r time off frequency type where groupId = &#63; and code = &#63; from the database.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param code the code to search with
+	 * @param groupId the group ID
+	 * @param code the code
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeByG_C(long groupId, String code)
@@ -740,10 +740,10 @@ public class HRTimeOffFrequencyTypePersistenceImpl extends BasePersistenceImpl<H
 	}
 
 	/**
-	 * Counts all the h r time off frequency types where groupId = &#63; and code = &#63;.
+	 * Returns the number of h r time off frequency types where groupId = &#63; and code = &#63;.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param code the code to search with
+	 * @param groupId the group ID
+	 * @param code the code
 	 * @return the number of matching h r time off frequency types
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -810,7 +810,7 @@ public class HRTimeOffFrequencyTypePersistenceImpl extends BasePersistenceImpl<H
 	}
 
 	/**
-	 * Counts all the h r time off frequency types.
+	 * Returns the number of h r time off frequency types.
 	 *
 	 * @return the number of h r time off frequency types
 	 * @throws SystemException if a system exception occurred

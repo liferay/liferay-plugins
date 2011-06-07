@@ -38,6 +38,11 @@ import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.search.Indexer;
+import com.liferay.portal.kernel.search.IndexerRegistryUtil;
+import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.service.CompanyLocalService;
 import com.liferay.portal.service.CompanyService;
@@ -97,7 +102,7 @@ public abstract class KBArticleLocalServiceBaseImpl
 	/**
 	 * Adds the k b article to the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param kbArticle the k b article to add
+	 * @param kbArticle the k b article
 	 * @return the k b article that was added
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -105,7 +110,22 @@ public abstract class KBArticleLocalServiceBaseImpl
 		throws SystemException {
 		kbArticle.setNew(true);
 
-		return kbArticlePersistence.update(kbArticle, false);
+		kbArticle = kbArticlePersistence.update(kbArticle, false);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.reindex(kbArticle);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
+
+		return kbArticle;
 	}
 
 	/**
@@ -121,31 +141,57 @@ public abstract class KBArticleLocalServiceBaseImpl
 	/**
 	 * Deletes the k b article with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param kbArticleId the primary key of the k b article to delete
+	 * @param kbArticleId the primary key of the k b article
 	 * @throws PortalException if a k b article with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void deleteKBArticle(long kbArticleId)
 		throws PortalException, SystemException {
-		kbArticlePersistence.remove(kbArticleId);
+		KBArticle kbArticle = kbArticlePersistence.remove(kbArticleId);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.delete(kbArticle);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
 	}
 
 	/**
 	 * Deletes the k b article from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param kbArticle the k b article to delete
+	 * @param kbArticle the k b article
 	 * @throws PortalException
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void deleteKBArticle(KBArticle kbArticle)
 		throws PortalException, SystemException {
 		kbArticlePersistence.remove(kbArticle);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.delete(kbArticle);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
 	}
 
 	/**
 	 * Performs a dynamic query on the database and returns the matching rows.
 	 *
-	 * @param dynamicQuery the dynamic query to search with
+	 * @param dynamicQuery the dynamic query
 	 * @return the matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -162,9 +208,9 @@ public abstract class KBArticleLocalServiceBaseImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param dynamicQuery the dynamic query to search with
-	 * @param start the lower bound of the range of model instances to return
-	 * @param end the upper bound of the range of model instances to return (not inclusive)
+	 * @param dynamicQuery the dynamic query
+	 * @param start the lower bound of the range of model instances
+	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @return the range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -182,9 +228,9 @@ public abstract class KBArticleLocalServiceBaseImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param dynamicQuery the dynamic query to search with
-	 * @param start the lower bound of the range of model instances to return
-	 * @param end the upper bound of the range of model instances to return (not inclusive)
+	 * @param dynamicQuery the dynamic query
+	 * @param start the lower bound of the range of model instances
+	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching rows
 	 * @throws SystemException if a system exception occurred
@@ -197,9 +243,9 @@ public abstract class KBArticleLocalServiceBaseImpl
 	}
 
 	/**
-	 * Counts the number of rows that match the dynamic query.
+	 * Returns the number of rows that match the dynamic query.
 	 *
-	 * @param dynamicQuery the dynamic query to search with
+	 * @param dynamicQuery the dynamic query
 	 * @return the number of rows that match the dynamic query
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -209,9 +255,9 @@ public abstract class KBArticleLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the k b article with the primary key.
+	 * Returns the k b article with the primary key.
 	 *
-	 * @param kbArticleId the primary key of the k b article to get
+	 * @param kbArticleId the primary key of the k b article
 	 * @return the k b article
 	 * @throws PortalException if a k b article with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -222,12 +268,12 @@ public abstract class KBArticleLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the k b article with the UUID and group id.
+	 * Returns the k b article with the UUID in the group.
 	 *
-	 * @param uuid the UUID of k b article to get
-	 * @param groupId the group id of the k b article to get
+	 * @param uuid the UUID of k b article
+	 * @param groupId the group id of the k b article
 	 * @return the k b article
-	 * @throws PortalException if a k b article with the UUID and group id could not be found
+	 * @throws PortalException if a k b article with the UUID in the group could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	public KBArticle getKBArticleByUuidAndGroupId(String uuid, long groupId)
@@ -236,14 +282,14 @@ public abstract class KBArticleLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets a range of all the k b articles.
+	 * Returns a range of all the k b articles.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @return the range of k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -253,7 +299,7 @@ public abstract class KBArticleLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the number of k b articles.
+	 * Returns the number of k b articles.
 	 *
 	 * @return the number of k b articles
 	 * @throws SystemException if a system exception occurred
@@ -265,21 +311,19 @@ public abstract class KBArticleLocalServiceBaseImpl
 	/**
 	 * Updates the k b article in the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param kbArticle the k b article to update
+	 * @param kbArticle the k b article
 	 * @return the k b article that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
 	public KBArticle updateKBArticle(KBArticle kbArticle)
 		throws SystemException {
-		kbArticle.setNew(false);
-
-		return kbArticlePersistence.update(kbArticle, true);
+		return updateKBArticle(kbArticle, true);
 	}
 
 	/**
 	 * Updates the k b article in the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param kbArticle the k b article to update
+	 * @param kbArticle the k b article
 	 * @param merge whether to merge the k b article with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
 	 * @return the k b article that was updated
 	 * @throws SystemException if a system exception occurred
@@ -288,11 +332,26 @@ public abstract class KBArticleLocalServiceBaseImpl
 		throws SystemException {
 		kbArticle.setNew(false);
 
-		return kbArticlePersistence.update(kbArticle, merge);
+		kbArticle = kbArticlePersistence.update(kbArticle, merge);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.reindex(kbArticle);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
+
+		return kbArticle;
 	}
 
 	/**
-	 * Gets the k b article local service.
+	 * Returns the k b article local service.
 	 *
 	 * @return the k b article local service
 	 */
@@ -311,7 +370,7 @@ public abstract class KBArticleLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the k b article remote service.
+	 * Returns the k b article remote service.
 	 *
 	 * @return the k b article remote service
 	 */
@@ -329,7 +388,7 @@ public abstract class KBArticleLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the k b article persistence.
+	 * Returns the k b article persistence.
 	 *
 	 * @return the k b article persistence
 	 */
@@ -348,7 +407,7 @@ public abstract class KBArticleLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the k b comment local service.
+	 * Returns the k b comment local service.
 	 *
 	 * @return the k b comment local service
 	 */
@@ -367,7 +426,7 @@ public abstract class KBArticleLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the k b comment persistence.
+	 * Returns the k b comment persistence.
 	 *
 	 * @return the k b comment persistence
 	 */
@@ -386,7 +445,7 @@ public abstract class KBArticleLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the k b structure local service.
+	 * Returns the k b structure local service.
 	 *
 	 * @return the k b structure local service
 	 */
@@ -405,7 +464,7 @@ public abstract class KBArticleLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the k b structure remote service.
+	 * Returns the k b structure remote service.
 	 *
 	 * @return the k b structure remote service
 	 */
@@ -423,7 +482,7 @@ public abstract class KBArticleLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the k b structure persistence.
+	 * Returns the k b structure persistence.
 	 *
 	 * @return the k b structure persistence
 	 */
@@ -442,7 +501,7 @@ public abstract class KBArticleLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the k b template local service.
+	 * Returns the k b template local service.
 	 *
 	 * @return the k b template local service
 	 */
@@ -461,7 +520,7 @@ public abstract class KBArticleLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the k b template remote service.
+	 * Returns the k b template remote service.
 	 *
 	 * @return the k b template remote service
 	 */
@@ -479,7 +538,7 @@ public abstract class KBArticleLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the k b template persistence.
+	 * Returns the k b template persistence.
 	 *
 	 * @return the k b template persistence
 	 */
@@ -498,7 +557,7 @@ public abstract class KBArticleLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the counter local service.
+	 * Returns the counter local service.
 	 *
 	 * @return the counter local service
 	 */
@@ -516,7 +575,7 @@ public abstract class KBArticleLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the d l local service.
+	 * Returns the d l local service.
 	 *
 	 * @return the d l local service
 	 */
@@ -534,7 +593,7 @@ public abstract class KBArticleLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the company local service.
+	 * Returns the company local service.
 	 *
 	 * @return the company local service
 	 */
@@ -552,7 +611,7 @@ public abstract class KBArticleLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the company remote service.
+	 * Returns the company remote service.
 	 *
 	 * @return the company remote service
 	 */
@@ -570,7 +629,7 @@ public abstract class KBArticleLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the company persistence.
+	 * Returns the company persistence.
 	 *
 	 * @return the company persistence
 	 */
@@ -588,7 +647,7 @@ public abstract class KBArticleLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the group local service.
+	 * Returns the group local service.
 	 *
 	 * @return the group local service
 	 */
@@ -606,7 +665,7 @@ public abstract class KBArticleLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the group remote service.
+	 * Returns the group remote service.
 	 *
 	 * @return the group remote service
 	 */
@@ -624,7 +683,7 @@ public abstract class KBArticleLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the group persistence.
+	 * Returns the group persistence.
 	 *
 	 * @return the group persistence
 	 */
@@ -642,7 +701,7 @@ public abstract class KBArticleLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the layout local service.
+	 * Returns the layout local service.
 	 *
 	 * @return the layout local service
 	 */
@@ -660,7 +719,7 @@ public abstract class KBArticleLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the layout remote service.
+	 * Returns the layout remote service.
 	 *
 	 * @return the layout remote service
 	 */
@@ -678,7 +737,7 @@ public abstract class KBArticleLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the layout persistence.
+	 * Returns the layout persistence.
 	 *
 	 * @return the layout persistence
 	 */
@@ -696,7 +755,7 @@ public abstract class KBArticleLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the portlet preferences local service.
+	 * Returns the portlet preferences local service.
 	 *
 	 * @return the portlet preferences local service
 	 */
@@ -715,7 +774,7 @@ public abstract class KBArticleLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the portlet preferences remote service.
+	 * Returns the portlet preferences remote service.
 	 *
 	 * @return the portlet preferences remote service
 	 */
@@ -734,7 +793,7 @@ public abstract class KBArticleLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the portlet preferences persistence.
+	 * Returns the portlet preferences persistence.
 	 *
 	 * @return the portlet preferences persistence
 	 */
@@ -753,7 +812,7 @@ public abstract class KBArticleLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the resource local service.
+	 * Returns the resource local service.
 	 *
 	 * @return the resource local service
 	 */
@@ -772,7 +831,7 @@ public abstract class KBArticleLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the resource remote service.
+	 * Returns the resource remote service.
 	 *
 	 * @return the resource remote service
 	 */
@@ -790,7 +849,7 @@ public abstract class KBArticleLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the resource persistence.
+	 * Returns the resource persistence.
 	 *
 	 * @return the resource persistence
 	 */
@@ -808,7 +867,7 @@ public abstract class KBArticleLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the subscription local service.
+	 * Returns the subscription local service.
 	 *
 	 * @return the subscription local service
 	 */
@@ -827,7 +886,7 @@ public abstract class KBArticleLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the subscription persistence.
+	 * Returns the subscription persistence.
 	 *
 	 * @return the subscription persistence
 	 */
@@ -846,7 +905,7 @@ public abstract class KBArticleLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the user local service.
+	 * Returns the user local service.
 	 *
 	 * @return the user local service
 	 */
@@ -864,7 +923,7 @@ public abstract class KBArticleLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the user remote service.
+	 * Returns the user remote service.
 	 *
 	 * @return the user remote service
 	 */
@@ -882,7 +941,7 @@ public abstract class KBArticleLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the user persistence.
+	 * Returns the user persistence.
 	 *
 	 * @return the user persistence
 	 */
@@ -900,7 +959,7 @@ public abstract class KBArticleLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the workflow instance link local service.
+	 * Returns the workflow instance link local service.
 	 *
 	 * @return the workflow instance link local service
 	 */
@@ -919,7 +978,7 @@ public abstract class KBArticleLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the workflow instance link persistence.
+	 * Returns the workflow instance link persistence.
 	 *
 	 * @return the workflow instance link persistence
 	 */
@@ -938,7 +997,7 @@ public abstract class KBArticleLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the asset entry local service.
+	 * Returns the asset entry local service.
 	 *
 	 * @return the asset entry local service
 	 */
@@ -957,7 +1016,7 @@ public abstract class KBArticleLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the asset entry remote service.
+	 * Returns the asset entry remote service.
 	 *
 	 * @return the asset entry remote service
 	 */
@@ -975,7 +1034,7 @@ public abstract class KBArticleLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the asset entry persistence.
+	 * Returns the asset entry persistence.
 	 *
 	 * @return the asset entry persistence
 	 */
@@ -994,7 +1053,7 @@ public abstract class KBArticleLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the ratings stats local service.
+	 * Returns the ratings stats local service.
 	 *
 	 * @return the ratings stats local service
 	 */
@@ -1013,7 +1072,7 @@ public abstract class KBArticleLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the ratings stats persistence.
+	 * Returns the ratings stats persistence.
 	 *
 	 * @return the ratings stats persistence
 	 */
@@ -1032,7 +1091,7 @@ public abstract class KBArticleLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the social activity local service.
+	 * Returns the social activity local service.
 	 *
 	 * @return the social activity local service
 	 */
@@ -1051,7 +1110,7 @@ public abstract class KBArticleLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the social activity persistence.
+	 * Returns the social activity persistence.
 	 *
 	 * @return the social activity persistence
 	 */
@@ -1070,7 +1129,7 @@ public abstract class KBArticleLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the Spring bean ID for this bean.
+	 * Returns the Spring bean ID for this bean.
 	 *
 	 * @return the Spring bean ID for this bean
 	 */
@@ -1087,10 +1146,18 @@ public abstract class KBArticleLocalServiceBaseImpl
 		_beanIdentifier = beanIdentifier;
 	}
 
+	protected Class<?> getModelClass() {
+		return KBArticle.class;
+	}
+
+	protected String getModelClassName() {
+		return KBArticle.class.getName();
+	}
+
 	/**
 	 * Performs an SQL query.
 	 *
-	 * @param sql the sql query to perform
+	 * @param sql the sql query
 	 */
 	protected void runSQL(String sql) throws SystemException {
 		try {
@@ -1190,5 +1257,6 @@ public abstract class KBArticleLocalServiceBaseImpl
 	protected SocialActivityLocalService socialActivityLocalService;
 	@BeanReference(type = SocialActivityPersistence.class)
 	protected SocialActivityPersistence socialActivityPersistence;
+	private static Log _log = LogFactoryUtil.getLog(KBArticleLocalServiceBaseImpl.class);
 	private String _beanIdentifier;
 }

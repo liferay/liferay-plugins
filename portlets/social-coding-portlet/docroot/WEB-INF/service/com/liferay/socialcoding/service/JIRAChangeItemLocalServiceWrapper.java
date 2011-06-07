@@ -33,7 +33,7 @@ public class JIRAChangeItemLocalServiceWrapper
 	/**
 	* Adds the j i r a change item to the database. Also notifies the appropriate model listeners.
 	*
-	* @param jiraChangeItem the j i r a change item to add
+	* @param jiraChangeItem the j i r a change item
 	* @return the j i r a change item that was added
 	* @throws SystemException if a system exception occurred
 	*/
@@ -57,7 +57,7 @@ public class JIRAChangeItemLocalServiceWrapper
 	/**
 	* Deletes the j i r a change item with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param jiraChangeItemId the primary key of the j i r a change item to delete
+	* @param jiraChangeItemId the primary key of the j i r a change item
 	* @throws PortalException if a j i r a change item with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -70,7 +70,7 @@ public class JIRAChangeItemLocalServiceWrapper
 	/**
 	* Deletes the j i r a change item from the database. Also notifies the appropriate model listeners.
 	*
-	* @param jiraChangeItem the j i r a change item to delete
+	* @param jiraChangeItem the j i r a change item
 	* @throws SystemException if a system exception occurred
 	*/
 	public void deleteJIRAChangeItem(
@@ -82,7 +82,7 @@ public class JIRAChangeItemLocalServiceWrapper
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
 	*
-	* @param dynamicQuery the dynamic query to search with
+	* @param dynamicQuery the dynamic query
 	* @return the matching rows
 	* @throws SystemException if a system exception occurred
 	*/
@@ -100,9 +100,9 @@ public class JIRAChangeItemLocalServiceWrapper
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param dynamicQuery the dynamic query to search with
-	* @param start the lower bound of the range of model instances to return
-	* @param end the upper bound of the range of model instances to return (not inclusive)
+	* @param dynamicQuery the dynamic query
+	* @param start the lower bound of the range of model instances
+	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
 	* @throws SystemException if a system exception occurred
 	*/
@@ -120,9 +120,9 @@ public class JIRAChangeItemLocalServiceWrapper
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param dynamicQuery the dynamic query to search with
-	* @param start the lower bound of the range of model instances to return
-	* @param end the upper bound of the range of model instances to return (not inclusive)
+	* @param dynamicQuery the dynamic query
+	* @param start the lower bound of the range of model instances
+	* @param end the upper bound of the range of model instances (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
 	* @throws SystemException if a system exception occurred
@@ -138,9 +138,9 @@ public class JIRAChangeItemLocalServiceWrapper
 	}
 
 	/**
-	* Counts the number of rows that match the dynamic query.
+	* Returns the number of rows that match the dynamic query.
 	*
-	* @param dynamicQuery the dynamic query to search with
+	* @param dynamicQuery the dynamic query
 	* @return the number of rows that match the dynamic query
 	* @throws SystemException if a system exception occurred
 	*/
@@ -151,9 +151,9 @@ public class JIRAChangeItemLocalServiceWrapper
 	}
 
 	/**
-	* Gets the j i r a change item with the primary key.
+	* Returns the j i r a change item with the primary key.
 	*
-	* @param jiraChangeItemId the primary key of the j i r a change item to get
+	* @param jiraChangeItemId the primary key of the j i r a change item
 	* @return the j i r a change item
 	* @throws PortalException if a j i r a change item with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -166,14 +166,14 @@ public class JIRAChangeItemLocalServiceWrapper
 	}
 
 	/**
-	* Gets a range of all the j i r a change items.
+	* Returns a range of all the j i r a change items.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of j i r a change items to return
-	* @param end the upper bound of the range of j i r a change items to return (not inclusive)
+	* @param start the lower bound of the range of j i r a change items
+	* @param end the upper bound of the range of j i r a change items (not inclusive)
 	* @return the range of j i r a change items
 	* @throws SystemException if a system exception occurred
 	*/
@@ -184,7 +184,7 @@ public class JIRAChangeItemLocalServiceWrapper
 	}
 
 	/**
-	* Gets the number of j i r a change items.
+	* Returns the number of j i r a change items.
 	*
 	* @return the number of j i r a change items
 	* @throws SystemException if a system exception occurred
@@ -197,7 +197,7 @@ public class JIRAChangeItemLocalServiceWrapper
 	/**
 	* Updates the j i r a change item in the database. Also notifies the appropriate model listeners.
 	*
-	* @param jiraChangeItem the j i r a change item to update
+	* @param jiraChangeItem the j i r a change item
 	* @return the j i r a change item that was updated
 	* @throws SystemException if a system exception occurred
 	*/
@@ -210,7 +210,7 @@ public class JIRAChangeItemLocalServiceWrapper
 	/**
 	* Updates the j i r a change item in the database. Also notifies the appropriate model listeners.
 	*
-	* @param jiraChangeItem the j i r a change item to update
+	* @param jiraChangeItem the j i r a change item
 	* @param merge whether to merge the j i r a change item with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
 	* @return the j i r a change item that was updated
 	* @throws SystemException if a system exception occurred
@@ -224,7 +224,7 @@ public class JIRAChangeItemLocalServiceWrapper
 	}
 
 	/**
-	* Gets the Spring bean ID for this bean.
+	* Returns the Spring bean ID for this bean.
 	*
 	* @return the Spring bean ID for this bean
 	*/

@@ -124,7 +124,7 @@ public class WSRPConsumerPortletUtil {
 	/**
 	* Caches the w s r p consumer portlet in the entity cache if it is enabled.
 	*
-	* @param wsrpConsumerPortlet the w s r p consumer portlet to cache
+	* @param wsrpConsumerPortlet the w s r p consumer portlet
 	*/
 	public static void cacheResult(
 		com.liferay.wsrp.model.WSRPConsumerPortlet wsrpConsumerPortlet) {
@@ -134,7 +134,7 @@ public class WSRPConsumerPortletUtil {
 	/**
 	* Caches the w s r p consumer portlets in the entity cache if it is enabled.
 	*
-	* @param wsrpConsumerPortlets the w s r p consumer portlets to cache
+	* @param wsrpConsumerPortlets the w s r p consumer portlets
 	*/
 	public static void cacheResult(
 		java.util.List<com.liferay.wsrp.model.WSRPConsumerPortlet> wsrpConsumerPortlets) {
@@ -155,7 +155,7 @@ public class WSRPConsumerPortletUtil {
 	/**
 	* Removes the w s r p consumer portlet with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param wsrpConsumerPortletId the primary key of the w s r p consumer portlet to remove
+	* @param wsrpConsumerPortletId the primary key of the w s r p consumer portlet
 	* @return the w s r p consumer portlet that was removed
 	* @throws com.liferay.wsrp.NoSuchConsumerPortletException if a w s r p consumer portlet with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -175,9 +175,9 @@ public class WSRPConsumerPortletUtil {
 	}
 
 	/**
-	* Finds the w s r p consumer portlet with the primary key or throws a {@link com.liferay.wsrp.NoSuchConsumerPortletException} if it could not be found.
+	* Returns the w s r p consumer portlet with the primary key or throws a {@link com.liferay.wsrp.NoSuchConsumerPortletException} if it could not be found.
 	*
-	* @param wsrpConsumerPortletId the primary key of the w s r p consumer portlet to find
+	* @param wsrpConsumerPortletId the primary key of the w s r p consumer portlet
 	* @return the w s r p consumer portlet
 	* @throws com.liferay.wsrp.NoSuchConsumerPortletException if a w s r p consumer portlet with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -190,9 +190,9 @@ public class WSRPConsumerPortletUtil {
 	}
 
 	/**
-	* Finds the w s r p consumer portlet with the primary key or returns <code>null</code> if it could not be found.
+	* Returns the w s r p consumer portlet with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param wsrpConsumerPortletId the primary key of the w s r p consumer portlet to find
+	* @param wsrpConsumerPortletId the primary key of the w s r p consumer portlet
 	* @return the w s r p consumer portlet, or <code>null</code> if a w s r p consumer portlet with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -203,9 +203,9 @@ public class WSRPConsumerPortletUtil {
 	}
 
 	/**
-	* Finds all the w s r p consumer portlets where uuid = &#63;.
+	* Returns all the w s r p consumer portlets where uuid = &#63;.
 	*
-	* @param uuid the uuid to search with
+	* @param uuid the uuid
 	* @return the matching w s r p consumer portlets
 	* @throws SystemException if a system exception occurred
 	*/
@@ -216,15 +216,15 @@ public class WSRPConsumerPortletUtil {
 	}
 
 	/**
-	* Finds a range of all the w s r p consumer portlets where uuid = &#63;.
+	* Returns a range of all the w s r p consumer portlets where uuid = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param uuid the uuid to search with
-	* @param start the lower bound of the range of w s r p consumer portlets to return
-	* @param end the upper bound of the range of w s r p consumer portlets to return (not inclusive)
+	* @param uuid the uuid
+	* @param start the lower bound of the range of w s r p consumer portlets
+	* @param end the upper bound of the range of w s r p consumer portlets (not inclusive)
 	* @return the range of matching w s r p consumer portlets
 	* @throws SystemException if a system exception occurred
 	*/
@@ -235,15 +235,15 @@ public class WSRPConsumerPortletUtil {
 	}
 
 	/**
-	* Finds an ordered range of all the w s r p consumer portlets where uuid = &#63;.
+	* Returns an ordered range of all the w s r p consumer portlets where uuid = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param uuid the uuid to search with
-	* @param start the lower bound of the range of w s r p consumer portlets to return
-	* @param end the upper bound of the range of w s r p consumer portlets to return (not inclusive)
+	* @param uuid the uuid
+	* @param start the lower bound of the range of w s r p consumer portlets
+	* @param end the upper bound of the range of w s r p consumer portlets (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching w s r p consumer portlets
 	* @throws SystemException if a system exception occurred
@@ -256,13 +256,13 @@ public class WSRPConsumerPortletUtil {
 	}
 
 	/**
-	* Finds the first w s r p consumer portlet in the ordered set where uuid = &#63;.
+	* Returns the first w s r p consumer portlet in the ordered set where uuid = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param uuid the uuid to search with
+	* @param uuid the uuid
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching w s r p consumer portlet
 	* @throws com.liferay.wsrp.NoSuchConsumerPortletException if a matching w s r p consumer portlet could not be found
@@ -277,13 +277,13 @@ public class WSRPConsumerPortletUtil {
 	}
 
 	/**
-	* Finds the last w s r p consumer portlet in the ordered set where uuid = &#63;.
+	* Returns the last w s r p consumer portlet in the ordered set where uuid = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param uuid the uuid to search with
+	* @param uuid the uuid
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching w s r p consumer portlet
 	* @throws com.liferay.wsrp.NoSuchConsumerPortletException if a matching w s r p consumer portlet could not be found
@@ -298,14 +298,14 @@ public class WSRPConsumerPortletUtil {
 	}
 
 	/**
-	* Finds the w s r p consumer portlets before and after the current w s r p consumer portlet in the ordered set where uuid = &#63;.
+	* Returns the w s r p consumer portlets before and after the current w s r p consumer portlet in the ordered set where uuid = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
 	* @param wsrpConsumerPortletId the primary key of the current w s r p consumer portlet
-	* @param uuid the uuid to search with
+	* @param uuid the uuid
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next w s r p consumer portlet
 	* @throws com.liferay.wsrp.NoSuchConsumerPortletException if a w s r p consumer portlet with the primary key could not be found
@@ -322,9 +322,9 @@ public class WSRPConsumerPortletUtil {
 	}
 
 	/**
-	* Finds all the w s r p consumer portlets where wsrpConsumerId = &#63;.
+	* Returns all the w s r p consumer portlets where wsrpConsumerId = &#63;.
 	*
-	* @param wsrpConsumerId the wsrp consumer ID to search with
+	* @param wsrpConsumerId the wsrp consumer ID
 	* @return the matching w s r p consumer portlets
 	* @throws SystemException if a system exception occurred
 	*/
@@ -335,15 +335,15 @@ public class WSRPConsumerPortletUtil {
 	}
 
 	/**
-	* Finds a range of all the w s r p consumer portlets where wsrpConsumerId = &#63;.
+	* Returns a range of all the w s r p consumer portlets where wsrpConsumerId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param wsrpConsumerId the wsrp consumer ID to search with
-	* @param start the lower bound of the range of w s r p consumer portlets to return
-	* @param end the upper bound of the range of w s r p consumer portlets to return (not inclusive)
+	* @param wsrpConsumerId the wsrp consumer ID
+	* @param start the lower bound of the range of w s r p consumer portlets
+	* @param end the upper bound of the range of w s r p consumer portlets (not inclusive)
 	* @return the range of matching w s r p consumer portlets
 	* @throws SystemException if a system exception occurred
 	*/
@@ -354,15 +354,15 @@ public class WSRPConsumerPortletUtil {
 	}
 
 	/**
-	* Finds an ordered range of all the w s r p consumer portlets where wsrpConsumerId = &#63;.
+	* Returns an ordered range of all the w s r p consumer portlets where wsrpConsumerId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param wsrpConsumerId the wsrp consumer ID to search with
-	* @param start the lower bound of the range of w s r p consumer portlets to return
-	* @param end the upper bound of the range of w s r p consumer portlets to return (not inclusive)
+	* @param wsrpConsumerId the wsrp consumer ID
+	* @param start the lower bound of the range of w s r p consumer portlets
+	* @param end the upper bound of the range of w s r p consumer portlets (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching w s r p consumer portlets
 	* @throws SystemException if a system exception occurred
@@ -377,13 +377,13 @@ public class WSRPConsumerPortletUtil {
 	}
 
 	/**
-	* Finds the first w s r p consumer portlet in the ordered set where wsrpConsumerId = &#63;.
+	* Returns the first w s r p consumer portlet in the ordered set where wsrpConsumerId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param wsrpConsumerId the wsrp consumer ID to search with
+	* @param wsrpConsumerId the wsrp consumer ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching w s r p consumer portlet
 	* @throws com.liferay.wsrp.NoSuchConsumerPortletException if a matching w s r p consumer portlet could not be found
@@ -399,13 +399,13 @@ public class WSRPConsumerPortletUtil {
 	}
 
 	/**
-	* Finds the last w s r p consumer portlet in the ordered set where wsrpConsumerId = &#63;.
+	* Returns the last w s r p consumer portlet in the ordered set where wsrpConsumerId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param wsrpConsumerId the wsrp consumer ID to search with
+	* @param wsrpConsumerId the wsrp consumer ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching w s r p consumer portlet
 	* @throws com.liferay.wsrp.NoSuchConsumerPortletException if a matching w s r p consumer portlet could not be found
@@ -421,14 +421,14 @@ public class WSRPConsumerPortletUtil {
 	}
 
 	/**
-	* Finds the w s r p consumer portlets before and after the current w s r p consumer portlet in the ordered set where wsrpConsumerId = &#63;.
+	* Returns the w s r p consumer portlets before and after the current w s r p consumer portlet in the ordered set where wsrpConsumerId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
 	* @param wsrpConsumerPortletId the primary key of the current w s r p consumer portlet
-	* @param wsrpConsumerId the wsrp consumer ID to search with
+	* @param wsrpConsumerId the wsrp consumer ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next w s r p consumer portlet
 	* @throws com.liferay.wsrp.NoSuchConsumerPortletException if a w s r p consumer portlet with the primary key could not be found
@@ -445,10 +445,10 @@ public class WSRPConsumerPortletUtil {
 	}
 
 	/**
-	* Finds the w s r p consumer portlet where wsrpConsumerId = &#63; and portletHandle = &#63; or throws a {@link com.liferay.wsrp.NoSuchConsumerPortletException} if it could not be found.
+	* Returns the w s r p consumer portlet where wsrpConsumerId = &#63; and portletHandle = &#63; or throws a {@link com.liferay.wsrp.NoSuchConsumerPortletException} if it could not be found.
 	*
-	* @param wsrpConsumerId the wsrp consumer ID to search with
-	* @param portletHandle the portlet handle to search with
+	* @param wsrpConsumerId the wsrp consumer ID
+	* @param portletHandle the portlet handle
 	* @return the matching w s r p consumer portlet
 	* @throws com.liferay.wsrp.NoSuchConsumerPortletException if a matching w s r p consumer portlet could not be found
 	* @throws SystemException if a system exception occurred
@@ -461,10 +461,10 @@ public class WSRPConsumerPortletUtil {
 	}
 
 	/**
-	* Finds the w s r p consumer portlet where wsrpConsumerId = &#63; and portletHandle = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	* Returns the w s r p consumer portlet where wsrpConsumerId = &#63; and portletHandle = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	*
-	* @param wsrpConsumerId the wsrp consumer ID to search with
-	* @param portletHandle the portlet handle to search with
+	* @param wsrpConsumerId the wsrp consumer ID
+	* @param portletHandle the portlet handle
 	* @return the matching w s r p consumer portlet, or <code>null</code> if a matching w s r p consumer portlet could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -475,10 +475,10 @@ public class WSRPConsumerPortletUtil {
 	}
 
 	/**
-	* Finds the w s r p consumer portlet where wsrpConsumerId = &#63; and portletHandle = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	* Returns the w s r p consumer portlet where wsrpConsumerId = &#63; and portletHandle = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	*
-	* @param wsrpConsumerId the wsrp consumer ID to search with
-	* @param portletHandle the portlet handle to search with
+	* @param wsrpConsumerId the wsrp consumer ID
+	* @param portletHandle the portlet handle
 	* @return the matching w s r p consumer portlet, or <code>null</code> if a matching w s r p consumer portlet could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -491,7 +491,7 @@ public class WSRPConsumerPortletUtil {
 	}
 
 	/**
-	* Finds all the w s r p consumer portlets.
+	* Returns all the w s r p consumer portlets.
 	*
 	* @return the w s r p consumer portlets
 	* @throws SystemException if a system exception occurred
@@ -502,14 +502,14 @@ public class WSRPConsumerPortletUtil {
 	}
 
 	/**
-	* Finds a range of all the w s r p consumer portlets.
+	* Returns a range of all the w s r p consumer portlets.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of w s r p consumer portlets to return
-	* @param end the upper bound of the range of w s r p consumer portlets to return (not inclusive)
+	* @param start the lower bound of the range of w s r p consumer portlets
+	* @param end the upper bound of the range of w s r p consumer portlets (not inclusive)
 	* @return the range of w s r p consumer portlets
 	* @throws SystemException if a system exception occurred
 	*/
@@ -520,14 +520,14 @@ public class WSRPConsumerPortletUtil {
 	}
 
 	/**
-	* Finds an ordered range of all the w s r p consumer portlets.
+	* Returns an ordered range of all the w s r p consumer portlets.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of w s r p consumer portlets to return
-	* @param end the upper bound of the range of w s r p consumer portlets to return (not inclusive)
+	* @param start the lower bound of the range of w s r p consumer portlets
+	* @param end the upper bound of the range of w s r p consumer portlets (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of w s r p consumer portlets
 	* @throws SystemException if a system exception occurred
@@ -542,7 +542,7 @@ public class WSRPConsumerPortletUtil {
 	/**
 	* Removes all the w s r p consumer portlets where uuid = &#63; from the database.
 	*
-	* @param uuid the uuid to search with
+	* @param uuid the uuid
 	* @throws SystemException if a system exception occurred
 	*/
 	public static void removeByUuid(java.lang.String uuid)
@@ -553,7 +553,7 @@ public class WSRPConsumerPortletUtil {
 	/**
 	* Removes all the w s r p consumer portlets where wsrpConsumerId = &#63; from the database.
 	*
-	* @param wsrpConsumerId the wsrp consumer ID to search with
+	* @param wsrpConsumerId the wsrp consumer ID
 	* @throws SystemException if a system exception occurred
 	*/
 	public static void removeByWsrpConsumerId(long wsrpConsumerId)
@@ -564,8 +564,8 @@ public class WSRPConsumerPortletUtil {
 	/**
 	* Removes the w s r p consumer portlet where wsrpConsumerId = &#63; and portletHandle = &#63; from the database.
 	*
-	* @param wsrpConsumerId the wsrp consumer ID to search with
-	* @param portletHandle the portlet handle to search with
+	* @param wsrpConsumerId the wsrp consumer ID
+	* @param portletHandle the portlet handle
 	* @throws SystemException if a system exception occurred
 	*/
 	public static void removeByW_P(long wsrpConsumerId,
@@ -586,9 +586,9 @@ public class WSRPConsumerPortletUtil {
 	}
 
 	/**
-	* Counts all the w s r p consumer portlets where uuid = &#63;.
+	* Returns the number of w s r p consumer portlets where uuid = &#63;.
 	*
-	* @param uuid the uuid to search with
+	* @param uuid the uuid
 	* @return the number of matching w s r p consumer portlets
 	* @throws SystemException if a system exception occurred
 	*/
@@ -598,9 +598,9 @@ public class WSRPConsumerPortletUtil {
 	}
 
 	/**
-	* Counts all the w s r p consumer portlets where wsrpConsumerId = &#63;.
+	* Returns the number of w s r p consumer portlets where wsrpConsumerId = &#63;.
 	*
-	* @param wsrpConsumerId the wsrp consumer ID to search with
+	* @param wsrpConsumerId the wsrp consumer ID
 	* @return the number of matching w s r p consumer portlets
 	* @throws SystemException if a system exception occurred
 	*/
@@ -610,10 +610,10 @@ public class WSRPConsumerPortletUtil {
 	}
 
 	/**
-	* Counts all the w s r p consumer portlets where wsrpConsumerId = &#63; and portletHandle = &#63;.
+	* Returns the number of w s r p consumer portlets where wsrpConsumerId = &#63; and portletHandle = &#63;.
 	*
-	* @param wsrpConsumerId the wsrp consumer ID to search with
-	* @param portletHandle the portlet handle to search with
+	* @param wsrpConsumerId the wsrp consumer ID
+	* @param portletHandle the portlet handle
 	* @return the number of matching w s r p consumer portlets
 	* @throws SystemException if a system exception occurred
 	*/
@@ -624,7 +624,7 @@ public class WSRPConsumerPortletUtil {
 	}
 
 	/**
-	* Counts all the w s r p consumer portlets.
+	* Returns the number of w s r p consumer portlets.
 	*
 	* @return the number of w s r p consumer portlets
 	* @throws SystemException if a system exception occurred

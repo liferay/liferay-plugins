@@ -82,7 +82,7 @@ public class HRTimeSheetHoursPerDayPersistenceImpl extends BasePersistenceImpl<H
 	/**
 	 * Caches the h r time sheet hours per day in the entity cache if it is enabled.
 	 *
-	 * @param hrTimeSheetHoursPerDay the h r time sheet hours per day to cache
+	 * @param hrTimeSheetHoursPerDay the h r time sheet hours per day
 	 */
 	public void cacheResult(HRTimeSheetHoursPerDay hrTimeSheetHoursPerDay) {
 		EntityCacheUtil.putResult(HRTimeSheetHoursPerDayModelImpl.ENTITY_CACHE_ENABLED,
@@ -95,7 +95,7 @@ public class HRTimeSheetHoursPerDayPersistenceImpl extends BasePersistenceImpl<H
 	/**
 	 * Caches the h r time sheet hours per daies in the entity cache if it is enabled.
 	 *
-	 * @param hrTimeSheetHoursPerDaies the h r time sheet hours per daies to cache
+	 * @param hrTimeSheetHoursPerDaies the h r time sheet hours per daies
 	 */
 	public void cacheResult(
 		List<HRTimeSheetHoursPerDay> hrTimeSheetHoursPerDaies) {
@@ -157,7 +157,7 @@ public class HRTimeSheetHoursPerDayPersistenceImpl extends BasePersistenceImpl<H
 	/**
 	 * Removes the h r time sheet hours per day with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param primaryKey the primary key of the h r time sheet hours per day to remove
+	 * @param primaryKey the primary key of the h r time sheet hours per day
 	 * @return the h r time sheet hours per day that was removed
 	 * @throws com.liferay.portal.NoSuchModelException if a h r time sheet hours per day with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -170,7 +170,7 @@ public class HRTimeSheetHoursPerDayPersistenceImpl extends BasePersistenceImpl<H
 	/**
 	 * Removes the h r time sheet hours per day with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param hrTimeSheetHoursPerDayId the primary key of the h r time sheet hours per day to remove
+	 * @param hrTimeSheetHoursPerDayId the primary key of the h r time sheet hours per day
 	 * @return the h r time sheet hours per day that was removed
 	 * @throws com.liferay.hr.NoSuchTimeSheetHoursPerDayException if a h r time sheet hours per day with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -211,7 +211,7 @@ public class HRTimeSheetHoursPerDayPersistenceImpl extends BasePersistenceImpl<H
 	/**
 	 * Removes the h r time sheet hours per day from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param hrTimeSheetHoursPerDay the h r time sheet hours per day to remove
+	 * @param hrTimeSheetHoursPerDay the h r time sheet hours per day
 	 * @return the h r time sheet hours per day that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -304,9 +304,9 @@ public class HRTimeSheetHoursPerDayPersistenceImpl extends BasePersistenceImpl<H
 	}
 
 	/**
-	 * Finds the h r time sheet hours per day with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
+	 * Returns the h r time sheet hours per day with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
 	 *
-	 * @param primaryKey the primary key of the h r time sheet hours per day to find
+	 * @param primaryKey the primary key of the h r time sheet hours per day
 	 * @return the h r time sheet hours per day
 	 * @throws com.liferay.portal.NoSuchModelException if a h r time sheet hours per day with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -317,9 +317,9 @@ public class HRTimeSheetHoursPerDayPersistenceImpl extends BasePersistenceImpl<H
 	}
 
 	/**
-	 * Finds the h r time sheet hours per day with the primary key or throws a {@link com.liferay.hr.NoSuchTimeSheetHoursPerDayException} if it could not be found.
+	 * Returns the h r time sheet hours per day with the primary key or throws a {@link com.liferay.hr.NoSuchTimeSheetHoursPerDayException} if it could not be found.
 	 *
-	 * @param hrTimeSheetHoursPerDayId the primary key of the h r time sheet hours per day to find
+	 * @param hrTimeSheetHoursPerDayId the primary key of the h r time sheet hours per day
 	 * @return the h r time sheet hours per day
 	 * @throws com.liferay.hr.NoSuchTimeSheetHoursPerDayException if a h r time sheet hours per day with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -343,9 +343,9 @@ public class HRTimeSheetHoursPerDayPersistenceImpl extends BasePersistenceImpl<H
 	}
 
 	/**
-	 * Finds the h r time sheet hours per day with the primary key or returns <code>null</code> if it could not be found.
+	 * Returns the h r time sheet hours per day with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param primaryKey the primary key of the h r time sheet hours per day to find
+	 * @param primaryKey the primary key of the h r time sheet hours per day
 	 * @return the h r time sheet hours per day, or <code>null</code> if a h r time sheet hours per day with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -355,9 +355,9 @@ public class HRTimeSheetHoursPerDayPersistenceImpl extends BasePersistenceImpl<H
 	}
 
 	/**
-	 * Finds the h r time sheet hours per day with the primary key or returns <code>null</code> if it could not be found.
+	 * Returns the h r time sheet hours per day with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param hrTimeSheetHoursPerDayId the primary key of the h r time sheet hours per day to find
+	 * @param hrTimeSheetHoursPerDayId the primary key of the h r time sheet hours per day
 	 * @return the h r time sheet hours per day, or <code>null</code> if a h r time sheet hours per day with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -391,7 +391,7 @@ public class HRTimeSheetHoursPerDayPersistenceImpl extends BasePersistenceImpl<H
 	}
 
 	/**
-	 * Finds all the h r time sheet hours per daies.
+	 * Returns all the h r time sheet hours per daies.
 	 *
 	 * @return the h r time sheet hours per daies
 	 * @throws SystemException if a system exception occurred
@@ -401,14 +401,14 @@ public class HRTimeSheetHoursPerDayPersistenceImpl extends BasePersistenceImpl<H
 	}
 
 	/**
-	 * Finds a range of all the h r time sheet hours per daies.
+	 * Returns a range of all the h r time sheet hours per daies.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of h r time sheet hours per daies to return
-	 * @param end the upper bound of the range of h r time sheet hours per daies to return (not inclusive)
+	 * @param start the lower bound of the range of h r time sheet hours per daies
+	 * @param end the upper bound of the range of h r time sheet hours per daies (not inclusive)
 	 * @return the range of h r time sheet hours per daies
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -418,14 +418,14 @@ public class HRTimeSheetHoursPerDayPersistenceImpl extends BasePersistenceImpl<H
 	}
 
 	/**
-	 * Finds an ordered range of all the h r time sheet hours per daies.
+	 * Returns an ordered range of all the h r time sheet hours per daies.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of h r time sheet hours per daies to return
-	 * @param end the upper bound of the range of h r time sheet hours per daies to return (not inclusive)
+	 * @param start the lower bound of the range of h r time sheet hours per daies
+	 * @param end the upper bound of the range of h r time sheet hours per daies (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of h r time sheet hours per daies
 	 * @throws SystemException if a system exception occurred
@@ -511,7 +511,7 @@ public class HRTimeSheetHoursPerDayPersistenceImpl extends BasePersistenceImpl<H
 	}
 
 	/**
-	 * Counts all the h r time sheet hours per daies.
+	 * Returns the number of h r time sheet hours per daies.
 	 *
 	 * @return the number of h r time sheet hours per daies
 	 * @throws SystemException if a system exception occurred

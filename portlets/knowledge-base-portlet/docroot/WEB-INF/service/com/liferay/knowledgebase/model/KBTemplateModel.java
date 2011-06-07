@@ -47,21 +47,21 @@ public interface KBTemplateModel extends BaseModel<KBTemplate>, GroupedModel {
 	 */
 
 	/**
-	 * Gets the primary key of this k b template.
+	 * Returns the primary key of this k b template.
 	 *
 	 * @return the primary key of this k b template
 	 */
 	public long getPrimaryKey();
 
 	/**
-	 * Sets the primary key of this k b template
+	 * Sets the primary key of this k b template.
 	 *
 	 * @param primaryKey the primary key of this k b template
 	 */
 	public void setPrimaryKey(long primaryKey);
 
 	/**
-	 * Gets the uuid of this k b template.
+	 * Returns the uuid of this k b template.
 	 *
 	 * @return the uuid of this k b template
 	 */
@@ -76,7 +76,7 @@ public interface KBTemplateModel extends BaseModel<KBTemplate>, GroupedModel {
 	public void setUuid(String uuid);
 
 	/**
-	 * Gets the kb template ID of this k b template.
+	 * Returns the kb template ID of this k b template.
 	 *
 	 * @return the kb template ID of this k b template
 	 */
@@ -90,7 +90,7 @@ public interface KBTemplateModel extends BaseModel<KBTemplate>, GroupedModel {
 	public void setKbTemplateId(long kbTemplateId);
 
 	/**
-	 * Gets the group ID of this k b template.
+	 * Returns the group ID of this k b template.
 	 *
 	 * @return the group ID of this k b template
 	 */
@@ -104,7 +104,7 @@ public interface KBTemplateModel extends BaseModel<KBTemplate>, GroupedModel {
 	public void setGroupId(long groupId);
 
 	/**
-	 * Gets the company ID of this k b template.
+	 * Returns the company ID of this k b template.
 	 *
 	 * @return the company ID of this k b template
 	 */
@@ -118,7 +118,7 @@ public interface KBTemplateModel extends BaseModel<KBTemplate>, GroupedModel {
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the user ID of this k b template.
+	 * Returns the user ID of this k b template.
 	 *
 	 * @return the user ID of this k b template
 	 */
@@ -132,7 +132,7 @@ public interface KBTemplateModel extends BaseModel<KBTemplate>, GroupedModel {
 	public void setUserId(long userId);
 
 	/**
-	 * Gets the user uuid of this k b template.
+	 * Returns the user uuid of this k b template.
 	 *
 	 * @return the user uuid of this k b template
 	 * @throws SystemException if a system exception occurred
@@ -147,7 +147,7 @@ public interface KBTemplateModel extends BaseModel<KBTemplate>, GroupedModel {
 	public void setUserUuid(String userUuid);
 
 	/**
-	 * Gets the user name of this k b template.
+	 * Returns the user name of this k b template.
 	 *
 	 * @return the user name of this k b template
 	 */
@@ -162,7 +162,7 @@ public interface KBTemplateModel extends BaseModel<KBTemplate>, GroupedModel {
 	public void setUserName(String userName);
 
 	/**
-	 * Gets the create date of this k b template.
+	 * Returns the create date of this k b template.
 	 *
 	 * @return the create date of this k b template
 	 */
@@ -176,7 +176,7 @@ public interface KBTemplateModel extends BaseModel<KBTemplate>, GroupedModel {
 	public void setCreateDate(Date createDate);
 
 	/**
-	 * Gets the modified date of this k b template.
+	 * Returns the modified date of this k b template.
 	 *
 	 * @return the modified date of this k b template
 	 */
@@ -190,7 +190,7 @@ public interface KBTemplateModel extends BaseModel<KBTemplate>, GroupedModel {
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Gets the title of this k b template.
+	 * Returns the title of this k b template.
 	 *
 	 * @return the title of this k b template
 	 */
@@ -205,7 +205,7 @@ public interface KBTemplateModel extends BaseModel<KBTemplate>, GroupedModel {
 	public void setTitle(String title);
 
 	/**
-	 * Gets the content of this k b template.
+	 * Returns the content of this k b template.
 	 *
 	 * @return the content of this k b template
 	 */
@@ -220,7 +220,7 @@ public interface KBTemplateModel extends BaseModel<KBTemplate>, GroupedModel {
 	public void setContent(String content);
 
 	/**
-	 * Gets the engine type of this k b template.
+	 * Returns the engine type of this k b template.
 	 *
 	 * @return the engine type of this k b template
 	 */
@@ -234,7 +234,7 @@ public interface KBTemplateModel extends BaseModel<KBTemplate>, GroupedModel {
 	public void setEngineType(int engineType);
 
 	/**
-	 * Gets the cacheable of this k b template.
+	 * Returns the cacheable of this k b template.
 	 *
 	 * @return the cacheable of this k b template
 	 */

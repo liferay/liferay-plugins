@@ -37,7 +37,7 @@ public class HRAssetCheckoutWrapper implements HRAssetCheckout {
 	}
 
 	/**
-	* Gets the primary key of this h r asset checkout.
+	* Returns the primary key of this h r asset checkout.
 	*
 	* @return the primary key of this h r asset checkout
 	*/
@@ -46,7 +46,7 @@ public class HRAssetCheckoutWrapper implements HRAssetCheckout {
 	}
 
 	/**
-	* Sets the primary key of this h r asset checkout
+	* Sets the primary key of this h r asset checkout.
 	*
 	* @param primaryKey the primary key of this h r asset checkout
 	*/
@@ -55,7 +55,7 @@ public class HRAssetCheckoutWrapper implements HRAssetCheckout {
 	}
 
 	/**
-	* Gets the hr asset checkout ID of this h r asset checkout.
+	* Returns the hr asset checkout ID of this h r asset checkout.
 	*
 	* @return the hr asset checkout ID of this h r asset checkout
 	*/
@@ -73,7 +73,7 @@ public class HRAssetCheckoutWrapper implements HRAssetCheckout {
 	}
 
 	/**
-	* Gets the group ID of this h r asset checkout.
+	* Returns the group ID of this h r asset checkout.
 	*
 	* @return the group ID of this h r asset checkout
 	*/
@@ -91,7 +91,7 @@ public class HRAssetCheckoutWrapper implements HRAssetCheckout {
 	}
 
 	/**
-	* Gets the company ID of this h r asset checkout.
+	* Returns the company ID of this h r asset checkout.
 	*
 	* @return the company ID of this h r asset checkout
 	*/
@@ -109,7 +109,7 @@ public class HRAssetCheckoutWrapper implements HRAssetCheckout {
 	}
 
 	/**
-	* Gets the user ID of this h r asset checkout.
+	* Returns the user ID of this h r asset checkout.
 	*
 	* @return the user ID of this h r asset checkout
 	*/
@@ -127,7 +127,7 @@ public class HRAssetCheckoutWrapper implements HRAssetCheckout {
 	}
 
 	/**
-	* Gets the user uuid of this h r asset checkout.
+	* Returns the user uuid of this h r asset checkout.
 	*
 	* @return the user uuid of this h r asset checkout
 	* @throws SystemException if a system exception occurred
@@ -147,7 +147,7 @@ public class HRAssetCheckoutWrapper implements HRAssetCheckout {
 	}
 
 	/**
-	* Gets the user name of this h r asset checkout.
+	* Returns the user name of this h r asset checkout.
 	*
 	* @return the user name of this h r asset checkout
 	*/
@@ -165,7 +165,7 @@ public class HRAssetCheckoutWrapper implements HRAssetCheckout {
 	}
 
 	/**
-	* Gets the create date of this h r asset checkout.
+	* Returns the create date of this h r asset checkout.
 	*
 	* @return the create date of this h r asset checkout
 	*/
@@ -183,7 +183,7 @@ public class HRAssetCheckoutWrapper implements HRAssetCheckout {
 	}
 
 	/**
-	* Gets the modified date of this h r asset checkout.
+	* Returns the modified date of this h r asset checkout.
 	*
 	* @return the modified date of this h r asset checkout
 	*/
@@ -201,7 +201,7 @@ public class HRAssetCheckoutWrapper implements HRAssetCheckout {
 	}
 
 	/**
-	* Gets the hr asset ID of this h r asset checkout.
+	* Returns the hr asset ID of this h r asset checkout.
 	*
 	* @return the hr asset ID of this h r asset checkout
 	*/
@@ -219,7 +219,7 @@ public class HRAssetCheckoutWrapper implements HRAssetCheckout {
 	}
 
 	/**
-	* Gets the hr user ID of this h r asset checkout.
+	* Returns the hr user ID of this h r asset checkout.
 	*
 	* @return the hr user ID of this h r asset checkout
 	*/
@@ -237,7 +237,7 @@ public class HRAssetCheckoutWrapper implements HRAssetCheckout {
 	}
 
 	/**
-	* Gets the hr user uuid of this h r asset checkout.
+	* Returns the hr user uuid of this h r asset checkout.
 	*
 	* @return the hr user uuid of this h r asset checkout
 	* @throws SystemException if a system exception occurred
@@ -257,7 +257,7 @@ public class HRAssetCheckoutWrapper implements HRAssetCheckout {
 	}
 
 	/**
-	* Gets the checkout date of this h r asset checkout.
+	* Returns the checkout date of this h r asset checkout.
 	*
 	* @return the checkout date of this h r asset checkout
 	*/
@@ -275,7 +275,7 @@ public class HRAssetCheckoutWrapper implements HRAssetCheckout {
 	}
 
 	/**
-	* Gets the expected check in date of this h r asset checkout.
+	* Returns the expected check in date of this h r asset checkout.
 	*
 	* @return the expected check in date of this h r asset checkout
 	*/
@@ -293,7 +293,7 @@ public class HRAssetCheckoutWrapper implements HRAssetCheckout {
 	}
 
 	/**
-	* Gets the actual check in date of this h r asset checkout.
+	* Returns the actual check in date of this h r asset checkout.
 	*
 	* @return the actual check in date of this h r asset checkout
 	*/

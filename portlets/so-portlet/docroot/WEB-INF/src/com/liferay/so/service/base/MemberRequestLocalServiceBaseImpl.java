@@ -23,6 +23,11 @@ import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.search.Indexer;
+import com.liferay.portal.kernel.search.IndexerRegistryUtil;
+import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.service.GroupLocalService;
 import com.liferay.portal.service.GroupService;
@@ -73,7 +78,7 @@ public abstract class MemberRequestLocalServiceBaseImpl
 	/**
 	 * Adds the member request to the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param memberRequest the member request to add
+	 * @param memberRequest the member request
 	 * @return the member request that was added
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -81,7 +86,22 @@ public abstract class MemberRequestLocalServiceBaseImpl
 		throws SystemException {
 		memberRequest.setNew(true);
 
-		return memberRequestPersistence.update(memberRequest, false);
+		memberRequest = memberRequestPersistence.update(memberRequest, false);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.reindex(memberRequest);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
+
+		return memberRequest;
 	}
 
 	/**
@@ -97,30 +117,56 @@ public abstract class MemberRequestLocalServiceBaseImpl
 	/**
 	 * Deletes the member request with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param memberRequestId the primary key of the member request to delete
+	 * @param memberRequestId the primary key of the member request
 	 * @throws PortalException if a member request with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void deleteMemberRequest(long memberRequestId)
 		throws PortalException, SystemException {
-		memberRequestPersistence.remove(memberRequestId);
+		MemberRequest memberRequest = memberRequestPersistence.remove(memberRequestId);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.delete(memberRequest);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
 	}
 
 	/**
 	 * Deletes the member request from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param memberRequest the member request to delete
+	 * @param memberRequest the member request
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void deleteMemberRequest(MemberRequest memberRequest)
 		throws SystemException {
 		memberRequestPersistence.remove(memberRequest);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.delete(memberRequest);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
 	}
 
 	/**
 	 * Performs a dynamic query on the database and returns the matching rows.
 	 *
-	 * @param dynamicQuery the dynamic query to search with
+	 * @param dynamicQuery the dynamic query
 	 * @return the matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -137,9 +183,9 @@ public abstract class MemberRequestLocalServiceBaseImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param dynamicQuery the dynamic query to search with
-	 * @param start the lower bound of the range of model instances to return
-	 * @param end the upper bound of the range of model instances to return (not inclusive)
+	 * @param dynamicQuery the dynamic query
+	 * @param start the lower bound of the range of model instances
+	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @return the range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -157,9 +203,9 @@ public abstract class MemberRequestLocalServiceBaseImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param dynamicQuery the dynamic query to search with
-	 * @param start the lower bound of the range of model instances to return
-	 * @param end the upper bound of the range of model instances to return (not inclusive)
+	 * @param dynamicQuery the dynamic query
+	 * @param start the lower bound of the range of model instances
+	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching rows
 	 * @throws SystemException if a system exception occurred
@@ -172,9 +218,9 @@ public abstract class MemberRequestLocalServiceBaseImpl
 	}
 
 	/**
-	 * Counts the number of rows that match the dynamic query.
+	 * Returns the number of rows that match the dynamic query.
 	 *
-	 * @param dynamicQuery the dynamic query to search with
+	 * @param dynamicQuery the dynamic query
 	 * @return the number of rows that match the dynamic query
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -184,9 +230,9 @@ public abstract class MemberRequestLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the member request with the primary key.
+	 * Returns the member request with the primary key.
 	 *
-	 * @param memberRequestId the primary key of the member request to get
+	 * @param memberRequestId the primary key of the member request
 	 * @return the member request
 	 * @throws PortalException if a member request with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -197,14 +243,14 @@ public abstract class MemberRequestLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets a range of all the member requests.
+	 * Returns a range of all the member requests.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of member requests to return
-	 * @param end the upper bound of the range of member requests to return (not inclusive)
+	 * @param start the lower bound of the range of member requests
+	 * @param end the upper bound of the range of member requests (not inclusive)
 	 * @return the range of member requests
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -214,7 +260,7 @@ public abstract class MemberRequestLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the number of member requests.
+	 * Returns the number of member requests.
 	 *
 	 * @return the number of member requests
 	 * @throws SystemException if a system exception occurred
@@ -226,21 +272,19 @@ public abstract class MemberRequestLocalServiceBaseImpl
 	/**
 	 * Updates the member request in the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param memberRequest the member request to update
+	 * @param memberRequest the member request
 	 * @return the member request that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
 	public MemberRequest updateMemberRequest(MemberRequest memberRequest)
 		throws SystemException {
-		memberRequest.setNew(false);
-
-		return memberRequestPersistence.update(memberRequest, true);
+		return updateMemberRequest(memberRequest, true);
 	}
 
 	/**
 	 * Updates the member request in the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param memberRequest the member request to update
+	 * @param memberRequest the member request
 	 * @param merge whether to merge the member request with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
 	 * @return the member request that was updated
 	 * @throws SystemException if a system exception occurred
@@ -249,11 +293,26 @@ public abstract class MemberRequestLocalServiceBaseImpl
 		boolean merge) throws SystemException {
 		memberRequest.setNew(false);
 
-		return memberRequestPersistence.update(memberRequest, merge);
+		memberRequest = memberRequestPersistence.update(memberRequest, merge);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.reindex(memberRequest);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
+
+		return memberRequest;
 	}
 
 	/**
-	 * Gets the member request local service.
+	 * Returns the member request local service.
 	 *
 	 * @return the member request local service
 	 */
@@ -272,7 +331,7 @@ public abstract class MemberRequestLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the member request persistence.
+	 * Returns the member request persistence.
 	 *
 	 * @return the member request persistence
 	 */
@@ -291,7 +350,7 @@ public abstract class MemberRequestLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the projects entry local service.
+	 * Returns the projects entry local service.
 	 *
 	 * @return the projects entry local service
 	 */
@@ -310,7 +369,7 @@ public abstract class MemberRequestLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the projects entry persistence.
+	 * Returns the projects entry persistence.
 	 *
 	 * @return the projects entry persistence
 	 */
@@ -329,7 +388,7 @@ public abstract class MemberRequestLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the counter local service.
+	 * Returns the counter local service.
 	 *
 	 * @return the counter local service
 	 */
@@ -347,7 +406,7 @@ public abstract class MemberRequestLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the group local service.
+	 * Returns the group local service.
 	 *
 	 * @return the group local service
 	 */
@@ -365,7 +424,7 @@ public abstract class MemberRequestLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the group remote service.
+	 * Returns the group remote service.
 	 *
 	 * @return the group remote service
 	 */
@@ -383,7 +442,7 @@ public abstract class MemberRequestLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the group persistence.
+	 * Returns the group persistence.
 	 *
 	 * @return the group persistence
 	 */
@@ -401,7 +460,7 @@ public abstract class MemberRequestLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the layout local service.
+	 * Returns the layout local service.
 	 *
 	 * @return the layout local service
 	 */
@@ -419,7 +478,7 @@ public abstract class MemberRequestLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the layout remote service.
+	 * Returns the layout remote service.
 	 *
 	 * @return the layout remote service
 	 */
@@ -437,7 +496,7 @@ public abstract class MemberRequestLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the layout persistence.
+	 * Returns the layout persistence.
 	 *
 	 * @return the layout persistence
 	 */
@@ -455,7 +514,7 @@ public abstract class MemberRequestLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the resource local service.
+	 * Returns the resource local service.
 	 *
 	 * @return the resource local service
 	 */
@@ -474,7 +533,7 @@ public abstract class MemberRequestLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the resource remote service.
+	 * Returns the resource remote service.
 	 *
 	 * @return the resource remote service
 	 */
@@ -492,7 +551,7 @@ public abstract class MemberRequestLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the resource persistence.
+	 * Returns the resource persistence.
 	 *
 	 * @return the resource persistence
 	 */
@@ -510,7 +569,7 @@ public abstract class MemberRequestLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the user local service.
+	 * Returns the user local service.
 	 *
 	 * @return the user local service
 	 */
@@ -528,7 +587,7 @@ public abstract class MemberRequestLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the user remote service.
+	 * Returns the user remote service.
 	 *
 	 * @return the user remote service
 	 */
@@ -546,7 +605,7 @@ public abstract class MemberRequestLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the user persistence.
+	 * Returns the user persistence.
 	 *
 	 * @return the user persistence
 	 */
@@ -564,7 +623,7 @@ public abstract class MemberRequestLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the user group role local service.
+	 * Returns the user group role local service.
 	 *
 	 * @return the user group role local service
 	 */
@@ -583,7 +642,7 @@ public abstract class MemberRequestLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the user group role remote service.
+	 * Returns the user group role remote service.
 	 *
 	 * @return the user group role remote service
 	 */
@@ -602,7 +661,7 @@ public abstract class MemberRequestLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the user group role persistence.
+	 * Returns the user group role persistence.
 	 *
 	 * @return the user group role persistence
 	 */
@@ -621,7 +680,7 @@ public abstract class MemberRequestLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the Spring bean ID for this bean.
+	 * Returns the Spring bean ID for this bean.
 	 *
 	 * @return the Spring bean ID for this bean
 	 */
@@ -638,10 +697,18 @@ public abstract class MemberRequestLocalServiceBaseImpl
 		_beanIdentifier = beanIdentifier;
 	}
 
+	protected Class<?> getModelClass() {
+		return MemberRequest.class;
+	}
+
+	protected String getModelClassName() {
+		return MemberRequest.class.getName();
+	}
+
 	/**
 	 * Performs an SQL query.
 	 *
-	 * @param sql the sql query to perform
+	 * @param sql the sql query
 	 */
 	protected void runSQL(String sql) throws SystemException {
 		try {
@@ -697,5 +764,6 @@ public abstract class MemberRequestLocalServiceBaseImpl
 	protected UserGroupRoleService userGroupRoleService;
 	@BeanReference(type = UserGroupRolePersistence.class)
 	protected UserGroupRolePersistence userGroupRolePersistence;
+	private static Log _log = LogFactoryUtil.getLog(MemberRequestLocalServiceBaseImpl.class);
 	private String _beanIdentifier;
 }

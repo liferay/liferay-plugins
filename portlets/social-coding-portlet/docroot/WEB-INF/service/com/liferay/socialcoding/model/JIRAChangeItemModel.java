@@ -43,21 +43,21 @@ public interface JIRAChangeItemModel extends BaseModel<JIRAChangeItem> {
 	 */
 
 	/**
-	 * Gets the primary key of this j i r a change item.
+	 * Returns the primary key of this j i r a change item.
 	 *
 	 * @return the primary key of this j i r a change item
 	 */
 	public long getPrimaryKey();
 
 	/**
-	 * Sets the primary key of this j i r a change item
+	 * Sets the primary key of this j i r a change item.
 	 *
 	 * @param primaryKey the primary key of this j i r a change item
 	 */
 	public void setPrimaryKey(long primaryKey);
 
 	/**
-	 * Gets the jira change item ID of this j i r a change item.
+	 * Returns the jira change item ID of this j i r a change item.
 	 *
 	 * @return the jira change item ID of this j i r a change item
 	 */
@@ -71,7 +71,7 @@ public interface JIRAChangeItemModel extends BaseModel<JIRAChangeItem> {
 	public void setJiraChangeItemId(long jiraChangeItemId);
 
 	/**
-	 * Gets the jira change group ID of this j i r a change item.
+	 * Returns the jira change group ID of this j i r a change item.
 	 *
 	 * @return the jira change group ID of this j i r a change item
 	 */
@@ -85,7 +85,7 @@ public interface JIRAChangeItemModel extends BaseModel<JIRAChangeItem> {
 	public void setJiraChangeGroupId(long jiraChangeGroupId);
 
 	/**
-	 * Gets the field of this j i r a change item.
+	 * Returns the field of this j i r a change item.
 	 *
 	 * @return the field of this j i r a change item
 	 */
@@ -100,7 +100,7 @@ public interface JIRAChangeItemModel extends BaseModel<JIRAChangeItem> {
 	public void setField(String field);
 
 	/**
-	 * Gets the old value of this j i r a change item.
+	 * Returns the old value of this j i r a change item.
 	 *
 	 * @return the old value of this j i r a change item
 	 */
@@ -115,7 +115,7 @@ public interface JIRAChangeItemModel extends BaseModel<JIRAChangeItem> {
 	public void setOldValue(String oldValue);
 
 	/**
-	 * Gets the old string of this j i r a change item.
+	 * Returns the old string of this j i r a change item.
 	 *
 	 * @return the old string of this j i r a change item
 	 */
@@ -130,7 +130,7 @@ public interface JIRAChangeItemModel extends BaseModel<JIRAChangeItem> {
 	public void setOldString(String oldString);
 
 	/**
-	 * Gets the new value of this j i r a change item.
+	 * Returns the new value of this j i r a change item.
 	 *
 	 * @return the new value of this j i r a change item
 	 */
@@ -145,7 +145,7 @@ public interface JIRAChangeItemModel extends BaseModel<JIRAChangeItem> {
 	public void setNewValue(String newValue);
 
 	/**
-	 * Gets the new string of this j i r a change item.
+	 * Returns the new string of this j i r a change item.
 	 *
 	 * @return the new string of this j i r a change item
 	 */

@@ -38,7 +38,7 @@ public class HRTimeSheetHoursPerDayWrapper implements HRTimeSheetHoursPerDay {
 	}
 
 	/**
-	* Gets the primary key of this h r time sheet hours per day.
+	* Returns the primary key of this h r time sheet hours per day.
 	*
 	* @return the primary key of this h r time sheet hours per day
 	*/
@@ -47,7 +47,7 @@ public class HRTimeSheetHoursPerDayWrapper implements HRTimeSheetHoursPerDay {
 	}
 
 	/**
-	* Sets the primary key of this h r time sheet hours per day
+	* Sets the primary key of this h r time sheet hours per day.
 	*
 	* @param primaryKey the primary key of this h r time sheet hours per day
 	*/
@@ -56,7 +56,7 @@ public class HRTimeSheetHoursPerDayWrapper implements HRTimeSheetHoursPerDay {
 	}
 
 	/**
-	* Gets the hr time sheet hours per day ID of this h r time sheet hours per day.
+	* Returns the hr time sheet hours per day ID of this h r time sheet hours per day.
 	*
 	* @return the hr time sheet hours per day ID of this h r time sheet hours per day
 	*/
@@ -74,7 +74,7 @@ public class HRTimeSheetHoursPerDayWrapper implements HRTimeSheetHoursPerDay {
 	}
 
 	/**
-	* Gets the group ID of this h r time sheet hours per day.
+	* Returns the group ID of this h r time sheet hours per day.
 	*
 	* @return the group ID of this h r time sheet hours per day
 	*/
@@ -92,7 +92,7 @@ public class HRTimeSheetHoursPerDayWrapper implements HRTimeSheetHoursPerDay {
 	}
 
 	/**
-	* Gets the company ID of this h r time sheet hours per day.
+	* Returns the company ID of this h r time sheet hours per day.
 	*
 	* @return the company ID of this h r time sheet hours per day
 	*/
@@ -110,7 +110,7 @@ public class HRTimeSheetHoursPerDayWrapper implements HRTimeSheetHoursPerDay {
 	}
 
 	/**
-	* Gets the user ID of this h r time sheet hours per day.
+	* Returns the user ID of this h r time sheet hours per day.
 	*
 	* @return the user ID of this h r time sheet hours per day
 	*/
@@ -128,7 +128,7 @@ public class HRTimeSheetHoursPerDayWrapper implements HRTimeSheetHoursPerDay {
 	}
 
 	/**
-	* Gets the user uuid of this h r time sheet hours per day.
+	* Returns the user uuid of this h r time sheet hours per day.
 	*
 	* @return the user uuid of this h r time sheet hours per day
 	* @throws SystemException if a system exception occurred
@@ -148,7 +148,7 @@ public class HRTimeSheetHoursPerDayWrapper implements HRTimeSheetHoursPerDay {
 	}
 
 	/**
-	* Gets the user name of this h r time sheet hours per day.
+	* Returns the user name of this h r time sheet hours per day.
 	*
 	* @return the user name of this h r time sheet hours per day
 	*/
@@ -166,7 +166,7 @@ public class HRTimeSheetHoursPerDayWrapper implements HRTimeSheetHoursPerDay {
 	}
 
 	/**
-	* Gets the create date of this h r time sheet hours per day.
+	* Returns the create date of this h r time sheet hours per day.
 	*
 	* @return the create date of this h r time sheet hours per day
 	*/
@@ -184,7 +184,7 @@ public class HRTimeSheetHoursPerDayWrapper implements HRTimeSheetHoursPerDay {
 	}
 
 	/**
-	* Gets the modified date of this h r time sheet hours per day.
+	* Returns the modified date of this h r time sheet hours per day.
 	*
 	* @return the modified date of this h r time sheet hours per day
 	*/
@@ -202,7 +202,7 @@ public class HRTimeSheetHoursPerDayWrapper implements HRTimeSheetHoursPerDay {
 	}
 
 	/**
-	* Gets the hr office ID of this h r time sheet hours per day.
+	* Returns the hr office ID of this h r time sheet hours per day.
 	*
 	* @return the hr office ID of this h r time sheet hours per day
 	*/
@@ -220,7 +220,7 @@ public class HRTimeSheetHoursPerDayWrapper implements HRTimeSheetHoursPerDay {
 	}
 
 	/**
-	* Gets the hours per day of this h r time sheet hours per day.
+	* Returns the hours per day of this h r time sheet hours per day.
 	*
 	* @return the hours per day of this h r time sheet hours per day
 	*/

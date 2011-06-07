@@ -460,7 +460,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	/**
 	 * Caches the k b article in the entity cache if it is enabled.
 	 *
-	 * @param kbArticle the k b article to cache
+	 * @param kbArticle the k b article
 	 */
 	public void cacheResult(KBArticle kbArticle) {
 		EntityCacheUtil.putResult(KBArticleModelImpl.ENTITY_CACHE_ENABLED,
@@ -483,7 +483,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	/**
 	 * Caches the k b articles in the entity cache if it is enabled.
 	 *
-	 * @param kbArticles the k b articles to cache
+	 * @param kbArticles the k b articles
 	 */
 	public void cacheResult(List<KBArticle> kbArticles) {
 		for (KBArticle kbArticle : kbArticles) {
@@ -557,7 +557,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	/**
 	 * Removes the k b article with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param primaryKey the primary key of the k b article to remove
+	 * @param primaryKey the primary key of the k b article
 	 * @return the k b article that was removed
 	 * @throws com.liferay.portal.NoSuchModelException if a k b article with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -570,7 +570,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	/**
 	 * Removes the k b article with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param kbArticleId the primary key of the k b article to remove
+	 * @param kbArticleId the primary key of the k b article
 	 * @return the k b article that was removed
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a k b article with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -610,7 +610,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	/**
 	 * Removes the k b article from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param kbArticle the k b article to remove
+	 * @param kbArticle the k b article
 	 * @return the k b article that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -779,9 +779,9 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the k b article with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
+	 * Returns the k b article with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
 	 *
-	 * @param primaryKey the primary key of the k b article to find
+	 * @param primaryKey the primary key of the k b article
 	 * @return the k b article
 	 * @throws com.liferay.portal.NoSuchModelException if a k b article with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -792,9 +792,9 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the k b article with the primary key or throws a {@link com.liferay.knowledgebase.NoSuchArticleException} if it could not be found.
+	 * Returns the k b article with the primary key or throws a {@link com.liferay.knowledgebase.NoSuchArticleException} if it could not be found.
 	 *
-	 * @param kbArticleId the primary key of the k b article to find
+	 * @param kbArticleId the primary key of the k b article
 	 * @return the k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a k b article with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -816,9 +816,9 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the k b article with the primary key or returns <code>null</code> if it could not be found.
+	 * Returns the k b article with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param primaryKey the primary key of the k b article to find
+	 * @param primaryKey the primary key of the k b article
 	 * @return the k b article, or <code>null</code> if a k b article with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -828,9 +828,9 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the k b article with the primary key or returns <code>null</code> if it could not be found.
+	 * Returns the k b article with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param kbArticleId the primary key of the k b article to find
+	 * @param kbArticleId the primary key of the k b article
 	 * @return the k b article, or <code>null</code> if a k b article with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -864,9 +864,9 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds all the k b articles where uuid = &#63;.
+	 * Returns all the k b articles where uuid = &#63;.
 	 *
-	 * @param uuid the uuid to search with
+	 * @param uuid the uuid
 	 * @return the matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -875,15 +875,15 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds a range of all the k b articles where uuid = &#63;.
+	 * Returns a range of all the k b articles where uuid = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param uuid the uuid to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param uuid the uuid
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @return the range of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -893,15 +893,15 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds an ordered range of all the k b articles where uuid = &#63;.
+	 * Returns an ordered range of all the k b articles where uuid = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param uuid the uuid to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param uuid the uuid
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching k b articles
 	 * @throws SystemException if a system exception occurred
@@ -993,13 +993,13 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the first k b article in the ordered set where uuid = &#63;.
+	 * Returns the first k b article in the ordered set where uuid = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param uuid the uuid to search with
+	 * @param uuid the uuid
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching k b article could not be found
@@ -1028,13 +1028,13 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the last k b article in the ordered set where uuid = &#63;.
+	 * Returns the last k b article in the ordered set where uuid = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param uuid the uuid to search with
+	 * @param uuid the uuid
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching k b article could not be found
@@ -1066,14 +1066,14 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the k b articles before and after the current k b article in the ordered set where uuid = &#63;.
+	 * Returns the k b articles before and after the current k b article in the ordered set where uuid = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
 	 * @param kbArticleId the primary key of the current k b article
-	 * @param uuid the uuid to search with
+	 * @param uuid the uuid
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a k b article with the primary key could not be found
@@ -1226,10 +1226,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the k b article where uuid = &#63; and groupId = &#63; or throws a {@link com.liferay.knowledgebase.NoSuchArticleException} if it could not be found.
+	 * Returns the k b article where uuid = &#63; and groupId = &#63; or throws a {@link com.liferay.knowledgebase.NoSuchArticleException} if it could not be found.
 	 *
-	 * @param uuid the uuid to search with
-	 * @param groupId the group ID to search with
+	 * @param uuid the uuid
+	 * @param groupId the group ID
 	 * @return the matching k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching k b article could not be found
 	 * @throws SystemException if a system exception occurred
@@ -1262,10 +1262,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the k b article where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the k b article where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @param uuid the uuid to search with
-	 * @param groupId the group ID to search with
+	 * @param uuid the uuid
+	 * @param groupId the group ID
 	 * @return the matching k b article, or <code>null</code> if a matching k b article could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -1275,10 +1275,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the k b article where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the k b article where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
-	 * @param uuid the uuid to search with
-	 * @param groupId the group ID to search with
+	 * @param uuid the uuid
+	 * @param groupId the group ID
 	 * @return the matching k b article, or <code>null</code> if a matching k b article could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -1379,9 +1379,9 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds all the k b articles where resourcePrimKey = &#63;.
+	 * Returns all the k b articles where resourcePrimKey = &#63;.
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
+	 * @param resourcePrimKey the resource prim key
 	 * @return the matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -1392,15 +1392,15 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds a range of all the k b articles where resourcePrimKey = &#63;.
+	 * Returns a range of all the k b articles where resourcePrimKey = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param resourcePrimKey the resource prim key
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @return the range of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -1410,15 +1410,15 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds an ordered range of all the k b articles where resourcePrimKey = &#63;.
+	 * Returns an ordered range of all the k b articles where resourcePrimKey = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param resourcePrimKey the resource prim key
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching k b articles
 	 * @throws SystemException if a system exception occurred
@@ -1499,13 +1499,13 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the first k b article in the ordered set where resourcePrimKey = &#63;.
+	 * Returns the first k b article in the ordered set where resourcePrimKey = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
+	 * @param resourcePrimKey the resource prim key
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching k b article could not be found
@@ -1535,13 +1535,13 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the last k b article in the ordered set where resourcePrimKey = &#63;.
+	 * Returns the last k b article in the ordered set where resourcePrimKey = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
+	 * @param resourcePrimKey the resource prim key
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching k b article could not be found
@@ -1573,14 +1573,14 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the k b articles before and after the current k b article in the ordered set where resourcePrimKey = &#63;.
+	 * Returns the k b articles before and after the current k b article in the ordered set where resourcePrimKey = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
 	 * @param kbArticleId the primary key of the current k b article
-	 * @param resourcePrimKey the resource prim key to search with
+	 * @param resourcePrimKey the resource prim key
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a k b article with the primary key could not be found
@@ -1721,10 +1721,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds all the k b articles where resourcePrimKey = &#63; and groupId = &#63;.
+	 * Returns all the k b articles where resourcePrimKey = &#63; and groupId = &#63;.
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param groupId the group ID to search with
+	 * @param resourcePrimKey the resource prim key
+	 * @param groupId the group ID
 	 * @return the matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -1735,16 +1735,16 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds a range of all the k b articles where resourcePrimKey = &#63; and groupId = &#63;.
+	 * Returns a range of all the k b articles where resourcePrimKey = &#63; and groupId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param groupId the group ID to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param resourcePrimKey the resource prim key
+	 * @param groupId the group ID
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @return the range of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -1754,16 +1754,16 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds an ordered range of all the k b articles where resourcePrimKey = &#63; and groupId = &#63;.
+	 * Returns an ordered range of all the k b articles where resourcePrimKey = &#63; and groupId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param groupId the group ID to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param resourcePrimKey the resource prim key
+	 * @param groupId the group ID
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching k b articles
 	 * @throws SystemException if a system exception occurred
@@ -1848,14 +1848,14 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the first k b article in the ordered set where resourcePrimKey = &#63; and groupId = &#63;.
+	 * Returns the first k b article in the ordered set where resourcePrimKey = &#63; and groupId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param groupId the group ID to search with
+	 * @param resourcePrimKey the resource prim key
+	 * @param groupId the group ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching k b article could not be found
@@ -1888,14 +1888,14 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the last k b article in the ordered set where resourcePrimKey = &#63; and groupId = &#63;.
+	 * Returns the last k b article in the ordered set where resourcePrimKey = &#63; and groupId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param groupId the group ID to search with
+	 * @param resourcePrimKey the resource prim key
+	 * @param groupId the group ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching k b article could not be found
@@ -1930,15 +1930,15 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the k b articles before and after the current k b article in the ordered set where resourcePrimKey = &#63; and groupId = &#63;.
+	 * Returns the k b articles before and after the current k b article in the ordered set where resourcePrimKey = &#63; and groupId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
 	 * @param kbArticleId the primary key of the current k b article
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param groupId the group ID to search with
+	 * @param resourcePrimKey the resource prim key
+	 * @param groupId the group ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a k b article with the primary key could not be found
@@ -2083,10 +2083,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds all the k b articles where resourcePrimKey = &#63; and groupId = &#63;.
+	 * Returns all the k b articles that the user has permission to view where resourcePrimKey = &#63; and groupId = &#63;.
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param groupId the group ID to search with
+	 * @param resourcePrimKey the resource prim key
+	 * @param groupId the group ID
 	 * @return the matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -2097,16 +2097,16 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds a range of all the k b articles where resourcePrimKey = &#63; and groupId = &#63;.
+	 * Returns a range of all the k b articles that the user has permission to view where resourcePrimKey = &#63; and groupId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param groupId the group ID to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param resourcePrimKey the resource prim key
+	 * @param groupId the group ID
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @return the range of matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -2116,16 +2116,16 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds an ordered range of all the k b articles where resourcePrimKey = &#63; and groupId = &#63;.
+	 * Returns an ordered range of all the k b articles that the user has permissions to view where resourcePrimKey = &#63; and groupId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param groupId the group ID to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param resourcePrimKey the resource prim key
+	 * @param groupId the group ID
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
@@ -2148,20 +2148,13 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 			query = new StringBundler(4);
 		}
 
-		if (getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_WHERE);
-		}
-		else {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_1);
-		}
+		query.append(_FILTER_SQL_SELECT_KBARTICLE_WHERE);
 
 		query.append(_FINDER_COLUMN_R_G_RESOURCEPRIMKEY_2);
 
 		query.append(_FINDER_COLUMN_R_G_GROUPID_2);
 
-		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_2);
-		}
+		appendGroupByComparator(query, _FILTER_COLUMN_PK);
 
 		if (orderByComparator != null) {
 			if (getDB().isSupportsInlineDistinct()) {
@@ -2217,15 +2210,11 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters the k b articles before and after the current k b article in the ordered set where resourcePrimKey = &#63; and groupId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
+	 * Returns the k b articles before and after the current k b article in the ordered set of k b articles that the user has permission to view where resourcePrimKey = &#63; and groupId = &#63;.
 	 *
 	 * @param kbArticleId the primary key of the current k b article
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param groupId the group ID to search with
+	 * @param resourcePrimKey the resource prim key
+	 * @param groupId the group ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a k b article with the primary key could not be found
@@ -2279,20 +2268,13 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 			query = new StringBundler(3);
 		}
 
-		if (getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_WHERE);
-		}
-		else {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_1);
-		}
+		query.append(_FILTER_SQL_SELECT_KBARTICLE_WHERE);
 
 		query.append(_FINDER_COLUMN_R_G_RESOURCEPRIMKEY_2);
 
 		query.append(_FINDER_COLUMN_R_G_GROUPID_2);
 
-		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_2);
-		}
+		appendGroupByComparator(query, _FILTER_COLUMN_PK);
 
 		if (orderByComparator != null) {
 			String[] orderByFields = orderByComparator.getOrderByFields();
@@ -2409,10 +2391,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the k b article where resourcePrimKey = &#63; and version = &#63; or throws a {@link com.liferay.knowledgebase.NoSuchArticleException} if it could not be found.
+	 * Returns the k b article where resourcePrimKey = &#63; and version = &#63; or throws a {@link com.liferay.knowledgebase.NoSuchArticleException} if it could not be found.
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param version the version to search with
+	 * @param resourcePrimKey the resource prim key
+	 * @param version the version
 	 * @return the matching k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching k b article could not be found
 	 * @throws SystemException if a system exception occurred
@@ -2445,10 +2427,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the k b article where resourcePrimKey = &#63; and version = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the k b article where resourcePrimKey = &#63; and version = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param version the version to search with
+	 * @param resourcePrimKey the resource prim key
+	 * @param version the version
 	 * @return the matching k b article, or <code>null</code> if a matching k b article could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -2458,10 +2440,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the k b article where resourcePrimKey = &#63; and version = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the k b article where resourcePrimKey = &#63; and version = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param version the version to search with
+	 * @param resourcePrimKey the resource prim key
+	 * @param version the version
 	 * @return the matching k b article, or <code>null</code> if a matching k b article could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -2549,10 +2531,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds all the k b articles where resourcePrimKey = &#63; and latest = &#63;.
+	 * Returns all the k b articles where resourcePrimKey = &#63; and latest = &#63;.
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param latest the latest to search with
+	 * @param resourcePrimKey the resource prim key
+	 * @param latest the latest
 	 * @return the matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -2563,16 +2545,16 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds a range of all the k b articles where resourcePrimKey = &#63; and latest = &#63;.
+	 * Returns a range of all the k b articles where resourcePrimKey = &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param latest the latest to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param resourcePrimKey the resource prim key
+	 * @param latest the latest
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @return the range of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -2582,16 +2564,16 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds an ordered range of all the k b articles where resourcePrimKey = &#63; and latest = &#63;.
+	 * Returns an ordered range of all the k b articles where resourcePrimKey = &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param latest the latest to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param resourcePrimKey the resource prim key
+	 * @param latest the latest
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching k b articles
 	 * @throws SystemException if a system exception occurred
@@ -2676,14 +2658,14 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the first k b article in the ordered set where resourcePrimKey = &#63; and latest = &#63;.
+	 * Returns the first k b article in the ordered set where resourcePrimKey = &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param latest the latest to search with
+	 * @param resourcePrimKey the resource prim key
+	 * @param latest the latest
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching k b article could not be found
@@ -2716,14 +2698,14 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the last k b article in the ordered set where resourcePrimKey = &#63; and latest = &#63;.
+	 * Returns the last k b article in the ordered set where resourcePrimKey = &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param latest the latest to search with
+	 * @param resourcePrimKey the resource prim key
+	 * @param latest the latest
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching k b article could not be found
@@ -2758,15 +2740,15 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the k b articles before and after the current k b article in the ordered set where resourcePrimKey = &#63; and latest = &#63;.
+	 * Returns the k b articles before and after the current k b article in the ordered set where resourcePrimKey = &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
 	 * @param kbArticleId the primary key of the current k b article
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param latest the latest to search with
+	 * @param resourcePrimKey the resource prim key
+	 * @param latest the latest
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a k b article with the primary key could not be found
@@ -2912,14 +2894,14 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds all the k b articles where resourcePrimKey = any &#63; and latest = &#63;.
+	 * Returns all the k b articles where resourcePrimKey = any &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param resourcePrimKeies the resource prim keies to search with
-	 * @param latest the latest to search with
+	 * @param resourcePrimKeies the resource prim keies
+	 * @param latest the latest
 	 * @return the matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -2930,16 +2912,16 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds a range of all the k b articles where resourcePrimKey = any &#63; and latest = &#63;.
+	 * Returns a range of all the k b articles where resourcePrimKey = any &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param resourcePrimKeies the resource prim keies to search with
-	 * @param latest the latest to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param resourcePrimKeies the resource prim keies
+	 * @param latest the latest
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @return the range of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -2949,16 +2931,16 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds an ordered range of all the k b articles where resourcePrimKey = any &#63; and latest = &#63;.
+	 * Returns an ordered range of all the k b articles where resourcePrimKey = any &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param resourcePrimKeies the resource prim keies to search with
-	 * @param latest the latest to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param resourcePrimKeies the resource prim keies
+	 * @param latest the latest
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching k b articles
 	 * @throws SystemException if a system exception occurred
@@ -3063,10 +3045,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds all the k b articles where resourcePrimKey = &#63; and main = &#63;.
+	 * Returns all the k b articles where resourcePrimKey = &#63; and main = &#63;.
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param main the main to search with
+	 * @param resourcePrimKey the resource prim key
+	 * @param main the main
 	 * @return the matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -3077,16 +3059,16 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds a range of all the k b articles where resourcePrimKey = &#63; and main = &#63;.
+	 * Returns a range of all the k b articles where resourcePrimKey = &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param main the main to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param resourcePrimKey the resource prim key
+	 * @param main the main
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @return the range of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -3096,16 +3078,16 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds an ordered range of all the k b articles where resourcePrimKey = &#63; and main = &#63;.
+	 * Returns an ordered range of all the k b articles where resourcePrimKey = &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param main the main to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param resourcePrimKey the resource prim key
+	 * @param main the main
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching k b articles
 	 * @throws SystemException if a system exception occurred
@@ -3190,14 +3172,14 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the first k b article in the ordered set where resourcePrimKey = &#63; and main = &#63;.
+	 * Returns the first k b article in the ordered set where resourcePrimKey = &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param main the main to search with
+	 * @param resourcePrimKey the resource prim key
+	 * @param main the main
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching k b article could not be found
@@ -3230,14 +3212,14 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the last k b article in the ordered set where resourcePrimKey = &#63; and main = &#63;.
+	 * Returns the last k b article in the ordered set where resourcePrimKey = &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param main the main to search with
+	 * @param resourcePrimKey the resource prim key
+	 * @param main the main
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching k b article could not be found
@@ -3272,15 +3254,15 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the k b articles before and after the current k b article in the ordered set where resourcePrimKey = &#63; and main = &#63;.
+	 * Returns the k b articles before and after the current k b article in the ordered set where resourcePrimKey = &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
 	 * @param kbArticleId the primary key of the current k b article
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param main the main to search with
+	 * @param resourcePrimKey the resource prim key
+	 * @param main the main
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a k b article with the primary key could not be found
@@ -3425,14 +3407,14 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds all the k b articles where resourcePrimKey = any &#63; and main = &#63;.
+	 * Returns all the k b articles where resourcePrimKey = any &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param resourcePrimKeies the resource prim keies to search with
-	 * @param main the main to search with
+	 * @param resourcePrimKeies the resource prim keies
+	 * @param main the main
 	 * @return the matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -3443,16 +3425,16 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds a range of all the k b articles where resourcePrimKey = any &#63; and main = &#63;.
+	 * Returns a range of all the k b articles where resourcePrimKey = any &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param resourcePrimKeies the resource prim keies to search with
-	 * @param main the main to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param resourcePrimKeies the resource prim keies
+	 * @param main the main
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @return the range of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -3462,16 +3444,16 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds an ordered range of all the k b articles where resourcePrimKey = any &#63; and main = &#63;.
+	 * Returns an ordered range of all the k b articles where resourcePrimKey = any &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param resourcePrimKeies the resource prim keies to search with
-	 * @param main the main to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param resourcePrimKeies the resource prim keies
+	 * @param main the main
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching k b articles
 	 * @throws SystemException if a system exception occurred
@@ -3576,10 +3558,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds all the k b articles where resourcePrimKey = &#63; and status = &#63;.
+	 * Returns all the k b articles where resourcePrimKey = &#63; and status = &#63;.
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param status the status to search with
+	 * @param resourcePrimKey the resource prim key
+	 * @param status the status
 	 * @return the matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -3590,16 +3572,16 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds a range of all the k b articles where resourcePrimKey = &#63; and status = &#63;.
+	 * Returns a range of all the k b articles where resourcePrimKey = &#63; and status = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param status the status to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param resourcePrimKey the resource prim key
+	 * @param status the status
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @return the range of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -3609,16 +3591,16 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds an ordered range of all the k b articles where resourcePrimKey = &#63; and status = &#63;.
+	 * Returns an ordered range of all the k b articles where resourcePrimKey = &#63; and status = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param status the status to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param resourcePrimKey the resource prim key
+	 * @param status the status
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching k b articles
 	 * @throws SystemException if a system exception occurred
@@ -3703,14 +3685,14 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the first k b article in the ordered set where resourcePrimKey = &#63; and status = &#63;.
+	 * Returns the first k b article in the ordered set where resourcePrimKey = &#63; and status = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param status the status to search with
+	 * @param resourcePrimKey the resource prim key
+	 * @param status the status
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching k b article could not be found
@@ -3743,14 +3725,14 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the last k b article in the ordered set where resourcePrimKey = &#63; and status = &#63;.
+	 * Returns the last k b article in the ordered set where resourcePrimKey = &#63; and status = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param status the status to search with
+	 * @param resourcePrimKey the resource prim key
+	 * @param status the status
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching k b article could not be found
@@ -3785,15 +3767,15 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the k b articles before and after the current k b article in the ordered set where resourcePrimKey = &#63; and status = &#63;.
+	 * Returns the k b articles before and after the current k b article in the ordered set where resourcePrimKey = &#63; and status = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
 	 * @param kbArticleId the primary key of the current k b article
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param status the status to search with
+	 * @param resourcePrimKey the resource prim key
+	 * @param status the status
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a k b article with the primary key could not be found
@@ -3938,14 +3920,14 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds all the k b articles where resourcePrimKey = any &#63; and status = &#63;.
+	 * Returns all the k b articles where resourcePrimKey = any &#63; and status = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param resourcePrimKeies the resource prim keies to search with
-	 * @param status the status to search with
+	 * @param resourcePrimKeies the resource prim keies
+	 * @param status the status
 	 * @return the matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -3956,16 +3938,16 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds a range of all the k b articles where resourcePrimKey = any &#63; and status = &#63;.
+	 * Returns a range of all the k b articles where resourcePrimKey = any &#63; and status = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param resourcePrimKeies the resource prim keies to search with
-	 * @param status the status to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param resourcePrimKeies the resource prim keies
+	 * @param status the status
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @return the range of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -3975,16 +3957,16 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds an ordered range of all the k b articles where resourcePrimKey = any &#63; and status = &#63;.
+	 * Returns an ordered range of all the k b articles where resourcePrimKey = any &#63; and status = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param resourcePrimKeies the resource prim keies to search with
-	 * @param status the status to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param resourcePrimKeies the resource prim keies
+	 * @param status the status
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching k b articles
 	 * @throws SystemException if a system exception occurred
@@ -4089,10 +4071,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds all the k b articles where groupId = &#63; and latest = &#63;.
+	 * Returns all the k b articles where groupId = &#63; and latest = &#63;.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param latest the latest to search with
+	 * @param groupId the group ID
+	 * @param latest the latest
 	 * @return the matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -4103,16 +4085,16 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds a range of all the k b articles where groupId = &#63; and latest = &#63;.
+	 * Returns a range of all the k b articles where groupId = &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param latest the latest to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param latest the latest
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @return the range of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -4122,16 +4104,16 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds an ordered range of all the k b articles where groupId = &#63; and latest = &#63;.
+	 * Returns an ordered range of all the k b articles where groupId = &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param latest the latest to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param latest the latest
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching k b articles
 	 * @throws SystemException if a system exception occurred
@@ -4215,14 +4197,14 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the first k b article in the ordered set where groupId = &#63; and latest = &#63;.
+	 * Returns the first k b article in the ordered set where groupId = &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param latest the latest to search with
+	 * @param groupId the group ID
+	 * @param latest the latest
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching k b article could not be found
@@ -4255,14 +4237,14 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the last k b article in the ordered set where groupId = &#63; and latest = &#63;.
+	 * Returns the last k b article in the ordered set where groupId = &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param latest the latest to search with
+	 * @param groupId the group ID
+	 * @param latest the latest
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching k b article could not be found
@@ -4297,15 +4279,15 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the k b articles before and after the current k b article in the ordered set where groupId = &#63; and latest = &#63;.
+	 * Returns the k b articles before and after the current k b article in the ordered set where groupId = &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
 	 * @param kbArticleId the primary key of the current k b article
-	 * @param groupId the group ID to search with
-	 * @param latest the latest to search with
+	 * @param groupId the group ID
+	 * @param latest the latest
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a k b article with the primary key could not be found
@@ -4450,10 +4432,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds all the k b articles where groupId = &#63; and latest = &#63;.
+	 * Returns all the k b articles that the user has permission to view where groupId = &#63; and latest = &#63;.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param latest the latest to search with
+	 * @param groupId the group ID
+	 * @param latest the latest
 	 * @return the matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -4464,16 +4446,16 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds a range of all the k b articles where groupId = &#63; and latest = &#63;.
+	 * Returns a range of all the k b articles that the user has permission to view where groupId = &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param latest the latest to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param latest the latest
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @return the range of matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -4483,16 +4465,16 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds an ordered range of all the k b articles where groupId = &#63; and latest = &#63;.
+	 * Returns an ordered range of all the k b articles that the user has permissions to view where groupId = &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param latest the latest to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param latest the latest
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
@@ -4514,20 +4496,13 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 			query = new StringBundler(4);
 		}
 
-		if (getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_WHERE);
-		}
-		else {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_1);
-		}
+		query.append(_FILTER_SQL_SELECT_KBARTICLE_WHERE);
 
 		query.append(_FINDER_COLUMN_G_L_GROUPID_2);
 
 		query.append(_FINDER_COLUMN_G_L_LATEST_2);
 
-		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_2);
-		}
+		appendGroupByComparator(query, _FILTER_COLUMN_PK);
 
 		if (orderByComparator != null) {
 			if (getDB().isSupportsInlineDistinct()) {
@@ -4583,15 +4558,11 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters the k b articles before and after the current k b article in the ordered set where groupId = &#63; and latest = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
+	 * Returns the k b articles before and after the current k b article in the ordered set of k b articles that the user has permission to view where groupId = &#63; and latest = &#63;.
 	 *
 	 * @param kbArticleId the primary key of the current k b article
-	 * @param groupId the group ID to search with
-	 * @param latest the latest to search with
+	 * @param groupId the group ID
+	 * @param latest the latest
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a k b article with the primary key could not be found
@@ -4645,20 +4616,13 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 			query = new StringBundler(3);
 		}
 
-		if (getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_WHERE);
-		}
-		else {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_1);
-		}
+		query.append(_FILTER_SQL_SELECT_KBARTICLE_WHERE);
 
 		query.append(_FINDER_COLUMN_G_L_GROUPID_2);
 
 		query.append(_FINDER_COLUMN_G_L_LATEST_2);
 
-		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_2);
-		}
+		appendGroupByComparator(query, _FILTER_COLUMN_PK);
 
 		if (orderByComparator != null) {
 			String[] orderByFields = orderByComparator.getOrderByFields();
@@ -4775,10 +4739,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds all the k b articles where groupId = &#63; and main = &#63;.
+	 * Returns all the k b articles where groupId = &#63; and main = &#63;.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param main the main to search with
+	 * @param groupId the group ID
+	 * @param main the main
 	 * @return the matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -4789,16 +4753,16 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds a range of all the k b articles where groupId = &#63; and main = &#63;.
+	 * Returns a range of all the k b articles where groupId = &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param main the main to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param main the main
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @return the range of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -4808,16 +4772,16 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds an ordered range of all the k b articles where groupId = &#63; and main = &#63;.
+	 * Returns an ordered range of all the k b articles where groupId = &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param main the main to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param main the main
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching k b articles
 	 * @throws SystemException if a system exception occurred
@@ -4901,14 +4865,14 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the first k b article in the ordered set where groupId = &#63; and main = &#63;.
+	 * Returns the first k b article in the ordered set where groupId = &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param main the main to search with
+	 * @param groupId the group ID
+	 * @param main the main
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching k b article could not be found
@@ -4940,14 +4904,14 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the last k b article in the ordered set where groupId = &#63; and main = &#63;.
+	 * Returns the last k b article in the ordered set where groupId = &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param main the main to search with
+	 * @param groupId the group ID
+	 * @param main the main
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching k b article could not be found
@@ -4982,15 +4946,15 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the k b articles before and after the current k b article in the ordered set where groupId = &#63; and main = &#63;.
+	 * Returns the k b articles before and after the current k b article in the ordered set where groupId = &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
 	 * @param kbArticleId the primary key of the current k b article
-	 * @param groupId the group ID to search with
-	 * @param main the main to search with
+	 * @param groupId the group ID
+	 * @param main the main
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a k b article with the primary key could not be found
@@ -5135,10 +5099,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds all the k b articles where groupId = &#63; and main = &#63;.
+	 * Returns all the k b articles that the user has permission to view where groupId = &#63; and main = &#63;.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param main the main to search with
+	 * @param groupId the group ID
+	 * @param main the main
 	 * @return the matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -5149,16 +5113,16 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds a range of all the k b articles where groupId = &#63; and main = &#63;.
+	 * Returns a range of all the k b articles that the user has permission to view where groupId = &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param main the main to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param main the main
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @return the range of matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -5168,16 +5132,16 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds an ordered range of all the k b articles where groupId = &#63; and main = &#63;.
+	 * Returns an ordered range of all the k b articles that the user has permissions to view where groupId = &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param main the main to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param main the main
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
@@ -5199,20 +5163,13 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 			query = new StringBundler(4);
 		}
 
-		if (getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_WHERE);
-		}
-		else {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_1);
-		}
+		query.append(_FILTER_SQL_SELECT_KBARTICLE_WHERE);
 
 		query.append(_FINDER_COLUMN_G_M_GROUPID_2);
 
 		query.append(_FINDER_COLUMN_G_M_MAIN_2);
 
-		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_2);
-		}
+		appendGroupByComparator(query, _FILTER_COLUMN_PK);
 
 		if (orderByComparator != null) {
 			if (getDB().isSupportsInlineDistinct()) {
@@ -5268,15 +5225,11 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters the k b articles before and after the current k b article in the ordered set where groupId = &#63; and main = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
+	 * Returns the k b articles before and after the current k b article in the ordered set of k b articles that the user has permission to view where groupId = &#63; and main = &#63;.
 	 *
 	 * @param kbArticleId the primary key of the current k b article
-	 * @param groupId the group ID to search with
-	 * @param main the main to search with
+	 * @param groupId the group ID
+	 * @param main the main
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a k b article with the primary key could not be found
@@ -5330,20 +5283,13 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 			query = new StringBundler(3);
 		}
 
-		if (getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_WHERE);
-		}
-		else {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_1);
-		}
+		query.append(_FILTER_SQL_SELECT_KBARTICLE_WHERE);
 
 		query.append(_FINDER_COLUMN_G_M_GROUPID_2);
 
 		query.append(_FINDER_COLUMN_G_M_MAIN_2);
 
-		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_2);
-		}
+		appendGroupByComparator(query, _FILTER_COLUMN_PK);
 
 		if (orderByComparator != null) {
 			String[] orderByFields = orderByComparator.getOrderByFields();
@@ -5460,10 +5406,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds all the k b articles where groupId = &#63; and status = &#63;.
+	 * Returns all the k b articles where groupId = &#63; and status = &#63;.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param status the status to search with
+	 * @param groupId the group ID
+	 * @param status the status
 	 * @return the matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -5474,16 +5420,16 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds a range of all the k b articles where groupId = &#63; and status = &#63;.
+	 * Returns a range of all the k b articles where groupId = &#63; and status = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param status the status to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param status the status
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @return the range of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -5493,16 +5439,16 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds an ordered range of all the k b articles where groupId = &#63; and status = &#63;.
+	 * Returns an ordered range of all the k b articles where groupId = &#63; and status = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param status the status to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param status the status
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching k b articles
 	 * @throws SystemException if a system exception occurred
@@ -5586,14 +5532,14 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the first k b article in the ordered set where groupId = &#63; and status = &#63;.
+	 * Returns the first k b article in the ordered set where groupId = &#63; and status = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param status the status to search with
+	 * @param groupId the group ID
+	 * @param status the status
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching k b article could not be found
@@ -5626,14 +5572,14 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the last k b article in the ordered set where groupId = &#63; and status = &#63;.
+	 * Returns the last k b article in the ordered set where groupId = &#63; and status = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param status the status to search with
+	 * @param groupId the group ID
+	 * @param status the status
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching k b article could not be found
@@ -5668,15 +5614,15 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the k b articles before and after the current k b article in the ordered set where groupId = &#63; and status = &#63;.
+	 * Returns the k b articles before and after the current k b article in the ordered set where groupId = &#63; and status = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
 	 * @param kbArticleId the primary key of the current k b article
-	 * @param groupId the group ID to search with
-	 * @param status the status to search with
+	 * @param groupId the group ID
+	 * @param status the status
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a k b article with the primary key could not be found
@@ -5821,10 +5767,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds all the k b articles where groupId = &#63; and status = &#63;.
+	 * Returns all the k b articles that the user has permission to view where groupId = &#63; and status = &#63;.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param status the status to search with
+	 * @param groupId the group ID
+	 * @param status the status
 	 * @return the matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -5835,16 +5781,16 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds a range of all the k b articles where groupId = &#63; and status = &#63;.
+	 * Returns a range of all the k b articles that the user has permission to view where groupId = &#63; and status = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param status the status to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param status the status
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @return the range of matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -5854,16 +5800,16 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds an ordered range of all the k b articles where groupId = &#63; and status = &#63;.
+	 * Returns an ordered range of all the k b articles that the user has permissions to view where groupId = &#63; and status = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param status the status to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param status the status
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
@@ -5884,20 +5830,13 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 			query = new StringBundler(4);
 		}
 
-		if (getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_WHERE);
-		}
-		else {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_1);
-		}
+		query.append(_FILTER_SQL_SELECT_KBARTICLE_WHERE);
 
 		query.append(_FINDER_COLUMN_G_S_GROUPID_2);
 
 		query.append(_FINDER_COLUMN_G_S_STATUS_2);
 
-		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_2);
-		}
+		appendGroupByComparator(query, _FILTER_COLUMN_PK);
 
 		if (orderByComparator != null) {
 			if (getDB().isSupportsInlineDistinct()) {
@@ -5953,15 +5892,11 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters the k b articles before and after the current k b article in the ordered set where groupId = &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
+	 * Returns the k b articles before and after the current k b article in the ordered set of k b articles that the user has permission to view where groupId = &#63; and status = &#63;.
 	 *
 	 * @param kbArticleId the primary key of the current k b article
-	 * @param groupId the group ID to search with
-	 * @param status the status to search with
+	 * @param groupId the group ID
+	 * @param status the status
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a k b article with the primary key could not be found
@@ -6015,20 +5950,13 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 			query = new StringBundler(3);
 		}
 
-		if (getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_WHERE);
-		}
-		else {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_1);
-		}
+		query.append(_FILTER_SQL_SELECT_KBARTICLE_WHERE);
 
 		query.append(_FINDER_COLUMN_G_S_GROUPID_2);
 
 		query.append(_FINDER_COLUMN_G_S_STATUS_2);
 
-		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_2);
-		}
+		appendGroupByComparator(query, _FILTER_COLUMN_PK);
 
 		if (orderByComparator != null) {
 			String[] orderByFields = orderByComparator.getOrderByFields();
@@ -6145,10 +6073,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds all the k b articles where companyId = &#63; and latest = &#63;.
+	 * Returns all the k b articles where companyId = &#63; and latest = &#63;.
 	 *
-	 * @param companyId the company ID to search with
-	 * @param latest the latest to search with
+	 * @param companyId the company ID
+	 * @param latest the latest
 	 * @return the matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -6159,16 +6087,16 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds a range of all the k b articles where companyId = &#63; and latest = &#63;.
+	 * Returns a range of all the k b articles where companyId = &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param companyId the company ID to search with
-	 * @param latest the latest to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param companyId the company ID
+	 * @param latest the latest
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @return the range of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -6178,16 +6106,16 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds an ordered range of all the k b articles where companyId = &#63; and latest = &#63;.
+	 * Returns an ordered range of all the k b articles where companyId = &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param companyId the company ID to search with
-	 * @param latest the latest to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param companyId the company ID
+	 * @param latest the latest
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching k b articles
 	 * @throws SystemException if a system exception occurred
@@ -6271,14 +6199,14 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the first k b article in the ordered set where companyId = &#63; and latest = &#63;.
+	 * Returns the first k b article in the ordered set where companyId = &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param companyId the company ID to search with
-	 * @param latest the latest to search with
+	 * @param companyId the company ID
+	 * @param latest the latest
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching k b article could not be found
@@ -6311,14 +6239,14 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the last k b article in the ordered set where companyId = &#63; and latest = &#63;.
+	 * Returns the last k b article in the ordered set where companyId = &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param companyId the company ID to search with
-	 * @param latest the latest to search with
+	 * @param companyId the company ID
+	 * @param latest the latest
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching k b article could not be found
@@ -6353,15 +6281,15 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the k b articles before and after the current k b article in the ordered set where companyId = &#63; and latest = &#63;.
+	 * Returns the k b articles before and after the current k b article in the ordered set where companyId = &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
 	 * @param kbArticleId the primary key of the current k b article
-	 * @param companyId the company ID to search with
-	 * @param latest the latest to search with
+	 * @param companyId the company ID
+	 * @param latest the latest
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a k b article with the primary key could not be found
@@ -6506,10 +6434,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds all the k b articles where companyId = &#63; and main = &#63;.
+	 * Returns all the k b articles where companyId = &#63; and main = &#63;.
 	 *
-	 * @param companyId the company ID to search with
-	 * @param main the main to search with
+	 * @param companyId the company ID
+	 * @param main the main
 	 * @return the matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -6520,16 +6448,16 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds a range of all the k b articles where companyId = &#63; and main = &#63;.
+	 * Returns a range of all the k b articles where companyId = &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param companyId the company ID to search with
-	 * @param main the main to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param companyId the company ID
+	 * @param main the main
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @return the range of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -6539,16 +6467,16 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds an ordered range of all the k b articles where companyId = &#63; and main = &#63;.
+	 * Returns an ordered range of all the k b articles where companyId = &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param companyId the company ID to search with
-	 * @param main the main to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param companyId the company ID
+	 * @param main the main
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching k b articles
 	 * @throws SystemException if a system exception occurred
@@ -6632,14 +6560,14 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the first k b article in the ordered set where companyId = &#63; and main = &#63;.
+	 * Returns the first k b article in the ordered set where companyId = &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param companyId the company ID to search with
-	 * @param main the main to search with
+	 * @param companyId the company ID
+	 * @param main the main
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching k b article could not be found
@@ -6672,14 +6600,14 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the last k b article in the ordered set where companyId = &#63; and main = &#63;.
+	 * Returns the last k b article in the ordered set where companyId = &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param companyId the company ID to search with
-	 * @param main the main to search with
+	 * @param companyId the company ID
+	 * @param main the main
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching k b article could not be found
@@ -6714,15 +6642,15 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the k b articles before and after the current k b article in the ordered set where companyId = &#63; and main = &#63;.
+	 * Returns the k b articles before and after the current k b article in the ordered set where companyId = &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
 	 * @param kbArticleId the primary key of the current k b article
-	 * @param companyId the company ID to search with
-	 * @param main the main to search with
+	 * @param companyId the company ID
+	 * @param main the main
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a k b article with the primary key could not be found
@@ -6867,10 +6795,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds all the k b articles where companyId = &#63; and status = &#63;.
+	 * Returns all the k b articles where companyId = &#63; and status = &#63;.
 	 *
-	 * @param companyId the company ID to search with
-	 * @param status the status to search with
+	 * @param companyId the company ID
+	 * @param status the status
 	 * @return the matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -6881,16 +6809,16 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds a range of all the k b articles where companyId = &#63; and status = &#63;.
+	 * Returns a range of all the k b articles where companyId = &#63; and status = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param companyId the company ID to search with
-	 * @param status the status to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param companyId the company ID
+	 * @param status the status
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @return the range of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -6900,16 +6828,16 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds an ordered range of all the k b articles where companyId = &#63; and status = &#63;.
+	 * Returns an ordered range of all the k b articles where companyId = &#63; and status = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param companyId the company ID to search with
-	 * @param status the status to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param companyId the company ID
+	 * @param status the status
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching k b articles
 	 * @throws SystemException if a system exception occurred
@@ -6993,14 +6921,14 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the first k b article in the ordered set where companyId = &#63; and status = &#63;.
+	 * Returns the first k b article in the ordered set where companyId = &#63; and status = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param companyId the company ID to search with
-	 * @param status the status to search with
+	 * @param companyId the company ID
+	 * @param status the status
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching k b article could not be found
@@ -7033,14 +6961,14 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the last k b article in the ordered set where companyId = &#63; and status = &#63;.
+	 * Returns the last k b article in the ordered set where companyId = &#63; and status = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param companyId the company ID to search with
-	 * @param status the status to search with
+	 * @param companyId the company ID
+	 * @param status the status
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching k b article could not be found
@@ -7075,15 +7003,15 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the k b articles before and after the current k b article in the ordered set where companyId = &#63; and status = &#63;.
+	 * Returns the k b articles before and after the current k b article in the ordered set where companyId = &#63; and status = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
 	 * @param kbArticleId the primary key of the current k b article
-	 * @param companyId the company ID to search with
-	 * @param status the status to search with
+	 * @param companyId the company ID
+	 * @param status the status
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a k b article with the primary key could not be found
@@ -7228,10 +7156,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds all the k b articles where parentResourcePrimKey = &#63; and latest = &#63;.
+	 * Returns all the k b articles where parentResourcePrimKey = &#63; and latest = &#63;.
 	 *
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param latest the latest to search with
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param latest the latest
 	 * @return the matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -7242,16 +7170,16 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds a range of all the k b articles where parentResourcePrimKey = &#63; and latest = &#63;.
+	 * Returns a range of all the k b articles where parentResourcePrimKey = &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param latest the latest to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param latest the latest
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @return the range of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -7261,16 +7189,16 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds an ordered range of all the k b articles where parentResourcePrimKey = &#63; and latest = &#63;.
+	 * Returns an ordered range of all the k b articles where parentResourcePrimKey = &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param latest the latest to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param latest the latest
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching k b articles
 	 * @throws SystemException if a system exception occurred
@@ -7355,14 +7283,14 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the first k b article in the ordered set where parentResourcePrimKey = &#63; and latest = &#63;.
+	 * Returns the first k b article in the ordered set where parentResourcePrimKey = &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param latest the latest to search with
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param latest the latest
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching k b article could not be found
@@ -7395,14 +7323,14 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the last k b article in the ordered set where parentResourcePrimKey = &#63; and latest = &#63;.
+	 * Returns the last k b article in the ordered set where parentResourcePrimKey = &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param latest the latest to search with
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param latest the latest
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching k b article could not be found
@@ -7437,15 +7365,15 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the k b articles before and after the current k b article in the ordered set where parentResourcePrimKey = &#63; and latest = &#63;.
+	 * Returns the k b articles before and after the current k b article in the ordered set where parentResourcePrimKey = &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
 	 * @param kbArticleId the primary key of the current k b article
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param latest the latest to search with
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param latest the latest
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a k b article with the primary key could not be found
@@ -7591,14 +7519,14 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds all the k b articles where parentResourcePrimKey = any &#63; and latest = &#63;.
+	 * Returns all the k b articles where parentResourcePrimKey = any &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param parentResourcePrimKeies the parent resource prim keies to search with
-	 * @param latest the latest to search with
+	 * @param parentResourcePrimKeies the parent resource prim keies
+	 * @param latest the latest
 	 * @return the matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -7609,16 +7537,16 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds a range of all the k b articles where parentResourcePrimKey = any &#63; and latest = &#63;.
+	 * Returns a range of all the k b articles where parentResourcePrimKey = any &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param parentResourcePrimKeies the parent resource prim keies to search with
-	 * @param latest the latest to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param parentResourcePrimKeies the parent resource prim keies
+	 * @param latest the latest
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @return the range of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -7628,16 +7556,16 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds an ordered range of all the k b articles where parentResourcePrimKey = any &#63; and latest = &#63;.
+	 * Returns an ordered range of all the k b articles where parentResourcePrimKey = any &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param parentResourcePrimKeies the parent resource prim keies to search with
-	 * @param latest the latest to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param parentResourcePrimKeies the parent resource prim keies
+	 * @param latest the latest
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching k b articles
 	 * @throws SystemException if a system exception occurred
@@ -7743,10 +7671,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds all the k b articles where parentResourcePrimKey = &#63; and main = &#63;.
+	 * Returns all the k b articles where parentResourcePrimKey = &#63; and main = &#63;.
 	 *
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param main the main to search with
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param main the main
 	 * @return the matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -7757,16 +7685,16 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds a range of all the k b articles where parentResourcePrimKey = &#63; and main = &#63;.
+	 * Returns a range of all the k b articles where parentResourcePrimKey = &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param main the main to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param main the main
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @return the range of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -7776,16 +7704,16 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds an ordered range of all the k b articles where parentResourcePrimKey = &#63; and main = &#63;.
+	 * Returns an ordered range of all the k b articles where parentResourcePrimKey = &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param main the main to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param main the main
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching k b articles
 	 * @throws SystemException if a system exception occurred
@@ -7870,14 +7798,14 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the first k b article in the ordered set where parentResourcePrimKey = &#63; and main = &#63;.
+	 * Returns the first k b article in the ordered set where parentResourcePrimKey = &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param main the main to search with
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param main the main
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching k b article could not be found
@@ -7910,14 +7838,14 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the last k b article in the ordered set where parentResourcePrimKey = &#63; and main = &#63;.
+	 * Returns the last k b article in the ordered set where parentResourcePrimKey = &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param main the main to search with
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param main the main
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching k b article could not be found
@@ -7952,15 +7880,15 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the k b articles before and after the current k b article in the ordered set where parentResourcePrimKey = &#63; and main = &#63;.
+	 * Returns the k b articles before and after the current k b article in the ordered set where parentResourcePrimKey = &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
 	 * @param kbArticleId the primary key of the current k b article
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param main the main to search with
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param main the main
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a k b article with the primary key could not be found
@@ -8106,14 +8034,14 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds all the k b articles where parentResourcePrimKey = any &#63; and main = &#63;.
+	 * Returns all the k b articles where parentResourcePrimKey = any &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param parentResourcePrimKeies the parent resource prim keies to search with
-	 * @param main the main to search with
+	 * @param parentResourcePrimKeies the parent resource prim keies
+	 * @param main the main
 	 * @return the matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -8124,16 +8052,16 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds a range of all the k b articles where parentResourcePrimKey = any &#63; and main = &#63;.
+	 * Returns a range of all the k b articles where parentResourcePrimKey = any &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param parentResourcePrimKeies the parent resource prim keies to search with
-	 * @param main the main to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param parentResourcePrimKeies the parent resource prim keies
+	 * @param main the main
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @return the range of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -8143,16 +8071,16 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds an ordered range of all the k b articles where parentResourcePrimKey = any &#63; and main = &#63;.
+	 * Returns an ordered range of all the k b articles where parentResourcePrimKey = any &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param parentResourcePrimKeies the parent resource prim keies to search with
-	 * @param main the main to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param parentResourcePrimKeies the parent resource prim keies
+	 * @param main the main
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching k b articles
 	 * @throws SystemException if a system exception occurred
@@ -8258,10 +8186,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds all the k b articles where parentResourcePrimKey = &#63; and status = &#63;.
+	 * Returns all the k b articles where parentResourcePrimKey = &#63; and status = &#63;.
 	 *
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param status the status to search with
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param status the status
 	 * @return the matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -8272,16 +8200,16 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds a range of all the k b articles where parentResourcePrimKey = &#63; and status = &#63;.
+	 * Returns a range of all the k b articles where parentResourcePrimKey = &#63; and status = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param status the status to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param status the status
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @return the range of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -8291,16 +8219,16 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds an ordered range of all the k b articles where parentResourcePrimKey = &#63; and status = &#63;.
+	 * Returns an ordered range of all the k b articles where parentResourcePrimKey = &#63; and status = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param status the status to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param status the status
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching k b articles
 	 * @throws SystemException if a system exception occurred
@@ -8385,14 +8313,14 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the first k b article in the ordered set where parentResourcePrimKey = &#63; and status = &#63;.
+	 * Returns the first k b article in the ordered set where parentResourcePrimKey = &#63; and status = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param status the status to search with
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param status the status
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching k b article could not be found
@@ -8425,14 +8353,14 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the last k b article in the ordered set where parentResourcePrimKey = &#63; and status = &#63;.
+	 * Returns the last k b article in the ordered set where parentResourcePrimKey = &#63; and status = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param status the status to search with
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param status the status
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching k b article could not be found
@@ -8467,15 +8395,15 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the k b articles before and after the current k b article in the ordered set where parentResourcePrimKey = &#63; and status = &#63;.
+	 * Returns the k b articles before and after the current k b article in the ordered set where parentResourcePrimKey = &#63; and status = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
 	 * @param kbArticleId the primary key of the current k b article
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param status the status to search with
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param status the status
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a k b article with the primary key could not be found
@@ -8621,14 +8549,14 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds all the k b articles where parentResourcePrimKey = any &#63; and status = &#63;.
+	 * Returns all the k b articles where parentResourcePrimKey = any &#63; and status = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param parentResourcePrimKeies the parent resource prim keies to search with
-	 * @param status the status to search with
+	 * @param parentResourcePrimKeies the parent resource prim keies
+	 * @param status the status
 	 * @return the matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -8639,16 +8567,16 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds a range of all the k b articles where parentResourcePrimKey = any &#63; and status = &#63;.
+	 * Returns a range of all the k b articles where parentResourcePrimKey = any &#63; and status = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param parentResourcePrimKeies the parent resource prim keies to search with
-	 * @param status the status to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param parentResourcePrimKeies the parent resource prim keies
+	 * @param status the status
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @return the range of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -8658,16 +8586,16 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds an ordered range of all the k b articles where parentResourcePrimKey = any &#63; and status = &#63;.
+	 * Returns an ordered range of all the k b articles where parentResourcePrimKey = any &#63; and status = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param parentResourcePrimKeies the parent resource prim keies to search with
-	 * @param status the status to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param parentResourcePrimKeies the parent resource prim keies
+	 * @param status the status
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching k b articles
 	 * @throws SystemException if a system exception occurred
@@ -8773,11 +8701,11 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds all the k b articles where resourcePrimKey = &#63; and groupId = &#63; and latest = &#63;.
+	 * Returns all the k b articles where resourcePrimKey = &#63; and groupId = &#63; and latest = &#63;.
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param groupId the group ID to search with
-	 * @param latest the latest to search with
+	 * @param resourcePrimKey the resource prim key
+	 * @param groupId the group ID
+	 * @param latest the latest
 	 * @return the matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -8788,17 +8716,17 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds a range of all the k b articles where resourcePrimKey = &#63; and groupId = &#63; and latest = &#63;.
+	 * Returns a range of all the k b articles where resourcePrimKey = &#63; and groupId = &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param groupId the group ID to search with
-	 * @param latest the latest to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param resourcePrimKey the resource prim key
+	 * @param groupId the group ID
+	 * @param latest the latest
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @return the range of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -8808,17 +8736,17 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds an ordered range of all the k b articles where resourcePrimKey = &#63; and groupId = &#63; and latest = &#63;.
+	 * Returns an ordered range of all the k b articles where resourcePrimKey = &#63; and groupId = &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param groupId the group ID to search with
-	 * @param latest the latest to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param resourcePrimKey the resource prim key
+	 * @param groupId the group ID
+	 * @param latest the latest
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching k b articles
 	 * @throws SystemException if a system exception occurred
@@ -8907,15 +8835,15 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the first k b article in the ordered set where resourcePrimKey = &#63; and groupId = &#63; and latest = &#63;.
+	 * Returns the first k b article in the ordered set where resourcePrimKey = &#63; and groupId = &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param groupId the group ID to search with
-	 * @param latest the latest to search with
+	 * @param resourcePrimKey the resource prim key
+	 * @param groupId the group ID
+	 * @param latest the latest
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching k b article could not be found
@@ -8951,15 +8879,15 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the last k b article in the ordered set where resourcePrimKey = &#63; and groupId = &#63; and latest = &#63;.
+	 * Returns the last k b article in the ordered set where resourcePrimKey = &#63; and groupId = &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param groupId the group ID to search with
-	 * @param latest the latest to search with
+	 * @param resourcePrimKey the resource prim key
+	 * @param groupId the group ID
+	 * @param latest the latest
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching k b article could not be found
@@ -8997,16 +8925,16 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the k b articles before and after the current k b article in the ordered set where resourcePrimKey = &#63; and groupId = &#63; and latest = &#63;.
+	 * Returns the k b articles before and after the current k b article in the ordered set where resourcePrimKey = &#63; and groupId = &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
 	 * @param kbArticleId the primary key of the current k b article
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param groupId the group ID to search with
-	 * @param latest the latest to search with
+	 * @param resourcePrimKey the resource prim key
+	 * @param groupId the group ID
+	 * @param latest the latest
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a k b article with the primary key could not be found
@@ -9156,15 +9084,15 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds all the k b articles where resourcePrimKey = any &#63; and groupId = &#63; and latest = &#63;.
+	 * Returns all the k b articles where resourcePrimKey = any &#63; and groupId = &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param resourcePrimKeies the resource prim keies to search with
-	 * @param groupId the group ID to search with
-	 * @param latest the latest to search with
+	 * @param resourcePrimKeies the resource prim keies
+	 * @param groupId the group ID
+	 * @param latest the latest
 	 * @return the matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -9175,17 +9103,17 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds a range of all the k b articles where resourcePrimKey = any &#63; and groupId = &#63; and latest = &#63;.
+	 * Returns a range of all the k b articles where resourcePrimKey = any &#63; and groupId = &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param resourcePrimKeies the resource prim keies to search with
-	 * @param groupId the group ID to search with
-	 * @param latest the latest to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param resourcePrimKeies the resource prim keies
+	 * @param groupId the group ID
+	 * @param latest the latest
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @return the range of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -9195,17 +9123,17 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds an ordered range of all the k b articles where resourcePrimKey = any &#63; and groupId = &#63; and latest = &#63;.
+	 * Returns an ordered range of all the k b articles where resourcePrimKey = any &#63; and groupId = &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param resourcePrimKeies the resource prim keies to search with
-	 * @param groupId the group ID to search with
-	 * @param latest the latest to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param resourcePrimKeies the resource prim keies
+	 * @param groupId the group ID
+	 * @param latest the latest
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching k b articles
 	 * @throws SystemException if a system exception occurred
@@ -9320,11 +9248,11 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds all the k b articles where resourcePrimKey = &#63; and groupId = &#63; and latest = &#63;.
+	 * Returns all the k b articles that the user has permission to view where resourcePrimKey = &#63; and groupId = &#63; and latest = &#63;.
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param groupId the group ID to search with
-	 * @param latest the latest to search with
+	 * @param resourcePrimKey the resource prim key
+	 * @param groupId the group ID
+	 * @param latest the latest
 	 * @return the matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -9335,17 +9263,17 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds a range of all the k b articles where resourcePrimKey = &#63; and groupId = &#63; and latest = &#63;.
+	 * Returns a range of all the k b articles that the user has permission to view where resourcePrimKey = &#63; and groupId = &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param groupId the group ID to search with
-	 * @param latest the latest to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param resourcePrimKey the resource prim key
+	 * @param groupId the group ID
+	 * @param latest the latest
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @return the range of matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -9357,17 +9285,17 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds an ordered range of all the k b articles where resourcePrimKey = &#63; and groupId = &#63; and latest = &#63;.
+	 * Returns an ordered range of all the k b articles that the user has permissions to view where resourcePrimKey = &#63; and groupId = &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param groupId the group ID to search with
-	 * @param latest the latest to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param resourcePrimKey the resource prim key
+	 * @param groupId the group ID
+	 * @param latest the latest
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
@@ -9390,12 +9318,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 			query = new StringBundler(5);
 		}
 
-		if (getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_WHERE);
-		}
-		else {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_1);
-		}
+		query.append(_FILTER_SQL_SELECT_KBARTICLE_WHERE);
 
 		query.append(_FINDER_COLUMN_R_G_L_RESOURCEPRIMKEY_2);
 
@@ -9403,9 +9326,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		query.append(_FINDER_COLUMN_R_G_L_LATEST_2);
 
-		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_2);
-		}
+		appendGroupByComparator(query, _FILTER_COLUMN_PK);
 
 		if (orderByComparator != null) {
 			if (getDB().isSupportsInlineDistinct()) {
@@ -9463,16 +9384,12 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters the k b articles before and after the current k b article in the ordered set where resourcePrimKey = &#63; and groupId = &#63; and latest = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
+	 * Returns the k b articles before and after the current k b article in the ordered set of k b articles that the user has permission to view where resourcePrimKey = &#63; and groupId = &#63; and latest = &#63;.
 	 *
 	 * @param kbArticleId the primary key of the current k b article
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param groupId the group ID to search with
-	 * @param latest the latest to search with
+	 * @param resourcePrimKey the resource prim key
+	 * @param groupId the group ID
+	 * @param latest the latest
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a k b article with the primary key could not be found
@@ -9527,12 +9444,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 			query = new StringBundler(3);
 		}
 
-		if (getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_WHERE);
-		}
-		else {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_1);
-		}
+		query.append(_FILTER_SQL_SELECT_KBARTICLE_WHERE);
 
 		query.append(_FINDER_COLUMN_R_G_L_RESOURCEPRIMKEY_2);
 
@@ -9540,9 +9452,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		query.append(_FINDER_COLUMN_R_G_L_LATEST_2);
 
-		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_2);
-		}
+		appendGroupByComparator(query, _FILTER_COLUMN_PK);
 
 		if (orderByComparator != null) {
 			String[] orderByFields = orderByComparator.getOrderByFields();
@@ -9661,15 +9571,11 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds all the k b articles where resourcePrimKey = any &#63; and groupId = &#63; and latest = &#63;.
+	 * Returns all the k b articles that the user has permission to view where resourcePrimKey = any &#63; and groupId = &#63; and latest = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param resourcePrimKeies the resource prim keies to search with
-	 * @param groupId the group ID to search with
-	 * @param latest the latest to search with
+	 * @param resourcePrimKeies the resource prim keies
+	 * @param groupId the group ID
+	 * @param latest the latest
 	 * @return the matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -9680,17 +9586,17 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds a range of all the k b articles where resourcePrimKey = any &#63; and groupId = &#63; and latest = &#63;.
+	 * Returns a range of all the k b articles that the user has permission to view where resourcePrimKey = any &#63; and groupId = &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param resourcePrimKeies the resource prim keies to search with
-	 * @param groupId the group ID to search with
-	 * @param latest the latest to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param resourcePrimKeies the resource prim keies
+	 * @param groupId the group ID
+	 * @param latest the latest
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @return the range of matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -9702,17 +9608,17 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds an ordered range of all the k b articles where resourcePrimKey = any &#63; and groupId = &#63; and latest = &#63;.
+	 * Returns an ordered range of all the k b articles that the user has permission to view where resourcePrimKey = any &#63; and groupId = &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param resourcePrimKeies the resource prim keies to search with
-	 * @param groupId the group ID to search with
-	 * @param latest the latest to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param resourcePrimKeies the resource prim keies
+	 * @param groupId the group ID
+	 * @param latest the latest
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
@@ -9727,12 +9633,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		StringBundler query = new StringBundler();
 
-		if (getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_WHERE);
-		}
-		else {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_1);
-		}
+		query.append(_FILTER_SQL_SELECT_KBARTICLE_WHERE);
 
 		boolean conjunctionable = false;
 
@@ -9772,9 +9673,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		conjunctionable = true;
 
-		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_2);
-		}
+		appendGroupByComparator(query, _FILTER_COLUMN_PK);
 
 		if (orderByComparator != null) {
 			if (getDB().isSupportsInlineDistinct()) {
@@ -9834,11 +9733,11 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds all the k b articles where resourcePrimKey = &#63; and groupId = &#63; and main = &#63;.
+	 * Returns all the k b articles where resourcePrimKey = &#63; and groupId = &#63; and main = &#63;.
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param groupId the group ID to search with
-	 * @param main the main to search with
+	 * @param resourcePrimKey the resource prim key
+	 * @param groupId the group ID
+	 * @param main the main
 	 * @return the matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -9849,17 +9748,17 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds a range of all the k b articles where resourcePrimKey = &#63; and groupId = &#63; and main = &#63;.
+	 * Returns a range of all the k b articles where resourcePrimKey = &#63; and groupId = &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param groupId the group ID to search with
-	 * @param main the main to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param resourcePrimKey the resource prim key
+	 * @param groupId the group ID
+	 * @param main the main
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @return the range of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -9869,17 +9768,17 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds an ordered range of all the k b articles where resourcePrimKey = &#63; and groupId = &#63; and main = &#63;.
+	 * Returns an ordered range of all the k b articles where resourcePrimKey = &#63; and groupId = &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param groupId the group ID to search with
-	 * @param main the main to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param resourcePrimKey the resource prim key
+	 * @param groupId the group ID
+	 * @param main the main
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching k b articles
 	 * @throws SystemException if a system exception occurred
@@ -9968,15 +9867,15 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the first k b article in the ordered set where resourcePrimKey = &#63; and groupId = &#63; and main = &#63;.
+	 * Returns the first k b article in the ordered set where resourcePrimKey = &#63; and groupId = &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param groupId the group ID to search with
-	 * @param main the main to search with
+	 * @param resourcePrimKey the resource prim key
+	 * @param groupId the group ID
+	 * @param main the main
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching k b article could not be found
@@ -10012,15 +9911,15 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the last k b article in the ordered set where resourcePrimKey = &#63; and groupId = &#63; and main = &#63;.
+	 * Returns the last k b article in the ordered set where resourcePrimKey = &#63; and groupId = &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param groupId the group ID to search with
-	 * @param main the main to search with
+	 * @param resourcePrimKey the resource prim key
+	 * @param groupId the group ID
+	 * @param main the main
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching k b article could not be found
@@ -10058,16 +9957,16 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the k b articles before and after the current k b article in the ordered set where resourcePrimKey = &#63; and groupId = &#63; and main = &#63;.
+	 * Returns the k b articles before and after the current k b article in the ordered set where resourcePrimKey = &#63; and groupId = &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
 	 * @param kbArticleId the primary key of the current k b article
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param groupId the group ID to search with
-	 * @param main the main to search with
+	 * @param resourcePrimKey the resource prim key
+	 * @param groupId the group ID
+	 * @param main the main
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a k b article with the primary key could not be found
@@ -10217,15 +10116,15 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds all the k b articles where resourcePrimKey = any &#63; and groupId = &#63; and main = &#63;.
+	 * Returns all the k b articles where resourcePrimKey = any &#63; and groupId = &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param resourcePrimKeies the resource prim keies to search with
-	 * @param groupId the group ID to search with
-	 * @param main the main to search with
+	 * @param resourcePrimKeies the resource prim keies
+	 * @param groupId the group ID
+	 * @param main the main
 	 * @return the matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -10236,17 +10135,17 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds a range of all the k b articles where resourcePrimKey = any &#63; and groupId = &#63; and main = &#63;.
+	 * Returns a range of all the k b articles where resourcePrimKey = any &#63; and groupId = &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param resourcePrimKeies the resource prim keies to search with
-	 * @param groupId the group ID to search with
-	 * @param main the main to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param resourcePrimKeies the resource prim keies
+	 * @param groupId the group ID
+	 * @param main the main
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @return the range of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -10256,17 +10155,17 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds an ordered range of all the k b articles where resourcePrimKey = any &#63; and groupId = &#63; and main = &#63;.
+	 * Returns an ordered range of all the k b articles where resourcePrimKey = any &#63; and groupId = &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param resourcePrimKeies the resource prim keies to search with
-	 * @param groupId the group ID to search with
-	 * @param main the main to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param resourcePrimKeies the resource prim keies
+	 * @param groupId the group ID
+	 * @param main the main
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching k b articles
 	 * @throws SystemException if a system exception occurred
@@ -10381,11 +10280,11 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds all the k b articles where resourcePrimKey = &#63; and groupId = &#63; and main = &#63;.
+	 * Returns all the k b articles that the user has permission to view where resourcePrimKey = &#63; and groupId = &#63; and main = &#63;.
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param groupId the group ID to search with
-	 * @param main the main to search with
+	 * @param resourcePrimKey the resource prim key
+	 * @param groupId the group ID
+	 * @param main the main
 	 * @return the matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -10396,17 +10295,17 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds a range of all the k b articles where resourcePrimKey = &#63; and groupId = &#63; and main = &#63;.
+	 * Returns a range of all the k b articles that the user has permission to view where resourcePrimKey = &#63; and groupId = &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param groupId the group ID to search with
-	 * @param main the main to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param resourcePrimKey the resource prim key
+	 * @param groupId the group ID
+	 * @param main the main
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @return the range of matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -10418,17 +10317,17 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds an ordered range of all the k b articles where resourcePrimKey = &#63; and groupId = &#63; and main = &#63;.
+	 * Returns an ordered range of all the k b articles that the user has permissions to view where resourcePrimKey = &#63; and groupId = &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param groupId the group ID to search with
-	 * @param main the main to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param resourcePrimKey the resource prim key
+	 * @param groupId the group ID
+	 * @param main the main
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
@@ -10451,12 +10350,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 			query = new StringBundler(5);
 		}
 
-		if (getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_WHERE);
-		}
-		else {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_1);
-		}
+		query.append(_FILTER_SQL_SELECT_KBARTICLE_WHERE);
 
 		query.append(_FINDER_COLUMN_R_G_M_RESOURCEPRIMKEY_2);
 
@@ -10464,9 +10358,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		query.append(_FINDER_COLUMN_R_G_M_MAIN_2);
 
-		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_2);
-		}
+		appendGroupByComparator(query, _FILTER_COLUMN_PK);
 
 		if (orderByComparator != null) {
 			if (getDB().isSupportsInlineDistinct()) {
@@ -10524,16 +10416,12 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters the k b articles before and after the current k b article in the ordered set where resourcePrimKey = &#63; and groupId = &#63; and main = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
+	 * Returns the k b articles before and after the current k b article in the ordered set of k b articles that the user has permission to view where resourcePrimKey = &#63; and groupId = &#63; and main = &#63;.
 	 *
 	 * @param kbArticleId the primary key of the current k b article
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param groupId the group ID to search with
-	 * @param main the main to search with
+	 * @param resourcePrimKey the resource prim key
+	 * @param groupId the group ID
+	 * @param main the main
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a k b article with the primary key could not be found
@@ -10588,12 +10476,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 			query = new StringBundler(3);
 		}
 
-		if (getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_WHERE);
-		}
-		else {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_1);
-		}
+		query.append(_FILTER_SQL_SELECT_KBARTICLE_WHERE);
 
 		query.append(_FINDER_COLUMN_R_G_M_RESOURCEPRIMKEY_2);
 
@@ -10601,9 +10484,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		query.append(_FINDER_COLUMN_R_G_M_MAIN_2);
 
-		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_2);
-		}
+		appendGroupByComparator(query, _FILTER_COLUMN_PK);
 
 		if (orderByComparator != null) {
 			String[] orderByFields = orderByComparator.getOrderByFields();
@@ -10722,15 +10603,11 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds all the k b articles where resourcePrimKey = any &#63; and groupId = &#63; and main = &#63;.
+	 * Returns all the k b articles that the user has permission to view where resourcePrimKey = any &#63; and groupId = &#63; and main = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param resourcePrimKeies the resource prim keies to search with
-	 * @param groupId the group ID to search with
-	 * @param main the main to search with
+	 * @param resourcePrimKeies the resource prim keies
+	 * @param groupId the group ID
+	 * @param main the main
 	 * @return the matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -10741,17 +10618,17 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds a range of all the k b articles where resourcePrimKey = any &#63; and groupId = &#63; and main = &#63;.
+	 * Returns a range of all the k b articles that the user has permission to view where resourcePrimKey = any &#63; and groupId = &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param resourcePrimKeies the resource prim keies to search with
-	 * @param groupId the group ID to search with
-	 * @param main the main to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param resourcePrimKeies the resource prim keies
+	 * @param groupId the group ID
+	 * @param main the main
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @return the range of matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -10763,17 +10640,17 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds an ordered range of all the k b articles where resourcePrimKey = any &#63; and groupId = &#63; and main = &#63;.
+	 * Returns an ordered range of all the k b articles that the user has permission to view where resourcePrimKey = any &#63; and groupId = &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param resourcePrimKeies the resource prim keies to search with
-	 * @param groupId the group ID to search with
-	 * @param main the main to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param resourcePrimKeies the resource prim keies
+	 * @param groupId the group ID
+	 * @param main the main
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
@@ -10788,12 +10665,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		StringBundler query = new StringBundler();
 
-		if (getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_WHERE);
-		}
-		else {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_1);
-		}
+		query.append(_FILTER_SQL_SELECT_KBARTICLE_WHERE);
 
 		boolean conjunctionable = false;
 
@@ -10833,9 +10705,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		conjunctionable = true;
 
-		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_2);
-		}
+		appendGroupByComparator(query, _FILTER_COLUMN_PK);
 
 		if (orderByComparator != null) {
 			if (getDB().isSupportsInlineDistinct()) {
@@ -10895,11 +10765,11 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds all the k b articles where resourcePrimKey = &#63; and groupId = &#63; and status = &#63;.
+	 * Returns all the k b articles where resourcePrimKey = &#63; and groupId = &#63; and status = &#63;.
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param groupId the group ID to search with
-	 * @param status the status to search with
+	 * @param resourcePrimKey the resource prim key
+	 * @param groupId the group ID
+	 * @param status the status
 	 * @return the matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -10910,17 +10780,17 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds a range of all the k b articles where resourcePrimKey = &#63; and groupId = &#63; and status = &#63;.
+	 * Returns a range of all the k b articles where resourcePrimKey = &#63; and groupId = &#63; and status = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param groupId the group ID to search with
-	 * @param status the status to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param resourcePrimKey the resource prim key
+	 * @param groupId the group ID
+	 * @param status the status
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @return the range of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -10930,17 +10800,17 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds an ordered range of all the k b articles where resourcePrimKey = &#63; and groupId = &#63; and status = &#63;.
+	 * Returns an ordered range of all the k b articles where resourcePrimKey = &#63; and groupId = &#63; and status = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param groupId the group ID to search with
-	 * @param status the status to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param resourcePrimKey the resource prim key
+	 * @param groupId the group ID
+	 * @param status the status
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching k b articles
 	 * @throws SystemException if a system exception occurred
@@ -11029,15 +10899,15 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the first k b article in the ordered set where resourcePrimKey = &#63; and groupId = &#63; and status = &#63;.
+	 * Returns the first k b article in the ordered set where resourcePrimKey = &#63; and groupId = &#63; and status = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param groupId the group ID to search with
-	 * @param status the status to search with
+	 * @param resourcePrimKey the resource prim key
+	 * @param groupId the group ID
+	 * @param status the status
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching k b article could not be found
@@ -11073,15 +10943,15 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the last k b article in the ordered set where resourcePrimKey = &#63; and groupId = &#63; and status = &#63;.
+	 * Returns the last k b article in the ordered set where resourcePrimKey = &#63; and groupId = &#63; and status = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param groupId the group ID to search with
-	 * @param status the status to search with
+	 * @param resourcePrimKey the resource prim key
+	 * @param groupId the group ID
+	 * @param status the status
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching k b article could not be found
@@ -11119,16 +10989,16 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the k b articles before and after the current k b article in the ordered set where resourcePrimKey = &#63; and groupId = &#63; and status = &#63;.
+	 * Returns the k b articles before and after the current k b article in the ordered set where resourcePrimKey = &#63; and groupId = &#63; and status = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
 	 * @param kbArticleId the primary key of the current k b article
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param groupId the group ID to search with
-	 * @param status the status to search with
+	 * @param resourcePrimKey the resource prim key
+	 * @param groupId the group ID
+	 * @param status the status
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a k b article with the primary key could not be found
@@ -11278,15 +11148,15 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds all the k b articles where resourcePrimKey = any &#63; and groupId = &#63; and status = &#63;.
+	 * Returns all the k b articles where resourcePrimKey = any &#63; and groupId = &#63; and status = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param resourcePrimKeies the resource prim keies to search with
-	 * @param groupId the group ID to search with
-	 * @param status the status to search with
+	 * @param resourcePrimKeies the resource prim keies
+	 * @param groupId the group ID
+	 * @param status the status
 	 * @return the matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -11297,17 +11167,17 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds a range of all the k b articles where resourcePrimKey = any &#63; and groupId = &#63; and status = &#63;.
+	 * Returns a range of all the k b articles where resourcePrimKey = any &#63; and groupId = &#63; and status = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param resourcePrimKeies the resource prim keies to search with
-	 * @param groupId the group ID to search with
-	 * @param status the status to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param resourcePrimKeies the resource prim keies
+	 * @param groupId the group ID
+	 * @param status the status
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @return the range of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -11317,17 +11187,17 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds an ordered range of all the k b articles where resourcePrimKey = any &#63; and groupId = &#63; and status = &#63;.
+	 * Returns an ordered range of all the k b articles where resourcePrimKey = any &#63; and groupId = &#63; and status = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param resourcePrimKeies the resource prim keies to search with
-	 * @param groupId the group ID to search with
-	 * @param status the status to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param resourcePrimKeies the resource prim keies
+	 * @param groupId the group ID
+	 * @param status the status
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching k b articles
 	 * @throws SystemException if a system exception occurred
@@ -11442,11 +11312,11 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds all the k b articles where resourcePrimKey = &#63; and groupId = &#63; and status = &#63;.
+	 * Returns all the k b articles that the user has permission to view where resourcePrimKey = &#63; and groupId = &#63; and status = &#63;.
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param groupId the group ID to search with
-	 * @param status the status to search with
+	 * @param resourcePrimKey the resource prim key
+	 * @param groupId the group ID
+	 * @param status the status
 	 * @return the matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -11457,17 +11327,17 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds a range of all the k b articles where resourcePrimKey = &#63; and groupId = &#63; and status = &#63;.
+	 * Returns a range of all the k b articles that the user has permission to view where resourcePrimKey = &#63; and groupId = &#63; and status = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param groupId the group ID to search with
-	 * @param status the status to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param resourcePrimKey the resource prim key
+	 * @param groupId the group ID
+	 * @param status the status
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @return the range of matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -11478,17 +11348,17 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds an ordered range of all the k b articles where resourcePrimKey = &#63; and groupId = &#63; and status = &#63;.
+	 * Returns an ordered range of all the k b articles that the user has permissions to view where resourcePrimKey = &#63; and groupId = &#63; and status = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param groupId the group ID to search with
-	 * @param status the status to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param resourcePrimKey the resource prim key
+	 * @param groupId the group ID
+	 * @param status the status
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
@@ -11511,12 +11381,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 			query = new StringBundler(5);
 		}
 
-		if (getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_WHERE);
-		}
-		else {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_1);
-		}
+		query.append(_FILTER_SQL_SELECT_KBARTICLE_WHERE);
 
 		query.append(_FINDER_COLUMN_R_G_S_RESOURCEPRIMKEY_2);
 
@@ -11524,9 +11389,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		query.append(_FINDER_COLUMN_R_G_S_STATUS_2);
 
-		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_2);
-		}
+		appendGroupByComparator(query, _FILTER_COLUMN_PK);
 
 		if (orderByComparator != null) {
 			if (getDB().isSupportsInlineDistinct()) {
@@ -11584,16 +11447,12 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters the k b articles before and after the current k b article in the ordered set where resourcePrimKey = &#63; and groupId = &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
+	 * Returns the k b articles before and after the current k b article in the ordered set of k b articles that the user has permission to view where resourcePrimKey = &#63; and groupId = &#63; and status = &#63;.
 	 *
 	 * @param kbArticleId the primary key of the current k b article
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param groupId the group ID to search with
-	 * @param status the status to search with
+	 * @param resourcePrimKey the resource prim key
+	 * @param groupId the group ID
+	 * @param status the status
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a k b article with the primary key could not be found
@@ -11648,12 +11507,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 			query = new StringBundler(3);
 		}
 
-		if (getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_WHERE);
-		}
-		else {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_1);
-		}
+		query.append(_FILTER_SQL_SELECT_KBARTICLE_WHERE);
 
 		query.append(_FINDER_COLUMN_R_G_S_RESOURCEPRIMKEY_2);
 
@@ -11661,9 +11515,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		query.append(_FINDER_COLUMN_R_G_S_STATUS_2);
 
-		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_2);
-		}
+		appendGroupByComparator(query, _FILTER_COLUMN_PK);
 
 		if (orderByComparator != null) {
 			String[] orderByFields = orderByComparator.getOrderByFields();
@@ -11782,15 +11634,11 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds all the k b articles where resourcePrimKey = any &#63; and groupId = &#63; and status = &#63;.
+	 * Returns all the k b articles that the user has permission to view where resourcePrimKey = any &#63; and groupId = &#63; and status = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param resourcePrimKeies the resource prim keies to search with
-	 * @param groupId the group ID to search with
-	 * @param status the status to search with
+	 * @param resourcePrimKeies the resource prim keies
+	 * @param groupId the group ID
+	 * @param status the status
 	 * @return the matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -11801,17 +11649,17 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds a range of all the k b articles where resourcePrimKey = any &#63; and groupId = &#63; and status = &#63;.
+	 * Returns a range of all the k b articles that the user has permission to view where resourcePrimKey = any &#63; and groupId = &#63; and status = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param resourcePrimKeies the resource prim keies to search with
-	 * @param groupId the group ID to search with
-	 * @param status the status to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param resourcePrimKeies the resource prim keies
+	 * @param groupId the group ID
+	 * @param status the status
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @return the range of matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -11822,17 +11670,17 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds an ordered range of all the k b articles where resourcePrimKey = any &#63; and groupId = &#63; and status = &#63;.
+	 * Returns an ordered range of all the k b articles that the user has permission to view where resourcePrimKey = any &#63; and groupId = &#63; and status = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param resourcePrimKeies the resource prim keies to search with
-	 * @param groupId the group ID to search with
-	 * @param status the status to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param resourcePrimKeies the resource prim keies
+	 * @param groupId the group ID
+	 * @param status the status
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
@@ -11847,12 +11695,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		StringBundler query = new StringBundler();
 
-		if (getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_WHERE);
-		}
-		else {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_1);
-		}
+		query.append(_FILTER_SQL_SELECT_KBARTICLE_WHERE);
 
 		boolean conjunctionable = false;
 
@@ -11892,9 +11735,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		conjunctionable = true;
 
-		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_2);
-		}
+		appendGroupByComparator(query, _FILTER_COLUMN_PK);
 
 		if (orderByComparator != null) {
 			if (getDB().isSupportsInlineDistinct()) {
@@ -11954,11 +11795,11 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63;.
+	 * Returns all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63;.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param latest the latest to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param latest the latest
 	 * @return the matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -11969,17 +11810,17 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds a range of all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63;.
+	 * Returns a range of all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param latest the latest to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param latest the latest
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @return the range of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -11991,17 +11832,17 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds an ordered range of all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63;.
+	 * Returns an ordered range of all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param latest the latest to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param latest the latest
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching k b articles
 	 * @throws SystemException if a system exception occurred
@@ -12090,15 +11931,15 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the first k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63;.
+	 * Returns the first k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param latest the latest to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param latest the latest
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching k b article could not be found
@@ -12135,15 +11976,15 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the last k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63;.
+	 * Returns the last k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param latest the latest to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param latest the latest
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching k b article could not be found
@@ -12181,16 +12022,16 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the k b articles before and after the current k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63;.
+	 * Returns the k b articles before and after the current k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
 	 * @param kbArticleId the primary key of the current k b article
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param latest the latest to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param latest the latest
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a k b article with the primary key could not be found
@@ -12340,15 +12181,15 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds all the k b articles where groupId = &#63; and parentResourcePrimKey = any &#63; and latest = &#63;.
+	 * Returns all the k b articles where groupId = &#63; and parentResourcePrimKey = any &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKeies the parent resource prim keies to search with
-	 * @param latest the latest to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKeies the parent resource prim keies
+	 * @param latest the latest
 	 * @return the matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -12360,17 +12201,17 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds a range of all the k b articles where groupId = &#63; and parentResourcePrimKey = any &#63; and latest = &#63;.
+	 * Returns a range of all the k b articles where groupId = &#63; and parentResourcePrimKey = any &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKeies the parent resource prim keies to search with
-	 * @param latest the latest to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKeies the parent resource prim keies
+	 * @param latest the latest
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @return the range of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -12382,17 +12223,17 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds an ordered range of all the k b articles where groupId = &#63; and parentResourcePrimKey = any &#63; and latest = &#63;.
+	 * Returns an ordered range of all the k b articles where groupId = &#63; and parentResourcePrimKey = any &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKeies the parent resource prim keies to search with
-	 * @param latest the latest to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKeies the parent resource prim keies
+	 * @param latest the latest
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching k b articles
 	 * @throws SystemException if a system exception occurred
@@ -12508,11 +12349,11 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63;.
+	 * Returns all the k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63;.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param latest the latest to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param latest the latest
 	 * @return the matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -12523,17 +12364,17 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds a range of all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63;.
+	 * Returns a range of all the k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param latest the latest to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param latest the latest
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @return the range of matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -12545,17 +12386,17 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds an ordered range of all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63;.
+	 * Returns an ordered range of all the k b articles that the user has permissions to view where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param latest the latest to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param latest the latest
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
@@ -12578,12 +12419,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 			query = new StringBundler(5);
 		}
 
-		if (getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_WHERE);
-		}
-		else {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_1);
-		}
+		query.append(_FILTER_SQL_SELECT_KBARTICLE_WHERE);
 
 		query.append(_FINDER_COLUMN_G_P_L_GROUPID_2);
 
@@ -12591,9 +12427,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		query.append(_FINDER_COLUMN_G_P_L_LATEST_2);
 
-		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_2);
-		}
+		appendGroupByComparator(query, _FILTER_COLUMN_PK);
 
 		if (orderByComparator != null) {
 			if (getDB().isSupportsInlineDistinct()) {
@@ -12651,16 +12485,12 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters the k b articles before and after the current k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
+	 * Returns the k b articles before and after the current k b article in the ordered set of k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63;.
 	 *
 	 * @param kbArticleId the primary key of the current k b article
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param latest the latest to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param latest the latest
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a k b article with the primary key could not be found
@@ -12717,12 +12547,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 			query = new StringBundler(3);
 		}
 
-		if (getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_WHERE);
-		}
-		else {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_1);
-		}
+		query.append(_FILTER_SQL_SELECT_KBARTICLE_WHERE);
 
 		query.append(_FINDER_COLUMN_G_P_L_GROUPID_2);
 
@@ -12730,9 +12555,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		query.append(_FINDER_COLUMN_G_P_L_LATEST_2);
 
-		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_2);
-		}
+		appendGroupByComparator(query, _FILTER_COLUMN_PK);
 
 		if (orderByComparator != null) {
 			String[] orderByFields = orderByComparator.getOrderByFields();
@@ -12851,15 +12674,11 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds all the k b articles where groupId = &#63; and parentResourcePrimKey = any &#63; and latest = &#63;.
+	 * Returns all the k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = any &#63; and latest = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKeies the parent resource prim keies to search with
-	 * @param latest the latest to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKeies the parent resource prim keies
+	 * @param latest the latest
 	 * @return the matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -12871,17 +12690,17 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds a range of all the k b articles where groupId = &#63; and parentResourcePrimKey = any &#63; and latest = &#63;.
+	 * Returns a range of all the k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = any &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKeies the parent resource prim keies to search with
-	 * @param latest the latest to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKeies the parent resource prim keies
+	 * @param latest the latest
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @return the range of matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -12893,17 +12712,17 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds an ordered range of all the k b articles where groupId = &#63; and parentResourcePrimKey = any &#63; and latest = &#63;.
+	 * Returns an ordered range of all the k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = any &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKeies the parent resource prim keies to search with
-	 * @param latest the latest to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKeies the parent resource prim keies
+	 * @param latest the latest
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
@@ -12918,12 +12737,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		StringBundler query = new StringBundler();
 
-		if (getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_WHERE);
-		}
-		else {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_1);
-		}
+		query.append(_FILTER_SQL_SELECT_KBARTICLE_WHERE);
 
 		boolean conjunctionable = false;
 
@@ -12964,9 +12778,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		conjunctionable = true;
 
-		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_2);
-		}
+		appendGroupByComparator(query, _FILTER_COLUMN_PK);
 
 		if (orderByComparator != null) {
 			if (getDB().isSupportsInlineDistinct()) {
@@ -13026,11 +12838,11 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and main = &#63;.
+	 * Returns all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and main = &#63;.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param main the main to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param main the main
 	 * @return the matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -13041,17 +12853,17 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds a range of all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and main = &#63;.
+	 * Returns a range of all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param main the main to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param main the main
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @return the range of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -13063,17 +12875,17 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds an ordered range of all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and main = &#63;.
+	 * Returns an ordered range of all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param main the main to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param main the main
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching k b articles
 	 * @throws SystemException if a system exception occurred
@@ -13162,15 +12974,15 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the first k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and main = &#63;.
+	 * Returns the first k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param main the main to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param main the main
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching k b article could not be found
@@ -13207,15 +13019,15 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the last k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and main = &#63;.
+	 * Returns the last k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param main the main to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param main the main
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching k b article could not be found
@@ -13253,16 +13065,16 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the k b articles before and after the current k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and main = &#63;.
+	 * Returns the k b articles before and after the current k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
 	 * @param kbArticleId the primary key of the current k b article
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param main the main to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param main the main
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a k b article with the primary key could not be found
@@ -13412,15 +13224,15 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds all the k b articles where groupId = &#63; and parentResourcePrimKey = any &#63; and main = &#63;.
+	 * Returns all the k b articles where groupId = &#63; and parentResourcePrimKey = any &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKeies the parent resource prim keies to search with
-	 * @param main the main to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKeies the parent resource prim keies
+	 * @param main the main
 	 * @return the matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -13431,17 +13243,17 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds a range of all the k b articles where groupId = &#63; and parentResourcePrimKey = any &#63; and main = &#63;.
+	 * Returns a range of all the k b articles where groupId = &#63; and parentResourcePrimKey = any &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKeies the parent resource prim keies to search with
-	 * @param main the main to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKeies the parent resource prim keies
+	 * @param main the main
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @return the range of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -13453,17 +13265,17 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds an ordered range of all the k b articles where groupId = &#63; and parentResourcePrimKey = any &#63; and main = &#63;.
+	 * Returns an ordered range of all the k b articles where groupId = &#63; and parentResourcePrimKey = any &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKeies the parent resource prim keies to search with
-	 * @param main the main to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKeies the parent resource prim keies
+	 * @param main the main
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching k b articles
 	 * @throws SystemException if a system exception occurred
@@ -13579,11 +13391,11 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and main = &#63;.
+	 * Returns all the k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and main = &#63;.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param main the main to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param main the main
 	 * @return the matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -13594,17 +13406,17 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds a range of all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and main = &#63;.
+	 * Returns a range of all the k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param main the main to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param main the main
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @return the range of matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -13616,17 +13428,17 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds an ordered range of all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and main = &#63;.
+	 * Returns an ordered range of all the k b articles that the user has permissions to view where groupId = &#63; and parentResourcePrimKey = &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param main the main to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param main the main
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
@@ -13649,12 +13461,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 			query = new StringBundler(5);
 		}
 
-		if (getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_WHERE);
-		}
-		else {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_1);
-		}
+		query.append(_FILTER_SQL_SELECT_KBARTICLE_WHERE);
 
 		query.append(_FINDER_COLUMN_G_P_M_GROUPID_2);
 
@@ -13662,9 +13469,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		query.append(_FINDER_COLUMN_G_P_M_MAIN_2);
 
-		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_2);
-		}
+		appendGroupByComparator(query, _FILTER_COLUMN_PK);
 
 		if (orderByComparator != null) {
 			if (getDB().isSupportsInlineDistinct()) {
@@ -13722,16 +13527,12 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters the k b articles before and after the current k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and main = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
+	 * Returns the k b articles before and after the current k b article in the ordered set of k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and main = &#63;.
 	 *
 	 * @param kbArticleId the primary key of the current k b article
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param main the main to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param main the main
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a k b article with the primary key could not be found
@@ -13788,12 +13589,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 			query = new StringBundler(3);
 		}
 
-		if (getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_WHERE);
-		}
-		else {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_1);
-		}
+		query.append(_FILTER_SQL_SELECT_KBARTICLE_WHERE);
 
 		query.append(_FINDER_COLUMN_G_P_M_GROUPID_2);
 
@@ -13801,9 +13597,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		query.append(_FINDER_COLUMN_G_P_M_MAIN_2);
 
-		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_2);
-		}
+		appendGroupByComparator(query, _FILTER_COLUMN_PK);
 
 		if (orderByComparator != null) {
 			String[] orderByFields = orderByComparator.getOrderByFields();
@@ -13922,15 +13716,11 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds all the k b articles where groupId = &#63; and parentResourcePrimKey = any &#63; and main = &#63;.
+	 * Returns all the k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = any &#63; and main = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKeies the parent resource prim keies to search with
-	 * @param main the main to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKeies the parent resource prim keies
+	 * @param main the main
 	 * @return the matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -13941,17 +13731,17 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds a range of all the k b articles where groupId = &#63; and parentResourcePrimKey = any &#63; and main = &#63;.
+	 * Returns a range of all the k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = any &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKeies the parent resource prim keies to search with
-	 * @param main the main to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKeies the parent resource prim keies
+	 * @param main the main
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @return the range of matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -13963,17 +13753,17 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds an ordered range of all the k b articles where groupId = &#63; and parentResourcePrimKey = any &#63; and main = &#63;.
+	 * Returns an ordered range of all the k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = any &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKeies the parent resource prim keies to search with
-	 * @param main the main to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKeies the parent resource prim keies
+	 * @param main the main
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
@@ -13988,12 +13778,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		StringBundler query = new StringBundler();
 
-		if (getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_WHERE);
-		}
-		else {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_1);
-		}
+		query.append(_FILTER_SQL_SELECT_KBARTICLE_WHERE);
 
 		boolean conjunctionable = false;
 
@@ -14034,9 +13819,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		conjunctionable = true;
 
-		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_2);
-		}
+		appendGroupByComparator(query, _FILTER_COLUMN_PK);
 
 		if (orderByComparator != null) {
 			if (getDB().isSupportsInlineDistinct()) {
@@ -14096,11 +13879,11 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and status = &#63;.
+	 * Returns all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and status = &#63;.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param status the status to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param status the status
 	 * @return the matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -14111,17 +13894,17 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds a range of all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and status = &#63;.
+	 * Returns a range of all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and status = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param status the status to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param status the status
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @return the range of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -14133,17 +13916,17 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds an ordered range of all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and status = &#63;.
+	 * Returns an ordered range of all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and status = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param status the status to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param status the status
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching k b articles
 	 * @throws SystemException if a system exception occurred
@@ -14232,15 +14015,15 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the first k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and status = &#63;.
+	 * Returns the first k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and status = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param status the status to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param status the status
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching k b article could not be found
@@ -14277,15 +14060,15 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the last k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and status = &#63;.
+	 * Returns the last k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and status = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param status the status to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param status the status
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching k b article could not be found
@@ -14323,16 +14106,16 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the k b articles before and after the current k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and status = &#63;.
+	 * Returns the k b articles before and after the current k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and status = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
 	 * @param kbArticleId the primary key of the current k b article
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param status the status to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param status the status
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a k b article with the primary key could not be found
@@ -14482,15 +14265,15 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds all the k b articles where groupId = &#63; and parentResourcePrimKey = any &#63; and status = &#63;.
+	 * Returns all the k b articles where groupId = &#63; and parentResourcePrimKey = any &#63; and status = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKeies the parent resource prim keies to search with
-	 * @param status the status to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKeies the parent resource prim keies
+	 * @param status the status
 	 * @return the matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -14501,17 +14284,17 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds a range of all the k b articles where groupId = &#63; and parentResourcePrimKey = any &#63; and status = &#63;.
+	 * Returns a range of all the k b articles where groupId = &#63; and parentResourcePrimKey = any &#63; and status = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKeies the parent resource prim keies to search with
-	 * @param status the status to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKeies the parent resource prim keies
+	 * @param status the status
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @return the range of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -14523,17 +14306,17 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds an ordered range of all the k b articles where groupId = &#63; and parentResourcePrimKey = any &#63; and status = &#63;.
+	 * Returns an ordered range of all the k b articles where groupId = &#63; and parentResourcePrimKey = any &#63; and status = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKeies the parent resource prim keies to search with
-	 * @param status the status to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKeies the parent resource prim keies
+	 * @param status the status
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching k b articles
 	 * @throws SystemException if a system exception occurred
@@ -14649,11 +14432,11 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and status = &#63;.
+	 * Returns all the k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and status = &#63;.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param status the status to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param status the status
 	 * @return the matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -14664,17 +14447,17 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds a range of all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and status = &#63;.
+	 * Returns a range of all the k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and status = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param status the status to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param status the status
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @return the range of matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -14686,17 +14469,17 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds an ordered range of all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and status = &#63;.
+	 * Returns an ordered range of all the k b articles that the user has permissions to view where groupId = &#63; and parentResourcePrimKey = &#63; and status = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param status the status to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param status the status
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
@@ -14719,12 +14502,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 			query = new StringBundler(5);
 		}
 
-		if (getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_WHERE);
-		}
-		else {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_1);
-		}
+		query.append(_FILTER_SQL_SELECT_KBARTICLE_WHERE);
 
 		query.append(_FINDER_COLUMN_G_P_S_GROUPID_2);
 
@@ -14732,9 +14510,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		query.append(_FINDER_COLUMN_G_P_S_STATUS_2);
 
-		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_2);
-		}
+		appendGroupByComparator(query, _FILTER_COLUMN_PK);
 
 		if (orderByComparator != null) {
 			if (getDB().isSupportsInlineDistinct()) {
@@ -14792,16 +14568,12 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters the k b articles before and after the current k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
+	 * Returns the k b articles before and after the current k b article in the ordered set of k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and status = &#63;.
 	 *
 	 * @param kbArticleId the primary key of the current k b article
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param status the status to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param status the status
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a k b article with the primary key could not be found
@@ -14858,12 +14630,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 			query = new StringBundler(3);
 		}
 
-		if (getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_WHERE);
-		}
-		else {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_1);
-		}
+		query.append(_FILTER_SQL_SELECT_KBARTICLE_WHERE);
 
 		query.append(_FINDER_COLUMN_G_P_S_GROUPID_2);
 
@@ -14871,9 +14638,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		query.append(_FINDER_COLUMN_G_P_S_STATUS_2);
 
-		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_2);
-		}
+		appendGroupByComparator(query, _FILTER_COLUMN_PK);
 
 		if (orderByComparator != null) {
 			String[] orderByFields = orderByComparator.getOrderByFields();
@@ -14992,15 +14757,11 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds all the k b articles where groupId = &#63; and parentResourcePrimKey = any &#63; and status = &#63;.
+	 * Returns all the k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = any &#63; and status = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKeies the parent resource prim keies to search with
-	 * @param status the status to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKeies the parent resource prim keies
+	 * @param status the status
 	 * @return the matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -15011,17 +14772,17 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds a range of all the k b articles where groupId = &#63; and parentResourcePrimKey = any &#63; and status = &#63;.
+	 * Returns a range of all the k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = any &#63; and status = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKeies the parent resource prim keies to search with
-	 * @param status the status to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKeies the parent resource prim keies
+	 * @param status the status
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @return the range of matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -15033,17 +14794,17 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds an ordered range of all the k b articles where groupId = &#63; and parentResourcePrimKey = any &#63; and status = &#63;.
+	 * Returns an ordered range of all the k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = any &#63; and status = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKeies the parent resource prim keies to search with
-	 * @param status the status to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKeies the parent resource prim keies
+	 * @param status the status
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
@@ -15058,12 +14819,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		StringBundler query = new StringBundler();
 
-		if (getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_WHERE);
-		}
-		else {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_1);
-		}
+		query.append(_FILTER_SQL_SELECT_KBARTICLE_WHERE);
 
 		boolean conjunctionable = false;
 
@@ -15104,9 +14860,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		conjunctionable = true;
 
-		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_2);
-		}
+		appendGroupByComparator(query, _FILTER_COLUMN_PK);
 
 		if (orderByComparator != null) {
 			if (getDB().isSupportsInlineDistinct()) {
@@ -15166,12 +14920,12 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and latest = &#63;.
+	 * Returns all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and latest = &#63;.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param sections the sections to search with
-	 * @param latest the latest to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param sections the sections
+	 * @param latest the latest
 	 * @return the matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -15183,18 +14937,18 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds a range of all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and latest = &#63;.
+	 * Returns a range of all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param sections the sections to search with
-	 * @param latest the latest to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param sections the sections
+	 * @param latest the latest
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @return the range of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -15206,18 +14960,18 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds an ordered range of all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and latest = &#63;.
+	 * Returns an ordered range of all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param sections the sections to search with
-	 * @param latest the latest to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param sections the sections
+	 * @param latest the latest
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching k b articles
 	 * @throws SystemException if a system exception occurred
@@ -15322,16 +15076,16 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the first k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and latest = &#63;.
+	 * Returns the first k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param sections the sections to search with
-	 * @param latest the latest to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param sections the sections
+	 * @param latest the latest
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching k b article could not be found
@@ -15371,16 +15125,16 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the last k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and latest = &#63;.
+	 * Returns the last k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param sections the sections to search with
-	 * @param latest the latest to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param sections the sections
+	 * @param latest the latest
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching k b article could not be found
@@ -15423,17 +15177,17 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the k b articles before and after the current k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and latest = &#63;.
+	 * Returns the k b articles before and after the current k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
 	 * @param kbArticleId the primary key of the current k b article
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param sections the sections to search with
-	 * @param latest the latest to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param sections the sections
+	 * @param latest the latest
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a k b article with the primary key could not be found
@@ -15602,16 +15356,16 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and latest = &#63;.
+	 * Returns all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param sectionses the sectionses to search with
-	 * @param latest the latest to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param sectionses the sectionses
+	 * @param latest the latest
 	 * @return the matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -15623,18 +15377,18 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds a range of all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and latest = &#63;.
+	 * Returns a range of all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param sectionses the sectionses to search with
-	 * @param latest the latest to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param sectionses the sectionses
+	 * @param latest the latest
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @return the range of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -15646,18 +15400,18 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds an ordered range of all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and latest = &#63;.
+	 * Returns an ordered range of all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param sectionses the sectionses to search with
-	 * @param latest the latest to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param sectionses the sectionses
+	 * @param latest the latest
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching k b articles
 	 * @throws SystemException if a system exception occurred
@@ -15796,12 +15550,12 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and latest = &#63;.
+	 * Returns all the k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and latest = &#63;.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param sections the sections to search with
-	 * @param latest the latest to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param sections the sections
+	 * @param latest the latest
 	 * @return the matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -15813,18 +15567,18 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds a range of all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and latest = &#63;.
+	 * Returns a range of all the k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param sections the sections to search with
-	 * @param latest the latest to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param sections the sections
+	 * @param latest the latest
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @return the range of matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -15836,18 +15590,18 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds an ordered range of all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and latest = &#63;.
+	 * Returns an ordered range of all the k b articles that the user has permissions to view where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param sections the sections to search with
-	 * @param latest the latest to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param sections the sections
+	 * @param latest the latest
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
@@ -15870,12 +15624,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 			query = new StringBundler(6);
 		}
 
-		if (getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_WHERE);
-		}
-		else {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_1);
-		}
+		query.append(_FILTER_SQL_SELECT_KBARTICLE_WHERE);
 
 		query.append(_FINDER_COLUMN_G_P_S_L_GROUPID_2);
 
@@ -15895,9 +15644,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		query.append(_FINDER_COLUMN_G_P_S_L_LATEST_2);
 
-		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_2);
-		}
+		appendGroupByComparator(query, _FILTER_COLUMN_PK);
 
 		if (orderByComparator != null) {
 			if (getDB().isSupportsInlineDistinct()) {
@@ -15959,17 +15706,13 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters the k b articles before and after the current k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and latest = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
+	 * Returns the k b articles before and after the current k b article in the ordered set of k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and latest = &#63;.
 	 *
 	 * @param kbArticleId the primary key of the current k b article
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param sections the sections to search with
-	 * @param latest the latest to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param sections the sections
+	 * @param latest the latest
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a k b article with the primary key could not be found
@@ -16027,12 +15770,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 			query = new StringBundler(3);
 		}
 
-		if (getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_WHERE);
-		}
-		else {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_1);
-		}
+		query.append(_FILTER_SQL_SELECT_KBARTICLE_WHERE);
 
 		query.append(_FINDER_COLUMN_G_P_S_L_GROUPID_2);
 
@@ -16052,9 +15790,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		query.append(_FINDER_COLUMN_G_P_S_L_LATEST_2);
 
-		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_2);
-		}
+		appendGroupByComparator(query, _FILTER_COLUMN_PK);
 
 		if (orderByComparator != null) {
 			String[] orderByFields = orderByComparator.getOrderByFields();
@@ -16177,16 +15913,12 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and latest = &#63;.
+	 * Returns all the k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and latest = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param sectionses the sectionses to search with
-	 * @param latest the latest to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param sectionses the sectionses
+	 * @param latest the latest
 	 * @return the matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -16198,18 +15930,18 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds a range of all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and latest = &#63;.
+	 * Returns a range of all the k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param sectionses the sectionses to search with
-	 * @param latest the latest to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param sectionses the sectionses
+	 * @param latest the latest
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @return the range of matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -16221,18 +15953,18 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds an ordered range of all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and latest = &#63;.
+	 * Returns an ordered range of all the k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param sectionses the sectionses to search with
-	 * @param latest the latest to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param sectionses the sectionses
+	 * @param latest the latest
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
@@ -16248,12 +15980,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		StringBundler query = new StringBundler();
 
-		if (getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_WHERE);
-		}
-		else {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_1);
-		}
+		query.append(_FILTER_SQL_SELECT_KBARTICLE_WHERE);
 
 		boolean conjunctionable = false;
 
@@ -16313,9 +16040,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		conjunctionable = true;
 
-		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_2);
-		}
+		appendGroupByComparator(query, _FILTER_COLUMN_PK);
 
 		if (orderByComparator != null) {
 			if (getDB().isSupportsInlineDistinct()) {
@@ -16377,12 +16102,12 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and main = &#63;.
+	 * Returns all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and main = &#63;.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param sections the sections to search with
-	 * @param main the main to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param sections the sections
+	 * @param main the main
 	 * @return the matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -16394,18 +16119,18 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds a range of all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and main = &#63;.
+	 * Returns a range of all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param sections the sections to search with
-	 * @param main the main to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param sections the sections
+	 * @param main the main
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @return the range of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -16417,18 +16142,18 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds an ordered range of all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and main = &#63;.
+	 * Returns an ordered range of all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param sections the sections to search with
-	 * @param main the main to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param sections the sections
+	 * @param main the main
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching k b articles
 	 * @throws SystemException if a system exception occurred
@@ -16533,16 +16258,16 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the first k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and main = &#63;.
+	 * Returns the first k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param sections the sections to search with
-	 * @param main the main to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param sections the sections
+	 * @param main the main
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching k b article could not be found
@@ -16582,16 +16307,16 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the last k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and main = &#63;.
+	 * Returns the last k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param sections the sections to search with
-	 * @param main the main to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param sections the sections
+	 * @param main the main
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching k b article could not be found
@@ -16634,17 +16359,17 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the k b articles before and after the current k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and main = &#63;.
+	 * Returns the k b articles before and after the current k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
 	 * @param kbArticleId the primary key of the current k b article
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param sections the sections to search with
-	 * @param main the main to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param sections the sections
+	 * @param main the main
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a k b article with the primary key could not be found
@@ -16813,16 +16538,16 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and main = &#63;.
+	 * Returns all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param sectionses the sectionses to search with
-	 * @param main the main to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param sectionses the sectionses
+	 * @param main the main
 	 * @return the matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -16834,18 +16559,18 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds a range of all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and main = &#63;.
+	 * Returns a range of all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param sectionses the sectionses to search with
-	 * @param main the main to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param sectionses the sectionses
+	 * @param main the main
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @return the range of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -16857,18 +16582,18 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds an ordered range of all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and main = &#63;.
+	 * Returns an ordered range of all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param sectionses the sectionses to search with
-	 * @param main the main to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param sectionses the sectionses
+	 * @param main the main
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching k b articles
 	 * @throws SystemException if a system exception occurred
@@ -17007,12 +16732,12 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and main = &#63;.
+	 * Returns all the k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and main = &#63;.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param sections the sections to search with
-	 * @param main the main to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param sections the sections
+	 * @param main the main
 	 * @return the matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -17024,18 +16749,18 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds a range of all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and main = &#63;.
+	 * Returns a range of all the k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param sections the sections to search with
-	 * @param main the main to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param sections the sections
+	 * @param main the main
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @return the range of matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -17047,18 +16772,18 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds an ordered range of all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and main = &#63;.
+	 * Returns an ordered range of all the k b articles that the user has permissions to view where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param sections the sections to search with
-	 * @param main the main to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param sections the sections
+	 * @param main the main
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
@@ -17081,12 +16806,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 			query = new StringBundler(6);
 		}
 
-		if (getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_WHERE);
-		}
-		else {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_1);
-		}
+		query.append(_FILTER_SQL_SELECT_KBARTICLE_WHERE);
 
 		query.append(_FINDER_COLUMN_G_P_S_M_GROUPID_2);
 
@@ -17106,9 +16826,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		query.append(_FINDER_COLUMN_G_P_S_M_MAIN_2);
 
-		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_2);
-		}
+		appendGroupByComparator(query, _FILTER_COLUMN_PK);
 
 		if (orderByComparator != null) {
 			if (getDB().isSupportsInlineDistinct()) {
@@ -17170,17 +16888,13 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters the k b articles before and after the current k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and main = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
+	 * Returns the k b articles before and after the current k b article in the ordered set of k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and main = &#63;.
 	 *
 	 * @param kbArticleId the primary key of the current k b article
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param sections the sections to search with
-	 * @param main the main to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param sections the sections
+	 * @param main the main
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a k b article with the primary key could not be found
@@ -17238,12 +16952,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 			query = new StringBundler(3);
 		}
 
-		if (getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_WHERE);
-		}
-		else {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_1);
-		}
+		query.append(_FILTER_SQL_SELECT_KBARTICLE_WHERE);
 
 		query.append(_FINDER_COLUMN_G_P_S_M_GROUPID_2);
 
@@ -17263,9 +16972,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		query.append(_FINDER_COLUMN_G_P_S_M_MAIN_2);
 
-		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_2);
-		}
+		appendGroupByComparator(query, _FILTER_COLUMN_PK);
 
 		if (orderByComparator != null) {
 			String[] orderByFields = orderByComparator.getOrderByFields();
@@ -17388,16 +17095,12 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and main = &#63;.
+	 * Returns all the k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and main = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param sectionses the sectionses to search with
-	 * @param main the main to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param sectionses the sectionses
+	 * @param main the main
 	 * @return the matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -17409,18 +17112,18 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds a range of all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and main = &#63;.
+	 * Returns a range of all the k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param sectionses the sectionses to search with
-	 * @param main the main to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param sectionses the sectionses
+	 * @param main the main
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @return the range of matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -17432,18 +17135,18 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds an ordered range of all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and main = &#63;.
+	 * Returns an ordered range of all the k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param sectionses the sectionses to search with
-	 * @param main the main to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param sectionses the sectionses
+	 * @param main the main
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
@@ -17459,12 +17162,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		StringBundler query = new StringBundler();
 
-		if (getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_WHERE);
-		}
-		else {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_1);
-		}
+		query.append(_FILTER_SQL_SELECT_KBARTICLE_WHERE);
 
 		boolean conjunctionable = false;
 
@@ -17524,9 +17222,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		conjunctionable = true;
 
-		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_2);
-		}
+		appendGroupByComparator(query, _FILTER_COLUMN_PK);
 
 		if (orderByComparator != null) {
 			if (getDB().isSupportsInlineDistinct()) {
@@ -17588,12 +17284,12 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and status = &#63;.
+	 * Returns all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and status = &#63;.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param sections the sections to search with
-	 * @param status the status to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param sections the sections
+	 * @param status the status
 	 * @return the matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -17605,18 +17301,18 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds a range of all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and status = &#63;.
+	 * Returns a range of all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and status = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param sections the sections to search with
-	 * @param status the status to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param sections the sections
+	 * @param status the status
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @return the range of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -17628,18 +17324,18 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds an ordered range of all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and status = &#63;.
+	 * Returns an ordered range of all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and status = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param sections the sections to search with
-	 * @param status the status to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param sections the sections
+	 * @param status the status
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching k b articles
 	 * @throws SystemException if a system exception occurred
@@ -17744,16 +17440,16 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the first k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and status = &#63;.
+	 * Returns the first k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and status = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param sections the sections to search with
-	 * @param status the status to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param sections the sections
+	 * @param status the status
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching k b article could not be found
@@ -17793,16 +17489,16 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the last k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and status = &#63;.
+	 * Returns the last k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and status = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param sections the sections to search with
-	 * @param status the status to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param sections the sections
+	 * @param status the status
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching k b article could not be found
@@ -17845,17 +17541,17 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds the k b articles before and after the current k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and status = &#63;.
+	 * Returns the k b articles before and after the current k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and status = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
 	 * @param kbArticleId the primary key of the current k b article
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param sections the sections to search with
-	 * @param status the status to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param sections the sections
+	 * @param status the status
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a k b article with the primary key could not be found
@@ -18024,16 +17720,16 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and status = &#63;.
+	 * Returns all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and status = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param sectionses the sectionses to search with
-	 * @param status the status to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param sectionses the sectionses
+	 * @param status the status
 	 * @return the matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -18045,18 +17741,18 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds a range of all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and status = &#63;.
+	 * Returns a range of all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and status = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param sectionses the sectionses to search with
-	 * @param status the status to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param sectionses the sectionses
+	 * @param status the status
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @return the range of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -18068,18 +17764,18 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds an ordered range of all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and status = &#63;.
+	 * Returns an ordered range of all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and status = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param sectionses the sectionses to search with
-	 * @param status the status to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param sectionses the sectionses
+	 * @param status the status
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching k b articles
 	 * @throws SystemException if a system exception occurred
@@ -18217,12 +17913,12 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and status = &#63;.
+	 * Returns all the k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and status = &#63;.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param sections the sections to search with
-	 * @param status the status to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param sections the sections
+	 * @param status the status
 	 * @return the matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -18234,18 +17930,18 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds a range of all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and status = &#63;.
+	 * Returns a range of all the k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and status = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param sections the sections to search with
-	 * @param status the status to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param sections the sections
+	 * @param status the status
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @return the range of matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -18257,18 +17953,18 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds an ordered range of all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and status = &#63;.
+	 * Returns an ordered range of all the k b articles that the user has permissions to view where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and status = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param sections the sections to search with
-	 * @param status the status to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param sections the sections
+	 * @param status the status
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
@@ -18291,12 +17987,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 			query = new StringBundler(6);
 		}
 
-		if (getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_WHERE);
-		}
-		else {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_1);
-		}
+		query.append(_FILTER_SQL_SELECT_KBARTICLE_WHERE);
 
 		query.append(_FINDER_COLUMN_G_P_S_S_GROUPID_2);
 
@@ -18316,9 +18007,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		query.append(_FINDER_COLUMN_G_P_S_S_STATUS_2);
 
-		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_2);
-		}
+		appendGroupByComparator(query, _FILTER_COLUMN_PK);
 
 		if (orderByComparator != null) {
 			if (getDB().isSupportsInlineDistinct()) {
@@ -18380,17 +18069,13 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters the k b articles before and after the current k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
+	 * Returns the k b articles before and after the current k b article in the ordered set of k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and status = &#63;.
 	 *
 	 * @param kbArticleId the primary key of the current k b article
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param sections the sections to search with
-	 * @param status the status to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param sections the sections
+	 * @param status the status
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next k b article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a k b article with the primary key could not be found
@@ -18448,12 +18133,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 			query = new StringBundler(3);
 		}
 
-		if (getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_WHERE);
-		}
-		else {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_1);
-		}
+		query.append(_FILTER_SQL_SELECT_KBARTICLE_WHERE);
 
 		query.append(_FINDER_COLUMN_G_P_S_S_GROUPID_2);
 
@@ -18473,9 +18153,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		query.append(_FINDER_COLUMN_G_P_S_S_STATUS_2);
 
-		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_2);
-		}
+		appendGroupByComparator(query, _FILTER_COLUMN_PK);
 
 		if (orderByComparator != null) {
 			String[] orderByFields = orderByComparator.getOrderByFields();
@@ -18598,16 +18276,12 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and status = &#63;.
+	 * Returns all the k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and status = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param sectionses the sectionses to search with
-	 * @param status the status to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param sectionses the sectionses
+	 * @param status the status
 	 * @return the matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -18619,18 +18293,18 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds a range of all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and status = &#63;.
+	 * Returns a range of all the k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and status = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param sectionses the sectionses to search with
-	 * @param status the status to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param sectionses the sectionses
+	 * @param status the status
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @return the range of matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -18642,18 +18316,18 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds an ordered range of all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and status = &#63;.
+	 * Returns an ordered range of all the k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and status = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param sectionses the sectionses to search with
-	 * @param status the status to search with
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param sectionses the sectionses
+	 * @param status the status
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
@@ -18668,12 +18342,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		StringBundler query = new StringBundler();
 
-		if (getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_WHERE);
-		}
-		else {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_1);
-		}
+		query.append(_FILTER_SQL_SELECT_KBARTICLE_WHERE);
 
 		boolean conjunctionable = false;
 
@@ -18733,9 +18402,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		conjunctionable = true;
 
-		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_2);
-		}
+		appendGroupByComparator(query, _FILTER_COLUMN_PK);
 
 		if (orderByComparator != null) {
 			if (getDB().isSupportsInlineDistinct()) {
@@ -18797,7 +18464,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds all the k b articles.
+	 * Returns all the k b articles.
 	 *
 	 * @return the k b articles
 	 * @throws SystemException if a system exception occurred
@@ -18807,14 +18474,14 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds a range of all the k b articles.
+	 * Returns a range of all the k b articles.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @return the range of k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -18824,14 +18491,14 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Finds an ordered range of all the k b articles.
+	 * Returns an ordered range of all the k b articles.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of k b articles to return
-	 * @param end the upper bound of the range of k b articles to return (not inclusive)
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of k b articles
 	 * @throws SystemException if a system exception occurred
@@ -18908,7 +18575,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	/**
 	 * Removes all the k b articles where uuid = &#63; from the database.
 	 *
-	 * @param uuid the uuid to search with
+	 * @param uuid the uuid
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeByUuid(String uuid) throws SystemException {
@@ -18920,8 +18587,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	/**
 	 * Removes the k b article where uuid = &#63; and groupId = &#63; from the database.
 	 *
-	 * @param uuid the uuid to search with
-	 * @param groupId the group ID to search with
+	 * @param uuid the uuid
+	 * @param groupId the group ID
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeByUUID_G(String uuid, long groupId)
@@ -18934,7 +18601,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	/**
 	 * Removes all the k b articles where resourcePrimKey = &#63; from the database.
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
+	 * @param resourcePrimKey the resource prim key
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeByResourcePrimKey(long resourcePrimKey)
@@ -18947,8 +18614,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	/**
 	 * Removes all the k b articles where resourcePrimKey = &#63; and groupId = &#63; from the database.
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param groupId the group ID to search with
+	 * @param resourcePrimKey the resource prim key
+	 * @param groupId the group ID
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeByR_G(long resourcePrimKey, long groupId)
@@ -18961,8 +18628,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	/**
 	 * Removes the k b article where resourcePrimKey = &#63; and version = &#63; from the database.
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param version the version to search with
+	 * @param resourcePrimKey the resource prim key
+	 * @param version the version
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeByR_V(long resourcePrimKey, int version)
@@ -18975,8 +18642,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	/**
 	 * Removes all the k b articles where resourcePrimKey = &#63; and latest = &#63; from the database.
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param latest the latest to search with
+	 * @param resourcePrimKey the resource prim key
+	 * @param latest the latest
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeByR_L(long resourcePrimKey, boolean latest)
@@ -18989,8 +18656,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	/**
 	 * Removes all the k b articles where resourcePrimKey = &#63; and main = &#63; from the database.
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param main the main to search with
+	 * @param resourcePrimKey the resource prim key
+	 * @param main the main
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeByR_M(long resourcePrimKey, boolean main)
@@ -19003,8 +18670,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	/**
 	 * Removes all the k b articles where resourcePrimKey = &#63; and status = &#63; from the database.
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param status the status to search with
+	 * @param resourcePrimKey the resource prim key
+	 * @param status the status
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeByR_S(long resourcePrimKey, int status)
@@ -19017,8 +18684,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	/**
 	 * Removes all the k b articles where groupId = &#63; and latest = &#63; from the database.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param latest the latest to search with
+	 * @param groupId the group ID
+	 * @param latest the latest
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeByG_L(long groupId, boolean latest)
@@ -19031,8 +18698,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	/**
 	 * Removes all the k b articles where groupId = &#63; and main = &#63; from the database.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param main the main to search with
+	 * @param groupId the group ID
+	 * @param main the main
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeByG_M(long groupId, boolean main)
@@ -19045,8 +18712,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	/**
 	 * Removes all the k b articles where groupId = &#63; and status = &#63; from the database.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param status the status to search with
+	 * @param groupId the group ID
+	 * @param status the status
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeByG_S(long groupId, int status) throws SystemException {
@@ -19058,8 +18725,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	/**
 	 * Removes all the k b articles where companyId = &#63; and latest = &#63; from the database.
 	 *
-	 * @param companyId the company ID to search with
-	 * @param latest the latest to search with
+	 * @param companyId the company ID
+	 * @param latest the latest
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeByC_L(long companyId, boolean latest)
@@ -19072,8 +18739,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	/**
 	 * Removes all the k b articles where companyId = &#63; and main = &#63; from the database.
 	 *
-	 * @param companyId the company ID to search with
-	 * @param main the main to search with
+	 * @param companyId the company ID
+	 * @param main the main
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeByC_M(long companyId, boolean main)
@@ -19086,8 +18753,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	/**
 	 * Removes all the k b articles where companyId = &#63; and status = &#63; from the database.
 	 *
-	 * @param companyId the company ID to search with
-	 * @param status the status to search with
+	 * @param companyId the company ID
+	 * @param status the status
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeByC_S(long companyId, int status)
@@ -19100,8 +18767,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	/**
 	 * Removes all the k b articles where parentResourcePrimKey = &#63; and latest = &#63; from the database.
 	 *
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param latest the latest to search with
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param latest the latest
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeByP_L(long parentResourcePrimKey, boolean latest)
@@ -19114,8 +18781,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	/**
 	 * Removes all the k b articles where parentResourcePrimKey = &#63; and main = &#63; from the database.
 	 *
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param main the main to search with
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param main the main
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeByP_M(long parentResourcePrimKey, boolean main)
@@ -19128,8 +18795,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	/**
 	 * Removes all the k b articles where parentResourcePrimKey = &#63; and status = &#63; from the database.
 	 *
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param status the status to search with
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param status the status
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeByP_S(long parentResourcePrimKey, int status)
@@ -19142,9 +18809,9 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	/**
 	 * Removes all the k b articles where resourcePrimKey = &#63; and groupId = &#63; and latest = &#63; from the database.
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param groupId the group ID to search with
-	 * @param latest the latest to search with
+	 * @param resourcePrimKey the resource prim key
+	 * @param groupId the group ID
+	 * @param latest the latest
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeByR_G_L(long resourcePrimKey, long groupId, boolean latest)
@@ -19157,9 +18824,9 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	/**
 	 * Removes all the k b articles where resourcePrimKey = &#63; and groupId = &#63; and main = &#63; from the database.
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param groupId the group ID to search with
-	 * @param main the main to search with
+	 * @param resourcePrimKey the resource prim key
+	 * @param groupId the group ID
+	 * @param main the main
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeByR_G_M(long resourcePrimKey, long groupId, boolean main)
@@ -19172,9 +18839,9 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	/**
 	 * Removes all the k b articles where resourcePrimKey = &#63; and groupId = &#63; and status = &#63; from the database.
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param groupId the group ID to search with
-	 * @param status the status to search with
+	 * @param resourcePrimKey the resource prim key
+	 * @param groupId the group ID
+	 * @param status the status
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeByR_G_S(long resourcePrimKey, long groupId, int status)
@@ -19187,9 +18854,9 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	/**
 	 * Removes all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63; from the database.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param latest the latest to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param latest the latest
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeByG_P_L(long groupId, long parentResourcePrimKey,
@@ -19203,9 +18870,9 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	/**
 	 * Removes all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and main = &#63; from the database.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param main the main to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param main the main
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeByG_P_M(long groupId, long parentResourcePrimKey,
@@ -19219,9 +18886,9 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	/**
 	 * Removes all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and status = &#63; from the database.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param status the status to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param status the status
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeByG_P_S(long groupId, long parentResourcePrimKey,
@@ -19235,10 +18902,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	/**
 	 * Removes all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and latest = &#63; from the database.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param sections the sections to search with
-	 * @param latest the latest to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param sections the sections
+	 * @param latest the latest
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeByG_P_S_L(long groupId, long parentResourcePrimKey,
@@ -19252,10 +18919,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	/**
 	 * Removes all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and main = &#63; from the database.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param sections the sections to search with
-	 * @param main the main to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param sections the sections
+	 * @param main the main
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeByG_P_S_M(long groupId, long parentResourcePrimKey,
@@ -19269,10 +18936,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	/**
 	 * Removes all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and status = &#63; from the database.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param sections the sections to search with
-	 * @param status the status to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param sections the sections
+	 * @param status the status
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeByG_P_S_S(long groupId, long parentResourcePrimKey,
@@ -19295,9 +18962,9 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Counts all the k b articles where uuid = &#63;.
+	 * Returns the number of k b articles where uuid = &#63;.
 	 *
-	 * @param uuid the uuid to search with
+	 * @param uuid the uuid
 	 * @return the number of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -19360,10 +19027,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Counts all the k b articles where uuid = &#63; and groupId = &#63;.
+	 * Returns the number of k b articles where uuid = &#63; and groupId = &#63;.
 	 *
-	 * @param uuid the uuid to search with
-	 * @param groupId the group ID to search with
+	 * @param uuid the uuid
+	 * @param groupId the group ID
 	 * @return the number of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -19431,9 +19098,9 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Counts all the k b articles where resourcePrimKey = &#63;.
+	 * Returns the number of k b articles where resourcePrimKey = &#63;.
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
+	 * @param resourcePrimKey the resource prim key
 	 * @return the number of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -19485,10 +19152,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Counts all the k b articles where resourcePrimKey = &#63; and groupId = &#63;.
+	 * Returns the number of k b articles where resourcePrimKey = &#63; and groupId = &#63;.
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param groupId the group ID to search with
+	 * @param resourcePrimKey the resource prim key
+	 * @param groupId the group ID
 	 * @return the number of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -19544,10 +19211,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and counts all the k b articles where resourcePrimKey = &#63; and groupId = &#63;.
+	 * Returns the number of k b articles that the user has permission to view where resourcePrimKey = &#63; and groupId = &#63;.
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param groupId the group ID to search with
+	 * @param resourcePrimKey the resource prim key
+	 * @param groupId the group ID
 	 * @return the number of matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -19597,10 +19264,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Counts all the k b articles where resourcePrimKey = &#63; and version = &#63;.
+	 * Returns the number of k b articles where resourcePrimKey = &#63; and version = &#63;.
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param version the version to search with
+	 * @param resourcePrimKey the resource prim key
+	 * @param version the version
 	 * @return the number of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -19656,10 +19323,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Counts all the k b articles where resourcePrimKey = &#63; and latest = &#63;.
+	 * Returns the number of k b articles where resourcePrimKey = &#63; and latest = &#63;.
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param latest the latest to search with
+	 * @param resourcePrimKey the resource prim key
+	 * @param latest the latest
 	 * @return the number of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -19715,10 +19382,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Counts all the k b articles where resourcePrimKey = any &#63; and latest = &#63;.
+	 * Returns the number of k b articles where resourcePrimKey = any &#63; and latest = &#63;.
 	 *
-	 * @param resourcePrimKeies the resource prim keies to search with
-	 * @param latest the latest to search with
+	 * @param resourcePrimKeies the resource prim keies
+	 * @param latest the latest
 	 * @return the number of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -19804,10 +19471,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Counts all the k b articles where resourcePrimKey = &#63; and main = &#63;.
+	 * Returns the number of k b articles where resourcePrimKey = &#63; and main = &#63;.
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param main the main to search with
+	 * @param resourcePrimKey the resource prim key
+	 * @param main the main
 	 * @return the number of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -19863,10 +19530,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Counts all the k b articles where resourcePrimKey = any &#63; and main = &#63;.
+	 * Returns the number of k b articles where resourcePrimKey = any &#63; and main = &#63;.
 	 *
-	 * @param resourcePrimKeies the resource prim keies to search with
-	 * @param main the main to search with
+	 * @param resourcePrimKeies the resource prim keies
+	 * @param main the main
 	 * @return the number of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -19952,10 +19619,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Counts all the k b articles where resourcePrimKey = &#63; and status = &#63;.
+	 * Returns the number of k b articles where resourcePrimKey = &#63; and status = &#63;.
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param status the status to search with
+	 * @param resourcePrimKey the resource prim key
+	 * @param status the status
 	 * @return the number of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -20011,10 +19678,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Counts all the k b articles where resourcePrimKey = any &#63; and status = &#63;.
+	 * Returns the number of k b articles where resourcePrimKey = any &#63; and status = &#63;.
 	 *
-	 * @param resourcePrimKeies the resource prim keies to search with
-	 * @param status the status to search with
+	 * @param resourcePrimKeies the resource prim keies
+	 * @param status the status
 	 * @return the number of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -20100,10 +19767,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Counts all the k b articles where groupId = &#63; and latest = &#63;.
+	 * Returns the number of k b articles where groupId = &#63; and latest = &#63;.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param latest the latest to search with
+	 * @param groupId the group ID
+	 * @param latest the latest
 	 * @return the number of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -20159,10 +19826,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and counts all the k b articles where groupId = &#63; and latest = &#63;.
+	 * Returns the number of k b articles that the user has permission to view where groupId = &#63; and latest = &#63;.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param latest the latest to search with
+	 * @param groupId the group ID
+	 * @param latest the latest
 	 * @return the number of matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -20212,10 +19879,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Counts all the k b articles where groupId = &#63; and main = &#63;.
+	 * Returns the number of k b articles where groupId = &#63; and main = &#63;.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param main the main to search with
+	 * @param groupId the group ID
+	 * @param main the main
 	 * @return the number of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -20270,10 +19937,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and counts all the k b articles where groupId = &#63; and main = &#63;.
+	 * Returns the number of k b articles that the user has permission to view where groupId = &#63; and main = &#63;.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param main the main to search with
+	 * @param groupId the group ID
+	 * @param main the main
 	 * @return the number of matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -20323,10 +19990,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Counts all the k b articles where groupId = &#63; and status = &#63;.
+	 * Returns the number of k b articles where groupId = &#63; and status = &#63;.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param status the status to search with
+	 * @param groupId the group ID
+	 * @param status the status
 	 * @return the number of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -20381,10 +20048,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and counts all the k b articles where groupId = &#63; and status = &#63;.
+	 * Returns the number of k b articles that the user has permission to view where groupId = &#63; and status = &#63;.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param status the status to search with
+	 * @param groupId the group ID
+	 * @param status the status
 	 * @return the number of matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -20434,10 +20101,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Counts all the k b articles where companyId = &#63; and latest = &#63;.
+	 * Returns the number of k b articles where companyId = &#63; and latest = &#63;.
 	 *
-	 * @param companyId the company ID to search with
-	 * @param latest the latest to search with
+	 * @param companyId the company ID
+	 * @param latest the latest
 	 * @return the number of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -20493,10 +20160,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Counts all the k b articles where companyId = &#63; and main = &#63;.
+	 * Returns the number of k b articles where companyId = &#63; and main = &#63;.
 	 *
-	 * @param companyId the company ID to search with
-	 * @param main the main to search with
+	 * @param companyId the company ID
+	 * @param main the main
 	 * @return the number of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -20552,10 +20219,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Counts all the k b articles where companyId = &#63; and status = &#63;.
+	 * Returns the number of k b articles where companyId = &#63; and status = &#63;.
 	 *
-	 * @param companyId the company ID to search with
-	 * @param status the status to search with
+	 * @param companyId the company ID
+	 * @param status the status
 	 * @return the number of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -20610,10 +20277,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Counts all the k b articles where parentResourcePrimKey = &#63; and latest = &#63;.
+	 * Returns the number of k b articles where parentResourcePrimKey = &#63; and latest = &#63;.
 	 *
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param latest the latest to search with
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param latest the latest
 	 * @return the number of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -20669,10 +20336,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Counts all the k b articles where parentResourcePrimKey = any &#63; and latest = &#63;.
+	 * Returns the number of k b articles where parentResourcePrimKey = any &#63; and latest = &#63;.
 	 *
-	 * @param parentResourcePrimKeies the parent resource prim keies to search with
-	 * @param latest the latest to search with
+	 * @param parentResourcePrimKeies the parent resource prim keies
+	 * @param latest the latest
 	 * @return the number of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -20759,10 +20426,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Counts all the k b articles where parentResourcePrimKey = &#63; and main = &#63;.
+	 * Returns the number of k b articles where parentResourcePrimKey = &#63; and main = &#63;.
 	 *
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param main the main to search with
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param main the main
 	 * @return the number of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -20818,10 +20485,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Counts all the k b articles where parentResourcePrimKey = any &#63; and main = &#63;.
+	 * Returns the number of k b articles where parentResourcePrimKey = any &#63; and main = &#63;.
 	 *
-	 * @param parentResourcePrimKeies the parent resource prim keies to search with
-	 * @param main the main to search with
+	 * @param parentResourcePrimKeies the parent resource prim keies
+	 * @param main the main
 	 * @return the number of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -20908,10 +20575,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Counts all the k b articles where parentResourcePrimKey = &#63; and status = &#63;.
+	 * Returns the number of k b articles where parentResourcePrimKey = &#63; and status = &#63;.
 	 *
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param status the status to search with
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param status the status
 	 * @return the number of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -20967,10 +20634,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Counts all the k b articles where parentResourcePrimKey = any &#63; and status = &#63;.
+	 * Returns the number of k b articles where parentResourcePrimKey = any &#63; and status = &#63;.
 	 *
-	 * @param parentResourcePrimKeies the parent resource prim keies to search with
-	 * @param status the status to search with
+	 * @param parentResourcePrimKeies the parent resource prim keies
+	 * @param status the status
 	 * @return the number of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -21057,11 +20724,11 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Counts all the k b articles where resourcePrimKey = &#63; and groupId = &#63; and latest = &#63;.
+	 * Returns the number of k b articles where resourcePrimKey = &#63; and groupId = &#63; and latest = &#63;.
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param groupId the group ID to search with
-	 * @param latest the latest to search with
+	 * @param resourcePrimKey the resource prim key
+	 * @param groupId the group ID
+	 * @param latest the latest
 	 * @return the number of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -21121,11 +20788,11 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Counts all the k b articles where resourcePrimKey = any &#63; and groupId = &#63; and latest = &#63;.
+	 * Returns the number of k b articles where resourcePrimKey = any &#63; and groupId = &#63; and latest = &#63;.
 	 *
-	 * @param resourcePrimKeies the resource prim keies to search with
-	 * @param groupId the group ID to search with
-	 * @param latest the latest to search with
+	 * @param resourcePrimKeies the resource prim keies
+	 * @param groupId the group ID
+	 * @param latest the latest
 	 * @return the number of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -21221,11 +20888,11 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and counts all the k b articles where resourcePrimKey = &#63; and groupId = &#63; and latest = &#63;.
+	 * Returns the number of k b articles that the user has permission to view where resourcePrimKey = &#63; and groupId = &#63; and latest = &#63;.
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param groupId the group ID to search with
-	 * @param latest the latest to search with
+	 * @param resourcePrimKey the resource prim key
+	 * @param groupId the group ID
+	 * @param latest the latest
 	 * @return the number of matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -21279,11 +20946,11 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and counts all the k b articles where resourcePrimKey = any &#63; and groupId = &#63; and latest = &#63;.
+	 * Returns the number of k b articles that the user has permission to view where resourcePrimKey = any &#63; and groupId = &#63; and latest = &#63;.
 	 *
-	 * @param resourcePrimKeies the resource prim keies to search with
-	 * @param groupId the group ID to search with
-	 * @param latest the latest to search with
+	 * @param resourcePrimKeies the resource prim keies
+	 * @param groupId the group ID
+	 * @param latest the latest
 	 * @return the number of matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -21371,11 +21038,11 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Counts all the k b articles where resourcePrimKey = &#63; and groupId = &#63; and main = &#63;.
+	 * Returns the number of k b articles where resourcePrimKey = &#63; and groupId = &#63; and main = &#63;.
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param groupId the group ID to search with
-	 * @param main the main to search with
+	 * @param resourcePrimKey the resource prim key
+	 * @param groupId the group ID
+	 * @param main the main
 	 * @return the number of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -21435,11 +21102,11 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Counts all the k b articles where resourcePrimKey = any &#63; and groupId = &#63; and main = &#63;.
+	 * Returns the number of k b articles where resourcePrimKey = any &#63; and groupId = &#63; and main = &#63;.
 	 *
-	 * @param resourcePrimKeies the resource prim keies to search with
-	 * @param groupId the group ID to search with
-	 * @param main the main to search with
+	 * @param resourcePrimKeies the resource prim keies
+	 * @param groupId the group ID
+	 * @param main the main
 	 * @return the number of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -21535,11 +21202,11 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and counts all the k b articles where resourcePrimKey = &#63; and groupId = &#63; and main = &#63;.
+	 * Returns the number of k b articles that the user has permission to view where resourcePrimKey = &#63; and groupId = &#63; and main = &#63;.
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param groupId the group ID to search with
-	 * @param main the main to search with
+	 * @param resourcePrimKey the resource prim key
+	 * @param groupId the group ID
+	 * @param main the main
 	 * @return the number of matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -21593,11 +21260,11 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and counts all the k b articles where resourcePrimKey = any &#63; and groupId = &#63; and main = &#63;.
+	 * Returns the number of k b articles that the user has permission to view where resourcePrimKey = any &#63; and groupId = &#63; and main = &#63;.
 	 *
-	 * @param resourcePrimKeies the resource prim keies to search with
-	 * @param groupId the group ID to search with
-	 * @param main the main to search with
+	 * @param resourcePrimKeies the resource prim keies
+	 * @param groupId the group ID
+	 * @param main the main
 	 * @return the number of matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -21685,11 +21352,11 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Counts all the k b articles where resourcePrimKey = &#63; and groupId = &#63; and status = &#63;.
+	 * Returns the number of k b articles where resourcePrimKey = &#63; and groupId = &#63; and status = &#63;.
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param groupId the group ID to search with
-	 * @param status the status to search with
+	 * @param resourcePrimKey the resource prim key
+	 * @param groupId the group ID
+	 * @param status the status
 	 * @return the number of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -21749,11 +21416,11 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Counts all the k b articles where resourcePrimKey = any &#63; and groupId = &#63; and status = &#63;.
+	 * Returns the number of k b articles where resourcePrimKey = any &#63; and groupId = &#63; and status = &#63;.
 	 *
-	 * @param resourcePrimKeies the resource prim keies to search with
-	 * @param groupId the group ID to search with
-	 * @param status the status to search with
+	 * @param resourcePrimKeies the resource prim keies
+	 * @param groupId the group ID
+	 * @param status the status
 	 * @return the number of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -21849,11 +21516,11 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and counts all the k b articles where resourcePrimKey = &#63; and groupId = &#63; and status = &#63;.
+	 * Returns the number of k b articles that the user has permission to view where resourcePrimKey = &#63; and groupId = &#63; and status = &#63;.
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param groupId the group ID to search with
-	 * @param status the status to search with
+	 * @param resourcePrimKey the resource prim key
+	 * @param groupId the group ID
+	 * @param status the status
 	 * @return the number of matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -21907,11 +21574,11 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and counts all the k b articles where resourcePrimKey = any &#63; and groupId = &#63; and status = &#63;.
+	 * Returns the number of k b articles that the user has permission to view where resourcePrimKey = any &#63; and groupId = &#63; and status = &#63;.
 	 *
-	 * @param resourcePrimKeies the resource prim keies to search with
-	 * @param groupId the group ID to search with
-	 * @param status the status to search with
+	 * @param resourcePrimKeies the resource prim keies
+	 * @param groupId the group ID
+	 * @param status the status
 	 * @return the number of matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -21999,11 +21666,11 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Counts all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63;.
+	 * Returns the number of k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63;.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param latest the latest to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param latest the latest
 	 * @return the number of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -22065,11 +21732,11 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Counts all the k b articles where groupId = &#63; and parentResourcePrimKey = any &#63; and latest = &#63;.
+	 * Returns the number of k b articles where groupId = &#63; and parentResourcePrimKey = any &#63; and latest = &#63;.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKeies the parent resource prim keies to search with
-	 * @param latest the latest to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKeies the parent resource prim keies
+	 * @param latest the latest
 	 * @return the number of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -22166,11 +21833,11 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and counts all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63;.
+	 * Returns the number of k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63;.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param latest the latest to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param latest the latest
 	 * @return the number of matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -22224,11 +21891,11 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and counts all the k b articles where groupId = &#63; and parentResourcePrimKey = any &#63; and latest = &#63;.
+	 * Returns the number of k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = any &#63; and latest = &#63;.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKeies the parent resource prim keies to search with
-	 * @param latest the latest to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKeies the parent resource prim keies
+	 * @param latest the latest
 	 * @return the number of matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -22317,11 +21984,11 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Counts all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and main = &#63;.
+	 * Returns the number of k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and main = &#63;.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param main the main to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param main the main
 	 * @return the number of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -22381,11 +22048,11 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Counts all the k b articles where groupId = &#63; and parentResourcePrimKey = any &#63; and main = &#63;.
+	 * Returns the number of k b articles where groupId = &#63; and parentResourcePrimKey = any &#63; and main = &#63;.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKeies the parent resource prim keies to search with
-	 * @param main the main to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKeies the parent resource prim keies
+	 * @param main the main
 	 * @return the number of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -22482,11 +22149,11 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and counts all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and main = &#63;.
+	 * Returns the number of k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and main = &#63;.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param main the main to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param main the main
 	 * @return the number of matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -22540,11 +22207,11 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and counts all the k b articles where groupId = &#63; and parentResourcePrimKey = any &#63; and main = &#63;.
+	 * Returns the number of k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = any &#63; and main = &#63;.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKeies the parent resource prim keies to search with
-	 * @param main the main to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKeies the parent resource prim keies
+	 * @param main the main
 	 * @return the number of matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -22633,11 +22300,11 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Counts all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and status = &#63;.
+	 * Returns the number of k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and status = &#63;.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param status the status to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param status the status
 	 * @return the number of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -22699,11 +22366,11 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Counts all the k b articles where groupId = &#63; and parentResourcePrimKey = any &#63; and status = &#63;.
+	 * Returns the number of k b articles where groupId = &#63; and parentResourcePrimKey = any &#63; and status = &#63;.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKeies the parent resource prim keies to search with
-	 * @param status the status to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKeies the parent resource prim keies
+	 * @param status the status
 	 * @return the number of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -22800,11 +22467,11 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and counts all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and status = &#63;.
+	 * Returns the number of k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and status = &#63;.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param status the status to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param status the status
 	 * @return the number of matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -22858,11 +22525,11 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and counts all the k b articles where groupId = &#63; and parentResourcePrimKey = any &#63; and status = &#63;.
+	 * Returns the number of k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = any &#63; and status = &#63;.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKeies the parent resource prim keies to search with
-	 * @param status the status to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKeies the parent resource prim keies
+	 * @param status the status
 	 * @return the number of matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -22951,12 +22618,12 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Counts all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and latest = &#63;.
+	 * Returns the number of k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and latest = &#63;.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param sections the sections to search with
-	 * @param latest the latest to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param sections the sections
+	 * @param latest the latest
 	 * @return the number of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -23034,12 +22701,12 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Counts all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and latest = &#63;.
+	 * Returns the number of k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and latest = &#63;.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param sectionses the sectionses to search with
-	 * @param latest the latest to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param sectionses the sectionses
+	 * @param latest the latest
 	 * @return the number of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -23158,12 +22825,12 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and counts all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and latest = &#63;.
+	 * Returns the number of k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and latest = &#63;.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param sections the sections to search with
-	 * @param latest the latest to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param sections the sections
+	 * @param latest the latest
 	 * @return the number of matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -23234,12 +22901,12 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and counts all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and latest = &#63;.
+	 * Returns the number of k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and latest = &#63;.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param sectionses the sectionses to search with
-	 * @param latest the latest to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param sectionses the sectionses
+	 * @param latest the latest
 	 * @return the number of matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -23350,12 +23017,12 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Counts all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and main = &#63;.
+	 * Returns the number of k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and main = &#63;.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param sections the sections to search with
-	 * @param main the main to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param sections the sections
+	 * @param main the main
 	 * @return the number of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -23433,12 +23100,12 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Counts all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and main = &#63;.
+	 * Returns the number of k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and main = &#63;.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param sectionses the sectionses to search with
-	 * @param main the main to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param sectionses the sectionses
+	 * @param main the main
 	 * @return the number of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -23557,12 +23224,12 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and counts all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and main = &#63;.
+	 * Returns the number of k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and main = &#63;.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param sections the sections to search with
-	 * @param main the main to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param sections the sections
+	 * @param main the main
 	 * @return the number of matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -23632,12 +23299,12 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and counts all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and main = &#63;.
+	 * Returns the number of k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and main = &#63;.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param sectionses the sectionses to search with
-	 * @param main the main to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param sectionses the sectionses
+	 * @param main the main
 	 * @return the number of matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -23748,12 +23415,12 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Counts all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and status = &#63;.
+	 * Returns the number of k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and status = &#63;.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param sections the sections to search with
-	 * @param status the status to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param sections the sections
+	 * @param status the status
 	 * @return the number of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -23831,12 +23498,12 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Counts all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and status = &#63;.
+	 * Returns the number of k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and status = &#63;.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param sectionses the sectionses to search with
-	 * @param status the status to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param sectionses the sectionses
+	 * @param status the status
 	 * @return the number of matching k b articles
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -23955,12 +23622,12 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and counts all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and status = &#63;.
+	 * Returns the number of k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and status = &#63;.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param sections the sections to search with
-	 * @param status the status to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param sections the sections
+	 * @param status the status
 	 * @return the number of matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -24031,12 +23698,12 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Filters by the user's permissions and counts all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and status = &#63;.
+	 * Returns the number of k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and status = &#63;.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param sectionses the sectionses to search with
-	 * @param status the status to search with
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param sectionses the sectionses
+	 * @param status the status
 	 * @return the number of matching k b articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -24147,7 +23814,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Counts all the k b articles.
+	 * Returns the number of k b articles.
 	 *
 	 * @return the number of k b articles
 	 * @throws SystemException if a system exception occurred
@@ -24434,11 +24101,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		return sql;
 	}
 
-	private static final String _FILTER_SQL_SELECT_KBARTICLE_WHERE = "SELECT DISTINCT {kbArticle.*} FROM KBArticle kbArticle WHERE ";
-	private static final String _FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_1 =
-		"SELECT {KBArticle.*} FROM (SELECT DISTINCT kbArticle.kbArticleId FROM KBArticle kbArticle WHERE ";
-	private static final String _FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_2 =
-		") TEMP_TABLE INNER JOIN KBArticle ON TEMP_TABLE.kbArticleId = KBArticle.kbArticleId";
+	private static final String _FILTER_SQL_SELECT_KBARTICLE_WHERE = "SELECT {kbArticle.*} FROM KBArticle kbArticle WHERE ";
 	private static final String _FILTER_SQL_COUNT_KBARTICLE_WHERE = "SELECT COUNT(DISTINCT kbArticle.kbArticleId) AS COUNT_VALUE FROM KBArticle kbArticle WHERE ";
 	private static final String _FILTER_COLUMN_PK = "kbArticle.rootResourcePrimKey";
 	private static final String _FILTER_ENTITY_ALIAS = "kbArticle";

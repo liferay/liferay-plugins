@@ -23,6 +23,11 @@ import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.search.Indexer;
+import com.liferay.portal.kernel.search.IndexerRegistryUtil;
+import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.service.ResourceLocalService;
 import com.liferay.portal.service.ResourceService;
@@ -75,7 +80,7 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 	/**
 	 * Adds the j i r a change item to the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param jiraChangeItem the j i r a change item to add
+	 * @param jiraChangeItem the j i r a change item
 	 * @return the j i r a change item that was added
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -83,7 +88,22 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 		throws SystemException {
 		jiraChangeItem.setNew(true);
 
-		return jiraChangeItemPersistence.update(jiraChangeItem, false);
+		jiraChangeItem = jiraChangeItemPersistence.update(jiraChangeItem, false);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.reindex(jiraChangeItem);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
+
+		return jiraChangeItem;
 	}
 
 	/**
@@ -99,30 +119,56 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 	/**
 	 * Deletes the j i r a change item with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param jiraChangeItemId the primary key of the j i r a change item to delete
+	 * @param jiraChangeItemId the primary key of the j i r a change item
 	 * @throws PortalException if a j i r a change item with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void deleteJIRAChangeItem(long jiraChangeItemId)
 		throws PortalException, SystemException {
-		jiraChangeItemPersistence.remove(jiraChangeItemId);
+		JIRAChangeItem jiraChangeItem = jiraChangeItemPersistence.remove(jiraChangeItemId);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.delete(jiraChangeItem);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
 	}
 
 	/**
 	 * Deletes the j i r a change item from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param jiraChangeItem the j i r a change item to delete
+	 * @param jiraChangeItem the j i r a change item
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void deleteJIRAChangeItem(JIRAChangeItem jiraChangeItem)
 		throws SystemException {
 		jiraChangeItemPersistence.remove(jiraChangeItem);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.delete(jiraChangeItem);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
 	}
 
 	/**
 	 * Performs a dynamic query on the database and returns the matching rows.
 	 *
-	 * @param dynamicQuery the dynamic query to search with
+	 * @param dynamicQuery the dynamic query
 	 * @return the matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -139,9 +185,9 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param dynamicQuery the dynamic query to search with
-	 * @param start the lower bound of the range of model instances to return
-	 * @param end the upper bound of the range of model instances to return (not inclusive)
+	 * @param dynamicQuery the dynamic query
+	 * @param start the lower bound of the range of model instances
+	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @return the range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -159,9 +205,9 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param dynamicQuery the dynamic query to search with
-	 * @param start the lower bound of the range of model instances to return
-	 * @param end the upper bound of the range of model instances to return (not inclusive)
+	 * @param dynamicQuery the dynamic query
+	 * @param start the lower bound of the range of model instances
+	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching rows
 	 * @throws SystemException if a system exception occurred
@@ -174,9 +220,9 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 	}
 
 	/**
-	 * Counts the number of rows that match the dynamic query.
+	 * Returns the number of rows that match the dynamic query.
 	 *
-	 * @param dynamicQuery the dynamic query to search with
+	 * @param dynamicQuery the dynamic query
 	 * @return the number of rows that match the dynamic query
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -186,9 +232,9 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the j i r a change item with the primary key.
+	 * Returns the j i r a change item with the primary key.
 	 *
-	 * @param jiraChangeItemId the primary key of the j i r a change item to get
+	 * @param jiraChangeItemId the primary key of the j i r a change item
 	 * @return the j i r a change item
 	 * @throws PortalException if a j i r a change item with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -199,14 +245,14 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets a range of all the j i r a change items.
+	 * Returns a range of all the j i r a change items.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of j i r a change items to return
-	 * @param end the upper bound of the range of j i r a change items to return (not inclusive)
+	 * @param start the lower bound of the range of j i r a change items
+	 * @param end the upper bound of the range of j i r a change items (not inclusive)
 	 * @return the range of j i r a change items
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -216,7 +262,7 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the number of j i r a change items.
+	 * Returns the number of j i r a change items.
 	 *
 	 * @return the number of j i r a change items
 	 * @throws SystemException if a system exception occurred
@@ -228,21 +274,19 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 	/**
 	 * Updates the j i r a change item in the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param jiraChangeItem the j i r a change item to update
+	 * @param jiraChangeItem the j i r a change item
 	 * @return the j i r a change item that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
 	public JIRAChangeItem updateJIRAChangeItem(JIRAChangeItem jiraChangeItem)
 		throws SystemException {
-		jiraChangeItem.setNew(false);
-
-		return jiraChangeItemPersistence.update(jiraChangeItem, true);
+		return updateJIRAChangeItem(jiraChangeItem, true);
 	}
 
 	/**
 	 * Updates the j i r a change item in the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param jiraChangeItem the j i r a change item to update
+	 * @param jiraChangeItem the j i r a change item
 	 * @param merge whether to merge the j i r a change item with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
 	 * @return the j i r a change item that was updated
 	 * @throws SystemException if a system exception occurred
@@ -251,11 +295,26 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 		boolean merge) throws SystemException {
 		jiraChangeItem.setNew(false);
 
-		return jiraChangeItemPersistence.update(jiraChangeItem, merge);
+		jiraChangeItem = jiraChangeItemPersistence.update(jiraChangeItem, merge);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.reindex(jiraChangeItem);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
+
+		return jiraChangeItem;
 	}
 
 	/**
-	 * Gets the j i r a action local service.
+	 * Returns the j i r a action local service.
 	 *
 	 * @return the j i r a action local service
 	 */
@@ -274,7 +333,7 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the j i r a action persistence.
+	 * Returns the j i r a action persistence.
 	 *
 	 * @return the j i r a action persistence
 	 */
@@ -293,7 +352,7 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the j i r a action finder.
+	 * Returns the j i r a action finder.
 	 *
 	 * @return the j i r a action finder
 	 */
@@ -311,7 +370,7 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the j i r a change group local service.
+	 * Returns the j i r a change group local service.
 	 *
 	 * @return the j i r a change group local service
 	 */
@@ -330,7 +389,7 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the j i r a change group persistence.
+	 * Returns the j i r a change group persistence.
 	 *
 	 * @return the j i r a change group persistence
 	 */
@@ -349,7 +408,7 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the j i r a change group finder.
+	 * Returns the j i r a change group finder.
 	 *
 	 * @return the j i r a change group finder
 	 */
@@ -368,7 +427,7 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the j i r a change item local service.
+	 * Returns the j i r a change item local service.
 	 *
 	 * @return the j i r a change item local service
 	 */
@@ -387,7 +446,7 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the j i r a change item persistence.
+	 * Returns the j i r a change item persistence.
 	 *
 	 * @return the j i r a change item persistence
 	 */
@@ -406,7 +465,7 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the j i r a issue local service.
+	 * Returns the j i r a issue local service.
 	 *
 	 * @return the j i r a issue local service
 	 */
@@ -425,7 +484,7 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the j i r a issue persistence.
+	 * Returns the j i r a issue persistence.
 	 *
 	 * @return the j i r a issue persistence
 	 */
@@ -444,7 +503,7 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the j i r a issue finder.
+	 * Returns the j i r a issue finder.
 	 *
 	 * @return the j i r a issue finder
 	 */
@@ -462,7 +521,7 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the s v n repository local service.
+	 * Returns the s v n repository local service.
 	 *
 	 * @return the s v n repository local service
 	 */
@@ -481,7 +540,7 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the s v n repository persistence.
+	 * Returns the s v n repository persistence.
 	 *
 	 * @return the s v n repository persistence
 	 */
@@ -500,7 +559,7 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the s v n revision local service.
+	 * Returns the s v n revision local service.
 	 *
 	 * @return the s v n revision local service
 	 */
@@ -519,7 +578,7 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the s v n revision persistence.
+	 * Returns the s v n revision persistence.
 	 *
 	 * @return the s v n revision persistence
 	 */
@@ -538,7 +597,7 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the counter local service.
+	 * Returns the counter local service.
 	 *
 	 * @return the counter local service
 	 */
@@ -556,7 +615,7 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the resource local service.
+	 * Returns the resource local service.
 	 *
 	 * @return the resource local service
 	 */
@@ -575,7 +634,7 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the resource remote service.
+	 * Returns the resource remote service.
 	 *
 	 * @return the resource remote service
 	 */
@@ -593,7 +652,7 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the resource persistence.
+	 * Returns the resource persistence.
 	 *
 	 * @return the resource persistence
 	 */
@@ -611,7 +670,7 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the user local service.
+	 * Returns the user local service.
 	 *
 	 * @return the user local service
 	 */
@@ -629,7 +688,7 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the user remote service.
+	 * Returns the user remote service.
 	 *
 	 * @return the user remote service
 	 */
@@ -647,7 +706,7 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the user persistence.
+	 * Returns the user persistence.
 	 *
 	 * @return the user persistence
 	 */
@@ -665,7 +724,7 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the Spring bean ID for this bean.
+	 * Returns the Spring bean ID for this bean.
 	 *
 	 * @return the Spring bean ID for this bean
 	 */
@@ -682,10 +741,18 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 		_beanIdentifier = beanIdentifier;
 	}
 
+	protected Class<?> getModelClass() {
+		return JIRAChangeItem.class;
+	}
+
+	protected String getModelClassName() {
+		return JIRAChangeItem.class.getName();
+	}
+
 	/**
 	 * Performs an SQL query.
 	 *
-	 * @param sql the sql query to perform
+	 * @param sql the sql query
 	 */
 	protected void runSQL(String sql) throws SystemException {
 		try {
@@ -745,5 +812,6 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 	protected UserService userService;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
+	private static Log _log = LogFactoryUtil.getLog(JIRAChangeItemLocalServiceBaseImpl.class);
 	private String _beanIdentifier;
 }

@@ -31,7 +31,7 @@ public class EntryLocalServiceWrapper implements EntryLocalService {
 	/**
 	* Adds the entry to the database. Also notifies the appropriate model listeners.
 	*
-	* @param entry the entry to add
+	* @param entry the entry
 	* @return the entry that was added
 	* @throws SystemException if a system exception occurred
 	*/
@@ -54,7 +54,7 @@ public class EntryLocalServiceWrapper implements EntryLocalService {
 	/**
 	* Deletes the entry with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param entryId the primary key of the entry to delete
+	* @param entryId the primary key of the entry
 	* @throws PortalException if a entry with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -67,7 +67,7 @@ public class EntryLocalServiceWrapper implements EntryLocalService {
 	/**
 	* Deletes the entry from the database. Also notifies the appropriate model listeners.
 	*
-	* @param entry the entry to delete
+	* @param entry the entry
 	* @throws SystemException if a system exception occurred
 	*/
 	public void deleteEntry(com.liferay.chat.model.Entry entry)
@@ -78,7 +78,7 @@ public class EntryLocalServiceWrapper implements EntryLocalService {
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
 	*
-	* @param dynamicQuery the dynamic query to search with
+	* @param dynamicQuery the dynamic query
 	* @return the matching rows
 	* @throws SystemException if a system exception occurred
 	*/
@@ -96,9 +96,9 @@ public class EntryLocalServiceWrapper implements EntryLocalService {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param dynamicQuery the dynamic query to search with
-	* @param start the lower bound of the range of model instances to return
-	* @param end the upper bound of the range of model instances to return (not inclusive)
+	* @param dynamicQuery the dynamic query
+	* @param start the lower bound of the range of model instances
+	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
 	* @throws SystemException if a system exception occurred
 	*/
@@ -116,9 +116,9 @@ public class EntryLocalServiceWrapper implements EntryLocalService {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param dynamicQuery the dynamic query to search with
-	* @param start the lower bound of the range of model instances to return
-	* @param end the upper bound of the range of model instances to return (not inclusive)
+	* @param dynamicQuery the dynamic query
+	* @param start the lower bound of the range of model instances
+	* @param end the upper bound of the range of model instances (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
 	* @throws SystemException if a system exception occurred
@@ -134,9 +134,9 @@ public class EntryLocalServiceWrapper implements EntryLocalService {
 	}
 
 	/**
-	* Counts the number of rows that match the dynamic query.
+	* Returns the number of rows that match the dynamic query.
 	*
-	* @param dynamicQuery the dynamic query to search with
+	* @param dynamicQuery the dynamic query
 	* @return the number of rows that match the dynamic query
 	* @throws SystemException if a system exception occurred
 	*/
@@ -147,9 +147,9 @@ public class EntryLocalServiceWrapper implements EntryLocalService {
 	}
 
 	/**
-	* Gets the entry with the primary key.
+	* Returns the entry with the primary key.
 	*
-	* @param entryId the primary key of the entry to get
+	* @param entryId the primary key of the entry
 	* @return the entry
 	* @throws PortalException if a entry with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -161,14 +161,14 @@ public class EntryLocalServiceWrapper implements EntryLocalService {
 	}
 
 	/**
-	* Gets a range of all the entries.
+	* Returns a range of all the entries.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of entries to return
-	* @param end the upper bound of the range of entries to return (not inclusive)
+	* @param start the lower bound of the range of entries
+	* @param end the upper bound of the range of entries (not inclusive)
 	* @return the range of entries
 	* @throws SystemException if a system exception occurred
 	*/
@@ -178,7 +178,7 @@ public class EntryLocalServiceWrapper implements EntryLocalService {
 	}
 
 	/**
-	* Gets the number of entries.
+	* Returns the number of entries.
 	*
 	* @return the number of entries
 	* @throws SystemException if a system exception occurred
@@ -191,7 +191,7 @@ public class EntryLocalServiceWrapper implements EntryLocalService {
 	/**
 	* Updates the entry in the database. Also notifies the appropriate model listeners.
 	*
-	* @param entry the entry to update
+	* @param entry the entry
 	* @return the entry that was updated
 	* @throws SystemException if a system exception occurred
 	*/
@@ -204,7 +204,7 @@ public class EntryLocalServiceWrapper implements EntryLocalService {
 	/**
 	* Updates the entry in the database. Also notifies the appropriate model listeners.
 	*
-	* @param entry the entry to update
+	* @param entry the entry
 	* @param merge whether to merge the entry with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
 	* @return the entry that was updated
 	* @throws SystemException if a system exception occurred
@@ -216,7 +216,7 @@ public class EntryLocalServiceWrapper implements EntryLocalService {
 	}
 
 	/**
-	* Gets the Spring bean ID for this bean.
+	* Returns the Spring bean ID for this bean.
 	*
 	* @return the Spring bean ID for this bean
 	*/

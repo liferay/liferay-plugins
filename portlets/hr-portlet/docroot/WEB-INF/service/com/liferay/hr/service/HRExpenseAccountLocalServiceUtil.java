@@ -42,7 +42,7 @@ public class HRExpenseAccountLocalServiceUtil {
 	/**
 	* Adds the h r expense account to the database. Also notifies the appropriate model listeners.
 	*
-	* @param hrExpenseAccount the h r expense account to add
+	* @param hrExpenseAccount the h r expense account
 	* @return the h r expense account that was added
 	* @throws SystemException if a system exception occurred
 	*/
@@ -66,7 +66,7 @@ public class HRExpenseAccountLocalServiceUtil {
 	/**
 	* Deletes the h r expense account with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param hrExpenseAccountId the primary key of the h r expense account to delete
+	* @param hrExpenseAccountId the primary key of the h r expense account
 	* @throws PortalException if a h r expense account with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -79,7 +79,7 @@ public class HRExpenseAccountLocalServiceUtil {
 	/**
 	* Deletes the h r expense account from the database. Also notifies the appropriate model listeners.
 	*
-	* @param hrExpenseAccount the h r expense account to delete
+	* @param hrExpenseAccount the h r expense account
 	* @throws SystemException if a system exception occurred
 	*/
 	public static void deleteHRExpenseAccount(
@@ -91,7 +91,7 @@ public class HRExpenseAccountLocalServiceUtil {
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
 	*
-	* @param dynamicQuery the dynamic query to search with
+	* @param dynamicQuery the dynamic query
 	* @return the matching rows
 	* @throws SystemException if a system exception occurred
 	*/
@@ -109,9 +109,9 @@ public class HRExpenseAccountLocalServiceUtil {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param dynamicQuery the dynamic query to search with
-	* @param start the lower bound of the range of model instances to return
-	* @param end the upper bound of the range of model instances to return (not inclusive)
+	* @param dynamicQuery the dynamic query
+	* @param start the lower bound of the range of model instances
+	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
 	* @throws SystemException if a system exception occurred
 	*/
@@ -129,9 +129,9 @@ public class HRExpenseAccountLocalServiceUtil {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param dynamicQuery the dynamic query to search with
-	* @param start the lower bound of the range of model instances to return
-	* @param end the upper bound of the range of model instances to return (not inclusive)
+	* @param dynamicQuery the dynamic query
+	* @param start the lower bound of the range of model instances
+	* @param end the upper bound of the range of model instances (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
 	* @throws SystemException if a system exception occurred
@@ -147,9 +147,9 @@ public class HRExpenseAccountLocalServiceUtil {
 	}
 
 	/**
-	* Counts the number of rows that match the dynamic query.
+	* Returns the number of rows that match the dynamic query.
 	*
-	* @param dynamicQuery the dynamic query to search with
+	* @param dynamicQuery the dynamic query
 	* @return the number of rows that match the dynamic query
 	* @throws SystemException if a system exception occurred
 	*/
@@ -160,9 +160,9 @@ public class HRExpenseAccountLocalServiceUtil {
 	}
 
 	/**
-	* Gets the h r expense account with the primary key.
+	* Returns the h r expense account with the primary key.
 	*
-	* @param hrExpenseAccountId the primary key of the h r expense account to get
+	* @param hrExpenseAccountId the primary key of the h r expense account
 	* @return the h r expense account
 	* @throws PortalException if a h r expense account with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -175,14 +175,14 @@ public class HRExpenseAccountLocalServiceUtil {
 	}
 
 	/**
-	* Gets a range of all the h r expense accounts.
+	* Returns a range of all the h r expense accounts.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of h r expense accounts to return
-	* @param end the upper bound of the range of h r expense accounts to return (not inclusive)
+	* @param start the lower bound of the range of h r expense accounts
+	* @param end the upper bound of the range of h r expense accounts (not inclusive)
 	* @return the range of h r expense accounts
 	* @throws SystemException if a system exception occurred
 	*/
@@ -193,7 +193,7 @@ public class HRExpenseAccountLocalServiceUtil {
 	}
 
 	/**
-	* Gets the number of h r expense accounts.
+	* Returns the number of h r expense accounts.
 	*
 	* @return the number of h r expense accounts
 	* @throws SystemException if a system exception occurred
@@ -206,7 +206,7 @@ public class HRExpenseAccountLocalServiceUtil {
 	/**
 	* Updates the h r expense account in the database. Also notifies the appropriate model listeners.
 	*
-	* @param hrExpenseAccount the h r expense account to update
+	* @param hrExpenseAccount the h r expense account
 	* @return the h r expense account that was updated
 	* @throws SystemException if a system exception occurred
 	*/
@@ -219,7 +219,7 @@ public class HRExpenseAccountLocalServiceUtil {
 	/**
 	* Updates the h r expense account in the database. Also notifies the appropriate model listeners.
 	*
-	* @param hrExpenseAccount the h r expense account to update
+	* @param hrExpenseAccount the h r expense account
 	* @param merge whether to merge the h r expense account with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
 	* @return the h r expense account that was updated
 	* @throws SystemException if a system exception occurred
@@ -231,7 +231,7 @@ public class HRExpenseAccountLocalServiceUtil {
 	}
 
 	/**
-	* Gets the Spring bean ID for this bean.
+	* Returns the Spring bean ID for this bean.
 	*
 	* @return the Spring bean ID for this bean
 	*/

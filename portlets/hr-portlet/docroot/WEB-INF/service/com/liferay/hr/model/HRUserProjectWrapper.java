@@ -37,7 +37,7 @@ public class HRUserProjectWrapper implements HRUserProject {
 	}
 
 	/**
-	* Gets the primary key of this h r user project.
+	* Returns the primary key of this h r user project.
 	*
 	* @return the primary key of this h r user project
 	*/
@@ -46,7 +46,7 @@ public class HRUserProjectWrapper implements HRUserProject {
 	}
 
 	/**
-	* Sets the primary key of this h r user project
+	* Sets the primary key of this h r user project.
 	*
 	* @param primaryKey the primary key of this h r user project
 	*/
@@ -55,7 +55,7 @@ public class HRUserProjectWrapper implements HRUserProject {
 	}
 
 	/**
-	* Gets the hr user project ID of this h r user project.
+	* Returns the hr user project ID of this h r user project.
 	*
 	* @return the hr user project ID of this h r user project
 	*/
@@ -73,7 +73,7 @@ public class HRUserProjectWrapper implements HRUserProject {
 	}
 
 	/**
-	* Gets the group ID of this h r user project.
+	* Returns the group ID of this h r user project.
 	*
 	* @return the group ID of this h r user project
 	*/
@@ -91,7 +91,7 @@ public class HRUserProjectWrapper implements HRUserProject {
 	}
 
 	/**
-	* Gets the company ID of this h r user project.
+	* Returns the company ID of this h r user project.
 	*
 	* @return the company ID of this h r user project
 	*/
@@ -109,7 +109,7 @@ public class HRUserProjectWrapper implements HRUserProject {
 	}
 
 	/**
-	* Gets the user ID of this h r user project.
+	* Returns the user ID of this h r user project.
 	*
 	* @return the user ID of this h r user project
 	*/
@@ -127,7 +127,7 @@ public class HRUserProjectWrapper implements HRUserProject {
 	}
 
 	/**
-	* Gets the user uuid of this h r user project.
+	* Returns the user uuid of this h r user project.
 	*
 	* @return the user uuid of this h r user project
 	* @throws SystemException if a system exception occurred
@@ -147,7 +147,7 @@ public class HRUserProjectWrapper implements HRUserProject {
 	}
 
 	/**
-	* Gets the user name of this h r user project.
+	* Returns the user name of this h r user project.
 	*
 	* @return the user name of this h r user project
 	*/
@@ -165,7 +165,7 @@ public class HRUserProjectWrapper implements HRUserProject {
 	}
 
 	/**
-	* Gets the create date of this h r user project.
+	* Returns the create date of this h r user project.
 	*
 	* @return the create date of this h r user project
 	*/
@@ -183,7 +183,7 @@ public class HRUserProjectWrapper implements HRUserProject {
 	}
 
 	/**
-	* Gets the modified date of this h r user project.
+	* Returns the modified date of this h r user project.
 	*
 	* @return the modified date of this h r user project
 	*/
@@ -201,7 +201,7 @@ public class HRUserProjectWrapper implements HRUserProject {
 	}
 
 	/**
-	* Gets the hr project billing rate ID of this h r user project.
+	* Returns the hr project billing rate ID of this h r user project.
 	*
 	* @return the hr project billing rate ID of this h r user project
 	*/
@@ -219,7 +219,7 @@ public class HRUserProjectWrapper implements HRUserProject {
 	}
 
 	/**
-	* Gets the hr project ID of this h r user project.
+	* Returns the hr project ID of this h r user project.
 	*
 	* @return the hr project ID of this h r user project
 	*/
@@ -237,7 +237,7 @@ public class HRUserProjectWrapper implements HRUserProject {
 	}
 
 	/**
-	* Gets the hr project role ID of this h r user project.
+	* Returns the hr project role ID of this h r user project.
 	*
 	* @return the hr project role ID of this h r user project
 	*/
@@ -255,7 +255,7 @@ public class HRUserProjectWrapper implements HRUserProject {
 	}
 
 	/**
-	* Gets the hr user ID of this h r user project.
+	* Returns the hr user ID of this h r user project.
 	*
 	* @return the hr user ID of this h r user project
 	*/
@@ -273,7 +273,7 @@ public class HRUserProjectWrapper implements HRUserProject {
 	}
 
 	/**
-	* Gets the hr user uuid of this h r user project.
+	* Returns the hr user uuid of this h r user project.
 	*
 	* @return the hr user uuid of this h r user project
 	* @throws SystemException if a system exception occurred
@@ -293,7 +293,7 @@ public class HRUserProjectWrapper implements HRUserProject {
 	}
 
 	/**
-	* Gets the actual rate of this h r user project.
+	* Returns the actual rate of this h r user project.
 	*
 	* @return the actual rate of this h r user project
 	*/

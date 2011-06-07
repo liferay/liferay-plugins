@@ -48,21 +48,21 @@ public interface HRTimeSheetDayModel extends BaseModel<HRTimeSheetDay>,
 	 */
 
 	/**
-	 * Gets the primary key of this h r time sheet day.
+	 * Returns the primary key of this h r time sheet day.
 	 *
 	 * @return the primary key of this h r time sheet day
 	 */
 	public long getPrimaryKey();
 
 	/**
-	 * Sets the primary key of this h r time sheet day
+	 * Sets the primary key of this h r time sheet day.
 	 *
 	 * @param primaryKey the primary key of this h r time sheet day
 	 */
 	public void setPrimaryKey(long primaryKey);
 
 	/**
-	 * Gets the hr time sheet day ID of this h r time sheet day.
+	 * Returns the hr time sheet day ID of this h r time sheet day.
 	 *
 	 * @return the hr time sheet day ID of this h r time sheet day
 	 */
@@ -76,7 +76,7 @@ public interface HRTimeSheetDayModel extends BaseModel<HRTimeSheetDay>,
 	public void setHrTimeSheetDayId(long hrTimeSheetDayId);
 
 	/**
-	 * Gets the group ID of this h r time sheet day.
+	 * Returns the group ID of this h r time sheet day.
 	 *
 	 * @return the group ID of this h r time sheet day
 	 */
@@ -90,7 +90,7 @@ public interface HRTimeSheetDayModel extends BaseModel<HRTimeSheetDay>,
 	public void setGroupId(long groupId);
 
 	/**
-	 * Gets the company ID of this h r time sheet day.
+	 * Returns the company ID of this h r time sheet day.
 	 *
 	 * @return the company ID of this h r time sheet day
 	 */
@@ -104,7 +104,7 @@ public interface HRTimeSheetDayModel extends BaseModel<HRTimeSheetDay>,
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the user ID of this h r time sheet day.
+	 * Returns the user ID of this h r time sheet day.
 	 *
 	 * @return the user ID of this h r time sheet day
 	 */
@@ -118,7 +118,7 @@ public interface HRTimeSheetDayModel extends BaseModel<HRTimeSheetDay>,
 	public void setUserId(long userId);
 
 	/**
-	 * Gets the user uuid of this h r time sheet day.
+	 * Returns the user uuid of this h r time sheet day.
 	 *
 	 * @return the user uuid of this h r time sheet day
 	 * @throws SystemException if a system exception occurred
@@ -133,7 +133,7 @@ public interface HRTimeSheetDayModel extends BaseModel<HRTimeSheetDay>,
 	public void setUserUuid(String userUuid);
 
 	/**
-	 * Gets the user name of this h r time sheet day.
+	 * Returns the user name of this h r time sheet day.
 	 *
 	 * @return the user name of this h r time sheet day
 	 */
@@ -148,7 +148,7 @@ public interface HRTimeSheetDayModel extends BaseModel<HRTimeSheetDay>,
 	public void setUserName(String userName);
 
 	/**
-	 * Gets the create date of this h r time sheet day.
+	 * Returns the create date of this h r time sheet day.
 	 *
 	 * @return the create date of this h r time sheet day
 	 */
@@ -162,7 +162,7 @@ public interface HRTimeSheetDayModel extends BaseModel<HRTimeSheetDay>,
 	public void setCreateDate(Date createDate);
 
 	/**
-	 * Gets the modified date of this h r time sheet day.
+	 * Returns the modified date of this h r time sheet day.
 	 *
 	 * @return the modified date of this h r time sheet day
 	 */
@@ -176,7 +176,7 @@ public interface HRTimeSheetDayModel extends BaseModel<HRTimeSheetDay>,
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Gets the hr time sheet ID of this h r time sheet day.
+	 * Returns the hr time sheet ID of this h r time sheet day.
 	 *
 	 * @return the hr time sheet ID of this h r time sheet day
 	 */
@@ -190,7 +190,7 @@ public interface HRTimeSheetDayModel extends BaseModel<HRTimeSheetDay>,
 	public void setHrTimeSheetId(long hrTimeSheetId);
 
 	/**
-	 * Gets the hr user ID of this h r time sheet day.
+	 * Returns the hr user ID of this h r time sheet day.
 	 *
 	 * @return the hr user ID of this h r time sheet day
 	 */
@@ -204,7 +204,7 @@ public interface HRTimeSheetDayModel extends BaseModel<HRTimeSheetDay>,
 	public void setHrUserId(long hrUserId);
 
 	/**
-	 * Gets the hr user uuid of this h r time sheet day.
+	 * Returns the hr user uuid of this h r time sheet day.
 	 *
 	 * @return the hr user uuid of this h r time sheet day
 	 * @throws SystemException if a system exception occurred
@@ -219,7 +219,7 @@ public interface HRTimeSheetDayModel extends BaseModel<HRTimeSheetDay>,
 	public void setHrUserUuid(String hrUserUuid);
 
 	/**
-	 * Gets the day of year of this h r time sheet day.
+	 * Returns the day of year of this h r time sheet day.
 	 *
 	 * @return the day of year of this h r time sheet day
 	 */
@@ -233,7 +233,7 @@ public interface HRTimeSheetDayModel extends BaseModel<HRTimeSheetDay>,
 	public void setDayOfYear(int dayOfYear);
 
 	/**
-	 * Gets the year of this h r time sheet day.
+	 * Returns the year of this h r time sheet day.
 	 *
 	 * @return the year of this h r time sheet day
 	 */
@@ -247,7 +247,7 @@ public interface HRTimeSheetDayModel extends BaseModel<HRTimeSheetDay>,
 	public void setYear(int year);
 
 	/**
-	 * Gets the hours of this h r time sheet day.
+	 * Returns the hours of this h r time sheet day.
 	 *
 	 * @return the hours of this h r time sheet day
 	 */

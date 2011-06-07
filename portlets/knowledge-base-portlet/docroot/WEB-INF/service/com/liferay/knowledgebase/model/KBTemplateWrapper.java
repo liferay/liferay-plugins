@@ -37,7 +37,7 @@ public class KBTemplateWrapper implements KBTemplate {
 	}
 
 	/**
-	* Gets the primary key of this k b template.
+	* Returns the primary key of this k b template.
 	*
 	* @return the primary key of this k b template
 	*/
@@ -46,7 +46,7 @@ public class KBTemplateWrapper implements KBTemplate {
 	}
 
 	/**
-	* Sets the primary key of this k b template
+	* Sets the primary key of this k b template.
 	*
 	* @param primaryKey the primary key of this k b template
 	*/
@@ -55,7 +55,7 @@ public class KBTemplateWrapper implements KBTemplate {
 	}
 
 	/**
-	* Gets the uuid of this k b template.
+	* Returns the uuid of this k b template.
 	*
 	* @return the uuid of this k b template
 	*/
@@ -73,7 +73,7 @@ public class KBTemplateWrapper implements KBTemplate {
 	}
 
 	/**
-	* Gets the kb template ID of this k b template.
+	* Returns the kb template ID of this k b template.
 	*
 	* @return the kb template ID of this k b template
 	*/
@@ -91,7 +91,7 @@ public class KBTemplateWrapper implements KBTemplate {
 	}
 
 	/**
-	* Gets the group ID of this k b template.
+	* Returns the group ID of this k b template.
 	*
 	* @return the group ID of this k b template
 	*/
@@ -109,7 +109,7 @@ public class KBTemplateWrapper implements KBTemplate {
 	}
 
 	/**
-	* Gets the company ID of this k b template.
+	* Returns the company ID of this k b template.
 	*
 	* @return the company ID of this k b template
 	*/
@@ -127,7 +127,7 @@ public class KBTemplateWrapper implements KBTemplate {
 	}
 
 	/**
-	* Gets the user ID of this k b template.
+	* Returns the user ID of this k b template.
 	*
 	* @return the user ID of this k b template
 	*/
@@ -145,7 +145,7 @@ public class KBTemplateWrapper implements KBTemplate {
 	}
 
 	/**
-	* Gets the user uuid of this k b template.
+	* Returns the user uuid of this k b template.
 	*
 	* @return the user uuid of this k b template
 	* @throws SystemException if a system exception occurred
@@ -165,7 +165,7 @@ public class KBTemplateWrapper implements KBTemplate {
 	}
 
 	/**
-	* Gets the user name of this k b template.
+	* Returns the user name of this k b template.
 	*
 	* @return the user name of this k b template
 	*/
@@ -183,7 +183,7 @@ public class KBTemplateWrapper implements KBTemplate {
 	}
 
 	/**
-	* Gets the create date of this k b template.
+	* Returns the create date of this k b template.
 	*
 	* @return the create date of this k b template
 	*/
@@ -201,7 +201,7 @@ public class KBTemplateWrapper implements KBTemplate {
 	}
 
 	/**
-	* Gets the modified date of this k b template.
+	* Returns the modified date of this k b template.
 	*
 	* @return the modified date of this k b template
 	*/
@@ -219,7 +219,7 @@ public class KBTemplateWrapper implements KBTemplate {
 	}
 
 	/**
-	* Gets the title of this k b template.
+	* Returns the title of this k b template.
 	*
 	* @return the title of this k b template
 	*/
@@ -237,7 +237,7 @@ public class KBTemplateWrapper implements KBTemplate {
 	}
 
 	/**
-	* Gets the content of this k b template.
+	* Returns the content of this k b template.
 	*
 	* @return the content of this k b template
 	*/
@@ -255,7 +255,7 @@ public class KBTemplateWrapper implements KBTemplate {
 	}
 
 	/**
-	* Gets the engine type of this k b template.
+	* Returns the engine type of this k b template.
 	*
 	* @return the engine type of this k b template
 	*/
@@ -273,7 +273,7 @@ public class KBTemplateWrapper implements KBTemplate {
 	}
 
 	/**
-	* Gets the cacheable of this k b template.
+	* Returns the cacheable of this k b template.
 	*
 	* @return the cacheable of this k b template
 	*/

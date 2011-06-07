@@ -34,6 +34,11 @@ import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.search.Indexer;
+import com.liferay.portal.kernel.search.IndexerRegistryUtil;
+import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.service.ResourceLocalService;
 import com.liferay.portal.service.ResourceService;
@@ -69,7 +74,7 @@ public abstract class CalendarBookingLocalServiceBaseImpl
 	/**
 	 * Adds the calendar booking to the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param calendarBooking the calendar booking to add
+	 * @param calendarBooking the calendar booking
 	 * @return the calendar booking that was added
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -77,7 +82,23 @@ public abstract class CalendarBookingLocalServiceBaseImpl
 		throws SystemException {
 		calendarBooking.setNew(true);
 
-		return calendarBookingPersistence.update(calendarBooking, false);
+		calendarBooking = calendarBookingPersistence.update(calendarBooking,
+				false);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.reindex(calendarBooking);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
+
+		return calendarBooking;
 	}
 
 	/**
@@ -93,30 +114,56 @@ public abstract class CalendarBookingLocalServiceBaseImpl
 	/**
 	 * Deletes the calendar booking with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param calendarBookingId the primary key of the calendar booking to delete
+	 * @param calendarBookingId the primary key of the calendar booking
 	 * @throws PortalException if a calendar booking with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void deleteCalendarBooking(long calendarBookingId)
 		throws PortalException, SystemException {
-		calendarBookingPersistence.remove(calendarBookingId);
+		CalendarBooking calendarBooking = calendarBookingPersistence.remove(calendarBookingId);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.delete(calendarBooking);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
 	}
 
 	/**
 	 * Deletes the calendar booking from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param calendarBooking the calendar booking to delete
+	 * @param calendarBooking the calendar booking
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void deleteCalendarBooking(CalendarBooking calendarBooking)
 		throws SystemException {
 		calendarBookingPersistence.remove(calendarBooking);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.delete(calendarBooking);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
 	}
 
 	/**
 	 * Performs a dynamic query on the database and returns the matching rows.
 	 *
-	 * @param dynamicQuery the dynamic query to search with
+	 * @param dynamicQuery the dynamic query
 	 * @return the matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -133,9 +180,9 @@ public abstract class CalendarBookingLocalServiceBaseImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param dynamicQuery the dynamic query to search with
-	 * @param start the lower bound of the range of model instances to return
-	 * @param end the upper bound of the range of model instances to return (not inclusive)
+	 * @param dynamicQuery the dynamic query
+	 * @param start the lower bound of the range of model instances
+	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @return the range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -153,9 +200,9 @@ public abstract class CalendarBookingLocalServiceBaseImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param dynamicQuery the dynamic query to search with
-	 * @param start the lower bound of the range of model instances to return
-	 * @param end the upper bound of the range of model instances to return (not inclusive)
+	 * @param dynamicQuery the dynamic query
+	 * @param start the lower bound of the range of model instances
+	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching rows
 	 * @throws SystemException if a system exception occurred
@@ -168,9 +215,9 @@ public abstract class CalendarBookingLocalServiceBaseImpl
 	}
 
 	/**
-	 * Counts the number of rows that match the dynamic query.
+	 * Returns the number of rows that match the dynamic query.
 	 *
-	 * @param dynamicQuery the dynamic query to search with
+	 * @param dynamicQuery the dynamic query
 	 * @return the number of rows that match the dynamic query
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -180,9 +227,9 @@ public abstract class CalendarBookingLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the calendar booking with the primary key.
+	 * Returns the calendar booking with the primary key.
 	 *
-	 * @param calendarBookingId the primary key of the calendar booking to get
+	 * @param calendarBookingId the primary key of the calendar booking
 	 * @return the calendar booking
 	 * @throws PortalException if a calendar booking with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -193,12 +240,12 @@ public abstract class CalendarBookingLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the calendar booking with the UUID and group id.
+	 * Returns the calendar booking with the UUID in the group.
 	 *
-	 * @param uuid the UUID of calendar booking to get
-	 * @param groupId the group id of the calendar booking to get
+	 * @param uuid the UUID of calendar booking
+	 * @param groupId the group id of the calendar booking
 	 * @return the calendar booking
-	 * @throws PortalException if a calendar booking with the UUID and group id could not be found
+	 * @throws PortalException if a calendar booking with the UUID in the group could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	public CalendarBooking getCalendarBookingByUuidAndGroupId(String uuid,
@@ -207,14 +254,14 @@ public abstract class CalendarBookingLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets a range of all the calendar bookings.
+	 * Returns a range of all the calendar bookings.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of calendar bookings to return
-	 * @param end the upper bound of the range of calendar bookings to return (not inclusive)
+	 * @param start the lower bound of the range of calendar bookings
+	 * @param end the upper bound of the range of calendar bookings (not inclusive)
 	 * @return the range of calendar bookings
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -224,7 +271,7 @@ public abstract class CalendarBookingLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the number of calendar bookings.
+	 * Returns the number of calendar bookings.
 	 *
 	 * @return the number of calendar bookings
 	 * @throws SystemException if a system exception occurred
@@ -236,21 +283,19 @@ public abstract class CalendarBookingLocalServiceBaseImpl
 	/**
 	 * Updates the calendar booking in the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param calendarBooking the calendar booking to update
+	 * @param calendarBooking the calendar booking
 	 * @return the calendar booking that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
 	public CalendarBooking updateCalendarBooking(
 		CalendarBooking calendarBooking) throws SystemException {
-		calendarBooking.setNew(false);
-
-		return calendarBookingPersistence.update(calendarBooking, true);
+		return updateCalendarBooking(calendarBooking, true);
 	}
 
 	/**
 	 * Updates the calendar booking in the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param calendarBooking the calendar booking to update
+	 * @param calendarBooking the calendar booking
 	 * @param merge whether to merge the calendar booking with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
 	 * @return the calendar booking that was updated
 	 * @throws SystemException if a system exception occurred
@@ -260,11 +305,27 @@ public abstract class CalendarBookingLocalServiceBaseImpl
 		throws SystemException {
 		calendarBooking.setNew(false);
 
-		return calendarBookingPersistence.update(calendarBooking, merge);
+		calendarBooking = calendarBookingPersistence.update(calendarBooking,
+				merge);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.reindex(calendarBooking);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
+
+		return calendarBooking;
 	}
 
 	/**
-	 * Gets the calendar booking local service.
+	 * Returns the calendar booking local service.
 	 *
 	 * @return the calendar booking local service
 	 */
@@ -283,7 +344,7 @@ public abstract class CalendarBookingLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the calendar booking remote service.
+	 * Returns the calendar booking remote service.
 	 *
 	 * @return the calendar booking remote service
 	 */
@@ -302,7 +363,7 @@ public abstract class CalendarBookingLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the calendar booking persistence.
+	 * Returns the calendar booking persistence.
 	 *
 	 * @return the calendar booking persistence
 	 */
@@ -321,7 +382,7 @@ public abstract class CalendarBookingLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the calendar event local service.
+	 * Returns the calendar event local service.
 	 *
 	 * @return the calendar event local service
 	 */
@@ -340,7 +401,7 @@ public abstract class CalendarBookingLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the calendar event remote service.
+	 * Returns the calendar event remote service.
 	 *
 	 * @return the calendar event remote service
 	 */
@@ -359,7 +420,7 @@ public abstract class CalendarBookingLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the calendar event persistence.
+	 * Returns the calendar event persistence.
 	 *
 	 * @return the calendar event persistence
 	 */
@@ -378,7 +439,7 @@ public abstract class CalendarBookingLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the calendar resource local service.
+	 * Returns the calendar resource local service.
 	 *
 	 * @return the calendar resource local service
 	 */
@@ -397,7 +458,7 @@ public abstract class CalendarBookingLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the calendar resource remote service.
+	 * Returns the calendar resource remote service.
 	 *
 	 * @return the calendar resource remote service
 	 */
@@ -416,7 +477,7 @@ public abstract class CalendarBookingLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the calendar resource persistence.
+	 * Returns the calendar resource persistence.
 	 *
 	 * @return the calendar resource persistence
 	 */
@@ -435,7 +496,7 @@ public abstract class CalendarBookingLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the counter local service.
+	 * Returns the counter local service.
 	 *
 	 * @return the counter local service
 	 */
@@ -453,7 +514,7 @@ public abstract class CalendarBookingLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the resource local service.
+	 * Returns the resource local service.
 	 *
 	 * @return the resource local service
 	 */
@@ -472,7 +533,7 @@ public abstract class CalendarBookingLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the resource remote service.
+	 * Returns the resource remote service.
 	 *
 	 * @return the resource remote service
 	 */
@@ -490,7 +551,7 @@ public abstract class CalendarBookingLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the resource persistence.
+	 * Returns the resource persistence.
 	 *
 	 * @return the resource persistence
 	 */
@@ -508,7 +569,7 @@ public abstract class CalendarBookingLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the user local service.
+	 * Returns the user local service.
 	 *
 	 * @return the user local service
 	 */
@@ -526,7 +587,7 @@ public abstract class CalendarBookingLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the user remote service.
+	 * Returns the user remote service.
 	 *
 	 * @return the user remote service
 	 */
@@ -544,7 +605,7 @@ public abstract class CalendarBookingLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the user persistence.
+	 * Returns the user persistence.
 	 *
 	 * @return the user persistence
 	 */
@@ -562,7 +623,7 @@ public abstract class CalendarBookingLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the Spring bean ID for this bean.
+	 * Returns the Spring bean ID for this bean.
 	 *
 	 * @return the Spring bean ID for this bean
 	 */
@@ -579,10 +640,18 @@ public abstract class CalendarBookingLocalServiceBaseImpl
 		_beanIdentifier = beanIdentifier;
 	}
 
+	protected Class<?> getModelClass() {
+		return CalendarBooking.class;
+	}
+
+	protected String getModelClassName() {
+		return CalendarBooking.class.getName();
+	}
+
 	/**
 	 * Performs an SQL query.
 	 *
-	 * @param sql the sql query to perform
+	 * @param sql the sql query
 	 */
 	protected void runSQL(String sql) throws SystemException {
 		try {
@@ -630,5 +699,6 @@ public abstract class CalendarBookingLocalServiceBaseImpl
 	protected UserService userService;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
+	private static Log _log = LogFactoryUtil.getLog(CalendarBookingLocalServiceBaseImpl.class);
 	private String _beanIdentifier;
 }

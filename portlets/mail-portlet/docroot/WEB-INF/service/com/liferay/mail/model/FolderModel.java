@@ -47,21 +47,21 @@ public interface FolderModel extends AuditedModel, BaseModel<Folder> {
 	 */
 
 	/**
-	 * Gets the primary key of this folder.
+	 * Returns the primary key of this folder.
 	 *
 	 * @return the primary key of this folder
 	 */
 	public long getPrimaryKey();
 
 	/**
-	 * Sets the primary key of this folder
+	 * Sets the primary key of this folder.
 	 *
 	 * @param primaryKey the primary key of this folder
 	 */
 	public void setPrimaryKey(long primaryKey);
 
 	/**
-	 * Gets the folder ID of this folder.
+	 * Returns the folder ID of this folder.
 	 *
 	 * @return the folder ID of this folder
 	 */
@@ -75,7 +75,7 @@ public interface FolderModel extends AuditedModel, BaseModel<Folder> {
 	public void setFolderId(long folderId);
 
 	/**
-	 * Gets the company ID of this folder.
+	 * Returns the company ID of this folder.
 	 *
 	 * @return the company ID of this folder
 	 */
@@ -89,7 +89,7 @@ public interface FolderModel extends AuditedModel, BaseModel<Folder> {
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the user ID of this folder.
+	 * Returns the user ID of this folder.
 	 *
 	 * @return the user ID of this folder
 	 */
@@ -103,7 +103,7 @@ public interface FolderModel extends AuditedModel, BaseModel<Folder> {
 	public void setUserId(long userId);
 
 	/**
-	 * Gets the user uuid of this folder.
+	 * Returns the user uuid of this folder.
 	 *
 	 * @return the user uuid of this folder
 	 * @throws SystemException if a system exception occurred
@@ -118,7 +118,7 @@ public interface FolderModel extends AuditedModel, BaseModel<Folder> {
 	public void setUserUuid(String userUuid);
 
 	/**
-	 * Gets the user name of this folder.
+	 * Returns the user name of this folder.
 	 *
 	 * @return the user name of this folder
 	 */
@@ -133,7 +133,7 @@ public interface FolderModel extends AuditedModel, BaseModel<Folder> {
 	public void setUserName(String userName);
 
 	/**
-	 * Gets the create date of this folder.
+	 * Returns the create date of this folder.
 	 *
 	 * @return the create date of this folder
 	 */
@@ -147,7 +147,7 @@ public interface FolderModel extends AuditedModel, BaseModel<Folder> {
 	public void setCreateDate(Date createDate);
 
 	/**
-	 * Gets the modified date of this folder.
+	 * Returns the modified date of this folder.
 	 *
 	 * @return the modified date of this folder
 	 */
@@ -161,7 +161,7 @@ public interface FolderModel extends AuditedModel, BaseModel<Folder> {
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Gets the account ID of this folder.
+	 * Returns the account ID of this folder.
 	 *
 	 * @return the account ID of this folder
 	 */
@@ -175,7 +175,7 @@ public interface FolderModel extends AuditedModel, BaseModel<Folder> {
 	public void setAccountId(long accountId);
 
 	/**
-	 * Gets the full name of this folder.
+	 * Returns the full name of this folder.
 	 *
 	 * @return the full name of this folder
 	 */
@@ -190,7 +190,7 @@ public interface FolderModel extends AuditedModel, BaseModel<Folder> {
 	public void setFullName(String fullName);
 
 	/**
-	 * Gets the display name of this folder.
+	 * Returns the display name of this folder.
 	 *
 	 * @return the display name of this folder
 	 */
@@ -205,7 +205,7 @@ public interface FolderModel extends AuditedModel, BaseModel<Folder> {
 	public void setDisplayName(String displayName);
 
 	/**
-	 * Gets the remote message count of this folder.
+	 * Returns the remote message count of this folder.
 	 *
 	 * @return the remote message count of this folder
 	 */

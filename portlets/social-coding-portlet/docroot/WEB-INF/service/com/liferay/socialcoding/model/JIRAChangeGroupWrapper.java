@@ -37,7 +37,7 @@ public class JIRAChangeGroupWrapper implements JIRAChangeGroup {
 	}
 
 	/**
-	* Gets the primary key of this j i r a change group.
+	* Returns the primary key of this j i r a change group.
 	*
 	* @return the primary key of this j i r a change group
 	*/
@@ -46,7 +46,7 @@ public class JIRAChangeGroupWrapper implements JIRAChangeGroup {
 	}
 
 	/**
-	* Sets the primary key of this j i r a change group
+	* Sets the primary key of this j i r a change group.
 	*
 	* @param primaryKey the primary key of this j i r a change group
 	*/
@@ -55,7 +55,7 @@ public class JIRAChangeGroupWrapper implements JIRAChangeGroup {
 	}
 
 	/**
-	* Gets the jira change group ID of this j i r a change group.
+	* Returns the jira change group ID of this j i r a change group.
 	*
 	* @return the jira change group ID of this j i r a change group
 	*/
@@ -73,7 +73,7 @@ public class JIRAChangeGroupWrapper implements JIRAChangeGroup {
 	}
 
 	/**
-	* Gets the jira user ID of this j i r a change group.
+	* Returns the jira user ID of this j i r a change group.
 	*
 	* @return the jira user ID of this j i r a change group
 	*/
@@ -91,7 +91,7 @@ public class JIRAChangeGroupWrapper implements JIRAChangeGroup {
 	}
 
 	/**
-	* Gets the create date of this j i r a change group.
+	* Returns the create date of this j i r a change group.
 	*
 	* @return the create date of this j i r a change group
 	*/
@@ -109,7 +109,7 @@ public class JIRAChangeGroupWrapper implements JIRAChangeGroup {
 	}
 
 	/**
-	* Gets the jira issue ID of this j i r a change group.
+	* Returns the jira issue ID of this j i r a change group.
 	*
 	* @return the jira issue ID of this j i r a change group
 	*/

@@ -82,7 +82,7 @@ public class HRProjectBillingRatePersistenceImpl extends BasePersistenceImpl<HRP
 	/**
 	 * Caches the h r project billing rate in the entity cache if it is enabled.
 	 *
-	 * @param hrProjectBillingRate the h r project billing rate to cache
+	 * @param hrProjectBillingRate the h r project billing rate
 	 */
 	public void cacheResult(HRProjectBillingRate hrProjectBillingRate) {
 		EntityCacheUtil.putResult(HRProjectBillingRateModelImpl.ENTITY_CACHE_ENABLED,
@@ -95,7 +95,7 @@ public class HRProjectBillingRatePersistenceImpl extends BasePersistenceImpl<HRP
 	/**
 	 * Caches the h r project billing rates in the entity cache if it is enabled.
 	 *
-	 * @param hrProjectBillingRates the h r project billing rates to cache
+	 * @param hrProjectBillingRates the h r project billing rates
 	 */
 	public void cacheResult(List<HRProjectBillingRate> hrProjectBillingRates) {
 		for (HRProjectBillingRate hrProjectBillingRate : hrProjectBillingRates) {
@@ -155,7 +155,7 @@ public class HRProjectBillingRatePersistenceImpl extends BasePersistenceImpl<HRP
 	/**
 	 * Removes the h r project billing rate with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param primaryKey the primary key of the h r project billing rate to remove
+	 * @param primaryKey the primary key of the h r project billing rate
 	 * @return the h r project billing rate that was removed
 	 * @throws com.liferay.portal.NoSuchModelException if a h r project billing rate with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -168,7 +168,7 @@ public class HRProjectBillingRatePersistenceImpl extends BasePersistenceImpl<HRP
 	/**
 	 * Removes the h r project billing rate with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param hrProjectBillingRateId the primary key of the h r project billing rate to remove
+	 * @param hrProjectBillingRateId the primary key of the h r project billing rate
 	 * @return the h r project billing rate that was removed
 	 * @throws com.liferay.hr.NoSuchProjectBillingRateException if a h r project billing rate with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -209,7 +209,7 @@ public class HRProjectBillingRatePersistenceImpl extends BasePersistenceImpl<HRP
 	/**
 	 * Removes the h r project billing rate from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param hrProjectBillingRate the h r project billing rate to remove
+	 * @param hrProjectBillingRate the h r project billing rate
 	 * @return the h r project billing rate that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -300,9 +300,9 @@ public class HRProjectBillingRatePersistenceImpl extends BasePersistenceImpl<HRP
 	}
 
 	/**
-	 * Finds the h r project billing rate with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
+	 * Returns the h r project billing rate with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
 	 *
-	 * @param primaryKey the primary key of the h r project billing rate to find
+	 * @param primaryKey the primary key of the h r project billing rate
 	 * @return the h r project billing rate
 	 * @throws com.liferay.portal.NoSuchModelException if a h r project billing rate with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -313,9 +313,9 @@ public class HRProjectBillingRatePersistenceImpl extends BasePersistenceImpl<HRP
 	}
 
 	/**
-	 * Finds the h r project billing rate with the primary key or throws a {@link com.liferay.hr.NoSuchProjectBillingRateException} if it could not be found.
+	 * Returns the h r project billing rate with the primary key or throws a {@link com.liferay.hr.NoSuchProjectBillingRateException} if it could not be found.
 	 *
-	 * @param hrProjectBillingRateId the primary key of the h r project billing rate to find
+	 * @param hrProjectBillingRateId the primary key of the h r project billing rate
 	 * @return the h r project billing rate
 	 * @throws com.liferay.hr.NoSuchProjectBillingRateException if a h r project billing rate with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -338,9 +338,9 @@ public class HRProjectBillingRatePersistenceImpl extends BasePersistenceImpl<HRP
 	}
 
 	/**
-	 * Finds the h r project billing rate with the primary key or returns <code>null</code> if it could not be found.
+	 * Returns the h r project billing rate with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param primaryKey the primary key of the h r project billing rate to find
+	 * @param primaryKey the primary key of the h r project billing rate
 	 * @return the h r project billing rate, or <code>null</code> if a h r project billing rate with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -350,9 +350,9 @@ public class HRProjectBillingRatePersistenceImpl extends BasePersistenceImpl<HRP
 	}
 
 	/**
-	 * Finds the h r project billing rate with the primary key or returns <code>null</code> if it could not be found.
+	 * Returns the h r project billing rate with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param hrProjectBillingRateId the primary key of the h r project billing rate to find
+	 * @param hrProjectBillingRateId the primary key of the h r project billing rate
 	 * @return the h r project billing rate, or <code>null</code> if a h r project billing rate with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -386,7 +386,7 @@ public class HRProjectBillingRatePersistenceImpl extends BasePersistenceImpl<HRP
 	}
 
 	/**
-	 * Finds all the h r project billing rates.
+	 * Returns all the h r project billing rates.
 	 *
 	 * @return the h r project billing rates
 	 * @throws SystemException if a system exception occurred
@@ -396,14 +396,14 @@ public class HRProjectBillingRatePersistenceImpl extends BasePersistenceImpl<HRP
 	}
 
 	/**
-	 * Finds a range of all the h r project billing rates.
+	 * Returns a range of all the h r project billing rates.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of h r project billing rates to return
-	 * @param end the upper bound of the range of h r project billing rates to return (not inclusive)
+	 * @param start the lower bound of the range of h r project billing rates
+	 * @param end the upper bound of the range of h r project billing rates (not inclusive)
 	 * @return the range of h r project billing rates
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -413,14 +413,14 @@ public class HRProjectBillingRatePersistenceImpl extends BasePersistenceImpl<HRP
 	}
 
 	/**
-	 * Finds an ordered range of all the h r project billing rates.
+	 * Returns an ordered range of all the h r project billing rates.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of h r project billing rates to return
-	 * @param end the upper bound of the range of h r project billing rates to return (not inclusive)
+	 * @param start the lower bound of the range of h r project billing rates
+	 * @param end the upper bound of the range of h r project billing rates (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of h r project billing rates
 	 * @throws SystemException if a system exception occurred
@@ -506,7 +506,7 @@ public class HRProjectBillingRatePersistenceImpl extends BasePersistenceImpl<HRP
 	}
 
 	/**
-	 * Counts all the h r project billing rates.
+	 * Returns the number of h r project billing rates.
 	 *
 	 * @return the number of h r project billing rates
 	 * @throws SystemException if a system exception occurred

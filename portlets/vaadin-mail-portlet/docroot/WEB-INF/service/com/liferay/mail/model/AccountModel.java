@@ -47,21 +47,21 @@ public interface AccountModel extends AuditedModel, BaseModel<Account> {
 	 */
 
 	/**
-	 * Gets the primary key of this account.
+	 * Returns the primary key of this account.
 	 *
 	 * @return the primary key of this account
 	 */
 	public long getPrimaryKey();
 
 	/**
-	 * Sets the primary key of this account
+	 * Sets the primary key of this account.
 	 *
 	 * @param primaryKey the primary key of this account
 	 */
 	public void setPrimaryKey(long primaryKey);
 
 	/**
-	 * Gets the account ID of this account.
+	 * Returns the account ID of this account.
 	 *
 	 * @return the account ID of this account
 	 */
@@ -75,7 +75,7 @@ public interface AccountModel extends AuditedModel, BaseModel<Account> {
 	public void setAccountId(long accountId);
 
 	/**
-	 * Gets the company ID of this account.
+	 * Returns the company ID of this account.
 	 *
 	 * @return the company ID of this account
 	 */
@@ -89,7 +89,7 @@ public interface AccountModel extends AuditedModel, BaseModel<Account> {
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the user ID of this account.
+	 * Returns the user ID of this account.
 	 *
 	 * @return the user ID of this account
 	 */
@@ -103,7 +103,7 @@ public interface AccountModel extends AuditedModel, BaseModel<Account> {
 	public void setUserId(long userId);
 
 	/**
-	 * Gets the user uuid of this account.
+	 * Returns the user uuid of this account.
 	 *
 	 * @return the user uuid of this account
 	 * @throws SystemException if a system exception occurred
@@ -118,7 +118,7 @@ public interface AccountModel extends AuditedModel, BaseModel<Account> {
 	public void setUserUuid(String userUuid);
 
 	/**
-	 * Gets the user name of this account.
+	 * Returns the user name of this account.
 	 *
 	 * @return the user name of this account
 	 */
@@ -133,7 +133,7 @@ public interface AccountModel extends AuditedModel, BaseModel<Account> {
 	public void setUserName(String userName);
 
 	/**
-	 * Gets the create date of this account.
+	 * Returns the create date of this account.
 	 *
 	 * @return the create date of this account
 	 */
@@ -147,7 +147,7 @@ public interface AccountModel extends AuditedModel, BaseModel<Account> {
 	public void setCreateDate(Date createDate);
 
 	/**
-	 * Gets the modified date of this account.
+	 * Returns the modified date of this account.
 	 *
 	 * @return the modified date of this account
 	 */
@@ -161,7 +161,7 @@ public interface AccountModel extends AuditedModel, BaseModel<Account> {
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Gets the address of this account.
+	 * Returns the address of this account.
 	 *
 	 * @return the address of this account
 	 */
@@ -176,7 +176,7 @@ public interface AccountModel extends AuditedModel, BaseModel<Account> {
 	public void setAddress(String address);
 
 	/**
-	 * Gets the personal name of this account.
+	 * Returns the personal name of this account.
 	 *
 	 * @return the personal name of this account
 	 */
@@ -191,7 +191,7 @@ public interface AccountModel extends AuditedModel, BaseModel<Account> {
 	public void setPersonalName(String personalName);
 
 	/**
-	 * Gets the protocol of this account.
+	 * Returns the protocol of this account.
 	 *
 	 * @return the protocol of this account
 	 */
@@ -206,7 +206,7 @@ public interface AccountModel extends AuditedModel, BaseModel<Account> {
 	public void setProtocol(String protocol);
 
 	/**
-	 * Gets the incoming host name of this account.
+	 * Returns the incoming host name of this account.
 	 *
 	 * @return the incoming host name of this account
 	 */
@@ -221,7 +221,7 @@ public interface AccountModel extends AuditedModel, BaseModel<Account> {
 	public void setIncomingHostName(String incomingHostName);
 
 	/**
-	 * Gets the incoming port of this account.
+	 * Returns the incoming port of this account.
 	 *
 	 * @return the incoming port of this account
 	 */
@@ -235,7 +235,7 @@ public interface AccountModel extends AuditedModel, BaseModel<Account> {
 	public void setIncomingPort(int incomingPort);
 
 	/**
-	 * Gets the incoming secure of this account.
+	 * Returns the incoming secure of this account.
 	 *
 	 * @return the incoming secure of this account
 	 */
@@ -256,7 +256,7 @@ public interface AccountModel extends AuditedModel, BaseModel<Account> {
 	public void setIncomingSecure(boolean incomingSecure);
 
 	/**
-	 * Gets the outgoing host name of this account.
+	 * Returns the outgoing host name of this account.
 	 *
 	 * @return the outgoing host name of this account
 	 */
@@ -271,7 +271,7 @@ public interface AccountModel extends AuditedModel, BaseModel<Account> {
 	public void setOutgoingHostName(String outgoingHostName);
 
 	/**
-	 * Gets the outgoing port of this account.
+	 * Returns the outgoing port of this account.
 	 *
 	 * @return the outgoing port of this account
 	 */
@@ -285,7 +285,7 @@ public interface AccountModel extends AuditedModel, BaseModel<Account> {
 	public void setOutgoingPort(int outgoingPort);
 
 	/**
-	 * Gets the outgoing secure of this account.
+	 * Returns the outgoing secure of this account.
 	 *
 	 * @return the outgoing secure of this account
 	 */
@@ -306,7 +306,7 @@ public interface AccountModel extends AuditedModel, BaseModel<Account> {
 	public void setOutgoingSecure(boolean outgoingSecure);
 
 	/**
-	 * Gets the login of this account.
+	 * Returns the login of this account.
 	 *
 	 * @return the login of this account
 	 */
@@ -321,7 +321,7 @@ public interface AccountModel extends AuditedModel, BaseModel<Account> {
 	public void setLogin(String login);
 
 	/**
-	 * Gets the password of this account.
+	 * Returns the password of this account.
 	 *
 	 * @return the password of this account
 	 */
@@ -336,7 +336,7 @@ public interface AccountModel extends AuditedModel, BaseModel<Account> {
 	public void setPassword(String password);
 
 	/**
-	 * Gets the save password of this account.
+	 * Returns the save password of this account.
 	 *
 	 * @return the save password of this account
 	 */
@@ -357,7 +357,7 @@ public interface AccountModel extends AuditedModel, BaseModel<Account> {
 	public void setSavePassword(boolean savePassword);
 
 	/**
-	 * Gets the signature of this account.
+	 * Returns the signature of this account.
 	 *
 	 * @return the signature of this account
 	 */
@@ -372,7 +372,7 @@ public interface AccountModel extends AuditedModel, BaseModel<Account> {
 	public void setSignature(String signature);
 
 	/**
-	 * Gets the use signature of this account.
+	 * Returns the use signature of this account.
 	 *
 	 * @return the use signature of this account
 	 */
@@ -393,7 +393,7 @@ public interface AccountModel extends AuditedModel, BaseModel<Account> {
 	public void setUseSignature(boolean useSignature);
 
 	/**
-	 * Gets the folder prefix of this account.
+	 * Returns the folder prefix of this account.
 	 *
 	 * @return the folder prefix of this account
 	 */
@@ -408,7 +408,7 @@ public interface AccountModel extends AuditedModel, BaseModel<Account> {
 	public void setFolderPrefix(String folderPrefix);
 
 	/**
-	 * Gets the inbox folder ID of this account.
+	 * Returns the inbox folder ID of this account.
 	 *
 	 * @return the inbox folder ID of this account
 	 */
@@ -422,7 +422,7 @@ public interface AccountModel extends AuditedModel, BaseModel<Account> {
 	public void setInboxFolderId(long inboxFolderId);
 
 	/**
-	 * Gets the draft folder ID of this account.
+	 * Returns the draft folder ID of this account.
 	 *
 	 * @return the draft folder ID of this account
 	 */
@@ -436,7 +436,7 @@ public interface AccountModel extends AuditedModel, BaseModel<Account> {
 	public void setDraftFolderId(long draftFolderId);
 
 	/**
-	 * Gets the sent folder ID of this account.
+	 * Returns the sent folder ID of this account.
 	 *
 	 * @return the sent folder ID of this account
 	 */
@@ -450,7 +450,7 @@ public interface AccountModel extends AuditedModel, BaseModel<Account> {
 	public void setSentFolderId(long sentFolderId);
 
 	/**
-	 * Gets the trash folder ID of this account.
+	 * Returns the trash folder ID of this account.
 	 *
 	 * @return the trash folder ID of this account
 	 */
@@ -464,7 +464,7 @@ public interface AccountModel extends AuditedModel, BaseModel<Account> {
 	public void setTrashFolderId(long trashFolderId);
 
 	/**
-	 * Gets the default sender of this account.
+	 * Returns the default sender of this account.
 	 *
 	 * @return the default sender of this account
 	 */

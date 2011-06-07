@@ -49,21 +49,21 @@ public interface HRTimeOffModel extends BaseModel<HRTimeOff>, GroupedModel,
 	 */
 
 	/**
-	 * Gets the primary key of this h r time off.
+	 * Returns the primary key of this h r time off.
 	 *
 	 * @return the primary key of this h r time off
 	 */
 	public long getPrimaryKey();
 
 	/**
-	 * Sets the primary key of this h r time off
+	 * Sets the primary key of this h r time off.
 	 *
 	 * @param primaryKey the primary key of this h r time off
 	 */
 	public void setPrimaryKey(long primaryKey);
 
 	/**
-	 * Gets the hr time off ID of this h r time off.
+	 * Returns the hr time off ID of this h r time off.
 	 *
 	 * @return the hr time off ID of this h r time off
 	 */
@@ -77,7 +77,7 @@ public interface HRTimeOffModel extends BaseModel<HRTimeOff>, GroupedModel,
 	public void setHrTimeOffId(long hrTimeOffId);
 
 	/**
-	 * Gets the group ID of this h r time off.
+	 * Returns the group ID of this h r time off.
 	 *
 	 * @return the group ID of this h r time off
 	 */
@@ -91,7 +91,7 @@ public interface HRTimeOffModel extends BaseModel<HRTimeOff>, GroupedModel,
 	public void setGroupId(long groupId);
 
 	/**
-	 * Gets the company ID of this h r time off.
+	 * Returns the company ID of this h r time off.
 	 *
 	 * @return the company ID of this h r time off
 	 */
@@ -105,7 +105,7 @@ public interface HRTimeOffModel extends BaseModel<HRTimeOff>, GroupedModel,
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the user ID of this h r time off.
+	 * Returns the user ID of this h r time off.
 	 *
 	 * @return the user ID of this h r time off
 	 */
@@ -119,7 +119,7 @@ public interface HRTimeOffModel extends BaseModel<HRTimeOff>, GroupedModel,
 	public void setUserId(long userId);
 
 	/**
-	 * Gets the user uuid of this h r time off.
+	 * Returns the user uuid of this h r time off.
 	 *
 	 * @return the user uuid of this h r time off
 	 * @throws SystemException if a system exception occurred
@@ -134,7 +134,7 @@ public interface HRTimeOffModel extends BaseModel<HRTimeOff>, GroupedModel,
 	public void setUserUuid(String userUuid);
 
 	/**
-	 * Gets the user name of this h r time off.
+	 * Returns the user name of this h r time off.
 	 *
 	 * @return the user name of this h r time off
 	 */
@@ -149,7 +149,7 @@ public interface HRTimeOffModel extends BaseModel<HRTimeOff>, GroupedModel,
 	public void setUserName(String userName);
 
 	/**
-	 * Gets the create date of this h r time off.
+	 * Returns the create date of this h r time off.
 	 *
 	 * @return the create date of this h r time off
 	 */
@@ -163,7 +163,7 @@ public interface HRTimeOffModel extends BaseModel<HRTimeOff>, GroupedModel,
 	public void setCreateDate(Date createDate);
 
 	/**
-	 * Gets the modified date of this h r time off.
+	 * Returns the modified date of this h r time off.
 	 *
 	 * @return the modified date of this h r time off
 	 */
@@ -177,7 +177,7 @@ public interface HRTimeOffModel extends BaseModel<HRTimeOff>, GroupedModel,
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Gets the hr time off type ID of this h r time off.
+	 * Returns the hr time off type ID of this h r time off.
 	 *
 	 * @return the hr time off type ID of this h r time off
 	 */
@@ -191,7 +191,7 @@ public interface HRTimeOffModel extends BaseModel<HRTimeOff>, GroupedModel,
 	public void setHrTimeOffTypeId(long hrTimeOffTypeId);
 
 	/**
-	 * Gets the hr time sheet ID of this h r time off.
+	 * Returns the hr time sheet ID of this h r time off.
 	 *
 	 * @return the hr time sheet ID of this h r time off
 	 */
@@ -205,7 +205,7 @@ public interface HRTimeOffModel extends BaseModel<HRTimeOff>, GroupedModel,
 	public void setHrTimeSheetId(long hrTimeSheetId);
 
 	/**
-	 * Gets the hr user ID of this h r time off.
+	 * Returns the hr user ID of this h r time off.
 	 *
 	 * @return the hr user ID of this h r time off
 	 */
@@ -219,7 +219,7 @@ public interface HRTimeOffModel extends BaseModel<HRTimeOff>, GroupedModel,
 	public void setHrUserId(long hrUserId);
 
 	/**
-	 * Gets the hr user uuid of this h r time off.
+	 * Returns the hr user uuid of this h r time off.
 	 *
 	 * @return the hr user uuid of this h r time off
 	 * @throws SystemException if a system exception occurred
@@ -234,7 +234,7 @@ public interface HRTimeOffModel extends BaseModel<HRTimeOff>, GroupedModel,
 	public void setHrUserUuid(String hrUserUuid);
 
 	/**
-	 * Gets the start day of year of this h r time off.
+	 * Returns the start day of year of this h r time off.
 	 *
 	 * @return the start day of year of this h r time off
 	 */
@@ -248,7 +248,7 @@ public interface HRTimeOffModel extends BaseModel<HRTimeOff>, GroupedModel,
 	public void setStartDayOfYear(int startDayOfYear);
 
 	/**
-	 * Gets the end day of year of this h r time off.
+	 * Returns the end day of year of this h r time off.
 	 *
 	 * @return the end day of year of this h r time off
 	 */
@@ -262,7 +262,7 @@ public interface HRTimeOffModel extends BaseModel<HRTimeOff>, GroupedModel,
 	public void setEndDayOfYear(int endDayOfYear);
 
 	/**
-	 * Gets the year of this h r time off.
+	 * Returns the year of this h r time off.
 	 *
 	 * @return the year of this h r time off
 	 */
@@ -276,7 +276,7 @@ public interface HRTimeOffModel extends BaseModel<HRTimeOff>, GroupedModel,
 	public void setYear(int year);
 
 	/**
-	 * Gets the total hours of this h r time off.
+	 * Returns the total hours of this h r time off.
 	 *
 	 * @return the total hours of this h r time off
 	 */
@@ -290,7 +290,7 @@ public interface HRTimeOffModel extends BaseModel<HRTimeOff>, GroupedModel,
 	public void setTotalHours(double totalHours);
 
 	/**
-	 * Gets the status of this h r time off.
+	 * Returns the status of this h r time off.
 	 *
 	 * @return the status of this h r time off
 	 */
@@ -304,7 +304,7 @@ public interface HRTimeOffModel extends BaseModel<HRTimeOff>, GroupedModel,
 	public void setStatus(int status);
 
 	/**
-	 * Gets the status by user ID of this h r time off.
+	 * Returns the status by user ID of this h r time off.
 	 *
 	 * @return the status by user ID of this h r time off
 	 */
@@ -318,7 +318,7 @@ public interface HRTimeOffModel extends BaseModel<HRTimeOff>, GroupedModel,
 	public void setStatusByUserId(long statusByUserId);
 
 	/**
-	 * Gets the status by user uuid of this h r time off.
+	 * Returns the status by user uuid of this h r time off.
 	 *
 	 * @return the status by user uuid of this h r time off
 	 * @throws SystemException if a system exception occurred
@@ -333,7 +333,7 @@ public interface HRTimeOffModel extends BaseModel<HRTimeOff>, GroupedModel,
 	public void setStatusByUserUuid(String statusByUserUuid);
 
 	/**
-	 * Gets the status by user name of this h r time off.
+	 * Returns the status by user name of this h r time off.
 	 *
 	 * @return the status by user name of this h r time off
 	 */
@@ -348,7 +348,7 @@ public interface HRTimeOffModel extends BaseModel<HRTimeOff>, GroupedModel,
 	public void setStatusByUserName(String statusByUserName);
 
 	/**
-	 * Gets the status date of this h r time off.
+	 * Returns the status date of this h r time off.
 	 *
 	 * @return the status date of this h r time off
 	 */
@@ -362,7 +362,7 @@ public interface HRTimeOffModel extends BaseModel<HRTimeOff>, GroupedModel,
 	public void setStatusDate(Date statusDate);
 
 	/**
-	 * @deprecated {@link #isApproved}
+	 * @deprecated Renamed to {@link #isApproved()}
 	 */
 	public boolean getApproved();
 

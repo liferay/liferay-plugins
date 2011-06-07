@@ -47,21 +47,21 @@ public interface MeetupsEntryModel extends AuditedModel, BaseModel<MeetupsEntry>
 	 */
 
 	/**
-	 * Gets the primary key of this meetups entry.
+	 * Returns the primary key of this meetups entry.
 	 *
 	 * @return the primary key of this meetups entry
 	 */
 	public long getPrimaryKey();
 
 	/**
-	 * Sets the primary key of this meetups entry
+	 * Sets the primary key of this meetups entry.
 	 *
 	 * @param primaryKey the primary key of this meetups entry
 	 */
 	public void setPrimaryKey(long primaryKey);
 
 	/**
-	 * Gets the meetups entry ID of this meetups entry.
+	 * Returns the meetups entry ID of this meetups entry.
 	 *
 	 * @return the meetups entry ID of this meetups entry
 	 */
@@ -75,7 +75,7 @@ public interface MeetupsEntryModel extends AuditedModel, BaseModel<MeetupsEntry>
 	public void setMeetupsEntryId(long meetupsEntryId);
 
 	/**
-	 * Gets the company ID of this meetups entry.
+	 * Returns the company ID of this meetups entry.
 	 *
 	 * @return the company ID of this meetups entry
 	 */
@@ -89,7 +89,7 @@ public interface MeetupsEntryModel extends AuditedModel, BaseModel<MeetupsEntry>
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the user ID of this meetups entry.
+	 * Returns the user ID of this meetups entry.
 	 *
 	 * @return the user ID of this meetups entry
 	 */
@@ -103,7 +103,7 @@ public interface MeetupsEntryModel extends AuditedModel, BaseModel<MeetupsEntry>
 	public void setUserId(long userId);
 
 	/**
-	 * Gets the user uuid of this meetups entry.
+	 * Returns the user uuid of this meetups entry.
 	 *
 	 * @return the user uuid of this meetups entry
 	 * @throws SystemException if a system exception occurred
@@ -118,7 +118,7 @@ public interface MeetupsEntryModel extends AuditedModel, BaseModel<MeetupsEntry>
 	public void setUserUuid(String userUuid);
 
 	/**
-	 * Gets the user name of this meetups entry.
+	 * Returns the user name of this meetups entry.
 	 *
 	 * @return the user name of this meetups entry
 	 */
@@ -133,7 +133,7 @@ public interface MeetupsEntryModel extends AuditedModel, BaseModel<MeetupsEntry>
 	public void setUserName(String userName);
 
 	/**
-	 * Gets the create date of this meetups entry.
+	 * Returns the create date of this meetups entry.
 	 *
 	 * @return the create date of this meetups entry
 	 */
@@ -147,7 +147,7 @@ public interface MeetupsEntryModel extends AuditedModel, BaseModel<MeetupsEntry>
 	public void setCreateDate(Date createDate);
 
 	/**
-	 * Gets the modified date of this meetups entry.
+	 * Returns the modified date of this meetups entry.
 	 *
 	 * @return the modified date of this meetups entry
 	 */
@@ -161,7 +161,7 @@ public interface MeetupsEntryModel extends AuditedModel, BaseModel<MeetupsEntry>
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Gets the title of this meetups entry.
+	 * Returns the title of this meetups entry.
 	 *
 	 * @return the title of this meetups entry
 	 */
@@ -176,7 +176,7 @@ public interface MeetupsEntryModel extends AuditedModel, BaseModel<MeetupsEntry>
 	public void setTitle(String title);
 
 	/**
-	 * Gets the description of this meetups entry.
+	 * Returns the description of this meetups entry.
 	 *
 	 * @return the description of this meetups entry
 	 */
@@ -191,7 +191,7 @@ public interface MeetupsEntryModel extends AuditedModel, BaseModel<MeetupsEntry>
 	public void setDescription(String description);
 
 	/**
-	 * Gets the start date of this meetups entry.
+	 * Returns the start date of this meetups entry.
 	 *
 	 * @return the start date of this meetups entry
 	 */
@@ -205,7 +205,7 @@ public interface MeetupsEntryModel extends AuditedModel, BaseModel<MeetupsEntry>
 	public void setStartDate(Date startDate);
 
 	/**
-	 * Gets the end date of this meetups entry.
+	 * Returns the end date of this meetups entry.
 	 *
 	 * @return the end date of this meetups entry
 	 */
@@ -219,7 +219,7 @@ public interface MeetupsEntryModel extends AuditedModel, BaseModel<MeetupsEntry>
 	public void setEndDate(Date endDate);
 
 	/**
-	 * Gets the total attendees of this meetups entry.
+	 * Returns the total attendees of this meetups entry.
 	 *
 	 * @return the total attendees of this meetups entry
 	 */
@@ -233,7 +233,7 @@ public interface MeetupsEntryModel extends AuditedModel, BaseModel<MeetupsEntry>
 	public void setTotalAttendees(int totalAttendees);
 
 	/**
-	 * Gets the max attendees of this meetups entry.
+	 * Returns the max attendees of this meetups entry.
 	 *
 	 * @return the max attendees of this meetups entry
 	 */
@@ -247,7 +247,7 @@ public interface MeetupsEntryModel extends AuditedModel, BaseModel<MeetupsEntry>
 	public void setMaxAttendees(int maxAttendees);
 
 	/**
-	 * Gets the price of this meetups entry.
+	 * Returns the price of this meetups entry.
 	 *
 	 * @return the price of this meetups entry
 	 */
@@ -261,7 +261,7 @@ public interface MeetupsEntryModel extends AuditedModel, BaseModel<MeetupsEntry>
 	public void setPrice(double price);
 
 	/**
-	 * Gets the thumbnail ID of this meetups entry.
+	 * Returns the thumbnail ID of this meetups entry.
 	 *
 	 * @return the thumbnail ID of this meetups entry
 	 */

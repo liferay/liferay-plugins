@@ -41,14 +41,14 @@ public interface HRProjectRolePersistence extends BasePersistence<HRProjectRole>
 	/**
 	* Caches the h r project role in the entity cache if it is enabled.
 	*
-	* @param hrProjectRole the h r project role to cache
+	* @param hrProjectRole the h r project role
 	*/
 	public void cacheResult(com.liferay.hr.model.HRProjectRole hrProjectRole);
 
 	/**
 	* Caches the h r project roles in the entity cache if it is enabled.
 	*
-	* @param hrProjectRoles the h r project roles to cache
+	* @param hrProjectRoles the h r project roles
 	*/
 	public void cacheResult(
 		java.util.List<com.liferay.hr.model.HRProjectRole> hrProjectRoles);
@@ -64,7 +64,7 @@ public interface HRProjectRolePersistence extends BasePersistence<HRProjectRole>
 	/**
 	* Removes the h r project role with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param hrProjectRoleId the primary key of the h r project role to remove
+	* @param hrProjectRoleId the primary key of the h r project role
 	* @return the h r project role that was removed
 	* @throws com.liferay.hr.NoSuchProjectRoleException if a h r project role with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -78,9 +78,9 @@ public interface HRProjectRolePersistence extends BasePersistence<HRProjectRole>
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the h r project role with the primary key or throws a {@link com.liferay.hr.NoSuchProjectRoleException} if it could not be found.
+	* Returns the h r project role with the primary key or throws a {@link com.liferay.hr.NoSuchProjectRoleException} if it could not be found.
 	*
-	* @param hrProjectRoleId the primary key of the h r project role to find
+	* @param hrProjectRoleId the primary key of the h r project role
 	* @return the h r project role
 	* @throws com.liferay.hr.NoSuchProjectRoleException if a h r project role with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -91,9 +91,9 @@ public interface HRProjectRolePersistence extends BasePersistence<HRProjectRole>
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the h r project role with the primary key or returns <code>null</code> if it could not be found.
+	* Returns the h r project role with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param hrProjectRoleId the primary key of the h r project role to find
+	* @param hrProjectRoleId the primary key of the h r project role
 	* @return the h r project role, or <code>null</code> if a h r project role with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -102,7 +102,7 @@ public interface HRProjectRolePersistence extends BasePersistence<HRProjectRole>
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds all the h r project roles.
+	* Returns all the h r project roles.
 	*
 	* @return the h r project roles
 	* @throws SystemException if a system exception occurred
@@ -111,14 +111,14 @@ public interface HRProjectRolePersistence extends BasePersistence<HRProjectRole>
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds a range of all the h r project roles.
+	* Returns a range of all the h r project roles.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of h r project roles to return
-	* @param end the upper bound of the range of h r project roles to return (not inclusive)
+	* @param start the lower bound of the range of h r project roles
+	* @param end the upper bound of the range of h r project roles (not inclusive)
 	* @return the range of h r project roles
 	* @throws SystemException if a system exception occurred
 	*/
@@ -127,14 +127,14 @@ public interface HRProjectRolePersistence extends BasePersistence<HRProjectRole>
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds an ordered range of all the h r project roles.
+	* Returns an ordered range of all the h r project roles.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of h r project roles to return
-	* @param end the upper bound of the range of h r project roles to return (not inclusive)
+	* @param start the lower bound of the range of h r project roles
+	* @param end the upper bound of the range of h r project roles (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of h r project roles
 	* @throws SystemException if a system exception occurred
@@ -153,7 +153,7 @@ public interface HRProjectRolePersistence extends BasePersistence<HRProjectRole>
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Counts all the h r project roles.
+	* Returns the number of h r project roles.
 	*
 	* @return the number of h r project roles
 	* @throws SystemException if a system exception occurred

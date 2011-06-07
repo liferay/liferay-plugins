@@ -31,7 +31,7 @@ public class FolderLocalServiceWrapper implements FolderLocalService {
 	/**
 	* Adds the folder to the database. Also notifies the appropriate model listeners.
 	*
-	* @param folder the folder to add
+	* @param folder the folder
 	* @return the folder that was added
 	* @throws SystemException if a system exception occurred
 	*/
@@ -54,7 +54,7 @@ public class FolderLocalServiceWrapper implements FolderLocalService {
 	/**
 	* Deletes the folder with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param folderId the primary key of the folder to delete
+	* @param folderId the primary key of the folder
 	* @throws PortalException if a folder with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -67,7 +67,7 @@ public class FolderLocalServiceWrapper implements FolderLocalService {
 	/**
 	* Deletes the folder from the database. Also notifies the appropriate model listeners.
 	*
-	* @param folder the folder to delete
+	* @param folder the folder
 	* @throws PortalException
 	* @throws SystemException if a system exception occurred
 	*/
@@ -80,7 +80,7 @@ public class FolderLocalServiceWrapper implements FolderLocalService {
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
 	*
-	* @param dynamicQuery the dynamic query to search with
+	* @param dynamicQuery the dynamic query
 	* @return the matching rows
 	* @throws SystemException if a system exception occurred
 	*/
@@ -98,9 +98,9 @@ public class FolderLocalServiceWrapper implements FolderLocalService {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param dynamicQuery the dynamic query to search with
-	* @param start the lower bound of the range of model instances to return
-	* @param end the upper bound of the range of model instances to return (not inclusive)
+	* @param dynamicQuery the dynamic query
+	* @param start the lower bound of the range of model instances
+	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
 	* @throws SystemException if a system exception occurred
 	*/
@@ -118,9 +118,9 @@ public class FolderLocalServiceWrapper implements FolderLocalService {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param dynamicQuery the dynamic query to search with
-	* @param start the lower bound of the range of model instances to return
-	* @param end the upper bound of the range of model instances to return (not inclusive)
+	* @param dynamicQuery the dynamic query
+	* @param start the lower bound of the range of model instances
+	* @param end the upper bound of the range of model instances (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
 	* @throws SystemException if a system exception occurred
@@ -136,9 +136,9 @@ public class FolderLocalServiceWrapper implements FolderLocalService {
 	}
 
 	/**
-	* Counts the number of rows that match the dynamic query.
+	* Returns the number of rows that match the dynamic query.
 	*
-	* @param dynamicQuery the dynamic query to search with
+	* @param dynamicQuery the dynamic query
 	* @return the number of rows that match the dynamic query
 	* @throws SystemException if a system exception occurred
 	*/
@@ -149,9 +149,9 @@ public class FolderLocalServiceWrapper implements FolderLocalService {
 	}
 
 	/**
-	* Gets the folder with the primary key.
+	* Returns the folder with the primary key.
 	*
-	* @param folderId the primary key of the folder to get
+	* @param folderId the primary key of the folder
 	* @return the folder
 	* @throws PortalException if a folder with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -163,14 +163,14 @@ public class FolderLocalServiceWrapper implements FolderLocalService {
 	}
 
 	/**
-	* Gets a range of all the folders.
+	* Returns a range of all the folders.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of folders to return
-	* @param end the upper bound of the range of folders to return (not inclusive)
+	* @param start the lower bound of the range of folders
+	* @param end the upper bound of the range of folders (not inclusive)
 	* @return the range of folders
 	* @throws SystemException if a system exception occurred
 	*/
@@ -180,7 +180,7 @@ public class FolderLocalServiceWrapper implements FolderLocalService {
 	}
 
 	/**
-	* Gets the number of folders.
+	* Returns the number of folders.
 	*
 	* @return the number of folders
 	* @throws SystemException if a system exception occurred
@@ -193,7 +193,7 @@ public class FolderLocalServiceWrapper implements FolderLocalService {
 	/**
 	* Updates the folder in the database. Also notifies the appropriate model listeners.
 	*
-	* @param folder the folder to update
+	* @param folder the folder
 	* @return the folder that was updated
 	* @throws SystemException if a system exception occurred
 	*/
@@ -206,7 +206,7 @@ public class FolderLocalServiceWrapper implements FolderLocalService {
 	/**
 	* Updates the folder in the database. Also notifies the appropriate model listeners.
 	*
-	* @param folder the folder to update
+	* @param folder the folder
 	* @param merge whether to merge the folder with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
 	* @return the folder that was updated
 	* @throws SystemException if a system exception occurred
@@ -218,7 +218,7 @@ public class FolderLocalServiceWrapper implements FolderLocalService {
 	}
 
 	/**
-	* Gets the Spring bean ID for this bean.
+	* Returns the Spring bean ID for this bean.
 	*
 	* @return the Spring bean ID for this bean
 	*/

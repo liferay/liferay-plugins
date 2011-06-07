@@ -37,7 +37,7 @@ public class StatusWrapper implements Status {
 	}
 
 	/**
-	* Gets the primary key of this status.
+	* Returns the primary key of this status.
 	*
 	* @return the primary key of this status
 	*/
@@ -46,7 +46,7 @@ public class StatusWrapper implements Status {
 	}
 
 	/**
-	* Sets the primary key of this status
+	* Sets the primary key of this status.
 	*
 	* @param primaryKey the primary key of this status
 	*/
@@ -55,7 +55,7 @@ public class StatusWrapper implements Status {
 	}
 
 	/**
-	* Gets the status ID of this status.
+	* Returns the status ID of this status.
 	*
 	* @return the status ID of this status
 	*/
@@ -73,7 +73,7 @@ public class StatusWrapper implements Status {
 	}
 
 	/**
-	* Gets the user ID of this status.
+	* Returns the user ID of this status.
 	*
 	* @return the user ID of this status
 	*/
@@ -91,7 +91,7 @@ public class StatusWrapper implements Status {
 	}
 
 	/**
-	* Gets the user uuid of this status.
+	* Returns the user uuid of this status.
 	*
 	* @return the user uuid of this status
 	* @throws SystemException if a system exception occurred
@@ -111,7 +111,7 @@ public class StatusWrapper implements Status {
 	}
 
 	/**
-	* Gets the modified date of this status.
+	* Returns the modified date of this status.
 	*
 	* @return the modified date of this status
 	*/
@@ -129,7 +129,7 @@ public class StatusWrapper implements Status {
 	}
 
 	/**
-	* Gets the online of this status.
+	* Returns the online of this status.
 	*
 	* @return the online of this status
 	*/
@@ -156,7 +156,7 @@ public class StatusWrapper implements Status {
 	}
 
 	/**
-	* Gets the awake of this status.
+	* Returns the awake of this status.
 	*
 	* @return the awake of this status
 	*/
@@ -183,7 +183,7 @@ public class StatusWrapper implements Status {
 	}
 
 	/**
-	* Gets the active panel ID of this status.
+	* Returns the active panel ID of this status.
 	*
 	* @return the active panel ID of this status
 	*/
@@ -201,7 +201,7 @@ public class StatusWrapper implements Status {
 	}
 
 	/**
-	* Gets the message of this status.
+	* Returns the message of this status.
 	*
 	* @return the message of this status
 	*/
@@ -219,7 +219,7 @@ public class StatusWrapper implements Status {
 	}
 
 	/**
-	* Gets the play sound of this status.
+	* Returns the play sound of this status.
 	*
 	* @return the play sound of this status
 	*/

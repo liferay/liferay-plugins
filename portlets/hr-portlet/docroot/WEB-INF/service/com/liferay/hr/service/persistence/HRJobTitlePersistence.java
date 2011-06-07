@@ -41,14 +41,14 @@ public interface HRJobTitlePersistence extends BasePersistence<HRJobTitle> {
 	/**
 	* Caches the h r job title in the entity cache if it is enabled.
 	*
-	* @param hrJobTitle the h r job title to cache
+	* @param hrJobTitle the h r job title
 	*/
 	public void cacheResult(com.liferay.hr.model.HRJobTitle hrJobTitle);
 
 	/**
 	* Caches the h r job titles in the entity cache if it is enabled.
 	*
-	* @param hrJobTitles the h r job titles to cache
+	* @param hrJobTitles the h r job titles
 	*/
 	public void cacheResult(
 		java.util.List<com.liferay.hr.model.HRJobTitle> hrJobTitles);
@@ -64,7 +64,7 @@ public interface HRJobTitlePersistence extends BasePersistence<HRJobTitle> {
 	/**
 	* Removes the h r job title with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param hrJobTitleId the primary key of the h r job title to remove
+	* @param hrJobTitleId the primary key of the h r job title
 	* @return the h r job title that was removed
 	* @throws com.liferay.hr.NoSuchJobTitleException if a h r job title with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -78,9 +78,9 @@ public interface HRJobTitlePersistence extends BasePersistence<HRJobTitle> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the h r job title with the primary key or throws a {@link com.liferay.hr.NoSuchJobTitleException} if it could not be found.
+	* Returns the h r job title with the primary key or throws a {@link com.liferay.hr.NoSuchJobTitleException} if it could not be found.
 	*
-	* @param hrJobTitleId the primary key of the h r job title to find
+	* @param hrJobTitleId the primary key of the h r job title
 	* @return the h r job title
 	* @throws com.liferay.hr.NoSuchJobTitleException if a h r job title with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -90,9 +90,9 @@ public interface HRJobTitlePersistence extends BasePersistence<HRJobTitle> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the h r job title with the primary key or returns <code>null</code> if it could not be found.
+	* Returns the h r job title with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param hrJobTitleId the primary key of the h r job title to find
+	* @param hrJobTitleId the primary key of the h r job title
 	* @return the h r job title, or <code>null</code> if a h r job title with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -100,7 +100,7 @@ public interface HRJobTitlePersistence extends BasePersistence<HRJobTitle> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds all the h r job titles.
+	* Returns all the h r job titles.
 	*
 	* @return the h r job titles
 	* @throws SystemException if a system exception occurred
@@ -109,14 +109,14 @@ public interface HRJobTitlePersistence extends BasePersistence<HRJobTitle> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds a range of all the h r job titles.
+	* Returns a range of all the h r job titles.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of h r job titles to return
-	* @param end the upper bound of the range of h r job titles to return (not inclusive)
+	* @param start the lower bound of the range of h r job titles
+	* @param end the upper bound of the range of h r job titles (not inclusive)
 	* @return the range of h r job titles
 	* @throws SystemException if a system exception occurred
 	*/
@@ -124,14 +124,14 @@ public interface HRJobTitlePersistence extends BasePersistence<HRJobTitle> {
 		int end) throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds an ordered range of all the h r job titles.
+	* Returns an ordered range of all the h r job titles.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of h r job titles to return
-	* @param end the upper bound of the range of h r job titles to return (not inclusive)
+	* @param start the lower bound of the range of h r job titles
+	* @param end the upper bound of the range of h r job titles (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of h r job titles
 	* @throws SystemException if a system exception occurred
@@ -150,7 +150,7 @@ public interface HRJobTitlePersistence extends BasePersistence<HRJobTitle> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Counts all the h r job titles.
+	* Returns the number of h r job titles.
 	*
 	* @return the number of h r job titles
 	* @throws SystemException if a system exception occurred
@@ -159,9 +159,9 @@ public interface HRJobTitlePersistence extends BasePersistence<HRJobTitle> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Gets all the h r branchs associated with the h r job title.
+	* Returns all the h r branchs associated with the h r job title.
 	*
-	* @param pk the primary key of the h r job title to get the associated h r branchs for
+	* @param pk the primary key of the h r job title
 	* @return the h r branchs associated with the h r job title
 	* @throws SystemException if a system exception occurred
 	*/
@@ -169,15 +169,15 @@ public interface HRJobTitlePersistence extends BasePersistence<HRJobTitle> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Gets a range of all the h r branchs associated with the h r job title.
+	* Returns a range of all the h r branchs associated with the h r job title.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param pk the primary key of the h r job title to get the associated h r branchs for
-	* @param start the lower bound of the range of h r job titles to return
-	* @param end the upper bound of the range of h r job titles to return (not inclusive)
+	* @param pk the primary key of the h r job title
+	* @param start the lower bound of the range of h r job titles
+	* @param end the upper bound of the range of h r job titles (not inclusive)
 	* @return the range of h r branchs associated with the h r job title
 	* @throws SystemException if a system exception occurred
 	*/
@@ -186,15 +186,15 @@ public interface HRJobTitlePersistence extends BasePersistence<HRJobTitle> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Gets an ordered range of all the h r branchs associated with the h r job title.
+	* Returns an ordered range of all the h r branchs associated with the h r job title.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param pk the primary key of the h r job title to get the associated h r branchs for
-	* @param start the lower bound of the range of h r job titles to return
-	* @param end the upper bound of the range of h r job titles to return (not inclusive)
+	* @param pk the primary key of the h r job title
+	* @param start the lower bound of the range of h r job titles
+	* @param end the upper bound of the range of h r job titles (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of h r branchs associated with the h r job title
 	* @throws SystemException if a system exception occurred
@@ -205,9 +205,9 @@ public interface HRJobTitlePersistence extends BasePersistence<HRJobTitle> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Gets the number of h r branchs associated with the h r job title.
+	* Returns the number of h r branchs associated with the h r job title.
 	*
-	* @param pk the primary key of the h r job title to get the number of associated h r branchs for
+	* @param pk the primary key of the h r job title
 	* @return the number of h r branchs associated with the h r job title
 	* @throws SystemException if a system exception occurred
 	*/
@@ -329,7 +329,7 @@ public interface HRJobTitlePersistence extends BasePersistence<HRJobTitle> {
 	/**
 	* Sets the h r branchs associated with the h r job title, removing and adding associations as necessary. Also notifies the appropriate model listeners and clears the mapping table finder cache.
 	*
-	* @param pk the primary key of the h r job title to set the associations for
+	* @param pk the primary key of the h r job title
 	* @param hrBranchPKs the primary keys of the h r branchs to be associated with the h r job title
 	* @throws SystemException if a system exception occurred
 	*/
@@ -339,7 +339,7 @@ public interface HRJobTitlePersistence extends BasePersistence<HRJobTitle> {
 	/**
 	* Sets the h r branchs associated with the h r job title, removing and adding associations as necessary. Also notifies the appropriate model listeners and clears the mapping table finder cache.
 	*
-	* @param pk the primary key of the h r job title to set the associations for
+	* @param pk the primary key of the h r job title
 	* @param hrBranchs the h r branchs to be associated with the h r job title
 	* @throws SystemException if a system exception occurred
 	*/

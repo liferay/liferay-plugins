@@ -37,7 +37,7 @@ public class HRJobTitleWrapper implements HRJobTitle {
 	}
 
 	/**
-	* Gets the primary key of this h r job title.
+	* Returns the primary key of this h r job title.
 	*
 	* @return the primary key of this h r job title
 	*/
@@ -46,7 +46,7 @@ public class HRJobTitleWrapper implements HRJobTitle {
 	}
 
 	/**
-	* Sets the primary key of this h r job title
+	* Sets the primary key of this h r job title.
 	*
 	* @param primaryKey the primary key of this h r job title
 	*/
@@ -55,7 +55,7 @@ public class HRJobTitleWrapper implements HRJobTitle {
 	}
 
 	/**
-	* Gets the hr job title ID of this h r job title.
+	* Returns the hr job title ID of this h r job title.
 	*
 	* @return the hr job title ID of this h r job title
 	*/
@@ -73,7 +73,7 @@ public class HRJobTitleWrapper implements HRJobTitle {
 	}
 
 	/**
-	* Gets the group ID of this h r job title.
+	* Returns the group ID of this h r job title.
 	*
 	* @return the group ID of this h r job title
 	*/
@@ -91,7 +91,7 @@ public class HRJobTitleWrapper implements HRJobTitle {
 	}
 
 	/**
-	* Gets the company ID of this h r job title.
+	* Returns the company ID of this h r job title.
 	*
 	* @return the company ID of this h r job title
 	*/
@@ -109,7 +109,7 @@ public class HRJobTitleWrapper implements HRJobTitle {
 	}
 
 	/**
-	* Gets the user ID of this h r job title.
+	* Returns the user ID of this h r job title.
 	*
 	* @return the user ID of this h r job title
 	*/
@@ -127,7 +127,7 @@ public class HRJobTitleWrapper implements HRJobTitle {
 	}
 
 	/**
-	* Gets the user uuid of this h r job title.
+	* Returns the user uuid of this h r job title.
 	*
 	* @return the user uuid of this h r job title
 	* @throws SystemException if a system exception occurred
@@ -147,7 +147,7 @@ public class HRJobTitleWrapper implements HRJobTitle {
 	}
 
 	/**
-	* Gets the user name of this h r job title.
+	* Returns the user name of this h r job title.
 	*
 	* @return the user name of this h r job title
 	*/
@@ -165,7 +165,7 @@ public class HRJobTitleWrapper implements HRJobTitle {
 	}
 
 	/**
-	* Gets the create date of this h r job title.
+	* Returns the create date of this h r job title.
 	*
 	* @return the create date of this h r job title
 	*/
@@ -183,7 +183,7 @@ public class HRJobTitleWrapper implements HRJobTitle {
 	}
 
 	/**
-	* Gets the modified date of this h r job title.
+	* Returns the modified date of this h r job title.
 	*
 	* @return the modified date of this h r job title
 	*/
@@ -201,7 +201,7 @@ public class HRJobTitleWrapper implements HRJobTitle {
 	}
 
 	/**
-	* Gets the name of this h r job title.
+	* Returns the name of this h r job title.
 	*
 	* @return the name of this h r job title
 	*/
@@ -219,7 +219,7 @@ public class HRJobTitleWrapper implements HRJobTitle {
 	}
 
 	/**
-	* Gets the description of this h r job title.
+	* Returns the description of this h r job title.
 	*
 	* @return the description of this h r job title
 	*/

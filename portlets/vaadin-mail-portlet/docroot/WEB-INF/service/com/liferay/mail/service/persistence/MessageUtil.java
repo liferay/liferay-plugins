@@ -120,7 +120,7 @@ public class MessageUtil {
 	/**
 	* Caches the message in the entity cache if it is enabled.
 	*
-	* @param message the message to cache
+	* @param message the message
 	*/
 	public static void cacheResult(com.liferay.mail.model.Message message) {
 		getPersistence().cacheResult(message);
@@ -129,7 +129,7 @@ public class MessageUtil {
 	/**
 	* Caches the messages in the entity cache if it is enabled.
 	*
-	* @param messages the messages to cache
+	* @param messages the messages
 	*/
 	public static void cacheResult(
 		java.util.List<com.liferay.mail.model.Message> messages) {
@@ -149,7 +149,7 @@ public class MessageUtil {
 	/**
 	* Removes the message with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param messageId the primary key of the message to remove
+	* @param messageId the primary key of the message
 	* @return the message that was removed
 	* @throws com.liferay.mail.NoSuchMessageException if a message with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -167,9 +167,9 @@ public class MessageUtil {
 	}
 
 	/**
-	* Finds the message with the primary key or throws a {@link com.liferay.mail.NoSuchMessageException} if it could not be found.
+	* Returns the message with the primary key or throws a {@link com.liferay.mail.NoSuchMessageException} if it could not be found.
 	*
-	* @param messageId the primary key of the message to find
+	* @param messageId the primary key of the message
 	* @return the message
 	* @throws com.liferay.mail.NoSuchMessageException if a message with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -182,9 +182,9 @@ public class MessageUtil {
 	}
 
 	/**
-	* Finds the message with the primary key or returns <code>null</code> if it could not be found.
+	* Returns the message with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param messageId the primary key of the message to find
+	* @param messageId the primary key of the message
 	* @return the message, or <code>null</code> if a message with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -195,9 +195,9 @@ public class MessageUtil {
 	}
 
 	/**
-	* Finds all the messages where companyId = &#63;.
+	* Returns all the messages where companyId = &#63;.
 	*
-	* @param companyId the company ID to search with
+	* @param companyId the company ID
 	* @return the matching messages
 	* @throws SystemException if a system exception occurred
 	*/
@@ -208,15 +208,15 @@ public class MessageUtil {
 	}
 
 	/**
-	* Finds a range of all the messages where companyId = &#63;.
+	* Returns a range of all the messages where companyId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param companyId the company ID to search with
-	* @param start the lower bound of the range of messages to return
-	* @param end the upper bound of the range of messages to return (not inclusive)
+	* @param companyId the company ID
+	* @param start the lower bound of the range of messages
+	* @param end the upper bound of the range of messages (not inclusive)
 	* @return the range of matching messages
 	* @throws SystemException if a system exception occurred
 	*/
@@ -227,15 +227,15 @@ public class MessageUtil {
 	}
 
 	/**
-	* Finds an ordered range of all the messages where companyId = &#63;.
+	* Returns an ordered range of all the messages where companyId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param companyId the company ID to search with
-	* @param start the lower bound of the range of messages to return
-	* @param end the upper bound of the range of messages to return (not inclusive)
+	* @param companyId the company ID
+	* @param start the lower bound of the range of messages
+	* @param end the upper bound of the range of messages (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching messages
 	* @throws SystemException if a system exception occurred
@@ -249,13 +249,13 @@ public class MessageUtil {
 	}
 
 	/**
-	* Finds the first message in the ordered set where companyId = &#63;.
+	* Returns the first message in the ordered set where companyId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param companyId the company ID to search with
+	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching message
 	* @throws com.liferay.mail.NoSuchMessageException if a matching message could not be found
@@ -271,13 +271,13 @@ public class MessageUtil {
 	}
 
 	/**
-	* Finds the last message in the ordered set where companyId = &#63;.
+	* Returns the last message in the ordered set where companyId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param companyId the company ID to search with
+	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching message
 	* @throws com.liferay.mail.NoSuchMessageException if a matching message could not be found
@@ -293,14 +293,14 @@ public class MessageUtil {
 	}
 
 	/**
-	* Finds the messages before and after the current message in the ordered set where companyId = &#63;.
+	* Returns the messages before and after the current message in the ordered set where companyId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
 	* @param messageId the primary key of the current message
-	* @param companyId the company ID to search with
+	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next message
 	* @throws com.liferay.mail.NoSuchMessageException if a message with the primary key could not be found
@@ -317,9 +317,9 @@ public class MessageUtil {
 	}
 
 	/**
-	* Finds all the messages where folderId = &#63;.
+	* Returns all the messages where folderId = &#63;.
 	*
-	* @param folderId the folder ID to search with
+	* @param folderId the folder ID
 	* @return the matching messages
 	* @throws SystemException if a system exception occurred
 	*/
@@ -330,15 +330,15 @@ public class MessageUtil {
 	}
 
 	/**
-	* Finds a range of all the messages where folderId = &#63;.
+	* Returns a range of all the messages where folderId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param folderId the folder ID to search with
-	* @param start the lower bound of the range of messages to return
-	* @param end the upper bound of the range of messages to return (not inclusive)
+	* @param folderId the folder ID
+	* @param start the lower bound of the range of messages
+	* @param end the upper bound of the range of messages (not inclusive)
 	* @return the range of matching messages
 	* @throws SystemException if a system exception occurred
 	*/
@@ -349,15 +349,15 @@ public class MessageUtil {
 	}
 
 	/**
-	* Finds an ordered range of all the messages where folderId = &#63;.
+	* Returns an ordered range of all the messages where folderId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param folderId the folder ID to search with
-	* @param start the lower bound of the range of messages to return
-	* @param end the upper bound of the range of messages to return (not inclusive)
+	* @param folderId the folder ID
+	* @param start the lower bound of the range of messages
+	* @param end the upper bound of the range of messages (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching messages
 	* @throws SystemException if a system exception occurred
@@ -371,13 +371,13 @@ public class MessageUtil {
 	}
 
 	/**
-	* Finds the first message in the ordered set where folderId = &#63;.
+	* Returns the first message in the ordered set where folderId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param folderId the folder ID to search with
+	* @param folderId the folder ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching message
 	* @throws com.liferay.mail.NoSuchMessageException if a matching message could not be found
@@ -392,13 +392,13 @@ public class MessageUtil {
 	}
 
 	/**
-	* Finds the last message in the ordered set where folderId = &#63;.
+	* Returns the last message in the ordered set where folderId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param folderId the folder ID to search with
+	* @param folderId the folder ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching message
 	* @throws com.liferay.mail.NoSuchMessageException if a matching message could not be found
@@ -413,14 +413,14 @@ public class MessageUtil {
 	}
 
 	/**
-	* Finds the messages before and after the current message in the ordered set where folderId = &#63;.
+	* Returns the messages before and after the current message in the ordered set where folderId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
 	* @param messageId the primary key of the current message
-	* @param folderId the folder ID to search with
+	* @param folderId the folder ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next message
 	* @throws com.liferay.mail.NoSuchMessageException if a message with the primary key could not be found
@@ -437,10 +437,10 @@ public class MessageUtil {
 	}
 
 	/**
-	* Finds the message where folderId = &#63; and remoteMessageId = &#63; or throws a {@link com.liferay.mail.NoSuchMessageException} if it could not be found.
+	* Returns the message where folderId = &#63; and remoteMessageId = &#63; or throws a {@link com.liferay.mail.NoSuchMessageException} if it could not be found.
 	*
-	* @param folderId the folder ID to search with
-	* @param remoteMessageId the remote message ID to search with
+	* @param folderId the folder ID
+	* @param remoteMessageId the remote message ID
 	* @return the matching message
 	* @throws com.liferay.mail.NoSuchMessageException if a matching message could not be found
 	* @throws SystemException if a system exception occurred
@@ -453,10 +453,10 @@ public class MessageUtil {
 	}
 
 	/**
-	* Finds the message where folderId = &#63; and remoteMessageId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	* Returns the message where folderId = &#63; and remoteMessageId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	*
-	* @param folderId the folder ID to search with
-	* @param remoteMessageId the remote message ID to search with
+	* @param folderId the folder ID
+	* @param remoteMessageId the remote message ID
 	* @return the matching message, or <code>null</code> if a matching message could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -467,10 +467,10 @@ public class MessageUtil {
 	}
 
 	/**
-	* Finds the message where folderId = &#63; and remoteMessageId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	* Returns the message where folderId = &#63; and remoteMessageId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	*
-	* @param folderId the folder ID to search with
-	* @param remoteMessageId the remote message ID to search with
+	* @param folderId the folder ID
+	* @param remoteMessageId the remote message ID
 	* @return the matching message, or <code>null</code> if a matching message could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -482,7 +482,7 @@ public class MessageUtil {
 	}
 
 	/**
-	* Finds all the messages.
+	* Returns all the messages.
 	*
 	* @return the messages
 	* @throws SystemException if a system exception occurred
@@ -493,14 +493,14 @@ public class MessageUtil {
 	}
 
 	/**
-	* Finds a range of all the messages.
+	* Returns a range of all the messages.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of messages to return
-	* @param end the upper bound of the range of messages to return (not inclusive)
+	* @param start the lower bound of the range of messages
+	* @param end the upper bound of the range of messages (not inclusive)
 	* @return the range of messages
 	* @throws SystemException if a system exception occurred
 	*/
@@ -511,14 +511,14 @@ public class MessageUtil {
 	}
 
 	/**
-	* Finds an ordered range of all the messages.
+	* Returns an ordered range of all the messages.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of messages to return
-	* @param end the upper bound of the range of messages to return (not inclusive)
+	* @param start the lower bound of the range of messages
+	* @param end the upper bound of the range of messages (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of messages
 	* @throws SystemException if a system exception occurred
@@ -533,7 +533,7 @@ public class MessageUtil {
 	/**
 	* Removes all the messages where companyId = &#63; from the database.
 	*
-	* @param companyId the company ID to search with
+	* @param companyId the company ID
 	* @throws SystemException if a system exception occurred
 	*/
 	public static void removeByCompanyId(long companyId)
@@ -544,7 +544,7 @@ public class MessageUtil {
 	/**
 	* Removes all the messages where folderId = &#63; from the database.
 	*
-	* @param folderId the folder ID to search with
+	* @param folderId the folder ID
 	* @throws SystemException if a system exception occurred
 	*/
 	public static void removeByFolderId(long folderId)
@@ -555,8 +555,8 @@ public class MessageUtil {
 	/**
 	* Removes the message where folderId = &#63; and remoteMessageId = &#63; from the database.
 	*
-	* @param folderId the folder ID to search with
-	* @param remoteMessageId the remote message ID to search with
+	* @param folderId the folder ID
+	* @param remoteMessageId the remote message ID
 	* @throws SystemException if a system exception occurred
 	*/
 	public static void removeByF_R(long folderId, long remoteMessageId)
@@ -576,9 +576,9 @@ public class MessageUtil {
 	}
 
 	/**
-	* Counts all the messages where companyId = &#63;.
+	* Returns the number of messages where companyId = &#63;.
 	*
-	* @param companyId the company ID to search with
+	* @param companyId the company ID
 	* @return the number of matching messages
 	* @throws SystemException if a system exception occurred
 	*/
@@ -588,9 +588,9 @@ public class MessageUtil {
 	}
 
 	/**
-	* Counts all the messages where folderId = &#63;.
+	* Returns the number of messages where folderId = &#63;.
 	*
-	* @param folderId the folder ID to search with
+	* @param folderId the folder ID
 	* @return the number of matching messages
 	* @throws SystemException if a system exception occurred
 	*/
@@ -600,10 +600,10 @@ public class MessageUtil {
 	}
 
 	/**
-	* Counts all the messages where folderId = &#63; and remoteMessageId = &#63;.
+	* Returns the number of messages where folderId = &#63; and remoteMessageId = &#63;.
 	*
-	* @param folderId the folder ID to search with
-	* @param remoteMessageId the remote message ID to search with
+	* @param folderId the folder ID
+	* @param remoteMessageId the remote message ID
 	* @return the number of matching messages
 	* @throws SystemException if a system exception occurred
 	*/
@@ -613,7 +613,7 @@ public class MessageUtil {
 	}
 
 	/**
-	* Counts all the messages.
+	* Returns the number of messages.
 	*
 	* @return the number of messages
 	* @throws SystemException if a system exception occurred

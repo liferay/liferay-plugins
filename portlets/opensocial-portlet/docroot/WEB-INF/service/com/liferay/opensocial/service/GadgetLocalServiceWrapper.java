@@ -31,7 +31,7 @@ public class GadgetLocalServiceWrapper implements GadgetLocalService {
 	/**
 	* Adds the gadget to the database. Also notifies the appropriate model listeners.
 	*
-	* @param gadget the gadget to add
+	* @param gadget the gadget
 	* @return the gadget that was added
 	* @throws SystemException if a system exception occurred
 	*/
@@ -54,7 +54,7 @@ public class GadgetLocalServiceWrapper implements GadgetLocalService {
 	/**
 	* Deletes the gadget with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param gadgetId the primary key of the gadget to delete
+	* @param gadgetId the primary key of the gadget
 	* @throws PortalException if a gadget with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -67,7 +67,7 @@ public class GadgetLocalServiceWrapper implements GadgetLocalService {
 	/**
 	* Deletes the gadget from the database. Also notifies the appropriate model listeners.
 	*
-	* @param gadget the gadget to delete
+	* @param gadget the gadget
 	* @throws PortalException
 	* @throws SystemException if a system exception occurred
 	*/
@@ -80,7 +80,7 @@ public class GadgetLocalServiceWrapper implements GadgetLocalService {
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
 	*
-	* @param dynamicQuery the dynamic query to search with
+	* @param dynamicQuery the dynamic query
 	* @return the matching rows
 	* @throws SystemException if a system exception occurred
 	*/
@@ -98,9 +98,9 @@ public class GadgetLocalServiceWrapper implements GadgetLocalService {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param dynamicQuery the dynamic query to search with
-	* @param start the lower bound of the range of model instances to return
-	* @param end the upper bound of the range of model instances to return (not inclusive)
+	* @param dynamicQuery the dynamic query
+	* @param start the lower bound of the range of model instances
+	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
 	* @throws SystemException if a system exception occurred
 	*/
@@ -118,9 +118,9 @@ public class GadgetLocalServiceWrapper implements GadgetLocalService {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param dynamicQuery the dynamic query to search with
-	* @param start the lower bound of the range of model instances to return
-	* @param end the upper bound of the range of model instances to return (not inclusive)
+	* @param dynamicQuery the dynamic query
+	* @param start the lower bound of the range of model instances
+	* @param end the upper bound of the range of model instances (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
 	* @throws SystemException if a system exception occurred
@@ -136,9 +136,9 @@ public class GadgetLocalServiceWrapper implements GadgetLocalService {
 	}
 
 	/**
-	* Counts the number of rows that match the dynamic query.
+	* Returns the number of rows that match the dynamic query.
 	*
-	* @param dynamicQuery the dynamic query to search with
+	* @param dynamicQuery the dynamic query
 	* @return the number of rows that match the dynamic query
 	* @throws SystemException if a system exception occurred
 	*/
@@ -149,9 +149,9 @@ public class GadgetLocalServiceWrapper implements GadgetLocalService {
 	}
 
 	/**
-	* Gets the gadget with the primary key.
+	* Returns the gadget with the primary key.
 	*
-	* @param gadgetId the primary key of the gadget to get
+	* @param gadgetId the primary key of the gadget
 	* @return the gadget
 	* @throws PortalException if a gadget with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -163,14 +163,14 @@ public class GadgetLocalServiceWrapper implements GadgetLocalService {
 	}
 
 	/**
-	* Gets a range of all the gadgets.
+	* Returns a range of all the gadgets.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of gadgets to return
-	* @param end the upper bound of the range of gadgets to return (not inclusive)
+	* @param start the lower bound of the range of gadgets
+	* @param end the upper bound of the range of gadgets (not inclusive)
 	* @return the range of gadgets
 	* @throws SystemException if a system exception occurred
 	*/
@@ -181,7 +181,7 @@ public class GadgetLocalServiceWrapper implements GadgetLocalService {
 	}
 
 	/**
-	* Gets the number of gadgets.
+	* Returns the number of gadgets.
 	*
 	* @return the number of gadgets
 	* @throws SystemException if a system exception occurred
@@ -194,7 +194,7 @@ public class GadgetLocalServiceWrapper implements GadgetLocalService {
 	/**
 	* Updates the gadget in the database. Also notifies the appropriate model listeners.
 	*
-	* @param gadget the gadget to update
+	* @param gadget the gadget
 	* @return the gadget that was updated
 	* @throws SystemException if a system exception occurred
 	*/
@@ -207,7 +207,7 @@ public class GadgetLocalServiceWrapper implements GadgetLocalService {
 	/**
 	* Updates the gadget in the database. Also notifies the appropriate model listeners.
 	*
-	* @param gadget the gadget to update
+	* @param gadget the gadget
 	* @param merge whether to merge the gadget with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
 	* @return the gadget that was updated
 	* @throws SystemException if a system exception occurred
@@ -219,7 +219,7 @@ public class GadgetLocalServiceWrapper implements GadgetLocalService {
 	}
 
 	/**
-	* Gets the Spring bean ID for this bean.
+	* Returns the Spring bean ID for this bean.
 	*
 	* @return the Spring bean ID for this bean
 	*/

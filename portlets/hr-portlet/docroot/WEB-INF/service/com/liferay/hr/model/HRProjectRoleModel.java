@@ -48,21 +48,21 @@ public interface HRProjectRoleModel extends BaseModel<HRProjectRole>,
 	 */
 
 	/**
-	 * Gets the primary key of this h r project role.
+	 * Returns the primary key of this h r project role.
 	 *
 	 * @return the primary key of this h r project role
 	 */
 	public long getPrimaryKey();
 
 	/**
-	 * Sets the primary key of this h r project role
+	 * Sets the primary key of this h r project role.
 	 *
 	 * @param primaryKey the primary key of this h r project role
 	 */
 	public void setPrimaryKey(long primaryKey);
 
 	/**
-	 * Gets the hr project role ID of this h r project role.
+	 * Returns the hr project role ID of this h r project role.
 	 *
 	 * @return the hr project role ID of this h r project role
 	 */
@@ -76,7 +76,7 @@ public interface HRProjectRoleModel extends BaseModel<HRProjectRole>,
 	public void setHrProjectRoleId(long hrProjectRoleId);
 
 	/**
-	 * Gets the group ID of this h r project role.
+	 * Returns the group ID of this h r project role.
 	 *
 	 * @return the group ID of this h r project role
 	 */
@@ -90,7 +90,7 @@ public interface HRProjectRoleModel extends BaseModel<HRProjectRole>,
 	public void setGroupId(long groupId);
 
 	/**
-	 * Gets the company ID of this h r project role.
+	 * Returns the company ID of this h r project role.
 	 *
 	 * @return the company ID of this h r project role
 	 */
@@ -104,7 +104,7 @@ public interface HRProjectRoleModel extends BaseModel<HRProjectRole>,
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the user ID of this h r project role.
+	 * Returns the user ID of this h r project role.
 	 *
 	 * @return the user ID of this h r project role
 	 */
@@ -118,7 +118,7 @@ public interface HRProjectRoleModel extends BaseModel<HRProjectRole>,
 	public void setUserId(long userId);
 
 	/**
-	 * Gets the user uuid of this h r project role.
+	 * Returns the user uuid of this h r project role.
 	 *
 	 * @return the user uuid of this h r project role
 	 * @throws SystemException if a system exception occurred
@@ -133,7 +133,7 @@ public interface HRProjectRoleModel extends BaseModel<HRProjectRole>,
 	public void setUserUuid(String userUuid);
 
 	/**
-	 * Gets the user name of this h r project role.
+	 * Returns the user name of this h r project role.
 	 *
 	 * @return the user name of this h r project role
 	 */
@@ -148,7 +148,7 @@ public interface HRProjectRoleModel extends BaseModel<HRProjectRole>,
 	public void setUserName(String userName);
 
 	/**
-	 * Gets the create date of this h r project role.
+	 * Returns the create date of this h r project role.
 	 *
 	 * @return the create date of this h r project role
 	 */
@@ -162,7 +162,7 @@ public interface HRProjectRoleModel extends BaseModel<HRProjectRole>,
 	public void setCreateDate(Date createDate);
 
 	/**
-	 * Gets the modified date of this h r project role.
+	 * Returns the modified date of this h r project role.
 	 *
 	 * @return the modified date of this h r project role
 	 */
@@ -176,7 +176,7 @@ public interface HRProjectRoleModel extends BaseModel<HRProjectRole>,
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Gets the name of this h r project role.
+	 * Returns the name of this h r project role.
 	 *
 	 * @return the name of this h r project role
 	 */
@@ -191,7 +191,7 @@ public interface HRProjectRoleModel extends BaseModel<HRProjectRole>,
 	public void setName(String name);
 
 	/**
-	 * Gets the description of this h r project role.
+	 * Returns the description of this h r project role.
 	 *
 	 * @return the description of this h r project role
 	 */

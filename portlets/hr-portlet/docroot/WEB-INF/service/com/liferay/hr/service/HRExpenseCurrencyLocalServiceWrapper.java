@@ -33,7 +33,7 @@ public class HRExpenseCurrencyLocalServiceWrapper
 	/**
 	* Adds the h r expense currency to the database. Also notifies the appropriate model listeners.
 	*
-	* @param hrExpenseCurrency the h r expense currency to add
+	* @param hrExpenseCurrency the h r expense currency
 	* @return the h r expense currency that was added
 	* @throws SystemException if a system exception occurred
 	*/
@@ -57,7 +57,7 @@ public class HRExpenseCurrencyLocalServiceWrapper
 	/**
 	* Deletes the h r expense currency with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param hrExpenseCurrencyId the primary key of the h r expense currency to delete
+	* @param hrExpenseCurrencyId the primary key of the h r expense currency
 	* @throws PortalException if a h r expense currency with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -70,7 +70,7 @@ public class HRExpenseCurrencyLocalServiceWrapper
 	/**
 	* Deletes the h r expense currency from the database. Also notifies the appropriate model listeners.
 	*
-	* @param hrExpenseCurrency the h r expense currency to delete
+	* @param hrExpenseCurrency the h r expense currency
 	* @throws SystemException if a system exception occurred
 	*/
 	public void deleteHRExpenseCurrency(
@@ -82,7 +82,7 @@ public class HRExpenseCurrencyLocalServiceWrapper
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
 	*
-	* @param dynamicQuery the dynamic query to search with
+	* @param dynamicQuery the dynamic query
 	* @return the matching rows
 	* @throws SystemException if a system exception occurred
 	*/
@@ -100,9 +100,9 @@ public class HRExpenseCurrencyLocalServiceWrapper
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param dynamicQuery the dynamic query to search with
-	* @param start the lower bound of the range of model instances to return
-	* @param end the upper bound of the range of model instances to return (not inclusive)
+	* @param dynamicQuery the dynamic query
+	* @param start the lower bound of the range of model instances
+	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
 	* @throws SystemException if a system exception occurred
 	*/
@@ -121,9 +121,9 @@ public class HRExpenseCurrencyLocalServiceWrapper
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param dynamicQuery the dynamic query to search with
-	* @param start the lower bound of the range of model instances to return
-	* @param end the upper bound of the range of model instances to return (not inclusive)
+	* @param dynamicQuery the dynamic query
+	* @param start the lower bound of the range of model instances
+	* @param end the upper bound of the range of model instances (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
 	* @throws SystemException if a system exception occurred
@@ -139,9 +139,9 @@ public class HRExpenseCurrencyLocalServiceWrapper
 	}
 
 	/**
-	* Counts the number of rows that match the dynamic query.
+	* Returns the number of rows that match the dynamic query.
 	*
-	* @param dynamicQuery the dynamic query to search with
+	* @param dynamicQuery the dynamic query
 	* @return the number of rows that match the dynamic query
 	* @throws SystemException if a system exception occurred
 	*/
@@ -152,9 +152,9 @@ public class HRExpenseCurrencyLocalServiceWrapper
 	}
 
 	/**
-	* Gets the h r expense currency with the primary key.
+	* Returns the h r expense currency with the primary key.
 	*
-	* @param hrExpenseCurrencyId the primary key of the h r expense currency to get
+	* @param hrExpenseCurrencyId the primary key of the h r expense currency
 	* @return the h r expense currency
 	* @throws PortalException if a h r expense currency with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -167,14 +167,14 @@ public class HRExpenseCurrencyLocalServiceWrapper
 	}
 
 	/**
-	* Gets a range of all the h r expense currencies.
+	* Returns a range of all the h r expense currencies.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of h r expense currencies to return
-	* @param end the upper bound of the range of h r expense currencies to return (not inclusive)
+	* @param start the lower bound of the range of h r expense currencies
+	* @param end the upper bound of the range of h r expense currencies (not inclusive)
 	* @return the range of h r expense currencies
 	* @throws SystemException if a system exception occurred
 	*/
@@ -185,7 +185,7 @@ public class HRExpenseCurrencyLocalServiceWrapper
 	}
 
 	/**
-	* Gets the number of h r expense currencies.
+	* Returns the number of h r expense currencies.
 	*
 	* @return the number of h r expense currencies
 	* @throws SystemException if a system exception occurred
@@ -198,7 +198,7 @@ public class HRExpenseCurrencyLocalServiceWrapper
 	/**
 	* Updates the h r expense currency in the database. Also notifies the appropriate model listeners.
 	*
-	* @param hrExpenseCurrency the h r expense currency to update
+	* @param hrExpenseCurrency the h r expense currency
 	* @return the h r expense currency that was updated
 	* @throws SystemException if a system exception occurred
 	*/
@@ -211,7 +211,7 @@ public class HRExpenseCurrencyLocalServiceWrapper
 	/**
 	* Updates the h r expense currency in the database. Also notifies the appropriate model listeners.
 	*
-	* @param hrExpenseCurrency the h r expense currency to update
+	* @param hrExpenseCurrency the h r expense currency
 	* @param merge whether to merge the h r expense currency with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
 	* @return the h r expense currency that was updated
 	* @throws SystemException if a system exception occurred
@@ -224,7 +224,7 @@ public class HRExpenseCurrencyLocalServiceWrapper
 	}
 
 	/**
-	* Gets the Spring bean ID for this bean.
+	* Returns the Spring bean ID for this bean.
 	*
 	* @return the Spring bean ID for this bean
 	*/

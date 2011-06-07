@@ -121,7 +121,7 @@ public class KBTemplateUtil {
 	/**
 	* Caches the k b template in the entity cache if it is enabled.
 	*
-	* @param kbTemplate the k b template to cache
+	* @param kbTemplate the k b template
 	*/
 	public static void cacheResult(
 		com.liferay.knowledgebase.model.KBTemplate kbTemplate) {
@@ -131,7 +131,7 @@ public class KBTemplateUtil {
 	/**
 	* Caches the k b templates in the entity cache if it is enabled.
 	*
-	* @param kbTemplates the k b templates to cache
+	* @param kbTemplates the k b templates
 	*/
 	public static void cacheResult(
 		java.util.List<com.liferay.knowledgebase.model.KBTemplate> kbTemplates) {
@@ -152,7 +152,7 @@ public class KBTemplateUtil {
 	/**
 	* Removes the k b template with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param kbTemplateId the primary key of the k b template to remove
+	* @param kbTemplateId the primary key of the k b template
 	* @return the k b template that was removed
 	* @throws com.liferay.knowledgebase.NoSuchTemplateException if a k b template with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -171,9 +171,9 @@ public class KBTemplateUtil {
 	}
 
 	/**
-	* Finds the k b template with the primary key or throws a {@link com.liferay.knowledgebase.NoSuchTemplateException} if it could not be found.
+	* Returns the k b template with the primary key or throws a {@link com.liferay.knowledgebase.NoSuchTemplateException} if it could not be found.
 	*
-	* @param kbTemplateId the primary key of the k b template to find
+	* @param kbTemplateId the primary key of the k b template
 	* @return the k b template
 	* @throws com.liferay.knowledgebase.NoSuchTemplateException if a k b template with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -186,9 +186,9 @@ public class KBTemplateUtil {
 	}
 
 	/**
-	* Finds the k b template with the primary key or returns <code>null</code> if it could not be found.
+	* Returns the k b template with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param kbTemplateId the primary key of the k b template to find
+	* @param kbTemplateId the primary key of the k b template
 	* @return the k b template, or <code>null</code> if a k b template with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -199,9 +199,9 @@ public class KBTemplateUtil {
 	}
 
 	/**
-	* Finds all the k b templates where uuid = &#63;.
+	* Returns all the k b templates where uuid = &#63;.
 	*
-	* @param uuid the uuid to search with
+	* @param uuid the uuid
 	* @return the matching k b templates
 	* @throws SystemException if a system exception occurred
 	*/
@@ -212,15 +212,15 @@ public class KBTemplateUtil {
 	}
 
 	/**
-	* Finds a range of all the k b templates where uuid = &#63;.
+	* Returns a range of all the k b templates where uuid = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param uuid the uuid to search with
-	* @param start the lower bound of the range of k b templates to return
-	* @param end the upper bound of the range of k b templates to return (not inclusive)
+	* @param uuid the uuid
+	* @param start the lower bound of the range of k b templates
+	* @param end the upper bound of the range of k b templates (not inclusive)
 	* @return the range of matching k b templates
 	* @throws SystemException if a system exception occurred
 	*/
@@ -231,15 +231,15 @@ public class KBTemplateUtil {
 	}
 
 	/**
-	* Finds an ordered range of all the k b templates where uuid = &#63;.
+	* Returns an ordered range of all the k b templates where uuid = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param uuid the uuid to search with
-	* @param start the lower bound of the range of k b templates to return
-	* @param end the upper bound of the range of k b templates to return (not inclusive)
+	* @param uuid the uuid
+	* @param start the lower bound of the range of k b templates
+	* @param end the upper bound of the range of k b templates (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching k b templates
 	* @throws SystemException if a system exception occurred
@@ -252,13 +252,13 @@ public class KBTemplateUtil {
 	}
 
 	/**
-	* Finds the first k b template in the ordered set where uuid = &#63;.
+	* Returns the first k b template in the ordered set where uuid = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param uuid the uuid to search with
+	* @param uuid the uuid
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching k b template
 	* @throws com.liferay.knowledgebase.NoSuchTemplateException if a matching k b template could not be found
@@ -273,13 +273,13 @@ public class KBTemplateUtil {
 	}
 
 	/**
-	* Finds the last k b template in the ordered set where uuid = &#63;.
+	* Returns the last k b template in the ordered set where uuid = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param uuid the uuid to search with
+	* @param uuid the uuid
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching k b template
 	* @throws com.liferay.knowledgebase.NoSuchTemplateException if a matching k b template could not be found
@@ -294,14 +294,14 @@ public class KBTemplateUtil {
 	}
 
 	/**
-	* Finds the k b templates before and after the current k b template in the ordered set where uuid = &#63;.
+	* Returns the k b templates before and after the current k b template in the ordered set where uuid = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
 	* @param kbTemplateId the primary key of the current k b template
-	* @param uuid the uuid to search with
+	* @param uuid the uuid
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next k b template
 	* @throws com.liferay.knowledgebase.NoSuchTemplateException if a k b template with the primary key could not be found
@@ -317,10 +317,10 @@ public class KBTemplateUtil {
 	}
 
 	/**
-	* Finds the k b template where uuid = &#63; and groupId = &#63; or throws a {@link com.liferay.knowledgebase.NoSuchTemplateException} if it could not be found.
+	* Returns the k b template where uuid = &#63; and groupId = &#63; or throws a {@link com.liferay.knowledgebase.NoSuchTemplateException} if it could not be found.
 	*
-	* @param uuid the uuid to search with
-	* @param groupId the group ID to search with
+	* @param uuid the uuid
+	* @param groupId the group ID
 	* @return the matching k b template
 	* @throws com.liferay.knowledgebase.NoSuchTemplateException if a matching k b template could not be found
 	* @throws SystemException if a system exception occurred
@@ -333,10 +333,10 @@ public class KBTemplateUtil {
 	}
 
 	/**
-	* Finds the k b template where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	* Returns the k b template where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	*
-	* @param uuid the uuid to search with
-	* @param groupId the group ID to search with
+	* @param uuid the uuid
+	* @param groupId the group ID
 	* @return the matching k b template, or <code>null</code> if a matching k b template could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -347,10 +347,10 @@ public class KBTemplateUtil {
 	}
 
 	/**
-	* Finds the k b template where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	* Returns the k b template where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	*
-	* @param uuid the uuid to search with
-	* @param groupId the group ID to search with
+	* @param uuid the uuid
+	* @param groupId the group ID
 	* @return the matching k b template, or <code>null</code> if a matching k b template could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -361,9 +361,9 @@ public class KBTemplateUtil {
 	}
 
 	/**
-	* Finds all the k b templates where groupId = &#63;.
+	* Returns all the k b templates where groupId = &#63;.
 	*
-	* @param groupId the group ID to search with
+	* @param groupId the group ID
 	* @return the matching k b templates
 	* @throws SystemException if a system exception occurred
 	*/
@@ -374,15 +374,15 @@ public class KBTemplateUtil {
 	}
 
 	/**
-	* Finds a range of all the k b templates where groupId = &#63;.
+	* Returns a range of all the k b templates where groupId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param groupId the group ID to search with
-	* @param start the lower bound of the range of k b templates to return
-	* @param end the upper bound of the range of k b templates to return (not inclusive)
+	* @param groupId the group ID
+	* @param start the lower bound of the range of k b templates
+	* @param end the upper bound of the range of k b templates (not inclusive)
 	* @return the range of matching k b templates
 	* @throws SystemException if a system exception occurred
 	*/
@@ -393,15 +393,15 @@ public class KBTemplateUtil {
 	}
 
 	/**
-	* Finds an ordered range of all the k b templates where groupId = &#63;.
+	* Returns an ordered range of all the k b templates where groupId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param groupId the group ID to search with
-	* @param start the lower bound of the range of k b templates to return
-	* @param end the upper bound of the range of k b templates to return (not inclusive)
+	* @param groupId the group ID
+	* @param start the lower bound of the range of k b templates
+	* @param end the upper bound of the range of k b templates (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching k b templates
 	* @throws SystemException if a system exception occurred
@@ -415,13 +415,13 @@ public class KBTemplateUtil {
 	}
 
 	/**
-	* Finds the first k b template in the ordered set where groupId = &#63;.
+	* Returns the first k b template in the ordered set where groupId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param groupId the group ID to search with
+	* @param groupId the group ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching k b template
 	* @throws com.liferay.knowledgebase.NoSuchTemplateException if a matching k b template could not be found
@@ -436,13 +436,13 @@ public class KBTemplateUtil {
 	}
 
 	/**
-	* Finds the last k b template in the ordered set where groupId = &#63;.
+	* Returns the last k b template in the ordered set where groupId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param groupId the group ID to search with
+	* @param groupId the group ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching k b template
 	* @throws com.liferay.knowledgebase.NoSuchTemplateException if a matching k b template could not be found
@@ -457,14 +457,14 @@ public class KBTemplateUtil {
 	}
 
 	/**
-	* Finds the k b templates before and after the current k b template in the ordered set where groupId = &#63;.
+	* Returns the k b templates before and after the current k b template in the ordered set where groupId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
 	* @param kbTemplateId the primary key of the current k b template
-	* @param groupId the group ID to search with
+	* @param groupId the group ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next k b template
 	* @throws com.liferay.knowledgebase.NoSuchTemplateException if a k b template with the primary key could not be found
@@ -481,9 +481,9 @@ public class KBTemplateUtil {
 	}
 
 	/**
-	* Filters by the user's permissions and finds all the k b templates where groupId = &#63;.
+	* Returns all the k b templates that the user has permission to view where groupId = &#63;.
 	*
-	* @param groupId the group ID to search with
+	* @param groupId the group ID
 	* @return the matching k b templates that the user has permission to view
 	* @throws SystemException if a system exception occurred
 	*/
@@ -494,15 +494,15 @@ public class KBTemplateUtil {
 	}
 
 	/**
-	* Filters by the user's permissions and finds a range of all the k b templates where groupId = &#63;.
+	* Returns a range of all the k b templates that the user has permission to view where groupId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param groupId the group ID to search with
-	* @param start the lower bound of the range of k b templates to return
-	* @param end the upper bound of the range of k b templates to return (not inclusive)
+	* @param groupId the group ID
+	* @param start the lower bound of the range of k b templates
+	* @param end the upper bound of the range of k b templates (not inclusive)
 	* @return the range of matching k b templates that the user has permission to view
 	* @throws SystemException if a system exception occurred
 	*/
@@ -513,15 +513,15 @@ public class KBTemplateUtil {
 	}
 
 	/**
-	* Filters by the user's permissions and finds an ordered range of all the k b templates where groupId = &#63;.
+	* Returns an ordered range of all the k b templates that the user has permissions to view where groupId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param groupId the group ID to search with
-	* @param start the lower bound of the range of k b templates to return
-	* @param end the upper bound of the range of k b templates to return (not inclusive)
+	* @param groupId the group ID
+	* @param start the lower bound of the range of k b templates
+	* @param end the upper bound of the range of k b templates (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching k b templates that the user has permission to view
 	* @throws SystemException if a system exception occurred
@@ -535,14 +535,10 @@ public class KBTemplateUtil {
 	}
 
 	/**
-	* Filters the k b templates before and after the current k b template in the ordered set where groupId = &#63;.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* Returns the k b templates before and after the current k b template in the ordered set of k b templates that the user has permission to view where groupId = &#63;.
 	*
 	* @param kbTemplateId the primary key of the current k b template
-	* @param groupId the group ID to search with
+	* @param groupId the group ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next k b template
 	* @throws com.liferay.knowledgebase.NoSuchTemplateException if a k b template with the primary key could not be found
@@ -559,7 +555,7 @@ public class KBTemplateUtil {
 	}
 
 	/**
-	* Finds all the k b templates.
+	* Returns all the k b templates.
 	*
 	* @return the k b templates
 	* @throws SystemException if a system exception occurred
@@ -570,14 +566,14 @@ public class KBTemplateUtil {
 	}
 
 	/**
-	* Finds a range of all the k b templates.
+	* Returns a range of all the k b templates.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of k b templates to return
-	* @param end the upper bound of the range of k b templates to return (not inclusive)
+	* @param start the lower bound of the range of k b templates
+	* @param end the upper bound of the range of k b templates (not inclusive)
 	* @return the range of k b templates
 	* @throws SystemException if a system exception occurred
 	*/
@@ -588,14 +584,14 @@ public class KBTemplateUtil {
 	}
 
 	/**
-	* Finds an ordered range of all the k b templates.
+	* Returns an ordered range of all the k b templates.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of k b templates to return
-	* @param end the upper bound of the range of k b templates to return (not inclusive)
+	* @param start the lower bound of the range of k b templates
+	* @param end the upper bound of the range of k b templates (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of k b templates
 	* @throws SystemException if a system exception occurred
@@ -610,7 +606,7 @@ public class KBTemplateUtil {
 	/**
 	* Removes all the k b templates where uuid = &#63; from the database.
 	*
-	* @param uuid the uuid to search with
+	* @param uuid the uuid
 	* @throws SystemException if a system exception occurred
 	*/
 	public static void removeByUuid(java.lang.String uuid)
@@ -621,8 +617,8 @@ public class KBTemplateUtil {
 	/**
 	* Removes the k b template where uuid = &#63; and groupId = &#63; from the database.
 	*
-	* @param uuid the uuid to search with
-	* @param groupId the group ID to search with
+	* @param uuid the uuid
+	* @param groupId the group ID
 	* @throws SystemException if a system exception occurred
 	*/
 	public static void removeByUUID_G(java.lang.String uuid, long groupId)
@@ -634,7 +630,7 @@ public class KBTemplateUtil {
 	/**
 	* Removes all the k b templates where groupId = &#63; from the database.
 	*
-	* @param groupId the group ID to search with
+	* @param groupId the group ID
 	* @throws SystemException if a system exception occurred
 	*/
 	public static void removeByGroupId(long groupId)
@@ -653,9 +649,9 @@ public class KBTemplateUtil {
 	}
 
 	/**
-	* Counts all the k b templates where uuid = &#63;.
+	* Returns the number of k b templates where uuid = &#63;.
 	*
-	* @param uuid the uuid to search with
+	* @param uuid the uuid
 	* @return the number of matching k b templates
 	* @throws SystemException if a system exception occurred
 	*/
@@ -665,10 +661,10 @@ public class KBTemplateUtil {
 	}
 
 	/**
-	* Counts all the k b templates where uuid = &#63; and groupId = &#63;.
+	* Returns the number of k b templates where uuid = &#63; and groupId = &#63;.
 	*
-	* @param uuid the uuid to search with
-	* @param groupId the group ID to search with
+	* @param uuid the uuid
+	* @param groupId the group ID
 	* @return the number of matching k b templates
 	* @throws SystemException if a system exception occurred
 	*/
@@ -678,9 +674,9 @@ public class KBTemplateUtil {
 	}
 
 	/**
-	* Counts all the k b templates where groupId = &#63;.
+	* Returns the number of k b templates where groupId = &#63;.
 	*
-	* @param groupId the group ID to search with
+	* @param groupId the group ID
 	* @return the number of matching k b templates
 	* @throws SystemException if a system exception occurred
 	*/
@@ -690,9 +686,9 @@ public class KBTemplateUtil {
 	}
 
 	/**
-	* Filters by the user's permissions and counts all the k b templates where groupId = &#63;.
+	* Returns the number of k b templates that the user has permission to view where groupId = &#63;.
 	*
-	* @param groupId the group ID to search with
+	* @param groupId the group ID
 	* @return the number of matching k b templates that the user has permission to view
 	* @throws SystemException if a system exception occurred
 	*/
@@ -702,7 +698,7 @@ public class KBTemplateUtil {
 	}
 
 	/**
-	* Counts all the k b templates.
+	* Returns the number of k b templates.
 	*
 	* @return the number of k b templates
 	* @throws SystemException if a system exception occurred
@@ -713,9 +709,9 @@ public class KBTemplateUtil {
 	}
 
 	/**
-	* Gets all the k b articles associated with the k b template.
+	* Returns all the k b articles associated with the k b template.
 	*
-	* @param pk the primary key of the k b template to get the associated k b articles for
+	* @param pk the primary key of the k b template
 	* @return the k b articles associated with the k b template
 	* @throws SystemException if a system exception occurred
 	*/
@@ -725,15 +721,15 @@ public class KBTemplateUtil {
 	}
 
 	/**
-	* Gets a range of all the k b articles associated with the k b template.
+	* Returns a range of all the k b articles associated with the k b template.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param pk the primary key of the k b template to get the associated k b articles for
-	* @param start the lower bound of the range of k b templates to return
-	* @param end the upper bound of the range of k b templates to return (not inclusive)
+	* @param pk the primary key of the k b template
+	* @param start the lower bound of the range of k b templates
+	* @param end the upper bound of the range of k b templates (not inclusive)
 	* @return the range of k b articles associated with the k b template
 	* @throws SystemException if a system exception occurred
 	*/
@@ -744,15 +740,15 @@ public class KBTemplateUtil {
 	}
 
 	/**
-	* Gets an ordered range of all the k b articles associated with the k b template.
+	* Returns an ordered range of all the k b articles associated with the k b template.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param pk the primary key of the k b template to get the associated k b articles for
-	* @param start the lower bound of the range of k b templates to return
-	* @param end the upper bound of the range of k b templates to return (not inclusive)
+	* @param pk the primary key of the k b template
+	* @param start the lower bound of the range of k b templates
+	* @param end the upper bound of the range of k b templates (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of k b articles associated with the k b template
 	* @throws SystemException if a system exception occurred
@@ -765,9 +761,9 @@ public class KBTemplateUtil {
 	}
 
 	/**
-	* Gets the number of k b articles associated with the k b template.
+	* Returns the number of k b articles associated with the k b template.
 	*
-	* @param pk the primary key of the k b template to get the number of associated k b articles for
+	* @param pk the primary key of the k b template
 	* @return the number of k b articles associated with the k b template
 	* @throws SystemException if a system exception occurred
 	*/

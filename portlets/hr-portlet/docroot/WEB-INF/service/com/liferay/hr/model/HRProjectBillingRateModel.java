@@ -48,21 +48,21 @@ public interface HRProjectBillingRateModel extends BaseModel<HRProjectBillingRat
 	 */
 
 	/**
-	 * Gets the primary key of this h r project billing rate.
+	 * Returns the primary key of this h r project billing rate.
 	 *
 	 * @return the primary key of this h r project billing rate
 	 */
 	public long getPrimaryKey();
 
 	/**
-	 * Sets the primary key of this h r project billing rate
+	 * Sets the primary key of this h r project billing rate.
 	 *
 	 * @param primaryKey the primary key of this h r project billing rate
 	 */
 	public void setPrimaryKey(long primaryKey);
 
 	/**
-	 * Gets the hr project billing rate ID of this h r project billing rate.
+	 * Returns the hr project billing rate ID of this h r project billing rate.
 	 *
 	 * @return the hr project billing rate ID of this h r project billing rate
 	 */
@@ -76,7 +76,7 @@ public interface HRProjectBillingRateModel extends BaseModel<HRProjectBillingRat
 	public void setHrProjectBillingRateId(long hrProjectBillingRateId);
 
 	/**
-	 * Gets the group ID of this h r project billing rate.
+	 * Returns the group ID of this h r project billing rate.
 	 *
 	 * @return the group ID of this h r project billing rate
 	 */
@@ -90,7 +90,7 @@ public interface HRProjectBillingRateModel extends BaseModel<HRProjectBillingRat
 	public void setGroupId(long groupId);
 
 	/**
-	 * Gets the company ID of this h r project billing rate.
+	 * Returns the company ID of this h r project billing rate.
 	 *
 	 * @return the company ID of this h r project billing rate
 	 */
@@ -104,7 +104,7 @@ public interface HRProjectBillingRateModel extends BaseModel<HRProjectBillingRat
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the user ID of this h r project billing rate.
+	 * Returns the user ID of this h r project billing rate.
 	 *
 	 * @return the user ID of this h r project billing rate
 	 */
@@ -118,7 +118,7 @@ public interface HRProjectBillingRateModel extends BaseModel<HRProjectBillingRat
 	public void setUserId(long userId);
 
 	/**
-	 * Gets the user uuid of this h r project billing rate.
+	 * Returns the user uuid of this h r project billing rate.
 	 *
 	 * @return the user uuid of this h r project billing rate
 	 * @throws SystemException if a system exception occurred
@@ -133,7 +133,7 @@ public interface HRProjectBillingRateModel extends BaseModel<HRProjectBillingRat
 	public void setUserUuid(String userUuid);
 
 	/**
-	 * Gets the user name of this h r project billing rate.
+	 * Returns the user name of this h r project billing rate.
 	 *
 	 * @return the user name of this h r project billing rate
 	 */
@@ -148,7 +148,7 @@ public interface HRProjectBillingRateModel extends BaseModel<HRProjectBillingRat
 	public void setUserName(String userName);
 
 	/**
-	 * Gets the create date of this h r project billing rate.
+	 * Returns the create date of this h r project billing rate.
 	 *
 	 * @return the create date of this h r project billing rate
 	 */
@@ -162,7 +162,7 @@ public interface HRProjectBillingRateModel extends BaseModel<HRProjectBillingRat
 	public void setCreateDate(Date createDate);
 
 	/**
-	 * Gets the modified date of this h r project billing rate.
+	 * Returns the modified date of this h r project billing rate.
 	 *
 	 * @return the modified date of this h r project billing rate
 	 */
@@ -176,7 +176,7 @@ public interface HRProjectBillingRateModel extends BaseModel<HRProjectBillingRat
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Gets the hr project ID of this h r project billing rate.
+	 * Returns the hr project ID of this h r project billing rate.
 	 *
 	 * @return the hr project ID of this h r project billing rate
 	 */
@@ -190,7 +190,7 @@ public interface HRProjectBillingRateModel extends BaseModel<HRProjectBillingRat
 	public void setHrProjectId(long hrProjectId);
 
 	/**
-	 * Gets the hr project role ID of this h r project billing rate.
+	 * Returns the hr project role ID of this h r project billing rate.
 	 *
 	 * @return the hr project role ID of this h r project billing rate
 	 */
@@ -204,7 +204,7 @@ public interface HRProjectBillingRateModel extends BaseModel<HRProjectBillingRat
 	public void setHrProjectRoleId(long hrProjectRoleId);
 
 	/**
-	 * Gets the rate of this h r project billing rate.
+	 * Returns the rate of this h r project billing rate.
 	 *
 	 * @return the rate of this h r project billing rate
 	 */

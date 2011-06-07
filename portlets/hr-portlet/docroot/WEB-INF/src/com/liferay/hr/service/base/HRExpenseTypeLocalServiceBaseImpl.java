@@ -68,6 +68,11 @@ import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.search.Indexer;
+import com.liferay.portal.kernel.search.IndexerRegistryUtil;
+import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.service.ResourceLocalService;
 import com.liferay.portal.service.ResourceService;
@@ -103,7 +108,7 @@ public abstract class HRExpenseTypeLocalServiceBaseImpl
 	/**
 	 * Adds the h r expense type to the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param hrExpenseType the h r expense type to add
+	 * @param hrExpenseType the h r expense type
 	 * @return the h r expense type that was added
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -111,7 +116,22 @@ public abstract class HRExpenseTypeLocalServiceBaseImpl
 		throws SystemException {
 		hrExpenseType.setNew(true);
 
-		return hrExpenseTypePersistence.update(hrExpenseType, false);
+		hrExpenseType = hrExpenseTypePersistence.update(hrExpenseType, false);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.reindex(hrExpenseType);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
+
+		return hrExpenseType;
 	}
 
 	/**
@@ -127,30 +147,56 @@ public abstract class HRExpenseTypeLocalServiceBaseImpl
 	/**
 	 * Deletes the h r expense type with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param hrExpenseTypeId the primary key of the h r expense type to delete
+	 * @param hrExpenseTypeId the primary key of the h r expense type
 	 * @throws PortalException if a h r expense type with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void deleteHRExpenseType(long hrExpenseTypeId)
 		throws PortalException, SystemException {
-		hrExpenseTypePersistence.remove(hrExpenseTypeId);
+		HRExpenseType hrExpenseType = hrExpenseTypePersistence.remove(hrExpenseTypeId);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.delete(hrExpenseType);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
 	}
 
 	/**
 	 * Deletes the h r expense type from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param hrExpenseType the h r expense type to delete
+	 * @param hrExpenseType the h r expense type
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void deleteHRExpenseType(HRExpenseType hrExpenseType)
 		throws SystemException {
 		hrExpenseTypePersistence.remove(hrExpenseType);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.delete(hrExpenseType);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
 	}
 
 	/**
 	 * Performs a dynamic query on the database and returns the matching rows.
 	 *
-	 * @param dynamicQuery the dynamic query to search with
+	 * @param dynamicQuery the dynamic query
 	 * @return the matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -167,9 +213,9 @@ public abstract class HRExpenseTypeLocalServiceBaseImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param dynamicQuery the dynamic query to search with
-	 * @param start the lower bound of the range of model instances to return
-	 * @param end the upper bound of the range of model instances to return (not inclusive)
+	 * @param dynamicQuery the dynamic query
+	 * @param start the lower bound of the range of model instances
+	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @return the range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -187,9 +233,9 @@ public abstract class HRExpenseTypeLocalServiceBaseImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param dynamicQuery the dynamic query to search with
-	 * @param start the lower bound of the range of model instances to return
-	 * @param end the upper bound of the range of model instances to return (not inclusive)
+	 * @param dynamicQuery the dynamic query
+	 * @param start the lower bound of the range of model instances
+	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching rows
 	 * @throws SystemException if a system exception occurred
@@ -202,9 +248,9 @@ public abstract class HRExpenseTypeLocalServiceBaseImpl
 	}
 
 	/**
-	 * Counts the number of rows that match the dynamic query.
+	 * Returns the number of rows that match the dynamic query.
 	 *
-	 * @param dynamicQuery the dynamic query to search with
+	 * @param dynamicQuery the dynamic query
 	 * @return the number of rows that match the dynamic query
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -214,9 +260,9 @@ public abstract class HRExpenseTypeLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the h r expense type with the primary key.
+	 * Returns the h r expense type with the primary key.
 	 *
-	 * @param hrExpenseTypeId the primary key of the h r expense type to get
+	 * @param hrExpenseTypeId the primary key of the h r expense type
 	 * @return the h r expense type
 	 * @throws PortalException if a h r expense type with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -227,14 +273,14 @@ public abstract class HRExpenseTypeLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets a range of all the h r expense types.
+	 * Returns a range of all the h r expense types.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of h r expense types to return
-	 * @param end the upper bound of the range of h r expense types to return (not inclusive)
+	 * @param start the lower bound of the range of h r expense types
+	 * @param end the upper bound of the range of h r expense types (not inclusive)
 	 * @return the range of h r expense types
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -244,7 +290,7 @@ public abstract class HRExpenseTypeLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the number of h r expense types.
+	 * Returns the number of h r expense types.
 	 *
 	 * @return the number of h r expense types
 	 * @throws SystemException if a system exception occurred
@@ -256,21 +302,19 @@ public abstract class HRExpenseTypeLocalServiceBaseImpl
 	/**
 	 * Updates the h r expense type in the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param hrExpenseType the h r expense type to update
+	 * @param hrExpenseType the h r expense type
 	 * @return the h r expense type that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
 	public HRExpenseType updateHRExpenseType(HRExpenseType hrExpenseType)
 		throws SystemException {
-		hrExpenseType.setNew(false);
-
-		return hrExpenseTypePersistence.update(hrExpenseType, true);
+		return updateHRExpenseType(hrExpenseType, true);
 	}
 
 	/**
 	 * Updates the h r expense type in the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param hrExpenseType the h r expense type to update
+	 * @param hrExpenseType the h r expense type
 	 * @param merge whether to merge the h r expense type with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
 	 * @return the h r expense type that was updated
 	 * @throws SystemException if a system exception occurred
@@ -279,11 +323,26 @@ public abstract class HRExpenseTypeLocalServiceBaseImpl
 		boolean merge) throws SystemException {
 		hrExpenseType.setNew(false);
 
-		return hrExpenseTypePersistence.update(hrExpenseType, merge);
+		hrExpenseType = hrExpenseTypePersistence.update(hrExpenseType, merge);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.reindex(hrExpenseType);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
+
+		return hrExpenseType;
 	}
 
 	/**
-	 * Gets the h r asset persistence.
+	 * Returns the h r asset persistence.
 	 *
 	 * @return the h r asset persistence
 	 */
@@ -301,7 +360,7 @@ public abstract class HRExpenseTypeLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the h r asset checkout persistence.
+	 * Returns the h r asset checkout persistence.
 	 *
 	 * @return the h r asset checkout persistence
 	 */
@@ -320,7 +379,7 @@ public abstract class HRExpenseTypeLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the h r asset definition persistence.
+	 * Returns the h r asset definition persistence.
 	 *
 	 * @return the h r asset definition persistence
 	 */
@@ -339,7 +398,7 @@ public abstract class HRExpenseTypeLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the h r asset product persistence.
+	 * Returns the h r asset product persistence.
 	 *
 	 * @return the h r asset product persistence
 	 */
@@ -358,7 +417,7 @@ public abstract class HRExpenseTypeLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the h r asset type persistence.
+	 * Returns the h r asset type persistence.
 	 *
 	 * @return the h r asset type persistence
 	 */
@@ -377,7 +436,7 @@ public abstract class HRExpenseTypeLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the h r asset vendor persistence.
+	 * Returns the h r asset vendor persistence.
 	 *
 	 * @return the h r asset vendor persistence
 	 */
@@ -396,7 +455,7 @@ public abstract class HRExpenseTypeLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the h r billability persistence.
+	 * Returns the h r billability persistence.
 	 *
 	 * @return the h r billability persistence
 	 */
@@ -415,7 +474,7 @@ public abstract class HRExpenseTypeLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the h r branch persistence.
+	 * Returns the h r branch persistence.
 	 *
 	 * @return the h r branch persistence
 	 */
@@ -433,7 +492,7 @@ public abstract class HRExpenseTypeLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the h r client persistence.
+	 * Returns the h r client persistence.
 	 *
 	 * @return the h r client persistence
 	 */
@@ -451,7 +510,7 @@ public abstract class HRExpenseTypeLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the h r employment type persistence.
+	 * Returns the h r employment type persistence.
 	 *
 	 * @return the h r employment type persistence
 	 */
@@ -470,7 +529,7 @@ public abstract class HRExpenseTypeLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the h r expense local service.
+	 * Returns the h r expense local service.
 	 *
 	 * @return the h r expense local service
 	 */
@@ -489,7 +548,7 @@ public abstract class HRExpenseTypeLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the h r expense persistence.
+	 * Returns the h r expense persistence.
 	 *
 	 * @return the h r expense persistence
 	 */
@@ -508,7 +567,7 @@ public abstract class HRExpenseTypeLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the h r expense account local service.
+	 * Returns the h r expense account local service.
 	 *
 	 * @return the h r expense account local service
 	 */
@@ -527,7 +586,7 @@ public abstract class HRExpenseTypeLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the h r expense account persistence.
+	 * Returns the h r expense account persistence.
 	 *
 	 * @return the h r expense account persistence
 	 */
@@ -546,7 +605,7 @@ public abstract class HRExpenseTypeLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the h r expense currency local service.
+	 * Returns the h r expense currency local service.
 	 *
 	 * @return the h r expense currency local service
 	 */
@@ -565,7 +624,7 @@ public abstract class HRExpenseTypeLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the h r expense currency persistence.
+	 * Returns the h r expense currency persistence.
 	 *
 	 * @return the h r expense currency persistence
 	 */
@@ -584,7 +643,7 @@ public abstract class HRExpenseTypeLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the h r expense currency conversion local service.
+	 * Returns the h r expense currency conversion local service.
 	 *
 	 * @return the h r expense currency conversion local service
 	 */
@@ -603,7 +662,7 @@ public abstract class HRExpenseTypeLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the h r expense currency conversion persistence.
+	 * Returns the h r expense currency conversion persistence.
 	 *
 	 * @return the h r expense currency conversion persistence
 	 */
@@ -622,7 +681,7 @@ public abstract class HRExpenseTypeLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the h r expense type local service.
+	 * Returns the h r expense type local service.
 	 *
 	 * @return the h r expense type local service
 	 */
@@ -641,7 +700,7 @@ public abstract class HRExpenseTypeLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the h r expense type persistence.
+	 * Returns the h r expense type persistence.
 	 *
 	 * @return the h r expense type persistence
 	 */
@@ -660,7 +719,7 @@ public abstract class HRExpenseTypeLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the h r holiday persistence.
+	 * Returns the h r holiday persistence.
 	 *
 	 * @return the h r holiday persistence
 	 */
@@ -679,7 +738,7 @@ public abstract class HRExpenseTypeLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the h r job title persistence.
+	 * Returns the h r job title persistence.
 	 *
 	 * @return the h r job title persistence
 	 */
@@ -698,7 +757,7 @@ public abstract class HRExpenseTypeLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the h r office persistence.
+	 * Returns the h r office persistence.
 	 *
 	 * @return the h r office persistence
 	 */
@@ -716,7 +775,7 @@ public abstract class HRExpenseTypeLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the h r project persistence.
+	 * Returns the h r project persistence.
 	 *
 	 * @return the h r project persistence
 	 */
@@ -735,7 +794,7 @@ public abstract class HRExpenseTypeLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the h r project billing rate persistence.
+	 * Returns the h r project billing rate persistence.
 	 *
 	 * @return the h r project billing rate persistence
 	 */
@@ -754,7 +813,7 @@ public abstract class HRExpenseTypeLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the h r project role persistence.
+	 * Returns the h r project role persistence.
 	 *
 	 * @return the h r project role persistence
 	 */
@@ -773,7 +832,7 @@ public abstract class HRExpenseTypeLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the h r project status persistence.
+	 * Returns the h r project status persistence.
 	 *
 	 * @return the h r project status persistence
 	 */
@@ -792,7 +851,7 @@ public abstract class HRExpenseTypeLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the h r task persistence.
+	 * Returns the h r task persistence.
 	 *
 	 * @return the h r task persistence
 	 */
@@ -810,7 +869,7 @@ public abstract class HRExpenseTypeLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the h r task status persistence.
+	 * Returns the h r task status persistence.
 	 *
 	 * @return the h r task status persistence
 	 */
@@ -829,7 +888,7 @@ public abstract class HRExpenseTypeLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the h r termination type persistence.
+	 * Returns the h r termination type persistence.
 	 *
 	 * @return the h r termination type persistence
 	 */
@@ -848,7 +907,7 @@ public abstract class HRExpenseTypeLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the h r time off persistence.
+	 * Returns the h r time off persistence.
 	 *
 	 * @return the h r time off persistence
 	 */
@@ -867,7 +926,7 @@ public abstract class HRExpenseTypeLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the h r time off frequency type persistence.
+	 * Returns the h r time off frequency type persistence.
 	 *
 	 * @return the h r time off frequency type persistence
 	 */
@@ -886,7 +945,7 @@ public abstract class HRExpenseTypeLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the h r time off policy persistence.
+	 * Returns the h r time off policy persistence.
 	 *
 	 * @return the h r time off policy persistence
 	 */
@@ -905,7 +964,7 @@ public abstract class HRExpenseTypeLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the h r time off type persistence.
+	 * Returns the h r time off type persistence.
 	 *
 	 * @return the h r time off type persistence
 	 */
@@ -924,7 +983,7 @@ public abstract class HRExpenseTypeLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the h r time sheet persistence.
+	 * Returns the h r time sheet persistence.
 	 *
 	 * @return the h r time sheet persistence
 	 */
@@ -943,7 +1002,7 @@ public abstract class HRExpenseTypeLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the h r time sheet day persistence.
+	 * Returns the h r time sheet day persistence.
 	 *
 	 * @return the h r time sheet day persistence
 	 */
@@ -962,7 +1021,7 @@ public abstract class HRExpenseTypeLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the h r time sheet hours per day persistence.
+	 * Returns the h r time sheet hours per day persistence.
 	 *
 	 * @return the h r time sheet hours per day persistence
 	 */
@@ -981,7 +1040,7 @@ public abstract class HRExpenseTypeLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the h r user persistence.
+	 * Returns the h r user persistence.
 	 *
 	 * @return the h r user persistence
 	 */
@@ -999,7 +1058,7 @@ public abstract class HRExpenseTypeLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the h r user history persistence.
+	 * Returns the h r user history persistence.
 	 *
 	 * @return the h r user history persistence
 	 */
@@ -1018,7 +1077,7 @@ public abstract class HRExpenseTypeLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the h r user project persistence.
+	 * Returns the h r user project persistence.
 	 *
 	 * @return the h r user project persistence
 	 */
@@ -1037,7 +1096,7 @@ public abstract class HRExpenseTypeLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the h r user task persistence.
+	 * Returns the h r user task persistence.
 	 *
 	 * @return the h r user task persistence
 	 */
@@ -1056,7 +1115,7 @@ public abstract class HRExpenseTypeLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the h r user time off persistence.
+	 * Returns the h r user time off persistence.
 	 *
 	 * @return the h r user time off persistence
 	 */
@@ -1075,7 +1134,7 @@ public abstract class HRExpenseTypeLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the h r wage type persistence.
+	 * Returns the h r wage type persistence.
 	 *
 	 * @return the h r wage type persistence
 	 */
@@ -1094,7 +1153,7 @@ public abstract class HRExpenseTypeLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the counter local service.
+	 * Returns the counter local service.
 	 *
 	 * @return the counter local service
 	 */
@@ -1112,7 +1171,7 @@ public abstract class HRExpenseTypeLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the resource local service.
+	 * Returns the resource local service.
 	 *
 	 * @return the resource local service
 	 */
@@ -1131,7 +1190,7 @@ public abstract class HRExpenseTypeLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the resource remote service.
+	 * Returns the resource remote service.
 	 *
 	 * @return the resource remote service
 	 */
@@ -1149,7 +1208,7 @@ public abstract class HRExpenseTypeLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the resource persistence.
+	 * Returns the resource persistence.
 	 *
 	 * @return the resource persistence
 	 */
@@ -1167,7 +1226,7 @@ public abstract class HRExpenseTypeLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the user local service.
+	 * Returns the user local service.
 	 *
 	 * @return the user local service
 	 */
@@ -1185,7 +1244,7 @@ public abstract class HRExpenseTypeLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the user remote service.
+	 * Returns the user remote service.
 	 *
 	 * @return the user remote service
 	 */
@@ -1203,7 +1262,7 @@ public abstract class HRExpenseTypeLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the user persistence.
+	 * Returns the user persistence.
 	 *
 	 * @return the user persistence
 	 */
@@ -1221,7 +1280,7 @@ public abstract class HRExpenseTypeLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the Spring bean ID for this bean.
+	 * Returns the Spring bean ID for this bean.
 	 *
 	 * @return the Spring bean ID for this bean
 	 */
@@ -1238,10 +1297,18 @@ public abstract class HRExpenseTypeLocalServiceBaseImpl
 		_beanIdentifier = beanIdentifier;
 	}
 
+	protected Class<?> getModelClass() {
+		return HRExpenseType.class;
+	}
+
+	protected String getModelClassName() {
+		return HRExpenseType.class.getName();
+	}
+
 	/**
 	 * Performs an SQL query.
 	 *
-	 * @param sql the sql query to perform
+	 * @param sql the sql query
 	 */
 	protected void runSQL(String sql) throws SystemException {
 		try {
@@ -1357,5 +1424,6 @@ public abstract class HRExpenseTypeLocalServiceBaseImpl
 	protected UserService userService;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
+	private static Log _log = LogFactoryUtil.getLog(HRExpenseTypeLocalServiceBaseImpl.class);
 	private String _beanIdentifier;
 }

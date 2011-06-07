@@ -48,21 +48,21 @@ public interface HRUserTimeOffModel extends BaseModel<HRUserTimeOff>,
 	 */
 
 	/**
-	 * Gets the primary key of this h r user time off.
+	 * Returns the primary key of this h r user time off.
 	 *
 	 * @return the primary key of this h r user time off
 	 */
 	public long getPrimaryKey();
 
 	/**
-	 * Sets the primary key of this h r user time off
+	 * Sets the primary key of this h r user time off.
 	 *
 	 * @param primaryKey the primary key of this h r user time off
 	 */
 	public void setPrimaryKey(long primaryKey);
 
 	/**
-	 * Gets the hr user time off ID of this h r user time off.
+	 * Returns the hr user time off ID of this h r user time off.
 	 *
 	 * @return the hr user time off ID of this h r user time off
 	 */
@@ -76,7 +76,7 @@ public interface HRUserTimeOffModel extends BaseModel<HRUserTimeOff>,
 	public void setHrUserTimeOffId(long hrUserTimeOffId);
 
 	/**
-	 * Gets the group ID of this h r user time off.
+	 * Returns the group ID of this h r user time off.
 	 *
 	 * @return the group ID of this h r user time off
 	 */
@@ -90,7 +90,7 @@ public interface HRUserTimeOffModel extends BaseModel<HRUserTimeOff>,
 	public void setGroupId(long groupId);
 
 	/**
-	 * Gets the company ID of this h r user time off.
+	 * Returns the company ID of this h r user time off.
 	 *
 	 * @return the company ID of this h r user time off
 	 */
@@ -104,7 +104,7 @@ public interface HRUserTimeOffModel extends BaseModel<HRUserTimeOff>,
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the user ID of this h r user time off.
+	 * Returns the user ID of this h r user time off.
 	 *
 	 * @return the user ID of this h r user time off
 	 */
@@ -118,7 +118,7 @@ public interface HRUserTimeOffModel extends BaseModel<HRUserTimeOff>,
 	public void setUserId(long userId);
 
 	/**
-	 * Gets the user uuid of this h r user time off.
+	 * Returns the user uuid of this h r user time off.
 	 *
 	 * @return the user uuid of this h r user time off
 	 * @throws SystemException if a system exception occurred
@@ -133,7 +133,7 @@ public interface HRUserTimeOffModel extends BaseModel<HRUserTimeOff>,
 	public void setUserUuid(String userUuid);
 
 	/**
-	 * Gets the user name of this h r user time off.
+	 * Returns the user name of this h r user time off.
 	 *
 	 * @return the user name of this h r user time off
 	 */
@@ -148,7 +148,7 @@ public interface HRUserTimeOffModel extends BaseModel<HRUserTimeOff>,
 	public void setUserName(String userName);
 
 	/**
-	 * Gets the create date of this h r user time off.
+	 * Returns the create date of this h r user time off.
 	 *
 	 * @return the create date of this h r user time off
 	 */
@@ -162,7 +162,7 @@ public interface HRUserTimeOffModel extends BaseModel<HRUserTimeOff>,
 	public void setCreateDate(Date createDate);
 
 	/**
-	 * Gets the modified date of this h r user time off.
+	 * Returns the modified date of this h r user time off.
 	 *
 	 * @return the modified date of this h r user time off
 	 */
@@ -176,7 +176,7 @@ public interface HRUserTimeOffModel extends BaseModel<HRUserTimeOff>,
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Gets the hr time off type ID of this h r user time off.
+	 * Returns the hr time off type ID of this h r user time off.
 	 *
 	 * @return the hr time off type ID of this h r user time off
 	 */
@@ -190,7 +190,7 @@ public interface HRUserTimeOffModel extends BaseModel<HRUserTimeOff>,
 	public void setHrTimeOffTypeId(long hrTimeOffTypeId);
 
 	/**
-	 * Gets the hr user ID of this h r user time off.
+	 * Returns the hr user ID of this h r user time off.
 	 *
 	 * @return the hr user ID of this h r user time off
 	 */
@@ -204,7 +204,7 @@ public interface HRUserTimeOffModel extends BaseModel<HRUserTimeOff>,
 	public void setHrUserId(long hrUserId);
 
 	/**
-	 * Gets the hr user uuid of this h r user time off.
+	 * Returns the hr user uuid of this h r user time off.
 	 *
 	 * @return the hr user uuid of this h r user time off
 	 * @throws SystemException if a system exception occurred
@@ -219,7 +219,7 @@ public interface HRUserTimeOffModel extends BaseModel<HRUserTimeOff>,
 	public void setHrUserUuid(String hrUserUuid);
 
 	/**
-	 * Gets the year of this h r user time off.
+	 * Returns the year of this h r user time off.
 	 *
 	 * @return the year of this h r user time off
 	 */
@@ -233,7 +233,7 @@ public interface HRUserTimeOffModel extends BaseModel<HRUserTimeOff>,
 	public void setYear(int year);
 
 	/**
-	 * Gets the hours allowed of this h r user time off.
+	 * Returns the hours allowed of this h r user time off.
 	 *
 	 * @return the hours allowed of this h r user time off
 	 */
@@ -247,7 +247,7 @@ public interface HRUserTimeOffModel extends BaseModel<HRUserTimeOff>,
 	public void setHoursAllowed(double hoursAllowed);
 
 	/**
-	 * Gets the hours accrued of this h r user time off.
+	 * Returns the hours accrued of this h r user time off.
 	 *
 	 * @return the hours accrued of this h r user time off
 	 */
@@ -261,7 +261,7 @@ public interface HRUserTimeOffModel extends BaseModel<HRUserTimeOff>,
 	public void setHoursAccrued(double hoursAccrued);
 
 	/**
-	 * Gets the hours carried over of this h r user time off.
+	 * Returns the hours carried over of this h r user time off.
 	 *
 	 * @return the hours carried over of this h r user time off
 	 */
@@ -275,7 +275,7 @@ public interface HRUserTimeOffModel extends BaseModel<HRUserTimeOff>,
 	public void setHoursCarriedOver(double hoursCarriedOver);
 
 	/**
-	 * Gets the hours used of this h r user time off.
+	 * Returns the hours used of this h r user time off.
 	 *
 	 * @return the hours used of this h r user time off
 	 */

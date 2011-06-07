@@ -123,7 +123,7 @@ public class HRExpenseCurrencyUtil {
 	/**
 	* Caches the h r expense currency in the entity cache if it is enabled.
 	*
-	* @param hrExpenseCurrency the h r expense currency to cache
+	* @param hrExpenseCurrency the h r expense currency
 	*/
 	public static void cacheResult(
 		com.liferay.hr.model.HRExpenseCurrency hrExpenseCurrency) {
@@ -133,7 +133,7 @@ public class HRExpenseCurrencyUtil {
 	/**
 	* Caches the h r expense currencies in the entity cache if it is enabled.
 	*
-	* @param hrExpenseCurrencies the h r expense currencies to cache
+	* @param hrExpenseCurrencies the h r expense currencies
 	*/
 	public static void cacheResult(
 		java.util.List<com.liferay.hr.model.HRExpenseCurrency> hrExpenseCurrencies) {
@@ -154,7 +154,7 @@ public class HRExpenseCurrencyUtil {
 	/**
 	* Removes the h r expense currency with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param hrExpenseCurrencyId the primary key of the h r expense currency to remove
+	* @param hrExpenseCurrencyId the primary key of the h r expense currency
 	* @return the h r expense currency that was removed
 	* @throws com.liferay.hr.NoSuchExpenseCurrencyException if a h r expense currency with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -173,9 +173,9 @@ public class HRExpenseCurrencyUtil {
 	}
 
 	/**
-	* Finds the h r expense currency with the primary key or throws a {@link com.liferay.hr.NoSuchExpenseCurrencyException} if it could not be found.
+	* Returns the h r expense currency with the primary key or throws a {@link com.liferay.hr.NoSuchExpenseCurrencyException} if it could not be found.
 	*
-	* @param hrExpenseCurrencyId the primary key of the h r expense currency to find
+	* @param hrExpenseCurrencyId the primary key of the h r expense currency
 	* @return the h r expense currency
 	* @throws com.liferay.hr.NoSuchExpenseCurrencyException if a h r expense currency with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -188,9 +188,9 @@ public class HRExpenseCurrencyUtil {
 	}
 
 	/**
-	* Finds the h r expense currency with the primary key or returns <code>null</code> if it could not be found.
+	* Returns the h r expense currency with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param hrExpenseCurrencyId the primary key of the h r expense currency to find
+	* @param hrExpenseCurrencyId the primary key of the h r expense currency
 	* @return the h r expense currency, or <code>null</code> if a h r expense currency with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -201,7 +201,7 @@ public class HRExpenseCurrencyUtil {
 	}
 
 	/**
-	* Finds all the h r expense currencies.
+	* Returns all the h r expense currencies.
 	*
 	* @return the h r expense currencies
 	* @throws SystemException if a system exception occurred
@@ -212,14 +212,14 @@ public class HRExpenseCurrencyUtil {
 	}
 
 	/**
-	* Finds a range of all the h r expense currencies.
+	* Returns a range of all the h r expense currencies.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of h r expense currencies to return
-	* @param end the upper bound of the range of h r expense currencies to return (not inclusive)
+	* @param start the lower bound of the range of h r expense currencies
+	* @param end the upper bound of the range of h r expense currencies (not inclusive)
 	* @return the range of h r expense currencies
 	* @throws SystemException if a system exception occurred
 	*/
@@ -230,14 +230,14 @@ public class HRExpenseCurrencyUtil {
 	}
 
 	/**
-	* Finds an ordered range of all the h r expense currencies.
+	* Returns an ordered range of all the h r expense currencies.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of h r expense currencies to return
-	* @param end the upper bound of the range of h r expense currencies to return (not inclusive)
+	* @param start the lower bound of the range of h r expense currencies
+	* @param end the upper bound of the range of h r expense currencies (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of h r expense currencies
 	* @throws SystemException if a system exception occurred
@@ -260,7 +260,7 @@ public class HRExpenseCurrencyUtil {
 	}
 
 	/**
-	* Counts all the h r expense currencies.
+	* Returns the number of h r expense currencies.
 	*
 	* @return the number of h r expense currencies
 	* @throws SystemException if a system exception occurred

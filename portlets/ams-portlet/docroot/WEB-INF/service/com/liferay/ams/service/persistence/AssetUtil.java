@@ -119,7 +119,7 @@ public class AssetUtil {
 	/**
 	* Caches the asset in the entity cache if it is enabled.
 	*
-	* @param asset the asset to cache
+	* @param asset the asset
 	*/
 	public static void cacheResult(com.liferay.ams.model.Asset asset) {
 		getPersistence().cacheResult(asset);
@@ -128,7 +128,7 @@ public class AssetUtil {
 	/**
 	* Caches the assets in the entity cache if it is enabled.
 	*
-	* @param assets the assets to cache
+	* @param assets the assets
 	*/
 	public static void cacheResult(
 		java.util.List<com.liferay.ams.model.Asset> assets) {
@@ -148,7 +148,7 @@ public class AssetUtil {
 	/**
 	* Removes the asset with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param assetId the primary key of the asset to remove
+	* @param assetId the primary key of the asset
 	* @return the asset that was removed
 	* @throws com.liferay.ams.NoSuchAssetException if a asset with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -166,9 +166,9 @@ public class AssetUtil {
 	}
 
 	/**
-	* Finds the asset with the primary key or throws a {@link com.liferay.ams.NoSuchAssetException} if it could not be found.
+	* Returns the asset with the primary key or throws a {@link com.liferay.ams.NoSuchAssetException} if it could not be found.
 	*
-	* @param assetId the primary key of the asset to find
+	* @param assetId the primary key of the asset
 	* @return the asset
 	* @throws com.liferay.ams.NoSuchAssetException if a asset with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -180,9 +180,9 @@ public class AssetUtil {
 	}
 
 	/**
-	* Finds the asset with the primary key or returns <code>null</code> if it could not be found.
+	* Returns the asset with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param assetId the primary key of the asset to find
+	* @param assetId the primary key of the asset
 	* @return the asset, or <code>null</code> if a asset with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -192,7 +192,7 @@ public class AssetUtil {
 	}
 
 	/**
-	* Finds all the assets.
+	* Returns all the assets.
 	*
 	* @return the assets
 	* @throws SystemException if a system exception occurred
@@ -203,14 +203,14 @@ public class AssetUtil {
 	}
 
 	/**
-	* Finds a range of all the assets.
+	* Returns a range of all the assets.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of assets to return
-	* @param end the upper bound of the range of assets to return (not inclusive)
+	* @param start the lower bound of the range of assets
+	* @param end the upper bound of the range of assets (not inclusive)
 	* @return the range of assets
 	* @throws SystemException if a system exception occurred
 	*/
@@ -221,14 +221,14 @@ public class AssetUtil {
 	}
 
 	/**
-	* Finds an ordered range of all the assets.
+	* Returns an ordered range of all the assets.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of assets to return
-	* @param end the upper bound of the range of assets to return (not inclusive)
+	* @param start the lower bound of the range of assets
+	* @param end the upper bound of the range of assets (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of assets
 	* @throws SystemException if a system exception occurred
@@ -251,7 +251,7 @@ public class AssetUtil {
 	}
 
 	/**
-	* Counts all the assets.
+	* Returns the number of assets.
 	*
 	* @return the number of assets
 	* @throws SystemException if a system exception occurred

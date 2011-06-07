@@ -37,7 +37,7 @@ public class JIRAIssueWrapper implements JIRAIssue {
 	}
 
 	/**
-	* Gets the primary key of this j i r a issue.
+	* Returns the primary key of this j i r a issue.
 	*
 	* @return the primary key of this j i r a issue
 	*/
@@ -46,7 +46,7 @@ public class JIRAIssueWrapper implements JIRAIssue {
 	}
 
 	/**
-	* Sets the primary key of this j i r a issue
+	* Sets the primary key of this j i r a issue.
 	*
 	* @param primaryKey the primary key of this j i r a issue
 	*/
@@ -55,7 +55,7 @@ public class JIRAIssueWrapper implements JIRAIssue {
 	}
 
 	/**
-	* Gets the jira issue ID of this j i r a issue.
+	* Returns the jira issue ID of this j i r a issue.
 	*
 	* @return the jira issue ID of this j i r a issue
 	*/
@@ -73,7 +73,7 @@ public class JIRAIssueWrapper implements JIRAIssue {
 	}
 
 	/**
-	* Gets the create date of this j i r a issue.
+	* Returns the create date of this j i r a issue.
 	*
 	* @return the create date of this j i r a issue
 	*/
@@ -91,7 +91,7 @@ public class JIRAIssueWrapper implements JIRAIssue {
 	}
 
 	/**
-	* Gets the modified date of this j i r a issue.
+	* Returns the modified date of this j i r a issue.
 	*
 	* @return the modified date of this j i r a issue
 	*/
@@ -109,7 +109,7 @@ public class JIRAIssueWrapper implements JIRAIssue {
 	}
 
 	/**
-	* Gets the project ID of this j i r a issue.
+	* Returns the project ID of this j i r a issue.
 	*
 	* @return the project ID of this j i r a issue
 	*/
@@ -127,7 +127,7 @@ public class JIRAIssueWrapper implements JIRAIssue {
 	}
 
 	/**
-	* Gets the key of this j i r a issue.
+	* Returns the key of this j i r a issue.
 	*
 	* @return the key of this j i r a issue
 	*/
@@ -145,7 +145,7 @@ public class JIRAIssueWrapper implements JIRAIssue {
 	}
 
 	/**
-	* Gets the summary of this j i r a issue.
+	* Returns the summary of this j i r a issue.
 	*
 	* @return the summary of this j i r a issue
 	*/
@@ -163,7 +163,7 @@ public class JIRAIssueWrapper implements JIRAIssue {
 	}
 
 	/**
-	* Gets the description of this j i r a issue.
+	* Returns the description of this j i r a issue.
 	*
 	* @return the description of this j i r a issue
 	*/
@@ -181,7 +181,7 @@ public class JIRAIssueWrapper implements JIRAIssue {
 	}
 
 	/**
-	* Gets the reporter jira user ID of this j i r a issue.
+	* Returns the reporter jira user ID of this j i r a issue.
 	*
 	* @return the reporter jira user ID of this j i r a issue
 	*/
@@ -199,7 +199,7 @@ public class JIRAIssueWrapper implements JIRAIssue {
 	}
 
 	/**
-	* Gets the assignee jira user ID of this j i r a issue.
+	* Returns the assignee jira user ID of this j i r a issue.
 	*
 	* @return the assignee jira user ID of this j i r a issue
 	*/
@@ -217,7 +217,7 @@ public class JIRAIssueWrapper implements JIRAIssue {
 	}
 
 	/**
-	* Gets the resolution of this j i r a issue.
+	* Returns the resolution of this j i r a issue.
 	*
 	* @return the resolution of this j i r a issue
 	*/
@@ -235,7 +235,7 @@ public class JIRAIssueWrapper implements JIRAIssue {
 	}
 
 	/**
-	* Gets the status of this j i r a issue.
+	* Returns the status of this j i r a issue.
 	*
 	* @return the status of this j i r a issue
 	*/

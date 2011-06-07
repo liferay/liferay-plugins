@@ -82,7 +82,7 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 	/**
 	 * Caches the asset in the entity cache if it is enabled.
 	 *
-	 * @param asset the asset to cache
+	 * @param asset the asset
 	 */
 	public void cacheResult(Asset asset) {
 		EntityCacheUtil.putResult(AssetModelImpl.ENTITY_CACHE_ENABLED,
@@ -94,7 +94,7 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 	/**
 	 * Caches the assets in the entity cache if it is enabled.
 	 *
-	 * @param assets the assets to cache
+	 * @param assets the assets
 	 */
 	public void cacheResult(List<Asset> assets) {
 		for (Asset asset : assets) {
@@ -152,7 +152,7 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 	/**
 	 * Removes the asset with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param primaryKey the primary key of the asset to remove
+	 * @param primaryKey the primary key of the asset
 	 * @return the asset that was removed
 	 * @throws com.liferay.portal.NoSuchModelException if a asset with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -165,7 +165,7 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 	/**
 	 * Removes the asset with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param assetId the primary key of the asset to remove
+	 * @param assetId the primary key of the asset
 	 * @return the asset that was removed
 	 * @throws com.liferay.ams.NoSuchAssetException if a asset with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -205,7 +205,7 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 	/**
 	 * Removes the asset from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param asset the asset to remove
+	 * @param asset the asset
 	 * @return the asset that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -291,9 +291,9 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 	}
 
 	/**
-	 * Finds the asset with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
+	 * Returns the asset with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
 	 *
-	 * @param primaryKey the primary key of the asset to find
+	 * @param primaryKey the primary key of the asset
 	 * @return the asset
 	 * @throws com.liferay.portal.NoSuchModelException if a asset with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -304,9 +304,9 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 	}
 
 	/**
-	 * Finds the asset with the primary key or throws a {@link com.liferay.ams.NoSuchAssetException} if it could not be found.
+	 * Returns the asset with the primary key or throws a {@link com.liferay.ams.NoSuchAssetException} if it could not be found.
 	 *
-	 * @param assetId the primary key of the asset to find
+	 * @param assetId the primary key of the asset
 	 * @return the asset
 	 * @throws com.liferay.ams.NoSuchAssetException if a asset with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -328,9 +328,9 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 	}
 
 	/**
-	 * Finds the asset with the primary key or returns <code>null</code> if it could not be found.
+	 * Returns the asset with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param primaryKey the primary key of the asset to find
+	 * @param primaryKey the primary key of the asset
 	 * @return the asset, or <code>null</code> if a asset with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -340,9 +340,9 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 	}
 
 	/**
-	 * Finds the asset with the primary key or returns <code>null</code> if it could not be found.
+	 * Returns the asset with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param assetId the primary key of the asset to find
+	 * @param assetId the primary key of the asset
 	 * @return the asset, or <code>null</code> if a asset with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -375,7 +375,7 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 	}
 
 	/**
-	 * Finds all the assets.
+	 * Returns all the assets.
 	 *
 	 * @return the assets
 	 * @throws SystemException if a system exception occurred
@@ -385,14 +385,14 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 	}
 
 	/**
-	 * Finds a range of all the assets.
+	 * Returns a range of all the assets.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of assets to return
-	 * @param end the upper bound of the range of assets to return (not inclusive)
+	 * @param start the lower bound of the range of assets
+	 * @param end the upper bound of the range of assets (not inclusive)
 	 * @return the range of assets
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -401,14 +401,14 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 	}
 
 	/**
-	 * Finds an ordered range of all the assets.
+	 * Returns an ordered range of all the assets.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of assets to return
-	 * @param end the upper bound of the range of assets to return (not inclusive)
+	 * @param start the lower bound of the range of assets
+	 * @param end the upper bound of the range of assets (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of assets
 	 * @throws SystemException if a system exception occurred
@@ -494,7 +494,7 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 	}
 
 	/**
-	 * Counts all the assets.
+	 * Returns the number of assets.
 	 *
 	 * @return the number of assets
 	 * @throws SystemException if a system exception occurred

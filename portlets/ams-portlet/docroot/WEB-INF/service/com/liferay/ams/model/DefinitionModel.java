@@ -47,21 +47,21 @@ public interface DefinitionModel extends BaseModel<Definition>, GroupedModel {
 	 */
 
 	/**
-	 * Gets the primary key of this definition.
+	 * Returns the primary key of this definition.
 	 *
 	 * @return the primary key of this definition
 	 */
 	public long getPrimaryKey();
 
 	/**
-	 * Sets the primary key of this definition
+	 * Sets the primary key of this definition.
 	 *
 	 * @param primaryKey the primary key of this definition
 	 */
 	public void setPrimaryKey(long primaryKey);
 
 	/**
-	 * Gets the definition ID of this definition.
+	 * Returns the definition ID of this definition.
 	 *
 	 * @return the definition ID of this definition
 	 */
@@ -75,7 +75,7 @@ public interface DefinitionModel extends BaseModel<Definition>, GroupedModel {
 	public void setDefinitionId(long definitionId);
 
 	/**
-	 * Gets the group ID of this definition.
+	 * Returns the group ID of this definition.
 	 *
 	 * @return the group ID of this definition
 	 */
@@ -89,7 +89,7 @@ public interface DefinitionModel extends BaseModel<Definition>, GroupedModel {
 	public void setGroupId(long groupId);
 
 	/**
-	 * Gets the company ID of this definition.
+	 * Returns the company ID of this definition.
 	 *
 	 * @return the company ID of this definition
 	 */
@@ -103,7 +103,7 @@ public interface DefinitionModel extends BaseModel<Definition>, GroupedModel {
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the user ID of this definition.
+	 * Returns the user ID of this definition.
 	 *
 	 * @return the user ID of this definition
 	 */
@@ -117,7 +117,7 @@ public interface DefinitionModel extends BaseModel<Definition>, GroupedModel {
 	public void setUserId(long userId);
 
 	/**
-	 * Gets the user uuid of this definition.
+	 * Returns the user uuid of this definition.
 	 *
 	 * @return the user uuid of this definition
 	 * @throws SystemException if a system exception occurred
@@ -132,7 +132,7 @@ public interface DefinitionModel extends BaseModel<Definition>, GroupedModel {
 	public void setUserUuid(String userUuid);
 
 	/**
-	 * Gets the user name of this definition.
+	 * Returns the user name of this definition.
 	 *
 	 * @return the user name of this definition
 	 */
@@ -147,7 +147,7 @@ public interface DefinitionModel extends BaseModel<Definition>, GroupedModel {
 	public void setUserName(String userName);
 
 	/**
-	 * Gets the create date of this definition.
+	 * Returns the create date of this definition.
 	 *
 	 * @return the create date of this definition
 	 */
@@ -161,7 +161,7 @@ public interface DefinitionModel extends BaseModel<Definition>, GroupedModel {
 	public void setCreateDate(Date createDate);
 
 	/**
-	 * Gets the modified date of this definition.
+	 * Returns the modified date of this definition.
 	 *
 	 * @return the modified date of this definition
 	 */
@@ -175,7 +175,7 @@ public interface DefinitionModel extends BaseModel<Definition>, GroupedModel {
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Gets the type ID of this definition.
+	 * Returns the type ID of this definition.
 	 *
 	 * @return the type ID of this definition
 	 */
@@ -189,7 +189,7 @@ public interface DefinitionModel extends BaseModel<Definition>, GroupedModel {
 	public void setTypeId(long typeId);
 
 	/**
-	 * Gets the manufacturer of this definition.
+	 * Returns the manufacturer of this definition.
 	 *
 	 * @return the manufacturer of this definition
 	 */
@@ -204,7 +204,7 @@ public interface DefinitionModel extends BaseModel<Definition>, GroupedModel {
 	public void setManufacturer(String manufacturer);
 
 	/**
-	 * Gets the model of this definition.
+	 * Returns the model of this definition.
 	 *
 	 * @return the model of this definition
 	 */
@@ -219,7 +219,7 @@ public interface DefinitionModel extends BaseModel<Definition>, GroupedModel {
 	public void setModel(String model);
 
 	/**
-	 * Gets the order date of this definition.
+	 * Returns the order date of this definition.
 	 *
 	 * @return the order date of this definition
 	 */
@@ -233,7 +233,7 @@ public interface DefinitionModel extends BaseModel<Definition>, GroupedModel {
 	public void setOrderDate(Date orderDate);
 
 	/**
-	 * Gets the quantity of this definition.
+	 * Returns the quantity of this definition.
 	 *
 	 * @return the quantity of this definition
 	 */
@@ -247,7 +247,7 @@ public interface DefinitionModel extends BaseModel<Definition>, GroupedModel {
 	public void setQuantity(int quantity);
 
 	/**
-	 * Gets the price of this definition.
+	 * Returns the price of this definition.
 	 *
 	 * @return the price of this definition
 	 */

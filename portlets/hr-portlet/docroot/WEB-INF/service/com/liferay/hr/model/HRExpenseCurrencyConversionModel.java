@@ -48,21 +48,21 @@ public interface HRExpenseCurrencyConversionModel extends BaseModel<HRExpenseCur
 	 */
 
 	/**
-	 * Gets the primary key of this h r expense currency conversion.
+	 * Returns the primary key of this h r expense currency conversion.
 	 *
 	 * @return the primary key of this h r expense currency conversion
 	 */
 	public long getPrimaryKey();
 
 	/**
-	 * Sets the primary key of this h r expense currency conversion
+	 * Sets the primary key of this h r expense currency conversion.
 	 *
 	 * @param primaryKey the primary key of this h r expense currency conversion
 	 */
 	public void setPrimaryKey(long primaryKey);
 
 	/**
-	 * Gets the hr expense currency conversion ID of this h r expense currency conversion.
+	 * Returns the hr expense currency conversion ID of this h r expense currency conversion.
 	 *
 	 * @return the hr expense currency conversion ID of this h r expense currency conversion
 	 */
@@ -77,7 +77,7 @@ public interface HRExpenseCurrencyConversionModel extends BaseModel<HRExpenseCur
 		long hrExpenseCurrencyConversionId);
 
 	/**
-	 * Gets the group ID of this h r expense currency conversion.
+	 * Returns the group ID of this h r expense currency conversion.
 	 *
 	 * @return the group ID of this h r expense currency conversion
 	 */
@@ -91,7 +91,7 @@ public interface HRExpenseCurrencyConversionModel extends BaseModel<HRExpenseCur
 	public void setGroupId(long groupId);
 
 	/**
-	 * Gets the company ID of this h r expense currency conversion.
+	 * Returns the company ID of this h r expense currency conversion.
 	 *
 	 * @return the company ID of this h r expense currency conversion
 	 */
@@ -105,7 +105,7 @@ public interface HRExpenseCurrencyConversionModel extends BaseModel<HRExpenseCur
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the user ID of this h r expense currency conversion.
+	 * Returns the user ID of this h r expense currency conversion.
 	 *
 	 * @return the user ID of this h r expense currency conversion
 	 */
@@ -119,7 +119,7 @@ public interface HRExpenseCurrencyConversionModel extends BaseModel<HRExpenseCur
 	public void setUserId(long userId);
 
 	/**
-	 * Gets the user uuid of this h r expense currency conversion.
+	 * Returns the user uuid of this h r expense currency conversion.
 	 *
 	 * @return the user uuid of this h r expense currency conversion
 	 * @throws SystemException if a system exception occurred
@@ -134,7 +134,7 @@ public interface HRExpenseCurrencyConversionModel extends BaseModel<HRExpenseCur
 	public void setUserUuid(String userUuid);
 
 	/**
-	 * Gets the user name of this h r expense currency conversion.
+	 * Returns the user name of this h r expense currency conversion.
 	 *
 	 * @return the user name of this h r expense currency conversion
 	 */
@@ -149,7 +149,7 @@ public interface HRExpenseCurrencyConversionModel extends BaseModel<HRExpenseCur
 	public void setUserName(String userName);
 
 	/**
-	 * Gets the create date of this h r expense currency conversion.
+	 * Returns the create date of this h r expense currency conversion.
 	 *
 	 * @return the create date of this h r expense currency conversion
 	 */
@@ -163,7 +163,7 @@ public interface HRExpenseCurrencyConversionModel extends BaseModel<HRExpenseCur
 	public void setCreateDate(Date createDate);
 
 	/**
-	 * Gets the modified date of this h r expense currency conversion.
+	 * Returns the modified date of this h r expense currency conversion.
 	 *
 	 * @return the modified date of this h r expense currency conversion
 	 */
@@ -177,7 +177,7 @@ public interface HRExpenseCurrencyConversionModel extends BaseModel<HRExpenseCur
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Gets the from h r expense currency ID of this h r expense currency conversion.
+	 * Returns the from h r expense currency ID of this h r expense currency conversion.
 	 *
 	 * @return the from h r expense currency ID of this h r expense currency conversion
 	 */
@@ -191,7 +191,7 @@ public interface HRExpenseCurrencyConversionModel extends BaseModel<HRExpenseCur
 	public void setFromHRExpenseCurrencyId(long fromHRExpenseCurrencyId);
 
 	/**
-	 * Gets the to h r expense currency ID of this h r expense currency conversion.
+	 * Returns the to h r expense currency ID of this h r expense currency conversion.
 	 *
 	 * @return the to h r expense currency ID of this h r expense currency conversion
 	 */
@@ -205,7 +205,7 @@ public interface HRExpenseCurrencyConversionModel extends BaseModel<HRExpenseCur
 	public void setToHRExpenseCurrencyId(long toHRExpenseCurrencyId);
 
 	/**
-	 * Gets the conversion date of this h r expense currency conversion.
+	 * Returns the conversion date of this h r expense currency conversion.
 	 *
 	 * @return the conversion date of this h r expense currency conversion
 	 */
@@ -219,7 +219,7 @@ public interface HRExpenseCurrencyConversionModel extends BaseModel<HRExpenseCur
 	public void setConversionDate(Date conversionDate);
 
 	/**
-	 * Gets the conversion value of this h r expense currency conversion.
+	 * Returns the conversion value of this h r expense currency conversion.
 	 *
 	 * @return the conversion value of this h r expense currency conversion
 	 */

@@ -82,7 +82,7 @@ public class HRAssetTypePersistenceImpl extends BasePersistenceImpl<HRAssetType>
 	/**
 	 * Caches the h r asset type in the entity cache if it is enabled.
 	 *
-	 * @param hrAssetType the h r asset type to cache
+	 * @param hrAssetType the h r asset type
 	 */
 	public void cacheResult(HRAssetType hrAssetType) {
 		EntityCacheUtil.putResult(HRAssetTypeModelImpl.ENTITY_CACHE_ENABLED,
@@ -94,7 +94,7 @@ public class HRAssetTypePersistenceImpl extends BasePersistenceImpl<HRAssetType>
 	/**
 	 * Caches the h r asset types in the entity cache if it is enabled.
 	 *
-	 * @param hrAssetTypes the h r asset types to cache
+	 * @param hrAssetTypes the h r asset types
 	 */
 	public void cacheResult(List<HRAssetType> hrAssetTypes) {
 		for (HRAssetType hrAssetType : hrAssetTypes) {
@@ -153,7 +153,7 @@ public class HRAssetTypePersistenceImpl extends BasePersistenceImpl<HRAssetType>
 	/**
 	 * Removes the h r asset type with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param primaryKey the primary key of the h r asset type to remove
+	 * @param primaryKey the primary key of the h r asset type
 	 * @return the h r asset type that was removed
 	 * @throws com.liferay.portal.NoSuchModelException if a h r asset type with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -166,7 +166,7 @@ public class HRAssetTypePersistenceImpl extends BasePersistenceImpl<HRAssetType>
 	/**
 	 * Removes the h r asset type with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param hrAssetTypeId the primary key of the h r asset type to remove
+	 * @param hrAssetTypeId the primary key of the h r asset type
 	 * @return the h r asset type that was removed
 	 * @throws com.liferay.hr.NoSuchAssetTypeException if a h r asset type with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -206,7 +206,7 @@ public class HRAssetTypePersistenceImpl extends BasePersistenceImpl<HRAssetType>
 	/**
 	 * Removes the h r asset type from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param hrAssetType the h r asset type to remove
+	 * @param hrAssetType the h r asset type
 	 * @return the h r asset type that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -294,9 +294,9 @@ public class HRAssetTypePersistenceImpl extends BasePersistenceImpl<HRAssetType>
 	}
 
 	/**
-	 * Finds the h r asset type with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
+	 * Returns the h r asset type with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
 	 *
-	 * @param primaryKey the primary key of the h r asset type to find
+	 * @param primaryKey the primary key of the h r asset type
 	 * @return the h r asset type
 	 * @throws com.liferay.portal.NoSuchModelException if a h r asset type with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -307,9 +307,9 @@ public class HRAssetTypePersistenceImpl extends BasePersistenceImpl<HRAssetType>
 	}
 
 	/**
-	 * Finds the h r asset type with the primary key or throws a {@link com.liferay.hr.NoSuchAssetTypeException} if it could not be found.
+	 * Returns the h r asset type with the primary key or throws a {@link com.liferay.hr.NoSuchAssetTypeException} if it could not be found.
 	 *
-	 * @param hrAssetTypeId the primary key of the h r asset type to find
+	 * @param hrAssetTypeId the primary key of the h r asset type
 	 * @return the h r asset type
 	 * @throws com.liferay.hr.NoSuchAssetTypeException if a h r asset type with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -331,9 +331,9 @@ public class HRAssetTypePersistenceImpl extends BasePersistenceImpl<HRAssetType>
 	}
 
 	/**
-	 * Finds the h r asset type with the primary key or returns <code>null</code> if it could not be found.
+	 * Returns the h r asset type with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param primaryKey the primary key of the h r asset type to find
+	 * @param primaryKey the primary key of the h r asset type
 	 * @return the h r asset type, or <code>null</code> if a h r asset type with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -343,9 +343,9 @@ public class HRAssetTypePersistenceImpl extends BasePersistenceImpl<HRAssetType>
 	}
 
 	/**
-	 * Finds the h r asset type with the primary key or returns <code>null</code> if it could not be found.
+	 * Returns the h r asset type with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param hrAssetTypeId the primary key of the h r asset type to find
+	 * @param hrAssetTypeId the primary key of the h r asset type
 	 * @return the h r asset type, or <code>null</code> if a h r asset type with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -379,7 +379,7 @@ public class HRAssetTypePersistenceImpl extends BasePersistenceImpl<HRAssetType>
 	}
 
 	/**
-	 * Finds all the h r asset types.
+	 * Returns all the h r asset types.
 	 *
 	 * @return the h r asset types
 	 * @throws SystemException if a system exception occurred
@@ -389,14 +389,14 @@ public class HRAssetTypePersistenceImpl extends BasePersistenceImpl<HRAssetType>
 	}
 
 	/**
-	 * Finds a range of all the h r asset types.
+	 * Returns a range of all the h r asset types.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of h r asset types to return
-	 * @param end the upper bound of the range of h r asset types to return (not inclusive)
+	 * @param start the lower bound of the range of h r asset types
+	 * @param end the upper bound of the range of h r asset types (not inclusive)
 	 * @return the range of h r asset types
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -406,14 +406,14 @@ public class HRAssetTypePersistenceImpl extends BasePersistenceImpl<HRAssetType>
 	}
 
 	/**
-	 * Finds an ordered range of all the h r asset types.
+	 * Returns an ordered range of all the h r asset types.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of h r asset types to return
-	 * @param end the upper bound of the range of h r asset types to return (not inclusive)
+	 * @param start the lower bound of the range of h r asset types
+	 * @param end the upper bound of the range of h r asset types (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of h r asset types
 	 * @throws SystemException if a system exception occurred
@@ -499,7 +499,7 @@ public class HRAssetTypePersistenceImpl extends BasePersistenceImpl<HRAssetType>
 	}
 
 	/**
-	 * Counts all the h r asset types.
+	 * Returns the number of h r asset types.
 	 *
 	 * @return the number of h r asset types
 	 * @throws SystemException if a system exception occurred

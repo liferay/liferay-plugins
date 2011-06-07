@@ -41,14 +41,14 @@ public interface HROfficePersistence extends BasePersistence<HROffice> {
 	/**
 	* Caches the h r office in the entity cache if it is enabled.
 	*
-	* @param hrOffice the h r office to cache
+	* @param hrOffice the h r office
 	*/
 	public void cacheResult(com.liferay.hr.model.HROffice hrOffice);
 
 	/**
 	* Caches the h r offices in the entity cache if it is enabled.
 	*
-	* @param hrOffices the h r offices to cache
+	* @param hrOffices the h r offices
 	*/
 	public void cacheResult(
 		java.util.List<com.liferay.hr.model.HROffice> hrOffices);
@@ -64,7 +64,7 @@ public interface HROfficePersistence extends BasePersistence<HROffice> {
 	/**
 	* Removes the h r office with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param hrOfficeId the primary key of the h r office to remove
+	* @param hrOfficeId the primary key of the h r office
 	* @return the h r office that was removed
 	* @throws com.liferay.hr.NoSuchOfficeException if a h r office with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -78,9 +78,9 @@ public interface HROfficePersistence extends BasePersistence<HROffice> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the h r office with the primary key or throws a {@link com.liferay.hr.NoSuchOfficeException} if it could not be found.
+	* Returns the h r office with the primary key or throws a {@link com.liferay.hr.NoSuchOfficeException} if it could not be found.
 	*
-	* @param hrOfficeId the primary key of the h r office to find
+	* @param hrOfficeId the primary key of the h r office
 	* @return the h r office
 	* @throws com.liferay.hr.NoSuchOfficeException if a h r office with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -90,9 +90,9 @@ public interface HROfficePersistence extends BasePersistence<HROffice> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the h r office with the primary key or returns <code>null</code> if it could not be found.
+	* Returns the h r office with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param hrOfficeId the primary key of the h r office to find
+	* @param hrOfficeId the primary key of the h r office
 	* @return the h r office, or <code>null</code> if a h r office with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -100,7 +100,7 @@ public interface HROfficePersistence extends BasePersistence<HROffice> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds all the h r offices.
+	* Returns all the h r offices.
 	*
 	* @return the h r offices
 	* @throws SystemException if a system exception occurred
@@ -109,14 +109,14 @@ public interface HROfficePersistence extends BasePersistence<HROffice> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds a range of all the h r offices.
+	* Returns a range of all the h r offices.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of h r offices to return
-	* @param end the upper bound of the range of h r offices to return (not inclusive)
+	* @param start the lower bound of the range of h r offices
+	* @param end the upper bound of the range of h r offices (not inclusive)
 	* @return the range of h r offices
 	* @throws SystemException if a system exception occurred
 	*/
@@ -124,14 +124,14 @@ public interface HROfficePersistence extends BasePersistence<HROffice> {
 		int end) throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds an ordered range of all the h r offices.
+	* Returns an ordered range of all the h r offices.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of h r offices to return
-	* @param end the upper bound of the range of h r offices to return (not inclusive)
+	* @param start the lower bound of the range of h r offices
+	* @param end the upper bound of the range of h r offices (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of h r offices
 	* @throws SystemException if a system exception occurred
@@ -150,7 +150,7 @@ public interface HROfficePersistence extends BasePersistence<HROffice> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Counts all the h r offices.
+	* Returns the number of h r offices.
 	*
 	* @return the number of h r offices
 	* @throws SystemException if a system exception occurred
@@ -159,9 +159,9 @@ public interface HROfficePersistence extends BasePersistence<HROffice> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Gets all the h r holidaies associated with the h r office.
+	* Returns all the h r holidaies associated with the h r office.
 	*
-	* @param pk the primary key of the h r office to get the associated h r holidaies for
+	* @param pk the primary key of the h r office
 	* @return the h r holidaies associated with the h r office
 	* @throws SystemException if a system exception occurred
 	*/
@@ -169,15 +169,15 @@ public interface HROfficePersistence extends BasePersistence<HROffice> {
 		long pk) throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Gets a range of all the h r holidaies associated with the h r office.
+	* Returns a range of all the h r holidaies associated with the h r office.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param pk the primary key of the h r office to get the associated h r holidaies for
-	* @param start the lower bound of the range of h r offices to return
-	* @param end the upper bound of the range of h r offices to return (not inclusive)
+	* @param pk the primary key of the h r office
+	* @param start the lower bound of the range of h r offices
+	* @param end the upper bound of the range of h r offices (not inclusive)
 	* @return the range of h r holidaies associated with the h r office
 	* @throws SystemException if a system exception occurred
 	*/
@@ -186,15 +186,15 @@ public interface HROfficePersistence extends BasePersistence<HROffice> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Gets an ordered range of all the h r holidaies associated with the h r office.
+	* Returns an ordered range of all the h r holidaies associated with the h r office.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param pk the primary key of the h r office to get the associated h r holidaies for
-	* @param start the lower bound of the range of h r offices to return
-	* @param end the upper bound of the range of h r offices to return (not inclusive)
+	* @param pk the primary key of the h r office
+	* @param start the lower bound of the range of h r offices
+	* @param end the upper bound of the range of h r offices (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of h r holidaies associated with the h r office
 	* @throws SystemException if a system exception occurred
@@ -205,9 +205,9 @@ public interface HROfficePersistence extends BasePersistence<HROffice> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Gets the number of h r holidaies associated with the h r office.
+	* Returns the number of h r holidaies associated with the h r office.
 	*
-	* @param pk the primary key of the h r office to get the number of associated h r holidaies for
+	* @param pk the primary key of the h r office
 	* @return the number of h r holidaies associated with the h r office
 	* @throws SystemException if a system exception occurred
 	*/
@@ -330,7 +330,7 @@ public interface HROfficePersistence extends BasePersistence<HROffice> {
 	/**
 	* Sets the h r holidaies associated with the h r office, removing and adding associations as necessary. Also notifies the appropriate model listeners and clears the mapping table finder cache.
 	*
-	* @param pk the primary key of the h r office to set the associations for
+	* @param pk the primary key of the h r office
 	* @param hrHolidayPKs the primary keys of the h r holidaies to be associated with the h r office
 	* @throws SystemException if a system exception occurred
 	*/
@@ -340,7 +340,7 @@ public interface HROfficePersistence extends BasePersistence<HROffice> {
 	/**
 	* Sets the h r holidaies associated with the h r office, removing and adding associations as necessary. Also notifies the appropriate model listeners and clears the mapping table finder cache.
 	*
-	* @param pk the primary key of the h r office to set the associations for
+	* @param pk the primary key of the h r office
 	* @param hrHolidaies the h r holidaies to be associated with the h r office
 	* @throws SystemException if a system exception occurred
 	*/

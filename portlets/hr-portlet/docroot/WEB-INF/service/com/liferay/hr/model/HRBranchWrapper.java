@@ -37,7 +37,7 @@ public class HRBranchWrapper implements HRBranch {
 	}
 
 	/**
-	* Gets the primary key of this h r branch.
+	* Returns the primary key of this h r branch.
 	*
 	* @return the primary key of this h r branch
 	*/
@@ -46,7 +46,7 @@ public class HRBranchWrapper implements HRBranch {
 	}
 
 	/**
-	* Sets the primary key of this h r branch
+	* Sets the primary key of this h r branch.
 	*
 	* @param primaryKey the primary key of this h r branch
 	*/
@@ -55,7 +55,7 @@ public class HRBranchWrapper implements HRBranch {
 	}
 
 	/**
-	* Gets the hr branch ID of this h r branch.
+	* Returns the hr branch ID of this h r branch.
 	*
 	* @return the hr branch ID of this h r branch
 	*/
@@ -73,7 +73,7 @@ public class HRBranchWrapper implements HRBranch {
 	}
 
 	/**
-	* Gets the group ID of this h r branch.
+	* Returns the group ID of this h r branch.
 	*
 	* @return the group ID of this h r branch
 	*/
@@ -91,7 +91,7 @@ public class HRBranchWrapper implements HRBranch {
 	}
 
 	/**
-	* Gets the company ID of this h r branch.
+	* Returns the company ID of this h r branch.
 	*
 	* @return the company ID of this h r branch
 	*/
@@ -109,7 +109,7 @@ public class HRBranchWrapper implements HRBranch {
 	}
 
 	/**
-	* Gets the user ID of this h r branch.
+	* Returns the user ID of this h r branch.
 	*
 	* @return the user ID of this h r branch
 	*/
@@ -127,7 +127,7 @@ public class HRBranchWrapper implements HRBranch {
 	}
 
 	/**
-	* Gets the user uuid of this h r branch.
+	* Returns the user uuid of this h r branch.
 	*
 	* @return the user uuid of this h r branch
 	* @throws SystemException if a system exception occurred
@@ -147,7 +147,7 @@ public class HRBranchWrapper implements HRBranch {
 	}
 
 	/**
-	* Gets the user name of this h r branch.
+	* Returns the user name of this h r branch.
 	*
 	* @return the user name of this h r branch
 	*/
@@ -165,7 +165,7 @@ public class HRBranchWrapper implements HRBranch {
 	}
 
 	/**
-	* Gets the create date of this h r branch.
+	* Returns the create date of this h r branch.
 	*
 	* @return the create date of this h r branch
 	*/
@@ -183,7 +183,7 @@ public class HRBranchWrapper implements HRBranch {
 	}
 
 	/**
-	* Gets the modified date of this h r branch.
+	* Returns the modified date of this h r branch.
 	*
 	* @return the modified date of this h r branch
 	*/
@@ -201,7 +201,7 @@ public class HRBranchWrapper implements HRBranch {
 	}
 
 	/**
-	* Gets the organization ID of this h r branch.
+	* Returns the organization ID of this h r branch.
 	*
 	* @return the organization ID of this h r branch
 	*/

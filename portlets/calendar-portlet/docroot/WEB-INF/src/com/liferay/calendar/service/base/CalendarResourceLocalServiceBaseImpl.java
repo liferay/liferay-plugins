@@ -34,6 +34,11 @@ import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.search.Indexer;
+import com.liferay.portal.kernel.search.IndexerRegistryUtil;
+import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.service.ResourceLocalService;
 import com.liferay.portal.service.ResourceService;
@@ -73,7 +78,7 @@ public abstract class CalendarResourceLocalServiceBaseImpl
 	/**
 	 * Adds the calendar resource to the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param calendarResource the calendar resource to add
+	 * @param calendarResource the calendar resource
 	 * @return the calendar resource that was added
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -81,7 +86,23 @@ public abstract class CalendarResourceLocalServiceBaseImpl
 		CalendarResource calendarResource) throws SystemException {
 		calendarResource.setNew(true);
 
-		return calendarResourcePersistence.update(calendarResource, false);
+		calendarResource = calendarResourcePersistence.update(calendarResource,
+				false);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.reindex(calendarResource);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
+
+		return calendarResource;
 	}
 
 	/**
@@ -97,31 +118,57 @@ public abstract class CalendarResourceLocalServiceBaseImpl
 	/**
 	 * Deletes the calendar resource with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param calendarResourceId the primary key of the calendar resource to delete
+	 * @param calendarResourceId the primary key of the calendar resource
 	 * @throws PortalException if a calendar resource with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void deleteCalendarResource(long calendarResourceId)
 		throws PortalException, SystemException {
-		calendarResourcePersistence.remove(calendarResourceId);
+		CalendarResource calendarResource = calendarResourcePersistence.remove(calendarResourceId);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.delete(calendarResource);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
 	}
 
 	/**
 	 * Deletes the calendar resource from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param calendarResource the calendar resource to delete
+	 * @param calendarResource the calendar resource
 	 * @throws PortalException
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void deleteCalendarResource(CalendarResource calendarResource)
 		throws PortalException, SystemException {
 		calendarResourcePersistence.remove(calendarResource);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.delete(calendarResource);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
 	}
 
 	/**
 	 * Performs a dynamic query on the database and returns the matching rows.
 	 *
-	 * @param dynamicQuery the dynamic query to search with
+	 * @param dynamicQuery the dynamic query
 	 * @return the matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -138,9 +185,9 @@ public abstract class CalendarResourceLocalServiceBaseImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param dynamicQuery the dynamic query to search with
-	 * @param start the lower bound of the range of model instances to return
-	 * @param end the upper bound of the range of model instances to return (not inclusive)
+	 * @param dynamicQuery the dynamic query
+	 * @param start the lower bound of the range of model instances
+	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @return the range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -158,9 +205,9 @@ public abstract class CalendarResourceLocalServiceBaseImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param dynamicQuery the dynamic query to search with
-	 * @param start the lower bound of the range of model instances to return
-	 * @param end the upper bound of the range of model instances to return (not inclusive)
+	 * @param dynamicQuery the dynamic query
+	 * @param start the lower bound of the range of model instances
+	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching rows
 	 * @throws SystemException if a system exception occurred
@@ -173,9 +220,9 @@ public abstract class CalendarResourceLocalServiceBaseImpl
 	}
 
 	/**
-	 * Counts the number of rows that match the dynamic query.
+	 * Returns the number of rows that match the dynamic query.
 	 *
-	 * @param dynamicQuery the dynamic query to search with
+	 * @param dynamicQuery the dynamic query
 	 * @return the number of rows that match the dynamic query
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -185,9 +232,9 @@ public abstract class CalendarResourceLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the calendar resource with the primary key.
+	 * Returns the calendar resource with the primary key.
 	 *
-	 * @param calendarResourceId the primary key of the calendar resource to get
+	 * @param calendarResourceId the primary key of the calendar resource
 	 * @return the calendar resource
 	 * @throws PortalException if a calendar resource with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -198,12 +245,12 @@ public abstract class CalendarResourceLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the calendar resource with the UUID and group id.
+	 * Returns the calendar resource with the UUID in the group.
 	 *
-	 * @param uuid the UUID of calendar resource to get
-	 * @param groupId the group id of the calendar resource to get
+	 * @param uuid the UUID of calendar resource
+	 * @param groupId the group id of the calendar resource
 	 * @return the calendar resource
-	 * @throws PortalException if a calendar resource with the UUID and group id could not be found
+	 * @throws PortalException if a calendar resource with the UUID in the group could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	public CalendarResource getCalendarResourceByUuidAndGroupId(String uuid,
@@ -212,14 +259,14 @@ public abstract class CalendarResourceLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets a range of all the calendar resources.
+	 * Returns a range of all the calendar resources.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of calendar resources to return
-	 * @param end the upper bound of the range of calendar resources to return (not inclusive)
+	 * @param start the lower bound of the range of calendar resources
+	 * @param end the upper bound of the range of calendar resources (not inclusive)
 	 * @return the range of calendar resources
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -229,7 +276,7 @@ public abstract class CalendarResourceLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the number of calendar resources.
+	 * Returns the number of calendar resources.
 	 *
 	 * @return the number of calendar resources
 	 * @throws SystemException if a system exception occurred
@@ -241,21 +288,19 @@ public abstract class CalendarResourceLocalServiceBaseImpl
 	/**
 	 * Updates the calendar resource in the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param calendarResource the calendar resource to update
+	 * @param calendarResource the calendar resource
 	 * @return the calendar resource that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
 	public CalendarResource updateCalendarResource(
 		CalendarResource calendarResource) throws SystemException {
-		calendarResource.setNew(false);
-
-		return calendarResourcePersistence.update(calendarResource, true);
+		return updateCalendarResource(calendarResource, true);
 	}
 
 	/**
 	 * Updates the calendar resource in the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param calendarResource the calendar resource to update
+	 * @param calendarResource the calendar resource
 	 * @param merge whether to merge the calendar resource with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
 	 * @return the calendar resource that was updated
 	 * @throws SystemException if a system exception occurred
@@ -265,11 +310,27 @@ public abstract class CalendarResourceLocalServiceBaseImpl
 		throws SystemException {
 		calendarResource.setNew(false);
 
-		return calendarResourcePersistence.update(calendarResource, merge);
+		calendarResource = calendarResourcePersistence.update(calendarResource,
+				merge);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.reindex(calendarResource);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
+
+		return calendarResource;
 	}
 
 	/**
-	 * Gets the calendar booking local service.
+	 * Returns the calendar booking local service.
 	 *
 	 * @return the calendar booking local service
 	 */
@@ -288,7 +349,7 @@ public abstract class CalendarResourceLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the calendar booking remote service.
+	 * Returns the calendar booking remote service.
 	 *
 	 * @return the calendar booking remote service
 	 */
@@ -307,7 +368,7 @@ public abstract class CalendarResourceLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the calendar booking persistence.
+	 * Returns the calendar booking persistence.
 	 *
 	 * @return the calendar booking persistence
 	 */
@@ -326,7 +387,7 @@ public abstract class CalendarResourceLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the calendar event local service.
+	 * Returns the calendar event local service.
 	 *
 	 * @return the calendar event local service
 	 */
@@ -345,7 +406,7 @@ public abstract class CalendarResourceLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the calendar event remote service.
+	 * Returns the calendar event remote service.
 	 *
 	 * @return the calendar event remote service
 	 */
@@ -364,7 +425,7 @@ public abstract class CalendarResourceLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the calendar event persistence.
+	 * Returns the calendar event persistence.
 	 *
 	 * @return the calendar event persistence
 	 */
@@ -383,7 +444,7 @@ public abstract class CalendarResourceLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the calendar resource local service.
+	 * Returns the calendar resource local service.
 	 *
 	 * @return the calendar resource local service
 	 */
@@ -402,7 +463,7 @@ public abstract class CalendarResourceLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the calendar resource remote service.
+	 * Returns the calendar resource remote service.
 	 *
 	 * @return the calendar resource remote service
 	 */
@@ -421,7 +482,7 @@ public abstract class CalendarResourceLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the calendar resource persistence.
+	 * Returns the calendar resource persistence.
 	 *
 	 * @return the calendar resource persistence
 	 */
@@ -440,7 +501,7 @@ public abstract class CalendarResourceLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the counter local service.
+	 * Returns the counter local service.
 	 *
 	 * @return the counter local service
 	 */
@@ -458,7 +519,7 @@ public abstract class CalendarResourceLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the resource local service.
+	 * Returns the resource local service.
 	 *
 	 * @return the resource local service
 	 */
@@ -477,7 +538,7 @@ public abstract class CalendarResourceLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the resource remote service.
+	 * Returns the resource remote service.
 	 *
 	 * @return the resource remote service
 	 */
@@ -495,7 +556,7 @@ public abstract class CalendarResourceLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the resource persistence.
+	 * Returns the resource persistence.
 	 *
 	 * @return the resource persistence
 	 */
@@ -513,7 +574,7 @@ public abstract class CalendarResourceLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the user local service.
+	 * Returns the user local service.
 	 *
 	 * @return the user local service
 	 */
@@ -531,7 +592,7 @@ public abstract class CalendarResourceLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the user remote service.
+	 * Returns the user remote service.
 	 *
 	 * @return the user remote service
 	 */
@@ -549,7 +610,7 @@ public abstract class CalendarResourceLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the user persistence.
+	 * Returns the user persistence.
 	 *
 	 * @return the user persistence
 	 */
@@ -567,7 +628,7 @@ public abstract class CalendarResourceLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the expando value local service.
+	 * Returns the expando value local service.
 	 *
 	 * @return the expando value local service
 	 */
@@ -586,7 +647,7 @@ public abstract class CalendarResourceLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the expando value remote service.
+	 * Returns the expando value remote service.
 	 *
 	 * @return the expando value remote service
 	 */
@@ -604,7 +665,7 @@ public abstract class CalendarResourceLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the expando value persistence.
+	 * Returns the expando value persistence.
 	 *
 	 * @return the expando value persistence
 	 */
@@ -623,7 +684,7 @@ public abstract class CalendarResourceLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the Spring bean ID for this bean.
+	 * Returns the Spring bean ID for this bean.
 	 *
 	 * @return the Spring bean ID for this bean
 	 */
@@ -640,10 +701,18 @@ public abstract class CalendarResourceLocalServiceBaseImpl
 		_beanIdentifier = beanIdentifier;
 	}
 
+	protected Class<?> getModelClass() {
+		return CalendarResource.class;
+	}
+
+	protected String getModelClassName() {
+		return CalendarResource.class.getName();
+	}
+
 	/**
 	 * Performs an SQL query.
 	 *
-	 * @param sql the sql query to perform
+	 * @param sql the sql query
 	 */
 	protected void runSQL(String sql) throws SystemException {
 		try {
@@ -697,5 +766,6 @@ public abstract class CalendarResourceLocalServiceBaseImpl
 	protected ExpandoValueService expandoValueService;
 	@BeanReference(type = ExpandoValuePersistence.class)
 	protected ExpandoValuePersistence expandoValuePersistence;
+	private static Log _log = LogFactoryUtil.getLog(CalendarResourceLocalServiceBaseImpl.class);
 	private String _beanIdentifier;
 }

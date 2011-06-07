@@ -121,7 +121,7 @@ public class MemberRequestUtil {
 	/**
 	* Caches the member request in the entity cache if it is enabled.
 	*
-	* @param memberRequest the member request to cache
+	* @param memberRequest the member request
 	*/
 	public static void cacheResult(
 		com.liferay.so.model.MemberRequest memberRequest) {
@@ -131,7 +131,7 @@ public class MemberRequestUtil {
 	/**
 	* Caches the member requests in the entity cache if it is enabled.
 	*
-	* @param memberRequests the member requests to cache
+	* @param memberRequests the member requests
 	*/
 	public static void cacheResult(
 		java.util.List<com.liferay.so.model.MemberRequest> memberRequests) {
@@ -152,7 +152,7 @@ public class MemberRequestUtil {
 	/**
 	* Removes the member request with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param memberRequestId the primary key of the member request to remove
+	* @param memberRequestId the primary key of the member request
 	* @return the member request that was removed
 	* @throws com.liferay.so.NoSuchMemberRequestException if a member request with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -171,9 +171,9 @@ public class MemberRequestUtil {
 	}
 
 	/**
-	* Finds the member request with the primary key or throws a {@link com.liferay.so.NoSuchMemberRequestException} if it could not be found.
+	* Returns the member request with the primary key or throws a {@link com.liferay.so.NoSuchMemberRequestException} if it could not be found.
 	*
-	* @param memberRequestId the primary key of the member request to find
+	* @param memberRequestId the primary key of the member request
 	* @return the member request
 	* @throws com.liferay.so.NoSuchMemberRequestException if a member request with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -186,9 +186,9 @@ public class MemberRequestUtil {
 	}
 
 	/**
-	* Finds the member request with the primary key or returns <code>null</code> if it could not be found.
+	* Returns the member request with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param memberRequestId the primary key of the member request to find
+	* @param memberRequestId the primary key of the member request
 	* @return the member request, or <code>null</code> if a member request with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -199,9 +199,9 @@ public class MemberRequestUtil {
 	}
 
 	/**
-	* Finds the member request where key = &#63; or throws a {@link com.liferay.so.NoSuchMemberRequestException} if it could not be found.
+	* Returns the member request where key = &#63; or throws a {@link com.liferay.so.NoSuchMemberRequestException} if it could not be found.
 	*
-	* @param key the key to search with
+	* @param key the key
 	* @return the matching member request
 	* @throws com.liferay.so.NoSuchMemberRequestException if a matching member request could not be found
 	* @throws SystemException if a system exception occurred
@@ -214,9 +214,9 @@ public class MemberRequestUtil {
 	}
 
 	/**
-	* Finds the member request where key = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	* Returns the member request where key = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	*
-	* @param key the key to search with
+	* @param key the key
 	* @return the matching member request, or <code>null</code> if a matching member request could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -227,9 +227,9 @@ public class MemberRequestUtil {
 	}
 
 	/**
-	* Finds the member request where key = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	* Returns the member request where key = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	*
-	* @param key the key to search with
+	* @param key the key
 	* @return the matching member request, or <code>null</code> if a matching member request could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -240,9 +240,9 @@ public class MemberRequestUtil {
 	}
 
 	/**
-	* Finds all the member requests where receiverUserId = &#63;.
+	* Returns all the member requests where receiverUserId = &#63;.
 	*
-	* @param receiverUserId the receiver user ID to search with
+	* @param receiverUserId the receiver user ID
 	* @return the matching member requests
 	* @throws SystemException if a system exception occurred
 	*/
@@ -253,15 +253,15 @@ public class MemberRequestUtil {
 	}
 
 	/**
-	* Finds a range of all the member requests where receiverUserId = &#63;.
+	* Returns a range of all the member requests where receiverUserId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param receiverUserId the receiver user ID to search with
-	* @param start the lower bound of the range of member requests to return
-	* @param end the upper bound of the range of member requests to return (not inclusive)
+	* @param receiverUserId the receiver user ID
+	* @param start the lower bound of the range of member requests
+	* @param end the upper bound of the range of member requests (not inclusive)
 	* @return the range of matching member requests
 	* @throws SystemException if a system exception occurred
 	*/
@@ -272,15 +272,15 @@ public class MemberRequestUtil {
 	}
 
 	/**
-	* Finds an ordered range of all the member requests where receiverUserId = &#63;.
+	* Returns an ordered range of all the member requests where receiverUserId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param receiverUserId the receiver user ID to search with
-	* @param start the lower bound of the range of member requests to return
-	* @param end the upper bound of the range of member requests to return (not inclusive)
+	* @param receiverUserId the receiver user ID
+	* @param start the lower bound of the range of member requests
+	* @param end the upper bound of the range of member requests (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching member requests
 	* @throws SystemException if a system exception occurred
@@ -295,13 +295,13 @@ public class MemberRequestUtil {
 	}
 
 	/**
-	* Finds the first member request in the ordered set where receiverUserId = &#63;.
+	* Returns the first member request in the ordered set where receiverUserId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param receiverUserId the receiver user ID to search with
+	* @param receiverUserId the receiver user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching member request
 	* @throws com.liferay.so.NoSuchMemberRequestException if a matching member request could not be found
@@ -317,13 +317,13 @@ public class MemberRequestUtil {
 	}
 
 	/**
-	* Finds the last member request in the ordered set where receiverUserId = &#63;.
+	* Returns the last member request in the ordered set where receiverUserId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param receiverUserId the receiver user ID to search with
+	* @param receiverUserId the receiver user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching member request
 	* @throws com.liferay.so.NoSuchMemberRequestException if a matching member request could not be found
@@ -339,14 +339,14 @@ public class MemberRequestUtil {
 	}
 
 	/**
-	* Finds the member requests before and after the current member request in the ordered set where receiverUserId = &#63;.
+	* Returns the member requests before and after the current member request in the ordered set where receiverUserId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
 	* @param memberRequestId the primary key of the current member request
-	* @param receiverUserId the receiver user ID to search with
+	* @param receiverUserId the receiver user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next member request
 	* @throws com.liferay.so.NoSuchMemberRequestException if a member request with the primary key could not be found
@@ -363,10 +363,10 @@ public class MemberRequestUtil {
 	}
 
 	/**
-	* Finds all the member requests where receiverUserId = &#63; and status = &#63;.
+	* Returns all the member requests where receiverUserId = &#63; and status = &#63;.
 	*
-	* @param receiverUserId the receiver user ID to search with
-	* @param status the status to search with
+	* @param receiverUserId the receiver user ID
+	* @param status the status
 	* @return the matching member requests
 	* @throws SystemException if a system exception occurred
 	*/
@@ -377,16 +377,16 @@ public class MemberRequestUtil {
 	}
 
 	/**
-	* Finds a range of all the member requests where receiverUserId = &#63; and status = &#63;.
+	* Returns a range of all the member requests where receiverUserId = &#63; and status = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param receiverUserId the receiver user ID to search with
-	* @param status the status to search with
-	* @param start the lower bound of the range of member requests to return
-	* @param end the upper bound of the range of member requests to return (not inclusive)
+	* @param receiverUserId the receiver user ID
+	* @param status the status
+	* @param start the lower bound of the range of member requests
+	* @param end the upper bound of the range of member requests (not inclusive)
 	* @return the range of matching member requests
 	* @throws SystemException if a system exception occurred
 	*/
@@ -397,16 +397,16 @@ public class MemberRequestUtil {
 	}
 
 	/**
-	* Finds an ordered range of all the member requests where receiverUserId = &#63; and status = &#63;.
+	* Returns an ordered range of all the member requests where receiverUserId = &#63; and status = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param receiverUserId the receiver user ID to search with
-	* @param status the status to search with
-	* @param start the lower bound of the range of member requests to return
-	* @param end the upper bound of the range of member requests to return (not inclusive)
+	* @param receiverUserId the receiver user ID
+	* @param status the status
+	* @param start the lower bound of the range of member requests
+	* @param end the upper bound of the range of member requests (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching member requests
 	* @throws SystemException if a system exception occurred
@@ -421,14 +421,14 @@ public class MemberRequestUtil {
 	}
 
 	/**
-	* Finds the first member request in the ordered set where receiverUserId = &#63; and status = &#63;.
+	* Returns the first member request in the ordered set where receiverUserId = &#63; and status = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param receiverUserId the receiver user ID to search with
-	* @param status the status to search with
+	* @param receiverUserId the receiver user ID
+	* @param status the status
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching member request
 	* @throws com.liferay.so.NoSuchMemberRequestException if a matching member request could not be found
@@ -444,14 +444,14 @@ public class MemberRequestUtil {
 	}
 
 	/**
-	* Finds the last member request in the ordered set where receiverUserId = &#63; and status = &#63;.
+	* Returns the last member request in the ordered set where receiverUserId = &#63; and status = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param receiverUserId the receiver user ID to search with
-	* @param status the status to search with
+	* @param receiverUserId the receiver user ID
+	* @param status the status
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching member request
 	* @throws com.liferay.so.NoSuchMemberRequestException if a matching member request could not be found
@@ -467,15 +467,15 @@ public class MemberRequestUtil {
 	}
 
 	/**
-	* Finds the member requests before and after the current member request in the ordered set where receiverUserId = &#63; and status = &#63;.
+	* Returns the member requests before and after the current member request in the ordered set where receiverUserId = &#63; and status = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
 	* @param memberRequestId the primary key of the current member request
-	* @param receiverUserId the receiver user ID to search with
-	* @param status the status to search with
+	* @param receiverUserId the receiver user ID
+	* @param status the status
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next member request
 	* @throws com.liferay.so.NoSuchMemberRequestException if a member request with the primary key could not be found
@@ -492,11 +492,11 @@ public class MemberRequestUtil {
 	}
 
 	/**
-	* Finds the member request where groupId = &#63; and receiverUserId = &#63; and status = &#63; or throws a {@link com.liferay.so.NoSuchMemberRequestException} if it could not be found.
+	* Returns the member request where groupId = &#63; and receiverUserId = &#63; and status = &#63; or throws a {@link com.liferay.so.NoSuchMemberRequestException} if it could not be found.
 	*
-	* @param groupId the group ID to search with
-	* @param receiverUserId the receiver user ID to search with
-	* @param status the status to search with
+	* @param groupId the group ID
+	* @param receiverUserId the receiver user ID
+	* @param status the status
 	* @return the matching member request
 	* @throws com.liferay.so.NoSuchMemberRequestException if a matching member request could not be found
 	* @throws SystemException if a system exception occurred
@@ -509,11 +509,11 @@ public class MemberRequestUtil {
 	}
 
 	/**
-	* Finds the member request where groupId = &#63; and receiverUserId = &#63; and status = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	* Returns the member request where groupId = &#63; and receiverUserId = &#63; and status = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	*
-	* @param groupId the group ID to search with
-	* @param receiverUserId the receiver user ID to search with
-	* @param status the status to search with
+	* @param groupId the group ID
+	* @param receiverUserId the receiver user ID
+	* @param status the status
 	* @return the matching member request, or <code>null</code> if a matching member request could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -524,11 +524,11 @@ public class MemberRequestUtil {
 	}
 
 	/**
-	* Finds the member request where groupId = &#63; and receiverUserId = &#63; and status = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	* Returns the member request where groupId = &#63; and receiverUserId = &#63; and status = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	*
-	* @param groupId the group ID to search with
-	* @param receiverUserId the receiver user ID to search with
-	* @param status the status to search with
+	* @param groupId the group ID
+	* @param receiverUserId the receiver user ID
+	* @param status the status
 	* @return the matching member request, or <code>null</code> if a matching member request could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -541,7 +541,7 @@ public class MemberRequestUtil {
 	}
 
 	/**
-	* Finds all the member requests.
+	* Returns all the member requests.
 	*
 	* @return the member requests
 	* @throws SystemException if a system exception occurred
@@ -552,14 +552,14 @@ public class MemberRequestUtil {
 	}
 
 	/**
-	* Finds a range of all the member requests.
+	* Returns a range of all the member requests.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of member requests to return
-	* @param end the upper bound of the range of member requests to return (not inclusive)
+	* @param start the lower bound of the range of member requests
+	* @param end the upper bound of the range of member requests (not inclusive)
 	* @return the range of member requests
 	* @throws SystemException if a system exception occurred
 	*/
@@ -570,14 +570,14 @@ public class MemberRequestUtil {
 	}
 
 	/**
-	* Finds an ordered range of all the member requests.
+	* Returns an ordered range of all the member requests.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of member requests to return
-	* @param end the upper bound of the range of member requests to return (not inclusive)
+	* @param start the lower bound of the range of member requests
+	* @param end the upper bound of the range of member requests (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of member requests
 	* @throws SystemException if a system exception occurred
@@ -592,7 +592,7 @@ public class MemberRequestUtil {
 	/**
 	* Removes the member request where key = &#63; from the database.
 	*
-	* @param key the key to search with
+	* @param key the key
 	* @throws SystemException if a system exception occurred
 	*/
 	public static void removeByKey(java.lang.String key)
@@ -604,7 +604,7 @@ public class MemberRequestUtil {
 	/**
 	* Removes all the member requests where receiverUserId = &#63; from the database.
 	*
-	* @param receiverUserId the receiver user ID to search with
+	* @param receiverUserId the receiver user ID
 	* @throws SystemException if a system exception occurred
 	*/
 	public static void removeByReceiverUserId(long receiverUserId)
@@ -615,8 +615,8 @@ public class MemberRequestUtil {
 	/**
 	* Removes all the member requests where receiverUserId = &#63; and status = &#63; from the database.
 	*
-	* @param receiverUserId the receiver user ID to search with
-	* @param status the status to search with
+	* @param receiverUserId the receiver user ID
+	* @param status the status
 	* @throws SystemException if a system exception occurred
 	*/
 	public static void removeByR_S(long receiverUserId, int status)
@@ -627,9 +627,9 @@ public class MemberRequestUtil {
 	/**
 	* Removes the member request where groupId = &#63; and receiverUserId = &#63; and status = &#63; from the database.
 	*
-	* @param groupId the group ID to search with
-	* @param receiverUserId the receiver user ID to search with
-	* @param status the status to search with
+	* @param groupId the group ID
+	* @param receiverUserId the receiver user ID
+	* @param status the status
 	* @throws SystemException if a system exception occurred
 	*/
 	public static void removeByG_R_S(long groupId, long receiverUserId,
@@ -650,9 +650,9 @@ public class MemberRequestUtil {
 	}
 
 	/**
-	* Counts all the member requests where key = &#63;.
+	* Returns the number of member requests where key = &#63;.
 	*
-	* @param key the key to search with
+	* @param key the key
 	* @return the number of matching member requests
 	* @throws SystemException if a system exception occurred
 	*/
@@ -662,9 +662,9 @@ public class MemberRequestUtil {
 	}
 
 	/**
-	* Counts all the member requests where receiverUserId = &#63;.
+	* Returns the number of member requests where receiverUserId = &#63;.
 	*
-	* @param receiverUserId the receiver user ID to search with
+	* @param receiverUserId the receiver user ID
 	* @return the number of matching member requests
 	* @throws SystemException if a system exception occurred
 	*/
@@ -674,10 +674,10 @@ public class MemberRequestUtil {
 	}
 
 	/**
-	* Counts all the member requests where receiverUserId = &#63; and status = &#63;.
+	* Returns the number of member requests where receiverUserId = &#63; and status = &#63;.
 	*
-	* @param receiverUserId the receiver user ID to search with
-	* @param status the status to search with
+	* @param receiverUserId the receiver user ID
+	* @param status the status
 	* @return the number of matching member requests
 	* @throws SystemException if a system exception occurred
 	*/
@@ -687,11 +687,11 @@ public class MemberRequestUtil {
 	}
 
 	/**
-	* Counts all the member requests where groupId = &#63; and receiverUserId = &#63; and status = &#63;.
+	* Returns the number of member requests where groupId = &#63; and receiverUserId = &#63; and status = &#63;.
 	*
-	* @param groupId the group ID to search with
-	* @param receiverUserId the receiver user ID to search with
-	* @param status the status to search with
+	* @param groupId the group ID
+	* @param receiverUserId the receiver user ID
+	* @param status the status
 	* @return the number of matching member requests
 	* @throws SystemException if a system exception occurred
 	*/
@@ -701,7 +701,7 @@ public class MemberRequestUtil {
 	}
 
 	/**
-	* Counts all the member requests.
+	* Returns the number of member requests.
 	*
 	* @return the number of member requests
 	* @throws SystemException if a system exception occurred

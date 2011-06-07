@@ -29,6 +29,11 @@ import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.search.Indexer;
+import com.liferay.portal.kernel.search.IndexerRegistryUtil;
+import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.service.ResourceLocalService;
 import com.liferay.portal.service.ResourceService;
@@ -64,7 +69,7 @@ public abstract class MicroblogsEntryLocalServiceBaseImpl
 	/**
 	 * Adds the microblogs entry to the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param microblogsEntry the microblogs entry to add
+	 * @param microblogsEntry the microblogs entry
 	 * @return the microblogs entry that was added
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -72,7 +77,23 @@ public abstract class MicroblogsEntryLocalServiceBaseImpl
 		throws SystemException {
 		microblogsEntry.setNew(true);
 
-		return microblogsEntryPersistence.update(microblogsEntry, false);
+		microblogsEntry = microblogsEntryPersistence.update(microblogsEntry,
+				false);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.reindex(microblogsEntry);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
+
+		return microblogsEntry;
 	}
 
 	/**
@@ -88,31 +109,57 @@ public abstract class MicroblogsEntryLocalServiceBaseImpl
 	/**
 	 * Deletes the microblogs entry with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param microblogsEntryId the primary key of the microblogs entry to delete
+	 * @param microblogsEntryId the primary key of the microblogs entry
 	 * @throws PortalException if a microblogs entry with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void deleteMicroblogsEntry(long microblogsEntryId)
 		throws PortalException, SystemException {
-		microblogsEntryPersistence.remove(microblogsEntryId);
+		MicroblogsEntry microblogsEntry = microblogsEntryPersistence.remove(microblogsEntryId);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.delete(microblogsEntry);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
 	}
 
 	/**
 	 * Deletes the microblogs entry from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param microblogsEntry the microblogs entry to delete
+	 * @param microblogsEntry the microblogs entry
 	 * @throws PortalException
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void deleteMicroblogsEntry(MicroblogsEntry microblogsEntry)
 		throws PortalException, SystemException {
 		microblogsEntryPersistence.remove(microblogsEntry);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.delete(microblogsEntry);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
 	}
 
 	/**
 	 * Performs a dynamic query on the database and returns the matching rows.
 	 *
-	 * @param dynamicQuery the dynamic query to search with
+	 * @param dynamicQuery the dynamic query
 	 * @return the matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -129,9 +176,9 @@ public abstract class MicroblogsEntryLocalServiceBaseImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param dynamicQuery the dynamic query to search with
-	 * @param start the lower bound of the range of model instances to return
-	 * @param end the upper bound of the range of model instances to return (not inclusive)
+	 * @param dynamicQuery the dynamic query
+	 * @param start the lower bound of the range of model instances
+	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @return the range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -149,9 +196,9 @@ public abstract class MicroblogsEntryLocalServiceBaseImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param dynamicQuery the dynamic query to search with
-	 * @param start the lower bound of the range of model instances to return
-	 * @param end the upper bound of the range of model instances to return (not inclusive)
+	 * @param dynamicQuery the dynamic query
+	 * @param start the lower bound of the range of model instances
+	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching rows
 	 * @throws SystemException if a system exception occurred
@@ -164,9 +211,9 @@ public abstract class MicroblogsEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Counts the number of rows that match the dynamic query.
+	 * Returns the number of rows that match the dynamic query.
 	 *
-	 * @param dynamicQuery the dynamic query to search with
+	 * @param dynamicQuery the dynamic query
 	 * @return the number of rows that match the dynamic query
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -176,9 +223,9 @@ public abstract class MicroblogsEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the microblogs entry with the primary key.
+	 * Returns the microblogs entry with the primary key.
 	 *
-	 * @param microblogsEntryId the primary key of the microblogs entry to get
+	 * @param microblogsEntryId the primary key of the microblogs entry
 	 * @return the microblogs entry
 	 * @throws PortalException if a microblogs entry with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -189,14 +236,14 @@ public abstract class MicroblogsEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets a range of all the microblogs entries.
+	 * Returns a range of all the microblogs entries.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of microblogs entries to return
-	 * @param end the upper bound of the range of microblogs entries to return (not inclusive)
+	 * @param start the lower bound of the range of microblogs entries
+	 * @param end the upper bound of the range of microblogs entries (not inclusive)
 	 * @return the range of microblogs entries
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -206,7 +253,7 @@ public abstract class MicroblogsEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the number of microblogs entries.
+	 * Returns the number of microblogs entries.
 	 *
 	 * @return the number of microblogs entries
 	 * @throws SystemException if a system exception occurred
@@ -218,21 +265,19 @@ public abstract class MicroblogsEntryLocalServiceBaseImpl
 	/**
 	 * Updates the microblogs entry in the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param microblogsEntry the microblogs entry to update
+	 * @param microblogsEntry the microblogs entry
 	 * @return the microblogs entry that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
 	public MicroblogsEntry updateMicroblogsEntry(
 		MicroblogsEntry microblogsEntry) throws SystemException {
-		microblogsEntry.setNew(false);
-
-		return microblogsEntryPersistence.update(microblogsEntry, true);
+		return updateMicroblogsEntry(microblogsEntry, true);
 	}
 
 	/**
 	 * Updates the microblogs entry in the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param microblogsEntry the microblogs entry to update
+	 * @param microblogsEntry the microblogs entry
 	 * @param merge whether to merge the microblogs entry with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
 	 * @return the microblogs entry that was updated
 	 * @throws SystemException if a system exception occurred
@@ -242,11 +287,27 @@ public abstract class MicroblogsEntryLocalServiceBaseImpl
 		throws SystemException {
 		microblogsEntry.setNew(false);
 
-		return microblogsEntryPersistence.update(microblogsEntry, merge);
+		microblogsEntry = microblogsEntryPersistence.update(microblogsEntry,
+				merge);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.reindex(microblogsEntry);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
+
+		return microblogsEntry;
 	}
 
 	/**
-	 * Gets the microblogs entry local service.
+	 * Returns the microblogs entry local service.
 	 *
 	 * @return the microblogs entry local service
 	 */
@@ -265,7 +326,7 @@ public abstract class MicroblogsEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the microblogs entry remote service.
+	 * Returns the microblogs entry remote service.
 	 *
 	 * @return the microblogs entry remote service
 	 */
@@ -284,7 +345,7 @@ public abstract class MicroblogsEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the microblogs entry persistence.
+	 * Returns the microblogs entry persistence.
 	 *
 	 * @return the microblogs entry persistence
 	 */
@@ -303,7 +364,7 @@ public abstract class MicroblogsEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the microblogs entry finder.
+	 * Returns the microblogs entry finder.
 	 *
 	 * @return the microblogs entry finder
 	 */
@@ -322,7 +383,7 @@ public abstract class MicroblogsEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the counter local service.
+	 * Returns the counter local service.
 	 *
 	 * @return the counter local service
 	 */
@@ -340,7 +401,7 @@ public abstract class MicroblogsEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the resource local service.
+	 * Returns the resource local service.
 	 *
 	 * @return the resource local service
 	 */
@@ -359,7 +420,7 @@ public abstract class MicroblogsEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the resource remote service.
+	 * Returns the resource remote service.
 	 *
 	 * @return the resource remote service
 	 */
@@ -377,7 +438,7 @@ public abstract class MicroblogsEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the resource persistence.
+	 * Returns the resource persistence.
 	 *
 	 * @return the resource persistence
 	 */
@@ -395,7 +456,7 @@ public abstract class MicroblogsEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the user local service.
+	 * Returns the user local service.
 	 *
 	 * @return the user local service
 	 */
@@ -413,7 +474,7 @@ public abstract class MicroblogsEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the user remote service.
+	 * Returns the user remote service.
 	 *
 	 * @return the user remote service
 	 */
@@ -431,7 +492,7 @@ public abstract class MicroblogsEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the user persistence.
+	 * Returns the user persistence.
 	 *
 	 * @return the user persistence
 	 */
@@ -449,7 +510,7 @@ public abstract class MicroblogsEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the Spring bean ID for this bean.
+	 * Returns the Spring bean ID for this bean.
 	 *
 	 * @return the Spring bean ID for this bean
 	 */
@@ -466,10 +527,18 @@ public abstract class MicroblogsEntryLocalServiceBaseImpl
 		_beanIdentifier = beanIdentifier;
 	}
 
+	protected Class<?> getModelClass() {
+		return MicroblogsEntry.class;
+	}
+
+	protected String getModelClassName() {
+		return MicroblogsEntry.class.getName();
+	}
+
 	/**
 	 * Performs an SQL query.
 	 *
-	 * @param sql the sql query to perform
+	 * @param sql the sql query
 	 */
 	protected void runSQL(String sql) throws SystemException {
 		try {
@@ -507,5 +576,6 @@ public abstract class MicroblogsEntryLocalServiceBaseImpl
 	protected UserService userService;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
+	private static Log _log = LogFactoryUtil.getLog(MicroblogsEntryLocalServiceBaseImpl.class);
 	private String _beanIdentifier;
 }

@@ -37,7 +37,7 @@ public class HRUserTimeOffWrapper implements HRUserTimeOff {
 	}
 
 	/**
-	* Gets the primary key of this h r user time off.
+	* Returns the primary key of this h r user time off.
 	*
 	* @return the primary key of this h r user time off
 	*/
@@ -46,7 +46,7 @@ public class HRUserTimeOffWrapper implements HRUserTimeOff {
 	}
 
 	/**
-	* Sets the primary key of this h r user time off
+	* Sets the primary key of this h r user time off.
 	*
 	* @param primaryKey the primary key of this h r user time off
 	*/
@@ -55,7 +55,7 @@ public class HRUserTimeOffWrapper implements HRUserTimeOff {
 	}
 
 	/**
-	* Gets the hr user time off ID of this h r user time off.
+	* Returns the hr user time off ID of this h r user time off.
 	*
 	* @return the hr user time off ID of this h r user time off
 	*/
@@ -73,7 +73,7 @@ public class HRUserTimeOffWrapper implements HRUserTimeOff {
 	}
 
 	/**
-	* Gets the group ID of this h r user time off.
+	* Returns the group ID of this h r user time off.
 	*
 	* @return the group ID of this h r user time off
 	*/
@@ -91,7 +91,7 @@ public class HRUserTimeOffWrapper implements HRUserTimeOff {
 	}
 
 	/**
-	* Gets the company ID of this h r user time off.
+	* Returns the company ID of this h r user time off.
 	*
 	* @return the company ID of this h r user time off
 	*/
@@ -109,7 +109,7 @@ public class HRUserTimeOffWrapper implements HRUserTimeOff {
 	}
 
 	/**
-	* Gets the user ID of this h r user time off.
+	* Returns the user ID of this h r user time off.
 	*
 	* @return the user ID of this h r user time off
 	*/
@@ -127,7 +127,7 @@ public class HRUserTimeOffWrapper implements HRUserTimeOff {
 	}
 
 	/**
-	* Gets the user uuid of this h r user time off.
+	* Returns the user uuid of this h r user time off.
 	*
 	* @return the user uuid of this h r user time off
 	* @throws SystemException if a system exception occurred
@@ -147,7 +147,7 @@ public class HRUserTimeOffWrapper implements HRUserTimeOff {
 	}
 
 	/**
-	* Gets the user name of this h r user time off.
+	* Returns the user name of this h r user time off.
 	*
 	* @return the user name of this h r user time off
 	*/
@@ -165,7 +165,7 @@ public class HRUserTimeOffWrapper implements HRUserTimeOff {
 	}
 
 	/**
-	* Gets the create date of this h r user time off.
+	* Returns the create date of this h r user time off.
 	*
 	* @return the create date of this h r user time off
 	*/
@@ -183,7 +183,7 @@ public class HRUserTimeOffWrapper implements HRUserTimeOff {
 	}
 
 	/**
-	* Gets the modified date of this h r user time off.
+	* Returns the modified date of this h r user time off.
 	*
 	* @return the modified date of this h r user time off
 	*/
@@ -201,7 +201,7 @@ public class HRUserTimeOffWrapper implements HRUserTimeOff {
 	}
 
 	/**
-	* Gets the hr time off type ID of this h r user time off.
+	* Returns the hr time off type ID of this h r user time off.
 	*
 	* @return the hr time off type ID of this h r user time off
 	*/
@@ -219,7 +219,7 @@ public class HRUserTimeOffWrapper implements HRUserTimeOff {
 	}
 
 	/**
-	* Gets the hr user ID of this h r user time off.
+	* Returns the hr user ID of this h r user time off.
 	*
 	* @return the hr user ID of this h r user time off
 	*/
@@ -237,7 +237,7 @@ public class HRUserTimeOffWrapper implements HRUserTimeOff {
 	}
 
 	/**
-	* Gets the hr user uuid of this h r user time off.
+	* Returns the hr user uuid of this h r user time off.
 	*
 	* @return the hr user uuid of this h r user time off
 	* @throws SystemException if a system exception occurred
@@ -257,7 +257,7 @@ public class HRUserTimeOffWrapper implements HRUserTimeOff {
 	}
 
 	/**
-	* Gets the year of this h r user time off.
+	* Returns the year of this h r user time off.
 	*
 	* @return the year of this h r user time off
 	*/
@@ -275,7 +275,7 @@ public class HRUserTimeOffWrapper implements HRUserTimeOff {
 	}
 
 	/**
-	* Gets the hours allowed of this h r user time off.
+	* Returns the hours allowed of this h r user time off.
 	*
 	* @return the hours allowed of this h r user time off
 	*/
@@ -293,7 +293,7 @@ public class HRUserTimeOffWrapper implements HRUserTimeOff {
 	}
 
 	/**
-	* Gets the hours accrued of this h r user time off.
+	* Returns the hours accrued of this h r user time off.
 	*
 	* @return the hours accrued of this h r user time off
 	*/
@@ -311,7 +311,7 @@ public class HRUserTimeOffWrapper implements HRUserTimeOff {
 	}
 
 	/**
-	* Gets the hours carried over of this h r user time off.
+	* Returns the hours carried over of this h r user time off.
 	*
 	* @return the hours carried over of this h r user time off
 	*/
@@ -329,7 +329,7 @@ public class HRUserTimeOffWrapper implements HRUserTimeOff {
 	}
 
 	/**
-	* Gets the hours used of this h r user time off.
+	* Returns the hours used of this h r user time off.
 	*
 	* @return the hours used of this h r user time off
 	*/

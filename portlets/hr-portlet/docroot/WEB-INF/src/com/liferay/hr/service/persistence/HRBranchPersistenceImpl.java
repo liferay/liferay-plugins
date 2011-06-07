@@ -91,7 +91,7 @@ public class HRBranchPersistenceImpl extends BasePersistenceImpl<HRBranch>
 	/**
 	 * Caches the h r branch in the entity cache if it is enabled.
 	 *
-	 * @param hrBranch the h r branch to cache
+	 * @param hrBranch the h r branch
 	 */
 	public void cacheResult(HRBranch hrBranch) {
 		EntityCacheUtil.putResult(HRBranchModelImpl.ENTITY_CACHE_ENABLED,
@@ -103,7 +103,7 @@ public class HRBranchPersistenceImpl extends BasePersistenceImpl<HRBranch>
 	/**
 	 * Caches the h r branchs in the entity cache if it is enabled.
 	 *
-	 * @param hrBranchs the h r branchs to cache
+	 * @param hrBranchs the h r branchs
 	 */
 	public void cacheResult(List<HRBranch> hrBranchs) {
 		for (HRBranch hrBranch : hrBranchs) {
@@ -162,7 +162,7 @@ public class HRBranchPersistenceImpl extends BasePersistenceImpl<HRBranch>
 	/**
 	 * Removes the h r branch with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param primaryKey the primary key of the h r branch to remove
+	 * @param primaryKey the primary key of the h r branch
 	 * @return the h r branch that was removed
 	 * @throws com.liferay.portal.NoSuchModelException if a h r branch with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -175,7 +175,7 @@ public class HRBranchPersistenceImpl extends BasePersistenceImpl<HRBranch>
 	/**
 	 * Removes the h r branch with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param hrBranchId the primary key of the h r branch to remove
+	 * @param hrBranchId the primary key of the h r branch
 	 * @return the h r branch that was removed
 	 * @throws com.liferay.hr.NoSuchBranchException if a h r branch with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -215,7 +215,7 @@ public class HRBranchPersistenceImpl extends BasePersistenceImpl<HRBranch>
 	/**
 	 * Removes the h r branch from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param hrBranch the h r branch to remove
+	 * @param hrBranch the h r branch
 	 * @return the h r branch that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -309,9 +309,9 @@ public class HRBranchPersistenceImpl extends BasePersistenceImpl<HRBranch>
 	}
 
 	/**
-	 * Finds the h r branch with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
+	 * Returns the h r branch with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
 	 *
-	 * @param primaryKey the primary key of the h r branch to find
+	 * @param primaryKey the primary key of the h r branch
 	 * @return the h r branch
 	 * @throws com.liferay.portal.NoSuchModelException if a h r branch with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -322,9 +322,9 @@ public class HRBranchPersistenceImpl extends BasePersistenceImpl<HRBranch>
 	}
 
 	/**
-	 * Finds the h r branch with the primary key or throws a {@link com.liferay.hr.NoSuchBranchException} if it could not be found.
+	 * Returns the h r branch with the primary key or throws a {@link com.liferay.hr.NoSuchBranchException} if it could not be found.
 	 *
-	 * @param hrBranchId the primary key of the h r branch to find
+	 * @param hrBranchId the primary key of the h r branch
 	 * @return the h r branch
 	 * @throws com.liferay.hr.NoSuchBranchException if a h r branch with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -346,9 +346,9 @@ public class HRBranchPersistenceImpl extends BasePersistenceImpl<HRBranch>
 	}
 
 	/**
-	 * Finds the h r branch with the primary key or returns <code>null</code> if it could not be found.
+	 * Returns the h r branch with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param primaryKey the primary key of the h r branch to find
+	 * @param primaryKey the primary key of the h r branch
 	 * @return the h r branch, or <code>null</code> if a h r branch with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -358,9 +358,9 @@ public class HRBranchPersistenceImpl extends BasePersistenceImpl<HRBranch>
 	}
 
 	/**
-	 * Finds the h r branch with the primary key or returns <code>null</code> if it could not be found.
+	 * Returns the h r branch with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param hrBranchId the primary key of the h r branch to find
+	 * @param hrBranchId the primary key of the h r branch
 	 * @return the h r branch, or <code>null</code> if a h r branch with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -394,7 +394,7 @@ public class HRBranchPersistenceImpl extends BasePersistenceImpl<HRBranch>
 	}
 
 	/**
-	 * Finds all the h r branchs.
+	 * Returns all the h r branchs.
 	 *
 	 * @return the h r branchs
 	 * @throws SystemException if a system exception occurred
@@ -404,14 +404,14 @@ public class HRBranchPersistenceImpl extends BasePersistenceImpl<HRBranch>
 	}
 
 	/**
-	 * Finds a range of all the h r branchs.
+	 * Returns a range of all the h r branchs.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of h r branchs to return
-	 * @param end the upper bound of the range of h r branchs to return (not inclusive)
+	 * @param start the lower bound of the range of h r branchs
+	 * @param end the upper bound of the range of h r branchs (not inclusive)
 	 * @return the range of h r branchs
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -420,14 +420,14 @@ public class HRBranchPersistenceImpl extends BasePersistenceImpl<HRBranch>
 	}
 
 	/**
-	 * Finds an ordered range of all the h r branchs.
+	 * Returns an ordered range of all the h r branchs.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of h r branchs to return
-	 * @param end the upper bound of the range of h r branchs to return (not inclusive)
+	 * @param start the lower bound of the range of h r branchs
+	 * @param end the upper bound of the range of h r branchs (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of h r branchs
 	 * @throws SystemException if a system exception occurred
@@ -513,7 +513,7 @@ public class HRBranchPersistenceImpl extends BasePersistenceImpl<HRBranch>
 	}
 
 	/**
-	 * Counts all the h r branchs.
+	 * Returns the number of h r branchs.
 	 *
 	 * @return the number of h r branchs
 	 * @throws SystemException if a system exception occurred
@@ -553,9 +553,9 @@ public class HRBranchPersistenceImpl extends BasePersistenceImpl<HRBranch>
 	}
 
 	/**
-	 * Gets all the h r job titles associated with the h r branch.
+	 * Returns all the h r job titles associated with the h r branch.
 	 *
-	 * @param pk the primary key of the h r branch to get the associated h r job titles for
+	 * @param pk the primary key of the h r branch
 	 * @return the h r job titles associated with the h r branch
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -565,15 +565,15 @@ public class HRBranchPersistenceImpl extends BasePersistenceImpl<HRBranch>
 	}
 
 	/**
-	 * Gets a range of all the h r job titles associated with the h r branch.
+	 * Returns a range of all the h r job titles associated with the h r branch.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param pk the primary key of the h r branch to get the associated h r job titles for
-	 * @param start the lower bound of the range of h r branchs to return
-	 * @param end the upper bound of the range of h r branchs to return (not inclusive)
+	 * @param pk the primary key of the h r branch
+	 * @param start the lower bound of the range of h r branchs
+	 * @param end the upper bound of the range of h r branchs (not inclusive)
 	 * @return the range of h r job titles associated with the h r branch
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -592,15 +592,15 @@ public class HRBranchPersistenceImpl extends BasePersistenceImpl<HRBranch>
 			});
 
 	/**
-	 * Gets an ordered range of all the h r job titles associated with the h r branch.
+	 * Returns an ordered range of all the h r job titles associated with the h r branch.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param pk the primary key of the h r branch to get the associated h r job titles for
-	 * @param start the lower bound of the range of h r branchs to return
-	 * @param end the upper bound of the range of h r branchs to return (not inclusive)
+	 * @param pk the primary key of the h r branch
+	 * @param start the lower bound of the range of h r branchs
+	 * @param end the upper bound of the range of h r branchs (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of h r job titles associated with the h r branch
 	 * @throws SystemException if a system exception occurred
@@ -672,9 +672,9 @@ public class HRBranchPersistenceImpl extends BasePersistenceImpl<HRBranch>
 			"getHRJobTitlesSize", new String[] { Long.class.getName() });
 
 	/**
-	 * Gets the number of h r job titles associated with the h r branch.
+	 * Returns the number of h r job titles associated with the h r branch.
 	 *
-	 * @param pk the primary key of the h r branch to get the number of associated h r job titles for
+	 * @param pk the primary key of the h r branch
 	 * @return the number of h r job titles associated with the h r branch
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -968,7 +968,7 @@ public class HRBranchPersistenceImpl extends BasePersistenceImpl<HRBranch>
 	/**
 	 * Sets the h r job titles associated with the h r branch, removing and adding associations as necessary. Also notifies the appropriate model listeners and clears the mapping table finder cache.
 	 *
-	 * @param pk the primary key of the h r branch to set the associations for
+	 * @param pk the primary key of the h r branch
 	 * @param hrJobTitlePKs the primary keys of the h r job titles to be associated with the h r branch
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -1000,7 +1000,7 @@ public class HRBranchPersistenceImpl extends BasePersistenceImpl<HRBranch>
 	/**
 	 * Sets the h r job titles associated with the h r branch, removing and adding associations as necessary. Also notifies the appropriate model listeners and clears the mapping table finder cache.
 	 *
-	 * @param pk the primary key of the h r branch to set the associations for
+	 * @param pk the primary key of the h r branch
 	 * @param hrJobTitles the h r job titles to be associated with the h r branch
 	 * @throws SystemException if a system exception occurred
 	 */

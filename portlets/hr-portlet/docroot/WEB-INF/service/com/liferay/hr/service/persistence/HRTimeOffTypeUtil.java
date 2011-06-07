@@ -121,7 +121,7 @@ public class HRTimeOffTypeUtil {
 	/**
 	* Caches the h r time off type in the entity cache if it is enabled.
 	*
-	* @param hrTimeOffType the h r time off type to cache
+	* @param hrTimeOffType the h r time off type
 	*/
 	public static void cacheResult(
 		com.liferay.hr.model.HRTimeOffType hrTimeOffType) {
@@ -131,7 +131,7 @@ public class HRTimeOffTypeUtil {
 	/**
 	* Caches the h r time off types in the entity cache if it is enabled.
 	*
-	* @param hrTimeOffTypes the h r time off types to cache
+	* @param hrTimeOffTypes the h r time off types
 	*/
 	public static void cacheResult(
 		java.util.List<com.liferay.hr.model.HRTimeOffType> hrTimeOffTypes) {
@@ -152,7 +152,7 @@ public class HRTimeOffTypeUtil {
 	/**
 	* Removes the h r time off type with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param hrTimeOffTypeId the primary key of the h r time off type to remove
+	* @param hrTimeOffTypeId the primary key of the h r time off type
 	* @return the h r time off type that was removed
 	* @throws com.liferay.hr.NoSuchTimeOffTypeException if a h r time off type with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -171,9 +171,9 @@ public class HRTimeOffTypeUtil {
 	}
 
 	/**
-	* Finds the h r time off type with the primary key or throws a {@link com.liferay.hr.NoSuchTimeOffTypeException} if it could not be found.
+	* Returns the h r time off type with the primary key or throws a {@link com.liferay.hr.NoSuchTimeOffTypeException} if it could not be found.
 	*
-	* @param hrTimeOffTypeId the primary key of the h r time off type to find
+	* @param hrTimeOffTypeId the primary key of the h r time off type
 	* @return the h r time off type
 	* @throws com.liferay.hr.NoSuchTimeOffTypeException if a h r time off type with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -186,9 +186,9 @@ public class HRTimeOffTypeUtil {
 	}
 
 	/**
-	* Finds the h r time off type with the primary key or returns <code>null</code> if it could not be found.
+	* Returns the h r time off type with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param hrTimeOffTypeId the primary key of the h r time off type to find
+	* @param hrTimeOffTypeId the primary key of the h r time off type
 	* @return the h r time off type, or <code>null</code> if a h r time off type with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -199,7 +199,7 @@ public class HRTimeOffTypeUtil {
 	}
 
 	/**
-	* Finds all the h r time off types.
+	* Returns all the h r time off types.
 	*
 	* @return the h r time off types
 	* @throws SystemException if a system exception occurred
@@ -210,14 +210,14 @@ public class HRTimeOffTypeUtil {
 	}
 
 	/**
-	* Finds a range of all the h r time off types.
+	* Returns a range of all the h r time off types.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of h r time off types to return
-	* @param end the upper bound of the range of h r time off types to return (not inclusive)
+	* @param start the lower bound of the range of h r time off types
+	* @param end the upper bound of the range of h r time off types (not inclusive)
 	* @return the range of h r time off types
 	* @throws SystemException if a system exception occurred
 	*/
@@ -228,14 +228,14 @@ public class HRTimeOffTypeUtil {
 	}
 
 	/**
-	* Finds an ordered range of all the h r time off types.
+	* Returns an ordered range of all the h r time off types.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of h r time off types to return
-	* @param end the upper bound of the range of h r time off types to return (not inclusive)
+	* @param start the lower bound of the range of h r time off types
+	* @param end the upper bound of the range of h r time off types (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of h r time off types
 	* @throws SystemException if a system exception occurred
@@ -258,7 +258,7 @@ public class HRTimeOffTypeUtil {
 	}
 
 	/**
-	* Counts all the h r time off types.
+	* Returns the number of h r time off types.
 	*
 	* @return the number of h r time off types
 	* @throws SystemException if a system exception occurred

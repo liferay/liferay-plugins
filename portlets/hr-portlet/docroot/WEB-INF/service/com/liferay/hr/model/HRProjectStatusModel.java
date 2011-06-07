@@ -48,21 +48,21 @@ public interface HRProjectStatusModel extends BaseModel<HRProjectStatus>,
 	 */
 
 	/**
-	 * Gets the primary key of this h r project status.
+	 * Returns the primary key of this h r project status.
 	 *
 	 * @return the primary key of this h r project status
 	 */
 	public long getPrimaryKey();
 
 	/**
-	 * Sets the primary key of this h r project status
+	 * Sets the primary key of this h r project status.
 	 *
 	 * @param primaryKey the primary key of this h r project status
 	 */
 	public void setPrimaryKey(long primaryKey);
 
 	/**
-	 * Gets the hr project status ID of this h r project status.
+	 * Returns the hr project status ID of this h r project status.
 	 *
 	 * @return the hr project status ID of this h r project status
 	 */
@@ -76,7 +76,7 @@ public interface HRProjectStatusModel extends BaseModel<HRProjectStatus>,
 	public void setHrProjectStatusId(long hrProjectStatusId);
 
 	/**
-	 * Gets the group ID of this h r project status.
+	 * Returns the group ID of this h r project status.
 	 *
 	 * @return the group ID of this h r project status
 	 */
@@ -90,7 +90,7 @@ public interface HRProjectStatusModel extends BaseModel<HRProjectStatus>,
 	public void setGroupId(long groupId);
 
 	/**
-	 * Gets the company ID of this h r project status.
+	 * Returns the company ID of this h r project status.
 	 *
 	 * @return the company ID of this h r project status
 	 */
@@ -104,7 +104,7 @@ public interface HRProjectStatusModel extends BaseModel<HRProjectStatus>,
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the user ID of this h r project status.
+	 * Returns the user ID of this h r project status.
 	 *
 	 * @return the user ID of this h r project status
 	 */
@@ -118,7 +118,7 @@ public interface HRProjectStatusModel extends BaseModel<HRProjectStatus>,
 	public void setUserId(long userId);
 
 	/**
-	 * Gets the user uuid of this h r project status.
+	 * Returns the user uuid of this h r project status.
 	 *
 	 * @return the user uuid of this h r project status
 	 * @throws SystemException if a system exception occurred
@@ -133,7 +133,7 @@ public interface HRProjectStatusModel extends BaseModel<HRProjectStatus>,
 	public void setUserUuid(String userUuid);
 
 	/**
-	 * Gets the user name of this h r project status.
+	 * Returns the user name of this h r project status.
 	 *
 	 * @return the user name of this h r project status
 	 */
@@ -148,7 +148,7 @@ public interface HRProjectStatusModel extends BaseModel<HRProjectStatus>,
 	public void setUserName(String userName);
 
 	/**
-	 * Gets the create date of this h r project status.
+	 * Returns the create date of this h r project status.
 	 *
 	 * @return the create date of this h r project status
 	 */
@@ -162,7 +162,7 @@ public interface HRProjectStatusModel extends BaseModel<HRProjectStatus>,
 	public void setCreateDate(Date createDate);
 
 	/**
-	 * Gets the modified date of this h r project status.
+	 * Returns the modified date of this h r project status.
 	 *
 	 * @return the modified date of this h r project status
 	 */
@@ -176,7 +176,7 @@ public interface HRProjectStatusModel extends BaseModel<HRProjectStatus>,
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Gets the code of this h r project status.
+	 * Returns the code of this h r project status.
 	 *
 	 * @return the code of this h r project status
 	 */
@@ -191,7 +191,7 @@ public interface HRProjectStatusModel extends BaseModel<HRProjectStatus>,
 	public void setCode(String code);
 
 	/**
-	 * Gets the name of this h r project status.
+	 * Returns the name of this h r project status.
 	 *
 	 * @return the name of this h r project status
 	 */
@@ -206,7 +206,7 @@ public interface HRProjectStatusModel extends BaseModel<HRProjectStatus>,
 	public void setName(String name);
 
 	/**
-	 * Gets the description of this h r project status.
+	 * Returns the description of this h r project status.
 	 *
 	 * @return the description of this h r project status
 	 */

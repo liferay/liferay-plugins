@@ -32,6 +32,11 @@ import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.search.Indexer;
+import com.liferay.portal.kernel.search.IndexerRegistryUtil;
+import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.service.ResourceLocalService;
 import com.liferay.portal.service.ResourceService;
@@ -67,7 +72,7 @@ public abstract class OAuthTokenLocalServiceBaseImpl
 	/**
 	 * Adds the o auth token to the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param oAuthToken the o auth token to add
+	 * @param oAuthToken the o auth token
 	 * @return the o auth token that was added
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -75,7 +80,22 @@ public abstract class OAuthTokenLocalServiceBaseImpl
 		throws SystemException {
 		oAuthToken.setNew(true);
 
-		return oAuthTokenPersistence.update(oAuthToken, false);
+		oAuthToken = oAuthTokenPersistence.update(oAuthToken, false);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.reindex(oAuthToken);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
+
+		return oAuthToken;
 	}
 
 	/**
@@ -91,30 +111,56 @@ public abstract class OAuthTokenLocalServiceBaseImpl
 	/**
 	 * Deletes the o auth token with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param oAuthTokenId the primary key of the o auth token to delete
+	 * @param oAuthTokenId the primary key of the o auth token
 	 * @throws PortalException if a o auth token with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void deleteOAuthToken(long oAuthTokenId)
 		throws PortalException, SystemException {
-		oAuthTokenPersistence.remove(oAuthTokenId);
+		OAuthToken oAuthToken = oAuthTokenPersistence.remove(oAuthTokenId);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.delete(oAuthToken);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
 	}
 
 	/**
 	 * Deletes the o auth token from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param oAuthToken the o auth token to delete
+	 * @param oAuthToken the o auth token
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void deleteOAuthToken(OAuthToken oAuthToken)
 		throws SystemException {
 		oAuthTokenPersistence.remove(oAuthToken);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.delete(oAuthToken);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
 	}
 
 	/**
 	 * Performs a dynamic query on the database and returns the matching rows.
 	 *
-	 * @param dynamicQuery the dynamic query to search with
+	 * @param dynamicQuery the dynamic query
 	 * @return the matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -131,9 +177,9 @@ public abstract class OAuthTokenLocalServiceBaseImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param dynamicQuery the dynamic query to search with
-	 * @param start the lower bound of the range of model instances to return
-	 * @param end the upper bound of the range of model instances to return (not inclusive)
+	 * @param dynamicQuery the dynamic query
+	 * @param start the lower bound of the range of model instances
+	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @return the range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -151,9 +197,9 @@ public abstract class OAuthTokenLocalServiceBaseImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param dynamicQuery the dynamic query to search with
-	 * @param start the lower bound of the range of model instances to return
-	 * @param end the upper bound of the range of model instances to return (not inclusive)
+	 * @param dynamicQuery the dynamic query
+	 * @param start the lower bound of the range of model instances
+	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching rows
 	 * @throws SystemException if a system exception occurred
@@ -166,9 +212,9 @@ public abstract class OAuthTokenLocalServiceBaseImpl
 	}
 
 	/**
-	 * Counts the number of rows that match the dynamic query.
+	 * Returns the number of rows that match the dynamic query.
 	 *
-	 * @param dynamicQuery the dynamic query to search with
+	 * @param dynamicQuery the dynamic query
 	 * @return the number of rows that match the dynamic query
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -178,9 +224,9 @@ public abstract class OAuthTokenLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the o auth token with the primary key.
+	 * Returns the o auth token with the primary key.
 	 *
-	 * @param oAuthTokenId the primary key of the o auth token to get
+	 * @param oAuthTokenId the primary key of the o auth token
 	 * @return the o auth token
 	 * @throws PortalException if a o auth token with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -191,14 +237,14 @@ public abstract class OAuthTokenLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets a range of all the o auth tokens.
+	 * Returns a range of all the o auth tokens.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of o auth tokens to return
-	 * @param end the upper bound of the range of o auth tokens to return (not inclusive)
+	 * @param start the lower bound of the range of o auth tokens
+	 * @param end the upper bound of the range of o auth tokens (not inclusive)
 	 * @return the range of o auth tokens
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -208,7 +254,7 @@ public abstract class OAuthTokenLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the number of o auth tokens.
+	 * Returns the number of o auth tokens.
 	 *
 	 * @return the number of o auth tokens
 	 * @throws SystemException if a system exception occurred
@@ -220,21 +266,19 @@ public abstract class OAuthTokenLocalServiceBaseImpl
 	/**
 	 * Updates the o auth token in the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param oAuthToken the o auth token to update
+	 * @param oAuthToken the o auth token
 	 * @return the o auth token that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
 	public OAuthToken updateOAuthToken(OAuthToken oAuthToken)
 		throws SystemException {
-		oAuthToken.setNew(false);
-
-		return oAuthTokenPersistence.update(oAuthToken, true);
+		return updateOAuthToken(oAuthToken, true);
 	}
 
 	/**
 	 * Updates the o auth token in the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param oAuthToken the o auth token to update
+	 * @param oAuthToken the o auth token
 	 * @param merge whether to merge the o auth token with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
 	 * @return the o auth token that was updated
 	 * @throws SystemException if a system exception occurred
@@ -243,11 +287,26 @@ public abstract class OAuthTokenLocalServiceBaseImpl
 		throws SystemException {
 		oAuthToken.setNew(false);
 
-		return oAuthTokenPersistence.update(oAuthToken, merge);
+		oAuthToken = oAuthTokenPersistence.update(oAuthToken, merge);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.reindex(oAuthToken);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
+
+		return oAuthToken;
 	}
 
 	/**
-	 * Gets the gadget local service.
+	 * Returns the gadget local service.
 	 *
 	 * @return the gadget local service
 	 */
@@ -265,7 +324,7 @@ public abstract class OAuthTokenLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the gadget remote service.
+	 * Returns the gadget remote service.
 	 *
 	 * @return the gadget remote service
 	 */
@@ -283,7 +342,7 @@ public abstract class OAuthTokenLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the gadget persistence.
+	 * Returns the gadget persistence.
 	 *
 	 * @return the gadget persistence
 	 */
@@ -301,7 +360,7 @@ public abstract class OAuthTokenLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the o auth consumer local service.
+	 * Returns the o auth consumer local service.
 	 *
 	 * @return the o auth consumer local service
 	 */
@@ -320,7 +379,7 @@ public abstract class OAuthTokenLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the o auth consumer persistence.
+	 * Returns the o auth consumer persistence.
 	 *
 	 * @return the o auth consumer persistence
 	 */
@@ -339,7 +398,7 @@ public abstract class OAuthTokenLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the o auth token local service.
+	 * Returns the o auth token local service.
 	 *
 	 * @return the o auth token local service
 	 */
@@ -358,7 +417,7 @@ public abstract class OAuthTokenLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the o auth token persistence.
+	 * Returns the o auth token persistence.
 	 *
 	 * @return the o auth token persistence
 	 */
@@ -377,7 +436,7 @@ public abstract class OAuthTokenLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the counter local service.
+	 * Returns the counter local service.
 	 *
 	 * @return the counter local service
 	 */
@@ -395,7 +454,7 @@ public abstract class OAuthTokenLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the resource local service.
+	 * Returns the resource local service.
 	 *
 	 * @return the resource local service
 	 */
@@ -414,7 +473,7 @@ public abstract class OAuthTokenLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the resource remote service.
+	 * Returns the resource remote service.
 	 *
 	 * @return the resource remote service
 	 */
@@ -432,7 +491,7 @@ public abstract class OAuthTokenLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the resource persistence.
+	 * Returns the resource persistence.
 	 *
 	 * @return the resource persistence
 	 */
@@ -450,7 +509,7 @@ public abstract class OAuthTokenLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the user local service.
+	 * Returns the user local service.
 	 *
 	 * @return the user local service
 	 */
@@ -468,7 +527,7 @@ public abstract class OAuthTokenLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the user remote service.
+	 * Returns the user remote service.
 	 *
 	 * @return the user remote service
 	 */
@@ -486,7 +545,7 @@ public abstract class OAuthTokenLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the user persistence.
+	 * Returns the user persistence.
 	 *
 	 * @return the user persistence
 	 */
@@ -504,7 +563,7 @@ public abstract class OAuthTokenLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the Spring bean ID for this bean.
+	 * Returns the Spring bean ID for this bean.
 	 *
 	 * @return the Spring bean ID for this bean
 	 */
@@ -521,10 +580,18 @@ public abstract class OAuthTokenLocalServiceBaseImpl
 		_beanIdentifier = beanIdentifier;
 	}
 
+	protected Class<?> getModelClass() {
+		return OAuthToken.class;
+	}
+
+	protected String getModelClassName() {
+		return OAuthToken.class.getName();
+	}
+
 	/**
 	 * Performs an SQL query.
 	 *
-	 * @param sql the sql query to perform
+	 * @param sql the sql query
 	 */
 	protected void runSQL(String sql) throws SystemException {
 		try {
@@ -568,5 +635,6 @@ public abstract class OAuthTokenLocalServiceBaseImpl
 	protected UserService userService;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
+	private static Log _log = LogFactoryUtil.getLog(OAuthTokenLocalServiceBaseImpl.class);
 	private String _beanIdentifier;
 }

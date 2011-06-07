@@ -41,14 +41,14 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	/**
 	* Caches the w s r p producer in the entity cache if it is enabled.
 	*
-	* @param wsrpProducer the w s r p producer to cache
+	* @param wsrpProducer the w s r p producer
 	*/
 	public void cacheResult(com.liferay.wsrp.model.WSRPProducer wsrpProducer);
 
 	/**
 	* Caches the w s r p producers in the entity cache if it is enabled.
 	*
-	* @param wsrpProducers the w s r p producers to cache
+	* @param wsrpProducers the w s r p producers
 	*/
 	public void cacheResult(
 		java.util.List<com.liferay.wsrp.model.WSRPProducer> wsrpProducers);
@@ -64,7 +64,7 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	/**
 	* Removes the w s r p producer with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param wsrpProducerId the primary key of the w s r p producer to remove
+	* @param wsrpProducerId the primary key of the w s r p producer
 	* @return the w s r p producer that was removed
 	* @throws com.liferay.wsrp.NoSuchProducerException if a w s r p producer with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -78,9 +78,9 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the w s r p producer with the primary key or throws a {@link com.liferay.wsrp.NoSuchProducerException} if it could not be found.
+	* Returns the w s r p producer with the primary key or throws a {@link com.liferay.wsrp.NoSuchProducerException} if it could not be found.
 	*
-	* @param wsrpProducerId the primary key of the w s r p producer to find
+	* @param wsrpProducerId the primary key of the w s r p producer
 	* @return the w s r p producer
 	* @throws com.liferay.wsrp.NoSuchProducerException if a w s r p producer with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -91,9 +91,9 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 			com.liferay.wsrp.NoSuchProducerException;
 
 	/**
-	* Finds the w s r p producer with the primary key or returns <code>null</code> if it could not be found.
+	* Returns the w s r p producer with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param wsrpProducerId the primary key of the w s r p producer to find
+	* @param wsrpProducerId the primary key of the w s r p producer
 	* @return the w s r p producer, or <code>null</code> if a w s r p producer with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -102,9 +102,9 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds all the w s r p producers where uuid = &#63;.
+	* Returns all the w s r p producers where uuid = &#63;.
 	*
-	* @param uuid the uuid to search with
+	* @param uuid the uuid
 	* @return the matching w s r p producers
 	* @throws SystemException if a system exception occurred
 	*/
@@ -113,15 +113,15 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds a range of all the w s r p producers where uuid = &#63;.
+	* Returns a range of all the w s r p producers where uuid = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param uuid the uuid to search with
-	* @param start the lower bound of the range of w s r p producers to return
-	* @param end the upper bound of the range of w s r p producers to return (not inclusive)
+	* @param uuid the uuid
+	* @param start the lower bound of the range of w s r p producers
+	* @param end the upper bound of the range of w s r p producers (not inclusive)
 	* @return the range of matching w s r p producers
 	* @throws SystemException if a system exception occurred
 	*/
@@ -130,15 +130,15 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds an ordered range of all the w s r p producers where uuid = &#63;.
+	* Returns an ordered range of all the w s r p producers where uuid = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param uuid the uuid to search with
-	* @param start the lower bound of the range of w s r p producers to return
-	* @param end the upper bound of the range of w s r p producers to return (not inclusive)
+	* @param uuid the uuid
+	* @param start the lower bound of the range of w s r p producers
+	* @param end the upper bound of the range of w s r p producers (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching w s r p producers
 	* @throws SystemException if a system exception occurred
@@ -149,13 +149,13 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the first w s r p producer in the ordered set where uuid = &#63;.
+	* Returns the first w s r p producer in the ordered set where uuid = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param uuid the uuid to search with
+	* @param uuid the uuid
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching w s r p producer
 	* @throws com.liferay.wsrp.NoSuchProducerException if a matching w s r p producer could not be found
@@ -168,13 +168,13 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 			com.liferay.wsrp.NoSuchProducerException;
 
 	/**
-	* Finds the last w s r p producer in the ordered set where uuid = &#63;.
+	* Returns the last w s r p producer in the ordered set where uuid = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param uuid the uuid to search with
+	* @param uuid the uuid
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching w s r p producer
 	* @throws com.liferay.wsrp.NoSuchProducerException if a matching w s r p producer could not be found
@@ -187,14 +187,14 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 			com.liferay.wsrp.NoSuchProducerException;
 
 	/**
-	* Finds the w s r p producers before and after the current w s r p producer in the ordered set where uuid = &#63;.
+	* Returns the w s r p producers before and after the current w s r p producer in the ordered set where uuid = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
 	* @param wsrpProducerId the primary key of the current w s r p producer
-	* @param uuid the uuid to search with
+	* @param uuid the uuid
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next w s r p producer
 	* @throws com.liferay.wsrp.NoSuchProducerException if a w s r p producer with the primary key could not be found
@@ -207,10 +207,10 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 			com.liferay.wsrp.NoSuchProducerException;
 
 	/**
-	* Finds the w s r p producer where uuid = &#63; and groupId = &#63; or throws a {@link com.liferay.wsrp.NoSuchProducerException} if it could not be found.
+	* Returns the w s r p producer where uuid = &#63; and groupId = &#63; or throws a {@link com.liferay.wsrp.NoSuchProducerException} if it could not be found.
 	*
-	* @param uuid the uuid to search with
-	* @param groupId the group ID to search with
+	* @param uuid the uuid
+	* @param groupId the group ID
 	* @return the matching w s r p producer
 	* @throws com.liferay.wsrp.NoSuchProducerException if a matching w s r p producer could not be found
 	* @throws SystemException if a system exception occurred
@@ -221,10 +221,10 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 			com.liferay.wsrp.NoSuchProducerException;
 
 	/**
-	* Finds the w s r p producer where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	* Returns the w s r p producer where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	*
-	* @param uuid the uuid to search with
-	* @param groupId the group ID to search with
+	* @param uuid the uuid
+	* @param groupId the group ID
 	* @return the matching w s r p producer, or <code>null</code> if a matching w s r p producer could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -233,10 +233,10 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the w s r p producer where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	* Returns the w s r p producer where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	*
-	* @param uuid the uuid to search with
-	* @param groupId the group ID to search with
+	* @param uuid the uuid
+	* @param groupId the group ID
 	* @return the matching w s r p producer, or <code>null</code> if a matching w s r p producer could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -245,9 +245,9 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds all the w s r p producers where companyId = &#63;.
+	* Returns all the w s r p producers where companyId = &#63;.
 	*
-	* @param companyId the company ID to search with
+	* @param companyId the company ID
 	* @return the matching w s r p producers
 	* @throws SystemException if a system exception occurred
 	*/
@@ -256,15 +256,15 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds a range of all the w s r p producers where companyId = &#63;.
+	* Returns a range of all the w s r p producers where companyId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param companyId the company ID to search with
-	* @param start the lower bound of the range of w s r p producers to return
-	* @param end the upper bound of the range of w s r p producers to return (not inclusive)
+	* @param companyId the company ID
+	* @param start the lower bound of the range of w s r p producers
+	* @param end the upper bound of the range of w s r p producers (not inclusive)
 	* @return the range of matching w s r p producers
 	* @throws SystemException if a system exception occurred
 	*/
@@ -273,15 +273,15 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds an ordered range of all the w s r p producers where companyId = &#63;.
+	* Returns an ordered range of all the w s r p producers where companyId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param companyId the company ID to search with
-	* @param start the lower bound of the range of w s r p producers to return
-	* @param end the upper bound of the range of w s r p producers to return (not inclusive)
+	* @param companyId the company ID
+	* @param start the lower bound of the range of w s r p producers
+	* @param end the upper bound of the range of w s r p producers (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching w s r p producers
 	* @throws SystemException if a system exception occurred
@@ -292,13 +292,13 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the first w s r p producer in the ordered set where companyId = &#63;.
+	* Returns the first w s r p producer in the ordered set where companyId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param companyId the company ID to search with
+	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching w s r p producer
 	* @throws com.liferay.wsrp.NoSuchProducerException if a matching w s r p producer could not be found
@@ -311,13 +311,13 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 			com.liferay.wsrp.NoSuchProducerException;
 
 	/**
-	* Finds the last w s r p producer in the ordered set where companyId = &#63;.
+	* Returns the last w s r p producer in the ordered set where companyId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param companyId the company ID to search with
+	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching w s r p producer
 	* @throws com.liferay.wsrp.NoSuchProducerException if a matching w s r p producer could not be found
@@ -330,14 +330,14 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 			com.liferay.wsrp.NoSuchProducerException;
 
 	/**
-	* Finds the w s r p producers before and after the current w s r p producer in the ordered set where companyId = &#63;.
+	* Returns the w s r p producers before and after the current w s r p producer in the ordered set where companyId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
 	* @param wsrpProducerId the primary key of the current w s r p producer
-	* @param companyId the company ID to search with
+	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next w s r p producer
 	* @throws com.liferay.wsrp.NoSuchProducerException if a w s r p producer with the primary key could not be found
@@ -350,7 +350,7 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 			com.liferay.wsrp.NoSuchProducerException;
 
 	/**
-	* Finds all the w s r p producers.
+	* Returns all the w s r p producers.
 	*
 	* @return the w s r p producers
 	* @throws SystemException if a system exception occurred
@@ -359,14 +359,14 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds a range of all the w s r p producers.
+	* Returns a range of all the w s r p producers.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of w s r p producers to return
-	* @param end the upper bound of the range of w s r p producers to return (not inclusive)
+	* @param start the lower bound of the range of w s r p producers
+	* @param end the upper bound of the range of w s r p producers (not inclusive)
 	* @return the range of w s r p producers
 	* @throws SystemException if a system exception occurred
 	*/
@@ -375,14 +375,14 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds an ordered range of all the w s r p producers.
+	* Returns an ordered range of all the w s r p producers.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of w s r p producers to return
-	* @param end the upper bound of the range of w s r p producers to return (not inclusive)
+	* @param start the lower bound of the range of w s r p producers
+	* @param end the upper bound of the range of w s r p producers (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of w s r p producers
 	* @throws SystemException if a system exception occurred
@@ -395,7 +395,7 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	/**
 	* Removes all the w s r p producers where uuid = &#63; from the database.
 	*
-	* @param uuid the uuid to search with
+	* @param uuid the uuid
 	* @throws SystemException if a system exception occurred
 	*/
 	public void removeByUuid(java.lang.String uuid)
@@ -404,8 +404,8 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	/**
 	* Removes the w s r p producer where uuid = &#63; and groupId = &#63; from the database.
 	*
-	* @param uuid the uuid to search with
-	* @param groupId the group ID to search with
+	* @param uuid the uuid
+	* @param groupId the group ID
 	* @throws SystemException if a system exception occurred
 	*/
 	public void removeByUUID_G(java.lang.String uuid, long groupId)
@@ -415,7 +415,7 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	/**
 	* Removes all the w s r p producers where companyId = &#63; from the database.
 	*
-	* @param companyId the company ID to search with
+	* @param companyId the company ID
 	* @throws SystemException if a system exception occurred
 	*/
 	public void removeByCompanyId(long companyId)
@@ -430,9 +430,9 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Counts all the w s r p producers where uuid = &#63;.
+	* Returns the number of w s r p producers where uuid = &#63;.
 	*
-	* @param uuid the uuid to search with
+	* @param uuid the uuid
 	* @return the number of matching w s r p producers
 	* @throws SystemException if a system exception occurred
 	*/
@@ -440,10 +440,10 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Counts all the w s r p producers where uuid = &#63; and groupId = &#63;.
+	* Returns the number of w s r p producers where uuid = &#63; and groupId = &#63;.
 	*
-	* @param uuid the uuid to search with
-	* @param groupId the group ID to search with
+	* @param uuid the uuid
+	* @param groupId the group ID
 	* @return the number of matching w s r p producers
 	* @throws SystemException if a system exception occurred
 	*/
@@ -451,9 +451,9 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Counts all the w s r p producers where companyId = &#63;.
+	* Returns the number of w s r p producers where companyId = &#63;.
 	*
-	* @param companyId the company ID to search with
+	* @param companyId the company ID
 	* @return the number of matching w s r p producers
 	* @throws SystemException if a system exception occurred
 	*/
@@ -461,7 +461,7 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Counts all the w s r p producers.
+	* Returns the number of w s r p producers.
 	*
 	* @return the number of w s r p producers
 	* @throws SystemException if a system exception occurred

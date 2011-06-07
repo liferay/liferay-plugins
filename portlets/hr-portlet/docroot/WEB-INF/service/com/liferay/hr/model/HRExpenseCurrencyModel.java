@@ -48,21 +48,21 @@ public interface HRExpenseCurrencyModel extends BaseModel<HRExpenseCurrency>,
 	 */
 
 	/**
-	 * Gets the primary key of this h r expense currency.
+	 * Returns the primary key of this h r expense currency.
 	 *
 	 * @return the primary key of this h r expense currency
 	 */
 	public long getPrimaryKey();
 
 	/**
-	 * Sets the primary key of this h r expense currency
+	 * Sets the primary key of this h r expense currency.
 	 *
 	 * @param primaryKey the primary key of this h r expense currency
 	 */
 	public void setPrimaryKey(long primaryKey);
 
 	/**
-	 * Gets the hr expense currency ID of this h r expense currency.
+	 * Returns the hr expense currency ID of this h r expense currency.
 	 *
 	 * @return the hr expense currency ID of this h r expense currency
 	 */
@@ -76,7 +76,7 @@ public interface HRExpenseCurrencyModel extends BaseModel<HRExpenseCurrency>,
 	public void setHrExpenseCurrencyId(long hrExpenseCurrencyId);
 
 	/**
-	 * Gets the group ID of this h r expense currency.
+	 * Returns the group ID of this h r expense currency.
 	 *
 	 * @return the group ID of this h r expense currency
 	 */
@@ -90,7 +90,7 @@ public interface HRExpenseCurrencyModel extends BaseModel<HRExpenseCurrency>,
 	public void setGroupId(long groupId);
 
 	/**
-	 * Gets the company ID of this h r expense currency.
+	 * Returns the company ID of this h r expense currency.
 	 *
 	 * @return the company ID of this h r expense currency
 	 */
@@ -104,7 +104,7 @@ public interface HRExpenseCurrencyModel extends BaseModel<HRExpenseCurrency>,
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the user ID of this h r expense currency.
+	 * Returns the user ID of this h r expense currency.
 	 *
 	 * @return the user ID of this h r expense currency
 	 */
@@ -118,7 +118,7 @@ public interface HRExpenseCurrencyModel extends BaseModel<HRExpenseCurrency>,
 	public void setUserId(long userId);
 
 	/**
-	 * Gets the user uuid of this h r expense currency.
+	 * Returns the user uuid of this h r expense currency.
 	 *
 	 * @return the user uuid of this h r expense currency
 	 * @throws SystemException if a system exception occurred
@@ -133,7 +133,7 @@ public interface HRExpenseCurrencyModel extends BaseModel<HRExpenseCurrency>,
 	public void setUserUuid(String userUuid);
 
 	/**
-	 * Gets the user name of this h r expense currency.
+	 * Returns the user name of this h r expense currency.
 	 *
 	 * @return the user name of this h r expense currency
 	 */
@@ -148,7 +148,7 @@ public interface HRExpenseCurrencyModel extends BaseModel<HRExpenseCurrency>,
 	public void setUserName(String userName);
 
 	/**
-	 * Gets the create date of this h r expense currency.
+	 * Returns the create date of this h r expense currency.
 	 *
 	 * @return the create date of this h r expense currency
 	 */
@@ -162,7 +162,7 @@ public interface HRExpenseCurrencyModel extends BaseModel<HRExpenseCurrency>,
 	public void setCreateDate(Date createDate);
 
 	/**
-	 * Gets the modified date of this h r expense currency.
+	 * Returns the modified date of this h r expense currency.
 	 *
 	 * @return the modified date of this h r expense currency
 	 */
@@ -176,7 +176,7 @@ public interface HRExpenseCurrencyModel extends BaseModel<HRExpenseCurrency>,
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Gets the code of this h r expense currency.
+	 * Returns the code of this h r expense currency.
 	 *
 	 * @return the code of this h r expense currency
 	 */
@@ -191,7 +191,7 @@ public interface HRExpenseCurrencyModel extends BaseModel<HRExpenseCurrency>,
 	public void setCode(String code);
 
 	/**
-	 * Gets the name of this h r expense currency.
+	 * Returns the name of this h r expense currency.
 	 *
 	 * @return the name of this h r expense currency
 	 */
@@ -206,7 +206,7 @@ public interface HRExpenseCurrencyModel extends BaseModel<HRExpenseCurrency>,
 	public void setName(String name);
 
 	/**
-	 * Gets the description of this h r expense currency.
+	 * Returns the description of this h r expense currency.
 	 *
 	 * @return the description of this h r expense currency
 	 */

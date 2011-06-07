@@ -120,7 +120,7 @@ public class CheckoutUtil {
 	/**
 	* Caches the checkout in the entity cache if it is enabled.
 	*
-	* @param checkout the checkout to cache
+	* @param checkout the checkout
 	*/
 	public static void cacheResult(com.liferay.ams.model.Checkout checkout) {
 		getPersistence().cacheResult(checkout);
@@ -129,7 +129,7 @@ public class CheckoutUtil {
 	/**
 	* Caches the checkouts in the entity cache if it is enabled.
 	*
-	* @param checkouts the checkouts to cache
+	* @param checkouts the checkouts
 	*/
 	public static void cacheResult(
 		java.util.List<com.liferay.ams.model.Checkout> checkouts) {
@@ -149,7 +149,7 @@ public class CheckoutUtil {
 	/**
 	* Removes the checkout with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param checkoutId the primary key of the checkout to remove
+	* @param checkoutId the primary key of the checkout
 	* @return the checkout that was removed
 	* @throws com.liferay.ams.NoSuchCheckoutException if a checkout with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -167,9 +167,9 @@ public class CheckoutUtil {
 	}
 
 	/**
-	* Finds the checkout with the primary key or throws a {@link com.liferay.ams.NoSuchCheckoutException} if it could not be found.
+	* Returns the checkout with the primary key or throws a {@link com.liferay.ams.NoSuchCheckoutException} if it could not be found.
 	*
-	* @param checkoutId the primary key of the checkout to find
+	* @param checkoutId the primary key of the checkout
 	* @return the checkout
 	* @throws com.liferay.ams.NoSuchCheckoutException if a checkout with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -182,9 +182,9 @@ public class CheckoutUtil {
 	}
 
 	/**
-	* Finds the checkout with the primary key or returns <code>null</code> if it could not be found.
+	* Returns the checkout with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param checkoutId the primary key of the checkout to find
+	* @param checkoutId the primary key of the checkout
 	* @return the checkout, or <code>null</code> if a checkout with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -195,7 +195,7 @@ public class CheckoutUtil {
 	}
 
 	/**
-	* Finds all the checkouts.
+	* Returns all the checkouts.
 	*
 	* @return the checkouts
 	* @throws SystemException if a system exception occurred
@@ -206,14 +206,14 @@ public class CheckoutUtil {
 	}
 
 	/**
-	* Finds a range of all the checkouts.
+	* Returns a range of all the checkouts.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of checkouts to return
-	* @param end the upper bound of the range of checkouts to return (not inclusive)
+	* @param start the lower bound of the range of checkouts
+	* @param end the upper bound of the range of checkouts (not inclusive)
 	* @return the range of checkouts
 	* @throws SystemException if a system exception occurred
 	*/
@@ -224,14 +224,14 @@ public class CheckoutUtil {
 	}
 
 	/**
-	* Finds an ordered range of all the checkouts.
+	* Returns an ordered range of all the checkouts.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of checkouts to return
-	* @param end the upper bound of the range of checkouts to return (not inclusive)
+	* @param start the lower bound of the range of checkouts
+	* @param end the upper bound of the range of checkouts (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of checkouts
 	* @throws SystemException if a system exception occurred
@@ -254,7 +254,7 @@ public class CheckoutUtil {
 	}
 
 	/**
-	* Counts all the checkouts.
+	* Returns the number of checkouts.
 	*
 	* @return the number of checkouts
 	* @throws SystemException if a system exception occurred

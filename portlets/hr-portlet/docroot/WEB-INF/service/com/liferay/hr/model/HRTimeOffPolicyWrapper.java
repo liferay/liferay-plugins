@@ -37,7 +37,7 @@ public class HRTimeOffPolicyWrapper implements HRTimeOffPolicy {
 	}
 
 	/**
-	* Gets the primary key of this h r time off policy.
+	* Returns the primary key of this h r time off policy.
 	*
 	* @return the primary key of this h r time off policy
 	*/
@@ -46,7 +46,7 @@ public class HRTimeOffPolicyWrapper implements HRTimeOffPolicy {
 	}
 
 	/**
-	* Sets the primary key of this h r time off policy
+	* Sets the primary key of this h r time off policy.
 	*
 	* @param primaryKey the primary key of this h r time off policy
 	*/
@@ -55,7 +55,7 @@ public class HRTimeOffPolicyWrapper implements HRTimeOffPolicy {
 	}
 
 	/**
-	* Gets the hr time off policy ID of this h r time off policy.
+	* Returns the hr time off policy ID of this h r time off policy.
 	*
 	* @return the hr time off policy ID of this h r time off policy
 	*/
@@ -73,7 +73,7 @@ public class HRTimeOffPolicyWrapper implements HRTimeOffPolicy {
 	}
 
 	/**
-	* Gets the group ID of this h r time off policy.
+	* Returns the group ID of this h r time off policy.
 	*
 	* @return the group ID of this h r time off policy
 	*/
@@ -91,7 +91,7 @@ public class HRTimeOffPolicyWrapper implements HRTimeOffPolicy {
 	}
 
 	/**
-	* Gets the company ID of this h r time off policy.
+	* Returns the company ID of this h r time off policy.
 	*
 	* @return the company ID of this h r time off policy
 	*/
@@ -109,7 +109,7 @@ public class HRTimeOffPolicyWrapper implements HRTimeOffPolicy {
 	}
 
 	/**
-	* Gets the user ID of this h r time off policy.
+	* Returns the user ID of this h r time off policy.
 	*
 	* @return the user ID of this h r time off policy
 	*/
@@ -127,7 +127,7 @@ public class HRTimeOffPolicyWrapper implements HRTimeOffPolicy {
 	}
 
 	/**
-	* Gets the user uuid of this h r time off policy.
+	* Returns the user uuid of this h r time off policy.
 	*
 	* @return the user uuid of this h r time off policy
 	* @throws SystemException if a system exception occurred
@@ -147,7 +147,7 @@ public class HRTimeOffPolicyWrapper implements HRTimeOffPolicy {
 	}
 
 	/**
-	* Gets the user name of this h r time off policy.
+	* Returns the user name of this h r time off policy.
 	*
 	* @return the user name of this h r time off policy
 	*/
@@ -165,7 +165,7 @@ public class HRTimeOffPolicyWrapper implements HRTimeOffPolicy {
 	}
 
 	/**
-	* Gets the create date of this h r time off policy.
+	* Returns the create date of this h r time off policy.
 	*
 	* @return the create date of this h r time off policy
 	*/
@@ -183,7 +183,7 @@ public class HRTimeOffPolicyWrapper implements HRTimeOffPolicy {
 	}
 
 	/**
-	* Gets the modified date of this h r time off policy.
+	* Returns the modified date of this h r time off policy.
 	*
 	* @return the modified date of this h r time off policy
 	*/
@@ -201,7 +201,7 @@ public class HRTimeOffPolicyWrapper implements HRTimeOffPolicy {
 	}
 
 	/**
-	* Gets the hr time off type ID of this h r time off policy.
+	* Returns the hr time off type ID of this h r time off policy.
 	*
 	* @return the hr time off type ID of this h r time off policy
 	*/
@@ -219,7 +219,7 @@ public class HRTimeOffPolicyWrapper implements HRTimeOffPolicy {
 	}
 
 	/**
-	* Gets the hr user ID of this h r time off policy.
+	* Returns the hr user ID of this h r time off policy.
 	*
 	* @return the hr user ID of this h r time off policy
 	*/
@@ -237,7 +237,7 @@ public class HRTimeOffPolicyWrapper implements HRTimeOffPolicy {
 	}
 
 	/**
-	* Gets the hr user uuid of this h r time off policy.
+	* Returns the hr user uuid of this h r time off policy.
 	*
 	* @return the hr user uuid of this h r time off policy
 	* @throws SystemException if a system exception occurred
@@ -257,7 +257,7 @@ public class HRTimeOffPolicyWrapper implements HRTimeOffPolicy {
 	}
 
 	/**
-	* Gets the accrue h r time off frequency type ID of this h r time off policy.
+	* Returns the accrue h r time off frequency type ID of this h r time off policy.
 	*
 	* @return the accrue h r time off frequency type ID of this h r time off policy
 	*/
@@ -276,7 +276,7 @@ public class HRTimeOffPolicyWrapper implements HRTimeOffPolicy {
 	}
 
 	/**
-	* Gets the reset h r time off frequency type ID of this h r time off policy.
+	* Returns the reset h r time off frequency type ID of this h r time off policy.
 	*
 	* @return the reset h r time off frequency type ID of this h r time off policy
 	*/
@@ -295,7 +295,7 @@ public class HRTimeOffPolicyWrapper implements HRTimeOffPolicy {
 	}
 
 	/**
-	* Gets the effective date of this h r time off policy.
+	* Returns the effective date of this h r time off policy.
 	*
 	* @return the effective date of this h r time off policy
 	*/
@@ -313,7 +313,7 @@ public class HRTimeOffPolicyWrapper implements HRTimeOffPolicy {
 	}
 
 	/**
-	* Gets the inactive of this h r time off policy.
+	* Returns the inactive of this h r time off policy.
 	*
 	* @return the inactive of this h r time off policy
 	*/
@@ -340,7 +340,7 @@ public class HRTimeOffPolicyWrapper implements HRTimeOffPolicy {
 	}
 
 	/**
-	* Gets the hours allowed of this h r time off policy.
+	* Returns the hours allowed of this h r time off policy.
 	*
 	* @return the hours allowed of this h r time off policy
 	*/
@@ -358,7 +358,7 @@ public class HRTimeOffPolicyWrapper implements HRTimeOffPolicy {
 	}
 
 	/**
-	* Gets the hours base amount of this h r time off policy.
+	* Returns the hours base amount of this h r time off policy.
 	*
 	* @return the hours base amount of this h r time off policy
 	*/
@@ -376,7 +376,7 @@ public class HRTimeOffPolicyWrapper implements HRTimeOffPolicy {
 	}
 
 	/**
-	* Gets the hours to accrue of this h r time off policy.
+	* Returns the hours to accrue of this h r time off policy.
 	*
 	* @return the hours to accrue of this h r time off policy
 	*/
@@ -394,7 +394,7 @@ public class HRTimeOffPolicyWrapper implements HRTimeOffPolicy {
 	}
 
 	/**
-	* Gets the carry over hours allowed of this h r time off policy.
+	* Returns the carry over hours allowed of this h r time off policy.
 	*
 	* @return the carry over hours allowed of this h r time off policy
 	*/

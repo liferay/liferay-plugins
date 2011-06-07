@@ -37,7 +37,7 @@ public class MeetupsRegistrationWrapper implements MeetupsRegistration {
 	}
 
 	/**
-	* Gets the primary key of this meetups registration.
+	* Returns the primary key of this meetups registration.
 	*
 	* @return the primary key of this meetups registration
 	*/
@@ -46,7 +46,7 @@ public class MeetupsRegistrationWrapper implements MeetupsRegistration {
 	}
 
 	/**
-	* Sets the primary key of this meetups registration
+	* Sets the primary key of this meetups registration.
 	*
 	* @param primaryKey the primary key of this meetups registration
 	*/
@@ -55,7 +55,7 @@ public class MeetupsRegistrationWrapper implements MeetupsRegistration {
 	}
 
 	/**
-	* Gets the meetups registration ID of this meetups registration.
+	* Returns the meetups registration ID of this meetups registration.
 	*
 	* @return the meetups registration ID of this meetups registration
 	*/
@@ -73,7 +73,7 @@ public class MeetupsRegistrationWrapper implements MeetupsRegistration {
 	}
 
 	/**
-	* Gets the company ID of this meetups registration.
+	* Returns the company ID of this meetups registration.
 	*
 	* @return the company ID of this meetups registration
 	*/
@@ -91,7 +91,7 @@ public class MeetupsRegistrationWrapper implements MeetupsRegistration {
 	}
 
 	/**
-	* Gets the user ID of this meetups registration.
+	* Returns the user ID of this meetups registration.
 	*
 	* @return the user ID of this meetups registration
 	*/
@@ -109,7 +109,7 @@ public class MeetupsRegistrationWrapper implements MeetupsRegistration {
 	}
 
 	/**
-	* Gets the user uuid of this meetups registration.
+	* Returns the user uuid of this meetups registration.
 	*
 	* @return the user uuid of this meetups registration
 	* @throws SystemException if a system exception occurred
@@ -129,7 +129,7 @@ public class MeetupsRegistrationWrapper implements MeetupsRegistration {
 	}
 
 	/**
-	* Gets the user name of this meetups registration.
+	* Returns the user name of this meetups registration.
 	*
 	* @return the user name of this meetups registration
 	*/
@@ -147,7 +147,7 @@ public class MeetupsRegistrationWrapper implements MeetupsRegistration {
 	}
 
 	/**
-	* Gets the create date of this meetups registration.
+	* Returns the create date of this meetups registration.
 	*
 	* @return the create date of this meetups registration
 	*/
@@ -165,7 +165,7 @@ public class MeetupsRegistrationWrapper implements MeetupsRegistration {
 	}
 
 	/**
-	* Gets the modified date of this meetups registration.
+	* Returns the modified date of this meetups registration.
 	*
 	* @return the modified date of this meetups registration
 	*/
@@ -183,7 +183,7 @@ public class MeetupsRegistrationWrapper implements MeetupsRegistration {
 	}
 
 	/**
-	* Gets the meetups entry ID of this meetups registration.
+	* Returns the meetups entry ID of this meetups registration.
 	*
 	* @return the meetups entry ID of this meetups registration
 	*/
@@ -201,7 +201,7 @@ public class MeetupsRegistrationWrapper implements MeetupsRegistration {
 	}
 
 	/**
-	* Gets the status of this meetups registration.
+	* Returns the status of this meetups registration.
 	*
 	* @return the status of this meetups registration
 	*/
@@ -219,7 +219,7 @@ public class MeetupsRegistrationWrapper implements MeetupsRegistration {
 	}
 
 	/**
-	* Gets the comments of this meetups registration.
+	* Returns the comments of this meetups registration.
 	*
 	* @return the comments of this meetups registration
 	*/

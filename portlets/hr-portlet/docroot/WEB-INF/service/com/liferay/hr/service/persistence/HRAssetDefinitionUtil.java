@@ -123,7 +123,7 @@ public class HRAssetDefinitionUtil {
 	/**
 	* Caches the h r asset definition in the entity cache if it is enabled.
 	*
-	* @param hrAssetDefinition the h r asset definition to cache
+	* @param hrAssetDefinition the h r asset definition
 	*/
 	public static void cacheResult(
 		com.liferay.hr.model.HRAssetDefinition hrAssetDefinition) {
@@ -133,7 +133,7 @@ public class HRAssetDefinitionUtil {
 	/**
 	* Caches the h r asset definitions in the entity cache if it is enabled.
 	*
-	* @param hrAssetDefinitions the h r asset definitions to cache
+	* @param hrAssetDefinitions the h r asset definitions
 	*/
 	public static void cacheResult(
 		java.util.List<com.liferay.hr.model.HRAssetDefinition> hrAssetDefinitions) {
@@ -154,7 +154,7 @@ public class HRAssetDefinitionUtil {
 	/**
 	* Removes the h r asset definition with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param hrAssetDefinitionId the primary key of the h r asset definition to remove
+	* @param hrAssetDefinitionId the primary key of the h r asset definition
 	* @return the h r asset definition that was removed
 	* @throws com.liferay.hr.NoSuchAssetDefinitionException if a h r asset definition with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -173,9 +173,9 @@ public class HRAssetDefinitionUtil {
 	}
 
 	/**
-	* Finds the h r asset definition with the primary key or throws a {@link com.liferay.hr.NoSuchAssetDefinitionException} if it could not be found.
+	* Returns the h r asset definition with the primary key or throws a {@link com.liferay.hr.NoSuchAssetDefinitionException} if it could not be found.
 	*
-	* @param hrAssetDefinitionId the primary key of the h r asset definition to find
+	* @param hrAssetDefinitionId the primary key of the h r asset definition
 	* @return the h r asset definition
 	* @throws com.liferay.hr.NoSuchAssetDefinitionException if a h r asset definition with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -188,9 +188,9 @@ public class HRAssetDefinitionUtil {
 	}
 
 	/**
-	* Finds the h r asset definition with the primary key or returns <code>null</code> if it could not be found.
+	* Returns the h r asset definition with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param hrAssetDefinitionId the primary key of the h r asset definition to find
+	* @param hrAssetDefinitionId the primary key of the h r asset definition
 	* @return the h r asset definition, or <code>null</code> if a h r asset definition with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -201,7 +201,7 @@ public class HRAssetDefinitionUtil {
 	}
 
 	/**
-	* Finds all the h r asset definitions.
+	* Returns all the h r asset definitions.
 	*
 	* @return the h r asset definitions
 	* @throws SystemException if a system exception occurred
@@ -212,14 +212,14 @@ public class HRAssetDefinitionUtil {
 	}
 
 	/**
-	* Finds a range of all the h r asset definitions.
+	* Returns a range of all the h r asset definitions.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of h r asset definitions to return
-	* @param end the upper bound of the range of h r asset definitions to return (not inclusive)
+	* @param start the lower bound of the range of h r asset definitions
+	* @param end the upper bound of the range of h r asset definitions (not inclusive)
 	* @return the range of h r asset definitions
 	* @throws SystemException if a system exception occurred
 	*/
@@ -230,14 +230,14 @@ public class HRAssetDefinitionUtil {
 	}
 
 	/**
-	* Finds an ordered range of all the h r asset definitions.
+	* Returns an ordered range of all the h r asset definitions.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of h r asset definitions to return
-	* @param end the upper bound of the range of h r asset definitions to return (not inclusive)
+	* @param start the lower bound of the range of h r asset definitions
+	* @param end the upper bound of the range of h r asset definitions (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of h r asset definitions
 	* @throws SystemException if a system exception occurred
@@ -260,7 +260,7 @@ public class HRAssetDefinitionUtil {
 	}
 
 	/**
-	* Counts all the h r asset definitions.
+	* Returns the number of h r asset definitions.
 	*
 	* @return the number of h r asset definitions
 	* @throws SystemException if a system exception occurred

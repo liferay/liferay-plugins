@@ -41,14 +41,14 @@ public interface OAuthTokenPersistence extends BasePersistence<OAuthToken> {
 	/**
 	* Caches the o auth token in the entity cache if it is enabled.
 	*
-	* @param oAuthToken the o auth token to cache
+	* @param oAuthToken the o auth token
 	*/
 	public void cacheResult(com.liferay.opensocial.model.OAuthToken oAuthToken);
 
 	/**
 	* Caches the o auth tokens in the entity cache if it is enabled.
 	*
-	* @param oAuthTokens the o auth tokens to cache
+	* @param oAuthTokens the o auth tokens
 	*/
 	public void cacheResult(
 		java.util.List<com.liferay.opensocial.model.OAuthToken> oAuthTokens);
@@ -64,7 +64,7 @@ public interface OAuthTokenPersistence extends BasePersistence<OAuthToken> {
 	/**
 	* Removes the o auth token with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param oAuthTokenId the primary key of the o auth token to remove
+	* @param oAuthTokenId the primary key of the o auth token
 	* @return the o auth token that was removed
 	* @throws com.liferay.opensocial.NoSuchOAuthTokenException if a o auth token with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -78,9 +78,9 @@ public interface OAuthTokenPersistence extends BasePersistence<OAuthToken> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the o auth token with the primary key or throws a {@link com.liferay.opensocial.NoSuchOAuthTokenException} if it could not be found.
+	* Returns the o auth token with the primary key or throws a {@link com.liferay.opensocial.NoSuchOAuthTokenException} if it could not be found.
 	*
-	* @param oAuthTokenId the primary key of the o auth token to find
+	* @param oAuthTokenId the primary key of the o auth token
 	* @return the o auth token
 	* @throws com.liferay.opensocial.NoSuchOAuthTokenException if a o auth token with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -91,9 +91,9 @@ public interface OAuthTokenPersistence extends BasePersistence<OAuthToken> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the o auth token with the primary key or returns <code>null</code> if it could not be found.
+	* Returns the o auth token with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param oAuthTokenId the primary key of the o auth token to find
+	* @param oAuthTokenId the primary key of the o auth token
 	* @return the o auth token, or <code>null</code> if a o auth token with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -102,10 +102,10 @@ public interface OAuthTokenPersistence extends BasePersistence<OAuthToken> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds all the o auth tokens where gadgetId = &#63; and serviceName = &#63;.
+	* Returns all the o auth tokens where gadgetId = &#63; and serviceName = &#63;.
 	*
-	* @param gadgetId the gadget ID to search with
-	* @param serviceName the service name to search with
+	* @param gadgetId the gadget ID
+	* @param serviceName the service name
 	* @return the matching o auth tokens
 	* @throws SystemException if a system exception occurred
 	*/
@@ -114,16 +114,16 @@ public interface OAuthTokenPersistence extends BasePersistence<OAuthToken> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds a range of all the o auth tokens where gadgetId = &#63; and serviceName = &#63;.
+	* Returns a range of all the o auth tokens where gadgetId = &#63; and serviceName = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param gadgetId the gadget ID to search with
-	* @param serviceName the service name to search with
-	* @param start the lower bound of the range of o auth tokens to return
-	* @param end the upper bound of the range of o auth tokens to return (not inclusive)
+	* @param gadgetId the gadget ID
+	* @param serviceName the service name
+	* @param start the lower bound of the range of o auth tokens
+	* @param end the upper bound of the range of o auth tokens (not inclusive)
 	* @return the range of matching o auth tokens
 	* @throws SystemException if a system exception occurred
 	*/
@@ -132,16 +132,16 @@ public interface OAuthTokenPersistence extends BasePersistence<OAuthToken> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds an ordered range of all the o auth tokens where gadgetId = &#63; and serviceName = &#63;.
+	* Returns an ordered range of all the o auth tokens where gadgetId = &#63; and serviceName = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param gadgetId the gadget ID to search with
-	* @param serviceName the service name to search with
-	* @param start the lower bound of the range of o auth tokens to return
-	* @param end the upper bound of the range of o auth tokens to return (not inclusive)
+	* @param gadgetId the gadget ID
+	* @param serviceName the service name
+	* @param start the lower bound of the range of o auth tokens
+	* @param end the upper bound of the range of o auth tokens (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching o auth tokens
 	* @throws SystemException if a system exception occurred
@@ -152,14 +152,14 @@ public interface OAuthTokenPersistence extends BasePersistence<OAuthToken> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the first o auth token in the ordered set where gadgetId = &#63; and serviceName = &#63;.
+	* Returns the first o auth token in the ordered set where gadgetId = &#63; and serviceName = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param gadgetId the gadget ID to search with
-	* @param serviceName the service name to search with
+	* @param gadgetId the gadget ID
+	* @param serviceName the service name
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching o auth token
 	* @throws com.liferay.opensocial.NoSuchOAuthTokenException if a matching o auth token could not be found
@@ -172,14 +172,14 @@ public interface OAuthTokenPersistence extends BasePersistence<OAuthToken> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the last o auth token in the ordered set where gadgetId = &#63; and serviceName = &#63;.
+	* Returns the last o auth token in the ordered set where gadgetId = &#63; and serviceName = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param gadgetId the gadget ID to search with
-	* @param serviceName the service name to search with
+	* @param gadgetId the gadget ID
+	* @param serviceName the service name
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching o auth token
 	* @throws com.liferay.opensocial.NoSuchOAuthTokenException if a matching o auth token could not be found
@@ -192,15 +192,15 @@ public interface OAuthTokenPersistence extends BasePersistence<OAuthToken> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the o auth tokens before and after the current o auth token in the ordered set where gadgetId = &#63; and serviceName = &#63;.
+	* Returns the o auth tokens before and after the current o auth token in the ordered set where gadgetId = &#63; and serviceName = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
 	* @param oAuthTokenId the primary key of the current o auth token
-	* @param gadgetId the gadget ID to search with
-	* @param serviceName the service name to search with
+	* @param gadgetId the gadget ID
+	* @param serviceName the service name
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next o auth token
 	* @throws com.liferay.opensocial.NoSuchOAuthTokenException if a o auth token with the primary key could not be found
@@ -213,13 +213,13 @@ public interface OAuthTokenPersistence extends BasePersistence<OAuthToken> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the o auth token where userId = &#63; and gadgetId = &#63; and serviceName = &#63; and moduleId = &#63; and tokenName = &#63; or throws a {@link com.liferay.opensocial.NoSuchOAuthTokenException} if it could not be found.
+	* Returns the o auth token where userId = &#63; and gadgetId = &#63; and serviceName = &#63; and moduleId = &#63; and tokenName = &#63; or throws a {@link com.liferay.opensocial.NoSuchOAuthTokenException} if it could not be found.
 	*
-	* @param userId the user ID to search with
-	* @param gadgetId the gadget ID to search with
-	* @param serviceName the service name to search with
-	* @param moduleId the module ID to search with
-	* @param tokenName the token name to search with
+	* @param userId the user ID
+	* @param gadgetId the gadget ID
+	* @param serviceName the service name
+	* @param moduleId the module ID
+	* @param tokenName the token name
 	* @return the matching o auth token
 	* @throws com.liferay.opensocial.NoSuchOAuthTokenException if a matching o auth token could not be found
 	* @throws SystemException if a system exception occurred
@@ -231,13 +231,13 @@ public interface OAuthTokenPersistence extends BasePersistence<OAuthToken> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the o auth token where userId = &#63; and gadgetId = &#63; and serviceName = &#63; and moduleId = &#63; and tokenName = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	* Returns the o auth token where userId = &#63; and gadgetId = &#63; and serviceName = &#63; and moduleId = &#63; and tokenName = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	*
-	* @param userId the user ID to search with
-	* @param gadgetId the gadget ID to search with
-	* @param serviceName the service name to search with
-	* @param moduleId the module ID to search with
-	* @param tokenName the token name to search with
+	* @param userId the user ID
+	* @param gadgetId the gadget ID
+	* @param serviceName the service name
+	* @param moduleId the module ID
+	* @param tokenName the token name
 	* @return the matching o auth token, or <code>null</code> if a matching o auth token could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -247,13 +247,13 @@ public interface OAuthTokenPersistence extends BasePersistence<OAuthToken> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the o auth token where userId = &#63; and gadgetId = &#63; and serviceName = &#63; and moduleId = &#63; and tokenName = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	* Returns the o auth token where userId = &#63; and gadgetId = &#63; and serviceName = &#63; and moduleId = &#63; and tokenName = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	*
-	* @param userId the user ID to search with
-	* @param gadgetId the gadget ID to search with
-	* @param serviceName the service name to search with
-	* @param moduleId the module ID to search with
-	* @param tokenName the token name to search with
+	* @param userId the user ID
+	* @param gadgetId the gadget ID
+	* @param serviceName the service name
+	* @param moduleId the module ID
+	* @param tokenName the token name
 	* @return the matching o auth token, or <code>null</code> if a matching o auth token could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -263,7 +263,7 @@ public interface OAuthTokenPersistence extends BasePersistence<OAuthToken> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds all the o auth tokens.
+	* Returns all the o auth tokens.
 	*
 	* @return the o auth tokens
 	* @throws SystemException if a system exception occurred
@@ -272,14 +272,14 @@ public interface OAuthTokenPersistence extends BasePersistence<OAuthToken> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds a range of all the o auth tokens.
+	* Returns a range of all the o auth tokens.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of o auth tokens to return
-	* @param end the upper bound of the range of o auth tokens to return (not inclusive)
+	* @param start the lower bound of the range of o auth tokens
+	* @param end the upper bound of the range of o auth tokens (not inclusive)
 	* @return the range of o auth tokens
 	* @throws SystemException if a system exception occurred
 	*/
@@ -288,14 +288,14 @@ public interface OAuthTokenPersistence extends BasePersistence<OAuthToken> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds an ordered range of all the o auth tokens.
+	* Returns an ordered range of all the o auth tokens.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of o auth tokens to return
-	* @param end the upper bound of the range of o auth tokens to return (not inclusive)
+	* @param start the lower bound of the range of o auth tokens
+	* @param end the upper bound of the range of o auth tokens (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of o auth tokens
 	* @throws SystemException if a system exception occurred
@@ -308,8 +308,8 @@ public interface OAuthTokenPersistence extends BasePersistence<OAuthToken> {
 	/**
 	* Removes all the o auth tokens where gadgetId = &#63; and serviceName = &#63; from the database.
 	*
-	* @param gadgetId the gadget ID to search with
-	* @param serviceName the service name to search with
+	* @param gadgetId the gadget ID
+	* @param serviceName the service name
 	* @throws SystemException if a system exception occurred
 	*/
 	public void removeByG_S(long gadgetId, java.lang.String serviceName)
@@ -318,11 +318,11 @@ public interface OAuthTokenPersistence extends BasePersistence<OAuthToken> {
 	/**
 	* Removes the o auth token where userId = &#63; and gadgetId = &#63; and serviceName = &#63; and moduleId = &#63; and tokenName = &#63; from the database.
 	*
-	* @param userId the user ID to search with
-	* @param gadgetId the gadget ID to search with
-	* @param serviceName the service name to search with
-	* @param moduleId the module ID to search with
-	* @param tokenName the token name to search with
+	* @param userId the user ID
+	* @param gadgetId the gadget ID
+	* @param serviceName the service name
+	* @param moduleId the module ID
+	* @param tokenName the token name
 	* @throws SystemException if a system exception occurred
 	*/
 	public void removeByU_G_S_M_T(long userId, long gadgetId,
@@ -339,10 +339,10 @@ public interface OAuthTokenPersistence extends BasePersistence<OAuthToken> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Counts all the o auth tokens where gadgetId = &#63; and serviceName = &#63;.
+	* Returns the number of o auth tokens where gadgetId = &#63; and serviceName = &#63;.
 	*
-	* @param gadgetId the gadget ID to search with
-	* @param serviceName the service name to search with
+	* @param gadgetId the gadget ID
+	* @param serviceName the service name
 	* @return the number of matching o auth tokens
 	* @throws SystemException if a system exception occurred
 	*/
@@ -350,13 +350,13 @@ public interface OAuthTokenPersistence extends BasePersistence<OAuthToken> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Counts all the o auth tokens where userId = &#63; and gadgetId = &#63; and serviceName = &#63; and moduleId = &#63; and tokenName = &#63;.
+	* Returns the number of o auth tokens where userId = &#63; and gadgetId = &#63; and serviceName = &#63; and moduleId = &#63; and tokenName = &#63;.
 	*
-	* @param userId the user ID to search with
-	* @param gadgetId the gadget ID to search with
-	* @param serviceName the service name to search with
-	* @param moduleId the module ID to search with
-	* @param tokenName the token name to search with
+	* @param userId the user ID
+	* @param gadgetId the gadget ID
+	* @param serviceName the service name
+	* @param moduleId the module ID
+	* @param tokenName the token name
 	* @return the number of matching o auth tokens
 	* @throws SystemException if a system exception occurred
 	*/
@@ -365,7 +365,7 @@ public interface OAuthTokenPersistence extends BasePersistence<OAuthToken> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Counts all the o auth tokens.
+	* Returns the number of o auth tokens.
 	*
 	* @return the number of o auth tokens
 	* @throws SystemException if a system exception occurred

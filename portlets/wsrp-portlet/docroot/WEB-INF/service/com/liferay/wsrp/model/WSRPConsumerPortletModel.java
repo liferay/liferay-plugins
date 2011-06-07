@@ -45,21 +45,21 @@ public interface WSRPConsumerPortletModel extends BaseModel<WSRPConsumerPortlet>
 	 */
 
 	/**
-	 * Gets the primary key of this w s r p consumer portlet.
+	 * Returns the primary key of this w s r p consumer portlet.
 	 *
 	 * @return the primary key of this w s r p consumer portlet
 	 */
 	public long getPrimaryKey();
 
 	/**
-	 * Sets the primary key of this w s r p consumer portlet
+	 * Sets the primary key of this w s r p consumer portlet.
 	 *
 	 * @param primaryKey the primary key of this w s r p consumer portlet
 	 */
 	public void setPrimaryKey(long primaryKey);
 
 	/**
-	 * Gets the uuid of this w s r p consumer portlet.
+	 * Returns the uuid of this w s r p consumer portlet.
 	 *
 	 * @return the uuid of this w s r p consumer portlet
 	 */
@@ -74,7 +74,7 @@ public interface WSRPConsumerPortletModel extends BaseModel<WSRPConsumerPortlet>
 	public void setUuid(String uuid);
 
 	/**
-	 * Gets the wsrp consumer portlet ID of this w s r p consumer portlet.
+	 * Returns the wsrp consumer portlet ID of this w s r p consumer portlet.
 	 *
 	 * @return the wsrp consumer portlet ID of this w s r p consumer portlet
 	 */
@@ -88,7 +88,7 @@ public interface WSRPConsumerPortletModel extends BaseModel<WSRPConsumerPortlet>
 	public void setWsrpConsumerPortletId(long wsrpConsumerPortletId);
 
 	/**
-	 * Gets the company ID of this w s r p consumer portlet.
+	 * Returns the company ID of this w s r p consumer portlet.
 	 *
 	 * @return the company ID of this w s r p consumer portlet
 	 */
@@ -102,7 +102,7 @@ public interface WSRPConsumerPortletModel extends BaseModel<WSRPConsumerPortlet>
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the create date of this w s r p consumer portlet.
+	 * Returns the create date of this w s r p consumer portlet.
 	 *
 	 * @return the create date of this w s r p consumer portlet
 	 */
@@ -116,7 +116,7 @@ public interface WSRPConsumerPortletModel extends BaseModel<WSRPConsumerPortlet>
 	public void setCreateDate(Date createDate);
 
 	/**
-	 * Gets the modified date of this w s r p consumer portlet.
+	 * Returns the modified date of this w s r p consumer portlet.
 	 *
 	 * @return the modified date of this w s r p consumer portlet
 	 */
@@ -130,7 +130,7 @@ public interface WSRPConsumerPortletModel extends BaseModel<WSRPConsumerPortlet>
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Gets the wsrp consumer ID of this w s r p consumer portlet.
+	 * Returns the wsrp consumer ID of this w s r p consumer portlet.
 	 *
 	 * @return the wsrp consumer ID of this w s r p consumer portlet
 	 */
@@ -144,7 +144,7 @@ public interface WSRPConsumerPortletModel extends BaseModel<WSRPConsumerPortlet>
 	public void setWsrpConsumerId(long wsrpConsumerId);
 
 	/**
-	 * Gets the name of this w s r p consumer portlet.
+	 * Returns the name of this w s r p consumer portlet.
 	 *
 	 * @return the name of this w s r p consumer portlet
 	 */
@@ -159,7 +159,7 @@ public interface WSRPConsumerPortletModel extends BaseModel<WSRPConsumerPortlet>
 	public void setName(String name);
 
 	/**
-	 * Gets the portlet handle of this w s r p consumer portlet.
+	 * Returns the portlet handle of this w s r p consumer portlet.
 	 *
 	 * @return the portlet handle of this w s r p consumer portlet
 	 */

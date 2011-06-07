@@ -82,7 +82,7 @@ public class HRTaskPersistenceImpl extends BasePersistenceImpl<HRTask>
 	/**
 	 * Caches the h r task in the entity cache if it is enabled.
 	 *
-	 * @param hrTask the h r task to cache
+	 * @param hrTask the h r task
 	 */
 	public void cacheResult(HRTask hrTask) {
 		EntityCacheUtil.putResult(HRTaskModelImpl.ENTITY_CACHE_ENABLED,
@@ -94,7 +94,7 @@ public class HRTaskPersistenceImpl extends BasePersistenceImpl<HRTask>
 	/**
 	 * Caches the h r tasks in the entity cache if it is enabled.
 	 *
-	 * @param hrTasks the h r tasks to cache
+	 * @param hrTasks the h r tasks
 	 */
 	public void cacheResult(List<HRTask> hrTasks) {
 		for (HRTask hrTask : hrTasks) {
@@ -153,7 +153,7 @@ public class HRTaskPersistenceImpl extends BasePersistenceImpl<HRTask>
 	/**
 	 * Removes the h r task with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param primaryKey the primary key of the h r task to remove
+	 * @param primaryKey the primary key of the h r task
 	 * @return the h r task that was removed
 	 * @throws com.liferay.portal.NoSuchModelException if a h r task with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -166,7 +166,7 @@ public class HRTaskPersistenceImpl extends BasePersistenceImpl<HRTask>
 	/**
 	 * Removes the h r task with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param hrTaskId the primary key of the h r task to remove
+	 * @param hrTaskId the primary key of the h r task
 	 * @return the h r task that was removed
 	 * @throws com.liferay.hr.NoSuchTaskException if a h r task with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -206,7 +206,7 @@ public class HRTaskPersistenceImpl extends BasePersistenceImpl<HRTask>
 	/**
 	 * Removes the h r task from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param hrTask the h r task to remove
+	 * @param hrTask the h r task
 	 * @return the h r task that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -309,9 +309,9 @@ public class HRTaskPersistenceImpl extends BasePersistenceImpl<HRTask>
 	}
 
 	/**
-	 * Finds the h r task with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
+	 * Returns the h r task with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
 	 *
-	 * @param primaryKey the primary key of the h r task to find
+	 * @param primaryKey the primary key of the h r task
 	 * @return the h r task
 	 * @throws com.liferay.portal.NoSuchModelException if a h r task with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -322,9 +322,9 @@ public class HRTaskPersistenceImpl extends BasePersistenceImpl<HRTask>
 	}
 
 	/**
-	 * Finds the h r task with the primary key or throws a {@link com.liferay.hr.NoSuchTaskException} if it could not be found.
+	 * Returns the h r task with the primary key or throws a {@link com.liferay.hr.NoSuchTaskException} if it could not be found.
 	 *
-	 * @param hrTaskId the primary key of the h r task to find
+	 * @param hrTaskId the primary key of the h r task
 	 * @return the h r task
 	 * @throws com.liferay.hr.NoSuchTaskException if a h r task with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -346,9 +346,9 @@ public class HRTaskPersistenceImpl extends BasePersistenceImpl<HRTask>
 	}
 
 	/**
-	 * Finds the h r task with the primary key or returns <code>null</code> if it could not be found.
+	 * Returns the h r task with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param primaryKey the primary key of the h r task to find
+	 * @param primaryKey the primary key of the h r task
 	 * @return the h r task, or <code>null</code> if a h r task with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -358,9 +358,9 @@ public class HRTaskPersistenceImpl extends BasePersistenceImpl<HRTask>
 	}
 
 	/**
-	 * Finds the h r task with the primary key or returns <code>null</code> if it could not be found.
+	 * Returns the h r task with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param hrTaskId the primary key of the h r task to find
+	 * @param hrTaskId the primary key of the h r task
 	 * @return the h r task, or <code>null</code> if a h r task with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -393,7 +393,7 @@ public class HRTaskPersistenceImpl extends BasePersistenceImpl<HRTask>
 	}
 
 	/**
-	 * Finds all the h r tasks.
+	 * Returns all the h r tasks.
 	 *
 	 * @return the h r tasks
 	 * @throws SystemException if a system exception occurred
@@ -403,14 +403,14 @@ public class HRTaskPersistenceImpl extends BasePersistenceImpl<HRTask>
 	}
 
 	/**
-	 * Finds a range of all the h r tasks.
+	 * Returns a range of all the h r tasks.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of h r tasks to return
-	 * @param end the upper bound of the range of h r tasks to return (not inclusive)
+	 * @param start the lower bound of the range of h r tasks
+	 * @param end the upper bound of the range of h r tasks (not inclusive)
 	 * @return the range of h r tasks
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -419,14 +419,14 @@ public class HRTaskPersistenceImpl extends BasePersistenceImpl<HRTask>
 	}
 
 	/**
-	 * Finds an ordered range of all the h r tasks.
+	 * Returns an ordered range of all the h r tasks.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of h r tasks to return
-	 * @param end the upper bound of the range of h r tasks to return (not inclusive)
+	 * @param start the lower bound of the range of h r tasks
+	 * @param end the upper bound of the range of h r tasks (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of h r tasks
 	 * @throws SystemException if a system exception occurred
@@ -512,7 +512,7 @@ public class HRTaskPersistenceImpl extends BasePersistenceImpl<HRTask>
 	}
 
 	/**
-	 * Counts all the h r tasks.
+	 * Returns the number of h r tasks.
 	 *
 	 * @return the number of h r tasks
 	 * @throws SystemException if a system exception occurred

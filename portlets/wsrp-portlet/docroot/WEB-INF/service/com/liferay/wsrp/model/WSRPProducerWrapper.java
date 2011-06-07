@@ -37,7 +37,7 @@ public class WSRPProducerWrapper implements WSRPProducer {
 	}
 
 	/**
-	* Gets the primary key of this w s r p producer.
+	* Returns the primary key of this w s r p producer.
 	*
 	* @return the primary key of this w s r p producer
 	*/
@@ -46,7 +46,7 @@ public class WSRPProducerWrapper implements WSRPProducer {
 	}
 
 	/**
-	* Sets the primary key of this w s r p producer
+	* Sets the primary key of this w s r p producer.
 	*
 	* @param primaryKey the primary key of this w s r p producer
 	*/
@@ -55,7 +55,7 @@ public class WSRPProducerWrapper implements WSRPProducer {
 	}
 
 	/**
-	* Gets the uuid of this w s r p producer.
+	* Returns the uuid of this w s r p producer.
 	*
 	* @return the uuid of this w s r p producer
 	*/
@@ -73,7 +73,7 @@ public class WSRPProducerWrapper implements WSRPProducer {
 	}
 
 	/**
-	* Gets the wsrp producer ID of this w s r p producer.
+	* Returns the wsrp producer ID of this w s r p producer.
 	*
 	* @return the wsrp producer ID of this w s r p producer
 	*/
@@ -91,7 +91,7 @@ public class WSRPProducerWrapper implements WSRPProducer {
 	}
 
 	/**
-	* Gets the group ID of this w s r p producer.
+	* Returns the group ID of this w s r p producer.
 	*
 	* @return the group ID of this w s r p producer
 	*/
@@ -109,7 +109,7 @@ public class WSRPProducerWrapper implements WSRPProducer {
 	}
 
 	/**
-	* Gets the company ID of this w s r p producer.
+	* Returns the company ID of this w s r p producer.
 	*
 	* @return the company ID of this w s r p producer
 	*/
@@ -127,7 +127,7 @@ public class WSRPProducerWrapper implements WSRPProducer {
 	}
 
 	/**
-	* Gets the create date of this w s r p producer.
+	* Returns the create date of this w s r p producer.
 	*
 	* @return the create date of this w s r p producer
 	*/
@@ -145,7 +145,7 @@ public class WSRPProducerWrapper implements WSRPProducer {
 	}
 
 	/**
-	* Gets the modified date of this w s r p producer.
+	* Returns the modified date of this w s r p producer.
 	*
 	* @return the modified date of this w s r p producer
 	*/
@@ -163,7 +163,7 @@ public class WSRPProducerWrapper implements WSRPProducer {
 	}
 
 	/**
-	* Gets the name of this w s r p producer.
+	* Returns the name of this w s r p producer.
 	*
 	* @return the name of this w s r p producer
 	*/
@@ -181,7 +181,7 @@ public class WSRPProducerWrapper implements WSRPProducer {
 	}
 
 	/**
-	* Gets the version of this w s r p producer.
+	* Returns the version of this w s r p producer.
 	*
 	* @return the version of this w s r p producer
 	*/
@@ -199,7 +199,7 @@ public class WSRPProducerWrapper implements WSRPProducer {
 	}
 
 	/**
-	* Gets the portlet IDs of this w s r p producer.
+	* Returns the portlet IDs of this w s r p producer.
 	*
 	* @return the portlet IDs of this w s r p producer
 	*/

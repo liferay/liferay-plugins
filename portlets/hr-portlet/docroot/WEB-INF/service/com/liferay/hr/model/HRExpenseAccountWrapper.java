@@ -37,7 +37,7 @@ public class HRExpenseAccountWrapper implements HRExpenseAccount {
 	}
 
 	/**
-	* Gets the primary key of this h r expense account.
+	* Returns the primary key of this h r expense account.
 	*
 	* @return the primary key of this h r expense account
 	*/
@@ -46,7 +46,7 @@ public class HRExpenseAccountWrapper implements HRExpenseAccount {
 	}
 
 	/**
-	* Sets the primary key of this h r expense account
+	* Sets the primary key of this h r expense account.
 	*
 	* @param primaryKey the primary key of this h r expense account
 	*/
@@ -55,7 +55,7 @@ public class HRExpenseAccountWrapper implements HRExpenseAccount {
 	}
 
 	/**
-	* Gets the hr expense account ID of this h r expense account.
+	* Returns the hr expense account ID of this h r expense account.
 	*
 	* @return the hr expense account ID of this h r expense account
 	*/
@@ -73,7 +73,7 @@ public class HRExpenseAccountWrapper implements HRExpenseAccount {
 	}
 
 	/**
-	* Gets the group ID of this h r expense account.
+	* Returns the group ID of this h r expense account.
 	*
 	* @return the group ID of this h r expense account
 	*/
@@ -91,7 +91,7 @@ public class HRExpenseAccountWrapper implements HRExpenseAccount {
 	}
 
 	/**
-	* Gets the company ID of this h r expense account.
+	* Returns the company ID of this h r expense account.
 	*
 	* @return the company ID of this h r expense account
 	*/
@@ -109,7 +109,7 @@ public class HRExpenseAccountWrapper implements HRExpenseAccount {
 	}
 
 	/**
-	* Gets the user ID of this h r expense account.
+	* Returns the user ID of this h r expense account.
 	*
 	* @return the user ID of this h r expense account
 	*/
@@ -127,7 +127,7 @@ public class HRExpenseAccountWrapper implements HRExpenseAccount {
 	}
 
 	/**
-	* Gets the user uuid of this h r expense account.
+	* Returns the user uuid of this h r expense account.
 	*
 	* @return the user uuid of this h r expense account
 	* @throws SystemException if a system exception occurred
@@ -147,7 +147,7 @@ public class HRExpenseAccountWrapper implements HRExpenseAccount {
 	}
 
 	/**
-	* Gets the user name of this h r expense account.
+	* Returns the user name of this h r expense account.
 	*
 	* @return the user name of this h r expense account
 	*/
@@ -165,7 +165,7 @@ public class HRExpenseAccountWrapper implements HRExpenseAccount {
 	}
 
 	/**
-	* Gets the create date of this h r expense account.
+	* Returns the create date of this h r expense account.
 	*
 	* @return the create date of this h r expense account
 	*/
@@ -183,7 +183,7 @@ public class HRExpenseAccountWrapper implements HRExpenseAccount {
 	}
 
 	/**
-	* Gets the modified date of this h r expense account.
+	* Returns the modified date of this h r expense account.
 	*
 	* @return the modified date of this h r expense account
 	*/
@@ -201,7 +201,7 @@ public class HRExpenseAccountWrapper implements HRExpenseAccount {
 	}
 
 	/**
-	* Gets the name of this h r expense account.
+	* Returns the name of this h r expense account.
 	*
 	* @return the name of this h r expense account
 	*/
@@ -219,7 +219,7 @@ public class HRExpenseAccountWrapper implements HRExpenseAccount {
 	}
 
 	/**
-	* Gets the description of this h r expense account.
+	* Returns the description of this h r expense account.
 	*
 	* @return the description of this h r expense account
 	*/

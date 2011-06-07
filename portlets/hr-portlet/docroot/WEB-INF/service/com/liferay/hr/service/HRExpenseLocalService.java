@@ -45,7 +45,7 @@ public interface HRExpenseLocalService {
 	/**
 	* Adds the h r expense to the database. Also notifies the appropriate model listeners.
 	*
-	* @param hrExpense the h r expense to add
+	* @param hrExpense the h r expense
 	* @return the h r expense that was added
 	* @throws SystemException if a system exception occurred
 	*/
@@ -64,7 +64,7 @@ public interface HRExpenseLocalService {
 	/**
 	* Deletes the h r expense with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param hrExpenseId the primary key of the h r expense to delete
+	* @param hrExpenseId the primary key of the h r expense
 	* @throws PortalException if a h r expense with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -75,7 +75,7 @@ public interface HRExpenseLocalService {
 	/**
 	* Deletes the h r expense from the database. Also notifies the appropriate model listeners.
 	*
-	* @param hrExpense the h r expense to delete
+	* @param hrExpense the h r expense
 	* @throws SystemException if a system exception occurred
 	*/
 	public void deleteHRExpense(com.liferay.hr.model.HRExpense hrExpense)
@@ -84,7 +84,7 @@ public interface HRExpenseLocalService {
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
 	*
-	* @param dynamicQuery the dynamic query to search with
+	* @param dynamicQuery the dynamic query
 	* @return the matching rows
 	* @throws SystemException if a system exception occurred
 	*/
@@ -100,9 +100,9 @@ public interface HRExpenseLocalService {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param dynamicQuery the dynamic query to search with
-	* @param start the lower bound of the range of model instances to return
-	* @param end the upper bound of the range of model instances to return (not inclusive)
+	* @param dynamicQuery the dynamic query
+	* @param start the lower bound of the range of model instances
+	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
 	* @throws SystemException if a system exception occurred
 	*/
@@ -118,9 +118,9 @@ public interface HRExpenseLocalService {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param dynamicQuery the dynamic query to search with
-	* @param start the lower bound of the range of model instances to return
-	* @param end the upper bound of the range of model instances to return (not inclusive)
+	* @param dynamicQuery the dynamic query
+	* @param start the lower bound of the range of model instances
+	* @param end the upper bound of the range of model instances (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
 	* @throws SystemException if a system exception occurred
@@ -133,9 +133,9 @@ public interface HRExpenseLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Counts the number of rows that match the dynamic query.
+	* Returns the number of rows that match the dynamic query.
 	*
-	* @param dynamicQuery the dynamic query to search with
+	* @param dynamicQuery the dynamic query
 	* @return the number of rows that match the dynamic query
 	* @throws SystemException if a system exception occurred
 	*/
@@ -144,9 +144,9 @@ public interface HRExpenseLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Gets the h r expense with the primary key.
+	* Returns the h r expense with the primary key.
 	*
-	* @param hrExpenseId the primary key of the h r expense to get
+	* @param hrExpenseId the primary key of the h r expense
 	* @return the h r expense
 	* @throws PortalException if a h r expense with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -157,14 +157,14 @@ public interface HRExpenseLocalService {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Gets a range of all the h r expenses.
+	* Returns a range of all the h r expenses.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of h r expenses to return
-	* @param end the upper bound of the range of h r expenses to return (not inclusive)
+	* @param start the lower bound of the range of h r expenses
+	* @param end the upper bound of the range of h r expenses (not inclusive)
 	* @return the range of h r expenses
 	* @throws SystemException if a system exception occurred
 	*/
@@ -174,7 +174,7 @@ public interface HRExpenseLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Gets the number of h r expenses.
+	* Returns the number of h r expenses.
 	*
 	* @return the number of h r expenses
 	* @throws SystemException if a system exception occurred
@@ -186,7 +186,7 @@ public interface HRExpenseLocalService {
 	/**
 	* Updates the h r expense in the database. Also notifies the appropriate model listeners.
 	*
-	* @param hrExpense the h r expense to update
+	* @param hrExpense the h r expense
 	* @return the h r expense that was updated
 	* @throws SystemException if a system exception occurred
 	*/
@@ -197,7 +197,7 @@ public interface HRExpenseLocalService {
 	/**
 	* Updates the h r expense in the database. Also notifies the appropriate model listeners.
 	*
-	* @param hrExpense the h r expense to update
+	* @param hrExpense the h r expense
 	* @param merge whether to merge the h r expense with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
 	* @return the h r expense that was updated
 	* @throws SystemException if a system exception occurred
@@ -207,7 +207,7 @@ public interface HRExpenseLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Gets the Spring bean ID for this bean.
+	* Returns the Spring bean ID for this bean.
 	*
 	* @return the Spring bean ID for this bean
 	*/

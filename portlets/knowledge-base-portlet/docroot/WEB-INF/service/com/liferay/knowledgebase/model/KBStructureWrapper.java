@@ -37,7 +37,7 @@ public class KBStructureWrapper implements KBStructure {
 	}
 
 	/**
-	* Gets the primary key of this k b structure.
+	* Returns the primary key of this k b structure.
 	*
 	* @return the primary key of this k b structure
 	*/
@@ -46,7 +46,7 @@ public class KBStructureWrapper implements KBStructure {
 	}
 
 	/**
-	* Sets the primary key of this k b structure
+	* Sets the primary key of this k b structure.
 	*
 	* @param primaryKey the primary key of this k b structure
 	*/
@@ -55,7 +55,7 @@ public class KBStructureWrapper implements KBStructure {
 	}
 
 	/**
-	* Gets the uuid of this k b structure.
+	* Returns the uuid of this k b structure.
 	*
 	* @return the uuid of this k b structure
 	*/
@@ -73,7 +73,7 @@ public class KBStructureWrapper implements KBStructure {
 	}
 
 	/**
-	* Gets the kb structure ID of this k b structure.
+	* Returns the kb structure ID of this k b structure.
 	*
 	* @return the kb structure ID of this k b structure
 	*/
@@ -91,7 +91,7 @@ public class KBStructureWrapper implements KBStructure {
 	}
 
 	/**
-	* Gets the group ID of this k b structure.
+	* Returns the group ID of this k b structure.
 	*
 	* @return the group ID of this k b structure
 	*/
@@ -109,7 +109,7 @@ public class KBStructureWrapper implements KBStructure {
 	}
 
 	/**
-	* Gets the company ID of this k b structure.
+	* Returns the company ID of this k b structure.
 	*
 	* @return the company ID of this k b structure
 	*/
@@ -127,7 +127,7 @@ public class KBStructureWrapper implements KBStructure {
 	}
 
 	/**
-	* Gets the user ID of this k b structure.
+	* Returns the user ID of this k b structure.
 	*
 	* @return the user ID of this k b structure
 	*/
@@ -145,7 +145,7 @@ public class KBStructureWrapper implements KBStructure {
 	}
 
 	/**
-	* Gets the user uuid of this k b structure.
+	* Returns the user uuid of this k b structure.
 	*
 	* @return the user uuid of this k b structure
 	* @throws SystemException if a system exception occurred
@@ -165,7 +165,7 @@ public class KBStructureWrapper implements KBStructure {
 	}
 
 	/**
-	* Gets the user name of this k b structure.
+	* Returns the user name of this k b structure.
 	*
 	* @return the user name of this k b structure
 	*/
@@ -183,7 +183,7 @@ public class KBStructureWrapper implements KBStructure {
 	}
 
 	/**
-	* Gets the create date of this k b structure.
+	* Returns the create date of this k b structure.
 	*
 	* @return the create date of this k b structure
 	*/
@@ -201,7 +201,7 @@ public class KBStructureWrapper implements KBStructure {
 	}
 
 	/**
-	* Gets the modified date of this k b structure.
+	* Returns the modified date of this k b structure.
 	*
 	* @return the modified date of this k b structure
 	*/
@@ -219,7 +219,7 @@ public class KBStructureWrapper implements KBStructure {
 	}
 
 	/**
-	* Gets the title of this k b structure.
+	* Returns the title of this k b structure.
 	*
 	* @return the title of this k b structure
 	*/
@@ -228,9 +228,9 @@ public class KBStructureWrapper implements KBStructure {
 	}
 
 	/**
-	* Gets the localized title of this k b structure. Uses the default language if no localization exists for the requested language.
+	* Returns the localized title of this k b structure in the language. Uses the default language if no localization exists for the requested language.
 	*
-	* @param locale the locale to get the localized title for
+	* @param locale the locale of the language
 	* @return the localized title of this k b structure
 	*/
 	public java.lang.String getTitle(java.util.Locale locale) {
@@ -238,9 +238,9 @@ public class KBStructureWrapper implements KBStructure {
 	}
 
 	/**
-	* Gets the localized title of this k b structure, optionally using the default language if no localization exists for the requested language.
+	* Returns the localized title of this k b structure in the language, optionally using the default language if no localization exists for the requested language.
 	*
-	* @param locale the local to get the localized title for
+	* @param locale the local of the language
 	* @param useDefault whether to use the default language if no localization exists for the requested language
 	* @return the localized title of this k b structure. If <code>useDefault</code> is <code>false</code> and no localization exists for the requested language, an empty string will be returned.
 	*/
@@ -249,9 +249,9 @@ public class KBStructureWrapper implements KBStructure {
 	}
 
 	/**
-	* Gets the localized title of this k b structure. Uses the default language if no localization exists for the requested language.
+	* Returns the localized title of this k b structure in the language. Uses the default language if no localization exists for the requested language.
 	*
-	* @param languageId the id of the language to get the localized title for
+	* @param languageId the ID of the language
 	* @return the localized title of this k b structure
 	*/
 	public java.lang.String getTitle(java.lang.String languageId) {
@@ -259,9 +259,9 @@ public class KBStructureWrapper implements KBStructure {
 	}
 
 	/**
-	* Gets the localized title of this k b structure, optionally using the default language if no localization exists for the requested language.
+	* Returns the localized title of this k b structure in the language, optionally using the default language if no localization exists for the requested language.
 	*
-	* @param languageId the id of the language to get the localized title for
+	* @param languageId the ID of the language
 	* @param useDefault whether to use the default language if no localization exists for the requested language
 	* @return the localized title of this k b structure
 	*/
@@ -271,9 +271,9 @@ public class KBStructureWrapper implements KBStructure {
 	}
 
 	/**
-	* Gets a map of the locales and localized title of this k b structure.
+	* Returns a map of the locales and localized titles of this k b structure.
 	*
-	* @return the locales and localized title
+	* @return the locales and localized titles of this k b structure
 	*/
 	public java.util.Map<java.util.Locale, java.lang.String> getTitleMap() {
 		return _kbStructure.getTitleMap();
@@ -289,15 +289,22 @@ public class KBStructureWrapper implements KBStructure {
 	}
 
 	/**
-	* Sets the localized title of this k b structure.
+	* Sets the localized title of this k b structure in the language.
 	*
 	* @param title the localized title of this k b structure
-	* @param locale the locale to set the localized title for
+	* @param locale the locale of the language
 	*/
 	public void setTitle(java.lang.String title, java.util.Locale locale) {
 		_kbStructure.setTitle(title, locale);
 	}
 
+	/**
+	* Sets the localized title of this k b structure in the language, and sets the default locale.
+	*
+	* @param title the localized title of this k b structure
+	* @param locale the locale of the language
+	* @param defaultLocale the default locale
+	*/
 	public void setTitle(java.lang.String title, java.util.Locale locale,
 		java.util.Locale defaultLocale) {
 		_kbStructure.setTitle(title, locale, defaultLocale);
@@ -313,6 +320,12 @@ public class KBStructureWrapper implements KBStructure {
 		_kbStructure.setTitleMap(titleMap);
 	}
 
+	/**
+	* Sets the localized titles of this k b structure from the map of locales and localized titles, and sets the default locale.
+	*
+	* @param titleMap the locales and localized titles of this k b structure
+	* @param defaultLocale the default locale
+	*/
 	public void setTitleMap(
 		java.util.Map<java.util.Locale, java.lang.String> titleMap,
 		java.util.Locale defaultLocale) {
@@ -320,7 +333,7 @@ public class KBStructureWrapper implements KBStructure {
 	}
 
 	/**
-	* Gets the content of this k b structure.
+	* Returns the content of this k b structure.
 	*
 	* @return the content of this k b structure
 	*/

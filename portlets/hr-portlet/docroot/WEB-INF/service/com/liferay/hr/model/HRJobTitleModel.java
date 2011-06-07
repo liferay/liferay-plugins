@@ -47,21 +47,21 @@ public interface HRJobTitleModel extends BaseModel<HRJobTitle>, GroupedModel {
 	 */
 
 	/**
-	 * Gets the primary key of this h r job title.
+	 * Returns the primary key of this h r job title.
 	 *
 	 * @return the primary key of this h r job title
 	 */
 	public long getPrimaryKey();
 
 	/**
-	 * Sets the primary key of this h r job title
+	 * Sets the primary key of this h r job title.
 	 *
 	 * @param primaryKey the primary key of this h r job title
 	 */
 	public void setPrimaryKey(long primaryKey);
 
 	/**
-	 * Gets the hr job title ID of this h r job title.
+	 * Returns the hr job title ID of this h r job title.
 	 *
 	 * @return the hr job title ID of this h r job title
 	 */
@@ -75,7 +75,7 @@ public interface HRJobTitleModel extends BaseModel<HRJobTitle>, GroupedModel {
 	public void setHrJobTitleId(long hrJobTitleId);
 
 	/**
-	 * Gets the group ID of this h r job title.
+	 * Returns the group ID of this h r job title.
 	 *
 	 * @return the group ID of this h r job title
 	 */
@@ -89,7 +89,7 @@ public interface HRJobTitleModel extends BaseModel<HRJobTitle>, GroupedModel {
 	public void setGroupId(long groupId);
 
 	/**
-	 * Gets the company ID of this h r job title.
+	 * Returns the company ID of this h r job title.
 	 *
 	 * @return the company ID of this h r job title
 	 */
@@ -103,7 +103,7 @@ public interface HRJobTitleModel extends BaseModel<HRJobTitle>, GroupedModel {
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the user ID of this h r job title.
+	 * Returns the user ID of this h r job title.
 	 *
 	 * @return the user ID of this h r job title
 	 */
@@ -117,7 +117,7 @@ public interface HRJobTitleModel extends BaseModel<HRJobTitle>, GroupedModel {
 	public void setUserId(long userId);
 
 	/**
-	 * Gets the user uuid of this h r job title.
+	 * Returns the user uuid of this h r job title.
 	 *
 	 * @return the user uuid of this h r job title
 	 * @throws SystemException if a system exception occurred
@@ -132,7 +132,7 @@ public interface HRJobTitleModel extends BaseModel<HRJobTitle>, GroupedModel {
 	public void setUserUuid(String userUuid);
 
 	/**
-	 * Gets the user name of this h r job title.
+	 * Returns the user name of this h r job title.
 	 *
 	 * @return the user name of this h r job title
 	 */
@@ -147,7 +147,7 @@ public interface HRJobTitleModel extends BaseModel<HRJobTitle>, GroupedModel {
 	public void setUserName(String userName);
 
 	/**
-	 * Gets the create date of this h r job title.
+	 * Returns the create date of this h r job title.
 	 *
 	 * @return the create date of this h r job title
 	 */
@@ -161,7 +161,7 @@ public interface HRJobTitleModel extends BaseModel<HRJobTitle>, GroupedModel {
 	public void setCreateDate(Date createDate);
 
 	/**
-	 * Gets the modified date of this h r job title.
+	 * Returns the modified date of this h r job title.
 	 *
 	 * @return the modified date of this h r job title
 	 */
@@ -175,7 +175,7 @@ public interface HRJobTitleModel extends BaseModel<HRJobTitle>, GroupedModel {
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Gets the name of this h r job title.
+	 * Returns the name of this h r job title.
 	 *
 	 * @return the name of this h r job title
 	 */
@@ -190,7 +190,7 @@ public interface HRJobTitleModel extends BaseModel<HRJobTitle>, GroupedModel {
 	public void setName(String name);
 
 	/**
-	 * Gets the description of this h r job title.
+	 * Returns the description of this h r job title.
 	 *
 	 * @return the description of this h r job title
 	 */

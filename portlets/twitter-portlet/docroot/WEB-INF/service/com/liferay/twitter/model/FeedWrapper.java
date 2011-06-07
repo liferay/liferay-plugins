@@ -37,7 +37,7 @@ public class FeedWrapper implements Feed {
 	}
 
 	/**
-	* Gets the primary key of this feed.
+	* Returns the primary key of this feed.
 	*
 	* @return the primary key of this feed
 	*/
@@ -46,7 +46,7 @@ public class FeedWrapper implements Feed {
 	}
 
 	/**
-	* Sets the primary key of this feed
+	* Sets the primary key of this feed.
 	*
 	* @param primaryKey the primary key of this feed
 	*/
@@ -55,7 +55,7 @@ public class FeedWrapper implements Feed {
 	}
 
 	/**
-	* Gets the feed ID of this feed.
+	* Returns the feed ID of this feed.
 	*
 	* @return the feed ID of this feed
 	*/
@@ -73,7 +73,7 @@ public class FeedWrapper implements Feed {
 	}
 
 	/**
-	* Gets the company ID of this feed.
+	* Returns the company ID of this feed.
 	*
 	* @return the company ID of this feed
 	*/
@@ -91,7 +91,7 @@ public class FeedWrapper implements Feed {
 	}
 
 	/**
-	* Gets the user ID of this feed.
+	* Returns the user ID of this feed.
 	*
 	* @return the user ID of this feed
 	*/
@@ -109,7 +109,7 @@ public class FeedWrapper implements Feed {
 	}
 
 	/**
-	* Gets the user uuid of this feed.
+	* Returns the user uuid of this feed.
 	*
 	* @return the user uuid of this feed
 	* @throws SystemException if a system exception occurred
@@ -129,7 +129,7 @@ public class FeedWrapper implements Feed {
 	}
 
 	/**
-	* Gets the user name of this feed.
+	* Returns the user name of this feed.
 	*
 	* @return the user name of this feed
 	*/
@@ -147,7 +147,7 @@ public class FeedWrapper implements Feed {
 	}
 
 	/**
-	* Gets the create date of this feed.
+	* Returns the create date of this feed.
 	*
 	* @return the create date of this feed
 	*/
@@ -165,7 +165,7 @@ public class FeedWrapper implements Feed {
 	}
 
 	/**
-	* Gets the modified date of this feed.
+	* Returns the modified date of this feed.
 	*
 	* @return the modified date of this feed
 	*/
@@ -183,7 +183,7 @@ public class FeedWrapper implements Feed {
 	}
 
 	/**
-	* Gets the twitter user ID of this feed.
+	* Returns the twitter user ID of this feed.
 	*
 	* @return the twitter user ID of this feed
 	*/
@@ -201,7 +201,7 @@ public class FeedWrapper implements Feed {
 	}
 
 	/**
-	* Gets the twitter user uuid of this feed.
+	* Returns the twitter user uuid of this feed.
 	*
 	* @return the twitter user uuid of this feed
 	* @throws SystemException if a system exception occurred
@@ -221,7 +221,7 @@ public class FeedWrapper implements Feed {
 	}
 
 	/**
-	* Gets the twitter screen name of this feed.
+	* Returns the twitter screen name of this feed.
 	*
 	* @return the twitter screen name of this feed
 	*/
@@ -239,7 +239,7 @@ public class FeedWrapper implements Feed {
 	}
 
 	/**
-	* Gets the last status ID of this feed.
+	* Returns the last status ID of this feed.
 	*
 	* @return the last status ID of this feed
 	*/

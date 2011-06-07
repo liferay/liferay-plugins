@@ -37,7 +37,7 @@ public class HRTerminationTypeWrapper implements HRTerminationType {
 	}
 
 	/**
-	* Gets the primary key of this h r termination type.
+	* Returns the primary key of this h r termination type.
 	*
 	* @return the primary key of this h r termination type
 	*/
@@ -46,7 +46,7 @@ public class HRTerminationTypeWrapper implements HRTerminationType {
 	}
 
 	/**
-	* Sets the primary key of this h r termination type
+	* Sets the primary key of this h r termination type.
 	*
 	* @param primaryKey the primary key of this h r termination type
 	*/
@@ -55,7 +55,7 @@ public class HRTerminationTypeWrapper implements HRTerminationType {
 	}
 
 	/**
-	* Gets the hr termination type ID of this h r termination type.
+	* Returns the hr termination type ID of this h r termination type.
 	*
 	* @return the hr termination type ID of this h r termination type
 	*/
@@ -73,7 +73,7 @@ public class HRTerminationTypeWrapper implements HRTerminationType {
 	}
 
 	/**
-	* Gets the group ID of this h r termination type.
+	* Returns the group ID of this h r termination type.
 	*
 	* @return the group ID of this h r termination type
 	*/
@@ -91,7 +91,7 @@ public class HRTerminationTypeWrapper implements HRTerminationType {
 	}
 
 	/**
-	* Gets the company ID of this h r termination type.
+	* Returns the company ID of this h r termination type.
 	*
 	* @return the company ID of this h r termination type
 	*/
@@ -109,7 +109,7 @@ public class HRTerminationTypeWrapper implements HRTerminationType {
 	}
 
 	/**
-	* Gets the user ID of this h r termination type.
+	* Returns the user ID of this h r termination type.
 	*
 	* @return the user ID of this h r termination type
 	*/
@@ -127,7 +127,7 @@ public class HRTerminationTypeWrapper implements HRTerminationType {
 	}
 
 	/**
-	* Gets the user uuid of this h r termination type.
+	* Returns the user uuid of this h r termination type.
 	*
 	* @return the user uuid of this h r termination type
 	* @throws SystemException if a system exception occurred
@@ -147,7 +147,7 @@ public class HRTerminationTypeWrapper implements HRTerminationType {
 	}
 
 	/**
-	* Gets the user name of this h r termination type.
+	* Returns the user name of this h r termination type.
 	*
 	* @return the user name of this h r termination type
 	*/
@@ -165,7 +165,7 @@ public class HRTerminationTypeWrapper implements HRTerminationType {
 	}
 
 	/**
-	* Gets the create date of this h r termination type.
+	* Returns the create date of this h r termination type.
 	*
 	* @return the create date of this h r termination type
 	*/
@@ -183,7 +183,7 @@ public class HRTerminationTypeWrapper implements HRTerminationType {
 	}
 
 	/**
-	* Gets the modified date of this h r termination type.
+	* Returns the modified date of this h r termination type.
 	*
 	* @return the modified date of this h r termination type
 	*/
@@ -201,7 +201,7 @@ public class HRTerminationTypeWrapper implements HRTerminationType {
 	}
 
 	/**
-	* Gets the code of this h r termination type.
+	* Returns the code of this h r termination type.
 	*
 	* @return the code of this h r termination type
 	*/
@@ -219,7 +219,7 @@ public class HRTerminationTypeWrapper implements HRTerminationType {
 	}
 
 	/**
-	* Gets the name of this h r termination type.
+	* Returns the name of this h r termination type.
 	*
 	* @return the name of this h r termination type
 	*/
@@ -237,7 +237,7 @@ public class HRTerminationTypeWrapper implements HRTerminationType {
 	}
 
 	/**
-	* Gets the description of this h r termination type.
+	* Returns the description of this h r termination type.
 	*
 	* @return the description of this h r termination type
 	*/

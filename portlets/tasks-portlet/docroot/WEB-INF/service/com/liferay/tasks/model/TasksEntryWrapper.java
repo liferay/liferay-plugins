@@ -37,7 +37,7 @@ public class TasksEntryWrapper implements TasksEntry {
 	}
 
 	/**
-	* Gets the primary key of this tasks entry.
+	* Returns the primary key of this tasks entry.
 	*
 	* @return the primary key of this tasks entry
 	*/
@@ -46,7 +46,7 @@ public class TasksEntryWrapper implements TasksEntry {
 	}
 
 	/**
-	* Sets the primary key of this tasks entry
+	* Sets the primary key of this tasks entry.
 	*
 	* @param primaryKey the primary key of this tasks entry
 	*/
@@ -55,7 +55,7 @@ public class TasksEntryWrapper implements TasksEntry {
 	}
 
 	/**
-	* Gets the tasks entry ID of this tasks entry.
+	* Returns the tasks entry ID of this tasks entry.
 	*
 	* @return the tasks entry ID of this tasks entry
 	*/
@@ -73,7 +73,7 @@ public class TasksEntryWrapper implements TasksEntry {
 	}
 
 	/**
-	* Gets the group ID of this tasks entry.
+	* Returns the group ID of this tasks entry.
 	*
 	* @return the group ID of this tasks entry
 	*/
@@ -91,7 +91,7 @@ public class TasksEntryWrapper implements TasksEntry {
 	}
 
 	/**
-	* Gets the company ID of this tasks entry.
+	* Returns the company ID of this tasks entry.
 	*
 	* @return the company ID of this tasks entry
 	*/
@@ -109,7 +109,7 @@ public class TasksEntryWrapper implements TasksEntry {
 	}
 
 	/**
-	* Gets the user ID of this tasks entry.
+	* Returns the user ID of this tasks entry.
 	*
 	* @return the user ID of this tasks entry
 	*/
@@ -127,7 +127,7 @@ public class TasksEntryWrapper implements TasksEntry {
 	}
 
 	/**
-	* Gets the user uuid of this tasks entry.
+	* Returns the user uuid of this tasks entry.
 	*
 	* @return the user uuid of this tasks entry
 	* @throws SystemException if a system exception occurred
@@ -147,7 +147,7 @@ public class TasksEntryWrapper implements TasksEntry {
 	}
 
 	/**
-	* Gets the user name of this tasks entry.
+	* Returns the user name of this tasks entry.
 	*
 	* @return the user name of this tasks entry
 	*/
@@ -165,7 +165,7 @@ public class TasksEntryWrapper implements TasksEntry {
 	}
 
 	/**
-	* Gets the create date of this tasks entry.
+	* Returns the create date of this tasks entry.
 	*
 	* @return the create date of this tasks entry
 	*/
@@ -183,7 +183,7 @@ public class TasksEntryWrapper implements TasksEntry {
 	}
 
 	/**
-	* Gets the modified date of this tasks entry.
+	* Returns the modified date of this tasks entry.
 	*
 	* @return the modified date of this tasks entry
 	*/
@@ -201,7 +201,7 @@ public class TasksEntryWrapper implements TasksEntry {
 	}
 
 	/**
-	* Gets the title of this tasks entry.
+	* Returns the title of this tasks entry.
 	*
 	* @return the title of this tasks entry
 	*/
@@ -219,7 +219,7 @@ public class TasksEntryWrapper implements TasksEntry {
 	}
 
 	/**
-	* Gets the priority of this tasks entry.
+	* Returns the priority of this tasks entry.
 	*
 	* @return the priority of this tasks entry
 	*/
@@ -237,7 +237,7 @@ public class TasksEntryWrapper implements TasksEntry {
 	}
 
 	/**
-	* Gets the assignee user ID of this tasks entry.
+	* Returns the assignee user ID of this tasks entry.
 	*
 	* @return the assignee user ID of this tasks entry
 	*/
@@ -255,7 +255,7 @@ public class TasksEntryWrapper implements TasksEntry {
 	}
 
 	/**
-	* Gets the assignee user uuid of this tasks entry.
+	* Returns the assignee user uuid of this tasks entry.
 	*
 	* @return the assignee user uuid of this tasks entry
 	* @throws SystemException if a system exception occurred
@@ -275,7 +275,7 @@ public class TasksEntryWrapper implements TasksEntry {
 	}
 
 	/**
-	* Gets the resolver user ID of this tasks entry.
+	* Returns the resolver user ID of this tasks entry.
 	*
 	* @return the resolver user ID of this tasks entry
 	*/
@@ -293,7 +293,7 @@ public class TasksEntryWrapper implements TasksEntry {
 	}
 
 	/**
-	* Gets the resolver user uuid of this tasks entry.
+	* Returns the resolver user uuid of this tasks entry.
 	*
 	* @return the resolver user uuid of this tasks entry
 	* @throws SystemException if a system exception occurred
@@ -313,7 +313,7 @@ public class TasksEntryWrapper implements TasksEntry {
 	}
 
 	/**
-	* Gets the due date of this tasks entry.
+	* Returns the due date of this tasks entry.
 	*
 	* @return the due date of this tasks entry
 	*/
@@ -331,7 +331,7 @@ public class TasksEntryWrapper implements TasksEntry {
 	}
 
 	/**
-	* Gets the finish date of this tasks entry.
+	* Returns the finish date of this tasks entry.
 	*
 	* @return the finish date of this tasks entry
 	*/
@@ -349,7 +349,7 @@ public class TasksEntryWrapper implements TasksEntry {
 	}
 
 	/**
-	* Gets the status of this tasks entry.
+	* Returns the status of this tasks entry.
 	*
 	* @return the status of this tasks entry
 	*/

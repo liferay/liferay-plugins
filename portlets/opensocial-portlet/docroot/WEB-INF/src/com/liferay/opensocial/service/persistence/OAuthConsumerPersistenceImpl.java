@@ -106,7 +106,7 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 	/**
 	 * Caches the o auth consumer in the entity cache if it is enabled.
 	 *
-	 * @param oAuthConsumer the o auth consumer to cache
+	 * @param oAuthConsumer the o auth consumer
 	 */
 	public void cacheResult(OAuthConsumer oAuthConsumer) {
 		EntityCacheUtil.putResult(OAuthConsumerModelImpl.ENTITY_CACHE_ENABLED,
@@ -126,7 +126,7 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 	/**
 	 * Caches the o auth consumers in the entity cache if it is enabled.
 	 *
-	 * @param oAuthConsumers the o auth consumers to cache
+	 * @param oAuthConsumers the o auth consumers
 	 */
 	public void cacheResult(List<OAuthConsumer> oAuthConsumers) {
 		for (OAuthConsumer oAuthConsumer : oAuthConsumers) {
@@ -193,7 +193,7 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 	/**
 	 * Removes the o auth consumer with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param primaryKey the primary key of the o auth consumer to remove
+	 * @param primaryKey the primary key of the o auth consumer
 	 * @return the o auth consumer that was removed
 	 * @throws com.liferay.portal.NoSuchModelException if a o auth consumer with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -206,7 +206,7 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 	/**
 	 * Removes the o auth consumer with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param oAuthConsumerId the primary key of the o auth consumer to remove
+	 * @param oAuthConsumerId the primary key of the o auth consumer
 	 * @return the o auth consumer that was removed
 	 * @throws com.liferay.opensocial.NoSuchOAuthConsumerException if a o auth consumer with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -247,7 +247,7 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 	/**
 	 * Removes the o auth consumer from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param oAuthConsumer the o auth consumer to remove
+	 * @param oAuthConsumer the o auth consumer
 	 * @return the o auth consumer that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -373,9 +373,9 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 	}
 
 	/**
-	 * Finds the o auth consumer with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
+	 * Returns the o auth consumer with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
 	 *
-	 * @param primaryKey the primary key of the o auth consumer to find
+	 * @param primaryKey the primary key of the o auth consumer
 	 * @return the o auth consumer
 	 * @throws com.liferay.portal.NoSuchModelException if a o auth consumer with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -386,9 +386,9 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 	}
 
 	/**
-	 * Finds the o auth consumer with the primary key or throws a {@link com.liferay.opensocial.NoSuchOAuthConsumerException} if it could not be found.
+	 * Returns the o auth consumer with the primary key or throws a {@link com.liferay.opensocial.NoSuchOAuthConsumerException} if it could not be found.
 	 *
-	 * @param oAuthConsumerId the primary key of the o auth consumer to find
+	 * @param oAuthConsumerId the primary key of the o auth consumer
 	 * @return the o auth consumer
 	 * @throws com.liferay.opensocial.NoSuchOAuthConsumerException if a o auth consumer with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -410,9 +410,9 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 	}
 
 	/**
-	 * Finds the o auth consumer with the primary key or returns <code>null</code> if it could not be found.
+	 * Returns the o auth consumer with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param primaryKey the primary key of the o auth consumer to find
+	 * @param primaryKey the primary key of the o auth consumer
 	 * @return the o auth consumer, or <code>null</code> if a o auth consumer with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -422,9 +422,9 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 	}
 
 	/**
-	 * Finds the o auth consumer with the primary key or returns <code>null</code> if it could not be found.
+	 * Returns the o auth consumer with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param oAuthConsumerId the primary key of the o auth consumer to find
+	 * @param oAuthConsumerId the primary key of the o auth consumer
 	 * @return the o auth consumer, or <code>null</code> if a o auth consumer with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -458,9 +458,9 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 	}
 
 	/**
-	 * Finds all the o auth consumers where gadgetId = &#63;.
+	 * Returns all the o auth consumers where gadgetId = &#63;.
 	 *
-	 * @param gadgetId the gadget ID to search with
+	 * @param gadgetId the gadget ID
 	 * @return the matching o auth consumers
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -471,15 +471,15 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 	}
 
 	/**
-	 * Finds a range of all the o auth consumers where gadgetId = &#63;.
+	 * Returns a range of all the o auth consumers where gadgetId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param gadgetId the gadget ID to search with
-	 * @param start the lower bound of the range of o auth consumers to return
-	 * @param end the upper bound of the range of o auth consumers to return (not inclusive)
+	 * @param gadgetId the gadget ID
+	 * @param start the lower bound of the range of o auth consumers
+	 * @param end the upper bound of the range of o auth consumers (not inclusive)
 	 * @return the range of matching o auth consumers
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -489,15 +489,15 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 	}
 
 	/**
-	 * Finds an ordered range of all the o auth consumers where gadgetId = &#63;.
+	 * Returns an ordered range of all the o auth consumers where gadgetId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param gadgetId the gadget ID to search with
-	 * @param start the lower bound of the range of o auth consumers to return
-	 * @param end the upper bound of the range of o auth consumers to return (not inclusive)
+	 * @param gadgetId the gadget ID
+	 * @param start the lower bound of the range of o auth consumers
+	 * @param end the upper bound of the range of o auth consumers (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching o auth consumers
 	 * @throws SystemException if a system exception occurred
@@ -577,13 +577,13 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 	}
 
 	/**
-	 * Finds the first o auth consumer in the ordered set where gadgetId = &#63;.
+	 * Returns the first o auth consumer in the ordered set where gadgetId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param gadgetId the gadget ID to search with
+	 * @param gadgetId the gadget ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching o auth consumer
 	 * @throws com.liferay.opensocial.NoSuchOAuthConsumerException if a matching o auth consumer could not be found
@@ -613,13 +613,13 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 	}
 
 	/**
-	 * Finds the last o auth consumer in the ordered set where gadgetId = &#63;.
+	 * Returns the last o auth consumer in the ordered set where gadgetId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param gadgetId the gadget ID to search with
+	 * @param gadgetId the gadget ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching o auth consumer
 	 * @throws com.liferay.opensocial.NoSuchOAuthConsumerException if a matching o auth consumer could not be found
@@ -651,14 +651,14 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 	}
 
 	/**
-	 * Finds the o auth consumers before and after the current o auth consumer in the ordered set where gadgetId = &#63;.
+	 * Returns the o auth consumers before and after the current o auth consumer in the ordered set where gadgetId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
 	 * @param oAuthConsumerId the primary key of the current o auth consumer
-	 * @param gadgetId the gadget ID to search with
+	 * @param gadgetId the gadget ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next o auth consumer
 	 * @throws com.liferay.opensocial.NoSuchOAuthConsumerException if a o auth consumer with the primary key could not be found
@@ -799,10 +799,10 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 	}
 
 	/**
-	 * Finds the o auth consumer where gadgetId = &#63; and serviceName = &#63; or throws a {@link com.liferay.opensocial.NoSuchOAuthConsumerException} if it could not be found.
+	 * Returns the o auth consumer where gadgetId = &#63; and serviceName = &#63; or throws a {@link com.liferay.opensocial.NoSuchOAuthConsumerException} if it could not be found.
 	 *
-	 * @param gadgetId the gadget ID to search with
-	 * @param serviceName the service name to search with
+	 * @param gadgetId the gadget ID
+	 * @param serviceName the service name
 	 * @return the matching o auth consumer
 	 * @throws com.liferay.opensocial.NoSuchOAuthConsumerException if a matching o auth consumer could not be found
 	 * @throws SystemException if a system exception occurred
@@ -835,10 +835,10 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 	}
 
 	/**
-	 * Finds the o auth consumer where gadgetId = &#63; and serviceName = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the o auth consumer where gadgetId = &#63; and serviceName = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @param gadgetId the gadget ID to search with
-	 * @param serviceName the service name to search with
+	 * @param gadgetId the gadget ID
+	 * @param serviceName the service name
 	 * @return the matching o auth consumer, or <code>null</code> if a matching o auth consumer could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -848,10 +848,10 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 	}
 
 	/**
-	 * Finds the o auth consumer where gadgetId = &#63; and serviceName = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the o auth consumer where gadgetId = &#63; and serviceName = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
-	 * @param gadgetId the gadget ID to search with
-	 * @param serviceName the service name to search with
+	 * @param gadgetId the gadget ID
+	 * @param serviceName the service name
 	 * @return the matching o auth consumer, or <code>null</code> if a matching o auth consumer could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -952,7 +952,7 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 	}
 
 	/**
-	 * Finds all the o auth consumers.
+	 * Returns all the o auth consumers.
 	 *
 	 * @return the o auth consumers
 	 * @throws SystemException if a system exception occurred
@@ -962,14 +962,14 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 	}
 
 	/**
-	 * Finds a range of all the o auth consumers.
+	 * Returns a range of all the o auth consumers.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of o auth consumers to return
-	 * @param end the upper bound of the range of o auth consumers to return (not inclusive)
+	 * @param start the lower bound of the range of o auth consumers
+	 * @param end the upper bound of the range of o auth consumers (not inclusive)
 	 * @return the range of o auth consumers
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -979,14 +979,14 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 	}
 
 	/**
-	 * Finds an ordered range of all the o auth consumers.
+	 * Returns an ordered range of all the o auth consumers.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of o auth consumers to return
-	 * @param end the upper bound of the range of o auth consumers to return (not inclusive)
+	 * @param start the lower bound of the range of o auth consumers
+	 * @param end the upper bound of the range of o auth consumers (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of o auth consumers
 	 * @throws SystemException if a system exception occurred
@@ -1063,7 +1063,7 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 	/**
 	 * Removes all the o auth consumers where gadgetId = &#63; from the database.
 	 *
-	 * @param gadgetId the gadget ID to search with
+	 * @param gadgetId the gadget ID
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeByGadgetId(long gadgetId) throws SystemException {
@@ -1075,8 +1075,8 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 	/**
 	 * Removes the o auth consumer where gadgetId = &#63; and serviceName = &#63; from the database.
 	 *
-	 * @param gadgetId the gadget ID to search with
-	 * @param serviceName the service name to search with
+	 * @param gadgetId the gadget ID
+	 * @param serviceName the service name
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeByG_S(long gadgetId, String serviceName)
@@ -1098,9 +1098,9 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 	}
 
 	/**
-	 * Counts all the o auth consumers where gadgetId = &#63;.
+	 * Returns the number of o auth consumers where gadgetId = &#63;.
 	 *
-	 * @param gadgetId the gadget ID to search with
+	 * @param gadgetId the gadget ID
 	 * @return the number of matching o auth consumers
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -1151,10 +1151,10 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 	}
 
 	/**
-	 * Counts all the o auth consumers where gadgetId = &#63; and serviceName = &#63;.
+	 * Returns the number of o auth consumers where gadgetId = &#63; and serviceName = &#63;.
 	 *
-	 * @param gadgetId the gadget ID to search with
-	 * @param serviceName the service name to search with
+	 * @param gadgetId the gadget ID
+	 * @param serviceName the service name
 	 * @return the number of matching o auth consumers
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -1222,7 +1222,7 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 	}
 
 	/**
-	 * Counts all the o auth consumers.
+	 * Returns the number of o auth consumers.
 	 *
 	 * @return the number of o auth consumers
 	 * @throws SystemException if a system exception occurred

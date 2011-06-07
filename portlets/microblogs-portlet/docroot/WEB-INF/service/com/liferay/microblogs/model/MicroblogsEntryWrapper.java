@@ -37,7 +37,7 @@ public class MicroblogsEntryWrapper implements MicroblogsEntry {
 	}
 
 	/**
-	* Gets the primary key of this microblogs entry.
+	* Returns the primary key of this microblogs entry.
 	*
 	* @return the primary key of this microblogs entry
 	*/
@@ -46,7 +46,7 @@ public class MicroblogsEntryWrapper implements MicroblogsEntry {
 	}
 
 	/**
-	* Sets the primary key of this microblogs entry
+	* Sets the primary key of this microblogs entry.
 	*
 	* @param primaryKey the primary key of this microblogs entry
 	*/
@@ -55,7 +55,7 @@ public class MicroblogsEntryWrapper implements MicroblogsEntry {
 	}
 
 	/**
-	* Gets the microblogs entry ID of this microblogs entry.
+	* Returns the microblogs entry ID of this microblogs entry.
 	*
 	* @return the microblogs entry ID of this microblogs entry
 	*/
@@ -73,7 +73,7 @@ public class MicroblogsEntryWrapper implements MicroblogsEntry {
 	}
 
 	/**
-	* Gets the company ID of this microblogs entry.
+	* Returns the company ID of this microblogs entry.
 	*
 	* @return the company ID of this microblogs entry
 	*/
@@ -91,7 +91,7 @@ public class MicroblogsEntryWrapper implements MicroblogsEntry {
 	}
 
 	/**
-	* Gets the user ID of this microblogs entry.
+	* Returns the user ID of this microblogs entry.
 	*
 	* @return the user ID of this microblogs entry
 	*/
@@ -109,7 +109,7 @@ public class MicroblogsEntryWrapper implements MicroblogsEntry {
 	}
 
 	/**
-	* Gets the user uuid of this microblogs entry.
+	* Returns the user uuid of this microblogs entry.
 	*
 	* @return the user uuid of this microblogs entry
 	* @throws SystemException if a system exception occurred
@@ -129,7 +129,7 @@ public class MicroblogsEntryWrapper implements MicroblogsEntry {
 	}
 
 	/**
-	* Gets the user name of this microblogs entry.
+	* Returns the user name of this microblogs entry.
 	*
 	* @return the user name of this microblogs entry
 	*/
@@ -147,7 +147,7 @@ public class MicroblogsEntryWrapper implements MicroblogsEntry {
 	}
 
 	/**
-	* Gets the create date of this microblogs entry.
+	* Returns the create date of this microblogs entry.
 	*
 	* @return the create date of this microblogs entry
 	*/
@@ -165,7 +165,7 @@ public class MicroblogsEntryWrapper implements MicroblogsEntry {
 	}
 
 	/**
-	* Gets the modified date of this microblogs entry.
+	* Returns the modified date of this microblogs entry.
 	*
 	* @return the modified date of this microblogs entry
 	*/
@@ -183,7 +183,7 @@ public class MicroblogsEntryWrapper implements MicroblogsEntry {
 	}
 
 	/**
-	* Gets the content of this microblogs entry.
+	* Returns the content of this microblogs entry.
 	*
 	* @return the content of this microblogs entry
 	*/
@@ -201,7 +201,7 @@ public class MicroblogsEntryWrapper implements MicroblogsEntry {
 	}
 
 	/**
-	* Gets the type of this microblogs entry.
+	* Returns the type of this microblogs entry.
 	*
 	* @return the type of this microblogs entry
 	*/
@@ -219,7 +219,7 @@ public class MicroblogsEntryWrapper implements MicroblogsEntry {
 	}
 
 	/**
-	* Gets the receiver user ID of this microblogs entry.
+	* Returns the receiver user ID of this microblogs entry.
 	*
 	* @return the receiver user ID of this microblogs entry
 	*/
@@ -237,7 +237,7 @@ public class MicroblogsEntryWrapper implements MicroblogsEntry {
 	}
 
 	/**
-	* Gets the receiver user uuid of this microblogs entry.
+	* Returns the receiver user uuid of this microblogs entry.
 	*
 	* @return the receiver user uuid of this microblogs entry
 	* @throws SystemException if a system exception occurred
@@ -257,7 +257,7 @@ public class MicroblogsEntryWrapper implements MicroblogsEntry {
 	}
 
 	/**
-	* Gets the receiver microblogs entry ID of this microblogs entry.
+	* Returns the receiver microblogs entry ID of this microblogs entry.
 	*
 	* @return the receiver microblogs entry ID of this microblogs entry
 	*/
@@ -275,7 +275,7 @@ public class MicroblogsEntryWrapper implements MicroblogsEntry {
 	}
 
 	/**
-	* Gets the social relation type of this microblogs entry.
+	* Returns the social relation type of this microblogs entry.
 	*
 	* @return the social relation type of this microblogs entry
 	*/

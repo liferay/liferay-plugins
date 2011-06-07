@@ -105,7 +105,7 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 	/**
 	 * Caches the account in the entity cache if it is enabled.
 	 *
-	 * @param account the account to cache
+	 * @param account the account
 	 */
 	public void cacheResult(Account account) {
 		EntityCacheUtil.putResult(AccountModelImpl.ENTITY_CACHE_ENABLED,
@@ -121,7 +121,7 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 	/**
 	 * Caches the accounts in the entity cache if it is enabled.
 	 *
-	 * @param accounts the accounts to cache
+	 * @param accounts the accounts
 	 */
 	public void cacheResult(List<Account> accounts) {
 		for (Account account : accounts) {
@@ -183,7 +183,7 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 	/**
 	 * Removes the account with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param primaryKey the primary key of the account to remove
+	 * @param primaryKey the primary key of the account
 	 * @return the account that was removed
 	 * @throws com.liferay.portal.NoSuchModelException if a account with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -196,7 +196,7 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 	/**
 	 * Removes the account with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param accountId the primary key of the account to remove
+	 * @param accountId the primary key of the account
 	 * @return the account that was removed
 	 * @throws com.liferay.mail.NoSuchAccountException if a account with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -236,7 +236,7 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 	/**
 	 * Removes the account from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param account the account to remove
+	 * @param account the account
 	 * @return the account that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -375,9 +375,9 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 	}
 
 	/**
-	 * Finds the account with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
+	 * Returns the account with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
 	 *
-	 * @param primaryKey the primary key of the account to find
+	 * @param primaryKey the primary key of the account
 	 * @return the account
 	 * @throws com.liferay.portal.NoSuchModelException if a account with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -388,9 +388,9 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 	}
 
 	/**
-	 * Finds the account with the primary key or throws a {@link com.liferay.mail.NoSuchAccountException} if it could not be found.
+	 * Returns the account with the primary key or throws a {@link com.liferay.mail.NoSuchAccountException} if it could not be found.
 	 *
-	 * @param accountId the primary key of the account to find
+	 * @param accountId the primary key of the account
 	 * @return the account
 	 * @throws com.liferay.mail.NoSuchAccountException if a account with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -412,9 +412,9 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 	}
 
 	/**
-	 * Finds the account with the primary key or returns <code>null</code> if it could not be found.
+	 * Returns the account with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param primaryKey the primary key of the account to find
+	 * @param primaryKey the primary key of the account
 	 * @return the account, or <code>null</code> if a account with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -424,9 +424,9 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 	}
 
 	/**
-	 * Finds the account with the primary key or returns <code>null</code> if it could not be found.
+	 * Returns the account with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param accountId the primary key of the account to find
+	 * @param accountId the primary key of the account
 	 * @return the account, or <code>null</code> if a account with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -459,9 +459,9 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 	}
 
 	/**
-	 * Finds all the accounts where userId = &#63;.
+	 * Returns all the accounts where userId = &#63;.
 	 *
-	 * @param userId the user ID to search with
+	 * @param userId the user ID
 	 * @return the matching accounts
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -470,15 +470,15 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 	}
 
 	/**
-	 * Finds a range of all the accounts where userId = &#63;.
+	 * Returns a range of all the accounts where userId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param userId the user ID to search with
-	 * @param start the lower bound of the range of accounts to return
-	 * @param end the upper bound of the range of accounts to return (not inclusive)
+	 * @param userId the user ID
+	 * @param start the lower bound of the range of accounts
+	 * @param end the upper bound of the range of accounts (not inclusive)
 	 * @return the range of matching accounts
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -488,15 +488,15 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 	}
 
 	/**
-	 * Finds an ordered range of all the accounts where userId = &#63;.
+	 * Returns an ordered range of all the accounts where userId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param userId the user ID to search with
-	 * @param start the lower bound of the range of accounts to return
-	 * @param end the upper bound of the range of accounts to return (not inclusive)
+	 * @param userId the user ID
+	 * @param start the lower bound of the range of accounts
+	 * @param end the upper bound of the range of accounts (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching accounts
 	 * @throws SystemException if a system exception occurred
@@ -575,13 +575,13 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 	}
 
 	/**
-	 * Finds the first account in the ordered set where userId = &#63;.
+	 * Returns the first account in the ordered set where userId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param userId the user ID to search with
+	 * @param userId the user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching account
 	 * @throws com.liferay.mail.NoSuchAccountException if a matching account could not be found
@@ -610,13 +610,13 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 	}
 
 	/**
-	 * Finds the last account in the ordered set where userId = &#63;.
+	 * Returns the last account in the ordered set where userId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param userId the user ID to search with
+	 * @param userId the user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching account
 	 * @throws com.liferay.mail.NoSuchAccountException if a matching account could not be found
@@ -648,14 +648,14 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 	}
 
 	/**
-	 * Finds the accounts before and after the current account in the ordered set where userId = &#63;.
+	 * Returns the accounts before and after the current account in the ordered set where userId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
 	 * @param accountId the primary key of the current account
-	 * @param userId the user ID to search with
+	 * @param userId the user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next account
 	 * @throws com.liferay.mail.NoSuchAccountException if a account with the primary key could not be found
@@ -795,10 +795,10 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 	}
 
 	/**
-	 * Finds the account where userId = &#63; and address = &#63; or throws a {@link com.liferay.mail.NoSuchAccountException} if it could not be found.
+	 * Returns the account where userId = &#63; and address = &#63; or throws a {@link com.liferay.mail.NoSuchAccountException} if it could not be found.
 	 *
-	 * @param userId the user ID to search with
-	 * @param address the address to search with
+	 * @param userId the user ID
+	 * @param address the address
 	 * @return the matching account
 	 * @throws com.liferay.mail.NoSuchAccountException if a matching account could not be found
 	 * @throws SystemException if a system exception occurred
@@ -831,10 +831,10 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 	}
 
 	/**
-	 * Finds the account where userId = &#63; and address = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the account where userId = &#63; and address = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @param userId the user ID to search with
-	 * @param address the address to search with
+	 * @param userId the user ID
+	 * @param address the address
 	 * @return the matching account, or <code>null</code> if a matching account could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -844,10 +844,10 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 	}
 
 	/**
-	 * Finds the account where userId = &#63; and address = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the account where userId = &#63; and address = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
-	 * @param userId the user ID to search with
-	 * @param address the address to search with
+	 * @param userId the user ID
+	 * @param address the address
 	 * @return the matching account, or <code>null</code> if a matching account could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -948,7 +948,7 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 	}
 
 	/**
-	 * Finds all the accounts.
+	 * Returns all the accounts.
 	 *
 	 * @return the accounts
 	 * @throws SystemException if a system exception occurred
@@ -958,14 +958,14 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 	}
 
 	/**
-	 * Finds a range of all the accounts.
+	 * Returns a range of all the accounts.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of accounts to return
-	 * @param end the upper bound of the range of accounts to return (not inclusive)
+	 * @param start the lower bound of the range of accounts
+	 * @param end the upper bound of the range of accounts (not inclusive)
 	 * @return the range of accounts
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -974,14 +974,14 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 	}
 
 	/**
-	 * Finds an ordered range of all the accounts.
+	 * Returns an ordered range of all the accounts.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of accounts to return
-	 * @param end the upper bound of the range of accounts to return (not inclusive)
+	 * @param start the lower bound of the range of accounts
+	 * @param end the upper bound of the range of accounts (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of accounts
 	 * @throws SystemException if a system exception occurred
@@ -1058,7 +1058,7 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 	/**
 	 * Removes all the accounts where userId = &#63; from the database.
 	 *
-	 * @param userId the user ID to search with
+	 * @param userId the user ID
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeByUserId(long userId) throws SystemException {
@@ -1070,8 +1070,8 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 	/**
 	 * Removes the account where userId = &#63; and address = &#63; from the database.
 	 *
-	 * @param userId the user ID to search with
-	 * @param address the address to search with
+	 * @param userId the user ID
+	 * @param address the address
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeByU_A(long userId, String address)
@@ -1093,9 +1093,9 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 	}
 
 	/**
-	 * Counts all the accounts where userId = &#63;.
+	 * Returns the number of accounts where userId = &#63;.
 	 *
-	 * @param userId the user ID to search with
+	 * @param userId the user ID
 	 * @return the number of matching accounts
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -1146,10 +1146,10 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 	}
 
 	/**
-	 * Counts all the accounts where userId = &#63; and address = &#63;.
+	 * Returns the number of accounts where userId = &#63; and address = &#63;.
 	 *
-	 * @param userId the user ID to search with
-	 * @param address the address to search with
+	 * @param userId the user ID
+	 * @param address the address
 	 * @return the number of matching accounts
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -1217,7 +1217,7 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 	}
 
 	/**
-	 * Counts all the accounts.
+	 * Returns the number of accounts.
 	 *
 	 * @return the number of accounts
 	 * @throws SystemException if a system exception occurred

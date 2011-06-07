@@ -47,21 +47,21 @@ public interface HRClientModel extends BaseModel<HRClient>, GroupedModel {
 	 */
 
 	/**
-	 * Gets the primary key of this h r client.
+	 * Returns the primary key of this h r client.
 	 *
 	 * @return the primary key of this h r client
 	 */
 	public long getPrimaryKey();
 
 	/**
-	 * Sets the primary key of this h r client
+	 * Sets the primary key of this h r client.
 	 *
 	 * @param primaryKey the primary key of this h r client
 	 */
 	public void setPrimaryKey(long primaryKey);
 
 	/**
-	 * Gets the hr client ID of this h r client.
+	 * Returns the hr client ID of this h r client.
 	 *
 	 * @return the hr client ID of this h r client
 	 */
@@ -75,7 +75,7 @@ public interface HRClientModel extends BaseModel<HRClient>, GroupedModel {
 	public void setHrClientId(long hrClientId);
 
 	/**
-	 * Gets the group ID of this h r client.
+	 * Returns the group ID of this h r client.
 	 *
 	 * @return the group ID of this h r client
 	 */
@@ -89,7 +89,7 @@ public interface HRClientModel extends BaseModel<HRClient>, GroupedModel {
 	public void setGroupId(long groupId);
 
 	/**
-	 * Gets the company ID of this h r client.
+	 * Returns the company ID of this h r client.
 	 *
 	 * @return the company ID of this h r client
 	 */
@@ -103,7 +103,7 @@ public interface HRClientModel extends BaseModel<HRClient>, GroupedModel {
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the user ID of this h r client.
+	 * Returns the user ID of this h r client.
 	 *
 	 * @return the user ID of this h r client
 	 */
@@ -117,7 +117,7 @@ public interface HRClientModel extends BaseModel<HRClient>, GroupedModel {
 	public void setUserId(long userId);
 
 	/**
-	 * Gets the user uuid of this h r client.
+	 * Returns the user uuid of this h r client.
 	 *
 	 * @return the user uuid of this h r client
 	 * @throws SystemException if a system exception occurred
@@ -132,7 +132,7 @@ public interface HRClientModel extends BaseModel<HRClient>, GroupedModel {
 	public void setUserUuid(String userUuid);
 
 	/**
-	 * Gets the user name of this h r client.
+	 * Returns the user name of this h r client.
 	 *
 	 * @return the user name of this h r client
 	 */
@@ -147,7 +147,7 @@ public interface HRClientModel extends BaseModel<HRClient>, GroupedModel {
 	public void setUserName(String userName);
 
 	/**
-	 * Gets the create date of this h r client.
+	 * Returns the create date of this h r client.
 	 *
 	 * @return the create date of this h r client
 	 */
@@ -161,7 +161,7 @@ public interface HRClientModel extends BaseModel<HRClient>, GroupedModel {
 	public void setCreateDate(Date createDate);
 
 	/**
-	 * Gets the modified date of this h r client.
+	 * Returns the modified date of this h r client.
 	 *
 	 * @return the modified date of this h r client
 	 */
@@ -175,7 +175,7 @@ public interface HRClientModel extends BaseModel<HRClient>, GroupedModel {
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Gets the name of this h r client.
+	 * Returns the name of this h r client.
 	 *
 	 * @return the name of this h r client
 	 */
@@ -190,7 +190,7 @@ public interface HRClientModel extends BaseModel<HRClient>, GroupedModel {
 	public void setName(String name);
 
 	/**
-	 * Gets the description of this h r client.
+	 * Returns the description of this h r client.
 	 *
 	 * @return the description of this h r client
 	 */

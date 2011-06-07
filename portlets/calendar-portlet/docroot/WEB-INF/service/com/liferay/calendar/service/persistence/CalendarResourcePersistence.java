@@ -41,7 +41,7 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 	/**
 	* Caches the calendar resource in the entity cache if it is enabled.
 	*
-	* @param calendarResource the calendar resource to cache
+	* @param calendarResource the calendar resource
 	*/
 	public void cacheResult(
 		com.liferay.calendar.model.CalendarResource calendarResource);
@@ -49,7 +49,7 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 	/**
 	* Caches the calendar resources in the entity cache if it is enabled.
 	*
-	* @param calendarResources the calendar resources to cache
+	* @param calendarResources the calendar resources
 	*/
 	public void cacheResult(
 		java.util.List<com.liferay.calendar.model.CalendarResource> calendarResources);
@@ -66,7 +66,7 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 	/**
 	* Removes the calendar resource with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param calendarResourceId the primary key of the calendar resource to remove
+	* @param calendarResourceId the primary key of the calendar resource
 	* @return the calendar resource that was removed
 	* @throws com.liferay.calendar.NoSuchResourceException if a calendar resource with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -82,9 +82,9 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the calendar resource with the primary key or throws a {@link com.liferay.calendar.NoSuchResourceException} if it could not be found.
+	* Returns the calendar resource with the primary key or throws a {@link com.liferay.calendar.NoSuchResourceException} if it could not be found.
 	*
-	* @param calendarResourceId the primary key of the calendar resource to find
+	* @param calendarResourceId the primary key of the calendar resource
 	* @return the calendar resource
 	* @throws com.liferay.calendar.NoSuchResourceException if a calendar resource with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -95,9 +95,9 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the calendar resource with the primary key or returns <code>null</code> if it could not be found.
+	* Returns the calendar resource with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param calendarResourceId the primary key of the calendar resource to find
+	* @param calendarResourceId the primary key of the calendar resource
 	* @return the calendar resource, or <code>null</code> if a calendar resource with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -106,9 +106,9 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds all the calendar resources where uuid = &#63;.
+	* Returns all the calendar resources where uuid = &#63;.
 	*
-	* @param uuid the uuid to search with
+	* @param uuid the uuid
 	* @return the matching calendar resources
 	* @throws SystemException if a system exception occurred
 	*/
@@ -117,15 +117,15 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds a range of all the calendar resources where uuid = &#63;.
+	* Returns a range of all the calendar resources where uuid = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param uuid the uuid to search with
-	* @param start the lower bound of the range of calendar resources to return
-	* @param end the upper bound of the range of calendar resources to return (not inclusive)
+	* @param uuid the uuid
+	* @param start the lower bound of the range of calendar resources
+	* @param end the upper bound of the range of calendar resources (not inclusive)
 	* @return the range of matching calendar resources
 	* @throws SystemException if a system exception occurred
 	*/
@@ -134,15 +134,15 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds an ordered range of all the calendar resources where uuid = &#63;.
+	* Returns an ordered range of all the calendar resources where uuid = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param uuid the uuid to search with
-	* @param start the lower bound of the range of calendar resources to return
-	* @param end the upper bound of the range of calendar resources to return (not inclusive)
+	* @param uuid the uuid
+	* @param start the lower bound of the range of calendar resources
+	* @param end the upper bound of the range of calendar resources (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching calendar resources
 	* @throws SystemException if a system exception occurred
@@ -153,13 +153,13 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the first calendar resource in the ordered set where uuid = &#63;.
+	* Returns the first calendar resource in the ordered set where uuid = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param uuid the uuid to search with
+	* @param uuid the uuid
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching calendar resource
 	* @throws com.liferay.calendar.NoSuchResourceException if a matching calendar resource could not be found
@@ -172,13 +172,13 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the last calendar resource in the ordered set where uuid = &#63;.
+	* Returns the last calendar resource in the ordered set where uuid = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param uuid the uuid to search with
+	* @param uuid the uuid
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching calendar resource
 	* @throws com.liferay.calendar.NoSuchResourceException if a matching calendar resource could not be found
@@ -191,14 +191,14 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the calendar resources before and after the current calendar resource in the ordered set where uuid = &#63;.
+	* Returns the calendar resources before and after the current calendar resource in the ordered set where uuid = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
 	* @param calendarResourceId the primary key of the current calendar resource
-	* @param uuid the uuid to search with
+	* @param uuid the uuid
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next calendar resource
 	* @throws com.liferay.calendar.NoSuchResourceException if a calendar resource with the primary key could not be found
@@ -211,10 +211,10 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the calendar resource where uuid = &#63; and groupId = &#63; or throws a {@link com.liferay.calendar.NoSuchResourceException} if it could not be found.
+	* Returns the calendar resource where uuid = &#63; and groupId = &#63; or throws a {@link com.liferay.calendar.NoSuchResourceException} if it could not be found.
 	*
-	* @param uuid the uuid to search with
-	* @param groupId the group ID to search with
+	* @param uuid the uuid
+	* @param groupId the group ID
 	* @return the matching calendar resource
 	* @throws com.liferay.calendar.NoSuchResourceException if a matching calendar resource could not be found
 	* @throws SystemException if a system exception occurred
@@ -225,10 +225,10 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the calendar resource where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	* Returns the calendar resource where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	*
-	* @param uuid the uuid to search with
-	* @param groupId the group ID to search with
+	* @param uuid the uuid
+	* @param groupId the group ID
 	* @return the matching calendar resource, or <code>null</code> if a matching calendar resource could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -237,10 +237,10 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the calendar resource where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	* Returns the calendar resource where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	*
-	* @param uuid the uuid to search with
-	* @param groupId the group ID to search with
+	* @param uuid the uuid
+	* @param groupId the group ID
 	* @return the matching calendar resource, or <code>null</code> if a matching calendar resource could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -249,9 +249,9 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds all the calendar resources where active = &#63;.
+	* Returns all the calendar resources where active = &#63;.
 	*
-	* @param active the active to search with
+	* @param active the active
 	* @return the matching calendar resources
 	* @throws SystemException if a system exception occurred
 	*/
@@ -260,15 +260,15 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds a range of all the calendar resources where active = &#63;.
+	* Returns a range of all the calendar resources where active = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param active the active to search with
-	* @param start the lower bound of the range of calendar resources to return
-	* @param end the upper bound of the range of calendar resources to return (not inclusive)
+	* @param active the active
+	* @param start the lower bound of the range of calendar resources
+	* @param end the upper bound of the range of calendar resources (not inclusive)
 	* @return the range of matching calendar resources
 	* @throws SystemException if a system exception occurred
 	*/
@@ -277,15 +277,15 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds an ordered range of all the calendar resources where active = &#63;.
+	* Returns an ordered range of all the calendar resources where active = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param active the active to search with
-	* @param start the lower bound of the range of calendar resources to return
-	* @param end the upper bound of the range of calendar resources to return (not inclusive)
+	* @param active the active
+	* @param start the lower bound of the range of calendar resources
+	* @param end the upper bound of the range of calendar resources (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching calendar resources
 	* @throws SystemException if a system exception occurred
@@ -296,13 +296,13 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the first calendar resource in the ordered set where active = &#63;.
+	* Returns the first calendar resource in the ordered set where active = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param active the active to search with
+	* @param active the active
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching calendar resource
 	* @throws com.liferay.calendar.NoSuchResourceException if a matching calendar resource could not be found
@@ -315,13 +315,13 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the last calendar resource in the ordered set where active = &#63;.
+	* Returns the last calendar resource in the ordered set where active = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param active the active to search with
+	* @param active the active
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching calendar resource
 	* @throws com.liferay.calendar.NoSuchResourceException if a matching calendar resource could not be found
@@ -334,14 +334,14 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the calendar resources before and after the current calendar resource in the ordered set where active = &#63;.
+	* Returns the calendar resources before and after the current calendar resource in the ordered set where active = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
 	* @param calendarResourceId the primary key of the current calendar resource
-	* @param active the active to search with
+	* @param active the active
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next calendar resource
 	* @throws com.liferay.calendar.NoSuchResourceException if a calendar resource with the primary key could not be found
@@ -354,10 +354,10 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds all the calendar resources where groupId = &#63; and active = &#63;.
+	* Returns all the calendar resources where groupId = &#63; and active = &#63;.
 	*
-	* @param groupId the group ID to search with
-	* @param active the active to search with
+	* @param groupId the group ID
+	* @param active the active
 	* @return the matching calendar resources
 	* @throws SystemException if a system exception occurred
 	*/
@@ -366,16 +366,16 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds a range of all the calendar resources where groupId = &#63; and active = &#63;.
+	* Returns a range of all the calendar resources where groupId = &#63; and active = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param groupId the group ID to search with
-	* @param active the active to search with
-	* @param start the lower bound of the range of calendar resources to return
-	* @param end the upper bound of the range of calendar resources to return (not inclusive)
+	* @param groupId the group ID
+	* @param active the active
+	* @param start the lower bound of the range of calendar resources
+	* @param end the upper bound of the range of calendar resources (not inclusive)
 	* @return the range of matching calendar resources
 	* @throws SystemException if a system exception occurred
 	*/
@@ -384,16 +384,16 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds an ordered range of all the calendar resources where groupId = &#63; and active = &#63;.
+	* Returns an ordered range of all the calendar resources where groupId = &#63; and active = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param groupId the group ID to search with
-	* @param active the active to search with
-	* @param start the lower bound of the range of calendar resources to return
-	* @param end the upper bound of the range of calendar resources to return (not inclusive)
+	* @param groupId the group ID
+	* @param active the active
+	* @param start the lower bound of the range of calendar resources
+	* @param end the upper bound of the range of calendar resources (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching calendar resources
 	* @throws SystemException if a system exception occurred
@@ -404,14 +404,14 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the first calendar resource in the ordered set where groupId = &#63; and active = &#63;.
+	* Returns the first calendar resource in the ordered set where groupId = &#63; and active = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param groupId the group ID to search with
-	* @param active the active to search with
+	* @param groupId the group ID
+	* @param active the active
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching calendar resource
 	* @throws com.liferay.calendar.NoSuchResourceException if a matching calendar resource could not be found
@@ -424,14 +424,14 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the last calendar resource in the ordered set where groupId = &#63; and active = &#63;.
+	* Returns the last calendar resource in the ordered set where groupId = &#63; and active = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param groupId the group ID to search with
-	* @param active the active to search with
+	* @param groupId the group ID
+	* @param active the active
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching calendar resource
 	* @throws com.liferay.calendar.NoSuchResourceException if a matching calendar resource could not be found
@@ -444,15 +444,15 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the calendar resources before and after the current calendar resource in the ordered set where groupId = &#63; and active = &#63;.
+	* Returns the calendar resources before and after the current calendar resource in the ordered set where groupId = &#63; and active = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
 	* @param calendarResourceId the primary key of the current calendar resource
-	* @param groupId the group ID to search with
-	* @param active the active to search with
+	* @param groupId the group ID
+	* @param active the active
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next calendar resource
 	* @throws com.liferay.calendar.NoSuchResourceException if a calendar resource with the primary key could not be found
@@ -465,10 +465,10 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Filters by the user's permissions and finds all the calendar resources where groupId = &#63; and active = &#63;.
+	* Returns all the calendar resources that the user has permission to view where groupId = &#63; and active = &#63;.
 	*
-	* @param groupId the group ID to search with
-	* @param active the active to search with
+	* @param groupId the group ID
+	* @param active the active
 	* @return the matching calendar resources that the user has permission to view
 	* @throws SystemException if a system exception occurred
 	*/
@@ -477,16 +477,16 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Filters by the user's permissions and finds a range of all the calendar resources where groupId = &#63; and active = &#63;.
+	* Returns a range of all the calendar resources that the user has permission to view where groupId = &#63; and active = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param groupId the group ID to search with
-	* @param active the active to search with
-	* @param start the lower bound of the range of calendar resources to return
-	* @param end the upper bound of the range of calendar resources to return (not inclusive)
+	* @param groupId the group ID
+	* @param active the active
+	* @param start the lower bound of the range of calendar resources
+	* @param end the upper bound of the range of calendar resources (not inclusive)
 	* @return the range of matching calendar resources that the user has permission to view
 	* @throws SystemException if a system exception occurred
 	*/
@@ -495,16 +495,16 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Filters by the user's permissions and finds an ordered range of all the calendar resources where groupId = &#63; and active = &#63;.
+	* Returns an ordered range of all the calendar resources that the user has permissions to view where groupId = &#63; and active = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param groupId the group ID to search with
-	* @param active the active to search with
-	* @param start the lower bound of the range of calendar resources to return
-	* @param end the upper bound of the range of calendar resources to return (not inclusive)
+	* @param groupId the group ID
+	* @param active the active
+	* @param start the lower bound of the range of calendar resources
+	* @param end the upper bound of the range of calendar resources (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching calendar resources that the user has permission to view
 	* @throws SystemException if a system exception occurred
@@ -515,15 +515,11 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Filters the calendar resources before and after the current calendar resource in the ordered set where groupId = &#63; and active = &#63;.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* Returns the calendar resources before and after the current calendar resource in the ordered set of calendar resources that the user has permission to view where groupId = &#63; and active = &#63;.
 	*
 	* @param calendarResourceId the primary key of the current calendar resource
-	* @param groupId the group ID to search with
-	* @param active the active to search with
+	* @param groupId the group ID
+	* @param active the active
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next calendar resource
 	* @throws com.liferay.calendar.NoSuchResourceException if a calendar resource with the primary key could not be found
@@ -536,10 +532,10 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the calendar resource where classNameId = &#63; and classPK = &#63; or throws a {@link com.liferay.calendar.NoSuchResourceException} if it could not be found.
+	* Returns the calendar resource where classNameId = &#63; and classPK = &#63; or throws a {@link com.liferay.calendar.NoSuchResourceException} if it could not be found.
 	*
-	* @param classNameId the class name ID to search with
-	* @param classPK the class p k to search with
+	* @param classNameId the class name ID
+	* @param classPK the class p k
 	* @return the matching calendar resource
 	* @throws com.liferay.calendar.NoSuchResourceException if a matching calendar resource could not be found
 	* @throws SystemException if a system exception occurred
@@ -550,10 +546,10 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the calendar resource where classNameId = &#63; and classPK = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	* Returns the calendar resource where classNameId = &#63; and classPK = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	*
-	* @param classNameId the class name ID to search with
-	* @param classPK the class p k to search with
+	* @param classNameId the class name ID
+	* @param classPK the class p k
 	* @return the matching calendar resource, or <code>null</code> if a matching calendar resource could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -562,10 +558,10 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the calendar resource where classNameId = &#63; and classPK = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	* Returns the calendar resource where classNameId = &#63; and classPK = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	*
-	* @param classNameId the class name ID to search with
-	* @param classPK the class p k to search with
+	* @param classNameId the class name ID
+	* @param classPK the class p k
 	* @return the matching calendar resource, or <code>null</code> if a matching calendar resource could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -574,11 +570,11 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds all the calendar resources where groupId = &#63; and name LIKE &#63; and active = &#63;.
+	* Returns all the calendar resources where groupId = &#63; and name LIKE &#63; and active = &#63;.
 	*
-	* @param groupId the group ID to search with
-	* @param name the name to search with
-	* @param active the active to search with
+	* @param groupId the group ID
+	* @param name the name
+	* @param active the active
 	* @return the matching calendar resources
 	* @throws SystemException if a system exception occurred
 	*/
@@ -587,17 +583,17 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds a range of all the calendar resources where groupId = &#63; and name LIKE &#63; and active = &#63;.
+	* Returns a range of all the calendar resources where groupId = &#63; and name LIKE &#63; and active = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param groupId the group ID to search with
-	* @param name the name to search with
-	* @param active the active to search with
-	* @param start the lower bound of the range of calendar resources to return
-	* @param end the upper bound of the range of calendar resources to return (not inclusive)
+	* @param groupId the group ID
+	* @param name the name
+	* @param active the active
+	* @param start the lower bound of the range of calendar resources
+	* @param end the upper bound of the range of calendar resources (not inclusive)
 	* @return the range of matching calendar resources
 	* @throws SystemException if a system exception occurred
 	*/
@@ -606,17 +602,17 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds an ordered range of all the calendar resources where groupId = &#63; and name LIKE &#63; and active = &#63;.
+	* Returns an ordered range of all the calendar resources where groupId = &#63; and name LIKE &#63; and active = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param groupId the group ID to search with
-	* @param name the name to search with
-	* @param active the active to search with
-	* @param start the lower bound of the range of calendar resources to return
-	* @param end the upper bound of the range of calendar resources to return (not inclusive)
+	* @param groupId the group ID
+	* @param name the name
+	* @param active the active
+	* @param start the lower bound of the range of calendar resources
+	* @param end the upper bound of the range of calendar resources (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching calendar resources
 	* @throws SystemException if a system exception occurred
@@ -628,15 +624,15 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the first calendar resource in the ordered set where groupId = &#63; and name LIKE &#63; and active = &#63;.
+	* Returns the first calendar resource in the ordered set where groupId = &#63; and name LIKE &#63; and active = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param groupId the group ID to search with
-	* @param name the name to search with
-	* @param active the active to search with
+	* @param groupId the group ID
+	* @param name the name
+	* @param active the active
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching calendar resource
 	* @throws com.liferay.calendar.NoSuchResourceException if a matching calendar resource could not be found
@@ -649,15 +645,15 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the last calendar resource in the ordered set where groupId = &#63; and name LIKE &#63; and active = &#63;.
+	* Returns the last calendar resource in the ordered set where groupId = &#63; and name LIKE &#63; and active = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param groupId the group ID to search with
-	* @param name the name to search with
-	* @param active the active to search with
+	* @param groupId the group ID
+	* @param name the name
+	* @param active the active
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching calendar resource
 	* @throws com.liferay.calendar.NoSuchResourceException if a matching calendar resource could not be found
@@ -670,16 +666,16 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the calendar resources before and after the current calendar resource in the ordered set where groupId = &#63; and name LIKE &#63; and active = &#63;.
+	* Returns the calendar resources before and after the current calendar resource in the ordered set where groupId = &#63; and name LIKE &#63; and active = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
 	* @param calendarResourceId the primary key of the current calendar resource
-	* @param groupId the group ID to search with
-	* @param name the name to search with
-	* @param active the active to search with
+	* @param groupId the group ID
+	* @param name the name
+	* @param active the active
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next calendar resource
 	* @throws com.liferay.calendar.NoSuchResourceException if a calendar resource with the primary key could not be found
@@ -693,15 +689,15 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds all the calendar resources where groupId = any &#63; and name LIKE &#63; and active = &#63;.
+	* Returns all the calendar resources where groupId = any &#63; and name LIKE &#63; and active = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param groupIds the group IDs to search with
-	* @param name the name to search with
-	* @param active the active to search with
+	* @param groupIds the group IDs
+	* @param name the name
+	* @param active the active
 	* @return the matching calendar resources
 	* @throws SystemException if a system exception occurred
 	*/
@@ -710,17 +706,17 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds a range of all the calendar resources where groupId = any &#63; and name LIKE &#63; and active = &#63;.
+	* Returns a range of all the calendar resources where groupId = any &#63; and name LIKE &#63; and active = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param groupIds the group IDs to search with
-	* @param name the name to search with
-	* @param active the active to search with
-	* @param start the lower bound of the range of calendar resources to return
-	* @param end the upper bound of the range of calendar resources to return (not inclusive)
+	* @param groupIds the group IDs
+	* @param name the name
+	* @param active the active
+	* @param start the lower bound of the range of calendar resources
+	* @param end the upper bound of the range of calendar resources (not inclusive)
 	* @return the range of matching calendar resources
 	* @throws SystemException if a system exception occurred
 	*/
@@ -729,17 +725,17 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 		int end) throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds an ordered range of all the calendar resources where groupId = any &#63; and name LIKE &#63; and active = &#63;.
+	* Returns an ordered range of all the calendar resources where groupId = any &#63; and name LIKE &#63; and active = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param groupIds the group IDs to search with
-	* @param name the name to search with
-	* @param active the active to search with
-	* @param start the lower bound of the range of calendar resources to return
-	* @param end the upper bound of the range of calendar resources to return (not inclusive)
+	* @param groupIds the group IDs
+	* @param name the name
+	* @param active the active
+	* @param start the lower bound of the range of calendar resources
+	* @param end the upper bound of the range of calendar resources (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching calendar resources
 	* @throws SystemException if a system exception occurred
@@ -751,11 +747,11 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Filters by the user's permissions and finds all the calendar resources where groupId = &#63; and name LIKE &#63; and active = &#63;.
+	* Returns all the calendar resources that the user has permission to view where groupId = &#63; and name LIKE &#63; and active = &#63;.
 	*
-	* @param groupId the group ID to search with
-	* @param name the name to search with
-	* @param active the active to search with
+	* @param groupId the group ID
+	* @param name the name
+	* @param active the active
 	* @return the matching calendar resources that the user has permission to view
 	* @throws SystemException if a system exception occurred
 	*/
@@ -764,17 +760,17 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Filters by the user's permissions and finds a range of all the calendar resources where groupId = &#63; and name LIKE &#63; and active = &#63;.
+	* Returns a range of all the calendar resources that the user has permission to view where groupId = &#63; and name LIKE &#63; and active = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param groupId the group ID to search with
-	* @param name the name to search with
-	* @param active the active to search with
-	* @param start the lower bound of the range of calendar resources to return
-	* @param end the upper bound of the range of calendar resources to return (not inclusive)
+	* @param groupId the group ID
+	* @param name the name
+	* @param active the active
+	* @param start the lower bound of the range of calendar resources
+	* @param end the upper bound of the range of calendar resources (not inclusive)
 	* @return the range of matching calendar resources that the user has permission to view
 	* @throws SystemException if a system exception occurred
 	*/
@@ -783,17 +779,17 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Filters by the user's permissions and finds an ordered range of all the calendar resources where groupId = &#63; and name LIKE &#63; and active = &#63;.
+	* Returns an ordered range of all the calendar resources that the user has permissions to view where groupId = &#63; and name LIKE &#63; and active = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param groupId the group ID to search with
-	* @param name the name to search with
-	* @param active the active to search with
-	* @param start the lower bound of the range of calendar resources to return
-	* @param end the upper bound of the range of calendar resources to return (not inclusive)
+	* @param groupId the group ID
+	* @param name the name
+	* @param active the active
+	* @param start the lower bound of the range of calendar resources
+	* @param end the upper bound of the range of calendar resources (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching calendar resources that the user has permission to view
 	* @throws SystemException if a system exception occurred
@@ -805,16 +801,12 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Filters the calendar resources before and after the current calendar resource in the ordered set where groupId = &#63; and name LIKE &#63; and active = &#63;.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* Returns the calendar resources before and after the current calendar resource in the ordered set of calendar resources that the user has permission to view where groupId = &#63; and name LIKE &#63; and active = &#63;.
 	*
 	* @param calendarResourceId the primary key of the current calendar resource
-	* @param groupId the group ID to search with
-	* @param name the name to search with
-	* @param active the active to search with
+	* @param groupId the group ID
+	* @param name the name
+	* @param active the active
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next calendar resource
 	* @throws com.liferay.calendar.NoSuchResourceException if a calendar resource with the primary key could not be found
@@ -828,15 +820,11 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Filters by the user's permissions and finds all the calendar resources where groupId = any &#63; and name LIKE &#63; and active = &#63;.
+	* Returns all the calendar resources that the user has permission to view where groupId = any &#63; and name LIKE &#63; and active = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
-	* @param groupIds the group IDs to search with
-	* @param name the name to search with
-	* @param active the active to search with
+	* @param groupIds the group IDs
+	* @param name the name
+	* @param active the active
 	* @return the matching calendar resources that the user has permission to view
 	* @throws SystemException if a system exception occurred
 	*/
@@ -845,17 +833,17 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Filters by the user's permissions and finds a range of all the calendar resources where groupId = any &#63; and name LIKE &#63; and active = &#63;.
+	* Returns a range of all the calendar resources that the user has permission to view where groupId = any &#63; and name LIKE &#63; and active = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param groupIds the group IDs to search with
-	* @param name the name to search with
-	* @param active the active to search with
-	* @param start the lower bound of the range of calendar resources to return
-	* @param end the upper bound of the range of calendar resources to return (not inclusive)
+	* @param groupIds the group IDs
+	* @param name the name
+	* @param active the active
+	* @param start the lower bound of the range of calendar resources
+	* @param end the upper bound of the range of calendar resources (not inclusive)
 	* @return the range of matching calendar resources that the user has permission to view
 	* @throws SystemException if a system exception occurred
 	*/
@@ -864,17 +852,17 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 		int end) throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Filters by the user's permissions and finds an ordered range of all the calendar resources where groupId = any &#63; and name LIKE &#63; and active = &#63;.
+	* Returns an ordered range of all the calendar resources that the user has permission to view where groupId = any &#63; and name LIKE &#63; and active = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param groupIds the group IDs to search with
-	* @param name the name to search with
-	* @param active the active to search with
-	* @param start the lower bound of the range of calendar resources to return
-	* @param end the upper bound of the range of calendar resources to return (not inclusive)
+	* @param groupIds the group IDs
+	* @param name the name
+	* @param active the active
+	* @param start the lower bound of the range of calendar resources
+	* @param end the upper bound of the range of calendar resources (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching calendar resources that the user has permission to view
 	* @throws SystemException if a system exception occurred
@@ -886,11 +874,11 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds all the calendar resources where companyId = &#63; and name LIKE &#63; and active = &#63;.
+	* Returns all the calendar resources where companyId = &#63; and name LIKE &#63; and active = &#63;.
 	*
-	* @param companyId the company ID to search with
-	* @param name the name to search with
-	* @param active the active to search with
+	* @param companyId the company ID
+	* @param name the name
+	* @param active the active
 	* @return the matching calendar resources
 	* @throws SystemException if a system exception occurred
 	*/
@@ -899,17 +887,17 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds a range of all the calendar resources where companyId = &#63; and name LIKE &#63; and active = &#63;.
+	* Returns a range of all the calendar resources where companyId = &#63; and name LIKE &#63; and active = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param companyId the company ID to search with
-	* @param name the name to search with
-	* @param active the active to search with
-	* @param start the lower bound of the range of calendar resources to return
-	* @param end the upper bound of the range of calendar resources to return (not inclusive)
+	* @param companyId the company ID
+	* @param name the name
+	* @param active the active
+	* @param start the lower bound of the range of calendar resources
+	* @param end the upper bound of the range of calendar resources (not inclusive)
 	* @return the range of matching calendar resources
 	* @throws SystemException if a system exception occurred
 	*/
@@ -918,17 +906,17 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 		int end) throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds an ordered range of all the calendar resources where companyId = &#63; and name LIKE &#63; and active = &#63;.
+	* Returns an ordered range of all the calendar resources where companyId = &#63; and name LIKE &#63; and active = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param companyId the company ID to search with
-	* @param name the name to search with
-	* @param active the active to search with
-	* @param start the lower bound of the range of calendar resources to return
-	* @param end the upper bound of the range of calendar resources to return (not inclusive)
+	* @param companyId the company ID
+	* @param name the name
+	* @param active the active
+	* @param start the lower bound of the range of calendar resources
+	* @param end the upper bound of the range of calendar resources (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching calendar resources
 	* @throws SystemException if a system exception occurred
@@ -940,15 +928,15 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the first calendar resource in the ordered set where companyId = &#63; and name LIKE &#63; and active = &#63;.
+	* Returns the first calendar resource in the ordered set where companyId = &#63; and name LIKE &#63; and active = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param companyId the company ID to search with
-	* @param name the name to search with
-	* @param active the active to search with
+	* @param companyId the company ID
+	* @param name the name
+	* @param active the active
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching calendar resource
 	* @throws com.liferay.calendar.NoSuchResourceException if a matching calendar resource could not be found
@@ -961,15 +949,15 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the last calendar resource in the ordered set where companyId = &#63; and name LIKE &#63; and active = &#63;.
+	* Returns the last calendar resource in the ordered set where companyId = &#63; and name LIKE &#63; and active = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param companyId the company ID to search with
-	* @param name the name to search with
-	* @param active the active to search with
+	* @param companyId the company ID
+	* @param name the name
+	* @param active the active
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching calendar resource
 	* @throws com.liferay.calendar.NoSuchResourceException if a matching calendar resource could not be found
@@ -982,16 +970,16 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the calendar resources before and after the current calendar resource in the ordered set where companyId = &#63; and name LIKE &#63; and active = &#63;.
+	* Returns the calendar resources before and after the current calendar resource in the ordered set where companyId = &#63; and name LIKE &#63; and active = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
 	* @param calendarResourceId the primary key of the current calendar resource
-	* @param companyId the company ID to search with
-	* @param name the name to search with
-	* @param active the active to search with
+	* @param companyId the company ID
+	* @param name the name
+	* @param active the active
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next calendar resource
 	* @throws com.liferay.calendar.NoSuchResourceException if a calendar resource with the primary key could not be found
@@ -1005,7 +993,7 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds all the calendar resources.
+	* Returns all the calendar resources.
 	*
 	* @return the calendar resources
 	* @throws SystemException if a system exception occurred
@@ -1014,14 +1002,14 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds a range of all the calendar resources.
+	* Returns a range of all the calendar resources.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of calendar resources to return
-	* @param end the upper bound of the range of calendar resources to return (not inclusive)
+	* @param start the lower bound of the range of calendar resources
+	* @param end the upper bound of the range of calendar resources (not inclusive)
 	* @return the range of calendar resources
 	* @throws SystemException if a system exception occurred
 	*/
@@ -1030,14 +1018,14 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds an ordered range of all the calendar resources.
+	* Returns an ordered range of all the calendar resources.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of calendar resources to return
-	* @param end the upper bound of the range of calendar resources to return (not inclusive)
+	* @param start the lower bound of the range of calendar resources
+	* @param end the upper bound of the range of calendar resources (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of calendar resources
 	* @throws SystemException if a system exception occurred
@@ -1050,7 +1038,7 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 	/**
 	* Removes all the calendar resources where uuid = &#63; from the database.
 	*
-	* @param uuid the uuid to search with
+	* @param uuid the uuid
 	* @throws SystemException if a system exception occurred
 	*/
 	public void removeByUuid(java.lang.String uuid)
@@ -1059,8 +1047,8 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 	/**
 	* Removes the calendar resource where uuid = &#63; and groupId = &#63; from the database.
 	*
-	* @param uuid the uuid to search with
-	* @param groupId the group ID to search with
+	* @param uuid the uuid
+	* @param groupId the group ID
 	* @throws SystemException if a system exception occurred
 	*/
 	public void removeByUUID_G(java.lang.String uuid, long groupId)
@@ -1070,7 +1058,7 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 	/**
 	* Removes all the calendar resources where active = &#63; from the database.
 	*
-	* @param active the active to search with
+	* @param active the active
 	* @throws SystemException if a system exception occurred
 	*/
 	public void removeByActive(boolean active)
@@ -1079,8 +1067,8 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 	/**
 	* Removes all the calendar resources where groupId = &#63; and active = &#63; from the database.
 	*
-	* @param groupId the group ID to search with
-	* @param active the active to search with
+	* @param groupId the group ID
+	* @param active the active
 	* @throws SystemException if a system exception occurred
 	*/
 	public void removeByG_A(long groupId, boolean active)
@@ -1089,8 +1077,8 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 	/**
 	* Removes the calendar resource where classNameId = &#63; and classPK = &#63; from the database.
 	*
-	* @param classNameId the class name ID to search with
-	* @param classPK the class p k to search with
+	* @param classNameId the class name ID
+	* @param classPK the class p k
 	* @throws SystemException if a system exception occurred
 	*/
 	public void removeByC_C(long classNameId, long classPK)
@@ -1100,9 +1088,9 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 	/**
 	* Removes all the calendar resources where groupId = &#63; and name LIKE &#63; and active = &#63; from the database.
 	*
-	* @param groupId the group ID to search with
-	* @param name the name to search with
-	* @param active the active to search with
+	* @param groupId the group ID
+	* @param name the name
+	* @param active the active
 	* @throws SystemException if a system exception occurred
 	*/
 	public void removeByG_N_A(long groupId, java.lang.String name,
@@ -1112,9 +1100,9 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 	/**
 	* Removes all the calendar resources where companyId = &#63; and name LIKE &#63; and active = &#63; from the database.
 	*
-	* @param companyId the company ID to search with
-	* @param name the name to search with
-	* @param active the active to search with
+	* @param companyId the company ID
+	* @param name the name
+	* @param active the active
 	* @throws SystemException if a system exception occurred
 	*/
 	public void removeByC_N_A(long companyId, java.lang.String name,
@@ -1130,9 +1118,9 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Counts all the calendar resources where uuid = &#63;.
+	* Returns the number of calendar resources where uuid = &#63;.
 	*
-	* @param uuid the uuid to search with
+	* @param uuid the uuid
 	* @return the number of matching calendar resources
 	* @throws SystemException if a system exception occurred
 	*/
@@ -1140,10 +1128,10 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Counts all the calendar resources where uuid = &#63; and groupId = &#63;.
+	* Returns the number of calendar resources where uuid = &#63; and groupId = &#63;.
 	*
-	* @param uuid the uuid to search with
-	* @param groupId the group ID to search with
+	* @param uuid the uuid
+	* @param groupId the group ID
 	* @return the number of matching calendar resources
 	* @throws SystemException if a system exception occurred
 	*/
@@ -1151,9 +1139,9 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Counts all the calendar resources where active = &#63;.
+	* Returns the number of calendar resources where active = &#63;.
 	*
-	* @param active the active to search with
+	* @param active the active
 	* @return the number of matching calendar resources
 	* @throws SystemException if a system exception occurred
 	*/
@@ -1161,10 +1149,10 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Counts all the calendar resources where groupId = &#63; and active = &#63;.
+	* Returns the number of calendar resources where groupId = &#63; and active = &#63;.
 	*
-	* @param groupId the group ID to search with
-	* @param active the active to search with
+	* @param groupId the group ID
+	* @param active the active
 	* @return the number of matching calendar resources
 	* @throws SystemException if a system exception occurred
 	*/
@@ -1172,10 +1160,10 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Filters by the user's permissions and counts all the calendar resources where groupId = &#63; and active = &#63;.
+	* Returns the number of calendar resources that the user has permission to view where groupId = &#63; and active = &#63;.
 	*
-	* @param groupId the group ID to search with
-	* @param active the active to search with
+	* @param groupId the group ID
+	* @param active the active
 	* @return the number of matching calendar resources that the user has permission to view
 	* @throws SystemException if a system exception occurred
 	*/
@@ -1183,10 +1171,10 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Counts all the calendar resources where classNameId = &#63; and classPK = &#63;.
+	* Returns the number of calendar resources where classNameId = &#63; and classPK = &#63;.
 	*
-	* @param classNameId the class name ID to search with
-	* @param classPK the class p k to search with
+	* @param classNameId the class name ID
+	* @param classPK the class p k
 	* @return the number of matching calendar resources
 	* @throws SystemException if a system exception occurred
 	*/
@@ -1194,11 +1182,11 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Counts all the calendar resources where groupId = &#63; and name LIKE &#63; and active = &#63;.
+	* Returns the number of calendar resources where groupId = &#63; and name LIKE &#63; and active = &#63;.
 	*
-	* @param groupId the group ID to search with
-	* @param name the name to search with
-	* @param active the active to search with
+	* @param groupId the group ID
+	* @param name the name
+	* @param active the active
 	* @return the number of matching calendar resources
 	* @throws SystemException if a system exception occurred
 	*/
@@ -1206,11 +1194,11 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Counts all the calendar resources where groupId = any &#63; and name LIKE &#63; and active = &#63;.
+	* Returns the number of calendar resources where groupId = any &#63; and name LIKE &#63; and active = &#63;.
 	*
-	* @param groupIds the group IDs to search with
-	* @param name the name to search with
-	* @param active the active to search with
+	* @param groupIds the group IDs
+	* @param name the name
+	* @param active the active
 	* @return the number of matching calendar resources
 	* @throws SystemException if a system exception occurred
 	*/
@@ -1219,11 +1207,11 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Filters by the user's permissions and counts all the calendar resources where groupId = &#63; and name LIKE &#63; and active = &#63;.
+	* Returns the number of calendar resources that the user has permission to view where groupId = &#63; and name LIKE &#63; and active = &#63;.
 	*
-	* @param groupId the group ID to search with
-	* @param name the name to search with
-	* @param active the active to search with
+	* @param groupId the group ID
+	* @param name the name
+	* @param active the active
 	* @return the number of matching calendar resources that the user has permission to view
 	* @throws SystemException if a system exception occurred
 	*/
@@ -1232,11 +1220,11 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Filters by the user's permissions and counts all the calendar resources where groupId = any &#63; and name LIKE &#63; and active = &#63;.
+	* Returns the number of calendar resources that the user has permission to view where groupId = any &#63; and name LIKE &#63; and active = &#63;.
 	*
-	* @param groupIds the group IDs to search with
-	* @param name the name to search with
-	* @param active the active to search with
+	* @param groupIds the group IDs
+	* @param name the name
+	* @param active the active
 	* @return the number of matching calendar resources that the user has permission to view
 	* @throws SystemException if a system exception occurred
 	*/
@@ -1245,11 +1233,11 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Counts all the calendar resources where companyId = &#63; and name LIKE &#63; and active = &#63;.
+	* Returns the number of calendar resources where companyId = &#63; and name LIKE &#63; and active = &#63;.
 	*
-	* @param companyId the company ID to search with
-	* @param name the name to search with
-	* @param active the active to search with
+	* @param companyId the company ID
+	* @param name the name
+	* @param active the active
 	* @return the number of matching calendar resources
 	* @throws SystemException if a system exception occurred
 	*/
@@ -1258,7 +1246,7 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Counts all the calendar resources.
+	* Returns the number of calendar resources.
 	*
 	* @return the number of calendar resources
 	* @throws SystemException if a system exception occurred

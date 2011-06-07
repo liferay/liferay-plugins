@@ -31,6 +31,11 @@ import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.search.Indexer;
+import com.liferay.portal.kernel.search.IndexerRegistryUtil;
+import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.service.ResourceLocalService;
 import com.liferay.portal.service.ResourceService;
@@ -66,14 +71,29 @@ public abstract class StatusLocalServiceBaseImpl implements StatusLocalService,
 	/**
 	 * Adds the status to the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param status the status to add
+	 * @param status the status
 	 * @return the status that was added
 	 * @throws SystemException if a system exception occurred
 	 */
 	public Status addStatus(Status status) throws SystemException {
 		status.setNew(true);
 
-		return statusPersistence.update(status, false);
+		status = statusPersistence.update(status, false);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.reindex(status);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
+
+		return status;
 	}
 
 	/**
@@ -89,29 +109,55 @@ public abstract class StatusLocalServiceBaseImpl implements StatusLocalService,
 	/**
 	 * Deletes the status with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param statusId the primary key of the status to delete
+	 * @param statusId the primary key of the status
 	 * @throws PortalException if a status with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void deleteStatus(long statusId)
 		throws PortalException, SystemException {
-		statusPersistence.remove(statusId);
+		Status status = statusPersistence.remove(statusId);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.delete(status);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
 	}
 
 	/**
 	 * Deletes the status from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param status the status to delete
+	 * @param status the status
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void deleteStatus(Status status) throws SystemException {
 		statusPersistence.remove(status);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.delete(status);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
 	}
 
 	/**
 	 * Performs a dynamic query on the database and returns the matching rows.
 	 *
-	 * @param dynamicQuery the dynamic query to search with
+	 * @param dynamicQuery the dynamic query
 	 * @return the matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -128,9 +174,9 @@ public abstract class StatusLocalServiceBaseImpl implements StatusLocalService,
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param dynamicQuery the dynamic query to search with
-	 * @param start the lower bound of the range of model instances to return
-	 * @param end the upper bound of the range of model instances to return (not inclusive)
+	 * @param dynamicQuery the dynamic query
+	 * @param start the lower bound of the range of model instances
+	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @return the range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -147,9 +193,9 @@ public abstract class StatusLocalServiceBaseImpl implements StatusLocalService,
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param dynamicQuery the dynamic query to search with
-	 * @param start the lower bound of the range of model instances to return
-	 * @param end the upper bound of the range of model instances to return (not inclusive)
+	 * @param dynamicQuery the dynamic query
+	 * @param start the lower bound of the range of model instances
+	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching rows
 	 * @throws SystemException if a system exception occurred
@@ -162,9 +208,9 @@ public abstract class StatusLocalServiceBaseImpl implements StatusLocalService,
 	}
 
 	/**
-	 * Counts the number of rows that match the dynamic query.
+	 * Returns the number of rows that match the dynamic query.
 	 *
-	 * @param dynamicQuery the dynamic query to search with
+	 * @param dynamicQuery the dynamic query
 	 * @return the number of rows that match the dynamic query
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -174,9 +220,9 @@ public abstract class StatusLocalServiceBaseImpl implements StatusLocalService,
 	}
 
 	/**
-	 * Gets the status with the primary key.
+	 * Returns the status with the primary key.
 	 *
-	 * @param statusId the primary key of the status to get
+	 * @param statusId the primary key of the status
 	 * @return the status
 	 * @throws PortalException if a status with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -187,14 +233,14 @@ public abstract class StatusLocalServiceBaseImpl implements StatusLocalService,
 	}
 
 	/**
-	 * Gets a range of all the statuses.
+	 * Returns a range of all the statuses.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of statuses to return
-	 * @param end the upper bound of the range of statuses to return (not inclusive)
+	 * @param start the lower bound of the range of statuses
+	 * @param end the upper bound of the range of statuses (not inclusive)
 	 * @return the range of statuses
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -204,7 +250,7 @@ public abstract class StatusLocalServiceBaseImpl implements StatusLocalService,
 	}
 
 	/**
-	 * Gets the number of statuses.
+	 * Returns the number of statuses.
 	 *
 	 * @return the number of statuses
 	 * @throws SystemException if a system exception occurred
@@ -216,20 +262,18 @@ public abstract class StatusLocalServiceBaseImpl implements StatusLocalService,
 	/**
 	 * Updates the status in the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param status the status to update
+	 * @param status the status
 	 * @return the status that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
 	public Status updateStatus(Status status) throws SystemException {
-		status.setNew(false);
-
-		return statusPersistence.update(status, true);
+		return updateStatus(status, true);
 	}
 
 	/**
 	 * Updates the status in the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param status the status to update
+	 * @param status the status
 	 * @param merge whether to merge the status with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
 	 * @return the status that was updated
 	 * @throws SystemException if a system exception occurred
@@ -238,11 +282,26 @@ public abstract class StatusLocalServiceBaseImpl implements StatusLocalService,
 		throws SystemException {
 		status.setNew(false);
 
-		return statusPersistence.update(status, merge);
+		status = statusPersistence.update(status, merge);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.reindex(status);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
+
+		return status;
 	}
 
 	/**
-	 * Gets the entry local service.
+	 * Returns the entry local service.
 	 *
 	 * @return the entry local service
 	 */
@@ -260,7 +319,7 @@ public abstract class StatusLocalServiceBaseImpl implements StatusLocalService,
 	}
 
 	/**
-	 * Gets the entry persistence.
+	 * Returns the entry persistence.
 	 *
 	 * @return the entry persistence
 	 */
@@ -278,7 +337,7 @@ public abstract class StatusLocalServiceBaseImpl implements StatusLocalService,
 	}
 
 	/**
-	 * Gets the entry finder.
+	 * Returns the entry finder.
 	 *
 	 * @return the entry finder
 	 */
@@ -296,7 +355,7 @@ public abstract class StatusLocalServiceBaseImpl implements StatusLocalService,
 	}
 
 	/**
-	 * Gets the status local service.
+	 * Returns the status local service.
 	 *
 	 * @return the status local service
 	 */
@@ -314,7 +373,7 @@ public abstract class StatusLocalServiceBaseImpl implements StatusLocalService,
 	}
 
 	/**
-	 * Gets the status persistence.
+	 * Returns the status persistence.
 	 *
 	 * @return the status persistence
 	 */
@@ -332,7 +391,7 @@ public abstract class StatusLocalServiceBaseImpl implements StatusLocalService,
 	}
 
 	/**
-	 * Gets the status finder.
+	 * Returns the status finder.
 	 *
 	 * @return the status finder
 	 */
@@ -350,7 +409,7 @@ public abstract class StatusLocalServiceBaseImpl implements StatusLocalService,
 	}
 
 	/**
-	 * Gets the counter local service.
+	 * Returns the counter local service.
 	 *
 	 * @return the counter local service
 	 */
@@ -368,7 +427,7 @@ public abstract class StatusLocalServiceBaseImpl implements StatusLocalService,
 	}
 
 	/**
-	 * Gets the resource local service.
+	 * Returns the resource local service.
 	 *
 	 * @return the resource local service
 	 */
@@ -387,7 +446,7 @@ public abstract class StatusLocalServiceBaseImpl implements StatusLocalService,
 	}
 
 	/**
-	 * Gets the resource remote service.
+	 * Returns the resource remote service.
 	 *
 	 * @return the resource remote service
 	 */
@@ -405,7 +464,7 @@ public abstract class StatusLocalServiceBaseImpl implements StatusLocalService,
 	}
 
 	/**
-	 * Gets the resource persistence.
+	 * Returns the resource persistence.
 	 *
 	 * @return the resource persistence
 	 */
@@ -423,7 +482,7 @@ public abstract class StatusLocalServiceBaseImpl implements StatusLocalService,
 	}
 
 	/**
-	 * Gets the user local service.
+	 * Returns the user local service.
 	 *
 	 * @return the user local service
 	 */
@@ -441,7 +500,7 @@ public abstract class StatusLocalServiceBaseImpl implements StatusLocalService,
 	}
 
 	/**
-	 * Gets the user remote service.
+	 * Returns the user remote service.
 	 *
 	 * @return the user remote service
 	 */
@@ -459,7 +518,7 @@ public abstract class StatusLocalServiceBaseImpl implements StatusLocalService,
 	}
 
 	/**
-	 * Gets the user persistence.
+	 * Returns the user persistence.
 	 *
 	 * @return the user persistence
 	 */
@@ -477,7 +536,7 @@ public abstract class StatusLocalServiceBaseImpl implements StatusLocalService,
 	}
 
 	/**
-	 * Gets the Spring bean ID for this bean.
+	 * Returns the Spring bean ID for this bean.
 	 *
 	 * @return the Spring bean ID for this bean
 	 */
@@ -494,10 +553,18 @@ public abstract class StatusLocalServiceBaseImpl implements StatusLocalService,
 		_beanIdentifier = beanIdentifier;
 	}
 
+	protected Class<?> getModelClass() {
+		return Status.class;
+	}
+
+	protected String getModelClassName() {
+		return Status.class.getName();
+	}
+
 	/**
 	 * Performs an SQL query.
 	 *
-	 * @param sql the sql query to perform
+	 * @param sql the sql query
 	 */
 	protected void runSQL(String sql) throws SystemException {
 		try {
@@ -539,5 +606,6 @@ public abstract class StatusLocalServiceBaseImpl implements StatusLocalService,
 	protected UserService userService;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
+	private static Log _log = LogFactoryUtil.getLog(StatusLocalServiceBaseImpl.class);
 	private String _beanIdentifier;
 }

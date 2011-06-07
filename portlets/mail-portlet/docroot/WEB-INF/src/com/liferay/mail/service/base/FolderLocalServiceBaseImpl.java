@@ -33,6 +33,11 @@ import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.search.Indexer;
+import com.liferay.portal.kernel.search.IndexerRegistryUtil;
+import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.service.ResourceLocalService;
 import com.liferay.portal.service.ResourceService;
@@ -68,14 +73,29 @@ public abstract class FolderLocalServiceBaseImpl implements FolderLocalService,
 	/**
 	 * Adds the folder to the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param folder the folder to add
+	 * @param folder the folder
 	 * @return the folder that was added
 	 * @throws SystemException if a system exception occurred
 	 */
 	public Folder addFolder(Folder folder) throws SystemException {
 		folder.setNew(true);
 
-		return folderPersistence.update(folder, false);
+		folder = folderPersistence.update(folder, false);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.reindex(folder);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
+
+		return folder;
 	}
 
 	/**
@@ -91,31 +111,57 @@ public abstract class FolderLocalServiceBaseImpl implements FolderLocalService,
 	/**
 	 * Deletes the folder with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param folderId the primary key of the folder to delete
+	 * @param folderId the primary key of the folder
 	 * @throws PortalException if a folder with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void deleteFolder(long folderId)
 		throws PortalException, SystemException {
-		folderPersistence.remove(folderId);
+		Folder folder = folderPersistence.remove(folderId);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.delete(folder);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
 	}
 
 	/**
 	 * Deletes the folder from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param folder the folder to delete
+	 * @param folder the folder
 	 * @throws PortalException
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void deleteFolder(Folder folder)
 		throws PortalException, SystemException {
 		folderPersistence.remove(folder);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.delete(folder);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
 	}
 
 	/**
 	 * Performs a dynamic query on the database and returns the matching rows.
 	 *
-	 * @param dynamicQuery the dynamic query to search with
+	 * @param dynamicQuery the dynamic query
 	 * @return the matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -132,9 +178,9 @@ public abstract class FolderLocalServiceBaseImpl implements FolderLocalService,
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param dynamicQuery the dynamic query to search with
-	 * @param start the lower bound of the range of model instances to return
-	 * @param end the upper bound of the range of model instances to return (not inclusive)
+	 * @param dynamicQuery the dynamic query
+	 * @param start the lower bound of the range of model instances
+	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @return the range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -151,9 +197,9 @@ public abstract class FolderLocalServiceBaseImpl implements FolderLocalService,
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param dynamicQuery the dynamic query to search with
-	 * @param start the lower bound of the range of model instances to return
-	 * @param end the upper bound of the range of model instances to return (not inclusive)
+	 * @param dynamicQuery the dynamic query
+	 * @param start the lower bound of the range of model instances
+	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching rows
 	 * @throws SystemException if a system exception occurred
@@ -166,9 +212,9 @@ public abstract class FolderLocalServiceBaseImpl implements FolderLocalService,
 	}
 
 	/**
-	 * Counts the number of rows that match the dynamic query.
+	 * Returns the number of rows that match the dynamic query.
 	 *
-	 * @param dynamicQuery the dynamic query to search with
+	 * @param dynamicQuery the dynamic query
 	 * @return the number of rows that match the dynamic query
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -178,9 +224,9 @@ public abstract class FolderLocalServiceBaseImpl implements FolderLocalService,
 	}
 
 	/**
-	 * Gets the folder with the primary key.
+	 * Returns the folder with the primary key.
 	 *
-	 * @param folderId the primary key of the folder to get
+	 * @param folderId the primary key of the folder
 	 * @return the folder
 	 * @throws PortalException if a folder with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -191,14 +237,14 @@ public abstract class FolderLocalServiceBaseImpl implements FolderLocalService,
 	}
 
 	/**
-	 * Gets a range of all the folders.
+	 * Returns a range of all the folders.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of folders to return
-	 * @param end the upper bound of the range of folders to return (not inclusive)
+	 * @param start the lower bound of the range of folders
+	 * @param end the upper bound of the range of folders (not inclusive)
 	 * @return the range of folders
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -208,7 +254,7 @@ public abstract class FolderLocalServiceBaseImpl implements FolderLocalService,
 	}
 
 	/**
-	 * Gets the number of folders.
+	 * Returns the number of folders.
 	 *
 	 * @return the number of folders
 	 * @throws SystemException if a system exception occurred
@@ -220,20 +266,18 @@ public abstract class FolderLocalServiceBaseImpl implements FolderLocalService,
 	/**
 	 * Updates the folder in the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param folder the folder to update
+	 * @param folder the folder
 	 * @return the folder that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
 	public Folder updateFolder(Folder folder) throws SystemException {
-		folder.setNew(false);
-
-		return folderPersistence.update(folder, true);
+		return updateFolder(folder, true);
 	}
 
 	/**
 	 * Updates the folder in the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param folder the folder to update
+	 * @param folder the folder
 	 * @param merge whether to merge the folder with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
 	 * @return the folder that was updated
 	 * @throws SystemException if a system exception occurred
@@ -242,11 +286,26 @@ public abstract class FolderLocalServiceBaseImpl implements FolderLocalService,
 		throws SystemException {
 		folder.setNew(false);
 
-		return folderPersistence.update(folder, merge);
+		folder = folderPersistence.update(folder, merge);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.reindex(folder);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
+
+		return folder;
 	}
 
 	/**
-	 * Gets the account local service.
+	 * Returns the account local service.
 	 *
 	 * @return the account local service
 	 */
@@ -264,7 +323,7 @@ public abstract class FolderLocalServiceBaseImpl implements FolderLocalService,
 	}
 
 	/**
-	 * Gets the account persistence.
+	 * Returns the account persistence.
 	 *
 	 * @return the account persistence
 	 */
@@ -282,7 +341,7 @@ public abstract class FolderLocalServiceBaseImpl implements FolderLocalService,
 	}
 
 	/**
-	 * Gets the attachment local service.
+	 * Returns the attachment local service.
 	 *
 	 * @return the attachment local service
 	 */
@@ -301,7 +360,7 @@ public abstract class FolderLocalServiceBaseImpl implements FolderLocalService,
 	}
 
 	/**
-	 * Gets the attachment persistence.
+	 * Returns the attachment persistence.
 	 *
 	 * @return the attachment persistence
 	 */
@@ -320,7 +379,7 @@ public abstract class FolderLocalServiceBaseImpl implements FolderLocalService,
 	}
 
 	/**
-	 * Gets the folder local service.
+	 * Returns the folder local service.
 	 *
 	 * @return the folder local service
 	 */
@@ -338,7 +397,7 @@ public abstract class FolderLocalServiceBaseImpl implements FolderLocalService,
 	}
 
 	/**
-	 * Gets the folder persistence.
+	 * Returns the folder persistence.
 	 *
 	 * @return the folder persistence
 	 */
@@ -356,7 +415,7 @@ public abstract class FolderLocalServiceBaseImpl implements FolderLocalService,
 	}
 
 	/**
-	 * Gets the message local service.
+	 * Returns the message local service.
 	 *
 	 * @return the message local service
 	 */
@@ -374,7 +433,7 @@ public abstract class FolderLocalServiceBaseImpl implements FolderLocalService,
 	}
 
 	/**
-	 * Gets the message persistence.
+	 * Returns the message persistence.
 	 *
 	 * @return the message persistence
 	 */
@@ -392,7 +451,7 @@ public abstract class FolderLocalServiceBaseImpl implements FolderLocalService,
 	}
 
 	/**
-	 * Gets the counter local service.
+	 * Returns the counter local service.
 	 *
 	 * @return the counter local service
 	 */
@@ -410,7 +469,7 @@ public abstract class FolderLocalServiceBaseImpl implements FolderLocalService,
 	}
 
 	/**
-	 * Gets the resource local service.
+	 * Returns the resource local service.
 	 *
 	 * @return the resource local service
 	 */
@@ -429,7 +488,7 @@ public abstract class FolderLocalServiceBaseImpl implements FolderLocalService,
 	}
 
 	/**
-	 * Gets the resource remote service.
+	 * Returns the resource remote service.
 	 *
 	 * @return the resource remote service
 	 */
@@ -447,7 +506,7 @@ public abstract class FolderLocalServiceBaseImpl implements FolderLocalService,
 	}
 
 	/**
-	 * Gets the resource persistence.
+	 * Returns the resource persistence.
 	 *
 	 * @return the resource persistence
 	 */
@@ -465,7 +524,7 @@ public abstract class FolderLocalServiceBaseImpl implements FolderLocalService,
 	}
 
 	/**
-	 * Gets the user local service.
+	 * Returns the user local service.
 	 *
 	 * @return the user local service
 	 */
@@ -483,7 +542,7 @@ public abstract class FolderLocalServiceBaseImpl implements FolderLocalService,
 	}
 
 	/**
-	 * Gets the user remote service.
+	 * Returns the user remote service.
 	 *
 	 * @return the user remote service
 	 */
@@ -501,7 +560,7 @@ public abstract class FolderLocalServiceBaseImpl implements FolderLocalService,
 	}
 
 	/**
-	 * Gets the user persistence.
+	 * Returns the user persistence.
 	 *
 	 * @return the user persistence
 	 */
@@ -519,7 +578,7 @@ public abstract class FolderLocalServiceBaseImpl implements FolderLocalService,
 	}
 
 	/**
-	 * Gets the Spring bean ID for this bean.
+	 * Returns the Spring bean ID for this bean.
 	 *
 	 * @return the Spring bean ID for this bean
 	 */
@@ -536,10 +595,18 @@ public abstract class FolderLocalServiceBaseImpl implements FolderLocalService,
 		_beanIdentifier = beanIdentifier;
 	}
 
+	protected Class<?> getModelClass() {
+		return Folder.class;
+	}
+
+	protected String getModelClassName() {
+		return Folder.class.getName();
+	}
+
 	/**
 	 * Performs an SQL query.
 	 *
-	 * @param sql the sql query to perform
+	 * @param sql the sql query
 	 */
 	protected void runSQL(String sql) throws SystemException {
 		try {
@@ -585,5 +652,6 @@ public abstract class FolderLocalServiceBaseImpl implements FolderLocalService,
 	protected UserService userService;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
+	private static Log _log = LogFactoryUtil.getLog(FolderLocalServiceBaseImpl.class);
 	private String _beanIdentifier;
 }

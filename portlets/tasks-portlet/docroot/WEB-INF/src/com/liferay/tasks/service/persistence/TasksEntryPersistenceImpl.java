@@ -173,7 +173,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	/**
 	 * Caches the tasks entry in the entity cache if it is enabled.
 	 *
-	 * @param tasksEntry the tasks entry to cache
+	 * @param tasksEntry the tasks entry
 	 */
 	public void cacheResult(TasksEntry tasksEntry) {
 		EntityCacheUtil.putResult(TasksEntryModelImpl.ENTITY_CACHE_ENABLED,
@@ -185,7 +185,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	/**
 	 * Caches the tasks entries in the entity cache if it is enabled.
 	 *
-	 * @param tasksEntries the tasks entries to cache
+	 * @param tasksEntries the tasks entries
 	 */
 	public void cacheResult(List<TasksEntry> tasksEntries) {
 		for (TasksEntry tasksEntry : tasksEntries) {
@@ -244,7 +244,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	/**
 	 * Removes the tasks entry with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param primaryKey the primary key of the tasks entry to remove
+	 * @param primaryKey the primary key of the tasks entry
 	 * @return the tasks entry that was removed
 	 * @throws com.liferay.portal.NoSuchModelException if a tasks entry with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -257,7 +257,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	/**
 	 * Removes the tasks entry with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param tasksEntryId the primary key of the tasks entry to remove
+	 * @param tasksEntryId the primary key of the tasks entry
 	 * @return the tasks entry that was removed
 	 * @throws com.liferay.tasks.NoSuchTasksEntryException if a tasks entry with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -297,7 +297,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	/**
 	 * Removes the tasks entry from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param tasksEntry the tasks entry to remove
+	 * @param tasksEntry the tasks entry
 	 * @return the tasks entry that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -389,9 +389,9 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Finds the tasks entry with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
+	 * Returns the tasks entry with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
 	 *
-	 * @param primaryKey the primary key of the tasks entry to find
+	 * @param primaryKey the primary key of the tasks entry
 	 * @return the tasks entry
 	 * @throws com.liferay.portal.NoSuchModelException if a tasks entry with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -402,9 +402,9 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Finds the tasks entry with the primary key or throws a {@link com.liferay.tasks.NoSuchTasksEntryException} if it could not be found.
+	 * Returns the tasks entry with the primary key or throws a {@link com.liferay.tasks.NoSuchTasksEntryException} if it could not be found.
 	 *
-	 * @param tasksEntryId the primary key of the tasks entry to find
+	 * @param tasksEntryId the primary key of the tasks entry
 	 * @return the tasks entry
 	 * @throws com.liferay.tasks.NoSuchTasksEntryException if a tasks entry with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -426,9 +426,9 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Finds the tasks entry with the primary key or returns <code>null</code> if it could not be found.
+	 * Returns the tasks entry with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param primaryKey the primary key of the tasks entry to find
+	 * @param primaryKey the primary key of the tasks entry
 	 * @return the tasks entry, or <code>null</code> if a tasks entry with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -438,9 +438,9 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Finds the tasks entry with the primary key or returns <code>null</code> if it could not be found.
+	 * Returns the tasks entry with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param tasksEntryId the primary key of the tasks entry to find
+	 * @param tasksEntryId the primary key of the tasks entry
 	 * @return the tasks entry, or <code>null</code> if a tasks entry with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -474,9 +474,9 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Finds all the tasks entries where groupId = &#63;.
+	 * Returns all the tasks entries where groupId = &#63;.
 	 *
-	 * @param groupId the group ID to search with
+	 * @param groupId the group ID
 	 * @return the matching tasks entries
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -486,15 +486,15 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Finds a range of all the tasks entries where groupId = &#63;.
+	 * Returns a range of all the tasks entries where groupId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param start the lower bound of the range of tasks entries to return
-	 * @param end the upper bound of the range of tasks entries to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param start the lower bound of the range of tasks entries
+	 * @param end the upper bound of the range of tasks entries (not inclusive)
 	 * @return the range of matching tasks entries
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -504,15 +504,15 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Finds an ordered range of all the tasks entries where groupId = &#63;.
+	 * Returns an ordered range of all the tasks entries where groupId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param start the lower bound of the range of tasks entries to return
-	 * @param end the upper bound of the range of tasks entries to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param start the lower bound of the range of tasks entries
+	 * @param end the upper bound of the range of tasks entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching tasks entries
 	 * @throws SystemException if a system exception occurred
@@ -592,13 +592,13 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Finds the first tasks entry in the ordered set where groupId = &#63;.
+	 * Returns the first tasks entry in the ordered set where groupId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
+	 * @param groupId the group ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching tasks entry
 	 * @throws com.liferay.tasks.NoSuchTasksEntryException if a matching tasks entry could not be found
@@ -627,13 +627,13 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Finds the last tasks entry in the ordered set where groupId = &#63;.
+	 * Returns the last tasks entry in the ordered set where groupId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
+	 * @param groupId the group ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching tasks entry
 	 * @throws com.liferay.tasks.NoSuchTasksEntryException if a matching tasks entry could not be found
@@ -665,14 +665,14 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Finds the tasks entries before and after the current tasks entry in the ordered set where groupId = &#63;.
+	 * Returns the tasks entries before and after the current tasks entry in the ordered set where groupId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
 	 * @param tasksEntryId the primary key of the current tasks entry
-	 * @param groupId the group ID to search with
+	 * @param groupId the group ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next tasks entry
 	 * @throws com.liferay.tasks.NoSuchTasksEntryException if a tasks entry with the primary key could not be found
@@ -813,9 +813,9 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds all the tasks entries where groupId = &#63;.
+	 * Returns all the tasks entries that the user has permission to view where groupId = &#63;.
 	 *
-	 * @param groupId the group ID to search with
+	 * @param groupId the group ID
 	 * @return the matching tasks entries that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -826,15 +826,15 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds a range of all the tasks entries where groupId = &#63;.
+	 * Returns a range of all the tasks entries that the user has permission to view where groupId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param start the lower bound of the range of tasks entries to return
-	 * @param end the upper bound of the range of tasks entries to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param start the lower bound of the range of tasks entries
+	 * @param end the upper bound of the range of tasks entries (not inclusive)
 	 * @return the range of matching tasks entries that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -844,15 +844,15 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds an ordered range of all the tasks entries where groupId = &#63;.
+	 * Returns an ordered range of all the tasks entries that the user has permissions to view where groupId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param start the lower bound of the range of tasks entries to return
-	 * @param end the upper bound of the range of tasks entries to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param start the lower bound of the range of tasks entries
+	 * @param end the upper bound of the range of tasks entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching tasks entries that the user has permission to view
 	 * @throws SystemException if a system exception occurred
@@ -873,18 +873,11 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 			query = new StringBundler(3);
 		}
 
-		if (getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_TASKSENTRY_WHERE);
-		}
-		else {
-			query.append(_FILTER_SQL_SELECT_TASKSENTRY_NO_INLINE_DISTINCT_WHERE_1);
-		}
+		query.append(_FILTER_SQL_SELECT_TASKSENTRY_WHERE);
 
 		query.append(_FINDER_COLUMN_GROUPID_GROUPID_2);
 
-		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_TASKSENTRY_NO_INLINE_DISTINCT_WHERE_2);
-		}
+		appendGroupByComparator(query, _FILTER_COLUMN_PK);
 
 		if (orderByComparator != null) {
 			if (getDB().isSupportsInlineDistinct()) {
@@ -938,14 +931,10 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Filters the tasks entries before and after the current tasks entry in the ordered set where groupId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
+	 * Returns the tasks entries before and after the current tasks entry in the ordered set of tasks entries that the user has permission to view where groupId = &#63;.
 	 *
 	 * @param tasksEntryId the primary key of the current tasks entry
-	 * @param groupId the group ID to search with
+	 * @param groupId the group ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next tasks entry
 	 * @throws com.liferay.tasks.NoSuchTasksEntryException if a tasks entry with the primary key could not be found
@@ -999,18 +988,11 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 			query = new StringBundler(3);
 		}
 
-		if (getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_TASKSENTRY_WHERE);
-		}
-		else {
-			query.append(_FILTER_SQL_SELECT_TASKSENTRY_NO_INLINE_DISTINCT_WHERE_1);
-		}
+		query.append(_FILTER_SQL_SELECT_TASKSENTRY_WHERE);
 
 		query.append(_FINDER_COLUMN_GROUPID_GROUPID_2);
 
-		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_TASKSENTRY_NO_INLINE_DISTINCT_WHERE_2);
-		}
+		appendGroupByComparator(query, _FILTER_COLUMN_PK);
 
 		if (orderByComparator != null) {
 			String[] orderByFields = orderByComparator.getOrderByFields();
@@ -1125,9 +1107,9 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Finds all the tasks entries where userId = &#63;.
+	 * Returns all the tasks entries where userId = &#63;.
 	 *
-	 * @param userId the user ID to search with
+	 * @param userId the user ID
 	 * @return the matching tasks entries
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -1136,15 +1118,15 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Finds a range of all the tasks entries where userId = &#63;.
+	 * Returns a range of all the tasks entries where userId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param userId the user ID to search with
-	 * @param start the lower bound of the range of tasks entries to return
-	 * @param end the upper bound of the range of tasks entries to return (not inclusive)
+	 * @param userId the user ID
+	 * @param start the lower bound of the range of tasks entries
+	 * @param end the upper bound of the range of tasks entries (not inclusive)
 	 * @return the range of matching tasks entries
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -1154,15 +1136,15 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Finds an ordered range of all the tasks entries where userId = &#63;.
+	 * Returns an ordered range of all the tasks entries where userId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param userId the user ID to search with
-	 * @param start the lower bound of the range of tasks entries to return
-	 * @param end the upper bound of the range of tasks entries to return (not inclusive)
+	 * @param userId the user ID
+	 * @param start the lower bound of the range of tasks entries
+	 * @param end the upper bound of the range of tasks entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching tasks entries
 	 * @throws SystemException if a system exception occurred
@@ -1242,13 +1224,13 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Finds the first tasks entry in the ordered set where userId = &#63;.
+	 * Returns the first tasks entry in the ordered set where userId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param userId the user ID to search with
+	 * @param userId the user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching tasks entry
 	 * @throws com.liferay.tasks.NoSuchTasksEntryException if a matching tasks entry could not be found
@@ -1277,13 +1259,13 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Finds the last tasks entry in the ordered set where userId = &#63;.
+	 * Returns the last tasks entry in the ordered set where userId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param userId the user ID to search with
+	 * @param userId the user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching tasks entry
 	 * @throws com.liferay.tasks.NoSuchTasksEntryException if a matching tasks entry could not be found
@@ -1315,14 +1297,14 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Finds the tasks entries before and after the current tasks entry in the ordered set where userId = &#63;.
+	 * Returns the tasks entries before and after the current tasks entry in the ordered set where userId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
 	 * @param tasksEntryId the primary key of the current tasks entry
-	 * @param userId the user ID to search with
+	 * @param userId the user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next tasks entry
 	 * @throws com.liferay.tasks.NoSuchTasksEntryException if a tasks entry with the primary key could not be found
@@ -1463,9 +1445,9 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Finds all the tasks entries where assigneeUserId = &#63;.
+	 * Returns all the tasks entries where assigneeUserId = &#63;.
 	 *
-	 * @param assigneeUserId the assignee user ID to search with
+	 * @param assigneeUserId the assignee user ID
 	 * @return the matching tasks entries
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -1476,15 +1458,15 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Finds a range of all the tasks entries where assigneeUserId = &#63;.
+	 * Returns a range of all the tasks entries where assigneeUserId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param assigneeUserId the assignee user ID to search with
-	 * @param start the lower bound of the range of tasks entries to return
-	 * @param end the upper bound of the range of tasks entries to return (not inclusive)
+	 * @param assigneeUserId the assignee user ID
+	 * @param start the lower bound of the range of tasks entries
+	 * @param end the upper bound of the range of tasks entries (not inclusive)
 	 * @return the range of matching tasks entries
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -1494,15 +1476,15 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Finds an ordered range of all the tasks entries where assigneeUserId = &#63;.
+	 * Returns an ordered range of all the tasks entries where assigneeUserId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param assigneeUserId the assignee user ID to search with
-	 * @param start the lower bound of the range of tasks entries to return
-	 * @param end the upper bound of the range of tasks entries to return (not inclusive)
+	 * @param assigneeUserId the assignee user ID
+	 * @param start the lower bound of the range of tasks entries
+	 * @param end the upper bound of the range of tasks entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching tasks entries
 	 * @throws SystemException if a system exception occurred
@@ -1583,13 +1565,13 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Finds the first tasks entry in the ordered set where assigneeUserId = &#63;.
+	 * Returns the first tasks entry in the ordered set where assigneeUserId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param assigneeUserId the assignee user ID to search with
+	 * @param assigneeUserId the assignee user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching tasks entry
 	 * @throws com.liferay.tasks.NoSuchTasksEntryException if a matching tasks entry could not be found
@@ -1619,13 +1601,13 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Finds the last tasks entry in the ordered set where assigneeUserId = &#63;.
+	 * Returns the last tasks entry in the ordered set where assigneeUserId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param assigneeUserId the assignee user ID to search with
+	 * @param assigneeUserId the assignee user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching tasks entry
 	 * @throws com.liferay.tasks.NoSuchTasksEntryException if a matching tasks entry could not be found
@@ -1657,14 +1639,14 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Finds the tasks entries before and after the current tasks entry in the ordered set where assigneeUserId = &#63;.
+	 * Returns the tasks entries before and after the current tasks entry in the ordered set where assigneeUserId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
 	 * @param tasksEntryId the primary key of the current tasks entry
-	 * @param assigneeUserId the assignee user ID to search with
+	 * @param assigneeUserId the assignee user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next tasks entry
 	 * @throws com.liferay.tasks.NoSuchTasksEntryException if a tasks entry with the primary key could not be found
@@ -1805,9 +1787,9 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Finds all the tasks entries where resolverUserId = &#63;.
+	 * Returns all the tasks entries where resolverUserId = &#63;.
 	 *
-	 * @param resolverUserId the resolver user ID to search with
+	 * @param resolverUserId the resolver user ID
 	 * @return the matching tasks entries
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -1818,15 +1800,15 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Finds a range of all the tasks entries where resolverUserId = &#63;.
+	 * Returns a range of all the tasks entries where resolverUserId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param resolverUserId the resolver user ID to search with
-	 * @param start the lower bound of the range of tasks entries to return
-	 * @param end the upper bound of the range of tasks entries to return (not inclusive)
+	 * @param resolverUserId the resolver user ID
+	 * @param start the lower bound of the range of tasks entries
+	 * @param end the upper bound of the range of tasks entries (not inclusive)
 	 * @return the range of matching tasks entries
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -1836,15 +1818,15 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Finds an ordered range of all the tasks entries where resolverUserId = &#63;.
+	 * Returns an ordered range of all the tasks entries where resolverUserId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param resolverUserId the resolver user ID to search with
-	 * @param start the lower bound of the range of tasks entries to return
-	 * @param end the upper bound of the range of tasks entries to return (not inclusive)
+	 * @param resolverUserId the resolver user ID
+	 * @param start the lower bound of the range of tasks entries
+	 * @param end the upper bound of the range of tasks entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching tasks entries
 	 * @throws SystemException if a system exception occurred
@@ -1925,13 +1907,13 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Finds the first tasks entry in the ordered set where resolverUserId = &#63;.
+	 * Returns the first tasks entry in the ordered set where resolverUserId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param resolverUserId the resolver user ID to search with
+	 * @param resolverUserId the resolver user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching tasks entry
 	 * @throws com.liferay.tasks.NoSuchTasksEntryException if a matching tasks entry could not be found
@@ -1961,13 +1943,13 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Finds the last tasks entry in the ordered set where resolverUserId = &#63;.
+	 * Returns the last tasks entry in the ordered set where resolverUserId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param resolverUserId the resolver user ID to search with
+	 * @param resolverUserId the resolver user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching tasks entry
 	 * @throws com.liferay.tasks.NoSuchTasksEntryException if a matching tasks entry could not be found
@@ -1999,14 +1981,14 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Finds the tasks entries before and after the current tasks entry in the ordered set where resolverUserId = &#63;.
+	 * Returns the tasks entries before and after the current tasks entry in the ordered set where resolverUserId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
 	 * @param tasksEntryId the primary key of the current tasks entry
-	 * @param resolverUserId the resolver user ID to search with
+	 * @param resolverUserId the resolver user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next tasks entry
 	 * @throws com.liferay.tasks.NoSuchTasksEntryException if a tasks entry with the primary key could not be found
@@ -2147,10 +2129,10 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Finds all the tasks entries where groupId = &#63; and userId = &#63;.
+	 * Returns all the tasks entries where groupId = &#63; and userId = &#63;.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param userId the user ID to search with
+	 * @param groupId the group ID
+	 * @param userId the user ID
 	 * @return the matching tasks entries
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -2161,16 +2143,16 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Finds a range of all the tasks entries where groupId = &#63; and userId = &#63;.
+	 * Returns a range of all the tasks entries where groupId = &#63; and userId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param userId the user ID to search with
-	 * @param start the lower bound of the range of tasks entries to return
-	 * @param end the upper bound of the range of tasks entries to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param userId the user ID
+	 * @param start the lower bound of the range of tasks entries
+	 * @param end the upper bound of the range of tasks entries (not inclusive)
 	 * @return the range of matching tasks entries
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -2180,16 +2162,16 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Finds an ordered range of all the tasks entries where groupId = &#63; and userId = &#63;.
+	 * Returns an ordered range of all the tasks entries where groupId = &#63; and userId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param userId the user ID to search with
-	 * @param start the lower bound of the range of tasks entries to return
-	 * @param end the upper bound of the range of tasks entries to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param userId the user ID
+	 * @param start the lower bound of the range of tasks entries
+	 * @param end the upper bound of the range of tasks entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching tasks entries
 	 * @throws SystemException if a system exception occurred
@@ -2273,14 +2255,14 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Finds the first tasks entry in the ordered set where groupId = &#63; and userId = &#63;.
+	 * Returns the first tasks entry in the ordered set where groupId = &#63; and userId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param userId the user ID to search with
+	 * @param groupId the group ID
+	 * @param userId the user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching tasks entry
 	 * @throws com.liferay.tasks.NoSuchTasksEntryException if a matching tasks entry could not be found
@@ -2313,14 +2295,14 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Finds the last tasks entry in the ordered set where groupId = &#63; and userId = &#63;.
+	 * Returns the last tasks entry in the ordered set where groupId = &#63; and userId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param userId the user ID to search with
+	 * @param groupId the group ID
+	 * @param userId the user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching tasks entry
 	 * @throws com.liferay.tasks.NoSuchTasksEntryException if a matching tasks entry could not be found
@@ -2355,15 +2337,15 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Finds the tasks entries before and after the current tasks entry in the ordered set where groupId = &#63; and userId = &#63;.
+	 * Returns the tasks entries before and after the current tasks entry in the ordered set where groupId = &#63; and userId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
 	 * @param tasksEntryId the primary key of the current tasks entry
-	 * @param groupId the group ID to search with
-	 * @param userId the user ID to search with
+	 * @param groupId the group ID
+	 * @param userId the user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next tasks entry
 	 * @throws com.liferay.tasks.NoSuchTasksEntryException if a tasks entry with the primary key could not be found
@@ -2508,10 +2490,10 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds all the tasks entries where groupId = &#63; and userId = &#63;.
+	 * Returns all the tasks entries that the user has permission to view where groupId = &#63; and userId = &#63;.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param userId the user ID to search with
+	 * @param groupId the group ID
+	 * @param userId the user ID
 	 * @return the matching tasks entries that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -2522,16 +2504,16 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds a range of all the tasks entries where groupId = &#63; and userId = &#63;.
+	 * Returns a range of all the tasks entries that the user has permission to view where groupId = &#63; and userId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param userId the user ID to search with
-	 * @param start the lower bound of the range of tasks entries to return
-	 * @param end the upper bound of the range of tasks entries to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param userId the user ID
+	 * @param start the lower bound of the range of tasks entries
+	 * @param end the upper bound of the range of tasks entries (not inclusive)
 	 * @return the range of matching tasks entries that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -2541,16 +2523,16 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds an ordered range of all the tasks entries where groupId = &#63; and userId = &#63;.
+	 * Returns an ordered range of all the tasks entries that the user has permissions to view where groupId = &#63; and userId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param userId the user ID to search with
-	 * @param start the lower bound of the range of tasks entries to return
-	 * @param end the upper bound of the range of tasks entries to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param userId the user ID
+	 * @param start the lower bound of the range of tasks entries
+	 * @param end the upper bound of the range of tasks entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching tasks entries that the user has permission to view
 	 * @throws SystemException if a system exception occurred
@@ -2572,20 +2554,13 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 			query = new StringBundler(4);
 		}
 
-		if (getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_TASKSENTRY_WHERE);
-		}
-		else {
-			query.append(_FILTER_SQL_SELECT_TASKSENTRY_NO_INLINE_DISTINCT_WHERE_1);
-		}
+		query.append(_FILTER_SQL_SELECT_TASKSENTRY_WHERE);
 
 		query.append(_FINDER_COLUMN_G_U_GROUPID_2);
 
 		query.append(_FINDER_COLUMN_G_U_USERID_2);
 
-		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_TASKSENTRY_NO_INLINE_DISTINCT_WHERE_2);
-		}
+		appendGroupByComparator(query, _FILTER_COLUMN_PK);
 
 		if (orderByComparator != null) {
 			if (getDB().isSupportsInlineDistinct()) {
@@ -2641,15 +2616,11 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Filters the tasks entries before and after the current tasks entry in the ordered set where groupId = &#63; and userId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
+	 * Returns the tasks entries before and after the current tasks entry in the ordered set of tasks entries that the user has permission to view where groupId = &#63; and userId = &#63;.
 	 *
 	 * @param tasksEntryId the primary key of the current tasks entry
-	 * @param groupId the group ID to search with
-	 * @param userId the user ID to search with
+	 * @param groupId the group ID
+	 * @param userId the user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next tasks entry
 	 * @throws com.liferay.tasks.NoSuchTasksEntryException if a tasks entry with the primary key could not be found
@@ -2703,20 +2674,13 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 			query = new StringBundler(3);
 		}
 
-		if (getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_TASKSENTRY_WHERE);
-		}
-		else {
-			query.append(_FILTER_SQL_SELECT_TASKSENTRY_NO_INLINE_DISTINCT_WHERE_1);
-		}
+		query.append(_FILTER_SQL_SELECT_TASKSENTRY_WHERE);
 
 		query.append(_FINDER_COLUMN_G_U_GROUPID_2);
 
 		query.append(_FINDER_COLUMN_G_U_USERID_2);
 
-		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_TASKSENTRY_NO_INLINE_DISTINCT_WHERE_2);
-		}
+		appendGroupByComparator(query, _FILTER_COLUMN_PK);
 
 		if (orderByComparator != null) {
 			String[] orderByFields = orderByComparator.getOrderByFields();
@@ -2833,10 +2797,10 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Finds all the tasks entries where groupId = &#63; and assigneeUserId = &#63;.
+	 * Returns all the tasks entries where groupId = &#63; and assigneeUserId = &#63;.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param assigneeUserId the assignee user ID to search with
+	 * @param groupId the group ID
+	 * @param assigneeUserId the assignee user ID
 	 * @return the matching tasks entries
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -2847,16 +2811,16 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Finds a range of all the tasks entries where groupId = &#63; and assigneeUserId = &#63;.
+	 * Returns a range of all the tasks entries where groupId = &#63; and assigneeUserId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param assigneeUserId the assignee user ID to search with
-	 * @param start the lower bound of the range of tasks entries to return
-	 * @param end the upper bound of the range of tasks entries to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param assigneeUserId the assignee user ID
+	 * @param start the lower bound of the range of tasks entries
+	 * @param end the upper bound of the range of tasks entries (not inclusive)
 	 * @return the range of matching tasks entries
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -2866,16 +2830,16 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Finds an ordered range of all the tasks entries where groupId = &#63; and assigneeUserId = &#63;.
+	 * Returns an ordered range of all the tasks entries where groupId = &#63; and assigneeUserId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param assigneeUserId the assignee user ID to search with
-	 * @param start the lower bound of the range of tasks entries to return
-	 * @param end the upper bound of the range of tasks entries to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param assigneeUserId the assignee user ID
+	 * @param start the lower bound of the range of tasks entries
+	 * @param end the upper bound of the range of tasks entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching tasks entries
 	 * @throws SystemException if a system exception occurred
@@ -2960,14 +2924,14 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Finds the first tasks entry in the ordered set where groupId = &#63; and assigneeUserId = &#63;.
+	 * Returns the first tasks entry in the ordered set where groupId = &#63; and assigneeUserId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param assigneeUserId the assignee user ID to search with
+	 * @param groupId the group ID
+	 * @param assigneeUserId the assignee user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching tasks entry
 	 * @throws com.liferay.tasks.NoSuchTasksEntryException if a matching tasks entry could not be found
@@ -3000,14 +2964,14 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Finds the last tasks entry in the ordered set where groupId = &#63; and assigneeUserId = &#63;.
+	 * Returns the last tasks entry in the ordered set where groupId = &#63; and assigneeUserId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param assigneeUserId the assignee user ID to search with
+	 * @param groupId the group ID
+	 * @param assigneeUserId the assignee user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching tasks entry
 	 * @throws com.liferay.tasks.NoSuchTasksEntryException if a matching tasks entry could not be found
@@ -3042,15 +3006,15 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Finds the tasks entries before and after the current tasks entry in the ordered set where groupId = &#63; and assigneeUserId = &#63;.
+	 * Returns the tasks entries before and after the current tasks entry in the ordered set where groupId = &#63; and assigneeUserId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
 	 * @param tasksEntryId the primary key of the current tasks entry
-	 * @param groupId the group ID to search with
-	 * @param assigneeUserId the assignee user ID to search with
+	 * @param groupId the group ID
+	 * @param assigneeUserId the assignee user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next tasks entry
 	 * @throws com.liferay.tasks.NoSuchTasksEntryException if a tasks entry with the primary key could not be found
@@ -3195,10 +3159,10 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds all the tasks entries where groupId = &#63; and assigneeUserId = &#63;.
+	 * Returns all the tasks entries that the user has permission to view where groupId = &#63; and assigneeUserId = &#63;.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param assigneeUserId the assignee user ID to search with
+	 * @param groupId the group ID
+	 * @param assigneeUserId the assignee user ID
 	 * @return the matching tasks entries that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -3209,16 +3173,16 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds a range of all the tasks entries where groupId = &#63; and assigneeUserId = &#63;.
+	 * Returns a range of all the tasks entries that the user has permission to view where groupId = &#63; and assigneeUserId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param assigneeUserId the assignee user ID to search with
-	 * @param start the lower bound of the range of tasks entries to return
-	 * @param end the upper bound of the range of tasks entries to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param assigneeUserId the assignee user ID
+	 * @param start the lower bound of the range of tasks entries
+	 * @param end the upper bound of the range of tasks entries (not inclusive)
 	 * @return the range of matching tasks entries that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -3228,16 +3192,16 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds an ordered range of all the tasks entries where groupId = &#63; and assigneeUserId = &#63;.
+	 * Returns an ordered range of all the tasks entries that the user has permissions to view where groupId = &#63; and assigneeUserId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param assigneeUserId the assignee user ID to search with
-	 * @param start the lower bound of the range of tasks entries to return
-	 * @param end the upper bound of the range of tasks entries to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param assigneeUserId the assignee user ID
+	 * @param start the lower bound of the range of tasks entries
+	 * @param end the upper bound of the range of tasks entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching tasks entries that the user has permission to view
 	 * @throws SystemException if a system exception occurred
@@ -3260,20 +3224,13 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 			query = new StringBundler(4);
 		}
 
-		if (getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_TASKSENTRY_WHERE);
-		}
-		else {
-			query.append(_FILTER_SQL_SELECT_TASKSENTRY_NO_INLINE_DISTINCT_WHERE_1);
-		}
+		query.append(_FILTER_SQL_SELECT_TASKSENTRY_WHERE);
 
 		query.append(_FINDER_COLUMN_G_A_GROUPID_2);
 
 		query.append(_FINDER_COLUMN_G_A_ASSIGNEEUSERID_2);
 
-		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_TASKSENTRY_NO_INLINE_DISTINCT_WHERE_2);
-		}
+		appendGroupByComparator(query, _FILTER_COLUMN_PK);
 
 		if (orderByComparator != null) {
 			if (getDB().isSupportsInlineDistinct()) {
@@ -3329,15 +3286,11 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Filters the tasks entries before and after the current tasks entry in the ordered set where groupId = &#63; and assigneeUserId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
+	 * Returns the tasks entries before and after the current tasks entry in the ordered set of tasks entries that the user has permission to view where groupId = &#63; and assigneeUserId = &#63;.
 	 *
 	 * @param tasksEntryId the primary key of the current tasks entry
-	 * @param groupId the group ID to search with
-	 * @param assigneeUserId the assignee user ID to search with
+	 * @param groupId the group ID
+	 * @param assigneeUserId the assignee user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next tasks entry
 	 * @throws com.liferay.tasks.NoSuchTasksEntryException if a tasks entry with the primary key could not be found
@@ -3391,20 +3344,13 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 			query = new StringBundler(3);
 		}
 
-		if (getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_TASKSENTRY_WHERE);
-		}
-		else {
-			query.append(_FILTER_SQL_SELECT_TASKSENTRY_NO_INLINE_DISTINCT_WHERE_1);
-		}
+		query.append(_FILTER_SQL_SELECT_TASKSENTRY_WHERE);
 
 		query.append(_FINDER_COLUMN_G_A_GROUPID_2);
 
 		query.append(_FINDER_COLUMN_G_A_ASSIGNEEUSERID_2);
 
-		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_TASKSENTRY_NO_INLINE_DISTINCT_WHERE_2);
-		}
+		appendGroupByComparator(query, _FILTER_COLUMN_PK);
 
 		if (orderByComparator != null) {
 			String[] orderByFields = orderByComparator.getOrderByFields();
@@ -3521,10 +3467,10 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Finds all the tasks entries where groupId = &#63; and resolverUserId = &#63;.
+	 * Returns all the tasks entries where groupId = &#63; and resolverUserId = &#63;.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param resolverUserId the resolver user ID to search with
+	 * @param groupId the group ID
+	 * @param resolverUserId the resolver user ID
 	 * @return the matching tasks entries
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -3535,16 +3481,16 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Finds a range of all the tasks entries where groupId = &#63; and resolverUserId = &#63;.
+	 * Returns a range of all the tasks entries where groupId = &#63; and resolverUserId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param resolverUserId the resolver user ID to search with
-	 * @param start the lower bound of the range of tasks entries to return
-	 * @param end the upper bound of the range of tasks entries to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param resolverUserId the resolver user ID
+	 * @param start the lower bound of the range of tasks entries
+	 * @param end the upper bound of the range of tasks entries (not inclusive)
 	 * @return the range of matching tasks entries
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -3554,16 +3500,16 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Finds an ordered range of all the tasks entries where groupId = &#63; and resolverUserId = &#63;.
+	 * Returns an ordered range of all the tasks entries where groupId = &#63; and resolverUserId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param resolverUserId the resolver user ID to search with
-	 * @param start the lower bound of the range of tasks entries to return
-	 * @param end the upper bound of the range of tasks entries to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param resolverUserId the resolver user ID
+	 * @param start the lower bound of the range of tasks entries
+	 * @param end the upper bound of the range of tasks entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching tasks entries
 	 * @throws SystemException if a system exception occurred
@@ -3648,14 +3594,14 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Finds the first tasks entry in the ordered set where groupId = &#63; and resolverUserId = &#63;.
+	 * Returns the first tasks entry in the ordered set where groupId = &#63; and resolverUserId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param resolverUserId the resolver user ID to search with
+	 * @param groupId the group ID
+	 * @param resolverUserId the resolver user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching tasks entry
 	 * @throws com.liferay.tasks.NoSuchTasksEntryException if a matching tasks entry could not be found
@@ -3688,14 +3634,14 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Finds the last tasks entry in the ordered set where groupId = &#63; and resolverUserId = &#63;.
+	 * Returns the last tasks entry in the ordered set where groupId = &#63; and resolverUserId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param resolverUserId the resolver user ID to search with
+	 * @param groupId the group ID
+	 * @param resolverUserId the resolver user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching tasks entry
 	 * @throws com.liferay.tasks.NoSuchTasksEntryException if a matching tasks entry could not be found
@@ -3730,15 +3676,15 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Finds the tasks entries before and after the current tasks entry in the ordered set where groupId = &#63; and resolverUserId = &#63;.
+	 * Returns the tasks entries before and after the current tasks entry in the ordered set where groupId = &#63; and resolverUserId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
 	 * @param tasksEntryId the primary key of the current tasks entry
-	 * @param groupId the group ID to search with
-	 * @param resolverUserId the resolver user ID to search with
+	 * @param groupId the group ID
+	 * @param resolverUserId the resolver user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next tasks entry
 	 * @throws com.liferay.tasks.NoSuchTasksEntryException if a tasks entry with the primary key could not be found
@@ -3883,10 +3829,10 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds all the tasks entries where groupId = &#63; and resolverUserId = &#63;.
+	 * Returns all the tasks entries that the user has permission to view where groupId = &#63; and resolverUserId = &#63;.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param resolverUserId the resolver user ID to search with
+	 * @param groupId the group ID
+	 * @param resolverUserId the resolver user ID
 	 * @return the matching tasks entries that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -3897,16 +3843,16 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds a range of all the tasks entries where groupId = &#63; and resolverUserId = &#63;.
+	 * Returns a range of all the tasks entries that the user has permission to view where groupId = &#63; and resolverUserId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param resolverUserId the resolver user ID to search with
-	 * @param start the lower bound of the range of tasks entries to return
-	 * @param end the upper bound of the range of tasks entries to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param resolverUserId the resolver user ID
+	 * @param start the lower bound of the range of tasks entries
+	 * @param end the upper bound of the range of tasks entries (not inclusive)
 	 * @return the range of matching tasks entries that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -3916,16 +3862,16 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds an ordered range of all the tasks entries where groupId = &#63; and resolverUserId = &#63;.
+	 * Returns an ordered range of all the tasks entries that the user has permissions to view where groupId = &#63; and resolverUserId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group ID to search with
-	 * @param resolverUserId the resolver user ID to search with
-	 * @param start the lower bound of the range of tasks entries to return
-	 * @param end the upper bound of the range of tasks entries to return (not inclusive)
+	 * @param groupId the group ID
+	 * @param resolverUserId the resolver user ID
+	 * @param start the lower bound of the range of tasks entries
+	 * @param end the upper bound of the range of tasks entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching tasks entries that the user has permission to view
 	 * @throws SystemException if a system exception occurred
@@ -3948,20 +3894,13 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 			query = new StringBundler(4);
 		}
 
-		if (getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_TASKSENTRY_WHERE);
-		}
-		else {
-			query.append(_FILTER_SQL_SELECT_TASKSENTRY_NO_INLINE_DISTINCT_WHERE_1);
-		}
+		query.append(_FILTER_SQL_SELECT_TASKSENTRY_WHERE);
 
 		query.append(_FINDER_COLUMN_G_R_GROUPID_2);
 
 		query.append(_FINDER_COLUMN_G_R_RESOLVERUSERID_2);
 
-		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_TASKSENTRY_NO_INLINE_DISTINCT_WHERE_2);
-		}
+		appendGroupByComparator(query, _FILTER_COLUMN_PK);
 
 		if (orderByComparator != null) {
 			if (getDB().isSupportsInlineDistinct()) {
@@ -4017,15 +3956,11 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Filters the tasks entries before and after the current tasks entry in the ordered set where groupId = &#63; and resolverUserId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
+	 * Returns the tasks entries before and after the current tasks entry in the ordered set of tasks entries that the user has permission to view where groupId = &#63; and resolverUserId = &#63;.
 	 *
 	 * @param tasksEntryId the primary key of the current tasks entry
-	 * @param groupId the group ID to search with
-	 * @param resolverUserId the resolver user ID to search with
+	 * @param groupId the group ID
+	 * @param resolverUserId the resolver user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next tasks entry
 	 * @throws com.liferay.tasks.NoSuchTasksEntryException if a tasks entry with the primary key could not be found
@@ -4079,20 +4014,13 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 			query = new StringBundler(3);
 		}
 
-		if (getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_TASKSENTRY_WHERE);
-		}
-		else {
-			query.append(_FILTER_SQL_SELECT_TASKSENTRY_NO_INLINE_DISTINCT_WHERE_1);
-		}
+		query.append(_FILTER_SQL_SELECT_TASKSENTRY_WHERE);
 
 		query.append(_FINDER_COLUMN_G_R_GROUPID_2);
 
 		query.append(_FINDER_COLUMN_G_R_RESOLVERUSERID_2);
 
-		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_TASKSENTRY_NO_INLINE_DISTINCT_WHERE_2);
-		}
+		appendGroupByComparator(query, _FILTER_COLUMN_PK);
 
 		if (orderByComparator != null) {
 			String[] orderByFields = orderByComparator.getOrderByFields();
@@ -4209,7 +4137,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Finds all the tasks entries.
+	 * Returns all the tasks entries.
 	 *
 	 * @return the tasks entries
 	 * @throws SystemException if a system exception occurred
@@ -4219,14 +4147,14 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Finds a range of all the tasks entries.
+	 * Returns a range of all the tasks entries.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of tasks entries to return
-	 * @param end the upper bound of the range of tasks entries to return (not inclusive)
+	 * @param start the lower bound of the range of tasks entries
+	 * @param end the upper bound of the range of tasks entries (not inclusive)
 	 * @return the range of tasks entries
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -4236,14 +4164,14 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Finds an ordered range of all the tasks entries.
+	 * Returns an ordered range of all the tasks entries.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of tasks entries to return
-	 * @param end the upper bound of the range of tasks entries to return (not inclusive)
+	 * @param start the lower bound of the range of tasks entries
+	 * @param end the upper bound of the range of tasks entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of tasks entries
 	 * @throws SystemException if a system exception occurred
@@ -4320,7 +4248,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	/**
 	 * Removes all the tasks entries where groupId = &#63; from the database.
 	 *
-	 * @param groupId the group ID to search with
+	 * @param groupId the group ID
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeByGroupId(long groupId) throws SystemException {
@@ -4332,7 +4260,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	/**
 	 * Removes all the tasks entries where userId = &#63; from the database.
 	 *
-	 * @param userId the user ID to search with
+	 * @param userId the user ID
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeByUserId(long userId) throws SystemException {
@@ -4344,7 +4272,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	/**
 	 * Removes all the tasks entries where assigneeUserId = &#63; from the database.
 	 *
-	 * @param assigneeUserId the assignee user ID to search with
+	 * @param assigneeUserId the assignee user ID
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeByAssigneeUserId(long assigneeUserId)
@@ -4357,7 +4285,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	/**
 	 * Removes all the tasks entries where resolverUserId = &#63; from the database.
 	 *
-	 * @param resolverUserId the resolver user ID to search with
+	 * @param resolverUserId the resolver user ID
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeByResolverUserId(long resolverUserId)
@@ -4370,8 +4298,8 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	/**
 	 * Removes all the tasks entries where groupId = &#63; and userId = &#63; from the database.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param userId the user ID to search with
+	 * @param groupId the group ID
+	 * @param userId the user ID
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeByG_U(long groupId, long userId)
@@ -4384,8 +4312,8 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	/**
 	 * Removes all the tasks entries where groupId = &#63; and assigneeUserId = &#63; from the database.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param assigneeUserId the assignee user ID to search with
+	 * @param groupId the group ID
+	 * @param assigneeUserId the assignee user ID
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeByG_A(long groupId, long assigneeUserId)
@@ -4398,8 +4326,8 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	/**
 	 * Removes all the tasks entries where groupId = &#63; and resolverUserId = &#63; from the database.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param resolverUserId the resolver user ID to search with
+	 * @param groupId the group ID
+	 * @param resolverUserId the resolver user ID
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeByG_R(long groupId, long resolverUserId)
@@ -4421,9 +4349,9 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Counts all the tasks entries where groupId = &#63;.
+	 * Returns the number of tasks entries where groupId = &#63;.
 	 *
-	 * @param groupId the group ID to search with
+	 * @param groupId the group ID
 	 * @return the number of matching tasks entries
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -4474,9 +4402,9 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Filters by the user's permissions and counts all the tasks entries where groupId = &#63;.
+	 * Returns the number of tasks entries that the user has permission to view where groupId = &#63;.
 	 *
-	 * @param groupId the group ID to search with
+	 * @param groupId the group ID
 	 * @return the number of matching tasks entries that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -4521,9 +4449,9 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Counts all the tasks entries where userId = &#63;.
+	 * Returns the number of tasks entries where userId = &#63;.
 	 *
-	 * @param userId the user ID to search with
+	 * @param userId the user ID
 	 * @return the number of matching tasks entries
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -4574,9 +4502,9 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Counts all the tasks entries where assigneeUserId = &#63;.
+	 * Returns the number of tasks entries where assigneeUserId = &#63;.
 	 *
-	 * @param assigneeUserId the assignee user ID to search with
+	 * @param assigneeUserId the assignee user ID
 	 * @return the number of matching tasks entries
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -4628,9 +4556,9 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Counts all the tasks entries where resolverUserId = &#63;.
+	 * Returns the number of tasks entries where resolverUserId = &#63;.
 	 *
-	 * @param resolverUserId the resolver user ID to search with
+	 * @param resolverUserId the resolver user ID
 	 * @return the number of matching tasks entries
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -4682,10 +4610,10 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Counts all the tasks entries where groupId = &#63; and userId = &#63;.
+	 * Returns the number of tasks entries where groupId = &#63; and userId = &#63;.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param userId the user ID to search with
+	 * @param groupId the group ID
+	 * @param userId the user ID
 	 * @return the number of matching tasks entries
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -4740,10 +4668,10 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Filters by the user's permissions and counts all the tasks entries where groupId = &#63; and userId = &#63;.
+	 * Returns the number of tasks entries that the user has permission to view where groupId = &#63; and userId = &#63;.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param userId the user ID to search with
+	 * @param groupId the group ID
+	 * @param userId the user ID
 	 * @return the number of matching tasks entries that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -4793,10 +4721,10 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Counts all the tasks entries where groupId = &#63; and assigneeUserId = &#63;.
+	 * Returns the number of tasks entries where groupId = &#63; and assigneeUserId = &#63;.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param assigneeUserId the assignee user ID to search with
+	 * @param groupId the group ID
+	 * @param assigneeUserId the assignee user ID
 	 * @return the number of matching tasks entries
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -4852,10 +4780,10 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Filters by the user's permissions and counts all the tasks entries where groupId = &#63; and assigneeUserId = &#63;.
+	 * Returns the number of tasks entries that the user has permission to view where groupId = &#63; and assigneeUserId = &#63;.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param assigneeUserId the assignee user ID to search with
+	 * @param groupId the group ID
+	 * @param assigneeUserId the assignee user ID
 	 * @return the number of matching tasks entries that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -4905,10 +4833,10 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Counts all the tasks entries where groupId = &#63; and resolverUserId = &#63;.
+	 * Returns the number of tasks entries where groupId = &#63; and resolverUserId = &#63;.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param resolverUserId the resolver user ID to search with
+	 * @param groupId the group ID
+	 * @param resolverUserId the resolver user ID
 	 * @return the number of matching tasks entries
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -4964,10 +4892,10 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Filters by the user's permissions and counts all the tasks entries where groupId = &#63; and resolverUserId = &#63;.
+	 * Returns the number of tasks entries that the user has permission to view where groupId = &#63; and resolverUserId = &#63;.
 	 *
-	 * @param groupId the group ID to search with
-	 * @param resolverUserId the resolver user ID to search with
+	 * @param groupId the group ID
+	 * @param resolverUserId the resolver user ID
 	 * @return the number of matching tasks entries that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -5017,7 +4945,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Counts all the tasks entries.
+	 * Returns the number of tasks entries.
 	 *
 	 * @return the number of tasks entries
 	 * @throws SystemException if a system exception occurred
@@ -5107,11 +5035,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	private static final String _FINDER_COLUMN_G_A_ASSIGNEEUSERID_2 = "tasksEntry.assigneeUserId = ?";
 	private static final String _FINDER_COLUMN_G_R_GROUPID_2 = "tasksEntry.groupId = ? AND ";
 	private static final String _FINDER_COLUMN_G_R_RESOLVERUSERID_2 = "tasksEntry.resolverUserId = ?";
-	private static final String _FILTER_SQL_SELECT_TASKSENTRY_WHERE = "SELECT DISTINCT {tasksEntry.*} FROM TMS_TasksEntry tasksEntry WHERE ";
-	private static final String _FILTER_SQL_SELECT_TASKSENTRY_NO_INLINE_DISTINCT_WHERE_1 =
-		"SELECT {TMS_TasksEntry.*} FROM (SELECT DISTINCT tasksEntry.tasksEntryId FROM TMS_TasksEntry tasksEntry WHERE ";
-	private static final String _FILTER_SQL_SELECT_TASKSENTRY_NO_INLINE_DISTINCT_WHERE_2 =
-		") TEMP_TABLE INNER JOIN TMS_TasksEntry ON TEMP_TABLE.tasksEntryId = TMS_TasksEntry.tasksEntryId";
+	private static final String _FILTER_SQL_SELECT_TASKSENTRY_WHERE = "SELECT {tasksEntry.*} FROM TMS_TasksEntry tasksEntry WHERE ";
 	private static final String _FILTER_SQL_COUNT_TASKSENTRY_WHERE = "SELECT COUNT(DISTINCT tasksEntry.tasksEntryId) AS COUNT_VALUE FROM TMS_TasksEntry tasksEntry WHERE ";
 	private static final String _FILTER_COLUMN_PK = "tasksEntry.tasksEntryId";
 	private static final String _FILTER_ENTITY_ALIAS = "tasksEntry";

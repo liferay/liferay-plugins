@@ -33,6 +33,11 @@ import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.search.Indexer;
+import com.liferay.portal.kernel.search.IndexerRegistryUtil;
+import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.service.ResourceLocalService;
 import com.liferay.portal.service.ResourceService;
@@ -68,7 +73,7 @@ public abstract class DefinitionLocalServiceBaseImpl
 	/**
 	 * Adds the definition to the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param definition the definition to add
+	 * @param definition the definition
 	 * @return the definition that was added
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -76,7 +81,22 @@ public abstract class DefinitionLocalServiceBaseImpl
 		throws SystemException {
 		definition.setNew(true);
 
-		return definitionPersistence.update(definition, false);
+		definition = definitionPersistence.update(definition, false);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.reindex(definition);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
+
+		return definition;
 	}
 
 	/**
@@ -92,30 +112,56 @@ public abstract class DefinitionLocalServiceBaseImpl
 	/**
 	 * Deletes the definition with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param definitionId the primary key of the definition to delete
+	 * @param definitionId the primary key of the definition
 	 * @throws PortalException if a definition with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void deleteDefinition(long definitionId)
 		throws PortalException, SystemException {
-		definitionPersistence.remove(definitionId);
+		Definition definition = definitionPersistence.remove(definitionId);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.delete(definition);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
 	}
 
 	/**
 	 * Deletes the definition from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param definition the definition to delete
+	 * @param definition the definition
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void deleteDefinition(Definition definition)
 		throws SystemException {
 		definitionPersistence.remove(definition);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.delete(definition);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
 	}
 
 	/**
 	 * Performs a dynamic query on the database and returns the matching rows.
 	 *
-	 * @param dynamicQuery the dynamic query to search with
+	 * @param dynamicQuery the dynamic query
 	 * @return the matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -132,9 +178,9 @@ public abstract class DefinitionLocalServiceBaseImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param dynamicQuery the dynamic query to search with
-	 * @param start the lower bound of the range of model instances to return
-	 * @param end the upper bound of the range of model instances to return (not inclusive)
+	 * @param dynamicQuery the dynamic query
+	 * @param start the lower bound of the range of model instances
+	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @return the range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -152,9 +198,9 @@ public abstract class DefinitionLocalServiceBaseImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param dynamicQuery the dynamic query to search with
-	 * @param start the lower bound of the range of model instances to return
-	 * @param end the upper bound of the range of model instances to return (not inclusive)
+	 * @param dynamicQuery the dynamic query
+	 * @param start the lower bound of the range of model instances
+	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching rows
 	 * @throws SystemException if a system exception occurred
@@ -167,9 +213,9 @@ public abstract class DefinitionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Counts the number of rows that match the dynamic query.
+	 * Returns the number of rows that match the dynamic query.
 	 *
-	 * @param dynamicQuery the dynamic query to search with
+	 * @param dynamicQuery the dynamic query
 	 * @return the number of rows that match the dynamic query
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -179,9 +225,9 @@ public abstract class DefinitionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the definition with the primary key.
+	 * Returns the definition with the primary key.
 	 *
-	 * @param definitionId the primary key of the definition to get
+	 * @param definitionId the primary key of the definition
 	 * @return the definition
 	 * @throws PortalException if a definition with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -192,14 +238,14 @@ public abstract class DefinitionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets a range of all the definitions.
+	 * Returns a range of all the definitions.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of definitions to return
-	 * @param end the upper bound of the range of definitions to return (not inclusive)
+	 * @param start the lower bound of the range of definitions
+	 * @param end the upper bound of the range of definitions (not inclusive)
 	 * @return the range of definitions
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -209,7 +255,7 @@ public abstract class DefinitionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the number of definitions.
+	 * Returns the number of definitions.
 	 *
 	 * @return the number of definitions
 	 * @throws SystemException if a system exception occurred
@@ -221,21 +267,19 @@ public abstract class DefinitionLocalServiceBaseImpl
 	/**
 	 * Updates the definition in the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param definition the definition to update
+	 * @param definition the definition
 	 * @return the definition that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
 	public Definition updateDefinition(Definition definition)
 		throws SystemException {
-		definition.setNew(false);
-
-		return definitionPersistence.update(definition, true);
+		return updateDefinition(definition, true);
 	}
 
 	/**
 	 * Updates the definition in the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param definition the definition to update
+	 * @param definition the definition
 	 * @param merge whether to merge the definition with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
 	 * @return the definition that was updated
 	 * @throws SystemException if a system exception occurred
@@ -244,11 +288,26 @@ public abstract class DefinitionLocalServiceBaseImpl
 		throws SystemException {
 		definition.setNew(false);
 
-		return definitionPersistence.update(definition, merge);
+		definition = definitionPersistence.update(definition, merge);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.reindex(definition);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
+
+		return definition;
 	}
 
 	/**
-	 * Gets the asset local service.
+	 * Returns the asset local service.
 	 *
 	 * @return the asset local service
 	 */
@@ -266,7 +325,7 @@ public abstract class DefinitionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the asset persistence.
+	 * Returns the asset persistence.
 	 *
 	 * @return the asset persistence
 	 */
@@ -284,7 +343,7 @@ public abstract class DefinitionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the checkout local service.
+	 * Returns the checkout local service.
 	 *
 	 * @return the checkout local service
 	 */
@@ -303,7 +362,7 @@ public abstract class DefinitionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the checkout persistence.
+	 * Returns the checkout persistence.
 	 *
 	 * @return the checkout persistence
 	 */
@@ -321,7 +380,7 @@ public abstract class DefinitionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the definition local service.
+	 * Returns the definition local service.
 	 *
 	 * @return the definition local service
 	 */
@@ -340,7 +399,7 @@ public abstract class DefinitionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the definition persistence.
+	 * Returns the definition persistence.
 	 *
 	 * @return the definition persistence
 	 */
@@ -359,7 +418,7 @@ public abstract class DefinitionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the type local service.
+	 * Returns the type local service.
 	 *
 	 * @return the type local service
 	 */
@@ -377,7 +436,7 @@ public abstract class DefinitionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the type persistence.
+	 * Returns the type persistence.
 	 *
 	 * @return the type persistence
 	 */
@@ -395,7 +454,7 @@ public abstract class DefinitionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the counter local service.
+	 * Returns the counter local service.
 	 *
 	 * @return the counter local service
 	 */
@@ -413,7 +472,7 @@ public abstract class DefinitionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the resource local service.
+	 * Returns the resource local service.
 	 *
 	 * @return the resource local service
 	 */
@@ -432,7 +491,7 @@ public abstract class DefinitionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the resource remote service.
+	 * Returns the resource remote service.
 	 *
 	 * @return the resource remote service
 	 */
@@ -450,7 +509,7 @@ public abstract class DefinitionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the resource persistence.
+	 * Returns the resource persistence.
 	 *
 	 * @return the resource persistence
 	 */
@@ -468,7 +527,7 @@ public abstract class DefinitionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the user local service.
+	 * Returns the user local service.
 	 *
 	 * @return the user local service
 	 */
@@ -486,7 +545,7 @@ public abstract class DefinitionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the user remote service.
+	 * Returns the user remote service.
 	 *
 	 * @return the user remote service
 	 */
@@ -504,7 +563,7 @@ public abstract class DefinitionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the user persistence.
+	 * Returns the user persistence.
 	 *
 	 * @return the user persistence
 	 */
@@ -522,7 +581,7 @@ public abstract class DefinitionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Gets the Spring bean ID for this bean.
+	 * Returns the Spring bean ID for this bean.
 	 *
 	 * @return the Spring bean ID for this bean
 	 */
@@ -539,10 +598,18 @@ public abstract class DefinitionLocalServiceBaseImpl
 		_beanIdentifier = beanIdentifier;
 	}
 
+	protected Class<?> getModelClass() {
+		return Definition.class;
+	}
+
+	protected String getModelClassName() {
+		return Definition.class.getName();
+	}
+
 	/**
 	 * Performs an SQL query.
 	 *
-	 * @param sql the sql query to perform
+	 * @param sql the sql query
 	 */
 	protected void runSQL(String sql) throws SystemException {
 		try {
@@ -588,5 +655,6 @@ public abstract class DefinitionLocalServiceBaseImpl
 	protected UserService userService;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
+	private static Log _log = LogFactoryUtil.getLog(DefinitionLocalServiceBaseImpl.class);
 	private String _beanIdentifier;
 }

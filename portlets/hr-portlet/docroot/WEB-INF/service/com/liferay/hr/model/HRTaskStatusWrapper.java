@@ -37,7 +37,7 @@ public class HRTaskStatusWrapper implements HRTaskStatus {
 	}
 
 	/**
-	* Gets the primary key of this h r task status.
+	* Returns the primary key of this h r task status.
 	*
 	* @return the primary key of this h r task status
 	*/
@@ -46,7 +46,7 @@ public class HRTaskStatusWrapper implements HRTaskStatus {
 	}
 
 	/**
-	* Sets the primary key of this h r task status
+	* Sets the primary key of this h r task status.
 	*
 	* @param primaryKey the primary key of this h r task status
 	*/
@@ -55,7 +55,7 @@ public class HRTaskStatusWrapper implements HRTaskStatus {
 	}
 
 	/**
-	* Gets the hr task status ID of this h r task status.
+	* Returns the hr task status ID of this h r task status.
 	*
 	* @return the hr task status ID of this h r task status
 	*/
@@ -73,7 +73,7 @@ public class HRTaskStatusWrapper implements HRTaskStatus {
 	}
 
 	/**
-	* Gets the group ID of this h r task status.
+	* Returns the group ID of this h r task status.
 	*
 	* @return the group ID of this h r task status
 	*/
@@ -91,7 +91,7 @@ public class HRTaskStatusWrapper implements HRTaskStatus {
 	}
 
 	/**
-	* Gets the company ID of this h r task status.
+	* Returns the company ID of this h r task status.
 	*
 	* @return the company ID of this h r task status
 	*/
@@ -109,7 +109,7 @@ public class HRTaskStatusWrapper implements HRTaskStatus {
 	}
 
 	/**
-	* Gets the user ID of this h r task status.
+	* Returns the user ID of this h r task status.
 	*
 	* @return the user ID of this h r task status
 	*/
@@ -127,7 +127,7 @@ public class HRTaskStatusWrapper implements HRTaskStatus {
 	}
 
 	/**
-	* Gets the user uuid of this h r task status.
+	* Returns the user uuid of this h r task status.
 	*
 	* @return the user uuid of this h r task status
 	* @throws SystemException if a system exception occurred
@@ -147,7 +147,7 @@ public class HRTaskStatusWrapper implements HRTaskStatus {
 	}
 
 	/**
-	* Gets the user name of this h r task status.
+	* Returns the user name of this h r task status.
 	*
 	* @return the user name of this h r task status
 	*/
@@ -165,7 +165,7 @@ public class HRTaskStatusWrapper implements HRTaskStatus {
 	}
 
 	/**
-	* Gets the create date of this h r task status.
+	* Returns the create date of this h r task status.
 	*
 	* @return the create date of this h r task status
 	*/
@@ -183,7 +183,7 @@ public class HRTaskStatusWrapper implements HRTaskStatus {
 	}
 
 	/**
-	* Gets the modified date of this h r task status.
+	* Returns the modified date of this h r task status.
 	*
 	* @return the modified date of this h r task status
 	*/
@@ -201,7 +201,7 @@ public class HRTaskStatusWrapper implements HRTaskStatus {
 	}
 
 	/**
-	* Gets the code of this h r task status.
+	* Returns the code of this h r task status.
 	*
 	* @return the code of this h r task status
 	*/
@@ -219,7 +219,7 @@ public class HRTaskStatusWrapper implements HRTaskStatus {
 	}
 
 	/**
-	* Gets the name of this h r task status.
+	* Returns the name of this h r task status.
 	*
 	* @return the name of this h r task status
 	*/
@@ -237,7 +237,7 @@ public class HRTaskStatusWrapper implements HRTaskStatus {
 	}
 
 	/**
-	* Gets the description of this h r task status.
+	* Returns the description of this h r task status.
 	*
 	* @return the description of this h r task status
 	*/

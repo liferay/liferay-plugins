@@ -91,7 +91,7 @@ public class HRHolidayPersistenceImpl extends BasePersistenceImpl<HRHoliday>
 	/**
 	 * Caches the h r holiday in the entity cache if it is enabled.
 	 *
-	 * @param hrHoliday the h r holiday to cache
+	 * @param hrHoliday the h r holiday
 	 */
 	public void cacheResult(HRHoliday hrHoliday) {
 		EntityCacheUtil.putResult(HRHolidayModelImpl.ENTITY_CACHE_ENABLED,
@@ -103,7 +103,7 @@ public class HRHolidayPersistenceImpl extends BasePersistenceImpl<HRHoliday>
 	/**
 	 * Caches the h r holidaies in the entity cache if it is enabled.
 	 *
-	 * @param hrHolidaies the h r holidaies to cache
+	 * @param hrHolidaies the h r holidaies
 	 */
 	public void cacheResult(List<HRHoliday> hrHolidaies) {
 		for (HRHoliday hrHoliday : hrHolidaies) {
@@ -162,7 +162,7 @@ public class HRHolidayPersistenceImpl extends BasePersistenceImpl<HRHoliday>
 	/**
 	 * Removes the h r holiday with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param primaryKey the primary key of the h r holiday to remove
+	 * @param primaryKey the primary key of the h r holiday
 	 * @return the h r holiday that was removed
 	 * @throws com.liferay.portal.NoSuchModelException if a h r holiday with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -175,7 +175,7 @@ public class HRHolidayPersistenceImpl extends BasePersistenceImpl<HRHoliday>
 	/**
 	 * Removes the h r holiday with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param hrHolidayId the primary key of the h r holiday to remove
+	 * @param hrHolidayId the primary key of the h r holiday
 	 * @return the h r holiday that was removed
 	 * @throws com.liferay.hr.NoSuchHolidayException if a h r holiday with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -215,7 +215,7 @@ public class HRHolidayPersistenceImpl extends BasePersistenceImpl<HRHoliday>
 	/**
 	 * Removes the h r holiday from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param hrHoliday the h r holiday to remove
+	 * @param hrHoliday the h r holiday
 	 * @return the h r holiday that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -314,9 +314,9 @@ public class HRHolidayPersistenceImpl extends BasePersistenceImpl<HRHoliday>
 	}
 
 	/**
-	 * Finds the h r holiday with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
+	 * Returns the h r holiday with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
 	 *
-	 * @param primaryKey the primary key of the h r holiday to find
+	 * @param primaryKey the primary key of the h r holiday
 	 * @return the h r holiday
 	 * @throws com.liferay.portal.NoSuchModelException if a h r holiday with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -327,9 +327,9 @@ public class HRHolidayPersistenceImpl extends BasePersistenceImpl<HRHoliday>
 	}
 
 	/**
-	 * Finds the h r holiday with the primary key or throws a {@link com.liferay.hr.NoSuchHolidayException} if it could not be found.
+	 * Returns the h r holiday with the primary key or throws a {@link com.liferay.hr.NoSuchHolidayException} if it could not be found.
 	 *
-	 * @param hrHolidayId the primary key of the h r holiday to find
+	 * @param hrHolidayId the primary key of the h r holiday
 	 * @return the h r holiday
 	 * @throws com.liferay.hr.NoSuchHolidayException if a h r holiday with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -351,9 +351,9 @@ public class HRHolidayPersistenceImpl extends BasePersistenceImpl<HRHoliday>
 	}
 
 	/**
-	 * Finds the h r holiday with the primary key or returns <code>null</code> if it could not be found.
+	 * Returns the h r holiday with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param primaryKey the primary key of the h r holiday to find
+	 * @param primaryKey the primary key of the h r holiday
 	 * @return the h r holiday, or <code>null</code> if a h r holiday with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -363,9 +363,9 @@ public class HRHolidayPersistenceImpl extends BasePersistenceImpl<HRHoliday>
 	}
 
 	/**
-	 * Finds the h r holiday with the primary key or returns <code>null</code> if it could not be found.
+	 * Returns the h r holiday with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param hrHolidayId the primary key of the h r holiday to find
+	 * @param hrHolidayId the primary key of the h r holiday
 	 * @return the h r holiday, or <code>null</code> if a h r holiday with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -399,7 +399,7 @@ public class HRHolidayPersistenceImpl extends BasePersistenceImpl<HRHoliday>
 	}
 
 	/**
-	 * Finds all the h r holidaies.
+	 * Returns all the h r holidaies.
 	 *
 	 * @return the h r holidaies
 	 * @throws SystemException if a system exception occurred
@@ -409,14 +409,14 @@ public class HRHolidayPersistenceImpl extends BasePersistenceImpl<HRHoliday>
 	}
 
 	/**
-	 * Finds a range of all the h r holidaies.
+	 * Returns a range of all the h r holidaies.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of h r holidaies to return
-	 * @param end the upper bound of the range of h r holidaies to return (not inclusive)
+	 * @param start the lower bound of the range of h r holidaies
+	 * @param end the upper bound of the range of h r holidaies (not inclusive)
 	 * @return the range of h r holidaies
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -426,14 +426,14 @@ public class HRHolidayPersistenceImpl extends BasePersistenceImpl<HRHoliday>
 	}
 
 	/**
-	 * Finds an ordered range of all the h r holidaies.
+	 * Returns an ordered range of all the h r holidaies.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of h r holidaies to return
-	 * @param end the upper bound of the range of h r holidaies to return (not inclusive)
+	 * @param start the lower bound of the range of h r holidaies
+	 * @param end the upper bound of the range of h r holidaies (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of h r holidaies
 	 * @throws SystemException if a system exception occurred
@@ -519,7 +519,7 @@ public class HRHolidayPersistenceImpl extends BasePersistenceImpl<HRHoliday>
 	}
 
 	/**
-	 * Counts all the h r holidaies.
+	 * Returns the number of h r holidaies.
 	 *
 	 * @return the number of h r holidaies
 	 * @throws SystemException if a system exception occurred
@@ -559,9 +559,9 @@ public class HRHolidayPersistenceImpl extends BasePersistenceImpl<HRHoliday>
 	}
 
 	/**
-	 * Gets all the h r offices associated with the h r holiday.
+	 * Returns all the h r offices associated with the h r holiday.
 	 *
-	 * @param pk the primary key of the h r holiday to get the associated h r offices for
+	 * @param pk the primary key of the h r holiday
 	 * @return the h r offices associated with the h r holiday
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -571,15 +571,15 @@ public class HRHolidayPersistenceImpl extends BasePersistenceImpl<HRHoliday>
 	}
 
 	/**
-	 * Gets a range of all the h r offices associated with the h r holiday.
+	 * Returns a range of all the h r offices associated with the h r holiday.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param pk the primary key of the h r holiday to get the associated h r offices for
-	 * @param start the lower bound of the range of h r holidaies to return
-	 * @param end the upper bound of the range of h r holidaies to return (not inclusive)
+	 * @param pk the primary key of the h r holiday
+	 * @param start the lower bound of the range of h r holidaies
+	 * @param end the upper bound of the range of h r holidaies (not inclusive)
 	 * @return the range of h r offices associated with the h r holiday
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -598,15 +598,15 @@ public class HRHolidayPersistenceImpl extends BasePersistenceImpl<HRHoliday>
 			});
 
 	/**
-	 * Gets an ordered range of all the h r offices associated with the h r holiday.
+	 * Returns an ordered range of all the h r offices associated with the h r holiday.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param pk the primary key of the h r holiday to get the associated h r offices for
-	 * @param start the lower bound of the range of h r holidaies to return
-	 * @param end the upper bound of the range of h r holidaies to return (not inclusive)
+	 * @param pk the primary key of the h r holiday
+	 * @param start the lower bound of the range of h r holidaies
+	 * @param end the upper bound of the range of h r holidaies (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of h r offices associated with the h r holiday
 	 * @throws SystemException if a system exception occurred
@@ -677,9 +677,9 @@ public class HRHolidayPersistenceImpl extends BasePersistenceImpl<HRHoliday>
 			"getHROfficesSize", new String[] { Long.class.getName() });
 
 	/**
-	 * Gets the number of h r offices associated with the h r holiday.
+	 * Returns the number of h r offices associated with the h r holiday.
 	 *
-	 * @param pk the primary key of the h r holiday to get the number of associated h r offices for
+	 * @param pk the primary key of the h r holiday
 	 * @return the number of h r offices associated with the h r holiday
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -971,7 +971,7 @@ public class HRHolidayPersistenceImpl extends BasePersistenceImpl<HRHoliday>
 	/**
 	 * Sets the h r offices associated with the h r holiday, removing and adding associations as necessary. Also notifies the appropriate model listeners and clears the mapping table finder cache.
 	 *
-	 * @param pk the primary key of the h r holiday to set the associations for
+	 * @param pk the primary key of the h r holiday
 	 * @param hrOfficePKs the primary keys of the h r offices to be associated with the h r holiday
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -1003,7 +1003,7 @@ public class HRHolidayPersistenceImpl extends BasePersistenceImpl<HRHoliday>
 	/**
 	 * Sets the h r offices associated with the h r holiday, removing and adding associations as necessary. Also notifies the appropriate model listeners and clears the mapping table finder cache.
 	 *
-	 * @param pk the primary key of the h r holiday to set the associations for
+	 * @param pk the primary key of the h r holiday
 	 * @param hrOffices the h r offices to be associated with the h r holiday
 	 * @throws SystemException if a system exception occurred
 	 */

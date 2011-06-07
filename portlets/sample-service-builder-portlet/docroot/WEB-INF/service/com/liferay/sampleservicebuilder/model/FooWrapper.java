@@ -37,7 +37,7 @@ public class FooWrapper implements Foo {
 	}
 
 	/**
-	* Gets the primary key of this foo.
+	* Returns the primary key of this foo.
 	*
 	* @return the primary key of this foo
 	*/
@@ -46,7 +46,7 @@ public class FooWrapper implements Foo {
 	}
 
 	/**
-	* Sets the primary key of this foo
+	* Sets the primary key of this foo.
 	*
 	* @param primaryKey the primary key of this foo
 	*/
@@ -55,7 +55,7 @@ public class FooWrapper implements Foo {
 	}
 
 	/**
-	* Gets the uuid of this foo.
+	* Returns the uuid of this foo.
 	*
 	* @return the uuid of this foo
 	*/
@@ -73,7 +73,7 @@ public class FooWrapper implements Foo {
 	}
 
 	/**
-	* Gets the foo ID of this foo.
+	* Returns the foo ID of this foo.
 	*
 	* @return the foo ID of this foo
 	*/
@@ -91,7 +91,7 @@ public class FooWrapper implements Foo {
 	}
 
 	/**
-	* Gets the group ID of this foo.
+	* Returns the group ID of this foo.
 	*
 	* @return the group ID of this foo
 	*/
@@ -109,7 +109,7 @@ public class FooWrapper implements Foo {
 	}
 
 	/**
-	* Gets the company ID of this foo.
+	* Returns the company ID of this foo.
 	*
 	* @return the company ID of this foo
 	*/
@@ -127,7 +127,7 @@ public class FooWrapper implements Foo {
 	}
 
 	/**
-	* Gets the user ID of this foo.
+	* Returns the user ID of this foo.
 	*
 	* @return the user ID of this foo
 	*/
@@ -145,7 +145,7 @@ public class FooWrapper implements Foo {
 	}
 
 	/**
-	* Gets the user uuid of this foo.
+	* Returns the user uuid of this foo.
 	*
 	* @return the user uuid of this foo
 	* @throws SystemException if a system exception occurred
@@ -165,7 +165,7 @@ public class FooWrapper implements Foo {
 	}
 
 	/**
-	* Gets the user name of this foo.
+	* Returns the user name of this foo.
 	*
 	* @return the user name of this foo
 	*/
@@ -183,7 +183,7 @@ public class FooWrapper implements Foo {
 	}
 
 	/**
-	* Gets the create date of this foo.
+	* Returns the create date of this foo.
 	*
 	* @return the create date of this foo
 	*/
@@ -201,7 +201,7 @@ public class FooWrapper implements Foo {
 	}
 
 	/**
-	* Gets the modified date of this foo.
+	* Returns the modified date of this foo.
 	*
 	* @return the modified date of this foo
 	*/
@@ -219,7 +219,7 @@ public class FooWrapper implements Foo {
 	}
 
 	/**
-	* Gets the field1 of this foo.
+	* Returns the field1 of this foo.
 	*
 	* @return the field1 of this foo
 	*/
@@ -237,7 +237,7 @@ public class FooWrapper implements Foo {
 	}
 
 	/**
-	* Gets the field2 of this foo.
+	* Returns the field2 of this foo.
 	*
 	* @return the field2 of this foo
 	*/
@@ -264,7 +264,7 @@ public class FooWrapper implements Foo {
 	}
 
 	/**
-	* Gets the field3 of this foo.
+	* Returns the field3 of this foo.
 	*
 	* @return the field3 of this foo
 	*/
@@ -282,7 +282,7 @@ public class FooWrapper implements Foo {
 	}
 
 	/**
-	* Gets the field4 of this foo.
+	* Returns the field4 of this foo.
 	*
 	* @return the field4 of this foo
 	*/
@@ -300,7 +300,7 @@ public class FooWrapper implements Foo {
 	}
 
 	/**
-	* Gets the field5 of this foo.
+	* Returns the field5 of this foo.
 	*
 	* @return the field5 of this foo
 	*/

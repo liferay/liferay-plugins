@@ -119,7 +119,7 @@ public class GadgetUtil {
 	/**
 	* Caches the gadget in the entity cache if it is enabled.
 	*
-	* @param gadget the gadget to cache
+	* @param gadget the gadget
 	*/
 	public static void cacheResult(com.liferay.opensocial.model.Gadget gadget) {
 		getPersistence().cacheResult(gadget);
@@ -128,7 +128,7 @@ public class GadgetUtil {
 	/**
 	* Caches the gadgets in the entity cache if it is enabled.
 	*
-	* @param gadgets the gadgets to cache
+	* @param gadgets the gadgets
 	*/
 	public static void cacheResult(
 		java.util.List<com.liferay.opensocial.model.Gadget> gadgets) {
@@ -148,7 +148,7 @@ public class GadgetUtil {
 	/**
 	* Removes the gadget with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param gadgetId the primary key of the gadget to remove
+	* @param gadgetId the primary key of the gadget
 	* @return the gadget that was removed
 	* @throws com.liferay.opensocial.NoSuchGadgetException if a gadget with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -166,9 +166,9 @@ public class GadgetUtil {
 	}
 
 	/**
-	* Finds the gadget with the primary key or throws a {@link com.liferay.opensocial.NoSuchGadgetException} if it could not be found.
+	* Returns the gadget with the primary key or throws a {@link com.liferay.opensocial.NoSuchGadgetException} if it could not be found.
 	*
-	* @param gadgetId the primary key of the gadget to find
+	* @param gadgetId the primary key of the gadget
 	* @return the gadget
 	* @throws com.liferay.opensocial.NoSuchGadgetException if a gadget with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -181,9 +181,9 @@ public class GadgetUtil {
 	}
 
 	/**
-	* Finds the gadget with the primary key or returns <code>null</code> if it could not be found.
+	* Returns the gadget with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param gadgetId the primary key of the gadget to find
+	* @param gadgetId the primary key of the gadget
 	* @return the gadget, or <code>null</code> if a gadget with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -194,9 +194,9 @@ public class GadgetUtil {
 	}
 
 	/**
-	* Finds all the gadgets where uuid = &#63;.
+	* Returns all the gadgets where uuid = &#63;.
 	*
-	* @param uuid the uuid to search with
+	* @param uuid the uuid
 	* @return the matching gadgets
 	* @throws SystemException if a system exception occurred
 	*/
@@ -207,15 +207,15 @@ public class GadgetUtil {
 	}
 
 	/**
-	* Finds a range of all the gadgets where uuid = &#63;.
+	* Returns a range of all the gadgets where uuid = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param uuid the uuid to search with
-	* @param start the lower bound of the range of gadgets to return
-	* @param end the upper bound of the range of gadgets to return (not inclusive)
+	* @param uuid the uuid
+	* @param start the lower bound of the range of gadgets
+	* @param end the upper bound of the range of gadgets (not inclusive)
 	* @return the range of matching gadgets
 	* @throws SystemException if a system exception occurred
 	*/
@@ -226,15 +226,15 @@ public class GadgetUtil {
 	}
 
 	/**
-	* Finds an ordered range of all the gadgets where uuid = &#63;.
+	* Returns an ordered range of all the gadgets where uuid = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param uuid the uuid to search with
-	* @param start the lower bound of the range of gadgets to return
-	* @param end the upper bound of the range of gadgets to return (not inclusive)
+	* @param uuid the uuid
+	* @param start the lower bound of the range of gadgets
+	* @param end the upper bound of the range of gadgets (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching gadgets
 	* @throws SystemException if a system exception occurred
@@ -247,13 +247,13 @@ public class GadgetUtil {
 	}
 
 	/**
-	* Finds the first gadget in the ordered set where uuid = &#63;.
+	* Returns the first gadget in the ordered set where uuid = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param uuid the uuid to search with
+	* @param uuid the uuid
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching gadget
 	* @throws com.liferay.opensocial.NoSuchGadgetException if a matching gadget could not be found
@@ -268,13 +268,13 @@ public class GadgetUtil {
 	}
 
 	/**
-	* Finds the last gadget in the ordered set where uuid = &#63;.
+	* Returns the last gadget in the ordered set where uuid = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param uuid the uuid to search with
+	* @param uuid the uuid
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching gadget
 	* @throws com.liferay.opensocial.NoSuchGadgetException if a matching gadget could not be found
@@ -289,14 +289,14 @@ public class GadgetUtil {
 	}
 
 	/**
-	* Finds the gadgets before and after the current gadget in the ordered set where uuid = &#63;.
+	* Returns the gadgets before and after the current gadget in the ordered set where uuid = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
 	* @param gadgetId the primary key of the current gadget
-	* @param uuid the uuid to search with
+	* @param uuid the uuid
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next gadget
 	* @throws com.liferay.opensocial.NoSuchGadgetException if a gadget with the primary key could not be found
@@ -312,9 +312,9 @@ public class GadgetUtil {
 	}
 
 	/**
-	* Filters by the user's permissions and finds all the gadgets where uuid = &#63;.
+	* Returns all the gadgets that the user has permission to view where uuid = &#63;.
 	*
-	* @param uuid the uuid to search with
+	* @param uuid the uuid
 	* @return the matching gadgets that the user has permission to view
 	* @throws SystemException if a system exception occurred
 	*/
@@ -325,15 +325,15 @@ public class GadgetUtil {
 	}
 
 	/**
-	* Filters by the user's permissions and finds a range of all the gadgets where uuid = &#63;.
+	* Returns a range of all the gadgets that the user has permission to view where uuid = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param uuid the uuid to search with
-	* @param start the lower bound of the range of gadgets to return
-	* @param end the upper bound of the range of gadgets to return (not inclusive)
+	* @param uuid the uuid
+	* @param start the lower bound of the range of gadgets
+	* @param end the upper bound of the range of gadgets (not inclusive)
 	* @return the range of matching gadgets that the user has permission to view
 	* @throws SystemException if a system exception occurred
 	*/
@@ -344,15 +344,15 @@ public class GadgetUtil {
 	}
 
 	/**
-	* Filters by the user's permissions and finds an ordered range of all the gadgets where uuid = &#63;.
+	* Returns an ordered range of all the gadgets that the user has permissions to view where uuid = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param uuid the uuid to search with
-	* @param start the lower bound of the range of gadgets to return
-	* @param end the upper bound of the range of gadgets to return (not inclusive)
+	* @param uuid the uuid
+	* @param start the lower bound of the range of gadgets
+	* @param end the upper bound of the range of gadgets (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching gadgets that the user has permission to view
 	* @throws SystemException if a system exception occurred
@@ -366,14 +366,10 @@ public class GadgetUtil {
 	}
 
 	/**
-	* Filters the gadgets before and after the current gadget in the ordered set where uuid = &#63;.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* Returns the gadgets before and after the current gadget in the ordered set of gadgets that the user has permission to view where uuid = &#63;.
 	*
 	* @param gadgetId the primary key of the current gadget
-	* @param uuid the uuid to search with
+	* @param uuid the uuid
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next gadget
 	* @throws com.liferay.opensocial.NoSuchGadgetException if a gadget with the primary key could not be found
@@ -390,9 +386,9 @@ public class GadgetUtil {
 	}
 
 	/**
-	* Finds all the gadgets where companyId = &#63;.
+	* Returns all the gadgets where companyId = &#63;.
 	*
-	* @param companyId the company ID to search with
+	* @param companyId the company ID
 	* @return the matching gadgets
 	* @throws SystemException if a system exception occurred
 	*/
@@ -403,15 +399,15 @@ public class GadgetUtil {
 	}
 
 	/**
-	* Finds a range of all the gadgets where companyId = &#63;.
+	* Returns a range of all the gadgets where companyId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param companyId the company ID to search with
-	* @param start the lower bound of the range of gadgets to return
-	* @param end the upper bound of the range of gadgets to return (not inclusive)
+	* @param companyId the company ID
+	* @param start the lower bound of the range of gadgets
+	* @param end the upper bound of the range of gadgets (not inclusive)
 	* @return the range of matching gadgets
 	* @throws SystemException if a system exception occurred
 	*/
@@ -422,15 +418,15 @@ public class GadgetUtil {
 	}
 
 	/**
-	* Finds an ordered range of all the gadgets where companyId = &#63;.
+	* Returns an ordered range of all the gadgets where companyId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param companyId the company ID to search with
-	* @param start the lower bound of the range of gadgets to return
-	* @param end the upper bound of the range of gadgets to return (not inclusive)
+	* @param companyId the company ID
+	* @param start the lower bound of the range of gadgets
+	* @param end the upper bound of the range of gadgets (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching gadgets
 	* @throws SystemException if a system exception occurred
@@ -444,13 +440,13 @@ public class GadgetUtil {
 	}
 
 	/**
-	* Finds the first gadget in the ordered set where companyId = &#63;.
+	* Returns the first gadget in the ordered set where companyId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param companyId the company ID to search with
+	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching gadget
 	* @throws com.liferay.opensocial.NoSuchGadgetException if a matching gadget could not be found
@@ -466,13 +462,13 @@ public class GadgetUtil {
 	}
 
 	/**
-	* Finds the last gadget in the ordered set where companyId = &#63;.
+	* Returns the last gadget in the ordered set where companyId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param companyId the company ID to search with
+	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching gadget
 	* @throws com.liferay.opensocial.NoSuchGadgetException if a matching gadget could not be found
@@ -488,14 +484,14 @@ public class GadgetUtil {
 	}
 
 	/**
-	* Finds the gadgets before and after the current gadget in the ordered set where companyId = &#63;.
+	* Returns the gadgets before and after the current gadget in the ordered set where companyId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
 	* @param gadgetId the primary key of the current gadget
-	* @param companyId the company ID to search with
+	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next gadget
 	* @throws com.liferay.opensocial.NoSuchGadgetException if a gadget with the primary key could not be found
@@ -512,9 +508,9 @@ public class GadgetUtil {
 	}
 
 	/**
-	* Filters by the user's permissions and finds all the gadgets where companyId = &#63;.
+	* Returns all the gadgets that the user has permission to view where companyId = &#63;.
 	*
-	* @param companyId the company ID to search with
+	* @param companyId the company ID
 	* @return the matching gadgets that the user has permission to view
 	* @throws SystemException if a system exception occurred
 	*/
@@ -525,15 +521,15 @@ public class GadgetUtil {
 	}
 
 	/**
-	* Filters by the user's permissions and finds a range of all the gadgets where companyId = &#63;.
+	* Returns a range of all the gadgets that the user has permission to view where companyId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param companyId the company ID to search with
-	* @param start the lower bound of the range of gadgets to return
-	* @param end the upper bound of the range of gadgets to return (not inclusive)
+	* @param companyId the company ID
+	* @param start the lower bound of the range of gadgets
+	* @param end the upper bound of the range of gadgets (not inclusive)
 	* @return the range of matching gadgets that the user has permission to view
 	* @throws SystemException if a system exception occurred
 	*/
@@ -544,15 +540,15 @@ public class GadgetUtil {
 	}
 
 	/**
-	* Filters by the user's permissions and finds an ordered range of all the gadgets where companyId = &#63;.
+	* Returns an ordered range of all the gadgets that the user has permissions to view where companyId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param companyId the company ID to search with
-	* @param start the lower bound of the range of gadgets to return
-	* @param end the upper bound of the range of gadgets to return (not inclusive)
+	* @param companyId the company ID
+	* @param start the lower bound of the range of gadgets
+	* @param end the upper bound of the range of gadgets (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching gadgets that the user has permission to view
 	* @throws SystemException if a system exception occurred
@@ -567,14 +563,10 @@ public class GadgetUtil {
 	}
 
 	/**
-	* Filters the gadgets before and after the current gadget in the ordered set where companyId = &#63;.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* Returns the gadgets before and after the current gadget in the ordered set of gadgets that the user has permission to view where companyId = &#63;.
 	*
 	* @param gadgetId the primary key of the current gadget
-	* @param companyId the company ID to search with
+	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next gadget
 	* @throws com.liferay.opensocial.NoSuchGadgetException if a gadget with the primary key could not be found
@@ -591,10 +583,10 @@ public class GadgetUtil {
 	}
 
 	/**
-	* Finds the gadget where companyId = &#63; and url = &#63; or throws a {@link com.liferay.opensocial.NoSuchGadgetException} if it could not be found.
+	* Returns the gadget where companyId = &#63; and url = &#63; or throws a {@link com.liferay.opensocial.NoSuchGadgetException} if it could not be found.
 	*
-	* @param companyId the company ID to search with
-	* @param url the url to search with
+	* @param companyId the company ID
+	* @param url the url
 	* @return the matching gadget
 	* @throws com.liferay.opensocial.NoSuchGadgetException if a matching gadget could not be found
 	* @throws SystemException if a system exception occurred
@@ -607,10 +599,10 @@ public class GadgetUtil {
 	}
 
 	/**
-	* Finds the gadget where companyId = &#63; and url = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	* Returns the gadget where companyId = &#63; and url = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	*
-	* @param companyId the company ID to search with
-	* @param url the url to search with
+	* @param companyId the company ID
+	* @param url the url
 	* @return the matching gadget, or <code>null</code> if a matching gadget could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -621,10 +613,10 @@ public class GadgetUtil {
 	}
 
 	/**
-	* Finds the gadget where companyId = &#63; and url = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	* Returns the gadget where companyId = &#63; and url = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	*
-	* @param companyId the company ID to search with
-	* @param url the url to search with
+	* @param companyId the company ID
+	* @param url the url
 	* @return the matching gadget, or <code>null</code> if a matching gadget could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -635,7 +627,7 @@ public class GadgetUtil {
 	}
 
 	/**
-	* Finds all the gadgets.
+	* Returns all the gadgets.
 	*
 	* @return the gadgets
 	* @throws SystemException if a system exception occurred
@@ -646,14 +638,14 @@ public class GadgetUtil {
 	}
 
 	/**
-	* Finds a range of all the gadgets.
+	* Returns a range of all the gadgets.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of gadgets to return
-	* @param end the upper bound of the range of gadgets to return (not inclusive)
+	* @param start the lower bound of the range of gadgets
+	* @param end the upper bound of the range of gadgets (not inclusive)
 	* @return the range of gadgets
 	* @throws SystemException if a system exception occurred
 	*/
@@ -664,14 +656,14 @@ public class GadgetUtil {
 	}
 
 	/**
-	* Finds an ordered range of all the gadgets.
+	* Returns an ordered range of all the gadgets.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of gadgets to return
-	* @param end the upper bound of the range of gadgets to return (not inclusive)
+	* @param start the lower bound of the range of gadgets
+	* @param end the upper bound of the range of gadgets (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of gadgets
 	* @throws SystemException if a system exception occurred
@@ -686,7 +678,7 @@ public class GadgetUtil {
 	/**
 	* Removes all the gadgets where uuid = &#63; from the database.
 	*
-	* @param uuid the uuid to search with
+	* @param uuid the uuid
 	* @throws SystemException if a system exception occurred
 	*/
 	public static void removeByUuid(java.lang.String uuid)
@@ -697,7 +689,7 @@ public class GadgetUtil {
 	/**
 	* Removes all the gadgets where companyId = &#63; from the database.
 	*
-	* @param companyId the company ID to search with
+	* @param companyId the company ID
 	* @throws SystemException if a system exception occurred
 	*/
 	public static void removeByCompanyId(long companyId)
@@ -708,8 +700,8 @@ public class GadgetUtil {
 	/**
 	* Removes the gadget where companyId = &#63; and url = &#63; from the database.
 	*
-	* @param companyId the company ID to search with
-	* @param url the url to search with
+	* @param companyId the company ID
+	* @param url the url
 	* @throws SystemException if a system exception occurred
 	*/
 	public static void removeByC_U(long companyId, java.lang.String url)
@@ -729,9 +721,9 @@ public class GadgetUtil {
 	}
 
 	/**
-	* Counts all the gadgets where uuid = &#63;.
+	* Returns the number of gadgets where uuid = &#63;.
 	*
-	* @param uuid the uuid to search with
+	* @param uuid the uuid
 	* @return the number of matching gadgets
 	* @throws SystemException if a system exception occurred
 	*/
@@ -741,9 +733,9 @@ public class GadgetUtil {
 	}
 
 	/**
-	* Filters by the user's permissions and counts all the gadgets where uuid = &#63;.
+	* Returns the number of gadgets that the user has permission to view where uuid = &#63;.
 	*
-	* @param uuid the uuid to search with
+	* @param uuid the uuid
 	* @return the number of matching gadgets that the user has permission to view
 	* @throws SystemException if a system exception occurred
 	*/
@@ -753,9 +745,9 @@ public class GadgetUtil {
 	}
 
 	/**
-	* Counts all the gadgets where companyId = &#63;.
+	* Returns the number of gadgets where companyId = &#63;.
 	*
-	* @param companyId the company ID to search with
+	* @param companyId the company ID
 	* @return the number of matching gadgets
 	* @throws SystemException if a system exception occurred
 	*/
@@ -765,9 +757,9 @@ public class GadgetUtil {
 	}
 
 	/**
-	* Filters by the user's permissions and counts all the gadgets where companyId = &#63;.
+	* Returns the number of gadgets that the user has permission to view where companyId = &#63;.
 	*
-	* @param companyId the company ID to search with
+	* @param companyId the company ID
 	* @return the number of matching gadgets that the user has permission to view
 	* @throws SystemException if a system exception occurred
 	*/
@@ -777,10 +769,10 @@ public class GadgetUtil {
 	}
 
 	/**
-	* Counts all the gadgets where companyId = &#63; and url = &#63;.
+	* Returns the number of gadgets where companyId = &#63; and url = &#63;.
 	*
-	* @param companyId the company ID to search with
-	* @param url the url to search with
+	* @param companyId the company ID
+	* @param url the url
 	* @return the number of matching gadgets
 	* @throws SystemException if a system exception occurred
 	*/
@@ -790,7 +782,7 @@ public class GadgetUtil {
 	}
 
 	/**
-	* Counts all the gadgets.
+	* Returns the number of gadgets.
 	*
 	* @return the number of gadgets
 	* @throws SystemException if a system exception occurred

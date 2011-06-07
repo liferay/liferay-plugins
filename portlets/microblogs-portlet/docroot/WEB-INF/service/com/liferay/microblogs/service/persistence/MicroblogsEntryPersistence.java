@@ -41,7 +41,7 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 	/**
 	* Caches the microblogs entry in the entity cache if it is enabled.
 	*
-	* @param microblogsEntry the microblogs entry to cache
+	* @param microblogsEntry the microblogs entry
 	*/
 	public void cacheResult(
 		com.liferay.microblogs.model.MicroblogsEntry microblogsEntry);
@@ -49,7 +49,7 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 	/**
 	* Caches the microblogs entries in the entity cache if it is enabled.
 	*
-	* @param microblogsEntries the microblogs entries to cache
+	* @param microblogsEntries the microblogs entries
 	*/
 	public void cacheResult(
 		java.util.List<com.liferay.microblogs.model.MicroblogsEntry> microblogsEntries);
@@ -66,7 +66,7 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 	/**
 	* Removes the microblogs entry with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param microblogsEntryId the primary key of the microblogs entry to remove
+	* @param microblogsEntryId the primary key of the microblogs entry
 	* @return the microblogs entry that was removed
 	* @throws com.liferay.microblogs.NoSuchEntryException if a microblogs entry with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -82,9 +82,9 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the microblogs entry with the primary key or throws a {@link com.liferay.microblogs.NoSuchEntryException} if it could not be found.
+	* Returns the microblogs entry with the primary key or throws a {@link com.liferay.microblogs.NoSuchEntryException} if it could not be found.
 	*
-	* @param microblogsEntryId the primary key of the microblogs entry to find
+	* @param microblogsEntryId the primary key of the microblogs entry
 	* @return the microblogs entry
 	* @throws com.liferay.microblogs.NoSuchEntryException if a microblogs entry with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -95,9 +95,9 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the microblogs entry with the primary key or returns <code>null</code> if it could not be found.
+	* Returns the microblogs entry with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param microblogsEntryId the primary key of the microblogs entry to find
+	* @param microblogsEntryId the primary key of the microblogs entry
 	* @return the microblogs entry, or <code>null</code> if a microblogs entry with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -106,9 +106,9 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds all the microblogs entries where companyId = &#63;.
+	* Returns all the microblogs entries where companyId = &#63;.
 	*
-	* @param companyId the company ID to search with
+	* @param companyId the company ID
 	* @return the matching microblogs entries
 	* @throws SystemException if a system exception occurred
 	*/
@@ -117,15 +117,15 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds a range of all the microblogs entries where companyId = &#63;.
+	* Returns a range of all the microblogs entries where companyId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param companyId the company ID to search with
-	* @param start the lower bound of the range of microblogs entries to return
-	* @param end the upper bound of the range of microblogs entries to return (not inclusive)
+	* @param companyId the company ID
+	* @param start the lower bound of the range of microblogs entries
+	* @param end the upper bound of the range of microblogs entries (not inclusive)
 	* @return the range of matching microblogs entries
 	* @throws SystemException if a system exception occurred
 	*/
@@ -134,15 +134,15 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds an ordered range of all the microblogs entries where companyId = &#63;.
+	* Returns an ordered range of all the microblogs entries where companyId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param companyId the company ID to search with
-	* @param start the lower bound of the range of microblogs entries to return
-	* @param end the upper bound of the range of microblogs entries to return (not inclusive)
+	* @param companyId the company ID
+	* @param start the lower bound of the range of microblogs entries
+	* @param end the upper bound of the range of microblogs entries (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching microblogs entries
 	* @throws SystemException if a system exception occurred
@@ -153,13 +153,13 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the first microblogs entry in the ordered set where companyId = &#63;.
+	* Returns the first microblogs entry in the ordered set where companyId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param companyId the company ID to search with
+	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching microblogs entry
 	* @throws com.liferay.microblogs.NoSuchEntryException if a matching microblogs entry could not be found
@@ -172,13 +172,13 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the last microblogs entry in the ordered set where companyId = &#63;.
+	* Returns the last microblogs entry in the ordered set where companyId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param companyId the company ID to search with
+	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching microblogs entry
 	* @throws com.liferay.microblogs.NoSuchEntryException if a matching microblogs entry could not be found
@@ -191,14 +191,14 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the microblogs entries before and after the current microblogs entry in the ordered set where companyId = &#63;.
+	* Returns the microblogs entries before and after the current microblogs entry in the ordered set where companyId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
 	* @param microblogsEntryId the primary key of the current microblogs entry
-	* @param companyId the company ID to search with
+	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next microblogs entry
 	* @throws com.liferay.microblogs.NoSuchEntryException if a microblogs entry with the primary key could not be found
@@ -211,9 +211,9 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Filters by the user's permissions and finds all the microblogs entries where companyId = &#63;.
+	* Returns all the microblogs entries that the user has permission to view where companyId = &#63;.
 	*
-	* @param companyId the company ID to search with
+	* @param companyId the company ID
 	* @return the matching microblogs entries that the user has permission to view
 	* @throws SystemException if a system exception occurred
 	*/
@@ -222,15 +222,15 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Filters by the user's permissions and finds a range of all the microblogs entries where companyId = &#63;.
+	* Returns a range of all the microblogs entries that the user has permission to view where companyId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param companyId the company ID to search with
-	* @param start the lower bound of the range of microblogs entries to return
-	* @param end the upper bound of the range of microblogs entries to return (not inclusive)
+	* @param companyId the company ID
+	* @param start the lower bound of the range of microblogs entries
+	* @param end the upper bound of the range of microblogs entries (not inclusive)
 	* @return the range of matching microblogs entries that the user has permission to view
 	* @throws SystemException if a system exception occurred
 	*/
@@ -239,15 +239,15 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Filters by the user's permissions and finds an ordered range of all the microblogs entries where companyId = &#63;.
+	* Returns an ordered range of all the microblogs entries that the user has permissions to view where companyId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param companyId the company ID to search with
-	* @param start the lower bound of the range of microblogs entries to return
-	* @param end the upper bound of the range of microblogs entries to return (not inclusive)
+	* @param companyId the company ID
+	* @param start the lower bound of the range of microblogs entries
+	* @param end the upper bound of the range of microblogs entries (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching microblogs entries that the user has permission to view
 	* @throws SystemException if a system exception occurred
@@ -258,14 +258,10 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Filters the microblogs entries before and after the current microblogs entry in the ordered set where companyId = &#63;.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* Returns the microblogs entries before and after the current microblogs entry in the ordered set of microblogs entries that the user has permission to view where companyId = &#63;.
 	*
 	* @param microblogsEntryId the primary key of the current microblogs entry
-	* @param companyId the company ID to search with
+	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next microblogs entry
 	* @throws com.liferay.microblogs.NoSuchEntryException if a microblogs entry with the primary key could not be found
@@ -278,9 +274,9 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds all the microblogs entries where userId = &#63;.
+	* Returns all the microblogs entries where userId = &#63;.
 	*
-	* @param userId the user ID to search with
+	* @param userId the user ID
 	* @return the matching microblogs entries
 	* @throws SystemException if a system exception occurred
 	*/
@@ -288,15 +284,15 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 		long userId) throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds a range of all the microblogs entries where userId = &#63;.
+	* Returns a range of all the microblogs entries where userId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param userId the user ID to search with
-	* @param start the lower bound of the range of microblogs entries to return
-	* @param end the upper bound of the range of microblogs entries to return (not inclusive)
+	* @param userId the user ID
+	* @param start the lower bound of the range of microblogs entries
+	* @param end the upper bound of the range of microblogs entries (not inclusive)
 	* @return the range of matching microblogs entries
 	* @throws SystemException if a system exception occurred
 	*/
@@ -305,15 +301,15 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds an ordered range of all the microblogs entries where userId = &#63;.
+	* Returns an ordered range of all the microblogs entries where userId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param userId the user ID to search with
-	* @param start the lower bound of the range of microblogs entries to return
-	* @param end the upper bound of the range of microblogs entries to return (not inclusive)
+	* @param userId the user ID
+	* @param start the lower bound of the range of microblogs entries
+	* @param end the upper bound of the range of microblogs entries (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching microblogs entries
 	* @throws SystemException if a system exception occurred
@@ -324,13 +320,13 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the first microblogs entry in the ordered set where userId = &#63;.
+	* Returns the first microblogs entry in the ordered set where userId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param userId the user ID to search with
+	* @param userId the user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching microblogs entry
 	* @throws com.liferay.microblogs.NoSuchEntryException if a matching microblogs entry could not be found
@@ -343,13 +339,13 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the last microblogs entry in the ordered set where userId = &#63;.
+	* Returns the last microblogs entry in the ordered set where userId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param userId the user ID to search with
+	* @param userId the user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching microblogs entry
 	* @throws com.liferay.microblogs.NoSuchEntryException if a matching microblogs entry could not be found
@@ -362,14 +358,14 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the microblogs entries before and after the current microblogs entry in the ordered set where userId = &#63;.
+	* Returns the microblogs entries before and after the current microblogs entry in the ordered set where userId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
 	* @param microblogsEntryId the primary key of the current microblogs entry
-	* @param userId the user ID to search with
+	* @param userId the user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next microblogs entry
 	* @throws com.liferay.microblogs.NoSuchEntryException if a microblogs entry with the primary key could not be found
@@ -382,9 +378,9 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Filters by the user's permissions and finds all the microblogs entries where userId = &#63;.
+	* Returns all the microblogs entries that the user has permission to view where userId = &#63;.
 	*
-	* @param userId the user ID to search with
+	* @param userId the user ID
 	* @return the matching microblogs entries that the user has permission to view
 	* @throws SystemException if a system exception occurred
 	*/
@@ -392,15 +388,15 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 		long userId) throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Filters by the user's permissions and finds a range of all the microblogs entries where userId = &#63;.
+	* Returns a range of all the microblogs entries that the user has permission to view where userId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param userId the user ID to search with
-	* @param start the lower bound of the range of microblogs entries to return
-	* @param end the upper bound of the range of microblogs entries to return (not inclusive)
+	* @param userId the user ID
+	* @param start the lower bound of the range of microblogs entries
+	* @param end the upper bound of the range of microblogs entries (not inclusive)
 	* @return the range of matching microblogs entries that the user has permission to view
 	* @throws SystemException if a system exception occurred
 	*/
@@ -409,15 +405,15 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Filters by the user's permissions and finds an ordered range of all the microblogs entries where userId = &#63;.
+	* Returns an ordered range of all the microblogs entries that the user has permissions to view where userId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param userId the user ID to search with
-	* @param start the lower bound of the range of microblogs entries to return
-	* @param end the upper bound of the range of microblogs entries to return (not inclusive)
+	* @param userId the user ID
+	* @param start the lower bound of the range of microblogs entries
+	* @param end the upper bound of the range of microblogs entries (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching microblogs entries that the user has permission to view
 	* @throws SystemException if a system exception occurred
@@ -428,14 +424,10 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Filters the microblogs entries before and after the current microblogs entry in the ordered set where userId = &#63;.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* Returns the microblogs entries before and after the current microblogs entry in the ordered set of microblogs entries that the user has permission to view where userId = &#63;.
 	*
 	* @param microblogsEntryId the primary key of the current microblogs entry
-	* @param userId the user ID to search with
+	* @param userId the user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next microblogs entry
 	* @throws com.liferay.microblogs.NoSuchEntryException if a microblogs entry with the primary key could not be found
@@ -448,10 +440,10 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds all the microblogs entries where userId = &#63; and type = &#63;.
+	* Returns all the microblogs entries where userId = &#63; and type = &#63;.
 	*
-	* @param userId the user ID to search with
-	* @param type the type to search with
+	* @param userId the user ID
+	* @param type the type
 	* @return the matching microblogs entries
 	* @throws SystemException if a system exception occurred
 	*/
@@ -460,16 +452,16 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds a range of all the microblogs entries where userId = &#63; and type = &#63;.
+	* Returns a range of all the microblogs entries where userId = &#63; and type = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param userId the user ID to search with
-	* @param type the type to search with
-	* @param start the lower bound of the range of microblogs entries to return
-	* @param end the upper bound of the range of microblogs entries to return (not inclusive)
+	* @param userId the user ID
+	* @param type the type
+	* @param start the lower bound of the range of microblogs entries
+	* @param end the upper bound of the range of microblogs entries (not inclusive)
 	* @return the range of matching microblogs entries
 	* @throws SystemException if a system exception occurred
 	*/
@@ -478,16 +470,16 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds an ordered range of all the microblogs entries where userId = &#63; and type = &#63;.
+	* Returns an ordered range of all the microblogs entries where userId = &#63; and type = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param userId the user ID to search with
-	* @param type the type to search with
-	* @param start the lower bound of the range of microblogs entries to return
-	* @param end the upper bound of the range of microblogs entries to return (not inclusive)
+	* @param userId the user ID
+	* @param type the type
+	* @param start the lower bound of the range of microblogs entries
+	* @param end the upper bound of the range of microblogs entries (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching microblogs entries
 	* @throws SystemException if a system exception occurred
@@ -498,14 +490,14 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the first microblogs entry in the ordered set where userId = &#63; and type = &#63;.
+	* Returns the first microblogs entry in the ordered set where userId = &#63; and type = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param userId the user ID to search with
-	* @param type the type to search with
+	* @param userId the user ID
+	* @param type the type
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching microblogs entry
 	* @throws com.liferay.microblogs.NoSuchEntryException if a matching microblogs entry could not be found
@@ -518,14 +510,14 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the last microblogs entry in the ordered set where userId = &#63; and type = &#63;.
+	* Returns the last microblogs entry in the ordered set where userId = &#63; and type = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param userId the user ID to search with
-	* @param type the type to search with
+	* @param userId the user ID
+	* @param type the type
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching microblogs entry
 	* @throws com.liferay.microblogs.NoSuchEntryException if a matching microblogs entry could not be found
@@ -538,15 +530,15 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the microblogs entries before and after the current microblogs entry in the ordered set where userId = &#63; and type = &#63;.
+	* Returns the microblogs entries before and after the current microblogs entry in the ordered set where userId = &#63; and type = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
 	* @param microblogsEntryId the primary key of the current microblogs entry
-	* @param userId the user ID to search with
-	* @param type the type to search with
+	* @param userId the user ID
+	* @param type the type
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next microblogs entry
 	* @throws com.liferay.microblogs.NoSuchEntryException if a microblogs entry with the primary key could not be found
@@ -559,10 +551,10 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Filters by the user's permissions and finds all the microblogs entries where userId = &#63; and type = &#63;.
+	* Returns all the microblogs entries that the user has permission to view where userId = &#63; and type = &#63;.
 	*
-	* @param userId the user ID to search with
-	* @param type the type to search with
+	* @param userId the user ID
+	* @param type the type
 	* @return the matching microblogs entries that the user has permission to view
 	* @throws SystemException if a system exception occurred
 	*/
@@ -571,16 +563,16 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Filters by the user's permissions and finds a range of all the microblogs entries where userId = &#63; and type = &#63;.
+	* Returns a range of all the microblogs entries that the user has permission to view where userId = &#63; and type = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param userId the user ID to search with
-	* @param type the type to search with
-	* @param start the lower bound of the range of microblogs entries to return
-	* @param end the upper bound of the range of microblogs entries to return (not inclusive)
+	* @param userId the user ID
+	* @param type the type
+	* @param start the lower bound of the range of microblogs entries
+	* @param end the upper bound of the range of microblogs entries (not inclusive)
 	* @return the range of matching microblogs entries that the user has permission to view
 	* @throws SystemException if a system exception occurred
 	*/
@@ -589,16 +581,16 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Filters by the user's permissions and finds an ordered range of all the microblogs entries where userId = &#63; and type = &#63;.
+	* Returns an ordered range of all the microblogs entries that the user has permissions to view where userId = &#63; and type = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param userId the user ID to search with
-	* @param type the type to search with
-	* @param start the lower bound of the range of microblogs entries to return
-	* @param end the upper bound of the range of microblogs entries to return (not inclusive)
+	* @param userId the user ID
+	* @param type the type
+	* @param start the lower bound of the range of microblogs entries
+	* @param end the upper bound of the range of microblogs entries (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching microblogs entries that the user has permission to view
 	* @throws SystemException if a system exception occurred
@@ -609,15 +601,11 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Filters the microblogs entries before and after the current microblogs entry in the ordered set where userId = &#63; and type = &#63;.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* Returns the microblogs entries before and after the current microblogs entry in the ordered set of microblogs entries that the user has permission to view where userId = &#63; and type = &#63;.
 	*
 	* @param microblogsEntryId the primary key of the current microblogs entry
-	* @param userId the user ID to search with
-	* @param type the type to search with
+	* @param userId the user ID
+	* @param type the type
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next microblogs entry
 	* @throws com.liferay.microblogs.NoSuchEntryException if a microblogs entry with the primary key could not be found
@@ -630,10 +618,10 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds all the microblogs entries where type = &#63; and receiverUserId = &#63;.
+	* Returns all the microblogs entries where type = &#63; and receiverUserId = &#63;.
 	*
-	* @param type the type to search with
-	* @param receiverUserId the receiver user ID to search with
+	* @param type the type
+	* @param receiverUserId the receiver user ID
 	* @return the matching microblogs entries
 	* @throws SystemException if a system exception occurred
 	*/
@@ -642,16 +630,16 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds a range of all the microblogs entries where type = &#63; and receiverUserId = &#63;.
+	* Returns a range of all the microblogs entries where type = &#63; and receiverUserId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param type the type to search with
-	* @param receiverUserId the receiver user ID to search with
-	* @param start the lower bound of the range of microblogs entries to return
-	* @param end the upper bound of the range of microblogs entries to return (not inclusive)
+	* @param type the type
+	* @param receiverUserId the receiver user ID
+	* @param start the lower bound of the range of microblogs entries
+	* @param end the upper bound of the range of microblogs entries (not inclusive)
 	* @return the range of matching microblogs entries
 	* @throws SystemException if a system exception occurred
 	*/
@@ -660,16 +648,16 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds an ordered range of all the microblogs entries where type = &#63; and receiverUserId = &#63;.
+	* Returns an ordered range of all the microblogs entries where type = &#63; and receiverUserId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param type the type to search with
-	* @param receiverUserId the receiver user ID to search with
-	* @param start the lower bound of the range of microblogs entries to return
-	* @param end the upper bound of the range of microblogs entries to return (not inclusive)
+	* @param type the type
+	* @param receiverUserId the receiver user ID
+	* @param start the lower bound of the range of microblogs entries
+	* @param end the upper bound of the range of microblogs entries (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching microblogs entries
 	* @throws SystemException if a system exception occurred
@@ -680,14 +668,14 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the first microblogs entry in the ordered set where type = &#63; and receiverUserId = &#63;.
+	* Returns the first microblogs entry in the ordered set where type = &#63; and receiverUserId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param type the type to search with
-	* @param receiverUserId the receiver user ID to search with
+	* @param type the type
+	* @param receiverUserId the receiver user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching microblogs entry
 	* @throws com.liferay.microblogs.NoSuchEntryException if a matching microblogs entry could not be found
@@ -700,14 +688,14 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the last microblogs entry in the ordered set where type = &#63; and receiverUserId = &#63;.
+	* Returns the last microblogs entry in the ordered set where type = &#63; and receiverUserId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param type the type to search with
-	* @param receiverUserId the receiver user ID to search with
+	* @param type the type
+	* @param receiverUserId the receiver user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching microblogs entry
 	* @throws com.liferay.microblogs.NoSuchEntryException if a matching microblogs entry could not be found
@@ -720,15 +708,15 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the microblogs entries before and after the current microblogs entry in the ordered set where type = &#63; and receiverUserId = &#63;.
+	* Returns the microblogs entries before and after the current microblogs entry in the ordered set where type = &#63; and receiverUserId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
 	* @param microblogsEntryId the primary key of the current microblogs entry
-	* @param type the type to search with
-	* @param receiverUserId the receiver user ID to search with
+	* @param type the type
+	* @param receiverUserId the receiver user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next microblogs entry
 	* @throws com.liferay.microblogs.NoSuchEntryException if a microblogs entry with the primary key could not be found
@@ -741,10 +729,10 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Filters by the user's permissions and finds all the microblogs entries where type = &#63; and receiverUserId = &#63;.
+	* Returns all the microblogs entries that the user has permission to view where type = &#63; and receiverUserId = &#63;.
 	*
-	* @param type the type to search with
-	* @param receiverUserId the receiver user ID to search with
+	* @param type the type
+	* @param receiverUserId the receiver user ID
 	* @return the matching microblogs entries that the user has permission to view
 	* @throws SystemException if a system exception occurred
 	*/
@@ -753,16 +741,16 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Filters by the user's permissions and finds a range of all the microblogs entries where type = &#63; and receiverUserId = &#63;.
+	* Returns a range of all the microblogs entries that the user has permission to view where type = &#63; and receiverUserId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param type the type to search with
-	* @param receiverUserId the receiver user ID to search with
-	* @param start the lower bound of the range of microblogs entries to return
-	* @param end the upper bound of the range of microblogs entries to return (not inclusive)
+	* @param type the type
+	* @param receiverUserId the receiver user ID
+	* @param start the lower bound of the range of microblogs entries
+	* @param end the upper bound of the range of microblogs entries (not inclusive)
 	* @return the range of matching microblogs entries that the user has permission to view
 	* @throws SystemException if a system exception occurred
 	*/
@@ -771,16 +759,16 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Filters by the user's permissions and finds an ordered range of all the microblogs entries where type = &#63; and receiverUserId = &#63;.
+	* Returns an ordered range of all the microblogs entries that the user has permissions to view where type = &#63; and receiverUserId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param type the type to search with
-	* @param receiverUserId the receiver user ID to search with
-	* @param start the lower bound of the range of microblogs entries to return
-	* @param end the upper bound of the range of microblogs entries to return (not inclusive)
+	* @param type the type
+	* @param receiverUserId the receiver user ID
+	* @param start the lower bound of the range of microblogs entries
+	* @param end the upper bound of the range of microblogs entries (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching microblogs entries that the user has permission to view
 	* @throws SystemException if a system exception occurred
@@ -791,15 +779,11 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Filters the microblogs entries before and after the current microblogs entry in the ordered set where type = &#63; and receiverUserId = &#63;.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* Returns the microblogs entries before and after the current microblogs entry in the ordered set of microblogs entries that the user has permission to view where type = &#63; and receiverUserId = &#63;.
 	*
 	* @param microblogsEntryId the primary key of the current microblogs entry
-	* @param type the type to search with
-	* @param receiverUserId the receiver user ID to search with
+	* @param type the type
+	* @param receiverUserId the receiver user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next microblogs entry
 	* @throws com.liferay.microblogs.NoSuchEntryException if a microblogs entry with the primary key could not be found
@@ -812,10 +796,10 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds all the microblogs entries where type = &#63; and receiverMicroblogsEntryId = &#63;.
+	* Returns all the microblogs entries where type = &#63; and receiverMicroblogsEntryId = &#63;.
 	*
-	* @param type the type to search with
-	* @param receiverMicroblogsEntryId the receiver microblogs entry ID to search with
+	* @param type the type
+	* @param receiverMicroblogsEntryId the receiver microblogs entry ID
 	* @return the matching microblogs entries
 	* @throws SystemException if a system exception occurred
 	*/
@@ -824,16 +808,16 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds a range of all the microblogs entries where type = &#63; and receiverMicroblogsEntryId = &#63;.
+	* Returns a range of all the microblogs entries where type = &#63; and receiverMicroblogsEntryId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param type the type to search with
-	* @param receiverMicroblogsEntryId the receiver microblogs entry ID to search with
-	* @param start the lower bound of the range of microblogs entries to return
-	* @param end the upper bound of the range of microblogs entries to return (not inclusive)
+	* @param type the type
+	* @param receiverMicroblogsEntryId the receiver microblogs entry ID
+	* @param start the lower bound of the range of microblogs entries
+	* @param end the upper bound of the range of microblogs entries (not inclusive)
 	* @return the range of matching microblogs entries
 	* @throws SystemException if a system exception occurred
 	*/
@@ -842,16 +826,16 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds an ordered range of all the microblogs entries where type = &#63; and receiverMicroblogsEntryId = &#63;.
+	* Returns an ordered range of all the microblogs entries where type = &#63; and receiverMicroblogsEntryId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param type the type to search with
-	* @param receiverMicroblogsEntryId the receiver microblogs entry ID to search with
-	* @param start the lower bound of the range of microblogs entries to return
-	* @param end the upper bound of the range of microblogs entries to return (not inclusive)
+	* @param type the type
+	* @param receiverMicroblogsEntryId the receiver microblogs entry ID
+	* @param start the lower bound of the range of microblogs entries
+	* @param end the upper bound of the range of microblogs entries (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching microblogs entries
 	* @throws SystemException if a system exception occurred
@@ -862,14 +846,14 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the first microblogs entry in the ordered set where type = &#63; and receiverMicroblogsEntryId = &#63;.
+	* Returns the first microblogs entry in the ordered set where type = &#63; and receiverMicroblogsEntryId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param type the type to search with
-	* @param receiverMicroblogsEntryId the receiver microblogs entry ID to search with
+	* @param type the type
+	* @param receiverMicroblogsEntryId the receiver microblogs entry ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching microblogs entry
 	* @throws com.liferay.microblogs.NoSuchEntryException if a matching microblogs entry could not be found
@@ -882,14 +866,14 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the last microblogs entry in the ordered set where type = &#63; and receiverMicroblogsEntryId = &#63;.
+	* Returns the last microblogs entry in the ordered set where type = &#63; and receiverMicroblogsEntryId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param type the type to search with
-	* @param receiverMicroblogsEntryId the receiver microblogs entry ID to search with
+	* @param type the type
+	* @param receiverMicroblogsEntryId the receiver microblogs entry ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching microblogs entry
 	* @throws com.liferay.microblogs.NoSuchEntryException if a matching microblogs entry could not be found
@@ -902,15 +886,15 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the microblogs entries before and after the current microblogs entry in the ordered set where type = &#63; and receiverMicroblogsEntryId = &#63;.
+	* Returns the microblogs entries before and after the current microblogs entry in the ordered set where type = &#63; and receiverMicroblogsEntryId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
 	* @param microblogsEntryId the primary key of the current microblogs entry
-	* @param type the type to search with
-	* @param receiverMicroblogsEntryId the receiver microblogs entry ID to search with
+	* @param type the type
+	* @param receiverMicroblogsEntryId the receiver microblogs entry ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next microblogs entry
 	* @throws com.liferay.microblogs.NoSuchEntryException if a microblogs entry with the primary key could not be found
@@ -923,10 +907,10 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Filters by the user's permissions and finds all the microblogs entries where type = &#63; and receiverMicroblogsEntryId = &#63;.
+	* Returns all the microblogs entries that the user has permission to view where type = &#63; and receiverMicroblogsEntryId = &#63;.
 	*
-	* @param type the type to search with
-	* @param receiverMicroblogsEntryId the receiver microblogs entry ID to search with
+	* @param type the type
+	* @param receiverMicroblogsEntryId the receiver microblogs entry ID
 	* @return the matching microblogs entries that the user has permission to view
 	* @throws SystemException if a system exception occurred
 	*/
@@ -935,16 +919,16 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Filters by the user's permissions and finds a range of all the microblogs entries where type = &#63; and receiverMicroblogsEntryId = &#63;.
+	* Returns a range of all the microblogs entries that the user has permission to view where type = &#63; and receiverMicroblogsEntryId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param type the type to search with
-	* @param receiverMicroblogsEntryId the receiver microblogs entry ID to search with
-	* @param start the lower bound of the range of microblogs entries to return
-	* @param end the upper bound of the range of microblogs entries to return (not inclusive)
+	* @param type the type
+	* @param receiverMicroblogsEntryId the receiver microblogs entry ID
+	* @param start the lower bound of the range of microblogs entries
+	* @param end the upper bound of the range of microblogs entries (not inclusive)
 	* @return the range of matching microblogs entries that the user has permission to view
 	* @throws SystemException if a system exception occurred
 	*/
@@ -953,16 +937,16 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Filters by the user's permissions and finds an ordered range of all the microblogs entries where type = &#63; and receiverMicroblogsEntryId = &#63;.
+	* Returns an ordered range of all the microblogs entries that the user has permissions to view where type = &#63; and receiverMicroblogsEntryId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param type the type to search with
-	* @param receiverMicroblogsEntryId the receiver microblogs entry ID to search with
-	* @param start the lower bound of the range of microblogs entries to return
-	* @param end the upper bound of the range of microblogs entries to return (not inclusive)
+	* @param type the type
+	* @param receiverMicroblogsEntryId the receiver microblogs entry ID
+	* @param start the lower bound of the range of microblogs entries
+	* @param end the upper bound of the range of microblogs entries (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching microblogs entries that the user has permission to view
 	* @throws SystemException if a system exception occurred
@@ -973,15 +957,11 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Filters the microblogs entries before and after the current microblogs entry in the ordered set where type = &#63; and receiverMicroblogsEntryId = &#63;.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* Returns the microblogs entries before and after the current microblogs entry in the ordered set of microblogs entries that the user has permission to view where type = &#63; and receiverMicroblogsEntryId = &#63;.
 	*
 	* @param microblogsEntryId the primary key of the current microblogs entry
-	* @param type the type to search with
-	* @param receiverMicroblogsEntryId the receiver microblogs entry ID to search with
+	* @param type the type
+	* @param receiverMicroblogsEntryId the receiver microblogs entry ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next microblogs entry
 	* @throws com.liferay.microblogs.NoSuchEntryException if a microblogs entry with the primary key could not be found
@@ -994,7 +974,7 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds all the microblogs entries.
+	* Returns all the microblogs entries.
 	*
 	* @return the microblogs entries
 	* @throws SystemException if a system exception occurred
@@ -1003,14 +983,14 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds a range of all the microblogs entries.
+	* Returns a range of all the microblogs entries.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of microblogs entries to return
-	* @param end the upper bound of the range of microblogs entries to return (not inclusive)
+	* @param start the lower bound of the range of microblogs entries
+	* @param end the upper bound of the range of microblogs entries (not inclusive)
 	* @return the range of microblogs entries
 	* @throws SystemException if a system exception occurred
 	*/
@@ -1019,14 +999,14 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds an ordered range of all the microblogs entries.
+	* Returns an ordered range of all the microblogs entries.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of microblogs entries to return
-	* @param end the upper bound of the range of microblogs entries to return (not inclusive)
+	* @param start the lower bound of the range of microblogs entries
+	* @param end the upper bound of the range of microblogs entries (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of microblogs entries
 	* @throws SystemException if a system exception occurred
@@ -1039,7 +1019,7 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 	/**
 	* Removes all the microblogs entries where companyId = &#63; from the database.
 	*
-	* @param companyId the company ID to search with
+	* @param companyId the company ID
 	* @throws SystemException if a system exception occurred
 	*/
 	public void removeByCompanyId(long companyId)
@@ -1048,7 +1028,7 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 	/**
 	* Removes all the microblogs entries where userId = &#63; from the database.
 	*
-	* @param userId the user ID to search with
+	* @param userId the user ID
 	* @throws SystemException if a system exception occurred
 	*/
 	public void removeByUserId(long userId)
@@ -1057,8 +1037,8 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 	/**
 	* Removes all the microblogs entries where userId = &#63; and type = &#63; from the database.
 	*
-	* @param userId the user ID to search with
-	* @param type the type to search with
+	* @param userId the user ID
+	* @param type the type
 	* @throws SystemException if a system exception occurred
 	*/
 	public void removeByU_T(long userId, int type)
@@ -1067,8 +1047,8 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 	/**
 	* Removes all the microblogs entries where type = &#63; and receiverUserId = &#63; from the database.
 	*
-	* @param type the type to search with
-	* @param receiverUserId the receiver user ID to search with
+	* @param type the type
+	* @param receiverUserId the receiver user ID
 	* @throws SystemException if a system exception occurred
 	*/
 	public void removeByT_R(int type, long receiverUserId)
@@ -1077,8 +1057,8 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 	/**
 	* Removes all the microblogs entries where type = &#63; and receiverMicroblogsEntryId = &#63; from the database.
 	*
-	* @param type the type to search with
-	* @param receiverMicroblogsEntryId the receiver microblogs entry ID to search with
+	* @param type the type
+	* @param receiverMicroblogsEntryId the receiver microblogs entry ID
 	* @throws SystemException if a system exception occurred
 	*/
 	public void removeByT_RMEI(int type, long receiverMicroblogsEntryId)
@@ -1093,9 +1073,9 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Counts all the microblogs entries where companyId = &#63;.
+	* Returns the number of microblogs entries where companyId = &#63;.
 	*
-	* @param companyId the company ID to search with
+	* @param companyId the company ID
 	* @return the number of matching microblogs entries
 	* @throws SystemException if a system exception occurred
 	*/
@@ -1103,9 +1083,9 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Filters by the user's permissions and counts all the microblogs entries where companyId = &#63;.
+	* Returns the number of microblogs entries that the user has permission to view where companyId = &#63;.
 	*
-	* @param companyId the company ID to search with
+	* @param companyId the company ID
 	* @return the number of matching microblogs entries that the user has permission to view
 	* @throws SystemException if a system exception occurred
 	*/
@@ -1113,9 +1093,9 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Counts all the microblogs entries where userId = &#63;.
+	* Returns the number of microblogs entries where userId = &#63;.
 	*
-	* @param userId the user ID to search with
+	* @param userId the user ID
 	* @return the number of matching microblogs entries
 	* @throws SystemException if a system exception occurred
 	*/
@@ -1123,9 +1103,9 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Filters by the user's permissions and counts all the microblogs entries where userId = &#63;.
+	* Returns the number of microblogs entries that the user has permission to view where userId = &#63;.
 	*
-	* @param userId the user ID to search with
+	* @param userId the user ID
 	* @return the number of matching microblogs entries that the user has permission to view
 	* @throws SystemException if a system exception occurred
 	*/
@@ -1133,10 +1113,10 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Counts all the microblogs entries where userId = &#63; and type = &#63;.
+	* Returns the number of microblogs entries where userId = &#63; and type = &#63;.
 	*
-	* @param userId the user ID to search with
-	* @param type the type to search with
+	* @param userId the user ID
+	* @param type the type
 	* @return the number of matching microblogs entries
 	* @throws SystemException if a system exception occurred
 	*/
@@ -1144,10 +1124,10 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Filters by the user's permissions and counts all the microblogs entries where userId = &#63; and type = &#63;.
+	* Returns the number of microblogs entries that the user has permission to view where userId = &#63; and type = &#63;.
 	*
-	* @param userId the user ID to search with
-	* @param type the type to search with
+	* @param userId the user ID
+	* @param type the type
 	* @return the number of matching microblogs entries that the user has permission to view
 	* @throws SystemException if a system exception occurred
 	*/
@@ -1155,10 +1135,10 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Counts all the microblogs entries where type = &#63; and receiverUserId = &#63;.
+	* Returns the number of microblogs entries where type = &#63; and receiverUserId = &#63;.
 	*
-	* @param type the type to search with
-	* @param receiverUserId the receiver user ID to search with
+	* @param type the type
+	* @param receiverUserId the receiver user ID
 	* @return the number of matching microblogs entries
 	* @throws SystemException if a system exception occurred
 	*/
@@ -1166,10 +1146,10 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Filters by the user's permissions and counts all the microblogs entries where type = &#63; and receiverUserId = &#63;.
+	* Returns the number of microblogs entries that the user has permission to view where type = &#63; and receiverUserId = &#63;.
 	*
-	* @param type the type to search with
-	* @param receiverUserId the receiver user ID to search with
+	* @param type the type
+	* @param receiverUserId the receiver user ID
 	* @return the number of matching microblogs entries that the user has permission to view
 	* @throws SystemException if a system exception occurred
 	*/
@@ -1177,10 +1157,10 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Counts all the microblogs entries where type = &#63; and receiverMicroblogsEntryId = &#63;.
+	* Returns the number of microblogs entries where type = &#63; and receiverMicroblogsEntryId = &#63;.
 	*
-	* @param type the type to search with
-	* @param receiverMicroblogsEntryId the receiver microblogs entry ID to search with
+	* @param type the type
+	* @param receiverMicroblogsEntryId the receiver microblogs entry ID
 	* @return the number of matching microblogs entries
 	* @throws SystemException if a system exception occurred
 	*/
@@ -1188,10 +1168,10 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Filters by the user's permissions and counts all the microblogs entries where type = &#63; and receiverMicroblogsEntryId = &#63;.
+	* Returns the number of microblogs entries that the user has permission to view where type = &#63; and receiverMicroblogsEntryId = &#63;.
 	*
-	* @param type the type to search with
-	* @param receiverMicroblogsEntryId the receiver microblogs entry ID to search with
+	* @param type the type
+	* @param receiverMicroblogsEntryId the receiver microblogs entry ID
 	* @return the number of matching microblogs entries that the user has permission to view
 	* @throws SystemException if a system exception occurred
 	*/
@@ -1199,7 +1179,7 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Counts all the microblogs entries.
+	* Returns the number of microblogs entries.
 	*
 	* @return the number of microblogs entries
 	* @throws SystemException if a system exception occurred

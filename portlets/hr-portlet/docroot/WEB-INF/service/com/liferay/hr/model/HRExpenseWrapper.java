@@ -37,7 +37,7 @@ public class HRExpenseWrapper implements HRExpense {
 	}
 
 	/**
-	* Gets the primary key of this h r expense.
+	* Returns the primary key of this h r expense.
 	*
 	* @return the primary key of this h r expense
 	*/
@@ -46,7 +46,7 @@ public class HRExpenseWrapper implements HRExpense {
 	}
 
 	/**
-	* Sets the primary key of this h r expense
+	* Sets the primary key of this h r expense.
 	*
 	* @param primaryKey the primary key of this h r expense
 	*/
@@ -55,7 +55,7 @@ public class HRExpenseWrapper implements HRExpense {
 	}
 
 	/**
-	* Gets the hr expense ID of this h r expense.
+	* Returns the hr expense ID of this h r expense.
 	*
 	* @return the hr expense ID of this h r expense
 	*/
@@ -73,7 +73,7 @@ public class HRExpenseWrapper implements HRExpense {
 	}
 
 	/**
-	* Gets the group ID of this h r expense.
+	* Returns the group ID of this h r expense.
 	*
 	* @return the group ID of this h r expense
 	*/
@@ -91,7 +91,7 @@ public class HRExpenseWrapper implements HRExpense {
 	}
 
 	/**
-	* Gets the company ID of this h r expense.
+	* Returns the company ID of this h r expense.
 	*
 	* @return the company ID of this h r expense
 	*/
@@ -109,7 +109,7 @@ public class HRExpenseWrapper implements HRExpense {
 	}
 
 	/**
-	* Gets the user ID of this h r expense.
+	* Returns the user ID of this h r expense.
 	*
 	* @return the user ID of this h r expense
 	*/
@@ -127,7 +127,7 @@ public class HRExpenseWrapper implements HRExpense {
 	}
 
 	/**
-	* Gets the user uuid of this h r expense.
+	* Returns the user uuid of this h r expense.
 	*
 	* @return the user uuid of this h r expense
 	* @throws SystemException if a system exception occurred
@@ -147,7 +147,7 @@ public class HRExpenseWrapper implements HRExpense {
 	}
 
 	/**
-	* Gets the user name of this h r expense.
+	* Returns the user name of this h r expense.
 	*
 	* @return the user name of this h r expense
 	*/
@@ -165,7 +165,7 @@ public class HRExpenseWrapper implements HRExpense {
 	}
 
 	/**
-	* Gets the create date of this h r expense.
+	* Returns the create date of this h r expense.
 	*
 	* @return the create date of this h r expense
 	*/
@@ -183,7 +183,7 @@ public class HRExpenseWrapper implements HRExpense {
 	}
 
 	/**
-	* Gets the modified date of this h r expense.
+	* Returns the modified date of this h r expense.
 	*
 	* @return the modified date of this h r expense
 	*/
@@ -201,7 +201,7 @@ public class HRExpenseWrapper implements HRExpense {
 	}
 
 	/**
-	* Gets the hr expense account ID of this h r expense.
+	* Returns the hr expense account ID of this h r expense.
 	*
 	* @return the hr expense account ID of this h r expense
 	*/
@@ -219,7 +219,7 @@ public class HRExpenseWrapper implements HRExpense {
 	}
 
 	/**
-	* Gets the hr expense type ID of this h r expense.
+	* Returns the hr expense type ID of this h r expense.
 	*
 	* @return the hr expense type ID of this h r expense
 	*/
@@ -237,7 +237,7 @@ public class HRExpenseWrapper implements HRExpense {
 	}
 
 	/**
-	* Gets the hr user ID of this h r expense.
+	* Returns the hr user ID of this h r expense.
 	*
 	* @return the hr user ID of this h r expense
 	*/
@@ -255,7 +255,7 @@ public class HRExpenseWrapper implements HRExpense {
 	}
 
 	/**
-	* Gets the hr user uuid of this h r expense.
+	* Returns the hr user uuid of this h r expense.
 	*
 	* @return the hr user uuid of this h r expense
 	* @throws SystemException if a system exception occurred
@@ -275,7 +275,7 @@ public class HRExpenseWrapper implements HRExpense {
 	}
 
 	/**
-	* Gets the expense date of this h r expense.
+	* Returns the expense date of this h r expense.
 	*
 	* @return the expense date of this h r expense
 	*/
@@ -293,7 +293,7 @@ public class HRExpenseWrapper implements HRExpense {
 	}
 
 	/**
-	* Gets the expense amount of this h r expense.
+	* Returns the expense amount of this h r expense.
 	*
 	* @return the expense amount of this h r expense
 	*/
@@ -311,7 +311,7 @@ public class HRExpenseWrapper implements HRExpense {
 	}
 
 	/**
-	* Gets the expense h r expense currency ID of this h r expense.
+	* Returns the expense h r expense currency ID of this h r expense.
 	*
 	* @return the expense h r expense currency ID of this h r expense
 	*/
@@ -329,7 +329,7 @@ public class HRExpenseWrapper implements HRExpense {
 	}
 
 	/**
-	* Gets the reimbursement amount of this h r expense.
+	* Returns the reimbursement amount of this h r expense.
 	*
 	* @return the reimbursement amount of this h r expense
 	*/
@@ -347,7 +347,7 @@ public class HRExpenseWrapper implements HRExpense {
 	}
 
 	/**
-	* Gets the reimbursement h r expense currency ID of this h r expense.
+	* Returns the reimbursement h r expense currency ID of this h r expense.
 	*
 	* @return the reimbursement h r expense currency ID of this h r expense
 	*/
@@ -366,7 +366,7 @@ public class HRExpenseWrapper implements HRExpense {
 	}
 
 	/**
-	* Gets the status of this h r expense.
+	* Returns the status of this h r expense.
 	*
 	* @return the status of this h r expense
 	*/
@@ -384,7 +384,7 @@ public class HRExpenseWrapper implements HRExpense {
 	}
 
 	/**
-	* Gets the status by user ID of this h r expense.
+	* Returns the status by user ID of this h r expense.
 	*
 	* @return the status by user ID of this h r expense
 	*/
@@ -402,7 +402,7 @@ public class HRExpenseWrapper implements HRExpense {
 	}
 
 	/**
-	* Gets the status by user uuid of this h r expense.
+	* Returns the status by user uuid of this h r expense.
 	*
 	* @return the status by user uuid of this h r expense
 	* @throws SystemException if a system exception occurred
@@ -422,7 +422,7 @@ public class HRExpenseWrapper implements HRExpense {
 	}
 
 	/**
-	* Gets the status by user name of this h r expense.
+	* Returns the status by user name of this h r expense.
 	*
 	* @return the status by user name of this h r expense
 	*/
@@ -440,7 +440,7 @@ public class HRExpenseWrapper implements HRExpense {
 	}
 
 	/**
-	* Gets the status date of this h r expense.
+	* Returns the status date of this h r expense.
 	*
 	* @return the status date of this h r expense
 	*/
@@ -458,7 +458,7 @@ public class HRExpenseWrapper implements HRExpense {
 	}
 
 	/**
-	* @deprecated {@link #isApproved}
+	* @deprecated Renamed to {@link #isApproved()}
 	*/
 	public boolean getApproved() {
 		return _hrExpense.getApproved();
