@@ -34,11 +34,15 @@ public class PortletPropsValues {
 	public static final String JABBER_HOST = GetterUtil.getString(
 		PortletProps.get(PortletPropsKeys.JABBER_HOST));
 
+	public static final boolean JABBER_IMPORT_USER_ENABLED =
+		GetterUtil.getBoolean(
+			PortletProps.get(PortletPropsKeys.JABBER_IMPORT_USER_ENABLED));
+
 	public static final int JABBER_PORT = GetterUtil.getInteger(
 		PortletProps.get(PortletPropsKeys.JABBER_PORT));
 
 	public static final String JABBER_RESOURCE = GetterUtil.getString(
-			PortletProps.get(PortletPropsKeys.JABBER_RESOURCE));
+		PortletProps.get(PortletPropsKeys.JABBER_RESOURCE));
 
 	public static final String JABBER_SERVICE_NAME = GetterUtil.getString(
 		PortletProps.get(PortletPropsKeys.JABBER_SERVICE_NAME));

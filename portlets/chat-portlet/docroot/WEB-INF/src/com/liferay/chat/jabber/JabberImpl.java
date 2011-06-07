@@ -150,6 +150,15 @@ public class JabberImpl implements Jabber {
 			if (Validator.isNotNull(message1) &&
 				message1.contains("not-authorized")) {
 
+				if (!PortletPropsValues.JABBER_IMPORT_USER_ENABLED) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(
+							"User " + userId + " cannot connect to Jabber");
+					}
+
+					return;
+				}
+
 				if (_log.isDebugEnabled()) {
 					_log.debug(
 						"Importing user " + userId +
@@ -247,8 +256,40 @@ public class JabberImpl implements Jabber {
 		}
 	}
 
+	public void updatePassword(long userId, String password) {
+		if (!PortletPropsValues.JABBER_IMPORT_USER_ENABLED ||
+			password == null) {
+
+			return;
+		}
+
+		Connection connection = getConnection(userId);
+
+		if (connection == null) {
+			return;
+		}
+
+		try {
+			AccountManager accountManager = connection.getAccountManager();
+
+			accountManager.changePassword(password);
+		}
+		catch (XMPPException xmppe) {
+			_log.error("Unable to update user " + userId + " password", xmppe);
+		}
+	}
+
 	public void updateStatus(long userId, int online) {
 		updateStatus(userId, online, null);
+	}
+
+	protected Connection connect()
+		throws PortalException, SystemException, XMPPException {
+
+		long userId = -1;
+		String password = null;
+
+		return connect(userId, password);
 	}
 
 	protected Connection connect(long userId, String password)
@@ -322,7 +363,7 @@ public class JabberImpl implements Jabber {
 	protected void importUser(long userId, String password)
 		throws PortalException, SystemException, XMPPException {
 
-		Connection connection = connect(-1, null);
+		Connection connection = connect();
 
 		AccountManager accountManager = connection.getAccountManager();
 

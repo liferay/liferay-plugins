@@ -34,6 +34,8 @@ public interface Jabber {
 
 	public void sendMessage(long fromUserId, long toUserId, String content);
 
+	public void updatePassword(long userId, String password);
+
 	public void updateStatus(long userId, int online);
 
 }

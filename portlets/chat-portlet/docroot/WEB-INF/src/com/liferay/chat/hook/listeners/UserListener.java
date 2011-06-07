@@ -14,6 +14,7 @@
 
 package com.liferay.chat.hook.listeners;
 
+import com.liferay.chat.jabber.JabberUtil;
 import com.liferay.chat.model.Status;
 import com.liferay.chat.service.EntryLocalServiceUtil;
 import com.liferay.chat.service.StatusLocalServiceUtil;
@@ -24,6 +25,7 @@ import com.liferay.portal.model.User;
 
 /**
  * @author Scott Lee
+ * @author Bruno Farache
  */
 public class UserListener extends BaseModelListener<User> {
 
@@ -49,6 +51,11 @@ public class UserListener extends BaseModelListener<User> {
 				"Unable to remove chat entries and status for user " +
 					user.getUserId());
 		}
+	}
+
+	public void onAfterUpdate(User user) {
+		JabberUtil.updatePassword(
+			user.getUserId(), user.getPasswordUnencrypted());
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(UserListener.class);

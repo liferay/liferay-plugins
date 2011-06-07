@@ -67,6 +67,14 @@ public class JabberUtil {
 		getJabber().sendMessage(fromUserId, toUserId, content);
 	}
 
+	public static void updatePassword(long userId, String password) {
+		if (!PortletPropsValues.JABBER_ENABLED) {
+			return;
+		}
+
+		getJabber().updatePassword(userId, password);
+	}
+
 	public static void updateStatus(long userId, int online) {
 		if (!PortletPropsValues.JABBER_ENABLED) {
 			return;

@@ -28,6 +28,9 @@ public interface PortletPropsKeys {
 
 	public static final String JABBER_HOST = "jabber.host";
 
+	public static final String JABBER_IMPORT_USER_ENABLED =
+		"jabber.import.user.enabled";
+
 	public static final String JABBER_PORT = "jabber.port";
 
 	public static final String JABBER_RESOURCE = "jabber.resource";
