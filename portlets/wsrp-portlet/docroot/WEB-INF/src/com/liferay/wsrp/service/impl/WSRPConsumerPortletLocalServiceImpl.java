@@ -37,6 +37,7 @@ import com.liferay.portal.service.PortletLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.InvokerPortlet;
+import com.liferay.portlet.PortletInstanceFactoryUtil;
 import com.liferay.wsrp.NoSuchConsumerPortletException;
 import com.liferay.wsrp.WSRPConsumerPortletHandleException;
 import com.liferay.wsrp.WSRPConsumerPortletNameException;
@@ -178,7 +179,7 @@ public class WSRPConsumerPortletLocalServiceImpl
 
 			WSRPConsumerManagerFactory.destroyWSRPConsumerManager(url);
 
-			PortletLocalServiceUtil.destroyRemotePortlet(portlet);
+			PortletInstanceFactoryUtil.destroy(portlet);
 
 			_failedWSRPConsumerPortlets.remove(wsrpConsumerPortletId);
 		}

@@ -133,9 +133,7 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 		try {
 			Portlet portlet = getPortlet(uuid, companyId, name);
 
-			PortletLocalServiceUtil.destroyRemotePortlet(portlet);
-
-			PortletInstanceFactoryUtil.clear(portlet);
+			PortletInstanceFactoryUtil.destroy(portlet);
 		}
 		catch (PortalException pe) {
 			throw pe;
