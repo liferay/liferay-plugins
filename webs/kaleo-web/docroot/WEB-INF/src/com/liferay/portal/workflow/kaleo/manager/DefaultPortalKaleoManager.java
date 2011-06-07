@@ -230,7 +230,7 @@ public class DefaultPortalKaleoManager
 		try {
 			WorkflowDefinitionLinkLocalServiceUtil.
 				getDefaultWorkflowDefinitionLink(
-					company.getCompanyId(), assetClassName);
+					company.getCompanyId(), assetClassName, 0);
 
 			return;
 		}
@@ -256,7 +256,7 @@ public class DefaultPortalKaleoManager
 
 		WorkflowDefinitionLinkLocalServiceUtil.addWorkflowDefinitionLink(
 			defaultUser.getUserId(), company.getCompanyId(),
-			companyGroup.getGroupId(), assetClassName,
+			companyGroup.getGroupId(), assetClassName, 0,
 			workflowDefinition.getName(), workflowDefinition.getVersion());
 	}
 
