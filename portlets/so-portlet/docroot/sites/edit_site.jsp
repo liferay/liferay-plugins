@@ -70,6 +70,14 @@ portletURL.setParameter("jspPage", "/sites/edit_site.jsp");
 
 						<%
 						for (LayoutSetPrototype layoutSetPrototype : layoutSetPrototypes) {
+							UnicodeProperties settingsProperties = layoutSetPrototype.getSettingsProperties();
+
+							String customJspServletContextName = settingsProperties.getProperty("customJspServletContextName", StringPool.BLANK);
+
+							if (!customJspServletContextName.equals("so-hook")) {
+								continue;
+							}
+
 							Boolean socialOfficeDefault = (Boolean)layoutSetPrototype.getExpandoBridge().getAttribute("socialOfficeDefault");
 
 							if (socialOfficeDefault.booleanValue()) {
