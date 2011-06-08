@@ -468,7 +468,30 @@ AUI().add(
 					{
 						autoLoad: false,
 						method: 'POST',
-						uri: themeDisplay.getLayoutURL() + '/-/mail/view_messages'
+						uri: themeDisplay.getLayoutURL() + '/-/mail/view_messages',
+						after: {
+							success: function() {
+								instance.messagesContainer.all('.flag-messages select').on(
+									'change',
+									function(event) {
+										var messageIds = instance._getSelectedMessageIds();
+										var values = event.currentTarget.get('value').split(',');
+
+										instance.flagMessages(values[0], values[1], messageIds);
+									}
+								);
+
+								instance.messagesContainer.all('.move-messages select').on(
+									'change',
+									function(event) {
+										var folderId = event.currentTarget.get('value');
+										var messageIds = instance._getSelectedMessageIds();
+
+										instance.moveMessages(folderId, messageIds);
+									}
+								);
+							}
+						}
 					}
 				);
 
@@ -605,28 +628,6 @@ AUI().add(
 						instance.deleteMessages(messageIds);
 					},
 					'.delete-messages'
-				);
-
-				instance.messagesContainer.delegate(
-					'change',
-					function(event) {
-						var messageIds = instance._getSelectedMessageIds();
-						var values = event.currentTarget.one('select').get('value').split(',');
-
-						instance.flagMessages(values[0], values[1], messageIds);
-					},
-					'.flag-messages'
-				);
-
-				instance.messagesContainer.delegate(
-					'change',
-					function(event) {
-						var folderId = event.currentTarget.one('select').get('value');
-						var messageIds = instance._getSelectedMessageIds();
-
-						instance.moveMessages(folderId, messageIds);
-					},
-					'.move-messages'
 				);
 
 				instance.messagesContainer.delegate(
