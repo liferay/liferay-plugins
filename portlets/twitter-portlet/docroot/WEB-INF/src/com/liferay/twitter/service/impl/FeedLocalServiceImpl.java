@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Contact;
 import com.liferay.portal.model.User;
 import com.liferay.portal.util.PortalUtil;
@@ -72,8 +73,8 @@ public class FeedLocalServiceImpl extends FeedLocalServiceBaseImpl {
 			userParams.put("contactTwitterSn", Boolean.TRUE);
 
 			List<User> users = userLocalService.search(
-				companyId, null, 0, userParams, QueryUtil.ALL_POS,
-				QueryUtil.ALL_POS, (OrderByComparator)null);
+				companyId, null, WorkflowConstants.STATUS_APPROVED, userParams,
+				QueryUtil.ALL_POS, QueryUtil.ALL_POS, (OrderByComparator)null);
 
 			for (User user : users) {
 				try {
@@ -160,47 +161,50 @@ public class FeedLocalServiceImpl extends FeedLocalServiceBaseImpl {
 			return;
 		}
 
-		for (int i = 0; i < jsonArray.length(); i++) {
-			JSONObject statusJSON = jsonArray.getJSONObject(i);
+		try {
+			for (int i = 0; i < jsonArray.length(); i++) {
+				JSONObject statusJSON = jsonArray.getJSONObject(i);
 
-			SimpleDateFormat sdf = new SimpleDateFormat(
-				"EEE MMM d hh:mm:ss Z yyyy");
+				SimpleDateFormat sdf = new SimpleDateFormat(
+					"EEE MMM d hh:mm:ss Z yyyy");
 
-			Date createDate = null;
+				Date createDate = null;
 
-			try {
-				createDate = sdf.parse(statusJSON.getString("created_at"));
+				try {
+					createDate = sdf.parse(statusJSON.getString("created_at"));
+				}
+				catch (ParseException pe) {
+					throw new SystemException(pe);
+				}
+
+				long statusId = statusJSON.getLong("id");
+				String text = statusJSON.getString("text");
+
+				if (feed.getTwitterUserId() <= 0) {
+					JSONObject userJSON = statusJSON.getJSONObject("user");
+
+					feed.setTwitterUserId(userJSON.getLong("id"));
+				}
+
+				if (feed.getLastStatusId() < statusId) {
+					feed.setLastStatusId(statusId);
+				}
+
+				JSONObject extraData = JSONFactoryUtil.createJSONObject();
+
+				extraData.put("text", text);
+
+				SocialActivityLocalServiceUtil.addActivity(
+					user.getUserId(), 0, createDate, Feed.class.getName(),
+					statusId, TwitterActivityKeys.ADD_STATUS,
+					extraData.toString(), 0);
 			}
-			catch (ParseException pe) {
-				throw new SystemException(pe);
-			}
-
-			long statusId = statusJSON.getLong("id");
-			String text = statusJSON.getString("text");
-
-			if (feed.getTwitterUserId() <= 0) {
-				JSONObject userJSON = statusJSON.getJSONObject("user");
-
-				feed.setTwitterUserId(userJSON.getLong("id"));
-			}
-
-			if (feed.getLastStatusId() < statusId) {
-				feed.setLastStatusId(statusId);
-			}
-
-			JSONObject extraData = JSONFactoryUtil.createJSONObject();
-
-			extraData.put("text", text);
-
-			SocialActivityLocalServiceUtil.addActivity(
-				user.getUserId(), 0, createDate, Feed.class.getName(),
-				statusId, TwitterActivityKeys.ADD_STATUS,
-				extraData.toString(), 0);
 		}
+		finally {
+			feed.setModifiedDate(now);
 
-		feed.setModifiedDate(now);
-
-		feedPersistence.update(feed, false);
+			feedPersistence.update(feed, false);
+		}
 	}
 
 	private static final String _URL =
