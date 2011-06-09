@@ -136,7 +136,7 @@ else {
 
 			var editor = A.one('#_1_WAR_mailportlet_editor').getDOM().contentWindow;
 
-			document.<portlet:namespace />fm.<portlet:namespace />body.value = editor.getHTML();
+			document.<portlet:namespace />fm.<portlet:namespace />body.value = window.<portlet:namespace />editor.getHTML();
 
 			A.io.request(
 				form.getAttribute('action'),
