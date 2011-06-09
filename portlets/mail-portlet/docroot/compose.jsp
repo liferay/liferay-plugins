@@ -101,7 +101,13 @@ else {
 		</aui:column>
 	</aui:layout>
 
-	<div class="body-editor"></div>
+	<div class="body-editor">
+		<aui:field-wrapper label="body">
+			<liferay-ui:input-editor editorImpl="<%= EDITOR_WYSIWYG_IMPL_KEY %>" toolbarSet="email" width="100%" />
+
+			<aui:input name="body" type="hidden" />
+		</aui:field-wrapper>
+	</div>
 
 	<aui:button-row>
 		<aui:button type="submit" value="send" />
@@ -120,16 +126,6 @@ else {
 
 <aui:script use="aui-base,aui-io">
 	var form = A.one('#<portlet:namespace />fm');
-
-	<liferay-util:buffer var="editorHTML">
-		<aui:field-wrapper label="body">
-			<liferay-ui:input-editor editorImpl="<%= EDITOR_WYSIWYG_IMPL_KEY %>" toolbarSet="email" width="100%" />
-
-			<aui:input name="body" type="hidden" />
-		</aui:field-wrapper>
-	</liferay-util:buffer>
-
-	form.one('.body-editor').setContent('<%= UnicodeFormatter.toString(editorHTML) %>');
 
 	form.on(
 		'submit',
