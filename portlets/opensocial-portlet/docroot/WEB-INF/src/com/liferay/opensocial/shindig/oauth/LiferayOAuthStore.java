@@ -225,6 +225,7 @@ public class LiferayOAuthStore implements OAuthStore {
 
 		return oAuthConsumer;
 	}
+
 	protected OAuthToken getOAuthToken(
 			SecurityToken securityToken, String serviceName,
 			String tokenName)
