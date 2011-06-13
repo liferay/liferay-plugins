@@ -219,7 +219,7 @@ public class UpgradeCompany extends UpgradeProcess {
 
 		JournalArticle journalArticle =
 			JournalArticleLocalServiceUtil.addArticle(
-				userId, groupId, StringPool.BLANK, true,
+				userId, groupId, 0, 0, StringPool.BLANK, true,
 				JournalArticleConstants.DEFAULT_VERSION, titleMap, null,
 				content, "general", structureId, templateId, StringPool.BLANK,
 				1, 1, 2008, 0, 0, 0, 0, 0, 0, 0, true, 0, 0, 0, 0, 0, true,
@@ -965,7 +965,7 @@ public class UpgradeCompany extends UpgradeProcess {
 		Organization organization =
 			OrganizationLocalServiceUtil.addOrganization(
 				userId, parentOrganizationId, name, type, recursable, regionId,
-				countryId, statusId, comments, serviceContext);
+				countryId, statusId, comments, true, serviceContext);
 
 		// Group
 
@@ -1622,7 +1622,7 @@ public class UpgradeCompany extends UpgradeProcess {
 
 		organization = OrganizationLocalServiceUtil.addOrganization(
 			userId, parentOrganizationId, name, type, recursable, regionId,
-			countryId, statusId, comments, serviceContext);
+			countryId, statusId, comments, true, serviceContext);
 
 		// Group
 
@@ -1995,7 +1995,7 @@ public class UpgradeCompany extends UpgradeProcess {
 
 		WorkflowDefinitionLinkLocalServiceUtil.updateWorkflowDefinitionLink(
 			defaultUserId, companyId, group.getGroupId(),
-			JournalArticle.class.getName(), workflowDefinitionName,
+			JournalArticle.class.getName(), 0, workflowDefinitionName,
 			workflowDefinitionVersion);
 	}
 
