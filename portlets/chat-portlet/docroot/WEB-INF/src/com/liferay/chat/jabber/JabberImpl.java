@@ -25,6 +25,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.model.ContactConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
 
@@ -101,6 +102,24 @@ public class JabberImpl implements Jabber {
 
 			Collection<RosterEntry> rosterEntries = roster.getEntries();
 
+			if (PortletPropsValues.JABBER_IMPORT_USER_ENABLED) {
+				for (Object[] buddy : buddies) {
+					String screenName = (String)buddy[1];
+					String firstName = (String)buddy[2];
+					String middleName = (String)buddy[3];
+					String lastName = (String)buddy[4];
+
+					String fullName = ContactConstants.getFullName(
+						firstName, middleName, lastName);
+
+					String jabberId = getFullJabberId(screenName);
+
+					if (!roster.contains(jabberId)) {
+						roster.createEntry(jabberId, fullName, null);
+					}
+				}
+			}
+
 			BuddyComparator buddyComparator = new BuddyComparator(true);
 
 			for (RosterEntry rosterEntry : rosterEntries) {
@@ -113,14 +132,15 @@ public class JabberImpl implements Jabber {
 				User user = UserLocalServiceUtil.getUserByScreenName(
 					companyId, getScreenName(rosterEntry.getUser()));
 
-				Object[] jabberBuddy = new Object[6];
+				Object[] jabberBuddy = new Object[7];
 
 				jabberBuddy[0] = user.getUserId();
-				jabberBuddy[1] = user.getFirstName();
-				jabberBuddy[2] = user.getMiddleName();
-				jabberBuddy[3] = user.getLastName();
-				jabberBuddy[4] = user.getPortraitId();
-				jabberBuddy[5] = true;
+				jabberBuddy[1] = user.getScreenName();
+				jabberBuddy[2] = user.getFirstName();
+				jabberBuddy[3] = user.getMiddleName();
+				jabberBuddy[4] = user.getLastName();
+				jabberBuddy[5] = user.getPortraitId();
+				jabberBuddy[6] = true;
 
 				if (Collections.binarySearch(
 						jabberBuddies, jabberBuddy, buddyComparator) < 0) {
@@ -353,6 +373,13 @@ public class JabberImpl implements Jabber {
 			PortletPropsValues.JABBER_SOCK5_PROXY_PORT);
 
 		return _connectionConfiguration;
+	}
+
+	protected String getFullJabberId(String screenName) {
+		String jabberId = getJabberId(screenName);
+
+		return jabberId.concat(StringPool.SLASH).concat(
+			PortletPropsValues.JABBER_RESOURCE);
 	}
 
 	protected String getJabberId(String screenName) {

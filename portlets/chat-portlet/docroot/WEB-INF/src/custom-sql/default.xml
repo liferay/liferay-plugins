@@ -45,7 +45,7 @@
 	<sql id="com.liferay.chat.service.persistence.StatusFinder.findByModifiedDate">
 		<![CDATA[
 			SELECT
-				User_.userId AS userId, Contact_.firstName AS firstName, Contact_.middleName AS middleName, Contact_.lastName AS lastName, User_.portraitId AS portraitId, Chat_Status.awake AS awake
+				User_.userId AS userId, User_.screenName AS screenName, Contact_.firstName AS firstName, Contact_.middleName AS middleName, Contact_.lastName AS lastName, User_.portraitId AS portraitId, Chat_Status.awake AS awake
 			FROM
 				Chat_Status
 			INNER JOIN
@@ -69,7 +69,7 @@
 	<sql id="com.liferay.chat.service.persistence.StatusFinder.findBySocialRelationType">
 		<![CDATA[
 			SELECT
-				User_.userId AS userId, Contact_.firstName AS firstName, Contact_.middleName AS middleName, Contact_.lastName AS lastName, User_.portraitId AS portraitId, Chat_Status.awake AS awake
+				User_.userId AS userId, User_.screenName AS screenName, Contact_.firstName AS firstName, Contact_.middleName AS middleName, Contact_.lastName AS lastName, User_.portraitId AS portraitId, Chat_Status.awake AS awake
 			FROM
 				Chat_Status
 			INNER JOIN
@@ -96,7 +96,7 @@
 	<sql id="com.liferay.chat.service.persistence.StatusFinder.findByUsersGroups">
 		<![CDATA[
 			SELECT DISTINCT
-				User_.userId AS userId, Contact_.firstName AS firstName, Contact_.middleName AS middleName, Contact_.lastName AS lastName, User_.portraitId AS portraitId, Chat_Status.awake AS awake
+				User_.userId AS userId, User_.screenName AS screenName, Contact_.firstName AS firstName, Contact_.middleName AS middleName, Contact_.lastName AS lastName, User_.portraitId AS portraitId, Chat_Status.awake AS awake
 			FROM
 				Chat_Status
 			INNER JOIN

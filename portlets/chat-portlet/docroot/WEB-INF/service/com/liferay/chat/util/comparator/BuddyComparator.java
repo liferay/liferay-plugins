@@ -33,16 +33,16 @@ public class BuddyComparator implements Comparator<Object[]> {
 
 	public int compare(Object[] buddy1, Object[] buddy2) {
 		long userId1 = (Long)buddy1[0];
-		String firstName1 = (String)buddy1[1];
-		String middleName1 = (String)buddy1[2];
-		String lastName1 = (String)buddy1[3];
-		boolean awake1 = (Boolean)buddy1[5];
+		String firstName1 = (String)buddy1[2];
+		String middleName1 = (String)buddy1[3];
+		String lastName1 = (String)buddy1[4];
+		boolean awake1 = (Boolean)buddy1[6];
 
 		long userId2 = (Long)buddy2[0];
-		String firstName2 = (String)buddy2[1];
-		String middleName2 = (String)buddy2[2];
-		String lastName2 = (String)buddy2[3];
-		boolean awake2 = (Boolean)buddy2[5];
+		String firstName2 = (String)buddy2[2];
+		String middleName2 = (String)buddy2[3];
+		String lastName2 = (String)buddy2[4];
+		boolean awake2 = (Boolean)buddy2[6];
 
 		int value = 0;
 

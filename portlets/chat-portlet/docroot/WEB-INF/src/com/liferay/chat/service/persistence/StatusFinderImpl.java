@@ -55,6 +55,7 @@ public class StatusFinderImpl
 			SQLQuery q = session.createSQLQuery(sql);
 
 			q.addScalar("userId", Type.LONG);
+			q.addScalar("screenName", Type.STRING);
 			q.addScalar("firstName", Type.STRING);
 			q.addScalar("middleName", Type.STRING);
 			q.addScalar("lastName", Type.STRING);
@@ -91,6 +92,7 @@ public class StatusFinderImpl
 			SQLQuery q = session.createSQLQuery(sql);
 
 			q.addScalar("userId", Type.LONG);
+			q.addScalar("screenName", Type.STRING);
 			q.addScalar("firstName", Type.STRING);
 			q.addScalar("middleName", Type.STRING);
 			q.addScalar("lastName", Type.STRING);
@@ -127,6 +129,7 @@ public class StatusFinderImpl
 			SQLQuery q = session.createSQLQuery(sql);
 
 			q.addScalar("userId", Type.LONG);
+			q.addScalar("screenName", Type.STRING);
 			q.addScalar("firstName", Type.STRING);
 			q.addScalar("middleName", Type.STRING);
 			q.addScalar("lastName", Type.STRING);

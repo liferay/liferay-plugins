@@ -78,11 +78,11 @@
 										<%
 										for (Object[] buddy : buddies) {
 											long userId = (Long)buddy[0];
-											String firstName = (String)buddy[1];
-											String middleName = (String)buddy[2];
-											String lastName = (String)buddy[3];
-											long portraitId = (Long)buddy[4];
-											boolean awake = (Boolean)buddy[5];
+											String firstName = (String)buddy[2];
+											String middleName = (String)buddy[3];
+											String lastName = (String)buddy[4];
+											long portraitId = (Long)buddy[5];
+											boolean awake = (Boolean)buddy[6];
 
 											String fullName = ContactConstants.getFullName(firstName, middleName, lastName);
 										%>
