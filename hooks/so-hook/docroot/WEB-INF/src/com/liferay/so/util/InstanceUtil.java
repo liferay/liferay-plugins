@@ -17,27 +17,19 @@
 
 package com.liferay.so.util;
 
-import com.liferay.portal.kernel.configuration.Filter;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
-import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
-import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.UnicodeProperties;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.LayoutConstants;
 import com.liferay.portal.model.LayoutSetPrototype;
-import com.liferay.portal.model.LayoutTemplate;
-import com.liferay.portal.model.LayoutTypePortlet;
 import com.liferay.portal.model.Portlet;
-import com.liferay.portal.model.PortletConstants;
 import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.Role;
 import com.liferay.portal.model.RoleConstants;
@@ -48,14 +40,11 @@ import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.service.LayoutSetLocalServiceUtil;
 import com.liferay.portal.service.LayoutSetPrototypeLocalServiceUtil;
 import com.liferay.portal.service.PortletLocalServiceUtil;
-import com.liferay.portal.service.ResourceLocalServiceUtil;
 import com.liferay.portal.service.ResourcePermissionLocalServiceUtil;
 import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
-import com.liferay.portal.service.permission.PortletPermissionUtil;
 import com.liferay.portal.util.PortletKeys;
-import com.liferay.portlet.PortletPreferencesFactoryUtil;
 import com.liferay.portlet.PortletPreferencesThreadLocal;
 import com.liferay.portlet.expando.model.ExpandoColumn;
 import com.liferay.portlet.expando.model.ExpandoColumnConstants;
@@ -64,14 +53,11 @@ import com.liferay.portlet.expando.model.ExpandoTableConstants;
 import com.liferay.portlet.expando.service.ExpandoColumnLocalServiceUtil;
 import com.liferay.portlet.expando.service.ExpandoTableLocalServiceUtil;
 import com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil;
-import com.liferay.util.portlet.PortletProps;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-
-import javax.portlet.PortletPreferences;
 
 /**
  * @author Brian Wing Shun Chan
@@ -139,31 +125,6 @@ public class InstanceUtil {
 		}
 	}
 
-	protected static Layout addLayout(
-			Group group, String name, String friendlyURL,
-			String layouteTemplateId)
-		throws Exception {
-
-		boolean privateLayout = true;
-
-		ServiceContext serviceContext = new ServiceContext();
-
-		Layout layout = LayoutLocalServiceUtil.addLayout(
-			group.getCreatorUserId(), group.getGroupId(), privateLayout,
-			LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, name, StringPool.BLANK,
-			StringPool.BLANK, LayoutConstants.TYPE_PORTLET, false, friendlyURL,
-			serviceContext);
-
-		LayoutTypePortlet layoutTypePortlet =
-			(LayoutTypePortlet)layout.getLayoutType();
-
-		layoutTypePortlet.setLayoutTemplateId(0, layouteTemplateId, false);
-
-		return LayoutLocalServiceUtil.updateLayout(
-			layout.getGroupId(), layout.isPrivateLayout(), layout.getLayoutId(),
-			layout.getTypeSettings());
-	}
-
 	protected static LayoutSetPrototype addLayoutSetPrototype(
 			long companyId, String name)
 		throws Exception {
@@ -197,131 +158,6 @@ public class InstanceUtil {
 				settingsProperties.toString());
 
 		return layoutSetPrototype;
-	}
-
-	protected static void addPortlets(Group group, Layout layout, String name)
-		throws Exception {
-
-		LayoutTypePortlet layoutTypePortlet =
-			(LayoutTypePortlet)layout.getLayoutType();
-
-		LayoutTemplate layoutTemplate = layoutTypePortlet.getLayoutTemplate();
-
-		List<String> columns = layoutTemplate.getColumns();
-
-		for (String column : columns) {
-			String keyPrefix = PortletPropsKeys.SITE_PROTOTYPE_PORTLETS;
-			Filter filter = new Filter(name);
-
-			String[] portletIds = PortletProps.getArray(
-				keyPrefix + column, filter);
-
-			String portlets = StringPool.BLANK;
-
-			for (String portletId : portletIds) {
-				portlets = StringUtil.add(portlets, portletId);
-			}
-
-			layoutTypePortlet.setPortletIds(column, portlets);
-		}
-
-		LayoutLocalServiceUtil.updateLayout(
-			layout.getGroupId(), layout.isPrivateLayout(), layout.getLayoutId(),
-			layout.getTypeSettings());
-
-		List<String> portletIds = layoutTypePortlet.getPortletIds();
-
-		for (String portletId : portletIds) {
-			addResources(layout, portletId);
-
-			if (portletId.startsWith("1_WAR_wysiwygportlet")) {
-				updatePortletTitle(layout, portletId, "Welcome");
-			}
-			else if (portletId.equals(PortletKeys.ALERTS)) {
-				updatePortletTitle(layout, portletId, "Announcements");
-			}
-		}
-	}
-
-	protected static void addResources(Layout layout, String portletId)
-		throws Exception {
-
-		String rootPortletId = PortletConstants.getRootPortletId(portletId);
-
-		String portletPrimaryKey = PortletPermissionUtil.getPrimaryKey(
-			layout.getPlid(), portletId);
-
-		ResourceLocalServiceUtil.addResources(
-			layout.getCompanyId(), layout.getGroupId(), 0, rootPortletId,
-			portletPrimaryKey, true, true, true);
-	}
-
-	protected static void configureAssetPublisher(Layout layout)
-		throws Exception {
-
-		PortletPreferences portletSetup =
-			PortletPreferencesFactoryUtil.getLayoutPortletSetup(
-				layout, "101_INSTANCE_abcd");
-
-		portletSetup.setValue("display-style", "title-list");
-		portletSetup.setValue("asset-link-behaviour", "viewInPortlet");
-
-		portletSetup.store();
-	}
-
-	protected static void configureMessageBoards(Layout layout)
-		throws Exception {
-
-		PortletPreferences portletSetup =
-			PortletPreferencesFactoryUtil.getLayoutPortletSetup(
-				layout, PortletKeys.MESSAGE_BOARDS);
-
-		String[] ranks = {
-			"Bronze=0",
-			"Silver=25",
-			"Gold=100",
-			"Platinum=250",
-			"Moderator=community-role:Message Boards Administrator",
-			"Moderator=organization:Message Boards Administrator",
-			"Moderator=organization-role:Message Boards Administrator",
-			"Moderator=regular-role:Message Boards Administrator",
-			"Moderator=user-group:Message Boards Administrator"
-		};
-
-		portletSetup.setValues("ranks", ranks);
-
-		portletSetup.store();
-	}
-
-	protected static void configureRSS(Layout layout) throws Exception {
-		PortletPreferences portletSetup =
-			PortletPreferencesFactoryUtil.getLayoutPortletSetup(
-				layout, "39_INSTANCE_abcd");
-
-		portletSetup.setValue("items-per-channel", "3");
-		portletSetup.setValue("show-feed-title", "false");
-		portletSetup.setValue("show-feed-published-date", "false");
-		portletSetup.setValue("show-feed-description", "false");
-		portletSetup.setValue("show-feed-image", "false");
-		portletSetup.setValue("show-feed-item-author", "false");
-		portletSetup.setValue(
-			"urls",
-			"http://www.economist.com/rss/daily_news_and_views_rss.xml");
-
-		portletSetup.store();
-	}
-
-	protected static void removePortletBorder(Layout layout, String portletId)
-		throws Exception {
-
-		PortletPreferences portletSetup =
-			PortletPreferencesFactoryUtil.getLayoutPortletSetup(
-				layout, portletId);
-
-		portletSetup.setValue(
-			"portlet-setup-show-borders", String.valueOf(Boolean.FALSE));
-
-		portletSetup.store();
 	}
 
 	protected static void setupExpando(long companyId) throws Exception {
@@ -409,74 +245,96 @@ public class InstanceUtil {
 
 		// Home
 
-		Layout layout = addLayout(
-			group, "Home", "/home",
+		Layout layout = LayoutUtil.addLayout(
+			group, true, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, "Home",
 			PortletPropsValues.SITE_PROTOTYPE_LAYOUT_TEMPLATE);
 
-		addPortlets(group, layout, "/home");
+		LayoutUtil.addPortlets(
+			group, layout, "/home", PortletPropsKeys.SITE_PROTOTYPE_PORTLETS);
 
-		configureRSS(layout);
+		LayoutUtil.configureRSS(layout);
 
-		updatePermissions(layout, true);
+		LayoutUtil.updatePermissions(layout, true);
 
 		// Calendar
 
-		layout = addLayout(group, "Calendar", "/calendar", "1_column");
+		layout = LayoutUtil.addLayout(
+			group, true, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, "Calendar",
+			"1_column");
 
-		addPortlets(group, layout, "/calendar");
+		LayoutUtil.addPortlets(
+			group, layout, "/calendar",
+			PortletPropsKeys.SITE_PROTOTYPE_PORTLETS);
 
-		updatePermissions(layout, true);
+		LayoutUtil.updatePermissions(layout, true);
 
 		// Documents
 
-		layout = addLayout(group, "Documents", "/documents", "2_columns_iii");
+		layout = LayoutUtil.addLayout(
+			group, true, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, "Documents",
+			"2_columns_iii");
 
-		addPortlets(group, layout, "/documents");
+		LayoutUtil.addPortlets(
+			group, layout, "/documents",
+			PortletPropsKeys.SITE_PROTOTYPE_PORTLETS);
 
-		configureAssetPublisher(layout);
+		LayoutUtil.configureAssetPublisher(layout);
 
-		updatePermissions(layout, true);
+		LayoutUtil.updatePermissions(layout, true);
 
 		// Forums
 
-		layout = addLayout(group, "Forums", "/forums", "2_columns_iii");
+		layout = LayoutUtil.addLayout(
+			group, true, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, "Forums",
+			"2_columns_iii");
 
-		addPortlets(group, layout, "/forums");
+		LayoutUtil.addPortlets(
+			group, layout, "/forums", PortletPropsKeys.SITE_PROTOTYPE_PORTLETS);
 
-		configureAssetPublisher(layout);
-		configureMessageBoards(layout);
+		LayoutUtil.configureAssetPublisher(layout);
+		LayoutUtil.configureMessageBoards(layout);
 
-		updatePermissions(layout, true);
+		LayoutUtil.updatePermissions(layout, true);
 
 		// Blog
 
-		layout = addLayout(group, "Blog", "/blog", "2_columns_iii");
+		layout = LayoutUtil.addLayout(
+			group, true, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, "Blog",
+			"2_columns_iii");
 
-		addPortlets(group, layout, "/blog");
+		LayoutUtil.addPortlets(
+			group, layout, "/blog", PortletPropsKeys.SITE_PROTOTYPE_PORTLETS);
 
-		configureAssetPublisher(layout);
+		LayoutUtil.configureAssetPublisher(layout);
 
-		updatePermissions(layout, true);
+		LayoutUtil.updatePermissions(layout, true);
 
 		// Wiki
 
-		layout = addLayout(group, "Wiki", "/wiki", "2_columns_iii");
+		layout = LayoutUtil.addLayout(
+			group, true, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, "Wiki",
+			"2_columns_iii");
 
-		addPortlets(group, layout, "/wiki");
+		LayoutUtil.addPortlets(
+			group, layout, "/wiki", PortletPropsKeys.SITE_PROTOTYPE_PORTLETS);
 
-		configureAssetPublisher(layout);
+		LayoutUtil.configureAssetPublisher(layout);
 
-		updatePermissions(layout, true);
+		LayoutUtil.updatePermissions(layout, true);
 
 		// Members
 
-		layout = addLayout(group, "Members", "/members", "1_column");
+		layout = LayoutUtil.addLayout(
+			group, true, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, "Members",
+			"1_column");
 
-		addPortlets(group, layout, "/members");
+		LayoutUtil.addPortlets(
+			group, layout, "/members",
+			PortletPropsKeys.SITE_PROTOTYPE_PORTLETS);
 
-		removePortletBorder(layout, "2_WAR_soportlet");
+		LayoutUtil.removePortletBorder(layout, "2_WAR_soportlet");
 
-		updatePermissions(layout, true);
+		LayoutUtil.updatePermissions(layout, true);
 	}
 
 	protected static void setupUsers(long companyId) throws Exception {
@@ -510,67 +368,6 @@ public class InstanceUtil {
 		ResourcePermissionLocalServiceUtil.setResourcePermissions(
 			expandoColumn.getCompanyId(), name, scope, primKey,
 			role.getRoleId(), actionIds);
-	}
-
-	protected static void updatePermissions(
-			Layout layout, boolean addDefaultActionIds)
-		throws Exception {
-
-		long companyId = layout.getCompanyId();
-
-		Role role = RoleLocalServiceUtil.getRole(
-			companyId, RoleConstants.GUEST);
-
-		String[] actionIds = new String[0];
-
-		String name = Layout.class.getName();
-		int scope = ResourceConstants.SCOPE_INDIVIDUAL;
-		String primKey = String.valueOf(layout.getPrimaryKey());
-
-		ResourcePermissionLocalServiceUtil.setResourcePermissions(
-			companyId, name, scope, primKey, role.getRoleId(), actionIds);
-
-		role = RoleLocalServiceUtil.getRole(
-			companyId, RoleConstants.POWER_USER);
-
-		ResourcePermissionLocalServiceUtil.setResourcePermissions(
-			companyId, name, scope, primKey, role.getRoleId(), actionIds);
-
-		if (addDefaultActionIds) {
-			actionIds = new String[] {ActionKeys.VIEW};
-		}
-
-		role = RoleLocalServiceUtil.getRole(companyId, RoleConstants.USER);
-
-		ResourcePermissionLocalServiceUtil.setResourcePermissions(
-			companyId, name, scope, primKey, role.getRoleId(), actionIds);
-	}
-
-	protected static void updatePortletTitle(
-			Layout layout, String portletId, String title)
-		throws Exception {
-
-		PortletPreferences portletSetup =
-			PortletPreferencesFactoryUtil.getLayoutPortletSetup(
-				layout, portletId);
-
-		Locale[] locales = LanguageUtil.getAvailableLocales();
-
-		for (Locale locale : locales) {
-			String languageId = LocaleUtil.toLanguageId(locale);
-
-			if (Validator.isNotNull(languageId)) {
-				String localizedTitle = LanguageUtil.get(locale, title);
-
-				portletSetup.setValue(
-					"portlet-setup-title-" + languageId, localizedTitle);
-			}
-		}
-
-		portletSetup.setValue(
-			"portlet-setup-use-custom-title", String.valueOf(Boolean.TRUE));
-
-		portletSetup.store();
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(InstanceUtil.class);

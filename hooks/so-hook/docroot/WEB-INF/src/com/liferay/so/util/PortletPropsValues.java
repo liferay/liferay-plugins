@@ -35,4 +35,11 @@ import com.liferay.util.portlet.PortletProps;
 	public static final String[] USER_APPLICATIONS = PortletProps.getArray(
 		PortletPropsKeys.USER_APPLICATIONS);
 
+	public static final String[] USER_NEW_LAYOUT_PORTLETS =
+		PortletProps.getArray(PortletPropsKeys.USER_NEW_LAYOUT_PORTLETS);
+
+	public static final String USER_NEW_LAYOUT_TEMPLATE =
+		GetterUtil.getString(
+			PortletProps.get(PortletPropsKeys.USER_NEW_LAYOUT_TEMPLATE));
+
 }

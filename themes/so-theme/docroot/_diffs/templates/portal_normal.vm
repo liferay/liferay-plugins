@@ -10,6 +10,10 @@
 	$theme.include($top_head_include)
 </head>
 
+#if ($page_group.isUser())
+	#set($css_class = $css_class + " user-group")
+#end
+	
 <body class="$css_class">
 
 $theme.include($body_top_include)

@@ -35,4 +35,10 @@ public interface PortletPropsKeys {
 
 	public static final String USER_LAYOUT_PORTLETS = "user.layout.portlets.";
 
+	public static final String USER_NEW_LAYOUT_PORTLETS  =
+		"user.new.layout.portlets.";
+
+	public static final String USER_NEW_LAYOUT_TEMPLATE =
+		"user.new.layout.template";
+
 }

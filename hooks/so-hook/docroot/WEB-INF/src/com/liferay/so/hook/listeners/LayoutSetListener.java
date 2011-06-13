@@ -19,44 +19,24 @@ package com.liferay.so.hook.listeners;
 
 import com.liferay.portal.ModelListenerException;
 import com.liferay.portal.kernel.configuration.Filter;
-import com.liferay.portal.kernel.language.LanguageUtil;
-import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.UnicodeProperties;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.BaseModelListener;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.LayoutConstants;
 import com.liferay.portal.model.LayoutSet;
-import com.liferay.portal.model.LayoutTemplate;
 import com.liferay.portal.model.LayoutTypePortlet;
 import com.liferay.portal.model.Portlet;
-import com.liferay.portal.model.PortletConstants;
-import com.liferay.portal.model.ResourceConstants;
-import com.liferay.portal.model.Role;
-import com.liferay.portal.model.RoleConstants;
-import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.service.LayoutSetLocalServiceUtil;
 import com.liferay.portal.service.PortletLocalServiceUtil;
-import com.liferay.portal.service.ResourceLocalServiceUtil;
-import com.liferay.portal.service.ResourcePermissionLocalServiceUtil;
-import com.liferay.portal.service.RoleLocalServiceUtil;
-import com.liferay.portal.service.ServiceContext;
-import com.liferay.portal.service.permission.PortletPermissionUtil;
-import com.liferay.portal.util.PortletKeys;
-import com.liferay.portlet.PortletPreferencesFactoryUtil;
+import com.liferay.so.util.LayoutUtil;
 import com.liferay.so.util.PortletPropsKeys;
 import com.liferay.so.util.PortletPropsValues;
 import com.liferay.util.portlet.PortletProps;
-
-import java.util.List;
-import java.util.Locale;
-
-import javax.portlet.PortletPreferences;
 
 /**
  * @author Brian Wing Shun Chan
@@ -101,9 +81,9 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 				continue;
 			}
 
-			Layout layout = addLayout(
+			Layout layout = LayoutUtil.addLayout(
 				group, true, parentLayoutId, portlet.getDisplayName(),
-				"2_columns_ii");
+				PortletPropsValues.USER_NEW_LAYOUT_TEMPLATE);
 
 			LayoutTypePortlet layoutTypePortlet =
 				(LayoutTypePortlet)layout.getLayoutType();
@@ -125,168 +105,51 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 				layout.getGroupId(), layout.isPrivateLayout(),
 				layout.getLayoutId(), layout.getTypeSettings());
 
-			addResources(layout, portletId);
+			LayoutUtil.addResources(layout, portletId);
 
 			for (String commonPortletId : commonPortletIds) {
-				addResources(layout, commonPortletId);
+				LayoutUtil.addResources(layout, commonPortletId);
 
 				if (commonPortletId.startsWith("71_INSTANCE_")) {
-					removePortletBorder(layout, commonPortletId);
-					configureNavigation(layout, commonPortletId);
+					LayoutUtil.removePortletBorder(layout, commonPortletId);
+					LayoutUtil.configureNavigation(layout, commonPortletId);
 				}
 			}
 
-			updatePermissions(layout, false);
+			LayoutUtil.updatePermissions(layout, false);
 		}
-	}
-
-	protected Layout addLayout(
-			Group group, boolean privateLayout, long parentLayoutId,
-			String name, String layoutTemplateId)
-		throws Exception {
-
-		ServiceContext serviceContext = new ServiceContext();
-
-		Layout layout = LayoutLocalServiceUtil.addLayout(
-			group.getCreatorUserId(), group.getGroupId(), privateLayout,
-			parentLayoutId, name, StringPool.BLANK, StringPool.BLANK,
-			LayoutConstants.TYPE_PORTLET, false, null, serviceContext);
-
-		LayoutTypePortlet layoutTypePortlet =
-			(LayoutTypePortlet)layout.getLayoutType();
-
-		layoutTypePortlet.setLayoutTemplateId(0, layoutTemplateId, false);
-
-		return LayoutLocalServiceUtil.updateLayout(
-			layout.getGroupId(), layout.isPrivateLayout(), layout.getLayoutId(),
-			layout.getTypeSettings());
 	}
 
 	protected void addPrivateUserLayouts(Group group) throws Exception {
 		LayoutSetLocalServiceUtil.updateLookAndFeel(
-			group.getGroupId(), true, "so_WAR_sotheme", "01", "", false);
+			group.getGroupId(), true, "so_WAR_sotheme", "01", StringPool.BLANK,
+			false);
 
-		Layout layout = addLayout(
+		Layout layout = LayoutUtil.addLayout(
 			group, true, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, "Home",
-			"2_columns_ii");
+			PortletPropsValues.USER_NEW_LAYOUT_TEMPLATE);
 
-		addPortlets(group, layout, "/home");
+		LayoutUtil.addPortlets(
+			group, layout, "/home", PortletPropsKeys.USER_LAYOUT_PORTLETS);
 
-		updatePermissions(layout, false);
+		LayoutUtil.updatePermissions(layout, false);
 
 		addApplications(group, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID);
 	}
 
-	protected void addPortlets(Group group, Layout layout, String name)
-		throws Exception {
-
-		LayoutTypePortlet layoutTypePortlet =
-			(LayoutTypePortlet)layout.getLayoutType();
-
-		LayoutTemplate layoutTemplate = layoutTypePortlet.getLayoutTemplate();
-
-		List<String> columns = layoutTemplate.getColumns();
-
-		for (String column : columns) {
-			String keyPrefix = PortletPropsKeys.SITE_PROTOTYPE_PORTLETS;
-
-			if (group.isUser()) {
-				keyPrefix = PortletPropsKeys.USER_LAYOUT_PORTLETS;
-			}
-
-			Filter filter = new Filter(name);
-
-			String[] portletIds = PortletProps.getArray(
-				keyPrefix + column, filter);
-
-			String portlets = StringPool.BLANK;
-
-			for (String portletId : portletIds) {
-				portlets = StringUtil.add(portlets, portletId);
-			}
-
-			layoutTypePortlet.setPortletIds(column, portlets);
-		}
-
-		LayoutLocalServiceUtil.updateLayout(
-			layout.getGroupId(), layout.isPrivateLayout(), layout.getLayoutId(),
-			layout.getTypeSettings());
-
-		List<String> portletIds = layoutTypePortlet.getPortletIds();
-
-		for (String portletId : portletIds) {
-			addResources(layout, portletId);
-
-			if (portletId.equals("1_WAR_wysiwygportlet")) {
-				updatePortletTitle(layout, portletId, "Welcome");
-			}
-			else if (portletId.equals("2_WAR_microblogsportlet")) {
-				removePortletBorder(layout, portletId);
-			}
-			else if (portletId.startsWith("71_INSTANCE_")) {
-				removePortletBorder(layout, portletId);
-				configureNavigation(layout, portletId);
-			}
-			else if (portletId.equals(PortletKeys.ALERTS)) {
-				updatePortletTitle(layout, portletId, "Announcements");
-			}
-		}
-	}
-
 	protected void addPublicUserLayouts(Group group) throws Exception {
 		LayoutSetLocalServiceUtil.updateLookAndFeel(
-			group.getGroupId(), false, "so_WAR_sotheme", "01", "", false);
+			group.getGroupId(), false, "so_WAR_sotheme", "01", StringPool.BLANK,
+			false);
 
-		Layout layout = addLayout(
+		Layout layout = LayoutUtil.addLayout(
 			group, false, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, "Profile",
-			"2_columns_ii");
+			PortletPropsValues.USER_NEW_LAYOUT_TEMPLATE);
 
-		addPortlets(group, layout, "/profile");
+		LayoutUtil.addPortlets(
+			group, layout, "/profile", PortletPropsKeys.USER_LAYOUT_PORTLETS);
 
-		updatePermissions(layout, true);
-	}
-
-	protected void addResources(Layout layout, String portletId)
-		throws Exception{
-
-		String rootPortletId = PortletConstants.getRootPortletId(portletId);
-
-		String portletPrimaryKey = PortletPermissionUtil.getPrimaryKey(
-			layout.getPlid(), portletId);
-
-		ResourceLocalServiceUtil.addResources(
-			layout.getCompanyId(), layout.getGroupId(), 0, rootPortletId,
-			portletPrimaryKey, true, true, true);
-	}
-
-	protected static void configureNavigation(Layout layout, String portletId)
-		throws Exception {
-
-		PortletPreferences portletSetup =
-			PortletPreferencesFactoryUtil.getLayoutPortletSetup(
-				layout, portletId);
-
-		portletSetup.setValue("displayStyle", "[custom]");
-		portletSetup.setValue("bulletStyle", StringPool.BLANK);
-		portletSetup.setValue("headerType", "none");
-		portletSetup.setValue("includedLayouts", "auto");
-		portletSetup.setValue("nestedChildren", "0");
-		portletSetup.setValue("rootLayoutLevel", "0");
-
-		portletSetup.store();
-	}
-
-	protected void removePortletBorder(Layout layout, String portletId)
-		throws Exception {
-
-		PortletPreferences portletSetup =
-			PortletPreferencesFactoryUtil.getLayoutPortletSetup(
-				layout, portletId);
-
-		portletSetup.setValue(
-			"portlet-setup-show-borders", String.valueOf(Boolean.FALSE));
-
-		portletSetup.store();
+		LayoutUtil.updatePermissions(layout, true);
 	}
 
 	protected void setCustomJspServletContextName(Group group)
@@ -300,66 +163,6 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 
 		GroupLocalServiceUtil.updateGroup(
 			group.getGroupId(), typeSettingsProperties.toString());
-	}
-
-	protected void updatePermissions(Layout layout, boolean addDefaultActionIds)
-		throws Exception {
-
-		long companyId = layout.getCompanyId();
-
-		Role role = RoleLocalServiceUtil.getRole(
-			companyId, RoleConstants.GUEST);
-
-		String[] actionIds = new String[0];
-
-		String name = Layout.class.getName();
-		int scope = ResourceConstants.SCOPE_INDIVIDUAL;
-		String primKey = String.valueOf(layout.getPrimaryKey());
-
-		ResourcePermissionLocalServiceUtil.setResourcePermissions(
-			companyId, name, scope, primKey, role.getRoleId(), actionIds);
-
-		role = RoleLocalServiceUtil.getRole(
-			companyId, RoleConstants.POWER_USER);
-
-		ResourcePermissionLocalServiceUtil.setResourcePermissions(
-			companyId, name, scope, primKey, role.getRoleId(), actionIds);
-
-		if (addDefaultActionIds) {
-			actionIds = new String[] {ActionKeys.VIEW};
-		}
-
-		role = RoleLocalServiceUtil.getRole(companyId, RoleConstants.USER);
-
-		ResourcePermissionLocalServiceUtil.setResourcePermissions(
-			companyId, name, scope, primKey, role.getRoleId(), actionIds);
-	}
-
-	protected void updatePortletTitle(
-			Layout layout, String portletId, String title)
-		throws Exception {
-
-		PortletPreferences portletSetup =
-			PortletPreferencesFactoryUtil.getLayoutPortletSetup(
-				layout, portletId);
-
-		Locale[] locales = LanguageUtil.getAvailableLocales();
-
-		for (Locale locale : locales) {
-			String languageId = LocaleUtil.toLanguageId(locale);
-
-			if (Validator.isNotNull(languageId)) {
-				String localizedTitle = LanguageUtil.get(locale, title);
-
-				portletSetup.setValue(
-					"portlet-setup-title-" + languageId, localizedTitle);
-			}
-		}
-
-		portletSetup.setValue(
-			"portlet-setup-use-custom-title", String.valueOf(Boolean.TRUE));
-
-		portletSetup.store();
 	}
 
 }
