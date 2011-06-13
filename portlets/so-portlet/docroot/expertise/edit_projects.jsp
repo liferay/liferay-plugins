@@ -139,11 +139,11 @@ if (projectsEntries.isEmpty()) {
 
 <aui:script use="liferay-auto-fields">
 	Liferay.once(
-		'enterpriseAdmin:revealexpertise',
+		'formNavigator:reveal<portlet:namespace />expertise',
 		function() {
 			new Liferay.AutoFields(
 				{
-					contentBox: '#expertise > fieldset',
+					contentBox: '#<portlet:namespace />expertise > fieldset',
 					fieldIndexes: '<portlet:namespace />projectsEntriesIndexes'
 				}
 			).render();
