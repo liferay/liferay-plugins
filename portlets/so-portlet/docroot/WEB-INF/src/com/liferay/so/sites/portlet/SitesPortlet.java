@@ -288,8 +288,7 @@ public class SitesPortlet extends MVCPortlet {
 				portletURL.setWindowState(WindowState.NORMAL);
 
 				portletURL.setParameter(
-					"struts_action",
-					"/sites_admin/edit_site_assignments");
+					"struts_action", "/sites_admin/edit_site_assignments");
 				portletURL.setParameter(Constants.CMD, "group_users");
 				portletURL.setParameter(
 					"redirect", themeDisplay.getURLCurrent());
