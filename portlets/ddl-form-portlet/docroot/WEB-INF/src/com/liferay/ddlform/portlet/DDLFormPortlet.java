@@ -67,7 +67,7 @@ public class DDLFormPortlet extends MVCPortlet {
 			DDLRecord.class.getName(), actionRequest);
 
 		DDLRecordServiceUtil.addRecord(
-			themeDisplay.getScopeGroupId(), recordSetId, 0, fields, 
+			themeDisplay.getScopeGroupId(), recordSetId, 0, fields,
 			serviceContext);
 	}
 
