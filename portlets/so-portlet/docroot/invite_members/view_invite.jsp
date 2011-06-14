@@ -133,7 +133,7 @@
 				<%
 				List<Role> roles = RoleLocalServiceUtil.search(layout.getCompanyId(), null, null, new Integer[] {RoleConstants.TYPE_SITE}, QueryUtil.ALL_POS, QueryUtil.ALL_POS, new RoleNameComparator(false));
 
-				roles = EnterpriseAdminUtil.filterGroupRoles(permissionChecker, group.getGroupId(), roles);
+				roles = UsersAdminUtil.filterGroupRoles(permissionChecker, group.getGroupId(), roles);
 				%>
 
 				<c:if test="<%= !roles.isEmpty() && GroupPermissionUtil.contains(permissionChecker, group.getGroupId(), ActionKeys.ASSIGN_USER_ROLES) %>">
