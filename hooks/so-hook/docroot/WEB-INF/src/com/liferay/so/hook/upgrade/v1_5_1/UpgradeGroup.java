@@ -77,7 +77,7 @@ public class UpgradeGroup extends UpgradeProcess {
 	}
 
 	protected void updateLayouts(Group group) throws Exception {
-		if (!group.isCommunity()) {
+		if (!group.isSite()) {
 			return;
 		}
 

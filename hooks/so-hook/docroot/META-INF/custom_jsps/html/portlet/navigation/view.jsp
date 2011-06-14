@@ -30,10 +30,10 @@ displayStyle = PrefsParamUtil.getString(preferences, renderRequest, "displayStyl
 	bulletStyle="<%= bulletStyle %>"
 	displayStyle="<%= displayStyle %>"
 	headerType="<%= headerType %>"
-	rootLayoutType="<%= rootLayoutType %>"
-	rootLayoutLevel="<%= rootLayoutLevel %>"
 	includedLayouts="<%= includedLayouts %>"
 	nestedChildren="<%= nestedChildren %>"
+	rootLayoutLevel="<%= rootLayoutLevel %>"
+	rootLayoutType="<%= rootLayoutType %>"
 />
 
 <c:if test='<%= group.isUser() && displayStyle.equals("from-level-0") %>'>
@@ -44,6 +44,52 @@ displayStyle = PrefsParamUtil.getString(preferences, renderRequest, "displayStyl
 		var controlContainer = A.one('.portlet-navigation .control-container');
 
 		var navMenu = A.one('.portlet-navigation .nav-menu');
+
+		var addPage = function() {
+			var icons = [
+				{
+					handler: function() {
+						cancelPage(addBlock, comboBox);
+					},
+					icon: 'circle-close',
+					id: 'cancel'
+				},
+				{
+					handler: function() {
+						savePage(comboField);
+					},
+					icon: 'circle-check',
+					id: 'save'
+				}
+			];
+
+			var onKeypress = function(event) {
+				if (event.isKey('ESC')) {
+					cancelPage(addBlock, comboBox);
+				}
+
+				if (event.isKey('ENTER')) {
+					savePage(comboField);
+				}
+			};
+
+			var addBlock = A.Node.create('<li class="add-page"></li>');
+			var navBlock = A.one('.portlet-navigation .nav-menu');
+
+			addBlock.delegate('keypress', A.bind(onKeypress, this), 'input');
+
+			navBlock.append(addBlock);
+
+			var comboBox = new A.Combobox(
+				{
+					icons: icons
+				}
+			).render(addBlock);
+
+			var comboField = comboBox._field;
+
+			Liferay.Util.focusFormField(comboField.get('node'));
+		};
 
 		var addPageButton = new A.Toolbar(
 			{
@@ -69,6 +115,12 @@ displayStyle = PrefsParamUtil.getString(preferences, renderRequest, "displayStyl
 			}
 		).render(controlContainer);
 
+		var cancelPage = function(listItem, comboBox) {
+			listItem.remove(true);
+
+			comboBox.destroy();
+		};
+
 		var displayPopup = function(url, title) {
 			var dialog = new A.Dialog(
 				{
@@ -91,15 +143,10 @@ displayStyle = PrefsParamUtil.getString(preferences, renderRequest, "displayStyl
 			).render();
 		};
 
-		var cancelPage = function(listItem, comboBox) {
-			listItem.remove(true);
-			comboBox.destroy();
-		};
-
 		var savePage = function(comboField) {
 			var pageTitle = comboField.get('value');
 
-			if(pageTitle) {
+			if (pageTitle) {
 				A.io.request(
 					'<liferay-portlet:actionURL portletName="<%= PortletKeys.ENTERPRISE_ADMIN %>"><portlet:param name="struts_action" value="/enterprise_admin/edit_layouts" /><portlet:param name="<%= Constants.CMD %>" value="<%= Constants.ADD %>" /></liferay-portlet:actionURL>',
 					{
@@ -118,53 +165,10 @@ displayStyle = PrefsParamUtil.getString(preferences, renderRequest, "displayStyl
 			}
 		};
 
-		var addPage = function() {
-			var icons = [
-				{
-					handler: function() {
-						cancelPage(addBlock, comboBox);
-					},
-					icon: 'circle-close',
-					id: 'cancel'
-				},
-				{
-					handler: function() {
-						savePage(comboField);
-					},
-					icon: 'circle-check',
-					id: 'save'
-				}
-			];
-
-			var onKeypress = function(event) {
-				if (event.isKey('ESC')) {
-					cancelPage(addBlock, comboBox);
-				}
-				if (event.isKey('ENTER')) {
-					savePage(comboField);
-				}
-			};
-
-			var addBlock = A.Node.create('<li class="add-page"></li>');
-			var navBlock = A.one('.portlet-navigation .nav-menu');
-
-			addBlock.delegate('keypress', A.bind(onKeypress, this), 'input');
-			navBlock.append(addBlock);
-
-			var comboBox = new A.Combobox(
-				{
-					icons: icons
-				}
-			).render(addBlock);
-
-			var comboField = comboBox._field;
-			Liferay.Util.focusFormField(comboField.get('node'));
-		};
-
 		var updatePages = function() {
 			var pages = A.one('.portlet-navigation .portlet-body');
 
-			if(!pages.io) {
+			if (!pages.io) {
 				pages.plug(
 					A.Plugin.IO,
 					{
@@ -174,6 +178,7 @@ displayStyle = PrefsParamUtil.getString(preferences, renderRequest, "displayStyl
 			}
 
 			pages.io.set('uri', '<liferay-portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="struts_action" value="/navigation/view" /></liferay-portlet:renderURL>');
+
 			pages.io.start();
 		};
 	</aui:script>

@@ -51,7 +51,7 @@ public class UpgradeAssetPublisher extends UpgradeProcess {
 			QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
 		for (Group group : groups) {
-			if (!group.isCommunity() ||
+			if (!group.isSite() ||
 				group.getName().equals(GroupConstants.CONTROL_PANEL) ||
 				group.getName().equals(GroupConstants.GUEST)) {
 

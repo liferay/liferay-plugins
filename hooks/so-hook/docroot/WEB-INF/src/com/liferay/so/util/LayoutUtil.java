@@ -116,15 +116,15 @@ public class LayoutUtil {
 		for (String portletId : portletIds) {
 			addResources(layout, portletId);
 
-			if (portletId.equals("2_WAR_microblogsportlet")) {
+			if (portletId.startsWith("1_WAR_wysiwygportlet")) {
+				updatePortletTitle(layout, portletId, "Welcome");
+			}
+			else if (portletId.equals("2_WAR_microblogsportlet")) {
 				removePortletBorder(layout, portletId);
 			}
 			else if (portletId.startsWith("71_INSTANCE_")) {
 				removePortletBorder(layout, portletId);
 				configureNavigation(layout, portletId);
-			}
-			else if (portletId.startsWith("1_WAR_wysiwygportlet")) {
-				updatePortletTitle(layout, portletId, "Welcome");
 			}
 			else if (portletId.equals(PortletKeys.ALERTS)) {
 				updatePortletTitle(layout, portletId, "Announcements");

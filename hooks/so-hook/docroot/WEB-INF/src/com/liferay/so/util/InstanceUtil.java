@@ -167,12 +167,12 @@ public class InstanceUtil {
 
 		try {
 			expandoTable = ExpandoTableLocalServiceUtil.addTable(
-				Group.class.getName(),
+				companyId, Group.class.getName(),
 				ExpandoTableConstants.DEFAULT_TABLE_NAME);
 		}
 		catch (Exception e) {
 			expandoTable = ExpandoTableLocalServiceUtil.getTable(
-				Group.class.getName(),
+				companyId, Group.class.getName(),
 				ExpandoTableConstants.DEFAULT_TABLE_NAME);
 		}
 
@@ -191,12 +191,12 @@ public class InstanceUtil {
 
 		try {
 			expandoTable = ExpandoTableLocalServiceUtil.addTable(
-				LayoutSetPrototype.class.getName(),
+				companyId, LayoutSetPrototype.class.getName(),
 				ExpandoTableConstants.DEFAULT_TABLE_NAME);
 		}
 		catch (Exception e) {
 			expandoTable = ExpandoTableLocalServiceUtil.getTable(
-				LayoutSetPrototype.class.getName(),
+				companyId, LayoutSetPrototype.class.getName(),
 				ExpandoTableConstants.DEFAULT_TABLE_NAME);
 		}
 
@@ -232,7 +232,7 @@ public class InstanceUtil {
 			companyId, "Default Social Office Site");
 
 		ExpandoValueLocalServiceUtil.addValue(
-			LayoutSetPrototype.class.getName(),
+			companyId, LayoutSetPrototype.class.getName(),
 			ExpandoTableConstants.DEFAULT_TABLE_NAME, "socialOfficeDefault",
 			layoutSetPrototype.getLayoutSetPrototypeId(), true);
 

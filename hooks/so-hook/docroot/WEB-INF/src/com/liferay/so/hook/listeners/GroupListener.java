@@ -35,7 +35,7 @@ public class GroupListener extends BaseModelListener<Group> {
 
 	public void onAfterCreate(Group group) throws ModelListenerException {
 		try {
-			if (!group.isCommunity()) {
+			if (!group.isSite()) {
 				return;
 			}
 
