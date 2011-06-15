@@ -418,6 +418,7 @@ public class LiferayMediaItemService implements MediaItemService {
 		byte[] byteArray = HttpUtil.URLtoByteArray(options);
 
 		String fileName = getFileName(mediaItem, options);
+		String contentType = MimeTypesUtil.getContentType(fileName);
 
 		ServiceContext serviceContext = new ServiceContext();
 
@@ -431,8 +432,6 @@ public class LiferayMediaItemService implements MediaItemService {
 				mediaItem, _MEDIA_ITEM_FIELDS, user.getCompanyId(),
 				DLFileEntry.class.getName()));
 		serviceContext.setScopeGroupId(groupIdLong);
-
-		String contentType = MimeTypesUtil.getContentType(fileName);
 
 		if (mediaItemId == null) {
 			long albumIdLong = GetterUtil.getLong(albumId);
