@@ -199,8 +199,6 @@
 
 		<mkdir dir="docroot/WEB-INF/service-classes" />
 
-		<delete file="docroot/WEB-INF/lib/${plugin.name}-service.jar" />
-
 		<path id="service.classpath">
 			<fileset dir="${app.server.lib.global.dir}" includes="*.jar" />
 			<fileset dir="${project.dir}/lib" includes="activation.jar,jsp-api.jar,mail.jar,servlet-api.jar" />
@@ -214,6 +212,8 @@
 			<reference refid="service.classpath" torefid="service.classpath" />
 		</antcall>
 
+		<delete file="docroot/WEB-INF/lib/${plugin.name}-service.jar" />
+		
 		<zip
 			basedir="docroot/WEB-INF/service-classes"
 			destfile="docroot/WEB-INF/lib/${plugin.name}-service.jar"
