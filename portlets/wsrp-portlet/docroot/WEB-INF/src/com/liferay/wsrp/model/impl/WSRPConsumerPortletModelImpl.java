@@ -212,9 +212,8 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 			return (WSRPConsumerPortlet)this;
 		}
 		else {
-			return (WSRPConsumerPortlet)Proxy.newProxyInstance(WSRPConsumerPortlet.class.getClassLoader(),
-				new Class[] { WSRPConsumerPortlet.class },
-				new AutoEscapeBeanHandler(this));
+			return (WSRPConsumerPortlet)Proxy.newProxyInstance(_classLoader,
+				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
 		}
 	}
 
@@ -367,6 +366,10 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 		return sb.toString();
 	}
 
+	private static ClassLoader _classLoader = WSRPConsumerPortlet.class.getClassLoader();
+	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+			WSRPConsumerPortlet.class
+		};
 	private String _uuid;
 	private long _wsrpConsumerPortletId;
 	private long _companyId;

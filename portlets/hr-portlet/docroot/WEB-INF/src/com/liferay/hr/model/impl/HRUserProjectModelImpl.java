@@ -236,9 +236,8 @@ public class HRUserProjectModelImpl extends BaseModelImpl<HRUserProject>
 			return (HRUserProject)this;
 		}
 		else {
-			return (HRUserProject)Proxy.newProxyInstance(HRUserProject.class.getClassLoader(),
-				new Class[] { HRUserProject.class },
-				new AutoEscapeBeanHandler(this));
+			return (HRUserProject)Proxy.newProxyInstance(_classLoader,
+				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
 		}
 	}
 
@@ -414,6 +413,10 @@ public class HRUserProjectModelImpl extends BaseModelImpl<HRUserProject>
 		return sb.toString();
 	}
 
+	private static ClassLoader _classLoader = HRUserProject.class.getClassLoader();
+	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+			HRUserProject.class
+		};
 	private long _hrUserProjectId;
 	private long _groupId;
 	private long _companyId;

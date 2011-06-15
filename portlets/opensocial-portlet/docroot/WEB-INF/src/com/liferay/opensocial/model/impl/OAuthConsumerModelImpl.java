@@ -226,9 +226,8 @@ public class OAuthConsumerModelImpl extends BaseModelImpl<OAuthConsumer>
 			return (OAuthConsumer)this;
 		}
 		else {
-			return (OAuthConsumer)Proxy.newProxyInstance(OAuthConsumer.class.getClassLoader(),
-				new Class[] { OAuthConsumer.class },
-				new AutoEscapeBeanHandler(this));
+			return (OAuthConsumer)Proxy.newProxyInstance(_classLoader,
+				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
 		}
 	}
 
@@ -388,6 +387,10 @@ public class OAuthConsumerModelImpl extends BaseModelImpl<OAuthConsumer>
 		return sb.toString();
 	}
 
+	private static ClassLoader _classLoader = OAuthConsumer.class.getClassLoader();
+	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+			OAuthConsumer.class
+		};
 	private long _oAuthConsumerId;
 	private long _companyId;
 	private Date _createDate;

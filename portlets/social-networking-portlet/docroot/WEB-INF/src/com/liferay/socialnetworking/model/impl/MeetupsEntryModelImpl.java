@@ -259,9 +259,8 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry>
 			return (MeetupsEntry)this;
 		}
 		else {
-			return (MeetupsEntry)Proxy.newProxyInstance(MeetupsEntry.class.getClassLoader(),
-				new Class[] { MeetupsEntry.class },
-				new AutoEscapeBeanHandler(this));
+			return (MeetupsEntry)Proxy.newProxyInstance(_classLoader,
+				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
 		}
 	}
 
@@ -451,6 +450,10 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry>
 		return sb.toString();
 	}
 
+	private static ClassLoader _classLoader = MeetupsEntry.class.getClassLoader();
+	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+			MeetupsEntry.class
+		};
 	private long _meetupsEntryId;
 	private long _companyId;
 	private long _userId;

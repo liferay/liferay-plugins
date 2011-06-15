@@ -243,9 +243,8 @@ public class HRTerminationTypeModelImpl extends BaseModelImpl<HRTerminationType>
 			return (HRTerminationType)this;
 		}
 		else {
-			return (HRTerminationType)Proxy.newProxyInstance(HRTerminationType.class.getClassLoader(),
-				new Class[] { HRTerminationType.class },
-				new AutoEscapeBeanHandler(this));
+			return (HRTerminationType)Proxy.newProxyInstance(_classLoader,
+				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
 		}
 	}
 
@@ -414,6 +413,10 @@ public class HRTerminationTypeModelImpl extends BaseModelImpl<HRTerminationType>
 		return sb.toString();
 	}
 
+	private static ClassLoader _classLoader = HRTerminationType.class.getClassLoader();
+	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+			HRTerminationType.class
+		};
 	private long _hrTerminationTypeId;
 	private long _groupId;
 	private long _originalGroupId;

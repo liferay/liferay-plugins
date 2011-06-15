@@ -354,8 +354,8 @@ public class MessageModelImpl extends BaseModelImpl<Message>
 			return (Message)this;
 		}
 		else {
-			return (Message)Proxy.newProxyInstance(Message.class.getClassLoader(),
-				new Class[] { Message.class }, new AutoEscapeBeanHandler(this));
+			return (Message)Proxy.newProxyInstance(_classLoader,
+				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
 		}
 	}
 
@@ -587,6 +587,10 @@ public class MessageModelImpl extends BaseModelImpl<Message>
 		return sb.toString();
 	}
 
+	private static ClassLoader _classLoader = Message.class.getClassLoader();
+	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+			Message.class
+		};
 	private long _messageId;
 	private long _companyId;
 	private long _userId;

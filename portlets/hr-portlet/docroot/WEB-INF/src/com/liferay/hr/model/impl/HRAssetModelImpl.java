@@ -224,8 +224,8 @@ public class HRAssetModelImpl extends BaseModelImpl<HRAsset>
 			return (HRAsset)this;
 		}
 		else {
-			return (HRAsset)Proxy.newProxyInstance(HRAsset.class.getClassLoader(),
-				new Class[] { HRAsset.class }, new AutoEscapeBeanHandler(this));
+			return (HRAsset)Proxy.newProxyInstance(_classLoader,
+				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
 		}
 	}
 
@@ -394,6 +394,10 @@ public class HRAssetModelImpl extends BaseModelImpl<HRAsset>
 		return sb.toString();
 	}
 
+	private static ClassLoader _classLoader = HRAsset.class.getClassLoader();
+	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+			HRAsset.class
+		};
 	private long _hrAssetId;
 	private long _groupId;
 	private long _companyId;

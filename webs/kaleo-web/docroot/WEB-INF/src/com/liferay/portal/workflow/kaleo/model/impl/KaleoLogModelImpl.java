@@ -431,8 +431,8 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 			return (KaleoLog)this;
 		}
 		else {
-			return (KaleoLog)Proxy.newProxyInstance(KaleoLog.class.getClassLoader(),
-				new Class[] { KaleoLog.class }, new AutoEscapeBeanHandler(this));
+			return (KaleoLog)Proxy.newProxyInstance(_classLoader,
+				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
 		}
 	}
 
@@ -733,6 +733,10 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 		return sb.toString();
 	}
 
+	private static ClassLoader _classLoader = KaleoLog.class.getClassLoader();
+	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+			KaleoLog.class
+		};
 	private long _kaleoLogId;
 	private long _groupId;
 	private long _companyId;

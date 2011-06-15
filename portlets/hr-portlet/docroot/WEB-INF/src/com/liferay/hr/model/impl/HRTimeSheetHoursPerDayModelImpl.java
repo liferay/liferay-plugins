@@ -201,9 +201,8 @@ public class HRTimeSheetHoursPerDayModelImpl extends BaseModelImpl<HRTimeSheetHo
 			return (HRTimeSheetHoursPerDay)this;
 		}
 		else {
-			return (HRTimeSheetHoursPerDay)Proxy.newProxyInstance(HRTimeSheetHoursPerDay.class.getClassLoader(),
-				new Class[] { HRTimeSheetHoursPerDay.class },
-				new AutoEscapeBeanHandler(this));
+			return (HRTimeSheetHoursPerDay)Proxy.newProxyInstance(_classLoader,
+				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
 		}
 	}
 
@@ -358,6 +357,10 @@ public class HRTimeSheetHoursPerDayModelImpl extends BaseModelImpl<HRTimeSheetHo
 		return sb.toString();
 	}
 
+	private static ClassLoader _classLoader = HRTimeSheetHoursPerDay.class.getClassLoader();
+	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+			HRTimeSheetHoursPerDay.class
+		};
 	private long _hrTimeSheetHoursPerDayId;
 	private long _groupId;
 	private long _companyId;

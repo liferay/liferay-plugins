@@ -136,8 +136,8 @@ public class TypeModelImpl extends BaseModelImpl<Type> implements TypeModel {
 			return (Type)this;
 		}
 		else {
-			return (Type)Proxy.newProxyInstance(Type.class.getClassLoader(),
-				new Class[] { Type.class }, new AutoEscapeBeanHandler(this));
+			return (Type)Proxy.newProxyInstance(_classLoader,
+				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
 		}
 	}
 
@@ -248,6 +248,10 @@ public class TypeModelImpl extends BaseModelImpl<Type> implements TypeModel {
 		return sb.toString();
 	}
 
+	private static ClassLoader _classLoader = Type.class.getClassLoader();
+	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+			Type.class
+		};
 	private long _typeId;
 	private long _groupId;
 	private String _name;

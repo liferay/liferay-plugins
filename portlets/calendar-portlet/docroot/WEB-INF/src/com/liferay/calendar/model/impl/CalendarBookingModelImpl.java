@@ -813,9 +813,8 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 			return (CalendarBooking)this;
 		}
 		else {
-			return (CalendarBooking)Proxy.newProxyInstance(CalendarBooking.class.getClassLoader(),
-				new Class[] { CalendarBooking.class },
-				new AutoEscapeBeanHandler(this));
+			return (CalendarBooking)Proxy.newProxyInstance(_classLoader,
+				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
 		}
 	}
 
@@ -1102,6 +1101,10 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		return sb.toString();
 	}
 
+	private static ClassLoader _classLoader = CalendarBooking.class.getClassLoader();
+	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+			CalendarBooking.class
+		};
 	private String _uuid;
 	private String _originalUuid;
 	private long _calendarBookingId;

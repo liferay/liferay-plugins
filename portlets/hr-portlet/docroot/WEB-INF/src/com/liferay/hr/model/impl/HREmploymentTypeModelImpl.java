@@ -243,9 +243,8 @@ public class HREmploymentTypeModelImpl extends BaseModelImpl<HREmploymentType>
 			return (HREmploymentType)this;
 		}
 		else {
-			return (HREmploymentType)Proxy.newProxyInstance(HREmploymentType.class.getClassLoader(),
-				new Class[] { HREmploymentType.class },
-				new AutoEscapeBeanHandler(this));
+			return (HREmploymentType)Proxy.newProxyInstance(_classLoader,
+				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
 		}
 	}
 
@@ -414,6 +413,10 @@ public class HREmploymentTypeModelImpl extends BaseModelImpl<HREmploymentType>
 		return sb.toString();
 	}
 
+	private static ClassLoader _classLoader = HREmploymentType.class.getClassLoader();
+	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+			HREmploymentType.class
+		};
 	private long _hrEmploymentTypeId;
 	private long _groupId;
 	private long _originalGroupId;

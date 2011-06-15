@@ -240,8 +240,8 @@ public class FolderModelImpl extends BaseModelImpl<Folder>
 			return (Folder)this;
 		}
 		else {
-			return (Folder)Proxy.newProxyInstance(Folder.class.getClassLoader(),
-				new Class[] { Folder.class }, new AutoEscapeBeanHandler(this));
+			return (Folder)Proxy.newProxyInstance(_classLoader,
+				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
 		}
 	}
 
@@ -408,6 +408,10 @@ public class FolderModelImpl extends BaseModelImpl<Folder>
 		return sb.toString();
 	}
 
+	private static ClassLoader _classLoader = Folder.class.getClassLoader();
+	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+			Folder.class
+		};
 	private long _folderId;
 	private long _companyId;
 	private long _userId;

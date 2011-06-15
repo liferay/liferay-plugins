@@ -249,9 +249,8 @@ public class KaleoNotificationRecipientModelImpl extends BaseModelImpl<KaleoNoti
 			return (KaleoNotificationRecipient)this;
 		}
 		else {
-			return (KaleoNotificationRecipient)Proxy.newProxyInstance(KaleoNotificationRecipient.class.getClassLoader(),
-				new Class[] { KaleoNotificationRecipient.class },
-				new AutoEscapeBeanHandler(this));
+			return (KaleoNotificationRecipient)Proxy.newProxyInstance(_classLoader,
+				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
 		}
 	}
 
@@ -441,6 +440,10 @@ public class KaleoNotificationRecipientModelImpl extends BaseModelImpl<KaleoNoti
 		return sb.toString();
 	}
 
+	private static ClassLoader _classLoader = KaleoNotificationRecipient.class.getClassLoader();
+	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+			KaleoNotificationRecipient.class
+		};
 	private long _kaleoNotificationRecipientId;
 	private long _groupId;
 	private long _companyId;

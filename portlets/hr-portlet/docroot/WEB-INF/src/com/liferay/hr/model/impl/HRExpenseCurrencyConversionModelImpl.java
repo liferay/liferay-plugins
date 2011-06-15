@@ -261,9 +261,8 @@ public class HRExpenseCurrencyConversionModelImpl extends BaseModelImpl<HRExpens
 			return (HRExpenseCurrencyConversion)this;
 		}
 		else {
-			return (HRExpenseCurrencyConversion)Proxy.newProxyInstance(HRExpenseCurrencyConversion.class.getClassLoader(),
-				new Class[] { HRExpenseCurrencyConversion.class },
-				new AutoEscapeBeanHandler(this));
+			return (HRExpenseCurrencyConversion)Proxy.newProxyInstance(_classLoader,
+				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
 		}
 	}
 
@@ -450,6 +449,10 @@ public class HRExpenseCurrencyConversionModelImpl extends BaseModelImpl<HRExpens
 		return sb.toString();
 	}
 
+	private static ClassLoader _classLoader = HRExpenseCurrencyConversion.class.getClassLoader();
+	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+			HRExpenseCurrencyConversion.class
+		};
 	private long _hrExpenseCurrencyConversionId;
 	private long _groupId;
 	private long _originalGroupId;

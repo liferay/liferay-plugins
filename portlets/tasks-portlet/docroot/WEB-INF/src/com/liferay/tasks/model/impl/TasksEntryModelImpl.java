@@ -334,9 +334,8 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 			return (TasksEntry)this;
 		}
 		else {
-			return (TasksEntry)Proxy.newProxyInstance(TasksEntry.class.getClassLoader(),
-				new Class[] { TasksEntry.class },
-				new AutoEscapeBeanHandler(this));
+			return (TasksEntry)Proxy.newProxyInstance(_classLoader,
+				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
 		}
 	}
 
@@ -544,6 +543,10 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 		return sb.toString();
 	}
 
+	private static ClassLoader _classLoader = TasksEntry.class.getClassLoader();
+	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+			TasksEntry.class
+		};
 	private long _tasksEntryId;
 	private long _groupId;
 	private long _companyId;

@@ -204,9 +204,8 @@ public class AttachmentModelImpl extends BaseModelImpl<Attachment>
 			return (Attachment)this;
 		}
 		else {
-			return (Attachment)Proxy.newProxyInstance(Attachment.class.getClassLoader(),
-				new Class[] { Attachment.class },
-				new AutoEscapeBeanHandler(this));
+			return (Attachment)Proxy.newProxyInstance(_classLoader,
+				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
 		}
 	}
 
@@ -361,6 +360,10 @@ public class AttachmentModelImpl extends BaseModelImpl<Attachment>
 		return sb.toString();
 	}
 
+	private static ClassLoader _classLoader = Attachment.class.getClassLoader();
+	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+			Attachment.class
+		};
 	private long _attachmentId;
 	private long _companyId;
 	private long _userId;

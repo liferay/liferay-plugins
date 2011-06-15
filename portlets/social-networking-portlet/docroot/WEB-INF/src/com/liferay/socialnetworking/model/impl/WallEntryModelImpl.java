@@ -200,8 +200,8 @@ public class WallEntryModelImpl extends BaseModelImpl<WallEntry>
 			return (WallEntry)this;
 		}
 		else {
-			return (WallEntry)Proxy.newProxyInstance(WallEntry.class.getClassLoader(),
-				new Class[] { WallEntry.class }, new AutoEscapeBeanHandler(this));
+			return (WallEntry)Proxy.newProxyInstance(_classLoader,
+				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
 		}
 	}
 
@@ -349,6 +349,10 @@ public class WallEntryModelImpl extends BaseModelImpl<WallEntry>
 		return sb.toString();
 	}
 
+	private static ClassLoader _classLoader = WallEntry.class.getClassLoader();
+	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+			WallEntry.class
+		};
 	private long _wallEntryId;
 	private long _groupId;
 	private long _companyId;

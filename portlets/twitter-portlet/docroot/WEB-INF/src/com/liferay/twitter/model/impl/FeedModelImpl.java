@@ -242,8 +242,8 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 			return (Feed)this;
 		}
 		else {
-			return (Feed)Proxy.newProxyInstance(Feed.class.getClassLoader(),
-				new Class[] { Feed.class }, new AutoEscapeBeanHandler(this));
+			return (Feed)Proxy.newProxyInstance(_classLoader,
+				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
 		}
 	}
 
@@ -409,6 +409,10 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 		return sb.toString();
 	}
 
+	private static ClassLoader _classLoader = Feed.class.getClassLoader();
+	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+			Feed.class
+		};
 	private long _feedId;
 	private long _companyId;
 	private long _originalCompanyId;

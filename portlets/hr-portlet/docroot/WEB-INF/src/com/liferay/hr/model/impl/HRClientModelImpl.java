@@ -211,8 +211,8 @@ public class HRClientModelImpl extends BaseModelImpl<HRClient>
 			return (HRClient)this;
 		}
 		else {
-			return (HRClient)Proxy.newProxyInstance(HRClient.class.getClassLoader(),
-				new Class[] { HRClient.class }, new AutoEscapeBeanHandler(this));
+			return (HRClient)Proxy.newProxyInstance(_classLoader,
+				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
 		}
 	}
 
@@ -367,6 +367,10 @@ public class HRClientModelImpl extends BaseModelImpl<HRClient>
 		return sb.toString();
 	}
 
+	private static ClassLoader _classLoader = HRClient.class.getClassLoader();
+	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+			HRClient.class
+		};
 	private long _hrClientId;
 	private long _groupId;
 	private long _companyId;

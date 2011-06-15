@@ -284,9 +284,8 @@ public class KaleoInstanceModelImpl extends BaseModelImpl<KaleoInstance>
 			return (KaleoInstance)this;
 		}
 		else {
-			return (KaleoInstance)Proxy.newProxyInstance(KaleoInstance.class.getClassLoader(),
-				new Class[] { KaleoInstance.class },
-				new AutoEscapeBeanHandler(this));
+			return (KaleoInstance)Proxy.newProxyInstance(_classLoader,
+				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
 		}
 	}
 
@@ -496,6 +495,10 @@ public class KaleoInstanceModelImpl extends BaseModelImpl<KaleoInstance>
 		return sb.toString();
 	}
 
+	private static ClassLoader _classLoader = KaleoInstance.class.getClassLoader();
+	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+			KaleoInstance.class
+		};
 	private long _kaleoInstanceId;
 	private long _groupId;
 	private long _companyId;

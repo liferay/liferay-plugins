@@ -396,8 +396,8 @@ public class HRTaskModelImpl extends BaseModelImpl<HRTask>
 			return (HRTask)this;
 		}
 		else {
-			return (HRTask)Proxy.newProxyInstance(HRTask.class.getClassLoader(),
-				new Class[] { HRTask.class }, new AutoEscapeBeanHandler(this));
+			return (HRTask)Proxy.newProxyInstance(_classLoader,
+				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
 		}
 	}
 
@@ -678,6 +678,10 @@ public class HRTaskModelImpl extends BaseModelImpl<HRTask>
 		return sb.toString();
 	}
 
+	private static ClassLoader _classLoader = HRTask.class.getClassLoader();
+	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+			HRTask.class
+		};
 	private long _hrTaskId;
 	private long _groupId;
 	private long _companyId;

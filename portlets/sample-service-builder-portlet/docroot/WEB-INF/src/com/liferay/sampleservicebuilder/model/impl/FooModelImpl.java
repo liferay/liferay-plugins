@@ -335,8 +335,8 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 			return (Foo)this;
 		}
 		else {
-			return (Foo)Proxy.newProxyInstance(Foo.class.getClassLoader(),
-				new Class[] { Foo.class }, new AutoEscapeBeanHandler(this));
+			return (Foo)Proxy.newProxyInstance(_classLoader,
+				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
 		}
 	}
 
@@ -524,6 +524,10 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 		return sb.toString();
 	}
 
+	private static ClassLoader _classLoader = Foo.class.getClassLoader();
+	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+			Foo.class
+		};
 	private String _uuid;
 	private String _originalUuid;
 	private long _fooId;

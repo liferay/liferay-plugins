@@ -210,8 +210,8 @@ public class CheckoutModelImpl extends BaseModelImpl<Checkout>
 			return (Checkout)this;
 		}
 		else {
-			return (Checkout)Proxy.newProxyInstance(Checkout.class.getClassLoader(),
-				new Class[] { Checkout.class }, new AutoEscapeBeanHandler(this));
+			return (Checkout)Proxy.newProxyInstance(_classLoader,
+				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
 		}
 	}
 
@@ -373,6 +373,10 @@ public class CheckoutModelImpl extends BaseModelImpl<Checkout>
 		return sb.toString();
 	}
 
+	private static ClassLoader _classLoader = Checkout.class.getClassLoader();
+	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+			Checkout.class
+		};
 	private long _checkoutId;
 	private long _companyId;
 	private long _userId;

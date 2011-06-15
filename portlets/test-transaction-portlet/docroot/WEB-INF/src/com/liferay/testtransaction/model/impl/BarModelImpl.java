@@ -127,8 +127,8 @@ public class BarModelImpl extends BaseModelImpl<Bar> implements BarModel {
 			return (Bar)this;
 		}
 		else {
-			return (Bar)Proxy.newProxyInstance(Bar.class.getClassLoader(),
-				new Class[] { Bar.class }, new AutoEscapeBeanHandler(this));
+			return (Bar)Proxy.newProxyInstance(_classLoader,
+				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
 		}
 	}
 
@@ -232,6 +232,10 @@ public class BarModelImpl extends BaseModelImpl<Bar> implements BarModel {
 		return sb.toString();
 	}
 
+	private static ClassLoader _classLoader = Bar.class.getClassLoader();
+	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+			Bar.class
+		};
 	private long _barId;
 	private String _text;
 	private transient ExpandoBridge _expandoBridge;

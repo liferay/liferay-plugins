@@ -172,8 +172,8 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 			return (Entry)this;
 		}
 		else {
-			return (Entry)Proxy.newProxyInstance(Entry.class.getClassLoader(),
-				new Class[] { Entry.class }, new AutoEscapeBeanHandler(this));
+			return (Entry)Proxy.newProxyInstance(_classLoader,
+				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
 		}
 	}
 
@@ -308,6 +308,10 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 		return sb.toString();
 	}
 
+	private static ClassLoader _classLoader = Entry.class.getClassLoader();
+	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+			Entry.class
+		};
 	private long _entryId;
 	private long _createDate;
 	private long _fromUserId;

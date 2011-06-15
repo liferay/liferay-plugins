@@ -247,9 +247,8 @@ public class DefinitionModelImpl extends BaseModelImpl<Definition>
 			return (Definition)this;
 		}
 		else {
-			return (Definition)Proxy.newProxyInstance(Definition.class.getClassLoader(),
-				new Class[] { Definition.class },
-				new AutoEscapeBeanHandler(this));
+			return (Definition)Proxy.newProxyInstance(_classLoader,
+				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
 		}
 	}
 
@@ -432,6 +431,10 @@ public class DefinitionModelImpl extends BaseModelImpl<Definition>
 		return sb.toString();
 	}
 
+	private static ClassLoader _classLoader = Definition.class.getClassLoader();
+	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+			Definition.class
+		};
 	private long _definitionId;
 	private long _groupId;
 	private long _companyId;

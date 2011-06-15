@@ -226,9 +226,8 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer>
 			return (WSRPProducer)this;
 		}
 		else {
-			return (WSRPProducer)Proxy.newProxyInstance(WSRPProducer.class.getClassLoader(),
-				new Class[] { WSRPProducer.class },
-				new AutoEscapeBeanHandler(this));
+			return (WSRPProducer)Proxy.newProxyInstance(_classLoader,
+				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
 		}
 	}
 
@@ -388,6 +387,10 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer>
 		return sb.toString();
 	}
 
+	private static ClassLoader _classLoader = WSRPProducer.class.getClassLoader();
+	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+			WSRPProducer.class
+		};
 	private String _uuid;
 	private String _originalUuid;
 	private long _wsrpProducerId;

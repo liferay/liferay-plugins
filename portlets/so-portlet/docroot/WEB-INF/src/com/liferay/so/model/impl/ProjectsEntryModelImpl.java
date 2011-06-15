@@ -237,9 +237,8 @@ public class ProjectsEntryModelImpl extends BaseModelImpl<ProjectsEntry>
 			return (ProjectsEntry)this;
 		}
 		else {
-			return (ProjectsEntry)Proxy.newProxyInstance(ProjectsEntry.class.getClassLoader(),
-				new Class[] { ProjectsEntry.class },
-				new AutoEscapeBeanHandler(this));
+			return (ProjectsEntry)Proxy.newProxyInstance(_classLoader,
+				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
 		}
 	}
 
@@ -406,6 +405,10 @@ public class ProjectsEntryModelImpl extends BaseModelImpl<ProjectsEntry>
 		return sb.toString();
 	}
 
+	private static ClassLoader _classLoader = ProjectsEntry.class.getClassLoader();
+	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+			ProjectsEntry.class
+		};
 	private long _projectsEntryId;
 	private long _companyId;
 	private long _userId;

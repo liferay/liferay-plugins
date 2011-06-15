@@ -229,9 +229,8 @@ public class MeetupsRegistrationModelImpl extends BaseModelImpl<MeetupsRegistrat
 			return (MeetupsRegistration)this;
 		}
 		else {
-			return (MeetupsRegistration)Proxy.newProxyInstance(MeetupsRegistration.class.getClassLoader(),
-				new Class[] { MeetupsRegistration.class },
-				new AutoEscapeBeanHandler(this));
+			return (MeetupsRegistration)Proxy.newProxyInstance(_classLoader,
+				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
 		}
 	}
 
@@ -396,6 +395,10 @@ public class MeetupsRegistrationModelImpl extends BaseModelImpl<MeetupsRegistrat
 		return sb.toString();
 	}
 
+	private static ClassLoader _classLoader = MeetupsRegistration.class.getClassLoader();
+	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+			MeetupsRegistration.class
+		};
 	private long _meetupsRegistrationId;
 	private long _companyId;
 	private long _userId;

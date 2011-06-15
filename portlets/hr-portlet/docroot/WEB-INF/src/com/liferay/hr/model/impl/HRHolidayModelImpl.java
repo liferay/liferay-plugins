@@ -250,8 +250,8 @@ public class HRHolidayModelImpl extends BaseModelImpl<HRHoliday>
 			return (HRHoliday)this;
 		}
 		else {
-			return (HRHoliday)Proxy.newProxyInstance(HRHoliday.class.getClassLoader(),
-				new Class[] { HRHoliday.class }, new AutoEscapeBeanHandler(this));
+			return (HRHoliday)Proxy.newProxyInstance(_classLoader,
+				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
 		}
 	}
 
@@ -427,6 +427,10 @@ public class HRHolidayModelImpl extends BaseModelImpl<HRHoliday>
 		return sb.toString();
 	}
 
+	private static ClassLoader _classLoader = HRHoliday.class.getClassLoader();
+	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+			HRHoliday.class
+		};
 	private long _hrHolidayId;
 	private long _groupId;
 	private long _companyId;

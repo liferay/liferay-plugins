@@ -295,9 +295,8 @@ public class KaleoActionModelImpl extends BaseModelImpl<KaleoAction>
 			return (KaleoAction)this;
 		}
 		else {
-			return (KaleoAction)Proxy.newProxyInstance(KaleoAction.class.getClassLoader(),
-				new Class[] { KaleoAction.class },
-				new AutoEscapeBeanHandler(this));
+			return (KaleoAction)Proxy.newProxyInstance(_classLoader,
+				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
 		}
 	}
 
@@ -507,6 +506,10 @@ public class KaleoActionModelImpl extends BaseModelImpl<KaleoAction>
 		return sb.toString();
 	}
 
+	private static ClassLoader _classLoader = KaleoAction.class.getClassLoader();
+	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+			KaleoAction.class
+		};
 	private long _kaleoActionId;
 	private long _groupId;
 	private long _companyId;

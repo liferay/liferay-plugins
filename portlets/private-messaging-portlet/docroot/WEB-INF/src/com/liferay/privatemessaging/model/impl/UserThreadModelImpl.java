@@ -226,9 +226,8 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 			return (UserThread)this;
 		}
 		else {
-			return (UserThread)Proxy.newProxyInstance(UserThread.class.getClassLoader(),
-				new Class[] { UserThread.class },
-				new AutoEscapeBeanHandler(this));
+			return (UserThread)Proxy.newProxyInstance(_classLoader,
+				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
 		}
 	}
 
@@ -393,6 +392,10 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 		return sb.toString();
 	}
 
+	private static ClassLoader _classLoader = UserThread.class.getClassLoader();
+	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+			UserThread.class
+		};
 	private long _userThreadId;
 	private long _companyId;
 	private long _userId;

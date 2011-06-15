@@ -317,9 +317,8 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 			return (OAuthToken)this;
 		}
 		else {
-			return (OAuthToken)Proxy.newProxyInstance(OAuthToken.class.getClassLoader(),
-				new Class[] { OAuthToken.class },
-				new AutoEscapeBeanHandler(this));
+			return (OAuthToken)Proxy.newProxyInstance(_classLoader,
+				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
 		}
 	}
 
@@ -526,6 +525,10 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 		return sb.toString();
 	}
 
+	private static ClassLoader _classLoader = OAuthToken.class.getClassLoader();
+	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+			OAuthToken.class
+		};
 	private long _oAuthTokenId;
 	private long _companyId;
 	private long _userId;

@@ -149,9 +149,8 @@ public class JIRAChangeGroupModelImpl extends BaseModelImpl<JIRAChangeGroup>
 			return (JIRAChangeGroup)this;
 		}
 		else {
-			return (JIRAChangeGroup)Proxy.newProxyInstance(JIRAChangeGroup.class.getClassLoader(),
-				new Class[] { JIRAChangeGroup.class },
-				new AutoEscapeBeanHandler(this));
+			return (JIRAChangeGroup)Proxy.newProxyInstance(_classLoader,
+				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
 		}
 	}
 
@@ -272,6 +271,10 @@ public class JIRAChangeGroupModelImpl extends BaseModelImpl<JIRAChangeGroup>
 		return sb.toString();
 	}
 
+	private static ClassLoader _classLoader = JIRAChangeGroup.class.getClassLoader();
+	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+			JIRAChangeGroup.class
+		};
 	private long _jiraChangeGroupId;
 	private String _jiraUserId;
 	private Date _createDate;

@@ -382,9 +382,8 @@ public class KBStructureModelImpl extends BaseModelImpl<KBStructure>
 			return (KBStructure)this;
 		}
 		else {
-			return (KBStructure)Proxy.newProxyInstance(KBStructure.class.getClassLoader(),
-				new Class[] { KBStructure.class },
-				new AutoEscapeBeanHandler(this));
+			return (KBStructure)Proxy.newProxyInstance(_classLoader,
+				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
 		}
 	}
 
@@ -554,6 +553,10 @@ public class KBStructureModelImpl extends BaseModelImpl<KBStructure>
 		return sb.toString();
 	}
 
+	private static ClassLoader _classLoader = KBStructure.class.getClassLoader();
+	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+			KBStructure.class
+		};
 	private String _uuid;
 	private String _originalUuid;
 	private long _kbStructureId;

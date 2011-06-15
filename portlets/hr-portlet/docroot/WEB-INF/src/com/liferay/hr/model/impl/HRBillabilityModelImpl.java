@@ -243,9 +243,8 @@ public class HRBillabilityModelImpl extends BaseModelImpl<HRBillability>
 			return (HRBillability)this;
 		}
 		else {
-			return (HRBillability)Proxy.newProxyInstance(HRBillability.class.getClassLoader(),
-				new Class[] { HRBillability.class },
-				new AutoEscapeBeanHandler(this));
+			return (HRBillability)Proxy.newProxyInstance(_classLoader,
+				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
 		}
 	}
 
@@ -414,6 +413,10 @@ public class HRBillabilityModelImpl extends BaseModelImpl<HRBillability>
 		return sb.toString();
 	}
 
+	private static ClassLoader _classLoader = HRBillability.class.getClassLoader();
+	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+			HRBillability.class
+		};
 	private long _hrBillabilityId;
 	private long _groupId;
 	private long _originalGroupId;

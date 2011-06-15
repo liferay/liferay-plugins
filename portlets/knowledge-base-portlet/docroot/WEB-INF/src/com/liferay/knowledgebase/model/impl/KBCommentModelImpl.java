@@ -301,8 +301,8 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 			return (KBComment)this;
 		}
 		else {
-			return (KBComment)Proxy.newProxyInstance(KBComment.class.getClassLoader(),
-				new Class[] { KBComment.class }, new AutoEscapeBeanHandler(this));
+			return (KBComment)Proxy.newProxyInstance(_classLoader,
+				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
 		}
 	}
 
@@ -498,6 +498,10 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 		return sb.toString();
 	}
 
+	private static ClassLoader _classLoader = KBComment.class.getClassLoader();
+	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+			KBComment.class
+		};
 	private String _uuid;
 	private String _originalUuid;
 	private long _kbCommentId;

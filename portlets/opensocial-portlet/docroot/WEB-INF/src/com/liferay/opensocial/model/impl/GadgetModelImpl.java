@@ -267,8 +267,8 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 			return (Gadget)this;
 		}
 		else {
-			return (Gadget)Proxy.newProxyInstance(Gadget.class.getClassLoader(),
-				new Class[] { Gadget.class }, new AutoEscapeBeanHandler(this));
+			return (Gadget)Proxy.newProxyInstance(_classLoader,
+				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
 		}
 	}
 
@@ -421,6 +421,10 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 		return sb.toString();
 	}
 
+	private static ClassLoader _classLoader = Gadget.class.getClassLoader();
+	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+			Gadget.class
+		};
 	private String _uuid;
 	private long _gadgetId;
 	private long _companyId;

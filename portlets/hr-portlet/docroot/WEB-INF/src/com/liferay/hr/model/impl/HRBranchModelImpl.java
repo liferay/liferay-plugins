@@ -201,8 +201,8 @@ public class HRBranchModelImpl extends BaseModelImpl<HRBranch>
 			return (HRBranch)this;
 		}
 		else {
-			return (HRBranch)Proxy.newProxyInstance(HRBranch.class.getClassLoader(),
-				new Class[] { HRBranch.class }, new AutoEscapeBeanHandler(this));
+			return (HRBranch)Proxy.newProxyInstance(_classLoader,
+				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
 		}
 	}
 
@@ -350,6 +350,10 @@ public class HRBranchModelImpl extends BaseModelImpl<HRBranch>
 		return sb.toString();
 	}
 
+	private static ClassLoader _classLoader = HRBranch.class.getClassLoader();
+	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+			HRBranch.class
+		};
 	private long _hrBranchId;
 	private long _groupId;
 	private long _companyId;

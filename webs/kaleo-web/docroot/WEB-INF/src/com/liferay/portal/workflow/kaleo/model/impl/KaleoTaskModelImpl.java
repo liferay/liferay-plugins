@@ -240,8 +240,8 @@ public class KaleoTaskModelImpl extends BaseModelImpl<KaleoTask>
 			return (KaleoTask)this;
 		}
 		else {
-			return (KaleoTask)Proxy.newProxyInstance(KaleoTask.class.getClassLoader(),
-				new Class[] { KaleoTask.class }, new AutoEscapeBeanHandler(this));
+			return (KaleoTask)Proxy.newProxyInstance(_classLoader,
+				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
 		}
 	}
 
@@ -421,6 +421,10 @@ public class KaleoTaskModelImpl extends BaseModelImpl<KaleoTask>
 		return sb.toString();
 	}
 
+	private static ClassLoader _classLoader = KaleoTask.class.getClassLoader();
+	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+			KaleoTask.class
+		};
 	private long _kaleoTaskId;
 	private long _groupId;
 	private long _companyId;

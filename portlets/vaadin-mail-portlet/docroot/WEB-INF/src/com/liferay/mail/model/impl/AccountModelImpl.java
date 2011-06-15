@@ -439,8 +439,8 @@ public class AccountModelImpl extends BaseModelImpl<Account>
 			return (Account)this;
 		}
 		else {
-			return (Account)Proxy.newProxyInstance(Account.class.getClassLoader(),
-				new Class[] { Account.class }, new AutoEscapeBeanHandler(this));
+			return (Account)Proxy.newProxyInstance(_classLoader,
+				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
 		}
 	}
 
@@ -719,6 +719,10 @@ public class AccountModelImpl extends BaseModelImpl<Account>
 		return sb.toString();
 	}
 
+	private static ClassLoader _classLoader = Account.class.getClassLoader();
+	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+			Account.class
+		};
 	private long _accountId;
 	private long _companyId;
 	private long _userId;

@@ -243,9 +243,8 @@ public class HRTimeOffFrequencyTypeModelImpl extends BaseModelImpl<HRTimeOffFreq
 			return (HRTimeOffFrequencyType)this;
 		}
 		else {
-			return (HRTimeOffFrequencyType)Proxy.newProxyInstance(HRTimeOffFrequencyType.class.getClassLoader(),
-				new Class[] { HRTimeOffFrequencyType.class },
-				new AutoEscapeBeanHandler(this));
+			return (HRTimeOffFrequencyType)Proxy.newProxyInstance(_classLoader,
+				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
 		}
 	}
 
@@ -414,6 +413,10 @@ public class HRTimeOffFrequencyTypeModelImpl extends BaseModelImpl<HRTimeOffFreq
 		return sb.toString();
 	}
 
+	private static ClassLoader _classLoader = HRTimeOffFrequencyType.class.getClassLoader();
+	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+			HRTimeOffFrequencyType.class
+		};
 	private long _hrTimeOffFrequencyTypeId;
 	private long _groupId;
 	private long _originalGroupId;

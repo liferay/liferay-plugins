@@ -240,9 +240,8 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 			return (KaleoCondition)this;
 		}
 		else {
-			return (KaleoCondition)Proxy.newProxyInstance(KaleoCondition.class.getClassLoader(),
-				new Class[] { KaleoCondition.class },
-				new AutoEscapeBeanHandler(this));
+			return (KaleoCondition)Proxy.newProxyInstance(_classLoader,
+				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
 		}
 	}
 
@@ -422,6 +421,10 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 		return sb.toString();
 	}
 
+	private static ClassLoader _classLoader = KaleoCondition.class.getClassLoader();
+	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+			KaleoCondition.class
+		};
 	private long _kaleoConditionId;
 	private long _groupId;
 	private long _companyId;

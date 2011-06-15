@@ -213,9 +213,8 @@ public class HRJobTitleModelImpl extends BaseModelImpl<HRJobTitle>
 			return (HRJobTitle)this;
 		}
 		else {
-			return (HRJobTitle)Proxy.newProxyInstance(HRJobTitle.class.getClassLoader(),
-				new Class[] { HRJobTitle.class },
-				new AutoEscapeBeanHandler(this));
+			return (HRJobTitle)Proxy.newProxyInstance(_classLoader,
+				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
 		}
 	}
 
@@ -370,6 +369,10 @@ public class HRJobTitleModelImpl extends BaseModelImpl<HRJobTitle>
 		return sb.toString();
 	}
 
+	private static ClassLoader _classLoader = HRJobTitle.class.getClassLoader();
+	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+			HRJobTitle.class
+		};
 	private long _hrJobTitleId;
 	private long _groupId;
 	private long _companyId;

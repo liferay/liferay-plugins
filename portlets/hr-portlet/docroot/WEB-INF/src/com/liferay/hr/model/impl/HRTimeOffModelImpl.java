@@ -348,8 +348,8 @@ public class HRTimeOffModelImpl extends BaseModelImpl<HRTimeOff>
 			return (HRTimeOff)this;
 		}
 		else {
-			return (HRTimeOff)Proxy.newProxyInstance(HRTimeOff.class.getClassLoader(),
-				new Class[] { HRTimeOff.class }, new AutoEscapeBeanHandler(this));
+			return (HRTimeOff)Proxy.newProxyInstance(_classLoader,
+				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
 		}
 	}
 
@@ -567,6 +567,10 @@ public class HRTimeOffModelImpl extends BaseModelImpl<HRTimeOff>
 		return sb.toString();
 	}
 
+	private static ClassLoader _classLoader = HRTimeOff.class.getClassLoader();
+	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+			HRTimeOff.class
+		};
 	private long _hrTimeOffId;
 	private long _groupId;
 	private long _companyId;

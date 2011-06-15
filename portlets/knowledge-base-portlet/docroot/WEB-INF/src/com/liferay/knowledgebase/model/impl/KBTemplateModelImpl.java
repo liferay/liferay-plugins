@@ -326,9 +326,8 @@ public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 			return (KBTemplate)this;
 		}
 		else {
-			return (KBTemplate)Proxy.newProxyInstance(KBTemplate.class.getClassLoader(),
-				new Class[] { KBTemplate.class },
-				new AutoEscapeBeanHandler(this));
+			return (KBTemplate)Proxy.newProxyInstance(_classLoader,
+				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
 		}
 	}
 
@@ -512,6 +511,10 @@ public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 		return sb.toString();
 	}
 
+	private static ClassLoader _classLoader = KBTemplate.class.getClassLoader();
+	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+			KBTemplate.class
+		};
 	private String _uuid;
 	private String _originalUuid;
 	private long _kbTemplateId;

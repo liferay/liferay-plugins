@@ -293,9 +293,8 @@ public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 			return (MicroblogsEntry)this;
 		}
 		else {
-			return (MicroblogsEntry)Proxy.newProxyInstance(MicroblogsEntry.class.getClassLoader(),
-				new Class[] { MicroblogsEntry.class },
-				new AutoEscapeBeanHandler(this));
+			return (MicroblogsEntry)Proxy.newProxyInstance(_classLoader,
+				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
 		}
 	}
 
@@ -465,6 +464,10 @@ public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 		return sb.toString();
 	}
 
+	private static ClassLoader _classLoader = MicroblogsEntry.class.getClassLoader();
+	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+			MicroblogsEntry.class
+		};
 	private long _microblogsEntryId;
 	private long _companyId;
 	private long _userId;

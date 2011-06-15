@@ -229,9 +229,8 @@ public class HRExpenseTypeModelImpl extends BaseModelImpl<HRExpenseType>
 			return (HRExpenseType)this;
 		}
 		else {
-			return (HRExpenseType)Proxy.newProxyInstance(HRExpenseType.class.getClassLoader(),
-				new Class[] { HRExpenseType.class },
-				new AutoEscapeBeanHandler(this));
+			return (HRExpenseType)Proxy.newProxyInstance(_classLoader,
+				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
 		}
 	}
 
@@ -393,6 +392,10 @@ public class HRExpenseTypeModelImpl extends BaseModelImpl<HRExpenseType>
 		return sb.toString();
 	}
 
+	private static ClassLoader _classLoader = HRExpenseType.class.getClassLoader();
+	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+			HRExpenseType.class
+		};
 	private long _hrExpenseTypeId;
 	private long _groupId;
 	private long _originalGroupId;

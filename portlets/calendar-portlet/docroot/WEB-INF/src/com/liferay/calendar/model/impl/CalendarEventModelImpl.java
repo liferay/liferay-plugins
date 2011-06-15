@@ -601,9 +601,8 @@ public class CalendarEventModelImpl extends BaseModelImpl<CalendarEvent>
 			return (CalendarEvent)this;
 		}
 		else {
-			return (CalendarEvent)Proxy.newProxyInstance(CalendarEvent.class.getClassLoader(),
-				new Class[] { CalendarEvent.class },
-				new AutoEscapeBeanHandler(this));
+			return (CalendarEvent)Proxy.newProxyInstance(_classLoader,
+				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
 		}
 	}
 
@@ -854,6 +853,10 @@ public class CalendarEventModelImpl extends BaseModelImpl<CalendarEvent>
 		return sb.toString();
 	}
 
+	private static ClassLoader _classLoader = CalendarEvent.class.getClassLoader();
+	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+			CalendarEvent.class
+		};
 	private String _uuid;
 	private String _originalUuid;
 	private long _calendarEventId;

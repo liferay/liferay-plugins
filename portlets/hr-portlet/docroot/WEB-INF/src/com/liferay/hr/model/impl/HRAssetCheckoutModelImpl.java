@@ -236,9 +236,8 @@ public class HRAssetCheckoutModelImpl extends BaseModelImpl<HRAssetCheckout>
 			return (HRAssetCheckout)this;
 		}
 		else {
-			return (HRAssetCheckout)Proxy.newProxyInstance(HRAssetCheckout.class.getClassLoader(),
-				new Class[] { HRAssetCheckout.class },
-				new AutoEscapeBeanHandler(this));
+			return (HRAssetCheckout)Proxy.newProxyInstance(_classLoader,
+				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
 		}
 	}
 
@@ -414,6 +413,10 @@ public class HRAssetCheckoutModelImpl extends BaseModelImpl<HRAssetCheckout>
 		return sb.toString();
 	}
 
+	private static ClassLoader _classLoader = HRAssetCheckout.class.getClassLoader();
+	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+			HRAssetCheckout.class
+		};
 	private long _hrAssetCheckoutId;
 	private long _groupId;
 	private long _companyId;

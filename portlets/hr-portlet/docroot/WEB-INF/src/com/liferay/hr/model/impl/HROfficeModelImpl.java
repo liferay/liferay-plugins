@@ -194,8 +194,8 @@ public class HROfficeModelImpl extends BaseModelImpl<HROffice>
 			return (HROffice)this;
 		}
 		else {
-			return (HROffice)Proxy.newProxyInstance(HROffice.class.getClassLoader(),
-				new Class[] { HROffice.class }, new AutoEscapeBeanHandler(this));
+			return (HROffice)Proxy.newProxyInstance(_classLoader,
+				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
 		}
 	}
 
@@ -343,6 +343,10 @@ public class HROfficeModelImpl extends BaseModelImpl<HROffice>
 		return sb.toString();
 	}
 
+	private static ClassLoader _classLoader = HROffice.class.getClassLoader();
+	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+			HROffice.class
+		};
 	private long _hrOfficeId;
 	private long _groupId;
 	private long _companyId;

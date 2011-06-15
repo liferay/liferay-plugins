@@ -217,8 +217,8 @@ public class StatusModelImpl extends BaseModelImpl<Status>
 			return (Status)this;
 		}
 		else {
-			return (Status)Proxy.newProxyInstance(Status.class.getClassLoader(),
-				new Class[] { Status.class }, new AutoEscapeBeanHandler(this));
+			return (Status)Proxy.newProxyInstance(_classLoader,
+				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
 		}
 	}
 
@@ -371,6 +371,10 @@ public class StatusModelImpl extends BaseModelImpl<Status>
 		return sb.toString();
 	}
 
+	private static ClassLoader _classLoader = Status.class.getClassLoader();
+	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+			Status.class
+		};
 	private long _statusId;
 	private long _userId;
 	private String _userUuid;

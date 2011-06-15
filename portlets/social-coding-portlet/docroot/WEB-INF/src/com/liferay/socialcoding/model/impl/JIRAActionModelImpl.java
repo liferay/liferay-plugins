@@ -200,9 +200,8 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction>
 			return (JIRAAction)this;
 		}
 		else {
-			return (JIRAAction)Proxy.newProxyInstance(JIRAAction.class.getClassLoader(),
-				new Class[] { JIRAAction.class },
-				new AutoEscapeBeanHandler(this));
+			return (JIRAAction)Proxy.newProxyInstance(_classLoader,
+				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
 		}
 	}
 
@@ -351,6 +350,10 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction>
 		return sb.toString();
 	}
 
+	private static ClassLoader _classLoader = JIRAAction.class.getClassLoader();
+	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+			JIRAAction.class
+		};
 	private long _jiraActionId;
 	private String _jiraUserId;
 	private Date _createDate;

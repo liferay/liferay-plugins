@@ -373,8 +373,8 @@ public class HRProjectModelImpl extends BaseModelImpl<HRProject>
 			return (HRProject)this;
 		}
 		else {
-			return (HRProject)Proxy.newProxyInstance(HRProject.class.getClassLoader(),
-				new Class[] { HRProject.class }, new AutoEscapeBeanHandler(this));
+			return (HRProject)Proxy.newProxyInstance(_classLoader,
+				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
 		}
 	}
 
@@ -641,6 +641,10 @@ public class HRProjectModelImpl extends BaseModelImpl<HRProject>
 		return sb.toString();
 	}
 
+	private static ClassLoader _classLoader = HRProject.class.getClassLoader();
+	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+			HRProject.class
+		};
 	private long _hrProjectId;
 	private long _groupId;
 	private long _companyId;

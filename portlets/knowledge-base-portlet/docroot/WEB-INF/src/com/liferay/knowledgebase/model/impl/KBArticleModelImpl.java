@@ -565,8 +565,8 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 			return (KBArticle)this;
 		}
 		else {
-			return (KBArticle)Proxy.newProxyInstance(KBArticle.class.getClassLoader(),
-				new Class[] { KBArticle.class }, new AutoEscapeBeanHandler(this));
+			return (KBArticle)Proxy.newProxyInstance(_classLoader,
+				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
 		}
 	}
 
@@ -849,6 +849,10 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		return sb.toString();
 	}
 
+	private static ClassLoader _classLoader = KBArticle.class.getClassLoader();
+	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+			KBArticle.class
+		};
 	private String _uuid;
 	private String _originalUuid;
 	private long _kbArticleId;

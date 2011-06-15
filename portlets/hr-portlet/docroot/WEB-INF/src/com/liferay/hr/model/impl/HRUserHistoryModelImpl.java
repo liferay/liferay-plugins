@@ -286,9 +286,8 @@ public class HRUserHistoryModelImpl extends BaseModelImpl<HRUserHistory>
 			return (HRUserHistory)this;
 		}
 		else {
-			return (HRUserHistory)Proxy.newProxyInstance(HRUserHistory.class.getClassLoader(),
-				new Class[] { HRUserHistory.class },
-				new AutoEscapeBeanHandler(this));
+			return (HRUserHistory)Proxy.newProxyInstance(_classLoader,
+				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
 		}
 	}
 
@@ -499,6 +498,10 @@ public class HRUserHistoryModelImpl extends BaseModelImpl<HRUserHistory>
 		return sb.toString();
 	}
 
+	private static ClassLoader _classLoader = HRUserHistory.class.getClassLoader();
+	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+			HRUserHistory.class
+		};
 	private long _hrUserHistoryId;
 	private long _groupId;
 	private long _companyId;

@@ -250,8 +250,8 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue>
 			return (JIRAIssue)this;
 		}
 		else {
-			return (JIRAIssue)Proxy.newProxyInstance(JIRAIssue.class.getClassLoader(),
-				new Class[] { JIRAIssue.class }, new AutoEscapeBeanHandler(this));
+			return (JIRAIssue)Proxy.newProxyInstance(_classLoader,
+				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
 		}
 	}
 
@@ -424,6 +424,10 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue>
 		return sb.toString();
 	}
 
+	private static ClassLoader _classLoader = JIRAIssue.class.getClassLoader();
+	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+			JIRAIssue.class
+		};
 	private long _jiraIssueId;
 	private Date _createDate;
 	private Date _modifiedDate;

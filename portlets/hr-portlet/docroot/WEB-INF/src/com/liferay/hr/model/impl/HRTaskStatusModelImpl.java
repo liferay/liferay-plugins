@@ -243,9 +243,8 @@ public class HRTaskStatusModelImpl extends BaseModelImpl<HRTaskStatus>
 			return (HRTaskStatus)this;
 		}
 		else {
-			return (HRTaskStatus)Proxy.newProxyInstance(HRTaskStatus.class.getClassLoader(),
-				new Class[] { HRTaskStatus.class },
-				new AutoEscapeBeanHandler(this));
+			return (HRTaskStatus)Proxy.newProxyInstance(_classLoader,
+				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
 		}
 	}
 
@@ -414,6 +413,10 @@ public class HRTaskStatusModelImpl extends BaseModelImpl<HRTaskStatus>
 		return sb.toString();
 	}
 
+	private static ClassLoader _classLoader = HRTaskStatus.class.getClassLoader();
+	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+			HRTaskStatus.class
+		};
 	private long _hrTaskStatusId;
 	private long _groupId;
 	private long _originalGroupId;

@@ -210,9 +210,8 @@ public class HRProjectBillingRateModelImpl extends BaseModelImpl<HRProjectBillin
 			return (HRProjectBillingRate)this;
 		}
 		else {
-			return (HRProjectBillingRate)Proxy.newProxyInstance(HRProjectBillingRate.class.getClassLoader(),
-				new Class[] { HRProjectBillingRate.class },
-				new AutoEscapeBeanHandler(this));
+			return (HRProjectBillingRate)Proxy.newProxyInstance(_classLoader,
+				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
 		}
 	}
 
@@ -374,6 +373,10 @@ public class HRProjectBillingRateModelImpl extends BaseModelImpl<HRProjectBillin
 		return sb.toString();
 	}
 
+	private static ClassLoader _classLoader = HRProjectBillingRate.class.getClassLoader();
+	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+			HRProjectBillingRate.class
+		};
 	private long _hrProjectBillingRateId;
 	private long _groupId;
 	private long _companyId;
