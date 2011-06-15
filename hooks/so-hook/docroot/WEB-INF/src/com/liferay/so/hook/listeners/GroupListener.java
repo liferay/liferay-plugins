@@ -18,9 +18,9 @@
 package com.liferay.so.hook.listeners;
 
 import com.liferay.portal.ModelListenerException;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.BaseModelListener;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.service.TeamLocalServiceUtil;
@@ -51,13 +51,11 @@ public class GroupListener extends BaseModelListener<Group> {
 
 	public void onAfterUpdate(Group group) throws ModelListenerException {
 		try {
-			String customJspServletContextName =
-				group.getTypeSettingsProperty("customJspServletContextName");
+			String customJspServletContextName = GetterUtil.getString(
+				group.getTypeSettingsProperty("customJspServletContextName"));
 
-			if (Validator.isNotNull(customJspServletContextName) &&
-				customJspServletContextName.equals("so-hook")) {
-
-				setEnableSocialOffice(group);
+			if (customJspServletContextName.equals("so-hook")) {
+				enableSocialOffice(group);
 			}
 		}
 		catch (Exception e) {
@@ -78,7 +76,7 @@ public class GroupListener extends BaseModelListener<Group> {
 		}
 	}
 
-	protected void setEnableSocialOffice(Group group) throws Exception {
+	protected void enableSocialOffice(Group group) throws Exception {
 		ExpandoValueLocalServiceUtil.addValue(
 			group.getCompanyId(), Group.class.getName(),
 			ExpandoTableConstants.DEFAULT_TABLE_NAME, "socialOfficeEnabled",
