@@ -349,10 +349,6 @@ public class SitesPortlet extends MVCPortlet {
 			name, description, type, StringPool.BLANK, true, true,
 			serviceContext);
 
-		ExpandoBridge expandoBridge = group.getExpandoBridge();
-
-		expandoBridge.setAttribute("socialOfficeEnabled", Boolean.TRUE);
-
 		long layoutSetPrototypeId = ParamUtil.getLong(
 			actionRequest, "layoutSetPrototypeId");
 
