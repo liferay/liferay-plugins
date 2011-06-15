@@ -212,8 +212,6 @@
 			<reference refid="service.classpath" torefid="service.classpath" />
 		</antcall>
 
-		<delete file="docroot/WEB-INF/lib/${plugin.name}-service.jar" />
-		
 		<zip
 			basedir="docroot/WEB-INF/service-classes"
 			destfile="docroot/WEB-INF/lib/${plugin.name}-service.jar"
