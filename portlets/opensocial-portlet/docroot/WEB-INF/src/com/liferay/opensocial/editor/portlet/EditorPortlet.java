@@ -209,8 +209,6 @@ public class EditorPortlet extends AdminPortlet {
 
 		String extension = FileUtil.getExtension(fileEntryTitle);
 
-		serviceContext.setAttribute("extension", extension);
-
 		serviceContext.setAttribute("sourceFileName", fileEntryTitle);
 
 		serviceContext.setScopeGroupId(folder.getGroupId());
@@ -218,7 +216,8 @@ public class EditorPortlet extends AdminPortlet {
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 		FileEntry fileEntry = DLAppServiceUtil.addFileEntry(
-			folder.getRepositoryId(), folderId, fileEntryTitle,
+			folder.getRepositoryId(), folderId,
+			resourceRequest.getContentType(), fileEntryTitle,
 			StringPool.BLANK, StringPool.BLANK, bytes, serviceContext);
 
 		jsonObject.put("fileEntryId", fileEntry.getFileEntryId());
@@ -480,9 +479,9 @@ public class EditorPortlet extends AdminPortlet {
 		serviceContext.setModifiedDate(fileEntry.getModifiedDate());
 
 		DLAppServiceUtil.updateFileEntry(
-			fileEntryId, fileEntry.getTitle(), fileEntry.getTitle(),
-			fileEntry.getDescription(), StringPool.BLANK, false, bytes,
-			serviceContext);
+			fileEntryId, fileEntry.getTitle(), resourceRequest.getContentType(),
+			fileEntry.getTitle(), fileEntry.getDescription(), StringPool.BLANK,
+			false, bytes, serviceContext);
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
@@ -509,8 +508,8 @@ public class EditorPortlet extends AdminPortlet {
 
 		DLAppServiceUtil.updateFileEntry(
 			fileEntryId, fileEntryTitle, fileEntryTitle,
-			fileEntry.getDescription(), StringPool.BLANK, false, bytes,
-			serviceContext);
+			resourceRequest.getContentType(), fileEntry.getDescription(),
+			StringPool.BLANK, false, bytes, serviceContext);
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 

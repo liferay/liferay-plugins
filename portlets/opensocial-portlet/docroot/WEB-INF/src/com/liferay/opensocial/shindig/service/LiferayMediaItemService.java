@@ -424,10 +424,6 @@ public class LiferayMediaItemService implements MediaItemService {
 		serviceContext.setAddGroupPermissions(true);
 		serviceContext.setAddGuestPermissions(true);
 
-		String extension = FileUtil.getExtension(fileName);
-
-		serviceContext.setAttribute("extension", extension);
-
 		serviceContext.setAttribute("sourceFileName", fileName);
 
 		serviceContext.setExpandoBridgeAttributes(
@@ -436,12 +432,15 @@ public class LiferayMediaItemService implements MediaItemService {
 				DLFileEntry.class.getName()));
 		serviceContext.setScopeGroupId(groupIdLong);
 
+		String contentType = MimeTypesUtil.getContentType(fileName);
+
 		if (mediaItemId == null) {
 			long albumIdLong = GetterUtil.getLong(albumId);
 
 			DLAppServiceUtil.addFileEntry(
-				groupIdLong, albumIdLong, fileName, mediaItem.getDescription(),
-				StringPool.BLANK, byteArray, serviceContext);
+				groupIdLong, albumIdLong, fileName, contentType,
+				mediaItem.getDescription(), StringPool.BLANK,
+				byteArray, serviceContext);
 		}
 		else {
 			long mediaItemIdLong = GetterUtil.getLong(mediaItemId);
@@ -453,9 +452,9 @@ public class LiferayMediaItemService implements MediaItemService {
 			serviceContext.setModifiedDate(fileEntry.getModifiedDate());
 
 			DLAppServiceUtil.updateFileEntry(
-				fileEntry.getFileEntryId(), fileName, mediaItem.getTitle(),
-				mediaItem.getDescription(), StringPool.BLANK, false, byteArray,
-				serviceContext);
+				fileEntry.getFileEntryId(), fileName, contentType,
+				mediaItem.getTitle(), mediaItem.getDescription(),
+				StringPool.BLANK, false, byteArray, serviceContext);
 		}
 	}
 
