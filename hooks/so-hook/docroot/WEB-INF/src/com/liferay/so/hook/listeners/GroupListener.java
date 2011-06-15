@@ -18,9 +18,9 @@
 package com.liferay.so.hook.listeners;
 
 import com.liferay.portal.ModelListenerException;
-import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.BaseModelListener;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.service.TeamLocalServiceUtil;
@@ -51,12 +51,7 @@ public class GroupListener extends BaseModelListener<Group> {
 
 	public void onAfterUpdate(Group group) throws ModelListenerException {
 		try {
-			String customJspServletContextName = GetterUtil.getString(
-				group.getTypeSettingsProperty("customJspServletContextName"));
-
-			if (customJspServletContextName.equals("so-hook")) {
-				enableSocialOffice(group);
-			}
+			setSocialOfficeEnabled(group);
 		}
 		catch (Exception e) {
 			throw new ModelListenerException(e);
@@ -76,11 +71,20 @@ public class GroupListener extends BaseModelListener<Group> {
 		}
 	}
 
-	protected void enableSocialOffice(Group group) throws Exception {
+	protected void setSocialOfficeEnabled(Group group) throws Exception {
+		boolean socialOfficeEnabled = false;
+
+		String customJspServletContextName = GetterUtil.getString(
+			group.getTypeSettingsProperty("customJspServletContextName"));
+
+		if (customJspServletContextName.equals("so-hook")) {
+			socialOfficeEnabled = true;
+		}
+
 		ExpandoValueLocalServiceUtil.addValue(
 			group.getCompanyId(), Group.class.getName(),
 			ExpandoTableConstants.DEFAULT_TABLE_NAME, "socialOfficeEnabled",
-			group.getGroupId(), true);
+			group.getGroupId(), socialOfficeEnabled);
 	}
 
 }
