@@ -50,6 +50,7 @@ import javax.portlet.PortletPreferences;
  */
 public class UpgradeGroup extends UpgradeProcess {
 
+	@Override
 	protected void doUpgrade() throws Exception {
 		List<Group> groups = GroupLocalServiceUtil.getGroups(
 			QueryUtil.ALL_POS, QueryUtil.ALL_POS);

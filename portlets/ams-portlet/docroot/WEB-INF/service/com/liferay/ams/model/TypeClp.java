@@ -77,6 +77,7 @@ public class TypeClp extends BaseModelImpl<Type> implements Type {
 		_name = name;
 	}
 
+	@Override
 	public Type toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -87,6 +88,7 @@ public class TypeClp extends BaseModelImpl<Type> implements Type {
 		}
 	}
 
+	@Override
 	public Object clone() {
 		TypeClp clone = new TypeClp();
 
@@ -109,6 +111,7 @@ public class TypeClp extends BaseModelImpl<Type> implements Type {
 		return 0;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -133,10 +136,12 @@ public class TypeClp extends BaseModelImpl<Type> implements Type {
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(7);
 

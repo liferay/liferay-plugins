@@ -146,6 +146,7 @@ public class HRBillabilityClp extends BaseModelImpl<HRBillability>
 		_description = description;
 	}
 
+	@Override
 	public HRBillability toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -157,6 +158,7 @@ public class HRBillabilityClp extends BaseModelImpl<HRBillability>
 		}
 	}
 
+	@Override
 	public Object clone() {
 		HRBillabilityClp clone = new HRBillabilityClp();
 
@@ -188,6 +190,7 @@ public class HRBillabilityClp extends BaseModelImpl<HRBillability>
 		}
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -212,10 +215,12 @@ public class HRBillabilityClp extends BaseModelImpl<HRBillability>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(21);
 

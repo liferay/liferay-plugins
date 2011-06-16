@@ -184,6 +184,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(MicroblogsEntryImpl.class.getName());
@@ -201,6 +202,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(MicroblogsEntry microblogsEntry) {
 		EntityCacheUtil.removeResult(MicroblogsEntryModelImpl.ENTITY_CACHE_ENABLED,
 			MicroblogsEntryImpl.class, microblogsEntry.getPrimaryKey());
@@ -229,6 +231,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @throws com.liferay.portal.NoSuchModelException if a microblogs entry with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public MicroblogsEntry remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -282,11 +285,13 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @return the microblogs entry that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public MicroblogsEntry remove(MicroblogsEntry microblogsEntry)
 		throws SystemException {
 		return super.remove(microblogsEntry);
 	}
 
+	@Override
 	protected MicroblogsEntry removeImpl(MicroblogsEntry microblogsEntry)
 		throws SystemException {
 		microblogsEntry = toUnwrappedModel(microblogsEntry);
@@ -313,6 +318,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 		return microblogsEntry;
 	}
 
+	@Override
 	public MicroblogsEntry updateImpl(
 		com.liferay.microblogs.model.MicroblogsEntry microblogsEntry,
 		boolean merge) throws SystemException {
@@ -376,6 +382,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @throws com.liferay.portal.NoSuchModelException if a microblogs entry with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public MicroblogsEntry findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -412,6 +419,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @return the microblogs entry, or <code>null</code> if a microblogs entry with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public MicroblogsEntry fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

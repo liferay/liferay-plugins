@@ -221,6 +221,7 @@ public class OAuthConsumerModelImpl extends BaseModelImpl<OAuthConsumer>
 		_keyType = keyType;
 	}
 
+	@Override
 	public OAuthConsumer toEscapedModel() {
 		if (isEscapedModel()) {
 			return (OAuthConsumer)this;
@@ -231,6 +232,7 @@ public class OAuthConsumerModelImpl extends BaseModelImpl<OAuthConsumer>
 		}
 	}
 
+	@Override
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
 			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
@@ -240,10 +242,12 @@ public class OAuthConsumerModelImpl extends BaseModelImpl<OAuthConsumer>
 		return _expandoBridge;
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
 		getExpandoBridge().setAttributes(serviceContext);
 	}
 
+	@Override
 	public Object clone() {
 		OAuthConsumerImpl oAuthConsumerImpl = new OAuthConsumerImpl();
 
@@ -274,6 +278,7 @@ public class OAuthConsumerModelImpl extends BaseModelImpl<OAuthConsumer>
 		return 0;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -298,10 +303,12 @@ public class OAuthConsumerModelImpl extends BaseModelImpl<OAuthConsumer>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public void resetOriginalValues() {
 		OAuthConsumerModelImpl oAuthConsumerModelImpl = this;
 
@@ -312,6 +319,7 @@ public class OAuthConsumerModelImpl extends BaseModelImpl<OAuthConsumer>
 		oAuthConsumerModelImpl._originalServiceName = oAuthConsumerModelImpl._serviceName;
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(19);
 

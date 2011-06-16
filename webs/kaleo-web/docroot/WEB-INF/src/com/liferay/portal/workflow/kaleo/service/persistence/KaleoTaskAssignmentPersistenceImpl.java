@@ -182,6 +182,7 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(KaleoTaskAssignmentImpl.class.getName());
@@ -199,6 +200,7 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(KaleoTaskAssignment kaleoTaskAssignment) {
 		EntityCacheUtil.removeResult(KaleoTaskAssignmentModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoTaskAssignmentImpl.class, kaleoTaskAssignment.getPrimaryKey());
@@ -227,6 +229,7 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 	 * @throws com.liferay.portal.NoSuchModelException if a kaleo task assignment with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoTaskAssignment remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -280,11 +283,13 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 	 * @return the kaleo task assignment that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoTaskAssignment remove(KaleoTaskAssignment kaleoTaskAssignment)
 		throws SystemException {
 		return super.remove(kaleoTaskAssignment);
 	}
 
+	@Override
 	protected KaleoTaskAssignment removeImpl(
 		KaleoTaskAssignment kaleoTaskAssignment) throws SystemException {
 		kaleoTaskAssignment = toUnwrappedModel(kaleoTaskAssignment);
@@ -311,6 +316,7 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 		return kaleoTaskAssignment;
 	}
 
+	@Override
 	public KaleoTaskAssignment updateImpl(
 		com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment kaleoTaskAssignment,
 		boolean merge) throws SystemException {
@@ -379,6 +385,7 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 	 * @throws com.liferay.portal.NoSuchModelException if a kaleo task assignment with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoTaskAssignment findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -416,6 +423,7 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 	 * @return the kaleo task assignment, or <code>null</code> if a kaleo task assignment with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoTaskAssignment fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

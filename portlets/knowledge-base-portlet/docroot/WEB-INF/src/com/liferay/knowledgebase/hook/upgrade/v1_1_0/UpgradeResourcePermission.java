@@ -26,6 +26,7 @@ import java.sql.ResultSet;
  */
 public class UpgradeResourcePermission extends UpgradeProcess {
 
+	@Override
 	protected void doUpgrade() throws Exception {
 		if (hasResourcePermission("com.liferay.knowledgebase.model.Article")) {
 			updateKBArticleResourcePermissions();

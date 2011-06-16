@@ -256,6 +256,7 @@ public class HRExpenseCurrencyConversionModelImpl extends BaseModelImpl<HRExpens
 		_conversionValue = conversionValue;
 	}
 
+	@Override
 	public HRExpenseCurrencyConversion toEscapedModel() {
 		if (isEscapedModel()) {
 			return (HRExpenseCurrencyConversion)this;
@@ -266,6 +267,7 @@ public class HRExpenseCurrencyConversionModelImpl extends BaseModelImpl<HRExpens
 		}
 	}
 
+	@Override
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
 			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
@@ -275,10 +277,12 @@ public class HRExpenseCurrencyConversionModelImpl extends BaseModelImpl<HRExpens
 		return _expandoBridge;
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
 		getExpandoBridge().setAttributes(serviceContext);
 	}
 
+	@Override
 	public Object clone() {
 		HRExpenseCurrencyConversionImpl hrExpenseCurrencyConversionImpl = new HRExpenseCurrencyConversionImpl();
 
@@ -315,6 +319,7 @@ public class HRExpenseCurrencyConversionModelImpl extends BaseModelImpl<HRExpens
 		return 0;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -339,10 +344,12 @@ public class HRExpenseCurrencyConversionModelImpl extends BaseModelImpl<HRExpens
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public void resetOriginalValues() {
 		HRExpenseCurrencyConversionModelImpl hrExpenseCurrencyConversionModelImpl =
 			this;
@@ -362,6 +369,7 @@ public class HRExpenseCurrencyConversionModelImpl extends BaseModelImpl<HRExpens
 		hrExpenseCurrencyConversionModelImpl._originalConversionDate = hrExpenseCurrencyConversionModelImpl._conversionDate;
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(23);
 

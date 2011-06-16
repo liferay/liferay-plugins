@@ -644,6 +644,7 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 		}
 	}
 
+	@Override
 	public CalendarBooking toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -655,6 +656,7 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 		}
 	}
 
+	@Override
 	public Object clone() {
 		CalendarBookingClp clone = new CalendarBookingClp();
 
@@ -702,6 +704,7 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 		return 0;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -726,10 +729,12 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(55);
 

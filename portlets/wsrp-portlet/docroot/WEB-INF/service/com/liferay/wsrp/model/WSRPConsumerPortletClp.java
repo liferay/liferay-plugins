@@ -120,6 +120,7 @@ public class WSRPConsumerPortletClp extends BaseModelImpl<WSRPConsumerPortlet>
 		_portletHandle = portletHandle;
 	}
 
+	@Override
 	public WSRPConsumerPortlet toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -131,6 +132,7 @@ public class WSRPConsumerPortletClp extends BaseModelImpl<WSRPConsumerPortlet>
 		}
 	}
 
+	@Override
 	public Object clone() {
 		WSRPConsumerPortletClp clone = new WSRPConsumerPortletClp();
 
@@ -158,6 +160,7 @@ public class WSRPConsumerPortletClp extends BaseModelImpl<WSRPConsumerPortlet>
 		return 0;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -182,10 +185,12 @@ public class WSRPConsumerPortletClp extends BaseModelImpl<WSRPConsumerPortlet>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(17);
 

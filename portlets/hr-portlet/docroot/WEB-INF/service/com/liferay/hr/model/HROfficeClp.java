@@ -129,6 +129,7 @@ public class HROfficeClp extends BaseModelImpl<HROffice> implements HROffice {
 		_organizationId = organizationId;
 	}
 
+	@Override
 	public HROffice toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -139,6 +140,7 @@ public class HROfficeClp extends BaseModelImpl<HROffice> implements HROffice {
 		}
 	}
 
+	@Override
 	public Object clone() {
 		HROfficeClp clone = new HROfficeClp();
 
@@ -168,6 +170,7 @@ public class HROfficeClp extends BaseModelImpl<HROffice> implements HROffice {
 		}
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -192,10 +195,12 @@ public class HROfficeClp extends BaseModelImpl<HROffice> implements HROffice {
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(17);
 

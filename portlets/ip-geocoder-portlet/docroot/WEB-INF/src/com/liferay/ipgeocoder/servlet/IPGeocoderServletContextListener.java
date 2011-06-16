@@ -39,6 +39,7 @@ public class IPGeocoderServletContextListener
 		registerPortalLifecycle();
 	}
 
+	@Override
 	protected void doPortalDestroy() {
 		_ipGeocoderDestination.unregister(_ipGeocoderMessageListener);
 
@@ -48,6 +49,7 @@ public class IPGeocoderServletContextListener
 		MessageBusUtil.removeDestination(DestinationNames.IP_GEOCODER_RESPONSE);
 	}
 
+	@Override
 	protected void doPortalInit() {
 		_ipGeocoderDestination = new ParallelDestination(
 			DestinationNames.IP_GEOCODER);

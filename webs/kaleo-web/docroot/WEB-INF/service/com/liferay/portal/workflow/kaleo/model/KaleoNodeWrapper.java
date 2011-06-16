@@ -367,6 +367,7 @@ public class KaleoNodeWrapper implements KaleoNode {
 		_kaleoNode.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new KaleoNodeWrapper((KaleoNode)_kaleoNode.clone());
 	}
@@ -376,6 +377,7 @@ public class KaleoNodeWrapper implements KaleoNode {
 		return _kaleoNode.compareTo(kaleoNode);
 	}
 
+	@Override
 	public int hashCode() {
 		return _kaleoNode.hashCode();
 	}
@@ -384,6 +386,7 @@ public class KaleoNodeWrapper implements KaleoNode {
 		return new KaleoNodeWrapper(_kaleoNode.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _kaleoNode.toString();
 	}

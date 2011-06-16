@@ -179,6 +179,7 @@ public class ChatPollerProcessor extends BasePollerProcessor {
 		}
 	}
 
+	@Override
 	protected void doReceive(
 			PollerRequest pollerRequest, PollerResponse pollerResponse)
 		throws Exception {
@@ -187,6 +188,7 @@ public class ChatPollerProcessor extends BasePollerProcessor {
 		getEntries(pollerRequest, pollerResponse);
 	}
 
+	@Override
 	protected void doSend(PollerRequest pollerRequest) throws Exception {
 		addEntry(pollerRequest);
 		updateStatus(pollerRequest);

@@ -113,6 +113,7 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(DefinitionImpl.class.getName());
@@ -130,6 +131,7 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(Definition definition) {
 		EntityCacheUtil.removeResult(DefinitionModelImpl.ENTITY_CACHE_ENABLED,
 			DefinitionImpl.class, definition.getPrimaryKey());
@@ -158,6 +160,7 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 * @throws com.liferay.portal.NoSuchModelException if a definition with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Definition remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -210,10 +213,12 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 * @return the definition that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Definition remove(Definition definition) throws SystemException {
 		return super.remove(definition);
 	}
 
+	@Override
 	protected Definition removeImpl(Definition definition)
 		throws SystemException {
 		definition = toUnwrappedModel(definition);
@@ -240,6 +245,7 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 		return definition;
 	}
 
+	@Override
 	public Definition updateImpl(com.liferay.ams.model.Definition definition,
 		boolean merge) throws SystemException {
 		definition = toUnwrappedModel(definition);
@@ -303,6 +309,7 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 * @throws com.liferay.portal.NoSuchModelException if a definition with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Definition findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -339,6 +346,7 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 * @return the definition, or <code>null</code> if a definition with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Definition fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

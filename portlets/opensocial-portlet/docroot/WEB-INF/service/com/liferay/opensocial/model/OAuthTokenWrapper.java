@@ -367,6 +367,7 @@ public class OAuthTokenWrapper implements OAuthToken {
 		_oAuthToken.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new OAuthTokenWrapper((OAuthToken)_oAuthToken.clone());
 	}
@@ -375,6 +376,7 @@ public class OAuthTokenWrapper implements OAuthToken {
 		return _oAuthToken.compareTo(oAuthToken);
 	}
 
+	@Override
 	public int hashCode() {
 		return _oAuthToken.hashCode();
 	}
@@ -383,6 +385,7 @@ public class OAuthTokenWrapper implements OAuthToken {
 		return new OAuthTokenWrapper(_oAuthToken.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _oAuthToken.toString();
 	}

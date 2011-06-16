@@ -99,11 +99,13 @@ public class UsersDirectory extends BaseDirectory {
 		return null;
 	}
 
+	@Override
 	protected void initAttributes() {
 		addAttribute("cn", "Users");
 		addAttribute("objectClass", "groupOfNames");
 	}
 
+	@Override
 	protected List<Directory> initDirectories() throws Exception {
 		long companyId = 0;
 		String firstName = null;

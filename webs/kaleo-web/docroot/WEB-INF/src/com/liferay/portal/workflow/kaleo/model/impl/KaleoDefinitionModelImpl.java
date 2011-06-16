@@ -362,6 +362,7 @@ public class KaleoDefinitionModelImpl extends BaseModelImpl<KaleoDefinition>
 		_startKaleoNodeId = startKaleoNodeId;
 	}
 
+	@Override
 	public KaleoDefinition toEscapedModel() {
 		if (isEscapedModel()) {
 			return (KaleoDefinition)this;
@@ -372,6 +373,7 @@ public class KaleoDefinitionModelImpl extends BaseModelImpl<KaleoDefinition>
 		}
 	}
 
+	@Override
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
 			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
@@ -381,10 +383,12 @@ public class KaleoDefinitionModelImpl extends BaseModelImpl<KaleoDefinition>
 		return _expandoBridge;
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
 		getExpandoBridge().setAttributes(serviceContext);
 	}
 
+	@Override
 	public Object clone() {
 		KaleoDefinitionImpl kaleoDefinitionImpl = new KaleoDefinitionImpl();
 
@@ -429,6 +433,7 @@ public class KaleoDefinitionModelImpl extends BaseModelImpl<KaleoDefinition>
 		return 0;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -453,10 +458,12 @@ public class KaleoDefinitionModelImpl extends BaseModelImpl<KaleoDefinition>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public void resetOriginalValues() {
 		KaleoDefinitionModelImpl kaleoDefinitionModelImpl = this;
 
@@ -471,6 +478,7 @@ public class KaleoDefinitionModelImpl extends BaseModelImpl<KaleoDefinition>
 		kaleoDefinitionModelImpl._setOriginalVersion = false;
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(27);
 

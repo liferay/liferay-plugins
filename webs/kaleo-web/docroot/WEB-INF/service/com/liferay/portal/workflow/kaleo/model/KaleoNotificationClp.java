@@ -194,6 +194,7 @@ public class KaleoNotificationClp extends BaseModelImpl<KaleoNotification>
 		_notificationTypes = notificationTypes;
 	}
 
+	@Override
 	public KaleoNotification toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -205,6 +206,7 @@ public class KaleoNotificationClp extends BaseModelImpl<KaleoNotification>
 		}
 	}
 
+	@Override
 	public Object clone() {
 		KaleoNotificationClp clone = new KaleoNotificationClp();
 
@@ -248,6 +250,7 @@ public class KaleoNotificationClp extends BaseModelImpl<KaleoNotification>
 		return 0;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -272,10 +275,12 @@ public class KaleoNotificationClp extends BaseModelImpl<KaleoNotification>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(33);
 

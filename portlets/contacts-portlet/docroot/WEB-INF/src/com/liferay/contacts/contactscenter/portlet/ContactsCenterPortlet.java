@@ -158,6 +158,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			themeDisplay.getUserId(), type, StringPool.BLANK, userId);
 	}
 
+	@Override
 	public void serveResource(
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws PortletException {

@@ -36,6 +36,7 @@ import java.util.Set;
  */
 public class GroupListener extends BaseModelListener<Group> {
 
+	@Override
 	public void onAfterCreate(Group group) throws ModelListenerException {
 		try {
 			if (!group.isSite()) {
@@ -49,6 +50,7 @@ public class GroupListener extends BaseModelListener<Group> {
 		}
 	}
 
+	@Override
 	public void onAfterUpdate(Group group) throws ModelListenerException {
 		try {
 			setSocialOfficeEnabled(group);

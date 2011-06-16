@@ -35,6 +35,7 @@ public class WURFLDeploymentMessageListener extends BaseMessageListener {
 		_wurflKnownDevices = wurflKnownDevices;
 	}
 
+	@Override
 	protected void doReceive(Message message) throws Exception {
 		String command = message.getString("command");
 

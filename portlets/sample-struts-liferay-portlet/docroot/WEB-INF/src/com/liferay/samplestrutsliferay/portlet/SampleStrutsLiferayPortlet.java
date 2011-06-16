@@ -28,6 +28,7 @@ import javax.portlet.RenderResponse;
  */
 public class SampleStrutsLiferayPortlet extends StrutsPortlet {
 
+	@Override
 	public void doView(
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws IOException, PortletException {

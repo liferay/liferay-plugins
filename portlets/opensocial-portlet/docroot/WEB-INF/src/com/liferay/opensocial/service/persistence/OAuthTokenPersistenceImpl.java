@@ -155,6 +155,7 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(OAuthTokenImpl.class.getName());
@@ -172,6 +173,7 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(OAuthToken oAuthToken) {
 		EntityCacheUtil.removeResult(OAuthTokenModelImpl.ENTITY_CACHE_ENABLED,
 			OAuthTokenImpl.class, oAuthToken.getPrimaryKey());
@@ -210,6 +212,7 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	 * @throws com.liferay.portal.NoSuchModelException if a o auth token with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public OAuthToken remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -262,10 +265,12 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	 * @return the o auth token that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public OAuthToken remove(OAuthToken oAuthToken) throws SystemException {
 		return super.remove(oAuthToken);
 	}
 
+	@Override
 	protected OAuthToken removeImpl(OAuthToken oAuthToken)
 		throws SystemException {
 		oAuthToken = toUnwrappedModel(oAuthToken);
@@ -305,6 +310,7 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 		return oAuthToken;
 	}
 
+	@Override
 	public OAuthToken updateImpl(
 		com.liferay.opensocial.model.OAuthToken oAuthToken, boolean merge)
 		throws SystemException {
@@ -414,6 +420,7 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	 * @throws com.liferay.portal.NoSuchModelException if a o auth token with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public OAuthToken findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -450,6 +457,7 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	 * @return the o auth token, or <code>null</code> if a o auth token with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public OAuthToken fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

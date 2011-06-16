@@ -58,6 +58,7 @@ public class FolderLocalServiceImpl extends FolderLocalServiceBaseImpl {
 		return folder;
 	}
 
+	@Override
 	public void deleteFolder(Folder folder)
 		throws PortalException, SystemException {
 
@@ -76,6 +77,7 @@ public class FolderLocalServiceImpl extends FolderLocalServiceBaseImpl {
 		indexer.delete(folder);
 	}
 
+	@Override
 	public void deleteFolder(long folderId)
 		throws PortalException, SystemException {
 

@@ -130,6 +130,7 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(ProjectsEntryImpl.class.getName());
@@ -147,6 +148,7 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(ProjectsEntry projectsEntry) {
 		EntityCacheUtil.removeResult(ProjectsEntryModelImpl.ENTITY_CACHE_ENABLED,
 			ProjectsEntryImpl.class, projectsEntry.getPrimaryKey());
@@ -175,6 +177,7 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	 * @throws com.liferay.portal.NoSuchModelException if a projects entry with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public ProjectsEntry remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -228,11 +231,13 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	 * @return the projects entry that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public ProjectsEntry remove(ProjectsEntry projectsEntry)
 		throws SystemException {
 		return super.remove(projectsEntry);
 	}
 
+	@Override
 	protected ProjectsEntry removeImpl(ProjectsEntry projectsEntry)
 		throws SystemException {
 		projectsEntry = toUnwrappedModel(projectsEntry);
@@ -259,6 +264,7 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 		return projectsEntry;
 	}
 
+	@Override
 	public ProjectsEntry updateImpl(
 		com.liferay.so.model.ProjectsEntry projectsEntry, boolean merge)
 		throws SystemException {
@@ -322,6 +328,7 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	 * @throws com.liferay.portal.NoSuchModelException if a projects entry with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public ProjectsEntry findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -358,6 +365,7 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	 * @return the projects entry, or <code>null</code> if a projects entry with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public ProjectsEntry fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

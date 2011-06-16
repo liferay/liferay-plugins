@@ -136,6 +136,7 @@ public class AttachmentClp extends BaseModelImpl<Attachment>
 		_size = size;
 	}
 
+	@Override
 	public Attachment toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -147,6 +148,7 @@ public class AttachmentClp extends BaseModelImpl<Attachment>
 		}
 	}
 
+	@Override
 	public Object clone() {
 		AttachmentClp clone = new AttachmentClp();
 
@@ -177,6 +179,7 @@ public class AttachmentClp extends BaseModelImpl<Attachment>
 		}
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -201,10 +204,12 @@ public class AttachmentClp extends BaseModelImpl<Attachment>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(19);
 

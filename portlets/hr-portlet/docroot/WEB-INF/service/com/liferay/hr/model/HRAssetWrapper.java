@@ -313,6 +313,7 @@ public class HRAssetWrapper implements HRAsset {
 		_hrAsset.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new HRAssetWrapper((HRAsset)_hrAsset.clone());
 	}
@@ -321,6 +322,7 @@ public class HRAssetWrapper implements HRAsset {
 		return _hrAsset.compareTo(hrAsset);
 	}
 
+	@Override
 	public int hashCode() {
 		return _hrAsset.hashCode();
 	}
@@ -329,6 +331,7 @@ public class HRAssetWrapper implements HRAsset {
 		return new HRAssetWrapper(_hrAsset.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _hrAsset.toString();
 	}

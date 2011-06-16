@@ -244,6 +244,7 @@ public class KaleoNotificationRecipientModelImpl extends BaseModelImpl<KaleoNoti
 		_address = address;
 	}
 
+	@Override
 	public KaleoNotificationRecipient toEscapedModel() {
 		if (isEscapedModel()) {
 			return (KaleoNotificationRecipient)this;
@@ -254,6 +255,7 @@ public class KaleoNotificationRecipientModelImpl extends BaseModelImpl<KaleoNoti
 		}
 	}
 
+	@Override
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
 			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
@@ -263,10 +265,12 @@ public class KaleoNotificationRecipientModelImpl extends BaseModelImpl<KaleoNoti
 		return _expandoBridge;
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
 		getExpandoBridge().setAttributes(serviceContext);
 	}
 
+	@Override
 	public Object clone() {
 		KaleoNotificationRecipientImpl kaleoNotificationRecipientImpl = new KaleoNotificationRecipientImpl();
 
@@ -309,6 +313,7 @@ public class KaleoNotificationRecipientModelImpl extends BaseModelImpl<KaleoNoti
 		return 0;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -333,13 +338,16 @@ public class KaleoNotificationRecipientModelImpl extends BaseModelImpl<KaleoNoti
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public void resetOriginalValues() {
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(27);
 

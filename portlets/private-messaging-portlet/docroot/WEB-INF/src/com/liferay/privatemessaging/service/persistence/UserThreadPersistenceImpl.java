@@ -183,6 +183,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(UserThreadImpl.class.getName());
@@ -200,6 +201,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(UserThread userThread) {
 		EntityCacheUtil.removeResult(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
 			UserThreadImpl.class, userThread.getPrimaryKey());
@@ -234,6 +236,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 * @throws com.liferay.portal.NoSuchModelException if a user thread with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public UserThread remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -286,10 +289,12 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 * @return the user thread that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public UserThread remove(UserThread userThread) throws SystemException {
 		return super.remove(userThread);
 	}
 
+	@Override
 	protected UserThread removeImpl(UserThread userThread)
 		throws SystemException {
 		userThread = toUnwrappedModel(userThread);
@@ -324,6 +329,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 		return userThread;
 	}
 
+	@Override
 	public UserThread updateImpl(
 		com.liferay.privatemessaging.model.UserThread userThread, boolean merge)
 		throws SystemException {
@@ -408,6 +414,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 * @throws com.liferay.portal.NoSuchModelException if a user thread with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public UserThread findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -444,6 +451,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 * @return the user thread, or <code>null</code> if a user thread with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public UserThread fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

@@ -349,6 +349,7 @@ public class KBCommentWrapper implements KBComment {
 		_kbComment.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new KBCommentWrapper((KBComment)_kbComment.clone());
 	}
@@ -357,6 +358,7 @@ public class KBCommentWrapper implements KBComment {
 		return _kbComment.compareTo(kbComment);
 	}
 
+	@Override
 	public int hashCode() {
 		return _kbComment.hashCode();
 	}
@@ -365,6 +367,7 @@ public class KBCommentWrapper implements KBComment {
 		return new KBCommentWrapper(_kbComment.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _kbComment.toString();
 	}

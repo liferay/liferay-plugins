@@ -39,12 +39,14 @@ public class CommunitiesDirectory extends BaseDirectory {
 		initAttributes();
 	}
 
+	@Override
 	protected void initAttributes() {
 		addAttribute("objectclass", "organizationalUnit");
 		addAttribute("objectclass", "top");
 		addAttribute("ou", "Communities");
 	}
 
+	@Override
 	protected List<Directory> initDirectories() throws Exception {
 		List<Group> groups = Collections.emptyList();
 

@@ -29,6 +29,7 @@ import com.liferay.socialcoding.hook.upgrade.v1_0_0.util.SVNRevisionTable;
  */
 public class UpgradeNamespace extends UpgradeProcess {
 
+	@Override
 	protected void doUpgrade() throws Exception {
 		renameTable(
 			StringUtil.replaceFirst(

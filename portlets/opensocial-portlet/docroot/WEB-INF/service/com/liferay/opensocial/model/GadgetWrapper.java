@@ -239,6 +239,7 @@ public class GadgetWrapper implements Gadget {
 		_gadget.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new GadgetWrapper((Gadget)_gadget.clone());
 	}
@@ -247,6 +248,7 @@ public class GadgetWrapper implements Gadget {
 		return _gadget.compareTo(gadget);
 	}
 
+	@Override
 	public int hashCode() {
 		return _gadget.hashCode();
 	}
@@ -255,6 +257,7 @@ public class GadgetWrapper implements Gadget {
 		return new GadgetWrapper(_gadget.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _gadget.toString();
 	}

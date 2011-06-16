@@ -115,6 +115,7 @@ public class HRAssetDefinitionPersistenceImpl extends BasePersistenceImpl<HRAsse
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(HRAssetDefinitionImpl.class.getName());
@@ -132,6 +133,7 @@ public class HRAssetDefinitionPersistenceImpl extends BasePersistenceImpl<HRAsse
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(HRAssetDefinition hrAssetDefinition) {
 		EntityCacheUtil.removeResult(HRAssetDefinitionModelImpl.ENTITY_CACHE_ENABLED,
 			HRAssetDefinitionImpl.class, hrAssetDefinition.getPrimaryKey());
@@ -160,6 +162,7 @@ public class HRAssetDefinitionPersistenceImpl extends BasePersistenceImpl<HRAsse
 	 * @throws com.liferay.portal.NoSuchModelException if a h r asset definition with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRAssetDefinition remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -213,11 +216,13 @@ public class HRAssetDefinitionPersistenceImpl extends BasePersistenceImpl<HRAsse
 	 * @return the h r asset definition that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRAssetDefinition remove(HRAssetDefinition hrAssetDefinition)
 		throws SystemException {
 		return super.remove(hrAssetDefinition);
 	}
 
+	@Override
 	protected HRAssetDefinition removeImpl(HRAssetDefinition hrAssetDefinition)
 		throws SystemException {
 		hrAssetDefinition = toUnwrappedModel(hrAssetDefinition);
@@ -244,6 +249,7 @@ public class HRAssetDefinitionPersistenceImpl extends BasePersistenceImpl<HRAsse
 		return hrAssetDefinition;
 	}
 
+	@Override
 	public HRAssetDefinition updateImpl(
 		com.liferay.hr.model.HRAssetDefinition hrAssetDefinition, boolean merge)
 		throws SystemException {
@@ -312,6 +318,7 @@ public class HRAssetDefinitionPersistenceImpl extends BasePersistenceImpl<HRAsse
 	 * @throws com.liferay.portal.NoSuchModelException if a h r asset definition with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRAssetDefinition findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -349,6 +356,7 @@ public class HRAssetDefinitionPersistenceImpl extends BasePersistenceImpl<HRAsse
 	 * @return the h r asset definition, or <code>null</code> if a h r asset definition with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRAssetDefinition fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

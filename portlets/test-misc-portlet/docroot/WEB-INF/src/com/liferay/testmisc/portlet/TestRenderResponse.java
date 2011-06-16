@@ -36,6 +36,7 @@ public class TestRenderResponse extends RenderResponseWrapper {
 		super(renderResponse);
 	}
 
+	@Override
 	public OutputStream getPortletOutputStream() {
 		if (_printWriter != null) {
 			throw new IllegalStateException(
@@ -74,6 +75,7 @@ public class TestRenderResponse extends RenderResponseWrapper {
 		return _string;
 	}
 
+	@Override
 	public PrintWriter getWriter() {
 		if (_byteArrayOutputStream != null) {
 			throw new IllegalStateException(

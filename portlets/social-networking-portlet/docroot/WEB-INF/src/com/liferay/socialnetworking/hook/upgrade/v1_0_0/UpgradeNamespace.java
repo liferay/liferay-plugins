@@ -30,6 +30,7 @@ import com.liferay.socialnetworking.hook.upgrade.v1_0_0.util.WallEntryTable;
  */
 public class UpgradeNamespace extends UpgradeProcess {
 
+	@Override
 	protected void doUpgrade() throws Exception {
 		renameTable(
 			StringUtil.replaceFirst(

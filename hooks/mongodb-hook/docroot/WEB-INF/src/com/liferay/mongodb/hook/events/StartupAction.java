@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.util.GetterUtil;
  */
 public class StartupAction extends SimpleAction {
 
+	@Override
 	public void run(String[] ids) throws ActionException {
 		try {
 			doRun(ids);

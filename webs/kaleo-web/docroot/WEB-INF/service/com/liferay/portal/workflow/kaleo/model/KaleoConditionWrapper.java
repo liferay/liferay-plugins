@@ -313,6 +313,7 @@ public class KaleoConditionWrapper implements KaleoCondition {
 		_kaleoCondition.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new KaleoConditionWrapper((KaleoCondition)_kaleoCondition.clone());
 	}
@@ -322,6 +323,7 @@ public class KaleoConditionWrapper implements KaleoCondition {
 		return _kaleoCondition.compareTo(kaleoCondition);
 	}
 
+	@Override
 	public int hashCode() {
 		return _kaleoCondition.hashCode();
 	}
@@ -330,6 +332,7 @@ public class KaleoConditionWrapper implements KaleoCondition {
 		return new KaleoConditionWrapper(_kaleoCondition.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _kaleoCondition.toString();
 	}

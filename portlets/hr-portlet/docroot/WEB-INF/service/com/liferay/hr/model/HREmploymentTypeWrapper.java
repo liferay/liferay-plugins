@@ -295,6 +295,7 @@ public class HREmploymentTypeWrapper implements HREmploymentType {
 		_hrEmploymentType.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new HREmploymentTypeWrapper((HREmploymentType)_hrEmploymentType.clone());
 	}
@@ -303,6 +304,7 @@ public class HREmploymentTypeWrapper implements HREmploymentType {
 		return _hrEmploymentType.compareTo(hrEmploymentType);
 	}
 
+	@Override
 	public int hashCode() {
 		return _hrEmploymentType.hashCode();
 	}
@@ -311,6 +313,7 @@ public class HREmploymentTypeWrapper implements HREmploymentType {
 		return new HREmploymentTypeWrapper(_hrEmploymentType.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _hrEmploymentType.toString();
 	}

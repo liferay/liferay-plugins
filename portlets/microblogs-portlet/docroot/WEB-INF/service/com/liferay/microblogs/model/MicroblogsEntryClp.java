@@ -164,6 +164,7 @@ public class MicroblogsEntryClp extends BaseModelImpl<MicroblogsEntry>
 		_socialRelationType = socialRelationType;
 	}
 
+	@Override
 	public MicroblogsEntry toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -175,6 +176,7 @@ public class MicroblogsEntryClp extends BaseModelImpl<MicroblogsEntry>
 		}
 	}
 
+	@Override
 	public Object clone() {
 		MicroblogsEntryClp clone = new MicroblogsEntryClp();
 
@@ -208,6 +210,7 @@ public class MicroblogsEntryClp extends BaseModelImpl<MicroblogsEntry>
 		return 0;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -232,10 +235,12 @@ public class MicroblogsEntryClp extends BaseModelImpl<MicroblogsEntry>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(23);
 

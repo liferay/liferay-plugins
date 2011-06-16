@@ -149,6 +149,7 @@ public class TypeWrapper implements Type {
 		_type.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new TypeWrapper((Type)_type.clone());
 	}
@@ -157,6 +158,7 @@ public class TypeWrapper implements Type {
 		return _type.compareTo(type);
 	}
 
+	@Override
 	public int hashCode() {
 		return _type.hashCode();
 	}
@@ -165,6 +167,7 @@ public class TypeWrapper implements Type {
 		return new TypeWrapper(_type.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _type.toString();
 	}

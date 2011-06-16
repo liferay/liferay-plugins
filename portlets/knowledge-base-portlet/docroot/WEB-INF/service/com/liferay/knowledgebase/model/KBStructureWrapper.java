@@ -391,6 +391,7 @@ public class KBStructureWrapper implements KBStructure {
 		_kbStructure.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new KBStructureWrapper((KBStructure)_kbStructure.clone());
 	}
@@ -400,6 +401,7 @@ public class KBStructureWrapper implements KBStructure {
 		return _kbStructure.compareTo(kbStructure);
 	}
 
+	@Override
 	public int hashCode() {
 		return _kbStructure.hashCode();
 	}
@@ -408,6 +410,7 @@ public class KBStructureWrapper implements KBStructure {
 		return new KBStructureWrapper(_kbStructure.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _kbStructure.toString();
 	}

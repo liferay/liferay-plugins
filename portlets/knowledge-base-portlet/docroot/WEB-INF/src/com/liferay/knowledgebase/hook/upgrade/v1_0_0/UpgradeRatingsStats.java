@@ -27,6 +27,7 @@ import java.sql.ResultSet;
  */
 public class UpgradeRatingsStats extends UpgradeProcess {
 
+	@Override
 	protected void doUpgrade() throws Exception {
 		if (hasTable("KB_Article")) {
 			updateRatingsStats();

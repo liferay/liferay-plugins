@@ -35,6 +35,7 @@ public class RoleRecipient extends Recipient {
 		_roleType = roleType;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -67,6 +68,7 @@ public class RoleRecipient extends Recipient {
 		return _roleType;
 	}
 
+	@Override
 	public int hashCode() {
 		return _roleName.hashCode();
 	}

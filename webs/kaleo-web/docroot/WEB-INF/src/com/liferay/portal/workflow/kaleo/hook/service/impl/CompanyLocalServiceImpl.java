@@ -31,6 +31,7 @@ public class CompanyLocalServiceImpl extends CompanyLocalServiceWrapper {
 		super(companyLocalService);
 	}
 
+	@Override
 	public Company checkCompany(String webId, String mx, String shardName)
 		throws PortalException, SystemException {
 

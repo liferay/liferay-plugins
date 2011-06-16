@@ -468,6 +468,7 @@ public class HRTimeSheetWrapper implements HRTimeSheet {
 		_hrTimeSheet.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new HRTimeSheetWrapper((HRTimeSheet)_hrTimeSheet.clone());
 	}
@@ -476,6 +477,7 @@ public class HRTimeSheetWrapper implements HRTimeSheet {
 		return _hrTimeSheet.compareTo(hrTimeSheet);
 	}
 
+	@Override
 	public int hashCode() {
 		return _hrTimeSheet.hashCode();
 	}
@@ -484,6 +486,7 @@ public class HRTimeSheetWrapper implements HRTimeSheet {
 		return new HRTimeSheetWrapper(_hrTimeSheet.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _hrTimeSheet.toString();
 	}

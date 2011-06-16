@@ -56,6 +56,7 @@ public class MessageIndexer extends BaseIndexer {
 		return CLASS_NAMES;
 	}
 
+	@Override
 	protected void doDelete(Object obj) throws Exception {
 		if (obj instanceof Account) {
 			Account account = (Account)obj;
@@ -109,6 +110,7 @@ public class MessageIndexer extends BaseIndexer {
 		}
 	}
 
+	@Override
 	protected Document doGetDocument(Object obj) throws Exception {
 		Message message = (Message)obj;
 
@@ -129,12 +131,14 @@ public class MessageIndexer extends BaseIndexer {
 		return document;
 	}
 
+	@Override
 	protected Summary doGetSummary(
 		Document doc, Locale locale, String snippet, PortletURL portletURL) {
 
 		return null;
 	}
 
+	@Override
 	protected void doReindex(Object obj) throws Exception {
 		Message message = (Message)obj;
 
@@ -143,18 +147,21 @@ public class MessageIndexer extends BaseIndexer {
 		SearchEngineUtil.updateDocument(message.getCompanyId(), document);
 	}
 
+	@Override
 	protected void doReindex(String className, long classPK) throws Exception {
 		Message message = MessageLocalServiceUtil.getMessage(classPK);
 
 		doReindex(message);
 	}
 
+	@Override
 	protected void doReindex(String[] ids) throws Exception {
 		long companyId = GetterUtil.getLong(ids[0]);
 
 		reindexMessages(companyId);
 	}
 
+	@Override
 	protected String getPortletId(SearchContext searchContext) {
 		return PORTLET_ID;
 	}

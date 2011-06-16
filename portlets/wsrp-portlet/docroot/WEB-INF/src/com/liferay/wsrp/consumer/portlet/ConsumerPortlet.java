@@ -154,6 +154,7 @@ public class ConsumerPortlet extends GenericPortlet {
 
 	public static final String PORTLET_NAME_PREFIX = "WSRP_";
 
+	@Override
 	public void processAction(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws IOException, PortletException {
@@ -172,6 +173,7 @@ public class ConsumerPortlet extends GenericPortlet {
 		}
 	}
 
+	@Override
 	public void processEvent(
 			EventRequest eventRequest, EventResponse eventResponse)
 		throws IOException, PortletException {
@@ -190,6 +192,7 @@ public class ConsumerPortlet extends GenericPortlet {
 		}
 	}
 
+	@Override
 	public void render(
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws IOException, PortletException {
@@ -208,6 +211,7 @@ public class ConsumerPortlet extends GenericPortlet {
 		}
 	}
 
+	@Override
 	public void serveResource(
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws IOException, PortletException {

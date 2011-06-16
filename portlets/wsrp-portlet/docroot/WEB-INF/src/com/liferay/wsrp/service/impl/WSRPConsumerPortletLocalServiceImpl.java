@@ -119,6 +119,7 @@ public class WSRPConsumerPortletLocalServiceImpl
 			serviceContext);
 	}
 
+	@Override
 	public void deleteWSRPConsumerPortlet(long wsrpConsumerPortletId)
 		throws PortalException, SystemException {
 
@@ -140,6 +141,7 @@ public class WSRPConsumerPortletLocalServiceImpl
 		}
 	}
 
+	@Override
 	public void deleteWSRPConsumerPortlet(
 			WSRPConsumerPortlet wsrpConsumerPortlet)
 		throws PortalException, SystemException {

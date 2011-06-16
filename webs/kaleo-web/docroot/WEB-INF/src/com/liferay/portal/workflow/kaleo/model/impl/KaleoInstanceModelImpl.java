@@ -279,6 +279,7 @@ public class KaleoInstanceModelImpl extends BaseModelImpl<KaleoInstance>
 		_workflowContext = workflowContext;
 	}
 
+	@Override
 	public KaleoInstance toEscapedModel() {
 		if (isEscapedModel()) {
 			return (KaleoInstance)this;
@@ -289,6 +290,7 @@ public class KaleoInstanceModelImpl extends BaseModelImpl<KaleoInstance>
 		}
 	}
 
+	@Override
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
 			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
@@ -298,10 +300,12 @@ public class KaleoInstanceModelImpl extends BaseModelImpl<KaleoInstance>
 		return _expandoBridge;
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
 		getExpandoBridge().setAttributes(serviceContext);
 	}
 
+	@Override
 	public Object clone() {
 		KaleoInstanceImpl kaleoInstanceImpl = new KaleoInstanceImpl();
 
@@ -347,6 +351,7 @@ public class KaleoInstanceModelImpl extends BaseModelImpl<KaleoInstance>
 		return 0;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -371,13 +376,16 @@ public class KaleoInstanceModelImpl extends BaseModelImpl<KaleoInstance>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public void resetOriginalValues() {
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(33);
 

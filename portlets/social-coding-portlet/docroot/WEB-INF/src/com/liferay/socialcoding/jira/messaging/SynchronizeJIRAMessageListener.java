@@ -24,6 +24,7 @@ import com.liferay.socialcoding.service.JIRAIssueLocalServiceUtil;
  */
 public class SynchronizeJIRAMessageListener extends BaseMessageListener {
 
+	@Override
 	protected void doReceive(Message message) throws Exception {
 		JIRAIssueLocalServiceUtil.updateJIRAIssues(JIRAConstants.PROJECT_LEP);
 		JIRAIssueLocalServiceUtil.updateJIRAIssues(JIRAConstants.PROJECT_LPS);

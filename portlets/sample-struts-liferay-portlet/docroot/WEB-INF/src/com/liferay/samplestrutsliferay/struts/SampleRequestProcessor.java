@@ -29,6 +29,7 @@ import org.apache.struts.tiles.TilesRequestProcessor;
  */
 public class SampleRequestProcessor extends TilesRequestProcessor {
 
+	@Override
 	protected void doForward(
 			String uri, HttpServletRequest request,
 			HttpServletResponse response)

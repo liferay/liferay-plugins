@@ -25,6 +25,7 @@ import com.liferay.testhook.util.TestHookUtil;
  */
 public class StartupAction extends SimpleAction {
 
+	@Override
 	public void run(String[] ids) throws ActionException {
 		try {
 			FileUtil.write(

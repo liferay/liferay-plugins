@@ -412,6 +412,7 @@ public class KaleoInstanceTokenWrapper implements KaleoInstanceToken {
 		_kaleoInstanceToken.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new KaleoInstanceTokenWrapper((KaleoInstanceToken)_kaleoInstanceToken.clone());
 	}
@@ -421,6 +422,7 @@ public class KaleoInstanceTokenWrapper implements KaleoInstanceToken {
 		return _kaleoInstanceToken.compareTo(kaleoInstanceToken);
 	}
 
+	@Override
 	public int hashCode() {
 		return _kaleoInstanceToken.hashCode();
 	}
@@ -429,6 +431,7 @@ public class KaleoInstanceTokenWrapper implements KaleoInstanceToken {
 		return new KaleoInstanceTokenWrapper(_kaleoInstanceToken.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _kaleoInstanceToken.toString();
 	}

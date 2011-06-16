@@ -35,10 +35,12 @@ public class VLDAPContextListener
 		registerPortalLifecycle();
 	}
 
+	@Override
 	protected void doPortalDestroy() throws Exception {
 		_vldapServer.destroy();
 	}
 
+	@Override
 	protected void doPortalInit() throws Exception {
 		_vldapServer = new VLDAPServer();
 

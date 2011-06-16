@@ -412,6 +412,7 @@ public class KaleoTransitionWrapper implements KaleoTransition {
 		_kaleoTransition.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new KaleoTransitionWrapper((KaleoTransition)_kaleoTransition.clone());
 	}
@@ -421,6 +422,7 @@ public class KaleoTransitionWrapper implements KaleoTransition {
 		return _kaleoTransition.compareTo(kaleoTransition);
 	}
 
+	@Override
 	public int hashCode() {
 		return _kaleoTransition.hashCode();
 	}
@@ -429,6 +431,7 @@ public class KaleoTransitionWrapper implements KaleoTransition {
 		return new KaleoTransitionWrapper(_kaleoTransition.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _kaleoTransition.toString();
 	}

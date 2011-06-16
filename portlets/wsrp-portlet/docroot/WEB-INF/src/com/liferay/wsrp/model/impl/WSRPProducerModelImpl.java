@@ -221,6 +221,7 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer>
 		_portletIds = portletIds;
 	}
 
+	@Override
 	public WSRPProducer toEscapedModel() {
 		if (isEscapedModel()) {
 			return (WSRPProducer)this;
@@ -231,6 +232,7 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer>
 		}
 	}
 
+	@Override
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
 			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
@@ -240,10 +242,12 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer>
 		return _expandoBridge;
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
 		getExpandoBridge().setAttributes(serviceContext);
 	}
 
+	@Override
 	public Object clone() {
 		WSRPProducerImpl wsrpProducerImpl = new WSRPProducerImpl();
 
@@ -274,6 +278,7 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer>
 		return 0;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -298,10 +303,12 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public void resetOriginalValues() {
 		WSRPProducerModelImpl wsrpProducerModelImpl = this;
 
@@ -312,6 +319,7 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer>
 		wsrpProducerModelImpl._setOriginalGroupId = false;
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(19);
 

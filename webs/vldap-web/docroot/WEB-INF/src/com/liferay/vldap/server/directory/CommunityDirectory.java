@@ -39,6 +39,7 @@ public class CommunityDirectory extends BaseDirectory {
 		return _group;
 	}
 
+	@Override
 	protected void initAttributes() {
 		addAttribute("cn", _group.getName());
 		addAttribute("description", _group.getDescription());
@@ -48,6 +49,7 @@ public class CommunityDirectory extends BaseDirectory {
 		addAttribute("ou", _group.getName());
 	}
 
+	@Override
 	protected List<Directory> initDirectories() throws Exception {
 		UserDirectoryBuilder.buildUserDirectories(
 			_group, this, _usersDirectory);

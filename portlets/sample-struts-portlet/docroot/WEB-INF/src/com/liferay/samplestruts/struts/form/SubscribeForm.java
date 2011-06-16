@@ -50,12 +50,14 @@ public class SubscribeForm extends ActionForm {
 		_emailAddress = emailAddress;
 	}
 
+	@Override
 	public void reset(ActionMapping mapping, HttpServletRequest req) {
 		_firstName = null;
 		_lastName = null;
 		_emailAddress = null;
 	}
 
+	@Override
 	public ActionErrors validate(
 		ActionMapping mapping, HttpServletRequest req) {
 
@@ -75,6 +77,7 @@ public class SubscribeForm extends ActionForm {
 		return errors;
 	}
 
+	@Override
 	public String toString() {
 		return _firstName + " " + _lastName + " " + _emailAddress;
 	}

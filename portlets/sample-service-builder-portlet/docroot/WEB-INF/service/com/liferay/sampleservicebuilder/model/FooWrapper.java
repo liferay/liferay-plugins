@@ -358,6 +358,7 @@ public class FooWrapper implements Foo {
 		_foo.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new FooWrapper((Foo)_foo.clone());
 	}
@@ -366,6 +367,7 @@ public class FooWrapper implements Foo {
 		return _foo.compareTo(foo);
 	}
 
+	@Override
 	public int hashCode() {
 		return _foo.hashCode();
 	}
@@ -374,6 +376,7 @@ public class FooWrapper implements Foo {
 		return new FooWrapper(_foo.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _foo.toString();
 	}

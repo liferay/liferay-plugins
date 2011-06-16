@@ -24,6 +24,7 @@ import com.liferay.socialcoding.svn.util.SVNConstants;
  */
 public class SynchronizeSVNMessageListener extends BaseMessageListener {
 
+	@Override
 	protected void doReceive(Message message) throws Exception {
 		for (String url : SVNConstants.SVN_URLS) {
 			SVNRepositoryLocalServiceUtil.updateSVNRepository(url);

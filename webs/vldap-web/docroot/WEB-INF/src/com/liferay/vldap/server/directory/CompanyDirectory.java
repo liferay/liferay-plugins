@@ -33,12 +33,14 @@ public class CompanyDirectory extends BaseDirectory {
 		initAttributes();
 	}
 
+	@Override
 	protected void initAttributes() {
 		addAttribute("objectclass", "organizationalUnit");
 		addAttribute("objectclass", "top");
 		addAttribute("ou", _company.getWebId());
 	}
 
+	@Override
 	protected List<Directory> initDirectories() throws Exception {
 		UsersDirectory usersDirectory = new UsersDirectory(this);
 

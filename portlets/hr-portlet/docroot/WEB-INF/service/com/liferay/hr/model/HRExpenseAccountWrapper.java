@@ -277,6 +277,7 @@ public class HRExpenseAccountWrapper implements HRExpenseAccount {
 		_hrExpenseAccount.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new HRExpenseAccountWrapper((HRExpenseAccount)_hrExpenseAccount.clone());
 	}
@@ -285,6 +286,7 @@ public class HRExpenseAccountWrapper implements HRExpenseAccount {
 		return _hrExpenseAccount.compareTo(hrExpenseAccount);
 	}
 
+	@Override
 	public int hashCode() {
 		return _hrExpenseAccount.hashCode();
 	}
@@ -293,6 +295,7 @@ public class HRExpenseAccountWrapper implements HRExpenseAccount {
 		return new HRExpenseAccountWrapper(_hrExpenseAccount.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _hrExpenseAccount.toString();
 	}

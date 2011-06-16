@@ -149,6 +149,7 @@ public class AssetClp extends BaseModelImpl<Asset> implements Asset {
 		_active = active;
 	}
 
+	@Override
 	public Asset toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -159,6 +160,7 @@ public class AssetClp extends BaseModelImpl<Asset> implements Asset {
 		}
 	}
 
+	@Override
 	public Object clone() {
 		AssetClp clone = new AssetClp();
 
@@ -190,6 +192,7 @@ public class AssetClp extends BaseModelImpl<Asset> implements Asset {
 		}
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -214,10 +217,12 @@ public class AssetClp extends BaseModelImpl<Asset> implements Asset {
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(21);
 

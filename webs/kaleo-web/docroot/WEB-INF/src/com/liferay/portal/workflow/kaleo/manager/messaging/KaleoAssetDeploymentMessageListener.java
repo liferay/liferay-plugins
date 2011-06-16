@@ -27,6 +27,7 @@ public class KaleoAssetDeploymentMessageListener extends BaseMessageListener {
 		_portalKaleoManager = portalKaleoManager;
 	}
 
+	@Override
 	protected void doReceive(Message message) throws Exception {
 		String assetClassName = (String)message.get("ASSET_CLASS_NAME");
 

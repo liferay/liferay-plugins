@@ -205,6 +205,7 @@ public class CheckoutModelImpl extends BaseModelImpl<Checkout>
 		_actualCheckInDate = actualCheckInDate;
 	}
 
+	@Override
 	public Checkout toEscapedModel() {
 		if (isEscapedModel()) {
 			return (Checkout)this;
@@ -215,6 +216,7 @@ public class CheckoutModelImpl extends BaseModelImpl<Checkout>
 		}
 	}
 
+	@Override
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
 			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
@@ -224,10 +226,12 @@ public class CheckoutModelImpl extends BaseModelImpl<Checkout>
 		return _expandoBridge;
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
 		getExpandoBridge().setAttributes(serviceContext);
 	}
 
+	@Override
 	public Object clone() {
 		CheckoutImpl checkoutImpl = new CheckoutImpl();
 
@@ -261,6 +265,7 @@ public class CheckoutModelImpl extends BaseModelImpl<Checkout>
 		}
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -285,13 +290,16 @@ public class CheckoutModelImpl extends BaseModelImpl<Checkout>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public void resetOriginalValues() {
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(21);
 

@@ -225,6 +225,7 @@ public class HRUserClp extends BaseModelImpl<HRUser> implements HRUser {
 		_overtimeExempt = overtimeExempt;
 	}
 
+	@Override
 	public HRUser toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -235,6 +236,7 @@ public class HRUserClp extends BaseModelImpl<HRUser> implements HRUser {
 		}
 	}
 
+	@Override
 	public Object clone() {
 		HRUserClp clone = new HRUserClp();
 
@@ -274,6 +276,7 @@ public class HRUserClp extends BaseModelImpl<HRUser> implements HRUser {
 		}
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -298,10 +301,12 @@ public class HRUserClp extends BaseModelImpl<HRUser> implements HRUser {
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(37);
 

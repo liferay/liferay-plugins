@@ -34,6 +34,7 @@ import java.util.List;
  */
 public class UserIndexerPostProcessor extends BaseIndexerPostProcessor {
 
+	@Override
 	public void postProcessContextQuery(
 			BooleanQuery contextQuery, SearchContext searchContext)
 		throws Exception {
@@ -51,6 +52,7 @@ public class UserIndexerPostProcessor extends BaseIndexerPostProcessor {
 		}
 	}
 
+	@Override
 	public void postProcessSearchQuery(
 			BooleanQuery searchQuery, SearchContext searchContext)
 		throws Exception {
@@ -62,6 +64,7 @@ public class UserIndexerPostProcessor extends BaseIndexerPostProcessor {
 		}
 	}
 
+	@Override
 	public void postProcessDocument(Document document, Object obj)
 		throws Exception {
 

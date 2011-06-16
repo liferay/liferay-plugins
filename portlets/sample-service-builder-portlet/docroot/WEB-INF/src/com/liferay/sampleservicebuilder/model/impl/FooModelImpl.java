@@ -330,6 +330,7 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 		_field5 = field5;
 	}
 
+	@Override
 	public Foo toEscapedModel() {
 		if (isEscapedModel()) {
 			return (Foo)this;
@@ -340,6 +341,7 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 		}
 	}
 
+	@Override
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
 			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
@@ -349,10 +351,12 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 		return _expandoBridge;
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
 		getExpandoBridge().setAttributes(serviceContext);
 	}
 
+	@Override
 	public Object clone() {
 		FooImpl fooImpl = new FooImpl();
 
@@ -387,6 +391,7 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 		return 0;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -411,10 +416,12 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public void resetOriginalValues() {
 		FooModelImpl fooModelImpl = this;
 
@@ -425,6 +432,7 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 		fooModelImpl._setOriginalGroupId = false;
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(27);
 

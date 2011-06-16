@@ -452,6 +452,7 @@ public class HRTimeOffPolicyWrapper implements HRTimeOffPolicy {
 		_hrTimeOffPolicy.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new HRTimeOffPolicyWrapper((HRTimeOffPolicy)_hrTimeOffPolicy.clone());
 	}
@@ -460,6 +461,7 @@ public class HRTimeOffPolicyWrapper implements HRTimeOffPolicy {
 		return _hrTimeOffPolicy.compareTo(hrTimeOffPolicy);
 	}
 
+	@Override
 	public int hashCode() {
 		return _hrTimeOffPolicy.hashCode();
 	}
@@ -468,6 +470,7 @@ public class HRTimeOffPolicyWrapper implements HRTimeOffPolicy {
 		return new HRTimeOffPolicyWrapper(_hrTimeOffPolicy.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _hrTimeOffPolicy.toString();
 	}

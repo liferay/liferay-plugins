@@ -238,6 +238,7 @@ public class HRProjectStatusModelImpl extends BaseModelImpl<HRProjectStatus>
 		_description = description;
 	}
 
+	@Override
 	public HRProjectStatus toEscapedModel() {
 		if (isEscapedModel()) {
 			return (HRProjectStatus)this;
@@ -248,6 +249,7 @@ public class HRProjectStatusModelImpl extends BaseModelImpl<HRProjectStatus>
 		}
 	}
 
+	@Override
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
 			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
@@ -257,10 +259,12 @@ public class HRProjectStatusModelImpl extends BaseModelImpl<HRProjectStatus>
 		return _expandoBridge;
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
 		getExpandoBridge().setAttributes(serviceContext);
 	}
 
+	@Override
 	public Object clone() {
 		HRProjectStatusImpl hrProjectStatusImpl = new HRProjectStatusImpl();
 
@@ -294,6 +298,7 @@ public class HRProjectStatusModelImpl extends BaseModelImpl<HRProjectStatus>
 		}
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -318,10 +323,12 @@ public class HRProjectStatusModelImpl extends BaseModelImpl<HRProjectStatus>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public void resetOriginalValues() {
 		HRProjectStatusModelImpl hrProjectStatusModelImpl = this;
 
@@ -332,6 +339,7 @@ public class HRProjectStatusModelImpl extends BaseModelImpl<HRProjectStatus>
 		hrProjectStatusModelImpl._originalCode = hrProjectStatusModelImpl._code;
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(21);
 

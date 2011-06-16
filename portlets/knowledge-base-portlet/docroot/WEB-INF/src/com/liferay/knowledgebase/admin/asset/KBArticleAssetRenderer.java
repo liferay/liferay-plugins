@@ -59,6 +59,7 @@ public class KBArticleAssetRenderer extends BaseAssetRenderer {
 		return _kbArticle.getTitle();
 	}
 
+	@Override
 	public PortletURL getURLEdit(
 			LiferayPortletRequest liferayPortletRequest,
 			LiferayPortletResponse liferayPortletResponse)
@@ -75,6 +76,7 @@ public class KBArticleAssetRenderer extends BaseAssetRenderer {
 		return portletURL;
 	}
 
+	@Override
 	public String getURLViewInContext(
 		LiferayPortletRequest liferayPortletRequest,
 		LiferayPortletResponse liferayPortletResponse,
@@ -97,16 +99,19 @@ public class KBArticleAssetRenderer extends BaseAssetRenderer {
 		return _kbArticle.getUuid();
 	}
 
+	@Override
 	public boolean hasEditPermission(PermissionChecker permissionChecker) {
 		return KBArticlePermission.contains(
 			permissionChecker, _kbArticle, ActionKeys.UPDATE);
 	}
 
+	@Override
 	public boolean hasViewPermission(PermissionChecker permissionChecker) {
 		return KBArticlePermission.contains(
 			permissionChecker, _kbArticle, ActionKeys.VIEW);
 	}
 
+	@Override
 	public boolean isPrintable() {
 		return true;
 	}
@@ -126,6 +131,7 @@ public class KBArticleAssetRenderer extends BaseAssetRenderer {
 		}
 	}
 
+	@Override
 	protected String getIconPath(ThemeDisplay themeDisplay) {
 		return themeDisplay.getPathThemeImages() + "/trees/page.png";
 	}

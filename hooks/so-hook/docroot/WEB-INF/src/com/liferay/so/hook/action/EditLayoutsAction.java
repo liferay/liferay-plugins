@@ -37,6 +37,7 @@ import javax.portlet.PortletConfig;
  */
 public class EditLayoutsAction extends BaseStrutsPortletAction {
 
+	@Override
 	public void processAction(
 			StrutsPortletAction originalStrutsPortletAction,
 			PortletConfig portletConfig, ActionRequest actionRequest,

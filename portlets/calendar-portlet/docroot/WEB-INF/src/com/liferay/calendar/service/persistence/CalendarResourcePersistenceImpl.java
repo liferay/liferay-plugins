@@ -224,6 +224,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(CalendarResourceImpl.class.getName());
@@ -241,6 +242,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(CalendarResource calendarResource) {
 		EntityCacheUtil.removeResult(CalendarResourceModelImpl.ENTITY_CACHE_ENABLED,
 			CalendarResourceImpl.class, calendarResource.getPrimaryKey());
@@ -285,6 +287,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 	 * @throws com.liferay.portal.NoSuchModelException if a calendar resource with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public CalendarResource remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -338,11 +341,13 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 	 * @return the calendar resource that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public CalendarResource remove(CalendarResource calendarResource)
 		throws SystemException {
 		return super.remove(calendarResource);
 	}
 
+	@Override
 	protected CalendarResource removeImpl(CalendarResource calendarResource)
 		throws SystemException {
 		calendarResource = toUnwrappedModel(calendarResource);
@@ -383,6 +388,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 		return calendarResource;
 	}
 
+	@Override
 	public CalendarResource updateImpl(
 		com.liferay.calendar.model.CalendarResource calendarResource,
 		boolean merge) throws SystemException {
@@ -503,6 +509,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 	 * @throws com.liferay.portal.NoSuchModelException if a calendar resource with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public CalendarResource findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -540,6 +547,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 	 * @return the calendar resource, or <code>null</code> if a calendar resource with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public CalendarResource fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

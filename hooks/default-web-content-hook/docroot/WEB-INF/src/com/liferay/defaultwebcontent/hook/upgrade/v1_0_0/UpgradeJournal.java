@@ -147,6 +147,7 @@ public class UpgradeJournal extends UpgradeProcess {
 			serviceContext);
 	}
 
+	@Override
 	protected void doUpgrade() throws Exception {
 		long companyId = PortalUtil.getDefaultCompanyId();
 

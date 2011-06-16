@@ -153,6 +153,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(MessageImpl.class.getName());
@@ -170,6 +171,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(Message message) {
 		EntityCacheUtil.removeResult(MessageModelImpl.ENTITY_CACHE_ENABLED,
 			MessageImpl.class, message.getPrimaryKey());
@@ -204,6 +206,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	 * @throws com.liferay.portal.NoSuchModelException if a message with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Message remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -256,10 +259,12 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	 * @return the message that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Message remove(Message message) throws SystemException {
 		return super.remove(message);
 	}
 
+	@Override
 	protected Message removeImpl(Message message) throws SystemException {
 		message = toUnwrappedModel(message);
 
@@ -293,6 +298,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 		return message;
 	}
 
+	@Override
 	public Message updateImpl(com.liferay.mail.model.Message message,
 		boolean merge) throws SystemException {
 		message = toUnwrappedModel(message);
@@ -386,6 +392,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	 * @throws com.liferay.portal.NoSuchModelException if a message with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Message findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -422,6 +429,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	 * @return the message, or <code>null</code> if a message with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Message fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

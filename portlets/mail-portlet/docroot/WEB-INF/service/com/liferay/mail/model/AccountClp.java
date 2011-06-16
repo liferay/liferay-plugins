@@ -301,6 +301,7 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public Account toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -311,6 +312,7 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 		}
 	}
 
+	@Override
 	public Object clone() {
 		AccountClp clone = new AccountClp();
 
@@ -356,6 +358,7 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 		return 0;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -380,10 +383,12 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(53);
 

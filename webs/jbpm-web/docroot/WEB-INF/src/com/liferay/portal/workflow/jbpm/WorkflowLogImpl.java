@@ -29,6 +29,7 @@ public class WorkflowLogImpl extends DefaultWorkflowLog {
 		return _taskInstance;
 	}
 
+	@Override
 	public long getWorkflowTaskId() {
 		return _taskInstance.getId();
 	}

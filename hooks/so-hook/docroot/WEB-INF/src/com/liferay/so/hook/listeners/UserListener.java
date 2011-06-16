@@ -32,6 +32,7 @@ import com.liferay.portal.service.UserLocalServiceUtil;
  */
 public class UserListener extends BaseModelListener<User> {
 
+	@Override
 	public void onAfterAddAssociation(
 			Object classPK, String associationClassName,
 			Object associationClassPK)

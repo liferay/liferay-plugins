@@ -151,6 +151,7 @@ public class KaleoActionPersistenceImpl extends BasePersistenceImpl<KaleoAction>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(KaleoActionImpl.class.getName());
@@ -168,6 +169,7 @@ public class KaleoActionPersistenceImpl extends BasePersistenceImpl<KaleoAction>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(KaleoAction kaleoAction) {
 		EntityCacheUtil.removeResult(KaleoActionModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoActionImpl.class, kaleoAction.getPrimaryKey());
@@ -196,6 +198,7 @@ public class KaleoActionPersistenceImpl extends BasePersistenceImpl<KaleoAction>
 	 * @throws com.liferay.portal.NoSuchModelException if a kaleo action with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoAction remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -248,11 +251,13 @@ public class KaleoActionPersistenceImpl extends BasePersistenceImpl<KaleoAction>
 	 * @return the kaleo action that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoAction remove(KaleoAction kaleoAction)
 		throws SystemException {
 		return super.remove(kaleoAction);
 	}
 
+	@Override
 	protected KaleoAction removeImpl(KaleoAction kaleoAction)
 		throws SystemException {
 		kaleoAction = toUnwrappedModel(kaleoAction);
@@ -279,6 +284,7 @@ public class KaleoActionPersistenceImpl extends BasePersistenceImpl<KaleoAction>
 		return kaleoAction;
 	}
 
+	@Override
 	public KaleoAction updateImpl(
 		com.liferay.portal.workflow.kaleo.model.KaleoAction kaleoAction,
 		boolean merge) throws SystemException {
@@ -346,6 +352,7 @@ public class KaleoActionPersistenceImpl extends BasePersistenceImpl<KaleoAction>
 	 * @throws com.liferay.portal.NoSuchModelException if a kaleo action with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoAction findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -382,6 +389,7 @@ public class KaleoActionPersistenceImpl extends BasePersistenceImpl<KaleoAction>
 	 * @return the kaleo action, or <code>null</code> if a kaleo action with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoAction fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

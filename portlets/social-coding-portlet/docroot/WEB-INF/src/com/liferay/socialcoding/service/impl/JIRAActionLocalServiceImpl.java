@@ -24,6 +24,7 @@ import com.liferay.socialcoding.service.base.JIRAActionLocalServiceBaseImpl;
  */
 public class JIRAActionLocalServiceImpl extends JIRAActionLocalServiceBaseImpl {
 
+	@Override
 	public JIRAAction getJIRAAction(long jiraActionId)
 		throws PortalException, SystemException {
 

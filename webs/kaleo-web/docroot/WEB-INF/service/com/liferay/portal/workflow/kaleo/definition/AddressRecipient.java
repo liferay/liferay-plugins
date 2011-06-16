@@ -27,6 +27,7 @@ public class AddressRecipient extends Recipient {
 		_address = address;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -49,6 +50,7 @@ public class AddressRecipient extends Recipient {
 		return _address;
 	}
 
+	@Override
 	public int hashCode() {
 		return _address.hashCode();
 	}

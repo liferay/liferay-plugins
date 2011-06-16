@@ -167,6 +167,7 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 		_content = content;
 	}
 
+	@Override
 	public Entry toEscapedModel() {
 		if (isEscapedModel()) {
 			return (Entry)this;
@@ -177,6 +178,7 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 		}
 	}
 
+	@Override
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
 			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(0,
@@ -186,10 +188,12 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 		return _expandoBridge;
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
 		getExpandoBridge().setAttributes(serviceContext);
 	}
 
+	@Override
 	public Object clone() {
 		EntryImpl entryImpl = new EntryImpl();
 
@@ -226,6 +230,7 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 		return 0;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -250,13 +255,16 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public void resetOriginalValues() {
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(11);
 

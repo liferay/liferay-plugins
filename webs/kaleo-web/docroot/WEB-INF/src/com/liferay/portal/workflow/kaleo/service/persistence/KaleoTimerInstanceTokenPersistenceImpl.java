@@ -144,6 +144,7 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(KaleoTimerInstanceTokenImpl.class.getName());
@@ -161,6 +162,7 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(KaleoTimerInstanceToken kaleoTimerInstanceToken) {
 		EntityCacheUtil.removeResult(KaleoTimerInstanceTokenModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoTimerInstanceTokenImpl.class,
@@ -196,6 +198,7 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 	 * @throws com.liferay.portal.NoSuchModelException if a kaleo timer instance token with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoTimerInstanceToken remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -249,12 +252,14 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 	 * @return the kaleo timer instance token that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoTimerInstanceToken remove(
 		KaleoTimerInstanceToken kaleoTimerInstanceToken)
 		throws SystemException {
 		return super.remove(kaleoTimerInstanceToken);
 	}
 
+	@Override
 	protected KaleoTimerInstanceToken removeImpl(
 		KaleoTimerInstanceToken kaleoTimerInstanceToken)
 		throws SystemException {
@@ -292,6 +297,7 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 		return kaleoTimerInstanceToken;
 	}
 
+	@Override
 	public KaleoTimerInstanceToken updateImpl(
 		com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken kaleoTimerInstanceToken,
 		boolean merge) throws SystemException {
@@ -387,6 +393,7 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 	 * @throws com.liferay.portal.NoSuchModelException if a kaleo timer instance token with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoTimerInstanceToken findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -425,6 +432,7 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 	 * @return the kaleo timer instance token, or <code>null</code> if a kaleo timer instance token with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoTimerInstanceToken fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

@@ -143,6 +143,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(JIRAChangeGroupImpl.class.getName());
@@ -160,6 +161,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(JIRAChangeGroup jiraChangeGroup) {
 		EntityCacheUtil.removeResult(JIRAChangeGroupModelImpl.ENTITY_CACHE_ENABLED,
 			JIRAChangeGroupImpl.class, jiraChangeGroup.getPrimaryKey());
@@ -188,6 +190,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 	 * @throws com.liferay.portal.NoSuchModelException if a j i r a change group with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public JIRAChangeGroup remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -241,11 +244,13 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 	 * @return the j i r a change group that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public JIRAChangeGroup remove(JIRAChangeGroup jiraChangeGroup)
 		throws SystemException {
 		return super.remove(jiraChangeGroup);
 	}
 
+	@Override
 	protected JIRAChangeGroup removeImpl(JIRAChangeGroup jiraChangeGroup)
 		throws SystemException {
 		jiraChangeGroup = toUnwrappedModel(jiraChangeGroup);
@@ -272,6 +277,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 		return jiraChangeGroup;
 	}
 
+	@Override
 	public JIRAChangeGroup updateImpl(
 		com.liferay.socialcoding.model.JIRAChangeGroup jiraChangeGroup,
 		boolean merge) throws SystemException {
@@ -328,6 +334,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 	 * @throws com.liferay.portal.NoSuchModelException if a j i r a change group with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public JIRAChangeGroup findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -364,6 +371,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 	 * @return the j i r a change group, or <code>null</code> if a j i r a change group with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public JIRAChangeGroup fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

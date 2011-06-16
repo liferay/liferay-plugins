@@ -149,6 +149,7 @@ public class HRExpenseCurrencyConversionPersistenceImpl
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(HRExpenseCurrencyConversionImpl.class.getName());
@@ -166,6 +167,7 @@ public class HRExpenseCurrencyConversionPersistenceImpl
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(
 		HRExpenseCurrencyConversion hrExpenseCurrencyConversion) {
 		EntityCacheUtil.removeResult(HRExpenseCurrencyConversionModelImpl.ENTITY_CACHE_ENABLED,
@@ -208,6 +210,7 @@ public class HRExpenseCurrencyConversionPersistenceImpl
 	 * @throws com.liferay.portal.NoSuchModelException if a h r expense currency conversion with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRExpenseCurrencyConversion remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -262,12 +265,14 @@ public class HRExpenseCurrencyConversionPersistenceImpl
 	 * @return the h r expense currency conversion that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRExpenseCurrencyConversion remove(
 		HRExpenseCurrencyConversion hrExpenseCurrencyConversion)
 		throws SystemException {
 		return super.remove(hrExpenseCurrencyConversion);
 	}
 
+	@Override
 	protected HRExpenseCurrencyConversion removeImpl(
 		HRExpenseCurrencyConversion hrExpenseCurrencyConversion)
 		throws SystemException {
@@ -310,6 +315,7 @@ public class HRExpenseCurrencyConversionPersistenceImpl
 		return hrExpenseCurrencyConversion;
 	}
 
+	@Override
 	public HRExpenseCurrencyConversion updateImpl(
 		com.liferay.hr.model.HRExpenseCurrencyConversion hrExpenseCurrencyConversion,
 		boolean merge) throws SystemException {
@@ -419,6 +425,7 @@ public class HRExpenseCurrencyConversionPersistenceImpl
 	 * @throws com.liferay.portal.NoSuchModelException if a h r expense currency conversion with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRExpenseCurrencyConversion findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -457,6 +464,7 @@ public class HRExpenseCurrencyConversionPersistenceImpl
 	 * @return the h r expense currency conversion, or <code>null</code> if a h r expense currency conversion with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRExpenseCurrencyConversion fetchByPrimaryKey(
 		Serializable primaryKey) throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

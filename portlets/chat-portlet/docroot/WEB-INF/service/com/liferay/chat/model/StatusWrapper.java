@@ -286,6 +286,7 @@ public class StatusWrapper implements Status {
 		_status.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new StatusWrapper((Status)_status.clone());
 	}
@@ -294,6 +295,7 @@ public class StatusWrapper implements Status {
 		return _status.compareTo(status);
 	}
 
+	@Override
 	public int hashCode() {
 		return _status.hashCode();
 	}
@@ -302,6 +304,7 @@ public class StatusWrapper implements Status {
 		return new StatusWrapper(_status.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _status.toString();
 	}

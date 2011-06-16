@@ -30,6 +30,7 @@ public class SampleUserImpl extends UserWrapper {
 		return "Green";
 	}
 
+	@Override
 	public String getFirstName() {
 		System.out.println("Called SampleUserImpl.getFirstName()");
 

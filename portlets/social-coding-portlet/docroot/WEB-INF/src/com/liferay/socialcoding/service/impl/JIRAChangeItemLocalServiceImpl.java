@@ -27,6 +27,7 @@ import java.util.List;
 public class JIRAChangeItemLocalServiceImpl
 	extends JIRAChangeItemLocalServiceBaseImpl {
 
+	@Override
 	public JIRAChangeItem getJIRAChangeItem(long jiraChangeItemId)
 		throws PortalException, SystemException {
 

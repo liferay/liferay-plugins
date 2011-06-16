@@ -26,6 +26,7 @@ import java.sql.ResultSet;
  */
 public class UpgradeResourceAction extends UpgradeProcess {
 
+	@Override
 	protected void doUpgrade() throws Exception {
 		if (hasResourceAction("com.liferay.knowledgebase.model.Article")) {
 			updateKBArticleResourceActions();

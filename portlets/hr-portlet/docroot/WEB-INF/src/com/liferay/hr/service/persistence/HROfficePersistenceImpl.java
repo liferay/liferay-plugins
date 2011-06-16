@@ -122,6 +122,7 @@ public class HROfficePersistenceImpl extends BasePersistenceImpl<HROffice>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(HROfficeImpl.class.getName());
@@ -139,6 +140,7 @@ public class HROfficePersistenceImpl extends BasePersistenceImpl<HROffice>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(HROffice hrOffice) {
 		EntityCacheUtil.removeResult(HROfficeModelImpl.ENTITY_CACHE_ENABLED,
 			HROfficeImpl.class, hrOffice.getPrimaryKey());
@@ -167,6 +169,7 @@ public class HROfficePersistenceImpl extends BasePersistenceImpl<HROffice>
 	 * @throws com.liferay.portal.NoSuchModelException if a h r office with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HROffice remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -219,10 +222,12 @@ public class HROfficePersistenceImpl extends BasePersistenceImpl<HROffice>
 	 * @return the h r office that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HROffice remove(HROffice hrOffice) throws SystemException {
 		return super.remove(hrOffice);
 	}
 
+	@Override
 	protected HROffice removeImpl(HROffice hrOffice) throws SystemException {
 		hrOffice = toUnwrappedModel(hrOffice);
 
@@ -258,6 +263,7 @@ public class HROfficePersistenceImpl extends BasePersistenceImpl<HROffice>
 		return hrOffice;
 	}
 
+	@Override
 	public HROffice updateImpl(com.liferay.hr.model.HROffice hrOffice,
 		boolean merge) throws SystemException {
 		hrOffice = toUnwrappedModel(hrOffice);
@@ -316,6 +322,7 @@ public class HROfficePersistenceImpl extends BasePersistenceImpl<HROffice>
 	 * @throws com.liferay.portal.NoSuchModelException if a h r office with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HROffice findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -352,6 +359,7 @@ public class HROfficePersistenceImpl extends BasePersistenceImpl<HROffice>
 	 * @return the h r office, or <code>null</code> if a h r office with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HROffice fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

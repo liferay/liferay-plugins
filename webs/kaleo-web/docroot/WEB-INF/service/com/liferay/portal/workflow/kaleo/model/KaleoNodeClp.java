@@ -194,6 +194,7 @@ public class KaleoNodeClp extends BaseModelImpl<KaleoNode> implements KaleoNode 
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public KaleoNode toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -204,6 +205,7 @@ public class KaleoNodeClp extends BaseModelImpl<KaleoNode> implements KaleoNode 
 		}
 	}
 
+	@Override
 	public Object clone() {
 		KaleoNodeClp clone = new KaleoNodeClp();
 
@@ -244,6 +246,7 @@ public class KaleoNodeClp extends BaseModelImpl<KaleoNode> implements KaleoNode 
 		return 0;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -268,10 +271,12 @@ public class KaleoNodeClp extends BaseModelImpl<KaleoNode> implements KaleoNode 
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(27);
 

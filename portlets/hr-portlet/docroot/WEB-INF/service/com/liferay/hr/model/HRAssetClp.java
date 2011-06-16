@@ -153,6 +153,7 @@ public class HRAssetClp extends BaseModelImpl<HRAsset> implements HRAsset {
 		_inactiveDate = inactiveDate;
 	}
 
+	@Override
 	public HRAsset toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -163,6 +164,7 @@ public class HRAssetClp extends BaseModelImpl<HRAsset> implements HRAsset {
 		}
 	}
 
+	@Override
 	public Object clone() {
 		HRAssetClp clone = new HRAssetClp();
 
@@ -195,6 +197,7 @@ public class HRAssetClp extends BaseModelImpl<HRAsset> implements HRAsset {
 		}
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -219,10 +222,12 @@ public class HRAssetClp extends BaseModelImpl<HRAsset> implements HRAsset {
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(23);
 

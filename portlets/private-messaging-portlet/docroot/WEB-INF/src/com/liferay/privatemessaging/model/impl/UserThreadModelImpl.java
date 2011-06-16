@@ -221,6 +221,7 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 		_deleted = deleted;
 	}
 
+	@Override
 	public UserThread toEscapedModel() {
 		if (isEscapedModel()) {
 			return (UserThread)this;
@@ -231,6 +232,7 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 		}
 	}
 
+	@Override
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
 			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
@@ -240,10 +242,12 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 		return _expandoBridge;
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
 		getExpandoBridge().setAttributes(serviceContext);
 	}
 
+	@Override
 	public Object clone() {
 		UserThreadImpl userThreadImpl = new UserThreadImpl();
 
@@ -277,6 +281,7 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 		return 0;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -301,10 +306,12 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public void resetOriginalValues() {
 		UserThreadModelImpl userThreadModelImpl = this;
 
@@ -317,6 +324,7 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 		userThreadModelImpl._setOriginalMbThreadId = false;
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(19);
 

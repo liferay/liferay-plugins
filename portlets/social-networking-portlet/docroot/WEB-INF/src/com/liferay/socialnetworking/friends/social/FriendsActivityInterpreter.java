@@ -32,6 +32,7 @@ public class FriendsActivityInterpreter extends BaseSocialActivityInterpreter {
 		return _CLASS_NAMES;
 	}
 
+	@Override
 	protected SocialActivityFeedEntry doInterpret(
 			SocialActivity activity, ThemeDisplay themeDisplay)
 		throws Exception {

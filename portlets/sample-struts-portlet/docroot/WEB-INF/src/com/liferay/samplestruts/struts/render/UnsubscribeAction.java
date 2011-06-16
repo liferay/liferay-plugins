@@ -31,6 +31,7 @@ import org.apache.struts.action.ActionMapping;
  */
 public class UnsubscribeAction extends Action {
 
+	@Override
 	public ActionForward execute(
 			ActionMapping mapping, ActionForm form, HttpServletRequest request,
 			HttpServletResponse response)

@@ -34,6 +34,7 @@ public class WorkflowDefinitionImpl extends DefaultWorkflowDefinition {
 		setVersion(processDefinition.getVersion());
 	}
 
+	@Override
 	public String getTitle(String languageId) {
 		return LocalizationUtil.getLocalization(getTitle(), languageId);
 	}

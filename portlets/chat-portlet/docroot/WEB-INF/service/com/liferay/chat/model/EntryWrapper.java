@@ -225,6 +225,7 @@ public class EntryWrapper implements Entry {
 		_entry.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new EntryWrapper((Entry)_entry.clone());
 	}
@@ -233,6 +234,7 @@ public class EntryWrapper implements Entry {
 		return _entry.compareTo(entry);
 	}
 
+	@Override
 	public int hashCode() {
 		return _entry.hashCode();
 	}
@@ -241,6 +243,7 @@ public class EntryWrapper implements Entry {
 		return new EntryWrapper(_entry.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _entry.toString();
 	}

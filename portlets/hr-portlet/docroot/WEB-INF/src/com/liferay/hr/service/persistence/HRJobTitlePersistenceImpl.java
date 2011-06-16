@@ -122,6 +122,7 @@ public class HRJobTitlePersistenceImpl extends BasePersistenceImpl<HRJobTitle>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(HRJobTitleImpl.class.getName());
@@ -139,6 +140,7 @@ public class HRJobTitlePersistenceImpl extends BasePersistenceImpl<HRJobTitle>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(HRJobTitle hrJobTitle) {
 		EntityCacheUtil.removeResult(HRJobTitleModelImpl.ENTITY_CACHE_ENABLED,
 			HRJobTitleImpl.class, hrJobTitle.getPrimaryKey());
@@ -167,6 +169,7 @@ public class HRJobTitlePersistenceImpl extends BasePersistenceImpl<HRJobTitle>
 	 * @throws com.liferay.portal.NoSuchModelException if a h r job title with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRJobTitle remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -219,10 +222,12 @@ public class HRJobTitlePersistenceImpl extends BasePersistenceImpl<HRJobTitle>
 	 * @return the h r job title that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRJobTitle remove(HRJobTitle hrJobTitle) throws SystemException {
 		return super.remove(hrJobTitle);
 	}
 
+	@Override
 	protected HRJobTitle removeImpl(HRJobTitle hrJobTitle)
 		throws SystemException {
 		hrJobTitle = toUnwrappedModel(hrJobTitle);
@@ -259,6 +264,7 @@ public class HRJobTitlePersistenceImpl extends BasePersistenceImpl<HRJobTitle>
 		return hrJobTitle;
 	}
 
+	@Override
 	public HRJobTitle updateImpl(com.liferay.hr.model.HRJobTitle hrJobTitle,
 		boolean merge) throws SystemException {
 		hrJobTitle = toUnwrappedModel(hrJobTitle);
@@ -318,6 +324,7 @@ public class HRJobTitlePersistenceImpl extends BasePersistenceImpl<HRJobTitle>
 	 * @throws com.liferay.portal.NoSuchModelException if a h r job title with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRJobTitle findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -354,6 +361,7 @@ public class HRJobTitlePersistenceImpl extends BasePersistenceImpl<HRJobTitle>
 	 * @return the h r job title, or <code>null</code> if a h r job title with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRJobTitle fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

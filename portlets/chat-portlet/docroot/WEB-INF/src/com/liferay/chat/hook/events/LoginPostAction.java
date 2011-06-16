@@ -26,6 +26,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class LoginPostAction extends Action {
 
+	@Override
 	public void run(HttpServletRequest request, HttpServletResponse response) {
 		long userId = PortalUtil.getUserId(request);
 		String password = PortalUtil.getUserPassword(request);

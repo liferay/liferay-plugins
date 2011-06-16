@@ -36,6 +36,7 @@ public class WorkflowInstanceEndDateComparator
 		super(asc);
 	}
 
+	@Override
 	public String getOrderBy() {
 		if (isAscending()) {
 			return ORDER_BY_ASC;
@@ -45,6 +46,7 @@ public class WorkflowInstanceEndDateComparator
 		}
 	}
 
+	@Override
 	public String[] getOrderByFields() {
 		return ORDER_BY_FIELDS;
 	}

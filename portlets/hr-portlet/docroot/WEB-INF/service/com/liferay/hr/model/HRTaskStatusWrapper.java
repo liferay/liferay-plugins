@@ -295,6 +295,7 @@ public class HRTaskStatusWrapper implements HRTaskStatus {
 		_hrTaskStatus.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new HRTaskStatusWrapper((HRTaskStatus)_hrTaskStatus.clone());
 	}
@@ -303,6 +304,7 @@ public class HRTaskStatusWrapper implements HRTaskStatus {
 		return _hrTaskStatus.compareTo(hrTaskStatus);
 	}
 
+	@Override
 	public int hashCode() {
 		return _hrTaskStatus.hashCode();
 	}
@@ -311,6 +313,7 @@ public class HRTaskStatusWrapper implements HRTaskStatus {
 		return new HRTaskStatusWrapper(_hrTaskStatus.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _hrTaskStatus.toString();
 	}

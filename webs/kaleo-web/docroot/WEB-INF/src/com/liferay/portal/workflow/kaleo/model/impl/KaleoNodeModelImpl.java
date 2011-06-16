@@ -256,6 +256,7 @@ public class KaleoNodeModelImpl extends BaseModelImpl<KaleoNode>
 		_terminal = terminal;
 	}
 
+	@Override
 	public KaleoNode toEscapedModel() {
 		if (isEscapedModel()) {
 			return (KaleoNode)this;
@@ -266,6 +267,7 @@ public class KaleoNodeModelImpl extends BaseModelImpl<KaleoNode>
 		}
 	}
 
+	@Override
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
 			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
@@ -275,10 +277,12 @@ public class KaleoNodeModelImpl extends BaseModelImpl<KaleoNode>
 		return _expandoBridge;
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
 		getExpandoBridge().setAttributes(serviceContext);
 	}
 
+	@Override
 	public Object clone() {
 		KaleoNodeImpl kaleoNodeImpl = new KaleoNodeImpl();
 
@@ -321,6 +325,7 @@ public class KaleoNodeModelImpl extends BaseModelImpl<KaleoNode>
 		return 0;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -345,13 +350,16 @@ public class KaleoNodeModelImpl extends BaseModelImpl<KaleoNode>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public void resetOriginalValues() {
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(27);
 

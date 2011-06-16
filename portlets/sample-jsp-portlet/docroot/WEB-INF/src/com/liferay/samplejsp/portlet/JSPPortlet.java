@@ -32,12 +32,14 @@ import javax.portlet.RenderResponse;
  */
 public class JSPPortlet extends GenericPortlet {
 
+	@Override
 	public void init() throws PortletException {
 		editJSP = getInitParameter("edit-jsp");
 		helpJSP = getInitParameter("help-jsp");
 		viewJSP = getInitParameter("view-jsp");
 	}
 
+	@Override
 	public void doDispatch(
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws IOException, PortletException {
@@ -52,6 +54,7 @@ public class JSPPortlet extends GenericPortlet {
 		}
 	}
 
+	@Override
 	public void doEdit(
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws IOException, PortletException {
@@ -64,6 +67,7 @@ public class JSPPortlet extends GenericPortlet {
 		}
 	}
 
+	@Override
 	public void doHelp(
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws IOException, PortletException {
@@ -71,6 +75,7 @@ public class JSPPortlet extends GenericPortlet {
 		include(helpJSP, renderRequest, renderResponse);
 	}
 
+	@Override
 	public void doView(
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws IOException, PortletException {
@@ -78,6 +83,7 @@ public class JSPPortlet extends GenericPortlet {
 		include(viewJSP, renderRequest, renderResponse);
 	}
 
+	@Override
 	public void processAction(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws IOException, PortletException {

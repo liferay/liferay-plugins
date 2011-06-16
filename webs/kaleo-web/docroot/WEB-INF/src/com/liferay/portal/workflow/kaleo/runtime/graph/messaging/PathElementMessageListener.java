@@ -45,6 +45,7 @@ public class PathElementMessageListener extends BaseMessageListener {
 		_singleDestinationMessageSender = singleDestinationMessageSender ;
 	}
 
+	@Override
 	protected void doReceive(Message message) throws Exception {
 		PathElement pathElement = (PathElement)message.getPayload();
 

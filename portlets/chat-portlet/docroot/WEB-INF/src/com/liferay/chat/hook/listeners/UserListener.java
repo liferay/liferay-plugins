@@ -29,6 +29,7 @@ import com.liferay.portal.model.User;
  */
 public class UserListener extends BaseModelListener<User> {
 
+	@Override
 	public void onAfterRemove(User user) {
 		try {
 			if (_log.isDebugEnabled()) {
@@ -53,6 +54,7 @@ public class UserListener extends BaseModelListener<User> {
 		}
 	}
 
+	@Override
 	public void onAfterUpdate(User user) {
 		JabberUtil.updatePassword(
 			user.getUserId(), user.getPasswordUnencrypted());

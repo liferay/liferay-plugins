@@ -131,6 +131,7 @@ public class BarWrapper implements Bar {
 		_bar.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new BarWrapper((Bar)_bar.clone());
 	}
@@ -139,6 +140,7 @@ public class BarWrapper implements Bar {
 		return _bar.compareTo(bar);
 	}
 
+	@Override
 	public int hashCode() {
 		return _bar.hashCode();
 	}
@@ -147,6 +149,7 @@ public class BarWrapper implements Bar {
 		return new BarWrapper(_bar.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _bar.toString();
 	}

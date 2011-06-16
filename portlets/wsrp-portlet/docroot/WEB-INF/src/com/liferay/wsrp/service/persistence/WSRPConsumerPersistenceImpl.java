@@ -142,6 +142,7 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(WSRPConsumerImpl.class.getName());
@@ -159,6 +160,7 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(WSRPConsumer wsrpConsumer) {
 		EntityCacheUtil.removeResult(WSRPConsumerModelImpl.ENTITY_CACHE_ENABLED,
 			WSRPConsumerImpl.class, wsrpConsumer.getPrimaryKey());
@@ -191,6 +193,7 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 	 * @throws com.liferay.portal.NoSuchModelException if a w s r p consumer with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public WSRPConsumer remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -244,11 +247,13 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 	 * @return the w s r p consumer that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public WSRPConsumer remove(WSRPConsumer wsrpConsumer)
 		throws SystemException {
 		return super.remove(wsrpConsumer);
 	}
 
+	@Override
 	protected WSRPConsumer removeImpl(WSRPConsumer wsrpConsumer)
 		throws SystemException {
 		wsrpConsumer = toUnwrappedModel(wsrpConsumer);
@@ -275,6 +280,7 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 		return wsrpConsumer;
 	}
 
+	@Override
 	public WSRPConsumer updateImpl(
 		com.liferay.wsrp.model.WSRPConsumer wsrpConsumer, boolean merge)
 		throws SystemException {
@@ -343,6 +349,7 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 	 * @throws com.liferay.portal.NoSuchModelException if a w s r p consumer with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public WSRPConsumer findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -379,6 +386,7 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 	 * @return the w s r p consumer, or <code>null</code> if a w s r p consumer with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public WSRPConsumer fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

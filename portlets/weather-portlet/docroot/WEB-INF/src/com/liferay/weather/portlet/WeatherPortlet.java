@@ -35,6 +35,7 @@ import javax.portlet.ValidatorException;
  */
 public class WeatherPortlet extends MVCPortlet {
 
+	@Override
 	public void processAction(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws IOException, PortletException {

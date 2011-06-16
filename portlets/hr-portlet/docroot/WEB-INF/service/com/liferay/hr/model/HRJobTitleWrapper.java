@@ -277,6 +277,7 @@ public class HRJobTitleWrapper implements HRJobTitle {
 		_hrJobTitle.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new HRJobTitleWrapper((HRJobTitle)_hrJobTitle.clone());
 	}
@@ -285,6 +286,7 @@ public class HRJobTitleWrapper implements HRJobTitle {
 		return _hrJobTitle.compareTo(hrJobTitle);
 	}
 
+	@Override
 	public int hashCode() {
 		return _hrJobTitle.hashCode();
 	}
@@ -293,6 +295,7 @@ public class HRJobTitleWrapper implements HRJobTitle {
 		return new HRJobTitleWrapper(_hrJobTitle.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _hrJobTitle.toString();
 	}

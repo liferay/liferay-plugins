@@ -295,6 +295,7 @@ public class HRAssetProductWrapper implements HRAssetProduct {
 		_hrAssetProduct.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new HRAssetProductWrapper((HRAssetProduct)_hrAssetProduct.clone());
 	}
@@ -303,6 +304,7 @@ public class HRAssetProductWrapper implements HRAssetProduct {
 		return _hrAssetProduct.compareTo(hrAssetProduct);
 	}
 
+	@Override
 	public int hashCode() {
 		return _hrAssetProduct.hashCode();
 	}
@@ -311,6 +313,7 @@ public class HRAssetProductWrapper implements HRAssetProduct {
 		return new HRAssetProductWrapper(_hrAssetProduct.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _hrAssetProduct.toString();
 	}

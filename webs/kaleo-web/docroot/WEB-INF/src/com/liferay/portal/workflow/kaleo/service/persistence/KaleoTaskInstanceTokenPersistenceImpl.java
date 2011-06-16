@@ -174,6 +174,7 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(KaleoTaskInstanceTokenImpl.class.getName());
@@ -191,6 +192,7 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(KaleoTaskInstanceToken kaleoTaskInstanceToken) {
 		EntityCacheUtil.removeResult(KaleoTaskInstanceTokenModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoTaskInstanceTokenImpl.class,
@@ -226,6 +228,7 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 	 * @throws com.liferay.portal.NoSuchModelException if a kaleo task instance token with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoTaskInstanceToken remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -279,12 +282,14 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 	 * @return the kaleo task instance token that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoTaskInstanceToken remove(
 		KaleoTaskInstanceToken kaleoTaskInstanceToken)
 		throws SystemException {
 		return super.remove(kaleoTaskInstanceToken);
 	}
 
+	@Override
 	protected KaleoTaskInstanceToken removeImpl(
 		KaleoTaskInstanceToken kaleoTaskInstanceToken)
 		throws SystemException {
@@ -322,6 +327,7 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 		return kaleoTaskInstanceToken;
 	}
 
+	@Override
 	public KaleoTaskInstanceToken updateImpl(
 		com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken kaleoTaskInstanceToken,
 		boolean merge) throws SystemException {
@@ -420,6 +426,7 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 	 * @throws com.liferay.portal.NoSuchModelException if a kaleo task instance token with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoTaskInstanceToken findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -458,6 +465,7 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 	 * @return the kaleo task instance token, or <code>null</code> if a kaleo task instance token with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoTaskInstanceToken fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

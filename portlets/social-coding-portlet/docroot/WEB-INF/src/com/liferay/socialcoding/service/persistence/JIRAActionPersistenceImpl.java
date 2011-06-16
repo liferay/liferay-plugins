@@ -151,6 +151,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(JIRAActionImpl.class.getName());
@@ -168,6 +169,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(JIRAAction jiraAction) {
 		EntityCacheUtil.removeResult(JIRAActionModelImpl.ENTITY_CACHE_ENABLED,
 			JIRAActionImpl.class, jiraAction.getPrimaryKey());
@@ -196,6 +198,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	 * @throws com.liferay.portal.NoSuchModelException if a j i r a action with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public JIRAAction remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -248,10 +251,12 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	 * @return the j i r a action that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public JIRAAction remove(JIRAAction jiraAction) throws SystemException {
 		return super.remove(jiraAction);
 	}
 
+	@Override
 	protected JIRAAction removeImpl(JIRAAction jiraAction)
 		throws SystemException {
 		jiraAction = toUnwrappedModel(jiraAction);
@@ -278,6 +283,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 		return jiraAction;
 	}
 
+	@Override
 	public JIRAAction updateImpl(
 		com.liferay.socialcoding.model.JIRAAction jiraAction, boolean merge)
 		throws SystemException {
@@ -337,6 +343,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	 * @throws com.liferay.portal.NoSuchModelException if a j i r a action with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public JIRAAction findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -373,6 +380,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	 * @return the j i r a action, or <code>null</code> if a j i r a action with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public JIRAAction fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

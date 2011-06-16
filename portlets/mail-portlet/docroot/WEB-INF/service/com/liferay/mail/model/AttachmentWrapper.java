@@ -277,6 +277,7 @@ public class AttachmentWrapper implements Attachment {
 		_attachment.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new AttachmentWrapper((Attachment)_attachment.clone());
 	}
@@ -285,6 +286,7 @@ public class AttachmentWrapper implements Attachment {
 		return _attachment.compareTo(attachment);
 	}
 
+	@Override
 	public int hashCode() {
 		return _attachment.hashCode();
 	}
@@ -293,6 +295,7 @@ public class AttachmentWrapper implements Attachment {
 		return new AttachmentWrapper(_attachment.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _attachment.toString();
 	}

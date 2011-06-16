@@ -143,6 +143,7 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(FolderImpl.class.getName());
@@ -160,6 +161,7 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(Folder folder) {
 		EntityCacheUtil.removeResult(FolderModelImpl.ENTITY_CACHE_ENABLED,
 			FolderImpl.class, folder.getPrimaryKey());
@@ -195,6 +197,7 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 	 * @throws com.liferay.portal.NoSuchModelException if a folder with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Folder remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -247,10 +250,12 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 	 * @return the folder that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Folder remove(Folder folder) throws SystemException {
 		return super.remove(folder);
 	}
 
+	@Override
 	protected Folder removeImpl(Folder folder) throws SystemException {
 		folder = toUnwrappedModel(folder);
 
@@ -285,6 +290,7 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 		return folder;
 	}
 
+	@Override
 	public Folder updateImpl(com.liferay.mail.model.Folder folder, boolean merge)
 		throws SystemException {
 		folder = toUnwrappedModel(folder);
@@ -373,6 +379,7 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 	 * @throws com.liferay.portal.NoSuchModelException if a folder with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Folder findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -409,6 +416,7 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 	 * @return the folder, or <code>null</code> if a folder with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Folder fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

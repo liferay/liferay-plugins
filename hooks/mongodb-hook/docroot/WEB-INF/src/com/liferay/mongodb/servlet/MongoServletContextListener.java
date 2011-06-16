@@ -37,12 +37,14 @@ public class MongoServletContextListener
 		registerPortalLifecycle();
 	}
 
+	@Override
 	protected void doPortalDestroy() throws Exception {
 		Mongo mongo = MongoDBUtil.getMongo();
 
 		mongo.close();
 	}
 
+	@Override
 	protected void doPortalInit() {
 	}
 

@@ -41,6 +41,7 @@ public class SampleUserAttributes implements CustomUserAttributes {
 		}
 	}
 
+	@Override
 	public Object clone() {
 		return new SampleUserAttributes();
 	}

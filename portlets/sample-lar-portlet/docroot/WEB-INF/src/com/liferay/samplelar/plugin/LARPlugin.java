@@ -37,6 +37,7 @@ import javax.portlet.PortletPreferences;
  */
 public class LARPlugin extends BasePortletDataHandler {
 
+	@Override
 	public PortletPreferences deleteData(
 			PortletDataContext context, String portletId,
 			PortletPreferences preferences)
@@ -45,6 +46,7 @@ public class LARPlugin extends BasePortletDataHandler {
 		return null;
 	}
 
+	@Override
 	public String exportData(
 			PortletDataContext context, String portletId,
 			PortletPreferences preferences)
@@ -144,14 +146,17 @@ public class LARPlugin extends BasePortletDataHandler {
 		}
 	}
 
+	@Override
 	public PortletDataHandlerControl[] getExportControls() {
 		return new PortletDataHandlerControl[] {_enableExport};
 	}
 
+	@Override
 	public PortletDataHandlerControl[] getImportControls() {
 		return new PortletDataHandlerControl[] {_enableImport};
 	}
 
+	@Override
 	public PortletPreferences importData(PortletDataContext context,
 			String portletId, PortletPreferences preferences, String data)
 			throws PortletDataException {
@@ -200,6 +205,7 @@ public class LARPlugin extends BasePortletDataHandler {
 		}
 	}
 
+	@Override
 	public boolean isPublishToLiveByDefault() {
 		return _PUBLISH_TO_LIVE_BY_DEFAULT;
 	}

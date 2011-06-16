@@ -216,6 +216,7 @@ public class HRTimeOffPolicyClp extends BaseModelImpl<HRTimeOffPolicy>
 		_carryOverHoursAllowed = carryOverHoursAllowed;
 	}
 
+	@Override
 	public HRTimeOffPolicy toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -227,6 +228,7 @@ public class HRTimeOffPolicyClp extends BaseModelImpl<HRTimeOffPolicy>
 		}
 	}
 
+	@Override
 	public Object clone() {
 		HRTimeOffPolicyClp clone = new HRTimeOffPolicyClp();
 
@@ -265,6 +267,7 @@ public class HRTimeOffPolicyClp extends BaseModelImpl<HRTimeOffPolicy>
 		}
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -289,10 +292,12 @@ public class HRTimeOffPolicyClp extends BaseModelImpl<HRTimeOffPolicy>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(35);
 

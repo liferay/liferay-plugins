@@ -221,6 +221,7 @@ public class JIRAChangeItemWrapper implements JIRAChangeItem {
 		_jiraChangeItem.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new JIRAChangeItemWrapper((JIRAChangeItem)_jiraChangeItem.clone());
 	}
@@ -230,6 +231,7 @@ public class JIRAChangeItemWrapper implements JIRAChangeItem {
 		return _jiraChangeItem.compareTo(jiraChangeItem);
 	}
 
+	@Override
 	public int hashCode() {
 		return _jiraChangeItem.hashCode();
 	}
@@ -238,6 +240,7 @@ public class JIRAChangeItemWrapper implements JIRAChangeItem {
 		return new JIRAChangeItemWrapper(_jiraChangeItem.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _jiraChangeItem.toString();
 	}

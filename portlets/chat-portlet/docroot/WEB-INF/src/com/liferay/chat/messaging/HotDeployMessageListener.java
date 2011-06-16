@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.messaging.Message;
  */
 public class HotDeployMessageListener extends BaseMessageListener {
 
+	@Override
 	protected void doReceive(Message message) throws Exception {
 		String command = message.getString("command");
 

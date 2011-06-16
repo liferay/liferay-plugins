@@ -138,6 +138,7 @@ public class HRProjectRoleClp extends BaseModelImpl<HRProjectRole>
 		_description = description;
 	}
 
+	@Override
 	public HRProjectRole toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -149,6 +150,7 @@ public class HRProjectRoleClp extends BaseModelImpl<HRProjectRole>
 		}
 	}
 
+	@Override
 	public Object clone() {
 		HRProjectRoleClp clone = new HRProjectRoleClp();
 
@@ -179,6 +181,7 @@ public class HRProjectRoleClp extends BaseModelImpl<HRProjectRole>
 		}
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -203,10 +206,12 @@ public class HRProjectRoleClp extends BaseModelImpl<HRProjectRole>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(19);
 

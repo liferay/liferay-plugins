@@ -340,6 +340,7 @@ public class KBTemplateWrapper implements KBTemplate {
 		_kbTemplate.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new KBTemplateWrapper((KBTemplate)_kbTemplate.clone());
 	}
@@ -348,6 +349,7 @@ public class KBTemplateWrapper implements KBTemplate {
 		return _kbTemplate.compareTo(kbTemplate);
 	}
 
+	@Override
 	public int hashCode() {
 		return _kbTemplate.hashCode();
 	}
@@ -356,6 +358,7 @@ public class KBTemplateWrapper implements KBTemplate {
 		return new KBTemplateWrapper(_kbTemplate.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _kbTemplate.toString();
 	}

@@ -172,6 +172,7 @@ public class MemberRequestClp extends BaseModelImpl<MemberRequest>
 		_status = status;
 	}
 
+	@Override
 	public MemberRequest toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -183,6 +184,7 @@ public class MemberRequestClp extends BaseModelImpl<MemberRequest>
 		}
 	}
 
+	@Override
 	public Object clone() {
 		MemberRequestClp clone = new MemberRequestClp();
 
@@ -217,6 +219,7 @@ public class MemberRequestClp extends BaseModelImpl<MemberRequest>
 		return 0;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -241,10 +244,12 @@ public class MemberRequestClp extends BaseModelImpl<MemberRequest>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(25);
 

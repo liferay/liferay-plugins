@@ -160,6 +160,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(WSRPConsumerPortletImpl.class.getName());
@@ -177,6 +178,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(WSRPConsumerPortlet wsrpConsumerPortlet) {
 		EntityCacheUtil.removeResult(WSRPConsumerPortletModelImpl.ENTITY_CACHE_ENABLED,
 			WSRPConsumerPortletImpl.class, wsrpConsumerPortlet.getPrimaryKey());
@@ -216,6 +218,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 	 * @throws com.liferay.portal.NoSuchModelException if a w s r p consumer portlet with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public WSRPConsumerPortlet remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -269,11 +272,13 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 	 * @return the w s r p consumer portlet that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public WSRPConsumerPortlet remove(WSRPConsumerPortlet wsrpConsumerPortlet)
 		throws SystemException {
 		return super.remove(wsrpConsumerPortlet);
 	}
 
+	@Override
 	protected WSRPConsumerPortlet removeImpl(
 		WSRPConsumerPortlet wsrpConsumerPortlet) throws SystemException {
 		wsrpConsumerPortlet = toUnwrappedModel(wsrpConsumerPortlet);
@@ -309,6 +314,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 		return wsrpConsumerPortlet;
 	}
 
+	@Override
 	public WSRPConsumerPortlet updateImpl(
 		com.liferay.wsrp.model.WSRPConsumerPortlet wsrpConsumerPortlet,
 		boolean merge) throws SystemException {
@@ -405,6 +411,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 	 * @throws com.liferay.portal.NoSuchModelException if a w s r p consumer portlet with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public WSRPConsumerPortlet findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -442,6 +449,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 	 * @return the w s r p consumer portlet, or <code>null</code> if a w s r p consumer portlet with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public WSRPConsumerPortlet fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

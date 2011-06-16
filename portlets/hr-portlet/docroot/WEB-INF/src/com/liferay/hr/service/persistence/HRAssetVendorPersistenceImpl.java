@@ -115,6 +115,7 @@ public class HRAssetVendorPersistenceImpl extends BasePersistenceImpl<HRAssetVen
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(HRAssetVendorImpl.class.getName());
@@ -132,6 +133,7 @@ public class HRAssetVendorPersistenceImpl extends BasePersistenceImpl<HRAssetVen
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(HRAssetVendor hrAssetVendor) {
 		EntityCacheUtil.removeResult(HRAssetVendorModelImpl.ENTITY_CACHE_ENABLED,
 			HRAssetVendorImpl.class, hrAssetVendor.getPrimaryKey());
@@ -160,6 +162,7 @@ public class HRAssetVendorPersistenceImpl extends BasePersistenceImpl<HRAssetVen
 	 * @throws com.liferay.portal.NoSuchModelException if a h r asset vendor with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRAssetVendor remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -213,11 +216,13 @@ public class HRAssetVendorPersistenceImpl extends BasePersistenceImpl<HRAssetVen
 	 * @return the h r asset vendor that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRAssetVendor remove(HRAssetVendor hrAssetVendor)
 		throws SystemException {
 		return super.remove(hrAssetVendor);
 	}
 
+	@Override
 	protected HRAssetVendor removeImpl(HRAssetVendor hrAssetVendor)
 		throws SystemException {
 		hrAssetVendor = toUnwrappedModel(hrAssetVendor);
@@ -244,6 +249,7 @@ public class HRAssetVendorPersistenceImpl extends BasePersistenceImpl<HRAssetVen
 		return hrAssetVendor;
 	}
 
+	@Override
 	public HRAssetVendor updateImpl(
 		com.liferay.hr.model.HRAssetVendor hrAssetVendor, boolean merge)
 		throws SystemException {
@@ -305,6 +311,7 @@ public class HRAssetVendorPersistenceImpl extends BasePersistenceImpl<HRAssetVen
 	 * @throws com.liferay.portal.NoSuchModelException if a h r asset vendor with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRAssetVendor findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -341,6 +348,7 @@ public class HRAssetVendorPersistenceImpl extends BasePersistenceImpl<HRAssetVen
 	 * @return the h r asset vendor, or <code>null</code> if a h r asset vendor with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRAssetVendor fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

@@ -28,6 +28,7 @@ public class SchemaDirectory extends BaseDirectory {
 		initAttributes();
 	}
 
+	@Override
 	protected void initAttributes() {
 		addAttribute("createtimestamp", "20090818022733Z");
 		addAttribute("modifytimestamp", "20090818022733Z");
@@ -36,6 +37,7 @@ public class SchemaDirectory extends BaseDirectory {
 		addAttribute("objectclass", "top");
 	}
 
+	@Override
 	protected List<Directory> initDirectories() {
 		return Collections.emptyList();
 	}

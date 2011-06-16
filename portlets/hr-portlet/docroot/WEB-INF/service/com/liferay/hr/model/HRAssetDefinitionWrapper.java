@@ -385,6 +385,7 @@ public class HRAssetDefinitionWrapper implements HRAssetDefinition {
 		_hrAssetDefinition.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new HRAssetDefinitionWrapper((HRAssetDefinition)_hrAssetDefinition.clone());
 	}
@@ -394,6 +395,7 @@ public class HRAssetDefinitionWrapper implements HRAssetDefinition {
 		return _hrAssetDefinition.compareTo(hrAssetDefinition);
 	}
 
+	@Override
 	public int hashCode() {
 		return _hrAssetDefinition.hashCode();
 	}
@@ -402,6 +404,7 @@ public class HRAssetDefinitionWrapper implements HRAssetDefinition {
 		return new HRAssetDefinitionWrapper(_hrAssetDefinition.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _hrAssetDefinition.toString();
 	}

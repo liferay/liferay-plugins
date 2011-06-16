@@ -296,6 +296,7 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 		_helpful = helpful;
 	}
 
+	@Override
 	public KBComment toEscapedModel() {
 		if (isEscapedModel()) {
 			return (KBComment)this;
@@ -306,6 +307,7 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 		}
 	}
 
+	@Override
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
 			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
@@ -315,10 +317,12 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 		return _expandoBridge;
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
 		getExpandoBridge().setAttributes(serviceContext);
 	}
 
+	@Override
 	public Object clone() {
 		KBCommentImpl kbCommentImpl = new KBCommentImpl();
 
@@ -355,6 +359,7 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 		return 0;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -379,10 +384,12 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public void resetOriginalValues() {
 		KBCommentModelImpl kbCommentModelImpl = this;
 
@@ -405,6 +412,7 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 		kbCommentModelImpl._setOriginalClassPK = false;
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(25);
 

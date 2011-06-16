@@ -35,6 +35,7 @@ public class RoleDirectory extends BaseDirectory {
 		initAttributes();
 	}
 
+	@Override
 	protected void initAttributes() {
 		addAttribute("cn", _role.getName());
 		addAttribute("description", _role.getDescription());
@@ -45,6 +46,7 @@ public class RoleDirectory extends BaseDirectory {
 		addAttribute("ou", _role.getName());
 	}
 
+	@Override
 	protected List<Directory> initDirectories() throws Exception {
 		UserDirectoryBuilder.buildUserDirectories(_role, this, _usersDirectory);
 

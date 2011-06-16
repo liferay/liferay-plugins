@@ -311,6 +311,7 @@ public class SitesPortlet extends MVCPortlet {
 		ServletResponseUtil.write(response, jsonObject.toString());
 	}
 
+	@Override
 	public void serveResource(
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws PortletException {

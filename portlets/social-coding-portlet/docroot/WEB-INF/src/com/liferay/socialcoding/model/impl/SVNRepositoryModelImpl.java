@@ -140,6 +140,7 @@ public class SVNRepositoryModelImpl extends BaseModelImpl<SVNRepository>
 		_revisionNumber = revisionNumber;
 	}
 
+	@Override
 	public SVNRepository toEscapedModel() {
 		if (isEscapedModel()) {
 			return (SVNRepository)this;
@@ -150,6 +151,7 @@ public class SVNRepositoryModelImpl extends BaseModelImpl<SVNRepository>
 		}
 	}
 
+	@Override
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
 			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(0,
@@ -159,10 +161,12 @@ public class SVNRepositoryModelImpl extends BaseModelImpl<SVNRepository>
 		return _expandoBridge;
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
 		getExpandoBridge().setAttributes(serviceContext);
 	}
 
+	@Override
 	public Object clone() {
 		SVNRepositoryImpl svnRepositoryImpl = new SVNRepositoryImpl();
 
@@ -187,6 +191,7 @@ public class SVNRepositoryModelImpl extends BaseModelImpl<SVNRepository>
 		return 0;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -211,16 +216,19 @@ public class SVNRepositoryModelImpl extends BaseModelImpl<SVNRepository>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public void resetOriginalValues() {
 		SVNRepositoryModelImpl svnRepositoryModelImpl = this;
 
 		svnRepositoryModelImpl._originalUrl = svnRepositoryModelImpl._url;
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(7);
 

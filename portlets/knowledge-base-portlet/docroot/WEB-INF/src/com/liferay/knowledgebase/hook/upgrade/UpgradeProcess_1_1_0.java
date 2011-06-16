@@ -32,6 +32,7 @@ import com.liferay.portal.service.ResourceActionLocalServiceUtil;
  */
 public class UpgradeProcess_1_1_0 extends UpgradeProcess {
 
+	@Override
 	public int getThreshold() {
 		return 110;
 	}
@@ -43,6 +44,7 @@ public class UpgradeProcess_1_1_0 extends UpgradeProcess {
 		MultiVMPoolUtil.clear();
 	}
 
+	@Override
 	protected void doUpgrade() throws Exception {
 		upgrade(UpgradeClassName.class);
 		upgrade(UpgradeExpandoTable.class);

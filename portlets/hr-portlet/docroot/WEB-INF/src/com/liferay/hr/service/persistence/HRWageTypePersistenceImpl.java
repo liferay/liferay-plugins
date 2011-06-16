@@ -131,6 +131,7 @@ public class HRWageTypePersistenceImpl extends BasePersistenceImpl<HRWageType>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(HRWageTypeImpl.class.getName());
@@ -148,6 +149,7 @@ public class HRWageTypePersistenceImpl extends BasePersistenceImpl<HRWageType>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(HRWageType hrWageType) {
 		EntityCacheUtil.removeResult(HRWageTypeModelImpl.ENTITY_CACHE_ENABLED,
 			HRWageTypeImpl.class, hrWageType.getPrimaryKey());
@@ -183,6 +185,7 @@ public class HRWageTypePersistenceImpl extends BasePersistenceImpl<HRWageType>
 	 * @throws com.liferay.portal.NoSuchModelException if a h r wage type with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRWageType remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -235,10 +238,12 @@ public class HRWageTypePersistenceImpl extends BasePersistenceImpl<HRWageType>
 	 * @return the h r wage type that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRWageType remove(HRWageType hrWageType) throws SystemException {
 		return super.remove(hrWageType);
 	}
 
+	@Override
 	protected HRWageType removeImpl(HRWageType hrWageType)
 		throws SystemException {
 		hrWageType = toUnwrappedModel(hrWageType);
@@ -274,6 +279,7 @@ public class HRWageTypePersistenceImpl extends BasePersistenceImpl<HRWageType>
 		return hrWageType;
 	}
 
+	@Override
 	public HRWageType updateImpl(com.liferay.hr.model.HRWageType hrWageType,
 		boolean merge) throws SystemException {
 		hrWageType = toUnwrappedModel(hrWageType);
@@ -362,6 +368,7 @@ public class HRWageTypePersistenceImpl extends BasePersistenceImpl<HRWageType>
 	 * @throws com.liferay.portal.NoSuchModelException if a h r wage type with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRWageType findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -398,6 +405,7 @@ public class HRWageTypePersistenceImpl extends BasePersistenceImpl<HRWageType>
 	 * @return the h r wage type, or <code>null</code> if a h r wage type with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRWageType fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

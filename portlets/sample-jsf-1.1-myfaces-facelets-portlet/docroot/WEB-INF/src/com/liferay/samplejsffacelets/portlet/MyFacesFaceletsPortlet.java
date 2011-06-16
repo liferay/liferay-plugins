@@ -29,6 +29,7 @@ import javax.portlet.UnavailableException;
 public class MyFacesFaceletsPortlet
 	extends org.apache.myfaces.portlet.MyFacesGenericPortlet {
 
+	@Override
 	public void init() throws PortletException, UnavailableException {
 		_editPage = getInitParameter("EditPage");
 		_helpPage = getInitParameter("HelpPage");
@@ -37,6 +38,7 @@ public class MyFacesFaceletsPortlet
 		super.init();
 	}
 
+	@Override
 	public void render(
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws IOException, PortletException {
@@ -62,6 +64,7 @@ public class MyFacesFaceletsPortlet
 		super.render(renderRequest, renderResponse);
 	}
 
+	@Override
 	protected void setDefaultView() throws UnavailableException {
 		defaultView = getPortletConfig().getInitParameter(DEFAULT_VIEW);
 
@@ -75,6 +78,7 @@ public class MyFacesFaceletsPortlet
 		}
 	}
 
+	@Override
 	protected void doEdit(
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws IOException, PortletException {
@@ -92,6 +96,7 @@ public class MyFacesFaceletsPortlet
 		facesRender(renderRequest, renderResponse);
 	}
 
+	@Override
 	protected void doHelp(
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws IOException, PortletException {

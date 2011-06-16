@@ -37,6 +37,7 @@ public class WorkflowTaskCompletionDateComparator
 		super(asc);
 	}
 
+	@Override
 	public String getOrderBy() {
 		if (isAscending()) {
 			return ORDER_BY_ASC;
@@ -46,6 +47,7 @@ public class WorkflowTaskCompletionDateComparator
 		}
 	}
 
+	@Override
 	public String[] getOrderByFields() {
 		return ORDER_BY_FIELDS;
 	}

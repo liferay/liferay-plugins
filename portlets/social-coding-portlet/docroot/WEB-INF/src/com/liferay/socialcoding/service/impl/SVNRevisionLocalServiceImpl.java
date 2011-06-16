@@ -116,6 +116,7 @@ public class SVNRevisionLocalServiceImpl
 		}
 	}
 
+	@Override
 	public SVNRevision getSVNRevision(long svnRevisionId)
 		throws PortalException, SystemException {
 

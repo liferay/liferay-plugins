@@ -138,6 +138,7 @@ public class HRExpenseTypeClp extends BaseModelImpl<HRExpenseType>
 		_description = description;
 	}
 
+	@Override
 	public HRExpenseType toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -149,6 +150,7 @@ public class HRExpenseTypeClp extends BaseModelImpl<HRExpenseType>
 		}
 	}
 
+	@Override
 	public Object clone() {
 		HRExpenseTypeClp clone = new HRExpenseTypeClp();
 
@@ -179,6 +181,7 @@ public class HRExpenseTypeClp extends BaseModelImpl<HRExpenseType>
 		}
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -203,10 +206,12 @@ public class HRExpenseTypeClp extends BaseModelImpl<HRExpenseType>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(19);
 

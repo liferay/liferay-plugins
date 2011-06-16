@@ -115,6 +115,7 @@ public class HRTimeOffTypePersistenceImpl extends BasePersistenceImpl<HRTimeOffT
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(HRTimeOffTypeImpl.class.getName());
@@ -132,6 +133,7 @@ public class HRTimeOffTypePersistenceImpl extends BasePersistenceImpl<HRTimeOffT
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(HRTimeOffType hrTimeOffType) {
 		EntityCacheUtil.removeResult(HRTimeOffTypeModelImpl.ENTITY_CACHE_ENABLED,
 			HRTimeOffTypeImpl.class, hrTimeOffType.getPrimaryKey());
@@ -160,6 +162,7 @@ public class HRTimeOffTypePersistenceImpl extends BasePersistenceImpl<HRTimeOffT
 	 * @throws com.liferay.portal.NoSuchModelException if a h r time off type with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRTimeOffType remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -213,11 +216,13 @@ public class HRTimeOffTypePersistenceImpl extends BasePersistenceImpl<HRTimeOffT
 	 * @return the h r time off type that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRTimeOffType remove(HRTimeOffType hrTimeOffType)
 		throws SystemException {
 		return super.remove(hrTimeOffType);
 	}
 
+	@Override
 	protected HRTimeOffType removeImpl(HRTimeOffType hrTimeOffType)
 		throws SystemException {
 		hrTimeOffType = toUnwrappedModel(hrTimeOffType);
@@ -244,6 +249,7 @@ public class HRTimeOffTypePersistenceImpl extends BasePersistenceImpl<HRTimeOffT
 		return hrTimeOffType;
 	}
 
+	@Override
 	public HRTimeOffType updateImpl(
 		com.liferay.hr.model.HRTimeOffType hrTimeOffType, boolean merge)
 		throws SystemException {
@@ -305,6 +311,7 @@ public class HRTimeOffTypePersistenceImpl extends BasePersistenceImpl<HRTimeOffT
 	 * @throws com.liferay.portal.NoSuchModelException if a h r time off type with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRTimeOffType findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -341,6 +348,7 @@ public class HRTimeOffTypePersistenceImpl extends BasePersistenceImpl<HRTimeOffT
 	 * @return the h r time off type, or <code>null</code> if a h r time off type with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRTimeOffType fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

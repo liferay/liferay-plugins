@@ -86,6 +86,7 @@ public class SVNRepositoryClp extends BaseModelImpl<SVNRepository>
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public SVNRepository toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -97,6 +98,7 @@ public class SVNRepositoryClp extends BaseModelImpl<SVNRepository>
 		}
 	}
 
+	@Override
 	public Object clone() {
 		SVNRepositoryClp clone = new SVNRepositoryClp();
 
@@ -119,6 +121,7 @@ public class SVNRepositoryClp extends BaseModelImpl<SVNRepository>
 		return 0;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -143,10 +146,12 @@ public class SVNRepositoryClp extends BaseModelImpl<SVNRepository>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(7);
 

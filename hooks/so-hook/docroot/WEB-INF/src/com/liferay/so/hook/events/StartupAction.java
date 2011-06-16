@@ -29,6 +29,7 @@ import com.liferay.so.util.InstanceUtil;
  */
 public class StartupAction extends SimpleAction {
 
+	@Override
 	public void run(String[] ids) throws ActionException {
 		try {
 			for (String id : ids) {

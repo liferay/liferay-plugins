@@ -96,6 +96,7 @@ public class MailPortlet extends MVCPortlet {
 				"/-/mail/send_message?responseData=" + responseData);
 	}
 
+	@Override
 	public void serveResource(
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws IOException, PortletException {

@@ -387,6 +387,7 @@ public class HRUserTimeOffWrapper implements HRUserTimeOff {
 		_hrUserTimeOff.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new HRUserTimeOffWrapper((HRUserTimeOff)_hrUserTimeOff.clone());
 	}
@@ -395,6 +396,7 @@ public class HRUserTimeOffWrapper implements HRUserTimeOff {
 		return _hrUserTimeOff.compareTo(hrUserTimeOff);
 	}
 
+	@Override
 	public int hashCode() {
 		return _hrUserTimeOff.hashCode();
 	}
@@ -403,6 +405,7 @@ public class HRUserTimeOffWrapper implements HRUserTimeOff {
 		return new HRUserTimeOffWrapper(_hrUserTimeOff.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _hrUserTimeOff.toString();
 	}

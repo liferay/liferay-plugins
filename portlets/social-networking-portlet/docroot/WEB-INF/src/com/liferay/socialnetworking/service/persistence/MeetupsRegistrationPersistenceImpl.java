@@ -157,6 +157,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(MeetupsRegistrationImpl.class.getName());
@@ -174,6 +175,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(MeetupsRegistration meetupsRegistration) {
 		EntityCacheUtil.removeResult(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
 			MeetupsRegistrationImpl.class, meetupsRegistration.getPrimaryKey());
@@ -208,6 +210,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	 * @throws com.liferay.portal.NoSuchModelException if a meetups registration with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public MeetupsRegistration remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -261,11 +264,13 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	 * @return the meetups registration that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public MeetupsRegistration remove(MeetupsRegistration meetupsRegistration)
 		throws SystemException {
 		return super.remove(meetupsRegistration);
 	}
 
+	@Override
 	protected MeetupsRegistration removeImpl(
 		MeetupsRegistration meetupsRegistration) throws SystemException {
 		meetupsRegistration = toUnwrappedModel(meetupsRegistration);
@@ -300,6 +305,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 		return meetupsRegistration;
 	}
 
+	@Override
 	public MeetupsRegistration updateImpl(
 		com.liferay.socialnetworking.model.MeetupsRegistration meetupsRegistration,
 		boolean merge) throws SystemException {
@@ -388,6 +394,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	 * @throws com.liferay.portal.NoSuchModelException if a meetups registration with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public MeetupsRegistration findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -425,6 +432,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	 * @return the meetups registration, or <code>null</code> if a meetups registration with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public MeetupsRegistration fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

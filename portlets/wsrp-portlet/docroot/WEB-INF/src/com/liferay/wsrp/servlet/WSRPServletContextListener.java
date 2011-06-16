@@ -39,10 +39,12 @@ public class WSRPServletContextListener
 		registerPortalLifecycle();
 	}
 
+	@Override
 	protected void doPortalDestroy() throws Exception {
 		WSRPConsumerPortletLocalServiceUtil.destroyWSRPConsumerPortlets();
 	}
 
+	@Override
 	protected void doPortalInit() {
 		PortalInitThread portalInitThread = new PortalInitThread();
 

@@ -295,6 +295,7 @@ public class CheckoutWrapper implements Checkout {
 		_checkout.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new CheckoutWrapper((Checkout)_checkout.clone());
 	}
@@ -303,6 +304,7 @@ public class CheckoutWrapper implements Checkout {
 		return _checkout.compareTo(checkout);
 	}
 
+	@Override
 	public int hashCode() {
 		return _checkout.hashCode();
 	}
@@ -311,6 +313,7 @@ public class CheckoutWrapper implements Checkout {
 		return new CheckoutWrapper(_checkout.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _checkout.toString();
 	}

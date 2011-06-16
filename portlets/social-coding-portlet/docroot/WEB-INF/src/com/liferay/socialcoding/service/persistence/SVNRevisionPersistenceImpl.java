@@ -152,6 +152,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(SVNRevisionImpl.class.getName());
@@ -169,6 +170,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(SVNRevision svnRevision) {
 		EntityCacheUtil.removeResult(SVNRevisionModelImpl.ENTITY_CACHE_ENABLED,
 			SVNRevisionImpl.class, svnRevision.getPrimaryKey());
@@ -197,6 +199,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 	 * @throws com.liferay.portal.NoSuchModelException if a s v n revision with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public SVNRevision remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -249,11 +252,13 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 	 * @return the s v n revision that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public SVNRevision remove(SVNRevision svnRevision)
 		throws SystemException {
 		return super.remove(svnRevision);
 	}
 
+	@Override
 	protected SVNRevision removeImpl(SVNRevision svnRevision)
 		throws SystemException {
 		svnRevision = toUnwrappedModel(svnRevision);
@@ -280,6 +285,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 		return svnRevision;
 	}
 
+	@Override
 	public SVNRevision updateImpl(
 		com.liferay.socialcoding.model.SVNRevision svnRevision, boolean merge)
 		throws SystemException {
@@ -337,6 +343,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 	 * @throws com.liferay.portal.NoSuchModelException if a s v n revision with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public SVNRevision findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -373,6 +380,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 	 * @return the s v n revision, or <code>null</code> if a s v n revision with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public SVNRevision fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

@@ -349,6 +349,7 @@ public class MessageModelImpl extends BaseModelImpl<Message>
 		return _originalRemoteMessageId;
 	}
 
+	@Override
 	public Message toEscapedModel() {
 		if (isEscapedModel()) {
 			return (Message)this;
@@ -359,6 +360,7 @@ public class MessageModelImpl extends BaseModelImpl<Message>
 		}
 	}
 
+	@Override
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
 			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
@@ -368,10 +370,12 @@ public class MessageModelImpl extends BaseModelImpl<Message>
 		return _expandoBridge;
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
 		getExpandoBridge().setAttributes(serviceContext);
 	}
 
+	@Override
 	public Object clone() {
 		MessageImpl messageImpl = new MessageImpl();
 
@@ -412,6 +416,7 @@ public class MessageModelImpl extends BaseModelImpl<Message>
 		return 0;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -436,10 +441,12 @@ public class MessageModelImpl extends BaseModelImpl<Message>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public void resetOriginalValues() {
 		MessageModelImpl messageModelImpl = this;
 
@@ -452,6 +459,7 @@ public class MessageModelImpl extends BaseModelImpl<Message>
 		messageModelImpl._setOriginalRemoteMessageId = false;
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(39);
 

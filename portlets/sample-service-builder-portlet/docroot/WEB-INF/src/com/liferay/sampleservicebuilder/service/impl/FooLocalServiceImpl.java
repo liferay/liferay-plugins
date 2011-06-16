@@ -69,6 +69,7 @@ public class FooLocalServiceImpl extends FooLocalServiceBaseImpl {
 			serviceContext.getAssetTagNames());
 	}
 
+	@Override
 	public void deleteFoo(Foo foo) throws SystemException {
 		try {
 			assetEntryLocalService.deleteEntry(
@@ -80,6 +81,7 @@ public class FooLocalServiceImpl extends FooLocalServiceBaseImpl {
 		fooPersistence.remove(foo);
 	}
 
+	@Override
 	public void deleteFoo(long fooId) throws SystemException {
 		Foo foo = fooPersistence.fetchByPrimaryKey(fooId);
 

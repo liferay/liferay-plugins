@@ -146,6 +146,7 @@ public class FeedClp extends BaseModelImpl<Feed> implements Feed {
 		_lastStatusId = lastStatusId;
 	}
 
+	@Override
 	public Feed toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -156,6 +157,7 @@ public class FeedClp extends BaseModelImpl<Feed> implements Feed {
 		}
 	}
 
+	@Override
 	public Object clone() {
 		FeedClp clone = new FeedClp();
 
@@ -186,6 +188,7 @@ public class FeedClp extends BaseModelImpl<Feed> implements Feed {
 		}
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -210,10 +213,12 @@ public class FeedClp extends BaseModelImpl<Feed> implements Feed {
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(19);
 

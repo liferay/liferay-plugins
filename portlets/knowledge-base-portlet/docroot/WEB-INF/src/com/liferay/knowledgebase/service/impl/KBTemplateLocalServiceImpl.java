@@ -142,6 +142,7 @@ public class KBTemplateLocalServiceImpl extends KBTemplateLocalServiceBaseImpl {
 		}
 	}
 
+	@Override
 	public void deleteKBTemplate(KBTemplate kbTemplate)
 		throws PortalException, SystemException {
 
@@ -173,6 +174,7 @@ public class KBTemplateLocalServiceImpl extends KBTemplateLocalServiceBaseImpl {
 			KBTemplate.class.getName(), kbTemplate.getKbTemplateId());
 	}
 
+	@Override
 	public void deleteKBTemplate(long kbTemplateId)
 		throws PortalException, SystemException {
 

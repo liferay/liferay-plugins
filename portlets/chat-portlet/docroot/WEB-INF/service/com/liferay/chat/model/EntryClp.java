@@ -111,6 +111,7 @@ public class EntryClp extends BaseModelImpl<Entry> implements Entry {
 		_content = content;
 	}
 
+	@Override
 	public Entry toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -121,6 +122,7 @@ public class EntryClp extends BaseModelImpl<Entry> implements Entry {
 		}
 	}
 
+	@Override
 	public Object clone() {
 		EntryClp clone = new EntryClp();
 
@@ -155,6 +157,7 @@ public class EntryClp extends BaseModelImpl<Entry> implements Entry {
 		return 0;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -179,10 +182,12 @@ public class EntryClp extends BaseModelImpl<Entry> implements Entry {
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(11);
 

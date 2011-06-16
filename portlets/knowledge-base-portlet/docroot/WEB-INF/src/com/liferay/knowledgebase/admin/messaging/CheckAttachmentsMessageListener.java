@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.messaging.Message;
  */
 public class CheckAttachmentsMessageListener extends BaseMessageListener {
 
+	@Override
 	protected void doReceive(Message message) throws Exception {
 		KBArticleLocalServiceUtil.checkAttachments();
 	}

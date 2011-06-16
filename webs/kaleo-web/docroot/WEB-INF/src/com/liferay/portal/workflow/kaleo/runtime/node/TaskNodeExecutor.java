@@ -112,6 +112,7 @@ public class TaskNodeExecutor extends BaseNodeExecutor {
 			kaleoTaskAssignments, dueDate, workflowContext, serviceContext);
 	}
 
+	@Override
 	protected void doEnter(
 			KaleoNode currentKaleoNode, ExecutionContext executionContext)
 		throws PortalException, SystemException {
@@ -147,11 +148,13 @@ public class TaskNodeExecutor extends BaseNodeExecutor {
 			workflowContext, serviceContext);
 	}
 
+	@Override
 	protected void doExecute(
 		KaleoNode currentKaleoNode, ExecutionContext executionContext,
 		List<PathElement> remainingPathElements) {
 	}
 
+	@Override
 	protected void doExecuteTimer(
 			KaleoNode currentKaleoNode, KaleoTimer kaleoTimer,
 			ExecutionContext executionContext)
@@ -162,6 +165,7 @@ public class TaskNodeExecutor extends BaseNodeExecutor {
 			executionContext);
 	}
 
+	@Override
 	protected void doExit(
 			KaleoNode currentKaleoNode, ExecutionContext executionContext,
 			List<PathElement> remainingPathElements)

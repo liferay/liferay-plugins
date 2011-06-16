@@ -653,6 +653,7 @@ public class UpgradeCompany extends UpgradeProcess {
 		}
 	}
 
+	@Override
 	protected void doUpgrade() throws Exception {
 		long companyId = PortalUtil.getDefaultCompanyId();
 

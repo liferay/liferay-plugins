@@ -296,6 +296,7 @@ public class HRProjectBillingRateWrapper implements HRProjectBillingRate {
 		_hrProjectBillingRate.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new HRProjectBillingRateWrapper((HRProjectBillingRate)_hrProjectBillingRate.clone());
 	}
@@ -305,6 +306,7 @@ public class HRProjectBillingRateWrapper implements HRProjectBillingRate {
 		return _hrProjectBillingRate.compareTo(hrProjectBillingRate);
 	}
 
+	@Override
 	public int hashCode() {
 		return _hrProjectBillingRate.hashCode();
 	}
@@ -313,6 +315,7 @@ public class HRProjectBillingRateWrapper implements HRProjectBillingRate {
 		return new HRProjectBillingRateWrapper(_hrProjectBillingRate.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _hrProjectBillingRate.toString();
 	}

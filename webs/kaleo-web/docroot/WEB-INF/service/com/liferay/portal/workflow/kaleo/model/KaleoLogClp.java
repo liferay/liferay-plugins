@@ -301,6 +301,7 @@ public class KaleoLogClp extends BaseModelImpl<KaleoLog> implements KaleoLog {
 		_workflowContext = workflowContext;
 	}
 
+	@Override
 	public KaleoLog toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -311,6 +312,7 @@ public class KaleoLogClp extends BaseModelImpl<KaleoLog> implements KaleoLog {
 		}
 	}
 
+	@Override
 	public Object clone() {
 		KaleoLogClp clone = new KaleoLogClp();
 
@@ -367,6 +369,7 @@ public class KaleoLogClp extends BaseModelImpl<KaleoLog> implements KaleoLog {
 		return 0;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -391,10 +394,12 @@ public class KaleoLogClp extends BaseModelImpl<KaleoLog> implements KaleoLog {
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(59);
 

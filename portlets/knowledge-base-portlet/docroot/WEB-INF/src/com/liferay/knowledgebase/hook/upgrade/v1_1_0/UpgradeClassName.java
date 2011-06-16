@@ -26,6 +26,7 @@ import java.sql.ResultSet;
  */
 public class UpgradeClassName extends UpgradeProcess {
 
+	@Override
 	protected void doUpgrade() throws Exception {
 		updateClassName(
 			"com.liferay.knowledgebase.model.Article",

@@ -131,6 +131,7 @@ public class TypeModelImpl extends BaseModelImpl<Type> implements TypeModel {
 		_name = name;
 	}
 
+	@Override
 	public Type toEscapedModel() {
 		if (isEscapedModel()) {
 			return (Type)this;
@@ -141,6 +142,7 @@ public class TypeModelImpl extends BaseModelImpl<Type> implements TypeModel {
 		}
 	}
 
+	@Override
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
 			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(0,
@@ -150,10 +152,12 @@ public class TypeModelImpl extends BaseModelImpl<Type> implements TypeModel {
 		return _expandoBridge;
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
 		getExpandoBridge().setAttributes(serviceContext);
 	}
 
+	@Override
 	public Object clone() {
 		TypeImpl typeImpl = new TypeImpl();
 
@@ -178,6 +182,7 @@ public class TypeModelImpl extends BaseModelImpl<Type> implements TypeModel {
 		return 0;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -202,13 +207,16 @@ public class TypeModelImpl extends BaseModelImpl<Type> implements TypeModel {
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public void resetOriginalValues() {
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(7);
 

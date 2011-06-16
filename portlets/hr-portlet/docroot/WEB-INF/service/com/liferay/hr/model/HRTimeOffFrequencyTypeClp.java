@@ -146,6 +146,7 @@ public class HRTimeOffFrequencyTypeClp extends BaseModelImpl<HRTimeOffFrequencyT
 		_description = description;
 	}
 
+	@Override
 	public HRTimeOffFrequencyType toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -157,6 +158,7 @@ public class HRTimeOffFrequencyTypeClp extends BaseModelImpl<HRTimeOffFrequencyT
 		}
 	}
 
+	@Override
 	public Object clone() {
 		HRTimeOffFrequencyTypeClp clone = new HRTimeOffFrequencyTypeClp();
 
@@ -188,6 +190,7 @@ public class HRTimeOffFrequencyTypeClp extends BaseModelImpl<HRTimeOffFrequencyT
 		}
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -212,10 +215,12 @@ public class HRTimeOffFrequencyTypeClp extends BaseModelImpl<HRTimeOffFrequencyT
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(21);
 

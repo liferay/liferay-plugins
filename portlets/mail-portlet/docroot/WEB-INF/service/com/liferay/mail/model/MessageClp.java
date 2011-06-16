@@ -226,6 +226,7 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public Message toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -236,6 +237,7 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 		}
 	}
 
+	@Override
 	public Object clone() {
 		MessageClp clone = new MessageClp();
 
@@ -274,6 +276,7 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 		return 0;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -298,10 +301,12 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(39);
 

@@ -46,6 +46,7 @@ public class TimerMessageListener extends BaseMessageListener {
 		_workflowEngine = workflowEngine;
 	}
 
+	@Override
 	protected void doReceive(Message message) throws Exception {
 		long kaleoTimerInstanceTokenId = message.getLong(
 			"kaleoTimerInstanceTokenId");

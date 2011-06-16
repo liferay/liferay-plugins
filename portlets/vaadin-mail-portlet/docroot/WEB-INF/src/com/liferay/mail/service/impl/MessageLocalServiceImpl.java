@@ -88,6 +88,7 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 		return message;
 	}
 
+	@Override
 	public void deleteMessage(long messageId)
 		throws PortalException, SystemException {
 
@@ -96,6 +97,7 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 		deleteMessage(message);
 	}
 
+	@Override
 	public void deleteMessage(Message message)
 		throws PortalException, SystemException {
 

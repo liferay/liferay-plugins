@@ -33,6 +33,7 @@ import javax.portlet.RenderResponse;
  */
 public class ConfigurationActionImpl extends BaseConfigurationAction {
 
+	@Override
 	public void processAction(
 			PortletConfig portletConfig, ActionRequest actionRequest,
 			ActionResponse actionResponse)
@@ -52,6 +53,7 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 		}
 	}
 
+	@Override
 	public String render(
 			PortletConfig portletConfig, RenderRequest renderRequest,
 			RenderResponse renderResponse)
@@ -64,6 +66,7 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 		return "/adhoc_gadget/configuration.jsp";
 	}
 
+	@Override
 	protected Gadget getGadget(
 			PortletConfig portletConfig, PortletRequest portletRequest)
 		throws Exception {

@@ -145,6 +145,7 @@ public class CheckoutClp extends BaseModelImpl<Checkout> implements Checkout {
 		_actualCheckInDate = actualCheckInDate;
 	}
 
+	@Override
 	public Checkout toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -155,6 +156,7 @@ public class CheckoutClp extends BaseModelImpl<Checkout> implements Checkout {
 		}
 	}
 
+	@Override
 	public Object clone() {
 		CheckoutClp clone = new CheckoutClp();
 
@@ -186,6 +188,7 @@ public class CheckoutClp extends BaseModelImpl<Checkout> implements Checkout {
 		}
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -210,10 +213,12 @@ public class CheckoutClp extends BaseModelImpl<Checkout> implements Checkout {
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(21);
 

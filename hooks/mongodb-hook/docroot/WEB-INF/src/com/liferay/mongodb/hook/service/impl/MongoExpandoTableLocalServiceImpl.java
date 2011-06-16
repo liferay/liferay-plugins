@@ -38,6 +38,7 @@ public class MongoExpandoTableLocalServiceImpl
 		super(expandoTableLocalService);
 	}
 
+	@Override
 	public ExpandoTable updateTable(long tableId, String name)
 		throws PortalException, SystemException {
 

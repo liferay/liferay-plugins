@@ -167,6 +167,7 @@ public class JIRAChangeGroupWrapper implements JIRAChangeGroup {
 		_jiraChangeGroup.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new JIRAChangeGroupWrapper((JIRAChangeGroup)_jiraChangeGroup.clone());
 	}
@@ -176,6 +177,7 @@ public class JIRAChangeGroupWrapper implements JIRAChangeGroup {
 		return _jiraChangeGroup.compareTo(jiraChangeGroup);
 	}
 
+	@Override
 	public int hashCode() {
 		return _jiraChangeGroup.hashCode();
 	}
@@ -184,6 +186,7 @@ public class JIRAChangeGroupWrapper implements JIRAChangeGroup {
 		return new JIRAChangeGroupWrapper(_jiraChangeGroup.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _jiraChangeGroup.toString();
 	}

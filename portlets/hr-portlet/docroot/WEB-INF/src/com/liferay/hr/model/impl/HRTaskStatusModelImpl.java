@@ -238,6 +238,7 @@ public class HRTaskStatusModelImpl extends BaseModelImpl<HRTaskStatus>
 		_description = description;
 	}
 
+	@Override
 	public HRTaskStatus toEscapedModel() {
 		if (isEscapedModel()) {
 			return (HRTaskStatus)this;
@@ -248,6 +249,7 @@ public class HRTaskStatusModelImpl extends BaseModelImpl<HRTaskStatus>
 		}
 	}
 
+	@Override
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
 			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
@@ -257,10 +259,12 @@ public class HRTaskStatusModelImpl extends BaseModelImpl<HRTaskStatus>
 		return _expandoBridge;
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
 		getExpandoBridge().setAttributes(serviceContext);
 	}
 
+	@Override
 	public Object clone() {
 		HRTaskStatusImpl hrTaskStatusImpl = new HRTaskStatusImpl();
 
@@ -294,6 +298,7 @@ public class HRTaskStatusModelImpl extends BaseModelImpl<HRTaskStatus>
 		}
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -318,10 +323,12 @@ public class HRTaskStatusModelImpl extends BaseModelImpl<HRTaskStatus>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public void resetOriginalValues() {
 		HRTaskStatusModelImpl hrTaskStatusModelImpl = this;
 
@@ -332,6 +339,7 @@ public class HRTaskStatusModelImpl extends BaseModelImpl<HRTaskStatus>
 		hrTaskStatusModelImpl._originalCode = hrTaskStatusModelImpl._code;
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(21);
 

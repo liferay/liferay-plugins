@@ -113,6 +113,7 @@ public class HRUserPersistenceImpl extends BasePersistenceImpl<HRUser>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(HRUserImpl.class.getName());
@@ -130,6 +131,7 @@ public class HRUserPersistenceImpl extends BasePersistenceImpl<HRUser>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(HRUser hrUser) {
 		EntityCacheUtil.removeResult(HRUserModelImpl.ENTITY_CACHE_ENABLED,
 			HRUserImpl.class, hrUser.getPrimaryKey());
@@ -158,6 +160,7 @@ public class HRUserPersistenceImpl extends BasePersistenceImpl<HRUser>
 	 * @throws com.liferay.portal.NoSuchModelException if a h r user with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRUser remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -210,10 +213,12 @@ public class HRUserPersistenceImpl extends BasePersistenceImpl<HRUser>
 	 * @return the h r user that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRUser remove(HRUser hrUser) throws SystemException {
 		return super.remove(hrUser);
 	}
 
+	@Override
 	protected HRUser removeImpl(HRUser hrUser) throws SystemException {
 		hrUser = toUnwrappedModel(hrUser);
 
@@ -239,6 +244,7 @@ public class HRUserPersistenceImpl extends BasePersistenceImpl<HRUser>
 		return hrUser;
 	}
 
+	@Override
 	public HRUser updateImpl(com.liferay.hr.model.HRUser hrUser, boolean merge)
 		throws SystemException {
 		hrUser = toUnwrappedModel(hrUser);
@@ -307,6 +313,7 @@ public class HRUserPersistenceImpl extends BasePersistenceImpl<HRUser>
 	 * @throws com.liferay.portal.NoSuchModelException if a h r user with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRUser findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -343,6 +350,7 @@ public class HRUserPersistenceImpl extends BasePersistenceImpl<HRUser>
 	 * @return the h r user, or <code>null</code> if a h r user with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRUser fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

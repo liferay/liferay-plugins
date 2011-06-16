@@ -257,6 +257,7 @@ public class OAuthConsumerWrapper implements OAuthConsumer {
 		_oAuthConsumer.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new OAuthConsumerWrapper((OAuthConsumer)_oAuthConsumer.clone());
 	}
@@ -266,6 +267,7 @@ public class OAuthConsumerWrapper implements OAuthConsumer {
 		return _oAuthConsumer.compareTo(oAuthConsumer);
 	}
 
+	@Override
 	public int hashCode() {
 		return _oAuthConsumer.hashCode();
 	}
@@ -274,6 +276,7 @@ public class OAuthConsumerWrapper implements OAuthConsumer {
 		return new OAuthConsumerWrapper(_oAuthConsumer.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _oAuthConsumer.toString();
 	}

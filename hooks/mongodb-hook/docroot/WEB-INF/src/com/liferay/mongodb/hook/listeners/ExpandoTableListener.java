@@ -28,6 +28,7 @@ import com.mongodb.DBCollection;
  */
 public class ExpandoTableListener extends BaseModelListener<ExpandoTable> {
 
+	@Override
 	public void onAfterCreate(ExpandoTable expandoTable) {
 		DB db = MongoDBUtil.getDB(expandoTable.getCompanyId());
 
@@ -47,6 +48,7 @@ public class ExpandoTableListener extends BaseModelListener<ExpandoTable> {
 		}
 	}
 
+	@Override
 	public void onAfterRemove(ExpandoTable expandoTable) {
 		DB db = MongoDBUtil.getDB(expandoTable.getCompanyId());
 

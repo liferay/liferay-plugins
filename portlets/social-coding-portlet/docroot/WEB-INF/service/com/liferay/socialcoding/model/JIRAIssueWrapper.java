@@ -293,6 +293,7 @@ public class JIRAIssueWrapper implements JIRAIssue {
 		_jiraIssue.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new JIRAIssueWrapper((JIRAIssue)_jiraIssue.clone());
 	}
@@ -301,6 +302,7 @@ public class JIRAIssueWrapper implements JIRAIssue {
 		return _jiraIssue.compareTo(jiraIssue);
 	}
 
+	@Override
 	public int hashCode() {
 		return _jiraIssue.hashCode();
 	}
@@ -309,6 +311,7 @@ public class JIRAIssueWrapper implements JIRAIssue {
 		return new JIRAIssueWrapper(_jiraIssue.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _jiraIssue.toString();
 	}

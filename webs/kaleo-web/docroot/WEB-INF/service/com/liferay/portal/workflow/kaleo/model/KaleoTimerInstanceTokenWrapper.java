@@ -433,6 +433,7 @@ public class KaleoTimerInstanceTokenWrapper implements KaleoTimerInstanceToken {
 		_kaleoTimerInstanceToken.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new KaleoTimerInstanceTokenWrapper((KaleoTimerInstanceToken)_kaleoTimerInstanceToken.clone());
 	}
@@ -442,6 +443,7 @@ public class KaleoTimerInstanceTokenWrapper implements KaleoTimerInstanceToken {
 		return _kaleoTimerInstanceToken.compareTo(kaleoTimerInstanceToken);
 	}
 
+	@Override
 	public int hashCode() {
 		return _kaleoTimerInstanceToken.hashCode();
 	}
@@ -450,6 +452,7 @@ public class KaleoTimerInstanceTokenWrapper implements KaleoTimerInstanceToken {
 		return new KaleoTimerInstanceTokenWrapper(_kaleoTimerInstanceToken.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _kaleoTimerInstanceToken.toString();
 	}

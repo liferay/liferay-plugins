@@ -295,6 +295,7 @@ public class HRTerminationTypeWrapper implements HRTerminationType {
 		_hrTerminationType.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new HRTerminationTypeWrapper((HRTerminationType)_hrTerminationType.clone());
 	}
@@ -304,6 +305,7 @@ public class HRTerminationTypeWrapper implements HRTerminationType {
 		return _hrTerminationType.compareTo(hrTerminationType);
 	}
 
+	@Override
 	public int hashCode() {
 		return _hrTerminationType.hashCode();
 	}
@@ -312,6 +314,7 @@ public class HRTerminationTypeWrapper implements HRTerminationType {
 		return new HRTerminationTypeWrapper(_hrTerminationType.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _hrTerminationType.toString();
 	}

@@ -161,6 +161,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(StatusImpl.class.getName());
@@ -178,6 +179,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(Status status) {
 		EntityCacheUtil.removeResult(StatusModelImpl.ENTITY_CACHE_ENABLED,
 			StatusImpl.class, status.getPrimaryKey());
@@ -209,6 +211,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	 * @throws com.liferay.portal.NoSuchModelException if a status with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Status remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -261,10 +264,12 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	 * @return the status that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Status remove(Status status) throws SystemException {
 		return super.remove(status);
 	}
 
+	@Override
 	protected Status removeImpl(Status status) throws SystemException {
 		status = toUnwrappedModel(status);
 
@@ -295,6 +300,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		return status;
 	}
 
+	@Override
 	public Status updateImpl(com.liferay.chat.model.Status status, boolean merge)
 		throws SystemException {
 		status = toUnwrappedModel(status);
@@ -369,6 +375,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	 * @throws com.liferay.portal.NoSuchModelException if a status with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Status findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -405,6 +412,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	 * @return the status, or <code>null</code> if a status with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Status fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

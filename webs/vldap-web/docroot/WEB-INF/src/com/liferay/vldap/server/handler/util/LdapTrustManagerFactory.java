@@ -31,13 +31,16 @@ class LdapTrustManagerFactory extends TrustManagerFactorySpi {
 	public LdapTrustManagerFactory() {
 	}
 
+	@Override
 	protected TrustManager[] engineGetTrustManagers() {
 		return TRUST_MANAGERS;
 	}
 
+	@Override
 	protected void engineInit(KeyStore keyStore) {
 	}
 
+	@Override
 	protected void engineInit(
 		ManagerFactoryParameters managerFactoryParameters) {
 	}

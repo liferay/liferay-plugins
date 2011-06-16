@@ -106,12 +106,14 @@ public class CalendarBookingLocalServiceImpl
 		return calendarBooking;
 	}
 
+	@Override
 	public void deleteCalendarBooking(CalendarBooking calendarBooking)
 		throws SystemException {
 
 		calendarBookingPersistence.remove(calendarBooking);
 	}
 
+	@Override
 	public void deleteCalendarBooking(long calendarBookingId)
 		throws PortalException, SystemException {
 
@@ -121,6 +123,7 @@ public class CalendarBookingLocalServiceImpl
 		deleteCalendarBooking(calendarBooking);
 	}
 
+	@Override
 	public CalendarBooking getCalendarBooking(long calendarBookingId)
 		throws PortalException, SystemException {
 

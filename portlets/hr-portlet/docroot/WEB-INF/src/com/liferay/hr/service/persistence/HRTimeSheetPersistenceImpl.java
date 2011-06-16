@@ -113,6 +113,7 @@ public class HRTimeSheetPersistenceImpl extends BasePersistenceImpl<HRTimeSheet>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(HRTimeSheetImpl.class.getName());
@@ -130,6 +131,7 @@ public class HRTimeSheetPersistenceImpl extends BasePersistenceImpl<HRTimeSheet>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(HRTimeSheet hrTimeSheet) {
 		EntityCacheUtil.removeResult(HRTimeSheetModelImpl.ENTITY_CACHE_ENABLED,
 			HRTimeSheetImpl.class, hrTimeSheet.getPrimaryKey());
@@ -158,6 +160,7 @@ public class HRTimeSheetPersistenceImpl extends BasePersistenceImpl<HRTimeSheet>
 	 * @throws com.liferay.portal.NoSuchModelException if a h r time sheet with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRTimeSheet remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -210,11 +213,13 @@ public class HRTimeSheetPersistenceImpl extends BasePersistenceImpl<HRTimeSheet>
 	 * @return the h r time sheet that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRTimeSheet remove(HRTimeSheet hrTimeSheet)
 		throws SystemException {
 		return super.remove(hrTimeSheet);
 	}
 
+	@Override
 	protected HRTimeSheet removeImpl(HRTimeSheet hrTimeSheet)
 		throws SystemException {
 		hrTimeSheet = toUnwrappedModel(hrTimeSheet);
@@ -241,6 +246,7 @@ public class HRTimeSheetPersistenceImpl extends BasePersistenceImpl<HRTimeSheet>
 		return hrTimeSheet;
 	}
 
+	@Override
 	public HRTimeSheet updateImpl(
 		com.liferay.hr.model.HRTimeSheet hrTimeSheet, boolean merge)
 		throws SystemException {
@@ -307,6 +313,7 @@ public class HRTimeSheetPersistenceImpl extends BasePersistenceImpl<HRTimeSheet>
 	 * @throws com.liferay.portal.NoSuchModelException if a h r time sheet with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRTimeSheet findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -343,6 +350,7 @@ public class HRTimeSheetPersistenceImpl extends BasePersistenceImpl<HRTimeSheet>
 	 * @return the h r time sheet, or <code>null</code> if a h r time sheet with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRTimeSheet fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

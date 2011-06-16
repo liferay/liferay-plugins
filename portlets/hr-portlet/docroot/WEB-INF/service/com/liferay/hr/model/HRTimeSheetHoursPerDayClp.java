@@ -138,6 +138,7 @@ public class HRTimeSheetHoursPerDayClp extends BaseModelImpl<HRTimeSheetHoursPer
 		_hoursPerDay = hoursPerDay;
 	}
 
+	@Override
 	public HRTimeSheetHoursPerDay toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -149,6 +150,7 @@ public class HRTimeSheetHoursPerDayClp extends BaseModelImpl<HRTimeSheetHoursPer
 		}
 	}
 
+	@Override
 	public Object clone() {
 		HRTimeSheetHoursPerDayClp clone = new HRTimeSheetHoursPerDayClp();
 
@@ -179,6 +181,7 @@ public class HRTimeSheetHoursPerDayClp extends BaseModelImpl<HRTimeSheetHoursPer
 		}
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -203,10 +206,12 @@ public class HRTimeSheetHoursPerDayClp extends BaseModelImpl<HRTimeSheetHoursPer
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(19);
 

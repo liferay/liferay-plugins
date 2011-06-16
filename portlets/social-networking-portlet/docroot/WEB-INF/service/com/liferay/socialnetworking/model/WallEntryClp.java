@@ -130,6 +130,7 @@ public class WallEntryClp extends BaseModelImpl<WallEntry> implements WallEntry 
 		_comments = comments;
 	}
 
+	@Override
 	public WallEntry toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -140,6 +141,7 @@ public class WallEntryClp extends BaseModelImpl<WallEntry> implements WallEntry 
 		}
 	}
 
+	@Override
 	public Object clone() {
 		WallEntryClp clone = new WallEntryClp();
 
@@ -169,6 +171,7 @@ public class WallEntryClp extends BaseModelImpl<WallEntry> implements WallEntry 
 		return 0;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -193,10 +196,12 @@ public class WallEntryClp extends BaseModelImpl<WallEntry> implements WallEntry 
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(17);
 

@@ -403,6 +403,7 @@ public class KaleoNotificationWrapper implements KaleoNotification {
 		_kaleoNotification.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new KaleoNotificationWrapper((KaleoNotification)_kaleoNotification.clone());
 	}
@@ -412,6 +413,7 @@ public class KaleoNotificationWrapper implements KaleoNotification {
 		return _kaleoNotification.compareTo(kaleoNotification);
 	}
 
+	@Override
 	public int hashCode() {
 		return _kaleoNotification.hashCode();
 	}
@@ -420,6 +422,7 @@ public class KaleoNotificationWrapper implements KaleoNotification {
 		return new KaleoNotificationWrapper(_kaleoNotification.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _kaleoNotification.toString();
 	}

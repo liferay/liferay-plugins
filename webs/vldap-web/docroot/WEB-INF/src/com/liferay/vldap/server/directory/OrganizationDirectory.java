@@ -40,6 +40,7 @@ public class OrganizationDirectory extends BaseDirectory {
 		return _organization;
 	}
 
+	@Override
 	protected void initAttributes() {
 		addAttribute("cn", _organization.getName());
 		addAttribute("objectClass", "groupOfNames");
@@ -48,6 +49,7 @@ public class OrganizationDirectory extends BaseDirectory {
 		addAttribute("ou", _organization.getName());
 	}
 
+	@Override
 	protected List<Directory> initDirectories() throws Exception {
 		UserDirectoryBuilder.buildUserDirectories(
 			_organization, this, _usersDirectory);

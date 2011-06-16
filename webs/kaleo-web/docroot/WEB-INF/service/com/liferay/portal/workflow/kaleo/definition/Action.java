@@ -33,6 +33,7 @@ public class Action {
 		_priority = priority;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -75,6 +76,7 @@ public class Action {
 		return _scriptLanguage;
 	}
 
+	@Override
 	public int hashCode() {
 		return _name.hashCode();
 	}

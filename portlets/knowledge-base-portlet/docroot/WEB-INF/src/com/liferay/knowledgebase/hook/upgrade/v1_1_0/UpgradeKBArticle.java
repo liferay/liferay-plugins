@@ -34,6 +34,7 @@ import java.sql.Types;
  */
 public class UpgradeKBArticle extends UpgradeProcess {
 
+	@Override
 	protected void doUpgrade() throws Exception {
 		if (hasTable("KB_Article")) {
 			renameTable();

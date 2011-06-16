@@ -29,6 +29,7 @@ public class Condition extends Node {
 		_scriptLanguage = ScriptLanguage.parse(scriptLanguage);
 	}
 
+	@Override
 	public String getDescription() {
 		return _description;
 	}

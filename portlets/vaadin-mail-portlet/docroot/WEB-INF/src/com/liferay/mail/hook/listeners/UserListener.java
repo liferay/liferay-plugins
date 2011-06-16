@@ -31,6 +31,7 @@ import java.util.List;
  */
 public class UserListener extends BaseModelListener<User> {
 
+	@Override
 	public void onAfterRemove(User user) {
 		try {
 			if (_log.isDebugEnabled()) {

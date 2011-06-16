@@ -238,6 +238,7 @@ public class HRTerminationTypeModelImpl extends BaseModelImpl<HRTerminationType>
 		_description = description;
 	}
 
+	@Override
 	public HRTerminationType toEscapedModel() {
 		if (isEscapedModel()) {
 			return (HRTerminationType)this;
@@ -248,6 +249,7 @@ public class HRTerminationTypeModelImpl extends BaseModelImpl<HRTerminationType>
 		}
 	}
 
+	@Override
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
 			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
@@ -257,10 +259,12 @@ public class HRTerminationTypeModelImpl extends BaseModelImpl<HRTerminationType>
 		return _expandoBridge;
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
 		getExpandoBridge().setAttributes(serviceContext);
 	}
 
+	@Override
 	public Object clone() {
 		HRTerminationTypeImpl hrTerminationTypeImpl = new HRTerminationTypeImpl();
 
@@ -294,6 +298,7 @@ public class HRTerminationTypeModelImpl extends BaseModelImpl<HRTerminationType>
 		}
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -318,10 +323,12 @@ public class HRTerminationTypeModelImpl extends BaseModelImpl<HRTerminationType>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public void resetOriginalValues() {
 		HRTerminationTypeModelImpl hrTerminationTypeModelImpl = this;
 
@@ -332,6 +339,7 @@ public class HRTerminationTypeModelImpl extends BaseModelImpl<HRTerminationType>
 		hrTerminationTypeModelImpl._originalCode = hrTerminationTypeModelImpl._code;
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(21);
 

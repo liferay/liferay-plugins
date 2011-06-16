@@ -650,6 +650,7 @@ public class KBArticleWrapper implements KBArticle {
 		_kbArticle.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new KBArticleWrapper((KBArticle)_kbArticle.clone());
 	}
@@ -658,6 +659,7 @@ public class KBArticleWrapper implements KBArticle {
 		return _kbArticle.compareTo(kbArticle);
 	}
 
+	@Override
 	public int hashCode() {
 		return _kbArticle.hashCode();
 	}
@@ -666,6 +668,7 @@ public class KBArticleWrapper implements KBArticle {
 		return new KBArticleWrapper(_kbArticle.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _kbArticle.toString();
 	}

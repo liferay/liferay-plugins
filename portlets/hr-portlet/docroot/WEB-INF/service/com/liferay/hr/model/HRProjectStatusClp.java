@@ -146,6 +146,7 @@ public class HRProjectStatusClp extends BaseModelImpl<HRProjectStatus>
 		_description = description;
 	}
 
+	@Override
 	public HRProjectStatus toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -157,6 +158,7 @@ public class HRProjectStatusClp extends BaseModelImpl<HRProjectStatus>
 		}
 	}
 
+	@Override
 	public Object clone() {
 		HRProjectStatusClp clone = new HRProjectStatusClp();
 
@@ -188,6 +190,7 @@ public class HRProjectStatusClp extends BaseModelImpl<HRProjectStatus>
 		}
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -212,10 +215,12 @@ public class HRProjectStatusClp extends BaseModelImpl<HRProjectStatus>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(21);
 

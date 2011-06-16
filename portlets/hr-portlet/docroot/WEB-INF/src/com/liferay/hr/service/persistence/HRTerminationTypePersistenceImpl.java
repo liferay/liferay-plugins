@@ -133,6 +133,7 @@ public class HRTerminationTypePersistenceImpl extends BasePersistenceImpl<HRTerm
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(HRTerminationTypeImpl.class.getName());
@@ -150,6 +151,7 @@ public class HRTerminationTypePersistenceImpl extends BasePersistenceImpl<HRTerm
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(HRTerminationType hrTerminationType) {
 		EntityCacheUtil.removeResult(HRTerminationTypeModelImpl.ENTITY_CACHE_ENABLED,
 			HRTerminationTypeImpl.class, hrTerminationType.getPrimaryKey());
@@ -185,6 +187,7 @@ public class HRTerminationTypePersistenceImpl extends BasePersistenceImpl<HRTerm
 	 * @throws com.liferay.portal.NoSuchModelException if a h r termination type with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRTerminationType remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -238,11 +241,13 @@ public class HRTerminationTypePersistenceImpl extends BasePersistenceImpl<HRTerm
 	 * @return the h r termination type that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRTerminationType remove(HRTerminationType hrTerminationType)
 		throws SystemException {
 		return super.remove(hrTerminationType);
 	}
 
+	@Override
 	protected HRTerminationType removeImpl(HRTerminationType hrTerminationType)
 		throws SystemException {
 		hrTerminationType = toUnwrappedModel(hrTerminationType);
@@ -278,6 +283,7 @@ public class HRTerminationTypePersistenceImpl extends BasePersistenceImpl<HRTerm
 		return hrTerminationType;
 	}
 
+	@Override
 	public HRTerminationType updateImpl(
 		com.liferay.hr.model.HRTerminationType hrTerminationType, boolean merge)
 		throws SystemException {
@@ -370,6 +376,7 @@ public class HRTerminationTypePersistenceImpl extends BasePersistenceImpl<HRTerm
 	 * @throws com.liferay.portal.NoSuchModelException if a h r termination type with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRTerminationType findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -407,6 +414,7 @@ public class HRTerminationTypePersistenceImpl extends BasePersistenceImpl<HRTerm
 	 * @return the h r termination type, or <code>null</code> if a h r termination type with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRTerminationType fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

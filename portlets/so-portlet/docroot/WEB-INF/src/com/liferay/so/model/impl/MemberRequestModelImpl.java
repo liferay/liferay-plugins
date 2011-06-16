@@ -278,6 +278,7 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
 		return _originalStatus;
 	}
 
+	@Override
 	public MemberRequest toEscapedModel() {
 		if (isEscapedModel()) {
 			return (MemberRequest)this;
@@ -288,6 +289,7 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
 		}
 	}
 
+	@Override
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
 			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
@@ -297,10 +299,12 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
 		return _expandoBridge;
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
 		getExpandoBridge().setAttributes(serviceContext);
 	}
 
+	@Override
 	public Object clone() {
 		MemberRequestImpl memberRequestImpl = new MemberRequestImpl();
 
@@ -337,6 +341,7 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
 		return 0;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -361,10 +366,12 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public void resetOriginalValues() {
 		MemberRequestModelImpl memberRequestModelImpl = this;
 
@@ -383,6 +390,7 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
 		memberRequestModelImpl._setOriginalStatus = false;
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(25);
 

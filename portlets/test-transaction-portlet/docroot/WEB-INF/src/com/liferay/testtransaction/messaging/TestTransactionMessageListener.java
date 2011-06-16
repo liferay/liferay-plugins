@@ -23,6 +23,7 @@ import com.liferay.testtransaction.service.BarLocalServiceUtil;
  */
 public class TestTransactionMessageListener extends BaseMessageListener {
 
+	@Override
 	protected void doReceive(Message message) throws Exception {
 		boolean rollback = message.getBoolean("rollback");
 		String text = message.getString("text");

@@ -46,6 +46,7 @@ public abstract class BaseGadgetPortlet extends MVCPortlet {
 
 	public static final String PORTLET_NAME_PREFIX = "OPENSOCIAL_";
 
+	@Override
 	public void render(
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws IOException, PortletException {
@@ -126,6 +127,7 @@ public abstract class BaseGadgetPortlet extends MVCPortlet {
 	protected abstract Gadget getGadget(RenderRequest renderRequest)
 		throws Exception;
 
+	@Override
 	protected String getTitle(RenderRequest renderRequest) {
 		Gadget gadget = null;
 

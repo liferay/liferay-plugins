@@ -386,6 +386,7 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment {
 		_kaleoTaskAssignment.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new KaleoTaskAssignmentWrapper((KaleoTaskAssignment)_kaleoTaskAssignment.clone());
 	}
@@ -395,6 +396,7 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment {
 		return _kaleoTaskAssignment.compareTo(kaleoTaskAssignment);
 	}
 
+	@Override
 	public int hashCode() {
 		return _kaleoTaskAssignment.hashCode();
 	}
@@ -403,6 +405,7 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment {
 		return new KaleoTaskAssignmentWrapper(_kaleoTaskAssignment.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _kaleoTaskAssignment.toString();
 	}

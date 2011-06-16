@@ -162,6 +162,7 @@ public class KBStructureLocalServiceImpl
 		}
 	}
 
+	@Override
 	public void deleteKBStructure(KBStructure kbStructure)
 		throws PortalException, SystemException {
 
@@ -186,6 +187,7 @@ public class KBStructureLocalServiceImpl
 			KBStructure.class.getName(), kbStructure.getKbStructureId());
 	}
 
+	@Override
 	public void deleteKBStructure(long kbStructureId)
 		throws PortalException, SystemException {
 

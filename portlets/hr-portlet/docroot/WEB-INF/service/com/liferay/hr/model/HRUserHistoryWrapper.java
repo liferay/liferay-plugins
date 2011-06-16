@@ -439,6 +439,7 @@ public class HRUserHistoryWrapper implements HRUserHistory {
 		_hrUserHistory.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new HRUserHistoryWrapper((HRUserHistory)_hrUserHistory.clone());
 	}
@@ -447,6 +448,7 @@ public class HRUserHistoryWrapper implements HRUserHistory {
 		return _hrUserHistory.compareTo(hrUserHistory);
 	}
 
+	@Override
 	public int hashCode() {
 		return _hrUserHistory.hashCode();
 	}
@@ -455,6 +457,7 @@ public class HRUserHistoryWrapper implements HRUserHistory {
 		return new HRUserHistoryWrapper(_hrUserHistory.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _hrUserHistory.toString();
 	}

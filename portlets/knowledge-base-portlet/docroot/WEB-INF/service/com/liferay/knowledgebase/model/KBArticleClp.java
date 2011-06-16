@@ -363,6 +363,7 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 		}
 	}
 
+	@Override
 	public KBArticle toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -373,6 +374,7 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 		}
 	}
 
+	@Override
 	public Object clone() {
 		KBArticleClp clone = new KBArticleClp();
 
@@ -420,6 +422,7 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 		return 0;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -444,10 +447,12 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(51);
 

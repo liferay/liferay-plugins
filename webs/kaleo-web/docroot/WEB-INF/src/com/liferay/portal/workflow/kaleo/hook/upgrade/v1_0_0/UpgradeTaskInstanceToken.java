@@ -59,6 +59,7 @@ public class UpgradeTaskInstanceToken extends UpgradeProcess {
 		runSQL(sql);
 	}
 
+	@Override
 	protected void doUpgrade() throws Exception {
 		Connection con = null;
 		PreparedStatement ps = null;

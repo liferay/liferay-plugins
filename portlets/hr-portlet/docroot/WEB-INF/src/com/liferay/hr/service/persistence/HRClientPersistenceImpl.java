@@ -113,6 +113,7 @@ public class HRClientPersistenceImpl extends BasePersistenceImpl<HRClient>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(HRClientImpl.class.getName());
@@ -130,6 +131,7 @@ public class HRClientPersistenceImpl extends BasePersistenceImpl<HRClient>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(HRClient hrClient) {
 		EntityCacheUtil.removeResult(HRClientModelImpl.ENTITY_CACHE_ENABLED,
 			HRClientImpl.class, hrClient.getPrimaryKey());
@@ -158,6 +160,7 @@ public class HRClientPersistenceImpl extends BasePersistenceImpl<HRClient>
 	 * @throws com.liferay.portal.NoSuchModelException if a h r client with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRClient remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -210,10 +213,12 @@ public class HRClientPersistenceImpl extends BasePersistenceImpl<HRClient>
 	 * @return the h r client that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRClient remove(HRClient hrClient) throws SystemException {
 		return super.remove(hrClient);
 	}
 
+	@Override
 	protected HRClient removeImpl(HRClient hrClient) throws SystemException {
 		hrClient = toUnwrappedModel(hrClient);
 
@@ -239,6 +244,7 @@ public class HRClientPersistenceImpl extends BasePersistenceImpl<HRClient>
 		return hrClient;
 	}
 
+	@Override
 	public HRClient updateImpl(com.liferay.hr.model.HRClient hrClient,
 		boolean merge) throws SystemException {
 		hrClient = toUnwrappedModel(hrClient);
@@ -298,6 +304,7 @@ public class HRClientPersistenceImpl extends BasePersistenceImpl<HRClient>
 	 * @throws com.liferay.portal.NoSuchModelException if a h r client with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRClient findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -334,6 +341,7 @@ public class HRClientPersistenceImpl extends BasePersistenceImpl<HRClient>
 	 * @return the h r client, or <code>null</code> if a h r client with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRClient fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

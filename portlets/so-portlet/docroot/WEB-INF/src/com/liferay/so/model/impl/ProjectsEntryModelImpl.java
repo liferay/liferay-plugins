@@ -232,6 +232,7 @@ public class ProjectsEntryModelImpl extends BaseModelImpl<ProjectsEntry>
 		_data = data;
 	}
 
+	@Override
 	public ProjectsEntry toEscapedModel() {
 		if (isEscapedModel()) {
 			return (ProjectsEntry)this;
@@ -242,6 +243,7 @@ public class ProjectsEntryModelImpl extends BaseModelImpl<ProjectsEntry>
 		}
 	}
 
+	@Override
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
 			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
@@ -251,10 +253,12 @@ public class ProjectsEntryModelImpl extends BaseModelImpl<ProjectsEntry>
 		return _expandoBridge;
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
 		getExpandoBridge().setAttributes(serviceContext);
 	}
 
+	@Override
 	public Object clone() {
 		ProjectsEntryImpl projectsEntryImpl = new ProjectsEntryImpl();
 
@@ -287,6 +291,7 @@ public class ProjectsEntryModelImpl extends BaseModelImpl<ProjectsEntry>
 		return 0;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -311,13 +316,16 @@ public class ProjectsEntryModelImpl extends BaseModelImpl<ProjectsEntry>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public void resetOriginalValues() {
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(23);
 

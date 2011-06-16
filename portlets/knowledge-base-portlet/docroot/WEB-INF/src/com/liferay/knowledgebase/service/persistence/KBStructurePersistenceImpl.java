@@ -156,6 +156,7 @@ public class KBStructurePersistenceImpl extends BasePersistenceImpl<KBStructure>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(KBStructureImpl.class.getName());
@@ -173,6 +174,7 @@ public class KBStructurePersistenceImpl extends BasePersistenceImpl<KBStructure>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(KBStructure kbStructure) {
 		EntityCacheUtil.removeResult(KBStructureModelImpl.ENTITY_CACHE_ENABLED,
 			KBStructureImpl.class, kbStructure.getPrimaryKey());
@@ -210,6 +212,7 @@ public class KBStructurePersistenceImpl extends BasePersistenceImpl<KBStructure>
 	 * @throws com.liferay.portal.NoSuchModelException if a k b structure with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KBStructure remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -262,11 +265,13 @@ public class KBStructurePersistenceImpl extends BasePersistenceImpl<KBStructure>
 	 * @return the k b structure that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KBStructure remove(KBStructure kbStructure)
 		throws SystemException {
 		return super.remove(kbStructure);
 	}
 
+	@Override
 	protected KBStructure removeImpl(KBStructure kbStructure)
 		throws SystemException {
 		kbStructure = toUnwrappedModel(kbStructure);
@@ -301,6 +306,7 @@ public class KBStructurePersistenceImpl extends BasePersistenceImpl<KBStructure>
 		return kbStructure;
 	}
 
+	@Override
 	public KBStructure updateImpl(
 		com.liferay.knowledgebase.model.KBStructure kbStructure, boolean merge)
 		throws SystemException {
@@ -394,6 +400,7 @@ public class KBStructurePersistenceImpl extends BasePersistenceImpl<KBStructure>
 	 * @throws com.liferay.portal.NoSuchModelException if a k b structure with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KBStructure findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -430,6 +437,7 @@ public class KBStructurePersistenceImpl extends BasePersistenceImpl<KBStructure>
 	 * @return the k b structure, or <code>null</code> if a k b structure with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KBStructure fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

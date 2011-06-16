@@ -129,6 +129,7 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(SVNRepositoryImpl.class.getName());
@@ -146,6 +147,7 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(SVNRepository svnRepository) {
 		EntityCacheUtil.removeResult(SVNRepositoryModelImpl.ENTITY_CACHE_ENABLED,
 			SVNRepositoryImpl.class, svnRepository.getPrimaryKey());
@@ -177,6 +179,7 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 	 * @throws com.liferay.portal.NoSuchModelException if a s v n repository with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public SVNRepository remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -230,11 +233,13 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 	 * @return the s v n repository that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public SVNRepository remove(SVNRepository svnRepository)
 		throws SystemException {
 		return super.remove(svnRepository);
 	}
 
+	@Override
 	protected SVNRepository removeImpl(SVNRepository svnRepository)
 		throws SystemException {
 		svnRepository = toUnwrappedModel(svnRepository);
@@ -266,6 +271,7 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 		return svnRepository;
 	}
 
+	@Override
 	public SVNRepository updateImpl(
 		com.liferay.socialcoding.model.SVNRepository svnRepository,
 		boolean merge) throws SystemException {
@@ -339,6 +345,7 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 	 * @throws com.liferay.portal.NoSuchModelException if a s v n repository with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public SVNRepository findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -375,6 +382,7 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 	 * @return the s v n repository, or <code>null</code> if a s v n repository with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public SVNRepository fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

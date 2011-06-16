@@ -194,6 +194,7 @@ public class KaleoActionClp extends BaseModelImpl<KaleoAction>
 		_priority = priority;
 	}
 
+	@Override
 	public KaleoAction toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -205,6 +206,7 @@ public class KaleoActionClp extends BaseModelImpl<KaleoAction>
 		}
 	}
 
+	@Override
 	public Object clone() {
 		KaleoActionClp clone = new KaleoActionClp();
 
@@ -248,6 +250,7 @@ public class KaleoActionClp extends BaseModelImpl<KaleoAction>
 		return 0;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -272,10 +275,12 @@ public class KaleoActionClp extends BaseModelImpl<KaleoAction>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(33);
 

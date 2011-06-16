@@ -206,6 +206,7 @@ public class HRTimeOffTypeModelImpl extends BaseModelImpl<HRTimeOffType>
 		_description = description;
 	}
 
+	@Override
 	public HRTimeOffType toEscapedModel() {
 		if (isEscapedModel()) {
 			return (HRTimeOffType)this;
@@ -216,6 +217,7 @@ public class HRTimeOffTypeModelImpl extends BaseModelImpl<HRTimeOffType>
 		}
 	}
 
+	@Override
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
 			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
@@ -225,10 +227,12 @@ public class HRTimeOffTypeModelImpl extends BaseModelImpl<HRTimeOffType>
 		return _expandoBridge;
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
 		getExpandoBridge().setAttributes(serviceContext);
 	}
 
+	@Override
 	public Object clone() {
 		HRTimeOffTypeImpl hrTimeOffTypeImpl = new HRTimeOffTypeImpl();
 
@@ -261,6 +265,7 @@ public class HRTimeOffTypeModelImpl extends BaseModelImpl<HRTimeOffType>
 		}
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -285,13 +290,16 @@ public class HRTimeOffTypeModelImpl extends BaseModelImpl<HRTimeOffType>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public void resetOriginalValues() {
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(19);
 

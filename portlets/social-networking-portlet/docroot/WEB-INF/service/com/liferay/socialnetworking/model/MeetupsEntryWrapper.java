@@ -367,6 +367,7 @@ public class MeetupsEntryWrapper implements MeetupsEntry {
 		_meetupsEntry.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new MeetupsEntryWrapper((MeetupsEntry)_meetupsEntry.clone());
 	}
@@ -376,6 +377,7 @@ public class MeetupsEntryWrapper implements MeetupsEntry {
 		return _meetupsEntry.compareTo(meetupsEntry);
 	}
 
+	@Override
 	public int hashCode() {
 		return _meetupsEntry.hashCode();
 	}
@@ -384,6 +386,7 @@ public class MeetupsEntryWrapper implements MeetupsEntry {
 		return new MeetupsEntryWrapper(_meetupsEntry.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _meetupsEntry.toString();
 	}

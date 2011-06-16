@@ -133,6 +133,7 @@ public class HREmploymentTypePersistenceImpl extends BasePersistenceImpl<HREmplo
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(HREmploymentTypeImpl.class.getName());
@@ -150,6 +151,7 @@ public class HREmploymentTypePersistenceImpl extends BasePersistenceImpl<HREmplo
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(HREmploymentType hrEmploymentType) {
 		EntityCacheUtil.removeResult(HREmploymentTypeModelImpl.ENTITY_CACHE_ENABLED,
 			HREmploymentTypeImpl.class, hrEmploymentType.getPrimaryKey());
@@ -185,6 +187,7 @@ public class HREmploymentTypePersistenceImpl extends BasePersistenceImpl<HREmplo
 	 * @throws com.liferay.portal.NoSuchModelException if a h r employment type with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HREmploymentType remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -238,11 +241,13 @@ public class HREmploymentTypePersistenceImpl extends BasePersistenceImpl<HREmplo
 	 * @return the h r employment type that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HREmploymentType remove(HREmploymentType hrEmploymentType)
 		throws SystemException {
 		return super.remove(hrEmploymentType);
 	}
 
+	@Override
 	protected HREmploymentType removeImpl(HREmploymentType hrEmploymentType)
 		throws SystemException {
 		hrEmploymentType = toUnwrappedModel(hrEmploymentType);
@@ -278,6 +283,7 @@ public class HREmploymentTypePersistenceImpl extends BasePersistenceImpl<HREmplo
 		return hrEmploymentType;
 	}
 
+	@Override
 	public HREmploymentType updateImpl(
 		com.liferay.hr.model.HREmploymentType hrEmploymentType, boolean merge)
 		throws SystemException {
@@ -369,6 +375,7 @@ public class HREmploymentTypePersistenceImpl extends BasePersistenceImpl<HREmplo
 	 * @throws com.liferay.portal.NoSuchModelException if a h r employment type with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HREmploymentType findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -406,6 +413,7 @@ public class HREmploymentTypePersistenceImpl extends BasePersistenceImpl<HREmplo
 	 * @return the h r employment type, or <code>null</code> if a h r employment type with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HREmploymentType fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

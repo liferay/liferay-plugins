@@ -63,10 +63,12 @@ public class OpenSocialServletContextListener
 		}
 	}
 
+	@Override
 	protected void doPortalDestroy() throws Exception {
 		GadgetLocalServiceUtil.destroyGadgets();
 	}
 
+	@Override
 	protected void doPortalInit() throws Exception {
 		verifyGadgets();
 

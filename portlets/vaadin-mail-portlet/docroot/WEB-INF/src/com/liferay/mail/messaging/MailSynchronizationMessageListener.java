@@ -30,6 +30,7 @@ import com.liferay.portal.kernel.util.Validator;
  */
 public class MailSynchronizationMessageListener extends BaseMessageListener {
 
+	@Override
 	protected void doReceive(Message message) throws Exception {
 		String command = message.getString("command");
 

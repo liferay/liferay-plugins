@@ -254,6 +254,7 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry>
 		_thumbnailId = thumbnailId;
 	}
 
+	@Override
 	public MeetupsEntry toEscapedModel() {
 		if (isEscapedModel()) {
 			return (MeetupsEntry)this;
@@ -264,6 +265,7 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry>
 		}
 	}
 
+	@Override
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
 			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
@@ -273,10 +275,12 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry>
 		return _expandoBridge;
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
 		getExpandoBridge().setAttributes(serviceContext);
 	}
 
+	@Override
 	public Object clone() {
 		MeetupsEntryImpl meetupsEntryImpl = new MeetupsEntryImpl();
 
@@ -314,6 +318,7 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry>
 		return 0;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -338,13 +343,16 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public void resetOriginalValues() {
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(29);
 

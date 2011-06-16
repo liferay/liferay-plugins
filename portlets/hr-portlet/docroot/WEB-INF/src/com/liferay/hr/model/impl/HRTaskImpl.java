@@ -18,6 +18,8 @@ import com.liferay.hr.model.HRTask;
 
 /**
  * * @author Wesley Gong
+ *
+ * @author Brian Wing Shun Chan
  */
 public class HRTaskImpl extends HRTaskModelImpl implements HRTask {
 

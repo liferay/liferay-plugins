@@ -30,6 +30,7 @@ import com.liferay.util.bridges.mvc.MVCPortlet;
  */
 public class CalendarPortlet extends MVCPortlet {
 
+	@Override
 	protected boolean isSessionErrorException(Throwable cause) {
 		if (cause instanceof CalendarEventDurationException ||
 			cause instanceof CalendarEventEndDateException ||

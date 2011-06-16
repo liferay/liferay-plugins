@@ -121,6 +121,7 @@ public class JIRAActionClp extends BaseModelImpl<JIRAAction>
 		_jiraGroupName = jiraGroupName;
 	}
 
+	@Override
 	public JIRAAction toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -132,6 +133,7 @@ public class JIRAActionClp extends BaseModelImpl<JIRAAction>
 		}
 	}
 
+	@Override
 	public Object clone() {
 		JIRAActionClp clone = new JIRAActionClp();
 
@@ -162,6 +164,7 @@ public class JIRAActionClp extends BaseModelImpl<JIRAAction>
 		return 0;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -186,10 +189,12 @@ public class JIRAActionClp extends BaseModelImpl<JIRAAction>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(17);
 

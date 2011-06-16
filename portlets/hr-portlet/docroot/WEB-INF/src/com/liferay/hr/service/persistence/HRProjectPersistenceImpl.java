@@ -113,6 +113,7 @@ public class HRProjectPersistenceImpl extends BasePersistenceImpl<HRProject>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(HRProjectImpl.class.getName());
@@ -130,6 +131,7 @@ public class HRProjectPersistenceImpl extends BasePersistenceImpl<HRProject>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(HRProject hrProject) {
 		EntityCacheUtil.removeResult(HRProjectModelImpl.ENTITY_CACHE_ENABLED,
 			HRProjectImpl.class, hrProject.getPrimaryKey());
@@ -158,6 +160,7 @@ public class HRProjectPersistenceImpl extends BasePersistenceImpl<HRProject>
 	 * @throws com.liferay.portal.NoSuchModelException if a h r project with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRProject remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -210,10 +213,12 @@ public class HRProjectPersistenceImpl extends BasePersistenceImpl<HRProject>
 	 * @return the h r project that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRProject remove(HRProject hrProject) throws SystemException {
 		return super.remove(hrProject);
 	}
 
+	@Override
 	protected HRProject removeImpl(HRProject hrProject)
 		throws SystemException {
 		hrProject = toUnwrappedModel(hrProject);
@@ -240,6 +245,7 @@ public class HRProjectPersistenceImpl extends BasePersistenceImpl<HRProject>
 		return hrProject;
 	}
 
+	@Override
 	public HRProject updateImpl(com.liferay.hr.model.HRProject hrProject,
 		boolean merge) throws SystemException {
 		hrProject = toUnwrappedModel(hrProject);
@@ -315,6 +321,7 @@ public class HRProjectPersistenceImpl extends BasePersistenceImpl<HRProject>
 	 * @throws com.liferay.portal.NoSuchModelException if a h r project with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRProject findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -351,6 +358,7 @@ public class HRProjectPersistenceImpl extends BasePersistenceImpl<HRProject>
 	 * @return the h r project, or <code>null</code> if a h r project with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRProject fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

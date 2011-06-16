@@ -351,6 +351,7 @@ public class MemberRequestWrapper implements MemberRequest {
 		_memberRequest.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new MemberRequestWrapper((MemberRequest)_memberRequest.clone());
 	}
@@ -359,6 +360,7 @@ public class MemberRequestWrapper implements MemberRequest {
 		return _memberRequest.compareTo(memberRequest);
 	}
 
+	@Override
 	public int hashCode() {
 		return _memberRequest.hashCode();
 	}
@@ -367,6 +369,7 @@ public class MemberRequestWrapper implements MemberRequest {
 		return new MemberRequestWrapper(_memberRequest.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _memberRequest.toString();
 	}

@@ -204,6 +204,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(TasksEntryImpl.class.getName());
@@ -221,6 +222,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(TasksEntry tasksEntry) {
 		EntityCacheUtil.removeResult(TasksEntryModelImpl.ENTITY_CACHE_ENABLED,
 			TasksEntryImpl.class, tasksEntry.getPrimaryKey());
@@ -249,6 +251,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 * @throws com.liferay.portal.NoSuchModelException if a tasks entry with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public TasksEntry remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -301,10 +304,12 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 * @return the tasks entry that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public TasksEntry remove(TasksEntry tasksEntry) throws SystemException {
 		return super.remove(tasksEntry);
 	}
 
+	@Override
 	protected TasksEntry removeImpl(TasksEntry tasksEntry)
 		throws SystemException {
 		tasksEntry = toUnwrappedModel(tasksEntry);
@@ -331,6 +336,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 		return tasksEntry;
 	}
 
+	@Override
 	public TasksEntry updateImpl(
 		com.liferay.tasks.model.TasksEntry tasksEntry, boolean merge)
 		throws SystemException {
@@ -396,6 +402,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 * @throws com.liferay.portal.NoSuchModelException if a tasks entry with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public TasksEntry findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -432,6 +439,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 * @return the tasks entry, or <code>null</code> if a tasks entry with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public TasksEntry fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

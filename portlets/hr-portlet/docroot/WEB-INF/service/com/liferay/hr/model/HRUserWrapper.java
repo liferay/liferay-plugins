@@ -477,6 +477,7 @@ public class HRUserWrapper implements HRUser {
 		_hrUser.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new HRUserWrapper((HRUser)_hrUser.clone());
 	}
@@ -485,6 +486,7 @@ public class HRUserWrapper implements HRUser {
 		return _hrUser.compareTo(hrUser);
 	}
 
+	@Override
 	public int hashCode() {
 		return _hrUser.hashCode();
 	}
@@ -493,6 +495,7 @@ public class HRUserWrapper implements HRUser {
 		return new HRUserWrapper(_hrUser.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _hrUser.toString();
 	}

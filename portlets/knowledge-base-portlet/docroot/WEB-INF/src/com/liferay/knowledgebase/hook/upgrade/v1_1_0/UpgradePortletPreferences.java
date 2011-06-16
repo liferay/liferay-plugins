@@ -31,6 +31,7 @@ import javax.portlet.PortletPreferences;
 public class UpgradePortletPreferences
 	extends CamelCaseUpgradePortletPreferences {
 
+	@Override
 	protected String[] getPortletIds() {
 		return _PORTLET_IDS;
 	}
@@ -102,6 +103,7 @@ public class UpgradePortletPreferences
 		return PortletPreferencesFactoryUtil.toXML(preferences);
 	}
 
+	@Override
 	protected String upgradePreferences(
 			long companyId, long ownerId, int ownerType, long plid,
 			String portletId, String xml)

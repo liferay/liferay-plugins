@@ -115,6 +115,7 @@ public class HRUserHistoryPersistenceImpl extends BasePersistenceImpl<HRUserHist
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(HRUserHistoryImpl.class.getName());
@@ -132,6 +133,7 @@ public class HRUserHistoryPersistenceImpl extends BasePersistenceImpl<HRUserHist
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(HRUserHistory hrUserHistory) {
 		EntityCacheUtil.removeResult(HRUserHistoryModelImpl.ENTITY_CACHE_ENABLED,
 			HRUserHistoryImpl.class, hrUserHistory.getPrimaryKey());
@@ -160,6 +162,7 @@ public class HRUserHistoryPersistenceImpl extends BasePersistenceImpl<HRUserHist
 	 * @throws com.liferay.portal.NoSuchModelException if a h r user history with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRUserHistory remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -213,11 +216,13 @@ public class HRUserHistoryPersistenceImpl extends BasePersistenceImpl<HRUserHist
 	 * @return the h r user history that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRUserHistory remove(HRUserHistory hrUserHistory)
 		throws SystemException {
 		return super.remove(hrUserHistory);
 	}
 
+	@Override
 	protected HRUserHistory removeImpl(HRUserHistory hrUserHistory)
 		throws SystemException {
 		hrUserHistory = toUnwrappedModel(hrUserHistory);
@@ -244,6 +249,7 @@ public class HRUserHistoryPersistenceImpl extends BasePersistenceImpl<HRUserHist
 		return hrUserHistory;
 	}
 
+	@Override
 	public HRUserHistory updateImpl(
 		com.liferay.hr.model.HRUserHistory hrUserHistory, boolean merge)
 		throws SystemException {
@@ -313,6 +319,7 @@ public class HRUserHistoryPersistenceImpl extends BasePersistenceImpl<HRUserHist
 	 * @throws com.liferay.portal.NoSuchModelException if a h r user history with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRUserHistory findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -349,6 +356,7 @@ public class HRUserHistoryPersistenceImpl extends BasePersistenceImpl<HRUserHist
 	 * @return the h r user history, or <code>null</code> if a h r user history with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRUserHistory fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

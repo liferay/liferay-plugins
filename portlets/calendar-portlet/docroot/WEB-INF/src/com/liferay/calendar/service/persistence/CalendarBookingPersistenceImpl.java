@@ -185,6 +185,7 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(CalendarBookingImpl.class.getName());
@@ -202,6 +203,7 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(CalendarBooking calendarBooking) {
 		EntityCacheUtil.removeResult(CalendarBookingModelImpl.ENTITY_CACHE_ENABLED,
 			CalendarBookingImpl.class, calendarBooking.getPrimaryKey());
@@ -240,6 +242,7 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 	 * @throws com.liferay.portal.NoSuchModelException if a calendar booking with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public CalendarBooking remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -293,11 +296,13 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 	 * @return the calendar booking that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public CalendarBooking remove(CalendarBooking calendarBooking)
 		throws SystemException {
 		return super.remove(calendarBooking);
 	}
 
+	@Override
 	protected CalendarBooking removeImpl(CalendarBooking calendarBooking)
 		throws SystemException {
 		calendarBooking = toUnwrappedModel(calendarBooking);
@@ -332,6 +337,7 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 		return calendarBooking;
 	}
 
+	@Override
 	public CalendarBooking updateImpl(
 		com.liferay.calendar.model.CalendarBooking calendarBooking,
 		boolean merge) throws SystemException {
@@ -443,6 +449,7 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 	 * @throws com.liferay.portal.NoSuchModelException if a calendar booking with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public CalendarBooking findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -479,6 +486,7 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 	 * @return the calendar booking, or <code>null</code> if a calendar booking with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public CalendarBooking fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

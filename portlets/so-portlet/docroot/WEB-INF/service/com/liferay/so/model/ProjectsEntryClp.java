@@ -155,6 +155,7 @@ public class ProjectsEntryClp extends BaseModelImpl<ProjectsEntry>
 		_data = data;
 	}
 
+	@Override
 	public ProjectsEntry toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -166,6 +167,7 @@ public class ProjectsEntryClp extends BaseModelImpl<ProjectsEntry>
 		}
 	}
 
+	@Override
 	public Object clone() {
 		ProjectsEntryClp clone = new ProjectsEntryClp();
 
@@ -196,6 +198,7 @@ public class ProjectsEntryClp extends BaseModelImpl<ProjectsEntry>
 		return 0;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -220,10 +223,12 @@ public class ProjectsEntryClp extends BaseModelImpl<ProjectsEntry>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(23);
 

@@ -235,6 +235,7 @@ public class FolderModelImpl extends BaseModelImpl<Folder>
 		_remoteMessageCount = remoteMessageCount;
 	}
 
+	@Override
 	public Folder toEscapedModel() {
 		if (isEscapedModel()) {
 			return (Folder)this;
@@ -245,6 +246,7 @@ public class FolderModelImpl extends BaseModelImpl<Folder>
 		}
 	}
 
+	@Override
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
 			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
@@ -254,10 +256,12 @@ public class FolderModelImpl extends BaseModelImpl<Folder>
 		return _expandoBridge;
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
 		getExpandoBridge().setAttributes(serviceContext);
 	}
 
+	@Override
 	public Object clone() {
 		FolderImpl folderImpl = new FolderImpl();
 
@@ -289,6 +293,7 @@ public class FolderModelImpl extends BaseModelImpl<Folder>
 		return 0;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -313,10 +318,12 @@ public class FolderModelImpl extends BaseModelImpl<Folder>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public void resetOriginalValues() {
 		FolderModelImpl folderModelImpl = this;
 
@@ -327,6 +334,7 @@ public class FolderModelImpl extends BaseModelImpl<Folder>
 		folderModelImpl._originalFullName = folderModelImpl._fullName;
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(21);
 

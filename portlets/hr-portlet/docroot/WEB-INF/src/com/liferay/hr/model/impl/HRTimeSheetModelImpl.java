@@ -316,6 +316,7 @@ public class HRTimeSheetModelImpl extends BaseModelImpl<HRTimeSheet>
 		}
 	}
 
+	@Override
 	public HRTimeSheet toEscapedModel() {
 		if (isEscapedModel()) {
 			return (HRTimeSheet)this;
@@ -326,6 +327,7 @@ public class HRTimeSheetModelImpl extends BaseModelImpl<HRTimeSheet>
 		}
 	}
 
+	@Override
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
 			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
@@ -335,10 +337,12 @@ public class HRTimeSheetModelImpl extends BaseModelImpl<HRTimeSheet>
 		return _expandoBridge;
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
 		getExpandoBridge().setAttributes(serviceContext);
 	}
 
+	@Override
 	public Object clone() {
 		HRTimeSheetImpl hrTimeSheetImpl = new HRTimeSheetImpl();
 
@@ -377,6 +381,7 @@ public class HRTimeSheetModelImpl extends BaseModelImpl<HRTimeSheet>
 		}
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -401,13 +406,16 @@ public class HRTimeSheetModelImpl extends BaseModelImpl<HRTimeSheet>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public void resetOriginalValues() {
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(31);
 

@@ -115,6 +115,7 @@ public class HRAssetProductPersistenceImpl extends BasePersistenceImpl<HRAssetPr
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(HRAssetProductImpl.class.getName());
@@ -132,6 +133,7 @@ public class HRAssetProductPersistenceImpl extends BasePersistenceImpl<HRAssetPr
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(HRAssetProduct hrAssetProduct) {
 		EntityCacheUtil.removeResult(HRAssetProductModelImpl.ENTITY_CACHE_ENABLED,
 			HRAssetProductImpl.class, hrAssetProduct.getPrimaryKey());
@@ -160,6 +162,7 @@ public class HRAssetProductPersistenceImpl extends BasePersistenceImpl<HRAssetPr
 	 * @throws com.liferay.portal.NoSuchModelException if a h r asset product with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRAssetProduct remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -213,11 +216,13 @@ public class HRAssetProductPersistenceImpl extends BasePersistenceImpl<HRAssetPr
 	 * @return the h r asset product that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRAssetProduct remove(HRAssetProduct hrAssetProduct)
 		throws SystemException {
 		return super.remove(hrAssetProduct);
 	}
 
+	@Override
 	protected HRAssetProduct removeImpl(HRAssetProduct hrAssetProduct)
 		throws SystemException {
 		hrAssetProduct = toUnwrappedModel(hrAssetProduct);
@@ -244,6 +249,7 @@ public class HRAssetProductPersistenceImpl extends BasePersistenceImpl<HRAssetPr
 		return hrAssetProduct;
 	}
 
+	@Override
 	public HRAssetProduct updateImpl(
 		com.liferay.hr.model.HRAssetProduct hrAssetProduct, boolean merge)
 		throws SystemException {
@@ -306,6 +312,7 @@ public class HRAssetProductPersistenceImpl extends BasePersistenceImpl<HRAssetPr
 	 * @throws com.liferay.portal.NoSuchModelException if a h r asset product with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRAssetProduct findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -342,6 +349,7 @@ public class HRAssetProductPersistenceImpl extends BasePersistenceImpl<HRAssetPr
 	 * @return the h r asset product, or <code>null</code> if a h r asset product with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRAssetProduct fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

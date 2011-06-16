@@ -296,6 +296,7 @@ public class HRTimeOffFrequencyTypeWrapper implements HRTimeOffFrequencyType {
 		_hrTimeOffFrequencyType.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new HRTimeOffFrequencyTypeWrapper((HRTimeOffFrequencyType)_hrTimeOffFrequencyType.clone());
 	}
@@ -305,6 +306,7 @@ public class HRTimeOffFrequencyTypeWrapper implements HRTimeOffFrequencyType {
 		return _hrTimeOffFrequencyType.compareTo(hrTimeOffFrequencyType);
 	}
 
+	@Override
 	public int hashCode() {
 		return _hrTimeOffFrequencyType.hashCode();
 	}
@@ -313,6 +315,7 @@ public class HRTimeOffFrequencyTypeWrapper implements HRTimeOffFrequencyType {
 		return new HRTimeOffFrequencyTypeWrapper(_hrTimeOffFrequencyType.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _hrTimeOffFrequencyType.toString();
 	}

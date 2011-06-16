@@ -23,10 +23,12 @@ import com.liferay.portal.kernel.upgrade.UpgradeProcess;
  */
 public class UpgradeProcess_1_0_0 extends UpgradeProcess {
 
+	@Override
 	public int getThreshold() {
 		return 100;
 	}
 
+	@Override
 	protected void doUpgrade() throws Exception {
 		if (_log.isInfoEnabled()) {
 			_log.info("Running " + UpgradeProcess_1_0_0.class.getName());

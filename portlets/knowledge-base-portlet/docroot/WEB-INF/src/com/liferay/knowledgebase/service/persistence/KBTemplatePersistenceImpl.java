@@ -161,6 +161,7 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(KBTemplateImpl.class.getName());
@@ -178,6 +179,7 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(KBTemplate kbTemplate) {
 		EntityCacheUtil.removeResult(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
 			KBTemplateImpl.class, kbTemplate.getPrimaryKey());
@@ -215,6 +217,7 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 * @throws com.liferay.portal.NoSuchModelException if a k b template with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KBTemplate remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -267,10 +270,12 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 * @return the k b template that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KBTemplate remove(KBTemplate kbTemplate) throws SystemException {
 		return super.remove(kbTemplate);
 	}
 
+	@Override
 	protected KBTemplate removeImpl(KBTemplate kbTemplate)
 		throws SystemException {
 		kbTemplate = toUnwrappedModel(kbTemplate);
@@ -305,6 +310,7 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 		return kbTemplate;
 	}
 
+	@Override
 	public KBTemplate updateImpl(
 		com.liferay.knowledgebase.model.KBTemplate kbTemplate, boolean merge)
 		throws SystemException {
@@ -399,6 +405,7 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 * @throws com.liferay.portal.NoSuchModelException if a k b template with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KBTemplate findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -435,6 +442,7 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 * @return the k b template, or <code>null</code> if a k b template with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KBTemplate fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

@@ -64,6 +64,7 @@ import org.apache.shindig.gadgets.spec.ModulePrefs;
  */
 public class EditorPortlet extends AdminPortlet {
 
+	@Override
 	public void deleteGadget(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
@@ -84,6 +85,7 @@ public class EditorPortlet extends AdminPortlet {
 		GadgetLocalServiceUtil.deleteGadget(gadgetId);
 	}
 
+	@Override
 	public void serveResource(
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws IOException, PortletException {
@@ -139,6 +141,7 @@ public class EditorPortlet extends AdminPortlet {
 		}
   	}
 
+	@Override
 	public void updateGadget(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {

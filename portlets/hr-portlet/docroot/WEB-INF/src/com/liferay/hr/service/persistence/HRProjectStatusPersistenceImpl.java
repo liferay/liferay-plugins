@@ -133,6 +133,7 @@ public class HRProjectStatusPersistenceImpl extends BasePersistenceImpl<HRProjec
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(HRProjectStatusImpl.class.getName());
@@ -150,6 +151,7 @@ public class HRProjectStatusPersistenceImpl extends BasePersistenceImpl<HRProjec
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(HRProjectStatus hrProjectStatus) {
 		EntityCacheUtil.removeResult(HRProjectStatusModelImpl.ENTITY_CACHE_ENABLED,
 			HRProjectStatusImpl.class, hrProjectStatus.getPrimaryKey());
@@ -185,6 +187,7 @@ public class HRProjectStatusPersistenceImpl extends BasePersistenceImpl<HRProjec
 	 * @throws com.liferay.portal.NoSuchModelException if a h r project status with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRProjectStatus remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -238,11 +241,13 @@ public class HRProjectStatusPersistenceImpl extends BasePersistenceImpl<HRProjec
 	 * @return the h r project status that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRProjectStatus remove(HRProjectStatus hrProjectStatus)
 		throws SystemException {
 		return super.remove(hrProjectStatus);
 	}
 
+	@Override
 	protected HRProjectStatus removeImpl(HRProjectStatus hrProjectStatus)
 		throws SystemException {
 		hrProjectStatus = toUnwrappedModel(hrProjectStatus);
@@ -278,6 +283,7 @@ public class HRProjectStatusPersistenceImpl extends BasePersistenceImpl<HRProjec
 		return hrProjectStatus;
 	}
 
+	@Override
 	public HRProjectStatus updateImpl(
 		com.liferay.hr.model.HRProjectStatus hrProjectStatus, boolean merge)
 		throws SystemException {
@@ -368,6 +374,7 @@ public class HRProjectStatusPersistenceImpl extends BasePersistenceImpl<HRProjec
 	 * @throws com.liferay.portal.NoSuchModelException if a h r project status with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRProjectStatus findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -404,6 +411,7 @@ public class HRProjectStatusPersistenceImpl extends BasePersistenceImpl<HRProjec
 	 * @return the h r project status, or <code>null</code> if a h r project status with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRProjectStatus fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

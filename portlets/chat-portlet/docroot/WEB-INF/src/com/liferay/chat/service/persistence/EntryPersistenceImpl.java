@@ -208,6 +208,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(EntryImpl.class.getName());
@@ -225,6 +226,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(Entry entry) {
 		EntityCacheUtil.removeResult(EntryModelImpl.ENTITY_CACHE_ENABLED,
 			EntryImpl.class, entry.getPrimaryKey());
@@ -253,6 +255,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 * @throws com.liferay.portal.NoSuchModelException if a entry with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Entry remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -305,10 +308,12 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 * @return the entry that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Entry remove(Entry entry) throws SystemException {
 		return super.remove(entry);
 	}
 
+	@Override
 	protected Entry removeImpl(Entry entry) throws SystemException {
 		entry = toUnwrappedModel(entry);
 
@@ -334,6 +339,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 		return entry;
 	}
 
+	@Override
 	public Entry updateImpl(com.liferay.chat.model.Entry entry, boolean merge)
 		throws SystemException {
 		entry = toUnwrappedModel(entry);
@@ -389,6 +395,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 * @throws com.liferay.portal.NoSuchModelException if a entry with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Entry findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -425,6 +432,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 * @return the entry, or <code>null</code> if a entry with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Entry fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

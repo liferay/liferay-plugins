@@ -31,6 +31,7 @@ public class KaleoDeploymentEventMessageListener extends BaseMessageListener {
 		_servletContextName = servletContextName;
 	}
 
+	@Override
 	protected void doReceive(Message message) throws Exception {
 		String command = message.getString("command");
 

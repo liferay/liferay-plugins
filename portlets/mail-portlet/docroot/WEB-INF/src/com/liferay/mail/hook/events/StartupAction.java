@@ -28,6 +28,7 @@ import java.util.List;
  */
 public class StartupAction extends SimpleAction {
 
+	@Override
 	public void run(String[] ids) throws ActionException {
 		try {
 			initializeMailboxFactories();

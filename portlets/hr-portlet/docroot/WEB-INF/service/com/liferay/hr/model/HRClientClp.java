@@ -137,6 +137,7 @@ public class HRClientClp extends BaseModelImpl<HRClient> implements HRClient {
 		_description = description;
 	}
 
+	@Override
 	public HRClient toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -147,6 +148,7 @@ public class HRClientClp extends BaseModelImpl<HRClient> implements HRClient {
 		}
 	}
 
+	@Override
 	public Object clone() {
 		HRClientClp clone = new HRClientClp();
 
@@ -177,6 +179,7 @@ public class HRClientClp extends BaseModelImpl<HRClient> implements HRClient {
 		}
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -201,10 +204,12 @@ public class HRClientClp extends BaseModelImpl<HRClient> implements HRClient {
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(19);
 

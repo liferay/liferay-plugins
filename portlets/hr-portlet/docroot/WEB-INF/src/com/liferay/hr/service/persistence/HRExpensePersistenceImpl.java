@@ -113,6 +113,7 @@ public class HRExpensePersistenceImpl extends BasePersistenceImpl<HRExpense>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(HRExpenseImpl.class.getName());
@@ -130,6 +131,7 @@ public class HRExpensePersistenceImpl extends BasePersistenceImpl<HRExpense>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(HRExpense hrExpense) {
 		EntityCacheUtil.removeResult(HRExpenseModelImpl.ENTITY_CACHE_ENABLED,
 			HRExpenseImpl.class, hrExpense.getPrimaryKey());
@@ -158,6 +160,7 @@ public class HRExpensePersistenceImpl extends BasePersistenceImpl<HRExpense>
 	 * @throws com.liferay.portal.NoSuchModelException if a h r expense with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRExpense remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -210,10 +213,12 @@ public class HRExpensePersistenceImpl extends BasePersistenceImpl<HRExpense>
 	 * @return the h r expense that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRExpense remove(HRExpense hrExpense) throws SystemException {
 		return super.remove(hrExpense);
 	}
 
+	@Override
 	protected HRExpense removeImpl(HRExpense hrExpense)
 		throws SystemException {
 		hrExpense = toUnwrappedModel(hrExpense);
@@ -240,6 +245,7 @@ public class HRExpensePersistenceImpl extends BasePersistenceImpl<HRExpense>
 		return hrExpense;
 	}
 
+	@Override
 	public HRExpense updateImpl(com.liferay.hr.model.HRExpense hrExpense,
 		boolean merge) throws SystemException {
 		hrExpense = toUnwrappedModel(hrExpense);
@@ -309,6 +315,7 @@ public class HRExpensePersistenceImpl extends BasePersistenceImpl<HRExpense>
 	 * @throws com.liferay.portal.NoSuchModelException if a h r expense with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRExpense findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -345,6 +352,7 @@ public class HRExpensePersistenceImpl extends BasePersistenceImpl<HRExpense>
 	 * @return the h r expense, or <code>null</code> if a h r expense with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRExpense fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

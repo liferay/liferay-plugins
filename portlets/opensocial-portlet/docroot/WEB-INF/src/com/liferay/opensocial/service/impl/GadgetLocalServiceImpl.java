@@ -103,6 +103,7 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 		return gadget;
 	}
 
+	@Override
 	public void deleteGadget(Gadget gadget)
 		throws PortalException, SystemException {
 
@@ -118,6 +119,7 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 		oAuthConsumerLocalService.deleteOAuthConsumers(gadget.getGadgetId());
 	}
 
+	@Override
 	public void deleteGadget(long gadgetId)
 		throws PortalException, SystemException {
 

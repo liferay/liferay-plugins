@@ -22,10 +22,12 @@ import com.liferay.portal.workflow.kaleo.hook.upgrade.v1_0_0.UpgradeTaskInstance
  */
 public class UpgradeProcess_1_0_0 extends UpgradeProcess {
 
+	@Override
 	public int getThreshold() {
 		return 100;
 	}
 
+	@Override
 	protected void doUpgrade() throws Exception {
 		upgrade(UpgradeTaskInstanceToken.class);
 	}

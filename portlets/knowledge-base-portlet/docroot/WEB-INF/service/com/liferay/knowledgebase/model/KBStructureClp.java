@@ -251,6 +251,7 @@ public class KBStructureClp extends BaseModelImpl<KBStructure>
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public KBStructure toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -262,6 +263,7 @@ public class KBStructureClp extends BaseModelImpl<KBStructure>
 		}
 	}
 
+	@Override
 	public Object clone() {
 		KBStructureClp clone = new KBStructureClp();
 
@@ -294,6 +296,7 @@ public class KBStructureClp extends BaseModelImpl<KBStructure>
 		return 0;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -318,10 +321,12 @@ public class KBStructureClp extends BaseModelImpl<KBStructure>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(21);
 

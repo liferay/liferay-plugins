@@ -245,6 +245,7 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue>
 		_status = status;
 	}
 
+	@Override
 	public JIRAIssue toEscapedModel() {
 		if (isEscapedModel()) {
 			return (JIRAIssue)this;
@@ -255,6 +256,7 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue>
 		}
 	}
 
+	@Override
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
 			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(0,
@@ -264,10 +266,12 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue>
 		return _expandoBridge;
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
 		getExpandoBridge().setAttributes(serviceContext);
 	}
 
+	@Override
 	public Object clone() {
 		JIRAIssueImpl jiraIssueImpl = new JIRAIssueImpl();
 
@@ -303,6 +307,7 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue>
 		return 0;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -327,16 +332,19 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public void resetOriginalValues() {
 		JIRAIssueModelImpl jiraIssueModelImpl = this;
 
 		jiraIssueModelImpl._originalKey = jiraIssueModelImpl._key;
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(23);
 

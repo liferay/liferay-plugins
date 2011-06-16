@@ -433,6 +433,7 @@ public class KaleoTaskAssignmentInstanceWrapper
 		_kaleoTaskAssignmentInstance.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new KaleoTaskAssignmentInstanceWrapper((KaleoTaskAssignmentInstance)_kaleoTaskAssignmentInstance.clone());
 	}
@@ -442,6 +443,7 @@ public class KaleoTaskAssignmentInstanceWrapper
 		return _kaleoTaskAssignmentInstance.compareTo(kaleoTaskAssignmentInstance);
 	}
 
+	@Override
 	public int hashCode() {
 		return _kaleoTaskAssignmentInstance.hashCode();
 	}
@@ -450,6 +452,7 @@ public class KaleoTaskAssignmentInstanceWrapper
 		return new KaleoTaskAssignmentInstanceWrapper(_kaleoTaskAssignmentInstance.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _kaleoTaskAssignmentInstance.toString();
 	}

@@ -48,6 +48,7 @@ import javax.portlet.RenderResponse;
  */
 public class ConfigurationActionImpl extends DefaultConfigurationAction {
 
+	@Override
 	public void processAction(
 			PortletConfig portletConfig, ActionRequest actionRequest,
 			ActionResponse actionResponse)
@@ -194,6 +195,7 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 		super.processAction(portletConfig, actionRequest, actionResponse);
 	}
 
+	@Override
 	public String render(
 			PortletConfig portletConfig, RenderRequest renderRequest,
 			RenderResponse renderResponse)

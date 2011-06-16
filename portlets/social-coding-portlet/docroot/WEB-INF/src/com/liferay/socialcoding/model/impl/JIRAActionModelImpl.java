@@ -195,6 +195,7 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction>
 		_jiraGroupName = jiraGroupName;
 	}
 
+	@Override
 	public JIRAAction toEscapedModel() {
 		if (isEscapedModel()) {
 			return (JIRAAction)this;
@@ -205,6 +206,7 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction>
 		}
 	}
 
+	@Override
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
 			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(0,
@@ -214,10 +216,12 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction>
 		return _expandoBridge;
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
 		getExpandoBridge().setAttributes(serviceContext);
 	}
 
+	@Override
 	public Object clone() {
 		JIRAActionImpl jiraActionImpl = new JIRAActionImpl();
 
@@ -250,6 +254,7 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction>
 		return 0;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -274,13 +279,16 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public void resetOriginalValues() {
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(17);
 

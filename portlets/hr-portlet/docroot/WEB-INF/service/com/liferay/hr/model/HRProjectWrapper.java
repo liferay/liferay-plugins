@@ -568,6 +568,7 @@ public class HRProjectWrapper implements HRProject {
 		_hrProject.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new HRProjectWrapper((HRProject)_hrProject.clone());
 	}
@@ -576,6 +577,7 @@ public class HRProjectWrapper implements HRProject {
 		return _hrProject.compareTo(hrProject);
 	}
 
+	@Override
 	public int hashCode() {
 		return _hrProject.hashCode();
 	}
@@ -584,6 +586,7 @@ public class HRProjectWrapper implements HRProject {
 		return new HRProjectWrapper(_hrProject.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _hrProject.toString();
 	}

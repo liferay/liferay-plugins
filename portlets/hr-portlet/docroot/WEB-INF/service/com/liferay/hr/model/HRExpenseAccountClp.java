@@ -138,6 +138,7 @@ public class HRExpenseAccountClp extends BaseModelImpl<HRExpenseAccount>
 		_description = description;
 	}
 
+	@Override
 	public HRExpenseAccount toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -149,6 +150,7 @@ public class HRExpenseAccountClp extends BaseModelImpl<HRExpenseAccount>
 		}
 	}
 
+	@Override
 	public Object clone() {
 		HRExpenseAccountClp clone = new HRExpenseAccountClp();
 
@@ -179,6 +181,7 @@ public class HRExpenseAccountClp extends BaseModelImpl<HRExpenseAccount>
 		}
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -203,10 +206,12 @@ public class HRExpenseAccountClp extends BaseModelImpl<HRExpenseAccount>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(19);
 

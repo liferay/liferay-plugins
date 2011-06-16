@@ -26,6 +26,7 @@ import com.liferay.portlet.expando.service.ExpandoTableLocalServiceUtil;
  */
 public class UpgradeExpandoTable extends UpgradeProcess {
 
+	@Override
 	protected void doUpgrade() throws Exception {
 		updateExpandoTable(PortalUtil.getDefaultCompanyId());
 	}

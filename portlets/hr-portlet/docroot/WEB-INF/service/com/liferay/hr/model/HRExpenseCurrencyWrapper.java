@@ -295,6 +295,7 @@ public class HRExpenseCurrencyWrapper implements HRExpenseCurrency {
 		_hrExpenseCurrency.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new HRExpenseCurrencyWrapper((HRExpenseCurrency)_hrExpenseCurrency.clone());
 	}
@@ -304,6 +305,7 @@ public class HRExpenseCurrencyWrapper implements HRExpenseCurrency {
 		return _hrExpenseCurrency.compareTo(hrExpenseCurrency);
 	}
 
+	@Override
 	public int hashCode() {
 		return _hrExpenseCurrency.hashCode();
 	}
@@ -312,6 +314,7 @@ public class HRExpenseCurrencyWrapper implements HRExpenseCurrency {
 		return new HRExpenseCurrencyWrapper(_hrExpenseCurrency.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _hrExpenseCurrency.toString();
 	}

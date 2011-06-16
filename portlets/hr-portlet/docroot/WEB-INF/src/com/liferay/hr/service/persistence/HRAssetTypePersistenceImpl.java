@@ -113,6 +113,7 @@ public class HRAssetTypePersistenceImpl extends BasePersistenceImpl<HRAssetType>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(HRAssetTypeImpl.class.getName());
@@ -130,6 +131,7 @@ public class HRAssetTypePersistenceImpl extends BasePersistenceImpl<HRAssetType>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(HRAssetType hrAssetType) {
 		EntityCacheUtil.removeResult(HRAssetTypeModelImpl.ENTITY_CACHE_ENABLED,
 			HRAssetTypeImpl.class, hrAssetType.getPrimaryKey());
@@ -158,6 +160,7 @@ public class HRAssetTypePersistenceImpl extends BasePersistenceImpl<HRAssetType>
 	 * @throws com.liferay.portal.NoSuchModelException if a h r asset type with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRAssetType remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -210,11 +213,13 @@ public class HRAssetTypePersistenceImpl extends BasePersistenceImpl<HRAssetType>
 	 * @return the h r asset type that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRAssetType remove(HRAssetType hrAssetType)
 		throws SystemException {
 		return super.remove(hrAssetType);
 	}
 
+	@Override
 	protected HRAssetType removeImpl(HRAssetType hrAssetType)
 		throws SystemException {
 		hrAssetType = toUnwrappedModel(hrAssetType);
@@ -241,6 +246,7 @@ public class HRAssetTypePersistenceImpl extends BasePersistenceImpl<HRAssetType>
 		return hrAssetType;
 	}
 
+	@Override
 	public HRAssetType updateImpl(
 		com.liferay.hr.model.HRAssetType hrAssetType, boolean merge)
 		throws SystemException {
@@ -301,6 +307,7 @@ public class HRAssetTypePersistenceImpl extends BasePersistenceImpl<HRAssetType>
 	 * @throws com.liferay.portal.NoSuchModelException if a h r asset type with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRAssetType findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -337,6 +344,7 @@ public class HRAssetTypePersistenceImpl extends BasePersistenceImpl<HRAssetType>
 	 * @return the h r asset type, or <code>null</code> if a h r asset type with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRAssetType fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

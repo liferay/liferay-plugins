@@ -36,10 +36,12 @@ public class RootDirectory extends BaseDirectory {
 		initAttributes();
 	}
 
+	@Override
 	public InternalRequest getInternalRequest() {
 		return _internalRequest;
 	}
 
+	@Override
 	protected void initAttributes() {
 		addAttribute("namingcontexts", "o=Liferay");
 		addAttribute("objectclass", "extensibleObject");
@@ -53,6 +55,7 @@ public class RootDirectory extends BaseDirectory {
 		addAttribute("vendorversion", ReleaseInfo.getVersion());
 	}
 
+	@Override
 	protected List<Directory> initDirectories() throws Exception {
 		//_directories.add(new SchemaDirectory());
 

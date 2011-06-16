@@ -34,6 +34,7 @@ import org.apache.struts.action.ActionMapping;
  */
 public class SubscribeAction extends PortletAction {
 
+	@Override
 	public void processAction(
 			ActionMapping mapping, ActionForm form, PortletConfig portletConfig,
 			ActionRequest actionRequest, ActionResponse actionResponse)
@@ -43,6 +44,7 @@ public class SubscribeAction extends PortletAction {
 			actionRequest, "/sample_struts_liferay_portlet/subscribe_success");
 	}
 
+	@Override
 	public ActionForward render(
 			ActionMapping mapping, ActionForm form, PortletConfig portletConfig,
 			RenderRequest renderRequest, RenderResponse renderResponse)

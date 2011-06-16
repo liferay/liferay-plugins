@@ -189,6 +189,7 @@ public class HROfficeModelImpl extends BaseModelImpl<HROffice>
 		_organizationId = organizationId;
 	}
 
+	@Override
 	public HROffice toEscapedModel() {
 		if (isEscapedModel()) {
 			return (HROffice)this;
@@ -199,6 +200,7 @@ public class HROfficeModelImpl extends BaseModelImpl<HROffice>
 		}
 	}
 
+	@Override
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
 			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
@@ -208,10 +210,12 @@ public class HROfficeModelImpl extends BaseModelImpl<HROffice>
 		return _expandoBridge;
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
 		getExpandoBridge().setAttributes(serviceContext);
 	}
 
+	@Override
 	public Object clone() {
 		HROfficeImpl hrOfficeImpl = new HROfficeImpl();
 
@@ -243,6 +247,7 @@ public class HROfficeModelImpl extends BaseModelImpl<HROffice>
 		}
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -267,13 +272,16 @@ public class HROfficeModelImpl extends BaseModelImpl<HROffice>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public void resetOriginalValues() {
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(17);
 

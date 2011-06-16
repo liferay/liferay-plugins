@@ -173,6 +173,7 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 		_field5 = field5;
 	}
 
+	@Override
 	public Foo toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -183,6 +184,7 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 		}
 	}
 
+	@Override
 	public Object clone() {
 		FooClp clone = new FooClp();
 
@@ -215,6 +217,7 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 		return 0;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -239,10 +242,12 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(27);
 

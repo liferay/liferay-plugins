@@ -201,6 +201,7 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(KBCommentImpl.class.getName());
@@ -218,6 +219,7 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(KBComment kbComment) {
 		EntityCacheUtil.removeResult(KBCommentModelImpl.ENTITY_CACHE_ENABLED,
 			KBCommentImpl.class, kbComment.getPrimaryKey());
@@ -262,6 +264,7 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	 * @throws com.liferay.portal.NoSuchModelException if a k b comment with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KBComment remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -314,10 +317,12 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	 * @return the k b comment that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KBComment remove(KBComment kbComment) throws SystemException {
 		return super.remove(kbComment);
 	}
 
+	@Override
 	protected KBComment removeImpl(KBComment kbComment)
 		throws SystemException {
 		kbComment = toUnwrappedModel(kbComment);
@@ -359,6 +364,7 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 		return kbComment;
 	}
 
+	@Override
 	public KBComment updateImpl(
 		com.liferay.knowledgebase.model.KBComment kbComment, boolean merge)
 		throws SystemException {
@@ -477,6 +483,7 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	 * @throws com.liferay.portal.NoSuchModelException if a k b comment with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KBComment findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -513,6 +520,7 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	 * @return the k b comment, or <code>null</code> if a k b comment with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KBComment fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

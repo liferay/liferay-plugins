@@ -38,6 +38,7 @@ import org.apache.struts.action.ActionMapping;
  */
 public class UploadAction extends PortletAction {
 
+	@Override
 	public void processAction(
 			ActionMapping mapping, ActionForm form, PortletConfig portletConfig,
 			ActionRequest actionRequest, ActionResponse actionResponse)
@@ -58,6 +59,7 @@ public class UploadAction extends PortletAction {
 				"&file_name=" + HttpUtil.encodeURL(file.getName()));
 	}
 
+	@Override
 	public ActionForward render(
 			ActionMapping mapping, ActionForm form, PortletConfig portletConfig,
 			RenderRequest renderRequest, RenderResponse renderResponse)

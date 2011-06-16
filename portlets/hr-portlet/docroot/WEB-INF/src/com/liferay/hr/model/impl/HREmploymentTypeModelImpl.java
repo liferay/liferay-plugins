@@ -238,6 +238,7 @@ public class HREmploymentTypeModelImpl extends BaseModelImpl<HREmploymentType>
 		_description = description;
 	}
 
+	@Override
 	public HREmploymentType toEscapedModel() {
 		if (isEscapedModel()) {
 			return (HREmploymentType)this;
@@ -248,6 +249,7 @@ public class HREmploymentTypeModelImpl extends BaseModelImpl<HREmploymentType>
 		}
 	}
 
+	@Override
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
 			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
@@ -257,10 +259,12 @@ public class HREmploymentTypeModelImpl extends BaseModelImpl<HREmploymentType>
 		return _expandoBridge;
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
 		getExpandoBridge().setAttributes(serviceContext);
 	}
 
+	@Override
 	public Object clone() {
 		HREmploymentTypeImpl hrEmploymentTypeImpl = new HREmploymentTypeImpl();
 
@@ -294,6 +298,7 @@ public class HREmploymentTypeModelImpl extends BaseModelImpl<HREmploymentType>
 		}
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -318,10 +323,12 @@ public class HREmploymentTypeModelImpl extends BaseModelImpl<HREmploymentType>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public void resetOriginalValues() {
 		HREmploymentTypeModelImpl hrEmploymentTypeModelImpl = this;
 
@@ -332,6 +339,7 @@ public class HREmploymentTypeModelImpl extends BaseModelImpl<HREmploymentType>
 		hrEmploymentTypeModelImpl._originalCode = hrEmploymentTypeModelImpl._code;
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(21);
 

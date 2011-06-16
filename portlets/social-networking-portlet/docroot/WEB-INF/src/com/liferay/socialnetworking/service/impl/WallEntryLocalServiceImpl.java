@@ -96,6 +96,7 @@ public class WallEntryLocalServiceImpl extends WallEntryLocalServiceBaseImpl {
 		}
 	}
 
+	@Override
 	public void deleteWallEntry(long wallEntryId)
 		throws PortalException, SystemException {
 
@@ -105,6 +106,7 @@ public class WallEntryLocalServiceImpl extends WallEntryLocalServiceBaseImpl {
 		deleteWallEntry(wallEntry);
 	}
 
+	@Override
 	public void deleteWallEntry(WallEntry wallEntry) throws SystemException {
 
 		// Social
@@ -127,6 +129,7 @@ public class WallEntryLocalServiceImpl extends WallEntryLocalServiceBaseImpl {
 		return wallEntryPersistence.countByGroupId(groupId);
 	}
 
+	@Override
 	public WallEntry getWallEntry(long wallEntryId)
 		throws PortalException, SystemException {
 

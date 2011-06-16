@@ -27,6 +27,7 @@ import java.sql.Types;
  */
 public class UpgradeKBTemplate extends UpgradeProcess {
 
+	@Override
 	protected void doUpgrade() throws Exception {
 		if (hasTable("KB_Template")) {
 			renameTable();

@@ -38,6 +38,7 @@ import javax.servlet.ServletContext;
  */
 public class PortalInitThread extends Thread {
 
+	@Override
 	public void run() {
 		try {
 

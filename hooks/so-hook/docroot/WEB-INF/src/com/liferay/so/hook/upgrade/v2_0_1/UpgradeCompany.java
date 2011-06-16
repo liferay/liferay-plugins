@@ -30,6 +30,7 @@ import java.util.List;
  */
 public class UpgradeCompany extends UpgradeProcess {
 
+	@Override
 	protected void doUpgrade() throws Exception {
 		List<Company> companies = CompanyLocalServiceUtil.getCompanies();
 

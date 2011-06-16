@@ -649,6 +649,7 @@ public class KaleoLogWrapper implements KaleoLog {
 		_kaleoLog.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new KaleoLogWrapper((KaleoLog)_kaleoLog.clone());
 	}
@@ -658,6 +659,7 @@ public class KaleoLogWrapper implements KaleoLog {
 		return _kaleoLog.compareTo(kaleoLog);
 	}
 
+	@Override
 	public int hashCode() {
 		return _kaleoLog.hashCode();
 	}
@@ -666,6 +668,7 @@ public class KaleoLogWrapper implements KaleoLog {
 		return new KaleoLogWrapper(_kaleoLog.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _kaleoLog.toString();
 	}

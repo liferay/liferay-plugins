@@ -277,6 +277,7 @@ public class HRClientWrapper implements HRClient {
 		_hrClient.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new HRClientWrapper((HRClient)_hrClient.clone());
 	}
@@ -285,6 +286,7 @@ public class HRClientWrapper implements HRClient {
 		return _hrClient.compareTo(hrClient);
 	}
 
+	@Override
 	public int hashCode() {
 		return _hrClient.hashCode();
 	}
@@ -293,6 +295,7 @@ public class HRClientWrapper implements HRClient {
 		return new HRClientWrapper(_hrClient.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _hrClient.toString();
 	}

@@ -147,6 +147,7 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 		_deleted = deleted;
 	}
 
+	@Override
 	public UserThread toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -158,6 +159,7 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 		}
 	}
 
+	@Override
 	public Object clone() {
 		UserThreadClp clone = new UserThreadClp();
 
@@ -189,6 +191,7 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 		return 0;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -213,10 +216,12 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(19);
 

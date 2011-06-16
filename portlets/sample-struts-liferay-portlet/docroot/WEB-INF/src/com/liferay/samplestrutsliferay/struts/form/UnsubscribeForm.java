@@ -48,12 +48,14 @@ public class UnsubscribeForm extends ValidatorForm {
 		_emailAddress = emailAddress;
 	}
 
+	@Override
 	public void reset(ActionMapping mapping, HttpServletRequest req) {
 		_firstName = null;
 		_lastName = null;
 		_emailAddress = null;
 	}
 
+	@Override
 	public String toString() {
 		return _firstName + " " + _lastName + " " + _emailAddress;
 	}

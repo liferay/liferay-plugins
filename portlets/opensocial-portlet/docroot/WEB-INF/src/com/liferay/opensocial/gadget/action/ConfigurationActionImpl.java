@@ -30,6 +30,7 @@ import javax.portlet.RenderResponse;
  */
 public class ConfigurationActionImpl extends BaseConfigurationAction {
 
+	@Override
 	public void processAction(
 			PortletConfig portletConfig, ActionRequest actionRequest,
 			ActionResponse actionResponse)
@@ -38,6 +39,7 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 		doProcessAction(portletConfig, actionRequest, actionResponse);
 	}
 
+	@Override
 	public String render(PortletConfig portletConfig,
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws Exception {
@@ -47,6 +49,7 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 		return "/gadget/configuration.jsp";
 	}
 
+	@Override
 	protected Gadget getGadget(
 			PortletConfig portletConfig, PortletRequest portletRequest)
 		throws Exception {

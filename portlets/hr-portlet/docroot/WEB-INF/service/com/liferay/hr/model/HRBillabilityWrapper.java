@@ -295,6 +295,7 @@ public class HRBillabilityWrapper implements HRBillability {
 		_hrBillability.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new HRBillabilityWrapper((HRBillability)_hrBillability.clone());
 	}
@@ -303,6 +304,7 @@ public class HRBillabilityWrapper implements HRBillability {
 		return _hrBillability.compareTo(hrBillability);
 	}
 
+	@Override
 	public int hashCode() {
 		return _hrBillability.hashCode();
 	}
@@ -311,6 +313,7 @@ public class HRBillabilityWrapper implements HRBillability {
 		return new HRBillabilityWrapper(_hrBillability.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _hrBillability.toString();
 	}

@@ -340,6 +340,7 @@ public class HRHolidayWrapper implements HRHoliday {
 		_hrHoliday.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new HRHolidayWrapper((HRHoliday)_hrHoliday.clone());
 	}
@@ -348,6 +349,7 @@ public class HRHolidayWrapper implements HRHoliday {
 		return _hrHoliday.compareTo(hrHoliday);
 	}
 
+	@Override
 	public int hashCode() {
 		return _hrHoliday.hashCode();
 	}
@@ -356,6 +358,7 @@ public class HRHolidayWrapper implements HRHoliday {
 		return new HRHolidayWrapper(_hrHoliday.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _hrHoliday.toString();
 	}

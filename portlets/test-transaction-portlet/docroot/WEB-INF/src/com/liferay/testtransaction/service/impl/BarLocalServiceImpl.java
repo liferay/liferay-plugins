@@ -58,6 +58,7 @@ public class BarLocalServiceImpl extends BarLocalServiceBaseImpl {
 		throw new SystemException();
 	}
 
+	@Override
 	public void deleteBar(Bar bar) throws SystemException {
 		barPersistence.remove(bar);
 	}

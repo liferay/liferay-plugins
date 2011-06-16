@@ -136,6 +136,7 @@ public class OAuthConsumerClp extends BaseModelImpl<OAuthConsumer>
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public OAuthConsumer toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -147,6 +148,7 @@ public class OAuthConsumerClp extends BaseModelImpl<OAuthConsumer>
 		}
 	}
 
+	@Override
 	public Object clone() {
 		OAuthConsumerClp clone = new OAuthConsumerClp();
 
@@ -175,6 +177,7 @@ public class OAuthConsumerClp extends BaseModelImpl<OAuthConsumer>
 		return 0;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -199,10 +202,12 @@ public class OAuthConsumerClp extends BaseModelImpl<OAuthConsumer>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(19);
 

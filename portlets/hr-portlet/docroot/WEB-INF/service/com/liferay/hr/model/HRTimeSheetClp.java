@@ -247,6 +247,7 @@ public class HRTimeSheetClp extends BaseModelImpl<HRTimeSheet>
 		}
 	}
 
+	@Override
 	public HRTimeSheet toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -258,6 +259,7 @@ public class HRTimeSheetClp extends BaseModelImpl<HRTimeSheet>
 		}
 	}
 
+	@Override
 	public Object clone() {
 		HRTimeSheetClp clone = new HRTimeSheetClp();
 
@@ -294,6 +296,7 @@ public class HRTimeSheetClp extends BaseModelImpl<HRTimeSheet>
 		}
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -318,10 +321,12 @@ public class HRTimeSheetClp extends BaseModelImpl<HRTimeSheet>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(31);
 

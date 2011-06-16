@@ -48,6 +48,7 @@ public class UserDirectory extends BaseDirectory {
 		initAttributes();
 	}
 
+	@Override
 	protected void initAttributes() {
 		addAttribute("cn", _user.getScreenName());
 		addAttribute("createTimestamp", _format.format(_user.getCreateDate()));
@@ -72,6 +73,7 @@ public class UserDirectory extends BaseDirectory {
 		}
 	}
 
+	@Override
 	protected List<Directory> initDirectories() throws Exception {
 		return _directories;
 	}

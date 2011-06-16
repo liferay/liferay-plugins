@@ -186,6 +186,7 @@ public class HRAssetDefinitionClp extends BaseModelImpl<HRAssetDefinition>
 		_individualPrice = individualPrice;
 	}
 
+	@Override
 	public HRAssetDefinition toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -197,6 +198,7 @@ public class HRAssetDefinitionClp extends BaseModelImpl<HRAssetDefinition>
 		}
 	}
 
+	@Override
 	public Object clone() {
 		HRAssetDefinitionClp clone = new HRAssetDefinitionClp();
 
@@ -233,6 +235,7 @@ public class HRAssetDefinitionClp extends BaseModelImpl<HRAssetDefinition>
 		}
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -257,10 +260,12 @@ public class HRAssetDefinitionClp extends BaseModelImpl<HRAssetDefinition>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(31);
 

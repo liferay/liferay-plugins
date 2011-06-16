@@ -146,6 +146,7 @@ public class HRAssetProductClp extends BaseModelImpl<HRAssetProduct>
 		_description = description;
 	}
 
+	@Override
 	public HRAssetProduct toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -157,6 +158,7 @@ public class HRAssetProductClp extends BaseModelImpl<HRAssetProduct>
 		}
 	}
 
+	@Override
 	public Object clone() {
 		HRAssetProductClp clone = new HRAssetProductClp();
 
@@ -188,6 +190,7 @@ public class HRAssetProductClp extends BaseModelImpl<HRAssetProduct>
 		}
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -212,10 +215,12 @@ public class HRAssetProductClp extends BaseModelImpl<HRAssetProduct>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(21);
 

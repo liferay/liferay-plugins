@@ -30,6 +30,7 @@ import javax.portlet.PortletSession;
  */
 public class GoogleMapsPortlet extends MVCPortlet {
 
+	@Override
 	public void processAction(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws IOException, PortletException {

@@ -57,6 +57,7 @@ public class MongoExpandoValueLocalServiceImpl
 		super(expandoValueLocalService);
 	}
 
+	@Override
 	public ExpandoValue addValue(
 			long classNameId, long tableId, long columnId, long classPK,
 			String data)
@@ -119,6 +120,7 @@ public class MongoExpandoValueLocalServiceImpl
 		return expandoValue;
 	}
 
+	@Override
 	public void addValues(
 			long classNameId, long tableId, List<ExpandoColumn> expandoColumns,
 			long classPK, Map<String, String> data)
@@ -176,6 +178,7 @@ public class MongoExpandoValueLocalServiceImpl
 		}
 	}
 
+	@Override
 	public void deleteColumnValues(long columnId) throws SystemException {
 		try {
 			ExpandoColumn expandoColumn = ExpandoColumnUtil.fetchByPrimaryKey(
@@ -202,10 +205,12 @@ public class MongoExpandoValueLocalServiceImpl
 		}
 	}
 
+	@Override
 	public void deleteRowValues(long rowId) {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public void deleteTableValues(long tableId) throws SystemException {
 		try {
 			ExpandoTable expandoTable =
@@ -233,10 +238,12 @@ public class MongoExpandoValueLocalServiceImpl
 		}
 	}
 
+	@Override
 	public void deleteValue(long valueId) {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public void deleteValue(long columnId, long rowId)
 		throws PortalException, SystemException {
 
@@ -251,6 +258,7 @@ public class MongoExpandoValueLocalServiceImpl
 			expandoTable.getName(), expandoColumn.getName(), rowId);
 	}
 
+	@Override
 	public void deleteValue(
 			long companyId, long classNameId, String tableName,
 			String columnName, long classPK)
@@ -279,6 +287,7 @@ public class MongoExpandoValueLocalServiceImpl
 		dbCollection.update(queryDBObject, operatorDBObject);
 	}
 
+	@Override
 	public void deleteValues(long classNameId, long classPK)
 		throws SystemException {
 
@@ -302,6 +311,7 @@ public class MongoExpandoValueLocalServiceImpl
 		}
 	}
 
+	@Override
 	public List<ExpandoValue> getColumnValues(long columnId, int start, int end)
 		throws SystemException {
 
@@ -322,6 +332,7 @@ public class MongoExpandoValueLocalServiceImpl
 		}
 	}
 
+	@Override
 	public List<ExpandoValue> getColumnValues(
 			long companyId, long classNameId, String tableName,
 			String columnName, String data, int start, int end)
@@ -376,6 +387,7 @@ public class MongoExpandoValueLocalServiceImpl
 		}
 	}
 
+	@Override
 	public int getColumnValuesCount(long columnId)
 		throws SystemException {
 
@@ -395,6 +407,7 @@ public class MongoExpandoValueLocalServiceImpl
 		}
 	}
 
+	@Override
 	public int getColumnValuesCount(
 			long companyId, long classNameId, String tableName,
 			String columnName, String data)
@@ -434,14 +447,17 @@ public class MongoExpandoValueLocalServiceImpl
 		}
 	}
 
+	@Override
 	public List<ExpandoValue> getRowValues(long rowId) {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public List<ExpandoValue> getRowValues(long rowId, int start, int end) {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public List<ExpandoValue> getRowValues(
 			long companyId, long classNameId, String tableName, long classPK,
 			int start, int end)
@@ -492,10 +508,12 @@ public class MongoExpandoValueLocalServiceImpl
 		}
 	}
 
+	@Override
 	public int getRowValuesCount(long rowId) {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public int getRowValuesCount(
 			long companyId, long classNameId, String tableName, long classPK)
 		throws SystemException {
@@ -512,10 +530,12 @@ public class MongoExpandoValueLocalServiceImpl
 		}
 	}
 
+	@Override
 	public ExpandoValue getValue(long valueId) {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public ExpandoValue getValue(long columnId, long rowId)
 		throws PortalException, SystemException {
 
@@ -530,6 +550,7 @@ public class MongoExpandoValueLocalServiceImpl
 			expandoTable.getName(), expandoColumn.getName(), rowId);
 	}
 
+	@Override
 	public ExpandoValue getValue(long tableId, long columnId, long classPK)
 		throws SystemException {
 
@@ -549,6 +570,7 @@ public class MongoExpandoValueLocalServiceImpl
 		}
 	}
 
+	@Override
 	public ExpandoValue getValue(
 			long companyId, long classNameId, String tableName,
 			String columnName, long classPK)

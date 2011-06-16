@@ -333,6 +333,7 @@ public class HRUserTaskWrapper implements HRUserTask {
 		_hrUserTask.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new HRUserTaskWrapper((HRUserTask)_hrUserTask.clone());
 	}
@@ -341,6 +342,7 @@ public class HRUserTaskWrapper implements HRUserTask {
 		return _hrUserTask.compareTo(hrUserTask);
 	}
 
+	@Override
 	public int hashCode() {
 		return _hrUserTask.hashCode();
 	}
@@ -349,6 +351,7 @@ public class HRUserTaskWrapper implements HRUserTask {
 		return new HRUserTaskWrapper(_hrUserTask.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _hrUserTask.toString();
 	}

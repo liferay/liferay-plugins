@@ -129,6 +129,7 @@ public class JIRAIssueLocalServiceImpl extends JIRAIssueLocalServiceBaseImpl {
 		}
 	}
 
+	@Override
 	public JIRAIssue getJIRAIssue(long jiraIssueId)
 		throws PortalException, SystemException {
 

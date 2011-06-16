@@ -239,6 +239,7 @@ public class WSRPConsumerPortletWrapper implements WSRPConsumerPortlet {
 		_wsrpConsumerPortlet.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new WSRPConsumerPortletWrapper((WSRPConsumerPortlet)_wsrpConsumerPortlet.clone());
 	}
@@ -248,6 +249,7 @@ public class WSRPConsumerPortletWrapper implements WSRPConsumerPortlet {
 		return _wsrpConsumerPortlet.compareTo(wsrpConsumerPortlet);
 	}
 
+	@Override
 	public int hashCode() {
 		return _wsrpConsumerPortlet.hashCode();
 	}
@@ -256,6 +258,7 @@ public class WSRPConsumerPortletWrapper implements WSRPConsumerPortlet {
 		return new WSRPConsumerPortletWrapper(_wsrpConsumerPortlet.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _wsrpConsumerPortlet.toString();
 	}

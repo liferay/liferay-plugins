@@ -165,6 +165,7 @@ public class HRHolidayClp extends BaseModelImpl<HRHoliday> implements HRHoliday 
 		_paid = paid;
 	}
 
+	@Override
 	public HRHoliday toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -175,6 +176,7 @@ public class HRHolidayClp extends BaseModelImpl<HRHoliday> implements HRHoliday 
 		}
 	}
 
+	@Override
 	public Object clone() {
 		HRHolidayClp clone = new HRHolidayClp();
 
@@ -208,6 +210,7 @@ public class HRHolidayClp extends BaseModelImpl<HRHoliday> implements HRHoliday 
 		}
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -232,10 +235,12 @@ public class HRHolidayClp extends BaseModelImpl<HRHoliday> implements HRHoliday 
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(25);
 

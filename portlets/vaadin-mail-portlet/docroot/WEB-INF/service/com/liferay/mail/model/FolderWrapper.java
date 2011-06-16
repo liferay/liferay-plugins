@@ -295,6 +295,7 @@ public class FolderWrapper implements Folder {
 		_folder.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new FolderWrapper((Folder)_folder.clone());
 	}
@@ -303,6 +304,7 @@ public class FolderWrapper implements Folder {
 		return _folder.compareTo(folder);
 	}
 
+	@Override
 	public int hashCode() {
 		return _folder.hashCode();
 	}
@@ -311,6 +313,7 @@ public class FolderWrapper implements Folder {
 		return new FolderWrapper(_folder.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _folder.toString();
 	}

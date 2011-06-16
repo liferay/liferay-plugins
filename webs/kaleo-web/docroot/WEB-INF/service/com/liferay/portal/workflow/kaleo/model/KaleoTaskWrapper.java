@@ -313,6 +313,7 @@ public class KaleoTaskWrapper implements KaleoTask {
 		_kaleoTask.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new KaleoTaskWrapper((KaleoTask)_kaleoTask.clone());
 	}
@@ -322,6 +323,7 @@ public class KaleoTaskWrapper implements KaleoTask {
 		return _kaleoTask.compareTo(kaleoTask);
 	}
 
+	@Override
 	public int hashCode() {
 		return _kaleoTask.hashCode();
 	}
@@ -330,6 +332,7 @@ public class KaleoTaskWrapper implements KaleoTask {
 		return new KaleoTaskWrapper(_kaleoTask.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _kaleoTask.toString();
 	}

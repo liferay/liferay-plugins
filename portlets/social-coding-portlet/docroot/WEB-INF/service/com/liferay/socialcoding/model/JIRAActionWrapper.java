@@ -239,6 +239,7 @@ public class JIRAActionWrapper implements JIRAAction {
 		_jiraAction.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new JIRAActionWrapper((JIRAAction)_jiraAction.clone());
 	}
@@ -247,6 +248,7 @@ public class JIRAActionWrapper implements JIRAAction {
 		return _jiraAction.compareTo(jiraAction);
 	}
 
+	@Override
 	public int hashCode() {
 		return _jiraAction.hashCode();
 	}
@@ -255,6 +257,7 @@ public class JIRAActionWrapper implements JIRAAction {
 		return new JIRAActionWrapper(_jiraAction.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _jiraAction.toString();
 	}

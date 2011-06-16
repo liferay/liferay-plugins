@@ -36,6 +36,7 @@ public class UserGroupDirectory extends BaseDirectory {
 		initAttributes();
 	}
 
+	@Override
 	protected void initAttributes() {
 		addAttribute("cn", _userGroup.getName());
 		addAttribute("description", _userGroup.getDescription());
@@ -45,6 +46,7 @@ public class UserGroupDirectory extends BaseDirectory {
 		addAttribute("ou", _userGroup.getName());
 	}
 
+	@Override
 	protected List<Directory> initDirectories() throws Exception {
 		UserDirectoryBuilder.buildUserDirectories(
 			_userGroup, this, _usersDirectory);

@@ -152,6 +152,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(WallEntryImpl.class.getName());
@@ -169,6 +170,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(WallEntry wallEntry) {
 		EntityCacheUtil.removeResult(WallEntryModelImpl.ENTITY_CACHE_ENABLED,
 			WallEntryImpl.class, wallEntry.getPrimaryKey());
@@ -197,6 +199,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 * @throws com.liferay.portal.NoSuchModelException if a wall entry with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public WallEntry remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -249,10 +252,12 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 * @return the wall entry that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public WallEntry remove(WallEntry wallEntry) throws SystemException {
 		return super.remove(wallEntry);
 	}
 
+	@Override
 	protected WallEntry removeImpl(WallEntry wallEntry)
 		throws SystemException {
 		wallEntry = toUnwrappedModel(wallEntry);
@@ -279,6 +284,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 		return wallEntry;
 	}
 
+	@Override
 	public WallEntry updateImpl(
 		com.liferay.socialnetworking.model.WallEntry wallEntry, boolean merge)
 		throws SystemException {
@@ -338,6 +344,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 * @throws com.liferay.portal.NoSuchModelException if a wall entry with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public WallEntry findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -374,6 +381,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 * @return the wall entry, or <code>null</code> if a wall entry with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public WallEntry fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

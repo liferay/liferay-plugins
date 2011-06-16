@@ -259,6 +259,7 @@ public class HROfficeWrapper implements HROffice {
 		_hrOffice.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new HROfficeWrapper((HROffice)_hrOffice.clone());
 	}
@@ -267,6 +268,7 @@ public class HROfficeWrapper implements HROffice {
 		return _hrOffice.compareTo(hrOffice);
 	}
 
+	@Override
 	public int hashCode() {
 		return _hrOffice.hashCode();
 	}
@@ -275,6 +277,7 @@ public class HROfficeWrapper implements HROffice {
 		return new HROfficeWrapper(_hrOffice.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _hrOffice.toString();
 	}

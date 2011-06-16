@@ -333,6 +333,7 @@ public class MicroblogsEntryWrapper implements MicroblogsEntry {
 		_microblogsEntry.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new MicroblogsEntryWrapper((MicroblogsEntry)_microblogsEntry.clone());
 	}
@@ -342,6 +343,7 @@ public class MicroblogsEntryWrapper implements MicroblogsEntry {
 		return _microblogsEntry.compareTo(microblogsEntry);
 	}
 
+	@Override
 	public int hashCode() {
 		return _microblogsEntry.hashCode();
 	}
@@ -350,6 +352,7 @@ public class MicroblogsEntryWrapper implements MicroblogsEntry {
 		return new MicroblogsEntryWrapper(_microblogsEntry.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _microblogsEntry.toString();
 	}

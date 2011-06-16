@@ -112,6 +112,7 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(TypeImpl.class.getName());
@@ -129,6 +130,7 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(Type type) {
 		EntityCacheUtil.removeResult(TypeModelImpl.ENTITY_CACHE_ENABLED,
 			TypeImpl.class, type.getPrimaryKey());
@@ -157,6 +159,7 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 	 * @throws com.liferay.portal.NoSuchModelException if a type with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Type remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -207,10 +210,12 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 	 * @return the type that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Type remove(Type type) throws SystemException {
 		return super.remove(type);
 	}
 
+	@Override
 	protected Type removeImpl(Type type) throws SystemException {
 		type = toUnwrappedModel(type);
 
@@ -236,6 +241,7 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 		return type;
 	}
 
+	@Override
 	public Type updateImpl(com.liferay.ams.model.Type type, boolean merge)
 		throws SystemException {
 		type = toUnwrappedModel(type);
@@ -289,6 +295,7 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 	 * @throws com.liferay.portal.NoSuchModelException if a type with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Type findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -325,6 +332,7 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 	 * @return the type, or <code>null</code> if a type with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Type fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

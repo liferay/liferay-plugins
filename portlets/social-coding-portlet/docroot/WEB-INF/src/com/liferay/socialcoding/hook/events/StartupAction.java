@@ -31,6 +31,7 @@ import com.liferay.portlet.expando.service.ExpandoTableLocalServiceUtil;
  */
 public class StartupAction extends SimpleAction {
 
+	@Override
 	public void run(String[] ids) throws ActionException {
 		try {
 			doRun(GetterUtil.getLong(ids[0]));

@@ -312,6 +312,7 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 		_expiration = expiration;
 	}
 
+	@Override
 	public OAuthToken toEscapedModel() {
 		if (isEscapedModel()) {
 			return (OAuthToken)this;
@@ -322,6 +323,7 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 		}
 	}
 
+	@Override
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
 			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
@@ -331,10 +333,12 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 		return _expandoBridge;
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
 		getExpandoBridge().setAttributes(serviceContext);
 	}
 
+	@Override
 	public Object clone() {
 		OAuthTokenImpl oAuthTokenImpl = new OAuthTokenImpl();
 
@@ -372,6 +376,7 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 		}
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -396,10 +401,12 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public void resetOriginalValues() {
 		OAuthTokenModelImpl oAuthTokenModelImpl = this;
 
@@ -420,6 +427,7 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 		oAuthTokenModelImpl._originalTokenName = oAuthTokenModelImpl._tokenName;
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(29);
 

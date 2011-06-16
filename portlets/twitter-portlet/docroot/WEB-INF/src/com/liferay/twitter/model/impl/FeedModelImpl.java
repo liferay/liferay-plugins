@@ -237,6 +237,7 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 		_lastStatusId = lastStatusId;
 	}
 
+	@Override
 	public Feed toEscapedModel() {
 		if (isEscapedModel()) {
 			return (Feed)this;
@@ -247,6 +248,7 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 		}
 	}
 
+	@Override
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
 			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
@@ -256,10 +258,12 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 		return _expandoBridge;
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
 		getExpandoBridge().setAttributes(serviceContext);
 	}
 
+	@Override
 	public Object clone() {
 		FeedImpl feedImpl = new FeedImpl();
 
@@ -292,6 +296,7 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 		}
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -316,10 +321,12 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public void resetOriginalValues() {
 		FeedModelImpl feedModelImpl = this;
 
@@ -334,6 +341,7 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 		feedModelImpl._originalTwitterScreenName = feedModelImpl._twitterScreenName;
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(19);
 

@@ -130,6 +130,7 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(JIRAChangeItemImpl.class.getName());
@@ -147,6 +148,7 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(JIRAChangeItem jiraChangeItem) {
 		EntityCacheUtil.removeResult(JIRAChangeItemModelImpl.ENTITY_CACHE_ENABLED,
 			JIRAChangeItemImpl.class, jiraChangeItem.getPrimaryKey());
@@ -175,6 +177,7 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 	 * @throws com.liferay.portal.NoSuchModelException if a j i r a change item with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public JIRAChangeItem remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -228,11 +231,13 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 	 * @return the j i r a change item that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public JIRAChangeItem remove(JIRAChangeItem jiraChangeItem)
 		throws SystemException {
 		return super.remove(jiraChangeItem);
 	}
 
+	@Override
 	protected JIRAChangeItem removeImpl(JIRAChangeItem jiraChangeItem)
 		throws SystemException {
 		jiraChangeItem = toUnwrappedModel(jiraChangeItem);
@@ -259,6 +264,7 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 		return jiraChangeItem;
 	}
 
+	@Override
 	public JIRAChangeItem updateImpl(
 		com.liferay.socialcoding.model.JIRAChangeItem jiraChangeItem,
 		boolean merge) throws SystemException {
@@ -318,6 +324,7 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 	 * @throws com.liferay.portal.NoSuchModelException if a j i r a change item with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public JIRAChangeItem findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -354,6 +361,7 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 	 * @return the j i r a change item, or <code>null</code> if a j i r a change item with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public JIRAChangeItem fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

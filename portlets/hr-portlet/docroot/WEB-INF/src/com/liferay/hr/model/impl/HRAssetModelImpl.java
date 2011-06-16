@@ -219,6 +219,7 @@ public class HRAssetModelImpl extends BaseModelImpl<HRAsset>
 		_inactiveDate = inactiveDate;
 	}
 
+	@Override
 	public HRAsset toEscapedModel() {
 		if (isEscapedModel()) {
 			return (HRAsset)this;
@@ -229,6 +230,7 @@ public class HRAssetModelImpl extends BaseModelImpl<HRAsset>
 		}
 	}
 
+	@Override
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
 			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
@@ -238,10 +240,12 @@ public class HRAssetModelImpl extends BaseModelImpl<HRAsset>
 		return _expandoBridge;
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
 		getExpandoBridge().setAttributes(serviceContext);
 	}
 
+	@Override
 	public Object clone() {
 		HRAssetImpl hrAssetImpl = new HRAssetImpl();
 
@@ -276,6 +280,7 @@ public class HRAssetModelImpl extends BaseModelImpl<HRAsset>
 		}
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -300,13 +305,16 @@ public class HRAssetModelImpl extends BaseModelImpl<HRAsset>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public void resetOriginalValues() {
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(23);
 

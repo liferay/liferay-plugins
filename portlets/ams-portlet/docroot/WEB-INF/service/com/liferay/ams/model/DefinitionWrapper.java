@@ -349,6 +349,7 @@ public class DefinitionWrapper implements Definition {
 		_definition.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new DefinitionWrapper((Definition)_definition.clone());
 	}
@@ -357,6 +358,7 @@ public class DefinitionWrapper implements Definition {
 		return _definition.compareTo(definition);
 	}
 
+	@Override
 	public int hashCode() {
 		return _definition.hashCode();
 	}
@@ -365,6 +367,7 @@ public class DefinitionWrapper implements Definition {
 		return new DefinitionWrapper(_definition.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _definition.toString();
 	}

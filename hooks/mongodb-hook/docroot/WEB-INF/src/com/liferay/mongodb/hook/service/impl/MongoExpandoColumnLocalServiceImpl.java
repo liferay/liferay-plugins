@@ -44,6 +44,7 @@ public class MongoExpandoColumnLocalServiceImpl
 		super(expandoColumnLocalService);
 	}
 
+	@Override
 	public ExpandoColumn updateColumn(
 			long columnId, String name, int type, Object defaultData)
 		throws PortalException, SystemException {
@@ -65,6 +66,7 @@ public class MongoExpandoColumnLocalServiceImpl
 		return expandoColumn;
 	}
 
+	@Override
 	public ExpandoColumn updateTypeSettings(long columnId, String typeSettings)
 		throws PortalException, SystemException {
 

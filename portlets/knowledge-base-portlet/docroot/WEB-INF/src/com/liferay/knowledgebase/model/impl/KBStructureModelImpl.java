@@ -377,6 +377,7 @@ public class KBStructureModelImpl extends BaseModelImpl<KBStructure>
 		_content = content;
 	}
 
+	@Override
 	public KBStructure toEscapedModel() {
 		if (isEscapedModel()) {
 			return (KBStructure)this;
@@ -387,6 +388,7 @@ public class KBStructureModelImpl extends BaseModelImpl<KBStructure>
 		}
 	}
 
+	@Override
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
 			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
@@ -396,10 +398,12 @@ public class KBStructureModelImpl extends BaseModelImpl<KBStructure>
 		return _expandoBridge;
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
 		getExpandoBridge().setAttributes(serviceContext);
 	}
 
+	@Override
 	public Object clone() {
 		KBStructureImpl kbStructureImpl = new KBStructureImpl();
 
@@ -434,6 +438,7 @@ public class KBStructureModelImpl extends BaseModelImpl<KBStructure>
 		return 0;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -458,10 +463,12 @@ public class KBStructureModelImpl extends BaseModelImpl<KBStructure>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public void resetOriginalValues() {
 		KBStructureModelImpl kbStructureModelImpl = this;
 
@@ -472,6 +479,7 @@ public class KBStructureModelImpl extends BaseModelImpl<KBStructure>
 		kbStructureModelImpl._setOriginalGroupId = false;
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(21);
 

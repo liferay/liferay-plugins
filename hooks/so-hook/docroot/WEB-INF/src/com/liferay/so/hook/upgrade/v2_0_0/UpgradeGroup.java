@@ -36,6 +36,7 @@ import java.util.Set;
  */
 public class UpgradeGroup extends UpgradeProcess {
 
+	@Override
 	protected void doUpgrade() throws Exception {
 		Set<String> names = SetUtil.fromArray(
 			PortletPropsValues.SITE_AUTO_CREATE_TEAM_NAMES);

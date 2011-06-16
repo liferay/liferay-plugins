@@ -278,6 +278,7 @@ public class HRTimeSheetHoursPerDayWrapper implements HRTimeSheetHoursPerDay {
 		_hrTimeSheetHoursPerDay.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new HRTimeSheetHoursPerDayWrapper((HRTimeSheetHoursPerDay)_hrTimeSheetHoursPerDay.clone());
 	}
@@ -287,6 +288,7 @@ public class HRTimeSheetHoursPerDayWrapper implements HRTimeSheetHoursPerDay {
 		return _hrTimeSheetHoursPerDay.compareTo(hrTimeSheetHoursPerDay);
 	}
 
+	@Override
 	public int hashCode() {
 		return _hrTimeSheetHoursPerDay.hashCode();
 	}
@@ -295,6 +297,7 @@ public class HRTimeSheetHoursPerDayWrapper implements HRTimeSheetHoursPerDay {
 		return new HRTimeSheetHoursPerDayWrapper(_hrTimeSheetHoursPerDay.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _hrTimeSheetHoursPerDay.toString();
 	}

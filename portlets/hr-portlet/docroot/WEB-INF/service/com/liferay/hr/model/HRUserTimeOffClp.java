@@ -186,6 +186,7 @@ public class HRUserTimeOffClp extends BaseModelImpl<HRUserTimeOff>
 		_hoursUsed = hoursUsed;
 	}
 
+	@Override
 	public HRUserTimeOff toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -197,6 +198,7 @@ public class HRUserTimeOffClp extends BaseModelImpl<HRUserTimeOff>
 		}
 	}
 
+	@Override
 	public Object clone() {
 		HRUserTimeOffClp clone = new HRUserTimeOffClp();
 
@@ -232,6 +234,7 @@ public class HRUserTimeOffClp extends BaseModelImpl<HRUserTimeOff>
 		}
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -256,10 +259,12 @@ public class HRUserTimeOffClp extends BaseModelImpl<HRUserTimeOff>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(29);
 

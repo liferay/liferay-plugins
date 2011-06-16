@@ -101,6 +101,7 @@ public class AttachmentLocalServiceImpl extends AttachmentLocalServiceBaseImpl {
 		return attachment;
 	}
 
+	@Override
 	public void deleteAttachment(long attachmentId)
 		throws PortalException, SystemException {
 

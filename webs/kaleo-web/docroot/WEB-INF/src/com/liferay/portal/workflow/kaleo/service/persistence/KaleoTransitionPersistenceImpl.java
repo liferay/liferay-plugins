@@ -185,6 +185,7 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(KaleoTransitionImpl.class.getName());
@@ -202,6 +203,7 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(KaleoTransition kaleoTransition) {
 		EntityCacheUtil.removeResult(KaleoTransitionModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoTransitionImpl.class, kaleoTransition.getPrimaryKey());
@@ -243,6 +245,7 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 	 * @throws com.liferay.portal.NoSuchModelException if a kaleo transition with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoTransition remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -296,11 +299,13 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 	 * @return the kaleo transition that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoTransition remove(KaleoTransition kaleoTransition)
 		throws SystemException {
 		return super.remove(kaleoTransition);
 	}
 
+	@Override
 	protected KaleoTransition removeImpl(KaleoTransition kaleoTransition)
 		throws SystemException {
 		kaleoTransition = toUnwrappedModel(kaleoTransition);
@@ -342,6 +347,7 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 		return kaleoTransition;
 	}
 
+	@Override
 	public KaleoTransition updateImpl(
 		com.liferay.portal.workflow.kaleo.model.KaleoTransition kaleoTransition,
 		boolean merge) throws SystemException {
@@ -461,6 +467,7 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 	 * @throws com.liferay.portal.NoSuchModelException if a kaleo transition with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoTransition findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -497,6 +504,7 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 	 * @return the kaleo transition, or <code>null</code> if a kaleo transition with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoTransition fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

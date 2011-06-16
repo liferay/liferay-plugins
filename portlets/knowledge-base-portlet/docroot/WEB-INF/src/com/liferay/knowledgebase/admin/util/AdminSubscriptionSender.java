@@ -50,6 +50,7 @@ public class AdminSubscriptionSender extends SubscriptionSender {
 		_serviceContext = serviceContext;
 	}
 
+	@Override
 	protected void deleteSubscription(Subscription subscription)
 		throws Exception {
 
@@ -93,6 +94,7 @@ public class AdminSubscriptionSender extends SubscriptionSender {
 		return sb.toString();
 	}
 
+	@Override
 	protected boolean hasPermission(Subscription subscription, User user)
 		throws Exception {
 
@@ -120,6 +122,7 @@ public class AdminSubscriptionSender extends SubscriptionSender {
 		}
 	}
 
+	@Override
 	protected String replaceContent(String content, Locale locale)
 		throws Exception {
 

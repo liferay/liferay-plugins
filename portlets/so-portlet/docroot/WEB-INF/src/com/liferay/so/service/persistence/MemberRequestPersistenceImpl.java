@@ -179,6 +179,7 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(MemberRequestImpl.class.getName());
@@ -196,6 +197,7 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(MemberRequest memberRequest) {
 		EntityCacheUtil.removeResult(MemberRequestModelImpl.ENTITY_CACHE_ENABLED,
 			MemberRequestImpl.class, memberRequest.getPrimaryKey());
@@ -234,6 +236,7 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	 * @throws com.liferay.portal.NoSuchModelException if a member request with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public MemberRequest remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -287,11 +290,13 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	 * @return the member request that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public MemberRequest remove(MemberRequest memberRequest)
 		throws SystemException {
 		return super.remove(memberRequest);
 	}
 
+	@Override
 	protected MemberRequest removeImpl(MemberRequest memberRequest)
 		throws SystemException {
 		memberRequest = toUnwrappedModel(memberRequest);
@@ -330,6 +335,7 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 		return memberRequest;
 	}
 
+	@Override
 	public MemberRequest updateImpl(
 		com.liferay.so.model.MemberRequest memberRequest, boolean merge)
 		throws SystemException {
@@ -437,6 +443,7 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	 * @throws com.liferay.portal.NoSuchModelException if a member request with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public MemberRequest findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -473,6 +480,7 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	 * @return the member request, or <code>null</code> if a member request with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public MemberRequest fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

@@ -180,6 +180,7 @@ public class DisplayPortlet extends MVCPortlet {
 			resourcePrimKey, parentResourcePrimKey, priority);
 	}
 
+	@Override
 	public void render(
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws PortletException, IOException {
@@ -290,6 +291,7 @@ public class DisplayPortlet extends MVCPortlet {
 			rss.getBytes(StringPool.UTF8), ContentTypes.TEXT_XML_UTF8);
 	}
 
+	@Override
 	public void serveResource(
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws IOException, PortletException {
@@ -539,6 +541,7 @@ public class DisplayPortlet extends MVCPortlet {
 		}
 	}
 
+	@Override
 	protected void addSuccessMessage(
 		ActionRequest actionRequest, ActionResponse actionResponse) {
 
@@ -552,6 +555,7 @@ public class DisplayPortlet extends MVCPortlet {
 		super.addSuccessMessage(actionRequest, actionResponse);
 	}
 
+	@Override
 	protected void doDispatch(
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws IOException, PortletException {
@@ -621,6 +625,7 @@ public class DisplayPortlet extends MVCPortlet {
 		return WorkflowConstants.STATUS_APPROVED;
 	}
 
+	@Override
 	protected boolean isSessionErrorException(Throwable cause) {
 		if (cause instanceof DuplicateFileException ||
 			cause instanceof FileNameException ||

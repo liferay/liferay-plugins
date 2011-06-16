@@ -85,10 +85,12 @@ public class ConsumerFriendlyURLMapper extends BaseFriendlyURLMapper {
 		return sb.toString();
 	}
 
+	@Override
 	public String getMapping() {
 		return _MAPPING;
 	}
 
+	@Override
 	public String getPortletId() {
 		return null;
 	}
@@ -128,6 +130,7 @@ public class ConsumerFriendlyURLMapper extends BaseFriendlyURLMapper {
 		sb.append(GetterUtil.get(HttpUtil.encodeURL(value), StringPool.DASH));
 	}
 
+	@Override
 	protected void addParameter(
 		Map<String, String[]> parameterMap, String name, String value) {
 

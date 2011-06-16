@@ -30,6 +30,7 @@ import org.apache.shindig.gadgets.spec.GadgetSpec;
  */
 public class GadgetPortlet extends BaseGadgetPortlet {
 
+	@Override
 	protected Gadget getGadget(RenderRequest renderRequest) throws Exception {
 		PortletConfig portletConfig = getPortletConfig();
 

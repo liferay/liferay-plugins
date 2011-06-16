@@ -133,6 +133,7 @@ public class HRExpenseAccountPersistenceImpl extends BasePersistenceImpl<HRExpen
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(HRExpenseAccountImpl.class.getName());
@@ -150,6 +151,7 @@ public class HRExpenseAccountPersistenceImpl extends BasePersistenceImpl<HRExpen
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(HRExpenseAccount hrExpenseAccount) {
 		EntityCacheUtil.removeResult(HRExpenseAccountModelImpl.ENTITY_CACHE_ENABLED,
 			HRExpenseAccountImpl.class, hrExpenseAccount.getPrimaryKey());
@@ -185,6 +187,7 @@ public class HRExpenseAccountPersistenceImpl extends BasePersistenceImpl<HRExpen
 	 * @throws com.liferay.portal.NoSuchModelException if a h r expense account with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRExpenseAccount remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -238,11 +241,13 @@ public class HRExpenseAccountPersistenceImpl extends BasePersistenceImpl<HRExpen
 	 * @return the h r expense account that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRExpenseAccount remove(HRExpenseAccount hrExpenseAccount)
 		throws SystemException {
 		return super.remove(hrExpenseAccount);
 	}
 
+	@Override
 	protected HRExpenseAccount removeImpl(HRExpenseAccount hrExpenseAccount)
 		throws SystemException {
 		hrExpenseAccount = toUnwrappedModel(hrExpenseAccount);
@@ -278,6 +283,7 @@ public class HRExpenseAccountPersistenceImpl extends BasePersistenceImpl<HRExpen
 		return hrExpenseAccount;
 	}
 
+	@Override
 	public HRExpenseAccount updateImpl(
 		com.liferay.hr.model.HRExpenseAccount hrExpenseAccount, boolean merge)
 		throws SystemException {
@@ -368,6 +374,7 @@ public class HRExpenseAccountPersistenceImpl extends BasePersistenceImpl<HRExpen
 	 * @throws com.liferay.portal.NoSuchModelException if a h r expense account with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRExpenseAccount findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -405,6 +412,7 @@ public class HRExpenseAccountPersistenceImpl extends BasePersistenceImpl<HRExpen
 	 * @return the h r expense account, or <code>null</code> if a h r expense account with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRExpenseAccount fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

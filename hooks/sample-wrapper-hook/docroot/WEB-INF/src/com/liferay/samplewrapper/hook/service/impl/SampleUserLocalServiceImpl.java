@@ -30,6 +30,7 @@ public class SampleUserLocalServiceImpl extends UserLocalServiceWrapper {
 		super(userLocalService);
 	}
 
+	@Override
 	public User getUserById(long userId)
 		throws PortalException, SystemException {
 

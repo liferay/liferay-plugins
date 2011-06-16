@@ -60,6 +60,7 @@ public class OAuthConsumerLocalServiceImpl
 		return oAuthConsumer;
 	}
 
+	@Override
 	public void deleteOAuthConsumer(long oAuthConsumerId)
 		throws PortalException, SystemException {
 
@@ -69,6 +70,7 @@ public class OAuthConsumerLocalServiceImpl
 		deleteOAuthConsumer(oAuthConsumer);
 	}
 
+	@Override
 	public void deleteOAuthConsumer(OAuthConsumer oAuthConsumer)
 		throws SystemException {
 

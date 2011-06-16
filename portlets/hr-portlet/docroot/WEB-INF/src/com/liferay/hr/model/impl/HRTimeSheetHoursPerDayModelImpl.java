@@ -196,6 +196,7 @@ public class HRTimeSheetHoursPerDayModelImpl extends BaseModelImpl<HRTimeSheetHo
 		_hoursPerDay = hoursPerDay;
 	}
 
+	@Override
 	public HRTimeSheetHoursPerDay toEscapedModel() {
 		if (isEscapedModel()) {
 			return (HRTimeSheetHoursPerDay)this;
@@ -206,6 +207,7 @@ public class HRTimeSheetHoursPerDayModelImpl extends BaseModelImpl<HRTimeSheetHo
 		}
 	}
 
+	@Override
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
 			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
@@ -215,10 +217,12 @@ public class HRTimeSheetHoursPerDayModelImpl extends BaseModelImpl<HRTimeSheetHo
 		return _expandoBridge;
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
 		getExpandoBridge().setAttributes(serviceContext);
 	}
 
+	@Override
 	public Object clone() {
 		HRTimeSheetHoursPerDayImpl hrTimeSheetHoursPerDayImpl = new HRTimeSheetHoursPerDayImpl();
 
@@ -251,6 +255,7 @@ public class HRTimeSheetHoursPerDayModelImpl extends BaseModelImpl<HRTimeSheetHo
 		}
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -275,13 +280,16 @@ public class HRTimeSheetHoursPerDayModelImpl extends BaseModelImpl<HRTimeSheetHo
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public void resetOriginalValues() {
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(19);
 

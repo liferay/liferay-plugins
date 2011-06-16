@@ -36,6 +36,7 @@ public class FriendsRequestInterpreter extends BaseSocialRequestInterpreter {
 		return _CLASS_NAMES;
 	}
 
+	@Override
 	protected SocialRequestFeedEntry doInterpret(
 			SocialRequest request, ThemeDisplay themeDisplay)
 		throws Exception {
@@ -78,6 +79,7 @@ public class FriendsRequestInterpreter extends BaseSocialRequestInterpreter {
 		return new SocialRequestFeedEntry(title, body);
 	}
 
+	@Override
 	protected boolean doProcessConfirmation(
 		SocialRequest request, ThemeDisplay themeDisplay) {
 

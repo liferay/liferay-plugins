@@ -115,6 +115,7 @@ public class HRExpenseCurrencyPersistenceImpl extends BasePersistenceImpl<HRExpe
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(HRExpenseCurrencyImpl.class.getName());
@@ -132,6 +133,7 @@ public class HRExpenseCurrencyPersistenceImpl extends BasePersistenceImpl<HRExpe
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(HRExpenseCurrency hrExpenseCurrency) {
 		EntityCacheUtil.removeResult(HRExpenseCurrencyModelImpl.ENTITY_CACHE_ENABLED,
 			HRExpenseCurrencyImpl.class, hrExpenseCurrency.getPrimaryKey());
@@ -160,6 +162,7 @@ public class HRExpenseCurrencyPersistenceImpl extends BasePersistenceImpl<HRExpe
 	 * @throws com.liferay.portal.NoSuchModelException if a h r expense currency with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRExpenseCurrency remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -213,11 +216,13 @@ public class HRExpenseCurrencyPersistenceImpl extends BasePersistenceImpl<HRExpe
 	 * @return the h r expense currency that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRExpenseCurrency remove(HRExpenseCurrency hrExpenseCurrency)
 		throws SystemException {
 		return super.remove(hrExpenseCurrency);
 	}
 
+	@Override
 	protected HRExpenseCurrency removeImpl(HRExpenseCurrency hrExpenseCurrency)
 		throws SystemException {
 		hrExpenseCurrency = toUnwrappedModel(hrExpenseCurrency);
@@ -244,6 +249,7 @@ public class HRExpenseCurrencyPersistenceImpl extends BasePersistenceImpl<HRExpe
 		return hrExpenseCurrency;
 	}
 
+	@Override
 	public HRExpenseCurrency updateImpl(
 		com.liferay.hr.model.HRExpenseCurrency hrExpenseCurrency, boolean merge)
 		throws SystemException {
@@ -307,6 +313,7 @@ public class HRExpenseCurrencyPersistenceImpl extends BasePersistenceImpl<HRExpe
 	 * @throws com.liferay.portal.NoSuchModelException if a h r expense currency with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRExpenseCurrency findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -344,6 +351,7 @@ public class HRExpenseCurrencyPersistenceImpl extends BasePersistenceImpl<HRExpe
 	 * @return the h r expense currency, or <code>null</code> if a h r expense currency with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRExpenseCurrency fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

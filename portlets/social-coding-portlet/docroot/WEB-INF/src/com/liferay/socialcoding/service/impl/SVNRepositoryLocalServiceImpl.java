@@ -39,6 +39,7 @@ import org.tmatesoft.svn.core.wc.SVNWCUtil;
 public class SVNRepositoryLocalServiceImpl
 	extends SVNRepositoryLocalServiceBaseImpl {
 
+	@Override
 	public SVNRepository getSVNRepository(long svnRepositoryId)
 		throws PortalException, SystemException {
 

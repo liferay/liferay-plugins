@@ -122,6 +122,7 @@ public class HRHolidayPersistenceImpl extends BasePersistenceImpl<HRHoliday>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(HRHolidayImpl.class.getName());
@@ -139,6 +140,7 @@ public class HRHolidayPersistenceImpl extends BasePersistenceImpl<HRHoliday>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(HRHoliday hrHoliday) {
 		EntityCacheUtil.removeResult(HRHolidayModelImpl.ENTITY_CACHE_ENABLED,
 			HRHolidayImpl.class, hrHoliday.getPrimaryKey());
@@ -167,6 +169,7 @@ public class HRHolidayPersistenceImpl extends BasePersistenceImpl<HRHoliday>
 	 * @throws com.liferay.portal.NoSuchModelException if a h r holiday with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRHoliday remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -219,10 +222,12 @@ public class HRHolidayPersistenceImpl extends BasePersistenceImpl<HRHoliday>
 	 * @return the h r holiday that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRHoliday remove(HRHoliday hrHoliday) throws SystemException {
 		return super.remove(hrHoliday);
 	}
 
+	@Override
 	protected HRHoliday removeImpl(HRHoliday hrHoliday)
 		throws SystemException {
 		hrHoliday = toUnwrappedModel(hrHoliday);
@@ -259,6 +264,7 @@ public class HRHolidayPersistenceImpl extends BasePersistenceImpl<HRHoliday>
 		return hrHoliday;
 	}
 
+	@Override
 	public HRHoliday updateImpl(com.liferay.hr.model.HRHoliday hrHoliday,
 		boolean merge) throws SystemException {
 		hrHoliday = toUnwrappedModel(hrHoliday);
@@ -321,6 +327,7 @@ public class HRHolidayPersistenceImpl extends BasePersistenceImpl<HRHoliday>
 	 * @throws com.liferay.portal.NoSuchModelException if a h r holiday with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRHoliday findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -357,6 +364,7 @@ public class HRHolidayPersistenceImpl extends BasePersistenceImpl<HRHoliday>
 	 * @return the h r holiday, or <code>null</code> if a h r holiday with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRHoliday fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

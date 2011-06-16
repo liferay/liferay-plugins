@@ -148,6 +148,7 @@ public class CalendarEventPersistenceImpl extends BasePersistenceImpl<CalendarEv
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(CalendarEventImpl.class.getName());
@@ -165,6 +166,7 @@ public class CalendarEventPersistenceImpl extends BasePersistenceImpl<CalendarEv
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(CalendarEvent calendarEvent) {
 		EntityCacheUtil.removeResult(CalendarEventModelImpl.ENTITY_CACHE_ENABLED,
 			CalendarEventImpl.class, calendarEvent.getPrimaryKey());
@@ -203,6 +205,7 @@ public class CalendarEventPersistenceImpl extends BasePersistenceImpl<CalendarEv
 	 * @throws com.liferay.portal.NoSuchModelException if a calendar event with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public CalendarEvent remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -256,11 +259,13 @@ public class CalendarEventPersistenceImpl extends BasePersistenceImpl<CalendarEv
 	 * @return the calendar event that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public CalendarEvent remove(CalendarEvent calendarEvent)
 		throws SystemException {
 		return super.remove(calendarEvent);
 	}
 
+	@Override
 	protected CalendarEvent removeImpl(CalendarEvent calendarEvent)
 		throws SystemException {
 		calendarEvent = toUnwrappedModel(calendarEvent);
@@ -295,6 +300,7 @@ public class CalendarEventPersistenceImpl extends BasePersistenceImpl<CalendarEv
 		return calendarEvent;
 	}
 
+	@Override
 	public CalendarEvent updateImpl(
 		com.liferay.calendar.model.CalendarEvent calendarEvent, boolean merge)
 		throws SystemException {
@@ -400,6 +406,7 @@ public class CalendarEventPersistenceImpl extends BasePersistenceImpl<CalendarEv
 	 * @throws com.liferay.portal.NoSuchModelException if a calendar event with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public CalendarEvent findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -436,6 +443,7 @@ public class CalendarEventPersistenceImpl extends BasePersistenceImpl<CalendarEv
 	 * @return the calendar event, or <code>null</code> if a calendar event with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public CalendarEvent fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

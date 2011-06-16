@@ -27,10 +27,12 @@ import com.liferay.so.hook.upgrade.v2_0_0.UpgradeGroup;
  */
 public class UpgradeProcess_2_0_0 extends UpgradeProcess {
 
+	@Override
 	public int getThreshold() {
 		return 200;
 	}
 
+	@Override
 	protected void doUpgrade() throws Exception {
 		if (UpgradeUtil.isFirstRun()) {
 			return;

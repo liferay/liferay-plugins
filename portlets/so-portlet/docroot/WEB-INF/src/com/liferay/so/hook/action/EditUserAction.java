@@ -44,6 +44,7 @@ import javax.portlet.ResourceResponse;
  */
 public class EditUserAction extends BaseStrutsPortletAction {
 
+	@Override
 	public void processAction(
 			StrutsPortletAction originalStrutsPortletAction,
 			PortletConfig portletConfig, ActionRequest actionRequest,
@@ -137,6 +138,7 @@ public class EditUserAction extends BaseStrutsPortletAction {
 			portletConfig, actionRequest, actionResponse);
 	}
 
+	@Override
 	public String render(
 			StrutsPortletAction originalStrutsPortletAction,
 			PortletConfig portletConfig, RenderRequest renderRequest,
@@ -147,6 +149,7 @@ public class EditUserAction extends BaseStrutsPortletAction {
 			portletConfig, renderRequest, renderResponse);
 	}
 
+	@Override
 	public void serveResource(
 			StrutsPortletAction originalStrutsPortletAction,
 			PortletConfig portletConfig, ResourceRequest resourceRequest,

@@ -259,6 +259,7 @@ public class WallEntryWrapper implements WallEntry {
 		_wallEntry.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new WallEntryWrapper((WallEntry)_wallEntry.clone());
 	}
@@ -267,6 +268,7 @@ public class WallEntryWrapper implements WallEntry {
 		return _wallEntry.compareTo(wallEntry);
 	}
 
+	@Override
 	public int hashCode() {
 		return _wallEntry.hashCode();
 	}
@@ -275,6 +277,7 @@ public class WallEntryWrapper implements WallEntry {
 		return new WallEntryWrapper(_wallEntry.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _wallEntry.toString();
 	}

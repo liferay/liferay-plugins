@@ -257,6 +257,7 @@ public class WSRPProducerWrapper implements WSRPProducer {
 		_wsrpProducer.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new WSRPProducerWrapper((WSRPProducer)_wsrpProducer.clone());
 	}
@@ -265,6 +266,7 @@ public class WSRPProducerWrapper implements WSRPProducer {
 		return _wsrpProducer.compareTo(wsrpProducer);
 	}
 
+	@Override
 	public int hashCode() {
 		return _wsrpProducer.hashCode();
 	}
@@ -273,6 +275,7 @@ public class WSRPProducerWrapper implements WSRPProducer {
 		return new WSRPProducerWrapper(_wsrpProducer.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _wsrpProducer.toString();
 	}

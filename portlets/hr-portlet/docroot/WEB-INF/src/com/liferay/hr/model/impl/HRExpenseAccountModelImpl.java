@@ -224,6 +224,7 @@ public class HRExpenseAccountModelImpl extends BaseModelImpl<HRExpenseAccount>
 		_description = description;
 	}
 
+	@Override
 	public HRExpenseAccount toEscapedModel() {
 		if (isEscapedModel()) {
 			return (HRExpenseAccount)this;
@@ -234,6 +235,7 @@ public class HRExpenseAccountModelImpl extends BaseModelImpl<HRExpenseAccount>
 		}
 	}
 
+	@Override
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
 			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
@@ -243,10 +245,12 @@ public class HRExpenseAccountModelImpl extends BaseModelImpl<HRExpenseAccount>
 		return _expandoBridge;
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
 		getExpandoBridge().setAttributes(serviceContext);
 	}
 
+	@Override
 	public Object clone() {
 		HRExpenseAccountImpl hrExpenseAccountImpl = new HRExpenseAccountImpl();
 
@@ -279,6 +283,7 @@ public class HRExpenseAccountModelImpl extends BaseModelImpl<HRExpenseAccount>
 		}
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -303,10 +308,12 @@ public class HRExpenseAccountModelImpl extends BaseModelImpl<HRExpenseAccount>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public void resetOriginalValues() {
 		HRExpenseAccountModelImpl hrExpenseAccountModelImpl = this;
 
@@ -317,6 +324,7 @@ public class HRExpenseAccountModelImpl extends BaseModelImpl<HRExpenseAccount>
 		hrExpenseAccountModelImpl._originalName = hrExpenseAccountModelImpl._name;
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(19);
 

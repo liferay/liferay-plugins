@@ -162,6 +162,7 @@ public class HRUserTaskClp extends BaseModelImpl<HRUserTask>
 		_hrUserUuid = hrUserUuid;
 	}
 
+	@Override
 	public HRUserTask toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -173,6 +174,7 @@ public class HRUserTaskClp extends BaseModelImpl<HRUserTask>
 		}
 	}
 
+	@Override
 	public Object clone() {
 		HRUserTaskClp clone = new HRUserTaskClp();
 
@@ -205,6 +207,7 @@ public class HRUserTaskClp extends BaseModelImpl<HRUserTask>
 		}
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -229,10 +232,12 @@ public class HRUserTaskClp extends BaseModelImpl<HRUserTask>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(23);
 

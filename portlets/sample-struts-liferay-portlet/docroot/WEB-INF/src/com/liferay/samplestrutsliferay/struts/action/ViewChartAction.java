@@ -47,6 +47,7 @@ import org.jfree.data.general.PieDataset;
  */
 public class ViewChartAction extends Action {
 
+	@Override
 	public ActionForward execute(
 			ActionMapping mapping, ActionForm form, HttpServletRequest request,
 			HttpServletResponse response)

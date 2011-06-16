@@ -46,14 +46,17 @@ public class MongoExpandoRowLocalServiceImpl
 		super(expandoRowLocalService);
 	}
 
+	@Override
 	public ExpandoRow addRow(long tableId, long classPK) {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public void deleteRow(long rowId) {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public void deleteRow(long tableId, long classPK)
 		throws PortalException, SystemException {
 
@@ -65,10 +68,12 @@ public class MongoExpandoRowLocalServiceImpl
 		dbCollection.remove(new BasicDBObject("classPK", classPK));
 	}
 
+	@Override
 	public ExpandoRow getRow(long rowId) {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public ExpandoRow getRow(long tableId, long classPK)
 		throws PortalException, SystemException {
 
@@ -78,6 +83,7 @@ public class MongoExpandoRowLocalServiceImpl
 		return getRow(expandoTable, classPK);
 	}
 
+	@Override
 	public ExpandoRow getRow(
 			long companyId, long classNameId, String tableName, long classPK)
 		throws SystemException {
@@ -93,6 +99,7 @@ public class MongoExpandoRowLocalServiceImpl
 		}
 	}
 
+	@Override
 	public List<ExpandoRow> getRows(long tableId, int start, int end)
 		throws SystemException {
 
@@ -107,6 +114,7 @@ public class MongoExpandoRowLocalServiceImpl
 		}
 	}
 
+	@Override
 	public List<ExpandoRow> getRows(
 			long companyId, long classNameId, String tableName, int start,
 			int end)
@@ -123,6 +131,7 @@ public class MongoExpandoRowLocalServiceImpl
 		}
 	}
 
+	@Override
 	public int getRowsCount(long tableId)
 		throws SystemException {
 
@@ -139,6 +148,7 @@ public class MongoExpandoRowLocalServiceImpl
 		}
 	}
 
+	@Override
 	public int getRowsCount(
 		long companyId, long classNameId, String tableName) {
 

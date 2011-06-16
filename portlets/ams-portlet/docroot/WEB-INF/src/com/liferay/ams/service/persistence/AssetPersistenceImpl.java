@@ -112,6 +112,7 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(AssetImpl.class.getName());
@@ -129,6 +130,7 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(Asset asset) {
 		EntityCacheUtil.removeResult(AssetModelImpl.ENTITY_CACHE_ENABLED,
 			AssetImpl.class, asset.getPrimaryKey());
@@ -157,6 +159,7 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 	 * @throws com.liferay.portal.NoSuchModelException if a asset with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Asset remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -209,10 +212,12 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 	 * @return the asset that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Asset remove(Asset asset) throws SystemException {
 		return super.remove(asset);
 	}
 
+	@Override
 	protected Asset removeImpl(Asset asset) throws SystemException {
 		asset = toUnwrappedModel(asset);
 
@@ -238,6 +243,7 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 		return asset;
 	}
 
+	@Override
 	public Asset updateImpl(com.liferay.ams.model.Asset asset, boolean merge)
 		throws SystemException {
 		asset = toUnwrappedModel(asset);
@@ -298,6 +304,7 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 	 * @throws com.liferay.portal.NoSuchModelException if a asset with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Asset findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -334,6 +341,7 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 	 * @return the asset, or <code>null</code> if a asset with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Asset fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

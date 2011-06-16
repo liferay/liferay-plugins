@@ -115,6 +115,7 @@ public class HRTimeOffPolicyPersistenceImpl extends BasePersistenceImpl<HRTimeOf
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(HRTimeOffPolicyImpl.class.getName());
@@ -132,6 +133,7 @@ public class HRTimeOffPolicyPersistenceImpl extends BasePersistenceImpl<HRTimeOf
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(HRTimeOffPolicy hrTimeOffPolicy) {
 		EntityCacheUtil.removeResult(HRTimeOffPolicyModelImpl.ENTITY_CACHE_ENABLED,
 			HRTimeOffPolicyImpl.class, hrTimeOffPolicy.getPrimaryKey());
@@ -160,6 +162,7 @@ public class HRTimeOffPolicyPersistenceImpl extends BasePersistenceImpl<HRTimeOf
 	 * @throws com.liferay.portal.NoSuchModelException if a h r time off policy with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRTimeOffPolicy remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -213,11 +216,13 @@ public class HRTimeOffPolicyPersistenceImpl extends BasePersistenceImpl<HRTimeOf
 	 * @return the h r time off policy that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRTimeOffPolicy remove(HRTimeOffPolicy hrTimeOffPolicy)
 		throws SystemException {
 		return super.remove(hrTimeOffPolicy);
 	}
 
+	@Override
 	protected HRTimeOffPolicy removeImpl(HRTimeOffPolicy hrTimeOffPolicy)
 		throws SystemException {
 		hrTimeOffPolicy = toUnwrappedModel(hrTimeOffPolicy);
@@ -244,6 +249,7 @@ public class HRTimeOffPolicyPersistenceImpl extends BasePersistenceImpl<HRTimeOf
 		return hrTimeOffPolicy;
 	}
 
+	@Override
 	public HRTimeOffPolicy updateImpl(
 		com.liferay.hr.model.HRTimeOffPolicy hrTimeOffPolicy, boolean merge)
 		throws SystemException {
@@ -313,6 +319,7 @@ public class HRTimeOffPolicyPersistenceImpl extends BasePersistenceImpl<HRTimeOf
 	 * @throws com.liferay.portal.NoSuchModelException if a h r time off policy with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRTimeOffPolicy findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -349,6 +356,7 @@ public class HRTimeOffPolicyPersistenceImpl extends BasePersistenceImpl<HRTimeOf
 	 * @return the h r time off policy, or <code>null</code> if a h r time off policy with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRTimeOffPolicy fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

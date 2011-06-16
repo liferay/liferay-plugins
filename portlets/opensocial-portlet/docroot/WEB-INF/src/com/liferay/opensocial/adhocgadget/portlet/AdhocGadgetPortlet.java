@@ -29,6 +29,7 @@ import javax.portlet.RenderRequest;
  */
 public class AdhocGadgetPortlet extends BaseGadgetPortlet {
 
+	@Override
 	protected Gadget getGadget(RenderRequest renderRequest) throws Exception {
 		Portlet portlet = (Portlet)renderRequest.getAttribute(
 			WebKeys.RENDER_PORTLET);

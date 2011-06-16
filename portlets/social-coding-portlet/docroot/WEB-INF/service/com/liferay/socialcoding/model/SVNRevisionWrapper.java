@@ -203,6 +203,7 @@ public class SVNRevisionWrapper implements SVNRevision {
 		_svnRevision.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new SVNRevisionWrapper((SVNRevision)_svnRevision.clone());
 	}
@@ -211,6 +212,7 @@ public class SVNRevisionWrapper implements SVNRevision {
 		return _svnRevision.compareTo(svnRevision);
 	}
 
+	@Override
 	public int hashCode() {
 		return _svnRevision.hashCode();
 	}
@@ -219,6 +221,7 @@ public class SVNRevisionWrapper implements SVNRevision {
 		return new SVNRevisionWrapper(_svnRevision.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _svnRevision.toString();
 	}

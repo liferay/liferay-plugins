@@ -37,6 +37,7 @@ public class KBTemplateEngineTypeComparator extends OrderByComparator {
 		_ascending = ascending;
 	}
 
+	@Override
 	public int compare(Object obj1, Object obj2) {
 		KBTemplate kbTemplate1 = (KBTemplate)obj1;
 		KBTemplate kbTemplate2 = (KBTemplate)obj2;
@@ -58,6 +59,7 @@ public class KBTemplateEngineTypeComparator extends OrderByComparator {
 		}
 	}
 
+	@Override
 	public String getOrderBy() {
 		if (_ascending) {
 			return ORDER_BY_ASC;
@@ -67,10 +69,12 @@ public class KBTemplateEngineTypeComparator extends OrderByComparator {
 		}
 	}
 
+	@Override
 	public String[] getOrderByFields() {
 		return ORDER_BY_FIELDS;
 	}
 
+	@Override
 	public boolean isAscending() {
 		return _ascending;
 	}

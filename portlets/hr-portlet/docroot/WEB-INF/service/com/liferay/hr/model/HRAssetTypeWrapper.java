@@ -277,6 +277,7 @@ public class HRAssetTypeWrapper implements HRAssetType {
 		_hrAssetType.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new HRAssetTypeWrapper((HRAssetType)_hrAssetType.clone());
 	}
@@ -285,6 +286,7 @@ public class HRAssetTypeWrapper implements HRAssetType {
 		return _hrAssetType.compareTo(hrAssetType);
 	}
 
+	@Override
 	public int hashCode() {
 		return _hrAssetType.hashCode();
 	}
@@ -293,6 +295,7 @@ public class HRAssetTypeWrapper implements HRAssetType {
 		return new HRAssetTypeWrapper(_hrAssetType.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _hrAssetType.toString();
 	}

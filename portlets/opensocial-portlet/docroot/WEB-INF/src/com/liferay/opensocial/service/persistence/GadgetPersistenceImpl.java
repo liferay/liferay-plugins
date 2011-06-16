@@ -155,6 +155,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(GadgetImpl.class.getName());
@@ -172,6 +173,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(Gadget gadget) {
 		EntityCacheUtil.removeResult(GadgetModelImpl.ENTITY_CACHE_ENABLED,
 			GadgetImpl.class, gadget.getPrimaryKey());
@@ -207,6 +209,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 * @throws com.liferay.portal.NoSuchModelException if a gadget with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Gadget remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -259,10 +262,12 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 * @return the gadget that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Gadget remove(Gadget gadget) throws SystemException {
 		return super.remove(gadget);
 	}
 
+	@Override
 	protected Gadget removeImpl(Gadget gadget) throws SystemException {
 		gadget = toUnwrappedModel(gadget);
 
@@ -297,6 +302,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 		return gadget;
 	}
 
+	@Override
 	public Gadget updateImpl(com.liferay.opensocial.model.Gadget gadget,
 		boolean merge) throws SystemException {
 		gadget = toUnwrappedModel(gadget);
@@ -389,6 +395,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 * @throws com.liferay.portal.NoSuchModelException if a gadget with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Gadget findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -425,6 +432,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 * @return the gadget, or <code>null</code> if a gadget with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Gadget fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

@@ -30,6 +30,7 @@ public class WorkflowDefinitionAdapter extends DefaultWorkflowDefinition {
 		setVersion(kaleoDefinition.getVersion());
 	}
 
+	@Override
 	public String getTitle(String languageId) {
 		return LocalizationUtil.getLocalization(getTitle(), languageId);
 	}

@@ -24,6 +24,7 @@ import com.liferay.wsrp.service.WSRPConsumerPortletLocalServiceUtil;
 public class WSRPConsumerPortletCheckEventMessageListener
 	extends BaseMessageListener {
 
+	@Override
 	protected void doReceive(Message message) throws Exception {
 		WSRPConsumerPortletLocalServiceUtil.initFailedWSRPConsumerPortlets();
 	}

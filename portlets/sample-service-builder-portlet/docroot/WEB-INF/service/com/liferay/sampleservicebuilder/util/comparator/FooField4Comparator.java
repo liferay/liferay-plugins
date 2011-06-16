@@ -35,6 +35,7 @@ public class FooField4Comparator extends OrderByComparator {
 		_asc = asc;
 	}
 
+	@Override
 	public int compare(Object obj1, Object obj2) {
 		Foo foo1 = (Foo)obj1;
 		Foo foo2 = (Foo)obj2;
@@ -49,6 +50,7 @@ public class FooField4Comparator extends OrderByComparator {
 		}
 	}
 
+	@Override
 	public String getOrderBy() {
 		if (_asc) {
 			return ORDER_BY_ASC;

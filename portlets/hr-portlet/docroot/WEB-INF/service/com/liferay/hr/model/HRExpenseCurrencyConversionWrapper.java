@@ -316,6 +316,7 @@ public class HRExpenseCurrencyConversionWrapper
 		_hrExpenseCurrencyConversion.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new HRExpenseCurrencyConversionWrapper((HRExpenseCurrencyConversion)_hrExpenseCurrencyConversion.clone());
 	}
@@ -325,6 +326,7 @@ public class HRExpenseCurrencyConversionWrapper
 		return _hrExpenseCurrencyConversion.compareTo(hrExpenseCurrencyConversion);
 	}
 
+	@Override
 	public int hashCode() {
 		return _hrExpenseCurrencyConversion.hashCode();
 	}
@@ -333,6 +335,7 @@ public class HRExpenseCurrencyConversionWrapper
 		return new HRExpenseCurrencyConversionWrapper(_hrExpenseCurrencyConversion.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _hrExpenseCurrencyConversion.toString();
 	}

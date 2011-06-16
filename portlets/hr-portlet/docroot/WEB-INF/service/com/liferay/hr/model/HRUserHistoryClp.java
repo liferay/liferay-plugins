@@ -210,6 +210,7 @@ public class HRUserHistoryClp extends BaseModelImpl<HRUserHistory>
 		_overtimeExempt = overtimeExempt;
 	}
 
+	@Override
 	public HRUserHistory toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -221,6 +222,7 @@ public class HRUserHistoryClp extends BaseModelImpl<HRUserHistory>
 		}
 	}
 
+	@Override
 	public Object clone() {
 		HRUserHistoryClp clone = new HRUserHistoryClp();
 
@@ -259,6 +261,7 @@ public class HRUserHistoryClp extends BaseModelImpl<HRUserHistory>
 		}
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -283,10 +286,12 @@ public class HRUserHistoryClp extends BaseModelImpl<HRUserHistory>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(35);
 

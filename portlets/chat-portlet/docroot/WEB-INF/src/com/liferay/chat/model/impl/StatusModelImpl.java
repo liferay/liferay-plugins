@@ -212,6 +212,7 @@ public class StatusModelImpl extends BaseModelImpl<Status>
 		_playSound = playSound;
 	}
 
+	@Override
 	public Status toEscapedModel() {
 		if (isEscapedModel()) {
 			return (Status)this;
@@ -222,6 +223,7 @@ public class StatusModelImpl extends BaseModelImpl<Status>
 		}
 	}
 
+	@Override
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
 			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(0,
@@ -231,10 +233,12 @@ public class StatusModelImpl extends BaseModelImpl<Status>
 		return _expandoBridge;
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
 		getExpandoBridge().setAttributes(serviceContext);
 	}
 
+	@Override
 	public Object clone() {
 		StatusImpl statusImpl = new StatusImpl();
 
@@ -266,6 +270,7 @@ public class StatusModelImpl extends BaseModelImpl<Status>
 		}
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -290,10 +295,12 @@ public class StatusModelImpl extends BaseModelImpl<Status>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public void resetOriginalValues() {
 		StatusModelImpl statusModelImpl = this;
 
@@ -302,6 +309,7 @@ public class StatusModelImpl extends BaseModelImpl<Status>
 		statusModelImpl._setOriginalUserId = false;
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(17);
 

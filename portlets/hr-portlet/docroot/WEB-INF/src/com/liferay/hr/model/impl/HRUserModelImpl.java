@@ -298,6 +298,7 @@ public class HRUserModelImpl extends BaseModelImpl<HRUser>
 		_overtimeExempt = overtimeExempt;
 	}
 
+	@Override
 	public HRUser toEscapedModel() {
 		if (isEscapedModel()) {
 			return (HRUser)this;
@@ -308,6 +309,7 @@ public class HRUserModelImpl extends BaseModelImpl<HRUser>
 		}
 	}
 
+	@Override
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
 			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
@@ -317,10 +319,12 @@ public class HRUserModelImpl extends BaseModelImpl<HRUser>
 		return _expandoBridge;
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
 		getExpandoBridge().setAttributes(serviceContext);
 	}
 
+	@Override
 	public Object clone() {
 		HRUserImpl hrUserImpl = new HRUserImpl();
 
@@ -362,6 +366,7 @@ public class HRUserModelImpl extends BaseModelImpl<HRUser>
 		}
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -386,13 +391,16 @@ public class HRUserModelImpl extends BaseModelImpl<HRUser>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public void resetOriginalValues() {
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(37);
 

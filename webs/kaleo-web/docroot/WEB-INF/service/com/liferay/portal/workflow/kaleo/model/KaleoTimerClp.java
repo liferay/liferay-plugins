@@ -190,6 +190,7 @@ public class KaleoTimerClp extends BaseModelImpl<KaleoTimer>
 		_scale = scale;
 	}
 
+	@Override
 	public KaleoTimer toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -201,6 +202,7 @@ public class KaleoTimerClp extends BaseModelImpl<KaleoTimer>
 		}
 	}
 
+	@Override
 	public Object clone() {
 		KaleoTimerClp clone = new KaleoTimerClp();
 
@@ -243,6 +245,7 @@ public class KaleoTimerClp extends BaseModelImpl<KaleoTimer>
 		return 0;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -267,10 +270,12 @@ public class KaleoTimerClp extends BaseModelImpl<KaleoTimer>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(31);
 

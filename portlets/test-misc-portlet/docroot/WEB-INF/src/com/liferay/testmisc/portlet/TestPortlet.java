@@ -48,6 +48,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class TestPortlet extends LiferayPortlet {
 
+	@Override
 	public void doDispatch(
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws IOException, PortletException {
@@ -62,6 +63,7 @@ public class TestPortlet extends LiferayPortlet {
 		include(jspPage, renderRequest, renderResponse);
 	}
 
+	@Override
 	public void processAction(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws IOException {
@@ -84,6 +86,7 @@ public class TestPortlet extends LiferayPortlet {
 			request, response, fileName, inputStream, contentType);
 	}
 
+	@Override
 	public void serveResource(
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws IOException {

@@ -49,6 +49,7 @@ public enum DurationScale {
 		return _value;
 	}
 
+	@Override
 	public String toString() {
 		return _value;
 	}

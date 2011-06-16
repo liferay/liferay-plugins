@@ -145,6 +145,7 @@ public class FolderClp extends BaseModelImpl<Folder> implements Folder {
 		_remoteMessageCount = remoteMessageCount;
 	}
 
+	@Override
 	public Folder toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -155,6 +156,7 @@ public class FolderClp extends BaseModelImpl<Folder> implements Folder {
 		}
 	}
 
+	@Override
 	public Object clone() {
 		FolderClp clone = new FolderClp();
 
@@ -184,6 +186,7 @@ public class FolderClp extends BaseModelImpl<Folder> implements Folder {
 		return 0;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -208,10 +211,12 @@ public class FolderClp extends BaseModelImpl<Folder> implements Folder {
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(21);
 

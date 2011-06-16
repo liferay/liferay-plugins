@@ -32,6 +32,7 @@ import com.mongodb.DBObject;
  */
 public class ExpandoColumnListener extends BaseModelListener<ExpandoColumn> {
 
+	@Override
 	public void onAfterRemove(ExpandoColumn expandoColumn)
 		throws ModelListenerException {
 

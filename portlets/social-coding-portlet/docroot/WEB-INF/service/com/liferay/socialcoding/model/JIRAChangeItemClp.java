@@ -110,6 +110,7 @@ public class JIRAChangeItemClp extends BaseModelImpl<JIRAChangeItem>
 		_newString = newString;
 	}
 
+	@Override
 	public JIRAChangeItem toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -121,6 +122,7 @@ public class JIRAChangeItemClp extends BaseModelImpl<JIRAChangeItem>
 		}
 	}
 
+	@Override
 	public Object clone() {
 		JIRAChangeItemClp clone = new JIRAChangeItemClp();
 
@@ -149,6 +151,7 @@ public class JIRAChangeItemClp extends BaseModelImpl<JIRAChangeItem>
 		}
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -173,10 +176,12 @@ public class JIRAChangeItemClp extends BaseModelImpl<JIRAChangeItem>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(15);
 

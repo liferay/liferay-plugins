@@ -140,6 +140,7 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(MeetupsEntryImpl.class.getName());
@@ -157,6 +158,7 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(MeetupsEntry meetupsEntry) {
 		EntityCacheUtil.removeResult(MeetupsEntryModelImpl.ENTITY_CACHE_ENABLED,
 			MeetupsEntryImpl.class, meetupsEntry.getPrimaryKey());
@@ -185,6 +187,7 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 	 * @throws com.liferay.portal.NoSuchModelException if a meetups entry with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public MeetupsEntry remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -238,11 +241,13 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 	 * @return the meetups entry that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public MeetupsEntry remove(MeetupsEntry meetupsEntry)
 		throws SystemException {
 		return super.remove(meetupsEntry);
 	}
 
+	@Override
 	protected MeetupsEntry removeImpl(MeetupsEntry meetupsEntry)
 		throws SystemException {
 		meetupsEntry = toUnwrappedModel(meetupsEntry);
@@ -269,6 +274,7 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 		return meetupsEntry;
 	}
 
+	@Override
 	public MeetupsEntry updateImpl(
 		com.liferay.socialnetworking.model.MeetupsEntry meetupsEntry,
 		boolean merge) throws SystemException {
@@ -334,6 +340,7 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 	 * @throws com.liferay.portal.NoSuchModelException if a meetups entry with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public MeetupsEntry findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -370,6 +377,7 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 	 * @return the meetups entry, or <code>null</code> if a meetups entry with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public MeetupsEntry fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

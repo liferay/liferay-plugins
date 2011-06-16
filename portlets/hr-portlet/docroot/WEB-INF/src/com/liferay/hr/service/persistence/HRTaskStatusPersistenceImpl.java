@@ -132,6 +132,7 @@ public class HRTaskStatusPersistenceImpl extends BasePersistenceImpl<HRTaskStatu
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(HRTaskStatusImpl.class.getName());
@@ -149,6 +150,7 @@ public class HRTaskStatusPersistenceImpl extends BasePersistenceImpl<HRTaskStatu
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(HRTaskStatus hrTaskStatus) {
 		EntityCacheUtil.removeResult(HRTaskStatusModelImpl.ENTITY_CACHE_ENABLED,
 			HRTaskStatusImpl.class, hrTaskStatus.getPrimaryKey());
@@ -184,6 +186,7 @@ public class HRTaskStatusPersistenceImpl extends BasePersistenceImpl<HRTaskStatu
 	 * @throws com.liferay.portal.NoSuchModelException if a h r task status with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRTaskStatus remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -237,11 +240,13 @@ public class HRTaskStatusPersistenceImpl extends BasePersistenceImpl<HRTaskStatu
 	 * @return the h r task status that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRTaskStatus remove(HRTaskStatus hrTaskStatus)
 		throws SystemException {
 		return super.remove(hrTaskStatus);
 	}
 
+	@Override
 	protected HRTaskStatus removeImpl(HRTaskStatus hrTaskStatus)
 		throws SystemException {
 		hrTaskStatus = toUnwrappedModel(hrTaskStatus);
@@ -277,6 +282,7 @@ public class HRTaskStatusPersistenceImpl extends BasePersistenceImpl<HRTaskStatu
 		return hrTaskStatus;
 	}
 
+	@Override
 	public HRTaskStatus updateImpl(
 		com.liferay.hr.model.HRTaskStatus hrTaskStatus, boolean merge)
 		throws SystemException {
@@ -366,6 +372,7 @@ public class HRTaskStatusPersistenceImpl extends BasePersistenceImpl<HRTaskStatu
 	 * @throws com.liferay.portal.NoSuchModelException if a h r task status with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRTaskStatus findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -402,6 +409,7 @@ public class HRTaskStatusPersistenceImpl extends BasePersistenceImpl<HRTaskStatu
 	 * @return the h r task status, or <code>null</code> if a h r task status with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRTaskStatus fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

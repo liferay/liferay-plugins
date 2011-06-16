@@ -27,6 +27,7 @@ import com.liferay.portal.kernel.util.StringPool;
  */
 public class IPGeocoderMessageListener extends BaseMessageListener {
 
+	@Override
 	protected void doReceive(Message message) throws Exception {
 		String ipAddress = (String)message.getPayload();
 

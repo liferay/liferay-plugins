@@ -29,6 +29,7 @@ import java.util.List;
  */
 public class UpgradePrivateMessaging extends UpgradeProcess {
 
+	@Override
 	protected void doUpgrade() throws Exception {
 		List<UserThread> userThreads =
 			UserThreadLocalServiceUtil.getUserThreads(

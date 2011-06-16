@@ -284,6 +284,7 @@ public class HRTaskClp extends BaseModelImpl<HRTask> implements HRTask {
 		_actualExpensesCurrencyCode = actualExpensesCurrencyCode;
 	}
 
+	@Override
 	public HRTask toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -294,6 +295,7 @@ public class HRTaskClp extends BaseModelImpl<HRTask> implements HRTask {
 		}
 	}
 
+	@Override
 	public Object clone() {
 		HRTaskClp clone = new HRTaskClp();
 
@@ -342,6 +344,7 @@ public class HRTaskClp extends BaseModelImpl<HRTask> implements HRTask {
 		}
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -366,10 +369,12 @@ public class HRTaskClp extends BaseModelImpl<HRTask> implements HRTask {
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(55);
 

@@ -321,6 +321,7 @@ public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 		_cacheable = cacheable;
 	}
 
+	@Override
 	public KBTemplate toEscapedModel() {
 		if (isEscapedModel()) {
 			return (KBTemplate)this;
@@ -331,6 +332,7 @@ public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 		}
 	}
 
+	@Override
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
 			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
@@ -340,10 +342,12 @@ public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 		return _expandoBridge;
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
 		getExpandoBridge().setAttributes(serviceContext);
 	}
 
+	@Override
 	public Object clone() {
 		KBTemplateImpl kbTemplateImpl = new KBTemplateImpl();
 
@@ -380,6 +384,7 @@ public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 		return 0;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -404,10 +409,12 @@ public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public void resetOriginalValues() {
 		KBTemplateModelImpl kbTemplateModelImpl = this;
 
@@ -418,6 +425,7 @@ public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 		kbTemplateModelImpl._setOriginalGroupId = false;
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(25);
 

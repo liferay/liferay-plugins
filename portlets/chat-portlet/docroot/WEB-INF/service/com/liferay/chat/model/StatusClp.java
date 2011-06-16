@@ -139,6 +139,7 @@ public class StatusClp extends BaseModelImpl<Status> implements Status {
 		_playSound = playSound;
 	}
 
+	@Override
 	public Status toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -149,6 +150,7 @@ public class StatusClp extends BaseModelImpl<Status> implements Status {
 		}
 	}
 
+	@Override
 	public Object clone() {
 		StatusClp clone = new StatusClp();
 
@@ -178,6 +180,7 @@ public class StatusClp extends BaseModelImpl<Status> implements Status {
 		}
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -202,10 +205,12 @@ public class StatusClp extends BaseModelImpl<Status> implements Status {
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(17);
 

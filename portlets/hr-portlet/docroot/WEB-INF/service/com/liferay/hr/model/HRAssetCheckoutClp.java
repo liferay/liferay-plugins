@@ -170,6 +170,7 @@ public class HRAssetCheckoutClp extends BaseModelImpl<HRAssetCheckout>
 		_actualCheckInDate = actualCheckInDate;
 	}
 
+	@Override
 	public HRAssetCheckout toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -181,6 +182,7 @@ public class HRAssetCheckoutClp extends BaseModelImpl<HRAssetCheckout>
 		}
 	}
 
+	@Override
 	public Object clone() {
 		HRAssetCheckoutClp clone = new HRAssetCheckoutClp();
 
@@ -214,6 +216,7 @@ public class HRAssetCheckoutClp extends BaseModelImpl<HRAssetCheckout>
 		}
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -238,10 +241,12 @@ public class HRAssetCheckoutClp extends BaseModelImpl<HRAssetCheckout>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(25);
 

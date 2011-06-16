@@ -38,6 +38,7 @@ public class KBStructureCreateDateComparator extends OrderByComparator {
 		_ascending = ascending;
 	}
 
+	@Override
 	public int compare(Object obj1, Object obj2) {
 		KBStructure kbStructure1 = (KBStructure)obj1;
 		KBStructure kbStructure2 = (KBStructure)obj2;
@@ -53,6 +54,7 @@ public class KBStructureCreateDateComparator extends OrderByComparator {
 		}
 	}
 
+	@Override
 	public String getOrderBy() {
 		if (_ascending) {
 			return ORDER_BY_ASC;
@@ -62,10 +64,12 @@ public class KBStructureCreateDateComparator extends OrderByComparator {
 		}
 	}
 
+	@Override
 	public String[] getOrderByFields() {
 		return ORDER_BY_FIELDS;
 	}
 
+	@Override
 	public boolean isAscending() {
 		return _ascending;
 	}

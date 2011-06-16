@@ -157,6 +157,7 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(WSRPProducerImpl.class.getName());
@@ -174,6 +175,7 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(WSRPProducer wsrpProducer) {
 		EntityCacheUtil.removeResult(WSRPProducerModelImpl.ENTITY_CACHE_ENABLED,
 			WSRPProducerImpl.class, wsrpProducer.getPrimaryKey());
@@ -211,6 +213,7 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 	 * @throws com.liferay.portal.NoSuchModelException if a w s r p producer with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public WSRPProducer remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -264,11 +267,13 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 	 * @return the w s r p producer that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public WSRPProducer remove(WSRPProducer wsrpProducer)
 		throws SystemException {
 		return super.remove(wsrpProducer);
 	}
 
+	@Override
 	protected WSRPProducer removeImpl(WSRPProducer wsrpProducer)
 		throws SystemException {
 		wsrpProducer = toUnwrappedModel(wsrpProducer);
@@ -303,6 +308,7 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 		return wsrpProducer;
 	}
 
+	@Override
 	public WSRPProducer updateImpl(
 		com.liferay.wsrp.model.WSRPProducer wsrpProducer, boolean merge)
 		throws SystemException {
@@ -395,6 +401,7 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 	 * @throws com.liferay.portal.NoSuchModelException if a w s r p producer with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public WSRPProducer findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -431,6 +438,7 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 	 * @return the w s r p producer, or <code>null</code> if a w s r p producer with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public WSRPProducer fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

@@ -151,6 +151,7 @@ public class KaleoInstanceLocalServiceImpl
 			deleteKaleoDefinitionKaleoTaskInstanceTokens(kaleoDefinitionId);
 	}
 
+	@Override
 	public void deleteKaleoInstance(long kaleoInstanceId)
 		throws SystemException {
 

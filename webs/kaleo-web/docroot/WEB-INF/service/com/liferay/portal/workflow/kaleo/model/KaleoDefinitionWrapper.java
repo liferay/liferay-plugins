@@ -454,6 +454,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition {
 		_kaleoDefinition.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new KaleoDefinitionWrapper((KaleoDefinition)_kaleoDefinition.clone());
 	}
@@ -463,6 +464,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition {
 		return _kaleoDefinition.compareTo(kaleoDefinition);
 	}
 
+	@Override
 	public int hashCode() {
 		return _kaleoDefinition.hashCode();
 	}
@@ -471,6 +473,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition {
 		return new KaleoDefinitionWrapper(_kaleoDefinition.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _kaleoDefinition.toString();
 	}

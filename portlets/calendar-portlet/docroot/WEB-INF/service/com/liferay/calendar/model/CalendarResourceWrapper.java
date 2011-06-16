@@ -579,6 +579,7 @@ public class CalendarResourceWrapper implements CalendarResource {
 		_calendarResource.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new CalendarResourceWrapper((CalendarResource)_calendarResource.clone());
 	}
@@ -588,6 +589,7 @@ public class CalendarResourceWrapper implements CalendarResource {
 		return _calendarResource.compareTo(calendarResource);
 	}
 
+	@Override
 	public int hashCode() {
 		return _calendarResource.hashCode();
 	}
@@ -596,6 +598,7 @@ public class CalendarResourceWrapper implements CalendarResource {
 		return new CalendarResourceWrapper(_calendarResource.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _calendarResource.toString();
 	}

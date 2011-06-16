@@ -238,6 +238,7 @@ public class HRBillabilityModelImpl extends BaseModelImpl<HRBillability>
 		_description = description;
 	}
 
+	@Override
 	public HRBillability toEscapedModel() {
 		if (isEscapedModel()) {
 			return (HRBillability)this;
@@ -248,6 +249,7 @@ public class HRBillabilityModelImpl extends BaseModelImpl<HRBillability>
 		}
 	}
 
+	@Override
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
 			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
@@ -257,10 +259,12 @@ public class HRBillabilityModelImpl extends BaseModelImpl<HRBillability>
 		return _expandoBridge;
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
 		getExpandoBridge().setAttributes(serviceContext);
 	}
 
+	@Override
 	public Object clone() {
 		HRBillabilityImpl hrBillabilityImpl = new HRBillabilityImpl();
 
@@ -294,6 +298,7 @@ public class HRBillabilityModelImpl extends BaseModelImpl<HRBillability>
 		}
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -318,10 +323,12 @@ public class HRBillabilityModelImpl extends BaseModelImpl<HRBillability>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public void resetOriginalValues() {
 		HRBillabilityModelImpl hrBillabilityModelImpl = this;
 
@@ -332,6 +339,7 @@ public class HRBillabilityModelImpl extends BaseModelImpl<HRBillability>
 		hrBillabilityModelImpl._originalCode = hrBillabilityModelImpl._code;
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(21);
 

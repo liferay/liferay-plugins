@@ -195,6 +195,7 @@ public class WallEntryModelImpl extends BaseModelImpl<WallEntry>
 		_comments = comments;
 	}
 
+	@Override
 	public WallEntry toEscapedModel() {
 		if (isEscapedModel()) {
 			return (WallEntry)this;
@@ -205,6 +206,7 @@ public class WallEntryModelImpl extends BaseModelImpl<WallEntry>
 		}
 	}
 
+	@Override
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
 			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
@@ -214,10 +216,12 @@ public class WallEntryModelImpl extends BaseModelImpl<WallEntry>
 		return _expandoBridge;
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
 		getExpandoBridge().setAttributes(serviceContext);
 	}
 
+	@Override
 	public Object clone() {
 		WallEntryImpl wallEntryImpl = new WallEntryImpl();
 
@@ -249,6 +253,7 @@ public class WallEntryModelImpl extends BaseModelImpl<WallEntry>
 		return 0;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -273,13 +278,16 @@ public class WallEntryModelImpl extends BaseModelImpl<WallEntry>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public void resetOriginalValues() {
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(17);
 

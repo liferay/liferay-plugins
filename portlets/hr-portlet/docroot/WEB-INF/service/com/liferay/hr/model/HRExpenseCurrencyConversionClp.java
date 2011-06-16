@@ -156,6 +156,7 @@ public class HRExpenseCurrencyConversionClp extends BaseModelImpl<HRExpenseCurre
 		_conversionValue = conversionValue;
 	}
 
+	@Override
 	public HRExpenseCurrencyConversion toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -167,6 +168,7 @@ public class HRExpenseCurrencyConversionClp extends BaseModelImpl<HRExpenseCurre
 		}
 	}
 
+	@Override
 	public Object clone() {
 		HRExpenseCurrencyConversionClp clone = new HRExpenseCurrencyConversionClp();
 
@@ -201,6 +203,7 @@ public class HRExpenseCurrencyConversionClp extends BaseModelImpl<HRExpenseCurre
 		return 0;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -225,10 +228,12 @@ public class HRExpenseCurrencyConversionClp extends BaseModelImpl<HRExpenseCurre
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(23);
 

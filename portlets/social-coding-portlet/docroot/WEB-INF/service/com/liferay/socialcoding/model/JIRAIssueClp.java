@@ -144,6 +144,7 @@ public class JIRAIssueClp extends BaseModelImpl<JIRAIssue> implements JIRAIssue 
 		_status = status;
 	}
 
+	@Override
 	public JIRAIssue toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -154,6 +155,7 @@ public class JIRAIssueClp extends BaseModelImpl<JIRAIssue> implements JIRAIssue 
 		}
 	}
 
+	@Override
 	public Object clone() {
 		JIRAIssueClp clone = new JIRAIssueClp();
 
@@ -187,6 +189,7 @@ public class JIRAIssueClp extends BaseModelImpl<JIRAIssue> implements JIRAIssue 
 		return 0;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -211,10 +214,12 @@ public class JIRAIssueClp extends BaseModelImpl<JIRAIssue> implements JIRAIssue 
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(23);
 

@@ -259,6 +259,7 @@ public class HRBranchWrapper implements HRBranch {
 		_hrBranch.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new HRBranchWrapper((HRBranch)_hrBranch.clone());
 	}
@@ -267,6 +268,7 @@ public class HRBranchWrapper implements HRBranch {
 		return _hrBranch.compareTo(hrBranch);
 	}
 
+	@Override
 	public int hashCode() {
 		return _hrBranch.hashCode();
 	}
@@ -275,6 +277,7 @@ public class HRBranchWrapper implements HRBranch {
 		return new HRBranchWrapper(_hrBranch.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _hrBranch.toString();
 	}

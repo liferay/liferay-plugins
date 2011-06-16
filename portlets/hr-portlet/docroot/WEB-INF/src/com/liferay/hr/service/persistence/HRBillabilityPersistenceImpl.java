@@ -133,6 +133,7 @@ public class HRBillabilityPersistenceImpl extends BasePersistenceImpl<HRBillabil
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(HRBillabilityImpl.class.getName());
@@ -150,6 +151,7 @@ public class HRBillabilityPersistenceImpl extends BasePersistenceImpl<HRBillabil
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(HRBillability hrBillability) {
 		EntityCacheUtil.removeResult(HRBillabilityModelImpl.ENTITY_CACHE_ENABLED,
 			HRBillabilityImpl.class, hrBillability.getPrimaryKey());
@@ -185,6 +187,7 @@ public class HRBillabilityPersistenceImpl extends BasePersistenceImpl<HRBillabil
 	 * @throws com.liferay.portal.NoSuchModelException if a h r billability with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRBillability remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -238,11 +241,13 @@ public class HRBillabilityPersistenceImpl extends BasePersistenceImpl<HRBillabil
 	 * @return the h r billability that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRBillability remove(HRBillability hrBillability)
 		throws SystemException {
 		return super.remove(hrBillability);
 	}
 
+	@Override
 	protected HRBillability removeImpl(HRBillability hrBillability)
 		throws SystemException {
 		hrBillability = toUnwrappedModel(hrBillability);
@@ -278,6 +283,7 @@ public class HRBillabilityPersistenceImpl extends BasePersistenceImpl<HRBillabil
 		return hrBillability;
 	}
 
+	@Override
 	public HRBillability updateImpl(
 		com.liferay.hr.model.HRBillability hrBillability, boolean merge)
 		throws SystemException {
@@ -368,6 +374,7 @@ public class HRBillabilityPersistenceImpl extends BasePersistenceImpl<HRBillabil
 	 * @throws com.liferay.portal.NoSuchModelException if a h r billability with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRBillability findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -404,6 +411,7 @@ public class HRBillabilityPersistenceImpl extends BasePersistenceImpl<HRBillabil
 	 * @return the h r billability, or <code>null</code> if a h r billability with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRBillability fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

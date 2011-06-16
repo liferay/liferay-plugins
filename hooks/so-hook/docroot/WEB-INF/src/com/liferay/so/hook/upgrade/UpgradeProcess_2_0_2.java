@@ -26,10 +26,12 @@ import com.liferay.so.hook.upgrade.v2_0_2.UpgradeLayoutSetPrototype;
  */
 public class UpgradeProcess_2_0_2 extends UpgradeProcess {
 
+	@Override
 	public int getThreshold() {
 		return 202;
 	}
 
+	@Override
 	protected void doUpgrade() throws Exception {
 		if (UpgradeUtil.isFirstRun()) {
 			return;

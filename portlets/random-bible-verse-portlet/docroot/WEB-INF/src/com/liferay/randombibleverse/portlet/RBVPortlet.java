@@ -32,6 +32,7 @@ import javax.portlet.PortletPreferences;
  */
 public class RBVPortlet extends MVCPortlet {
 
+	@Override
 	public void processAction(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws IOException, PortletException {

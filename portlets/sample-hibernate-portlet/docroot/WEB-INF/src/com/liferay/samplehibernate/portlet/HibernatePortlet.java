@@ -38,6 +38,7 @@ import javax.portlet.RenderResponse;
  */
 public class HibernatePortlet extends GenericPortlet {
 
+	@Override
 	public void init(PortletConfig portletConfig) throws PortletException {
 		super.init(portletConfig);
 
@@ -46,6 +47,7 @@ public class HibernatePortlet extends GenericPortlet {
 		}
 	}
 
+	@Override
 	public void processAction(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws IOException, PortletException {
@@ -83,6 +85,7 @@ public class HibernatePortlet extends GenericPortlet {
 		}
 	}
 
+	@Override
 	public void doView(
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws IOException, PortletException {
@@ -116,6 +119,7 @@ public class HibernatePortlet extends GenericPortlet {
 		}
 	}
 
+	@Override
 	public void destroy() {
 		if (_log.isInfoEnabled()) {
 			_log.info("Destroying portlet");

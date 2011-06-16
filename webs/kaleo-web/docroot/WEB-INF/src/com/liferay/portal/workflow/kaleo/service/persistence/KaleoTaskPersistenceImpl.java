@@ -151,6 +151,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(KaleoTaskImpl.class.getName());
@@ -168,6 +169,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(KaleoTask kaleoTask) {
 		EntityCacheUtil.removeResult(KaleoTaskModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoTaskImpl.class, kaleoTask.getPrimaryKey());
@@ -199,6 +201,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	 * @throws com.liferay.portal.NoSuchModelException if a kaleo task with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoTask remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -251,10 +254,12 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	 * @return the kaleo task that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoTask remove(KaleoTask kaleoTask) throws SystemException {
 		return super.remove(kaleoTask);
 	}
 
+	@Override
 	protected KaleoTask removeImpl(KaleoTask kaleoTask)
 		throws SystemException {
 		kaleoTask = toUnwrappedModel(kaleoTask);
@@ -286,6 +291,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 		return kaleoTask;
 	}
 
+	@Override
 	public KaleoTask updateImpl(
 		com.liferay.portal.workflow.kaleo.model.KaleoTask kaleoTask,
 		boolean merge) throws SystemException {
@@ -367,6 +373,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	 * @throws com.liferay.portal.NoSuchModelException if a kaleo task with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoTask findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -403,6 +410,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	 * @return the kaleo task, or <code>null</code> if a kaleo task with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoTask fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

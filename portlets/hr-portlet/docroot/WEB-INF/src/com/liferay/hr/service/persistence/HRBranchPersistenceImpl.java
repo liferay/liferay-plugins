@@ -122,6 +122,7 @@ public class HRBranchPersistenceImpl extends BasePersistenceImpl<HRBranch>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(HRBranchImpl.class.getName());
@@ -139,6 +140,7 @@ public class HRBranchPersistenceImpl extends BasePersistenceImpl<HRBranch>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(HRBranch hrBranch) {
 		EntityCacheUtil.removeResult(HRBranchModelImpl.ENTITY_CACHE_ENABLED,
 			HRBranchImpl.class, hrBranch.getPrimaryKey());
@@ -167,6 +169,7 @@ public class HRBranchPersistenceImpl extends BasePersistenceImpl<HRBranch>
 	 * @throws com.liferay.portal.NoSuchModelException if a h r branch with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRBranch remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -219,10 +222,12 @@ public class HRBranchPersistenceImpl extends BasePersistenceImpl<HRBranch>
 	 * @return the h r branch that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRBranch remove(HRBranch hrBranch) throws SystemException {
 		return super.remove(hrBranch);
 	}
 
+	@Override
 	protected HRBranch removeImpl(HRBranch hrBranch) throws SystemException {
 		hrBranch = toUnwrappedModel(hrBranch);
 
@@ -258,6 +263,7 @@ public class HRBranchPersistenceImpl extends BasePersistenceImpl<HRBranch>
 		return hrBranch;
 	}
 
+	@Override
 	public HRBranch updateImpl(com.liferay.hr.model.HRBranch hrBranch,
 		boolean merge) throws SystemException {
 		hrBranch = toUnwrappedModel(hrBranch);
@@ -316,6 +322,7 @@ public class HRBranchPersistenceImpl extends BasePersistenceImpl<HRBranch>
 	 * @throws com.liferay.portal.NoSuchModelException if a h r branch with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRBranch findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -352,6 +359,7 @@ public class HRBranchPersistenceImpl extends BasePersistenceImpl<HRBranch>
 	 * @return the h r branch, or <code>null</code> if a h r branch with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRBranch fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

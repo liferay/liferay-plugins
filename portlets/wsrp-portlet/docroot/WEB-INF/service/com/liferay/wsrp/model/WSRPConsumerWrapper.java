@@ -295,6 +295,7 @@ public class WSRPConsumerWrapper implements WSRPConsumer {
 		_wsrpConsumer.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new WSRPConsumerWrapper((WSRPConsumer)_wsrpConsumer.clone());
 	}
@@ -303,6 +304,7 @@ public class WSRPConsumerWrapper implements WSRPConsumer {
 		return _wsrpConsumer.compareTo(wsrpConsumer);
 	}
 
+	@Override
 	public int hashCode() {
 		return _wsrpConsumer.hashCode();
 	}
@@ -311,6 +313,7 @@ public class WSRPConsumerWrapper implements WSRPConsumer {
 		return new WSRPConsumerWrapper(_wsrpConsumer.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _wsrpConsumer.toString();
 	}

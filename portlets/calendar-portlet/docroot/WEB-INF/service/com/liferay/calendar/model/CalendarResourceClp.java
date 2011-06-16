@@ -387,6 +387,7 @@ public class CalendarResourceClp extends BaseModelImpl<CalendarResource>
 		_active = active;
 	}
 
+	@Override
 	public CalendarResource toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -398,6 +399,7 @@ public class CalendarResourceClp extends BaseModelImpl<CalendarResource>
 		}
 	}
 
+	@Override
 	public Object clone() {
 		CalendarResourceClp clone = new CalendarResourceClp();
 
@@ -432,6 +434,7 @@ public class CalendarResourceClp extends BaseModelImpl<CalendarResource>
 		return 0;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -456,10 +459,12 @@ public class CalendarResourceClp extends BaseModelImpl<CalendarResource>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(29);
 

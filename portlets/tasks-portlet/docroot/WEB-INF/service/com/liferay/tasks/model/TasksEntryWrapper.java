@@ -407,6 +407,7 @@ public class TasksEntryWrapper implements TasksEntry {
 		_tasksEntry.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new TasksEntryWrapper((TasksEntry)_tasksEntry.clone());
 	}
@@ -415,6 +416,7 @@ public class TasksEntryWrapper implements TasksEntry {
 		return _tasksEntry.compareTo(tasksEntry);
 	}
 
+	@Override
 	public int hashCode() {
 		return _tasksEntry.hashCode();
 	}
@@ -423,6 +425,7 @@ public class TasksEntryWrapper implements TasksEntry {
 		return new TasksEntryWrapper(_tasksEntry.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _tasksEntry.toString();
 	}

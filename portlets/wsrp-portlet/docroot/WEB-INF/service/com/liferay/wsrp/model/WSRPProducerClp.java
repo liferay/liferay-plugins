@@ -132,6 +132,7 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public WSRPProducer toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -143,6 +144,7 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 		}
 	}
 
+	@Override
 	public Object clone() {
 		WSRPProducerClp clone = new WSRPProducerClp();
 
@@ -171,6 +173,7 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 		return 0;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -195,10 +198,12 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(19);
 

@@ -313,6 +313,7 @@ public class ProjectsEntryWrapper implements ProjectsEntry {
 		_projectsEntry.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new ProjectsEntryWrapper((ProjectsEntry)_projectsEntry.clone());
 	}
@@ -321,6 +322,7 @@ public class ProjectsEntryWrapper implements ProjectsEntry {
 		return _projectsEntry.compareTo(projectsEntry);
 	}
 
+	@Override
 	public int hashCode() {
 		return _projectsEntry.hashCode();
 	}
@@ -329,6 +331,7 @@ public class ProjectsEntryWrapper implements ProjectsEntry {
 		return new ProjectsEntryWrapper(_projectsEntry.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _projectsEntry.toString();
 	}

@@ -238,6 +238,7 @@ public class HRTimeOffFrequencyTypeModelImpl extends BaseModelImpl<HRTimeOffFreq
 		_description = description;
 	}
 
+	@Override
 	public HRTimeOffFrequencyType toEscapedModel() {
 		if (isEscapedModel()) {
 			return (HRTimeOffFrequencyType)this;
@@ -248,6 +249,7 @@ public class HRTimeOffFrequencyTypeModelImpl extends BaseModelImpl<HRTimeOffFreq
 		}
 	}
 
+	@Override
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
 			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
@@ -257,10 +259,12 @@ public class HRTimeOffFrequencyTypeModelImpl extends BaseModelImpl<HRTimeOffFreq
 		return _expandoBridge;
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
 		getExpandoBridge().setAttributes(serviceContext);
 	}
 
+	@Override
 	public Object clone() {
 		HRTimeOffFrequencyTypeImpl hrTimeOffFrequencyTypeImpl = new HRTimeOffFrequencyTypeImpl();
 
@@ -294,6 +298,7 @@ public class HRTimeOffFrequencyTypeModelImpl extends BaseModelImpl<HRTimeOffFreq
 		}
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -318,10 +323,12 @@ public class HRTimeOffFrequencyTypeModelImpl extends BaseModelImpl<HRTimeOffFreq
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public void resetOriginalValues() {
 		HRTimeOffFrequencyTypeModelImpl hrTimeOffFrequencyTypeModelImpl = this;
 
@@ -332,6 +339,7 @@ public class HRTimeOffFrequencyTypeModelImpl extends BaseModelImpl<HRTimeOffFreq
 		hrTimeOffFrequencyTypeModelImpl._originalCode = hrTimeOffFrequencyTypeModelImpl._code;
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(21);
 

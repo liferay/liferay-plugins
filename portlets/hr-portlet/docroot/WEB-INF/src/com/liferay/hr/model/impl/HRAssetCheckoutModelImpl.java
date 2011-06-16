@@ -231,6 +231,7 @@ public class HRAssetCheckoutModelImpl extends BaseModelImpl<HRAssetCheckout>
 		_actualCheckInDate = actualCheckInDate;
 	}
 
+	@Override
 	public HRAssetCheckout toEscapedModel() {
 		if (isEscapedModel()) {
 			return (HRAssetCheckout)this;
@@ -241,6 +242,7 @@ public class HRAssetCheckoutModelImpl extends BaseModelImpl<HRAssetCheckout>
 		}
 	}
 
+	@Override
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
 			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
@@ -250,10 +252,12 @@ public class HRAssetCheckoutModelImpl extends BaseModelImpl<HRAssetCheckout>
 		return _expandoBridge;
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
 		getExpandoBridge().setAttributes(serviceContext);
 	}
 
+	@Override
 	public Object clone() {
 		HRAssetCheckoutImpl hrAssetCheckoutImpl = new HRAssetCheckoutImpl();
 
@@ -289,6 +293,7 @@ public class HRAssetCheckoutModelImpl extends BaseModelImpl<HRAssetCheckout>
 		}
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -313,13 +318,16 @@ public class HRAssetCheckoutModelImpl extends BaseModelImpl<HRAssetCheckout>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public void resetOriginalValues() {
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(25);
 

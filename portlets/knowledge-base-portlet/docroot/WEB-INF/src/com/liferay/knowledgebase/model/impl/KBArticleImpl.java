@@ -86,6 +86,7 @@ public class KBArticleImpl extends KBArticleModelImpl implements KBArticle {
 		return false;
 	}
 
+	@Override
 	public boolean isResourceMain() {
 		return isMain();
 	}

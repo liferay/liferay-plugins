@@ -38,6 +38,7 @@ public class WorkflowInstanceStateComparator
 		super(ascending);
 	}
 
+	@Override
 	public String getOrderBy() {
 		if (isAscending()) {
 			return ORDER_BY_ASC;
@@ -47,6 +48,7 @@ public class WorkflowInstanceStateComparator
 		}
 	}
 
+	@Override
 	public String[] getOrderByFields() {
 		return ORDER_BY_FIELDS;
 	}

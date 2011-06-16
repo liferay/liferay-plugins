@@ -38,6 +38,7 @@ import javax.portlet.ResourceResponse;
  */
 public class RubyConsolePortlet extends RubyPortlet {
 
+	@Override
 	public void serveResource(
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws IOException {

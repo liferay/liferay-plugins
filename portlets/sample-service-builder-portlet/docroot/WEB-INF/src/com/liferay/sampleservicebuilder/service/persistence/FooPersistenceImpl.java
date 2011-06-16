@@ -154,6 +154,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(FooImpl.class.getName());
@@ -171,6 +172,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(Foo foo) {
 		EntityCacheUtil.removeResult(FooModelImpl.ENTITY_CACHE_ENABLED,
 			FooImpl.class, foo.getPrimaryKey());
@@ -206,6 +208,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 	 * @throws com.liferay.portal.NoSuchModelException if a foo with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Foo remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -256,10 +259,12 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 	 * @return the foo that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Foo remove(Foo foo) throws SystemException {
 		return super.remove(foo);
 	}
 
+	@Override
 	protected Foo removeImpl(Foo foo) throws SystemException {
 		foo = toUnwrappedModel(foo);
 
@@ -292,6 +297,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 		return foo;
 	}
 
+	@Override
 	public Foo updateImpl(com.liferay.sampleservicebuilder.model.Foo foo,
 		boolean merge) throws SystemException {
 		foo = toUnwrappedModel(foo);
@@ -383,6 +389,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 	 * @throws com.liferay.portal.NoSuchModelException if a foo with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Foo findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -419,6 +426,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 	 * @return the foo, or <code>null</code> if a foo with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Foo fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

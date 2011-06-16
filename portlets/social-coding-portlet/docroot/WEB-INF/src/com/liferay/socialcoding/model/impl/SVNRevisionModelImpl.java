@@ -166,6 +166,7 @@ public class SVNRevisionModelImpl extends BaseModelImpl<SVNRevision>
 		_comments = comments;
 	}
 
+	@Override
 	public SVNRevision toEscapedModel() {
 		if (isEscapedModel()) {
 			return (SVNRevision)this;
@@ -176,6 +177,7 @@ public class SVNRevisionModelImpl extends BaseModelImpl<SVNRevision>
 		}
 	}
 
+	@Override
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
 			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(0,
@@ -185,10 +187,12 @@ public class SVNRevisionModelImpl extends BaseModelImpl<SVNRevision>
 		return _expandoBridge;
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
 		getExpandoBridge().setAttributes(serviceContext);
 	}
 
+	@Override
 	public Object clone() {
 		SVNRevisionImpl svnRevisionImpl = new SVNRevisionImpl();
 
@@ -226,6 +230,7 @@ public class SVNRevisionModelImpl extends BaseModelImpl<SVNRevision>
 		return 0;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -250,13 +255,16 @@ public class SVNRevisionModelImpl extends BaseModelImpl<SVNRevision>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public void resetOriginalValues() {
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(13);
 

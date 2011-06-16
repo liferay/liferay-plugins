@@ -33,6 +33,7 @@ public class UserAssignment extends Assignment {
 		_emailAddress = GetterUtil.getString(emailAddress);
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -66,11 +67,13 @@ public class UserAssignment extends Assignment {
 		return _userId;
 	}
 
+	@Override
 	public int hashCode() {
 		return _emailAddress.concat(_screenName).concat(
 			String.valueOf(_userId)).hashCode();
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(7);
 

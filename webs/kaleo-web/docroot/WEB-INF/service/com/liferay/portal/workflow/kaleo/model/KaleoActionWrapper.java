@@ -403,6 +403,7 @@ public class KaleoActionWrapper implements KaleoAction {
 		_kaleoAction.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new KaleoActionWrapper((KaleoAction)_kaleoAction.clone());
 	}
@@ -412,6 +413,7 @@ public class KaleoActionWrapper implements KaleoAction {
 		return _kaleoAction.compareTo(kaleoAction);
 	}
 
+	@Override
 	public int hashCode() {
 		return _kaleoAction.hashCode();
 	}
@@ -420,6 +422,7 @@ public class KaleoActionWrapper implements KaleoAction {
 		return new KaleoActionWrapper(_kaleoAction.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _kaleoAction.toString();
 	}

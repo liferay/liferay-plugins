@@ -391,6 +391,7 @@ public class HRTaskModelImpl extends BaseModelImpl<HRTask>
 		_actualExpensesCurrencyCode = actualExpensesCurrencyCode;
 	}
 
+	@Override
 	public HRTask toEscapedModel() {
 		if (isEscapedModel()) {
 			return (HRTask)this;
@@ -401,6 +402,7 @@ public class HRTaskModelImpl extends BaseModelImpl<HRTask>
 		}
 	}
 
+	@Override
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
 			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
@@ -410,10 +412,12 @@ public class HRTaskModelImpl extends BaseModelImpl<HRTask>
 		return _expandoBridge;
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
 		getExpandoBridge().setAttributes(serviceContext);
 	}
 
+	@Override
 	public Object clone() {
 		HRTaskImpl hrTaskImpl = new HRTaskImpl();
 
@@ -464,6 +468,7 @@ public class HRTaskModelImpl extends BaseModelImpl<HRTask>
 		}
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -488,13 +493,16 @@ public class HRTaskModelImpl extends BaseModelImpl<HRTask>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public void resetOriginalValues() {
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(55);
 

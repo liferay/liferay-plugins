@@ -213,6 +213,7 @@ public class WebFormPortlet extends MVCPortlet {
 		}
 	}
 
+	@Override
 	public void serveResource(
 		ResourceRequest resourceRequest, ResourceResponse resourceResponse) {
 

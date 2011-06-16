@@ -25,6 +25,7 @@ import javax.servlet.http.HttpSession;
  */
 public class SessionDestroyAction extends SessionAction {
 
+	@Override
 	public void run(HttpSession session) {
 		Long userId = (Long)session.getAttribute(WebKeys.USER_ID);
 

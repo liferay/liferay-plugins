@@ -63,18 +63,21 @@ import javax.portlet.PortletPreferences;
  */
 public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
+	@Override
 	public PortletDataHandlerControl[] getExportControls() {
 		return new PortletDataHandlerControl[] {
 			_kbArticlesKBTemplatesAndKBComments, _categories, _ratings, _tags
 		};
 	}
 
+	@Override
 	public PortletDataHandlerControl[] getImportControls() {
 		return new PortletDataHandlerControl[] {
 			_kbArticlesKBTemplatesAndKBComments, _categories, _ratings, _tags
 		};
 	}
 
+	@Override
 	protected PortletPreferences doDeleteData(
 			PortletDataContext portletDataContext, String portletId,
 			PortletPreferences portletPreferences)
@@ -93,6 +96,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		return null;
 	}
 
+	@Override
 	protected String doExportData(
 			PortletDataContext portletDataContext, String portletId,
 			PortletPreferences portletPreferences)
@@ -116,6 +120,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		return document.formattedString();
 	}
 
+	@Override
 	protected PortletPreferences doImportData(
 			PortletDataContext portletDataContext, String portletId,
 			PortletPreferences portletPreferences, String data)

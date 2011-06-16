@@ -186,6 +186,7 @@ public class JIRAChangeItemModelImpl extends BaseModelImpl<JIRAChangeItem>
 		_newString = newString;
 	}
 
+	@Override
 	public JIRAChangeItem toEscapedModel() {
 		if (isEscapedModel()) {
 			return (JIRAChangeItem)this;
@@ -196,6 +197,7 @@ public class JIRAChangeItemModelImpl extends BaseModelImpl<JIRAChangeItem>
 		}
 	}
 
+	@Override
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
 			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(0,
@@ -205,10 +207,12 @@ public class JIRAChangeItemModelImpl extends BaseModelImpl<JIRAChangeItem>
 		return _expandoBridge;
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
 		getExpandoBridge().setAttributes(serviceContext);
 	}
 
+	@Override
 	public Object clone() {
 		JIRAChangeItemImpl jiraChangeItemImpl = new JIRAChangeItemImpl();
 
@@ -239,6 +243,7 @@ public class JIRAChangeItemModelImpl extends BaseModelImpl<JIRAChangeItem>
 		}
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -263,13 +268,16 @@ public class JIRAChangeItemModelImpl extends BaseModelImpl<JIRAChangeItem>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public void resetOriginalValues() {
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(15);
 

@@ -235,6 +235,7 @@ public class KaleoTaskModelImpl extends BaseModelImpl<KaleoTask>
 		_description = description;
 	}
 
+	@Override
 	public KaleoTask toEscapedModel() {
 		if (isEscapedModel()) {
 			return (KaleoTask)this;
@@ -245,6 +246,7 @@ public class KaleoTaskModelImpl extends BaseModelImpl<KaleoTask>
 		}
 	}
 
+	@Override
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
 			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
@@ -254,10 +256,12 @@ public class KaleoTaskModelImpl extends BaseModelImpl<KaleoTask>
 		return _expandoBridge;
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
 		getExpandoBridge().setAttributes(serviceContext);
 	}
 
+	@Override
 	public Object clone() {
 		KaleoTaskImpl kaleoTaskImpl = new KaleoTaskImpl();
 
@@ -298,6 +302,7 @@ public class KaleoTaskModelImpl extends BaseModelImpl<KaleoTask>
 		return 0;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -322,10 +327,12 @@ public class KaleoTaskModelImpl extends BaseModelImpl<KaleoTask>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public void resetOriginalValues() {
 		KaleoTaskModelImpl kaleoTaskModelImpl = this;
 
@@ -334,6 +341,7 @@ public class KaleoTaskModelImpl extends BaseModelImpl<KaleoTask>
 		kaleoTaskModelImpl._setOriginalKaleoNodeId = false;
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(23);
 

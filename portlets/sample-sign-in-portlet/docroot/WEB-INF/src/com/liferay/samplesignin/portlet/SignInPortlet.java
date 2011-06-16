@@ -35,6 +35,7 @@ import javax.portlet.PortletException;
  */
 public class SignInPortlet extends MVCPortlet {
 
+	@Override
 	public void processAction(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws IOException, PortletException {

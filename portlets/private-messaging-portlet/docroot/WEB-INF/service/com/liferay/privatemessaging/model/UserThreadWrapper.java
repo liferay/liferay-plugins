@@ -295,6 +295,7 @@ public class UserThreadWrapper implements UserThread {
 		_userThread.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new UserThreadWrapper((UserThread)_userThread.clone());
 	}
@@ -304,6 +305,7 @@ public class UserThreadWrapper implements UserThread {
 		return _userThread.compareTo(userThread);
 	}
 
+	@Override
 	public int hashCode() {
 		return _userThread.hashCode();
 	}
@@ -312,6 +314,7 @@ public class UserThreadWrapper implements UserThread {
 		return new UserThreadWrapper(_userThread.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _userThread.toString();
 	}

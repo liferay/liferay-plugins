@@ -297,6 +297,7 @@ public class FeedWrapper implements Feed {
 		_feed.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new FeedWrapper((Feed)_feed.clone());
 	}
@@ -305,6 +306,7 @@ public class FeedWrapper implements Feed {
 		return _feed.compareTo(feed);
 	}
 
+	@Override
 	public int hashCode() {
 		return _feed.hashCode();
 	}
@@ -313,6 +315,7 @@ public class FeedWrapper implements Feed {
 		return new FeedWrapper(_feed.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _feed.toString();
 	}

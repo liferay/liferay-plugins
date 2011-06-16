@@ -215,6 +215,7 @@ public class HRAssetProductModelImpl extends BaseModelImpl<HRAssetProduct>
 		_description = description;
 	}
 
+	@Override
 	public HRAssetProduct toEscapedModel() {
 		if (isEscapedModel()) {
 			return (HRAssetProduct)this;
@@ -225,6 +226,7 @@ public class HRAssetProductModelImpl extends BaseModelImpl<HRAssetProduct>
 		}
 	}
 
+	@Override
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
 			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
@@ -234,10 +236,12 @@ public class HRAssetProductModelImpl extends BaseModelImpl<HRAssetProduct>
 		return _expandoBridge;
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
 		getExpandoBridge().setAttributes(serviceContext);
 	}
 
+	@Override
 	public Object clone() {
 		HRAssetProductImpl hrAssetProductImpl = new HRAssetProductImpl();
 
@@ -271,6 +275,7 @@ public class HRAssetProductModelImpl extends BaseModelImpl<HRAssetProduct>
 		}
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -295,13 +300,16 @@ public class HRAssetProductModelImpl extends BaseModelImpl<HRAssetProduct>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public void resetOriginalValues() {
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(21);
 

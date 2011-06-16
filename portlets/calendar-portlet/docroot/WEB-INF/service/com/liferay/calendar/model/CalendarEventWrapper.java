@@ -696,6 +696,7 @@ public class CalendarEventWrapper implements CalendarEvent {
 		_calendarEvent.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new CalendarEventWrapper((CalendarEvent)_calendarEvent.clone());
 	}
@@ -704,6 +705,7 @@ public class CalendarEventWrapper implements CalendarEvent {
 		return _calendarEvent.compareTo(calendarEvent);
 	}
 
+	@Override
 	public int hashCode() {
 		return _calendarEvent.hashCode();
 	}
@@ -712,6 +714,7 @@ public class CalendarEventWrapper implements CalendarEvent {
 		return new CalendarEventWrapper(_calendarEvent.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _calendarEvent.toString();
 	}

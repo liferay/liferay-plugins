@@ -44,6 +44,7 @@ public class AnnouncementsEntryServiceImpl
 		super(announcementsEntryService);
 	}
 
+	@Override
 	public AnnouncementsEntry addEntry(
 			long plid, long classNameId, long classPK, String title,
 			String content, String url, String type, int displayDateMonth,

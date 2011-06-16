@@ -62,6 +62,7 @@ public class KBArticleWorkflowHandler extends BaseWorkflowHandler {
 			userId, resourcePrimKey, status, serviceContext);
 	}
 
+	@Override
 	protected String getIconPath(ThemeDisplay themeDisplay) {
 		return themeDisplay.getPathThemeImages() + "/trees/page.png";
 	}

@@ -86,6 +86,7 @@ public class WSRPProducerLocalServiceImpl
 		return wsrpProducer;
 	}
 
+	@Override
 	public void deleteWSRPProducer(long wsrpProducerId)
 		throws PortalException, SystemException {
 
@@ -95,6 +96,7 @@ public class WSRPProducerLocalServiceImpl
 		deleteWSRPProducer(wsrpProducer);
 	}
 
+	@Override
 	public void deleteWSRPProducer(WSRPProducer wsrpProducer)
 		throws PortalException, SystemException {
 

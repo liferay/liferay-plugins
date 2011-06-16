@@ -146,6 +146,7 @@ public class HREmploymentTypeClp extends BaseModelImpl<HREmploymentType>
 		_description = description;
 	}
 
+	@Override
 	public HREmploymentType toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -157,6 +158,7 @@ public class HREmploymentTypeClp extends BaseModelImpl<HREmploymentType>
 		}
 	}
 
+	@Override
 	public Object clone() {
 		HREmploymentTypeClp clone = new HREmploymentTypeClp();
 
@@ -188,6 +190,7 @@ public class HREmploymentTypeClp extends BaseModelImpl<HREmploymentType>
 		}
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -212,10 +215,12 @@ public class HREmploymentTypeClp extends BaseModelImpl<HREmploymentType>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(21);
 

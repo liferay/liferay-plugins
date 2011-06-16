@@ -146,6 +146,7 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(OAuthConsumerImpl.class.getName());
@@ -163,6 +164,7 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(OAuthConsumer oAuthConsumer) {
 		EntityCacheUtil.removeResult(OAuthConsumerModelImpl.ENTITY_CACHE_ENABLED,
 			OAuthConsumerImpl.class, oAuthConsumer.getPrimaryKey());
@@ -198,6 +200,7 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 	 * @throws com.liferay.portal.NoSuchModelException if a o auth consumer with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public OAuthConsumer remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -251,11 +254,13 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 	 * @return the o auth consumer that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public OAuthConsumer remove(OAuthConsumer oAuthConsumer)
 		throws SystemException {
 		return super.remove(oAuthConsumer);
 	}
 
+	@Override
 	protected OAuthConsumer removeImpl(OAuthConsumer oAuthConsumer)
 		throws SystemException {
 		oAuthConsumer = toUnwrappedModel(oAuthConsumer);
@@ -291,6 +296,7 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 		return oAuthConsumer;
 	}
 
+	@Override
 	public OAuthConsumer updateImpl(
 		com.liferay.opensocial.model.OAuthConsumer oAuthConsumer, boolean merge)
 		throws SystemException {
@@ -380,6 +386,7 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 	 * @throws com.liferay.portal.NoSuchModelException if a o auth consumer with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public OAuthConsumer findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -416,6 +423,7 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 	 * @return the o auth consumer, or <code>null</code> if a o auth consumer with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public OAuthConsumer fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

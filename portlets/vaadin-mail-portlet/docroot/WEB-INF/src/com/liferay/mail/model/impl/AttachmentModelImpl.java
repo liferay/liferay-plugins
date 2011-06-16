@@ -199,6 +199,7 @@ public class AttachmentModelImpl extends BaseModelImpl<Attachment>
 		_size = size;
 	}
 
+	@Override
 	public Attachment toEscapedModel() {
 		if (isEscapedModel()) {
 			return (Attachment)this;
@@ -209,6 +210,7 @@ public class AttachmentModelImpl extends BaseModelImpl<Attachment>
 		}
 	}
 
+	@Override
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
 			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
@@ -218,10 +220,12 @@ public class AttachmentModelImpl extends BaseModelImpl<Attachment>
 		return _expandoBridge;
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
 		getExpandoBridge().setAttributes(serviceContext);
 	}
 
+	@Override
 	public Object clone() {
 		AttachmentImpl attachmentImpl = new AttachmentImpl();
 
@@ -254,6 +258,7 @@ public class AttachmentModelImpl extends BaseModelImpl<Attachment>
 		}
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -278,13 +283,16 @@ public class AttachmentModelImpl extends BaseModelImpl<Attachment>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public void resetOriginalValues() {
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(19);
 

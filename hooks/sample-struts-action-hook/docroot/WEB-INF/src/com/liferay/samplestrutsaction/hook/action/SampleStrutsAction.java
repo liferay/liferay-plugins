@@ -25,6 +25,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class SampleStrutsAction extends BaseStrutsAction {
 
+	@Override
 	public String execute(
 			HttpServletRequest request, HttpServletResponse response)
 		throws Exception {

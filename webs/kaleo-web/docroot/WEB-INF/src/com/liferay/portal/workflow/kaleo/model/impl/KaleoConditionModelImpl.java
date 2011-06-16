@@ -235,6 +235,7 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 		_scriptLanguage = scriptLanguage;
 	}
 
+	@Override
 	public KaleoCondition toEscapedModel() {
 		if (isEscapedModel()) {
 			return (KaleoCondition)this;
@@ -245,6 +246,7 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 		}
 	}
 
+	@Override
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
 			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
@@ -254,10 +256,12 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 		return _expandoBridge;
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
 		getExpandoBridge().setAttributes(serviceContext);
 	}
 
+	@Override
 	public Object clone() {
 		KaleoConditionImpl kaleoConditionImpl = new KaleoConditionImpl();
 
@@ -298,6 +302,7 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 		return 0;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -322,10 +327,12 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public void resetOriginalValues() {
 		KaleoConditionModelImpl kaleoConditionModelImpl = this;
 
@@ -334,6 +341,7 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 		kaleoConditionModelImpl._setOriginalKaleoNodeId = false;
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(23);
 

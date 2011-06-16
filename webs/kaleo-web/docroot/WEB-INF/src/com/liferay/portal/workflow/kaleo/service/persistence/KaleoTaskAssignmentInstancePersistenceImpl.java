@@ -173,6 +173,7 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(KaleoTaskAssignmentInstanceImpl.class.getName());
@@ -190,6 +191,7 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(
 		KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance) {
 		EntityCacheUtil.removeResult(KaleoTaskAssignmentInstanceModelImpl.ENTITY_CACHE_ENABLED,
@@ -221,6 +223,7 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 	 * @throws com.liferay.portal.NoSuchModelException if a kaleo task assignment instance with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoTaskAssignmentInstance remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -275,12 +278,14 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 	 * @return the kaleo task assignment instance that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoTaskAssignmentInstance remove(
 		KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance)
 		throws SystemException {
 		return super.remove(kaleoTaskAssignmentInstance);
 	}
 
+	@Override
 	protected KaleoTaskAssignmentInstance removeImpl(
 		KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance)
 		throws SystemException {
@@ -309,6 +314,7 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 		return kaleoTaskAssignmentInstance;
 	}
 
+	@Override
 	public KaleoTaskAssignmentInstance updateImpl(
 		com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance,
 		boolean merge) throws SystemException {
@@ -380,6 +386,7 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 	 * @throws com.liferay.portal.NoSuchModelException if a kaleo task assignment instance with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoTaskAssignmentInstance findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -418,6 +425,7 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 	 * @return the kaleo task assignment instance, or <code>null</code> if a kaleo task assignment instance with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoTaskAssignmentInstance fetchByPrimaryKey(
 		Serializable primaryKey) throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

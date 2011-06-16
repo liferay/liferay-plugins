@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.upgrade.CamelCaseUpgradePortletPreferences;
 public class UpgradePortletPreferences
 	extends CamelCaseUpgradePortletPreferences {
 
+	@Override
 	protected String[] getPortletIds() {
 		return new String[] {"%_WAR_wikinavigationportlet_INSTANCE_%"};
 	}

@@ -537,6 +537,7 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 		_active = active;
 	}
 
+	@Override
 	public CalendarResource toEscapedModel() {
 		if (isEscapedModel()) {
 			return (CalendarResource)this;
@@ -547,6 +548,7 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 		}
 	}
 
+	@Override
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
 			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
@@ -556,10 +558,12 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 		return _expandoBridge;
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
 		getExpandoBridge().setAttributes(serviceContext);
 	}
 
+	@Override
 	public Object clone() {
 		CalendarResourceImpl calendarResourceImpl = new CalendarResourceImpl();
 
@@ -596,6 +600,7 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 		return 0;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -620,10 +625,12 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public void resetOriginalValues() {
 		CalendarResourceModelImpl calendarResourceModelImpl = this;
 
@@ -642,6 +649,7 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 		calendarResourceModelImpl._setOriginalClassPK = false;
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(29);
 

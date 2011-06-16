@@ -75,6 +75,7 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 		return kbComment;
 	}
 
+	@Override
 	public void deleteKBComment (KBComment kbComment) throws SystemException {
 
 		// KB comment
@@ -87,6 +88,7 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 			KBComment.class.getName(), kbComment.getKbCommentId());
 	}
 
+	@Override
 	public void deleteKBComment (long kbCommentId)
 		throws PortalException, SystemException {
 

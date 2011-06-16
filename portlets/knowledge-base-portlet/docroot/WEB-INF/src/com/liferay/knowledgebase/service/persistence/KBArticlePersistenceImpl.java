@@ -502,6 +502,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(KBArticleImpl.class.getName());
@@ -519,6 +520,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(KBArticle kbArticle) {
 		EntityCacheUtil.removeResult(KBArticleModelImpl.ENTITY_CACHE_ENABLED,
 			KBArticleImpl.class, kbArticle.getPrimaryKey());
@@ -562,6 +564,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 * @throws com.liferay.portal.NoSuchModelException if a k b article with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KBArticle remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -614,10 +617,12 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 * @return the k b article that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KBArticle remove(KBArticle kbArticle) throws SystemException {
 		return super.remove(kbArticle);
 	}
 
+	@Override
 	protected KBArticle removeImpl(KBArticle kbArticle)
 		throws SystemException {
 		kbArticle = toUnwrappedModel(kbArticle);
@@ -658,6 +663,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		return kbArticle;
 	}
 
+	@Override
 	public KBArticle updateImpl(
 		com.liferay.knowledgebase.model.KBArticle kbArticle, boolean merge)
 		throws SystemException {
@@ -786,6 +792,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 * @throws com.liferay.portal.NoSuchModelException if a k b article with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KBArticle findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -822,6 +829,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 * @return the k b article, or <code>null</code> if a k b article with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KBArticle fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

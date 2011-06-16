@@ -26,6 +26,7 @@ import com.liferay.portal.model.Group;
  */
 public class GroupListener extends BaseModelListener<Group> {
 
+	@Override
 	public void onBeforeRemove(Group group) throws ModelListenerException {
 		try {
 			doOnBeforeRemove(group);

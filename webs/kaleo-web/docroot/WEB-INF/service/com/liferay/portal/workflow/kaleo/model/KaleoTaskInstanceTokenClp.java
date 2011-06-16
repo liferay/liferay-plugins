@@ -243,6 +243,7 @@ public class KaleoTaskInstanceTokenClp extends BaseModelImpl<KaleoTaskInstanceTo
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public KaleoTaskInstanceToken toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -254,6 +255,7 @@ public class KaleoTaskInstanceTokenClp extends BaseModelImpl<KaleoTaskInstanceTo
 		}
 	}
 
+	@Override
 	public Object clone() {
 		KaleoTaskInstanceTokenClp clone = new KaleoTaskInstanceTokenClp();
 
@@ -300,6 +302,7 @@ public class KaleoTaskInstanceTokenClp extends BaseModelImpl<KaleoTaskInstanceTo
 		return 0;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -324,10 +327,12 @@ public class KaleoTaskInstanceTokenClp extends BaseModelImpl<KaleoTaskInstanceTo
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(39);
 

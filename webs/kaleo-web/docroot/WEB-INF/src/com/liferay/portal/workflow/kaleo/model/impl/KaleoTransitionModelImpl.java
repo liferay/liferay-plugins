@@ -312,6 +312,7 @@ public class KaleoTransitionModelImpl extends BaseModelImpl<KaleoTransition>
 		return _originalDefaultTransition;
 	}
 
+	@Override
 	public KaleoTransition toEscapedModel() {
 		if (isEscapedModel()) {
 			return (KaleoTransition)this;
@@ -322,6 +323,7 @@ public class KaleoTransitionModelImpl extends BaseModelImpl<KaleoTransition>
 		}
 	}
 
+	@Override
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
 			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
@@ -331,10 +333,12 @@ public class KaleoTransitionModelImpl extends BaseModelImpl<KaleoTransition>
 		return _expandoBridge;
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
 		getExpandoBridge().setAttributes(serviceContext);
 	}
 
+	@Override
 	public Object clone() {
 		KaleoTransitionImpl kaleoTransitionImpl = new KaleoTransitionImpl();
 
@@ -380,6 +384,7 @@ public class KaleoTransitionModelImpl extends BaseModelImpl<KaleoTransition>
 		return 0;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -404,10 +409,12 @@ public class KaleoTransitionModelImpl extends BaseModelImpl<KaleoTransition>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public void resetOriginalValues() {
 		KaleoTransitionModelImpl kaleoTransitionModelImpl = this;
 
@@ -422,6 +429,7 @@ public class KaleoTransitionModelImpl extends BaseModelImpl<KaleoTransition>
 		kaleoTransitionModelImpl._setOriginalDefaultTransition = false;
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(33);
 

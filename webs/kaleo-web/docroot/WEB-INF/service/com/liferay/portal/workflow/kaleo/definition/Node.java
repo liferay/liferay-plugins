@@ -38,6 +38,7 @@ public abstract class Node {
 		_transitions.put(transition.getName(), transition);
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -100,6 +101,7 @@ public abstract class Node {
 		return Collections.unmodifiableCollection(_transitions.values());
 	}
 
+	@Override
 	public int hashCode() {
 		return _name.hashCode();
 	}

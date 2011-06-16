@@ -88,6 +88,7 @@ public class AccountLocalServiceImpl extends AccountLocalServiceBaseImpl {
 		return account;
 	}
 
+	@Override
 	public void deleteAccount(Account account)
 		throws PortalException, SystemException {
 
@@ -106,6 +107,7 @@ public class AccountLocalServiceImpl extends AccountLocalServiceBaseImpl {
 		indexer.delete(account);
 	}
 
+	@Override
 	public void deleteAccount(long accountId)
 		throws PortalException, SystemException {
 

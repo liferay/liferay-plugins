@@ -69,6 +69,7 @@ public class BarClp extends BaseModelImpl<Bar> implements Bar {
 		_text = text;
 	}
 
+	@Override
 	public Bar toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -79,6 +80,7 @@ public class BarClp extends BaseModelImpl<Bar> implements Bar {
 		}
 	}
 
+	@Override
 	public Object clone() {
 		BarClp clone = new BarClp();
 
@@ -100,6 +102,7 @@ public class BarClp extends BaseModelImpl<Bar> implements Bar {
 		return 0;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -124,10 +127,12 @@ public class BarClp extends BaseModelImpl<Bar> implements Bar {
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(5);
 

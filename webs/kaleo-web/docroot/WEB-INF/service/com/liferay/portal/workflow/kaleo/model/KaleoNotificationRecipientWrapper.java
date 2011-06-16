@@ -352,6 +352,7 @@ public class KaleoNotificationRecipientWrapper
 		_kaleoNotificationRecipient.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new KaleoNotificationRecipientWrapper((KaleoNotificationRecipient)_kaleoNotificationRecipient.clone());
 	}
@@ -361,6 +362,7 @@ public class KaleoNotificationRecipientWrapper
 		return _kaleoNotificationRecipient.compareTo(kaleoNotificationRecipient);
 	}
 
+	@Override
 	public int hashCode() {
 		return _kaleoNotificationRecipient.hashCode();
 	}
@@ -369,6 +371,7 @@ public class KaleoNotificationRecipientWrapper
 		return new KaleoNotificationRecipientWrapper(_kaleoNotificationRecipient.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _kaleoNotificationRecipient.toString();
 	}

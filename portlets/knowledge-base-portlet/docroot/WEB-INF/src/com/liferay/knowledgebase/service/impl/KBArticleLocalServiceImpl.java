@@ -248,6 +248,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		}
 	}
 
+	@Override
 	public void deleteKBArticle(KBArticle kbArticle)
 		throws PortalException, SystemException {
 
@@ -313,6 +314,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			KBArticle.class.getName(), kbArticle.getResourcePrimKey());
 	}
 
+	@Override
 	public void deleteKBArticle(long resourcePrimKey)
 		throws PortalException, SystemException {
 

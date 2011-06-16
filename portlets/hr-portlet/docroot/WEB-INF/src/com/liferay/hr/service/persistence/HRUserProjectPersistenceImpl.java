@@ -115,6 +115,7 @@ public class HRUserProjectPersistenceImpl extends BasePersistenceImpl<HRUserProj
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(HRUserProjectImpl.class.getName());
@@ -132,6 +133,7 @@ public class HRUserProjectPersistenceImpl extends BasePersistenceImpl<HRUserProj
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(HRUserProject hrUserProject) {
 		EntityCacheUtil.removeResult(HRUserProjectModelImpl.ENTITY_CACHE_ENABLED,
 			HRUserProjectImpl.class, hrUserProject.getPrimaryKey());
@@ -160,6 +162,7 @@ public class HRUserProjectPersistenceImpl extends BasePersistenceImpl<HRUserProj
 	 * @throws com.liferay.portal.NoSuchModelException if a h r user project with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRUserProject remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -213,11 +216,13 @@ public class HRUserProjectPersistenceImpl extends BasePersistenceImpl<HRUserProj
 	 * @return the h r user project that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRUserProject remove(HRUserProject hrUserProject)
 		throws SystemException {
 		return super.remove(hrUserProject);
 	}
 
+	@Override
 	protected HRUserProject removeImpl(HRUserProject hrUserProject)
 		throws SystemException {
 		hrUserProject = toUnwrappedModel(hrUserProject);
@@ -244,6 +249,7 @@ public class HRUserProjectPersistenceImpl extends BasePersistenceImpl<HRUserProj
 		return hrUserProject;
 	}
 
+	@Override
 	public HRUserProject updateImpl(
 		com.liferay.hr.model.HRUserProject hrUserProject, boolean merge)
 		throws SystemException {
@@ -308,6 +314,7 @@ public class HRUserProjectPersistenceImpl extends BasePersistenceImpl<HRUserProj
 	 * @throws com.liferay.portal.NoSuchModelException if a h r user project with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRUserProject findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -344,6 +351,7 @@ public class HRUserProjectPersistenceImpl extends BasePersistenceImpl<HRUserProj
 	 * @return the h r user project, or <code>null</code> if a h r user project with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRUserProject fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

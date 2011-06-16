@@ -24,6 +24,7 @@ import com.liferay.socialnetworking.service.WallEntryLocalServiceUtil;
  */
 public class GroupListener extends BaseModelListener<Group> {
 
+	@Override
 	public void onBeforeRemove(Group group) throws ModelListenerException {
 		try {
 			if (group.isUser()) {

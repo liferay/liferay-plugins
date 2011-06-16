@@ -146,6 +146,7 @@ public class HRProjectBillingRateClp extends BaseModelImpl<HRProjectBillingRate>
 		_rate = rate;
 	}
 
+	@Override
 	public HRProjectBillingRate toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -157,6 +158,7 @@ public class HRProjectBillingRateClp extends BaseModelImpl<HRProjectBillingRate>
 		}
 	}
 
+	@Override
 	public Object clone() {
 		HRProjectBillingRateClp clone = new HRProjectBillingRateClp();
 
@@ -188,6 +190,7 @@ public class HRProjectBillingRateClp extends BaseModelImpl<HRProjectBillingRate>
 		}
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -212,10 +215,12 @@ public class HRProjectBillingRateClp extends BaseModelImpl<HRProjectBillingRate>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(21);
 

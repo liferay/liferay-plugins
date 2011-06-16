@@ -22,10 +22,12 @@ import com.liferay.socialcoding.hook.upgrade.v1_0_0.UpgradeNamespace;
  */
 public class UpgradeProcess_1_0_0 extends UpgradeProcess {
 
+	@Override
 	public int getThreshold() {
 		return 100;
 	}
 
+	@Override
 	protected void doUpgrade() throws Exception {
 		upgrade(UpgradeNamespace.class);
 	}

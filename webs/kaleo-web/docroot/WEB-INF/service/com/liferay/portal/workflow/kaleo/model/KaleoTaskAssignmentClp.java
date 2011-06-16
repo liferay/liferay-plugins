@@ -186,6 +186,7 @@ public class KaleoTaskAssignmentClp extends BaseModelImpl<KaleoTaskAssignment>
 		_assigneeScriptLanguage = assigneeScriptLanguage;
 	}
 
+	@Override
 	public KaleoTaskAssignment toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -197,6 +198,7 @@ public class KaleoTaskAssignmentClp extends BaseModelImpl<KaleoTaskAssignment>
 		}
 	}
 
+	@Override
 	public Object clone() {
 		KaleoTaskAssignmentClp clone = new KaleoTaskAssignmentClp();
 
@@ -239,6 +241,7 @@ public class KaleoTaskAssignmentClp extends BaseModelImpl<KaleoTaskAssignment>
 		return 0;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -263,10 +266,12 @@ public class KaleoTaskAssignmentClp extends BaseModelImpl<KaleoTaskAssignment>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(31);
 

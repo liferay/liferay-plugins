@@ -155,6 +155,7 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(KaleoNodeImpl.class.getName());
@@ -172,6 +173,7 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(KaleoNode kaleoNode) {
 		EntityCacheUtil.removeResult(KaleoNodeModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoNodeImpl.class, kaleoNode.getPrimaryKey());
@@ -200,6 +202,7 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 * @throws com.liferay.portal.NoSuchModelException if a kaleo node with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoNode remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -252,10 +255,12 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 * @return the kaleo node that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoNode remove(KaleoNode kaleoNode) throws SystemException {
 		return super.remove(kaleoNode);
 	}
 
+	@Override
 	protected KaleoNode removeImpl(KaleoNode kaleoNode)
 		throws SystemException {
 		kaleoNode = toUnwrappedModel(kaleoNode);
@@ -282,6 +287,7 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 		return kaleoNode;
 	}
 
+	@Override
 	public KaleoNode updateImpl(
 		com.liferay.portal.workflow.kaleo.model.KaleoNode kaleoNode,
 		boolean merge) throws SystemException {
@@ -346,6 +352,7 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 * @throws com.liferay.portal.NoSuchModelException if a kaleo node with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoNode findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -382,6 +389,7 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 * @return the kaleo node, or <code>null</code> if a kaleo node with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoNode fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

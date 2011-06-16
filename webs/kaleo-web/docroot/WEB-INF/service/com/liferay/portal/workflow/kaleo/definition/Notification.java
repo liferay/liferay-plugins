@@ -43,6 +43,7 @@ public class Notification {
 		_recipients.add(recipient);
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -89,6 +90,7 @@ public class Notification {
 		return _templateLanguage;
 	}
 
+	@Override
 	public int hashCode() {
 		return _name.hashCode();
 	}

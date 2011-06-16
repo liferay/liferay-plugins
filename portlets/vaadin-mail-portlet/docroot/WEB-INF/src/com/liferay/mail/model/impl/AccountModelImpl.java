@@ -434,6 +434,7 @@ public class AccountModelImpl extends BaseModelImpl<Account>
 		_defaultSender = defaultSender;
 	}
 
+	@Override
 	public Account toEscapedModel() {
 		if (isEscapedModel()) {
 			return (Account)this;
@@ -444,6 +445,7 @@ public class AccountModelImpl extends BaseModelImpl<Account>
 		}
 	}
 
+	@Override
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
 			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
@@ -453,10 +455,12 @@ public class AccountModelImpl extends BaseModelImpl<Account>
 		return _expandoBridge;
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
 		getExpandoBridge().setAttributes(serviceContext);
 	}
 
+	@Override
 	public Object clone() {
 		AccountImpl accountImpl = new AccountImpl();
 
@@ -504,6 +508,7 @@ public class AccountModelImpl extends BaseModelImpl<Account>
 		return 0;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -528,10 +533,12 @@ public class AccountModelImpl extends BaseModelImpl<Account>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public void resetOriginalValues() {
 		AccountModelImpl accountModelImpl = this;
 
@@ -542,6 +549,7 @@ public class AccountModelImpl extends BaseModelImpl<Account>
 		accountModelImpl._originalAddress = accountModelImpl._address;
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(53);
 

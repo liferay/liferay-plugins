@@ -138,6 +138,7 @@ public class HRAssetTypeClp extends BaseModelImpl<HRAssetType>
 		_description = description;
 	}
 
+	@Override
 	public HRAssetType toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -149,6 +150,7 @@ public class HRAssetTypeClp extends BaseModelImpl<HRAssetType>
 		}
 	}
 
+	@Override
 	public Object clone() {
 		HRAssetTypeClp clone = new HRAssetTypeClp();
 
@@ -179,6 +181,7 @@ public class HRAssetTypeClp extends BaseModelImpl<HRAssetType>
 		}
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -203,10 +206,12 @@ public class HRAssetTypeClp extends BaseModelImpl<HRAssetType>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(19);
 

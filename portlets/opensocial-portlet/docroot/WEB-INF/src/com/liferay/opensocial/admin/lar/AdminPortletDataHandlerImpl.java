@@ -35,10 +35,12 @@ import javax.portlet.PortletPreferences;
  */
 public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
+	@Override
 	public boolean isPublishToLiveByDefault() {
 		return _PUBLISH_TO_LIVE_BY_DEFAULT;
 	}
 
+	@Override
 	protected PortletPreferences doDeleteData(
 			PortletDataContext portletDataContext, String portletId,
 			PortletPreferences portletPreferences)
@@ -55,6 +57,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		return null;
 	}
 
+	@Override
 	protected String doExportData(
 			PortletDataContext portletDataContext, String portletId,
 			PortletPreferences portletPreferences)
@@ -77,6 +80,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		return document.formattedString();
 	}
 
+	@Override
 	protected PortletPreferences doImportData(
 			PortletDataContext portletDataContext, String portletId,
 			PortletPreferences portletPreferences, String data)

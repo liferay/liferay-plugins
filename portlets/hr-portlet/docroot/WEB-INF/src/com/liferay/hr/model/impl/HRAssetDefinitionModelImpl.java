@@ -260,6 +260,7 @@ public class HRAssetDefinitionModelImpl extends BaseModelImpl<HRAssetDefinition>
 		_individualPrice = individualPrice;
 	}
 
+	@Override
 	public HRAssetDefinition toEscapedModel() {
 		if (isEscapedModel()) {
 			return (HRAssetDefinition)this;
@@ -270,6 +271,7 @@ public class HRAssetDefinitionModelImpl extends BaseModelImpl<HRAssetDefinition>
 		}
 	}
 
+	@Override
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
 			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
@@ -279,10 +281,12 @@ public class HRAssetDefinitionModelImpl extends BaseModelImpl<HRAssetDefinition>
 		return _expandoBridge;
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
 		getExpandoBridge().setAttributes(serviceContext);
 	}
 
+	@Override
 	public Object clone() {
 		HRAssetDefinitionImpl hrAssetDefinitionImpl = new HRAssetDefinitionImpl();
 
@@ -321,6 +325,7 @@ public class HRAssetDefinitionModelImpl extends BaseModelImpl<HRAssetDefinition>
 		}
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -345,13 +350,16 @@ public class HRAssetDefinitionModelImpl extends BaseModelImpl<HRAssetDefinition>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public void resetOriginalValues() {
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(31);
 

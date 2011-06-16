@@ -129,6 +129,7 @@ public class HRBranchClp extends BaseModelImpl<HRBranch> implements HRBranch {
 		_organizationId = organizationId;
 	}
 
+	@Override
 	public HRBranch toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -139,6 +140,7 @@ public class HRBranchClp extends BaseModelImpl<HRBranch> implements HRBranch {
 		}
 	}
 
+	@Override
 	public Object clone() {
 		HRBranchClp clone = new HRBranchClp();
 
@@ -168,6 +170,7 @@ public class HRBranchClp extends BaseModelImpl<HRBranch> implements HRBranch {
 		}
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -192,10 +195,12 @@ public class HRBranchClp extends BaseModelImpl<HRBranch> implements HRBranch {
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(17);
 

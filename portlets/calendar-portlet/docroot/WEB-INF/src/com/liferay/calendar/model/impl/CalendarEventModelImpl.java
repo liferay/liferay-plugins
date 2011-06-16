@@ -596,6 +596,7 @@ public class CalendarEventModelImpl extends BaseModelImpl<CalendarEvent>
 		_secondReminder = secondReminder;
 	}
 
+	@Override
 	public CalendarEvent toEscapedModel() {
 		if (isEscapedModel()) {
 			return (CalendarEvent)this;
@@ -606,6 +607,7 @@ public class CalendarEventModelImpl extends BaseModelImpl<CalendarEvent>
 		}
 	}
 
+	@Override
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
 			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
@@ -615,10 +617,12 @@ public class CalendarEventModelImpl extends BaseModelImpl<CalendarEvent>
 		return _expandoBridge;
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
 		getExpandoBridge().setAttributes(serviceContext);
 	}
 
+	@Override
 	public Object clone() {
 		CalendarEventImpl calendarEventImpl = new CalendarEventImpl();
 
@@ -668,6 +672,7 @@ public class CalendarEventModelImpl extends BaseModelImpl<CalendarEvent>
 		return 0;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -692,10 +697,12 @@ public class CalendarEventModelImpl extends BaseModelImpl<CalendarEvent>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public void resetOriginalValues() {
 		CalendarEventModelImpl calendarEventModelImpl = this;
 
@@ -706,6 +713,7 @@ public class CalendarEventModelImpl extends BaseModelImpl<CalendarEvent>
 		calendarEventModelImpl._setOriginalGroupId = false;
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(43);
 

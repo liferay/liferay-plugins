@@ -113,6 +113,7 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(CheckoutImpl.class.getName());
@@ -130,6 +131,7 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(Checkout checkout) {
 		EntityCacheUtil.removeResult(CheckoutModelImpl.ENTITY_CACHE_ENABLED,
 			CheckoutImpl.class, checkout.getPrimaryKey());
@@ -158,6 +160,7 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 	 * @throws com.liferay.portal.NoSuchModelException if a checkout with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Checkout remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -210,10 +213,12 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 	 * @return the checkout that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Checkout remove(Checkout checkout) throws SystemException {
 		return super.remove(checkout);
 	}
 
+	@Override
 	protected Checkout removeImpl(Checkout checkout) throws SystemException {
 		checkout = toUnwrappedModel(checkout);
 
@@ -239,6 +244,7 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 		return checkout;
 	}
 
+	@Override
 	public Checkout updateImpl(com.liferay.ams.model.Checkout checkout,
 		boolean merge) throws SystemException {
 		checkout = toUnwrappedModel(checkout);
@@ -299,6 +305,7 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 	 * @throws com.liferay.portal.NoSuchModelException if a checkout with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Checkout findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -335,6 +342,7 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 	 * @return the checkout, or <code>null</code> if a checkout with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Checkout fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

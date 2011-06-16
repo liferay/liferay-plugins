@@ -160,6 +160,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(KaleoNotificationRecipientImpl.class.getName());
@@ -177,6 +178,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(
 		KaleoNotificationRecipient kaleoNotificationRecipient) {
 		EntityCacheUtil.removeResult(KaleoNotificationRecipientModelImpl.ENTITY_CACHE_ENABLED,
@@ -207,6 +209,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 	 * @throws com.liferay.portal.NoSuchModelException if a kaleo notification recipient with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoNotificationRecipient remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -260,12 +263,14 @@ public class KaleoNotificationRecipientPersistenceImpl
 	 * @return the kaleo notification recipient that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoNotificationRecipient remove(
 		KaleoNotificationRecipient kaleoNotificationRecipient)
 		throws SystemException {
 		return super.remove(kaleoNotificationRecipient);
 	}
 
+	@Override
 	protected KaleoNotificationRecipient removeImpl(
 		KaleoNotificationRecipient kaleoNotificationRecipient)
 		throws SystemException {
@@ -294,6 +299,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 		return kaleoNotificationRecipient;
 	}
 
+	@Override
 	public KaleoNotificationRecipient updateImpl(
 		com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient kaleoNotificationRecipient,
 		boolean merge) throws SystemException {
@@ -361,6 +367,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 	 * @throws com.liferay.portal.NoSuchModelException if a kaleo notification recipient with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoNotificationRecipient findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -399,6 +406,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 	 * @return the kaleo notification recipient, or <code>null</code> if a kaleo notification recipient with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoNotificationRecipient fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

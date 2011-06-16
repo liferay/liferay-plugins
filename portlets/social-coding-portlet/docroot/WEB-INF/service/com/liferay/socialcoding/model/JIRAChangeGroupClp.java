@@ -89,6 +89,7 @@ public class JIRAChangeGroupClp extends BaseModelImpl<JIRAChangeGroup>
 		_jiraIssueId = jiraIssueId;
 	}
 
+	@Override
 	public JIRAChangeGroup toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -100,6 +101,7 @@ public class JIRAChangeGroupClp extends BaseModelImpl<JIRAChangeGroup>
 		}
 	}
 
+	@Override
 	public Object clone() {
 		JIRAChangeGroupClp clone = new JIRAChangeGroupClp();
 
@@ -126,6 +128,7 @@ public class JIRAChangeGroupClp extends BaseModelImpl<JIRAChangeGroup>
 		return 0;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -150,10 +153,12 @@ public class JIRAChangeGroupClp extends BaseModelImpl<JIRAChangeGroup>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(9);
 

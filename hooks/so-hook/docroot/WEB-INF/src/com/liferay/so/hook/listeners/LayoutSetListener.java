@@ -45,6 +45,7 @@ import com.liferay.util.portlet.PortletProps;
  */
 public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 
+	@Override
 	public void onAfterCreate(LayoutSet layoutSet)
 		throws ModelListenerException {
 

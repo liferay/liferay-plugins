@@ -151,6 +151,7 @@ public class CalendarResourceLocalServiceImpl
 			guestPermissions);
 	}
 
+	@Override
 	public void deleteCalendarResource(CalendarResource calendarResource)
 		throws PortalException, SystemException {
 
@@ -182,6 +183,7 @@ public class CalendarResourceLocalServiceImpl
 			calendarResource.getCalendarResourceId());
 	}
 
+	@Override
 	public void deleteCalendarResource(long calendarResourceId)
 		throws PortalException, SystemException {
 
@@ -191,6 +193,7 @@ public class CalendarResourceLocalServiceImpl
 		deleteCalendarResource(calendarResource);
 	}
 
+	@Override
 	public CalendarResource getCalendarResource(long calendarResourceId)
 		throws PortalException, SystemException {
 

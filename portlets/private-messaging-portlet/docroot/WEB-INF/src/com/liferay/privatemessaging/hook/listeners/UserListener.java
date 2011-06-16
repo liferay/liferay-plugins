@@ -25,6 +25,7 @@ import com.liferay.privatemessaging.service.UserThreadLocalServiceUtil;
  */
 public class UserListener extends BaseModelListener<User> {
 
+	@Override
 	public void onBeforeRemove(User user) {
 		try {
 			if (_log.isDebugEnabled()) {

@@ -127,6 +127,7 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(BarImpl.class.getName());
@@ -144,6 +145,7 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(Bar bar) {
 		EntityCacheUtil.removeResult(BarModelImpl.ENTITY_CACHE_ENABLED,
 			BarImpl.class, bar.getPrimaryKey());
@@ -172,6 +174,7 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 	 * @throws com.liferay.portal.NoSuchModelException if a bar with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Bar remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -222,10 +225,12 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 	 * @return the bar that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Bar remove(Bar bar) throws SystemException {
 		return super.remove(bar);
 	}
 
+	@Override
 	protected Bar removeImpl(Bar bar) throws SystemException {
 		bar = toUnwrappedModel(bar);
 
@@ -251,6 +256,7 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 		return bar;
 	}
 
+	@Override
 	public Bar updateImpl(com.liferay.testtransaction.model.Bar bar,
 		boolean merge) throws SystemException {
 		bar = toUnwrappedModel(bar);
@@ -303,6 +309,7 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 	 * @throws com.liferay.portal.NoSuchModelException if a bar with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Bar findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -339,6 +346,7 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 	 * @return the bar, or <code>null</code> if a bar with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Bar fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

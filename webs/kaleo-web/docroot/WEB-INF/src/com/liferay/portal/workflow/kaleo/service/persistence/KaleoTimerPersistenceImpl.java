@@ -139,6 +139,7 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(KaleoTimerImpl.class.getName());
@@ -156,6 +157,7 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(KaleoTimer kaleoTimer) {
 		EntityCacheUtil.removeResult(KaleoTimerModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoTimerImpl.class, kaleoTimer.getPrimaryKey());
@@ -184,6 +186,7 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 	 * @throws com.liferay.portal.NoSuchModelException if a kaleo timer with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoTimer remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -236,10 +239,12 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 	 * @return the kaleo timer that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoTimer remove(KaleoTimer kaleoTimer) throws SystemException {
 		return super.remove(kaleoTimer);
 	}
 
+	@Override
 	protected KaleoTimer removeImpl(KaleoTimer kaleoTimer)
 		throws SystemException {
 		kaleoTimer = toUnwrappedModel(kaleoTimer);
@@ -266,6 +271,7 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 		return kaleoTimer;
 	}
 
+	@Override
 	public KaleoTimer updateImpl(
 		com.liferay.portal.workflow.kaleo.model.KaleoTimer kaleoTimer,
 		boolean merge) throws SystemException {
@@ -332,6 +338,7 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 	 * @throws com.liferay.portal.NoSuchModelException if a kaleo timer with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoTimer findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -368,6 +375,7 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 	 * @return the kaleo timer, or <code>null</code> if a kaleo timer with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoTimer fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.upgrade.CamelCaseUpgradePortletPreferences;
 public class UpgradePortletPreferences
 	extends CamelCaseUpgradePortletPreferences {
 
+	@Override
 	protected String[] getPortletIds() {
 		return new String[] {"1_WAR_googleadsenseportlet_INSTANCE_%"};
 	}

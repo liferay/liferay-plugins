@@ -41,6 +41,7 @@ import javax.portlet.PortletException;
  */
 public class ServiceBuilderPortlet extends MVCPortlet {
 
+	@Override
 	public void processAction(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws IOException, PortletException {

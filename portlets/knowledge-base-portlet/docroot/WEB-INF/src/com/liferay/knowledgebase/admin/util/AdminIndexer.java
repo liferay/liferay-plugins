@@ -58,6 +58,7 @@ public class AdminIndexer extends BaseIndexer {
 		return CLASS_NAMES;
 	}
 
+	@Override
 	public void postProcessSearchQuery(
 			BooleanQuery searchQuery, SearchContext searchContext)
 		throws Exception {
@@ -66,6 +67,7 @@ public class AdminIndexer extends BaseIndexer {
 		addSearchTerm(searchQuery, searchContext, Field.TITLE, true);
 	}
 
+	@Override
 	public Hits search(SearchContext searchContext) throws SearchException {
 		Hits hits = super.search(searchContext);
 
@@ -81,6 +83,7 @@ public class AdminIndexer extends BaseIndexer {
 		return hits;
 	}
 
+	@Override
 	protected void doDelete(Object obj) throws Exception {
 		KBArticle kbArticle = (KBArticle)obj;
 
@@ -92,6 +95,7 @@ public class AdminIndexer extends BaseIndexer {
 			kbArticle.getCompanyId(), document.get(Field.UID));
 	}
 
+	@Override
 	protected Document doGetDocument(Object obj) throws Exception {
 		KBArticle kbArticle = (KBArticle)obj;
 
@@ -110,6 +114,7 @@ public class AdminIndexer extends BaseIndexer {
 		return document;
 	}
 
+	@Override
 	protected Summary doGetSummary(
 		Document document, Locale locale, String snippet,
 		PortletURL portletURL) {
@@ -134,6 +139,7 @@ public class AdminIndexer extends BaseIndexer {
 		return new Summary(title, content, portletURL);
 	}
 
+	@Override
 	protected void doReindex(Object obj) throws Exception {
 		KBArticle kbArticle = (KBArticle)obj;
 
@@ -141,6 +147,7 @@ public class AdminIndexer extends BaseIndexer {
 			kbArticle.getCompanyId(), getDocument(kbArticle));
 	}
 
+	@Override
 	protected void doReindex(String className, long classPK) throws Exception {
 		KBArticle kbArticle = KBArticleLocalServiceUtil.getLatestKBArticle(
 			classPK, WorkflowConstants.STATUS_APPROVED);
@@ -148,12 +155,14 @@ public class AdminIndexer extends BaseIndexer {
 		reindexKBArticles(kbArticle);
 	}
 
+	@Override
 	protected void doReindex(String[] ids) throws Exception {
 		long companyId = GetterUtil.getLong(ids[0]);
 
 		reindexKBArticles(companyId);
 	}
 
+	@Override
 	protected String getPortletId(SearchContext searchContext) {
 		return PORTLET_ID;
 	}

@@ -55,6 +55,7 @@ import javax.servlet.http.HttpSession;
  */
 public class NotificationsPortlet extends MVCPortlet {
 
+	@Override
 	public void doView(
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws IOException, PortletException {

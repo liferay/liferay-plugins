@@ -222,6 +222,7 @@ public class HRUserTaskModelImpl extends BaseModelImpl<HRUserTask>
 		_hrUserUuid = hrUserUuid;
 	}
 
+	@Override
 	public HRUserTask toEscapedModel() {
 		if (isEscapedModel()) {
 			return (HRUserTask)this;
@@ -232,6 +233,7 @@ public class HRUserTaskModelImpl extends BaseModelImpl<HRUserTask>
 		}
 	}
 
+	@Override
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
 			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
@@ -241,10 +243,12 @@ public class HRUserTaskModelImpl extends BaseModelImpl<HRUserTask>
 		return _expandoBridge;
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
 		getExpandoBridge().setAttributes(serviceContext);
 	}
 
+	@Override
 	public Object clone() {
 		HRUserTaskImpl hrUserTaskImpl = new HRUserTaskImpl();
 
@@ -279,6 +283,7 @@ public class HRUserTaskModelImpl extends BaseModelImpl<HRUserTask>
 		}
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -303,13 +308,16 @@ public class HRUserTaskModelImpl extends BaseModelImpl<HRUserTask>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public void resetOriginalValues() {
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(23);
 

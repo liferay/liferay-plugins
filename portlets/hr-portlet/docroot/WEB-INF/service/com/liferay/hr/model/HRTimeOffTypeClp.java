@@ -138,6 +138,7 @@ public class HRTimeOffTypeClp extends BaseModelImpl<HRTimeOffType>
 		_description = description;
 	}
 
+	@Override
 	public HRTimeOffType toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -149,6 +150,7 @@ public class HRTimeOffTypeClp extends BaseModelImpl<HRTimeOffType>
 		}
 	}
 
+	@Override
 	public Object clone() {
 		HRTimeOffTypeClp clone = new HRTimeOffTypeClp();
 
@@ -179,6 +181,7 @@ public class HRTimeOffTypeClp extends BaseModelImpl<HRTimeOffType>
 		}
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -203,10 +206,12 @@ public class HRTimeOffTypeClp extends BaseModelImpl<HRTimeOffType>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(19);
 

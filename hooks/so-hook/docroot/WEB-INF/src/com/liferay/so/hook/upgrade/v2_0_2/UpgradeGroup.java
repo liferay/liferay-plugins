@@ -31,6 +31,7 @@ import java.util.List;
 public class UpgradeGroup
 	extends com.liferay.so.hook.upgrade.v1_5_1.UpgradeGroup {
 
+	@Override
 	protected void doUpgrade() throws Exception {
 		List<Group> groups = GroupLocalServiceUtil.getGroups(
 			QueryUtil.ALL_POS, QueryUtil.ALL_POS);

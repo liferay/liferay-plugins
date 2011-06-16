@@ -304,6 +304,7 @@ public class AssetWrapper implements Asset {
 		_asset.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new AssetWrapper((Asset)_asset.clone());
 	}
@@ -312,6 +313,7 @@ public class AssetWrapper implements Asset {
 		return _asset.compareTo(asset);
 	}
 
+	@Override
 	public int hashCode() {
 		return _asset.hashCode();
 	}
@@ -320,6 +322,7 @@ public class AssetWrapper implements Asset {
 		return new AssetWrapper(_asset.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _asset.toString();
 	}

@@ -277,6 +277,7 @@ public class HRAssetVendorWrapper implements HRAssetVendor {
 		_hrAssetVendor.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new HRAssetVendorWrapper((HRAssetVendor)_hrAssetVendor.clone());
 	}
@@ -285,6 +286,7 @@ public class HRAssetVendorWrapper implements HRAssetVendor {
 		return _hrAssetVendor.compareTo(hrAssetVendor);
 	}
 
+	@Override
 	public int hashCode() {
 		return _hrAssetVendor.hashCode();
 	}
@@ -293,6 +295,7 @@ public class HRAssetVendorWrapper implements HRAssetVendor {
 		return new HRAssetVendorWrapper(_hrAssetVendor.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _hrAssetVendor.toString();
 	}

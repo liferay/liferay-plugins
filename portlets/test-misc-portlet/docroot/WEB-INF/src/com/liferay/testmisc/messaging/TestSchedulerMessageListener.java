@@ -28,6 +28,7 @@ public class TestSchedulerMessageListener extends BaseMessageListener {
 		return _received;
 	}
 
+	@Override
 	protected void doReceive(Message message) throws Exception {
 		if (_log.isInfoEnabled()) {
 			_log.info("Execute");

@@ -808,6 +808,7 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		}
 	}
 
+	@Override
 	public CalendarBooking toEscapedModel() {
 		if (isEscapedModel()) {
 			return (CalendarBooking)this;
@@ -818,6 +819,7 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		}
 	}
 
+	@Override
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
 			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),

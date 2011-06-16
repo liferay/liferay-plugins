@@ -194,6 +194,7 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(KaleoLogImpl.class.getName());
@@ -211,6 +212,7 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(KaleoLog kaleoLog) {
 		EntityCacheUtil.removeResult(KaleoLogModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoLogImpl.class, kaleoLog.getPrimaryKey());
@@ -239,6 +241,7 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 	 * @throws com.liferay.portal.NoSuchModelException if a kaleo log with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoLog remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -291,10 +294,12 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 	 * @return the kaleo log that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoLog remove(KaleoLog kaleoLog) throws SystemException {
 		return super.remove(kaleoLog);
 	}
 
+	@Override
 	protected KaleoLog removeImpl(KaleoLog kaleoLog) throws SystemException {
 		kaleoLog = toUnwrappedModel(kaleoLog);
 
@@ -320,6 +325,7 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 		return kaleoLog;
 	}
 
+	@Override
 	public KaleoLog updateImpl(
 		com.liferay.portal.workflow.kaleo.model.KaleoLog kaleoLog, boolean merge)
 		throws SystemException {
@@ -400,6 +406,7 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 	 * @throws com.liferay.portal.NoSuchModelException if a kaleo log with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoLog findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -436,6 +443,7 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 	 * @return the kaleo log, or <code>null</code> if a kaleo log with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoLog fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

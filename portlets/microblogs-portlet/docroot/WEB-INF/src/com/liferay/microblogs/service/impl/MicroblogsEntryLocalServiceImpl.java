@@ -111,6 +111,7 @@ public class MicroblogsEntryLocalServiceImpl
 			microblogsEntry.getMicroblogsEntryId(), false, true, true);
 	}
 
+	@Override
 	public void deleteMicroblogsEntry(long microblogsEntryId)
 		throws PortalException, SystemException {
 
@@ -120,6 +121,7 @@ public class MicroblogsEntryLocalServiceImpl
 		deleteMicroblogsEntry(microblogsEntry);
 	}
 
+	@Override
 	public void deleteMicroblogsEntry(MicroblogsEntry microblogsEntry)
 		throws PortalException, SystemException {
 
@@ -165,6 +167,7 @@ public class MicroblogsEntryLocalServiceImpl
 		return microblogsEntryPersistence.countByCompanyId(companyId);
 	}
 
+	@Override
 	public MicroblogsEntry getMicroblogsEntry(long microblogsEntryId)
 		throws PortalException, SystemException {
 

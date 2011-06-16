@@ -139,6 +139,7 @@ public class MeetupsRegistrationClp extends BaseModelImpl<MeetupsRegistration>
 		_comments = comments;
 	}
 
+	@Override
 	public MeetupsRegistration toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -150,6 +151,7 @@ public class MeetupsRegistrationClp extends BaseModelImpl<MeetupsRegistration>
 		}
 	}
 
+	@Override
 	public Object clone() {
 		MeetupsRegistrationClp clone = new MeetupsRegistrationClp();
 
@@ -181,6 +183,7 @@ public class MeetupsRegistrationClp extends BaseModelImpl<MeetupsRegistration>
 		return 0;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -205,10 +208,12 @@ public class MeetupsRegistrationClp extends BaseModelImpl<MeetupsRegistration>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(19);
 

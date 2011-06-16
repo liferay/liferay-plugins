@@ -78,6 +78,7 @@ public class TasksPortlet extends MVCPortlet {
 		}
 	}
 
+	@Override
 	public void processAction(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws IOException, PortletException {

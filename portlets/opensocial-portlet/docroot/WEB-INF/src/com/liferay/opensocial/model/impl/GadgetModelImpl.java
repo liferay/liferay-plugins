@@ -262,6 +262,7 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 		_portletCategoryNames = portletCategoryNames;
 	}
 
+	@Override
 	public Gadget toEscapedModel() {
 		if (isEscapedModel()) {
 			return (Gadget)this;
@@ -272,6 +273,7 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 		}
 	}
 
+	@Override
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
 			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
@@ -281,10 +283,12 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 		return _expandoBridge;
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
 		getExpandoBridge().setAttributes(serviceContext);
 	}
 
+	@Override
 	public Object clone() {
 		GadgetImpl gadgetImpl = new GadgetImpl();
 
@@ -314,6 +318,7 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 		return 0;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -338,10 +343,12 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public void resetOriginalValues() {
 		GadgetModelImpl gadgetModelImpl = this;
 
@@ -352,6 +359,7 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 		gadgetModelImpl._originalUrl = gadgetModelImpl._url;
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(17);
 

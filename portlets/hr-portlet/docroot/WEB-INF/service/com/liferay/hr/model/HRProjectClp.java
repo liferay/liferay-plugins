@@ -268,6 +268,7 @@ public class HRProjectClp extends BaseModelImpl<HRProject> implements HRProject 
 		_actualExpensesCurrencyCode = actualExpensesCurrencyCode;
 	}
 
+	@Override
 	public HRProject toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -278,6 +279,7 @@ public class HRProjectClp extends BaseModelImpl<HRProject> implements HRProject 
 		}
 	}
 
+	@Override
 	public Object clone() {
 		HRProjectClp clone = new HRProjectClp();
 
@@ -324,6 +326,7 @@ public class HRProjectClp extends BaseModelImpl<HRProject> implements HRProject 
 		}
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -348,10 +351,12 @@ public class HRProjectClp extends BaseModelImpl<HRProject> implements HRProject 
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(51);
 

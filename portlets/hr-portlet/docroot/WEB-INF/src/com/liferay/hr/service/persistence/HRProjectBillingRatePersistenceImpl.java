@@ -115,6 +115,7 @@ public class HRProjectBillingRatePersistenceImpl extends BasePersistenceImpl<HRP
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(HRProjectBillingRateImpl.class.getName());
@@ -132,6 +133,7 @@ public class HRProjectBillingRatePersistenceImpl extends BasePersistenceImpl<HRP
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(HRProjectBillingRate hrProjectBillingRate) {
 		EntityCacheUtil.removeResult(HRProjectBillingRateModelImpl.ENTITY_CACHE_ENABLED,
 			HRProjectBillingRateImpl.class, hrProjectBillingRate.getPrimaryKey());
@@ -160,6 +162,7 @@ public class HRProjectBillingRatePersistenceImpl extends BasePersistenceImpl<HRP
 	 * @throws com.liferay.portal.NoSuchModelException if a h r project billing rate with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRProjectBillingRate remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -213,11 +216,13 @@ public class HRProjectBillingRatePersistenceImpl extends BasePersistenceImpl<HRP
 	 * @return the h r project billing rate that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRProjectBillingRate remove(
 		HRProjectBillingRate hrProjectBillingRate) throws SystemException {
 		return super.remove(hrProjectBillingRate);
 	}
 
+	@Override
 	protected HRProjectBillingRate removeImpl(
 		HRProjectBillingRate hrProjectBillingRate) throws SystemException {
 		hrProjectBillingRate = toUnwrappedModel(hrProjectBillingRate);
@@ -244,6 +249,7 @@ public class HRProjectBillingRatePersistenceImpl extends BasePersistenceImpl<HRP
 		return hrProjectBillingRate;
 	}
 
+	@Override
 	public HRProjectBillingRate updateImpl(
 		com.liferay.hr.model.HRProjectBillingRate hrProjectBillingRate,
 		boolean merge) throws SystemException {
@@ -307,6 +313,7 @@ public class HRProjectBillingRatePersistenceImpl extends BasePersistenceImpl<HRP
 	 * @throws com.liferay.portal.NoSuchModelException if a h r project billing rate with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRProjectBillingRate findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -344,6 +351,7 @@ public class HRProjectBillingRatePersistenceImpl extends BasePersistenceImpl<HRP
 	 * @return the h r project billing rate, or <code>null</code> if a h r project billing rate with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRProjectBillingRate fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

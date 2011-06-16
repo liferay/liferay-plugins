@@ -29,6 +29,7 @@ import java.util.List;
  */
 public class UpgradeLayoutSetPrototype extends UpgradeProcess {
 
+	@Override
 	protected void doUpgrade() throws Exception {
 		List<Company> companies = CompanyLocalServiceUtil.getCompanies();
 

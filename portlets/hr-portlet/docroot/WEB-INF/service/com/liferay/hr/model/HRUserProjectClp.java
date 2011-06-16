@@ -170,6 +170,7 @@ public class HRUserProjectClp extends BaseModelImpl<HRUserProject>
 		_actualRate = actualRate;
 	}
 
+	@Override
 	public HRUserProject toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -181,6 +182,7 @@ public class HRUserProjectClp extends BaseModelImpl<HRUserProject>
 		}
 	}
 
+	@Override
 	public Object clone() {
 		HRUserProjectClp clone = new HRUserProjectClp();
 
@@ -214,6 +216,7 @@ public class HRUserProjectClp extends BaseModelImpl<HRUserProject>
 		}
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -238,10 +241,12 @@ public class HRUserProjectClp extends BaseModelImpl<HRUserProject>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(25);
 

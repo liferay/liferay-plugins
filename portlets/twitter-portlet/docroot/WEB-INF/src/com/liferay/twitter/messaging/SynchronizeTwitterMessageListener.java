@@ -23,6 +23,7 @@ import com.liferay.twitter.service.FeedLocalServiceUtil;
  */
 public class SynchronizeTwitterMessageListener extends BaseMessageListener {
 
+	@Override
 	protected void doReceive(Message message) throws Exception {
 		FeedLocalServiceUtil.updateFeeds();
 	}

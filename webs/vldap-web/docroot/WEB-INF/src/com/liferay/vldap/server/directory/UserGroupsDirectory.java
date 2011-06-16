@@ -38,12 +38,14 @@ public class UserGroupsDirectory extends BaseDirectory {
 		initAttributes();
 	}
 
+	@Override
 	protected void initAttributes() {
 		addAttribute("objectclass", "organizationalUnit");
 		addAttribute("objectclass", "top");
 		addAttribute("ou", "UserGroups");
 	}
 
+	@Override
 	protected List<Directory> initDirectories() throws Exception {
 		List<UserGroup> userGroups = Collections.emptyList();
 

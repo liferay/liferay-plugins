@@ -237,6 +237,7 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 		_forwardCookies = forwardCookies;
 	}
 
+	@Override
 	public WSRPConsumer toEscapedModel() {
 		if (isEscapedModel()) {
 			return (WSRPConsumer)this;
@@ -247,6 +248,7 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 		}
 	}
 
+	@Override
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
 			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
@@ -256,10 +258,12 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 		return _expandoBridge;
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
 		getExpandoBridge().setAttributes(serviceContext);
 	}
 
+	@Override
 	public Object clone() {
 		WSRPConsumerImpl wsrpConsumerImpl = new WSRPConsumerImpl();
 
@@ -292,6 +296,7 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 		return 0;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -316,13 +321,16 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public void resetOriginalValues() {
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(23);
 

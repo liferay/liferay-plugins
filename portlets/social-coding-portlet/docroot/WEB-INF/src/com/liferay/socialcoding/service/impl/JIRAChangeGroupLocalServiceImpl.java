@@ -25,6 +25,7 @@ import com.liferay.socialcoding.service.base.JIRAChangeGroupLocalServiceBaseImpl
 public class JIRAChangeGroupLocalServiceImpl
 	extends JIRAChangeGroupLocalServiceBaseImpl {
 
+	@Override
 	public JIRAChangeGroup getJIRAChangeGroup(long jiraChangeGroupId)
 		throws PortalException, SystemException {
 

@@ -62,6 +62,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class FindKBArticleAction extends BaseStrutsAction {
 
+	@Override
 	public String execute(
 			StrutsAction originalStrutsAction, HttpServletRequest request,
 			HttpServletResponse response)

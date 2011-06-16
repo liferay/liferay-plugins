@@ -457,6 +457,7 @@ public class MessageWrapper implements Message {
 		_message.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new MessageWrapper((Message)_message.clone());
 	}
@@ -465,6 +466,7 @@ public class MessageWrapper implements Message {
 		return _message.compareTo(message);
 	}
 
+	@Override
 	public int hashCode() {
 		return _message.hashCode();
 	}
@@ -473,6 +475,7 @@ public class MessageWrapper implements Message {
 		return new MessageWrapper(_message.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _message.toString();
 	}

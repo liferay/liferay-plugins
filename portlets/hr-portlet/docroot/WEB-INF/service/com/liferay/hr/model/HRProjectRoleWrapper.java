@@ -277,6 +277,7 @@ public class HRProjectRoleWrapper implements HRProjectRole {
 		_hrProjectRole.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new HRProjectRoleWrapper((HRProjectRole)_hrProjectRole.clone());
 	}
@@ -285,6 +286,7 @@ public class HRProjectRoleWrapper implements HRProjectRole {
 		return _hrProjectRole.compareTo(hrProjectRole);
 	}
 
+	@Override
 	public int hashCode() {
 		return _hrProjectRole.hashCode();
 	}
@@ -293,6 +295,7 @@ public class HRProjectRoleWrapper implements HRProjectRole {
 		return new HRProjectRoleWrapper(_hrProjectRole.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _hrProjectRole.toString();
 	}

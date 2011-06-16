@@ -88,6 +88,7 @@ public class MeetupsEntryLocalServiceImpl
 		return meetupsEntry;
 	}
 
+	@Override
 	public void deleteMeetupsEntry(long meetupsEntryId)
 		throws PortalException, SystemException {
 

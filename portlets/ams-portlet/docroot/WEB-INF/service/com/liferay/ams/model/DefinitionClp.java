@@ -170,6 +170,7 @@ public class DefinitionClp extends BaseModelImpl<Definition>
 		_price = price;
 	}
 
+	@Override
 	public Definition toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -181,6 +182,7 @@ public class DefinitionClp extends BaseModelImpl<Definition>
 		}
 	}
 
+	@Override
 	public Object clone() {
 		DefinitionClp clone = new DefinitionClp();
 
@@ -215,6 +217,7 @@ public class DefinitionClp extends BaseModelImpl<Definition>
 		}
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -239,10 +242,12 @@ public class DefinitionClp extends BaseModelImpl<Definition>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(27);
 

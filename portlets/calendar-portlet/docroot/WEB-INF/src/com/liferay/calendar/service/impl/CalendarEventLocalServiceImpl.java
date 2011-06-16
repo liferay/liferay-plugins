@@ -150,6 +150,7 @@ public class CalendarEventLocalServiceImpl
 			guestPermissions);
 	}
 
+	@Override
 	public void deleteCalendarEvent(CalendarEvent calendarEvent)
 		throws PortalException, SystemException {
 
@@ -181,6 +182,7 @@ public class CalendarEventLocalServiceImpl
 			calendarEvent.getCalendarEventId());
 	}
 
+	@Override
 	public void deleteCalendarEvent(long calendarEventId)
 		throws PortalException, SystemException {
 
@@ -190,6 +192,7 @@ public class CalendarEventLocalServiceImpl
 		deleteCalendarEvent(calendarEvent);
 	}
 
+	@Override
 	public CalendarEvent getCalendarEvent(long calendarEventId)
 		throws PortalException, SystemException {
 

@@ -138,6 +138,7 @@ public class HRAssetVendorClp extends BaseModelImpl<HRAssetVendor>
 		_description = description;
 	}
 
+	@Override
 	public HRAssetVendor toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -149,6 +150,7 @@ public class HRAssetVendorClp extends BaseModelImpl<HRAssetVendor>
 		}
 	}
 
+	@Override
 	public Object clone() {
 		HRAssetVendorClp clone = new HRAssetVendorClp();
 
@@ -179,6 +181,7 @@ public class HRAssetVendorClp extends BaseModelImpl<HRAssetVendor>
 		}
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -203,10 +206,12 @@ public class HRAssetVendorClp extends BaseModelImpl<HRAssetVendor>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(19);
 

@@ -39,6 +39,7 @@ import javax.portlet.ValidatorException;
  */
 public class StocksPortlet extends MVCPortlet {
 
+	@Override
 	public void processAction(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws IOException, PortletException {

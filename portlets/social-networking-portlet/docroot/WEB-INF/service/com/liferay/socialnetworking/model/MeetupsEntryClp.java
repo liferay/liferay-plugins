@@ -179,6 +179,7 @@ public class MeetupsEntryClp extends BaseModelImpl<MeetupsEntry>
 		_thumbnailId = thumbnailId;
 	}
 
+	@Override
 	public MeetupsEntry toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -190,6 +191,7 @@ public class MeetupsEntryClp extends BaseModelImpl<MeetupsEntry>
 		}
 	}
 
+	@Override
 	public Object clone() {
 		MeetupsEntryClp clone = new MeetupsEntryClp();
 
@@ -225,6 +227,7 @@ public class MeetupsEntryClp extends BaseModelImpl<MeetupsEntry>
 		return 0;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -249,10 +252,12 @@ public class MeetupsEntryClp extends BaseModelImpl<MeetupsEntry>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(29);
 

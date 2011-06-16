@@ -34,16 +34,19 @@ public class TopDirectory extends BaseDirectory {
 		initAttributes();
 	}
 
+	@Override
 	public InternalRequest getInternalRequest() {
 		return _internalRequest;
 	}
 
+	@Override
 	protected void initAttributes() {
 		addAttribute("objectclass", "organizationalUnit");
 		addAttribute("objectclass", "top");
 		addAttribute("o", "Liferay");
 	}
 
+	@Override
 	protected List<Directory> initDirectories() throws Exception {
 		List<Company> companies = CompanyLocalServiceUtil.getCompanies(false);
 

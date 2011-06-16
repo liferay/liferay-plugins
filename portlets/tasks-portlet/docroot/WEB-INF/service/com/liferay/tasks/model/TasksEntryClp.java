@@ -213,6 +213,7 @@ public class TasksEntryClp extends BaseModelImpl<TasksEntry>
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public TasksEntry toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -224,6 +225,7 @@ public class TasksEntryClp extends BaseModelImpl<TasksEntry>
 		}
 	}
 
+	@Override
 	public Object clone() {
 		TasksEntryClp clone = new TasksEntryClp();
 
@@ -277,6 +279,7 @@ public class TasksEntryClp extends BaseModelImpl<TasksEntry>
 		return 0;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -301,10 +304,12 @@ public class TasksEntryClp extends BaseModelImpl<TasksEntry>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(29);
 

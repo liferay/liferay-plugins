@@ -199,6 +199,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(KaleoDefinitionImpl.class.getName());
@@ -216,6 +217,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(KaleoDefinition kaleoDefinition) {
 		EntityCacheUtil.removeResult(KaleoDefinitionModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoDefinitionImpl.class, kaleoDefinition.getPrimaryKey());
@@ -252,6 +254,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	 * @throws com.liferay.portal.NoSuchModelException if a kaleo definition with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoDefinition remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -305,11 +308,13 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	 * @return the kaleo definition that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoDefinition remove(KaleoDefinition kaleoDefinition)
 		throws SystemException {
 		return super.remove(kaleoDefinition);
 	}
 
+	@Override
 	protected KaleoDefinition removeImpl(KaleoDefinition kaleoDefinition)
 		throws SystemException {
 		kaleoDefinition = toUnwrappedModel(kaleoDefinition);
@@ -346,6 +351,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 		return kaleoDefinition;
 	}
 
+	@Override
 	public KaleoDefinition updateImpl(
 		com.liferay.portal.workflow.kaleo.model.KaleoDefinition kaleoDefinition,
 		boolean merge) throws SystemException {
@@ -445,6 +451,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	 * @throws com.liferay.portal.NoSuchModelException if a kaleo definition with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoDefinition findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -481,6 +488,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	 * @return the kaleo definition, or <code>null</code> if a kaleo definition with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoDefinition fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

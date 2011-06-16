@@ -270,6 +270,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(JIRAIssueImpl.class.getName());
@@ -287,6 +288,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(JIRAIssue jiraIssue) {
 		EntityCacheUtil.removeResult(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
 			JIRAIssueImpl.class, jiraIssue.getPrimaryKey());
@@ -318,6 +320,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	 * @throws com.liferay.portal.NoSuchModelException if a j i r a issue with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public JIRAIssue remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -370,10 +373,12 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	 * @return the j i r a issue that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public JIRAIssue remove(JIRAIssue jiraIssue) throws SystemException {
 		return super.remove(jiraIssue);
 	}
 
+	@Override
 	protected JIRAIssue removeImpl(JIRAIssue jiraIssue)
 		throws SystemException {
 		jiraIssue = toUnwrappedModel(jiraIssue);
@@ -405,6 +410,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		return jiraIssue;
 	}
 
+	@Override
 	public JIRAIssue updateImpl(
 		com.liferay.socialcoding.model.JIRAIssue jiraIssue, boolean merge)
 		throws SystemException {
@@ -485,6 +491,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	 * @throws com.liferay.portal.NoSuchModelException if a j i r a issue with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public JIRAIssue findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -521,6 +528,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	 * @return the j i r a issue, or <code>null</code> if a j i r a issue with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public JIRAIssue fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());

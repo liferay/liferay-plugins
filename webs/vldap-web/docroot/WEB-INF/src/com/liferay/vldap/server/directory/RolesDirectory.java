@@ -44,12 +44,14 @@ public class RolesDirectory extends BaseDirectory {
 		initAttributes();
 	}
 
+	@Override
 	protected void initAttributes() {
 		addAttribute("objectclass", "organizationalUnit");
 		addAttribute("objectclass", "top");
 		addAttribute("ou", "Roles");
 	}
 
+	@Override
 	protected List<Directory> initDirectories() throws Exception {
 		List<Role> roles = Collections.emptyList();
 

@@ -277,6 +277,7 @@ public class MeetupsRegistrationWrapper implements MeetupsRegistration {
 		_meetupsRegistration.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new MeetupsRegistrationWrapper((MeetupsRegistration)_meetupsRegistration.clone());
 	}
@@ -286,6 +287,7 @@ public class MeetupsRegistrationWrapper implements MeetupsRegistration {
 		return _meetupsRegistration.compareTo(meetupsRegistration);
 	}
 
+	@Override
 	public int hashCode() {
 		return _meetupsRegistration.hashCode();
 	}
@@ -294,6 +296,7 @@ public class MeetupsRegistrationWrapper implements MeetupsRegistration {
 		return new MeetupsRegistrationWrapper(_meetupsRegistration.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _meetupsRegistration.toString();
 	}

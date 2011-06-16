@@ -93,6 +93,7 @@ public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 		return tasksEntry;
 	}
 
+	@Override
 	public void deleteTasksEntry(long tasksEntryId)
 		throws PortalException, SystemException {
 
@@ -102,6 +103,7 @@ public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 		deleteTasksEntry(tasksEntry);
 	}
 
+	@Override
 	public void deleteTasksEntry(TasksEntry tasksEntry)
 		throws PortalException, SystemException {
 
@@ -222,6 +224,7 @@ public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 			tagsEntryIds, notTagsEntryIds);
 	}
 
+	@Override
 	public TasksEntry getTasksEntry(long tasksEntryId)
 		throws PortalException, SystemException {
 

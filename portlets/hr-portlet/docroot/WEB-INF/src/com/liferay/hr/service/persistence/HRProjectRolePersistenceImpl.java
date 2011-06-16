@@ -115,6 +115,7 @@ public class HRProjectRolePersistenceImpl extends BasePersistenceImpl<HRProjectR
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(HRProjectRoleImpl.class.getName());
@@ -132,6 +133,7 @@ public class HRProjectRolePersistenceImpl extends BasePersistenceImpl<HRProjectR
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(HRProjectRole hrProjectRole) {
 		EntityCacheUtil.removeResult(HRProjectRoleModelImpl.ENTITY_CACHE_ENABLED,
 			HRProjectRoleImpl.class, hrProjectRole.getPrimaryKey());
@@ -160,6 +162,7 @@ public class HRProjectRolePersistenceImpl extends BasePersistenceImpl<HRProjectR
 	 * @throws com.liferay.portal.NoSuchModelException if a h r project role with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRProjectRole remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -213,11 +216,13 @@ public class HRProjectRolePersistenceImpl extends BasePersistenceImpl<HRProjectR
 	 * @return the h r project role that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRProjectRole remove(HRProjectRole hrProjectRole)
 		throws SystemException {
 		return super.remove(hrProjectRole);
 	}
 
+	@Override
 	protected HRProjectRole removeImpl(HRProjectRole hrProjectRole)
 		throws SystemException {
 		hrProjectRole = toUnwrappedModel(hrProjectRole);
@@ -244,6 +249,7 @@ public class HRProjectRolePersistenceImpl extends BasePersistenceImpl<HRProjectR
 		return hrProjectRole;
 	}
 
+	@Override
 	public HRProjectRole updateImpl(
 		com.liferay.hr.model.HRProjectRole hrProjectRole, boolean merge)
 		throws SystemException {
@@ -305,6 +311,7 @@ public class HRProjectRolePersistenceImpl extends BasePersistenceImpl<HRProjectR
 	 * @throws com.liferay.portal.NoSuchModelException if a h r project role with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRProjectRole findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -341,6 +348,7 @@ public class HRProjectRolePersistenceImpl extends BasePersistenceImpl<HRProjectR
 	 * @return the h r project role, or <code>null</code> if a h r project role with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public HRProjectRole fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());
