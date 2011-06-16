@@ -281,8 +281,7 @@ public class SitesPortlet extends MVCPortlet {
 
 				PortletURL portletURL = PortletURLFactoryUtil.create(
 					PortalUtil.getHttpServletRequest(resourceRequest),
-					PortletKeys.ENTERPRISE_ADMIN_COMMUNITIES,
-					themeDisplay.getLayout().getPlid(),
+					PortletKeys.SITES_ADMIN, themeDisplay.getLayout().getPlid(),
 					PortletRequest.ACTION_PHASE);
 
 				portletURL.setWindowState(WindowState.NORMAL);

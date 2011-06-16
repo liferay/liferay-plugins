@@ -78,7 +78,7 @@ pageContext.setAttribute("portletURL", portletURL);
 					<li class="<%= className %>">
 						<c:if test="<%= !member %>">
 							<span class="join">
-								<liferay-portlet:actionURL windowState="<%= WindowState.NORMAL.toString() %>" portletName="<%= PortletKeys.ENTERPRISE_ADMIN_COMMUNITIES %>" var="joinURL">
+								<liferay-portlet:actionURL windowState="<%= WindowState.NORMAL.toString() %>" portletName="<%= PortletKeys.SITES_ADMIN %>" var="joinURL">
 									<portlet:param name="struts_action" value="/sites_admin/edit_site_assignments" />
 									<portlet:param name="<%= Constants.CMD %>" value="group_users" />
 									<portlet:param name="redirect" value="<%= currentURL %>" />
