@@ -189,7 +189,7 @@
 		<echo>${service.test.output}</echo>
 
 		<if>
-			<contains string="${service.test.output}" substring="Error" /> 
+			<contains string="${service.test.output}" substring="Error" />
 			<then>
 				<fail>Service Builder generated exceptions.</fail>
 			</then>
