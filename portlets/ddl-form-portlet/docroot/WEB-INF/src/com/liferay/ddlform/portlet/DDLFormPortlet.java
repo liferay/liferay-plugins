@@ -83,8 +83,8 @@ public class DDLFormPortlet extends MVCPortlet {
 		boolean multipleSubmissions = ParamUtil.getBoolean(
 			actionRequest, "multipleSubmissions");
 
-		if ((multipleSubmissions == false) && DDLFormUtil.hasSubmitted(
-				actionRequest, recordSetId)) {
+		if (!multipleSubmissions &&
+			DDLFormUtil.hasSubmitted(actionRequest, recordSetId)) {
 
 			throw new DuplicateSubmissionException();
 		}
