@@ -18,11 +18,7 @@
 
 <liferay-portlet:actionURL portletConfiguration="true" var="actionURL" />
 
-<span class="form-hint portlet-msg-info aui-helper-hidden" id="border-note">
-	<liferay-ui:message key="this-change-will-only-be-shown-after-you-refresh-the-page" />
-</span>
-
-<aui:form action="<%= actionURL %>" method="post" name="fm">
+<aui:form action="<%= actionURL %>" method="post" name="<portlet:namespace />fm">
 	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
 
 	<aui:fieldset>
@@ -73,24 +69,3 @@
 		<aui:button type="submit" />
 	</aui:button-row>
 </aui:form>
-
-<aui:script use="aui-base,aui-io">
-	var fm = A.one('#<portlet:namespace />fm');
-
-	var originalValue = A.io._serialize(fm.getDOM()); 
-
-	A.getDoc().on(
-		'click', 
-		function() {
-			var info = A.one('#border-note');
-			var value = A.io._serialize(fm.getDOM());
-
-			if (value != originalValue) {
-				info.show();
-			}
-			else {
-				info.hide();
-			}
-		}
-	);
-</aui:script>
