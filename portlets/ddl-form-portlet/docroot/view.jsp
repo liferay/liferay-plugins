@@ -38,8 +38,10 @@ try {
 			<aui:form action="<%= saveDataURL %>" cssClass="lfr-dynamic-form" method="post" name="fm">
 				<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
 				<aui:input name="recordSetId" type="hidden" value="<%= recordSet.getRecordSetId() %>" />
+				<aui:input name="multipleSubmissions" type="hidden" value="<%= multipleSubmissions %>" />
 				<aui:input name="workflowAction" type="hidden" value="<%= WorkflowConstants.ACTION_PUBLISH %>" />
 
+				<liferay-ui:error exception="<%= DuplicateSubmissionException.class %>" message="you-may-only-submit-the-form-once" />
 				<liferay-ui:error exception="<%= StorageFieldRequiredException.class %>" message="please-fill-out-all-required-fields" />
 
 				<aui:fieldset>
@@ -61,7 +63,12 @@ try {
 					<%= DDMXSDUtil.getHTML(pageContext, ddmStructure.getXsd()) %>
 
 					<aui:button-row>
-						<aui:button onClick='<%= renderResponse.getNamespace() + "publishRecord();" %>' type="submit" value="send" />
+
+						<%
+						boolean disabled = (multipleSubmissions == false) && DDLFormUtil.hasSubmitted(request, recordSet.getRecordSetId());
+						%>
+
+						<aui:button disabled="<%= disabled %>" onClick='<%= renderResponse.getNamespace() + "publishRecord();" %>' type="submit" value="send" />
 					</aui:button-row>
 				</aui:fieldset>
 			</aui:form>

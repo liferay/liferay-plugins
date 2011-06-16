@@ -14,6 +14,10 @@
 
 package com.liferay.ddlform.portlet;
 
+import com.liferay.ddlform.DuplicateSubmissionException;
+import com.liferay.ddlform.util.DDLFormUtil;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.service.ServiceContext;
@@ -47,6 +51,8 @@ public class DDLFormPortlet extends MVCPortlet {
 
 		long recordSetId = ParamUtil.getLong(actionRequest, "recordSetId");
 
+		validate(recordSetId, actionRequest);
+
 		DDLRecordSet recordSet = DDLRecordSetLocalServiceUtil.getRecordSet(
 			recordSetId);
 
@@ -69,6 +75,19 @@ public class DDLFormPortlet extends MVCPortlet {
 		DDLRecordServiceUtil.addRecord(
 			themeDisplay.getScopeGroupId(), recordSetId, 0, fields,
 			serviceContext);
+	}
+
+	protected void validate(long recordSetId, ActionRequest actionRequest)
+		throws PortalException, SystemException {
+
+		boolean multipleSubmissions = ParamUtil.getBoolean(
+			actionRequest, "multipleSubmissions");
+
+		if ((multipleSubmissions == false) && DDLFormUtil.hasSubmitted(
+				actionRequest, recordSetId)) {
+
+			throw new DuplicateSubmissionException();
+		}
 	}
 
 }

@@ -75,6 +75,8 @@ catch (NoSuchRecordSetException nsrse) {
 				%>
 
 			</aui:select>
+
+			<aui:input helpMessage="check-to-allow-multiple-form-submissions-per-user" name="allow-multiple-submissions" type="checkbox" value="<%= multipleSubmissions %>" onChange='<%= "document." + renderResponse.getNamespace() + "fm." + renderResponse.getNamespace() + "multipleSubmissions.value = this.checked;" %>' />
 		</aui:fieldset>
 	</c:if>
 
@@ -172,6 +174,7 @@ catch (NoSuchRecordSetException nsrse) {
 	<aui:input name="redirect" type="hidden" value='<%= portletURL.toString() + StringPool.AMPERSAND + renderResponse.getNamespace() + "cur" + cur %>' />
 	<aui:input name="preferences--recordSetId--" type="hidden" value="<%= recordSetId %>" />
 	<aui:input name="preferences--detailDDMTemplateId--" type="hidden" value="<%= detailDDMTemplateId %>" />
+	<aui:input name="preferences--multipleSubmissions--" type="hidden" value="<%= multipleSubmissions %>" />
 
 	<aui:fieldset cssClass="aui-helper-hidden">
 		<aui:field-wrapper label="portlet-id">
