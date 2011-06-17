@@ -14,7 +14,6 @@
 
 package com.liferay.privatemessaging.portlet;
 
-import com.liferay.documentlibrary.service.DLLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
@@ -29,6 +28,7 @@ import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
+import com.liferay.portlet.documentlibrary.store.DLStoreUtil;
 import com.liferay.portlet.messageboards.model.MBMessage;
 import com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil;
 import com.liferay.privatemessaging.service.UserThreadLocalServiceUtil;
@@ -91,9 +91,9 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 
 			String path = message.getAttachmentsDir() + "/" + fileName;
 
-			InputStream inputStream = DLLocalServiceUtil.getFileAsStream(
+			InputStream inputStream = DLStoreUtil.getFileAsStream(
 				message.getCompanyId(), CompanyConstants.SYSTEM, path);
-			int contentLength = (int)DLLocalServiceUtil.getFileSize(
+			int contentLength = (int)DLStoreUtil.getFileSize(
 				message.getCompanyId(), CompanyConstants.SYSTEM, path);
 			String contentType = MimeTypesUtil.getContentType(fileName);
 
