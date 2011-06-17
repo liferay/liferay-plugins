@@ -148,7 +148,7 @@ displayStyle = PrefsParamUtil.getString(preferences, renderRequest, "displayStyl
 
 			if (pageTitle) {
 				A.io.request(
-					'<liferay-portlet:actionURL portletName="<%= PortletKeys.ENTERPRISE_ADMIN %>"><portlet:param name="struts_action" value="/enterprise_admin/edit_layouts" /><portlet:param name="<%= Constants.CMD %>" value="<%= Constants.ADD %>" /></liferay-portlet:actionURL>',
+					'<liferay-portlet:actionURL portletName="<%= PortletKeys.SITES_ADMIN %>"><portlet:param name="struts_action" value="/sites_admin/edit_layouts" /><portlet:param name="<%= Constants.CMD %>" value="<%= Constants.ADD %>" /></liferay-portlet:actionURL>',
 					{
 						data: {
 							addUserDefaults: true,

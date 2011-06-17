@@ -49,7 +49,7 @@
 		<service-impl>com.liferay.so.hook.service.impl.AnnouncementsEntryServiceImpl</service-impl>
 	</service>
 	<struts-action>
-		<struts-action-path>/enterprise_admin/edit_layouts</struts-action-path>
+		<struts-action-path>/sites_admin/edit_layouts</struts-action-path>
 		<struts-action-impl>com.liferay.so.hook.action.EditLayoutsAction</struts-action-impl>
 	</struts-action>
 </hook>
