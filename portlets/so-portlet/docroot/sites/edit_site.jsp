@@ -180,9 +180,15 @@ portletURL.setParameter("jspPage", "/sites/edit_site.jsp");
 	<div style="clear: both;"></div>
 
 	<aui:button-row>
-		<aui:button disabled="<%= true %>" id="previous" onClick='<%= renderResponse.getNamespace() + "previous()" %>' value="previous" />
+		<div class="buttons-left">
+			<aui:button disabled="<%= true %>" id="previous" onClick='<%= renderResponse.getNamespace() + "previous()" %>' value="previous" />
 
-		<aui:button id="next" onClick='<%= renderResponse.getNamespace() + "next()" %>' value="next" />
+			<aui:button id="next" onClick='<%= renderResponse.getNamespace() + "next()" %>' value="next" />
+		</div>
+
+		<div class="buttons-right">
+			<aui:button id="save" onClick='<%= renderResponse.getNamespace() + "save()" %>' value="save" />
+		</div>
 	</aui:button-row>
 </aui:form>
 
@@ -198,7 +204,7 @@ portletURL.setParameter("jspPage", "/sites/edit_site.jsp");
 
 	Liferay.provide(
 		window,
-		'<portlet:namespace />addSite',
+		'<portlet:namespace />save',
 		function() {
 			nextButton.set('disabled', true);
 
@@ -280,20 +286,17 @@ portletURL.setParameter("jspPage", "/sites/edit_site.jsp");
 			sectionContainer.all('.section').hide();
 
 			if (!section.previous()) {
-				previousButton.set('disabled', true);
-				previousButton.ancestor('.aui-button').addClass('aui-button-disabled');
+				Liferay.SO.Sites.disableButton(previousButton);
 			}
 			else {
-				previousButton.set('disabled', false);
-				previousButton.ancestor('.aui-button').removeClass('aui-button-disabled');
+				Liferay.SO.Sites.enableButton(previousButton);
 			}
 
 			if (!section.next()) {
-				nextButton.set('value', '<liferay-ui:message key="save" />');
+				Liferay.SO.Sites.disableButton(nextButton);
 			}
 			else {
-				nextButton.set('disabled', false);
-				nextButton.set('value', '<liferay-ui:message key="next" />');
+				Liferay.SO.Sites.enableButton(nextButton);
 			}
 
 			previousButton.blur();
@@ -309,14 +312,8 @@ portletURL.setParameter("jspPage", "/sites/edit_site.jsp");
 		function() {
 			var section = A.one('.so-portlet-sites-dialog .section:not(.aui-helper-hidden)').next();
 
-			if (section) {
-				<portlet:namespace />showSection(section);
-			}
-			else {
-				<portlet:namespace />addSite();
-			}
-		},
-		['aui-io', 'aui-dialog']
+			<portlet:namespace />showSection(section);
+		}
 	);
 
 	Liferay.Util.focusFormField(document.<portlet:namespace />dialogFm.<portlet:namespace />name);
