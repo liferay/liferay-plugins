@@ -217,6 +217,10 @@ a:active {
 	font-size: 1.2em;
 }
 
+.controls-visible .portlet-borderless-container {
+	min-height: 20px;
+}
+
 /* ---------- Portlets ---------- */
 
 .portlet {
