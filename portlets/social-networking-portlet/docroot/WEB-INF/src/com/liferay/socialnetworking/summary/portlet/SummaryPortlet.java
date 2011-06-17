@@ -98,7 +98,7 @@ public class SummaryPortlet extends MVCPortlet {
 		Group group = GroupLocalServiceUtil.getGroup(
 			themeDisplay.getScopeGroupId());
 
-		if (group.getType() == GroupConstants.TYPE_COMMUNITY_OPEN) {
+		if (group.getType() == GroupConstants.TYPE_SITE_OPEN) {
 			UserLocalServiceUtil.addGroupUsers(
 				group.getGroupId(), new long[] {themeDisplay.getUserId()});
 		}
