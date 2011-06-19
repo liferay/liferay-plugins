@@ -19,7 +19,7 @@
 <%
 String randomNamespace = PortalUtil.generateRandomKey(request, "search-term_list.jsp") + StringPool.UNDERLINE;
 
-Facet facet = (Facet)request.getAttribute("search-search.jsp-facet");
+Facet facet = (Facet)request.getAttribute("view.jsp-facet");
 
 String fieldParam = ParamUtil.getString(request, facet.getFieldName());
 

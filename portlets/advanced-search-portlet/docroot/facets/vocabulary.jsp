@@ -19,7 +19,7 @@
 <%
 String randomNamespace = PortalUtil.generateRandomKey(request, "advanced_search-vocabulary.jsp") + StringPool.UNDERLINE;
 
-Facet facet = (Facet)request.getAttribute("search-search.jsp-facet");
+Facet facet = (Facet)request.getAttribute("view.jsp-facet");
 
 String[] assetCategoryIds = StringUtil.split(ParamUtil.getString(request, facet.getFieldName()));
 

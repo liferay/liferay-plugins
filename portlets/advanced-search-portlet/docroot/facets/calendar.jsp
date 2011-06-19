@@ -17,21 +17,18 @@
 <%@ include file="/init.jsp" %>
 
 <%
-Facet facet = (Facet)request.getAttribute("search-search.jsp-facet");
+Facet facet = (Facet)request.getAttribute("view.jsp-facet");
 
 String fieldParam = ParamUtil.getString(request, facet.getFieldName());
 
-JSONObject data = facet.getFacetConfiguration().getData();
-
-String[] range = null;
-
 String dateString = StringPool.BLANK;
+
 Calendar cal = Calendar.getInstance();
 
 if (Validator.isNotNull(fieldParam)) {
-	range = RangeParserUtil.parserRange(fieldParam);
-
 	DateFormat dateFormat = DateFormatFactoryUtil.getSimpleDateFormat("yyyyMMddHHmmss", timeZone);
+
+	String[] range = RangeParserUtil.parserRange(fieldParam);
 
 	Date date = dateFormat.parse(range[0]);
 
@@ -61,6 +58,7 @@ if (Validator.isNotNull(fieldParam)) {
 
 	var checkDateRange = function(event) {
 		var dates = this.get('dates');
+
 		var minDate = null;
 		var maxDate = null;
 
@@ -80,45 +78,48 @@ if (Validator.isNotNull(fieldParam)) {
 
 		this.set('minDate', minDate);
 		this.set('maxDate', maxDate);
+
 		this._syncMonthDays();
 	};
 
-	var dateSelection = new A.Calendar({
-		dates: [<%= dateString %>],
-		dateFormat: '%Y%m%d000000',
-		setValue: true,
-		allowNone: true,
-		showToday: true,
-		firstDayOfWeek: 0,
-		minDate: A.DataType.DateMath.subtract(now, A.DataType.DateMath.YEAR, 2),
-		maxDate: now,
-		selectMultipleDates: true,
-		after: {
-			select: function(event) {
-				var instance = this;
-				var format = instance.get('dateFormat');
+	var dateSelection = new A.Calendar(
+		{
+			after: {
+				select: function(event) {
+					var instance = this;
 
-				var dates = instance.get('dates');
+					var format = instance.get('dateFormat');
 
-				if (dates.length == 0) {
-					document.<portlet:namespace />fm.<portlet:namespace /><%= facet.getFieldName() %>.value = null;
+					var dates = instance.get('dates');
+
+					if (dates.length == 0) {
+						document.<portlet:namespace />fm.<portlet:namespace /><%= facet.getFieldName() %>.value = null;
+					}
+					else if (dates.length == 1) {
+						var firstSelected = dates[0];
+
+						document.<portlet:namespace />fm.<portlet:namespace /><%= facet.getFieldName() %>.value = '[' + A.DataType.Date.format(firstSelected, {format: format}) + ' TO ' + A.DataType.Date.format(now, {format: format}) + ']';
+					}
+					else if (dates.length > 1) {
+						var firstSelected = dates[0];
+						var lastSelected = dates[dates.length-1];
+
+						document.<portlet:namespace />fm.<portlet:namespace /><%= facet.getFieldName() %>.value = '[' + A.DataType.Date.format(firstSelected, {format: format}) + ' TO ' + A.DataType.Date.format(lastSelected, {format: format}) + ']';
+					}
+
+					checkDateRange.call(instance, event);
 				}
-				else if (dates.length == 1) {
-					var firstSelected = dates[0];
-
-					document.<portlet:namespace />fm.<portlet:namespace /><%= facet.getFieldName() %>.value = '[' + A.DataType.Date.format(firstSelected, {format: format}) + ' TO ' + A.DataType.Date.format(now, {format: format}) + ']';
-				}
-				else if (dates.length > 1) {
-					var firstSelected = dates[0];
-					var lastSelected = dates[dates.length-1];
-
-					document.<portlet:namespace />fm.<portlet:namespace /><%= facet.getFieldName() %>.value = '[' + A.DataType.Date.format(firstSelected, {format: format}) + ' TO ' + A.DataType.Date.format(lastSelected, {format: format}) + ']';
-				}
-
-				// Checking range
-				checkDateRange.call(instance, event);
-			}
+			},
+			allowNone: true,
+			dateFormat: '%Y%m%d000000',
+			dates: [<%= dateString %>],
+			firstDayOfWeek: 0,
+			maxDate: now,
+			minDate: A.DataType.DateMath.subtract(now, A.DataType.DateMath.YEAR, 2),
+			selectMultipleDates: true,
+			setValue: true,
+			showToday: true
 		}
-	})
+	)
 	.render('#<portlet:namespace /><%= facet.getFieldName() %>PlaceHolder');
 </aui:script>

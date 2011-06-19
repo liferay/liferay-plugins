@@ -17,7 +17,7 @@
 <%@ include file="/init.jsp" %>
 
 <%
-Facet facet = (Facet)request.getAttribute("search-search.jsp-facet");
+Facet facet = (Facet)request.getAttribute("view.jsp-facet");
 
 long groupId = ParamUtil.getLong(request, "groupId");
 

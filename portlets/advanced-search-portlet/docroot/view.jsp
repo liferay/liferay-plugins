@@ -35,13 +35,17 @@ searchContext.setStart(sc.getStart());
 searchContext.setEnd(sc.getEnd());
 searchContext.setAttribute("paginationType", "more");
 
-Facet facet = new ScopeFacet(searchContext);
-facet.setStatic(true);
-searchContext.addFacet(facet);
+Facet assetEntriesFacet = new AssetEntriesFacet(searchContext);
 
-facet = new AssetEntriesFacet(searchContext);
-facet.setStatic(true);
-searchContext.addFacet(facet);
+assetEntriesFacet.setStatic(true);
+
+searchContext.addFacet(assetEntriesFacet);
+
+Facet scopeFacet = new ScopeFacet(searchContext);
+
+scopeFacet.setStatic(true);
+
+searchContext.addFacet(scopeFacet);
 
 List<FacetConfiguration> facetConfigurations = FacetConfigurationUtil.load(searchConfiguration);
 
@@ -96,15 +100,13 @@ int rightColumn = 100;
 				for (Facet curFacet : facets) {
 					FacetConfiguration facetConfiguration = curFacet.getFacetConfiguration();
 
-					boolean isStatic = curFacet.isStatic();
-
-					if (!isStatic) {
+					if (!curFacet.isStatic()) {
 						String panelLabel = facetConfiguration.getLabel();
 						String facetDisplayStyle = facetConfiguration.getDisplayStyle();
 						String cssClass = "search-facet search-".concat(facetDisplayStyle);
 						String includePage = "/facets/".concat(facetDisplayStyle).concat(".jsp");
 
-						request.setAttribute("search-search.jsp-facet", curFacet);
+						request.setAttribute("view.jsp-facet", curFacet);
 				%>
 
 						<liferay-ui:panel cssClass="<%= cssClass %>" title="<%= LanguageUtil.get(pageContext, panelLabel) %>">
