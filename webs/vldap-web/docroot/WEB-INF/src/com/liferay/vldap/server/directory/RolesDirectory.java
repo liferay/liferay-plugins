@@ -14,16 +14,10 @@
 
 package com.liferay.vldap.server.directory;
 
-import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.model.Company;
-import com.liferay.portal.model.Group;
-import com.liferay.portal.model.Organization;
 import com.liferay.portal.model.Role;
 import com.liferay.portal.model.RoleConstants;
-import com.liferay.portal.model.User;
-import com.liferay.portal.model.UserGroupRole;
 import com.liferay.portal.service.RoleLocalServiceUtil;
-import com.liferay.portal.service.UserGroupRoleLocalServiceUtil;
 import com.liferay.vldap.util.PortletPropsValues;
 
 import java.util.Collections;
@@ -55,51 +49,7 @@ public class RolesDirectory extends BaseDirectory {
 	protected List<Directory> initDirectories() throws Exception {
 		List<Role> roles = Collections.emptyList();
 
-		if (_user != null) {
-			roles = RoleLocalServiceUtil.getUserRoles(_user.getUserId());
-
-			List<UserGroupRole> userGroupRoles = Collections.emptyList();
-
-			Directory parentDirectory = getParentDirectory();
-
-			parentDirectory = parentDirectory.getParentDirectory();
-			parentDirectory = parentDirectory.getParentDirectory();
-
-			if (parentDirectory instanceof CommunityDirectory) {
-				CommunityDirectory communityDirectory =
-					(CommunityDirectory)parentDirectory;
-
-				Group group = communityDirectory.getGroup();
-
-				userGroupRoles =
-					UserGroupRoleLocalServiceUtil.getUserGroupRoles(
-						_user.getUserId(), group.getGroupId());
-			}
-			else if (parentDirectory instanceof OrganizationDirectory) {
-				OrganizationDirectory organizationDirectory =
-					(OrganizationDirectory)parentDirectory;
-
-				Organization organization =
-					organizationDirectory.getOrganization();
-
-				Group group = organization.getGroup();
-
-				userGroupRoles =
-					UserGroupRoleLocalServiceUtil.getUserGroupRoles(
-						_user.getUserId(), group.getGroupId());
-			}
-
-			if (!userGroupRoles.isEmpty()) {
-				roles = ListUtil.copy(roles);
-			}
-
-			for (UserGroupRole userGroupRole : userGroupRoles) {
-				Role role = userGroupRole.getRole();
-
-				roles.add(role);
-			}
-		}
-		else if (_company != null) {
+		if (_company != null) {
 			roles = RoleLocalServiceUtil.search(
 				_company.getCompanyId(), null, null,
 				new Integer[] {RoleConstants.TYPE_REGULAR},
@@ -126,12 +76,7 @@ public class RolesDirectory extends BaseDirectory {
 		_company = company;
 	}
 
-	protected void setUser(User user) {
-		_user = user;
-	}
-
 	private Company _company;
-	private User _user;
 	private Directory _usersDirectory;
 
 }

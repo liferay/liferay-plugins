@@ -46,7 +46,6 @@ public class RootDirectory extends BaseDirectory {
 		addAttribute("namingcontexts", "o=Liferay");
 		addAttribute("objectclass", "extensibleObject");
 		addAttribute("objectclass", "top");
-		//addAttribute("subschemasubentry", "cn=schema");
 		addAttribute(
 			"supportedfeatures", OIDConstants.ALL_OPERATIONAL_ATTRIBUTES);
 		addAttribute("supportedldapversion", "3");
@@ -57,8 +56,6 @@ public class RootDirectory extends BaseDirectory {
 
 	@Override
 	protected List<Directory> initDirectories() throws Exception {
-		//_directories.add(new SchemaDirectory());
-
 		TopDirectory topDirectory = new TopDirectory(_internalRequest);
 
 		_directories.add(topDirectory);

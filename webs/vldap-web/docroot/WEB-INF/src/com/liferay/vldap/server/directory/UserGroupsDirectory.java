@@ -15,7 +15,6 @@
 package com.liferay.vldap.server.directory;
 
 import com.liferay.portal.model.Company;
-import com.liferay.portal.model.User;
 import com.liferay.portal.model.UserGroup;
 import com.liferay.portal.service.UserGroupLocalServiceUtil;
 
@@ -49,11 +48,7 @@ public class UserGroupsDirectory extends BaseDirectory {
 	protected List<Directory> initDirectories() throws Exception {
 		List<UserGroup> userGroups = Collections.emptyList();
 
-		if (_user != null) {
-			userGroups = UserGroupLocalServiceUtil.getUserUserGroups(
-				_user.getUserId());
-		}
-		else if (_company != null) {
+		if (_company != null) {
 			userGroups = UserGroupLocalServiceUtil.getUserGroups(
 				_company.getCompanyId());
 		}
@@ -72,12 +67,7 @@ public class UserGroupsDirectory extends BaseDirectory {
 		_company = company;
 	}
 
-	protected void setUser(User user) {
-		_user = user;
-	}
-
 	private Company _company;
-	private User _user;
 	private Directory _usersDirectory;
 
 }

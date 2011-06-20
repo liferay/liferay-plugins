@@ -16,7 +16,6 @@ package com.liferay.vldap.server.directory;
 
 import com.liferay.portal.model.Company;
 import com.liferay.portal.model.Group;
-import com.liferay.portal.model.User;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.vldap.util.PortletPropsValues;
 
@@ -50,10 +49,7 @@ public class CommunitiesDirectory extends BaseDirectory {
 	protected List<Directory> initDirectories() throws Exception {
 		List<Group> groups = Collections.emptyList();
 
-		if (_user != null) {
-			groups = GroupLocalServiceUtil.getUserGroups(_user.getUserId());
-		}
-		else if (_company != null) {
+		if (_company != null) {
 			groups = GroupLocalServiceUtil.search(
 				_company.getCompanyId(), null, null, null, 0,
 				PortletPropsValues.SEARCH_MAX_SIZE);
@@ -73,12 +69,7 @@ public class CommunitiesDirectory extends BaseDirectory {
 		_company = company;
 	}
 
-	protected void setUser(User user) {
-		_user = user;
-	}
-
 	private Company _company;
-	private User _user;
 	private Directory _usersDirectory;
 
 }

@@ -17,7 +17,6 @@ package com.liferay.vldap.server.directory;
 import com.liferay.portal.model.Company;
 import com.liferay.portal.model.Organization;
 import com.liferay.portal.model.OrganizationConstants;
-import com.liferay.portal.model.User;
 import com.liferay.portal.service.OrganizationLocalServiceUtil;
 import com.liferay.vldap.util.PortletPropsValues;
 
@@ -51,11 +50,7 @@ public class OrganizationsDirectory extends BaseDirectory {
 	protected List<Directory> initDirectories() throws Exception {
 		List<Organization> organizations = Collections.emptyList();
 
-		if (_user != null) {
-			organizations = OrganizationLocalServiceUtil.getUserOrganizations(
-				_user.getUserId());
-		}
-		else if (_company != null) {
+		if (_company != null) {
 			organizations = OrganizationLocalServiceUtil.search(
 				_company.getCompanyId(),
 				OrganizationConstants.ANY_PARENT_ORGANIZATION_ID, null, null,
@@ -76,12 +71,7 @@ public class OrganizationsDirectory extends BaseDirectory {
 		_company = company;
 	}
 
-	protected void setUser(User user) {
-		_user = user;
-	}
-
 	private Company _company;
-	private User _user;
 	private Directory _usersDirectory;
 
 }
