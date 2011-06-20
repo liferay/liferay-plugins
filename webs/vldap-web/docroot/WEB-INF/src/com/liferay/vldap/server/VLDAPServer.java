@@ -16,21 +16,14 @@ package com.liferay.vldap.server;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.servlet.WebDirDetector;
-import com.liferay.vldap.server.codec.LdapCodecFactory;
 import com.liferay.vldap.util.PortletPropsValues;
-
-import java.io.File;
 
 import java.net.InetSocketAddress;
 import java.net.SocketAddress;
 
 import java.util.Map;
 
-import org.apache.directory.shared.ldap.schema.SchemaManager;
-import org.apache.directory.shared.ldap.schema.loader.ldif.LdifSchemaLoader;
-import org.apache.directory.shared.ldap.schema.manager.impl.DefaultSchemaManager;
-import org.apache.directory.shared.ldap.schema.registries.SchemaLoader;
+import org.apache.directory.shared.ldap.codec.protocol.mina.LdapProtocolCodecFactory;
 import org.apache.mina.core.filterchain.DefaultIoFilterChainBuilder;
 import org.apache.mina.core.filterchain.IoFilterAdapter;
 import org.apache.mina.core.service.IoAcceptor;
@@ -51,12 +44,7 @@ public class VLDAPServer {
 		destroyIoAcceptor();
 	}
 
-	public SchemaManager getSchemaManager() {
-		return _schemaManager;
-	}
-
 	public void init() throws Exception {
-		initSchemaManager();
 		initIoAcceptor();
 	}
 
@@ -78,8 +66,8 @@ public class VLDAPServer {
 		DefaultIoFilterChainBuilder defaultIoFilterChainBuilder =
 			_ioAcceptor.getFilterChain();
 
-		ProtocolCodecFactory protocolCodecFactory = new LdapCodecFactory(
-			_schemaManager);
+		ProtocolCodecFactory protocolCodecFactory =
+			new LdapProtocolCodecFactory();
 
 		IoFilterAdapter ioFilterAdapter = new ProtocolCodecFilter(
 			protocolCodecFactory);
@@ -103,8 +91,6 @@ public class VLDAPServer {
 	protected void initIoHandler() {
 		DispatchIoHandler dispatchIoHandler = new DispatchIoHandler();
 
-		dispatchIoHandler.setVLDAPServer(this);
-
 		_ioAcceptor.setHandler(dispatchIoHandler);
 	}
 
@@ -117,29 +103,8 @@ public class VLDAPServer {
 		}
 	}
 
-	protected void initSchemaManager() throws Exception {
-		ClassLoader classLoader = getClass().getClassLoader();
-
-		String webDir = WebDirDetector.getRootDir(classLoader);
-
-		if (_log.isDebugEnabled()) {
-			_log.debug(webDir);
-		}
-
-		File baseDirectory = new File(
-			webDir.concat("/WEB-INF/classes/schema"));
-
-		SchemaLoader schemaLoader = new LdifSchemaLoader(baseDirectory);
-
-		_schemaManager = new DefaultSchemaManager(schemaLoader);
-
-		_schemaManager.loadWithDeps("inetorgperson");
-		_schemaManager.loadWithDeps("liferayperson");
-	}
-
 	private static Log _log = LogFactoryUtil.getLog(VLDAPServer.class);
 
 	private IoAcceptor _ioAcceptor;
-	private SchemaManager _schemaManager;
 
 }

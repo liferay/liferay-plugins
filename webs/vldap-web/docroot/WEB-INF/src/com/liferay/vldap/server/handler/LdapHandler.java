@@ -18,8 +18,8 @@ import com.liferay.vldap.server.handler.util.LdapHandlerContext;
 
 import java.util.List;
 
-import org.apache.directory.shared.ldap.message.internal.InternalRequest;
-import org.apache.directory.shared.ldap.message.internal.InternalResponse;
+import org.apache.directory.shared.ldap.model.message.Request;
+import org.apache.directory.shared.ldap.model.message.Response;
 import org.apache.mina.core.session.IoSession;
 
 /**
@@ -28,8 +28,8 @@ import org.apache.mina.core.session.IoSession;
  */
 public interface LdapHandler {
 
-	public List<InternalResponse> messageReceived(
-			InternalRequest internalRequest, IoSession ioSession,
+	public List<Response> messageReceived(
+			Request request, IoSession ioSession,
 			LdapHandlerContext ldapHandlerContext)
 		throws Exception;
 

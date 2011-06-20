@@ -24,7 +24,7 @@ import javax.security.auth.callback.UnsupportedCallbackException;
 import javax.security.sasl.AuthorizeCallback;
 import javax.security.sasl.RealmCallback;
 
-import org.apache.directory.shared.ldap.name.DN;
+import org.apache.directory.shared.ldap.model.name.Dn;
 
 /**
  * @author Jonathan Potter
@@ -32,7 +32,7 @@ import org.apache.directory.shared.ldap.name.DN;
  */
 public class SaslCallbackHandler implements CallbackHandler {
 
-	public DN getName() {
+	public Dn getName() {
 		return _name;
 	}
 
@@ -96,7 +96,7 @@ public class SaslCallbackHandler implements CallbackHandler {
 	protected void handleNameCallback(NameCallback nameCallback)
 		throws Exception {
 
-		_name = new DN(nameCallback.getDefaultName());
+		_name = new Dn(nameCallback.getDefaultName());
 	}
 
 	protected void handlePasswordCallback(PasswordCallback passwordCallback) {
@@ -109,7 +109,7 @@ public class SaslCallbackHandler implements CallbackHandler {
 		_realm = realmCallback.getDefaultText();
 	}
 
-	private DN _name;
+	private Dn _name;
 	private String _realm;
 
 }

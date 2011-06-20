@@ -29,9 +29,14 @@ import com.liferay.vldap.util.VLDAPConstants;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.directory.shared.ldap.codec.MessageTypeEnum;
-import org.apache.directory.shared.ldap.message.internal.InternalRequest;
-import org.apache.directory.shared.ldap.message.internal.InternalResponse;
+import org.apache.directory.shared.ldap.codec.api.LdapApiService;
+import org.apache.directory.shared.ldap.codec.api.LdapMessageContainer;
+import org.apache.directory.shared.ldap.codec.api.MessageDecorator;
+import org.apache.directory.shared.ldap.codec.standalone.StandaloneLdapApiService;
+import org.apache.directory.shared.ldap.model.message.Message;
+import org.apache.directory.shared.ldap.model.message.MessageTypeEnum;
+import org.apache.directory.shared.ldap.model.message.Request;
+import org.apache.directory.shared.ldap.model.message.Response;
 import org.apache.mina.core.service.IoHandler;
 import org.apache.mina.core.session.IdleStatus;
 import org.apache.mina.core.session.IoSession;
@@ -43,32 +48,35 @@ import org.apache.mina.core.session.IoSession;
 public class DispatchIoHandler implements IoHandler {
 
 	public void exceptionCaught(IoSession ioSession, Throwable cause) {
+		if (_log.isDebugEnabled()) {
+			_log.debug(cause, cause);
+		}
 	}
 
 	public void messageReceived(IoSession ioSession, Object message) {
-		InternalRequest internalRequest = (InternalRequest)message;
+		Request request = (Request)message;
 
-		LdapHandler ldapHandler = getLdapHandler(internalRequest);
+		LdapHandler ldapHandler = getLdapHandler(request);
 
-		if (ldapHandler != null) {
-			try {
-				LdapHandlerContext ldapHandlerContext = getLdapHandlerContext(
-					ioSession);
-
-				List<InternalResponse> internalResposes =
-					ldapHandler.messageReceived(
-						internalRequest, ioSession, ldapHandlerContext);
-
-				writeResponses(internalResposes, ioSession);
-			}
-			catch (Exception e) {
-				_log.error(e, e);
-			}
-		}
-		else {
+		if (ldapHandler == null) {
 			if (_log.isWarnEnabled()) {
-				_log.warn(internalRequest.getType() + " is not supported");
+				_log.warn(request.getType() + " is not supported");
 			}
+
+			return;
+		}
+
+		try {
+			LdapHandlerContext ldapHandlerContext = getLdapHandlerContext(
+				ioSession);
+
+			List<Response> resposes = ldapHandler.messageReceived(
+				request, ioSession, ldapHandlerContext);
+
+			writeResponses(resposes, ioSession);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
 		}
 	}
 
@@ -85,35 +93,49 @@ public class DispatchIoHandler implements IoHandler {
 	}
 
 	public void sessionOpened(IoSession ioSession) {
+		try {
+			LdapApiService ldapApiService = new StandaloneLdapApiService();
+
+			LdapMessageContainer <MessageDecorator<? extends Message>>
+				ldapMessageContainer =
+					new LdapMessageContainer
+						<MessageDecorator<? extends Message>>(ldapApiService);
+
+			// Needed by org.apache.directory.shared.ldap.codec.protocol.mina.
+			// LdapProtocolDecoder
+
+			ioSession.setAttribute("messageContainer", ldapMessageContainer);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+		}
 	}
 
-	public void setVLDAPServer(VLDAPServer vldapServer) {
-		_vldapServer = vldapServer;
-	}
+	protected LdapHandler getLdapHandler(Request request) {
+		MessageTypeEnum messageTypeEnum = request.getType();
 
-	protected LdapHandler getLdapHandler(InternalRequest internalRequest) {
-		MessageTypeEnum messageTypeEnum = internalRequest.getType();
+		switch (messageTypeEnum) {
+			case ABANDON_REQUEST:
+				return _abandonLdapHandler;
 
-		if (messageTypeEnum == MessageTypeEnum.ABANDON_REQUEST) {
-			return _abandonLdapHandler;
-		}
-		else if (messageTypeEnum == MessageTypeEnum.BIND_REQUEST) {
-			return _bindLdapHandler;
-		}
-		else if (messageTypeEnum == MessageTypeEnum.COMPARE_REQUEST) {
-			return _compareLdapHandler;
-		}
-		else if (messageTypeEnum == MessageTypeEnum.EXTENDED_REQUEST) {
-			return _extendedLdapHandler;
-		}
-		else if (messageTypeEnum == MessageTypeEnum.SEARCH_REQUEST) {
-			return _searchLdapHandler;
-		}
-		else if (messageTypeEnum == MessageTypeEnum.UNBIND_REQUEST) {
-			return _unbindLdapHandler;
-		}
+			case BIND_REQUEST:
+				return _bindLdapHandler;
 
-		return null;
+			case COMPARE_REQUEST:
+				return _compareLdapHandler;
+
+			case EXTENDED_REQUEST:
+				return _extendedLdapHandler;
+
+			case SEARCH_REQUEST:
+				return _searchLdapHandler;
+
+			case UNBIND_REQUEST:
+				return _unbindLdapHandler;
+
+			default:
+				return null;
+		}
 	}
 
 	protected LdapHandlerContext getLdapHandlerContext(IoSession ioSession)
@@ -128,9 +150,6 @@ public class DispatchIoHandler implements IoHandler {
 				if (ldapHandlerContext == null) {
 					ldapHandlerContext = new LdapHandlerContext();
 
-					ldapHandlerContext.setSchemaManager(
-						_vldapServer.getSchemaManager());
-
 					ioSession.setAttribute(
 						LdapHandlerContext.class.getName(), ldapHandlerContext);
 				}
@@ -141,10 +160,10 @@ public class DispatchIoHandler implements IoHandler {
 	}
 
 	protected void setSessionAttributes(
-		InternalResponse internalRespose, IoSession ioSession) {
+		Response response, IoSession ioSession) {
 
 		Map<Object, Object> sessionAttributes =
-			(Map<Object, Object>)internalRespose.get(
+			(Map<Object, Object>)response.get(
 				VLDAPConstants.SESSION_ATTRIBUTES);
 
 		if (sessionAttributes == null) {
@@ -160,16 +179,16 @@ public class DispatchIoHandler implements IoHandler {
 	}
 
 	protected void writeResponses(
-		List<InternalResponse> internalResposes, IoSession ioSession) {
+		List<Response> responses, IoSession ioSession) {
 
-		if (internalResposes == null) {
+		if (responses == null) {
 			return;
 		}
 
-		for (InternalResponse internalRespose : internalResposes) {
-			setSessionAttributes(internalRespose, ioSession);
+		for (Response response : responses) {
+			setSessionAttributes(response, ioSession);
 
-			ioSession.write(internalRespose);
+			ioSession.write(response);
 		}
 	}
 
@@ -181,6 +200,5 @@ public class DispatchIoHandler implements IoHandler {
 	private LdapHandler _extendedLdapHandler = new ExtendedLdapHandler();
 	private LdapHandler _searchLdapHandler = new SearchLdapHandler();
 	private LdapHandler _unbindLdapHandler = new UnbindLdapHandler();
-	private VLDAPServer _vldapServer;
 
 }

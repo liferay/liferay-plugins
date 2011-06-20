@@ -1,5 +1,0 @@
-version: 1
-dn: ou=syntaxCheckers, cn=liferayperson, ou=schema
-objectclass: organizationalUnit
-objectclass: top
-ou: syntaxcheckers

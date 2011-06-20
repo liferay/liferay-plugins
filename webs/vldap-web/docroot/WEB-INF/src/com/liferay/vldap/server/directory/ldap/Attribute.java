@@ -12,28 +12,36 @@
  * details.
  */
 
-package com.liferay.vldap.server.handler;
-
-import com.liferay.vldap.server.handler.util.LdapHandlerContext;
-
-import java.util.Collections;
-import java.util.List;
-
-import org.apache.directory.shared.ldap.model.message.Request;
-import org.apache.directory.shared.ldap.model.message.Response;
-import org.apache.mina.core.session.IoSession;
+package com.liferay.vldap.server.directory.ldap;
 
 /**
  * @author Jonathan Potter
  * @author Brian Wing Shun Chan
  */
-public class UnbindLdapHandler extends BaseLdapHandler {
+public class Attribute {
 
-	public List<Response> messageReceived(
-		Request request, IoSession ioSession,
-		LdapHandlerContext ldapHandlerContext) {
-
-		return Collections.emptyList();
+	public Attribute(String name, String value) {
+		setAttributeId(name);
+		setValue(value);
 	}
+
+	public String getAttributeId() {
+		return _attributeId;
+	}
+
+	public String getValue() {
+		return _value;
+	}
+
+	public void setAttributeId(String attributeId) {
+		_attributeId = attributeId;
+	}
+
+	public void setValue(String value) {
+		_value = value;
+	}
+
+	private String _attributeId;
+	private String _value;
 
 }
