@@ -17,7 +17,7 @@
  */
 --%>
 
-<%@ include file="/init.jsp" %>
+<%@ include file="/sites/init.jsp" %>
 
 <%
 String tabs1 = ParamUtil.getString(request, "tabs1", "my-sites");
@@ -45,7 +45,7 @@ pageContext.setAttribute("portletURL", portletURL);
 	</div>
 
 	<%
-	List<Group> groups = SitesUtil.getVisibleSites(themeDisplay.getCompanyId(), themeDisplay.getUserId(), searchName);
+	List<Group> groups = SitesUtil.getVisibleSites(themeDisplay.getCompanyId(), themeDisplay.getUserId(), searchName, maxResultSize);
 	int count = SitesUtil.getVisibleSitesCount(themeDisplay.getCompanyId(), themeDisplay.getUserId(), searchName);
 	%>
 
@@ -113,7 +113,7 @@ pageContext.setAttribute("portletURL", portletURL);
 				}
 				%>
 
-				<c:if test="<%= count > SitesUtil.MAX_RESULT_SIZE %>">
+				<c:if test="<%= count > maxResultSize %>">
 					<li class="more">
 						<a href="javascript:;"><liferay-ui:message key="view-all" /> (<%= count %>)</a>
 					</li>

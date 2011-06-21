@@ -17,7 +17,7 @@
  */
 --%>
 
-<%@ include file="/init.jsp" %>
+<%@ include file="/sites/init.jsp" %>
 
 <%
 String keywords = ParamUtil.getString(request, "keywords");
