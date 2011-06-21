@@ -22,10 +22,10 @@ import java.io.PrintWriter;
 import javax.portlet.EventRequest;
 import javax.portlet.EventResponse;
 import javax.portlet.GenericPortlet;
-import javax.portlet.RenderRequest;
-import javax.portlet.RenderResponse;
 import javax.portlet.PortletException;
 import javax.portlet.PortletPreferences;
+import javax.portlet.RenderRequest;
+import javax.portlet.RenderResponse;
 
 /**
  * @author Shinn Lok
@@ -51,7 +51,7 @@ public class EventConsumer extends GenericPortlet {
 
 	@Override
 	public void doView(RenderRequest request, RenderResponse response)
-		throws PortletException,IOException {
+		throws PortletException, IOException {
 
 		PrintWriter writer = response.getWriter();
 

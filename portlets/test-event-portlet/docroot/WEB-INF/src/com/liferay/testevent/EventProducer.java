@@ -18,9 +18,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
 
-import javax.portlet.GenericPortlet;
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
+import javax.portlet.GenericPortlet;
 import javax.portlet.PortletException;
 import javax.portlet.PortletPreferences;
 import javax.portlet.PortletURL;
