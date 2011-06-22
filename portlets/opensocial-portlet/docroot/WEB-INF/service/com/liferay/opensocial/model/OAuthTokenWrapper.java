@@ -183,21 +183,21 @@ public class OAuthTokenWrapper implements OAuthToken {
 	}
 
 	/**
-	* Returns the gadget ID of this o auth token.
+	* Returns the gadget key of this o auth token.
 	*
-	* @return the gadget ID of this o auth token
+	* @return the gadget key of this o auth token
 	*/
-	public long getGadgetId() {
-		return _oAuthToken.getGadgetId();
+	public java.lang.String getGadgetKey() {
+		return _oAuthToken.getGadgetKey();
 	}
 
 	/**
-	* Sets the gadget ID of this o auth token.
+	* Sets the gadget key of this o auth token.
 	*
-	* @param gadgetId the gadget ID of this o auth token
+	* @param gadgetKey the gadget key of this o auth token
 	*/
-	public void setGadgetId(long gadgetId) {
-		_oAuthToken.setGadgetId(gadgetId);
+	public void setGadgetKey(java.lang.String gadgetKey) {
+		_oAuthToken.setGadgetKey(gadgetKey);
 	}
 
 	/**

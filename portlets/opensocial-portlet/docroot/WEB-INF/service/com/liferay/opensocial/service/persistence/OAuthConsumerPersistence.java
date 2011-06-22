@@ -105,146 +105,147 @@ public interface OAuthConsumerPersistence extends BasePersistence<OAuthConsumer>
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns all the o auth consumers where gadgetId = &#63;.
+	* Returns all the o auth consumers where gadgetKey = &#63;.
 	*
-	* @param gadgetId the gadget ID
+	* @param gadgetKey the gadget key
 	* @return the matching o auth consumers
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.liferay.opensocial.model.OAuthConsumer> findByGadgetId(
-		long gadgetId)
+	public java.util.List<com.liferay.opensocial.model.OAuthConsumer> findByGadgetKey(
+		java.lang.String gadgetKey)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns a range of all the o auth consumers where gadgetId = &#63;.
+	* Returns a range of all the o auth consumers where gadgetKey = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param gadgetId the gadget ID
+	* @param gadgetKey the gadget key
 	* @param start the lower bound of the range of o auth consumers
 	* @param end the upper bound of the range of o auth consumers (not inclusive)
 	* @return the range of matching o auth consumers
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.liferay.opensocial.model.OAuthConsumer> findByGadgetId(
-		long gadgetId, int start, int end)
+	public java.util.List<com.liferay.opensocial.model.OAuthConsumer> findByGadgetKey(
+		java.lang.String gadgetKey, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns an ordered range of all the o auth consumers where gadgetId = &#63;.
+	* Returns an ordered range of all the o auth consumers where gadgetKey = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param gadgetId the gadget ID
+	* @param gadgetKey the gadget key
 	* @param start the lower bound of the range of o auth consumers
 	* @param end the upper bound of the range of o auth consumers (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching o auth consumers
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.liferay.opensocial.model.OAuthConsumer> findByGadgetId(
-		long gadgetId, int start, int end,
+	public java.util.List<com.liferay.opensocial.model.OAuthConsumer> findByGadgetKey(
+		java.lang.String gadgetKey, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the first o auth consumer in the ordered set where gadgetId = &#63;.
+	* Returns the first o auth consumer in the ordered set where gadgetKey = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param gadgetId the gadget ID
+	* @param gadgetKey the gadget key
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching o auth consumer
 	* @throws com.liferay.opensocial.NoSuchOAuthConsumerException if a matching o auth consumer could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.liferay.opensocial.model.OAuthConsumer findByGadgetId_First(
-		long gadgetId,
+	public com.liferay.opensocial.model.OAuthConsumer findByGadgetKey_First(
+		java.lang.String gadgetKey,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.opensocial.NoSuchOAuthConsumerException,
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the last o auth consumer in the ordered set where gadgetId = &#63;.
+	* Returns the last o auth consumer in the ordered set where gadgetKey = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param gadgetId the gadget ID
+	* @param gadgetKey the gadget key
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching o auth consumer
 	* @throws com.liferay.opensocial.NoSuchOAuthConsumerException if a matching o auth consumer could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.liferay.opensocial.model.OAuthConsumer findByGadgetId_Last(
-		long gadgetId,
+	public com.liferay.opensocial.model.OAuthConsumer findByGadgetKey_Last(
+		java.lang.String gadgetKey,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.opensocial.NoSuchOAuthConsumerException,
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the o auth consumers before and after the current o auth consumer in the ordered set where gadgetId = &#63;.
+	* Returns the o auth consumers before and after the current o auth consumer in the ordered set where gadgetKey = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
 	* @param oAuthConsumerId the primary key of the current o auth consumer
-	* @param gadgetId the gadget ID
+	* @param gadgetKey the gadget key
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next o auth consumer
 	* @throws com.liferay.opensocial.NoSuchOAuthConsumerException if a o auth consumer with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.liferay.opensocial.model.OAuthConsumer[] findByGadgetId_PrevAndNext(
-		long oAuthConsumerId, long gadgetId,
+	public com.liferay.opensocial.model.OAuthConsumer[] findByGadgetKey_PrevAndNext(
+		long oAuthConsumerId, java.lang.String gadgetKey,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.opensocial.NoSuchOAuthConsumerException,
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the o auth consumer where gadgetId = &#63; and serviceName = &#63; or throws a {@link com.liferay.opensocial.NoSuchOAuthConsumerException} if it could not be found.
+	* Returns the o auth consumer where gadgetKey = &#63; and serviceName = &#63; or throws a {@link com.liferay.opensocial.NoSuchOAuthConsumerException} if it could not be found.
 	*
-	* @param gadgetId the gadget ID
+	* @param gadgetKey the gadget key
 	* @param serviceName the service name
 	* @return the matching o auth consumer
 	* @throws com.liferay.opensocial.NoSuchOAuthConsumerException if a matching o auth consumer could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.liferay.opensocial.model.OAuthConsumer findByG_S(long gadgetId,
-		java.lang.String serviceName)
+	public com.liferay.opensocial.model.OAuthConsumer findByG_S(
+		java.lang.String gadgetKey, java.lang.String serviceName)
 		throws com.liferay.opensocial.NoSuchOAuthConsumerException,
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the o auth consumer where gadgetId = &#63; and serviceName = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	* Returns the o auth consumer where gadgetKey = &#63; and serviceName = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	*
-	* @param gadgetId the gadget ID
+	* @param gadgetKey the gadget key
 	* @param serviceName the service name
 	* @return the matching o auth consumer, or <code>null</code> if a matching o auth consumer could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.opensocial.model.OAuthConsumer fetchByG_S(
-		long gadgetId, java.lang.String serviceName)
+		java.lang.String gadgetKey, java.lang.String serviceName)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the o auth consumer where gadgetId = &#63; and serviceName = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	* Returns the o auth consumer where gadgetKey = &#63; and serviceName = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	*
-	* @param gadgetId the gadget ID
+	* @param gadgetKey the gadget key
 	* @param serviceName the service name
 	* @return the matching o auth consumer, or <code>null</code> if a matching o auth consumer could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.opensocial.model.OAuthConsumer fetchByG_S(
-		long gadgetId, java.lang.String serviceName, boolean retrieveFromCache)
+		java.lang.String gadgetKey, java.lang.String serviceName,
+		boolean retrieveFromCache)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -291,22 +292,23 @@ public interface OAuthConsumerPersistence extends BasePersistence<OAuthConsumer>
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Removes all the o auth consumers where gadgetId = &#63; from the database.
+	* Removes all the o auth consumers where gadgetKey = &#63; from the database.
 	*
-	* @param gadgetId the gadget ID
+	* @param gadgetKey the gadget key
 	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByGadgetId(long gadgetId)
+	public void removeByGadgetKey(java.lang.String gadgetKey)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Removes the o auth consumer where gadgetId = &#63; and serviceName = &#63; from the database.
+	* Removes the o auth consumer where gadgetKey = &#63; and serviceName = &#63; from the database.
 	*
-	* @param gadgetId the gadget ID
+	* @param gadgetKey the gadget key
 	* @param serviceName the service name
 	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByG_S(long gadgetId, java.lang.String serviceName)
+	public void removeByG_S(java.lang.String gadgetKey,
+		java.lang.String serviceName)
 		throws com.liferay.opensocial.NoSuchOAuthConsumerException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -319,24 +321,25 @@ public interface OAuthConsumerPersistence extends BasePersistence<OAuthConsumer>
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the number of o auth consumers where gadgetId = &#63;.
+	* Returns the number of o auth consumers where gadgetKey = &#63;.
 	*
-	* @param gadgetId the gadget ID
+	* @param gadgetKey the gadget key
 	* @return the number of matching o auth consumers
 	* @throws SystemException if a system exception occurred
 	*/
-	public int countByGadgetId(long gadgetId)
+	public int countByGadgetKey(java.lang.String gadgetKey)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the number of o auth consumers where gadgetId = &#63; and serviceName = &#63;.
+	* Returns the number of o auth consumers where gadgetKey = &#63; and serviceName = &#63;.
 	*
-	* @param gadgetId the gadget ID
+	* @param gadgetKey the gadget key
 	* @param serviceName the service name
 	* @return the number of matching o auth consumers
 	* @throws SystemException if a system exception occurred
 	*/
-	public int countByG_S(long gadgetId, java.lang.String serviceName)
+	public int countByG_S(java.lang.String gadgetKey,
+		java.lang.String serviceName)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

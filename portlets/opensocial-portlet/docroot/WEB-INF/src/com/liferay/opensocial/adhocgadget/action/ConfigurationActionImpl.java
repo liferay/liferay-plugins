@@ -17,8 +17,12 @@ package com.liferay.opensocial.adhocgadget.action;
 import com.liferay.opensocial.gadget.action.BaseConfigurationAction;
 import com.liferay.opensocial.model.Gadget;
 import com.liferay.opensocial.shindig.util.ShindigUtil;
+import com.liferay.opensocial.util.WebKeys;
+import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portlet.PortletPreferencesFactoryUtil;
+
+import java.util.Map;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -28,8 +32,11 @@ import javax.portlet.PortletRequest;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 
+import org.apache.shindig.gadgets.spec.OAuthService;
+
 /**
  * @author Michael Young
+ * @author Dennis Ju
  */
 public class ConfigurationActionImpl extends BaseConfigurationAction {
 
@@ -43,6 +50,12 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 
 		if (tabs2.equals("preferences")) {
 			doProcessAction(portletConfig, actionRequest, actionResponse);
+		}
+		else if (tabs2.equals("manage-oauth")) {
+			ShindigUtil.updateOAuthConsumers(actionRequest, actionResponse);
+
+			SessionMessages.add(
+				actionRequest, portletConfig.getPortletName() + ".doConfigure");
 		}
 		else {
 			String url = getParameter(actionRequest, "url");
@@ -61,6 +74,17 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 
 		if (hasUserPrefs(portletConfig, renderRequest)) {
 			doRender(portletConfig, renderRequest, renderResponse);
+		}
+
+		try {
+			Gadget gadget = getGadget(portletConfig, renderRequest);
+
+			Map<String, OAuthService> oAuthServices =
+				ShindigUtil.getOAuthServices(gadget.getUrl());
+
+			renderRequest.setAttribute(WebKeys.OAUTH_SERVICES, oAuthServices);
+		}
+		catch (Exception e) {
 		}
 
 		return "/adhoc_gadget/configuration.jsp";

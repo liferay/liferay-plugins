@@ -114,12 +114,12 @@ public class OAuthTokenClp extends BaseModelImpl<OAuthToken>
 		_modifiedDate = modifiedDate;
 	}
 
-	public long getGadgetId() {
-		return _gadgetId;
+	public String getGadgetKey() {
+		return _gadgetKey;
 	}
 
-	public void setGadgetId(long gadgetId) {
-		_gadgetId = gadgetId;
+	public void setGadgetKey(String gadgetKey) {
+		_gadgetKey = gadgetKey;
 	}
 
 	public String getServiceName() {
@@ -178,7 +178,6 @@ public class OAuthTokenClp extends BaseModelImpl<OAuthToken>
 		_expiration = expiration;
 	}
 
-	@Override
 	public OAuthToken toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -190,7 +189,6 @@ public class OAuthTokenClp extends BaseModelImpl<OAuthToken>
 		}
 	}
 
-	@Override
 	public Object clone() {
 		OAuthTokenClp clone = new OAuthTokenClp();
 
@@ -200,7 +198,7 @@ public class OAuthTokenClp extends BaseModelImpl<OAuthToken>
 		clone.setUserName(getUserName());
 		clone.setCreateDate(getCreateDate());
 		clone.setModifiedDate(getModifiedDate());
-		clone.setGadgetId(getGadgetId());
+		clone.setGadgetKey(getGadgetKey());
 		clone.setServiceName(getServiceName());
 		clone.setModuleId(getModuleId());
 		clone.setAccessToken(getAccessToken());
@@ -226,7 +224,6 @@ public class OAuthTokenClp extends BaseModelImpl<OAuthToken>
 		}
 	}
 
-	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -251,12 +248,10 @@ public class OAuthTokenClp extends BaseModelImpl<OAuthToken>
 		}
 	}
 
-	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
-	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(29);
 
@@ -272,8 +267,8 @@ public class OAuthTokenClp extends BaseModelImpl<OAuthToken>
 		sb.append(getCreateDate());
 		sb.append(", modifiedDate=");
 		sb.append(getModifiedDate());
-		sb.append(", gadgetId=");
-		sb.append(getGadgetId());
+		sb.append(", gadgetKey=");
+		sb.append(getGadgetKey());
 		sb.append(", serviceName=");
 		sb.append(getServiceName());
 		sb.append(", moduleId=");
@@ -325,8 +320,8 @@ public class OAuthTokenClp extends BaseModelImpl<OAuthToken>
 		sb.append(getModifiedDate());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>gadgetId</column-name><column-value><![CDATA[");
-		sb.append(getGadgetId());
+			"<column><column-name>gadgetKey</column-name><column-value><![CDATA[");
+		sb.append(getGadgetKey());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>serviceName</column-name><column-value><![CDATA[");
@@ -369,7 +364,7 @@ public class OAuthTokenClp extends BaseModelImpl<OAuthToken>
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
-	private long _gadgetId;
+	private String _gadgetKey;
 	private String _serviceName;
 	private long _moduleId;
 	private String _accessToken;

@@ -34,7 +34,7 @@ public class OAuthConsumerSoap implements Serializable {
 		soapModel.setCompanyId(model.getCompanyId());
 		soapModel.setCreateDate(model.getCreateDate());
 		soapModel.setModifiedDate(model.getModifiedDate());
-		soapModel.setGadgetId(model.getGadgetId());
+		soapModel.setGadgetKey(model.getGadgetKey());
 		soapModel.setServiceName(model.getServiceName());
 		soapModel.setConsumerKey(model.getConsumerKey());
 		soapModel.setConsumerSecret(model.getConsumerSecret());
@@ -123,12 +123,12 @@ public class OAuthConsumerSoap implements Serializable {
 		_modifiedDate = modifiedDate;
 	}
 
-	public long getGadgetId() {
-		return _gadgetId;
+	public String getGadgetKey() {
+		return _gadgetKey;
 	}
 
-	public void setGadgetId(long gadgetId) {
-		_gadgetId = gadgetId;
+	public void setGadgetKey(String gadgetKey) {
+		_gadgetKey = gadgetKey;
 	}
 
 	public String getServiceName() {
@@ -167,7 +167,7 @@ public class OAuthConsumerSoap implements Serializable {
 	private long _companyId;
 	private Date _createDate;
 	private Date _modifiedDate;
-	private long _gadgetId;
+	private String _gadgetKey;
 	private String _serviceName;
 	private String _consumerKey;
 	private String _consumerSecret;

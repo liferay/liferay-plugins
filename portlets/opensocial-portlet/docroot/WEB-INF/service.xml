@@ -50,7 +50,7 @@
 
 		<!-- Other fields -->
 
-		<column name="gadgetId" type="long" />
+		<column name="gadgetKey" type="String" />
 		<column name="serviceName" type="String" />
 		<column name="consumerKey" type="String" />
 		<column name="consumerSecret" type="String" />
@@ -64,11 +64,11 @@
 
 		<!-- Finder methods -->
 
-		<finder name="GadgetId" return-type="Collection">
-			<finder-column name="gadgetId" />
+		<finder name="GadgetKey" return-type="Collection">
+			<finder-column name="gadgetKey" />
 		</finder>
 		<finder name="G_S" return-type="OAuthConsumer">
-			<finder-column name="gadgetId" />
+			<finder-column name="gadgetKey" />
 			<finder-column name="serviceName" />
 		</finder>
 	</entity>
@@ -88,7 +88,7 @@
 
 		<!-- Other fields -->
 
-		<column name="gadgetId" type="long" />
+		<column name="gadgetKey" type="String" />
 		<column name="serviceName" type="String" />
 		<column name="moduleId" type="long" />
 		<column name="accessToken" type="String" />
@@ -100,12 +100,12 @@
 		<!-- Finder methods -->
 
 		<finder name="G_S" return-type="Collection">
-			<finder-column name="gadgetId" />
+			<finder-column name="gadgetKey" />
 			<finder-column name="serviceName" />
 		</finder>
 		<finder name="U_G_S_M_T" return-type="OAuthToken">
 			<finder-column name="userId" />
-			<finder-column name="gadgetId" />
+			<finder-column name="gadgetKey" />
 			<finder-column name="serviceName" />
 			<finder-column name="moduleId" />
 			<finder-column name="tokenName" />
