@@ -16,8 +16,6 @@ package com.liferay.knowledgebase.service.base;
 
 import com.liferay.counter.service.CounterLocalService;
 
-import com.liferay.documentlibrary.service.DLLocalService;
-
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.service.KBArticleLocalService;
 import com.liferay.knowledgebase.service.KBArticleService;
@@ -63,6 +61,7 @@ import com.liferay.portal.service.persistence.WorkflowInstanceLinkPersistence;
 import com.liferay.portlet.asset.service.AssetEntryLocalService;
 import com.liferay.portlet.asset.service.AssetEntryService;
 import com.liferay.portlet.asset.service.persistence.AssetEntryPersistence;
+import com.liferay.portlet.documentlibrary.store.DLStore;
 import com.liferay.portlet.ratings.service.RatingsStatsLocalService;
 import com.liferay.portlet.ratings.service.persistence.RatingsStatsPersistence;
 import com.liferay.portlet.social.service.SocialActivityLocalService;
@@ -319,17 +318,17 @@ public abstract class KBArticleServiceBaseImpl extends PrincipalBean
 	 *
 	 * @return the d l local service
 	 */
-	public DLLocalService getDLLocalService() {
-		return dlLocalService;
+	public DLStore getDLStore() {
+		return dlStore;
 	}
 
 	/**
 	 * Sets the d l local service.
 	 *
-	 * @param dlLocalService the d l local service
+	 * @param Store the d l local service
 	 */
-	public void setDLLocalService(DLLocalService dlLocalService) {
-		this.dlLocalService = dlLocalService;
+	public void setDLStore(DLStore dlStore) {
+		this.dlStore = dlStore;
 	}
 
 	/**
@@ -937,8 +936,8 @@ public abstract class KBArticleServiceBaseImpl extends PrincipalBean
 	protected KBTemplatePersistence kbTemplatePersistence;
 	@BeanReference(type = CounterLocalService.class)
 	protected CounterLocalService counterLocalService;
-	@BeanReference(type = DLLocalService.class)
-	protected DLLocalService dlLocalService;
+	@BeanReference(type = DLStore.class)
+	protected DLStore dlStore;
 	@BeanReference(type = CompanyLocalService.class)
 	protected CompanyLocalService companyLocalService;
 	@BeanReference(type = CompanyService.class)

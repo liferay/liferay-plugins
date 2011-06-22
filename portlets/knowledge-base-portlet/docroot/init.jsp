@@ -25,11 +25,6 @@
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 <%@ taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 
-<%@ page import="com.liferay.documentlibrary.DuplicateFileException" %>
-<%@ page import="com.liferay.documentlibrary.FileNameException" %>
-<%@ page import="com.liferay.documentlibrary.FileSizeException" %>
-<%@ page import="com.liferay.documentlibrary.NoSuchFileException" %>
-<%@ page import="com.liferay.documentlibrary.service.DLLocalServiceUtil" %>
 <%@ page import="com.liferay.knowledgebase.DuplicateKBStructureFieldLabelException" %>
 <%@ page import="com.liferay.knowledgebase.DuplicateKBStructureFieldNameException" %>
 <%@ page import="com.liferay.knowledgebase.DuplicateKBStructureOptionLabelException" %>
@@ -142,6 +137,11 @@
 <%@ page import="com.liferay.portlet.asset.service.AssetVocabularyLocalServiceUtil" %>
 <%@ page import="com.liferay.portlet.asset.service.persistence.AssetEntryQuery" %>
 <%@ page import="com.liferay.portlet.blogs.model.BlogsEntry" %>
+<%@ page import="com.liferay.portlet.documentlibrary.DuplicateFileException" %>
+<%@ page import="com.liferay.portlet.documentlibrary.FileNameException" %>
+<%@ page import="com.liferay.portlet.documentlibrary.FileSizeException" %>
+<%@ page import="com.liferay.portlet.documentlibrary.NoSuchFileException" %>
+<%@ page import="com.liferay.portlet.documentlibrary.store.DLStoreUtil" %>
 <%@ page import="com.liferay.portlet.journal.model.JournalArticle" %>
 <%@ page import="com.liferay.portlet.messageboards.model.MBMessage" %>
 <%@ page import="com.liferay.portlet.wiki.model.WikiPage" %>
