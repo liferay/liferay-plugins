@@ -17,27 +17,21 @@
 <%@ include file="/init.jsp" %>
 
 <%
+String redirect = ParamUtil.getString(request, "redirect");
+
 long gadgetId = ParamUtil.getLong(request, "gadgetId");
 
 String gadgetKey = StringPool.BLANK;
 
 Gadget gadget = null;
 
-String redirect = StringPool.BLANK;
-
 if (gadgetId > 0) {
-	gadgetKey = GadgetConstants.toPublishedGadgetKey(gadgetId);
-
 	gadget = GadgetLocalServiceUtil.fetchGadget(gadgetId);
 
-	redirect = ParamUtil.getString(request, "redirect");
+	gadgetKey = GadgetConstants.toPublishedGadgetKey(gadgetId);
 }
 else {
-	String namespace = ShindigUtil.getPortletResourceNamespace(renderRequest, themeDisplay);
-
-	long moduleId = ShindigUtil.getModuleId(namespace);
-
-	gadgetKey = GadgetConstants.toAdhocGadgetKey(moduleId);
+	redirect = StringPool.BLANK;
 
 	String portletResource = ParamUtil.getString(renderRequest, "portletResource");
 
@@ -45,7 +39,11 @@ else {
 
 	gadget = ShindigUtil.getGadget(preferences);
 
-	redirect = StringPool.BLANK;
+	String namespace = ShindigUtil.getPortletResourceNamespace(renderRequest, themeDisplay);
+
+	long moduleId = ShindigUtil.getModuleId(namespace);
+
+	gadgetKey = GadgetConstants.toAdhocGadgetKey(moduleId);
 }
 
 Map<String, OAuthService> oAuthServices = null;
@@ -165,6 +163,7 @@ int oAuthServiceCount = 0;
 	<%
 	}
 	%>
+
 </aui:script>
 
 <%

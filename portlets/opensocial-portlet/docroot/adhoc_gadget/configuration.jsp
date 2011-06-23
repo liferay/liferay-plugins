@@ -17,8 +17,6 @@
 <%@ include file="/init.jsp" %>
 
 <%
-String tabNames = "gadget";
-
 String tabs2 = ParamUtil.getString(request, "tabs2", "gadget");
 
 String redirect = ParamUtil.getString(request, "redirect");
@@ -46,27 +44,36 @@ Map<String, OAuthService> oAuthServices = (Map<String, OAuthService>)renderReque
 	<aui:input name="tabs2" type="hidden" value="<%= tabs2 %>" />
 	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
 
+	<%
+	String tabs2Names = "gadget";
+	%>
+
 	<c:if test="<%= oAuthServices != null %>">
+
 		<%
-		tabNames = tabNames.concat(",manage-oauth");
+		tabs2Names = tabs2Names.concat(",manage-oauth");
 		%>
-	</c:if>
-	<c:if test="<%= userPrefs != null %>">
-		<%
-		tabNames = tabNames.concat(",preferences");
-		%>
+
 	</c:if>
 
-	<c:if test='<%= !tabNames.equals("gadget") %>'>
+	<c:if test="<%= userPrefs != null %>">
+
+		<%
+		tabs2Names = tabs2Names.concat(",preferences");
+		%>
+
+	</c:if>
+
+	<c:if test='<%= !tabs2Names.equals("gadget") %>'>
 		<liferay-ui:tabs
-			names="<%= tabNames %>"
+			names="<%= tabs2Names %>"
 			param="tabs2"
 			url="<%= portletURL %>"
 		/>
 	</c:if>
 
 	<c:choose>
-		<c:when test='<%= tabs2.equals("gadget") || tabNames.equals("gadget") %>'>
+		<c:when test='<%= tabs2.equals("gadget") || tabs2Names.equals("gadget") %>'>
 			<aui:fieldset>
 				<aui:input cssClass="lfr-input-text-container" label="url" name="preferences--url--" type="text" value="<%= url %>" />
 			</aui:fieldset>

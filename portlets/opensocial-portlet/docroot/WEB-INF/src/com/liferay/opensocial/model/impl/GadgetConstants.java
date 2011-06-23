@@ -22,9 +22,9 @@ import com.liferay.portal.kernel.util.StringUtil;
  */
 public class GadgetConstants {
 
-	public static final String PUBLISHED_PREFIX = "PUBLISHED_";
-
 	public static final String ADHOC_PREFIX = "ADHOC_";
+
+	public static final String PUBLISHED_PREFIX = "PUBLISHED_";
 
 	public static boolean isAdhocGadget(String gadgetKey) {
 		return StringUtil.contains(gadgetKey, ADHOC_PREFIX);

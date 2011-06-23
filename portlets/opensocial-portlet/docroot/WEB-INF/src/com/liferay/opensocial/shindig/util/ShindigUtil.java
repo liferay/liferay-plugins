@@ -352,20 +352,16 @@ public class ShindigUtil {
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		long oAuthConsumerIds[] = ParamUtil.getLongValues(
+		long[] oAuthConsumerIds = ParamUtil.getLongValues(
 			actionRequest, "oAuthConsumerId");
 
 		String gadgetKey = ParamUtil.getString(actionRequest, "gadgetKey");
-
 		String[] serviceNames = ParamUtil.getParameterValues(
 			actionRequest, "serviceName");
-
 		String[] consumerKeys = ParamUtil.getParameterValues(
 			actionRequest, "consumerKey");
-
 		String[] consumerSecrets = ParamUtil.getParameterValues(
 			actionRequest, "consumerSecret");
-
 		String[] keyTypes = ParamUtil.getParameterValues(
 			actionRequest, "keyType");
 
