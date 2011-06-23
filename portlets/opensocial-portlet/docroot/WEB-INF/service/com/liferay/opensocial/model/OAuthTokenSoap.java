@@ -36,7 +36,7 @@ public class OAuthTokenSoap implements Serializable {
 		soapModel.setUserName(model.getUserName());
 		soapModel.setCreateDate(model.getCreateDate());
 		soapModel.setModifiedDate(model.getModifiedDate());
-		soapModel.setGadgetId(model.getGadgetId());
+		soapModel.setGadgetKey(model.getGadgetKey());
 		soapModel.setServiceName(model.getServiceName());
 		soapModel.setModuleId(model.getModuleId());
 		soapModel.setAccessToken(model.getAccessToken());
@@ -144,12 +144,12 @@ public class OAuthTokenSoap implements Serializable {
 		_modifiedDate = modifiedDate;
 	}
 
-	public long getGadgetId() {
-		return _gadgetId;
+	public String getGadgetKey() {
+		return _gadgetKey;
 	}
 
-	public void setGadgetId(long gadgetId) {
-		_gadgetId = gadgetId;
+	public void setGadgetKey(String gadgetKey) {
+		_gadgetKey = gadgetKey;
 	}
 
 	public String getServiceName() {
@@ -214,7 +214,7 @@ public class OAuthTokenSoap implements Serializable {
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
-	private long _gadgetId;
+	private String _gadgetKey;
 	private String _serviceName;
 	private long _moduleId;
 	private String _accessToken;

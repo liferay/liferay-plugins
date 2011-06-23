@@ -257,10 +257,10 @@ public class ClpSerializer {
 
 				method3.invoke(newModel, value3);
 
-				Method method4 = newModelClass.getMethod("setGadgetId",
-						new Class[] { Long.TYPE });
+				Method method4 = newModelClass.getMethod("setGadgetKey",
+						new Class[] { String.class });
 
-				Long value4 = new Long(oldCplModel.getGadgetId());
+				String value4 = oldCplModel.getGadgetKey();
 
 				method4.invoke(newModel, value4);
 
@@ -363,10 +363,10 @@ public class ClpSerializer {
 
 				method5.invoke(newModel, value5);
 
-				Method method6 = newModelClass.getMethod("setGadgetId",
-						new Class[] { Long.TYPE });
+				Method method6 = newModelClass.getMethod("setGadgetKey",
+						new Class[] { String.class });
 
-				Long value6 = new Long(oldCplModel.getGadgetId());
+				String value6 = oldCplModel.getGadgetKey();
 
 				method6.invoke(newModel, value6);
 
@@ -603,11 +603,11 @@ public class ClpSerializer {
 
 				newModel.setModifiedDate(value3);
 
-				Method method4 = oldModelClass.getMethod("getGadgetId");
+				Method method4 = oldModelClass.getMethod("getGadgetKey");
 
-				Long value4 = (Long)method4.invoke(oldModel, (Object[])null);
+				String value4 = (String)method4.invoke(oldModel, (Object[])null);
 
-				newModel.setGadgetId(value4);
+				newModel.setGadgetKey(value4);
 
 				Method method5 = oldModelClass.getMethod("getServiceName");
 
@@ -695,11 +695,11 @@ public class ClpSerializer {
 
 				newModel.setModifiedDate(value5);
 
-				Method method6 = oldModelClass.getMethod("getGadgetId");
+				Method method6 = oldModelClass.getMethod("getGadgetKey");
 
-				Long value6 = (Long)method6.invoke(oldModel, (Object[])null);
+				String value6 = (String)method6.invoke(oldModel, (Object[])null);
 
-				newModel.setGadgetId(value6);
+				newModel.setGadgetKey(value6);
 
 				Method method7 = oldModelClass.getMethod("getServiceName");
 

@@ -26,7 +26,7 @@
 		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="createDate" type="org.hibernate.type.TimestampType" />
 		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
-		<property name="gadgetId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="gadgetKey" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="serviceName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="consumerKey" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="consumerSecret" type="com.liferay.portal.dao.orm.hibernate.StringType" />
@@ -42,7 +42,7 @@
 		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="createDate" type="org.hibernate.type.TimestampType" />
 		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
-		<property name="gadgetId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="gadgetKey" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="serviceName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="moduleId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="accessToken" type="com.liferay.portal.dao.orm.hibernate.StringType" />

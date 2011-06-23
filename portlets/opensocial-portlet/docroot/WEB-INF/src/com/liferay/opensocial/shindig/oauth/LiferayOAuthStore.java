@@ -20,12 +20,15 @@ import com.liferay.opensocial.model.Gadget;
 import com.liferay.opensocial.model.OAuthConsumer;
 import com.liferay.opensocial.model.OAuthConsumerConstants;
 import com.liferay.opensocial.model.OAuthToken;
+import com.liferay.opensocial.model.impl.GadgetConstants;
 import com.liferay.opensocial.service.GadgetLocalServiceUtil;
 import com.liferay.opensocial.service.OAuthConsumerLocalServiceUtil;
 import com.liferay.opensocial.service.OAuthTokenLocalServiceUtil;
 import com.liferay.opensocial.shindig.util.ShindigUtil;
 import com.liferay.opensocial.util.PortletPropsValues;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
 
@@ -153,20 +156,31 @@ public class LiferayOAuthStore implements OAuthStore {
 		Gadget gadget = null;
 
 		try {
-			gadget = GadgetLocalServiceUtil.getGadget(
+			gadget = GadgetLocalServiceUtil.fetchGadget(
 				user.getCompanyId(), securityToken.getAppUrl());
 		}
-		catch (Exception e) {
+		catch (SystemException se) {
 			throw new GadgetException(
-				GadgetException.Code.INTERNAL_SERVER_ERROR, e);
+				GadgetException.Code.INTERNAL_SERVER_ERROR, se);
+		}
+
+		String gadgetKey = StringPool.BLANK;
+
+		if (gadget == null) {
+			gadgetKey = GadgetConstants.toAdhocGadgetKey(
+				securityToken.getModuleId());
+		}
+		else {
+			gadgetKey = GadgetConstants.toPublishedGadgetKey(
+				gadget.getGadgetId());
 		}
 
 		try {
 			OAuthTokenLocalServiceUtil.addOAuthToken(
-				userId, gadget.getGadgetId(), serviceName,
-				securityToken.getModuleId(), tokenInfo.getAccessToken(),
-				tokenName, tokenInfo.getTokenSecret(),
-				tokenInfo.getSessionHandle(), tokenInfo.getTokenExpireMillis());
+				userId, gadgetKey, serviceName, securityToken.getModuleId(),
+				tokenInfo.getAccessToken(), tokenName,
+				tokenInfo.getTokenSecret(), tokenInfo.getSessionHandle(),
+				tokenInfo.getTokenExpireMillis());
 		}
 		catch (Exception e) {
 			throw new GadgetException(
@@ -178,36 +192,20 @@ public class LiferayOAuthStore implements OAuthStore {
 			SecurityToken securityToken, String serviceName)
 		throws GadgetException {
 
-		long userId = GetterUtil.getLong(securityToken.getViewerId());
-
-		User user = null;
-
-		try {
-			user = UserLocalServiceUtil.getUser(userId);
-		}
-		catch (Exception e) {
-			throw new GadgetException(
-				GadgetException.Code.INTERNAL_SERVER_ERROR, e);
-		}
-
-		Gadget gadget = null;
-
-		try {
-			gadget = GadgetLocalServiceUtil.getGadget(
-				user.getCompanyId(), securityToken.getAppUrl());
-		}
-		catch (Exception e) {
-			throw new GadgetException(
-				GadgetException.Code.INTERNAL_SERVER_ERROR, e);
-		}
+		String gadgetKey = securityToken.getAppId();
 
 		OAuthConsumer oAuthConsumer = null;
 
 		try {
-			oAuthConsumer = OAuthConsumerLocalServiceUtil.getOAuthConsumer(
-				gadget.getGadgetId(), serviceName);
+			oAuthConsumer = OAuthConsumerLocalServiceUtil.fetchOAuthConsumer(
+				gadgetKey, serviceName);
 		}
-		catch (Exception e) {
+		catch (SystemException se) {
+			throw new GadgetException(
+				GadgetException.Code.INTERNAL_SERVER_ERROR, se);
+		}
+
+		if (oAuthConsumer == null) {
 			return _oAuthConsumer;
 		}
 
@@ -233,35 +231,18 @@ public class LiferayOAuthStore implements OAuthStore {
 
 		long userId = GetterUtil.getLong(securityToken.getViewerId());
 
-		User user = null;
-
-		try {
-			user = UserLocalServiceUtil.getUser(userId);
-		}
-		catch (Exception e) {
-			throw new GadgetException(
-				GadgetException.Code.INTERNAL_SERVER_ERROR, e);
-		}
-
-		Gadget gadget = null;
-
-		try {
-			gadget = GadgetLocalServiceUtil.getGadget(
-				user.getCompanyId(), securityToken.getAppUrl());
-		}
-		catch (Exception e) {
-			throw new GadgetException(
-				GadgetException.Code.INTERNAL_SERVER_ERROR, e);
-		}
+		String gadgetKey = securityToken.getAppId();
 
 		OAuthToken oAuthToken = null;
 
 		try {
-			oAuthToken = OAuthTokenLocalServiceUtil.getOAuthToken(
-				userId, gadget.getGadgetId(), serviceName,
-				securityToken.getModuleId(), tokenName);
+			oAuthToken = OAuthTokenLocalServiceUtil.fetchOAuthToken(
+				userId, gadgetKey, serviceName, securityToken.getModuleId(),
+				tokenName);
 		}
-		catch (Exception e) {
+		catch (SystemException se) {
+			throw new GadgetException(
+				GadgetException.Code.INTERNAL_SERVER_ERROR, se);
 		}
 
 		return oAuthToken;

@@ -224,32 +224,37 @@ public interface OAuthConsumerLocalService {
 	public void setBeanIdentifier(java.lang.String beanIdentifier);
 
 	public com.liferay.opensocial.model.OAuthConsumer addOAuthConsumer(
-		long companyId, long gadgetId, java.lang.String serviceName,
-		java.lang.String consumerKey, java.lang.String consumerSecret,
-		java.lang.String keyType)
+		long companyId, java.lang.String gadgetKey,
+		java.lang.String serviceName, java.lang.String consumerKey,
+		java.lang.String consumerSecret, java.lang.String keyType)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
-	public void deleteOAuthConsumers(long gadgetId)
+	public void deleteOAuthConsumers(java.lang.String gadgetKey)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.opensocial.model.OAuthConsumer fetchOAuthConsumer(
+		java.lang.String gadgetKey, java.lang.String serviceName)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.opensocial.model.OAuthConsumer getOAuthConsumer(
-		long gadgetId, java.lang.String serviceName)
+		java.lang.String gadgetKey, java.lang.String serviceName)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.opensocial.model.OAuthConsumer> getOAuthConsumers(
-		long gadgetId)
+		java.lang.String gadgetKey)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.opensocial.model.OAuthConsumer> getOAuthConsumers(
-		long gadgetId, int start, int end)
+		java.lang.String gadgetKey, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getOAuthConsumersCount(long gadgetId)
+	public int getOAuthConsumersCount(java.lang.String gadgetKey)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.opensocial.model.OAuthConsumer updateOAuthConsumer(
