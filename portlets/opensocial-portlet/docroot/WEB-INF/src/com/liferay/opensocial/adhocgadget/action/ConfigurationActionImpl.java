@@ -48,14 +48,14 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 
 		String tabs2 = ParamUtil.get(actionRequest, "tabs2", "gadget");
 
-		if (tabs2.equals("preferences")) {
-			doProcessAction(portletConfig, actionRequest, actionResponse);
-		}
-		else if (tabs2.equals("manage-oauth")) {
+		if (tabs2.equals("manage-oauth")) {
 			ShindigUtil.updateOAuthConsumers(actionRequest, actionResponse);
 
 			SessionMessages.add(
 				actionRequest, portletConfig.getPortletName() + ".doConfigure");
+		}
+		else if (tabs2.equals("preferences")) {
+			doProcessAction(portletConfig, actionRequest, actionResponse);
 		}
 		else {
 			String url = getParameter(actionRequest, "url");

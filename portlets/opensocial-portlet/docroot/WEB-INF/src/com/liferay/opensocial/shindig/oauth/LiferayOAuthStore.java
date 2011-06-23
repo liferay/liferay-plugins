@@ -192,13 +192,11 @@ public class LiferayOAuthStore implements OAuthStore {
 			SecurityToken securityToken, String serviceName)
 		throws GadgetException {
 
-		String gadgetKey = securityToken.getAppId();
-
 		OAuthConsumer oAuthConsumer = null;
 
 		try {
 			oAuthConsumer = OAuthConsumerLocalServiceUtil.fetchOAuthConsumer(
-				gadgetKey, serviceName);
+				securityToken.getAppId(), serviceName);
 		}
 		catch (SystemException se) {
 			throw new GadgetException(
@@ -231,14 +229,12 @@ public class LiferayOAuthStore implements OAuthStore {
 
 		long userId = GetterUtil.getLong(securityToken.getViewerId());
 
-		String gadgetKey = securityToken.getAppId();
-
 		OAuthToken oAuthToken = null;
 
 		try {
 			oAuthToken = OAuthTokenLocalServiceUtil.fetchOAuthToken(
-				userId, gadgetKey, serviceName, securityToken.getModuleId(),
-				tokenName);
+				userId, securityToken.getAppId(), serviceName,
+				securityToken.getModuleId(), tokenName);
 		}
 		catch (SystemException se) {
 			throw new GadgetException(
