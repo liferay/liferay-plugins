@@ -14,6 +14,7 @@
 
 package com.liferay.testevent;
 
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 
 import java.io.IOException;
@@ -39,9 +40,9 @@ public class EventConsumer extends GenericPortlet {
 	public void processEvent(EventRequest request, EventResponse response)
 		throws PortletException, IOException {
 
-		String value =
-			request.getPreferences().getValue(EventProducer.KEY, "");
-		
+		String value = request.getPreferences().getValue(
+			EventProducer.KEY, StringPool.BLANK);
+
 		if (Validator.isNull(value)) {
 			passed = true;
 		}
@@ -73,4 +74,5 @@ public class EventConsumer extends GenericPortlet {
 			}
 		}
 	}
+
 }
