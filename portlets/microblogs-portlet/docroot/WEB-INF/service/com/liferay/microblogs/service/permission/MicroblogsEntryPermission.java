@@ -80,8 +80,7 @@ public class MicroblogsEntryPermission {
 			return true;
 		}
 
-		if ((microblogsEntry.getSocialRelationType() != 0) &&
-			(microblogsEntry.getUserId() != permissionChecker.getUserId()) &&
+		if ((microblogsEntry.getUserId() != permissionChecker.getUserId()) &&
 			SocialRelationLocalServiceUtil.hasRelation(
 				permissionChecker.getUserId(), microblogsEntry.getUserId(),
 				microblogsEntry.getSocialRelationType())) {
