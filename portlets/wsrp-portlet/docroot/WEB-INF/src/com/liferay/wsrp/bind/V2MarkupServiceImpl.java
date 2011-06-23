@@ -77,6 +77,7 @@ import oasis.names.tc.wsrp.v2.types.ResourceContext;
 import oasis.names.tc.wsrp.v2.types.ResourceParams;
 import oasis.names.tc.wsrp.v2.types.ResourceResponse;
 import oasis.names.tc.wsrp.v2.types.RuntimeContext;
+import oasis.names.tc.wsrp.v2.types.UploadContext;
 import oasis.names.tc.wsrp.v2.types.UpdateResponse;
 
 import org.apache.axis.message.MessageElement;
@@ -402,6 +403,40 @@ public class V2MarkupServiceImpl
 					runtimeContext.getNamespacePrefix(), StringPool.BLANK);
 
 				httpOptions.addPart(namespace + name, formParameter.getValue());
+			}
+		}
+
+		UploadContext[] uploadContexts = interactionParams.getUploadContexts();
+
+		if (uploadContexts != null) {
+			for (UploadContext uploadContext : uploadContexts) {
+				NamedString mimeAttr = uploadContext.getMimeAttributes(0);
+
+				String[] mimeAttrValues = StringUtil.split(
+					mimeAttr.getValue(), StringPool.SEMICOLON);
+
+				String charSet = null;
+				String contentType = uploadContext.getMimeType();
+				String fileName = StringUtil.replace(
+					mimeAttrValues[2], "filename=", StringPool.BLANK);
+				String name = StringUtil.replace(
+					mimeAttrValues[1], "name=", StringPool.BLANK);
+
+				if (contentType.contains(StringPool.SEMICOLON)) {
+					int pos = contentType.indexOf(StringPool.SEMICOLON);
+
+					charSet = contentType.substring(pos + 1);
+					charSet = StringUtil.trim(charSet);
+
+					contentType = contentType.substring(0, pos);
+				}
+
+				fileName = StringUtil.trim(fileName);
+				name = StringUtil.trim(name);
+
+				httpOptions.addFilePart(
+					name, fileName, uploadContext.getUploadData(), contentType,
+					charSet);
 			}
 		}
 
