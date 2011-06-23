@@ -1163,8 +1163,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		String dirName =
 			"knowledgebase/temp/attachments/" + counterLocalService.increment();
 
-		dlStore.addDirectory(
-			companyId, CompanyConstants.SYSTEM, dirName);
+		dlStore.addDirectory(companyId, CompanyConstants.SYSTEM, dirName);
 
 		String[] fileNames = dlStore.getFileNames(
 			companyId, CompanyConstants.SYSTEM,
