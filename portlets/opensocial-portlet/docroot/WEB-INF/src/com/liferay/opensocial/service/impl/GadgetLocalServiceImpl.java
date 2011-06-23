@@ -20,6 +20,7 @@ import com.liferay.opensocial.GadgetURLException;
 import com.liferay.opensocial.NoSuchGadgetException;
 import com.liferay.opensocial.gadget.portlet.GadgetPortlet;
 import com.liferay.opensocial.model.Gadget;
+import com.liferay.opensocial.model.impl.GadgetConstants;
 import com.liferay.opensocial.service.ClpSerializer;
 import com.liferay.opensocial.service.base.GadgetLocalServiceBaseImpl;
 import com.liferay.opensocial.shindig.util.ShindigUtil;
@@ -116,7 +117,10 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 
 		// OAuth consumer
 
-		oAuthConsumerLocalService.deleteOAuthConsumers(gadget.getGadgetId());
+		String gadgetKey = GadgetConstants.toPublishedGadgetKey(
+			gadget.getGadgetId());
+
+		oAuthConsumerLocalService.deleteOAuthConsumers(gadgetKey);
 	}
 
 	@Override
@@ -155,6 +159,16 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 			destroyGadget(
 				gadget.getUuid(), gadget.getCompanyId(), gadget.getName());
 		}
+	}
+
+	public Gadget fetchGadget(long gadgetId) throws SystemException {
+		return gadgetPersistence.fetchByPrimaryKey(gadgetId);
+	}
+
+	public Gadget fetchGadget(long companyId, String url)
+		throws SystemException {
+
+		return gadgetPersistence.fetchByC_U(companyId, url);
 	}
 
 	public Gadget getGadget(String uuid)

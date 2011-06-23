@@ -31,7 +31,7 @@ public class OAuthConsumerLocalServiceImpl
 	extends OAuthConsumerLocalServiceBaseImpl {
 
 	public OAuthConsumer addOAuthConsumer(
-			long companyId, long gadgetId, String serviceName,
+			long companyId, String gadgetKey, String serviceName,
 			String consumerKey, String consumerSecret, String keyType)
 		throws SystemException {
 
@@ -49,7 +49,7 @@ public class OAuthConsumerLocalServiceImpl
 		oAuthConsumer.setCompanyId(companyId);
 		oAuthConsumer.setCreateDate(now);
 		oAuthConsumer.setModifiedDate(now);
-		oAuthConsumer.setGadgetId(gadgetId);
+		oAuthConsumer.setGadgetKey(gadgetKey);
 		oAuthConsumer.setServiceName(serviceName);
 		oAuthConsumer.setConsumerKey(consumerKey);
 		oAuthConsumer.setConsumerSecret(consumerSecret);
@@ -81,42 +81,49 @@ public class OAuthConsumerLocalServiceImpl
 		// OAuth tokens
 
 		oAuthTokenLocalService.deleteOAuthTokens(
-			oAuthConsumer.getGadgetId(), oAuthConsumer.getServiceName());
+			oAuthConsumer.getGadgetKey(), oAuthConsumer.getServiceName());
 	}
 
-	public void deleteOAuthConsumers(long gadgetId)
+	public void deleteOAuthConsumers(String gadgetKey)
 		throws SystemException {
 
 		List<OAuthConsumer> oAuthConsumers =
-			oAuthConsumerPersistence.findByGadgetId(gadgetId);
+			oAuthConsumerPersistence.findByGadgetKey(gadgetKey);
 
 		for (OAuthConsumer oAuthConsumer : oAuthConsumers) {
 			deleteOAuthConsumer(oAuthConsumer);
 		}
 	}
 
-	public OAuthConsumer getOAuthConsumer(long gadgetId, String serviceName)
-		throws PortalException, SystemException {
-
-		return oAuthConsumerPersistence.findByG_S(gadgetId, serviceName);
-	}
-
-	public List<OAuthConsumer> getOAuthConsumers(long gadgetId)
+	public OAuthConsumer fetchOAuthConsumer(
+			String gadgetKey, String serviceName)
 		throws SystemException {
 
-		return oAuthConsumerPersistence.findByGadgetId(gadgetId);
+		return oAuthConsumerPersistence.fetchByG_S(gadgetKey, serviceName);
+	}
+
+	public OAuthConsumer getOAuthConsumer(String gadgetKey, String serviceName)
+		throws PortalException, SystemException {
+
+		return oAuthConsumerPersistence.findByG_S(gadgetKey, serviceName);
+	}
+
+	public List<OAuthConsumer> getOAuthConsumers(String gadgetKey)
+		throws SystemException {
+
+		return oAuthConsumerPersistence.findByGadgetKey(gadgetKey);
 	}
 
 	public List<OAuthConsumer> getOAuthConsumers(
-			long gadgetId, int start, int end)
+			String gadgetKey, int start, int end)
 		throws SystemException {
 
-		return oAuthConsumerPersistence.findByGadgetId(
-			gadgetId, start, end);
+		return oAuthConsumerPersistence.findByGadgetKey(
+			gadgetKey, start, end);
 	}
 
-	public int getOAuthConsumersCount(long gadgetId) throws SystemException {
-		return oAuthConsumerPersistence.countByGadgetId(gadgetId);
+	public int getOAuthConsumersCount(String gadgetKey) throws SystemException {
+		return oAuthConsumerPersistence.countByGadgetKey(gadgetKey);
 	}
 
 	public OAuthConsumer updateOAuthConsumer(

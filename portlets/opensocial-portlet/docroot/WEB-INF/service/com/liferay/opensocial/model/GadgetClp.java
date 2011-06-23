@@ -119,7 +119,6 @@ public class GadgetClp extends BaseModelImpl<Gadget> implements Gadget {
 		_portletCategoryNames = portletCategoryNames;
 	}
 
-	@Override
 	public Gadget toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -130,7 +129,6 @@ public class GadgetClp extends BaseModelImpl<Gadget> implements Gadget {
 		}
 	}
 
-	@Override
 	public Object clone() {
 		GadgetClp clone = new GadgetClp();
 
@@ -158,7 +156,6 @@ public class GadgetClp extends BaseModelImpl<Gadget> implements Gadget {
 		return 0;
 	}
 
-	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -183,12 +180,10 @@ public class GadgetClp extends BaseModelImpl<Gadget> implements Gadget {
 		}
 	}
 
-	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
-	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(17);
 

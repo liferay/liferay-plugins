@@ -65,7 +65,7 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 			{ "userName", Types.VARCHAR },
 			{ "createDate", Types.TIMESTAMP },
 			{ "modifiedDate", Types.TIMESTAMP },
-			{ "gadgetId", Types.BIGINT },
+			{ "gadgetKey", Types.VARCHAR },
 			{ "serviceName", Types.VARCHAR },
 			{ "moduleId", Types.BIGINT },
 			{ "accessToken", Types.VARCHAR },
@@ -74,7 +74,7 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 			{ "sessionHandle", Types.VARCHAR },
 			{ "expiration", Types.BIGINT }
 		};
-	public static final String TABLE_SQL_CREATE = "create table OpenSocial_OAuthToken (oAuthTokenId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,gadgetId LONG,serviceName VARCHAR(75) null,moduleId LONG,accessToken VARCHAR(75) null,tokenName VARCHAR(75) null,tokenSecret VARCHAR(75) null,sessionHandle VARCHAR(75) null,expiration LONG)";
+	public static final String TABLE_SQL_CREATE = "create table OpenSocial_OAuthToken (oAuthTokenId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,gadgetKey VARCHAR(75) null,serviceName VARCHAR(75) null,moduleId LONG,accessToken VARCHAR(75) null,tokenName VARCHAR(75) null,tokenSecret VARCHAR(75) null,sessionHandle VARCHAR(75) null,expiration LONG)";
 	public static final String TABLE_SQL_DROP = "drop table OpenSocial_OAuthToken";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
@@ -187,22 +187,25 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 		_modifiedDate = modifiedDate;
 	}
 
-	public long getGadgetId() {
-		return _gadgetId;
+	public String getGadgetKey() {
+		if (_gadgetKey == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _gadgetKey;
+		}
 	}
 
-	public void setGadgetId(long gadgetId) {
-		if (!_setOriginalGadgetId) {
-			_setOriginalGadgetId = true;
-
-			_originalGadgetId = _gadgetId;
+	public void setGadgetKey(String gadgetKey) {
+		if (_originalGadgetKey == null) {
+			_originalGadgetKey = _gadgetKey;
 		}
 
-		_gadgetId = gadgetId;
+		_gadgetKey = gadgetKey;
 	}
 
-	public long getOriginalGadgetId() {
-		return _originalGadgetId;
+	public String getOriginalGadgetKey() {
+		return GetterUtil.getString(_originalGadgetKey);
 	}
 
 	public String getServiceName() {
@@ -348,7 +351,7 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 		oAuthTokenImpl.setUserName(getUserName());
 		oAuthTokenImpl.setCreateDate(getCreateDate());
 		oAuthTokenImpl.setModifiedDate(getModifiedDate());
-		oAuthTokenImpl.setGadgetId(getGadgetId());
+		oAuthTokenImpl.setGadgetKey(getGadgetKey());
 		oAuthTokenImpl.setServiceName(getServiceName());
 		oAuthTokenImpl.setModuleId(getModuleId());
 		oAuthTokenImpl.setAccessToken(getAccessToken());
@@ -414,9 +417,7 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 
 		oAuthTokenModelImpl._setOriginalUserId = false;
 
-		oAuthTokenModelImpl._originalGadgetId = oAuthTokenModelImpl._gadgetId;
-
-		oAuthTokenModelImpl._setOriginalGadgetId = false;
+		oAuthTokenModelImpl._originalGadgetKey = oAuthTokenModelImpl._gadgetKey;
 
 		oAuthTokenModelImpl._originalServiceName = oAuthTokenModelImpl._serviceName;
 
@@ -443,8 +444,8 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 		sb.append(getCreateDate());
 		sb.append(", modifiedDate=");
 		sb.append(getModifiedDate());
-		sb.append(", gadgetId=");
-		sb.append(getGadgetId());
+		sb.append(", gadgetKey=");
+		sb.append(getGadgetKey());
 		sb.append(", serviceName=");
 		sb.append(getServiceName());
 		sb.append(", moduleId=");
@@ -496,8 +497,8 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 		sb.append(getModifiedDate());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>gadgetId</column-name><column-value><![CDATA[");
-		sb.append(getGadgetId());
+			"<column><column-name>gadgetKey</column-name><column-value><![CDATA[");
+		sb.append(getGadgetKey());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>serviceName</column-name><column-value><![CDATA[");
@@ -546,9 +547,8 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
-	private long _gadgetId;
-	private long _originalGadgetId;
-	private boolean _setOriginalGadgetId;
+	private String _gadgetKey;
+	private String _originalGadgetKey;
 	private String _serviceName;
 	private String _originalServiceName;
 	private long _moduleId;

@@ -161,18 +161,19 @@ public interface OAuthTokenModel extends AuditedModel, BaseModel<OAuthToken> {
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Returns the gadget ID of this o auth token.
+	 * Returns the gadget key of this o auth token.
 	 *
-	 * @return the gadget ID of this o auth token
+	 * @return the gadget key of this o auth token
 	 */
-	public long getGadgetId();
+	@AutoEscape
+	public String getGadgetKey();
 
 	/**
-	 * Sets the gadget ID of this o auth token.
+	 * Sets the gadget key of this o auth token.
 	 *
-	 * @param gadgetId the gadget ID of this o auth token
+	 * @param gadgetKey the gadget key of this o auth token
 	 */
-	public void setGadgetId(long gadgetId);
+	public void setGadgetKey(String gadgetKey);
 
 	/**
 	 * Returns the service name of this o auth token.

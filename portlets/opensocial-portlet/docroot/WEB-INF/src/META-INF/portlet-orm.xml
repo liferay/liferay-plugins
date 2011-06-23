@@ -37,7 +37,7 @@
 			<basic name="modifiedDate">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
-			<basic name="gadgetId" />
+			<basic name="gadgetKey" />
 			<basic name="serviceName" />
 			<basic name="consumerKey" />
 			<basic name="consumerSecret" />
@@ -59,7 +59,7 @@
 			<basic name="modifiedDate">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
-			<basic name="gadgetId" />
+			<basic name="gadgetKey" />
 			<basic name="serviceName" />
 			<basic name="moduleId" />
 			<basic name="accessToken" />

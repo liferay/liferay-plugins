@@ -24,9 +24,7 @@ Gadget gadget = (Gadget)row.getObject();
 Map<String, OAuthService> oAuthServices = null;
 
 try {
-	GadgetSpec gadgetSpec = ShindigUtil.getGadgetSpec(gadget.getUrl());
-
-	oAuthServices = ShindigUtil.getOAuthServices(gadgetSpec);
+	oAuthServices = ShindigUtil.getOAuthServices(gadget.getUrl());
 }
 catch (Exception e) {
 	row.setRestricted(true);
@@ -45,7 +43,7 @@ catch (Exception e) {
 
 		<c:if test="<%= (oAuthServices != null) && (oAuthServices.size() > 0) %>">
 			<portlet:renderURL var="configureOAuthURL">
-				<portlet:param name="jspPage" value="/admin/view_oauth_consumers.jsp" />
+				<portlet:param name="jspPage" value="/admin/edit_oauth_consumers.jsp" />
 				<portlet:param name="redirect" value="<%= currentURL %>" />
 				<portlet:param name="gadgetId" value="<%= String.valueOf(gadget.getGadgetId()) %>" />
 			</portlet:renderURL>

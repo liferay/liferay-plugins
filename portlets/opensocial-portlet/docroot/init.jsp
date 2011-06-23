@@ -33,6 +33,7 @@
 <%@ page import="com.liferay.opensocial.model.Gadget" %>
 <%@ page import="com.liferay.opensocial.model.OAuthConsumer" %>
 <%@ page import="com.liferay.opensocial.model.OAuthConsumerConstants" %>
+<%@ page import="com.liferay.opensocial.model.impl.GadgetConstants" %>
 <%@ page import="com.liferay.opensocial.service.GadgetLocalServiceUtil" %>
 <%@ page import="com.liferay.opensocial.service.OAuthConsumerLocalServiceUtil" %>
 <%@ page import="com.liferay.opensocial.service.permission.GadgetPermission" %>

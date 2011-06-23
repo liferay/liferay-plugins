@@ -19,17 +19,20 @@ import com.google.inject.Inject;
 import com.liferay.opensocial.GadgetURLException;
 import com.liferay.opensocial.model.impl.GadgetImpl;
 import com.liferay.opensocial.service.GadgetLocalServiceUtil;
+import com.liferay.opensocial.service.OAuthConsumerLocalServiceUtil;
 import com.liferay.opensocial.util.PortletPropsValues;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.Folder;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.AutoResetThreadLocal;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Layout;
@@ -43,6 +46,8 @@ import java.io.File;
 
 import java.util.Map;
 
+import javax.portlet.ActionRequest;
+import javax.portlet.ActionResponse;
 import javax.portlet.PortletPreferences;
 import javax.portlet.PortletRequest;
 
@@ -250,7 +255,10 @@ public class ShindigUtil {
 	}
 
 	public static Map<String, OAuthService> getOAuthServices(
-		GadgetSpec gadgetSpec) {
+			String url)
+		throws Exception {
+
+		GadgetSpec gadgetSpec = getGadgetSpec(url);
 
 		ModulePrefs modulePrefs = gadgetSpec.getModulePrefs();
 
@@ -335,6 +343,54 @@ public class ShindigUtil {
 
 	public static void setHost(String host) {
 		_host.set(host);
+	}
+
+	public static void updateOAuthConsumers(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		long[] oAuthConsumerIds = ParamUtil.getLongValues(
+			actionRequest, "oAuthConsumerId");
+
+		String gadgetKey = ParamUtil.getString(actionRequest, "gadgetKey");
+		String[] serviceNames = ParamUtil.getParameterValues(
+			actionRequest, "serviceName");
+		String[] consumerKeys = ParamUtil.getParameterValues(
+			actionRequest, "consumerKey");
+		String[] consumerSecrets = ParamUtil.getParameterValues(
+			actionRequest, "consumerSecret");
+		String[] keyTypes = ParamUtil.getParameterValues(
+			actionRequest, "keyType");
+
+		for (int i = 0; i < serviceNames.length; i++) {
+			String consumerKey = (String)ArrayUtil.getValue(
+				consumerKeys, i);
+
+			String consumerSecret = (String)ArrayUtil.getValue(
+				consumerSecrets, i);
+
+			if (Validator.isNull(consumerKey)) {
+				consumerKey = StringPool.BLANK;
+			}
+
+			if (Validator.isNull(consumerSecret)) {
+				consumerSecret = StringPool.BLANK;
+			}
+
+			if (oAuthConsumerIds[i] <= 0) {
+				OAuthConsumerLocalServiceUtil.addOAuthConsumer(
+					themeDisplay.getCompanyId(), gadgetKey, serviceNames[i],
+					consumerKey, consumerSecret, keyTypes[i]);
+			}
+			else {
+				OAuthConsumerLocalServiceUtil.updateOAuthConsumer(
+					oAuthConsumerIds[i], consumerKey, consumerSecret,
+					keyTypes[i], StringPool.BLANK, StringPool.BLANK);
+			}
+		}
 	}
 
 	private static final String _COLUMN_USER_PREFS = "USER_PREFS_";

@@ -28,6 +28,8 @@ PortletPreferences preferences = PortletPreferencesFactoryUtil.getPortletSetup(r
 String url = PrefsParamUtil.getString(preferences, request, "url", StringPool.BLANK);
 
 Map<String, UserPref> userPrefs = (Map<String, UserPref>)renderRequest.getAttribute(WebKeys.USER_PREFS);
+
+Map<String, OAuthService> oAuthServices = (Map<String, OAuthService>)renderRequest.getAttribute(WebKeys.OAUTH_SERVICES);
 %>
 
 <liferay-portlet:renderURL var="portletURL" portletConfiguration="true">
@@ -42,16 +44,36 @@ Map<String, UserPref> userPrefs = (Map<String, UserPref>)renderRequest.getAttrib
 	<aui:input name="tabs2" type="hidden" value="<%= tabs2 %>" />
 	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
 
+	<%
+	String tabs2Names = "gadget";
+	%>
+
+	<c:if test="<%= oAuthServices != null %>">
+
+		<%
+		tabs2Names = tabs2Names.concat(",manage-oauth");
+		%>
+
+	</c:if>
+
 	<c:if test="<%= userPrefs != null %>">
+
+		<%
+		tabs2Names = tabs2Names.concat(",preferences");
+		%>
+
+	</c:if>
+
+	<c:if test='<%= !tabs2Names.equals("gadget") %>'>
 		<liferay-ui:tabs
-			names="gadget,preferences"
+			names="<%= tabs2Names %>"
 			param="tabs2"
 			url="<%= portletURL %>"
 		/>
 	</c:if>
 
 	<c:choose>
-		<c:when test='<%= tabs2.equals("gadget") || (userPrefs == null) %>'>
+		<c:when test='<%= tabs2.equals("gadget") || tabs2Names.equals("gadget") %>'>
 			<aui:fieldset>
 				<aui:input cssClass="lfr-input-text-container" label="url" name="preferences--url--" type="text" value="<%= url %>" />
 			</aui:fieldset>
@@ -60,7 +82,10 @@ Map<String, UserPref> userPrefs = (Map<String, UserPref>)renderRequest.getAttrib
 				<aui:button type="submit" />
 			</aui:button-row>
 		</c:when>
-		<c:when test='<%= tabs2.equals("preferences") && (userPrefs != null) %>'>
+		<c:when test='<%= tabs2.equals("manage-oauth") %>'>
+			<liferay-util:include page="/admin/edit_oauth_consumers.jsp" servletContext="<%= application %>" />
+		</c:when>
+		<c:when test='<%= tabs2.equals("preferences") %>'>
 			<liferay-util:include page="/gadget/configuration.jsp" servletContext="<%= application %>" />
 		</c:when>
 	</c:choose>

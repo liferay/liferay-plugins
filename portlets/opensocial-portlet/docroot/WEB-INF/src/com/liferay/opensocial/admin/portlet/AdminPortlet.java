@@ -17,9 +17,9 @@ package com.liferay.opensocial.admin.portlet;
 import com.liferay.opensocial.model.Gadget;
 import com.liferay.opensocial.service.GadgetLocalServiceUtil;
 import com.liferay.opensocial.service.OAuthConsumerLocalServiceUtil;
+import com.liferay.opensocial.shindig.util.ShindigUtil;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.security.permission.PermissionChecker;
@@ -77,20 +77,13 @@ public class AdminPortlet extends MVCPortlet {
 		}
 	}
 
-	public void updateOAuthConsumer(
+	public void updateOAuthConsumers(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
 		checkPermissions(actionRequest);
 
-		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
-
-		if (cmd.equals(Constants.ADD)) {
-			doAddOAuthConsumer(actionRequest, actionResponse);
-		}
-		else if (cmd.equals(Constants.UPDATE)) {
-			doUpdateOAuthConsumer(actionRequest, actionResponse);
-		}
+		ShindigUtil.updateOAuthConsumers(actionRequest, actionResponse);
 	}
 
 	protected void checkPermissions(PortletRequest portletRequest)
@@ -126,25 +119,6 @@ public class AdminPortlet extends MVCPortlet {
 			serviceContext);
 	}
 
-	protected void doAddOAuthConsumer(
-			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws Exception {
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		long gadgetId = ParamUtil.getLong(actionRequest, "gadgetId");
-		String serviceName = ParamUtil.getString(actionRequest, "serviceName");
-		String consumerKey = ParamUtil.getString(actionRequest, "consumerKey");
-		String consumerSecret = ParamUtil.getString(
-			actionRequest, "consumerSecret");
-		String keyType = ParamUtil.getString(actionRequest, "keyType");
-
-		OAuthConsumerLocalServiceUtil.addOAuthConsumer(
-			themeDisplay.getCompanyId(), gadgetId, serviceName, consumerKey,
-			consumerSecret, keyType);
-	}
-
 	protected void doUpdateGadget(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
@@ -155,23 +129,6 @@ public class AdminPortlet extends MVCPortlet {
 			actionRequest, "portletCategoryNames");
 
 		GadgetLocalServiceUtil.updateGadget(gadgetId, portletCategoryNames);
-	}
-
-	protected void doUpdateOAuthConsumer(
-			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws Exception {
-
-		long oAuthConsumerId = ParamUtil.getLong(
-			actionRequest, "oAuthConsumerId");
-
-		String consumerKey = ParamUtil.getString(actionRequest, "consumerKey");
-		String consumerSecret = ParamUtil.getString(
-			actionRequest, "consumerSecret");
-		String keyType = ParamUtil.getString(actionRequest, "keyType");
-
-		OAuthConsumerLocalServiceUtil.updateOAuthConsumer(
-			oAuthConsumerId, consumerKey, consumerSecret, keyType,
-			StringPool.BLANK, StringPool.BLANK);
 	}
 
 }
