@@ -20,8 +20,6 @@
 long repositoryId = themeDisplay.getScopeGroupId();
 
 Folder rootFolder = ShindigUtil.getGadgetEditorRootFolder(repositoryId);
-
-boolean publishGadgetPermission = GadgetPermission.contains(themeDisplay.getPermissionChecker(), themeDisplay.getScopeGroupId(), ActionKeys.PUBLISH_GADGET);
 %>
 
 <div id="<portlet:namespace />editor"></div>
@@ -37,7 +35,7 @@ boolean publishGadgetPermission = GadgetPermission.contains(themeDisplay.getPerm
 			editorGadgetURL: '<%= editorGadgetURL %>',
 			gadgetPortletId: '<%= portletDisplay.getId() %>',
 			gadgetServerBase: '<%= renderRequest.getContextPath() %>/gadgets/',
-			publishGadgetPermission: <%= publishGadgetPermission %>,
+			publishGadgetPermission: <%= GadgetPermission.contains(themeDisplay.getPermissionChecker(), themeDisplay.getScopeGroupId(), ActionKeys.PUBLISH_GADGET) %>,
 			repositoryId: '<%= repositoryId %>',
 			resourceURL: '<portlet:resourceURL />',
 			rootFolderId: '<%= rootFolder.getFolderId() %>'
