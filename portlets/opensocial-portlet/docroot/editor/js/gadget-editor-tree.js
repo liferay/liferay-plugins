@@ -403,7 +403,7 @@ AUI().add(
 								}
 							);
 
-							var publishMenuButton= new A.ButtonItem(
+							var publishMenuButton = new A.ButtonItem(
 								{
 									disabled: !instance.get(OWNER_TREE).get('publishGadgetPermission'),
 									handler: function(event) {
