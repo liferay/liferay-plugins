@@ -201,6 +201,10 @@
     color: #FF0000 !important;
 }
 
+.CodeMirror-scroll {
+	height: 100%;
+}
+
 .codemirror-activeline {
 	background: #F0FCFF !important;
 }
