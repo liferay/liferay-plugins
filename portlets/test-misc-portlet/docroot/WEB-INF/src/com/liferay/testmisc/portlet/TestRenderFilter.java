@@ -33,7 +33,9 @@ import javax.portlet.filter.RenderFilter;
 public class TestRenderFilter implements RenderFilter {
 
 	public void init(FilterConfig filterConfig) {
-		_log.info("Init");
+		Log log = LogFactoryUtil.getLog(TestRenderFilter.class);
+
+		log.info("Init");
 	}
 
 	public void doFilter(
@@ -41,7 +43,9 @@ public class TestRenderFilter implements RenderFilter {
 			FilterChain filterChain)
 		throws IOException, PortletException {
 
-		_log.info("Before filter");
+		Log log = LogFactoryUtil.getLog(TestRenderFilter.class);
+
+		log.info("Before filter");
 
 		TestRenderResponse testRenderResponse = new TestRenderResponse(
 			renderResponse);
@@ -52,13 +56,13 @@ public class TestRenderFilter implements RenderFilter {
 
 		printWriter.print(testRenderResponse.getString());
 
-		_log.info("After filter");
+		log.info("After filter");
 	}
 
 	public void destroy() {
-		_log.info("Destroy");
-	}
+		Log log = LogFactoryUtil.getLog(TestRenderFilter.class);
 
-	private static Log _log = LogFactoryUtil.getLog(TestRenderFilter.class);
+		log.info("Destroy");
+	}
 
 }
