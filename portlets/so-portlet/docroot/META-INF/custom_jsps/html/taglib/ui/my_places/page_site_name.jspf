@@ -28,7 +28,7 @@ boolean socialOfficeEnabled = GetterUtil.getBoolean(myPlace.getExpandoBridge().g
 				<liferay-ui:icon message="<%= myPlace.getDescriptiveName() %>" src='<%= themeDisplay.getPathContext() + "/html/icons/social_office.png" %>' />
 			</c:when>
 			<c:otherwise>
-				<liferay-ui:icon message="<%= myPlace.getDescriptiveName() %>" src='<%= themeDisplay.getPathContext() + "/html/icons/enterprise_admin_communities.png" %>' />
+				<liferay-ui:icon message="<%= myPlace.getDescriptiveName() %>" src='<%= themeDisplay.getPathContext() + "/html/icons/sites_admin.png" %>' />
 			</c:otherwise>
 		</c:choose>
 	</c:if>
