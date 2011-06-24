@@ -348,10 +348,6 @@ public class EditorPortlet extends AdminPortlet {
 			PermissionChecker permissionChecker =
 				themeDisplay.getPermissionChecker();
 
-			boolean publishGadgetPermission = GadgetPermission.contains(
-				permissionChecker, themeDisplay.getScopeGroupId(),
-				ActionKeys.PUBLISH_GADGET);
-
 			List<FileEntry> fileEntries = DLAppServiceUtil.getFileEntries(
 				repositoryId, folderId);
 
@@ -388,9 +384,6 @@ public class EditorPortlet extends AdminPortlet {
 
 				JSONObject jsonPermissions =
 					JSONFactoryUtil.createJSONObject();
-
-				jsonPermissions.put(
-					"publishGadgetPermission", publishGadgetPermission);
 
 				if (gadgetId > 0) {
 					boolean unpublishPermission = GadgetPermission.contains(

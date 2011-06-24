@@ -35,6 +35,7 @@ Folder rootFolder = ShindigUtil.getGadgetEditorRootFolder(repositoryId);
 			editorGadgetURL: '<%= editorGadgetURL %>',
 			gadgetPortletId: '<%= portletDisplay.getId() %>',
 			gadgetServerBase: '<%= renderRequest.getContextPath() %>/gadgets/',
+			publishGadgetPermission: <%= GadgetPermission.contains(themeDisplay.getPermissionChecker(), themeDisplay.getScopeGroupId(), ActionKeys.PUBLISH_GADGET) %>,
 			repositoryId: '<%= repositoryId %>',
 			resourceURL: '<portlet:resourceURL />',
 			rootFolderId: '<%= rootFolder.getFolderId() %>'

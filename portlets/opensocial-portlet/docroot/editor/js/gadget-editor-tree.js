@@ -56,6 +56,8 @@ AUI().add(
 				ATTRS: {
 					activeEditable: {},
 
+					publishGadgetPermission: {},
+
 					treeActionOverlayManager: {
 						valueFn: function() {
 							return new A.OverlayManager();
@@ -401,8 +403,9 @@ AUI().add(
 								}
 							);
 
-							var publishMenuButton= new A.ButtonItem(
+							var publishMenuButton = new A.ButtonItem(
 								{
+									disabled: !instance.get(OWNER_TREE).get('publishGadgetPermission'),
 									handler: function(event) {
 										var buttonItem = event.target;
 
@@ -743,10 +746,6 @@ AUI().add(
 								unpublishMenuButton.show();
 							}
 							else {
-								var publishGadgetPermission = instance.get(PERMISSIONS).publishGadgetPermission;
-
-								publishMenuButton.set(DISABLED, !publishGadgetPermission);
-
 								publishMenuButton.show();
 								publishMenuButton.get('boundingBox').addClass('last', true)
 								unpublishMenuButton.hide();
