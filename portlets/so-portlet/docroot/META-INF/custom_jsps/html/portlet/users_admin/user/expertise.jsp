@@ -17,6 +17,6 @@
  */
 --%>
 
-<%@ include file="/html/portlet/enterprise_admin/init.jsp" %>
+<%@ include file="/html/portlet/users_admin/init.jsp" %>
 
 <liferay-util:include page="/expertise/edit_projects.jsp" portletId="4_WAR_soportlet" />

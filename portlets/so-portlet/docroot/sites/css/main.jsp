@@ -27,7 +27,7 @@
 		margin: 1em 0;
 
 		li {
-			background: url(<%= PortalUtil.getPathContext() %>/html/icons/enterprise_admin_communities.png) no-repeat 10px 3px;
+			background: url(<%= PortalUtil.getPathContext() %>/html/icons/sites_admin.png) no-repeat 10px 3px;
 			border: 1px solid #E8EFF4;
 			margin: 4px;
 			padding: 3px 10px 3px 30px;
@@ -89,7 +89,7 @@
 		margin: 1em 0;
 
 		li {
-			background: url(<%= PortalUtil.getPathContext() %>/html/icons/enterprise_admin_communities.png) no-repeat 5px 5px;
+			background: url(<%= PortalUtil.getPathContext() %>/html/icons/sites_admin.png) no-repeat 5px 5px;
 			padding: 5px 10px 5px 25px;
 
 			.join {
