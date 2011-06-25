@@ -46,7 +46,7 @@
 					/>
 				</p>
 			</c:when>
-			<c:otherwise>
+			<c:when test="<%= GroupLocalServiceUtil.hasUserGroup(user.getUserId(), group.getGroupId(), false) %>">
 
 				<%
 				PortletURL joinGroupURL = renderResponse.createActionURL();
@@ -63,7 +63,7 @@
 						label="<%= true %>"
 					/>
 				</p>
-			</c:otherwise>
+			</c:when>
 		</c:choose>
 	</c:if>
 </div>
