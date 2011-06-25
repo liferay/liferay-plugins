@@ -14,7 +14,6 @@
 
 package com.liferay.knowledgebase.hook.upgrade.v1_1_0.util;
 
-import com.liferay.documentlibrary.service.DLLocalServiceUtil;
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -23,6 +22,7 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.model.GroupConstants;
 import com.liferay.portal.service.ServiceContext;
+import com.liferay.portlet.documentlibrary.store.DLStoreUtil;
 
 /**
  * @author Peter Shin
@@ -31,7 +31,7 @@ public class KBArticleAttachmentsUtil {
 
 	public static void deleteAttachmentsDirectory(long companyId) {
 		try {
-			String[] fileNames = DLLocalServiceUtil.getFileNames(
+			String[] fileNames = DLStoreUtil.getFileNames(
 				companyId, CompanyConstants.SYSTEM, "knowledgebase/articles");
 
 			if (fileNames.length > 0) {
@@ -42,7 +42,7 @@ public class KBArticleAttachmentsUtil {
 				return;
 			}
 
-			DLLocalServiceUtil.deleteDirectory(
+			DLStoreUtil.deleteDirectory(
 				companyId, CompanyConstants.SYSTEM_STRING,
 				CompanyConstants.SYSTEM, "knowledgebase/articles");
 		}
@@ -58,10 +58,10 @@ public class KBArticleAttachmentsUtil {
 			String oldDirName = "knowledgebase/articles/" + folderId;
 			String newDirName = "knowledgebase/kbarticles/" + folderId;
 
-			DLLocalServiceUtil.addDirectory(
+			DLStoreUtil.addDirectory(
 				kbArticle.getCompanyId(), CompanyConstants.SYSTEM, newDirName);
 
-			String[] fileNames = DLLocalServiceUtil.getFileNames(
+			String[] fileNames = DLStoreUtil.getFileNames(
 				kbArticle.getCompanyId(), CompanyConstants.SYSTEM, oldDirName);
 
 			ServiceContext serviceContext = new ServiceContext();
@@ -71,11 +71,11 @@ public class KBArticleAttachmentsUtil {
 
 			for (String fileName : fileNames) {
 				String shortFileName = FileUtil.getShortFileName(fileName);
-				byte[] bytes = DLLocalServiceUtil.getFile(
+				byte[] bytes = DLStoreUtil.getFile(
 					kbArticle.getCompanyId(), CompanyConstants.SYSTEM,
 					fileName);
 
-				DLLocalServiceUtil.addFile(
+				DLStoreUtil.addFile(
 					kbArticle.getCompanyId(), CompanyConstants.SYSTEM_STRING,
 					GroupConstants.DEFAULT_PARENT_GROUP_ID,
 					CompanyConstants.SYSTEM,
@@ -84,7 +84,7 @@ public class KBArticleAttachmentsUtil {
 					serviceContext, bytes);
 			}
 
-			DLLocalServiceUtil.deleteDirectory(
+			DLStoreUtil.deleteDirectory(
 				kbArticle.getCompanyId(), CompanyConstants.SYSTEM_STRING,
 				CompanyConstants.SYSTEM, oldDirName);
 

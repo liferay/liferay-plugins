@@ -14,11 +14,6 @@
 
 package com.liferay.knowledgebase.section.portlet;
 
-import com.liferay.documentlibrary.DuplicateFileException;
-import com.liferay.documentlibrary.FileNameException;
-import com.liferay.documentlibrary.FileSizeException;
-import com.liferay.documentlibrary.NoSuchFileException;
-import com.liferay.documentlibrary.service.DLLocalServiceUtil;
 import com.liferay.knowledgebase.KBArticleContentException;
 import com.liferay.knowledgebase.KBArticlePriorityException;
 import com.liferay.knowledgebase.KBArticleSectionException;
@@ -61,6 +56,11 @@ import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
+import com.liferay.portlet.documentlibrary.DuplicateFileException;
+import com.liferay.portlet.documentlibrary.FileNameException;
+import com.liferay.portlet.documentlibrary.FileSizeException;
+import com.liferay.portlet.documentlibrary.NoSuchFileException;
+import com.liferay.portlet.documentlibrary.store.DLStoreUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 import com.liferay.util.servlet.PortletResponseUtil;
 
@@ -226,7 +226,7 @@ public class SectionPortlet extends MVCPortlet {
 		String fileName = ParamUtil.getString(resourceRequest, "fileName");
 
 		String shortFileName = FileUtil.getShortFileName(fileName);
-		InputStream is = DLLocalServiceUtil.getFileAsStream(
+		InputStream is = DLStoreUtil.getFileAsStream(
 			companyId, CompanyConstants.SYSTEM, fileName);
 		String contentType = MimeTypesUtil.getContentType(fileName);
 

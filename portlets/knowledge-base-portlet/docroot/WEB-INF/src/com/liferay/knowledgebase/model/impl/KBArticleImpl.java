@@ -14,8 +14,6 @@
 
 package com.liferay.knowledgebase.model.impl;
 
-import com.liferay.documentlibrary.NoSuchDirectoryException;
-import com.liferay.documentlibrary.service.DLLocalServiceUtil;
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.model.KBArticleConstants;
 import com.liferay.knowledgebase.model.KBTemplate;
@@ -25,6 +23,8 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.model.CompanyConstants;
+import com.liferay.portlet.documentlibrary.NoSuchDirectoryException;
+import com.liferay.portlet.documentlibrary.store.DLStoreUtil;
 
 /**
  * @author Peter Shin
@@ -43,7 +43,7 @@ public class KBArticleImpl extends KBArticleModelImpl implements KBArticle {
 		throws PortalException, SystemException {
 
 		try {
-			return DLLocalServiceUtil.getFileNames(
+			return DLStoreUtil.getFileNames(
 				getCompanyId(), CompanyConstants.SYSTEM,
 				getAttachmentsDirName());
 		}

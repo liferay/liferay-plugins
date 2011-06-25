@@ -14,9 +14,6 @@
 
 package com.liferay.knowledgebase.service.impl;
 
-import com.liferay.documentlibrary.DuplicateDirectoryException;
-import com.liferay.documentlibrary.DuplicateFileException;
-import com.liferay.documentlibrary.NoSuchDirectoryException;
 import com.liferay.knowledgebase.KBArticleContentException;
 import com.liferay.knowledgebase.KBArticlePriorityException;
 import com.liferay.knowledgebase.KBArticleSectionException;
@@ -72,6 +69,9 @@ import com.liferay.portal.service.ServiceContextUtil;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.SubscriptionSender;
 import com.liferay.portlet.asset.model.AssetEntry;
+import com.liferay.portlet.documentlibrary.DuplicateDirectoryException;
+import com.liferay.portlet.documentlibrary.DuplicateFileException;
+import com.liferay.portlet.documentlibrary.NoSuchDirectoryException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -93,7 +93,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
-		dlLocalService.addFile(
+		dlStore.addFile(
 			serviceContext.getCompanyId(), CompanyConstants.SYSTEM_STRING,
 			GroupConstants.DEFAULT_PARENT_GROUP_ID, CompanyConstants.SYSTEM,
 			dirName + StringPool.SLASH + shortFileName, 0, StringPool.BLANK,
@@ -216,7 +216,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	public void deleteAttachment(long companyId, String fileName)
 		throws PortalException, SystemException {
 
-		dlLocalService.deleteFile(
+		dlStore.deleteFile(
 			companyId, CompanyConstants.SYSTEM_STRING, CompanyConstants.SYSTEM,
 			fileName);
 	}
@@ -714,7 +714,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		dirName =
 			"knowledgebase/temp/attachments/" + counterLocalService.increment();
 
-		dlLocalService.addDirectory(
+		dlStore.addDirectory(
 			serviceContext.getCompanyId(), CompanyConstants.SYSTEM, dirName);
 
 		if (resourcePrimKey <= 0) {
@@ -727,7 +727,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		for (String fileName : kbArticle.getAttachmentsFileNames()) {
 			String shortFileName = FileUtil.getShortFileName(fileName);
 
-			byte[] bytes = dlLocalService.getFile(
+			byte[] bytes = dlStore.getFile(
 				kbArticle.getCompanyId(), CompanyConstants.SYSTEM, fileName);
 
 			addAttachment(dirName, shortFileName, bytes, serviceContext);
@@ -1039,7 +1039,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		throws PortalException, SystemException {
 
 		try {
-			dlLocalService.addDirectory(
+			dlStore.addDirectory(
 				serviceContext.getCompanyId(), CompanyConstants.SYSTEM,
 				kbArticle.getAttachmentsDirName());
 		}
@@ -1051,11 +1051,11 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			return;
 		}
 
-		String[] fileNames = dlLocalService.getFileNames(
+		String[] fileNames = dlStore.getFileNames(
 			serviceContext.getCompanyId(), CompanyConstants.SYSTEM, dirName);
 
 		for (String fileName : fileNames) {
-			byte[] bytes = dlLocalService.getFile(
+			byte[] bytes = dlStore.getFile(
 				serviceContext.getCompanyId(), CompanyConstants.SYSTEM,
 				fileName);
 
@@ -1163,22 +1163,22 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		String dirName =
 			"knowledgebase/temp/attachments/" + counterLocalService.increment();
 
-		dlLocalService.addDirectory(
+		dlStore.addDirectory(
 			companyId, CompanyConstants.SYSTEM, dirName);
 
-		String[] fileNames = dlLocalService.getFileNames(
+		String[] fileNames = dlStore.getFileNames(
 			companyId, CompanyConstants.SYSTEM,
 			"knowledgebase/temp/attachments");
 
 		Arrays.sort(fileNames);
 
 		for (int i = 0; i < fileNames.length - 50; i++) {
-			dlLocalService.deleteDirectory(
+			dlStore.deleteDirectory(
 				companyId, CompanyConstants.SYSTEM_STRING,
 				CompanyConstants.SYSTEM, fileNames[i]);
 		}
 
-		dlLocalService.deleteDirectory(
+		dlStore.deleteDirectory(
 			companyId, CompanyConstants.SYSTEM_STRING, CompanyConstants.SYSTEM,
 			dirName);
 	}
@@ -1211,7 +1211,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		throws PortalException, SystemException {
 
 		try {
-			dlLocalService.deleteDirectory(
+			dlStore.deleteDirectory(
 				kbArticle.getCompanyId(), CompanyConstants.SYSTEM_STRING,
 				CompanyConstants.SYSTEM,
 				KBArticleConstants.DIR_NAME_PREFIX + folderId);
