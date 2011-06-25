@@ -175,7 +175,6 @@ public class KBCommentClp extends BaseModelImpl<KBComment> implements KBComment 
 		_helpful = helpful;
 	}
 
-	@Override
 	public KBComment toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -186,7 +185,6 @@ public class KBCommentClp extends BaseModelImpl<KBComment> implements KBComment 
 		}
 	}
 
-	@Override
 	public Object clone() {
 		KBCommentClp clone = new KBCommentClp();
 
@@ -221,7 +219,6 @@ public class KBCommentClp extends BaseModelImpl<KBComment> implements KBComment 
 		return 0;
 	}
 
-	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -246,12 +243,10 @@ public class KBCommentClp extends BaseModelImpl<KBComment> implements KBComment 
 		}
 	}
 
-	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
-	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(25);
 

@@ -14,7 +14,6 @@
 
 package com.liferay.knowledgebase.admin.util;
 
-import com.liferay.documentlibrary.service.DLLocalServiceUtil;
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
 import com.liferay.knowledgebase.service.permission.KBArticlePermission;
@@ -34,6 +33,7 @@ import com.liferay.portal.security.permission.PermissionCheckerFactoryUtil;
 import com.liferay.portal.security.permission.PermissionThreadLocal;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.SubscriptionSender;
+import com.liferay.portlet.documentlibrary.store.DLStoreUtil;
 
 import java.util.Locale;
 
@@ -81,7 +81,7 @@ public class AdminSubscriptionSender extends SubscriptionSender {
 		StringBundler sb = new StringBundler(fileNames.length * 5);
 
 		for (String fileName : fileNames) {
-			long kb = DLLocalServiceUtil.getFileSize(
+			long kb = DLStoreUtil.getFileSize(
 				companyId, CompanyConstants.SYSTEM, fileName);
 
 			sb.append(FileUtil.getShortFileName(fileName));

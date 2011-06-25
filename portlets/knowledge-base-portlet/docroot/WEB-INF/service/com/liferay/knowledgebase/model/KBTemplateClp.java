@@ -175,7 +175,6 @@ public class KBTemplateClp extends BaseModelImpl<KBTemplate>
 		throw new UnsupportedOperationException();
 	}
 
-	@Override
 	public KBTemplate toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -187,7 +186,6 @@ public class KBTemplateClp extends BaseModelImpl<KBTemplate>
 		}
 	}
 
-	@Override
 	public Object clone() {
 		KBTemplateClp clone = new KBTemplateClp();
 
@@ -222,7 +220,6 @@ public class KBTemplateClp extends BaseModelImpl<KBTemplate>
 		return 0;
 	}
 
-	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -247,12 +244,10 @@ public class KBTemplateClp extends BaseModelImpl<KBTemplate>
 		}
 	}
 
-	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
-	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(25);
 

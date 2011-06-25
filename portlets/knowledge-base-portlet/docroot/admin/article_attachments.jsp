@@ -38,7 +38,7 @@ String[] fileNames = kbArticle.getAttachmentsFileNames();
 				<liferay-ui:icon
 					image="clip"
 					label="<%= true %>"
-					message='<%= FileUtil.getShortFileName(fileName) + " (" + TextFormatter.formatKB(DLLocalServiceUtil.getFileSize(company.getCompanyId(), CompanyConstants.SYSTEM, fileName), locale) + "k)" %>'
+					message='<%= FileUtil.getShortFileName(fileName) + " (" + TextFormatter.formatKB(DLStoreUtil.getFileSize(company.getCompanyId(), CompanyConstants.SYSTEM, fileName), locale) + "k)" %>'
 					method="get"
 					url="<%= clipURL %>"
 				/>

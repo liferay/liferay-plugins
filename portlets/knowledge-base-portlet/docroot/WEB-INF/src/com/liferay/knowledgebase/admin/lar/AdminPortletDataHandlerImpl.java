@@ -15,7 +15,6 @@
 package com.liferay.knowledgebase.admin.lar;
 
 import com.liferay.counter.service.CounterLocalServiceUtil;
-import com.liferay.documentlibrary.service.DLLocalServiceUtil;
 import com.liferay.knowledgebase.admin.util.AdminUtil;
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.model.KBArticleConstants;
@@ -49,6 +48,7 @@ import com.liferay.portal.kernel.xml.SAXReaderUtil;
 import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.model.GroupConstants;
 import com.liferay.portal.service.ServiceContext;
+import com.liferay.portlet.documentlibrary.store.DLStoreUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -182,7 +182,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			String shortFileName = FileUtil.getShortFileName(fileName);
 
 			String path = rootPath + StringPool.SLASH + shortFileName;
-			byte[] bytes = DLLocalServiceUtil.getFile(
+			byte[] bytes = DLStoreUtil.getFile(
 				kbArticle.getCompanyId(), CompanyConstants.SYSTEM, fileName);
 
 			Element fileElement = kbArticleAttachmentsElement.addElement(
@@ -447,7 +447,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 				"knowledgebase/temp/import/" + importId + StringPool.SLASH +
 					resourcePrimKey;
 
-			DLLocalServiceUtil.addDirectory(
+			DLStoreUtil.addDirectory(
 				portletDataContext.getCompanyId(), CompanyConstants.SYSTEM,
 				dirName);
 
@@ -468,7 +468,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 				byte[] bytes = portletDataContext.getZipEntryAsByteArray(
 					fileElement.attributeValue("path"));
 
-				DLLocalServiceUtil.addFile(
+				DLStoreUtil.addFile(
 					portletDataContext.getCompanyId(),
 					CompanyConstants.SYSTEM_STRING,
 					GroupConstants.DEFAULT_PARENT_GROUP_ID,
@@ -547,7 +547,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		Map<String, String> dirNames = new HashMap<String, String>();
 
 		try {
-			DLLocalServiceUtil.addDirectory(
+			DLStoreUtil.addDirectory(
 				portletDataContext.getCompanyId(), CompanyConstants.SYSTEM,
 				"knowledgebase/temp/import/" + importId);
 
@@ -572,7 +572,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			}
 		}
 		finally {
-			DLLocalServiceUtil.deleteDirectory(
+			DLStoreUtil.deleteDirectory(
 				portletDataContext.getCompanyId(),
 				CompanyConstants.SYSTEM_STRING, CompanyConstants.SYSTEM,
 				"knowledgebase/temp/import/" + importId);
