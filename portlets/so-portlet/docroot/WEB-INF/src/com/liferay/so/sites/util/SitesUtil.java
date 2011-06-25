@@ -34,13 +34,12 @@ import java.util.List;
  */
 public class SitesUtil {
 
-	public static final int MAX_RESULT_SIZE = 10;
-
 	public static List<Group> getVisibleSites(
-		long companyId, long userId, String keywords) {
+		long companyId, long userId, String keywords, int maxResultSize) {
 
 		try {
-			return doGetVisibleSites(companyId, userId, keywords);
+			return doGetVisibleSites(
+				companyId, userId, keywords, maxResultSize);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -63,10 +62,10 @@ public class SitesUtil {
 	}
 
 	protected static List<Group> doGetVisibleSites(
-			long companyId, long userId, String keywords)
+			long companyId, long userId, String keywords, int maxResultSize)
 		throws Exception {
 
-		List<Group> groups = new ArrayList<Group>(MAX_RESULT_SIZE);
+		List<Group> groups = new ArrayList<Group>(maxResultSize);
 
 		LinkedHashMap<String, Object> params =
 			new LinkedHashMap<String, Object>();
@@ -74,12 +73,12 @@ public class SitesUtil {
 		params.put("usersGroups", userId);
 
 		List<Group> usersGroups = GroupLocalServiceUtil.search(
-			companyId, keywords, null, params, 0, MAX_RESULT_SIZE,
+			companyId, keywords, null, params, 0, maxResultSize,
 			new GroupNameComparator(true));
 
 		groups.addAll(usersGroups);
 
-		if (Validator.isNull(keywords) || (groups.size() >= MAX_RESULT_SIZE)) {
+		if (Validator.isNull(keywords) || (groups.size() >= maxResultSize)) {
 			return groups;
 		}
 
@@ -93,15 +92,15 @@ public class SitesUtil {
 		params.put("types", types);
 
 		List<Group> visibleGroup = GroupLocalServiceUtil.search(
-			companyId, keywords, null, params, 0, MAX_RESULT_SIZE,
-			new GroupNameComparator());
+			companyId, keywords, null, params, 0, maxResultSize,
+			new GroupNameComparator(true));
 
 		for (Group group : visibleGroup) {
 			if (!usersGroups.contains(group)) {
 				groups.add(group);
 			}
 
-			if (groups.size() > MAX_RESULT_SIZE) {
+			if (groups.size() > maxResultSize) {
 				break;
 			}
 		}
