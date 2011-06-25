@@ -28,5 +28,5 @@ if (Validator.isNotNull(portletResource)) {
 	preferences = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
 }
 
-int maxResultSize = GetterUtil.getInteger(preferences.getValue("maxResultSize", "10"));
+int maxResultSize = GetterUtil.getInteger(preferences.getValue("maxResultSize", null), 10);
 %>
