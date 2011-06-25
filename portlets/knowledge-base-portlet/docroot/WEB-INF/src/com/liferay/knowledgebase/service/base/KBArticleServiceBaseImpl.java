@@ -325,7 +325,7 @@ public abstract class KBArticleServiceBaseImpl extends PrincipalBean
 	/**
 	 * Sets the d l local service.
 	 *
-	 * @param Store the d l local service
+	 * @param dlStore the d l local service
 	 */
 	public void setDLStore(DLStore dlStore) {
 		this.dlStore = dlStore;
