@@ -101,6 +101,10 @@
 		<display-name>Sites</display-name>
 		<portlet-class>com.liferay.so.sites.portlet.SitesPortlet</portlet-class>
 		<init-param>
+			<name>config-jsp</name>
+			<value>/sites/configuration.jsp</value>
+		</init-param>
+		<init-param>
 			<name>view-jsp</name>
 			<value>/sites/view.jsp</value>
 		</init-param>
