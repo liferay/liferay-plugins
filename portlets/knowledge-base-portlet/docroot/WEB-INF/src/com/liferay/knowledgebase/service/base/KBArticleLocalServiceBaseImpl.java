@@ -16,6 +16,8 @@ package com.liferay.knowledgebase.service.base;
 
 import com.liferay.counter.service.CounterLocalService;
 
+import com.liferay.documentlibrary.service.DLLocalService;
+
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.service.KBArticleLocalService;
 import com.liferay.knowledgebase.service.KBArticleService;
@@ -68,7 +70,6 @@ import com.liferay.portal.service.persistence.WorkflowInstanceLinkPersistence;
 import com.liferay.portlet.asset.service.AssetEntryLocalService;
 import com.liferay.portlet.asset.service.AssetEntryService;
 import com.liferay.portlet.asset.service.persistence.AssetEntryPersistence;
-import com.liferay.portlet.documentlibrary.store.DLStore;
 import com.liferay.portlet.ratings.service.RatingsStatsLocalService;
 import com.liferay.portlet.ratings.service.persistence.RatingsStatsPersistence;
 import com.liferay.portlet.social.service.SocialActivityLocalService;
@@ -578,17 +579,17 @@ public abstract class KBArticleLocalServiceBaseImpl
 	 *
 	 * @return the d l local service
 	 */
-	public DLStore getDLStore() {
-		return dlStore;
+	public DLLocalService getDLLocalService() {
+		return dlLocalService;
 	}
 
 	/**
 	 * Sets the d l local service.
 	 *
-	 * @param dlStore the d l local service
+	 * @param dlLocalService the d l local service
 	 */
-	public void setDLStore(DLStore dlStore) {
-		this.dlStore = dlStore;
+	public void setDLLocalService(DLLocalService dlLocalService) {
+		this.dlLocalService = dlLocalService;
 	}
 
 	/**
@@ -1196,8 +1197,8 @@ public abstract class KBArticleLocalServiceBaseImpl
 	protected KBTemplatePersistence kbTemplatePersistence;
 	@BeanReference(type = CounterLocalService.class)
 	protected CounterLocalService counterLocalService;
-	@BeanReference(type = DLStore.class)
-	protected DLStore dlStore;
+	@BeanReference(type = DLLocalService.class)
+	protected DLLocalService dlLocalService;
 	@BeanReference(type = CompanyLocalService.class)
 	protected CompanyLocalService companyLocalService;
 	@BeanReference(type = CompanyService.class)
