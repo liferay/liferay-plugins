@@ -61,8 +61,9 @@ public class WeatherWebCacheItem implements WebCacheItem {
 
 			Element iconEl = currentConditionsEl.element("icon");
 
+			// LPS-15345
 			String iconURL =
-				"http://www.google.com" + iconEl.attributeValue("data");
+				"//www.google.com" + iconEl.attributeValue("data");
 
 			weather = new Weather(_zip, iconURL, temperature);
 		}
