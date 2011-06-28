@@ -46,7 +46,7 @@
 					/>
 				</p>
 			</c:when>
-			<c:when test="<%= GroupLocalServiceUtil.hasUserGroup(user.getUserId(), group.getGroupId(), false) %>">
+			<c:when test="<%= !GroupLocalServiceUtil.hasUserGroup(user.getUserId(), group.getGroupId()) %>">
 
 				<%
 				PortletURL joinGroupURL = renderResponse.createActionURL();
