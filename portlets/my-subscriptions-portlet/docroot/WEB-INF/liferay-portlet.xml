@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE liferay-portlet-app PUBLIC "-//Liferay//DTD Portlet Application 6.0.0//EN" "http://www.liferay.com/dtd/liferay-portlet-app_6_0_0.dtd">
+
+<liferay-portlet-app>
+	<portlet>
+		<portlet-name>1</portlet-name>
+		<icon>/icon.png</icon>
+		<control-panel-entry-category>my</control-panel-entry-category>
+		<control-panel-entry-weight>1.5</control-panel-entry-weight>
+		<control-panel-entry-class>com.liferay.mysubscriptions.controlpanel.MySubscriptionsControlPanelEntry</control-panel-entry-class>
+		<preferences-owned-by-group>true</preferences-owned-by-group>
+		<header-portlet-css>/css/main.css</header-portlet-css>
+		<css-class-wrapper>my-subscriptions-portlet</css-class-wrapper>
+		<system>true</system>
+	</portlet>
+</liferay-portlet-app>
