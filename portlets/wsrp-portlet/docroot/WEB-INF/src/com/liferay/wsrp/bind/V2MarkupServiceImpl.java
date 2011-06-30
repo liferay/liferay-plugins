@@ -564,7 +564,7 @@ public class V2MarkupServiceImpl
 		try {
 			List<Layout> layouts = LayoutLocalServiceUtil.getLayouts(
 				wsrpProducer.getGroupId(), false,
-				LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, 0, 1);
+				LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, false, 0, 1);
 
 			if (layouts.isEmpty()) {
 				throw new NoSuchLayoutException();
