@@ -102,10 +102,10 @@ catch (NoSuchRecordSetException nsrse) {
 boolean showAddListIcon = PortletPermissionUtil.contains(permissionChecker, plid, portletDisplay.getId(), ActionKeys.CONFIGURATION) && permissionChecker.hasPermission(scopeGroupId, "com.liferay.portlet.dynamicdatalists", scopeGroupId, ActionKeys.ADD_RECORD_SET);
 boolean showAddTemplateIcon = (recordSet != null) && permissionChecker.hasPermission(scopeGroupId, "com.liferay.portlet.dynamicdatamapping", scopeGroupId, ActionKeys.ADD_TEMPLATE);
 boolean showEditTemplateIcon = (ddmTemplate != null) && (permissionChecker.hasOwnerPermission(ddmTemplate.getCompanyId(), DDMTemplate.class.getName(), ddmTemplate.getTemplateId(), ddmTemplate.getUserId(), ActionKeys.UPDATE) || permissionChecker.hasPermission(ddmTemplate.getGroupId(), DDMTemplate.class.getName(), ddmTemplate.getTemplateId(), ActionKeys.UPDATE));
-boolean showSelectArticleIcon = PortletPermissionUtil.contains(permissionChecker, plid, portletDisplay.getId(), ActionKeys.CONFIGURATION);
+boolean showSelectListIcon = PortletPermissionUtil.contains(permissionChecker, plid, portletDisplay.getId(), ActionKeys.CONFIGURATION);
 %>
 
-<c:if test="<%= themeDisplay.isSignedIn() && (showEditTemplateIcon || showSelectArticleIcon || showAddListIcon) %>">
+<c:if test="<%= themeDisplay.isSignedIn() && (showEditTemplateIcon || showSelectListIcon || showAddListIcon) %>">
 	<div class="lfr-meta-actions icons-container">
 		<div class="icon-actions">
 			<c:if test="<%= showAddTemplateIcon %>">
@@ -121,7 +121,7 @@ boolean showSelectArticleIcon = PortletPermissionUtil.contains(permissionChecker
 
 				<liferay-ui:icon
 					image="add_template"
-					message="add-template"
+					message="add-form"
 					url="<%= addTemplateURL %>"
 				/>
 			</c:if>
@@ -138,12 +138,12 @@ boolean showSelectArticleIcon = PortletPermissionUtil.contains(permissionChecker
 
 				<liferay-ui:icon
 					image="../file_system/small/xml"
-					message="edit-template"
+					message="edit-form"
 					url="<%= editTemplateURL %>"
 				/>
 			</c:if>
 
-			<c:if test="<%= showSelectArticleIcon %>">
+			<c:if test="<%= showSelectListIcon %>">
 				<liferay-ui:icon
 					cssClass="portlet-configuration"
 					image="configuration"
