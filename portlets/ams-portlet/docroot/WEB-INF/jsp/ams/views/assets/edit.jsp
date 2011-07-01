@@ -14,7 +14,7 @@
  */
 --%>
 
-<%@ include file="/WEB-INF/jsp/views/init.jsp" %>
+<%@ include file="/WEB-INF/jsp/ams/views/init.jsp" %>
 
 <portlet:renderURL var="viewAssetsURL">
 	<portlet:param name="controller" value="assets" />
