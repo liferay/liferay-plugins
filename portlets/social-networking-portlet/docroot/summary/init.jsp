@@ -24,7 +24,7 @@ long blogsPlid = PortalUtil.getPlidFromPortletId(group.getGroupId(), PortletKeys
 String blogsFriendlyURL = null;
 
 if (blogsPlid != LayoutConstants.DEFAULT_PLID) {
-	blogsFriendlyURL = PortalUtil.getLayoutFullURL(group.getGroupId(), PortletKeys.BLOGS);
+	blogsFriendlyURL = PortalUtil.getLayoutFullURL(group.getGroupId(), PortletKeys.BLOGS, request.isSecure());
 }
 
 long mbPlid = PortalUtil.getPlidFromPortletId(guestGroup.getGroupId(), PortletKeys.MESSAGE_BOARDS);
@@ -32,6 +32,6 @@ long mbPlid = PortalUtil.getPlidFromPortletId(guestGroup.getGroupId(), PortletKe
 String mbFriendlyURL = null;
 
 if (mbPlid != LayoutConstants.DEFAULT_PLID) {
-	mbFriendlyURL = PortalUtil.getLayoutFullURL(guestGroup.getGroupId(), PortletKeys.MESSAGE_BOARDS);
+	mbFriendlyURL = PortalUtil.getLayoutFullURL(guestGroup.getGroupId(), PortletKeys.MESSAGE_BOARDS, request.isSecure());
 }
 %>
