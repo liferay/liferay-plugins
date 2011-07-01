@@ -6,7 +6,7 @@
 		<portlet-name>1</portlet-name>
 		<friendly-url-mapper-class>com.liferay.util.bridges.alloy.AlloyFriendlyURLMapper</friendly-url-mapper-class>
 		<friendly-url-mapping>ams</friendly-url-mapping>
-		<friendly-url-routes>com/liferay/util/bridges/alloy/alloy-friendly-url-routes.xml</friendly-url-routes>
+		<friendly-url-routes>com/liferay/util/bridges/alloy/alloy-friendly-url-routes.xml?controller=assets</friendly-url-routes>
 		<css-class-wrapper>ams-portlet</css-class-wrapper>
 	</portlet>
 </liferay-portlet-app>
