@@ -30,13 +30,19 @@
 		<liferay-portlet:renderURL varImpl="iteratorURL" />
 
 		<liferay-ui:search-container
+			deltaConfigurable="<%= true %>"
+			emptyResultsMessage="no-subscriptions-were-found"
+			iteratorURL="<%= iteratorURL %>"
 			rowChecker="<%= new RowChecker(renderResponse) %>"
-			searchContainer="<%= new SubscriptionSearch(renderRequest, iteratorURL) %>"
 		>
 			<liferay-ui:search-container-results
-				results="<%= SubscriptionTransactionUtil.getSubscriptions(user.getUserId(), searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator()) %>"
+				results="<%= SubscriptionTransactionUtil.getSubscriptions(user.getUserId(), searchContainer.getStart(), searchContainer.getEnd(),new SubscriptionClassNameIdComparator(true)) %>"
 				total="<%= SubscriptionTransactionUtil.getSubscriptionsCount(user.getUserId()) %>"
 			/>
+
+			<%
+				String subscriptionClassName = StringPool.BLANK;
+			%>
 
 			<liferay-ui:search-container-row
 				className="com.liferay.portal.model.Subscription"
@@ -46,33 +52,67 @@
 			>
 
 				<%
+				if (!subscription.getClassName().equals(subscriptionClassName)) {
+					subscriptionClassName = subscription.getClassName();
+
+					ResultRow insertRow = new ResultRow(null, 0, searchContainer.getCur());
+
+					insertRow.addText("left", "top", 4, MySubscriptionsUtil.getClassNameIdText(subscription.getClassNameId(), locale));
+					insertRow.setClassHoverName("asset-name");
+					insertRow.setClassName("asset-name");
+
+					List resultRows = searchContainer.getResultRows();
+
+					resultRows.add(insertRow);
+				}
+
 				AssetRenderer assetRenderer = MySubscriptionsUtil.getAssetRenderer(subscription.getClassName(), subscription.getClassPK());
 
 				String rowURL = null;
+				String popupURL = null;
 
 				if (assetRenderer != null) {
 					rowURL = assetRenderer.getURLViewInContext((LiferayPortletRequest)renderRequest, (LiferayPortletResponse)renderResponse, currentURL);
+
+					PortletURL popupPortletURL = assetRenderer.getURLView((LiferayPortletResponse)renderResponse, LiferayWindowState.POP_UP);
+
+					if (popupPortletURL != null) {
+						popupURL = "javascript:displayPopup('" + popupPortletURL.toString() + "', 'my-subscription');";
+					}
+
+				}
+				else {
+					rowURL = MySubscriptionsUtil.getAssetURLViewInContext(subscription.getClassName(), subscription.getClassPK());
 				}
 				%>
 
 				<liferay-ui:search-container-column-text
 					href="<%= rowURL %>"
-					name="class-name-id"
-					orderable="<%= true %>"
+					name="title"
+				>
+					<aui:column first="true" width="80">
+						<%= MySubscriptionsUtil.getTitleText(subscription.getClassName(), subscription.getClassPK(), ((assetRenderer != null) ? assetRenderer.getTitle(locale) : null)) %>
+					</aui:column>
+
+					<c:if test="<%= popupURL != null %>">
+						<aui:column last="true" width="20">
+							<liferay-ui:icon
+								image="open_window"
+								url="<%= popupURL %>"
+							/>
+						</aui:column>
+					</c:if>
+				</liferay-ui:search-container-column-text>
+
+				<liferay-ui:search-container-column-text
+					href="<%= rowURL %>"
+					name="asset-type"
 					value='<%= MySubscriptionsUtil.getClassNameIdText(subscription.getClassNameId(), locale) %>'
 				/>
 
 				<liferay-ui:search-container-column-text
 					href="<%= rowURL %>"
-					name="class-primary-key"
-					orderable="<%= true %>"
-					value ="<%= MySubscriptionsUtil.getTitleText(subscription.getClassName(), subscription.getClassPK(), ((assetRenderer != null) ? assetRenderer.getTitle(locale) : null), locale) %>"
-				/>
-
-				<liferay-ui:search-container-column-text
-					href="<%= rowURL %>"
 					name="create-date"
-					orderable="<%= true %>"
 					value="<%= dateFormatDateTime.format(subscription.getCreateDate()) %>"
 				/>
 
@@ -92,18 +132,40 @@
 				</liferay-ui:search-container-column-text>
 			</liferay-ui:search-container-row>
 
+			<liferay-ui:search-iterator />
+
 			<c:if test="<%= !results.isEmpty() %>">
-				<aui:button-row>
+				<aui:button-row cssName="unsubscribe-button-row">
 					<aui:button type="submit" value="unsubscribe" />
 				</aui:button-row>
 			</c:if>
-
-			<liferay-ui:search-iterator />
 		</liferay-ui:search-container>
 	</aui:fieldset>
 </aui:form>
 
-<aui:script>
+<aui:script use="aui-base,aui-dialog,aui-dialog-iframe,aui-io">
+	displayPopup = function(url, title) {
+		var dialog = new A.Dialog(
+			{
+				align: {
+					node: null,
+					points: ['tc', 'tc']
+				},
+				constrain2view: true,
+				cssClass: 'portlet-my-subscription',
+				modal: true,
+				resizable: false,
+				title: title,
+				width: 950
+			}
+		).plug(
+			A.Plugin.DialogIframe,
+			{
+				uri: url
+			}
+		).render();
+	};
+
 	Liferay.provide(
 		window,
 		'<portlet:namespace />unsubscribe',

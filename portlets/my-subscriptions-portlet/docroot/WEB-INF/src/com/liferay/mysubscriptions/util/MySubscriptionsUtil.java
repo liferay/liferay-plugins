@@ -16,38 +16,48 @@ package com.liferay.mysubscriptions.util;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.util.StringBundler;
-import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.security.permission.ResourceActionsUtil;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
+import com.liferay.portal.util.PortletKeys;
 import com.liferay.portlet.asset.AssetRendererFactoryRegistryUtil;
 import com.liferay.portlet.asset.model.AssetRenderer;
 import com.liferay.portlet.asset.model.AssetRendererFactory;
+import com.liferay.portlet.blogs.model.BlogsEntry;
 import com.liferay.portlet.messageboards.model.MBCategory;
 import com.liferay.portlet.messageboards.model.MBMessage;
 import com.liferay.portlet.messageboards.model.MBThread;
-import com.liferay.portlet.messageboards.service.MBCategoryLocalServiceUtil;
-import com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil;
 import com.liferay.portlet.messageboards.service.MBThreadLocalServiceUtil;
 
 import java.util.Locale;
 
 /**
  * @author Peter Shin
+ * @author Jonathan Lee
  */
 public class MySubscriptionsUtil {
 
 	public static AssetRenderer getAssetRenderer(
 		String className, long classPK) {
 
-		AssetRendererFactory assetRendererFactory =
-			AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassName(
-				className);
-
 		try {
+			if (className.equals(MBThread.class.getName())) {
+				className = MBMessage.class.getName();
+
+				MBThread mbThread = null;
+
+				mbThread = MBThreadLocalServiceUtil.getThread(classPK);
+
+				classPK = mbThread.getRootMessageId();
+			}
+
+			AssetRendererFactory assetRendererFactory =
+				AssetRendererFactoryRegistryUtil.
+					getAssetRendererFactoryByClassName(
+						className);
+
 			return assetRendererFactory.getAssetRenderer(classPK);
 		}
 		catch (Exception e) {
@@ -56,121 +66,64 @@ public class MySubscriptionsUtil {
 		return null;
 	}
 
+	public static String getAssetURLViewInContext(
+			String className, long classPK)
+		throws PortalException, SystemException {
+
+		if (className.equals(BlogsEntry.class.getName())) {
+			return PortalUtil.getLayoutFullURL(classPK, PortletKeys.BLOGS);
+		}
+
+		if (className.equals(MBCategory.class.getName())) {
+			return PortalUtil.getLayoutFullURL(
+				classPK, PortletKeys.MESSAGE_BOARDS);
+		}
+
+		return null;
+	}
+
 	public static String getClassNameIdText(long classNameId, Locale locale) {
 		String className = PortalUtil.getClassName(classNameId);
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append(classNameId);
-		sb.append(StringPool.SPACE);
-		sb.append(StringPool.OPEN_PARENTHESIS);
-		sb.append(ResourceActionsUtil.getModelResource(locale, className));
-		sb.append(StringPool.CLOSE_PARENTHESIS);
-
-		return sb.toString();
+		return ResourceActionsUtil.getModelResource(locale, className);
 	}
 
 	public static String getTitleText(
-			String className, long classPK, String title, Locale locale)
-		throws PortalException, SystemException {
+		String className, long classPK, String title) {
 
-		if (Validator.isNull(title)) {
-			title = getMBCategoryTitle(className, classPK);
+		if (Validator.isNotNull(title)) {
+			return title;
 		}
 
-		if (Validator.isNull(title)) {
-			title = getMBThreadTitle(className, classPK);
+		if (className.equals(BlogsEntry.class.getName())) {
+			title = "Blog at ";
 		}
 
-		if (Validator.isNull(title)) {
-			title = getGroupTitle(className, classPK, locale);
+		if (className.equals(MBCategory.class.getName())) {
+			title = "Message Board at ";
 		}
 
+		title += getGroupTitle(className, classPK);
+
 		if (Validator.isNull(title)) {
-			return String.valueOf(classPK);
+			title = String.valueOf(classPK);
 		}
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append(classPK);
-		sb.append(StringPool.SPACE);
-		sb.append(StringPool.OPEN_PARENTHESIS);
-		sb.append(title);
-		sb.append(StringPool.CLOSE_PARENTHESIS);
-
-		return sb.toString();
+		return title;
 	}
 
-	protected static String getGroupTitle(
-			String className, long classPK, Locale locale)
-		throws PortalException, SystemException {
-
-		Group group = null;
+	protected static String getGroupTitle(String className, long classPK) {
+		String groupTitle = null;
 
 		try {
-			group = GroupLocalServiceUtil.getGroup(classPK);
+			Group group = GroupLocalServiceUtil.getGroup(classPK);
+			groupTitle = group.getDescriptiveName();
+
 		}
 		catch (Exception e) {
 		}
 
-		if (group == null) {
-			return null;
-		}
-
-		return group.getDescriptiveName();
-	}
-
-	protected static String getMBCategoryTitle(String className, long classPK) {
-		if (!className.equals(MBCategory.class.getName())) {
-			return null;
-		}
-
-		MBCategory mbCategory = null;
-
-		try {
-			mbCategory = MBCategoryLocalServiceUtil.getCategory(classPK);
-		}
-		catch (Exception e) {
-		}
-
-		if (mbCategory == null) {
-			return null;
-		}
-
-		return mbCategory.getName();
-	}
-
-	protected static String getMBThreadTitle(String className, long classPK) {
-		if (!className.equals(MBThread.class.getName())) {
-			return null;
-		}
-
-		MBThread mbThread = null;
-
-		try {
-			mbThread = MBThreadLocalServiceUtil.getThread(classPK);
-		}
-		catch (Exception e) {
-		}
-
-		if (mbThread == null) {
-			return null;
-		}
-
-		MBMessage mbMessage = null;
-
-		try {
-			mbMessage = MBMessageLocalServiceUtil.getMessage(
-				mbThread.getRootMessageId());
-		}
-		catch (Exception e) {
-		}
-
-		if (mbMessage == null) {
-			return null;
-		}
-
-		return mbMessage.getSubject();
+		return groupTitle;
 	}
 
 }

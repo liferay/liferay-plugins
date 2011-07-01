@@ -11,6 +11,5 @@
 		<preferences-owned-by-group>true</preferences-owned-by-group>
 		<header-portlet-css>/css/main.css</header-portlet-css>
 		<css-class-wrapper>my-subscriptions-portlet</css-class-wrapper>
-		<system>true</system>
 	</portlet>
 </liferay-portlet-app>
