@@ -44,33 +44,46 @@ try {
 				<liferay-ui:error exception="<%= DuplicateSubmissionException.class %>" message="you-may-only-submit-the-form-once" />
 				<liferay-ui:error exception="<%= StorageFieldRequiredException.class %>" message="please-fill-out-all-required-fields" />
 
-				<aui:fieldset>
+				<c:choose>
+					<c:when test="<%= themeDisplay.isSignedIn() %>">
+						<c:choose>
+							<c:when test="<%= multipleSubmissions || !(DDLFormUtil.hasSubmitted(request, recordSet.getRecordSetId())) %>">
+								<aui:fieldset>
 
-					<%
-					DDMStructure ddmStructure = recordSet.getDDMStructure();
+									<%
+									DDMStructure ddmStructure = recordSet.getDDMStructure();
 
-					if (detailDDMTemplateId > 0) {
-						try {
-							ddmTemplate = DDMTemplateLocalServiceUtil.getTemplate(detailDDMTemplateId);
+									if (detailDDMTemplateId > 0) {
+										try {
+											ddmTemplate = DDMTemplateLocalServiceUtil.getTemplate(detailDDMTemplateId);
 
-							ddmStructure.setXsd(ddmTemplate.getScript());
-						}
-						catch (NoSuchTemplateException nste) {
-						}
-					}
-					%>
+											ddmStructure.setXsd(ddmTemplate.getScript());
+										}
+										catch (NoSuchTemplateException nste) {
+										}
+									}
+									%>
 
-					<%= DDMXSDUtil.getHTML(pageContext, ddmStructure.getXsd()) %>
+									<%= DDMXSDUtil.getHTML(pageContext, ddmStructure.getXsd()) %>
 
-					<aui:button-row>
-
-						<%
-						boolean disabled = (multipleSubmissions == false) && DDLFormUtil.hasSubmitted(request, recordSet.getRecordSetId());
-						%>
-
-						<aui:button disabled="<%= disabled %>" onClick='<%= renderResponse.getNamespace() + "publishRecord();" %>' type="submit" value="send" />
-					</aui:button-row>
-				</aui:fieldset>
+									<aui:button-row>
+										<aui:button onClick='<%= renderResponse.getNamespace() + "publishRecord();" %>' type="submit" value="send" />
+									</aui:button-row>
+								</aui:fieldset>
+							</c:when>
+							<c:otherwise>
+								<div class="portlet-msg-info">
+									<liferay-ui:message key="your-form-has-already-been-submitted" />
+								</div>
+							</c:otherwise>
+						</c:choose>
+					</c:when>
+					<c:otherwise>
+						<div class="portlet-msg-info">
+							<liferay-ui:message key="you-must-be-authenticated-to-use-this-portlet" />
+						</div>
+					</c:otherwise>
+				</c:choose>
 			</aui:form>
 		</c:when>
 		<c:otherwise>
