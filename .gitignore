@@ -1,4 +1,6 @@
 /*/*/bin
+/*/*/tmp
+
 /*/*/docroot/WEB-INF/classes
 
 /build.*.properties
