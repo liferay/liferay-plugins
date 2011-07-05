@@ -10,7 +10,7 @@
 	<classpathentry kind="lib" path="/portal-trunk/lib/development/mail.jar" />
 	<classpathentry kind="lib" path="/portal-trunk/lib/development/servlet-api.jar" />
 	<classpathentry kind="lib" path="/portal-trunk/lib/global/portlet.jar" />
-	<classpathentry kind="lib" path="/portal-trunk/lib/portal/antlr.jar" />
+	<classpathentry kind="lib" path="/portal-trunk/lib/portal/antlr2.jar" />
 	<classpathentry kind="lib" path="/portal-trunk/lib/portal/bsh.jar" />
 	<classpathentry kind="lib" path="/portal-trunk/lib/portal/commons-collections.jar" />
 	<classpathentry kind="lib" path="/portal-trunk/lib/portal/commons-logging.jar" />
@@ -32,10 +32,8 @@
 	<classpathentry kind="lib" path="/portal-trunk/util-bridges/util-bridges.jar" />
 	<classpathentry kind="lib" path="/portal-trunk/util-java/util-java.jar" />
 	<classpathentry kind="lib" path="/portal-trunk/util-taglib/util-taglib.jar" />
-	<classpathentry kind="lib" path="tmp/WEB-INF/lib/asm.jar" />
-	<classpathentry kind="lib" path="tmp/WEB-INF/lib/cglib.jar" />
-	<classpathentry kind="lib" path="tmp/WEB-INF/lib/hibernate3.jar" />
-	<classpathentry kind="lib" path="tmp/WEB-INF/lib/jbpm-identity.jar" />
-	<classpathentry kind="lib" path="tmp/WEB-INF/lib/jbpm-jpdl.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/asm.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/cglib.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/hibernate3.jar" />
 	<classpathentry kind="output" path="bin" />
 </classpath>
