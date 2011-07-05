@@ -134,28 +134,9 @@ ECJ was automatically installed. Please rerun your task.
 			classname="com.liferay.portal.tools.PluginsEnvironmentBuilder"
 			classpathref="portal.classpath"
 			fork="true"
-			maxmemory="256m"
 			newenvironment="true"
 		>
-			<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
 			<jvmarg value="-Dplugins.env.dir=." />
-			<jvmarg value="-Dplugins.env.svn=${svn.enabled}" />
-			<jvmarg value="-Dplugins.env.eclipse=true" />
-		</java>
-	</target>
-
-	<target name="setup-svn-ignores">
-		<java
-			classname="com.liferay.portal.tools.PluginsEnvironmentBuilder"
-			classpathref="portal.classpath"
-			fork="true"
-			maxmemory="256m"
-			newenvironment="true"
-		>
-			<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
-			<jvmarg value="-Dplugins.env.dir=." />
-			<jvmarg value="-Dplugins.env.svn=${svn.enabled}" />
-			<jvmarg value="-Dplugins.env.eclipse=false" />
 		</java>
 	</target>
 </project>
