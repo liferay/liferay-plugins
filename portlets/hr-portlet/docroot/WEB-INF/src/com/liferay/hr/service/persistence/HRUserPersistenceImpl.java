@@ -73,11 +73,11 @@ public class HRUserPersistenceImpl extends BasePersistenceImpl<HRUser>
 	public static final String FINDER_CLASS_NAME_LIST = FINDER_CLASS_NAME_ENTITY +
 		".List";
 	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(HRUserModelImpl.ENTITY_CACHE_ENABLED,
-			HRUserModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findAll", new String[0]);
+			HRUserModelImpl.FINDER_CACHE_ENABLED, HRUserImpl.class,
+			FINDER_CLASS_NAME_LIST, "findAll", new String[0]);
 	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(HRUserModelImpl.ENTITY_CACHE_ENABLED,
-			HRUserModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countAll", new String[0]);
+			HRUserModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST, "countAll", new String[0]);
 
 	/**
 	 * Caches the h r user in the entity cache if it is enabled.

@@ -76,8 +76,8 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 	public static final String FINDER_CLASS_NAME_LIST = FINDER_CLASS_NAME_ENTITY +
 		".List";
 	public static final FinderPath FINDER_PATH_FIND_BY_TEXT = new FinderPath(BarModelImpl.ENTITY_CACHE_ENABLED,
-			BarModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findByText",
+			BarModelImpl.FINDER_CACHE_ENABLED, BarImpl.class,
+			FINDER_CLASS_NAME_LIST, "findByText",
 			new String[] {
 				String.class.getName(),
 				
@@ -85,14 +85,15 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
 	public static final FinderPath FINDER_PATH_COUNT_BY_TEXT = new FinderPath(BarModelImpl.ENTITY_CACHE_ENABLED,
-			BarModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countByText", new String[] { String.class.getName() });
+			BarModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST, "countByText",
+			new String[] { String.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(BarModelImpl.ENTITY_CACHE_ENABLED,
-			BarModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findAll", new String[0]);
+			BarModelImpl.FINDER_CACHE_ENABLED, BarImpl.class,
+			FINDER_CLASS_NAME_LIST, "findAll", new String[0]);
 	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(BarModelImpl.ENTITY_CACHE_ENABLED,
-			BarModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countAll", new String[0]);
+			BarModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST, "countAll", new String[0]);
 
 	/**
 	 * Caches the bar in the entity cache if it is enabled.

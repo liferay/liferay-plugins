@@ -79,7 +79,8 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 		".List";
 	public static final FinderPath FINDER_PATH_FIND_BY_COMPANYID = new FinderPath(KaleoTaskInstanceTokenModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoTaskInstanceTokenModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findByCompanyId",
+			KaleoTaskInstanceTokenImpl.class, FINDER_CLASS_NAME_LIST,
+			"findByCompanyId",
 			new String[] {
 				Long.class.getName(),
 				
@@ -87,12 +88,13 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
 	public static final FinderPath FINDER_PATH_COUNT_BY_COMPANYID = new FinderPath(KaleoTaskInstanceTokenModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoTaskInstanceTokenModelImpl.FINDER_CACHE_ENABLED,
+			KaleoTaskInstanceTokenModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST, "countByCompanyId",
 			new String[] { Long.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_BY_KALEODEFINITIONID = new FinderPath(KaleoTaskInstanceTokenModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoTaskInstanceTokenModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findByKaleoDefinitionId",
+			KaleoTaskInstanceTokenImpl.class, FINDER_CLASS_NAME_LIST,
+			"findByKaleoDefinitionId",
 			new String[] {
 				Long.class.getName(),
 				
@@ -100,12 +102,13 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
 	public static final FinderPath FINDER_PATH_COUNT_BY_KALEODEFINITIONID = new FinderPath(KaleoTaskInstanceTokenModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoTaskInstanceTokenModelImpl.FINDER_CACHE_ENABLED,
+			KaleoTaskInstanceTokenModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST, "countByKaleoDefinitionId",
 			new String[] { Long.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_BY_KALEOINSTANCEID = new FinderPath(KaleoTaskInstanceTokenModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoTaskInstanceTokenModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findByKaleoInstanceId",
+			KaleoTaskInstanceTokenImpl.class, FINDER_CLASS_NAME_LIST,
+			"findByKaleoInstanceId",
 			new String[] {
 				Long.class.getName(),
 				
@@ -113,22 +116,24 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
 	public static final FinderPath FINDER_PATH_COUNT_BY_KALEOINSTANCEID = new FinderPath(KaleoTaskInstanceTokenModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoTaskInstanceTokenModelImpl.FINDER_CACHE_ENABLED,
+			KaleoTaskInstanceTokenModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST, "countByKaleoInstanceId",
 			new String[] { Long.class.getName() });
 	public static final FinderPath FINDER_PATH_FETCH_BY_KII_KTI = new FinderPath(KaleoTaskInstanceTokenModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoTaskInstanceTokenModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_ENTITY, "fetchByKII_KTI",
+			KaleoTaskInstanceTokenImpl.class, FINDER_CLASS_NAME_ENTITY,
+			"fetchByKII_KTI",
 			new String[] { Long.class.getName(), Long.class.getName() });
 	public static final FinderPath FINDER_PATH_COUNT_BY_KII_KTI = new FinderPath(KaleoTaskInstanceTokenModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoTaskInstanceTokenModelImpl.FINDER_CACHE_ENABLED,
+			KaleoTaskInstanceTokenModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST, "countByKII_KTI",
 			new String[] { Long.class.getName(), Long.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(KaleoTaskInstanceTokenModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoTaskInstanceTokenModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findAll", new String[0]);
+			KaleoTaskInstanceTokenImpl.class, FINDER_CLASS_NAME_LIST,
+			"findAll", new String[0]);
 	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(KaleoTaskInstanceTokenModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoTaskInstanceTokenModelImpl.FINDER_CACHE_ENABLED,
+			KaleoTaskInstanceTokenModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST, "countAll", new String[0]);
 
 	/**
@@ -2167,6 +2172,7 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 
 	public static final FinderPath FINDER_PATH_GET_KALEOTASKASSIGNMENTINSTANCES = new FinderPath(com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskAssignmentInstanceModelImpl.ENTITY_CACHE_ENABLED,
 			com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskAssignmentInstanceModelImpl.FINDER_CACHE_ENABLED,
+			com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskAssignmentInstanceImpl.class,
 			com.liferay.portal.workflow.kaleo.service.persistence.KaleoTaskAssignmentInstancePersistenceImpl.FINDER_CLASS_NAME_LIST,
 			"getKaleoTaskAssignmentInstances",
 			new String[] {
@@ -2253,6 +2259,7 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 	public static final FinderPath FINDER_PATH_GET_KALEOTASKASSIGNMENTINSTANCES_SIZE =
 		new FinderPath(com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskAssignmentInstanceModelImpl.ENTITY_CACHE_ENABLED,
 			com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskAssignmentInstanceModelImpl.FINDER_CACHE_ENABLED,
+			com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskAssignmentInstanceImpl.class,
 			com.liferay.portal.workflow.kaleo.service.persistence.KaleoTaskAssignmentInstancePersistenceImpl.FINDER_CLASS_NAME_LIST,
 			"getKaleoTaskAssignmentInstancesSize",
 			new String[] { Long.class.getName() });
@@ -2309,6 +2316,7 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 	public static final FinderPath FINDER_PATH_CONTAINS_KALEOTASKASSIGNMENTINSTANCE =
 		new FinderPath(com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskAssignmentInstanceModelImpl.ENTITY_CACHE_ENABLED,
 			com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskAssignmentInstanceModelImpl.FINDER_CACHE_ENABLED,
+			com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskAssignmentInstanceImpl.class,
 			com.liferay.portal.workflow.kaleo.service.persistence.KaleoTaskAssignmentInstancePersistenceImpl.FINDER_CLASS_NAME_LIST,
 			"containsKaleoTaskAssignmentInstance",
 			new String[] { Long.class.getName(), Long.class.getName() });

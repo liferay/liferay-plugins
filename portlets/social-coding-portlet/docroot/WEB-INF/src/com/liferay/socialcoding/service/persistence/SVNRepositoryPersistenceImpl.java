@@ -77,17 +77,18 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 		".List";
 	public static final FinderPath FINDER_PATH_FETCH_BY_URL = new FinderPath(SVNRepositoryModelImpl.ENTITY_CACHE_ENABLED,
 			SVNRepositoryModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_ENTITY, "fetchByUrl",
+			SVNRepositoryImpl.class, FINDER_CLASS_NAME_ENTITY, "fetchByUrl",
 			new String[] { String.class.getName() });
 	public static final FinderPath FINDER_PATH_COUNT_BY_URL = new FinderPath(SVNRepositoryModelImpl.ENTITY_CACHE_ENABLED,
-			SVNRepositoryModelImpl.FINDER_CACHE_ENABLED,
+			SVNRepositoryModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST, "countByUrl",
 			new String[] { String.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(SVNRepositoryModelImpl.ENTITY_CACHE_ENABLED,
 			SVNRepositoryModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findAll", new String[0]);
+			SVNRepositoryImpl.class, FINDER_CLASS_NAME_LIST, "findAll",
+			new String[0]);
 	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(SVNRepositoryModelImpl.ENTITY_CACHE_ENABLED,
-			SVNRepositoryModelImpl.FINDER_CACHE_ENABLED,
+			SVNRepositoryModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST, "countAll", new String[0]);
 
 	/**

@@ -75,8 +75,8 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 	public static final String FINDER_CLASS_NAME_LIST = FINDER_CLASS_NAME_ENTITY +
 		".List";
 	public static final FinderPath FINDER_PATH_FIND_BY_SVNUSERID = new FinderPath(SVNRevisionModelImpl.ENTITY_CACHE_ENABLED,
-			SVNRevisionModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findBySVNUserId",
+			SVNRevisionModelImpl.FINDER_CACHE_ENABLED, SVNRevisionImpl.class,
+			FINDER_CLASS_NAME_LIST, "findBySVNUserId",
 			new String[] {
 				String.class.getName(),
 				
@@ -84,11 +84,12 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
 	public static final FinderPath FINDER_PATH_COUNT_BY_SVNUSERID = new FinderPath(SVNRevisionModelImpl.ENTITY_CACHE_ENABLED,
-			SVNRevisionModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countBySVNUserId", new String[] { String.class.getName() });
+			SVNRevisionModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST, "countBySVNUserId",
+			new String[] { String.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_BY_SVNREPOSITORYID = new FinderPath(SVNRevisionModelImpl.ENTITY_CACHE_ENABLED,
-			SVNRevisionModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findBySVNRepositoryId",
+			SVNRevisionModelImpl.FINDER_CACHE_ENABLED, SVNRevisionImpl.class,
+			FINDER_CLASS_NAME_LIST, "findBySVNRepositoryId",
 			new String[] {
 				Long.class.getName(),
 				
@@ -96,11 +97,12 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
 	public static final FinderPath FINDER_PATH_COUNT_BY_SVNREPOSITORYID = new FinderPath(SVNRevisionModelImpl.ENTITY_CACHE_ENABLED,
-			SVNRevisionModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countBySVNRepositoryId", new String[] { Long.class.getName() });
+			SVNRevisionModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST, "countBySVNRepositoryId",
+			new String[] { Long.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_BY_SVNU_SVNR = new FinderPath(SVNRevisionModelImpl.ENTITY_CACHE_ENABLED,
-			SVNRevisionModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findBySVNU_SVNR",
+			SVNRevisionModelImpl.FINDER_CACHE_ENABLED, SVNRevisionImpl.class,
+			FINDER_CLASS_NAME_LIST, "findBySVNU_SVNR",
 			new String[] {
 				String.class.getName(), Long.class.getName(),
 				
@@ -108,15 +110,15 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
 	public static final FinderPath FINDER_PATH_COUNT_BY_SVNU_SVNR = new FinderPath(SVNRevisionModelImpl.ENTITY_CACHE_ENABLED,
-			SVNRevisionModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countBySVNU_SVNR",
+			SVNRevisionModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST, "countBySVNU_SVNR",
 			new String[] { String.class.getName(), Long.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(SVNRevisionModelImpl.ENTITY_CACHE_ENABLED,
-			SVNRevisionModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findAll", new String[0]);
+			SVNRevisionModelImpl.FINDER_CACHE_ENABLED, SVNRevisionImpl.class,
+			FINDER_CLASS_NAME_LIST, "findAll", new String[0]);
 	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(SVNRevisionModelImpl.ENTITY_CACHE_ENABLED,
-			SVNRevisionModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countAll", new String[0]);
+			SVNRevisionModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST, "countAll", new String[0]);
 
 	/**
 	 * Caches the s v n revision in the entity cache if it is enabled.

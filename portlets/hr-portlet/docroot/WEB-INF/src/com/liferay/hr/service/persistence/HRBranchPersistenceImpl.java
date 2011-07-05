@@ -82,11 +82,11 @@ public class HRBranchPersistenceImpl extends BasePersistenceImpl<HRBranch>
 	public static final String FINDER_CLASS_NAME_LIST = FINDER_CLASS_NAME_ENTITY +
 		".List";
 	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(HRBranchModelImpl.ENTITY_CACHE_ENABLED,
-			HRBranchModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findAll", new String[0]);
+			HRBranchModelImpl.FINDER_CACHE_ENABLED, HRBranchImpl.class,
+			FINDER_CLASS_NAME_LIST, "findAll", new String[0]);
 	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(HRBranchModelImpl.ENTITY_CACHE_ENABLED,
-			HRBranchModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countAll", new String[0]);
+			HRBranchModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST, "countAll", new String[0]);
 
 	/**
 	 * Caches the h r branch in the entity cache if it is enabled.
@@ -604,6 +604,7 @@ public class HRBranchPersistenceImpl extends BasePersistenceImpl<HRBranch>
 
 	public static final FinderPath FINDER_PATH_GET_HRJOBTITLES = new FinderPath(com.liferay.hr.model.impl.HRJobTitleModelImpl.ENTITY_CACHE_ENABLED,
 			HRBranchModelImpl.FINDER_CACHE_ENABLED_HRBRANCHES_HRJOBTITLES,
+			com.liferay.hr.model.impl.HRJobTitleImpl.class,
 			HRBranchModelImpl.MAPPING_TABLE_HRBRANCHES_HRJOBTITLES_NAME,
 			"getHRJobTitles",
 			new String[] {
@@ -688,6 +689,7 @@ public class HRBranchPersistenceImpl extends BasePersistenceImpl<HRBranch>
 
 	public static final FinderPath FINDER_PATH_GET_HRJOBTITLES_SIZE = new FinderPath(com.liferay.hr.model.impl.HRJobTitleModelImpl.ENTITY_CACHE_ENABLED,
 			HRBranchModelImpl.FINDER_CACHE_ENABLED_HRBRANCHES_HRJOBTITLES,
+			Long.class,
 			HRBranchModelImpl.MAPPING_TABLE_HRBRANCHES_HRJOBTITLES_NAME,
 			"getHRJobTitlesSize", new String[] { Long.class.getName() });
 
@@ -741,6 +743,7 @@ public class HRBranchPersistenceImpl extends BasePersistenceImpl<HRBranch>
 
 	public static final FinderPath FINDER_PATH_CONTAINS_HRJOBTITLE = new FinderPath(com.liferay.hr.model.impl.HRJobTitleModelImpl.ENTITY_CACHE_ENABLED,
 			HRBranchModelImpl.FINDER_CACHE_ENABLED_HRBRANCHES_HRJOBTITLES,
+			Boolean.class,
 			HRBranchModelImpl.MAPPING_TABLE_HRBRANCHES_HRJOBTITLES_NAME,
 			"containsHRJobTitle",
 			new String[] { Long.class.getName(), Long.class.getName() });

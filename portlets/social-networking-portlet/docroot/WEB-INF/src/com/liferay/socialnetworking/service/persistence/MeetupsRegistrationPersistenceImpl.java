@@ -76,7 +76,8 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 		".List";
 	public static final FinderPath FINDER_PATH_FIND_BY_MEETUPSENTRYID = new FinderPath(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
 			MeetupsRegistrationModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findByMeetupsEntryId",
+			MeetupsRegistrationImpl.class, FINDER_CLASS_NAME_LIST,
+			"findByMeetupsEntryId",
 			new String[] {
 				Long.class.getName(),
 				
@@ -84,20 +85,22 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
 	public static final FinderPath FINDER_PATH_COUNT_BY_MEETUPSENTRYID = new FinderPath(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
-			MeetupsRegistrationModelImpl.FINDER_CACHE_ENABLED,
+			MeetupsRegistrationModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST, "countByMeetupsEntryId",
 			new String[] { Long.class.getName() });
 	public static final FinderPath FINDER_PATH_FETCH_BY_U_ME = new FinderPath(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
 			MeetupsRegistrationModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_ENTITY, "fetchByU_ME",
+			MeetupsRegistrationImpl.class, FINDER_CLASS_NAME_ENTITY,
+			"fetchByU_ME",
 			new String[] { Long.class.getName(), Long.class.getName() });
 	public static final FinderPath FINDER_PATH_COUNT_BY_U_ME = new FinderPath(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
-			MeetupsRegistrationModelImpl.FINDER_CACHE_ENABLED,
+			MeetupsRegistrationModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST, "countByU_ME",
 			new String[] { Long.class.getName(), Long.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_BY_ME_S = new FinderPath(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
 			MeetupsRegistrationModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findByME_S",
+			MeetupsRegistrationImpl.class, FINDER_CLASS_NAME_LIST,
+			"findByME_S",
 			new String[] {
 				Long.class.getName(), Integer.class.getName(),
 				
@@ -105,14 +108,15 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
 	public static final FinderPath FINDER_PATH_COUNT_BY_ME_S = new FinderPath(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
-			MeetupsRegistrationModelImpl.FINDER_CACHE_ENABLED,
+			MeetupsRegistrationModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST, "countByME_S",
 			new String[] { Long.class.getName(), Integer.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
 			MeetupsRegistrationModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findAll", new String[0]);
+			MeetupsRegistrationImpl.class, FINDER_CLASS_NAME_LIST, "findAll",
+			new String[0]);
 	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
-			MeetupsRegistrationModelImpl.FINDER_CACHE_ENABLED,
+			MeetupsRegistrationModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST, "countAll", new String[0]);
 
 	/**

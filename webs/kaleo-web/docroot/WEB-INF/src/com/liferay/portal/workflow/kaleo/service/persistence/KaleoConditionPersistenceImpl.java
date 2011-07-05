@@ -75,7 +75,8 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 		".List";
 	public static final FinderPath FINDER_PATH_FIND_BY_COMPANYID = new FinderPath(KaleoConditionModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoConditionModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findByCompanyId",
+			KaleoConditionImpl.class, FINDER_CLASS_NAME_LIST,
+			"findByCompanyId",
 			new String[] {
 				Long.class.getName(),
 				
@@ -83,12 +84,13 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
 	public static final FinderPath FINDER_PATH_COUNT_BY_COMPANYID = new FinderPath(KaleoConditionModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoConditionModelImpl.FINDER_CACHE_ENABLED,
+			KaleoConditionModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST, "countByCompanyId",
 			new String[] { Long.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_BY_KALEODEFINITIONID = new FinderPath(KaleoConditionModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoConditionModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findByKaleoDefinitionId",
+			KaleoConditionImpl.class, FINDER_CLASS_NAME_LIST,
+			"findByKaleoDefinitionId",
 			new String[] {
 				Long.class.getName(),
 				
@@ -96,22 +98,23 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
 	public static final FinderPath FINDER_PATH_COUNT_BY_KALEODEFINITIONID = new FinderPath(KaleoConditionModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoConditionModelImpl.FINDER_CACHE_ENABLED,
+			KaleoConditionModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST, "countByKaleoDefinitionId",
 			new String[] { Long.class.getName() });
 	public static final FinderPath FINDER_PATH_FETCH_BY_KALEONODEID = new FinderPath(KaleoConditionModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoConditionModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_ENTITY, "fetchByKaleoNodeId",
-			new String[] { Long.class.getName() });
+			KaleoConditionImpl.class, FINDER_CLASS_NAME_ENTITY,
+			"fetchByKaleoNodeId", new String[] { Long.class.getName() });
 	public static final FinderPath FINDER_PATH_COUNT_BY_KALEONODEID = new FinderPath(KaleoConditionModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoConditionModelImpl.FINDER_CACHE_ENABLED,
+			KaleoConditionModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST, "countByKaleoNodeId",
 			new String[] { Long.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(KaleoConditionModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoConditionModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findAll", new String[0]);
+			KaleoConditionImpl.class, FINDER_CLASS_NAME_LIST, "findAll",
+			new String[0]);
 	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(KaleoConditionModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoConditionModelImpl.FINDER_CACHE_ENABLED,
+			KaleoConditionModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST, "countAll", new String[0]);
 
 	/**

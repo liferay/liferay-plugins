@@ -78,7 +78,8 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 		".List";
 	public static final FinderPath FINDER_PATH_FIND_BY_COMPANYID = new FinderPath(MicroblogsEntryModelImpl.ENTITY_CACHE_ENABLED,
 			MicroblogsEntryModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findByCompanyId",
+			MicroblogsEntryImpl.class, FINDER_CLASS_NAME_LIST,
+			"findByCompanyId",
 			new String[] {
 				Long.class.getName(),
 				
@@ -86,12 +87,12 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
 	public static final FinderPath FINDER_PATH_COUNT_BY_COMPANYID = new FinderPath(MicroblogsEntryModelImpl.ENTITY_CACHE_ENABLED,
-			MicroblogsEntryModelImpl.FINDER_CACHE_ENABLED,
+			MicroblogsEntryModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST, "countByCompanyId",
 			new String[] { Long.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_BY_USERID = new FinderPath(MicroblogsEntryModelImpl.ENTITY_CACHE_ENABLED,
 			MicroblogsEntryModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findByUserId",
+			MicroblogsEntryImpl.class, FINDER_CLASS_NAME_LIST, "findByUserId",
 			new String[] {
 				Long.class.getName(),
 				
@@ -99,12 +100,12 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
 	public static final FinderPath FINDER_PATH_COUNT_BY_USERID = new FinderPath(MicroblogsEntryModelImpl.ENTITY_CACHE_ENABLED,
-			MicroblogsEntryModelImpl.FINDER_CACHE_ENABLED,
+			MicroblogsEntryModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST, "countByUserId",
 			new String[] { Long.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_BY_U_T = new FinderPath(MicroblogsEntryModelImpl.ENTITY_CACHE_ENABLED,
 			MicroblogsEntryModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findByU_T",
+			MicroblogsEntryImpl.class, FINDER_CLASS_NAME_LIST, "findByU_T",
 			new String[] {
 				Long.class.getName(), Integer.class.getName(),
 				
@@ -112,12 +113,12 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
 	public static final FinderPath FINDER_PATH_COUNT_BY_U_T = new FinderPath(MicroblogsEntryModelImpl.ENTITY_CACHE_ENABLED,
-			MicroblogsEntryModelImpl.FINDER_CACHE_ENABLED,
+			MicroblogsEntryModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST, "countByU_T",
 			new String[] { Long.class.getName(), Integer.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_BY_T_R = new FinderPath(MicroblogsEntryModelImpl.ENTITY_CACHE_ENABLED,
 			MicroblogsEntryModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findByT_R",
+			MicroblogsEntryImpl.class, FINDER_CLASS_NAME_LIST, "findByT_R",
 			new String[] {
 				Integer.class.getName(), Long.class.getName(),
 				
@@ -125,12 +126,12 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
 	public static final FinderPath FINDER_PATH_COUNT_BY_T_R = new FinderPath(MicroblogsEntryModelImpl.ENTITY_CACHE_ENABLED,
-			MicroblogsEntryModelImpl.FINDER_CACHE_ENABLED,
+			MicroblogsEntryModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST, "countByT_R",
 			new String[] { Integer.class.getName(), Long.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_BY_T_RMEI = new FinderPath(MicroblogsEntryModelImpl.ENTITY_CACHE_ENABLED,
 			MicroblogsEntryModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findByT_RMEI",
+			MicroblogsEntryImpl.class, FINDER_CLASS_NAME_LIST, "findByT_RMEI",
 			new String[] {
 				Integer.class.getName(), Long.class.getName(),
 				
@@ -138,14 +139,15 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
 	public static final FinderPath FINDER_PATH_COUNT_BY_T_RMEI = new FinderPath(MicroblogsEntryModelImpl.ENTITY_CACHE_ENABLED,
-			MicroblogsEntryModelImpl.FINDER_CACHE_ENABLED,
+			MicroblogsEntryModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST, "countByT_RMEI",
 			new String[] { Integer.class.getName(), Long.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(MicroblogsEntryModelImpl.ENTITY_CACHE_ENABLED,
 			MicroblogsEntryModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findAll", new String[0]);
+			MicroblogsEntryImpl.class, FINDER_CLASS_NAME_LIST, "findAll",
+			new String[0]);
 	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(MicroblogsEntryModelImpl.ENTITY_CACHE_ENABLED,
-			MicroblogsEntryModelImpl.FINDER_CACHE_ENABLED,
+			MicroblogsEntryModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST, "countAll", new String[0]);
 
 	/**
@@ -4671,7 +4673,6 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	private static final String _FILTER_SQL_COUNT_MICROBLOGSENTRY_WHERE = "SELECT COUNT(DISTINCT microblogsEntry.microblogsEntryId) AS COUNT_VALUE FROM MicroblogsEntry microblogsEntry WHERE ";
 	private static final String _FILTER_ENTITY_ALIAS = "microblogsEntry";
 	private static final String _FILTER_ENTITY_TABLE = "MicroblogsEntry";
-	private static final String _FILTER_ENTITY_TABLE_PK_COLUMN = "microblogsEntry.microblogsEntryId";
 	private static final String _FILTER_ENTITY_TABLE_FILTER_PK_COLUMN = "microblogsEntry.microblogsEntryId";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "microblogsEntry.";
 	private static final String _ORDER_BY_ENTITY_TABLE = "MicroblogsEntry.";

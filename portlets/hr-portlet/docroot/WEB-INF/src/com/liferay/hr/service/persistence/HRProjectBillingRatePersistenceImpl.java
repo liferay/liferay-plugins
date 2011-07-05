@@ -74,9 +74,10 @@ public class HRProjectBillingRatePersistenceImpl extends BasePersistenceImpl<HRP
 		".List";
 	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(HRProjectBillingRateModelImpl.ENTITY_CACHE_ENABLED,
 			HRProjectBillingRateModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findAll", new String[0]);
+			HRProjectBillingRateImpl.class, FINDER_CLASS_NAME_LIST, "findAll",
+			new String[0]);
 	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(HRProjectBillingRateModelImpl.ENTITY_CACHE_ENABLED,
-			HRProjectBillingRateModelImpl.FINDER_CACHE_ENABLED,
+			HRProjectBillingRateModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST, "countAll", new String[0]);
 
 	/**

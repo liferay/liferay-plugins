@@ -82,11 +82,11 @@ public class HRHolidayPersistenceImpl extends BasePersistenceImpl<HRHoliday>
 	public static final String FINDER_CLASS_NAME_LIST = FINDER_CLASS_NAME_ENTITY +
 		".List";
 	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(HRHolidayModelImpl.ENTITY_CACHE_ENABLED,
-			HRHolidayModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findAll", new String[0]);
+			HRHolidayModelImpl.FINDER_CACHE_ENABLED, HRHolidayImpl.class,
+			FINDER_CLASS_NAME_LIST, "findAll", new String[0]);
 	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(HRHolidayModelImpl.ENTITY_CACHE_ENABLED,
-			HRHolidayModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countAll", new String[0]);
+			HRHolidayModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST, "countAll", new String[0]);
 
 	/**
 	 * Caches the h r holiday in the entity cache if it is enabled.
@@ -610,6 +610,7 @@ public class HRHolidayPersistenceImpl extends BasePersistenceImpl<HRHoliday>
 
 	public static final FinderPath FINDER_PATH_GET_HROFFICES = new FinderPath(com.liferay.hr.model.impl.HROfficeModelImpl.ENTITY_CACHE_ENABLED,
 			HRHolidayModelImpl.FINDER_CACHE_ENABLED_HRHOLIDAYS_HROFFICES,
+			com.liferay.hr.model.impl.HROfficeImpl.class,
 			HRHolidayModelImpl.MAPPING_TABLE_HRHOLIDAYS_HROFFICES_NAME,
 			"getHROffices",
 			new String[] {
@@ -693,6 +694,7 @@ public class HRHolidayPersistenceImpl extends BasePersistenceImpl<HRHoliday>
 
 	public static final FinderPath FINDER_PATH_GET_HROFFICES_SIZE = new FinderPath(com.liferay.hr.model.impl.HROfficeModelImpl.ENTITY_CACHE_ENABLED,
 			HRHolidayModelImpl.FINDER_CACHE_ENABLED_HRHOLIDAYS_HROFFICES,
+			Long.class,
 			HRHolidayModelImpl.MAPPING_TABLE_HRHOLIDAYS_HROFFICES_NAME,
 			"getHROfficesSize", new String[] { Long.class.getName() });
 
@@ -746,6 +748,7 @@ public class HRHolidayPersistenceImpl extends BasePersistenceImpl<HRHoliday>
 
 	public static final FinderPath FINDER_PATH_CONTAINS_HROFFICE = new FinderPath(com.liferay.hr.model.impl.HROfficeModelImpl.ENTITY_CACHE_ENABLED,
 			HRHolidayModelImpl.FINDER_CACHE_ENABLED_HRHOLIDAYS_HROFFICES,
+			Boolean.class,
 			HRHolidayModelImpl.MAPPING_TABLE_HRHOLIDAYS_HROFFICES_NAME,
 			"containsHROffice",
 			new String[] { Long.class.getName(), Long.class.getName() });

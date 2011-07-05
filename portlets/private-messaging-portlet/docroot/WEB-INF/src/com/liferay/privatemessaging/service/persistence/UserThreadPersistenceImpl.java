@@ -75,8 +75,8 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	public static final String FINDER_CLASS_NAME_LIST = FINDER_CLASS_NAME_ENTITY +
 		".List";
 	public static final FinderPath FINDER_PATH_FIND_BY_MBTHREADID = new FinderPath(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
-			UserThreadModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findByMBThreadId",
+			UserThreadModelImpl.FINDER_CACHE_ENABLED, UserThreadImpl.class,
+			FINDER_CLASS_NAME_LIST, "findByMBThreadId",
 			new String[] {
 				Long.class.getName(),
 				
@@ -84,11 +84,12 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
 	public static final FinderPath FINDER_PATH_COUNT_BY_MBTHREADID = new FinderPath(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
-			UserThreadModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countByMBThreadId", new String[] { Long.class.getName() });
+			UserThreadModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST, "countByMBThreadId",
+			new String[] { Long.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_BY_USERID = new FinderPath(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
-			UserThreadModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findByUserId",
+			UserThreadModelImpl.FINDER_CACHE_ENABLED, UserThreadImpl.class,
+			FINDER_CLASS_NAME_LIST, "findByUserId",
 			new String[] {
 				Long.class.getName(),
 				
@@ -96,19 +97,20 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
 	public static final FinderPath FINDER_PATH_COUNT_BY_USERID = new FinderPath(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
-			UserThreadModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countByUserId", new String[] { Long.class.getName() });
+			UserThreadModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST, "countByUserId",
+			new String[] { Long.class.getName() });
 	public static final FinderPath FINDER_PATH_FETCH_BY_U_M = new FinderPath(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
-			UserThreadModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_ENTITY,
-			"fetchByU_M",
+			UserThreadModelImpl.FINDER_CACHE_ENABLED, UserThreadImpl.class,
+			FINDER_CLASS_NAME_ENTITY, "fetchByU_M",
 			new String[] { Long.class.getName(), Long.class.getName() });
 	public static final FinderPath FINDER_PATH_COUNT_BY_U_M = new FinderPath(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
-			UserThreadModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countByU_M",
+			UserThreadModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST, "countByU_M",
 			new String[] { Long.class.getName(), Long.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_BY_U_D = new FinderPath(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
-			UserThreadModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findByU_D",
+			UserThreadModelImpl.FINDER_CACHE_ENABLED, UserThreadImpl.class,
+			FINDER_CLASS_NAME_LIST, "findByU_D",
 			new String[] {
 				Long.class.getName(), Boolean.class.getName(),
 				
@@ -116,12 +118,12 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
 	public static final FinderPath FINDER_PATH_COUNT_BY_U_D = new FinderPath(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
-			UserThreadModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countByU_D",
+			UserThreadModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST, "countByU_D",
 			new String[] { Long.class.getName(), Boolean.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_BY_U_R_D = new FinderPath(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
-			UserThreadModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findByU_R_D",
+			UserThreadModelImpl.FINDER_CACHE_ENABLED, UserThreadImpl.class,
+			FINDER_CLASS_NAME_LIST, "findByU_R_D",
 			new String[] {
 				Long.class.getName(), Boolean.class.getName(),
 				Boolean.class.getName(),
@@ -130,18 +132,18 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
 	public static final FinderPath FINDER_PATH_COUNT_BY_U_R_D = new FinderPath(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
-			UserThreadModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countByU_R_D",
+			UserThreadModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST, "countByU_R_D",
 			new String[] {
 				Long.class.getName(), Boolean.class.getName(),
 				Boolean.class.getName()
 			});
 	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
-			UserThreadModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findAll", new String[0]);
+			UserThreadModelImpl.FINDER_CACHE_ENABLED, UserThreadImpl.class,
+			FINDER_CLASS_NAME_LIST, "findAll", new String[0]);
 	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
-			UserThreadModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countAll", new String[0]);
+			UserThreadModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST, "countAll", new String[0]);
 
 	/**
 	 * Caches the user thread in the entity cache if it is enabled.

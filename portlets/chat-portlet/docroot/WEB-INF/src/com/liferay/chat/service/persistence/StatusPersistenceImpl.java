@@ -75,14 +75,16 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	public static final String FINDER_CLASS_NAME_LIST = FINDER_CLASS_NAME_ENTITY +
 		".List";
 	public static final FinderPath FINDER_PATH_FETCH_BY_USERID = new FinderPath(StatusModelImpl.ENTITY_CACHE_ENABLED,
-			StatusModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_ENTITY,
-			"fetchByUserId", new String[] { Long.class.getName() });
+			StatusModelImpl.FINDER_CACHE_ENABLED, StatusImpl.class,
+			FINDER_CLASS_NAME_ENTITY, "fetchByUserId",
+			new String[] { Long.class.getName() });
 	public static final FinderPath FINDER_PATH_COUNT_BY_USERID = new FinderPath(StatusModelImpl.ENTITY_CACHE_ENABLED,
-			StatusModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countByUserId", new String[] { Long.class.getName() });
+			StatusModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST, "countByUserId",
+			new String[] { Long.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_BY_MODIFIEDDATE = new FinderPath(StatusModelImpl.ENTITY_CACHE_ENABLED,
-			StatusModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findByModifiedDate",
+			StatusModelImpl.FINDER_CACHE_ENABLED, StatusImpl.class,
+			FINDER_CLASS_NAME_LIST, "findByModifiedDate",
 			new String[] {
 				Long.class.getName(),
 				
@@ -90,11 +92,12 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
 	public static final FinderPath FINDER_PATH_COUNT_BY_MODIFIEDDATE = new FinderPath(StatusModelImpl.ENTITY_CACHE_ENABLED,
-			StatusModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countByModifiedDate", new String[] { Long.class.getName() });
+			StatusModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST, "countByModifiedDate",
+			new String[] { Long.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_BY_ONLINE = new FinderPath(StatusModelImpl.ENTITY_CACHE_ENABLED,
-			StatusModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findByOnline",
+			StatusModelImpl.FINDER_CACHE_ENABLED, StatusImpl.class,
+			FINDER_CLASS_NAME_LIST, "findByOnline",
 			new String[] {
 				Boolean.class.getName(),
 				
@@ -102,11 +105,12 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
 	public static final FinderPath FINDER_PATH_COUNT_BY_ONLINE = new FinderPath(StatusModelImpl.ENTITY_CACHE_ENABLED,
-			StatusModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countByOnline", new String[] { Boolean.class.getName() });
+			StatusModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST, "countByOnline",
+			new String[] { Boolean.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_BY_M_O = new FinderPath(StatusModelImpl.ENTITY_CACHE_ENABLED,
-			StatusModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findByM_O",
+			StatusModelImpl.FINDER_CACHE_ENABLED, StatusImpl.class,
+			FINDER_CLASS_NAME_LIST, "findByM_O",
 			new String[] {
 				Long.class.getName(), Boolean.class.getName(),
 				
@@ -114,15 +118,15 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
 	public static final FinderPath FINDER_PATH_COUNT_BY_M_O = new FinderPath(StatusModelImpl.ENTITY_CACHE_ENABLED,
-			StatusModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countByM_O",
+			StatusModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST, "countByM_O",
 			new String[] { Long.class.getName(), Boolean.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(StatusModelImpl.ENTITY_CACHE_ENABLED,
-			StatusModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findAll", new String[0]);
+			StatusModelImpl.FINDER_CACHE_ENABLED, StatusImpl.class,
+			FINDER_CLASS_NAME_LIST, "findAll", new String[0]);
 	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(StatusModelImpl.ENTITY_CACHE_ENABLED,
-			StatusModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countAll", new String[0]);
+			StatusModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST, "countAll", new String[0]);
 
 	/**
 	 * Caches the status in the entity cache if it is enabled.

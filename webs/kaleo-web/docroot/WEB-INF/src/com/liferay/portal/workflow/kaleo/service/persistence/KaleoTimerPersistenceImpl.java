@@ -74,8 +74,8 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 	public static final String FINDER_CLASS_NAME_LIST = FINDER_CLASS_NAME_ENTITY +
 		".List";
 	public static final FinderPath FINDER_PATH_FIND_BY_PARENTKALEONODEID = new FinderPath(KaleoTimerModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoTimerModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findByparentKaleoNodeId",
+			KaleoTimerModelImpl.FINDER_CACHE_ENABLED, KaleoTimerImpl.class,
+			FINDER_CLASS_NAME_LIST, "findByparentKaleoNodeId",
 			new String[] {
 				Long.class.getName(),
 				
@@ -83,11 +83,12 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
 	public static final FinderPath FINDER_PATH_COUNT_BY_PARENTKALEONODEID = new FinderPath(KaleoTimerModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoTimerModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countByparentKaleoNodeId", new String[] { Long.class.getName() });
+			KaleoTimerModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST, "countByparentKaleoNodeId",
+			new String[] { Long.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_BY_PKNI_DT = new FinderPath(KaleoTimerModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoTimerModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findByPKNI_DT",
+			KaleoTimerModelImpl.FINDER_CACHE_ENABLED, KaleoTimerImpl.class,
+			FINDER_CLASS_NAME_LIST, "findByPKNI_DT",
 			new String[] {
 				Long.class.getName(), Boolean.class.getName(),
 				
@@ -95,15 +96,15 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
 	public static final FinderPath FINDER_PATH_COUNT_BY_PKNI_DT = new FinderPath(KaleoTimerModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoTimerModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countByPKNI_DT",
+			KaleoTimerModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST, "countByPKNI_DT",
 			new String[] { Long.class.getName(), Boolean.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(KaleoTimerModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoTimerModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findAll", new String[0]);
+			KaleoTimerModelImpl.FINDER_CACHE_ENABLED, KaleoTimerImpl.class,
+			FINDER_CLASS_NAME_LIST, "findAll", new String[0]);
 	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(KaleoTimerModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoTimerModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countAll", new String[0]);
+			KaleoTimerModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST, "countAll", new String[0]);
 
 	/**
 	 * Caches the kaleo timer in the entity cache if it is enabled.

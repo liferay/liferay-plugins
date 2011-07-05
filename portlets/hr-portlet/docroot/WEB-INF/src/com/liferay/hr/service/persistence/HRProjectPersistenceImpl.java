@@ -73,11 +73,11 @@ public class HRProjectPersistenceImpl extends BasePersistenceImpl<HRProject>
 	public static final String FINDER_CLASS_NAME_LIST = FINDER_CLASS_NAME_ENTITY +
 		".List";
 	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(HRProjectModelImpl.ENTITY_CACHE_ENABLED,
-			HRProjectModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findAll", new String[0]);
+			HRProjectModelImpl.FINDER_CACHE_ENABLED, HRProjectImpl.class,
+			FINDER_CLASS_NAME_LIST, "findAll", new String[0]);
 	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(HRProjectModelImpl.ENTITY_CACHE_ENABLED,
-			HRProjectModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countAll", new String[0]);
+			HRProjectModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST, "countAll", new String[0]);
 
 	/**
 	 * Caches the h r project in the entity cache if it is enabled.

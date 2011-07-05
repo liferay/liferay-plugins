@@ -76,7 +76,8 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 		".List";
 	public static final FinderPath FINDER_PATH_FIND_BY_COMPANYID = new FinderPath(KaleoTaskAssignmentModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoTaskAssignmentModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findByCompanyId",
+			KaleoTaskAssignmentImpl.class, FINDER_CLASS_NAME_LIST,
+			"findByCompanyId",
 			new String[] {
 				Long.class.getName(),
 				
@@ -84,12 +85,13 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
 	public static final FinderPath FINDER_PATH_COUNT_BY_COMPANYID = new FinderPath(KaleoTaskAssignmentModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoTaskAssignmentModelImpl.FINDER_CACHE_ENABLED,
+			KaleoTaskAssignmentModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST, "countByCompanyId",
 			new String[] { Long.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_BY_KALEODEFINITIONID = new FinderPath(KaleoTaskAssignmentModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoTaskAssignmentModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findByKaleoDefinitionId",
+			KaleoTaskAssignmentImpl.class, FINDER_CLASS_NAME_LIST,
+			"findByKaleoDefinitionId",
 			new String[] {
 				Long.class.getName(),
 				
@@ -97,12 +99,13 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
 	public static final FinderPath FINDER_PATH_COUNT_BY_KALEODEFINITIONID = new FinderPath(KaleoTaskAssignmentModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoTaskAssignmentModelImpl.FINDER_CACHE_ENABLED,
+			KaleoTaskAssignmentModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST, "countByKaleoDefinitionId",
 			new String[] { Long.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_BY_KALEOTASKID = new FinderPath(KaleoTaskAssignmentModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoTaskAssignmentModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findByKaleoTaskId",
+			KaleoTaskAssignmentImpl.class, FINDER_CLASS_NAME_LIST,
+			"findByKaleoTaskId",
 			new String[] {
 				Long.class.getName(),
 				
@@ -110,12 +113,13 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
 	public static final FinderPath FINDER_PATH_COUNT_BY_KALEOTASKID = new FinderPath(KaleoTaskAssignmentModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoTaskAssignmentModelImpl.FINDER_CACHE_ENABLED,
+			KaleoTaskAssignmentModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST, "countByKaleoTaskId",
 			new String[] { Long.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_BY_KNI_KTI = new FinderPath(KaleoTaskAssignmentModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoTaskAssignmentModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findByKNI_KTI",
+			KaleoTaskAssignmentImpl.class, FINDER_CLASS_NAME_LIST,
+			"findByKNI_KTI",
 			new String[] {
 				Long.class.getName(), Long.class.getName(),
 				
@@ -123,12 +127,13 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
 	public static final FinderPath FINDER_PATH_COUNT_BY_KNI_KTI = new FinderPath(KaleoTaskAssignmentModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoTaskAssignmentModelImpl.FINDER_CACHE_ENABLED,
+			KaleoTaskAssignmentModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST, "countByKNI_KTI",
 			new String[] { Long.class.getName(), Long.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_BY_KTI_ACN = new FinderPath(KaleoTaskAssignmentModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoTaskAssignmentModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findByKTI_ACN",
+			KaleoTaskAssignmentImpl.class, FINDER_CLASS_NAME_LIST,
+			"findByKTI_ACN",
 			new String[] {
 				Long.class.getName(), String.class.getName(),
 				
@@ -136,14 +141,15 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
 	public static final FinderPath FINDER_PATH_COUNT_BY_KTI_ACN = new FinderPath(KaleoTaskAssignmentModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoTaskAssignmentModelImpl.FINDER_CACHE_ENABLED,
+			KaleoTaskAssignmentModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST, "countByKTI_ACN",
 			new String[] { Long.class.getName(), String.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(KaleoTaskAssignmentModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoTaskAssignmentModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findAll", new String[0]);
+			KaleoTaskAssignmentImpl.class, FINDER_CLASS_NAME_LIST, "findAll",
+			new String[0]);
 	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(KaleoTaskAssignmentModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoTaskAssignmentModelImpl.FINDER_CACHE_ENABLED,
+			KaleoTaskAssignmentModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST, "countAll", new String[0]);
 
 	/**

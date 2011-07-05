@@ -75,7 +75,8 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 		".List";
 	public static final FinderPath FINDER_PATH_FIND_BY_KALEOINSTANCEID = new FinderPath(KaleoTimerInstanceTokenModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoTimerInstanceTokenModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findByKaleoInstanceId",
+			KaleoTimerInstanceTokenImpl.class, FINDER_CLASS_NAME_LIST,
+			"findByKaleoInstanceId",
 			new String[] {
 				Long.class.getName(),
 				
@@ -83,22 +84,24 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
 	public static final FinderPath FINDER_PATH_COUNT_BY_KALEOINSTANCEID = new FinderPath(KaleoTimerInstanceTokenModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoTimerInstanceTokenModelImpl.FINDER_CACHE_ENABLED,
+			KaleoTimerInstanceTokenModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST, "countByKaleoInstanceId",
 			new String[] { Long.class.getName() });
 	public static final FinderPath FINDER_PATH_FETCH_BY_KII_KTI = new FinderPath(KaleoTimerInstanceTokenModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoTimerInstanceTokenModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_ENTITY, "fetchByKII_KTI",
+			KaleoTimerInstanceTokenImpl.class, FINDER_CLASS_NAME_ENTITY,
+			"fetchByKII_KTI",
 			new String[] { Long.class.getName(), Long.class.getName() });
 	public static final FinderPath FINDER_PATH_COUNT_BY_KII_KTI = new FinderPath(KaleoTimerInstanceTokenModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoTimerInstanceTokenModelImpl.FINDER_CACHE_ENABLED,
+			KaleoTimerInstanceTokenModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST, "countByKII_KTI",
 			new String[] { Long.class.getName(), Long.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(KaleoTimerInstanceTokenModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoTimerInstanceTokenModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findAll", new String[0]);
+			KaleoTimerInstanceTokenImpl.class, FINDER_CLASS_NAME_LIST,
+			"findAll", new String[0]);
 	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(KaleoTimerInstanceTokenModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoTimerInstanceTokenModelImpl.FINDER_CACHE_ENABLED,
+			KaleoTimerInstanceTokenModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST, "countAll", new String[0]);
 
 	/**

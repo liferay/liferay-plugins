@@ -77,17 +77,19 @@ public class HRTimeOffFrequencyTypePersistenceImpl extends BasePersistenceImpl<H
 		".List";
 	public static final FinderPath FINDER_PATH_FETCH_BY_G_C = new FinderPath(HRTimeOffFrequencyTypeModelImpl.ENTITY_CACHE_ENABLED,
 			HRTimeOffFrequencyTypeModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_ENTITY, "fetchByG_C",
+			HRTimeOffFrequencyTypeImpl.class, FINDER_CLASS_NAME_ENTITY,
+			"fetchByG_C",
 			new String[] { Long.class.getName(), String.class.getName() });
 	public static final FinderPath FINDER_PATH_COUNT_BY_G_C = new FinderPath(HRTimeOffFrequencyTypeModelImpl.ENTITY_CACHE_ENABLED,
-			HRTimeOffFrequencyTypeModelImpl.FINDER_CACHE_ENABLED,
+			HRTimeOffFrequencyTypeModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST, "countByG_C",
 			new String[] { Long.class.getName(), String.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(HRTimeOffFrequencyTypeModelImpl.ENTITY_CACHE_ENABLED,
 			HRTimeOffFrequencyTypeModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findAll", new String[0]);
+			HRTimeOffFrequencyTypeImpl.class, FINDER_CLASS_NAME_LIST,
+			"findAll", new String[0]);
 	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(HRTimeOffFrequencyTypeModelImpl.ENTITY_CACHE_ENABLED,
-			HRTimeOffFrequencyTypeModelImpl.FINDER_CACHE_ENABLED,
+			HRTimeOffFrequencyTypeModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST, "countAll", new String[0]);
 
 	/**

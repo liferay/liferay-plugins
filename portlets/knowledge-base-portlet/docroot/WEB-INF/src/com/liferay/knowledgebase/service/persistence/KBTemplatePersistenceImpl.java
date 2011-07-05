@@ -84,8 +84,8 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	public static final String FINDER_CLASS_NAME_LIST = FINDER_CLASS_NAME_ENTITY +
 		".List";
 	public static final FinderPath FINDER_PATH_FIND_BY_UUID = new FinderPath(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
-			KBTemplateModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findByUuid",
+			KBTemplateModelImpl.FINDER_CACHE_ENABLED, KBTemplateImpl.class,
+			FINDER_CLASS_NAME_LIST, "findByUuid",
 			new String[] {
 				String.class.getName(),
 				
@@ -93,19 +93,20 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
 	public static final FinderPath FINDER_PATH_COUNT_BY_UUID = new FinderPath(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
-			KBTemplateModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countByUuid", new String[] { String.class.getName() });
+			KBTemplateModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST, "countByUuid",
+			new String[] { String.class.getName() });
 	public static final FinderPath FINDER_PATH_FETCH_BY_UUID_G = new FinderPath(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
-			KBTemplateModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_ENTITY,
-			"fetchByUUID_G",
+			KBTemplateModelImpl.FINDER_CACHE_ENABLED, KBTemplateImpl.class,
+			FINDER_CLASS_NAME_ENTITY, "fetchByUUID_G",
 			new String[] { String.class.getName(), Long.class.getName() });
 	public static final FinderPath FINDER_PATH_COUNT_BY_UUID_G = new FinderPath(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
-			KBTemplateModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countByUUID_G",
+			KBTemplateModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST, "countByUUID_G",
 			new String[] { String.class.getName(), Long.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_BY_GROUPID = new FinderPath(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
-			KBTemplateModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findByGroupId",
+			KBTemplateModelImpl.FINDER_CACHE_ENABLED, KBTemplateImpl.class,
+			FINDER_CLASS_NAME_LIST, "findByGroupId",
 			new String[] {
 				Long.class.getName(),
 				
@@ -113,14 +114,15 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
 	public static final FinderPath FINDER_PATH_COUNT_BY_GROUPID = new FinderPath(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
-			KBTemplateModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countByGroupId", new String[] { Long.class.getName() });
+			KBTemplateModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST, "countByGroupId",
+			new String[] { Long.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
-			KBTemplateModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findAll", new String[0]);
+			KBTemplateModelImpl.FINDER_CACHE_ENABLED, KBTemplateImpl.class,
+			FINDER_CLASS_NAME_LIST, "findAll", new String[0]);
 	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
-			KBTemplateModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countAll", new String[0]);
+			KBTemplateModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST, "countAll", new String[0]);
 
 	/**
 	 * Caches the k b template in the entity cache if it is enabled.
@@ -2128,6 +2130,7 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 
 	public static final FinderPath FINDER_PATH_GET_KBARTICLES = new FinderPath(com.liferay.knowledgebase.model.impl.KBArticleModelImpl.ENTITY_CACHE_ENABLED,
 			com.liferay.knowledgebase.model.impl.KBArticleModelImpl.FINDER_CACHE_ENABLED,
+			com.liferay.knowledgebase.model.impl.KBArticleImpl.class,
 			com.liferay.knowledgebase.service.persistence.KBArticlePersistenceImpl.FINDER_CLASS_NAME_LIST,
 			"getKBArticles",
 			new String[] {
@@ -2212,6 +2215,7 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 
 	public static final FinderPath FINDER_PATH_GET_KBARTICLES_SIZE = new FinderPath(com.liferay.knowledgebase.model.impl.KBArticleModelImpl.ENTITY_CACHE_ENABLED,
 			com.liferay.knowledgebase.model.impl.KBArticleModelImpl.FINDER_CACHE_ENABLED,
+			com.liferay.knowledgebase.model.impl.KBArticleImpl.class,
 			com.liferay.knowledgebase.service.persistence.KBArticlePersistenceImpl.FINDER_CLASS_NAME_LIST,
 			"getKBArticlesSize", new String[] { Long.class.getName() });
 
@@ -2265,6 +2269,7 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 
 	public static final FinderPath FINDER_PATH_CONTAINS_KBARTICLE = new FinderPath(com.liferay.knowledgebase.model.impl.KBArticleModelImpl.ENTITY_CACHE_ENABLED,
 			com.liferay.knowledgebase.model.impl.KBArticleModelImpl.FINDER_CACHE_ENABLED,
+			com.liferay.knowledgebase.model.impl.KBArticleImpl.class,
 			com.liferay.knowledgebase.service.persistence.KBArticlePersistenceImpl.FINDER_CLASS_NAME_LIST,
 			"containsKBArticle",
 			new String[] { Long.class.getName(), Long.class.getName() });
@@ -2422,7 +2427,6 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	private static final String _FILTER_SQL_COUNT_KBTEMPLATE_WHERE = "SELECT COUNT(DISTINCT kbTemplate.kbTemplateId) AS COUNT_VALUE FROM KBTemplate kbTemplate WHERE ";
 	private static final String _FILTER_ENTITY_ALIAS = "kbTemplate";
 	private static final String _FILTER_ENTITY_TABLE = "KBTemplate";
-	private static final String _FILTER_ENTITY_TABLE_PK_COLUMN = "kbTemplate.kbTemplateId";
 	private static final String _FILTER_ENTITY_TABLE_FILTER_PK_COLUMN = "kbTemplate.kbTemplateId";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "kbTemplate.";
 	private static final String _ORDER_BY_ENTITY_TABLE = "KBTemplate.";

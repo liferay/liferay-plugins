@@ -74,8 +74,8 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 	public static final String FINDER_CLASS_NAME_LIST = FINDER_CLASS_NAME_ENTITY +
 		".List";
 	public static final FinderPath FINDER_PATH_FIND_BY_COMPANYID = new FinderPath(KaleoLogModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoLogModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findByCompanyId",
+			KaleoLogModelImpl.FINDER_CACHE_ENABLED, KaleoLogImpl.class,
+			FINDER_CLASS_NAME_LIST, "findByCompanyId",
 			new String[] {
 				Long.class.getName(),
 				
@@ -83,11 +83,12 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
 	public static final FinderPath FINDER_PATH_COUNT_BY_COMPANYID = new FinderPath(KaleoLogModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoLogModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countByCompanyId", new String[] { Long.class.getName() });
+			KaleoLogModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST, "countByCompanyId",
+			new String[] { Long.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_BY_KALEODEFINITIONID = new FinderPath(KaleoLogModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoLogModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findByKaleoDefinitionId",
+			KaleoLogModelImpl.FINDER_CACHE_ENABLED, KaleoLogImpl.class,
+			FINDER_CLASS_NAME_LIST, "findByKaleoDefinitionId",
 			new String[] {
 				Long.class.getName(),
 				
@@ -95,11 +96,12 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
 	public static final FinderPath FINDER_PATH_COUNT_BY_KALEODEFINITIONID = new FinderPath(KaleoLogModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoLogModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countByKaleoDefinitionId", new String[] { Long.class.getName() });
+			KaleoLogModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST, "countByKaleoDefinitionId",
+			new String[] { Long.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_BY_KALEOINSTANCEID = new FinderPath(KaleoLogModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoLogModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findByKaleoInstanceId",
+			KaleoLogModelImpl.FINDER_CACHE_ENABLED, KaleoLogImpl.class,
+			FINDER_CLASS_NAME_LIST, "findByKaleoInstanceId",
 			new String[] {
 				Long.class.getName(),
 				
@@ -107,11 +109,12 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
 	public static final FinderPath FINDER_PATH_COUNT_BY_KALEOINSTANCEID = new FinderPath(KaleoLogModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoLogModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countByKaleoInstanceId", new String[] { Long.class.getName() });
+			KaleoLogModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST, "countByKaleoInstanceId",
+			new String[] { Long.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_BY_KALEOTASKINSTANCETOKENID = new FinderPath(KaleoLogModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoLogModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findByKaleoTaskInstanceTokenId",
+			KaleoLogModelImpl.FINDER_CACHE_ENABLED, KaleoLogImpl.class,
+			FINDER_CLASS_NAME_LIST, "findByKaleoTaskInstanceTokenId",
 			new String[] {
 				Long.class.getName(),
 				
@@ -120,12 +123,12 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 			});
 	public static final FinderPath FINDER_PATH_COUNT_BY_KALEOTASKINSTANCETOKENID =
 		new FinderPath(KaleoLogModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoLogModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countByKaleoTaskInstanceTokenId",
+			KaleoLogModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST, "countByKaleoTaskInstanceTokenId",
 			new String[] { Long.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_BY_KITI_T = new FinderPath(KaleoLogModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoLogModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findByKITI_T",
+			KaleoLogModelImpl.FINDER_CACHE_ENABLED, KaleoLogImpl.class,
+			FINDER_CLASS_NAME_LIST, "findByKITI_T",
 			new String[] {
 				Long.class.getName(), String.class.getName(),
 				
@@ -133,12 +136,12 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
 	public static final FinderPath FINDER_PATH_COUNT_BY_KITI_T = new FinderPath(KaleoLogModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoLogModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countByKITI_T",
+			KaleoLogModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST, "countByKITI_T",
 			new String[] { Long.class.getName(), String.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_BY_KITI_KNI_T = new FinderPath(KaleoLogModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoLogModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findByKITI_KNI_T",
+			KaleoLogModelImpl.FINDER_CACHE_ENABLED, KaleoLogImpl.class,
+			FINDER_CLASS_NAME_LIST, "findByKITI_KNI_T",
 			new String[] {
 				Long.class.getName(), Long.class.getName(),
 				String.class.getName(),
@@ -147,18 +150,18 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
 	public static final FinderPath FINDER_PATH_COUNT_BY_KITI_KNI_T = new FinderPath(KaleoLogModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoLogModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countByKITI_KNI_T",
+			KaleoLogModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST, "countByKITI_KNI_T",
 			new String[] {
 				Long.class.getName(), Long.class.getName(),
 				String.class.getName()
 			});
 	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(KaleoLogModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoLogModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findAll", new String[0]);
+			KaleoLogModelImpl.FINDER_CACHE_ENABLED, KaleoLogImpl.class,
+			FINDER_CLASS_NAME_LIST, "findAll", new String[0]);
 	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(KaleoLogModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoLogModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countAll", new String[0]);
+			KaleoLogModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST, "countAll", new String[0]);
 
 	/**
 	 * Caches the kaleo log in the entity cache if it is enabled.

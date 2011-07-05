@@ -74,9 +74,10 @@ public class HRUserProjectPersistenceImpl extends BasePersistenceImpl<HRUserProj
 		".List";
 	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(HRUserProjectModelImpl.ENTITY_CACHE_ENABLED,
 			HRUserProjectModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findAll", new String[0]);
+			HRUserProjectImpl.class, FINDER_CLASS_NAME_LIST, "findAll",
+			new String[0]);
 	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(HRUserProjectModelImpl.ENTITY_CACHE_ENABLED,
-			HRUserProjectModelImpl.FINDER_CACHE_ENABLED,
+			HRUserProjectModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST, "countAll", new String[0]);
 
 	/**
