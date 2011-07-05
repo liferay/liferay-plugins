@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <projectDescription>
-	<name>test-dependency-baker-portlet</name>
+	<name>test-dependency-baker-portlet-trunk</name>
 	<comment></comment>
 	<projects></projects>
 	<buildSpec>
