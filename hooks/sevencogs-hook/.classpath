@@ -16,5 +16,8 @@
 	<classpathentry kind="lib" path="/portal-trunk/util-bridges/util-bridges.jar" />
 	<classpathentry kind="lib" path="/portal-trunk/util-java/util-java.jar" />
 	<classpathentry kind="lib" path="/portal-trunk/util-taglib/util-taglib.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/kaleo-web-service.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/mail-portlet-service.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/social-networking-portlet-service.jar" />
 	<classpathentry kind="output" path="bin" />
 </classpath>
