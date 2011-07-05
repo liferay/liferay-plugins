@@ -10,7 +10,7 @@
 	<classpathentry kind="lib" path="/portal-trunk/lib/development/mail.jar" />
 	<classpathentry kind="lib" path="/portal-trunk/lib/development/servlet-api.jar" />
 	<classpathentry kind="lib" path="/portal-trunk/lib/global/portlet.jar" />
-	<classpathentry kind="lib" path="/portal-trunk/lib/portal/antlr.jar" />
+	<classpathentry kind="lib" path="/portal-trunk/lib/portal/antlr2.jar" />
 	<classpathentry kind="lib" path="/portal-trunk/lib/portal/commons-collections.jar" />
 	<classpathentry kind="lib" path="/portal-trunk/lib/portal/commons-lang.jar" />
 	<classpathentry kind="lib" path="/portal-trunk/lib/portal/commons-logging.jar" />
@@ -21,21 +21,5 @@
 	<classpathentry kind="lib" path="/portal-trunk/util-bridges/util-bridges.jar" />
 	<classpathentry kind="lib" path="/portal-trunk/util-java/util-java.jar" />
 	<classpathentry kind="lib" path="/portal-trunk/util-taglib/util-taglib.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/mina-core-2.0.0-RC1.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/shared-asn1-0.9.19.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/shared-asn1-codec-0.9.19.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/shared-cursor-0.9.19.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/shared-dsml-parser-0.9.19.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/shared-i18n-0.9.19.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/shared-ldap-0.9.19.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/shared-ldap-constants-0.9.19.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/shared-ldap-converter-0.9.19.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/shared-ldap-jndi-0.9.19.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/shared-ldap-patches.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/shared-ldap-schema-0.9.19.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/shared-ldap-schema-dao-0.9.19.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/shared-ldap-schema-loader-0.9.19.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/shared-ldap-schema-manager-0.9.19.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/shared-ldif-0.9.19.jar" />
 	<classpathentry kind="output" path="bin" />
 </classpath>
