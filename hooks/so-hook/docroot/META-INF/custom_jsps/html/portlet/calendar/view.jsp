@@ -44,7 +44,7 @@ for (int i = 1; i <= selCal.getActualMaximum(Calendar.DATE); i++) {
 	tempCal.set(Calendar.DATE, i);
 	tempCal.set(Calendar.YEAR, selYear);
 
-	boolean hasEvents = CalEventLocalServiceUtil.hasEvents(scopeGroupId, tempCal, eventType);
+	boolean hasEvents = CalEventServiceUtil.hasEvents(scopeGroupId, tempCal, eventType);
 
 	if (hasEvents) {
 		data.add(new Integer(i));
