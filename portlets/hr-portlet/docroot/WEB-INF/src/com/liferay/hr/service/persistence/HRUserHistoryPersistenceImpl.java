@@ -374,8 +374,14 @@ public class HRUserHistoryPersistenceImpl extends BasePersistenceImpl<HRUserHist
 		HRUserHistory hrUserHistory = (HRUserHistory)EntityCacheUtil.getResult(HRUserHistoryModelImpl.ENTITY_CACHE_ENABLED,
 				HRUserHistoryImpl.class, hrUserHistoryId, this);
 
+		if (hrUserHistory == _nullHRUserHistory) {
+			return null;
+		}
+
 		if (hrUserHistory == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -384,11 +390,18 @@ public class HRUserHistoryPersistenceImpl extends BasePersistenceImpl<HRUserHist
 						Long.valueOf(hrUserHistoryId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
 				if (hrUserHistory != null) {
 					cacheResult(hrUserHistory);
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(HRUserHistoryModelImpl.ENTITY_CACHE_ENABLED,
+						HRUserHistoryImpl.class, hrUserHistoryId,
+						_nullHRUserHistory);
 				}
 
 				closeSession(session);
@@ -676,4 +689,9 @@ public class HRUserHistoryPersistenceImpl extends BasePersistenceImpl<HRUserHist
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(HRUserHistoryPersistenceImpl.class);
+	private static HRUserHistory _nullHRUserHistory = new HRUserHistoryImpl() {
+			public Object clone() {
+				return this;
+			}
+		};
 }

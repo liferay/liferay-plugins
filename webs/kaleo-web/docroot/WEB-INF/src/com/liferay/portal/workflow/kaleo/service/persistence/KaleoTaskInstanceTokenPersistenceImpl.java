@@ -483,8 +483,14 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 		KaleoTaskInstanceToken kaleoTaskInstanceToken = (KaleoTaskInstanceToken)EntityCacheUtil.getResult(KaleoTaskInstanceTokenModelImpl.ENTITY_CACHE_ENABLED,
 				KaleoTaskInstanceTokenImpl.class, kaleoTaskInstanceTokenId, this);
 
+		if (kaleoTaskInstanceToken == _nullKaleoTaskInstanceToken) {
+			return null;
+		}
+
 		if (kaleoTaskInstanceToken == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -493,11 +499,18 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 						Long.valueOf(kaleoTaskInstanceTokenId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
 				if (kaleoTaskInstanceToken != null) {
 					cacheResult(kaleoTaskInstanceToken);
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(KaleoTaskInstanceTokenModelImpl.ENTITY_CACHE_ENABLED,
+						KaleoTaskInstanceTokenImpl.class,
+						kaleoTaskInstanceTokenId, _nullKaleoTaskInstanceToken);
 				}
 
 				closeSession(session);
@@ -1598,6 +1611,7 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 	 *
 	 * @param kaleoInstanceId the kaleo instance ID
 	 * @param kaleoTaskId the kaleo task ID
+	 * @param retrieveFromCache whether to use the finder cache
 	 * @return the matching kaleo task instance token, or <code>null</code> if a matching kaleo task instance token could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -2300,7 +2314,7 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 			new String[] { Long.class.getName(), Long.class.getName() });
 
 	/**
-	 * Determines if the kaleo task assignment instance is associated with the kaleo task instance token.
+	 * Returns <code>true</code> if the kaleo task assignment instance is associated with the kaleo task instance token.
 	 *
 	 * @param pk the primary key of the kaleo task instance token
 	 * @param kaleoTaskAssignmentInstancePK the primary key of the kaleo task assignment instance
@@ -2336,7 +2350,7 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 	}
 
 	/**
-	 * Determines if the kaleo task instance token has any kaleo task assignment instances associated with it.
+	 * Returns <code>true</code> if the kaleo task instance token has any kaleo task assignment instances associated with it.
 	 *
 	 * @param pk the primary key of the kaleo task instance token to check for associations with kaleo task assignment instances
 	 * @return <code>true</code> if the kaleo task instance token has any kaleo task assignment instances associated with it; <code>false</code> otherwise
@@ -2475,4 +2489,9 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(KaleoTaskInstanceTokenPersistenceImpl.class);
+	private static KaleoTaskInstanceToken _nullKaleoTaskInstanceToken = new KaleoTaskInstanceTokenImpl() {
+			public Object clone() {
+				return this;
+			}
+		};
 }

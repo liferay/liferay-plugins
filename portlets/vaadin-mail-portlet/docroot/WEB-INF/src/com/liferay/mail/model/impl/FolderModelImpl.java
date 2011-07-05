@@ -241,8 +241,13 @@ public class FolderModelImpl extends BaseModelImpl<Folder>
 			return (Folder)this;
 		}
 		else {
-			return (Folder)Proxy.newProxyInstance(_classLoader,
-				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
+			if (_escapedModelProxy == null) {
+				_escapedModelProxy = (Folder)Proxy.newProxyInstance(_classLoader,
+						_escapedModelProxyInterfaces,
+						new AutoEscapeBeanHandler(this));
+			}
+
+			return _escapedModelProxy;
 		}
 	}
 
@@ -435,4 +440,5 @@ public class FolderModelImpl extends BaseModelImpl<Folder>
 	private String _displayName;
 	private int _remoteMessageCount;
 	private transient ExpandoBridge _expandoBridge;
+	private Folder _escapedModelProxy;
 }

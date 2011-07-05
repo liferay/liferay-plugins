@@ -322,7 +322,7 @@ public class HRTimeOffPolicyWrapper implements HRTimeOffPolicy {
 	}
 
 	/**
-	* Determines if this h r time off policy is inactive.
+	* Returns <code>true</code> if this h r time off policy is inactive.
 	*
 	* @return <code>true</code> if this h r time off policy is inactive; <code>false</code> otherwise
 	*/

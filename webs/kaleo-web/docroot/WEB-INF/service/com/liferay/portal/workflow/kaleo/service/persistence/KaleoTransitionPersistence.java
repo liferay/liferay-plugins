@@ -450,6 +450,7 @@ public interface KaleoTransitionPersistence extends BasePersistence<KaleoTransit
 	*
 	* @param kaleoNodeId the kaleo node ID
 	* @param name the name
+	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching kaleo transition, or <code>null</code> if a matching kaleo transition could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -488,6 +489,7 @@ public interface KaleoTransitionPersistence extends BasePersistence<KaleoTransit
 	*
 	* @param kaleoNodeId the kaleo node ID
 	* @param defaultTransition the default transition
+	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching kaleo transition, or <code>null</code> if a matching kaleo transition could not be found
 	* @throws SystemException if a system exception occurred
 	*/

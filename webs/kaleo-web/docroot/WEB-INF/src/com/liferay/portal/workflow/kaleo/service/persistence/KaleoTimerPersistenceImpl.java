@@ -393,8 +393,14 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 		KaleoTimer kaleoTimer = (KaleoTimer)EntityCacheUtil.getResult(KaleoTimerModelImpl.ENTITY_CACHE_ENABLED,
 				KaleoTimerImpl.class, kaleoTimerId, this);
 
+		if (kaleoTimer == _nullKaleoTimer) {
+			return null;
+		}
+
 		if (kaleoTimer == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -403,11 +409,17 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 						Long.valueOf(kaleoTimerId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
 				if (kaleoTimer != null) {
 					cacheResult(kaleoTimer);
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(KaleoTimerModelImpl.ENTITY_CACHE_ENABLED,
+						KaleoTimerImpl.class, kaleoTimerId, _nullKaleoTimer);
 				}
 
 				closeSession(session);
@@ -1504,4 +1516,9 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(KaleoTimerPersistenceImpl.class);
+	private static KaleoTimer _nullKaleoTimer = new KaleoTimerImpl() {
+			public Object clone() {
+				return this;
+			}
+		};
 }

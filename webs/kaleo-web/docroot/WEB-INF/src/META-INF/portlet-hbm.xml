@@ -70,7 +70,7 @@
 		<property name="title" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="version" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
-		<property name="active" column="active_" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="active" type="com.liferay.portal.dao.orm.hibernate.BooleanType" column="active_" />
 		<property name="startKaleoNodeId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 	</class>
 	<class name="com.liferay.portal.workflow.kaleo.model.impl.KaleoInstanceImpl" table="KaleoInstance">
@@ -142,8 +142,8 @@
 		<property name="previousAssigneeClassPK" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="currentAssigneeClassName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="currentAssigneeClassPK" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="type" column="type_" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="comment" column="comment_" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="type" type="com.liferay.portal.dao.orm.hibernate.StringType" column="type_" />
+		<property name="comment" type="com.liferay.portal.dao.orm.hibernate.StringType" column="comment_" />
 		<property name="startDate" type="org.hibernate.type.TimestampType" />
 		<property name="endDate" type="org.hibernate.type.TimestampType" />
 		<property name="duration" type="com.liferay.portal.dao.orm.hibernate.LongType" />
@@ -163,8 +163,8 @@
 		<property name="kaleoDefinitionId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="type" column="type_" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="initial" column="initial_" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="type" type="com.liferay.portal.dao.orm.hibernate.StringType" column="type_" />
+		<property name="initial" type="com.liferay.portal.dao.orm.hibernate.BooleanType" column="initial_" />
 		<property name="terminal" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 	</class>
 	<class name="com.liferay.portal.workflow.kaleo.model.impl.KaleoNotificationImpl" table="KaleoNotification">

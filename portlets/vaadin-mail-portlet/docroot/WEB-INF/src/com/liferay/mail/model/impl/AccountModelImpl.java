@@ -440,8 +440,13 @@ public class AccountModelImpl extends BaseModelImpl<Account>
 			return (Account)this;
 		}
 		else {
-			return (Account)Proxy.newProxyInstance(_classLoader,
-				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
+			if (_escapedModelProxy == null) {
+				_escapedModelProxy = (Account)Proxy.newProxyInstance(_classLoader,
+						_escapedModelProxyInterfaces,
+						new AutoEscapeBeanHandler(this));
+			}
+
+			return _escapedModelProxy;
 		}
 	}
 
@@ -762,4 +767,5 @@ public class AccountModelImpl extends BaseModelImpl<Account>
 	private long _trashFolderId;
 	private boolean _defaultSender;
 	private transient ExpandoBridge _expandoBridge;
+	private Account _escapedModelProxy;
 }

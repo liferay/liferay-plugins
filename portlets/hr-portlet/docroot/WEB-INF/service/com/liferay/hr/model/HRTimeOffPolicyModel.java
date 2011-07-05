@@ -270,7 +270,7 @@ public interface HRTimeOffPolicyModel extends BaseModel<HRTimeOffPolicy>,
 	public boolean getInactive();
 
 	/**
-	 * Determines if this h r time off policy is inactive.
+	 * Returns <code>true</code> if this h r time off policy is inactive.
 	 *
 	 * @return <code>true</code> if this h r time off policy is inactive; <code>false</code> otherwise
 	 */

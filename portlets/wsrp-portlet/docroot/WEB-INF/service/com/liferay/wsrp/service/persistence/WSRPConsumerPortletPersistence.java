@@ -346,6 +346,7 @@ public interface WSRPConsumerPortletPersistence extends BasePersistence<WSRPCons
 	*
 	* @param wsrpConsumerId the wsrp consumer ID
 	* @param portletHandle the portlet handle
+	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching w s r p consumer portlet, or <code>null</code> if a matching w s r p consumer portlet could not be found
 	* @throws SystemException if a system exception occurred
 	*/

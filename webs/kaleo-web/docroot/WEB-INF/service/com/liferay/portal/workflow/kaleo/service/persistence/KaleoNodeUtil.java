@@ -785,7 +785,7 @@ public class KaleoNodeUtil {
 	}
 
 	/**
-	* Determines if the kaleo action is associated with the kaleo node.
+	* Returns <code>true</code> if the kaleo action is associated with the kaleo node.
 	*
 	* @param pk the primary key of the kaleo node
 	* @param kaleoActionPK the primary key of the kaleo action
@@ -798,7 +798,7 @@ public class KaleoNodeUtil {
 	}
 
 	/**
-	* Determines if the kaleo node has any kaleo actions associated with it.
+	* Returns <code>true</code> if the kaleo node has any kaleo actions associated with it.
 	*
 	* @param pk the primary key of the kaleo node to check for associations with kaleo actions
 	* @return <code>true</code> if the kaleo node has any kaleo actions associated with it; <code>false</code> otherwise
@@ -875,7 +875,7 @@ public class KaleoNodeUtil {
 	}
 
 	/**
-	* Determines if the kaleo transition is associated with the kaleo node.
+	* Returns <code>true</code> if the kaleo transition is associated with the kaleo node.
 	*
 	* @param pk the primary key of the kaleo node
 	* @param kaleoTransitionPK the primary key of the kaleo transition
@@ -889,7 +889,7 @@ public class KaleoNodeUtil {
 	}
 
 	/**
-	* Determines if the kaleo node has any kaleo transitions associated with it.
+	* Returns <code>true</code> if the kaleo node has any kaleo transitions associated with it.
 	*
 	* @param pk the primary key of the kaleo node to check for associations with kaleo transitions
 	* @return <code>true</code> if the kaleo node has any kaleo transitions associated with it; <code>false</code> otherwise

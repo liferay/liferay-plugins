@@ -282,7 +282,7 @@ public class KBTemplateWrapper implements KBTemplate {
 	}
 
 	/**
-	* Determines if this k b template is cacheable.
+	* Returns <code>true</code> if this k b template is cacheable.
 	*
 	* @return <code>true</code> if this k b template is cacheable; <code>false</code> otherwise
 	*/

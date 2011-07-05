@@ -230,8 +230,13 @@ public class MeetupsRegistrationModelImpl extends BaseModelImpl<MeetupsRegistrat
 			return (MeetupsRegistration)this;
 		}
 		else {
-			return (MeetupsRegistration)Proxy.newProxyInstance(_classLoader,
-				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
+			if (_escapedModelProxy == null) {
+				_escapedModelProxy = (MeetupsRegistration)Proxy.newProxyInstance(_classLoader,
+						_escapedModelProxyInterfaces,
+						new AutoEscapeBeanHandler(this));
+			}
+
+			return _escapedModelProxy;
 		}
 	}
 
@@ -422,4 +427,5 @@ public class MeetupsRegistrationModelImpl extends BaseModelImpl<MeetupsRegistrat
 	private int _status;
 	private String _comments;
 	private transient ExpandoBridge _expandoBridge;
+	private MeetupsRegistration _escapedModelProxy;
 }

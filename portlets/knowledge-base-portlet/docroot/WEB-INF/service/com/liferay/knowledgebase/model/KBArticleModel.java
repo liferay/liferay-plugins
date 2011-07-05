@@ -360,7 +360,7 @@ public interface KBArticleModel extends BaseModel<KBArticle>, GroupedModel,
 	public boolean getLatest();
 
 	/**
-	 * Determines if this k b article is latest.
+	 * Returns <code>true</code> if this k b article is latest.
 	 *
 	 * @return <code>true</code> if this k b article is latest; <code>false</code> otherwise
 	 */
@@ -381,7 +381,7 @@ public interface KBArticleModel extends BaseModel<KBArticle>, GroupedModel,
 	public boolean getMain();
 
 	/**
-	 * Determines if this k b article is main.
+	 * Returns <code>true</code> if this k b article is main.
 	 *
 	 * @return <code>true</code> if this k b article is main; <code>false</code> otherwise
 	 */
@@ -472,28 +472,28 @@ public interface KBArticleModel extends BaseModel<KBArticle>, GroupedModel,
 	public boolean getApproved();
 
 	/**
-	 * Determines if this k b article is approved.
+	 * Returns <code>true</code> if this k b article is approved.
 	 *
 	 * @return <code>true</code> if this k b article is approved; <code>false</code> otherwise
 	 */
 	public boolean isApproved();
 
 	/**
-	 * Determines if this k b article is a draft.
+	 * Returns <code>true</code> if this k b article is a draft.
 	 *
 	 * @return <code>true</code> if this k b article is a draft; <code>false</code> otherwise
 	 */
 	public boolean isDraft();
 
 	/**
-	 * Determines if this k b article is expired.
+	 * Returns <code>true</code> if this k b article is expired.
 	 *
 	 * @return <code>true</code> if this k b article is expired; <code>false</code> otherwise
 	 */
 	public boolean isExpired();
 
 	/**
-	 * Determines if this k b article is pending.
+	 * Returns <code>true</code> if this k b article is pending.
 	 *
 	 * @return <code>true</code> if this k b article is pending; <code>false</code> otherwise
 	 */

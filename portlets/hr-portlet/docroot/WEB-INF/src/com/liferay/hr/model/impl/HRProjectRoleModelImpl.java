@@ -212,8 +212,13 @@ public class HRProjectRoleModelImpl extends BaseModelImpl<HRProjectRole>
 			return (HRProjectRole)this;
 		}
 		else {
-			return (HRProjectRole)Proxy.newProxyInstance(_classLoader,
-				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
+			if (_escapedModelProxy == null) {
+				_escapedModelProxy = (HRProjectRole)Proxy.newProxyInstance(_classLoader,
+						_escapedModelProxyInterfaces,
+						new AutoEscapeBeanHandler(this));
+			}
+
+			return _escapedModelProxy;
 		}
 	}
 
@@ -390,4 +395,5 @@ public class HRProjectRoleModelImpl extends BaseModelImpl<HRProjectRole>
 	private String _name;
 	private String _description;
 	private transient ExpandoBridge _expandoBridge;
+	private HRProjectRole _escapedModelProxy;
 }

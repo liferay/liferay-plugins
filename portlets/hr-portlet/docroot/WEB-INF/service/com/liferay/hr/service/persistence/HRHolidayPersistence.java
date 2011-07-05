@@ -215,7 +215,7 @@ public interface HRHolidayPersistence extends BasePersistence<HRHoliday> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Determines if the h r office is associated with the h r holiday.
+	* Returns <code>true</code> if the h r office is associated with the h r holiday.
 	*
 	* @param pk the primary key of the h r holiday
 	* @param hrOfficePK the primary key of the h r office
@@ -226,7 +226,7 @@ public interface HRHolidayPersistence extends BasePersistence<HRHoliday> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Determines if the h r holiday has any h r offices associated with it.
+	* Returns <code>true</code> if the h r holiday has any h r offices associated with it.
 	*
 	* @param pk the primary key of the h r holiday to check for associations with h r offices
 	* @return <code>true</code> if the h r holiday has any h r offices associated with it; <code>false</code> otherwise

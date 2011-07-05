@@ -360,6 +360,7 @@ public class MeetupsRegistrationUtil {
 	*
 	* @param userId the user ID
 	* @param meetupsEntryId the meetups entry ID
+	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching meetups registration, or <code>null</code> if a matching meetups registration could not be found
 	* @throws SystemException if a system exception occurred
 	*/

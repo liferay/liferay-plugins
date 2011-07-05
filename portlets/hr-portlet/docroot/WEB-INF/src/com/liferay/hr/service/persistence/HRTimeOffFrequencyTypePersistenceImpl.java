@@ -438,8 +438,14 @@ public class HRTimeOffFrequencyTypePersistenceImpl extends BasePersistenceImpl<H
 		HRTimeOffFrequencyType hrTimeOffFrequencyType = (HRTimeOffFrequencyType)EntityCacheUtil.getResult(HRTimeOffFrequencyTypeModelImpl.ENTITY_CACHE_ENABLED,
 				HRTimeOffFrequencyTypeImpl.class, hrTimeOffFrequencyTypeId, this);
 
+		if (hrTimeOffFrequencyType == _nullHRTimeOffFrequencyType) {
+			return null;
+		}
+
 		if (hrTimeOffFrequencyType == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -448,11 +454,18 @@ public class HRTimeOffFrequencyTypePersistenceImpl extends BasePersistenceImpl<H
 						Long.valueOf(hrTimeOffFrequencyTypeId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
 				if (hrTimeOffFrequencyType != null) {
 					cacheResult(hrTimeOffFrequencyType);
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(HRTimeOffFrequencyTypeModelImpl.ENTITY_CACHE_ENABLED,
+						HRTimeOffFrequencyTypeImpl.class,
+						hrTimeOffFrequencyTypeId, _nullHRTimeOffFrequencyType);
 				}
 
 				closeSession(session);
@@ -516,6 +529,7 @@ public class HRTimeOffFrequencyTypePersistenceImpl extends BasePersistenceImpl<H
 	 *
 	 * @param groupId the group ID
 	 * @param code the code
+	 * @param retrieveFromCache whether to use the finder cache
 	 * @return the matching h r time off frequency type, or <code>null</code> if a matching h r time off frequency type could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -982,4 +996,9 @@ public class HRTimeOffFrequencyTypePersistenceImpl extends BasePersistenceImpl<H
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(HRTimeOffFrequencyTypePersistenceImpl.class);
+	private static HRTimeOffFrequencyType _nullHRTimeOffFrequencyType = new HRTimeOffFrequencyTypeImpl() {
+			public Object clone() {
+				return this;
+			}
+		};
 }

@@ -251,6 +251,7 @@ public class HRExpenseCurrencyConversionUtil {
 	* @param fromHRExpenseCurrencyId the from h r expense currency ID
 	* @param toHRExpenseCurrencyId the to h r expense currency ID
 	* @param conversionDate the conversion date
+	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching h r expense currency conversion, or <code>null</code> if a matching h r expense currency conversion could not be found
 	* @throws SystemException if a system exception occurred
 	*/

@@ -367,8 +367,14 @@ public class HRUserPersistenceImpl extends BasePersistenceImpl<HRUser>
 		HRUser hrUser = (HRUser)EntityCacheUtil.getResult(HRUserModelImpl.ENTITY_CACHE_ENABLED,
 				HRUserImpl.class, hrUserId, this);
 
+		if (hrUser == _nullHRUser) {
+			return null;
+		}
+
 		if (hrUser == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -377,11 +383,17 @@ public class HRUserPersistenceImpl extends BasePersistenceImpl<HRUser>
 						Long.valueOf(hrUserId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
 				if (hrUser != null) {
 					cacheResult(hrUser);
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(HRUserModelImpl.ENTITY_CACHE_ENABLED,
+						HRUserImpl.class, hrUserId, _nullHRUser);
 				}
 
 				closeSession(session);
@@ -668,4 +680,9 @@ public class HRUserPersistenceImpl extends BasePersistenceImpl<HRUser>
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(HRUserPersistenceImpl.class);
+	private static HRUser _nullHRUser = new HRUserImpl() {
+			public Object clone() {
+				return this;
+			}
+		};
 }

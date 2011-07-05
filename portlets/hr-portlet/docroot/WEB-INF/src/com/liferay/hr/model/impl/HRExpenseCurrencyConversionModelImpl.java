@@ -262,8 +262,13 @@ public class HRExpenseCurrencyConversionModelImpl extends BaseModelImpl<HRExpens
 			return (HRExpenseCurrencyConversion)this;
 		}
 		else {
-			return (HRExpenseCurrencyConversion)Proxy.newProxyInstance(_classLoader,
-				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
+			if (_escapedModelProxy == null) {
+				_escapedModelProxy = (HRExpenseCurrencyConversion)Proxy.newProxyInstance(_classLoader,
+						_escapedModelProxyInterfaces,
+						new AutoEscapeBeanHandler(this));
+			}
+
+			return _escapedModelProxy;
 		}
 	}
 
@@ -481,4 +486,5 @@ public class HRExpenseCurrencyConversionModelImpl extends BaseModelImpl<HRExpens
 	private Date _originalConversionDate;
 	private double _conversionValue;
 	private transient ExpandoBridge _expandoBridge;
+	private HRExpenseCurrencyConversion _escapedModelProxy;
 }

@@ -15,7 +15,7 @@
 		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="createDate" type="org.hibernate.type.TimestampType" />
 		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
-		<property name="key" column="key_" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="key" type="com.liferay.portal.dao.orm.hibernate.StringType" column="key_" />
 		<property name="receiverUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="invitedRoleId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="invitedTeamId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
@@ -35,6 +35,6 @@
 		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="startDate" type="org.hibernate.type.TimestampType" />
 		<property name="endDate" type="org.hibernate.type.TimestampType" />
-		<property name="data" column="data_" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="data" type="com.liferay.portal.dao.orm.hibernate.StringType" column="data_" />
 	</class>
 </hibernate-mapping>

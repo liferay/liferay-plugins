@@ -432,8 +432,14 @@ public class HRTerminationTypePersistenceImpl extends BasePersistenceImpl<HRTerm
 		HRTerminationType hrTerminationType = (HRTerminationType)EntityCacheUtil.getResult(HRTerminationTypeModelImpl.ENTITY_CACHE_ENABLED,
 				HRTerminationTypeImpl.class, hrTerminationTypeId, this);
 
+		if (hrTerminationType == _nullHRTerminationType) {
+			return null;
+		}
+
 		if (hrTerminationType == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -442,11 +448,18 @@ public class HRTerminationTypePersistenceImpl extends BasePersistenceImpl<HRTerm
 						Long.valueOf(hrTerminationTypeId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
 				if (hrTerminationType != null) {
 					cacheResult(hrTerminationType);
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(HRTerminationTypeModelImpl.ENTITY_CACHE_ENABLED,
+						HRTerminationTypeImpl.class, hrTerminationTypeId,
+						_nullHRTerminationType);
 				}
 
 				closeSession(session);
@@ -510,6 +523,7 @@ public class HRTerminationTypePersistenceImpl extends BasePersistenceImpl<HRTerm
 	 *
 	 * @param groupId the group ID
 	 * @param code the code
+	 * @param retrieveFromCache whether to use the finder cache
 	 * @return the matching h r termination type, or <code>null</code> if a matching h r termination type could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -976,4 +990,9 @@ public class HRTerminationTypePersistenceImpl extends BasePersistenceImpl<HRTerm
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(HRTerminationTypePersistenceImpl.class);
+	private static HRTerminationType _nullHRTerminationType = new HRTerminationTypeImpl() {
+			public Object clone() {
+				return this;
+			}
+		};
 }

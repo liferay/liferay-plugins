@@ -382,8 +382,14 @@ public class HRHolidayPersistenceImpl extends BasePersistenceImpl<HRHoliday>
 		HRHoliday hrHoliday = (HRHoliday)EntityCacheUtil.getResult(HRHolidayModelImpl.ENTITY_CACHE_ENABLED,
 				HRHolidayImpl.class, hrHolidayId, this);
 
+		if (hrHoliday == _nullHRHoliday) {
+			return null;
+		}
+
 		if (hrHoliday == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -392,11 +398,17 @@ public class HRHolidayPersistenceImpl extends BasePersistenceImpl<HRHoliday>
 						Long.valueOf(hrHolidayId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
 				if (hrHoliday != null) {
 					cacheResult(hrHoliday);
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(HRHolidayModelImpl.ENTITY_CACHE_ENABLED,
+						HRHolidayImpl.class, hrHolidayId, _nullHRHoliday);
 				}
 
 				closeSession(session);
@@ -739,7 +751,7 @@ public class HRHolidayPersistenceImpl extends BasePersistenceImpl<HRHoliday>
 			new String[] { Long.class.getName(), Long.class.getName() });
 
 	/**
-	 * Determines if the h r office is associated with the h r holiday.
+	 * Returns <code>true</code> if the h r office is associated with the h r holiday.
 	 *
 	 * @param pk the primary key of the h r holiday
 	 * @param hrOfficePK the primary key of the h r office
@@ -774,7 +786,7 @@ public class HRHolidayPersistenceImpl extends BasePersistenceImpl<HRHoliday>
 	}
 
 	/**
-	 * Determines if the h r holiday has any h r offices associated with it.
+	 * Returns <code>true</code> if the h r holiday has any h r offices associated with it.
 	 *
 	 * @param pk the primary key of the h r holiday to check for associations with h r offices
 	 * @return <code>true</code> if the h r holiday has any h r offices associated with it; <code>false</code> otherwise
@@ -1342,4 +1354,9 @@ public class HRHolidayPersistenceImpl extends BasePersistenceImpl<HRHoliday>
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(HRHolidayPersistenceImpl.class);
+	private static HRHoliday _nullHRHoliday = new HRHolidayImpl() {
+			public Object clone() {
+				return this;
+			}
+		};
 }

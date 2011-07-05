@@ -354,7 +354,7 @@ public class HRUserHistoryWrapper implements HRUserHistory {
 	}
 
 	/**
-	* Determines if this h r user history is benefits exempt.
+	* Returns <code>true</code> if this h r user history is benefits exempt.
 	*
 	* @return <code>true</code> if this h r user history is benefits exempt; <code>false</code> otherwise
 	*/
@@ -381,7 +381,7 @@ public class HRUserHistoryWrapper implements HRUserHistory {
 	}
 
 	/**
-	* Determines if this h r user history is overtime exempt.
+	* Returns <code>true</code> if this h r user history is overtime exempt.
 	*
 	* @return <code>true</code> if this h r user history is overtime exempt; <code>false</code> otherwise
 	*/

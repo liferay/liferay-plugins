@@ -256,6 +256,7 @@ public interface OAuthTokenPersistence extends BasePersistence<OAuthToken> {
 	* @param serviceName the service name
 	* @param moduleId the module ID
 	* @param tokenName the token name
+	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching o auth token, or <code>null</code> if a matching o auth token could not be found
 	* @throws SystemException if a system exception occurred
 	*/

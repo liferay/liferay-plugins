@@ -469,8 +469,14 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 		UserThread userThread = (UserThread)EntityCacheUtil.getResult(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
 				UserThreadImpl.class, userThreadId, this);
 
+		if (userThread == _nullUserThread) {
+			return null;
+		}
+
 		if (userThread == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -479,11 +485,17 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 						Long.valueOf(userThreadId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
 				if (userThread != null) {
 					cacheResult(userThread);
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
+						UserThreadImpl.class, userThreadId, _nullUserThread);
 				}
 
 				closeSession(session);
@@ -1226,6 +1238,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 *
 	 * @param userId the user ID
 	 * @param mbThreadId the mb thread ID
+	 * @param retrieveFromCache whether to use the finder cache
 	 * @return the matching user thread, or <code>null</code> if a matching user thread could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -2626,4 +2639,9 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(UserThreadPersistenceImpl.class);
+	private static UserThread _nullUserThread = new UserThreadImpl() {
+			public Object clone() {
+				return this;
+			}
+		};
 }

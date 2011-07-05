@@ -277,8 +277,13 @@ public class KaleoTaskAssignmentModelImpl extends BaseModelImpl<KaleoTaskAssignm
 			return (KaleoTaskAssignment)this;
 		}
 		else {
-			return (KaleoTaskAssignment)Proxy.newProxyInstance(_classLoader,
-				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
+			if (_escapedModelProxy == null) {
+				_escapedModelProxy = (KaleoTaskAssignment)Proxy.newProxyInstance(_classLoader,
+						_escapedModelProxyInterfaces,
+						new AutoEscapeBeanHandler(this));
+			}
+
+			return _escapedModelProxy;
 		}
 	}
 
@@ -509,4 +514,5 @@ public class KaleoTaskAssignmentModelImpl extends BaseModelImpl<KaleoTaskAssignm
 	private String _assigneeScript;
 	private String _assigneeScriptLanguage;
 	private transient ExpandoBridge _expandoBridge;
+	private KaleoTaskAssignment _escapedModelProxy;
 }

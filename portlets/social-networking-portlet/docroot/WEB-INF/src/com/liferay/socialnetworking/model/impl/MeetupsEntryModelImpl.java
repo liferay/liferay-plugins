@@ -260,8 +260,13 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry>
 			return (MeetupsEntry)this;
 		}
 		else {
-			return (MeetupsEntry)Proxy.newProxyInstance(_classLoader,
-				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
+			if (_escapedModelProxy == null) {
+				_escapedModelProxy = (MeetupsEntry)Proxy.newProxyInstance(_classLoader,
+						_escapedModelProxyInterfaces,
+						new AutoEscapeBeanHandler(this));
+			}
+
+			return _escapedModelProxy;
 		}
 	}
 
@@ -478,4 +483,5 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry>
 	private double _price;
 	private long _thumbnailId;
 	private transient ExpandoBridge _expandoBridge;
+	private MeetupsEntry _escapedModelProxy;
 }

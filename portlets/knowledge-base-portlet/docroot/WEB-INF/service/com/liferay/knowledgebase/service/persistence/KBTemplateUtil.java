@@ -351,6 +351,7 @@ public class KBTemplateUtil {
 	*
 	* @param uuid the uuid
 	* @param groupId the group ID
+	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching k b template, or <code>null</code> if a matching k b template could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -773,7 +774,7 @@ public class KBTemplateUtil {
 	}
 
 	/**
-	* Determines if the k b article is associated with the k b template.
+	* Returns <code>true</code> if the k b article is associated with the k b template.
 	*
 	* @param pk the primary key of the k b template
 	* @param kbArticlePK the primary key of the k b article
@@ -786,7 +787,7 @@ public class KBTemplateUtil {
 	}
 
 	/**
-	* Determines if the k b template has any k b articles associated with it.
+	* Returns <code>true</code> if the k b template has any k b articles associated with it.
 	*
 	* @param pk the primary key of the k b template to check for associations with k b articles
 	* @return <code>true</code> if the k b template has any k b articles associated with it; <code>false</code> otherwise

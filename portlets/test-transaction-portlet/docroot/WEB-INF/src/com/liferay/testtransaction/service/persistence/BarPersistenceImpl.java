@@ -363,8 +363,14 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 		Bar bar = (Bar)EntityCacheUtil.getResult(BarModelImpl.ENTITY_CACHE_ENABLED,
 				BarImpl.class, barId, this);
 
+		if (bar == _nullBar) {
+			return null;
+		}
+
 		if (bar == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -372,11 +378,17 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 				bar = (Bar)session.get(BarImpl.class, Long.valueOf(barId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
 				if (bar != null) {
 					cacheResult(bar);
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(BarModelImpl.ENTITY_CACHE_ENABLED,
+						BarImpl.class, barId, _nullBar);
 				}
 
 				closeSession(session);
@@ -1030,4 +1042,9 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(BarPersistenceImpl.class);
+	private static Bar _nullBar = new BarImpl() {
+			public Object clone() {
+				return this;
+			}
+		};
 }

@@ -443,8 +443,14 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 		Foo foo = (Foo)EntityCacheUtil.getResult(FooModelImpl.ENTITY_CACHE_ENABLED,
 				FooImpl.class, fooId, this);
 
+		if (foo == _nullFoo) {
+			return null;
+		}
+
 		if (foo == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -452,11 +458,17 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 				foo = (Foo)session.get(FooImpl.class, Long.valueOf(fooId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
 				if (foo != null) {
 					cacheResult(foo);
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(FooModelImpl.ENTITY_CACHE_ENABLED,
+						FooImpl.class, fooId, _nullFoo);
 				}
 
 				closeSession(session);
@@ -877,6 +889,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 	 *
 	 * @param uuid the uuid
 	 * @param groupId the group ID
+	 * @param retrieveFromCache whether to use the finder cache
 	 * @return the matching foo, or <code>null</code> if a matching foo could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -1755,4 +1768,9 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(FooPersistenceImpl.class);
+	private static Foo _nullFoo = new FooImpl() {
+			public Object clone() {
+				return this;
+			}
+		};
 }

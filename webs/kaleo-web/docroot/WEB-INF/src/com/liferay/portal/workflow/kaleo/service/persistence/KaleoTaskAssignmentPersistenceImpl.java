@@ -441,8 +441,14 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 		KaleoTaskAssignment kaleoTaskAssignment = (KaleoTaskAssignment)EntityCacheUtil.getResult(KaleoTaskAssignmentModelImpl.ENTITY_CACHE_ENABLED,
 				KaleoTaskAssignmentImpl.class, kaleoTaskAssignmentId, this);
 
+		if (kaleoTaskAssignment == _nullKaleoTaskAssignment) {
+			return null;
+		}
+
 		if (kaleoTaskAssignment == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -451,11 +457,18 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 						Long.valueOf(kaleoTaskAssignmentId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
 				if (kaleoTaskAssignment != null) {
 					cacheResult(kaleoTaskAssignment);
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(KaleoTaskAssignmentModelImpl.ENTITY_CACHE_ENABLED,
+						KaleoTaskAssignmentImpl.class, kaleoTaskAssignmentId,
+						_nullKaleoTaskAssignment);
 				}
 
 				closeSession(session);
@@ -2856,4 +2869,9 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(KaleoTaskAssignmentPersistenceImpl.class);
+	private static KaleoTaskAssignment _nullKaleoTaskAssignment = new KaleoTaskAssignmentImpl() {
+			public Object clone() {
+				return this;
+			}
+		};
 }

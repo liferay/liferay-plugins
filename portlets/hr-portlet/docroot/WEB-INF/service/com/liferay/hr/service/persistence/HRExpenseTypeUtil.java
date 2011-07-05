@@ -233,6 +233,7 @@ public class HRExpenseTypeUtil {
 	*
 	* @param groupId the group ID
 	* @param name the name
+	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching h r expense type, or <code>null</code> if a matching h r expense type could not be found
 	* @throws SystemException if a system exception occurred
 	*/

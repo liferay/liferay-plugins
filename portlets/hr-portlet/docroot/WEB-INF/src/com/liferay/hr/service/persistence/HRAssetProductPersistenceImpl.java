@@ -367,8 +367,14 @@ public class HRAssetProductPersistenceImpl extends BasePersistenceImpl<HRAssetPr
 		HRAssetProduct hrAssetProduct = (HRAssetProduct)EntityCacheUtil.getResult(HRAssetProductModelImpl.ENTITY_CACHE_ENABLED,
 				HRAssetProductImpl.class, hrAssetProductId, this);
 
+		if (hrAssetProduct == _nullHRAssetProduct) {
+			return null;
+		}
+
 		if (hrAssetProduct == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -377,11 +383,18 @@ public class HRAssetProductPersistenceImpl extends BasePersistenceImpl<HRAssetPr
 						Long.valueOf(hrAssetProductId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
 				if (hrAssetProduct != null) {
 					cacheResult(hrAssetProduct);
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(HRAssetProductModelImpl.ENTITY_CACHE_ENABLED,
+						HRAssetProductImpl.class, hrAssetProductId,
+						_nullHRAssetProduct);
 				}
 
 				closeSession(session);
@@ -669,4 +682,9 @@ public class HRAssetProductPersistenceImpl extends BasePersistenceImpl<HRAssetPr
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(HRAssetProductPersistenceImpl.class);
+	private static HRAssetProduct _nullHRAssetProduct = new HRAssetProductImpl() {
+			public Object clone() {
+				return this;
+			}
+		};
 }

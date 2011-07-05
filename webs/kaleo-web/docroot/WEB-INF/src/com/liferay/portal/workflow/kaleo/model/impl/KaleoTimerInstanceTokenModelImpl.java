@@ -309,8 +309,13 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 			return (KaleoTimerInstanceToken)this;
 		}
 		else {
-			return (KaleoTimerInstanceToken)Proxy.newProxyInstance(_classLoader,
-				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
+			if (_escapedModelProxy == null) {
+				_escapedModelProxy = (KaleoTimerInstanceToken)Proxy.newProxyInstance(_classLoader,
+						_escapedModelProxyInterfaces,
+						new AutoEscapeBeanHandler(this));
+			}
+
+			return _escapedModelProxy;
 		}
 	}
 
@@ -564,4 +569,5 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 	private Date _completionDate;
 	private String _workflowContext;
 	private transient ExpandoBridge _expandoBridge;
+	private KaleoTimerInstanceToken _escapedModelProxy;
 }

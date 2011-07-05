@@ -395,8 +395,14 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 		MeetupsEntry meetupsEntry = (MeetupsEntry)EntityCacheUtil.getResult(MeetupsEntryModelImpl.ENTITY_CACHE_ENABLED,
 				MeetupsEntryImpl.class, meetupsEntryId, this);
 
+		if (meetupsEntry == _nullMeetupsEntry) {
+			return null;
+		}
+
 		if (meetupsEntry == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -405,11 +411,18 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 						Long.valueOf(meetupsEntryId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
 				if (meetupsEntry != null) {
 					cacheResult(meetupsEntry);
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(MeetupsEntryModelImpl.ENTITY_CACHE_ENABLED,
+						MeetupsEntryImpl.class, meetupsEntryId,
+						_nullMeetupsEntry);
 				}
 
 				closeSession(session);
@@ -1442,4 +1455,9 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(MeetupsEntryPersistenceImpl.class);
+	private static MeetupsEntry _nullMeetupsEntry = new MeetupsEntryImpl() {
+			public Object clone() {
+				return this;
+			}
+		};
 }

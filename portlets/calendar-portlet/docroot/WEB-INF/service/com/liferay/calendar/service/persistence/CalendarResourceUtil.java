@@ -353,6 +353,7 @@ public class CalendarResourceUtil {
 	*
 	* @param uuid the uuid
 	* @param groupId the group ID
+	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching calendar resource, or <code>null</code> if a matching calendar resource could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -724,6 +725,7 @@ public class CalendarResourceUtil {
 	*
 	* @param classNameId the class name ID
 	* @param classPK the class p k
+	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching calendar resource, or <code>null</code> if a matching calendar resource could not be found
 	* @throws SystemException if a system exception occurred
 	*/

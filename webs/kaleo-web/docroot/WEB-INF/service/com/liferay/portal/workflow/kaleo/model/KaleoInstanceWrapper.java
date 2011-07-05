@@ -318,7 +318,7 @@ public class KaleoInstanceWrapper implements KaleoInstance {
 	}
 
 	/**
-	* Determines if this kaleo instance is completed.
+	* Returns <code>true</code> if this kaleo instance is completed.
 	*
 	* @return <code>true</code> if this kaleo instance is completed; <code>false</code> otherwise
 	*/

@@ -240,7 +240,7 @@ public interface HRHolidayModel extends BaseModel<HRHoliday>, GroupedModel {
 	public boolean getPaid();
 
 	/**
-	 * Determines if this h r holiday is paid.
+	 * Returns <code>true</code> if this h r holiday is paid.
 	 *
 	 * @return <code>true</code> if this h r holiday is paid; <code>false</code> otherwise
 	 */

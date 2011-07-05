@@ -611,6 +611,7 @@ public class KaleoTaskInstanceTokenUtil {
 	*
 	* @param kaleoInstanceId the kaleo instance ID
 	* @param kaleoTaskId the kaleo task ID
+	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching kaleo task instance token, or <code>null</code> if a matching kaleo task instance token could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -854,7 +855,7 @@ public class KaleoTaskInstanceTokenUtil {
 	}
 
 	/**
-	* Determines if the kaleo task assignment instance is associated with the kaleo task instance token.
+	* Returns <code>true</code> if the kaleo task assignment instance is associated with the kaleo task instance token.
 	*
 	* @param pk the primary key of the kaleo task instance token
 	* @param kaleoTaskAssignmentInstancePK the primary key of the kaleo task assignment instance
@@ -870,7 +871,7 @@ public class KaleoTaskInstanceTokenUtil {
 	}
 
 	/**
-	* Determines if the kaleo task instance token has any kaleo task assignment instances associated with it.
+	* Returns <code>true</code> if the kaleo task instance token has any kaleo task assignment instances associated with it.
 	*
 	* @param pk the primary key of the kaleo task instance token to check for associations with kaleo task assignment instances
 	* @return <code>true</code> if the kaleo task instance token has any kaleo task assignment instances associated with it; <code>false</code> otherwise

@@ -455,8 +455,14 @@ public class KBStructurePersistenceImpl extends BasePersistenceImpl<KBStructure>
 		KBStructure kbStructure = (KBStructure)EntityCacheUtil.getResult(KBStructureModelImpl.ENTITY_CACHE_ENABLED,
 				KBStructureImpl.class, kbStructureId, this);
 
+		if (kbStructure == _nullKBStructure) {
+			return null;
+		}
+
 		if (kbStructure == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -465,11 +471,17 @@ public class KBStructurePersistenceImpl extends BasePersistenceImpl<KBStructure>
 						Long.valueOf(kbStructureId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
 				if (kbStructure != null) {
 					cacheResult(kbStructure);
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(KBStructureModelImpl.ENTITY_CACHE_ENABLED,
+						KBStructureImpl.class, kbStructureId, _nullKBStructure);
 				}
 
 				closeSession(session);
@@ -895,6 +907,7 @@ public class KBStructurePersistenceImpl extends BasePersistenceImpl<KBStructure>
 	 *
 	 * @param uuid the uuid
 	 * @param groupId the group ID
+	 * @param retrieveFromCache whether to use the finder cache
 	 * @return the matching k b structure, or <code>null</code> if a matching k b structure could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -1783,4 +1796,9 @@ public class KBStructurePersistenceImpl extends BasePersistenceImpl<KBStructure>
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(KBStructurePersistenceImpl.class);
+	private static KBStructure _nullKBStructure = new KBStructureImpl() {
+			public Object clone() {
+				return this;
+			}
+		};
 }

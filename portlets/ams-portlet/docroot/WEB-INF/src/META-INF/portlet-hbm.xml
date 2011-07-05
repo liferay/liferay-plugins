@@ -19,7 +19,7 @@
 		<property name="definitionId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="serialNumber" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="inactiveDate" type="org.hibernate.type.TimestampType" />
-		<property name="active" column="active_" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="active" type="com.liferay.portal.dao.orm.hibernate.BooleanType" column="active_" />
 	</class>
 	<class name="com.liferay.ams.model.impl.CheckoutImpl" table="AMS_Checkout">
 		<cache usage="read-write" />

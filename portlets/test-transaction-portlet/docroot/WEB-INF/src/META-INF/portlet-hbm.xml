@@ -8,6 +8,6 @@
 		<id name="barId" type="long">
 			<generator class="assigned" />
 		</id>
-		<property name="text" column="text_" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="text" type="com.liferay.portal.dao.orm.hibernate.StringType" column="text_" />
 	</class>
 </hibernate-mapping>

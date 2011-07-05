@@ -428,8 +428,14 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 		KaleoTask kaleoTask = (KaleoTask)EntityCacheUtil.getResult(KaleoTaskModelImpl.ENTITY_CACHE_ENABLED,
 				KaleoTaskImpl.class, kaleoTaskId, this);
 
+		if (kaleoTask == _nullKaleoTask) {
+			return null;
+		}
+
 		if (kaleoTask == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -438,11 +444,17 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 						Long.valueOf(kaleoTaskId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
 				if (kaleoTask != null) {
 					cacheResult(kaleoTask);
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(KaleoTaskModelImpl.ENTITY_CACHE_ENABLED,
+						KaleoTaskImpl.class, kaleoTaskId, _nullKaleoTask);
 				}
 
 				closeSession(session);
@@ -1183,6 +1195,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	 * Returns the kaleo task where kaleoNodeId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
 	 * @param kaleoNodeId the kaleo node ID
+	 * @param retrieveFromCache whether to use the finder cache
 	 * @return the matching kaleo task, or <code>null</code> if a matching kaleo task could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -1796,7 +1809,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 			new String[] { Long.class.getName(), Long.class.getName() });
 
 	/**
-	 * Determines if the kaleo task assignment is associated with the kaleo task.
+	 * Returns <code>true</code> if the kaleo task assignment is associated with the kaleo task.
 	 *
 	 * @param pk the primary key of the kaleo task
 	 * @param kaleoTaskAssignmentPK the primary key of the kaleo task assignment
@@ -1832,7 +1845,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	}
 
 	/**
-	 * Determines if the kaleo task has any kaleo task assignments associated with it.
+	 * Returns <code>true</code> if the kaleo task has any kaleo task assignments associated with it.
 	 *
 	 * @param pk the primary key of the kaleo task to check for associations with kaleo task assignments
 	 * @return <code>true</code> if the kaleo task has any kaleo task assignments associated with it; <code>false</code> otherwise
@@ -1966,4 +1979,9 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(KaleoTaskPersistenceImpl.class);
+	private static KaleoTask _nullKaleoTask = new KaleoTaskImpl() {
+			public Object clone() {
+				return this;
+			}
+		};
 }

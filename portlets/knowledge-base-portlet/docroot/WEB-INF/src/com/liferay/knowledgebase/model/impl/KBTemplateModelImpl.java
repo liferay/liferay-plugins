@@ -327,8 +327,13 @@ public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 			return (KBTemplate)this;
 		}
 		else {
-			return (KBTemplate)Proxy.newProxyInstance(_classLoader,
-				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
+			if (_escapedModelProxy == null) {
+				_escapedModelProxy = (KBTemplate)Proxy.newProxyInstance(_classLoader,
+						_escapedModelProxyInterfaces,
+						new AutoEscapeBeanHandler(this));
+			}
+
+			return _escapedModelProxy;
 		}
 	}
 
@@ -540,4 +545,5 @@ public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 	private int _engineType;
 	private boolean _cacheable;
 	private transient ExpandoBridge _expandoBridge;
+	private KBTemplate _escapedModelProxy;
 }

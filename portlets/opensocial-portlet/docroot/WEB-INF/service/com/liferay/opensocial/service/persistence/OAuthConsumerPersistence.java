@@ -240,6 +240,7 @@ public interface OAuthConsumerPersistence extends BasePersistence<OAuthConsumer>
 	*
 	* @param gadgetKey the gadget key
 	* @param serviceName the service name
+	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching o auth consumer, or <code>null</code> if a matching o auth consumer could not be found
 	* @throws SystemException if a system exception occurred
 	*/

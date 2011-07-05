@@ -329,7 +329,7 @@ public class HROfficeUtil {
 	}
 
 	/**
-	* Determines if the h r holiday is associated with the h r office.
+	* Returns <code>true</code> if the h r holiday is associated with the h r office.
 	*
 	* @param pk the primary key of the h r office
 	* @param hrHolidayPK the primary key of the h r holiday
@@ -342,7 +342,7 @@ public class HROfficeUtil {
 	}
 
 	/**
-	* Determines if the h r office has any h r holidaies associated with it.
+	* Returns <code>true</code> if the h r office has any h r holidaies associated with it.
 	*
 	* @param pk the primary key of the h r office to check for associations with h r holidaies
 	* @return <code>true</code> if the h r office has any h r holidaies associated with it; <code>false</code> otherwise

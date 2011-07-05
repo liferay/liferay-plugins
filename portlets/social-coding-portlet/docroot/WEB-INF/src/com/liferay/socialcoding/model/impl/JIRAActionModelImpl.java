@@ -201,8 +201,13 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction>
 			return (JIRAAction)this;
 		}
 		else {
-			return (JIRAAction)Proxy.newProxyInstance(_classLoader,
-				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
+			if (_escapedModelProxy == null) {
+				_escapedModelProxy = (JIRAAction)Proxy.newProxyInstance(_classLoader,
+						_escapedModelProxyInterfaces,
+						new AutoEscapeBeanHandler(this));
+			}
+
+			return _escapedModelProxy;
 		}
 	}
 
@@ -371,4 +376,5 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction>
 	private String _body;
 	private String _jiraGroupName;
 	private transient ExpandoBridge _expandoBridge;
+	private JIRAAction _escapedModelProxy;
 }

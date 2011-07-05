@@ -398,8 +398,14 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 		SVNRevision svnRevision = (SVNRevision)EntityCacheUtil.getResult(SVNRevisionModelImpl.ENTITY_CACHE_ENABLED,
 				SVNRevisionImpl.class, svnRevisionId, this);
 
+		if (svnRevision == _nullSVNRevision) {
+			return null;
+		}
+
 		if (svnRevision == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -408,11 +414,17 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 						Long.valueOf(svnRevisionId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
 				if (svnRevision != null) {
 					cacheResult(svnRevision);
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(SVNRevisionModelImpl.ENTITY_CACHE_ENABLED,
+						SVNRevisionImpl.class, svnRevisionId, _nullSVNRevision);
 				}
 
 				closeSession(session);
@@ -1972,4 +1984,9 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(SVNRevisionPersistenceImpl.class);
+	private static SVNRevision _nullSVNRevision = new SVNRevisionImpl() {
+			public Object clone() {
+				return this;
+			}
+		};
 }

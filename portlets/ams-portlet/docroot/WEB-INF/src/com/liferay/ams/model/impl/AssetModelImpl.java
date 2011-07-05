@@ -219,8 +219,13 @@ public class AssetModelImpl extends BaseModelImpl<Asset> implements AssetModel {
 			return (Asset)this;
 		}
 		else {
-			return (Asset)Proxy.newProxyInstance(_classLoader,
-				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
+			if (_escapedModelProxy == null) {
+				_escapedModelProxy = (Asset)Proxy.newProxyInstance(_classLoader,
+						_escapedModelProxyInterfaces,
+						new AutoEscapeBeanHandler(this));
+			}
+
+			return _escapedModelProxy;
 		}
 	}
 
@@ -405,4 +410,5 @@ public class AssetModelImpl extends BaseModelImpl<Asset> implements AssetModel {
 	private Date _inactiveDate;
 	private boolean _active;
 	private transient ExpandoBridge _expandoBridge;
+	private Asset _escapedModelProxy;
 }

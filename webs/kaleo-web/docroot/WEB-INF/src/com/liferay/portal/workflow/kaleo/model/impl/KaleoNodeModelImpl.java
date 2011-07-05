@@ -262,8 +262,13 @@ public class KaleoNodeModelImpl extends BaseModelImpl<KaleoNode>
 			return (KaleoNode)this;
 		}
 		else {
-			return (KaleoNode)Proxy.newProxyInstance(_classLoader,
-				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
+			if (_escapedModelProxy == null) {
+				_escapedModelProxy = (KaleoNode)Proxy.newProxyInstance(_classLoader,
+						_escapedModelProxyInterfaces,
+						new AutoEscapeBeanHandler(this));
+			}
+
+			return _escapedModelProxy;
 		}
 	}
 
@@ -478,4 +483,5 @@ public class KaleoNodeModelImpl extends BaseModelImpl<KaleoNode>
 	private boolean _initial;
 	private boolean _terminal;
 	private transient ExpandoBridge _expandoBridge;
+	private KaleoNode _escapedModelProxy;
 }

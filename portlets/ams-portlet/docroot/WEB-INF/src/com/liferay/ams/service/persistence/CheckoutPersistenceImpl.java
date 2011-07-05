@@ -360,8 +360,14 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 		Checkout checkout = (Checkout)EntityCacheUtil.getResult(CheckoutModelImpl.ENTITY_CACHE_ENABLED,
 				CheckoutImpl.class, checkoutId, this);
 
+		if (checkout == _nullCheckout) {
+			return null;
+		}
+
 		if (checkout == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -370,11 +376,17 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 						Long.valueOf(checkoutId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
 				if (checkout != null) {
 					cacheResult(checkout);
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(CheckoutModelImpl.ENTITY_CACHE_ENABLED,
+						CheckoutImpl.class, checkoutId, _nullCheckout);
 				}
 
 				closeSession(session);
@@ -593,4 +605,9 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(CheckoutPersistenceImpl.class);
+	private static Checkout _nullCheckout = new CheckoutImpl() {
+			public Object clone() {
+				return this;
+			}
+		};
 }

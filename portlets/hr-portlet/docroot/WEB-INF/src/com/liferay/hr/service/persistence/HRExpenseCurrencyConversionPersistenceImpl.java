@@ -483,8 +483,14 @@ public class HRExpenseCurrencyConversionPersistenceImpl
 				HRExpenseCurrencyConversionImpl.class,
 				hrExpenseCurrencyConversionId, this);
 
+		if (hrExpenseCurrencyConversion == _nullHRExpenseCurrencyConversion) {
+			return null;
+		}
+
 		if (hrExpenseCurrencyConversion == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -493,11 +499,19 @@ public class HRExpenseCurrencyConversionPersistenceImpl
 						Long.valueOf(hrExpenseCurrencyConversionId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
 				if (hrExpenseCurrencyConversion != null) {
 					cacheResult(hrExpenseCurrencyConversion);
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(HRExpenseCurrencyConversionModelImpl.ENTITY_CACHE_ENABLED,
+						HRExpenseCurrencyConversionImpl.class,
+						hrExpenseCurrencyConversionId,
+						_nullHRExpenseCurrencyConversion);
 				}
 
 				closeSession(session);
@@ -578,6 +592,7 @@ public class HRExpenseCurrencyConversionPersistenceImpl
 	 * @param fromHRExpenseCurrencyId the from h r expense currency ID
 	 * @param toHRExpenseCurrencyId the to h r expense currency ID
 	 * @param conversionDate the conversion date
+	 * @param retrieveFromCache whether to use the finder cache
 	 * @return the matching h r expense currency conversion, or <code>null</code> if a matching h r expense currency conversion could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -1074,4 +1089,9 @@ public class HRExpenseCurrencyConversionPersistenceImpl
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(HRExpenseCurrencyConversionPersistenceImpl.class);
+	private static HRExpenseCurrencyConversion _nullHRExpenseCurrencyConversion = new HRExpenseCurrencyConversionImpl() {
+			public Object clone() {
+				return this;
+			}
+		};
 }

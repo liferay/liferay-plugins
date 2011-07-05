@@ -241,7 +241,7 @@ public interface KBTemplateModel extends BaseModel<KBTemplate>, GroupedModel {
 	public boolean getCacheable();
 
 	/**
-	 * Determines if this k b template is cacheable.
+	 * Returns <code>true</code> if this k b template is cacheable.
 	 *
 	 * @return <code>true</code> if this k b template is cacheable; <code>false</code> otherwise
 	 */

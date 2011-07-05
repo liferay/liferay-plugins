@@ -389,8 +389,14 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 		JIRAChangeGroup jiraChangeGroup = (JIRAChangeGroup)EntityCacheUtil.getResult(JIRAChangeGroupModelImpl.ENTITY_CACHE_ENABLED,
 				JIRAChangeGroupImpl.class, jiraChangeGroupId, this);
 
+		if (jiraChangeGroup == _nullJIRAChangeGroup) {
+			return null;
+		}
+
 		if (jiraChangeGroup == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -399,11 +405,18 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 						Long.valueOf(jiraChangeGroupId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
 				if (jiraChangeGroup != null) {
 					cacheResult(jiraChangeGroup);
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(JIRAChangeGroupModelImpl.ENTITY_CACHE_ENABLED,
+						JIRAChangeGroupImpl.class, jiraChangeGroupId,
+						_nullJIRAChangeGroup);
 				}
 
 				closeSession(session);
@@ -1484,4 +1497,9 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(JIRAChangeGroupPersistenceImpl.class);
+	private static JIRAChangeGroup _nullJIRAChangeGroup = new JIRAChangeGroupImpl() {
+			public Object clone() {
+				return this;
+			}
+		};
 }

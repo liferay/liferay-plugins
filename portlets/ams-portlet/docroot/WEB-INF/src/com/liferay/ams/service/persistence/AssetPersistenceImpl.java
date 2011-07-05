@@ -358,8 +358,14 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 		Asset asset = (Asset)EntityCacheUtil.getResult(AssetModelImpl.ENTITY_CACHE_ENABLED,
 				AssetImpl.class, assetId, this);
 
+		if (asset == _nullAsset) {
+			return null;
+		}
+
 		if (asset == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -368,11 +374,17 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 						Long.valueOf(assetId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
 				if (asset != null) {
 					cacheResult(asset);
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(AssetModelImpl.ENTITY_CACHE_ENABLED,
+						AssetImpl.class, assetId, _nullAsset);
 				}
 
 				closeSession(session);
@@ -591,4 +603,9 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(AssetPersistenceImpl.class);
+	private static Asset _nullAsset = new AssetImpl() {
+			public Object clone() {
+				return this;
+			}
+		};
 }

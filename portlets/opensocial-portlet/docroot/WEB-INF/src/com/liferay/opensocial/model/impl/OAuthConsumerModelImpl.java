@@ -230,8 +230,13 @@ public class OAuthConsumerModelImpl extends BaseModelImpl<OAuthConsumer>
 			return (OAuthConsumer)this;
 		}
 		else {
-			return (OAuthConsumer)Proxy.newProxyInstance(_classLoader,
-				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
+			if (_escapedModelProxy == null) {
+				_escapedModelProxy = (OAuthConsumer)Proxy.newProxyInstance(_classLoader,
+						_escapedModelProxyInterfaces,
+						new AutoEscapeBeanHandler(this));
+			}
+
+			return _escapedModelProxy;
 		}
 	}
 
@@ -412,4 +417,5 @@ public class OAuthConsumerModelImpl extends BaseModelImpl<OAuthConsumer>
 	private String _consumerSecret;
 	private String _keyType;
 	private transient ExpandoBridge _expandoBridge;
+	private OAuthConsumer _escapedModelProxy;
 }

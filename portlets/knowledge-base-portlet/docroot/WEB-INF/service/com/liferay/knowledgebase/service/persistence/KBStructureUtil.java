@@ -352,6 +352,7 @@ public class KBStructureUtil {
 	*
 	* @param uuid the uuid
 	* @param groupId the group ID
+	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching k b structure, or <code>null</code> if a matching k b structure could not be found
 	* @throws SystemException if a system exception occurred
 	*/

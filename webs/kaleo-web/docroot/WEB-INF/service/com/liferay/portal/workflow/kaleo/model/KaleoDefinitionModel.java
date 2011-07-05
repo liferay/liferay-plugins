@@ -316,7 +316,7 @@ public interface KaleoDefinitionModel extends BaseModel<KaleoDefinition>,
 	public boolean getActive();
 
 	/**
-	 * Determines if this kaleo definition is active.
+	 * Returns <code>true</code> if this kaleo definition is active.
 	 *
 	 * @return <code>true</code> if this kaleo definition is active; <code>false</code> otherwise
 	 */

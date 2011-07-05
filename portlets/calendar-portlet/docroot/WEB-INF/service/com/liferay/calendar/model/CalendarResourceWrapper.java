@@ -521,7 +521,7 @@ public class CalendarResourceWrapper implements CalendarResource {
 	}
 
 	/**
-	* Determines if this calendar resource is active.
+	* Returns <code>true</code> if this calendar resource is active.
 	*
 	* @return <code>true</code> if this calendar resource is active; <code>false</code> otherwise
 	*/

@@ -231,6 +231,7 @@ public class HRTaskStatusUtil {
 	*
 	* @param groupId the group ID
 	* @param code the code
+	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching h r task status, or <code>null</code> if a matching h r task status could not be found
 	* @throws SystemException if a system exception occurred
 	*/

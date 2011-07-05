@@ -429,8 +429,14 @@ public class HRBillabilityPersistenceImpl extends BasePersistenceImpl<HRBillabil
 		HRBillability hrBillability = (HRBillability)EntityCacheUtil.getResult(HRBillabilityModelImpl.ENTITY_CACHE_ENABLED,
 				HRBillabilityImpl.class, hrBillabilityId, this);
 
+		if (hrBillability == _nullHRBillability) {
+			return null;
+		}
+
 		if (hrBillability == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -439,11 +445,18 @@ public class HRBillabilityPersistenceImpl extends BasePersistenceImpl<HRBillabil
 						Long.valueOf(hrBillabilityId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
 				if (hrBillability != null) {
 					cacheResult(hrBillability);
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(HRBillabilityModelImpl.ENTITY_CACHE_ENABLED,
+						HRBillabilityImpl.class, hrBillabilityId,
+						_nullHRBillability);
 				}
 
 				closeSession(session);
@@ -507,6 +520,7 @@ public class HRBillabilityPersistenceImpl extends BasePersistenceImpl<HRBillabil
 	 *
 	 * @param groupId the group ID
 	 * @param code the code
+	 * @param retrieveFromCache whether to use the finder cache
 	 * @return the matching h r billability, or <code>null</code> if a matching h r billability could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -973,4 +987,9 @@ public class HRBillabilityPersistenceImpl extends BasePersistenceImpl<HRBillabil
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(HRBillabilityPersistenceImpl.class);
+	private static HRBillability _nullHRBillability = new HRBillabilityImpl() {
+			public Object clone() {
+				return this;
+			}
+		};
 }

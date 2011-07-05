@@ -467,8 +467,14 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 		WSRPConsumerPortlet wsrpConsumerPortlet = (WSRPConsumerPortlet)EntityCacheUtil.getResult(WSRPConsumerPortletModelImpl.ENTITY_CACHE_ENABLED,
 				WSRPConsumerPortletImpl.class, wsrpConsumerPortletId, this);
 
+		if (wsrpConsumerPortlet == _nullWSRPConsumerPortlet) {
+			return null;
+		}
+
 		if (wsrpConsumerPortlet == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -477,11 +483,18 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 						Long.valueOf(wsrpConsumerPortletId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
 				if (wsrpConsumerPortlet != null) {
 					cacheResult(wsrpConsumerPortlet);
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(WSRPConsumerPortletModelImpl.ENTITY_CACHE_ENABLED,
+						WSRPConsumerPortletImpl.class, wsrpConsumerPortletId,
+						_nullWSRPConsumerPortlet);
 				}
 
 				closeSession(session);
@@ -1257,6 +1270,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 	 *
 	 * @param wsrpConsumerId the wsrp consumer ID
 	 * @param portletHandle the portlet handle
+	 * @param retrieveFromCache whether to use the finder cache
 	 * @return the matching w s r p consumer portlet, or <code>null</code> if a matching w s r p consumer portlet could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -1808,4 +1822,9 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(WSRPConsumerPortletPersistenceImpl.class);
+	private static WSRPConsumerPortlet _nullWSRPConsumerPortlet = new WSRPConsumerPortletImpl() {
+			public Object clone() {
+				return this;
+			}
+		};
 }

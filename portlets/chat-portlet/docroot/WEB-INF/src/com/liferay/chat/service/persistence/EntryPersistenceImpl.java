@@ -449,8 +449,14 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 		Entry entry = (Entry)EntityCacheUtil.getResult(EntryModelImpl.ENTITY_CACHE_ENABLED,
 				EntryImpl.class, entryId, this);
 
+		if (entry == _nullEntry) {
+			return null;
+		}
+
 		if (entry == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -459,11 +465,17 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 						Long.valueOf(entryId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
 				if (entry != null) {
 					cacheResult(entry);
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(EntryModelImpl.ENTITY_CACHE_ENABLED,
+						EntryImpl.class, entryId, _nullEntry);
 				}
 
 				closeSession(session);
@@ -3726,4 +3738,9 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(EntryPersistenceImpl.class);
+	private static Entry _nullEntry = new EntryImpl() {
+			public Object clone() {
+				return this;
+			}
+		};
 }

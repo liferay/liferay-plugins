@@ -383,8 +383,13 @@ public class KBStructureModelImpl extends BaseModelImpl<KBStructure>
 			return (KBStructure)this;
 		}
 		else {
-			return (KBStructure)Proxy.newProxyInstance(_classLoader,
-				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
+			if (_escapedModelProxy == null) {
+				_escapedModelProxy = (KBStructure)Proxy.newProxyInstance(_classLoader,
+						_escapedModelProxyInterfaces,
+						new AutoEscapeBeanHandler(this));
+			}
+
+			return _escapedModelProxy;
 		}
 	}
 
@@ -580,4 +585,5 @@ public class KBStructureModelImpl extends BaseModelImpl<KBStructure>
 	private String _title;
 	private String _content;
 	private transient ExpandoBridge _expandoBridge;
+	private KBStructure _escapedModelProxy;
 }

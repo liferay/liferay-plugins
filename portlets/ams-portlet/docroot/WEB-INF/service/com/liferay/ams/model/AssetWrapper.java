@@ -246,7 +246,7 @@ public class AssetWrapper implements Asset {
 	}
 
 	/**
-	* Determines if this asset is active.
+	* Returns <code>true</code> if this asset is active.
 	*
 	* @return <code>true</code> if this asset is active; <code>false</code> otherwise
 	*/

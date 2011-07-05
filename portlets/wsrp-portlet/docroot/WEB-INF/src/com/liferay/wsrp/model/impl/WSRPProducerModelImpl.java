@@ -227,8 +227,13 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer>
 			return (WSRPProducer)this;
 		}
 		else {
-			return (WSRPProducer)Proxy.newProxyInstance(_classLoader,
-				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
+			if (_escapedModelProxy == null) {
+				_escapedModelProxy = (WSRPProducer)Proxy.newProxyInstance(_classLoader,
+						_escapedModelProxyInterfaces,
+						new AutoEscapeBeanHandler(this));
+			}
+
+			return _escapedModelProxy;
 		}
 	}
 
@@ -412,4 +417,5 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer>
 	private String _version;
 	private String _portletIds;
 	private transient ExpandoBridge _expandoBridge;
+	private WSRPProducer _escapedModelProxy;
 }

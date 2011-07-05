@@ -282,7 +282,7 @@ public class KaleoNodeWrapper implements KaleoNode {
 	}
 
 	/**
-	* Determines if this kaleo node is initial.
+	* Returns <code>true</code> if this kaleo node is initial.
 	*
 	* @return <code>true</code> if this kaleo node is initial; <code>false</code> otherwise
 	*/
@@ -309,7 +309,7 @@ public class KaleoNodeWrapper implements KaleoNode {
 	}
 
 	/**
-	* Determines if this kaleo node is terminal.
+	* Returns <code>true</code> if this kaleo node is terminal.
 	*
 	* @return <code>true</code> if this kaleo node is terminal; <code>false</code> otherwise
 	*/

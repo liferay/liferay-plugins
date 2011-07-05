@@ -538,8 +538,14 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 		KBComment kbComment = (KBComment)EntityCacheUtil.getResult(KBCommentModelImpl.ENTITY_CACHE_ENABLED,
 				KBCommentImpl.class, kbCommentId, this);
 
+		if (kbComment == _nullKBComment) {
+			return null;
+		}
+
 		if (kbComment == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -548,11 +554,17 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 						Long.valueOf(kbCommentId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
 				if (kbComment != null) {
 					cacheResult(kbComment);
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(KBCommentModelImpl.ENTITY_CACHE_ENABLED,
+						KBCommentImpl.class, kbCommentId, _nullKBComment);
 				}
 
 				closeSession(session);
@@ -978,6 +990,7 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	 *
 	 * @param uuid the uuid
 	 * @param groupId the group ID
+	 * @param retrieveFromCache whether to use the finder cache
 	 * @return the matching k b comment, or <code>null</code> if a matching k b comment could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -2198,6 +2211,7 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	 * @param userId the user ID
 	 * @param classNameId the class name ID
 	 * @param classPK the class p k
+	 * @param retrieveFromCache whether to use the finder cache
 	 * @return the matching k b comment, or <code>null</code> if a matching k b comment could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -2971,4 +2985,9 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(KBCommentPersistenceImpl.class);
+	private static KBComment _nullKBComment = new KBCommentImpl() {
+			public Object clone() {
+				return this;
+			}
+		};
 }

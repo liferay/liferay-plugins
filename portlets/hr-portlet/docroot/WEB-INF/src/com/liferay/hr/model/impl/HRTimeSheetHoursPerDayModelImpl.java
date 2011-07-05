@@ -202,8 +202,13 @@ public class HRTimeSheetHoursPerDayModelImpl extends BaseModelImpl<HRTimeSheetHo
 			return (HRTimeSheetHoursPerDay)this;
 		}
 		else {
-			return (HRTimeSheetHoursPerDay)Proxy.newProxyInstance(_classLoader,
-				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
+			if (_escapedModelProxy == null) {
+				_escapedModelProxy = (HRTimeSheetHoursPerDay)Proxy.newProxyInstance(_classLoader,
+						_escapedModelProxyInterfaces,
+						new AutoEscapeBeanHandler(this));
+			}
+
+			return _escapedModelProxy;
 		}
 	}
 
@@ -380,4 +385,5 @@ public class HRTimeSheetHoursPerDayModelImpl extends BaseModelImpl<HRTimeSheetHo
 	private long _hrOfficeId;
 	private double _hoursPerDay;
 	private transient ExpandoBridge _expandoBridge;
+	private HRTimeSheetHoursPerDay _escapedModelProxy;
 }

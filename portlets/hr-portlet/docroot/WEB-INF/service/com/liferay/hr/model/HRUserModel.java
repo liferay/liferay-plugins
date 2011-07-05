@@ -324,7 +324,7 @@ public interface HRUserModel extends BaseModel<HRUser>, GroupedModel {
 	public boolean getBenefitsExempt();
 
 	/**
-	 * Determines if this h r user is benefits exempt.
+	 * Returns <code>true</code> if this h r user is benefits exempt.
 	 *
 	 * @return <code>true</code> if this h r user is benefits exempt; <code>false</code> otherwise
 	 */
@@ -345,7 +345,7 @@ public interface HRUserModel extends BaseModel<HRUser>, GroupedModel {
 	public boolean getOvertimeExempt();
 
 	/**
-	 * Determines if this h r user is overtime exempt.
+	 * Returns <code>true</code> if this h r user is overtime exempt.
 	 *
 	 * @return <code>true</code> if this h r user is overtime exempt; <code>false</code> otherwise
 	 */

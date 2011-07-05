@@ -283,7 +283,7 @@ public interface KaleoTimerInstanceTokenModel extends BaseModel<KaleoTimerInstan
 	public boolean getCompleted();
 
 	/**
-	 * Determines if this kaleo timer instance token is completed.
+	 * Returns <code>true</code> if this kaleo timer instance token is completed.
 	 *
 	 * @return <code>true</code> if this kaleo timer instance token is completed; <code>false</code> otherwise
 	 */

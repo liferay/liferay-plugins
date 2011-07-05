@@ -162,7 +162,6 @@
 
 		<!-- References -->
 
-		<reference package-path="com.liferay.documentlibrary" entity="DL" />
 		<reference package-path="com.liferay.portal" entity="Company" />
 		<reference package-path="com.liferay.portal" entity="Group" />
 		<reference package-path="com.liferay.portal" entity="Layout" />

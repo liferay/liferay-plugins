@@ -392,7 +392,7 @@ public class HRUserWrapper implements HRUser {
 	}
 
 	/**
-	* Determines if this h r user is benefits exempt.
+	* Returns <code>true</code> if this h r user is benefits exempt.
 	*
 	* @return <code>true</code> if this h r user is benefits exempt; <code>false</code> otherwise
 	*/
@@ -419,7 +419,7 @@ public class HRUserWrapper implements HRUser {
 	}
 
 	/**
-	* Determines if this h r user is overtime exempt.
+	* Returns <code>true</code> if this h r user is overtime exempt.
 	*
 	* @return <code>true</code> if this h r user is overtime exempt; <code>false</code> otherwise
 	*/

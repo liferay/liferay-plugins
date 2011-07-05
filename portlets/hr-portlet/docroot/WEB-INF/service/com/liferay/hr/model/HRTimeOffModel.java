@@ -367,28 +367,28 @@ public interface HRTimeOffModel extends BaseModel<HRTimeOff>, GroupedModel,
 	public boolean getApproved();
 
 	/**
-	 * Determines if this h r time off is approved.
+	 * Returns <code>true</code> if this h r time off is approved.
 	 *
 	 * @return <code>true</code> if this h r time off is approved; <code>false</code> otherwise
 	 */
 	public boolean isApproved();
 
 	/**
-	 * Determines if this h r time off is a draft.
+	 * Returns <code>true</code> if this h r time off is a draft.
 	 *
 	 * @return <code>true</code> if this h r time off is a draft; <code>false</code> otherwise
 	 */
 	public boolean isDraft();
 
 	/**
-	 * Determines if this h r time off is expired.
+	 * Returns <code>true</code> if this h r time off is expired.
 	 *
 	 * @return <code>true</code> if this h r time off is expired; <code>false</code> otherwise
 	 */
 	public boolean isExpired();
 
 	/**
-	 * Determines if this h r time off is pending.
+	 * Returns <code>true</code> if this h r time off is pending.
 	 *
 	 * @return <code>true</code> if this h r time off is pending; <code>false</code> otherwise
 	 */

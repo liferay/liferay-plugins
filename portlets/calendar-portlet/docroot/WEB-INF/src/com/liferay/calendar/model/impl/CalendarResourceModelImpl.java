@@ -543,8 +543,13 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 			return (CalendarResource)this;
 		}
 		else {
-			return (CalendarResource)Proxy.newProxyInstance(_classLoader,
-				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
+			if (_escapedModelProxy == null) {
+				_escapedModelProxy = (CalendarResource)Proxy.newProxyInstance(_classLoader,
+						_escapedModelProxyInterfaces,
+						new AutoEscapeBeanHandler(this));
+			}
+
+			return _escapedModelProxy;
 		}
 	}
 
@@ -782,4 +787,5 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 	private String _description;
 	private boolean _active;
 	private transient ExpandoBridge _expandoBridge;
+	private CalendarResource _escapedModelProxy;
 }

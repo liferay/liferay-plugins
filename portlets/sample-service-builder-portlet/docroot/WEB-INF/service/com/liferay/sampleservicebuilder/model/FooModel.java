@@ -212,7 +212,7 @@ public interface FooModel extends BaseModel<Foo>, GroupedModel {
 	public boolean getField2();
 
 	/**
-	 * Determines if this foo is field2.
+	 * Returns <code>true</code> if this foo is field2.
 	 *
 	 * @return <code>true</code> if this foo is field2; <code>false</code> otherwise
 	 */

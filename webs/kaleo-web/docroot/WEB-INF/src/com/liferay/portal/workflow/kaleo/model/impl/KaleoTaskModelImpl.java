@@ -241,8 +241,13 @@ public class KaleoTaskModelImpl extends BaseModelImpl<KaleoTask>
 			return (KaleoTask)this;
 		}
 		else {
-			return (KaleoTask)Proxy.newProxyInstance(_classLoader,
-				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
+			if (_escapedModelProxy == null) {
+				_escapedModelProxy = (KaleoTask)Proxy.newProxyInstance(_classLoader,
+						_escapedModelProxyInterfaces,
+						new AutoEscapeBeanHandler(this));
+			}
+
+			return _escapedModelProxy;
 		}
 	}
 
@@ -448,4 +453,5 @@ public class KaleoTaskModelImpl extends BaseModelImpl<KaleoTask>
 	private String _name;
 	private String _description;
 	private transient ExpandoBridge _expandoBridge;
+	private KaleoTask _escapedModelProxy;
 }

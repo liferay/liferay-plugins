@@ -211,8 +211,13 @@ public class HRProjectBillingRateModelImpl extends BaseModelImpl<HRProjectBillin
 			return (HRProjectBillingRate)this;
 		}
 		else {
-			return (HRProjectBillingRate)Proxy.newProxyInstance(_classLoader,
-				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
+			if (_escapedModelProxy == null) {
+				_escapedModelProxy = (HRProjectBillingRate)Proxy.newProxyInstance(_classLoader,
+						_escapedModelProxyInterfaces,
+						new AutoEscapeBeanHandler(this));
+			}
+
+			return _escapedModelProxy;
 		}
 	}
 
@@ -397,4 +402,5 @@ public class HRProjectBillingRateModelImpl extends BaseModelImpl<HRProjectBillin
 	private long _hrProjectRoleId;
 	private double _rate;
 	private transient ExpandoBridge _expandoBridge;
+	private HRProjectBillingRate _escapedModelProxy;
 }

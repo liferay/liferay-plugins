@@ -243,8 +243,13 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 			return (Feed)this;
 		}
 		else {
-			return (Feed)Proxy.newProxyInstance(_classLoader,
-				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
+			if (_escapedModelProxy == null) {
+				_escapedModelProxy = (Feed)Proxy.newProxyInstance(_classLoader,
+						_escapedModelProxyInterfaces,
+						new AutoEscapeBeanHandler(this));
+			}
+
+			return _escapedModelProxy;
 		}
 	}
 
@@ -438,4 +443,5 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 	private String _originalTwitterScreenName;
 	private long _lastStatusId;
 	private transient ExpandoBridge _expandoBridge;
+	private Feed _escapedModelProxy;
 }

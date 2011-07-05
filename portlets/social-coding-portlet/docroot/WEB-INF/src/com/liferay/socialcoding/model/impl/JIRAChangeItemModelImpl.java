@@ -192,8 +192,13 @@ public class JIRAChangeItemModelImpl extends BaseModelImpl<JIRAChangeItem>
 			return (JIRAChangeItem)this;
 		}
 		else {
-			return (JIRAChangeItem)Proxy.newProxyInstance(_classLoader,
-				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
+			if (_escapedModelProxy == null) {
+				_escapedModelProxy = (JIRAChangeItem)Proxy.newProxyInstance(_classLoader,
+						_escapedModelProxyInterfaces,
+						new AutoEscapeBeanHandler(this));
+			}
+
+			return _escapedModelProxy;
 		}
 	}
 
@@ -353,4 +358,5 @@ public class JIRAChangeItemModelImpl extends BaseModelImpl<JIRAChangeItem>
 	private String _newValue;
 	private String _newString;
 	private transient ExpandoBridge _expandoBridge;
+	private JIRAChangeItem _escapedModelProxy;
 }

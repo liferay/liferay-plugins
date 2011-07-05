@@ -244,8 +244,13 @@ public class HRBillabilityModelImpl extends BaseModelImpl<HRBillability>
 			return (HRBillability)this;
 		}
 		else {
-			return (HRBillability)Proxy.newProxyInstance(_classLoader,
-				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
+			if (_escapedModelProxy == null) {
+				_escapedModelProxy = (HRBillability)Proxy.newProxyInstance(_classLoader,
+						_escapedModelProxyInterfaces,
+						new AutoEscapeBeanHandler(this));
+			}
+
+			return _escapedModelProxy;
 		}
 	}
 
@@ -440,4 +445,5 @@ public class HRBillabilityModelImpl extends BaseModelImpl<HRBillability>
 	private String _name;
 	private String _description;
 	private transient ExpandoBridge _expandoBridge;
+	private HRBillability _escapedModelProxy;
 }

@@ -210,7 +210,7 @@ public class UserThreadWrapper implements UserThread {
 	}
 
 	/**
-	* Determines if this user thread is read.
+	* Returns <code>true</code> if this user thread is read.
 	*
 	* @return <code>true</code> if this user thread is read; <code>false</code> otherwise
 	*/
@@ -237,7 +237,7 @@ public class UserThreadWrapper implements UserThread {
 	}
 
 	/**
-	* Determines if this user thread is deleted.
+	* Returns <code>true</code> if this user thread is deleted.
 	*
 	* @return <code>true</code> if this user thread is deleted; <code>false</code> otherwise
 	*/

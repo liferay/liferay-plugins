@@ -362,8 +362,14 @@ public class HRAssetTypePersistenceImpl extends BasePersistenceImpl<HRAssetType>
 		HRAssetType hrAssetType = (HRAssetType)EntityCacheUtil.getResult(HRAssetTypeModelImpl.ENTITY_CACHE_ENABLED,
 				HRAssetTypeImpl.class, hrAssetTypeId, this);
 
+		if (hrAssetType == _nullHRAssetType) {
+			return null;
+		}
+
 		if (hrAssetType == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -372,11 +378,17 @@ public class HRAssetTypePersistenceImpl extends BasePersistenceImpl<HRAssetType>
 						Long.valueOf(hrAssetTypeId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
 				if (hrAssetType != null) {
 					cacheResult(hrAssetType);
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(HRAssetTypeModelImpl.ENTITY_CACHE_ENABLED,
+						HRAssetTypeImpl.class, hrAssetTypeId, _nullHRAssetType);
 				}
 
 				closeSession(session);
@@ -664,4 +676,9 @@ public class HRAssetTypePersistenceImpl extends BasePersistenceImpl<HRAssetType>
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(HRAssetTypePersistenceImpl.class);
+	private static HRAssetType _nullHRAssetType = new HRAssetTypeImpl() {
+			public Object clone() {
+				return this;
+			}
+		};
 }

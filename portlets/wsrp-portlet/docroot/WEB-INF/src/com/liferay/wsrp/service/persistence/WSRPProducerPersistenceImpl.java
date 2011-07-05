@@ -456,8 +456,14 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 		WSRPProducer wsrpProducer = (WSRPProducer)EntityCacheUtil.getResult(WSRPProducerModelImpl.ENTITY_CACHE_ENABLED,
 				WSRPProducerImpl.class, wsrpProducerId, this);
 
+		if (wsrpProducer == _nullWSRPProducer) {
+			return null;
+		}
+
 		if (wsrpProducer == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -466,11 +472,18 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 						Long.valueOf(wsrpProducerId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
 				if (wsrpProducer != null) {
 					cacheResult(wsrpProducer);
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(WSRPProducerModelImpl.ENTITY_CACHE_ENABLED,
+						WSRPProducerImpl.class, wsrpProducerId,
+						_nullWSRPProducer);
 				}
 
 				closeSession(session);
@@ -896,6 +909,7 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 	 *
 	 * @param uuid the uuid
 	 * @param groupId the group ID
+	 * @param retrieveFromCache whether to use the finder cache
 	 * @return the matching w s r p producer, or <code>null</code> if a matching w s r p producer could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -1786,4 +1800,9 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(WSRPProducerPersistenceImpl.class);
+	private static WSRPProducer _nullWSRPProducer = new WSRPProducerImpl() {
+			public Object clone() {
+				return this;
+			}
+		};
 }

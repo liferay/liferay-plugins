@@ -266,8 +266,13 @@ public class HRAssetDefinitionModelImpl extends BaseModelImpl<HRAssetDefinition>
 			return (HRAssetDefinition)this;
 		}
 		else {
-			return (HRAssetDefinition)Proxy.newProxyInstance(_classLoader,
-				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
+			if (_escapedModelProxy == null) {
+				_escapedModelProxy = (HRAssetDefinition)Proxy.newProxyInstance(_classLoader,
+						_escapedModelProxyInterfaces,
+						new AutoEscapeBeanHandler(this));
+			}
+
+			return _escapedModelProxy;
 		}
 	}
 
@@ -492,4 +497,5 @@ public class HRAssetDefinitionModelImpl extends BaseModelImpl<HRAssetDefinition>
 	private int _quantity;
 	private double _individualPrice;
 	private transient ExpandoBridge _expandoBridge;
+	private HRAssetDefinition _escapedModelProxy;
 }

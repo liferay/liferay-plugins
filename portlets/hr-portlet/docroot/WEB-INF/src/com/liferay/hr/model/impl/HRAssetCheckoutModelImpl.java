@@ -237,8 +237,13 @@ public class HRAssetCheckoutModelImpl extends BaseModelImpl<HRAssetCheckout>
 			return (HRAssetCheckout)this;
 		}
 		else {
-			return (HRAssetCheckout)Proxy.newProxyInstance(_classLoader,
-				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
+			if (_escapedModelProxy == null) {
+				_escapedModelProxy = (HRAssetCheckout)Proxy.newProxyInstance(_classLoader,
+						_escapedModelProxyInterfaces,
+						new AutoEscapeBeanHandler(this));
+			}
+
+			return _escapedModelProxy;
 		}
 	}
 
@@ -440,4 +445,5 @@ public class HRAssetCheckoutModelImpl extends BaseModelImpl<HRAssetCheckout>
 	private Date _expectedCheckInDate;
 	private Date _actualCheckInDate;
 	private transient ExpandoBridge _expandoBridge;
+	private HRAssetCheckout _escapedModelProxy;
 }

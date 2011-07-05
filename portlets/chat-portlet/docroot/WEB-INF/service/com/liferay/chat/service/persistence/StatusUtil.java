@@ -221,6 +221,7 @@ public class StatusUtil {
 	* Returns the status where userId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	*
 	* @param userId the user ID
+	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching status, or <code>null</code> if a matching status could not be found
 	* @throws SystemException if a system exception occurred
 	*/

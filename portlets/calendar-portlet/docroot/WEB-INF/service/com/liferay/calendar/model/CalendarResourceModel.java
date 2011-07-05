@@ -427,7 +427,7 @@ public interface CalendarResourceModel extends AttachedModel,
 	public boolean getActive();
 
 	/**
-	 * Determines if this calendar resource is active.
+	 * Returns <code>true</code> if this calendar resource is active.
 	 *
 	 * @return <code>true</code> if this calendar resource is active; <code>false</code> otherwise
 	 */

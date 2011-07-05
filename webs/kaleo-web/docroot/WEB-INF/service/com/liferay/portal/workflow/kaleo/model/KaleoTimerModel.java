@@ -239,7 +239,7 @@ public interface KaleoTimerModel extends BaseModel<KaleoTimer>, GroupedModel {
 	public boolean getDefaultTimer();
 
 	/**
-	 * Determines if this kaleo timer is default timer.
+	 * Returns <code>true</code> if this kaleo timer is default timer.
 	 *
 	 * @return <code>true</code> if this kaleo timer is default timer; <code>false</code> otherwise
 	 */

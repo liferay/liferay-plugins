@@ -446,8 +446,14 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 		Message message = (Message)EntityCacheUtil.getResult(MessageModelImpl.ENTITY_CACHE_ENABLED,
 				MessageImpl.class, messageId, this);
 
+		if (message == _nullMessage) {
+			return null;
+		}
+
 		if (message == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -456,11 +462,17 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 						Long.valueOf(messageId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
 				if (message != null) {
 					cacheResult(message);
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(MessageModelImpl.ENTITY_CACHE_ENABLED,
+						MessageImpl.class, messageId, _nullMessage);
 				}
 
 				closeSession(session);
@@ -1202,6 +1214,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	 *
 	 * @param folderId the folder ID
 	 * @param remoteMessageId the remote message ID
+	 * @param retrieveFromCache whether to use the finder cache
 	 * @return the matching message, or <code>null</code> if a matching message could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -1707,4 +1720,9 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(MessagePersistenceImpl.class);
+	private static Message _nullMessage = new MessageImpl() {
+			public Object clone() {
+				return this;
+			}
+		};
 }

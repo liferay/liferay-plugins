@@ -146,8 +146,13 @@ public class SVNRepositoryModelImpl extends BaseModelImpl<SVNRepository>
 			return (SVNRepository)this;
 		}
 		else {
-			return (SVNRepository)Proxy.newProxyInstance(_classLoader,
-				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
+			if (_escapedModelProxy == null) {
+				_escapedModelProxy = (SVNRepository)Proxy.newProxyInstance(_classLoader,
+						_escapedModelProxyInterfaces,
+						new AutoEscapeBeanHandler(this));
+			}
+
+			return _escapedModelProxy;
 		}
 	}
 
@@ -277,4 +282,5 @@ public class SVNRepositoryModelImpl extends BaseModelImpl<SVNRepository>
 	private String _originalUrl;
 	private long _revisionNumber;
 	private transient ExpandoBridge _expandoBridge;
+	private SVNRepository _escapedModelProxy;
 }

@@ -21,7 +21,7 @@
 		</id>
 		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="modifiedDate" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="online" column="online_" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="online" type="com.liferay.portal.dao.orm.hibernate.BooleanType" column="online_" />
 		<property name="awake" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 		<property name="activePanelId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="message" type="com.liferay.portal.dao.orm.hibernate.StringType" />

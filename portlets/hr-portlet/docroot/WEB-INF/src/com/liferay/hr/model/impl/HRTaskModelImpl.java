@@ -397,8 +397,13 @@ public class HRTaskModelImpl extends BaseModelImpl<HRTask>
 			return (HRTask)this;
 		}
 		else {
-			return (HRTask)Proxy.newProxyInstance(_classLoader,
-				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
+			if (_escapedModelProxy == null) {
+				_escapedModelProxy = (HRTask)Proxy.newProxyInstance(_classLoader,
+						_escapedModelProxyInterfaces,
+						new AutoEscapeBeanHandler(this));
+			}
+
+			return _escapedModelProxy;
 		}
 	}
 
@@ -719,4 +724,5 @@ public class HRTaskModelImpl extends BaseModelImpl<HRTask>
 	private double _actualExpenses;
 	private String _actualExpensesCurrencyCode;
 	private transient ExpandoBridge _expandoBridge;
+	private HRTask _escapedModelProxy;
 }

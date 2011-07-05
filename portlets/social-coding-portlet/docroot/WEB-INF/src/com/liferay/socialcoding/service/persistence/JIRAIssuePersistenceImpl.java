@@ -546,8 +546,14 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		JIRAIssue jiraIssue = (JIRAIssue)EntityCacheUtil.getResult(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
 				JIRAIssueImpl.class, jiraIssueId, this);
 
+		if (jiraIssue == _nullJIRAIssue) {
+			return null;
+		}
+
 		if (jiraIssue == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -556,11 +562,17 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 						Long.valueOf(jiraIssueId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
 				if (jiraIssue != null) {
 					cacheResult(jiraIssue);
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
+						JIRAIssueImpl.class, jiraIssueId, _nullJIRAIssue);
 				}
 
 				closeSession(session);
@@ -958,6 +970,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	 * Returns the j i r a issue where key = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
 	 * @param key the key
+	 * @param retrieveFromCache whether to use the finder cache
 	 * @return the matching j i r a issue, or <code>null</code> if a matching j i r a issue could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -5889,4 +5902,9 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(JIRAIssuePersistenceImpl.class);
+	private static JIRAIssue _nullJIRAIssue = new JIRAIssueImpl() {
+			public Object clone() {
+				return this;
+			}
+		};
 }
