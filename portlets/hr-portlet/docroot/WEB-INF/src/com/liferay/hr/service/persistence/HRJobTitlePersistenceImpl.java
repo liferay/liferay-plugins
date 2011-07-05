@@ -379,8 +379,14 @@ public class HRJobTitlePersistenceImpl extends BasePersistenceImpl<HRJobTitle>
 		HRJobTitle hrJobTitle = (HRJobTitle)EntityCacheUtil.getResult(HRJobTitleModelImpl.ENTITY_CACHE_ENABLED,
 				HRJobTitleImpl.class, hrJobTitleId, this);
 
+		if (hrJobTitle == _nullHRJobTitle) {
+			return null;
+		}
+
 		if (hrJobTitle == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -389,11 +395,17 @@ public class HRJobTitlePersistenceImpl extends BasePersistenceImpl<HRJobTitle>
 						Long.valueOf(hrJobTitleId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
 				if (hrJobTitle != null) {
 					cacheResult(hrJobTitle);
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(HRJobTitleModelImpl.ENTITY_CACHE_ENABLED,
+						HRJobTitleImpl.class, hrJobTitleId, _nullHRJobTitle);
 				}
 
 				closeSession(session);
@@ -736,7 +748,7 @@ public class HRJobTitlePersistenceImpl extends BasePersistenceImpl<HRJobTitle>
 			new String[] { Long.class.getName(), Long.class.getName() });
 
 	/**
-	 * Determines if the h r branch is associated with the h r job title.
+	 * Returns <code>true</code> if the h r branch is associated with the h r job title.
 	 *
 	 * @param pk the primary key of the h r job title
 	 * @param hrBranchPK the primary key of the h r branch
@@ -771,7 +783,7 @@ public class HRJobTitlePersistenceImpl extends BasePersistenceImpl<HRJobTitle>
 	}
 
 	/**
-	 * Determines if the h r job title has any h r branchs associated with it.
+	 * Returns <code>true</code> if the h r job title has any h r branchs associated with it.
 	 *
 	 * @param pk the primary key of the h r job title to check for associations with h r branchs
 	 * @return <code>true</code> if the h r job title has any h r branchs associated with it; <code>false</code> otherwise
@@ -1339,4 +1351,9 @@ public class HRJobTitlePersistenceImpl extends BasePersistenceImpl<HRJobTitle>
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(HRJobTitlePersistenceImpl.class);
+	private static HRJobTitle _nullHRJobTitle = new HRJobTitleImpl() {
+			public Object clone() {
+				return this;
+			}
+		};
 }

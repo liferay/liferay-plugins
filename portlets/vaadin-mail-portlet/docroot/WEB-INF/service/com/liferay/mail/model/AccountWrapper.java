@@ -282,7 +282,7 @@ public class AccountWrapper implements Account {
 	}
 
 	/**
-	* Determines if this account is incoming secure.
+	* Returns <code>true</code> if this account is incoming secure.
 	*
 	* @return <code>true</code> if this account is incoming secure; <code>false</code> otherwise
 	*/
@@ -345,7 +345,7 @@ public class AccountWrapper implements Account {
 	}
 
 	/**
-	* Determines if this account is outgoing secure.
+	* Returns <code>true</code> if this account is outgoing secure.
 	*
 	* @return <code>true</code> if this account is outgoing secure; <code>false</code> otherwise
 	*/
@@ -408,7 +408,7 @@ public class AccountWrapper implements Account {
 	}
 
 	/**
-	* Determines if this account is save password.
+	* Returns <code>true</code> if this account is save password.
 	*
 	* @return <code>true</code> if this account is save password; <code>false</code> otherwise
 	*/
@@ -453,7 +453,7 @@ public class AccountWrapper implements Account {
 	}
 
 	/**
-	* Determines if this account is use signature.
+	* Returns <code>true</code> if this account is use signature.
 	*
 	* @return <code>true</code> if this account is use signature; <code>false</code> otherwise
 	*/
@@ -570,7 +570,7 @@ public class AccountWrapper implements Account {
 	}
 
 	/**
-	* Determines if this account is default sender.
+	* Returns <code>true</code> if this account is default sender.
 	*
 	* @return <code>true</code> if this account is default sender; <code>false</code> otherwise
 	*/
@@ -628,6 +628,7 @@ public class AccountWrapper implements Account {
 		_account.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public java.lang.Object clone() {
 		return new AccountWrapper((Account)_account.clone());
 	}
@@ -636,6 +637,7 @@ public class AccountWrapper implements Account {
 		return _account.compareTo(account);
 	}
 
+	@Override
 	public int hashCode() {
 		return _account.hashCode();
 	}
@@ -644,6 +646,7 @@ public class AccountWrapper implements Account {
 		return new AccountWrapper(_account.toEscapedModel());
 	}
 
+	@Override
 	public java.lang.String toString() {
 		return _account.toString();
 	}

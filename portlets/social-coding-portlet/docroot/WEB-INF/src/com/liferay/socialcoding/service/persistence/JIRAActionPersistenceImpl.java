@@ -398,8 +398,14 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 		JIRAAction jiraAction = (JIRAAction)EntityCacheUtil.getResult(JIRAActionModelImpl.ENTITY_CACHE_ENABLED,
 				JIRAActionImpl.class, jiraActionId, this);
 
+		if (jiraAction == _nullJIRAAction) {
+			return null;
+		}
+
 		if (jiraAction == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -408,11 +414,17 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 						Long.valueOf(jiraActionId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
 				if (jiraAction != null) {
 					cacheResult(jiraAction);
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(JIRAActionModelImpl.ENTITY_CACHE_ENABLED,
+						JIRAActionImpl.class, jiraActionId, _nullJIRAAction);
 				}
 
 				closeSession(session);
@@ -1933,4 +1945,9 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(JIRAActionPersistenceImpl.class);
+	private static JIRAAction _nullJIRAAction = new JIRAActionImpl() {
+			public Object clone() {
+				return this;
+			}
+		};
 }

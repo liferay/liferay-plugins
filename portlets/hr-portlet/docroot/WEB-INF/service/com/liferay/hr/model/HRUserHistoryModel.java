@@ -294,7 +294,7 @@ public interface HRUserHistoryModel extends BaseModel<HRUserHistory> {
 	public boolean getBenefitsExempt();
 
 	/**
-	 * Determines if this h r user history is benefits exempt.
+	 * Returns <code>true</code> if this h r user history is benefits exempt.
 	 *
 	 * @return <code>true</code> if this h r user history is benefits exempt; <code>false</code> otherwise
 	 */
@@ -315,7 +315,7 @@ public interface HRUserHistoryModel extends BaseModel<HRUserHistory> {
 	public boolean getOvertimeExempt();
 
 	/**
-	 * Determines if this h r user history is overtime exempt.
+	 * Returns <code>true</code> if this h r user history is overtime exempt.
 	 *
 	 * @return <code>true</code> if this h r user history is overtime exempt; <code>false</code> otherwise
 	 */

@@ -370,8 +370,14 @@ public class HRExpensePersistenceImpl extends BasePersistenceImpl<HRExpense>
 		HRExpense hrExpense = (HRExpense)EntityCacheUtil.getResult(HRExpenseModelImpl.ENTITY_CACHE_ENABLED,
 				HRExpenseImpl.class, hrExpenseId, this);
 
+		if (hrExpense == _nullHRExpense) {
+			return null;
+		}
+
 		if (hrExpense == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -380,11 +386,17 @@ public class HRExpensePersistenceImpl extends BasePersistenceImpl<HRExpense>
 						Long.valueOf(hrExpenseId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
 				if (hrExpense != null) {
 					cacheResult(hrExpense);
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(HRExpenseModelImpl.ENTITY_CACHE_ENABLED,
+						HRExpenseImpl.class, hrExpenseId, _nullHRExpense);
 				}
 
 				closeSession(session);
@@ -672,4 +684,9 @@ public class HRExpensePersistenceImpl extends BasePersistenceImpl<HRExpense>
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(HRExpensePersistenceImpl.class);
+	private static HRExpense _nullHRExpense = new HRExpenseImpl() {
+			public Object clone() {
+				return this;
+			}
+		};
 }

@@ -461,8 +461,14 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 		KaleoLog kaleoLog = (KaleoLog)EntityCacheUtil.getResult(KaleoLogModelImpl.ENTITY_CACHE_ENABLED,
 				KaleoLogImpl.class, kaleoLogId, this);
 
+		if (kaleoLog == _nullKaleoLog) {
+			return null;
+		}
+
 		if (kaleoLog == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -471,11 +477,17 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 						Long.valueOf(kaleoLogId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
 				if (kaleoLog != null) {
 					cacheResult(kaleoLog);
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(KaleoLogModelImpl.ENTITY_CACHE_ENABLED,
+						KaleoLogImpl.class, kaleoLogId, _nullKaleoLog);
 				}
 
 				closeSession(session);
@@ -3351,4 +3363,9 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(KaleoLogPersistenceImpl.class);
+	private static KaleoLog _nullKaleoLog = new KaleoLogImpl() {
+			public Object clone() {
+				return this;
+			}
+		};
 }

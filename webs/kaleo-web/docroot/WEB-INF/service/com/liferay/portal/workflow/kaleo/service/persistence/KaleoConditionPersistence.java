@@ -342,6 +342,7 @@ public interface KaleoConditionPersistence extends BasePersistence<KaleoConditio
 	* Returns the kaleo condition where kaleoNodeId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	*
 	* @param kaleoNodeId the kaleo node ID
+	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching kaleo condition, or <code>null</code> if a matching kaleo condition could not be found
 	* @throws SystemException if a system exception occurred
 	*/

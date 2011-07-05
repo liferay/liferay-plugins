@@ -201,8 +201,13 @@ public class WallEntryModelImpl extends BaseModelImpl<WallEntry>
 			return (WallEntry)this;
 		}
 		else {
-			return (WallEntry)Proxy.newProxyInstance(_classLoader,
-				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
+			if (_escapedModelProxy == null) {
+				_escapedModelProxy = (WallEntry)Proxy.newProxyInstance(_classLoader,
+						_escapedModelProxyInterfaces,
+						new AutoEscapeBeanHandler(this));
+			}
+
+			return _escapedModelProxy;
 		}
 	}
 
@@ -371,4 +376,5 @@ public class WallEntryModelImpl extends BaseModelImpl<WallEntry>
 	private Date _modifiedDate;
 	private String _comments;
 	private transient ExpandoBridge _expandoBridge;
+	private WallEntry _escapedModelProxy;
 }

@@ -240,6 +240,7 @@ public interface KaleoTimerInstanceTokenPersistence extends BasePersistence<Kale
 	*
 	* @param kaleoInstanceId the kaleo instance ID
 	* @param kaleoTimerId the kaleo timer ID
+	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching kaleo timer instance token, or <code>null</code> if a matching kaleo timer instance token could not be found
 	* @throws SystemException if a system exception occurred
 	*/

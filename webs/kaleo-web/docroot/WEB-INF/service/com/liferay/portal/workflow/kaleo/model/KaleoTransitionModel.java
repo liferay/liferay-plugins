@@ -299,7 +299,7 @@ public interface KaleoTransitionModel extends BaseModel<KaleoTransition>,
 	public boolean getDefaultTransition();
 
 	/**
-	 * Determines if this kaleo transition is default transition.
+	 * Returns <code>true</code> if this kaleo transition is default transition.
 	 *
 	 * @return <code>true</code> if this kaleo transition is default transition; <code>false</code> otherwise
 	 */

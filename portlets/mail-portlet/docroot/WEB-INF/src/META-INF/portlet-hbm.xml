@@ -26,7 +26,7 @@
 		<property name="outgoingPort" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 		<property name="outgoingSecure" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 		<property name="login" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="password" column="password_" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="password" type="com.liferay.portal.dao.orm.hibernate.StringType" column="password_" />
 		<property name="savePassword" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 		<property name="signature" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="useSignature" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
@@ -49,7 +49,7 @@
 		<property name="messageId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="contentPath" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="fileName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="size" column="size_" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="size" type="com.liferay.portal.dao.orm.hibernate.LongType" column="size_" />
 	</class>
 	<class name="com.liferay.mail.model.impl.FolderImpl" table="Mail_Folder">
 		<cache usage="read-write" />
@@ -79,7 +79,7 @@
 		<property name="accountId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="folderId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="sender" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="to" column="to_" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="to" type="com.liferay.portal.dao.orm.hibernate.StringType" column="to_" />
 		<property name="cc" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="bcc" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="sentDate" type="org.hibernate.type.TimestampType" />
@@ -87,7 +87,7 @@
 		<property name="preview" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="body" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="flags" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="size" column="size_" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="size" type="com.liferay.portal.dao.orm.hibernate.LongType" column="size_" />
 		<property name="remoteMessageId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 	</class>
 </hibernate-mapping>

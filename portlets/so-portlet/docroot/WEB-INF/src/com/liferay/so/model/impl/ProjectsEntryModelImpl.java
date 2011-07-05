@@ -238,8 +238,13 @@ public class ProjectsEntryModelImpl extends BaseModelImpl<ProjectsEntry>
 			return (ProjectsEntry)this;
 		}
 		else {
-			return (ProjectsEntry)Proxy.newProxyInstance(_classLoader,
-				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
+			if (_escapedModelProxy == null) {
+				_escapedModelProxy = (ProjectsEntry)Proxy.newProxyInstance(_classLoader,
+						_escapedModelProxyInterfaces,
+						new AutoEscapeBeanHandler(this));
+			}
+
+			return _escapedModelProxy;
 		}
 	}
 
@@ -430,4 +435,5 @@ public class ProjectsEntryModelImpl extends BaseModelImpl<ProjectsEntry>
 	private Date _endDate;
 	private String _data;
 	private transient ExpandoBridge _expandoBridge;
+	private ProjectsEntry _escapedModelProxy;
 }

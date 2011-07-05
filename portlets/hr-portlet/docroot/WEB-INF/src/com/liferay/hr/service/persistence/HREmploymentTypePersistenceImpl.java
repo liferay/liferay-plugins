@@ -431,8 +431,14 @@ public class HREmploymentTypePersistenceImpl extends BasePersistenceImpl<HREmplo
 		HREmploymentType hrEmploymentType = (HREmploymentType)EntityCacheUtil.getResult(HREmploymentTypeModelImpl.ENTITY_CACHE_ENABLED,
 				HREmploymentTypeImpl.class, hrEmploymentTypeId, this);
 
+		if (hrEmploymentType == _nullHREmploymentType) {
+			return null;
+		}
+
 		if (hrEmploymentType == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -441,11 +447,18 @@ public class HREmploymentTypePersistenceImpl extends BasePersistenceImpl<HREmplo
 						Long.valueOf(hrEmploymentTypeId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
 				if (hrEmploymentType != null) {
 					cacheResult(hrEmploymentType);
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(HREmploymentTypeModelImpl.ENTITY_CACHE_ENABLED,
+						HREmploymentTypeImpl.class, hrEmploymentTypeId,
+						_nullHREmploymentType);
 				}
 
 				closeSession(session);
@@ -509,6 +522,7 @@ public class HREmploymentTypePersistenceImpl extends BasePersistenceImpl<HREmplo
 	 *
 	 * @param groupId the group ID
 	 * @param code the code
+	 * @param retrieveFromCache whether to use the finder cache
 	 * @return the matching h r employment type, or <code>null</code> if a matching h r employment type could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -975,4 +989,9 @@ public class HREmploymentTypePersistenceImpl extends BasePersistenceImpl<HREmplo
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(HREmploymentTypePersistenceImpl.class);
+	private static HREmploymentType _nullHREmploymentType = new HREmploymentTypeImpl() {
+			public Object clone() {
+				return this;
+			}
+		};
 }

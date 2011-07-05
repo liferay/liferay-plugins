@@ -221,8 +221,13 @@ public class HRAssetProductModelImpl extends BaseModelImpl<HRAssetProduct>
 			return (HRAssetProduct)this;
 		}
 		else {
-			return (HRAssetProduct)Proxy.newProxyInstance(_classLoader,
-				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
+			if (_escapedModelProxy == null) {
+				_escapedModelProxy = (HRAssetProduct)Proxy.newProxyInstance(_classLoader,
+						_escapedModelProxyInterfaces,
+						new AutoEscapeBeanHandler(this));
+			}
+
+			return _escapedModelProxy;
 		}
 	}
 
@@ -407,4 +412,5 @@ public class HRAssetProductModelImpl extends BaseModelImpl<HRAssetProduct>
 	private String _name;
 	private String _description;
 	private transient ExpandoBridge _expandoBridge;
+	private HRAssetProduct _escapedModelProxy;
 }

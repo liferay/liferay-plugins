@@ -150,8 +150,13 @@ public class JIRAChangeGroupModelImpl extends BaseModelImpl<JIRAChangeGroup>
 			return (JIRAChangeGroup)this;
 		}
 		else {
-			return (JIRAChangeGroup)Proxy.newProxyInstance(_classLoader,
-				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
+			if (_escapedModelProxy == null) {
+				_escapedModelProxy = (JIRAChangeGroup)Proxy.newProxyInstance(_classLoader,
+						_escapedModelProxyInterfaces,
+						new AutoEscapeBeanHandler(this));
+			}
+
+			return _escapedModelProxy;
 		}
 	}
 
@@ -288,4 +293,5 @@ public class JIRAChangeGroupModelImpl extends BaseModelImpl<JIRAChangeGroup>
 	private Date _createDate;
 	private long _jiraIssueId;
 	private transient ExpandoBridge _expandoBridge;
+	private JIRAChangeGroup _escapedModelProxy;
 }

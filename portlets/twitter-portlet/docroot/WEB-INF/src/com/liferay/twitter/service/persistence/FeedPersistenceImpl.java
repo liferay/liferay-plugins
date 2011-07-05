@@ -463,8 +463,14 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 		Feed feed = (Feed)EntityCacheUtil.getResult(FeedModelImpl.ENTITY_CACHE_ENABLED,
 				FeedImpl.class, feedId, this);
 
+		if (feed == _nullFeed) {
+			return null;
+		}
+
 		if (feed == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -472,11 +478,17 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 				feed = (Feed)session.get(FeedImpl.class, Long.valueOf(feedId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
 				if (feed != null) {
 					cacheResult(feed);
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(FeedModelImpl.ENTITY_CACHE_ENABLED,
+						FeedImpl.class, feedId, _nullFeed);
 				}
 
 				closeSession(session);
@@ -540,6 +552,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	 *
 	 * @param companyId the company ID
 	 * @param twitterUserId the twitter user ID
+	 * @param retrieveFromCache whether to use the finder cache
 	 * @return the matching feed, or <code>null</code> if a matching feed could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -678,6 +691,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	 *
 	 * @param companyId the company ID
 	 * @param twitterScreenName the twitter screen name
+	 * @param retrieveFromCache whether to use the finder cache
 	 * @return the matching feed, or <code>null</code> if a matching feed could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -1146,4 +1160,9 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(FeedPersistenceImpl.class);
+	private static Feed _nullFeed = new FeedImpl() {
+			public Object clone() {
+				return this;
+			}
+		};
 }

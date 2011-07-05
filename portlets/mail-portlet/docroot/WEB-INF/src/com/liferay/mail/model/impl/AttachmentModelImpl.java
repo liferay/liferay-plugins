@@ -205,8 +205,13 @@ public class AttachmentModelImpl extends BaseModelImpl<Attachment>
 			return (Attachment)this;
 		}
 		else {
-			return (Attachment)Proxy.newProxyInstance(_classLoader,
-				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
+			if (_escapedModelProxy == null) {
+				_escapedModelProxy = (Attachment)Proxy.newProxyInstance(_classLoader,
+						_escapedModelProxyInterfaces,
+						new AutoEscapeBeanHandler(this));
+			}
+
+			return _escapedModelProxy;
 		}
 	}
 
@@ -383,4 +388,5 @@ public class AttachmentModelImpl extends BaseModelImpl<Attachment>
 	private String _fileName;
 	private long _size;
 	private transient ExpandoBridge _expandoBridge;
+	private Attachment _escapedModelProxy;
 }

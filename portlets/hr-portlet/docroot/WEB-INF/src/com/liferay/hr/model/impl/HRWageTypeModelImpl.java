@@ -244,8 +244,13 @@ public class HRWageTypeModelImpl extends BaseModelImpl<HRWageType>
 			return (HRWageType)this;
 		}
 		else {
-			return (HRWageType)Proxy.newProxyInstance(_classLoader,
-				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
+			if (_escapedModelProxy == null) {
+				_escapedModelProxy = (HRWageType)Proxy.newProxyInstance(_classLoader,
+						_escapedModelProxyInterfaces,
+						new AutoEscapeBeanHandler(this));
+			}
+
+			return _escapedModelProxy;
 		}
 	}
 
@@ -440,4 +445,5 @@ public class HRWageTypeModelImpl extends BaseModelImpl<HRWageType>
 	private String _name;
 	private String _description;
 	private transient ExpandoBridge _expandoBridge;
+	private HRWageType _escapedModelProxy;
 }

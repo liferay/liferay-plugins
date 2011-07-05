@@ -318,8 +318,13 @@ public class KaleoTransitionModelImpl extends BaseModelImpl<KaleoTransition>
 			return (KaleoTransition)this;
 		}
 		else {
-			return (KaleoTransition)Proxy.newProxyInstance(_classLoader,
-				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
+			if (_escapedModelProxy == null) {
+				_escapedModelProxy = (KaleoTransition)Proxy.newProxyInstance(_classLoader,
+						_escapedModelProxyInterfaces,
+						new AutoEscapeBeanHandler(this));
+			}
+
+			return _escapedModelProxy;
 		}
 	}
 
@@ -574,4 +579,5 @@ public class KaleoTransitionModelImpl extends BaseModelImpl<KaleoTransition>
 	private boolean _originalDefaultTransition;
 	private boolean _setOriginalDefaultTransition;
 	private transient ExpandoBridge _expandoBridge;
+	private KaleoTransition _escapedModelProxy;
 }

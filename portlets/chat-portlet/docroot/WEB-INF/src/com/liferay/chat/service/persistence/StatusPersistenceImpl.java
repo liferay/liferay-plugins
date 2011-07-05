@@ -429,8 +429,14 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		Status status = (Status)EntityCacheUtil.getResult(StatusModelImpl.ENTITY_CACHE_ENABLED,
 				StatusImpl.class, statusId, this);
 
+		if (status == _nullStatus) {
+			return null;
+		}
+
 		if (status == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -439,11 +445,17 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 						Long.valueOf(statusId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
 				if (status != null) {
 					cacheResult(status);
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(StatusModelImpl.ENTITY_CACHE_ENABLED,
+						StatusImpl.class, statusId, _nullStatus);
 				}
 
 				closeSession(session);
@@ -500,6 +512,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	 * Returns the status where userId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
 	 * @param userId the user ID
+	 * @param retrieveFromCache whether to use the finder cache
 	 * @return the matching status, or <code>null</code> if a matching status could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -2074,4 +2087,9 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(StatusPersistenceImpl.class);
+	private static Status _nullStatus = new StatusImpl() {
+			public Object clone() {
+				return this;
+			}
+		};
 }

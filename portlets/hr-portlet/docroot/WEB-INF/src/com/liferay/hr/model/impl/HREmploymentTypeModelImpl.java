@@ -244,8 +244,13 @@ public class HREmploymentTypeModelImpl extends BaseModelImpl<HREmploymentType>
 			return (HREmploymentType)this;
 		}
 		else {
-			return (HREmploymentType)Proxy.newProxyInstance(_classLoader,
-				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
+			if (_escapedModelProxy == null) {
+				_escapedModelProxy = (HREmploymentType)Proxy.newProxyInstance(_classLoader,
+						_escapedModelProxyInterfaces,
+						new AutoEscapeBeanHandler(this));
+			}
+
+			return _escapedModelProxy;
 		}
 	}
 
@@ -440,4 +445,5 @@ public class HREmploymentTypeModelImpl extends BaseModelImpl<HREmploymentType>
 	private String _name;
 	private String _description;
 	private transient ExpandoBridge _expandoBridge;
+	private HREmploymentType _escapedModelProxy;
 }

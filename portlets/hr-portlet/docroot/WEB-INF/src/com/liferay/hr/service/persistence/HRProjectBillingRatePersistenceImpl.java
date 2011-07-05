@@ -369,8 +369,14 @@ public class HRProjectBillingRatePersistenceImpl extends BasePersistenceImpl<HRP
 		HRProjectBillingRate hrProjectBillingRate = (HRProjectBillingRate)EntityCacheUtil.getResult(HRProjectBillingRateModelImpl.ENTITY_CACHE_ENABLED,
 				HRProjectBillingRateImpl.class, hrProjectBillingRateId, this);
 
+		if (hrProjectBillingRate == _nullHRProjectBillingRate) {
+			return null;
+		}
+
 		if (hrProjectBillingRate == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -379,11 +385,18 @@ public class HRProjectBillingRatePersistenceImpl extends BasePersistenceImpl<HRP
 						Long.valueOf(hrProjectBillingRateId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
 				if (hrProjectBillingRate != null) {
 					cacheResult(hrProjectBillingRate);
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(HRProjectBillingRateModelImpl.ENTITY_CACHE_ENABLED,
+						HRProjectBillingRateImpl.class, hrProjectBillingRateId,
+						_nullHRProjectBillingRate);
 				}
 
 				closeSession(session);
@@ -671,4 +684,9 @@ public class HRProjectBillingRatePersistenceImpl extends BasePersistenceImpl<HRP
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(HRProjectBillingRatePersistenceImpl.class);
+	private static HRProjectBillingRate _nullHRProjectBillingRate = new HRProjectBillingRateImpl() {
+			public Object clone() {
+				return this;
+			}
+		};
 }

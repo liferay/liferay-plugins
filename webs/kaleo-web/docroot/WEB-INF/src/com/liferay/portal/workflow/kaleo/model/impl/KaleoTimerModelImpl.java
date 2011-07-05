@@ -276,8 +276,13 @@ public class KaleoTimerModelImpl extends BaseModelImpl<KaleoTimer>
 			return (KaleoTimer)this;
 		}
 		else {
-			return (KaleoTimer)Proxy.newProxyInstance(_classLoader,
-				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
+			if (_escapedModelProxy == null) {
+				_escapedModelProxy = (KaleoTimer)Proxy.newProxyInstance(_classLoader,
+						_escapedModelProxyInterfaces,
+						new AutoEscapeBeanHandler(this));
+			}
+
+			return _escapedModelProxy;
 		}
 	}
 
@@ -508,4 +513,5 @@ public class KaleoTimerModelImpl extends BaseModelImpl<KaleoTimer>
 	private double _duration;
 	private String _scale;
 	private transient ExpandoBridge _expandoBridge;
+	private KaleoTimer _escapedModelProxy;
 }

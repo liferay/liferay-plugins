@@ -282,7 +282,7 @@ public class HRHolidayWrapper implements HRHoliday {
 	}
 
 	/**
-	* Determines if this h r holiday is paid.
+	* Returns <code>true</code> if this h r holiday is paid.
 	*
 	* @return <code>true</code> if this h r holiday is paid; <code>false</code> otherwise
 	*/

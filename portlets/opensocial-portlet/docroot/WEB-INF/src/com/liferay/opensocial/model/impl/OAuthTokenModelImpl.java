@@ -321,8 +321,13 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 			return (OAuthToken)this;
 		}
 		else {
-			return (OAuthToken)Proxy.newProxyInstance(_classLoader,
-				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
+			if (_escapedModelProxy == null) {
+				_escapedModelProxy = (OAuthToken)Proxy.newProxyInstance(_classLoader,
+						_escapedModelProxyInterfaces,
+						new AutoEscapeBeanHandler(this));
+			}
+
+			return _escapedModelProxy;
 		}
 	}
 
@@ -561,4 +566,5 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 	private String _sessionHandle;
 	private long _expiration;
 	private transient ExpandoBridge _expandoBridge;
+	private OAuthToken _escapedModelProxy;
 }

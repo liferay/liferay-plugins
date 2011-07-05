@@ -399,8 +399,14 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 		WallEntry wallEntry = (WallEntry)EntityCacheUtil.getResult(WallEntryModelImpl.ENTITY_CACHE_ENABLED,
 				WallEntryImpl.class, wallEntryId, this);
 
+		if (wallEntry == _nullWallEntry) {
+			return null;
+		}
+
 		if (wallEntry == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -409,11 +415,17 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 						Long.valueOf(wallEntryId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
 				if (wallEntry != null) {
 					cacheResult(wallEntry);
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(WallEntryModelImpl.ENTITY_CACHE_ENABLED,
+						WallEntryImpl.class, wallEntryId, _nullWallEntry);
 				}
 
 				closeSession(session);
@@ -1878,4 +1890,9 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(WallEntryPersistenceImpl.class);
+	private static WallEntry _nullWallEntry = new WallEntryImpl() {
+			public Object clone() {
+				return this;
+			}
+		};
 }

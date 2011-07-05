@@ -237,8 +237,13 @@ public class HRTimeSheetDayModelImpl extends BaseModelImpl<HRTimeSheetDay>
 			return (HRTimeSheetDay)this;
 		}
 		else {
-			return (HRTimeSheetDay)Proxy.newProxyInstance(_classLoader,
-				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
+			if (_escapedModelProxy == null) {
+				_escapedModelProxy = (HRTimeSheetDay)Proxy.newProxyInstance(_classLoader,
+						_escapedModelProxyInterfaces,
+						new AutoEscapeBeanHandler(this));
+			}
+
+			return _escapedModelProxy;
 		}
 	}
 
@@ -440,4 +445,5 @@ public class HRTimeSheetDayModelImpl extends BaseModelImpl<HRTimeSheetDay>
 	private int _year;
 	private double _hours;
 	private transient ExpandoBridge _expandoBridge;
+	private HRTimeSheetDay _escapedModelProxy;
 }

@@ -248,8 +248,13 @@ public class DefinitionModelImpl extends BaseModelImpl<Definition>
 			return (Definition)this;
 		}
 		else {
-			return (Definition)Proxy.newProxyInstance(_classLoader,
-				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
+			if (_escapedModelProxy == null) {
+				_escapedModelProxy = (Definition)Proxy.newProxyInstance(_classLoader,
+						_escapedModelProxyInterfaces,
+						new AutoEscapeBeanHandler(this));
+			}
+
+			return _escapedModelProxy;
 		}
 	}
 
@@ -458,4 +463,5 @@ public class DefinitionModelImpl extends BaseModelImpl<Definition>
 	private int _quantity;
 	private double _price;
 	private transient ExpandoBridge _expandoBridge;
+	private Definition _escapedModelProxy;
 }

@@ -212,8 +212,13 @@ public class HRAssetVendorModelImpl extends BaseModelImpl<HRAssetVendor>
 			return (HRAssetVendor)this;
 		}
 		else {
-			return (HRAssetVendor)Proxy.newProxyInstance(_classLoader,
-				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
+			if (_escapedModelProxy == null) {
+				_escapedModelProxy = (HRAssetVendor)Proxy.newProxyInstance(_classLoader,
+						_escapedModelProxyInterfaces,
+						new AutoEscapeBeanHandler(this));
+			}
+
+			return _escapedModelProxy;
 		}
 	}
 
@@ -390,4 +395,5 @@ public class HRAssetVendorModelImpl extends BaseModelImpl<HRAssetVendor>
 	private String _name;
 	private String _description;
 	private transient ExpandoBridge _expandoBridge;
+	private HRAssetVendor _escapedModelProxy;
 }

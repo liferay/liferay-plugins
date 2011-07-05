@@ -195,8 +195,13 @@ public class HROfficeModelImpl extends BaseModelImpl<HROffice>
 			return (HROffice)this;
 		}
 		else {
-			return (HROffice)Proxy.newProxyInstance(_classLoader,
-				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
+			if (_escapedModelProxy == null) {
+				_escapedModelProxy = (HROffice)Proxy.newProxyInstance(_classLoader,
+						_escapedModelProxyInterfaces,
+						new AutoEscapeBeanHandler(this));
+			}
+
+			return _escapedModelProxy;
 		}
 	}
 
@@ -365,4 +370,5 @@ public class HROfficeModelImpl extends BaseModelImpl<HROffice>
 	private Date _modifiedDate;
 	private long _organizationId;
 	private transient ExpandoBridge _expandoBridge;
+	private HROffice _escapedModelProxy;
 }

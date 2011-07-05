@@ -602,8 +602,13 @@ public class CalendarEventModelImpl extends BaseModelImpl<CalendarEvent>
 			return (CalendarEvent)this;
 		}
 		else {
-			return (CalendarEvent)Proxy.newProxyInstance(_classLoader,
-				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
+			if (_escapedModelProxy == null) {
+				_escapedModelProxy = (CalendarEvent)Proxy.newProxyInstance(_classLoader,
+						_escapedModelProxyInterfaces,
+						new AutoEscapeBeanHandler(this));
+			}
+
+			return _escapedModelProxy;
 		}
 	}
 
@@ -891,4 +896,5 @@ public class CalendarEventModelImpl extends BaseModelImpl<CalendarEvent>
 	private int _firstReminder;
 	private int _secondReminder;
 	private transient ExpandoBridge _expandoBridge;
+	private CalendarEvent _escapedModelProxy;
 }

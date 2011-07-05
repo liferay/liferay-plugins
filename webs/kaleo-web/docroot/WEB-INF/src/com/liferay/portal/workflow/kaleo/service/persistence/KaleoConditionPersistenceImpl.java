@@ -436,8 +436,14 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 		KaleoCondition kaleoCondition = (KaleoCondition)EntityCacheUtil.getResult(KaleoConditionModelImpl.ENTITY_CACHE_ENABLED,
 				KaleoConditionImpl.class, kaleoConditionId, this);
 
+		if (kaleoCondition == _nullKaleoCondition) {
+			return null;
+		}
+
 		if (kaleoCondition == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -446,11 +452,18 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 						Long.valueOf(kaleoConditionId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
 				if (kaleoCondition != null) {
 					cacheResult(kaleoCondition);
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(KaleoConditionModelImpl.ENTITY_CACHE_ENABLED,
+						KaleoConditionImpl.class, kaleoConditionId,
+						_nullKaleoCondition);
 				}
 
 				closeSession(session);
@@ -1192,6 +1205,7 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	 * Returns the kaleo condition where kaleoNodeId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
 	 * @param kaleoNodeId the kaleo node ID
+	 * @param retrieveFromCache whether to use the finder cache
 	 * @return the matching kaleo condition, or <code>null</code> if a matching kaleo condition could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -1713,4 +1727,9 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(KaleoConditionPersistenceImpl.class);
+	private static KaleoCondition _nullKaleoCondition = new KaleoConditionImpl() {
+			public Object clone() {
+				return this;
+			}
+		};
 }

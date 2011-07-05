@@ -127,6 +127,7 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
 			CacheRegistryUtil.clear(AttachmentImpl.class.getName());
@@ -144,6 +145,7 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
+	@Override
 	public void clearCache(Attachment attachment) {
 		EntityCacheUtil.removeResult(AttachmentModelImpl.ENTITY_CACHE_ENABLED,
 			AttachmentImpl.class, attachment.getPrimaryKey());
@@ -172,6 +174,7 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 	 * @throws com.liferay.portal.NoSuchModelException if a attachment with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Attachment remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
@@ -224,10 +227,12 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 	 * @return the attachment that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Attachment remove(Attachment attachment) throws SystemException {
 		return super.remove(attachment);
 	}
 
+	@Override
 	protected Attachment removeImpl(Attachment attachment)
 		throws SystemException {
 		attachment = toUnwrappedModel(attachment);
@@ -254,6 +259,7 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 		return attachment;
 	}
 
+	@Override
 	public Attachment updateImpl(com.liferay.mail.model.Attachment attachment,
 		boolean merge) throws SystemException {
 		attachment = toUnwrappedModel(attachment);
@@ -313,6 +319,7 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 	 * @throws com.liferay.portal.NoSuchModelException if a attachment with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Attachment findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
@@ -349,6 +356,7 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 	 * @return the attachment, or <code>null</code> if a attachment with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Attachment fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());
@@ -366,8 +374,14 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 		Attachment attachment = (Attachment)EntityCacheUtil.getResult(AttachmentModelImpl.ENTITY_CACHE_ENABLED,
 				AttachmentImpl.class, attachmentId, this);
 
+		if (attachment == _nullAttachment) {
+			return null;
+		}
+
 		if (attachment == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -376,11 +390,17 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 						Long.valueOf(attachmentId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
 				if (attachment != null) {
 					cacheResult(attachment);
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(AttachmentModelImpl.ENTITY_CACHE_ENABLED,
+						AttachmentImpl.class, attachmentId, _nullAttachment);
 				}
 
 				closeSession(session);
@@ -1002,4 +1022,9 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(AttachmentPersistenceImpl.class);
+	private static Attachment _nullAttachment = new AttachmentImpl() {
+			public Object clone() {
+				return this;
+			}
+		};
 }

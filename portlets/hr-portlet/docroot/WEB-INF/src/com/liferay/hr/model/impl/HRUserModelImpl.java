@@ -304,8 +304,13 @@ public class HRUserModelImpl extends BaseModelImpl<HRUser>
 			return (HRUser)this;
 		}
 		else {
-			return (HRUser)Proxy.newProxyInstance(_classLoader,
-				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
+			if (_escapedModelProxy == null) {
+				_escapedModelProxy = (HRUser)Proxy.newProxyInstance(_classLoader,
+						_escapedModelProxyInterfaces,
+						new AutoEscapeBeanHandler(this));
+			}
+
+			return _escapedModelProxy;
 		}
 	}
 
@@ -555,4 +560,5 @@ public class HRUserModelImpl extends BaseModelImpl<HRUser>
 	private boolean _benefitsExempt;
 	private boolean _overtimeExempt;
 	private transient ExpandoBridge _expandoBridge;
+	private HRUser _escapedModelProxy;
 }

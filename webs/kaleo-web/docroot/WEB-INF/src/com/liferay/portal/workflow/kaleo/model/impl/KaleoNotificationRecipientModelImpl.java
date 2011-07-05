@@ -250,8 +250,13 @@ public class KaleoNotificationRecipientModelImpl extends BaseModelImpl<KaleoNoti
 			return (KaleoNotificationRecipient)this;
 		}
 		else {
-			return (KaleoNotificationRecipient)Proxy.newProxyInstance(_classLoader,
-				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
+			if (_escapedModelProxy == null) {
+				_escapedModelProxy = (KaleoNotificationRecipient)Proxy.newProxyInstance(_classLoader,
+						_escapedModelProxyInterfaces,
+						new AutoEscapeBeanHandler(this));
+			}
+
+			return _escapedModelProxy;
 		}
 	}
 
@@ -467,4 +472,5 @@ public class KaleoNotificationRecipientModelImpl extends BaseModelImpl<KaleoNoti
 	private int _recipientRoleType;
 	private String _address;
 	private transient ExpandoBridge _expandoBridge;
+	private KaleoNotificationRecipient _escapedModelProxy;
 }

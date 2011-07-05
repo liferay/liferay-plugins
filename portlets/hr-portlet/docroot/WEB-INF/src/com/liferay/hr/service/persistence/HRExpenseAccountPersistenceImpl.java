@@ -430,8 +430,14 @@ public class HRExpenseAccountPersistenceImpl extends BasePersistenceImpl<HRExpen
 		HRExpenseAccount hrExpenseAccount = (HRExpenseAccount)EntityCacheUtil.getResult(HRExpenseAccountModelImpl.ENTITY_CACHE_ENABLED,
 				HRExpenseAccountImpl.class, hrExpenseAccountId, this);
 
+		if (hrExpenseAccount == _nullHRExpenseAccount) {
+			return null;
+		}
+
 		if (hrExpenseAccount == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -440,11 +446,18 @@ public class HRExpenseAccountPersistenceImpl extends BasePersistenceImpl<HRExpen
 						Long.valueOf(hrExpenseAccountId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
 				if (hrExpenseAccount != null) {
 					cacheResult(hrExpenseAccount);
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(HRExpenseAccountModelImpl.ENTITY_CACHE_ENABLED,
+						HRExpenseAccountImpl.class, hrExpenseAccountId,
+						_nullHRExpenseAccount);
 				}
 
 				closeSession(session);
@@ -508,6 +521,7 @@ public class HRExpenseAccountPersistenceImpl extends BasePersistenceImpl<HRExpen
 	 *
 	 * @param groupId the group ID
 	 * @param name the name
+	 * @param retrieveFromCache whether to use the finder cache
 	 * @return the matching h r expense account, or <code>null</code> if a matching h r expense account could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -974,4 +988,9 @@ public class HRExpenseAccountPersistenceImpl extends BasePersistenceImpl<HRExpen
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(HRExpenseAccountPersistenceImpl.class);
+	private static HRExpenseAccount _nullHRExpenseAccount = new HRExpenseAccountImpl() {
+			public Object clone() {
+				return this;
+			}
+		};
 }

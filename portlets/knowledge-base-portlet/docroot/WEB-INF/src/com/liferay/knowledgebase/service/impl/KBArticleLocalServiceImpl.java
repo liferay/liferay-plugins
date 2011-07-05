@@ -72,6 +72,7 @@ import com.liferay.portlet.asset.model.AssetEntry;
 import com.liferay.portlet.documentlibrary.DuplicateDirectoryException;
 import com.liferay.portlet.documentlibrary.DuplicateFileException;
 import com.liferay.portlet.documentlibrary.NoSuchDirectoryException;
+import com.liferay.portlet.documentlibrary.store.DLStoreUtil;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -93,7 +94,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
-		dlStore.addFile(
+		DLStoreUtil.addFile(
 			serviceContext.getCompanyId(), CompanyConstants.SYSTEM_STRING,
 			GroupConstants.DEFAULT_PARENT_GROUP_ID, CompanyConstants.SYSTEM,
 			dirName + StringPool.SLASH + shortFileName, 0, StringPool.BLANK,
@@ -216,7 +217,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	public void deleteAttachment(long companyId, String fileName)
 		throws PortalException, SystemException {
 
-		dlStore.deleteFile(
+		DLStoreUtil.deleteFile(
 			companyId, CompanyConstants.SYSTEM_STRING, CompanyConstants.SYSTEM,
 			fileName);
 	}
@@ -714,7 +715,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		dirName =
 			"knowledgebase/temp/attachments/" + counterLocalService.increment();
 
-		dlStore.addDirectory(
+		DLStoreUtil.addDirectory(
 			serviceContext.getCompanyId(), CompanyConstants.SYSTEM, dirName);
 
 		if (resourcePrimKey <= 0) {
@@ -727,7 +728,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		for (String fileName : kbArticle.getAttachmentsFileNames()) {
 			String shortFileName = FileUtil.getShortFileName(fileName);
 
-			byte[] bytes = dlStore.getFile(
+			byte[] bytes = DLStoreUtil.getFile(
 				kbArticle.getCompanyId(), CompanyConstants.SYSTEM, fileName);
 
 			addAttachment(dirName, shortFileName, bytes, serviceContext);
@@ -1039,7 +1040,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		throws PortalException, SystemException {
 
 		try {
-			dlStore.addDirectory(
+			DLStoreUtil.addDirectory(
 				serviceContext.getCompanyId(), CompanyConstants.SYSTEM,
 				kbArticle.getAttachmentsDirName());
 		}
@@ -1051,11 +1052,11 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			return;
 		}
 
-		String[] fileNames = dlStore.getFileNames(
+		String[] fileNames = DLStoreUtil.getFileNames(
 			serviceContext.getCompanyId(), CompanyConstants.SYSTEM, dirName);
 
 		for (String fileName : fileNames) {
-			byte[] bytes = dlStore.getFile(
+			byte[] bytes = DLStoreUtil.getFile(
 				serviceContext.getCompanyId(), CompanyConstants.SYSTEM,
 				fileName);
 
@@ -1163,21 +1164,21 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		String dirName =
 			"knowledgebase/temp/attachments/" + counterLocalService.increment();
 
-		dlStore.addDirectory(companyId, CompanyConstants.SYSTEM, dirName);
+		DLStoreUtil.addDirectory(companyId, CompanyConstants.SYSTEM, dirName);
 
-		String[] fileNames = dlStore.getFileNames(
+		String[] fileNames = DLStoreUtil.getFileNames(
 			companyId, CompanyConstants.SYSTEM,
 			"knowledgebase/temp/attachments");
 
 		Arrays.sort(fileNames);
 
 		for (int i = 0; i < fileNames.length - 50; i++) {
-			dlStore.deleteDirectory(
+			DLStoreUtil.deleteDirectory(
 				companyId, CompanyConstants.SYSTEM_STRING,
 				CompanyConstants.SYSTEM, fileNames[i]);
 		}
 
-		dlStore.deleteDirectory(
+		DLStoreUtil.deleteDirectory(
 			companyId, CompanyConstants.SYSTEM_STRING, CompanyConstants.SYSTEM,
 			dirName);
 	}
@@ -1210,7 +1211,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		throws PortalException, SystemException {
 
 		try {
-			dlStore.deleteDirectory(
+			DLStoreUtil.deleteDirectory(
 				kbArticle.getCompanyId(), CompanyConstants.SYSTEM_STRING,
 				CompanyConstants.SYSTEM,
 				KBArticleConstants.DIR_NAME_PREFIX + folderId);

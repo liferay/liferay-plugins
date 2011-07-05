@@ -237,6 +237,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	*
 	* @param uuid the uuid
 	* @param groupId the group ID
+	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching k b article, or <code>null</code> if a matching k b article could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -558,6 +559,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	*
 	* @param resourcePrimKey the resource prim key
 	* @param version the version
+	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching k b article, or <code>null</code> if a matching k b article could not be found
 	* @throws SystemException if a system exception occurred
 	*/

@@ -8,6 +8,9 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"
 >
+	<bean class="com.liferay.portal.spring.aop.ServiceBeanAutoProxyCreator">
+		<property name="methodInterceptor" ref="serviceAdvice" />
+	</bean>
 	<bean class="com.liferay.portal.spring.context.PortletBeanFactoryCleaner" />
 	<bean class="com.liferay.portal.spring.context.PortletBeanFactoryPostProcessor" />
 	<bean class="com.liferay.portal.spring.bean.BeanReferenceAnnotationBeanPostProcessor" />
@@ -33,8 +36,4 @@
 		<property name="transactionManager" ref="liferayTransactionManager" />
 	</bean>
 	<bean id="transactionAttributeSource" class="com.liferay.portal.spring.transaction.AnnotationTransactionAttributeSource" />
-	<aop:config proxy-target-class="false">
-		<aop:pointcut id="serviceOperation" expression="bean(*Service)" />
-		<aop:advisor advice-ref="serviceAdvice" pointcut-ref="serviceOperation" />
-	</aop:config>
 </beans>

@@ -285,8 +285,13 @@ public class KaleoInstanceModelImpl extends BaseModelImpl<KaleoInstance>
 			return (KaleoInstance)this;
 		}
 		else {
-			return (KaleoInstance)Proxy.newProxyInstance(_classLoader,
-				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
+			if (_escapedModelProxy == null) {
+				_escapedModelProxy = (KaleoInstance)Proxy.newProxyInstance(_classLoader,
+						_escapedModelProxyInterfaces,
+						new AutoEscapeBeanHandler(this));
+			}
+
+			return _escapedModelProxy;
 		}
 	}
 
@@ -525,4 +530,5 @@ public class KaleoInstanceModelImpl extends BaseModelImpl<KaleoInstance>
 	private Date _completionDate;
 	private String _workflowContext;
 	private transient ExpandoBridge _expandoBridge;
+	private KaleoInstance _escapedModelProxy;
 }

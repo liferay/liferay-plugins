@@ -460,8 +460,14 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 		KBTemplate kbTemplate = (KBTemplate)EntityCacheUtil.getResult(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
 				KBTemplateImpl.class, kbTemplateId, this);
 
+		if (kbTemplate == _nullKBTemplate) {
+			return null;
+		}
+
 		if (kbTemplate == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -470,11 +476,17 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 						Long.valueOf(kbTemplateId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
 				if (kbTemplate != null) {
 					cacheResult(kbTemplate);
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
+						KBTemplateImpl.class, kbTemplateId, _nullKBTemplate);
 				}
 
 				closeSession(session);
@@ -900,6 +912,7 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 *
 	 * @param uuid the uuid
 	 * @param groupId the group ID
+	 * @param retrieveFromCache whether to use the finder cache
 	 * @return the matching k b template, or <code>null</code> if a matching k b template could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -1399,11 +1412,18 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 			query = new StringBundler(3);
 		}
 
-		query.append(_FILTER_SQL_SELECT_KBTEMPLATE_WHERE);
+		if (getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_KBTEMPLATE_WHERE);
+		}
+		else {
+			query.append(_FILTER_SQL_SELECT_KBTEMPLATE_NO_INLINE_DISTINCT_WHERE_1);
+		}
 
 		query.append(_FINDER_COLUMN_GROUPID_GROUPID_2);
 
-		appendGroupByComparator(query, _FILTER_COLUMN_PK);
+		if (!getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_KBTEMPLATE_NO_INLINE_DISTINCT_WHERE_2);
+		}
 
 		if (orderByComparator != null) {
 			if (getDB().isSupportsInlineDistinct()) {
@@ -1426,7 +1446,8 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 		}
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				KBTemplate.class.getName(), _FILTER_COLUMN_PK, groupId);
+				KBTemplate.class.getName(),
+				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		Session session = null;
 
@@ -1514,11 +1535,18 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 			query = new StringBundler(3);
 		}
 
-		query.append(_FILTER_SQL_SELECT_KBTEMPLATE_WHERE);
+		if (getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_KBTEMPLATE_WHERE);
+		}
+		else {
+			query.append(_FILTER_SQL_SELECT_KBTEMPLATE_NO_INLINE_DISTINCT_WHERE_1);
+		}
 
 		query.append(_FINDER_COLUMN_GROUPID_GROUPID_2);
 
-		appendGroupByComparator(query, _FILTER_COLUMN_PK);
+		if (!getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_KBTEMPLATE_NO_INLINE_DISTINCT_WHERE_2);
+		}
 
 		if (orderByComparator != null) {
 			String[] orderByFields = orderByComparator.getOrderByFields();
@@ -1596,7 +1624,8 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 		}
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				KBTemplate.class.getName(), _FILTER_COLUMN_PK, groupId);
+				KBTemplate.class.getName(),
+				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		SQLQuery q = session.createSQLQuery(sql);
 
@@ -1998,7 +2027,8 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 		query.append(_FINDER_COLUMN_GROUPID_GROUPID_2);
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				KBTemplate.class.getName(), _FILTER_COLUMN_PK, groupId);
+				KBTemplate.class.getName(),
+				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		Session session = null;
 
@@ -2240,7 +2270,7 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 			new String[] { Long.class.getName(), Long.class.getName() });
 
 	/**
-	 * Determines if the k b article is associated with the k b template.
+	 * Returns <code>true</code> if the k b article is associated with the k b template.
 	 *
 	 * @param pk the primary key of the k b template
 	 * @param kbArticlePK the primary key of the k b article
@@ -2276,7 +2306,7 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	}
 
 	/**
-	 * Determines if the k b template has any k b articles associated with it.
+	 * Returns <code>true</code> if the k b template has any k b articles associated with it.
 	 *
 	 * @param pk the primary key of the k b template to check for associations with k b articles
 	 * @return <code>true</code> if the k b template has any k b articles associated with it; <code>false</code> otherwise
@@ -2384,11 +2414,16 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	private static final String _FINDER_COLUMN_UUID_G_UUID_3 = "(kbTemplate.uuid IS NULL OR kbTemplate.uuid = ?) AND ";
 	private static final String _FINDER_COLUMN_UUID_G_GROUPID_2 = "kbTemplate.groupId = ?";
 	private static final String _FINDER_COLUMN_GROUPID_GROUPID_2 = "kbTemplate.groupId = ?";
-	private static final String _FILTER_SQL_SELECT_KBTEMPLATE_WHERE = "SELECT {kbTemplate.*} FROM KBTemplate kbTemplate WHERE ";
+	private static final String _FILTER_SQL_SELECT_KBTEMPLATE_WHERE = "SELECT DISTINCT {kbTemplate.*} FROM KBTemplate kbTemplate WHERE ";
+	private static final String _FILTER_SQL_SELECT_KBTEMPLATE_NO_INLINE_DISTINCT_WHERE_1 =
+		"SELECT {KBTemplate.*} FROM (SELECT DISTINCT kbTemplate.kbTemplateId FROM KBTemplate kbTemplate WHERE ";
+	private static final String _FILTER_SQL_SELECT_KBTEMPLATE_NO_INLINE_DISTINCT_WHERE_2 =
+		") TEMP_TABLE INNER JOIN KBTemplate ON TEMP_TABLE.kbTemplateId = KBTemplate.kbTemplateId";
 	private static final String _FILTER_SQL_COUNT_KBTEMPLATE_WHERE = "SELECT COUNT(DISTINCT kbTemplate.kbTemplateId) AS COUNT_VALUE FROM KBTemplate kbTemplate WHERE ";
-	private static final String _FILTER_COLUMN_PK = "kbTemplate.kbTemplateId";
 	private static final String _FILTER_ENTITY_ALIAS = "kbTemplate";
 	private static final String _FILTER_ENTITY_TABLE = "KBTemplate";
+	private static final String _FILTER_ENTITY_TABLE_PK_COLUMN = "kbTemplate.kbTemplateId";
+	private static final String _FILTER_ENTITY_TABLE_FILTER_PK_COLUMN = "kbTemplate.kbTemplateId";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "kbTemplate.";
 	private static final String _ORDER_BY_ENTITY_TABLE = "KBTemplate.";
 	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No KBTemplate exists with the primary key ";
@@ -2396,4 +2431,9 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(KBTemplatePersistenceImpl.class);
+	private static KBTemplate _nullKBTemplate = new KBTemplateImpl() {
+			public Object clone() {
+				return this;
+			}
+		};
 }

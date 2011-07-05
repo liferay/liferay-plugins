@@ -251,8 +251,13 @@ public class HRHolidayModelImpl extends BaseModelImpl<HRHoliday>
 			return (HRHoliday)this;
 		}
 		else {
-			return (HRHoliday)Proxy.newProxyInstance(_classLoader,
-				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
+			if (_escapedModelProxy == null) {
+				_escapedModelProxy = (HRHoliday)Proxy.newProxyInstance(_classLoader,
+						_escapedModelProxyInterfaces,
+						new AutoEscapeBeanHandler(this));
+			}
+
+			return _escapedModelProxy;
 		}
 	}
 
@@ -453,4 +458,5 @@ public class HRHolidayModelImpl extends BaseModelImpl<HRHoliday>
 	private int _year;
 	private boolean _paid;
 	private transient ExpandoBridge _expandoBridge;
+	private HRHoliday _escapedModelProxy;
 }

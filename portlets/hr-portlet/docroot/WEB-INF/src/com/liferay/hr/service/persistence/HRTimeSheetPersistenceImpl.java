@@ -368,8 +368,14 @@ public class HRTimeSheetPersistenceImpl extends BasePersistenceImpl<HRTimeSheet>
 		HRTimeSheet hrTimeSheet = (HRTimeSheet)EntityCacheUtil.getResult(HRTimeSheetModelImpl.ENTITY_CACHE_ENABLED,
 				HRTimeSheetImpl.class, hrTimeSheetId, this);
 
+		if (hrTimeSheet == _nullHRTimeSheet) {
+			return null;
+		}
+
 		if (hrTimeSheet == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -378,11 +384,17 @@ public class HRTimeSheetPersistenceImpl extends BasePersistenceImpl<HRTimeSheet>
 						Long.valueOf(hrTimeSheetId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
 				if (hrTimeSheet != null) {
 					cacheResult(hrTimeSheet);
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(HRTimeSheetModelImpl.ENTITY_CACHE_ENABLED,
+						HRTimeSheetImpl.class, hrTimeSheetId, _nullHRTimeSheet);
 				}
 
 				closeSession(session);
@@ -670,4 +682,9 @@ public class HRTimeSheetPersistenceImpl extends BasePersistenceImpl<HRTimeSheet>
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(HRTimeSheetPersistenceImpl.class);
+	private static HRTimeSheet _nullHRTimeSheet = new HRTimeSheetImpl() {
+			public Object clone() {
+				return this;
+			}
+		};
 }

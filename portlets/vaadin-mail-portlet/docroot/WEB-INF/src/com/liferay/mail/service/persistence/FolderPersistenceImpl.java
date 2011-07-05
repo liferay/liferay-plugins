@@ -433,8 +433,14 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 		Folder folder = (Folder)EntityCacheUtil.getResult(FolderModelImpl.ENTITY_CACHE_ENABLED,
 				FolderImpl.class, folderId, this);
 
+		if (folder == _nullFolder) {
+			return null;
+		}
+
 		if (folder == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -443,11 +449,17 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 						Long.valueOf(folderId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
 				if (folder != null) {
 					cacheResult(folder);
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(FolderModelImpl.ENTITY_CACHE_ENABLED,
+						FolderImpl.class, folderId, _nullFolder);
 				}
 
 				closeSession(session);
@@ -849,6 +861,7 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 	 *
 	 * @param accountId the account ID
 	 * @param fullName the full name
+	 * @param retrieveFromCache whether to use the finder cache
 	 * @return the matching folder, or <code>null</code> if a matching folder could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -1315,4 +1328,9 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(FolderPersistenceImpl.class);
+	private static Folder _nullFolder = new FolderImpl() {
+			public Object clone() {
+				return this;
+			}
+		};
 }

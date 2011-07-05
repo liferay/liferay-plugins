@@ -432,8 +432,13 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 			return (KaleoLog)this;
 		}
 		else {
-			return (KaleoLog)Proxy.newProxyInstance(_classLoader,
-				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
+			if (_escapedModelProxy == null) {
+				_escapedModelProxy = (KaleoLog)Proxy.newProxyInstance(_classLoader,
+						_escapedModelProxyInterfaces,
+						new AutoEscapeBeanHandler(this));
+			}
+
+			return _escapedModelProxy;
 		}
 	}
 
@@ -776,4 +781,5 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 	private long _duration;
 	private String _workflowContext;
 	private transient ExpandoBridge _expandoBridge;
+	private KaleoLog _escapedModelProxy;
 }

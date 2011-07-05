@@ -348,6 +348,7 @@ public class AccountUtil {
 	*
 	* @param userId the user ID
 	* @param address the address
+	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching account, or <code>null</code> if a matching account could not be found
 	* @throws SystemException if a system exception occurred
 	*/

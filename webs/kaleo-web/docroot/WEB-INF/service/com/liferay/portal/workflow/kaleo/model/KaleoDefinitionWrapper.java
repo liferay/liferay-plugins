@@ -378,7 +378,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition {
 	}
 
 	/**
-	* Determines if this kaleo definition is active.
+	* Returns <code>true</code> if this kaleo definition is active.
 	*
 	* @return <code>true</code> if this kaleo definition is active; <code>false</code> otherwise
 	*/

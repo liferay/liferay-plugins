@@ -244,8 +244,13 @@ public class HRTerminationTypeModelImpl extends BaseModelImpl<HRTerminationType>
 			return (HRTerminationType)this;
 		}
 		else {
-			return (HRTerminationType)Proxy.newProxyInstance(_classLoader,
-				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
+			if (_escapedModelProxy == null) {
+				_escapedModelProxy = (HRTerminationType)Proxy.newProxyInstance(_classLoader,
+						_escapedModelProxyInterfaces,
+						new AutoEscapeBeanHandler(this));
+			}
+
+			return _escapedModelProxy;
 		}
 	}
 
@@ -440,4 +445,5 @@ public class HRTerminationTypeModelImpl extends BaseModelImpl<HRTerminationType>
 	private String _name;
 	private String _description;
 	private transient ExpandoBridge _expandoBridge;
+	private HRTerminationType _escapedModelProxy;
 }

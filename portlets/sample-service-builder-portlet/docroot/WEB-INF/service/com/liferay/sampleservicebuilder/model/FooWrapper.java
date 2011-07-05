@@ -246,7 +246,7 @@ public class FooWrapper implements Foo {
 	}
 
 	/**
-	* Determines if this foo is field2.
+	* Returns <code>true</code> if this foo is field2.
 	*
 	* @return <code>true</code> if this foo is field2; <code>false</code> otherwise
 	*/

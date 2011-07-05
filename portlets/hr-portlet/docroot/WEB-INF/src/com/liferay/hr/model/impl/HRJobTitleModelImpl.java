@@ -214,8 +214,13 @@ public class HRJobTitleModelImpl extends BaseModelImpl<HRJobTitle>
 			return (HRJobTitle)this;
 		}
 		else {
-			return (HRJobTitle)Proxy.newProxyInstance(_classLoader,
-				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
+			if (_escapedModelProxy == null) {
+				_escapedModelProxy = (HRJobTitle)Proxy.newProxyInstance(_classLoader,
+						_escapedModelProxyInterfaces,
+						new AutoEscapeBeanHandler(this));
+			}
+
+			return _escapedModelProxy;
 		}
 	}
 
@@ -392,4 +397,5 @@ public class HRJobTitleModelImpl extends BaseModelImpl<HRJobTitle>
 	private String _name;
 	private String _description;
 	private transient ExpandoBridge _expandoBridge;
+	private HRJobTitle _escapedModelProxy;
 }

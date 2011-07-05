@@ -445,8 +445,14 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 		KaleoInstanceToken kaleoInstanceToken = (KaleoInstanceToken)EntityCacheUtil.getResult(KaleoInstanceTokenModelImpl.ENTITY_CACHE_ENABLED,
 				KaleoInstanceTokenImpl.class, kaleoInstanceTokenId, this);
 
+		if (kaleoInstanceToken == _nullKaleoInstanceToken) {
+			return null;
+		}
+
 		if (kaleoInstanceToken == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -455,11 +461,18 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 						Long.valueOf(kaleoInstanceTokenId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
 				if (kaleoInstanceToken != null) {
 					cacheResult(kaleoInstanceToken);
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(KaleoInstanceTokenModelImpl.ENTITY_CACHE_ENABLED,
+						KaleoInstanceTokenImpl.class, kaleoInstanceTokenId,
+						_nullKaleoInstanceToken);
 				}
 
 				closeSession(session);
@@ -2895,4 +2908,9 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(KaleoInstanceTokenPersistenceImpl.class);
+	private static KaleoInstanceToken _nullKaleoInstanceToken = new KaleoInstanceTokenImpl() {
+			public Object clone() {
+				return this;
+			}
+		};
 }

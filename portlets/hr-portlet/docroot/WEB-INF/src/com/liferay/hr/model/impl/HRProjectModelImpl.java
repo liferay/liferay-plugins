@@ -374,8 +374,13 @@ public class HRProjectModelImpl extends BaseModelImpl<HRProject>
 			return (HRProject)this;
 		}
 		else {
-			return (HRProject)Proxy.newProxyInstance(_classLoader,
-				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
+			if (_escapedModelProxy == null) {
+				_escapedModelProxy = (HRProject)Proxy.newProxyInstance(_classLoader,
+						_escapedModelProxyInterfaces,
+						new AutoEscapeBeanHandler(this));
+			}
+
+			return _escapedModelProxy;
 		}
 	}
 
@@ -680,4 +685,5 @@ public class HRProjectModelImpl extends BaseModelImpl<HRProject>
 	private double _actualExpenses;
 	private double _actualExpensesCurrencyCode;
 	private transient ExpandoBridge _expandoBridge;
+	private HRProject _escapedModelProxy;
 }

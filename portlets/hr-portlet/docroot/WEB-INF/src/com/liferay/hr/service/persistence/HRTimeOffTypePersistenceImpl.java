@@ -366,8 +366,14 @@ public class HRTimeOffTypePersistenceImpl extends BasePersistenceImpl<HRTimeOffT
 		HRTimeOffType hrTimeOffType = (HRTimeOffType)EntityCacheUtil.getResult(HRTimeOffTypeModelImpl.ENTITY_CACHE_ENABLED,
 				HRTimeOffTypeImpl.class, hrTimeOffTypeId, this);
 
+		if (hrTimeOffType == _nullHRTimeOffType) {
+			return null;
+		}
+
 		if (hrTimeOffType == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -376,11 +382,18 @@ public class HRTimeOffTypePersistenceImpl extends BasePersistenceImpl<HRTimeOffT
 						Long.valueOf(hrTimeOffTypeId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
 				if (hrTimeOffType != null) {
 					cacheResult(hrTimeOffType);
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(HRTimeOffTypeModelImpl.ENTITY_CACHE_ENABLED,
+						HRTimeOffTypeImpl.class, hrTimeOffTypeId,
+						_nullHRTimeOffType);
 				}
 
 				closeSession(session);
@@ -668,4 +681,9 @@ public class HRTimeOffTypePersistenceImpl extends BasePersistenceImpl<HRTimeOffT
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(HRTimeOffTypePersistenceImpl.class);
+	private static HRTimeOffType _nullHRTimeOffType = new HRTimeOffTypeImpl() {
+			public Object clone() {
+				return this;
+			}
+		};
 }

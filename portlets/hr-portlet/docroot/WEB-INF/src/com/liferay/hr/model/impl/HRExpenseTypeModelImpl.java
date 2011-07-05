@@ -230,8 +230,13 @@ public class HRExpenseTypeModelImpl extends BaseModelImpl<HRExpenseType>
 			return (HRExpenseType)this;
 		}
 		else {
-			return (HRExpenseType)Proxy.newProxyInstance(_classLoader,
-				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
+			if (_escapedModelProxy == null) {
+				_escapedModelProxy = (HRExpenseType)Proxy.newProxyInstance(_classLoader,
+						_escapedModelProxyInterfaces,
+						new AutoEscapeBeanHandler(this));
+			}
+
+			return _escapedModelProxy;
 		}
 	}
 
@@ -418,4 +423,5 @@ public class HRExpenseTypeModelImpl extends BaseModelImpl<HRExpenseType>
 	private String _originalName;
 	private String _description;
 	private transient ExpandoBridge _expandoBridge;
+	private HRExpenseType _escapedModelProxy;
 }

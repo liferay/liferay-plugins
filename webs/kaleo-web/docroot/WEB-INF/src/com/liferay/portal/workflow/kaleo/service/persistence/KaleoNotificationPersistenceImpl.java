@@ -419,8 +419,14 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 		KaleoNotification kaleoNotification = (KaleoNotification)EntityCacheUtil.getResult(KaleoNotificationModelImpl.ENTITY_CACHE_ENABLED,
 				KaleoNotificationImpl.class, kaleoNotificationId, this);
 
+		if (kaleoNotification == _nullKaleoNotification) {
+			return null;
+		}
+
 		if (kaleoNotification == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -429,11 +435,18 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 						Long.valueOf(kaleoNotificationId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
 				if (kaleoNotification != null) {
 					cacheResult(kaleoNotification);
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(KaleoNotificationModelImpl.ENTITY_CACHE_ENABLED,
+						KaleoNotificationImpl.class, kaleoNotificationId,
+						_nullKaleoNotification);
 				}
 
 				closeSession(session);
@@ -2078,7 +2091,7 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 			new String[] { Long.class.getName(), Long.class.getName() });
 
 	/**
-	 * Determines if the kaleo notification recipient is associated with the kaleo notification.
+	 * Returns <code>true</code> if the kaleo notification recipient is associated with the kaleo notification.
 	 *
 	 * @param pk the primary key of the kaleo notification
 	 * @param kaleoNotificationRecipientPK the primary key of the kaleo notification recipient
@@ -2114,7 +2127,7 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 	}
 
 	/**
-	 * Determines if the kaleo notification has any kaleo notification recipients associated with it.
+	 * Returns <code>true</code> if the kaleo notification has any kaleo notification recipients associated with it.
 	 *
 	 * @param pk the primary key of the kaleo notification to check for associations with kaleo notification recipients
 	 * @return <code>true</code> if the kaleo notification has any kaleo notification recipients associated with it; <code>false</code> otherwise
@@ -2253,4 +2266,9 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(KaleoNotificationPersistenceImpl.class);
+	private static KaleoNotification _nullKaleoNotification = new KaleoNotificationImpl() {
+			public Object clone() {
+				return this;
+			}
+		};
 }

@@ -284,8 +284,13 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
 			return (MemberRequest)this;
 		}
 		else {
-			return (MemberRequest)Proxy.newProxyInstance(_classLoader,
-				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
+			if (_escapedModelProxy == null) {
+				_escapedModelProxy = (MemberRequest)Proxy.newProxyInstance(_classLoader,
+						_escapedModelProxyInterfaces,
+						new AutoEscapeBeanHandler(this));
+			}
+
+			return _escapedModelProxy;
 		}
 	}
 
@@ -510,4 +515,5 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
 	private int _originalStatus;
 	private boolean _setOriginalStatus;
 	private transient ExpandoBridge _expandoBridge;
+	private MemberRequest _escapedModelProxy;
 }

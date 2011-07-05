@@ -202,8 +202,13 @@ public class HRBranchModelImpl extends BaseModelImpl<HRBranch>
 			return (HRBranch)this;
 		}
 		else {
-			return (HRBranch)Proxy.newProxyInstance(_classLoader,
-				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
+			if (_escapedModelProxy == null) {
+				_escapedModelProxy = (HRBranch)Proxy.newProxyInstance(_classLoader,
+						_escapedModelProxyInterfaces,
+						new AutoEscapeBeanHandler(this));
+			}
+
+			return _escapedModelProxy;
 		}
 	}
 
@@ -372,4 +377,5 @@ public class HRBranchModelImpl extends BaseModelImpl<HRBranch>
 	private Date _modifiedDate;
 	private long _organizationId;
 	private transient ExpandoBridge _expandoBridge;
+	private HRBranch _escapedModelProxy;
 }

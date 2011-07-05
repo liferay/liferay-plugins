@@ -243,8 +243,13 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 			return (WSRPConsumer)this;
 		}
 		else {
-			return (WSRPConsumer)Proxy.newProxyInstance(_classLoader,
-				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
+			if (_escapedModelProxy == null) {
+				_escapedModelProxy = (WSRPConsumer)Proxy.newProxyInstance(_classLoader,
+						_escapedModelProxyInterfaces,
+						new AutoEscapeBeanHandler(this));
+			}
+
+			return _escapedModelProxy;
 		}
 	}
 
@@ -434,4 +439,5 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 	private String _registrationPropertiesString;
 	private String _forwardCookies;
 	private transient ExpandoBridge _expandoBridge;
+	private WSRPConsumer _escapedModelProxy;
 }

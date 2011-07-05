@@ -235,6 +235,7 @@ public class HRTerminationTypeUtil {
 	*
 	* @param groupId the group ID
 	* @param code the code
+	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching h r termination type, or <code>null</code> if a matching h r termination type could not be found
 	* @throws SystemException if a system exception occurred
 	*/

@@ -791,7 +791,7 @@ public class KaleoNotificationUtil {
 	}
 
 	/**
-	* Determines if the kaleo notification recipient is associated with the kaleo notification.
+	* Returns <code>true</code> if the kaleo notification recipient is associated with the kaleo notification.
 	*
 	* @param pk the primary key of the kaleo notification
 	* @param kaleoNotificationRecipientPK the primary key of the kaleo notification recipient
@@ -807,7 +807,7 @@ public class KaleoNotificationUtil {
 	}
 
 	/**
-	* Determines if the kaleo notification has any kaleo notification recipients associated with it.
+	* Returns <code>true</code> if the kaleo notification has any kaleo notification recipients associated with it.
 	*
 	* @param pk the primary key of the kaleo notification to check for associations with kaleo notification recipients
 	* @return <code>true</code> if the kaleo notification has any kaleo notification recipients associated with it; <code>false</code> otherwise

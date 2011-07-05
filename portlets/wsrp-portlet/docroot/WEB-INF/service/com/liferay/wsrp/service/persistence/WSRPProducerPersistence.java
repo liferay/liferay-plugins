@@ -237,6 +237,7 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	*
 	* @param uuid the uuid
 	* @param groupId the group ID
+	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching w s r p producer, or <code>null</code> if a matching w s r p producer could not be found
 	* @throws SystemException if a system exception occurred
 	*/

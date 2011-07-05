@@ -376,8 +376,14 @@ public class HRTaskPersistenceImpl extends BasePersistenceImpl<HRTask>
 		HRTask hrTask = (HRTask)EntityCacheUtil.getResult(HRTaskModelImpl.ENTITY_CACHE_ENABLED,
 				HRTaskImpl.class, hrTaskId, this);
 
+		if (hrTask == _nullHRTask) {
+			return null;
+		}
+
 		if (hrTask == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -386,11 +392,17 @@ public class HRTaskPersistenceImpl extends BasePersistenceImpl<HRTask>
 						Long.valueOf(hrTaskId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
 				if (hrTask != null) {
 					cacheResult(hrTask);
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(HRTaskModelImpl.ENTITY_CACHE_ENABLED,
+						HRTaskImpl.class, hrTaskId, _nullHRTask);
 				}
 
 				closeSession(session);
@@ -677,4 +689,9 @@ public class HRTaskPersistenceImpl extends BasePersistenceImpl<HRTask>
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(HRTaskPersistenceImpl.class);
+	private static HRTask _nullHRTask = new HRTaskImpl() {
+			public Object clone() {
+				return this;
+			}
+		};
 }

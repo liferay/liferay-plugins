@@ -128,8 +128,13 @@ public class BarModelImpl extends BaseModelImpl<Bar> implements BarModel {
 			return (Bar)this;
 		}
 		else {
-			return (Bar)Proxy.newProxyInstance(_classLoader,
-				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
+			if (_escapedModelProxy == null) {
+				_escapedModelProxy = (Bar)Proxy.newProxyInstance(_classLoader,
+						_escapedModelProxyInterfaces,
+						new AutoEscapeBeanHandler(this));
+			}
+
+			return _escapedModelProxy;
 		}
 	}
 
@@ -247,4 +252,5 @@ public class BarModelImpl extends BaseModelImpl<Bar> implements BarModel {
 	private long _barId;
 	private String _text;
 	private transient ExpandoBridge _expandoBridge;
+	private Bar _escapedModelProxy;
 }

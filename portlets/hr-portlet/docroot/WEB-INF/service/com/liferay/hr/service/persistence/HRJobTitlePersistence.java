@@ -215,7 +215,7 @@ public interface HRJobTitlePersistence extends BasePersistence<HRJobTitle> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Determines if the h r branch is associated with the h r job title.
+	* Returns <code>true</code> if the h r branch is associated with the h r job title.
 	*
 	* @param pk the primary key of the h r job title
 	* @param hrBranchPK the primary key of the h r branch
@@ -226,7 +226,7 @@ public interface HRJobTitlePersistence extends BasePersistence<HRJobTitle> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Determines if the h r job title has any h r branchs associated with it.
+	* Returns <code>true</code> if the h r job title has any h r branchs associated with it.
 	*
 	* @param pk the primary key of the h r job title to check for associations with h r branchs
 	* @return <code>true</code> if the h r job title has any h r branchs associated with it; <code>false</code> otherwise

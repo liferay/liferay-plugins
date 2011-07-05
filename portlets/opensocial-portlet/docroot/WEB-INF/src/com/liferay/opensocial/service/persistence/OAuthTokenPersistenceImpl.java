@@ -482,8 +482,14 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 		OAuthToken oAuthToken = (OAuthToken)EntityCacheUtil.getResult(OAuthTokenModelImpl.ENTITY_CACHE_ENABLED,
 				OAuthTokenImpl.class, oAuthTokenId, this);
 
+		if (oAuthToken == _nullOAuthToken) {
+			return null;
+		}
+
 		if (oAuthToken == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -492,11 +498,17 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 						Long.valueOf(oAuthTokenId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
 				if (oAuthToken != null) {
 					cacheResult(oAuthToken);
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(OAuthTokenModelImpl.ENTITY_CACHE_ENABLED,
+						OAuthTokenImpl.class, oAuthTokenId, _nullOAuthToken);
 				}
 
 				closeSession(session);
@@ -985,6 +997,7 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	 * @param serviceName the service name
 	 * @param moduleId the module ID
 	 * @param tokenName the token name
+	 * @param retrieveFromCache whether to use the finder cache
 	 * @return the matching o auth token, or <code>null</code> if a matching o auth token could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -1583,4 +1596,9 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(OAuthTokenPersistenceImpl.class);
+	private static OAuthToken _nullOAuthToken = new OAuthTokenImpl() {
+			public Object clone() {
+				return this;
+			}
+		};
 }

@@ -138,7 +138,7 @@ public class StatusWrapper implements Status {
 	}
 
 	/**
-	* Determines if this status is online.
+	* Returns <code>true</code> if this status is online.
 	*
 	* @return <code>true</code> if this status is online; <code>false</code> otherwise
 	*/
@@ -165,7 +165,7 @@ public class StatusWrapper implements Status {
 	}
 
 	/**
-	* Determines if this status is awake.
+	* Returns <code>true</code> if this status is awake.
 	*
 	* @return <code>true</code> if this status is awake; <code>false</code> otherwise
 	*/
@@ -228,7 +228,7 @@ public class StatusWrapper implements Status {
 	}
 
 	/**
-	* Determines if this status is play sound.
+	* Returns <code>true</code> if this status is play sound.
 	*
 	* @return <code>true</code> if this status is play sound; <code>false</code> otherwise
 	*/

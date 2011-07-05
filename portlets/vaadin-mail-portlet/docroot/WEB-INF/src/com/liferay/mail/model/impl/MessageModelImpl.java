@@ -355,8 +355,13 @@ public class MessageModelImpl extends BaseModelImpl<Message>
 			return (Message)this;
 		}
 		else {
-			return (Message)Proxy.newProxyInstance(_classLoader,
-				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
+			if (_escapedModelProxy == null) {
+				_escapedModelProxy = (Message)Proxy.newProxyInstance(_classLoader,
+						_escapedModelProxyInterfaces,
+						new AutoEscapeBeanHandler(this));
+			}
+
+			return _escapedModelProxy;
 		}
 	}
 
@@ -624,4 +629,5 @@ public class MessageModelImpl extends BaseModelImpl<Message>
 	private long _originalRemoteMessageId;
 	private boolean _setOriginalRemoteMessageId;
 	private transient ExpandoBridge _expandoBridge;
+	private Message _escapedModelProxy;
 }

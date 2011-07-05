@@ -244,8 +244,13 @@ public class HRTimeOffFrequencyTypeModelImpl extends BaseModelImpl<HRTimeOffFreq
 			return (HRTimeOffFrequencyType)this;
 		}
 		else {
-			return (HRTimeOffFrequencyType)Proxy.newProxyInstance(_classLoader,
-				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
+			if (_escapedModelProxy == null) {
+				_escapedModelProxy = (HRTimeOffFrequencyType)Proxy.newProxyInstance(_classLoader,
+						_escapedModelProxyInterfaces,
+						new AutoEscapeBeanHandler(this));
+			}
+
+			return _escapedModelProxy;
 		}
 	}
 
@@ -440,4 +445,5 @@ public class HRTimeOffFrequencyTypeModelImpl extends BaseModelImpl<HRTimeOffFreq
 	private String _name;
 	private String _description;
 	private transient ExpandoBridge _expandoBridge;
+	private HRTimeOffFrequencyType _escapedModelProxy;
 }

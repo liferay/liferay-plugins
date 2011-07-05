@@ -451,8 +451,14 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 				KaleoTimerInstanceTokenImpl.class, kaleoTimerInstanceTokenId,
 				this);
 
+		if (kaleoTimerInstanceToken == _nullKaleoTimerInstanceToken) {
+			return null;
+		}
+
 		if (kaleoTimerInstanceToken == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -461,11 +467,18 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 						Long.valueOf(kaleoTimerInstanceTokenId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
 				if (kaleoTimerInstanceToken != null) {
 					cacheResult(kaleoTimerInstanceToken);
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(KaleoTimerInstanceTokenModelImpl.ENTITY_CACHE_ENABLED,
+						KaleoTimerInstanceTokenImpl.class,
+						kaleoTimerInstanceTokenId, _nullKaleoTimerInstanceToken);
 				}
 
 				closeSession(session);
@@ -877,6 +890,7 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 	 *
 	 * @param kaleoInstanceId the kaleo instance ID
 	 * @param kaleoTimerId the kaleo timer ID
+	 * @param retrieveFromCache whether to use the finder cache
 	 * @return the matching kaleo timer instance token, or <code>null</code> if a matching kaleo timer instance token could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -1346,4 +1360,9 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(KaleoTimerInstanceTokenPersistenceImpl.class);
+	private static KaleoTimerInstanceToken _nullKaleoTimerInstanceToken = new KaleoTimerInstanceTokenImpl() {
+			public Object clone() {
+				return this;
+			}
+		};
 }

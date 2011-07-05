@@ -233,6 +233,7 @@ public interface FolderPersistence extends BasePersistence<Folder> {
 	*
 	* @param accountId the account ID
 	* @param fullName the full name
+	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching folder, or <code>null</code> if a matching folder could not be found
 	* @throws SystemException if a system exception occurred
 	*/

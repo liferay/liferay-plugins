@@ -302,8 +302,13 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 			return (KBComment)this;
 		}
 		else {
-			return (KBComment)Proxy.newProxyInstance(_classLoader,
-				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
+			if (_escapedModelProxy == null) {
+				_escapedModelProxy = (KBComment)Proxy.newProxyInstance(_classLoader,
+						_escapedModelProxyInterfaces,
+						new AutoEscapeBeanHandler(this));
+			}
+
+			return _escapedModelProxy;
 		}
 	}
 
@@ -533,4 +538,5 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 	private String _content;
 	private boolean _helpful;
 	private transient ExpandoBridge _expandoBridge;
+	private KBComment _escapedModelProxy;
 }

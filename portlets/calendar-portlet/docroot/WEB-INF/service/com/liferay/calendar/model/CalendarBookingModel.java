@@ -629,7 +629,7 @@ public interface CalendarBookingModel extends AttachedModel,
 	public boolean getRequired();
 
 	/**
-	 * Determines if this calendar booking is required.
+	 * Returns <code>true</code> if this calendar booking is required.
 	 *
 	 * @return <code>true</code> if this calendar booking is required; <code>false</code> otherwise
 	 */
@@ -720,28 +720,28 @@ public interface CalendarBookingModel extends AttachedModel,
 	public boolean getApproved();
 
 	/**
-	 * Determines if this calendar booking is approved.
+	 * Returns <code>true</code> if this calendar booking is approved.
 	 *
 	 * @return <code>true</code> if this calendar booking is approved; <code>false</code> otherwise
 	 */
 	public boolean isApproved();
 
 	/**
-	 * Determines if this calendar booking is a draft.
+	 * Returns <code>true</code> if this calendar booking is a draft.
 	 *
 	 * @return <code>true</code> if this calendar booking is a draft; <code>false</code> otherwise
 	 */
 	public boolean isDraft();
 
 	/**
-	 * Determines if this calendar booking is expired.
+	 * Returns <code>true</code> if this calendar booking is expired.
 	 *
 	 * @return <code>true</code> if this calendar booking is expired; <code>false</code> otherwise
 	 */
 	public boolean isExpired();
 
 	/**
-	 * Determines if this calendar booking is pending.
+	 * Returns <code>true</code> if this calendar booking is pending.
 	 *
 	 * @return <code>true</code> if this calendar booking is pending; <code>false</code> otherwise
 	 */

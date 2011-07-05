@@ -369,8 +369,14 @@ public class HRExpenseCurrencyPersistenceImpl extends BasePersistenceImpl<HRExpe
 		HRExpenseCurrency hrExpenseCurrency = (HRExpenseCurrency)EntityCacheUtil.getResult(HRExpenseCurrencyModelImpl.ENTITY_CACHE_ENABLED,
 				HRExpenseCurrencyImpl.class, hrExpenseCurrencyId, this);
 
+		if (hrExpenseCurrency == _nullHRExpenseCurrency) {
+			return null;
+		}
+
 		if (hrExpenseCurrency == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -379,11 +385,18 @@ public class HRExpenseCurrencyPersistenceImpl extends BasePersistenceImpl<HRExpe
 						Long.valueOf(hrExpenseCurrencyId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
 				if (hrExpenseCurrency != null) {
 					cacheResult(hrExpenseCurrency);
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(HRExpenseCurrencyModelImpl.ENTITY_CACHE_ENABLED,
+						HRExpenseCurrencyImpl.class, hrExpenseCurrencyId,
+						_nullHRExpenseCurrency);
 				}
 
 				closeSession(session);
@@ -671,4 +684,9 @@ public class HRExpenseCurrencyPersistenceImpl extends BasePersistenceImpl<HRExpe
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(HRExpenseCurrencyPersistenceImpl.class);
+	private static HRExpenseCurrency _nullHRExpenseCurrency = new HRExpenseCurrencyImpl() {
+			public Object clone() {
+				return this;
+			}
+		};
 }

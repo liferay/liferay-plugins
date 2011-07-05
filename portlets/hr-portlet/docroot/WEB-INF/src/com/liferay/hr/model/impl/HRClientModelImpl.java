@@ -212,8 +212,13 @@ public class HRClientModelImpl extends BaseModelImpl<HRClient>
 			return (HRClient)this;
 		}
 		else {
-			return (HRClient)Proxy.newProxyInstance(_classLoader,
-				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
+			if (_escapedModelProxy == null) {
+				_escapedModelProxy = (HRClient)Proxy.newProxyInstance(_classLoader,
+						_escapedModelProxyInterfaces,
+						new AutoEscapeBeanHandler(this));
+			}
+
+			return _escapedModelProxy;
 		}
 	}
 
@@ -390,4 +395,5 @@ public class HRClientModelImpl extends BaseModelImpl<HRClient>
 	private String _name;
 	private String _description;
 	private transient ExpandoBridge _expandoBridge;
+	private HRClient _escapedModelProxy;
 }

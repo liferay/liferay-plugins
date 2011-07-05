@@ -814,8 +814,13 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 			return (CalendarBooking)this;
 		}
 		else {
-			return (CalendarBooking)Proxy.newProxyInstance(_classLoader,
-				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
+			if (_escapedModelProxy == null) {
+				_escapedModelProxy = (CalendarBooking)Proxy.newProxyInstance(_classLoader,
+						_escapedModelProxyInterfaces,
+						new AutoEscapeBeanHandler(this));
+			}
+
+			return _escapedModelProxy;
 		}
 	}
 
@@ -829,10 +834,12 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		return _expandoBridge;
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
 		getExpandoBridge().setAttributes(serviceContext);
 	}
 
+	@Override
 	public Object clone() {
 		CalendarBookingImpl calendarBookingImpl = new CalendarBookingImpl();
 
@@ -882,6 +889,7 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		return 0;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -906,10 +914,12 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
 	}
 
+	@Override
 	public void resetOriginalValues() {
 		CalendarBookingModelImpl calendarBookingModelImpl = this;
 
@@ -920,6 +930,7 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		calendarBookingModelImpl._setOriginalGroupId = false;
 	}
 
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(55);
 
@@ -1140,4 +1151,5 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 	private String _statusByUserName;
 	private Date _statusDate;
 	private transient ExpandoBridge _expandoBridge;
+	private CalendarBooking _escapedModelProxy;
 }

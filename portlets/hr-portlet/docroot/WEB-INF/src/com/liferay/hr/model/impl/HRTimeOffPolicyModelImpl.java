@@ -288,8 +288,13 @@ public class HRTimeOffPolicyModelImpl extends BaseModelImpl<HRTimeOffPolicy>
 			return (HRTimeOffPolicy)this;
 		}
 		else {
-			return (HRTimeOffPolicy)Proxy.newProxyInstance(_classLoader,
-				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
+			if (_escapedModelProxy == null) {
+				_escapedModelProxy = (HRTimeOffPolicy)Proxy.newProxyInstance(_classLoader,
+						_escapedModelProxyInterfaces,
+						new AutoEscapeBeanHandler(this));
+			}
+
+			return _escapedModelProxy;
 		}
 	}
 
@@ -531,4 +536,5 @@ public class HRTimeOffPolicyModelImpl extends BaseModelImpl<HRTimeOffPolicy>
 	private double _hoursToAccrue;
 	private double _carryOverHoursAllowed;
 	private transient ExpandoBridge _expandoBridge;
+	private HRTimeOffPolicy _escapedModelProxy;
 }

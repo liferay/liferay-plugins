@@ -226,6 +226,7 @@ public class FeedUtil {
 	*
 	* @param companyId the company ID
 	* @param twitterUserId the twitter user ID
+	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching feed, or <code>null</code> if a matching feed could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -271,6 +272,7 @@ public class FeedUtil {
 	*
 	* @param companyId the company ID
 	* @param twitterScreenName the twitter screen name
+	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching feed, or <code>null</code> if a matching feed could not be found
 	* @throws SystemException if a system exception occurred
 	*/

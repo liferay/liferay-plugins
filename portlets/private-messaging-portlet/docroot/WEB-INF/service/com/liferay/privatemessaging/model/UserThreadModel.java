@@ -179,7 +179,7 @@ public interface UserThreadModel extends BaseModel<UserThread> {
 	public boolean getRead();
 
 	/**
-	 * Determines if this user thread is read.
+	 * Returns <code>true</code> if this user thread is read.
 	 *
 	 * @return <code>true</code> if this user thread is read; <code>false</code> otherwise
 	 */
@@ -200,7 +200,7 @@ public interface UserThreadModel extends BaseModel<UserThread> {
 	public boolean getDeleted();
 
 	/**
-	 * Determines if this user thread is deleted.
+	 * Returns <code>true</code> if this user thread is deleted.
 	 *
 	 * @return <code>true</code> if this user thread is deleted; <code>false</code> otherwise
 	 */

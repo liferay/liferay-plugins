@@ -404,8 +404,14 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 		WSRPConsumer wsrpConsumer = (WSRPConsumer)EntityCacheUtil.getResult(WSRPConsumerModelImpl.ENTITY_CACHE_ENABLED,
 				WSRPConsumerImpl.class, wsrpConsumerId, this);
 
+		if (wsrpConsumer == _nullWSRPConsumer) {
+			return null;
+		}
+
 		if (wsrpConsumer == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -414,11 +420,18 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 						Long.valueOf(wsrpConsumerId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
 				if (wsrpConsumer != null) {
 					cacheResult(wsrpConsumer);
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(WSRPConsumerModelImpl.ENTITY_CACHE_ENABLED,
+						WSRPConsumerImpl.class, wsrpConsumerId,
+						_nullWSRPConsumer);
 				}
 
 				closeSession(session);
@@ -1488,4 +1501,9 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(WSRPConsumerPersistenceImpl.class);
+	private static WSRPConsumer _nullWSRPConsumer = new WSRPConsumerImpl() {
+			public Object clone() {
+				return this;
+			}
+		};
 }

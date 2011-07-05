@@ -130,6 +130,7 @@ public interface HRWageTypePersistence extends BasePersistence<HRWageType> {
 	*
 	* @param groupId the group ID
 	* @param code the code
+	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching h r wage type, or <code>null</code> if a matching h r wage type could not be found
 	* @throws SystemException if a system exception occurred
 	*/

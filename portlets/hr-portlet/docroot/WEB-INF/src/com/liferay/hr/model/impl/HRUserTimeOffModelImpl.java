@@ -255,8 +255,13 @@ public class HRUserTimeOffModelImpl extends BaseModelImpl<HRUserTimeOff>
 			return (HRUserTimeOff)this;
 		}
 		else {
-			return (HRUserTimeOff)Proxy.newProxyInstance(_classLoader,
-				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
+			if (_escapedModelProxy == null) {
+				_escapedModelProxy = (HRUserTimeOff)Proxy.newProxyInstance(_classLoader,
+						_escapedModelProxyInterfaces,
+						new AutoEscapeBeanHandler(this));
+			}
+
+			return _escapedModelProxy;
 		}
 	}
 
@@ -474,4 +479,5 @@ public class HRUserTimeOffModelImpl extends BaseModelImpl<HRUserTimeOff>
 	private double _hoursCarriedOver;
 	private double _hoursUsed;
 	private transient ExpandoBridge _expandoBridge;
+	private HRUserTimeOff _escapedModelProxy;
 }

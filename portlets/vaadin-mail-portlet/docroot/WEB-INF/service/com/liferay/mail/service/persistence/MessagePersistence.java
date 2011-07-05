@@ -337,6 +337,7 @@ public interface MessagePersistence extends BasePersistence<Message> {
 	*
 	* @param folderId the folder ID
 	* @param remoteMessageId the remote message ID
+	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching message, or <code>null</code> if a matching message could not be found
 	* @throws SystemException if a system exception occurred
 	*/

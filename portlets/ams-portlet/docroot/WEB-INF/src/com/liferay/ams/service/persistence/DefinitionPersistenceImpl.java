@@ -364,8 +364,14 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 		Definition definition = (Definition)EntityCacheUtil.getResult(DefinitionModelImpl.ENTITY_CACHE_ENABLED,
 				DefinitionImpl.class, definitionId, this);
 
+		if (definition == _nullDefinition) {
+			return null;
+		}
+
 		if (definition == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -374,11 +380,17 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 						Long.valueOf(definitionId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
 				if (definition != null) {
 					cacheResult(definition);
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(DefinitionModelImpl.ENTITY_CACHE_ENABLED,
+						DefinitionImpl.class, definitionId, _nullDefinition);
 				}
 
 				closeSession(session);
@@ -598,4 +610,9 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(DefinitionPersistenceImpl.class);
+	private static Definition _nullDefinition = new DefinitionImpl() {
+			public Object clone() {
+				return this;
+			}
+		};
 }

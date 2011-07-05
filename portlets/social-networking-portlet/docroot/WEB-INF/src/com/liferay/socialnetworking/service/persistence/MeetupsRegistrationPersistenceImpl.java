@@ -450,8 +450,14 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 		MeetupsRegistration meetupsRegistration = (MeetupsRegistration)EntityCacheUtil.getResult(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
 				MeetupsRegistrationImpl.class, meetupsRegistrationId, this);
 
+		if (meetupsRegistration == _nullMeetupsRegistration) {
+			return null;
+		}
+
 		if (meetupsRegistration == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -460,11 +466,18 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 						Long.valueOf(meetupsRegistrationId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
 				if (meetupsRegistration != null) {
 					cacheResult(meetupsRegistration);
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
+						MeetupsRegistrationImpl.class, meetupsRegistrationId,
+						_nullMeetupsRegistration);
 				}
 
 				closeSession(session);
@@ -874,6 +887,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	 *
 	 * @param userId the user ID
 	 * @param meetupsEntryId the meetups entry ID
+	 * @param retrieveFromCache whether to use the finder cache
 	 * @return the matching meetups registration, or <code>null</code> if a matching meetups registration could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -1755,4 +1769,9 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(MeetupsRegistrationPersistenceImpl.class);
+	private static MeetupsRegistration _nullMeetupsRegistration = new MeetupsRegistrationImpl() {
+			public Object clone() {
+				return this;
+			}
+		};
 }

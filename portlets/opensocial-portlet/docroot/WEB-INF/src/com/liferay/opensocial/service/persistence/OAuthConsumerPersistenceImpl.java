@@ -443,8 +443,14 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 		OAuthConsumer oAuthConsumer = (OAuthConsumer)EntityCacheUtil.getResult(OAuthConsumerModelImpl.ENTITY_CACHE_ENABLED,
 				OAuthConsumerImpl.class, oAuthConsumerId, this);
 
+		if (oAuthConsumer == _nullOAuthConsumer) {
+			return null;
+		}
+
 		if (oAuthConsumer == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -453,11 +459,18 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 						Long.valueOf(oAuthConsumerId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
 				if (oAuthConsumer != null) {
 					cacheResult(oAuthConsumer);
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(OAuthConsumerModelImpl.ENTITY_CACHE_ENABLED,
+						OAuthConsumerImpl.class, oAuthConsumerId,
+						_nullOAuthConsumer);
 				}
 
 				closeSession(session);
@@ -886,6 +899,7 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 	 *
 	 * @param gadgetKey the gadget key
 	 * @param serviceName the service name
+	 * @param retrieveFromCache whether to use the finder cache
 	 * @return the matching o auth consumer, or <code>null</code> if a matching o auth consumer could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -1392,4 +1406,9 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(OAuthConsumerPersistenceImpl.class);
+	private static OAuthConsumer _nullOAuthConsumer = new OAuthConsumerImpl() {
+			public Object clone() {
+				return this;
+			}
+		};
 }

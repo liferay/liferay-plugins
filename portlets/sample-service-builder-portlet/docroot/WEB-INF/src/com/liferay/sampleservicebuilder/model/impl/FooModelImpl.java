@@ -336,8 +336,13 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 			return (Foo)this;
 		}
 		else {
-			return (Foo)Proxy.newProxyInstance(_classLoader,
-				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
+			if (_escapedModelProxy == null) {
+				_escapedModelProxy = (Foo)Proxy.newProxyInstance(_classLoader,
+						_escapedModelProxyInterfaces,
+						new AutoEscapeBeanHandler(this));
+			}
+
+			return _escapedModelProxy;
 		}
 	}
 
@@ -554,4 +559,5 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 	private Date _field4;
 	private String _field5;
 	private transient ExpandoBridge _expandoBridge;
+	private Foo _escapedModelProxy;
 }

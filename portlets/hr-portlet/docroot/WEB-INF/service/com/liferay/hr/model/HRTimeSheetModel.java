@@ -325,28 +325,28 @@ public interface HRTimeSheetModel extends BaseModel<HRTimeSheet>, GroupedModel,
 	public boolean getApproved();
 
 	/**
-	 * Determines if this h r time sheet is approved.
+	 * Returns <code>true</code> if this h r time sheet is approved.
 	 *
 	 * @return <code>true</code> if this h r time sheet is approved; <code>false</code> otherwise
 	 */
 	public boolean isApproved();
 
 	/**
-	 * Determines if this h r time sheet is a draft.
+	 * Returns <code>true</code> if this h r time sheet is a draft.
 	 *
 	 * @return <code>true</code> if this h r time sheet is a draft; <code>false</code> otherwise
 	 */
 	public boolean isDraft();
 
 	/**
-	 * Determines if this h r time sheet is expired.
+	 * Returns <code>true</code> if this h r time sheet is expired.
 	 *
 	 * @return <code>true</code> if this h r time sheet is expired; <code>false</code> otherwise
 	 */
 	public boolean isExpired();
 
 	/**
-	 * Determines if this h r time sheet is pending.
+	 * Returns <code>true</code> if this h r time sheet is pending.
 	 *
 	 * @return <code>true</code> if this h r time sheet is pending; <code>false</code> otherwise
 	 */

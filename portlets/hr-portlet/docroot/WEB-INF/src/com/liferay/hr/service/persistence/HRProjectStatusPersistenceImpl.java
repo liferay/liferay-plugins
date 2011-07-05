@@ -429,8 +429,14 @@ public class HRProjectStatusPersistenceImpl extends BasePersistenceImpl<HRProjec
 		HRProjectStatus hrProjectStatus = (HRProjectStatus)EntityCacheUtil.getResult(HRProjectStatusModelImpl.ENTITY_CACHE_ENABLED,
 				HRProjectStatusImpl.class, hrProjectStatusId, this);
 
+		if (hrProjectStatus == _nullHRProjectStatus) {
+			return null;
+		}
+
 		if (hrProjectStatus == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -439,11 +445,18 @@ public class HRProjectStatusPersistenceImpl extends BasePersistenceImpl<HRProjec
 						Long.valueOf(hrProjectStatusId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
 				if (hrProjectStatus != null) {
 					cacheResult(hrProjectStatus);
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(HRProjectStatusModelImpl.ENTITY_CACHE_ENABLED,
+						HRProjectStatusImpl.class, hrProjectStatusId,
+						_nullHRProjectStatus);
 				}
 
 				closeSession(session);
@@ -507,6 +520,7 @@ public class HRProjectStatusPersistenceImpl extends BasePersistenceImpl<HRProjec
 	 *
 	 * @param groupId the group ID
 	 * @param code the code
+	 * @param retrieveFromCache whether to use the finder cache
 	 * @return the matching h r project status, or <code>null</code> if a matching h r project status could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -973,4 +987,9 @@ public class HRProjectStatusPersistenceImpl extends BasePersistenceImpl<HRProjec
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(HRProjectStatusPersistenceImpl.class);
+	private static HRProjectStatus _nullHRProjectStatus = new HRProjectStatusImpl() {
+			public Object clone() {
+				return this;
+			}
+		};
 }

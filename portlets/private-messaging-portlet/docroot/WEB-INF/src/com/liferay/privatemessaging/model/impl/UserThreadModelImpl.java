@@ -227,8 +227,13 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 			return (UserThread)this;
 		}
 		else {
-			return (UserThread)Proxy.newProxyInstance(_classLoader,
-				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
+			if (_escapedModelProxy == null) {
+				_escapedModelProxy = (UserThread)Proxy.newProxyInstance(_classLoader,
+						_escapedModelProxyInterfaces,
+						new AutoEscapeBeanHandler(this));
+			}
+
+			return _escapedModelProxy;
 		}
 	}
 
@@ -419,4 +424,5 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 	private boolean _read;
 	private boolean _deleted;
 	private transient ExpandoBridge _expandoBridge;
+	private UserThread _escapedModelProxy;
 }

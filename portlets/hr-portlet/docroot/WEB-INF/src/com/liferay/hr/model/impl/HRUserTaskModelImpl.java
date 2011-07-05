@@ -228,8 +228,13 @@ public class HRUserTaskModelImpl extends BaseModelImpl<HRUserTask>
 			return (HRUserTask)this;
 		}
 		else {
-			return (HRUserTask)Proxy.newProxyInstance(_classLoader,
-				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
+			if (_escapedModelProxy == null) {
+				_escapedModelProxy = (HRUserTask)Proxy.newProxyInstance(_classLoader,
+						_escapedModelProxyInterfaces,
+						new AutoEscapeBeanHandler(this));
+			}
+
+			return _escapedModelProxy;
 		}
 	}
 
@@ -423,4 +428,5 @@ public class HRUserTaskModelImpl extends BaseModelImpl<HRUserTask>
 	private long _hrUserId;
 	private String _hrUserUuid;
 	private transient ExpandoBridge _expandoBridge;
+	private HRUserTask _escapedModelProxy;
 }

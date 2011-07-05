@@ -442,8 +442,14 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 		Account account = (Account)EntityCacheUtil.getResult(AccountModelImpl.ENTITY_CACHE_ENABLED,
 				AccountImpl.class, accountId, this);
 
+		if (account == _nullAccount) {
+			return null;
+		}
+
 		if (account == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -452,11 +458,17 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 						Long.valueOf(accountId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
 				if (account != null) {
 					cacheResult(account);
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(AccountModelImpl.ENTITY_CACHE_ENABLED,
+						AccountImpl.class, accountId, _nullAccount);
 				}
 
 				closeSession(session);
@@ -856,6 +868,7 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 	 *
 	 * @param userId the user ID
 	 * @param address the address
+	 * @param retrieveFromCache whether to use the finder cache
 	 * @return the matching account, or <code>null</code> if a matching account could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -1322,4 +1335,9 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(AccountPersistenceImpl.class);
+	private static Account _nullAccount = new AccountImpl() {
+			public Object clone() {
+				return this;
+			}
+		};
 }

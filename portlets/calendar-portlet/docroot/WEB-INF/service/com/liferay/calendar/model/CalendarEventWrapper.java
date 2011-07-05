@@ -548,7 +548,7 @@ public class CalendarEventWrapper implements CalendarEvent {
 	}
 
 	/**
-	* Determines if this calendar event is all day.
+	* Returns <code>true</code> if this calendar event is all day.
 	*
 	* @return <code>true</code> if this calendar event is all day; <code>false</code> otherwise
 	*/

@@ -291,7 +291,7 @@ public class KBCommentWrapper implements KBComment {
 	}
 
 	/**
-	* Determines if this k b comment is helpful.
+	* Returns <code>true</code> if this k b comment is helpful.
 	*
 	* @return <code>true</code> if this k b comment is helpful; <code>false</code> otherwise
 	*/

@@ -298,7 +298,7 @@ public interface KaleoTaskAssignmentInstanceModel extends BaseModel<KaleoTaskAss
 	public boolean getCompleted();
 
 	/**
-	 * Determines if this kaleo task assignment instance is completed.
+	 * Returns <code>true</code> if this kaleo task assignment instance is completed.
 	 *
 	 * @return <code>true</code> if this kaleo task assignment instance is completed; <code>false</code> otherwise
 	 */

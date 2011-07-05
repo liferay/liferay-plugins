@@ -137,8 +137,13 @@ public class TypeModelImpl extends BaseModelImpl<Type> implements TypeModel {
 			return (Type)this;
 		}
 		else {
-			return (Type)Proxy.newProxyInstance(_classLoader,
-				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
+			if (_escapedModelProxy == null) {
+				_escapedModelProxy = (Type)Proxy.newProxyInstance(_classLoader,
+						_escapedModelProxyInterfaces,
+						new AutoEscapeBeanHandler(this));
+			}
+
+			return _escapedModelProxy;
 		}
 	}
 
@@ -264,4 +269,5 @@ public class TypeModelImpl extends BaseModelImpl<Type> implements TypeModel {
 	private long _groupId;
 	private String _name;
 	private transient ExpandoBridge _expandoBridge;
+	private Type _escapedModelProxy;
 }

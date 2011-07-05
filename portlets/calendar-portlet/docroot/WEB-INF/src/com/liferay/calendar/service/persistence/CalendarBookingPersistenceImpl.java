@@ -504,8 +504,14 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 		CalendarBooking calendarBooking = (CalendarBooking)EntityCacheUtil.getResult(CalendarBookingModelImpl.ENTITY_CACHE_ENABLED,
 				CalendarBookingImpl.class, calendarBookingId, this);
 
+		if (calendarBooking == _nullCalendarBooking) {
+			return null;
+		}
+
 		if (calendarBooking == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -514,11 +520,18 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 						Long.valueOf(calendarBookingId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
 				if (calendarBooking != null) {
 					cacheResult(calendarBooking);
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(CalendarBookingModelImpl.ENTITY_CACHE_ENABLED,
+						CalendarBookingImpl.class, calendarBookingId,
+						_nullCalendarBooking);
 				}
 
 				closeSession(session);
@@ -945,6 +958,7 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 	 *
 	 * @param uuid the uuid
 	 * @param groupId the group ID
+	 * @param retrieveFromCache whether to use the finder cache
 	 * @return the matching calendar booking, or <code>null</code> if a matching calendar booking could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -2689,4 +2703,9 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(CalendarBookingPersistenceImpl.class);
+	private static CalendarBooking _nullCalendarBooking = new CalendarBookingImpl() {
+			public Object clone() {
+				return this;
+			}
+		};
 }

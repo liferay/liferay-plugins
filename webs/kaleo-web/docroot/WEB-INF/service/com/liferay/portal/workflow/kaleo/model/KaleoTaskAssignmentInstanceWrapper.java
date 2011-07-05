@@ -357,7 +357,7 @@ public class KaleoTaskAssignmentInstanceWrapper
 	}
 
 	/**
-	* Determines if this kaleo task assignment instance is completed.
+	* Returns <code>true</code> if this kaleo task assignment instance is completed.
 	*
 	* @return <code>true</code> if this kaleo task assignment instance is completed; <code>false</code> otherwise
 	*/

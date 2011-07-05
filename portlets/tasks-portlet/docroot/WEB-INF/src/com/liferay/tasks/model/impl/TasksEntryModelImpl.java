@@ -335,8 +335,13 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 			return (TasksEntry)this;
 		}
 		else {
-			return (TasksEntry)Proxy.newProxyInstance(_classLoader,
-				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
+			if (_escapedModelProxy == null) {
+				_escapedModelProxy = (TasksEntry)Proxy.newProxyInstance(_classLoader,
+						_escapedModelProxyInterfaces,
+						new AutoEscapeBeanHandler(this));
+			}
+
+			return _escapedModelProxy;
 		}
 	}
 
@@ -573,4 +578,5 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 	private Date _finishDate;
 	private int _status;
 	private transient ExpandoBridge _expandoBridge;
+	private TasksEntry _escapedModelProxy;
 }

@@ -301,8 +301,13 @@ public class KaleoNotificationModelImpl extends BaseModelImpl<KaleoNotification>
 			return (KaleoNotification)this;
 		}
 		else {
-			return (KaleoNotification)Proxy.newProxyInstance(_classLoader,
-				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
+			if (_escapedModelProxy == null) {
+				_escapedModelProxy = (KaleoNotification)Proxy.newProxyInstance(_classLoader,
+						_escapedModelProxyInterfaces,
+						new AutoEscapeBeanHandler(this));
+			}
+
+			return _escapedModelProxy;
 		}
 	}
 
@@ -541,4 +546,5 @@ public class KaleoNotificationModelImpl extends BaseModelImpl<KaleoNotification>
 	private String _templateLanguage;
 	private String _notificationTypes;
 	private transient ExpandoBridge _expandoBridge;
+	private KaleoNotification _escapedModelProxy;
 }

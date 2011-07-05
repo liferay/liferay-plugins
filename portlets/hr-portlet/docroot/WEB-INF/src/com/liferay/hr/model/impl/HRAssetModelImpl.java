@@ -225,8 +225,13 @@ public class HRAssetModelImpl extends BaseModelImpl<HRAsset>
 			return (HRAsset)this;
 		}
 		else {
-			return (HRAsset)Proxy.newProxyInstance(_classLoader,
-				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
+			if (_escapedModelProxy == null) {
+				_escapedModelProxy = (HRAsset)Proxy.newProxyInstance(_classLoader,
+						_escapedModelProxyInterfaces,
+						new AutoEscapeBeanHandler(this));
+			}
+
+			return _escapedModelProxy;
 		}
 	}
 
@@ -419,4 +424,5 @@ public class HRAssetModelImpl extends BaseModelImpl<HRAsset>
 	private String _serialNumber;
 	private Date _inactiveDate;
 	private transient ExpandoBridge _expandoBridge;
+	private HRAsset _escapedModelProxy;
 }

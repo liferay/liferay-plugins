@@ -466,6 +466,7 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	*
 	* @param companyId the company ID
 	* @param url the url
+	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching gadget, or <code>null</code> if a matching gadget could not be found
 	* @throws SystemException if a system exception occurred
 	*/

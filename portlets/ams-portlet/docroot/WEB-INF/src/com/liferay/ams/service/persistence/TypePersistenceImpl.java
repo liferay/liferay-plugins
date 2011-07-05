@@ -349,8 +349,14 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 		Type type = (Type)EntityCacheUtil.getResult(TypeModelImpl.ENTITY_CACHE_ENABLED,
 				TypeImpl.class, typeId, this);
 
+		if (type == _nullType) {
+			return null;
+		}
+
 		if (type == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -358,11 +364,17 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 				type = (Type)session.get(TypeImpl.class, Long.valueOf(typeId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
 				if (type != null) {
 					cacheResult(type);
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(TypeModelImpl.ENTITY_CACHE_ENABLED,
+						TypeImpl.class, typeId, _nullType);
 				}
 
 				closeSession(session);
@@ -581,4 +593,9 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(TypePersistenceImpl.class);
+	private static Type _nullType = new TypeImpl() {
+			public Object clone() {
+				return this;
+			}
+		};
 }

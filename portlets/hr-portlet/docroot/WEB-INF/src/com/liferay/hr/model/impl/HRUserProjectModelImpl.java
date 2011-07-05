@@ -237,8 +237,13 @@ public class HRUserProjectModelImpl extends BaseModelImpl<HRUserProject>
 			return (HRUserProject)this;
 		}
 		else {
-			return (HRUserProject)Proxy.newProxyInstance(_classLoader,
-				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
+			if (_escapedModelProxy == null) {
+				_escapedModelProxy = (HRUserProject)Proxy.newProxyInstance(_classLoader,
+						_escapedModelProxyInterfaces,
+						new AutoEscapeBeanHandler(this));
+			}
+
+			return _escapedModelProxy;
 		}
 	}
 
@@ -440,4 +445,5 @@ public class HRUserProjectModelImpl extends BaseModelImpl<HRUserProject>
 	private String _hrUserUuid;
 	private double _actualRate;
 	private transient ExpandoBridge _expandoBridge;
+	private HRUserProject _escapedModelProxy;
 }

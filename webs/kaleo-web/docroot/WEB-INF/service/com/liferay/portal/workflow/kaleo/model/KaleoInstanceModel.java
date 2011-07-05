@@ -269,7 +269,7 @@ public interface KaleoInstanceModel extends BaseModel<KaleoInstance>,
 	public boolean getCompleted();
 
 	/**
-	 * Determines if this kaleo instance is completed.
+	 * Returns <code>true</code> if this kaleo instance is completed.
 	 *
 	 * @return <code>true</code> if this kaleo instance is completed; <code>false</code> otherwise
 	 */

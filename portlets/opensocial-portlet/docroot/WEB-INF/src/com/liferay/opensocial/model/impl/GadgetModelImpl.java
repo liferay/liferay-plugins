@@ -268,8 +268,13 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 			return (Gadget)this;
 		}
 		else {
-			return (Gadget)Proxy.newProxyInstance(_classLoader,
-				_escapedModelProxyInterfaces, new AutoEscapeBeanHandler(this));
+			if (_escapedModelProxy == null) {
+				_escapedModelProxy = (Gadget)Proxy.newProxyInstance(_classLoader,
+						_escapedModelProxyInterfaces,
+						new AutoEscapeBeanHandler(this));
+			}
+
+			return _escapedModelProxy;
 		}
 	}
 
@@ -445,4 +450,5 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 	private String _originalUrl;
 	private String _portletCategoryNames;
 	private transient ExpandoBridge _expandoBridge;
+	private Gadget _escapedModelProxy;
 }

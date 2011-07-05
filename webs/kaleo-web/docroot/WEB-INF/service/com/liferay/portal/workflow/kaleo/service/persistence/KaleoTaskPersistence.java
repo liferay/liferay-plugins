@@ -342,6 +342,7 @@ public interface KaleoTaskPersistence extends BasePersistence<KaleoTask> {
 	* Returns the kaleo task where kaleoNodeId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	*
 	* @param kaleoNodeId the kaleo node ID
+	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching kaleo task, or <code>null</code> if a matching kaleo task could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -524,7 +525,7 @@ public interface KaleoTaskPersistence extends BasePersistence<KaleoTask> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Determines if the kaleo task assignment is associated with the kaleo task.
+	* Returns <code>true</code> if the kaleo task assignment is associated with the kaleo task.
 	*
 	* @param pk the primary key of the kaleo task
 	* @param kaleoTaskAssignmentPK the primary key of the kaleo task assignment
@@ -536,7 +537,7 @@ public interface KaleoTaskPersistence extends BasePersistence<KaleoTask> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Determines if the kaleo task has any kaleo task assignments associated with it.
+	* Returns <code>true</code> if the kaleo task has any kaleo task assignments associated with it.
 	*
 	* @param pk the primary key of the kaleo task to check for associations with kaleo task assignments
 	* @return <code>true</code> if the kaleo task has any kaleo task assignments associated with it; <code>false</code> otherwise

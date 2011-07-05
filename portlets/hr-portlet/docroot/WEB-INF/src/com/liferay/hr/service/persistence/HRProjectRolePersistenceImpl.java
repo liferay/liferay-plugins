@@ -366,8 +366,14 @@ public class HRProjectRolePersistenceImpl extends BasePersistenceImpl<HRProjectR
 		HRProjectRole hrProjectRole = (HRProjectRole)EntityCacheUtil.getResult(HRProjectRoleModelImpl.ENTITY_CACHE_ENABLED,
 				HRProjectRoleImpl.class, hrProjectRoleId, this);
 
+		if (hrProjectRole == _nullHRProjectRole) {
+			return null;
+		}
+
 		if (hrProjectRole == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -376,11 +382,18 @@ public class HRProjectRolePersistenceImpl extends BasePersistenceImpl<HRProjectR
 						Long.valueOf(hrProjectRoleId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
 				if (hrProjectRole != null) {
 					cacheResult(hrProjectRole);
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(HRProjectRoleModelImpl.ENTITY_CACHE_ENABLED,
+						HRProjectRoleImpl.class, hrProjectRoleId,
+						_nullHRProjectRole);
 				}
 
 				closeSession(session);
@@ -668,4 +681,9 @@ public class HRProjectRolePersistenceImpl extends BasePersistenceImpl<HRProjectR
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(HRProjectRolePersistenceImpl.class);
+	private static HRProjectRole _nullHRProjectRole = new HRProjectRoleImpl() {
+			public Object clone() {
+				return this;
+			}
+		};
 }
