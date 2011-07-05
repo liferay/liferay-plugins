@@ -79,8 +79,8 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	public static final String FINDER_CLASS_NAME_LIST = FINDER_CLASS_NAME_ENTITY +
 		".List";
 	public static final FinderPath FINDER_PATH_FIND_BY_UUID = new FinderPath(GadgetModelImpl.ENTITY_CACHE_ENABLED,
-			GadgetModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findByUuid",
+			GadgetModelImpl.FINDER_CACHE_ENABLED, GadgetImpl.class,
+			FINDER_CLASS_NAME_LIST, "findByUuid",
 			new String[] {
 				String.class.getName(),
 				
@@ -88,11 +88,12 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
 	public static final FinderPath FINDER_PATH_COUNT_BY_UUID = new FinderPath(GadgetModelImpl.ENTITY_CACHE_ENABLED,
-			GadgetModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countByUuid", new String[] { String.class.getName() });
+			GadgetModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST, "countByUuid",
+			new String[] { String.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_BY_COMPANYID = new FinderPath(GadgetModelImpl.ENTITY_CACHE_ENABLED,
-			GadgetModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findByCompanyId",
+			GadgetModelImpl.FINDER_CACHE_ENABLED, GadgetImpl.class,
+			FINDER_CLASS_NAME_LIST, "findByCompanyId",
 			new String[] {
 				Long.class.getName(),
 				
@@ -100,22 +101,23 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
 	public static final FinderPath FINDER_PATH_COUNT_BY_COMPANYID = new FinderPath(GadgetModelImpl.ENTITY_CACHE_ENABLED,
-			GadgetModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countByCompanyId", new String[] { Long.class.getName() });
+			GadgetModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST, "countByCompanyId",
+			new String[] { Long.class.getName() });
 	public static final FinderPath FINDER_PATH_FETCH_BY_C_U = new FinderPath(GadgetModelImpl.ENTITY_CACHE_ENABLED,
-			GadgetModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_ENTITY,
-			"fetchByC_U",
+			GadgetModelImpl.FINDER_CACHE_ENABLED, GadgetImpl.class,
+			FINDER_CLASS_NAME_ENTITY, "fetchByC_U",
 			new String[] { Long.class.getName(), String.class.getName() });
 	public static final FinderPath FINDER_PATH_COUNT_BY_C_U = new FinderPath(GadgetModelImpl.ENTITY_CACHE_ENABLED,
-			GadgetModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countByC_U",
+			GadgetModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST, "countByC_U",
 			new String[] { Long.class.getName(), String.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(GadgetModelImpl.ENTITY_CACHE_ENABLED,
-			GadgetModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findAll", new String[0]);
+			GadgetModelImpl.FINDER_CACHE_ENABLED, GadgetImpl.class,
+			FINDER_CLASS_NAME_LIST, "findAll", new String[0]);
 	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(GadgetModelImpl.ENTITY_CACHE_ENABLED,
-			GadgetModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countAll", new String[0]);
+			GadgetModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST, "countAll", new String[0]);
 
 	/**
 	 * Caches the gadget in the entity cache if it is enabled.
@@ -2525,7 +2527,6 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	private static final String _FILTER_SQL_COUNT_GADGET_WHERE = "SELECT COUNT(DISTINCT gadget.gadgetId) AS COUNT_VALUE FROM OpenSocial_Gadget gadget WHERE ";
 	private static final String _FILTER_ENTITY_ALIAS = "gadget";
 	private static final String _FILTER_ENTITY_TABLE = "OpenSocial_Gadget";
-	private static final String _FILTER_ENTITY_TABLE_PK_COLUMN = "gadget.gadgetId";
 	private static final String _FILTER_ENTITY_TABLE_FILTER_PK_COLUMN = "gadget.gadgetId";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "gadget.";
 	private static final String _ORDER_BY_ENTITY_TABLE = "OpenSocial_Gadget.";

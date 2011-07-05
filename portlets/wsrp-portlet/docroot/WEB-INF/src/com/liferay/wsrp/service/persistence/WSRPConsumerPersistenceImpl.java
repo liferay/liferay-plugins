@@ -77,8 +77,8 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 	public static final String FINDER_CLASS_NAME_LIST = FINDER_CLASS_NAME_ENTITY +
 		".List";
 	public static final FinderPath FINDER_PATH_FIND_BY_UUID = new FinderPath(WSRPConsumerModelImpl.ENTITY_CACHE_ENABLED,
-			WSRPConsumerModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findByUuid",
+			WSRPConsumerModelImpl.FINDER_CACHE_ENABLED, WSRPConsumerImpl.class,
+			FINDER_CLASS_NAME_LIST, "findByUuid",
 			new String[] {
 				String.class.getName(),
 				
@@ -86,11 +86,12 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
 	public static final FinderPath FINDER_PATH_COUNT_BY_UUID = new FinderPath(WSRPConsumerModelImpl.ENTITY_CACHE_ENABLED,
-			WSRPConsumerModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countByUuid", new String[] { String.class.getName() });
+			WSRPConsumerModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST, "countByUuid",
+			new String[] { String.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_BY_COMPANYID = new FinderPath(WSRPConsumerModelImpl.ENTITY_CACHE_ENABLED,
-			WSRPConsumerModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findByCompanyId",
+			WSRPConsumerModelImpl.FINDER_CACHE_ENABLED, WSRPConsumerImpl.class,
+			FINDER_CLASS_NAME_LIST, "findByCompanyId",
 			new String[] {
 				Long.class.getName(),
 				
@@ -98,14 +99,15 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
 	public static final FinderPath FINDER_PATH_COUNT_BY_COMPANYID = new FinderPath(WSRPConsumerModelImpl.ENTITY_CACHE_ENABLED,
-			WSRPConsumerModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countByCompanyId", new String[] { Long.class.getName() });
+			WSRPConsumerModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST, "countByCompanyId",
+			new String[] { Long.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(WSRPConsumerModelImpl.ENTITY_CACHE_ENABLED,
-			WSRPConsumerModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findAll", new String[0]);
+			WSRPConsumerModelImpl.FINDER_CACHE_ENABLED, WSRPConsumerImpl.class,
+			FINDER_CLASS_NAME_LIST, "findAll", new String[0]);
 	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(WSRPConsumerModelImpl.ENTITY_CACHE_ENABLED,
-			WSRPConsumerModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countAll", new String[0]);
+			WSRPConsumerModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST, "countAll", new String[0]);
 
 	/**
 	 * Caches the w s r p consumer in the entity cache if it is enabled.

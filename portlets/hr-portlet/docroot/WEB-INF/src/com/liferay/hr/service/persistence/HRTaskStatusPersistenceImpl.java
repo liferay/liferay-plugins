@@ -76,19 +76,19 @@ public class HRTaskStatusPersistenceImpl extends BasePersistenceImpl<HRTaskStatu
 	public static final String FINDER_CLASS_NAME_LIST = FINDER_CLASS_NAME_ENTITY +
 		".List";
 	public static final FinderPath FINDER_PATH_FETCH_BY_G_C = new FinderPath(HRTaskStatusModelImpl.ENTITY_CACHE_ENABLED,
-			HRTaskStatusModelImpl.FINDER_CACHE_ENABLED,
+			HRTaskStatusModelImpl.FINDER_CACHE_ENABLED, HRTaskStatusImpl.class,
 			FINDER_CLASS_NAME_ENTITY, "fetchByG_C",
 			new String[] { Long.class.getName(), String.class.getName() });
 	public static final FinderPath FINDER_PATH_COUNT_BY_G_C = new FinderPath(HRTaskStatusModelImpl.ENTITY_CACHE_ENABLED,
-			HRTaskStatusModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countByG_C",
+			HRTaskStatusModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST, "countByG_C",
 			new String[] { Long.class.getName(), String.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(HRTaskStatusModelImpl.ENTITY_CACHE_ENABLED,
-			HRTaskStatusModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findAll", new String[0]);
+			HRTaskStatusModelImpl.FINDER_CACHE_ENABLED, HRTaskStatusImpl.class,
+			FINDER_CLASS_NAME_LIST, "findAll", new String[0]);
 	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(HRTaskStatusModelImpl.ENTITY_CACHE_ENABLED,
-			HRTaskStatusModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countAll", new String[0]);
+			HRTaskStatusModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST, "countAll", new String[0]);
 
 	/**
 	 * Caches the h r task status in the entity cache if it is enabled.

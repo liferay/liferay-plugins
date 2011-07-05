@@ -77,7 +77,7 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 		".List";
 	public static final FinderPath FINDER_PATH_FIND_BY_GADGETKEY = new FinderPath(OAuthConsumerModelImpl.ENTITY_CACHE_ENABLED,
 			OAuthConsumerModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findByGadgetKey",
+			OAuthConsumerImpl.class, FINDER_CLASS_NAME_LIST, "findByGadgetKey",
 			new String[] {
 				String.class.getName(),
 				
@@ -85,22 +85,23 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
 	public static final FinderPath FINDER_PATH_COUNT_BY_GADGETKEY = new FinderPath(OAuthConsumerModelImpl.ENTITY_CACHE_ENABLED,
-			OAuthConsumerModelImpl.FINDER_CACHE_ENABLED,
+			OAuthConsumerModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST, "countByGadgetKey",
 			new String[] { String.class.getName() });
 	public static final FinderPath FINDER_PATH_FETCH_BY_G_S = new FinderPath(OAuthConsumerModelImpl.ENTITY_CACHE_ENABLED,
 			OAuthConsumerModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_ENTITY, "fetchByG_S",
+			OAuthConsumerImpl.class, FINDER_CLASS_NAME_ENTITY, "fetchByG_S",
 			new String[] { String.class.getName(), String.class.getName() });
 	public static final FinderPath FINDER_PATH_COUNT_BY_G_S = new FinderPath(OAuthConsumerModelImpl.ENTITY_CACHE_ENABLED,
-			OAuthConsumerModelImpl.FINDER_CACHE_ENABLED,
+			OAuthConsumerModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST, "countByG_S",
 			new String[] { String.class.getName(), String.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(OAuthConsumerModelImpl.ENTITY_CACHE_ENABLED,
 			OAuthConsumerModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findAll", new String[0]);
+			OAuthConsumerImpl.class, FINDER_CLASS_NAME_LIST, "findAll",
+			new String[0]);
 	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(OAuthConsumerModelImpl.ENTITY_CACHE_ENABLED,
-			OAuthConsumerModelImpl.FINDER_CACHE_ENABLED,
+			OAuthConsumerModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST, "countAll", new String[0]);
 
 	/**

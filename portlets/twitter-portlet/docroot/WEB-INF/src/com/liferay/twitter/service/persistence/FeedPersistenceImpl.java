@@ -76,27 +76,27 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	public static final String FINDER_CLASS_NAME_LIST = FINDER_CLASS_NAME_ENTITY +
 		".List";
 	public static final FinderPath FINDER_PATH_FETCH_BY_C_TWUI = new FinderPath(FeedModelImpl.ENTITY_CACHE_ENABLED,
-			FeedModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_ENTITY,
-			"fetchByC_TWUI",
+			FeedModelImpl.FINDER_CACHE_ENABLED, FeedImpl.class,
+			FINDER_CLASS_NAME_ENTITY, "fetchByC_TWUI",
 			new String[] { Long.class.getName(), Long.class.getName() });
 	public static final FinderPath FINDER_PATH_COUNT_BY_C_TWUI = new FinderPath(FeedModelImpl.ENTITY_CACHE_ENABLED,
-			FeedModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countByC_TWUI",
+			FeedModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST, "countByC_TWUI",
 			new String[] { Long.class.getName(), Long.class.getName() });
 	public static final FinderPath FINDER_PATH_FETCH_BY_C_TSN = new FinderPath(FeedModelImpl.ENTITY_CACHE_ENABLED,
-			FeedModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_ENTITY,
-			"fetchByC_TSN",
+			FeedModelImpl.FINDER_CACHE_ENABLED, FeedImpl.class,
+			FINDER_CLASS_NAME_ENTITY, "fetchByC_TSN",
 			new String[] { Long.class.getName(), String.class.getName() });
 	public static final FinderPath FINDER_PATH_COUNT_BY_C_TSN = new FinderPath(FeedModelImpl.ENTITY_CACHE_ENABLED,
-			FeedModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countByC_TSN",
+			FeedModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST, "countByC_TSN",
 			new String[] { Long.class.getName(), String.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(FeedModelImpl.ENTITY_CACHE_ENABLED,
-			FeedModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findAll", new String[0]);
+			FeedModelImpl.FINDER_CACHE_ENABLED, FeedImpl.class,
+			FINDER_CLASS_NAME_LIST, "findAll", new String[0]);
 	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(FeedModelImpl.ENTITY_CACHE_ENABLED,
-			FeedModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countAll", new String[0]);
+			FeedModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST, "countAll", new String[0]);
 
 	/**
 	 * Caches the feed in the entity cache if it is enabled.

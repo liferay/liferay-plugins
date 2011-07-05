@@ -82,7 +82,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 		".List";
 	public static final FinderPath FINDER_PATH_FIND_BY_UUID = new FinderPath(CalendarResourceModelImpl.ENTITY_CACHE_ENABLED,
 			CalendarResourceModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findByUuid",
+			CalendarResourceImpl.class, FINDER_CLASS_NAME_LIST, "findByUuid",
 			new String[] {
 				String.class.getName(),
 				
@@ -90,20 +90,21 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
 	public static final FinderPath FINDER_PATH_COUNT_BY_UUID = new FinderPath(CalendarResourceModelImpl.ENTITY_CACHE_ENABLED,
-			CalendarResourceModelImpl.FINDER_CACHE_ENABLED,
+			CalendarResourceModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST, "countByUuid",
 			new String[] { String.class.getName() });
 	public static final FinderPath FINDER_PATH_FETCH_BY_UUID_G = new FinderPath(CalendarResourceModelImpl.ENTITY_CACHE_ENABLED,
 			CalendarResourceModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_ENTITY, "fetchByUUID_G",
+			CalendarResourceImpl.class, FINDER_CLASS_NAME_ENTITY,
+			"fetchByUUID_G",
 			new String[] { String.class.getName(), Long.class.getName() });
 	public static final FinderPath FINDER_PATH_COUNT_BY_UUID_G = new FinderPath(CalendarResourceModelImpl.ENTITY_CACHE_ENABLED,
-			CalendarResourceModelImpl.FINDER_CACHE_ENABLED,
+			CalendarResourceModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST, "countByUUID_G",
 			new String[] { String.class.getName(), Long.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_BY_ACTIVE = new FinderPath(CalendarResourceModelImpl.ENTITY_CACHE_ENABLED,
 			CalendarResourceModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findByActive",
+			CalendarResourceImpl.class, FINDER_CLASS_NAME_LIST, "findByActive",
 			new String[] {
 				Boolean.class.getName(),
 				
@@ -111,12 +112,12 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
 	public static final FinderPath FINDER_PATH_COUNT_BY_ACTIVE = new FinderPath(CalendarResourceModelImpl.ENTITY_CACHE_ENABLED,
-			CalendarResourceModelImpl.FINDER_CACHE_ENABLED,
+			CalendarResourceModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST, "countByActive",
 			new String[] { Boolean.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_BY_G_A = new FinderPath(CalendarResourceModelImpl.ENTITY_CACHE_ENABLED,
 			CalendarResourceModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findByG_A",
+			CalendarResourceImpl.class, FINDER_CLASS_NAME_LIST, "findByG_A",
 			new String[] {
 				Long.class.getName(), Boolean.class.getName(),
 				
@@ -124,20 +125,20 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
 	public static final FinderPath FINDER_PATH_COUNT_BY_G_A = new FinderPath(CalendarResourceModelImpl.ENTITY_CACHE_ENABLED,
-			CalendarResourceModelImpl.FINDER_CACHE_ENABLED,
+			CalendarResourceModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST, "countByG_A",
 			new String[] { Long.class.getName(), Boolean.class.getName() });
 	public static final FinderPath FINDER_PATH_FETCH_BY_C_C = new FinderPath(CalendarResourceModelImpl.ENTITY_CACHE_ENABLED,
 			CalendarResourceModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_ENTITY, "fetchByC_C",
+			CalendarResourceImpl.class, FINDER_CLASS_NAME_ENTITY, "fetchByC_C",
 			new String[] { Long.class.getName(), Long.class.getName() });
 	public static final FinderPath FINDER_PATH_COUNT_BY_C_C = new FinderPath(CalendarResourceModelImpl.ENTITY_CACHE_ENABLED,
-			CalendarResourceModelImpl.FINDER_CACHE_ENABLED,
+			CalendarResourceModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST, "countByC_C",
 			new String[] { Long.class.getName(), Long.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_BY_G_N_A = new FinderPath(CalendarResourceModelImpl.ENTITY_CACHE_ENABLED,
 			CalendarResourceModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findByG_N_A",
+			CalendarResourceImpl.class, FINDER_CLASS_NAME_LIST, "findByG_N_A",
 			new String[] {
 				Long.class.getName(), String.class.getName(),
 				Boolean.class.getName(),
@@ -146,7 +147,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
 	public static final FinderPath FINDER_PATH_COUNT_BY_G_N_A = new FinderPath(CalendarResourceModelImpl.ENTITY_CACHE_ENABLED,
-			CalendarResourceModelImpl.FINDER_CACHE_ENABLED,
+			CalendarResourceModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST, "countByG_N_A",
 			new String[] {
 				Long.class.getName(), String.class.getName(),
@@ -154,7 +155,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 			});
 	public static final FinderPath FINDER_PATH_FIND_BY_C_N_A = new FinderPath(CalendarResourceModelImpl.ENTITY_CACHE_ENABLED,
 			CalendarResourceModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findByC_N_A",
+			CalendarResourceImpl.class, FINDER_CLASS_NAME_LIST, "findByC_N_A",
 			new String[] {
 				Long.class.getName(), String.class.getName(),
 				Boolean.class.getName(),
@@ -163,7 +164,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
 	public static final FinderPath FINDER_PATH_COUNT_BY_C_N_A = new FinderPath(CalendarResourceModelImpl.ENTITY_CACHE_ENABLED,
-			CalendarResourceModelImpl.FINDER_CACHE_ENABLED,
+			CalendarResourceModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST, "countByC_N_A",
 			new String[] {
 				Long.class.getName(), String.class.getName(),
@@ -171,9 +172,10 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 			});
 	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(CalendarResourceModelImpl.ENTITY_CACHE_ENABLED,
 			CalendarResourceModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findAll", new String[0]);
+			CalendarResourceImpl.class, FINDER_CLASS_NAME_LIST, "findAll",
+			new String[0]);
 	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(CalendarResourceModelImpl.ENTITY_CACHE_ENABLED,
-			CalendarResourceModelImpl.FINDER_CACHE_ENABLED,
+			CalendarResourceModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST, "countAll", new String[0]);
 
 	/**
@@ -4979,7 +4981,6 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 	private static final String _FILTER_SQL_COUNT_CALENDARRESOURCE_WHERE = "SELECT COUNT(DISTINCT calendarResource.calendarResourceId) AS COUNT_VALUE FROM CalendarResource calendarResource WHERE ";
 	private static final String _FILTER_ENTITY_ALIAS = "calendarResource";
 	private static final String _FILTER_ENTITY_TABLE = "CalendarResource";
-	private static final String _FILTER_ENTITY_TABLE_PK_COLUMN = "calendarResource.calendarResourceId";
 	private static final String _FILTER_ENTITY_TABLE_FILTER_PK_COLUMN = "calendarResource.calendarResourceId";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "calendarResource.";
 	private static final String _ORDER_BY_ENTITY_TABLE = "CalendarResource.";

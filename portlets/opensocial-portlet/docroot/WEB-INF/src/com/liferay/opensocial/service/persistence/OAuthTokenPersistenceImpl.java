@@ -76,8 +76,8 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	public static final String FINDER_CLASS_NAME_LIST = FINDER_CLASS_NAME_ENTITY +
 		".List";
 	public static final FinderPath FINDER_PATH_FIND_BY_G_S = new FinderPath(OAuthTokenModelImpl.ENTITY_CACHE_ENABLED,
-			OAuthTokenModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findByG_S",
+			OAuthTokenModelImpl.FINDER_CACHE_ENABLED, OAuthTokenImpl.class,
+			FINDER_CLASS_NAME_LIST, "findByG_S",
 			new String[] {
 				String.class.getName(), String.class.getName(),
 				
@@ -85,31 +85,31 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
 	public static final FinderPath FINDER_PATH_COUNT_BY_G_S = new FinderPath(OAuthTokenModelImpl.ENTITY_CACHE_ENABLED,
-			OAuthTokenModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countByG_S",
+			OAuthTokenModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST, "countByG_S",
 			new String[] { String.class.getName(), String.class.getName() });
 	public static final FinderPath FINDER_PATH_FETCH_BY_U_G_S_M_T = new FinderPath(OAuthTokenModelImpl.ENTITY_CACHE_ENABLED,
-			OAuthTokenModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_ENTITY,
-			"fetchByU_G_S_M_T",
+			OAuthTokenModelImpl.FINDER_CACHE_ENABLED, OAuthTokenImpl.class,
+			FINDER_CLASS_NAME_ENTITY, "fetchByU_G_S_M_T",
 			new String[] {
 				Long.class.getName(), String.class.getName(),
 				String.class.getName(), Long.class.getName(),
 				String.class.getName()
 			});
 	public static final FinderPath FINDER_PATH_COUNT_BY_U_G_S_M_T = new FinderPath(OAuthTokenModelImpl.ENTITY_CACHE_ENABLED,
-			OAuthTokenModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countByU_G_S_M_T",
+			OAuthTokenModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST, "countByU_G_S_M_T",
 			new String[] {
 				Long.class.getName(), String.class.getName(),
 				String.class.getName(), Long.class.getName(),
 				String.class.getName()
 			});
 	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(OAuthTokenModelImpl.ENTITY_CACHE_ENABLED,
-			OAuthTokenModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findAll", new String[0]);
+			OAuthTokenModelImpl.FINDER_CACHE_ENABLED, OAuthTokenImpl.class,
+			FINDER_CLASS_NAME_LIST, "findAll", new String[0]);
 	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(OAuthTokenModelImpl.ENTITY_CACHE_ENABLED,
-			OAuthTokenModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countAll", new String[0]);
+			OAuthTokenModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST, "countAll", new String[0]);
 
 	/**
 	 * Caches the o auth token in the entity cache if it is enabled.

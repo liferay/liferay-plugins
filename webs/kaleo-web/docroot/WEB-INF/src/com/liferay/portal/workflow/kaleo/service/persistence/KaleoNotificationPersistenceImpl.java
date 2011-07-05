@@ -79,7 +79,8 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 		".List";
 	public static final FinderPath FINDER_PATH_FIND_BY_COMPANYID = new FinderPath(KaleoNotificationModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoNotificationModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findByCompanyId",
+			KaleoNotificationImpl.class, FINDER_CLASS_NAME_LIST,
+			"findByCompanyId",
 			new String[] {
 				Long.class.getName(),
 				
@@ -87,12 +88,13 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
 	public static final FinderPath FINDER_PATH_COUNT_BY_COMPANYID = new FinderPath(KaleoNotificationModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoNotificationModelImpl.FINDER_CACHE_ENABLED,
+			KaleoNotificationModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST, "countByCompanyId",
 			new String[] { Long.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_BY_KALEODEFINITIONID = new FinderPath(KaleoNotificationModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoNotificationModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findByKaleoDefinitionId",
+			KaleoNotificationImpl.class, FINDER_CLASS_NAME_LIST,
+			"findByKaleoDefinitionId",
 			new String[] {
 				Long.class.getName(),
 				
@@ -100,12 +102,13 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
 	public static final FinderPath FINDER_PATH_COUNT_BY_KALEODEFINITIONID = new FinderPath(KaleoNotificationModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoNotificationModelImpl.FINDER_CACHE_ENABLED,
+			KaleoNotificationModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST, "countByKaleoDefinitionId",
 			new String[] { Long.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_BY_KNI_ET = new FinderPath(KaleoNotificationModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoNotificationModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findByKNI_ET",
+			KaleoNotificationImpl.class, FINDER_CLASS_NAME_LIST,
+			"findByKNI_ET",
 			new String[] {
 				Long.class.getName(), String.class.getName(),
 				
@@ -113,14 +116,15 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
 	public static final FinderPath FINDER_PATH_COUNT_BY_KNI_ET = new FinderPath(KaleoNotificationModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoNotificationModelImpl.FINDER_CACHE_ENABLED,
+			KaleoNotificationModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST, "countByKNI_ET",
 			new String[] { Long.class.getName(), String.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(KaleoNotificationModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoNotificationModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findAll", new String[0]);
+			KaleoNotificationImpl.class, FINDER_CLASS_NAME_LIST, "findAll",
+			new String[0]);
 	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(KaleoNotificationModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoNotificationModelImpl.FINDER_CACHE_ENABLED,
+			KaleoNotificationModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST, "countAll", new String[0]);
 
 	/**
@@ -1944,6 +1948,7 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 
 	public static final FinderPath FINDER_PATH_GET_KALEONOTIFICATIONRECIPIENTS = new FinderPath(com.liferay.portal.workflow.kaleo.model.impl.KaleoNotificationRecipientModelImpl.ENTITY_CACHE_ENABLED,
 			com.liferay.portal.workflow.kaleo.model.impl.KaleoNotificationRecipientModelImpl.FINDER_CACHE_ENABLED,
+			com.liferay.portal.workflow.kaleo.model.impl.KaleoNotificationRecipientImpl.class,
 			com.liferay.portal.workflow.kaleo.service.persistence.KaleoNotificationRecipientPersistenceImpl.FINDER_CLASS_NAME_LIST,
 			"getKaleoNotificationRecipients",
 			new String[] {
@@ -2030,6 +2035,7 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 	public static final FinderPath FINDER_PATH_GET_KALEONOTIFICATIONRECIPIENTS_SIZE =
 		new FinderPath(com.liferay.portal.workflow.kaleo.model.impl.KaleoNotificationRecipientModelImpl.ENTITY_CACHE_ENABLED,
 			com.liferay.portal.workflow.kaleo.model.impl.KaleoNotificationRecipientModelImpl.FINDER_CACHE_ENABLED,
+			com.liferay.portal.workflow.kaleo.model.impl.KaleoNotificationRecipientImpl.class,
 			com.liferay.portal.workflow.kaleo.service.persistence.KaleoNotificationRecipientPersistenceImpl.FINDER_CLASS_NAME_LIST,
 			"getKaleoNotificationRecipientsSize",
 			new String[] { Long.class.getName() });
@@ -2086,6 +2092,7 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 	public static final FinderPath FINDER_PATH_CONTAINS_KALEONOTIFICATIONRECIPIENT =
 		new FinderPath(com.liferay.portal.workflow.kaleo.model.impl.KaleoNotificationRecipientModelImpl.ENTITY_CACHE_ENABLED,
 			com.liferay.portal.workflow.kaleo.model.impl.KaleoNotificationRecipientModelImpl.FINDER_CACHE_ENABLED,
+			com.liferay.portal.workflow.kaleo.model.impl.KaleoNotificationRecipientImpl.class,
 			com.liferay.portal.workflow.kaleo.service.persistence.KaleoNotificationRecipientPersistenceImpl.FINDER_CLASS_NAME_LIST,
 			"containsKaleoNotificationRecipient",
 			new String[] { Long.class.getName(), Long.class.getName() });

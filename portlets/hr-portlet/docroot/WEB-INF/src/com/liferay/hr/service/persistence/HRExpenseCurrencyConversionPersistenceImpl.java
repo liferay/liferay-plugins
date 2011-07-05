@@ -80,24 +80,26 @@ public class HRExpenseCurrencyConversionPersistenceImpl
 		".List";
 	public static final FinderPath FINDER_PATH_FETCH_BY_G_F_T_C = new FinderPath(HRExpenseCurrencyConversionModelImpl.ENTITY_CACHE_ENABLED,
 			HRExpenseCurrencyConversionModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_ENTITY, "fetchByG_F_T_C",
+			HRExpenseCurrencyConversionImpl.class, FINDER_CLASS_NAME_ENTITY,
+			"fetchByG_F_T_C",
 			new String[] {
 				Long.class.getName(), Long.class.getName(), Long.class.getName(),
 				Date.class.getName()
 			});
 	public static final FinderPath FINDER_PATH_COUNT_BY_G_F_T_C = new FinderPath(HRExpenseCurrencyConversionModelImpl.ENTITY_CACHE_ENABLED,
 			HRExpenseCurrencyConversionModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "countByG_F_T_C",
+			Long.class, FINDER_CLASS_NAME_LIST, "countByG_F_T_C",
 			new String[] {
 				Long.class.getName(), Long.class.getName(), Long.class.getName(),
 				Date.class.getName()
 			});
 	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(HRExpenseCurrencyConversionModelImpl.ENTITY_CACHE_ENABLED,
 			HRExpenseCurrencyConversionModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findAll", new String[0]);
+			HRExpenseCurrencyConversionImpl.class, FINDER_CLASS_NAME_LIST,
+			"findAll", new String[0]);
 	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(HRExpenseCurrencyConversionModelImpl.ENTITY_CACHE_ENABLED,
 			HRExpenseCurrencyConversionModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "countAll", new String[0]);
+			Long.class, FINDER_CLASS_NAME_LIST, "countAll", new String[0]);
 
 	/**
 	 * Caches the h r expense currency conversion in the entity cache if it is enabled.

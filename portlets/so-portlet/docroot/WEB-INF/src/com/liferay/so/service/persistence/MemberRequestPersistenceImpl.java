@@ -80,15 +80,16 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 		".List";
 	public static final FinderPath FINDER_PATH_FETCH_BY_KEY = new FinderPath(MemberRequestModelImpl.ENTITY_CACHE_ENABLED,
 			MemberRequestModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_ENTITY, "fetchByKey",
+			MemberRequestImpl.class, FINDER_CLASS_NAME_ENTITY, "fetchByKey",
 			new String[] { String.class.getName() });
 	public static final FinderPath FINDER_PATH_COUNT_BY_KEY = new FinderPath(MemberRequestModelImpl.ENTITY_CACHE_ENABLED,
-			MemberRequestModelImpl.FINDER_CACHE_ENABLED,
+			MemberRequestModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST, "countByKey",
 			new String[] { String.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_BY_RECEIVERUSERID = new FinderPath(MemberRequestModelImpl.ENTITY_CACHE_ENABLED,
 			MemberRequestModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findByReceiverUserId",
+			MemberRequestImpl.class, FINDER_CLASS_NAME_LIST,
+			"findByReceiverUserId",
 			new String[] {
 				Long.class.getName(),
 				
@@ -96,12 +97,12 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
 	public static final FinderPath FINDER_PATH_COUNT_BY_RECEIVERUSERID = new FinderPath(MemberRequestModelImpl.ENTITY_CACHE_ENABLED,
-			MemberRequestModelImpl.FINDER_CACHE_ENABLED,
+			MemberRequestModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST, "countByReceiverUserId",
 			new String[] { Long.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_BY_R_S = new FinderPath(MemberRequestModelImpl.ENTITY_CACHE_ENABLED,
 			MemberRequestModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findByR_S",
+			MemberRequestImpl.class, FINDER_CLASS_NAME_LIST, "findByR_S",
 			new String[] {
 				Long.class.getName(), Integer.class.getName(),
 				
@@ -109,18 +110,18 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
 	public static final FinderPath FINDER_PATH_COUNT_BY_R_S = new FinderPath(MemberRequestModelImpl.ENTITY_CACHE_ENABLED,
-			MemberRequestModelImpl.FINDER_CACHE_ENABLED,
+			MemberRequestModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST, "countByR_S",
 			new String[] { Long.class.getName(), Integer.class.getName() });
 	public static final FinderPath FINDER_PATH_FETCH_BY_G_R_S = new FinderPath(MemberRequestModelImpl.ENTITY_CACHE_ENABLED,
 			MemberRequestModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_ENTITY, "fetchByG_R_S",
+			MemberRequestImpl.class, FINDER_CLASS_NAME_ENTITY, "fetchByG_R_S",
 			new String[] {
 				Long.class.getName(), Long.class.getName(),
 				Integer.class.getName()
 			});
 	public static final FinderPath FINDER_PATH_COUNT_BY_G_R_S = new FinderPath(MemberRequestModelImpl.ENTITY_CACHE_ENABLED,
-			MemberRequestModelImpl.FINDER_CACHE_ENABLED,
+			MemberRequestModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST, "countByG_R_S",
 			new String[] {
 				Long.class.getName(), Long.class.getName(),
@@ -128,9 +129,10 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 			});
 	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(MemberRequestModelImpl.ENTITY_CACHE_ENABLED,
 			MemberRequestModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findAll", new String[0]);
+			MemberRequestImpl.class, FINDER_CLASS_NAME_LIST, "findAll",
+			new String[0]);
 	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(MemberRequestModelImpl.ENTITY_CACHE_ENABLED,
-			MemberRequestModelImpl.FINDER_CACHE_ENABLED,
+			MemberRequestModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST, "countAll", new String[0]);
 
 	/**

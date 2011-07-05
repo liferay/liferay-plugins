@@ -80,7 +80,8 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 		".List";
 	public static final FinderPath FINDER_PATH_FIND_BY_COMPANYID = new FinderPath(KaleoDefinitionModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoDefinitionModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findByCompanyId",
+			KaleoDefinitionImpl.class, FINDER_CLASS_NAME_LIST,
+			"findByCompanyId",
 			new String[] {
 				Long.class.getName(),
 				
@@ -88,12 +89,12 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
 	public static final FinderPath FINDER_PATH_COUNT_BY_COMPANYID = new FinderPath(KaleoDefinitionModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoDefinitionModelImpl.FINDER_CACHE_ENABLED,
+			KaleoDefinitionModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST, "countByCompanyId",
 			new String[] { Long.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_BY_C_N = new FinderPath(KaleoDefinitionModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoDefinitionModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findByC_N",
+			KaleoDefinitionImpl.class, FINDER_CLASS_NAME_LIST, "findByC_N",
 			new String[] {
 				Long.class.getName(), String.class.getName(),
 				
@@ -101,12 +102,12 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
 	public static final FinderPath FINDER_PATH_COUNT_BY_C_N = new FinderPath(KaleoDefinitionModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoDefinitionModelImpl.FINDER_CACHE_ENABLED,
+			KaleoDefinitionModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST, "countByC_N",
 			new String[] { Long.class.getName(), String.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_BY_C_A = new FinderPath(KaleoDefinitionModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoDefinitionModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findByC_A",
+			KaleoDefinitionImpl.class, FINDER_CLASS_NAME_LIST, "findByC_A",
 			new String[] {
 				Long.class.getName(), Boolean.class.getName(),
 				
@@ -114,18 +115,19 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
 	public static final FinderPath FINDER_PATH_COUNT_BY_C_A = new FinderPath(KaleoDefinitionModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoDefinitionModelImpl.FINDER_CACHE_ENABLED,
+			KaleoDefinitionModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST, "countByC_A",
 			new String[] { Long.class.getName(), Boolean.class.getName() });
 	public static final FinderPath FINDER_PATH_FETCH_BY_C_N_V = new FinderPath(KaleoDefinitionModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoDefinitionModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_ENTITY, "fetchByC_N_V",
+			KaleoDefinitionImpl.class, FINDER_CLASS_NAME_ENTITY,
+			"fetchByC_N_V",
 			new String[] {
 				Long.class.getName(), String.class.getName(),
 				Integer.class.getName()
 			});
 	public static final FinderPath FINDER_PATH_COUNT_BY_C_N_V = new FinderPath(KaleoDefinitionModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoDefinitionModelImpl.FINDER_CACHE_ENABLED,
+			KaleoDefinitionModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST, "countByC_N_V",
 			new String[] {
 				Long.class.getName(), String.class.getName(),
@@ -133,7 +135,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 			});
 	public static final FinderPath FINDER_PATH_FIND_BY_C_N_A = new FinderPath(KaleoDefinitionModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoDefinitionModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findByC_N_A",
+			KaleoDefinitionImpl.class, FINDER_CLASS_NAME_LIST, "findByC_N_A",
 			new String[] {
 				Long.class.getName(), String.class.getName(),
 				Boolean.class.getName(),
@@ -142,7 +144,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
 	public static final FinderPath FINDER_PATH_COUNT_BY_C_N_A = new FinderPath(KaleoDefinitionModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoDefinitionModelImpl.FINDER_CACHE_ENABLED,
+			KaleoDefinitionModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST, "countByC_N_A",
 			new String[] {
 				Long.class.getName(), String.class.getName(),
@@ -150,9 +152,10 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 			});
 	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(KaleoDefinitionModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoDefinitionModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findAll", new String[0]);
+			KaleoDefinitionImpl.class, FINDER_CLASS_NAME_LIST, "findAll",
+			new String[0]);
 	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(KaleoDefinitionModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoDefinitionModelImpl.FINDER_CACHE_ENABLED,
+			KaleoDefinitionModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST, "countAll", new String[0]);
 
 	/**
@@ -2803,6 +2806,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 
 	public static final FinderPath FINDER_PATH_GET_KALEONODES = new FinderPath(com.liferay.portal.workflow.kaleo.model.impl.KaleoNodeModelImpl.ENTITY_CACHE_ENABLED,
 			com.liferay.portal.workflow.kaleo.model.impl.KaleoNodeModelImpl.FINDER_CACHE_ENABLED,
+			com.liferay.portal.workflow.kaleo.model.impl.KaleoNodeImpl.class,
 			com.liferay.portal.workflow.kaleo.service.persistence.KaleoNodePersistenceImpl.FINDER_CLASS_NAME_LIST,
 			"getKaleoNodes",
 			new String[] {
@@ -2887,6 +2891,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 
 	public static final FinderPath FINDER_PATH_GET_KALEONODES_SIZE = new FinderPath(com.liferay.portal.workflow.kaleo.model.impl.KaleoNodeModelImpl.ENTITY_CACHE_ENABLED,
 			com.liferay.portal.workflow.kaleo.model.impl.KaleoNodeModelImpl.FINDER_CACHE_ENABLED,
+			com.liferay.portal.workflow.kaleo.model.impl.KaleoNodeImpl.class,
 			com.liferay.portal.workflow.kaleo.service.persistence.KaleoNodePersistenceImpl.FINDER_CLASS_NAME_LIST,
 			"getKaleoNodesSize", new String[] { Long.class.getName() });
 
@@ -2940,6 +2945,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 
 	public static final FinderPath FINDER_PATH_CONTAINS_KALEONODE = new FinderPath(com.liferay.portal.workflow.kaleo.model.impl.KaleoNodeModelImpl.ENTITY_CACHE_ENABLED,
 			com.liferay.portal.workflow.kaleo.model.impl.KaleoNodeModelImpl.FINDER_CACHE_ENABLED,
+			com.liferay.portal.workflow.kaleo.model.impl.KaleoNodeImpl.class,
 			com.liferay.portal.workflow.kaleo.service.persistence.KaleoNodePersistenceImpl.FINDER_CLASS_NAME_LIST,
 			"containsKaleoNode",
 			new String[] { Long.class.getName(), Long.class.getName() });

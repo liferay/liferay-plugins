@@ -75,8 +75,8 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	public static final String FINDER_CLASS_NAME_LIST = FINDER_CLASS_NAME_ENTITY +
 		".List";
 	public static final FinderPath FINDER_PATH_FIND_BY_COMPANYID = new FinderPath(MessageModelImpl.ENTITY_CACHE_ENABLED,
-			MessageModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findByCompanyId",
+			MessageModelImpl.FINDER_CACHE_ENABLED, MessageImpl.class,
+			FINDER_CLASS_NAME_LIST, "findByCompanyId",
 			new String[] {
 				Long.class.getName(),
 				
@@ -84,11 +84,12 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
 	public static final FinderPath FINDER_PATH_COUNT_BY_COMPANYID = new FinderPath(MessageModelImpl.ENTITY_CACHE_ENABLED,
-			MessageModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countByCompanyId", new String[] { Long.class.getName() });
+			MessageModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST, "countByCompanyId",
+			new String[] { Long.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_BY_FOLDERID = new FinderPath(MessageModelImpl.ENTITY_CACHE_ENABLED,
-			MessageModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findByFolderId",
+			MessageModelImpl.FINDER_CACHE_ENABLED, MessageImpl.class,
+			FINDER_CLASS_NAME_LIST, "findByFolderId",
 			new String[] {
 				Long.class.getName(),
 				
@@ -96,22 +97,23 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
 	public static final FinderPath FINDER_PATH_COUNT_BY_FOLDERID = new FinderPath(MessageModelImpl.ENTITY_CACHE_ENABLED,
-			MessageModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countByFolderId", new String[] { Long.class.getName() });
+			MessageModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST, "countByFolderId",
+			new String[] { Long.class.getName() });
 	public static final FinderPath FINDER_PATH_FETCH_BY_F_R = new FinderPath(MessageModelImpl.ENTITY_CACHE_ENABLED,
-			MessageModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_ENTITY,
-			"fetchByF_R",
+			MessageModelImpl.FINDER_CACHE_ENABLED, MessageImpl.class,
+			FINDER_CLASS_NAME_ENTITY, "fetchByF_R",
 			new String[] { Long.class.getName(), Long.class.getName() });
 	public static final FinderPath FINDER_PATH_COUNT_BY_F_R = new FinderPath(MessageModelImpl.ENTITY_CACHE_ENABLED,
-			MessageModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countByF_R",
+			MessageModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST, "countByF_R",
 			new String[] { Long.class.getName(), Long.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(MessageModelImpl.ENTITY_CACHE_ENABLED,
-			MessageModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findAll", new String[0]);
+			MessageModelImpl.FINDER_CACHE_ENABLED, MessageImpl.class,
+			FINDER_CLASS_NAME_LIST, "findAll", new String[0]);
 	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(MessageModelImpl.ENTITY_CACHE_ENABLED,
-			MessageModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countAll", new String[0]);
+			MessageModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST, "countAll", new String[0]);
 
 	/**
 	 * Caches the message in the entity cache if it is enabled.

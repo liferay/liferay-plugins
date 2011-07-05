@@ -76,8 +76,8 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 	public static final String FINDER_CLASS_NAME_LIST = FINDER_CLASS_NAME_ENTITY +
 		".List";
 	public static final FinderPath FINDER_PATH_FIND_BY_ACCOUNTID = new FinderPath(FolderModelImpl.ENTITY_CACHE_ENABLED,
-			FolderModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findByAccountId",
+			FolderModelImpl.FINDER_CACHE_ENABLED, FolderImpl.class,
+			FINDER_CLASS_NAME_LIST, "findByAccountId",
 			new String[] {
 				Long.class.getName(),
 				
@@ -85,22 +85,23 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
 	public static final FinderPath FINDER_PATH_COUNT_BY_ACCOUNTID = new FinderPath(FolderModelImpl.ENTITY_CACHE_ENABLED,
-			FolderModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countByAccountId", new String[] { Long.class.getName() });
+			FolderModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST, "countByAccountId",
+			new String[] { Long.class.getName() });
 	public static final FinderPath FINDER_PATH_FETCH_BY_A_F = new FinderPath(FolderModelImpl.ENTITY_CACHE_ENABLED,
-			FolderModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_ENTITY,
-			"fetchByA_F",
+			FolderModelImpl.FINDER_CACHE_ENABLED, FolderImpl.class,
+			FINDER_CLASS_NAME_ENTITY, "fetchByA_F",
 			new String[] { Long.class.getName(), String.class.getName() });
 	public static final FinderPath FINDER_PATH_COUNT_BY_A_F = new FinderPath(FolderModelImpl.ENTITY_CACHE_ENABLED,
-			FolderModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countByA_F",
+			FolderModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST, "countByA_F",
 			new String[] { Long.class.getName(), String.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(FolderModelImpl.ENTITY_CACHE_ENABLED,
-			FolderModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findAll", new String[0]);
+			FolderModelImpl.FINDER_CACHE_ENABLED, FolderImpl.class,
+			FINDER_CLASS_NAME_LIST, "findAll", new String[0]);
 	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(FolderModelImpl.ENTITY_CACHE_ENABLED,
-			FolderModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countAll", new String[0]);
+			FolderModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST, "countAll", new String[0]);
 
 	/**
 	 * Caches the folder in the entity cache if it is enabled.
