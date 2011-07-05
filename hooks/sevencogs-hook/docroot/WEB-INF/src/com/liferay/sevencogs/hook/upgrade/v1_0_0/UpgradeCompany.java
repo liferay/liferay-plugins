@@ -14,11 +14,11 @@
 
 package com.liferay.sevencogs.hook.upgrade.v1_0_0;
 
-import com.liferay.documentlibrary.DuplicateFileException;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.Folder;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
+import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ObjectValuePair;
@@ -63,6 +63,7 @@ import com.liferay.portlet.asset.service.AssetCategoryLocalServiceUtil;
 import com.liferay.portlet.asset.service.AssetVocabularyLocalServiceUtil;
 import com.liferay.portlet.blogs.model.BlogsEntry;
 import com.liferay.portlet.blogs.service.BlogsEntryLocalServiceUtil;
+import com.liferay.portlet.documentlibrary.DuplicateFileException;
 import com.liferay.portlet.documentlibrary.service.DLAppLocalServiceUtil;
 import com.liferay.portlet.imagegallery.model.IGFolder;
 import com.liferay.portlet.imagegallery.model.IGImage;
@@ -146,7 +147,7 @@ public class UpgradeCompany extends UpgradeProcess {
 
 	protected FileEntry addDLFileEntry(
 			long userId, long groupId, long folderId, String fileName,
-			String name, String title, String description,
+			String name, String mimeType, String title, String description,
 			ServiceContext serviceContext)
 		throws Exception {
 
@@ -157,13 +158,13 @@ public class UpgradeCompany extends UpgradeProcess {
 
 		try {
 			return DLAppLocalServiceUtil.addFileEntry(
-				userId, groupId, folderId, title, description, StringPool.BLANK,
-				bytes, serviceContext);
+				userId, groupId, folderId, mimeType, title, description,
+				StringPool.BLANK, bytes, serviceContext);
 		}
 		catch (DuplicateFileException dfe) {
 			return DLAppLocalServiceUtil.updateFileEntry(
-				userId, groupId, name, title, description, StringPool.BLANK,
-				true, bytes, serviceContext);
+				userId, groupId, name, mimeType, title, description,
+				StringPool.BLANK, true, bytes, serviceContext);
 		}
 	}
 
@@ -1887,7 +1888,8 @@ public class UpgradeCompany extends UpgradeProcess {
 
 		addDLFileEntry(
 			brunoUser.getUserId(), Folder.getGroupId(), Folder.getFolderId(),
-			"/users/document_library/Budget.xls", "Budget.xls", "Budget",
+			"/users/document_library/Budget.xls", "Budget.xls",
+			ContentTypes.APPLICATION_VND_MS_EXCEL, "Budget",
 			"Budgets for the current year", serviceContext);
 
 		addDLFolder(
@@ -1904,8 +1906,8 @@ public class UpgradeCompany extends UpgradeProcess {
 		addDLFileEntry(
 			michelleUser.getUserId(), Folder.getGroupId(), Folder.getFolderId(),
 			"/users/document_library/Notes from the last meeting.doc",
-			"Notes from the last meeting.doc", "Notes from the last meeting",
-			"Important notes", serviceContext);
+			"Notes from the last meeting.doc", ContentTypes.APPLICATION_MSWORD,
+			"Notes from the last meeting", "Important notes", serviceContext);
 
 		addDLFolder(
 			richardUser.getUserId(), richardUser.getGroup().getGroupId(),
@@ -1921,7 +1923,8 @@ public class UpgradeCompany extends UpgradeProcess {
 		addDLFileEntry(
 			richardUser.getUserId(), Folder.getGroupId(), Folder.getFolderId(),
 			"/users/document_library/New Features.ppt", "New Features.ppt",
-			"New Features", "Features for the current year", serviceContext);
+			ContentTypes.APPLICATION_VND_MS_POWERPOINT, "New Features",
+			"Features for the current year", serviceContext);
 
 		// Message boards
 
