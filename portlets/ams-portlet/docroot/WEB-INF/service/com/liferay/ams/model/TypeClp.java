@@ -14,7 +14,10 @@
 
 package com.liferay.ams.model;
 
+import com.liferay.ams.service.TypeLocalServiceUtil;
+
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.impl.BaseModelImpl;
 
@@ -75,6 +78,10 @@ public class TypeClp extends BaseModelImpl<Type> implements Type {
 
 	public void setName(String name) {
 		_name = name;
+	}
+
+	public void save() throws SystemException {
+		TypeLocalServiceUtil.updateType(this);
 	}
 
 	@Override

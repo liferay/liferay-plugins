@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
+import com.liferay.portal.workflow.kaleo.service.KaleoNodeLocalServiceUtil;
 
 import java.io.Serializable;
 
@@ -192,6 +193,10 @@ public class KaleoNodeClp extends BaseModelImpl<KaleoNode> implements KaleoNode 
 
 	public boolean hasKaleoTransition() {
 		throw new UnsupportedOperationException();
+	}
+
+	public void save() throws SystemException {
+		KaleoNodeLocalServiceUtil.updateKaleoNode(this);
 	}
 
 	@Override

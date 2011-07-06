@@ -300,7 +300,7 @@ public abstract class HRExpenseTypeLocalServiceBaseImpl
 	}
 
 	/**
-	 * Updates the h r expense type in the database. Also notifies the appropriate model listeners.
+	 * Updates the h r expense type in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	 *
 	 * @param hrExpenseType the h r expense type
 	 * @return the h r expense type that was updated
@@ -312,7 +312,7 @@ public abstract class HRExpenseTypeLocalServiceBaseImpl
 	}
 
 	/**
-	 * Updates the h r expense type in the database. Also notifies the appropriate model listeners.
+	 * Updates the h r expense type in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	 *
 	 * @param hrExpenseType the h r expense type
 	 * @param merge whether to merge the h r expense type with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.

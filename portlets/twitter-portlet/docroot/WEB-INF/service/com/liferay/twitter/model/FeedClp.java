@@ -20,6 +20,8 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
 
+import com.liferay.twitter.service.FeedLocalServiceUtil;
+
 import java.io.Serializable;
 
 import java.lang.reflect.Proxy;
@@ -144,6 +146,10 @@ public class FeedClp extends BaseModelImpl<Feed> implements Feed {
 
 	public void setLastStatusId(long lastStatusId) {
 		_lastStatusId = lastStatusId;
+	}
+
+	public void save() throws SystemException {
+		FeedLocalServiceUtil.updateFeed(this);
 	}
 
 	@Override

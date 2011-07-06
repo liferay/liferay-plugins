@@ -20,7 +20,7 @@ import com.liferay.wsrp.model.WSRPConsumerPortlet;
  * @author Brian Wing Shun Chan
  */
 public class WSRPConsumerPortletImpl
-	extends WSRPConsumerPortletModelImpl implements WSRPConsumerPortlet {
+	extends WSRPConsumerPortletBaseImpl {
 
 	public WSRPConsumerPortletImpl() {
 	}

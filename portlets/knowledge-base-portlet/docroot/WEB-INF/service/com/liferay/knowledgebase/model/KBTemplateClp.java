@@ -14,6 +14,8 @@
 
 package com.liferay.knowledgebase.model;
 
+import com.liferay.knowledgebase.service.KBTemplateLocalServiceUtil;
+
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.DateUtil;
@@ -173,6 +175,10 @@ public class KBTemplateClp extends BaseModelImpl<KBTemplate>
 
 	public boolean isVelocity() {
 		throw new UnsupportedOperationException();
+	}
+
+	public void save() throws SystemException {
+		KBTemplateLocalServiceUtil.updateKBTemplate(this);
 	}
 
 	@Override

@@ -482,6 +482,11 @@ public class KaleoDefinitionWrapper implements KaleoDefinition {
 		return _kaleoDefinition.toXmlString();
 	}
 
+	public void save()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_kaleoDefinition.save();
+	}
+
 	public com.liferay.portal.workflow.kaleo.model.KaleoNode getKaleoStartNode()
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {

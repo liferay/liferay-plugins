@@ -14,8 +14,10 @@
 
 package com.liferay.mail.model;
 
+import com.liferay.portal.model.SaveableModel;
+
 /**
- * The model interface for the Folder service. Represents a row in the &quot;Mail_Folder&quot; database table, with each column mapped to a property of this class.
+ * The extended model interface for the Folder service. Represents a row in the &quot;Mail_Folder&quot; database table, with each column mapped to a property of this class.
  *
  * @author Brian Wing Shun Chan
  * @see FolderModel
@@ -23,7 +25,7 @@ package com.liferay.mail.model;
  * @see com.liferay.mail.model.impl.FolderModelImpl
  * @generated
  */
-public interface Folder extends FolderModel {
+public interface Folder extends FolderModel, SaveableModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *

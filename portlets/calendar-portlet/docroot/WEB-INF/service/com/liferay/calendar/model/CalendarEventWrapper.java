@@ -723,6 +723,11 @@ public class CalendarEventWrapper implements CalendarEvent {
 		return _calendarEvent.toXmlString();
 	}
 
+	public void save()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_calendarEvent.save();
+	}
+
 	public CalendarEvent getWrappedCalendarEvent() {
 		return _calendarEvent;
 	}

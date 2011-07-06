@@ -15,9 +15,12 @@
 package com.liferay.socialcoding.model;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.impl.BaseModelImpl;
+
+import com.liferay.socialcoding.service.JIRAActionLocalServiceUtil;
 
 import java.io.Serializable;
 
@@ -119,6 +122,10 @@ public class JIRAActionClp extends BaseModelImpl<JIRAAction>
 
 	public void setJiraGroupName(String jiraGroupName) {
 		_jiraGroupName = jiraGroupName;
+	}
+
+	public void save() throws SystemException {
+		JIRAActionLocalServiceUtil.updateJIRAAction(this);
 	}
 
 	@Override

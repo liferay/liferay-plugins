@@ -431,6 +431,11 @@ public class KaleoActionWrapper implements KaleoAction {
 		return _kaleoAction.toXmlString();
 	}
 
+	public void save()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_kaleoAction.save();
+	}
+
 	public KaleoAction getWrappedKaleoAction() {
 		return _kaleoAction;
 	}

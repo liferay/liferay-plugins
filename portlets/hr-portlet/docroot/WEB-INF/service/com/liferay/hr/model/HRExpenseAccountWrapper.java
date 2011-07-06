@@ -304,6 +304,11 @@ public class HRExpenseAccountWrapper implements HRExpenseAccount {
 		return _hrExpenseAccount.toXmlString();
 	}
 
+	public void save()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_hrExpenseAccount.save();
+	}
+
 	public HRExpenseAccount getWrappedHRExpenseAccount() {
 		return _hrExpenseAccount;
 	}

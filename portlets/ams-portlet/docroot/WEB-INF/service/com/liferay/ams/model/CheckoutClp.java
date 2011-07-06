@@ -14,6 +14,8 @@
 
 package com.liferay.ams.model;
 
+import com.liferay.ams.service.CheckoutLocalServiceUtil;
+
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -143,6 +145,10 @@ public class CheckoutClp extends BaseModelImpl<Checkout> implements Checkout {
 
 	public void setActualCheckInDate(Date actualCheckInDate) {
 		_actualCheckInDate = actualCheckInDate;
+	}
+
+	public void save() throws SystemException {
+		CheckoutLocalServiceUtil.updateCheckout(this);
 	}
 
 	@Override

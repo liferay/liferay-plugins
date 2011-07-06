@@ -14,8 +14,10 @@
 
 package com.liferay.mail.model;
 
+import com.liferay.portal.model.SaveableModel;
+
 /**
- * The model interface for the Attachment service. Represents a row in the &quot;Mail_Attachment&quot; database table, with each column mapped to a property of this class.
+ * The extended model interface for the Attachment service. Represents a row in the &quot;Mail_Attachment&quot; database table, with each column mapped to a property of this class.
  *
  * @author Brian Wing Shun Chan
  * @see AttachmentModel
@@ -23,7 +25,7 @@ package com.liferay.mail.model;
  * @see com.liferay.mail.model.impl.AttachmentModelImpl
  * @generated
  */
-public interface Attachment extends AttachmentModel {
+public interface Attachment extends AttachmentModel, SaveableModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *

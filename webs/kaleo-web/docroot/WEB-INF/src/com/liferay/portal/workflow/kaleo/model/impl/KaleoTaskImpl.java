@@ -27,7 +27,7 @@ import java.util.List;
 /**
  * @author Brian Wing Shun Chan
  */
-public class KaleoTaskImpl extends KaleoTaskModelImpl implements KaleoTask {
+public class KaleoTaskImpl extends KaleoTaskBaseImpl {
 
 	public KaleoTaskImpl() {
 	}

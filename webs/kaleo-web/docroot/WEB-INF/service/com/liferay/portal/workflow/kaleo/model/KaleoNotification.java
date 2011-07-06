@@ -14,8 +14,10 @@
 
 package com.liferay.portal.workflow.kaleo.model;
 
+import com.liferay.portal.model.SaveableModel;
+
 /**
- * The model interface for the KaleoNotification service. Represents a row in the &quot;KaleoNotification&quot; database table, with each column mapped to a property of this class.
+ * The extended model interface for the KaleoNotification service. Represents a row in the &quot;KaleoNotification&quot; database table, with each column mapped to a property of this class.
  *
  * @author Brian Wing Shun Chan
  * @see KaleoNotificationModel
@@ -23,7 +25,7 @@ package com.liferay.portal.workflow.kaleo.model;
  * @see com.liferay.portal.workflow.kaleo.model.impl.KaleoNotificationModelImpl
  * @generated
  */
-public interface KaleoNotification extends KaleoNotificationModel {
+public interface KaleoNotification extends KaleoNotificationModel, SaveableModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *

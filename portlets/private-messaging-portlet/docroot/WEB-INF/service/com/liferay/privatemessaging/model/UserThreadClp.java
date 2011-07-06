@@ -21,6 +21,8 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
 
+import com.liferay.privatemessaging.service.UserThreadLocalServiceUtil;
+
 import java.io.Serializable;
 
 import java.lang.reflect.Proxy;
@@ -145,6 +147,10 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 
 	public void setDeleted(boolean deleted) {
 		_deleted = deleted;
+	}
+
+	public void save() throws SystemException {
+		UserThreadLocalServiceUtil.updateUserThread(this);
 	}
 
 	@Override

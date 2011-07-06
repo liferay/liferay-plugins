@@ -20,7 +20,7 @@ import com.liferay.hr.model.HRTaskStatus;
  * @author Wesley Gong
  */
 public class HRTaskStatusImpl
-	extends HRTaskStatusModelImpl implements HRTaskStatus {
+	extends HRTaskStatusBaseImpl {
 
 	public HRTaskStatusImpl() {
 	}

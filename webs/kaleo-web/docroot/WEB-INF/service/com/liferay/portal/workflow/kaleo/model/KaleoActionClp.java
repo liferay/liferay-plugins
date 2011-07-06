@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
+import com.liferay.portal.workflow.kaleo.service.KaleoActionLocalServiceUtil;
 
 import java.io.Serializable;
 
@@ -192,6 +193,10 @@ public class KaleoActionClp extends BaseModelImpl<KaleoAction>
 
 	public void setPriority(int priority) {
 		_priority = priority;
+	}
+
+	public void save() throws SystemException {
+		KaleoActionLocalServiceUtil.updateKaleoAction(this);
 	}
 
 	@Override

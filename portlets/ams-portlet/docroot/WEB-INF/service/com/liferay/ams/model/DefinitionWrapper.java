@@ -376,6 +376,11 @@ public class DefinitionWrapper implements Definition {
 		return _definition.toXmlString();
 	}
 
+	public void save()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_definition.save();
+	}
+
 	public Definition getWrappedDefinition() {
 		return _definition;
 	}

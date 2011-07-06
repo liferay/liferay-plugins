@@ -186,7 +186,7 @@ public interface MessageLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Updates the message in the database. Also notifies the appropriate model listeners.
+	* Updates the message in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	*
 	* @param message the message
 	* @return the message that was updated
@@ -197,7 +197,7 @@ public interface MessageLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Updates the message in the database. Also notifies the appropriate model listeners.
+	* Updates the message in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	*
 	* @param message the message
 	* @param merge whether to merge the message with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.

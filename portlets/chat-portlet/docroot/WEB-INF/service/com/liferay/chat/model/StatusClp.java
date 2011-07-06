@@ -14,6 +14,8 @@
 
 package com.liferay.chat.model;
 
+import com.liferay.chat.service.StatusLocalServiceUtil;
+
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -137,6 +139,10 @@ public class StatusClp extends BaseModelImpl<Status> implements Status {
 
 	public void setPlaySound(boolean playSound) {
 		_playSound = playSound;
+	}
+
+	public void save() throws SystemException {
+		StatusLocalServiceUtil.updateStatus(this);
 	}
 
 	@Override

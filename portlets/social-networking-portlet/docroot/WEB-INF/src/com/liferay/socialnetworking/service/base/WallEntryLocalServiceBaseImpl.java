@@ -263,7 +263,7 @@ public abstract class WallEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Updates the wall entry in the database. Also notifies the appropriate model listeners.
+	 * Updates the wall entry in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	 *
 	 * @param wallEntry the wall entry
 	 * @return the wall entry that was updated
@@ -275,7 +275,7 @@ public abstract class WallEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Updates the wall entry in the database. Also notifies the appropriate model listeners.
+	 * Updates the wall entry in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	 *
 	 * @param wallEntry the wall entry
 	 * @param merge whether to merge the wall entry with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.

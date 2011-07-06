@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
+import com.liferay.portal.workflow.kaleo.service.KaleoTimerLocalServiceUtil;
 
 import java.io.Serializable;
 
@@ -188,6 +189,10 @@ public class KaleoTimerClp extends BaseModelImpl<KaleoTimer>
 
 	public void setScale(String scale) {
 		_scale = scale;
+	}
+
+	public void save() throws SystemException {
+		KaleoTimerLocalServiceUtil.updateKaleoTimer(this);
 	}
 
 	@Override

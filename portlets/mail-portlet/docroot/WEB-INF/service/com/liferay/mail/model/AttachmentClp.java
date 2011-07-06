@@ -14,6 +14,8 @@
 
 package com.liferay.mail.model;
 
+import com.liferay.mail.service.AttachmentLocalServiceUtil;
+
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -134,6 +136,10 @@ public class AttachmentClp extends BaseModelImpl<Attachment>
 
 	public void setSize(long size) {
 		_size = size;
+	}
+
+	public void save() throws SystemException {
+		AttachmentLocalServiceUtil.updateAttachment(this);
 	}
 
 	@Override

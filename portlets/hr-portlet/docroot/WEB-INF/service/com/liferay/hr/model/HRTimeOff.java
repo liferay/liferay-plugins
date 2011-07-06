@@ -15,7 +15,7 @@
 package com.liferay.hr.model;
 
 /**
- * The model interface for the HRTimeOff service. Represents a row in the &quot;HRTimeOff&quot; database table, with each column mapped to a property of this class.
+ * The extended model interface for the HRTimeOff service. Represents a row in the &quot;HRTimeOff&quot; database table, with each column mapped to a property of this class.
  *
  * @author Wesley Gong
  * @see HRTimeOffModel

@@ -322,6 +322,11 @@ public class WSRPConsumerWrapper implements WSRPConsumer {
 		return _wsrpConsumer.toXmlString();
 	}
 
+	public void save()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_wsrpConsumer.save();
+	}
+
 	public oasis.names.tc.wsrp.v2.types.RegistrationContext getRegistrationContext() {
 		return _wsrpConsumer.getRegistrationContext();
 	}

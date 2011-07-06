@@ -201,7 +201,7 @@ public class CheckoutLocalServiceUtil {
 	}
 
 	/**
-	* Updates the checkout in the database. Also notifies the appropriate model listeners.
+	* Updates the checkout in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	*
 	* @param checkout the checkout
 	* @return the checkout that was updated
@@ -214,7 +214,7 @@ public class CheckoutLocalServiceUtil {
 	}
 
 	/**
-	* Updates the checkout in the database. Also notifies the appropriate model listeners.
+	* Updates the checkout in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	*
 	* @param checkout the checkout
 	* @param merge whether to merge the checkout with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.

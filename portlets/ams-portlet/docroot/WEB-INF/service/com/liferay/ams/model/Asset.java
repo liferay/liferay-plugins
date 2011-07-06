@@ -14,8 +14,10 @@
 
 package com.liferay.ams.model;
 
+import com.liferay.portal.model.SaveableModel;
+
 /**
- * The model interface for the Asset service. Represents a row in the &quot;AMS_Asset&quot; database table, with each column mapped to a property of this class.
+ * The extended model interface for the Asset service. Represents a row in the &quot;AMS_Asset&quot; database table, with each column mapped to a property of this class.
  *
  * @author Brian Wing Shun Chan
  * @see AssetModel
@@ -23,7 +25,7 @@ package com.liferay.ams.model;
  * @see com.liferay.ams.model.impl.AssetModelImpl
  * @generated
  */
-public interface Asset extends AssetModel {
+public interface Asset extends AssetModel, SaveableModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *

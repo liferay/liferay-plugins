@@ -15,9 +15,12 @@
 package com.liferay.socialcoding.model;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.impl.BaseModelImpl;
+
+import com.liferay.socialcoding.service.JIRAChangeGroupLocalServiceUtil;
 
 import java.io.Serializable;
 
@@ -87,6 +90,10 @@ public class JIRAChangeGroupClp extends BaseModelImpl<JIRAChangeGroup>
 
 	public void setJiraIssueId(long jiraIssueId) {
 		_jiraIssueId = jiraIssueId;
+	}
+
+	public void save() throws SystemException {
+		JIRAChangeGroupLocalServiceUtil.updateJIRAChangeGroup(this);
 	}
 
 	@Override

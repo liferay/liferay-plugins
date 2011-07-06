@@ -14,8 +14,10 @@
 
 package com.liferay.wsrp.model;
 
+import com.liferay.portal.model.SaveableModel;
+
 /**
- * The model interface for the WSRPConsumerPortlet service. Represents a row in the &quot;WSRP_WSRPConsumerPortlet&quot; database table, with each column mapped to a property of this class.
+ * The extended model interface for the WSRPConsumerPortlet service. Represents a row in the &quot;WSRP_WSRPConsumerPortlet&quot; database table, with each column mapped to a property of this class.
  *
  * @author Brian Wing Shun Chan
  * @see WSRPConsumerPortletModel
@@ -23,7 +25,8 @@ package com.liferay.wsrp.model;
  * @see com.liferay.wsrp.model.impl.WSRPConsumerPortletModelImpl
  * @generated
  */
-public interface WSRPConsumerPortlet extends WSRPConsumerPortletModel {
+public interface WSRPConsumerPortlet extends WSRPConsumerPortletModel,
+	SaveableModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *

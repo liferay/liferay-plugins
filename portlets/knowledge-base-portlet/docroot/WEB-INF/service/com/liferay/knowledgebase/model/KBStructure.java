@@ -14,8 +14,10 @@
 
 package com.liferay.knowledgebase.model;
 
+import com.liferay.portal.model.SaveableModel;
+
 /**
- * The model interface for the KBStructure service. Represents a row in the &quot;KBStructure&quot; database table, with each column mapped to a property of this class.
+ * The extended model interface for the KBStructure service. Represents a row in the &quot;KBStructure&quot; database table, with each column mapped to a property of this class.
  *
  * @author Brian Wing Shun Chan
  * @see KBStructureModel
@@ -23,7 +25,7 @@ package com.liferay.knowledgebase.model;
  * @see com.liferay.knowledgebase.model.impl.KBStructureModelImpl
  * @generated
  */
-public interface KBStructure extends KBStructureModel {
+public interface KBStructure extends KBStructureModel, SaveableModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *

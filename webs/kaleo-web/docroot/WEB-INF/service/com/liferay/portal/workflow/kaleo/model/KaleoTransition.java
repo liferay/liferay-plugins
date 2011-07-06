@@ -14,8 +14,10 @@
 
 package com.liferay.portal.workflow.kaleo.model;
 
+import com.liferay.portal.model.SaveableModel;
+
 /**
- * The model interface for the KaleoTransition service. Represents a row in the &quot;KaleoTransition&quot; database table, with each column mapped to a property of this class.
+ * The extended model interface for the KaleoTransition service. Represents a row in the &quot;KaleoTransition&quot; database table, with each column mapped to a property of this class.
  *
  * @author Brian Wing Shun Chan
  * @see KaleoTransitionModel
@@ -23,7 +25,7 @@ package com.liferay.portal.workflow.kaleo.model;
  * @see com.liferay.portal.workflow.kaleo.model.impl.KaleoTransitionModelImpl
  * @generated
  */
-public interface KaleoTransition extends KaleoTransitionModel {
+public interface KaleoTransition extends KaleoTransitionModel, SaveableModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *

@@ -19,7 +19,7 @@ import com.liferay.privatemessaging.model.UserThread;
 /**
  * @author Brian Wing Shun Chan
  */
-public class UserThreadImpl extends UserThreadModelImpl implements UserThread {
+public class UserThreadImpl extends UserThreadBaseImpl {
 
 	public UserThreadImpl() {
 	}

@@ -14,6 +14,8 @@
 
 package com.liferay.hr.model;
 
+import com.liferay.hr.service.HRExpenseCurrencyConversionLocalServiceUtil;
+
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.DateUtil;
@@ -154,6 +156,10 @@ public class HRExpenseCurrencyConversionClp extends BaseModelImpl<HRExpenseCurre
 
 	public void setConversionValue(double conversionValue) {
 		_conversionValue = conversionValue;
+	}
+
+	public void save() throws SystemException {
+		HRExpenseCurrencyConversionLocalServiceUtil.updateHRExpenseCurrencyConversion(this);
 	}
 
 	@Override

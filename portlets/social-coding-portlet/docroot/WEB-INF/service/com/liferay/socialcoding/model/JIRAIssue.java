@@ -14,8 +14,10 @@
 
 package com.liferay.socialcoding.model;
 
+import com.liferay.portal.model.SaveableModel;
+
 /**
- * The model interface for the JIRAIssue service. Represents a row in the &quot;jiraissue&quot; database table, with each column mapped to a property of this class.
+ * The extended model interface for the JIRAIssue service. Represents a row in the &quot;jiraissue&quot; database table, with each column mapped to a property of this class.
  *
  * @author Brian Wing Shun Chan
  * @see JIRAIssueModel
@@ -23,7 +25,7 @@ package com.liferay.socialcoding.model;
  * @see com.liferay.socialcoding.model.impl.JIRAIssueModelImpl
  * @generated
  */
-public interface JIRAIssue extends JIRAIssueModel {
+public interface JIRAIssue extends JIRAIssueModel, SaveableModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *

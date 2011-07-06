@@ -20,7 +20,7 @@ import com.liferay.hr.model.HRTerminationType;
  * @author Wesley Gong
  */
 public class HRTerminationTypeImpl
-	extends HRTerminationTypeModelImpl implements HRTerminationType {
+	extends HRTerminationTypeBaseImpl {
 
 	public HRTerminationTypeImpl() {
 	}

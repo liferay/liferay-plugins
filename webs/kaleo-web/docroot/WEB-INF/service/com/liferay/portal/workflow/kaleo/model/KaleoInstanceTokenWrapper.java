@@ -440,6 +440,11 @@ public class KaleoInstanceTokenWrapper implements KaleoInstanceToken {
 		return _kaleoInstanceToken.toXmlString();
 	}
 
+	public void save()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_kaleoInstanceToken.save();
+	}
+
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken> getChildrenKaleoInstanceTokens()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _kaleoInstanceToken.getChildrenKaleoInstanceTokens();

@@ -19,7 +19,7 @@ import com.liferay.testtransaction.model.Bar;
 /**
  * @author Brian Wing Shun Chan
  */
-public class BarImpl extends BarModelImpl implements Bar {
+public class BarImpl extends BarBaseImpl {
 
 	public BarImpl() {
 	}

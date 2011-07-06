@@ -14,8 +14,10 @@
 
 package com.liferay.ams.model;
 
+import com.liferay.portal.model.SaveableModel;
+
 /**
- * The model interface for the Type service. Represents a row in the &quot;AMS_Type&quot; database table, with each column mapped to a property of this class.
+ * The extended model interface for the Type service. Represents a row in the &quot;AMS_Type&quot; database table, with each column mapped to a property of this class.
  *
  * @author Brian Wing Shun Chan
  * @see TypeModel
@@ -23,7 +25,7 @@ package com.liferay.ams.model;
  * @see com.liferay.ams.model.impl.TypeModelImpl
  * @generated
  */
-public interface Type extends TypeModel {
+public interface Type extends TypeModel, SaveableModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *

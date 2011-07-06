@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
+import com.liferay.portal.workflow.kaleo.service.KaleoTaskInstanceTokenLocalServiceUtil;
 
 import java.io.Serializable;
 
@@ -241,6 +242,10 @@ public class KaleoTaskInstanceTokenClp extends BaseModelImpl<KaleoTaskInstanceTo
 
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance> getKaleoTaskAssignmentInstances() {
 		throw new UnsupportedOperationException();
+	}
+
+	public void save() throws SystemException {
+		KaleoTaskInstanceTokenLocalServiceUtil.updateKaleoTaskInstanceToken(this);
 	}
 
 	@Override

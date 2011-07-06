@@ -15,8 +15,11 @@
 package com.liferay.wsrp.model;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.impl.BaseModelImpl;
+
+import com.liferay.wsrp.service.WSRPProducerLocalServiceUtil;
 
 import java.io.Serializable;
 
@@ -130,6 +133,10 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 
 	public java.lang.String getURL(java.lang.String portalURL) {
 		throw new UnsupportedOperationException();
+	}
+
+	public void save() throws SystemException {
+		WSRPProducerLocalServiceUtil.updateWSRPProducer(this);
 	}
 
 	@Override

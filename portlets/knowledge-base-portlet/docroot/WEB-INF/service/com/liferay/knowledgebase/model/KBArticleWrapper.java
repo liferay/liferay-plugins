@@ -677,6 +677,11 @@ public class KBArticleWrapper implements KBArticle {
 		return _kbArticle.toXmlString();
 	}
 
+	public void save()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_kbArticle.save();
+	}
+
 	public java.lang.String getAttachmentsDirName() {
 		return _kbArticle.getAttachmentsDirName();
 	}

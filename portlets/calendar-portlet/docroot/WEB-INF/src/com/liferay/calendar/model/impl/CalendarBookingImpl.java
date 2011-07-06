@@ -26,7 +26,7 @@ import com.liferay.portal.kernel.exception.SystemException;
  * @author Eduardo Lundgren
  */
 public class CalendarBookingImpl
-	extends CalendarBookingModelImpl implements CalendarBooking {
+	extends CalendarBookingBaseImpl {
 
 	public CalendarBookingImpl() {
 	}

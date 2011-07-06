@@ -20,7 +20,7 @@ import com.liferay.hr.model.HRProjectStatus;
  * @author Wesley Gong
  */
 public class HRProjectStatusImpl
-	extends HRProjectStatusModelImpl implements HRProjectStatus {
+	extends HRProjectStatusBaseImpl {
 
 	public HRProjectStatusImpl() {
 	}

@@ -284,7 +284,7 @@ public abstract class KBCommentLocalServiceBaseImpl
 	}
 
 	/**
-	 * Updates the k b comment in the database. Also notifies the appropriate model listeners.
+	 * Updates the k b comment in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	 *
 	 * @param kbComment the k b comment
 	 * @return the k b comment that was updated
@@ -296,7 +296,7 @@ public abstract class KBCommentLocalServiceBaseImpl
 	}
 
 	/**
-	 * Updates the k b comment in the database. Also notifies the appropriate model listeners.
+	 * Updates the k b comment in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	 *
 	 * @param kbComment the k b comment
 	 * @param merge whether to merge the k b comment with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.

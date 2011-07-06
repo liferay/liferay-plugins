@@ -14,6 +14,8 @@
 
 package com.liferay.knowledgebase.model;
 
+import com.liferay.knowledgebase.service.KBCommentLocalServiceUtil;
+
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.DateUtil;
@@ -173,6 +175,10 @@ public class KBCommentClp extends BaseModelImpl<KBComment> implements KBComment 
 
 	public void setHelpful(boolean helpful) {
 		_helpful = helpful;
+	}
+
+	public void save() throws SystemException {
+		KBCommentLocalServiceUtil.updateKBComment(this);
 	}
 
 	@Override

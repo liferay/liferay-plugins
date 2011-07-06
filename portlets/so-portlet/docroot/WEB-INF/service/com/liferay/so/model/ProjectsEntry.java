@@ -14,8 +14,10 @@
 
 package com.liferay.so.model;
 
+import com.liferay.portal.model.SaveableModel;
+
 /**
- * The model interface for the ProjectsEntry service. Represents a row in the &quot;SO_ProjectsEntry&quot; database table, with each column mapped to a property of this class.
+ * The extended model interface for the ProjectsEntry service. Represents a row in the &quot;SO_ProjectsEntry&quot; database table, with each column mapped to a property of this class.
  *
  * @author Brian Wing Shun Chan
  * @see ProjectsEntryModel
@@ -23,7 +25,7 @@ package com.liferay.so.model;
  * @see com.liferay.so.model.impl.ProjectsEntryModelImpl
  * @generated
  */
-public interface ProjectsEntry extends ProjectsEntryModel {
+public interface ProjectsEntry extends ProjectsEntryModel, SaveableModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *

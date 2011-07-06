@@ -14,6 +14,8 @@
 
 package com.liferay.mail.model;
 
+import com.liferay.mail.service.FolderLocalServiceUtil;
+
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -143,6 +145,10 @@ public class FolderClp extends BaseModelImpl<Folder> implements Folder {
 
 	public void setRemoteMessageCount(int remoteMessageCount) {
 		_remoteMessageCount = remoteMessageCount;
+	}
+
+	public void save() throws SystemException {
+		FolderLocalServiceUtil.updateFolder(this);
 	}
 
 	@Override

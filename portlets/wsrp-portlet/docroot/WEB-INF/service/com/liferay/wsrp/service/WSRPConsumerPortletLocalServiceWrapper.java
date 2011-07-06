@@ -199,7 +199,7 @@ public class WSRPConsumerPortletLocalServiceWrapper
 	}
 
 	/**
-	* Updates the w s r p consumer portlet in the database. Also notifies the appropriate model listeners.
+	* Updates the w s r p consumer portlet in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	*
 	* @param wsrpConsumerPortlet the w s r p consumer portlet
 	* @return the w s r p consumer portlet that was updated
@@ -212,7 +212,7 @@ public class WSRPConsumerPortletLocalServiceWrapper
 	}
 
 	/**
-	* Updates the w s r p consumer portlet in the database. Also notifies the appropriate model listeners.
+	* Updates the w s r p consumer portlet in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	*
 	* @param wsrpConsumerPortlet the w s r p consumer portlet
 	* @param merge whether to merge the w s r p consumer portlet with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.

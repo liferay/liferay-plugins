@@ -15,8 +15,11 @@
 package com.liferay.socialcoding.model;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.impl.BaseModelImpl;
+
+import com.liferay.socialcoding.service.SVNRevisionLocalServiceUtil;
 
 import java.io.Serializable;
 
@@ -114,6 +117,10 @@ public class SVNRevisionClp extends BaseModelImpl<SVNRevision>
 
 	public java.lang.Object[] getJIRAIssueAndComments() {
 		throw new UnsupportedOperationException();
+	}
+
+	public void save() throws SystemException {
+		SVNRevisionLocalServiceUtil.updateSVNRevision(this);
 	}
 
 	@Override

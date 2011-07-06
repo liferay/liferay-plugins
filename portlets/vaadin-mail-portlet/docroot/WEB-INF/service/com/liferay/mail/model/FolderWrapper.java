@@ -322,6 +322,11 @@ public class FolderWrapper implements Folder {
 		return _folder.toXmlString();
 	}
 
+	public void save()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_folder.save();
+	}
+
 	public Folder getWrappedFolder() {
 		return _folder;
 	}

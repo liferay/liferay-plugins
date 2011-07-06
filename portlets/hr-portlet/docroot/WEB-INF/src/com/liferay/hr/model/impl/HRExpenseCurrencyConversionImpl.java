@@ -20,8 +20,7 @@ import com.liferay.hr.model.HRExpenseCurrencyConversion;
  * @author Wesley Gong
  */
 public class HRExpenseCurrencyConversionImpl
-	extends HRExpenseCurrencyConversionModelImpl
-	implements HRExpenseCurrencyConversion {
+	extends HRExpenseCurrencyConversionBaseImpl {
 
 	public HRExpenseCurrencyConversionImpl() {
 	}

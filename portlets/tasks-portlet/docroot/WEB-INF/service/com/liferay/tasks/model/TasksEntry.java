@@ -14,8 +14,10 @@
 
 package com.liferay.tasks.model;
 
+import com.liferay.portal.model.SaveableModel;
+
 /**
- * The model interface for the TasksEntry service. Represents a row in the &quot;TMS_TasksEntry&quot; database table, with each column mapped to a property of this class.
+ * The extended model interface for the TasksEntry service. Represents a row in the &quot;TMS_TasksEntry&quot; database table, with each column mapped to a property of this class.
  *
  * @author Ryan Park
  * @see TasksEntryModel
@@ -23,7 +25,7 @@ package com.liferay.tasks.model;
  * @see com.liferay.tasks.model.impl.TasksEntryModelImpl
  * @generated
  */
-public interface TasksEntry extends TasksEntryModel {
+public interface TasksEntry extends TasksEntryModel, SaveableModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *

@@ -196,7 +196,7 @@ public class KaleoTransitionLocalServiceWrapper
 	}
 
 	/**
-	* Updates the kaleo transition in the database. Also notifies the appropriate model listeners.
+	* Updates the kaleo transition in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoTransition the kaleo transition
 	* @return the kaleo transition that was updated
@@ -209,7 +209,7 @@ public class KaleoTransitionLocalServiceWrapper
 	}
 
 	/**
-	* Updates the kaleo transition in the database. Also notifies the appropriate model listeners.
+	* Updates the kaleo transition in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoTransition the kaleo transition
 	* @param merge whether to merge the kaleo transition with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.

@@ -187,7 +187,7 @@ public interface KaleoTaskInstanceTokenLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Updates the kaleo task instance token in the database. Also notifies the appropriate model listeners.
+	* Updates the kaleo task instance token in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoTaskInstanceToken the kaleo task instance token
 	* @return the kaleo task instance token that was updated
@@ -198,7 +198,7 @@ public interface KaleoTaskInstanceTokenLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Updates the kaleo task instance token in the database. Also notifies the appropriate model listeners.
+	* Updates the kaleo task instance token in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoTaskInstanceToken the kaleo task instance token
 	* @param merge whether to merge the kaleo task instance token with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.

@@ -21,6 +21,8 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
 
+import com.liferay.socialnetworking.service.MeetupsEntryLocalServiceUtil;
+
 import java.io.Serializable;
 
 import java.lang.reflect.Proxy;
@@ -177,6 +179,10 @@ public class MeetupsEntryClp extends BaseModelImpl<MeetupsEntry>
 
 	public void setThumbnailId(long thumbnailId) {
 		_thumbnailId = thumbnailId;
+	}
+
+	public void save() throws SystemException {
+		MeetupsEntryLocalServiceUtil.updateMeetupsEntry(this);
 	}
 
 	@Override

@@ -320,6 +320,11 @@ public class JIRAIssueWrapper implements JIRAIssue {
 		return _jiraIssue.toXmlString();
 	}
 
+	public void save()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_jiraIssue.save();
+	}
+
 	public JIRAIssue getWrappedJIRAIssue() {
 		return _jiraIssue;
 	}

@@ -14,6 +14,8 @@
 
 package com.liferay.ams.model;
 
+import com.liferay.ams.service.AssetLocalServiceUtil;
+
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -147,6 +149,10 @@ public class AssetClp extends BaseModelImpl<Asset> implements Asset {
 
 	public void setActive(boolean active) {
 		_active = active;
+	}
+
+	public void save() throws SystemException {
+		AssetLocalServiceUtil.updateAsset(this);
 	}
 
 	@Override

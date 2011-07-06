@@ -14,8 +14,10 @@
 
 package com.liferay.portal.workflow.kaleo.model;
 
+import com.liferay.portal.model.SaveableModel;
+
 /**
- * The model interface for the KaleoNode service. Represents a row in the &quot;KaleoNode&quot; database table, with each column mapped to a property of this class.
+ * The extended model interface for the KaleoNode service. Represents a row in the &quot;KaleoNode&quot; database table, with each column mapped to a property of this class.
  *
  * @author Brian Wing Shun Chan
  * @see KaleoNodeModel
@@ -23,7 +25,7 @@ package com.liferay.portal.workflow.kaleo.model;
  * @see com.liferay.portal.workflow.kaleo.model.impl.KaleoNodeModelImpl
  * @generated
  */
-public interface KaleoNode extends KaleoNodeModel {
+public interface KaleoNode extends KaleoNodeModel, SaveableModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *

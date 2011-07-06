@@ -14,8 +14,10 @@
 
 package com.liferay.opensocial.model;
 
+import com.liferay.portal.model.SaveableModel;
+
 /**
- * The model interface for the OAuthConsumer service. Represents a row in the &quot;OpenSocial_OAuthConsumer&quot; database table, with each column mapped to a property of this class.
+ * The extended model interface for the OAuthConsumer service. Represents a row in the &quot;OpenSocial_OAuthConsumer&quot; database table, with each column mapped to a property of this class.
  *
  * @author Brian Wing Shun Chan
  * @see OAuthConsumerModel
@@ -23,7 +25,7 @@ package com.liferay.opensocial.model;
  * @see com.liferay.opensocial.model.impl.OAuthConsumerModelImpl
  * @generated
  */
-public interface OAuthConsumer extends OAuthConsumerModel {
+public interface OAuthConsumer extends OAuthConsumerModel, SaveableModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *

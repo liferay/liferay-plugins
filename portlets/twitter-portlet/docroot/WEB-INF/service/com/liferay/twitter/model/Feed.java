@@ -14,8 +14,10 @@
 
 package com.liferay.twitter.model;
 
+import com.liferay.portal.model.SaveableModel;
+
 /**
- * The model interface for the Feed service. Represents a row in the &quot;Twitter_Feed&quot; database table, with each column mapped to a property of this class.
+ * The extended model interface for the Feed service. Represents a row in the &quot;Twitter_Feed&quot; database table, with each column mapped to a property of this class.
  *
  * @author Brian Wing Shun Chan
  * @see FeedModel
@@ -23,7 +25,7 @@ package com.liferay.twitter.model;
  * @see com.liferay.twitter.model.impl.FeedModelImpl
  * @generated
  */
-public interface Feed extends FeedModel {
+public interface Feed extends FeedModel, SaveableModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *

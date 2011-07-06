@@ -14,8 +14,10 @@
 
 package com.liferay.portal.workflow.kaleo.model;
 
+import com.liferay.portal.model.SaveableModel;
+
 /**
- * The model interface for the KaleoTaskAssignment service. Represents a row in the &quot;KaleoTaskAssignment&quot; database table, with each column mapped to a property of this class.
+ * The extended model interface for the KaleoTaskAssignment service. Represents a row in the &quot;KaleoTaskAssignment&quot; database table, with each column mapped to a property of this class.
  *
  * @author Brian Wing Shun Chan
  * @see KaleoTaskAssignmentModel
@@ -23,7 +25,8 @@ package com.liferay.portal.workflow.kaleo.model;
  * @see com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskAssignmentModelImpl
  * @generated
  */
-public interface KaleoTaskAssignment extends KaleoTaskAssignmentModel {
+public interface KaleoTaskAssignment extends KaleoTaskAssignmentModel,
+	SaveableModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *

@@ -20,7 +20,7 @@ import com.liferay.microblogs.model.MicroblogsEntry;
  * @author Brian Wing Shun Chan
  */
 public class MicroblogsEntryImpl
-	extends MicroblogsEntryModelImpl implements MicroblogsEntry {
+	extends MicroblogsEntryBaseImpl {
 
 	public MicroblogsEntryImpl() {
 	}

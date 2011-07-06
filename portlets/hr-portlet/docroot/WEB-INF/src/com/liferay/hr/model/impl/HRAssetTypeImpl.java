@@ -20,7 +20,7 @@ import com.liferay.hr.model.HRAssetType;
  * @author Wesley Gong
  */
 public class HRAssetTypeImpl
-	extends HRAssetTypeModelImpl implements HRAssetType {
+	extends HRAssetTypeBaseImpl {
 
 	public HRAssetTypeImpl() {
 	}

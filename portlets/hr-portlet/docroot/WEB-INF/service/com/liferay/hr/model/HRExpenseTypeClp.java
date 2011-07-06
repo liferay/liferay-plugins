@@ -14,6 +14,8 @@
 
 package com.liferay.hr.model;
 
+import com.liferay.hr.service.HRExpenseTypeLocalServiceUtil;
+
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -136,6 +138,10 @@ public class HRExpenseTypeClp extends BaseModelImpl<HRExpenseType>
 
 	public void setDescription(String description) {
 		_description = description;
+	}
+
+	public void save() throws SystemException {
+		HRExpenseTypeLocalServiceUtil.updateHRExpenseType(this);
 	}
 
 	@Override

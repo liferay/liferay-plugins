@@ -14,6 +14,8 @@
 
 package com.liferay.hr.model;
 
+import com.liferay.hr.service.HRExpenseCurrencyLocalServiceUtil;
+
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -144,6 +146,10 @@ public class HRExpenseCurrencyClp extends BaseModelImpl<HRExpenseCurrency>
 
 	public void setDescription(String description) {
 		_description = description;
+	}
+
+	public void save() throws SystemException {
+		HRExpenseCurrencyLocalServiceUtil.updateHRExpenseCurrency(this);
 	}
 
 	@Override

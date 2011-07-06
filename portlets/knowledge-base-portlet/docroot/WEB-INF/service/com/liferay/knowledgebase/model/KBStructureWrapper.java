@@ -419,6 +419,11 @@ public class KBStructureWrapper implements KBStructure {
 		return _kbStructure.toXmlString();
 	}
 
+	public void save()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_kbStructure.save();
+	}
+
 	public java.lang.String[] getLanguageIds() {
 		return _kbStructure.getLanguageIds();
 	}

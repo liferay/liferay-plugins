@@ -21,6 +21,8 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
 
+import com.liferay.so.service.MemberRequestLocalServiceUtil;
+
 import java.io.Serializable;
 
 import java.lang.reflect.Proxy;
@@ -170,6 +172,10 @@ public class MemberRequestClp extends BaseModelImpl<MemberRequest>
 
 	public void setStatus(int status) {
 		_status = status;
+	}
+
+	public void save() throws SystemException {
+		MemberRequestLocalServiceUtil.updateMemberRequest(this);
 	}
 
 	@Override

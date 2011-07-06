@@ -14,6 +14,8 @@
 
 package com.liferay.chat.model;
 
+import com.liferay.chat.service.EntryLocalServiceUtil;
+
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -109,6 +111,10 @@ public class EntryClp extends BaseModelImpl<Entry> implements Entry {
 
 	public void setContent(String content) {
 		_content = content;
+	}
+
+	public void save() throws SystemException {
+		EntryLocalServiceUtil.updateEntry(this);
 	}
 
 	@Override

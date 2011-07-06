@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
+import com.liferay.portal.workflow.kaleo.service.KaleoNotificationLocalServiceUtil;
 
 import java.io.Serializable;
 
@@ -192,6 +193,10 @@ public class KaleoNotificationClp extends BaseModelImpl<KaleoNotification>
 
 	public void setNotificationTypes(String notificationTypes) {
 		_notificationTypes = notificationTypes;
+	}
+
+	public void save() throws SystemException {
+		KaleoNotificationLocalServiceUtil.updateKaleoNotification(this);
 	}
 
 	@Override

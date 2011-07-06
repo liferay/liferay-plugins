@@ -293,7 +293,7 @@ public abstract class KaleoTimerInstanceTokenLocalServiceBaseImpl
 	}
 
 	/**
-	 * Updates the kaleo timer instance token in the database. Also notifies the appropriate model listeners.
+	 * Updates the kaleo timer instance token in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	 *
 	 * @param kaleoTimerInstanceToken the kaleo timer instance token
 	 * @return the kaleo timer instance token that was updated
@@ -306,7 +306,7 @@ public abstract class KaleoTimerInstanceTokenLocalServiceBaseImpl
 	}
 
 	/**
-	 * Updates the kaleo timer instance token in the database. Also notifies the appropriate model listeners.
+	 * Updates the kaleo timer instance token in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	 *
 	 * @param kaleoTimerInstanceToken the kaleo timer instance token
 	 * @param merge whether to merge the kaleo timer instance token with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.

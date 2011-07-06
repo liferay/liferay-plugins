@@ -304,6 +304,11 @@ public class HRExpenseTypeWrapper implements HRExpenseType {
 		return _hrExpenseType.toXmlString();
 	}
 
+	public void save()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_hrExpenseType.save();
+	}
+
 	public HRExpenseType getWrappedHRExpenseType() {
 		return _hrExpenseType;
 	}

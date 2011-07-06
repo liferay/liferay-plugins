@@ -19,7 +19,7 @@ import com.liferay.hr.model.HRWageType;
 /**
  * @author Wesley Gong
  */
-public class HRWageTypeImpl extends HRWageTypeModelImpl implements HRWageType {
+public class HRWageTypeImpl extends HRWageTypeBaseImpl {
 
 	public HRWageTypeImpl() {
 	}

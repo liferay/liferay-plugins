@@ -15,8 +15,11 @@
 package com.liferay.testtransaction.model;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.impl.BaseModelImpl;
+
+import com.liferay.testtransaction.service.BarLocalServiceUtil;
 
 import java.io.Serializable;
 
@@ -67,6 +70,10 @@ public class BarClp extends BaseModelImpl<Bar> implements Bar {
 
 	public void setText(String text) {
 		_text = text;
+	}
+
+	public void save() throws SystemException {
+		BarLocalServiceUtil.updateBar(this);
 	}
 
 	@Override

@@ -21,6 +21,8 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
 
+import com.liferay.tasks.service.TasksEntryLocalServiceUtil;
+
 import java.io.Serializable;
 
 import java.lang.reflect.Proxy;
@@ -211,6 +213,10 @@ public class TasksEntryClp extends BaseModelImpl<TasksEntry>
 
 	public java.lang.String getStatusLabel() {
 		throw new UnsupportedOperationException();
+	}
+
+	public void save() throws SystemException {
+		TasksEntryLocalServiceUtil.updateTasksEntry(this);
 	}
 
 	@Override

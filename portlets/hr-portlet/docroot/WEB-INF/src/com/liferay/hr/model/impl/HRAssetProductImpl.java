@@ -20,7 +20,7 @@ import com.liferay.hr.model.HRAssetProduct;
  * @author Wesley Gong
  */
 public class HRAssetProductImpl
-	extends HRAssetProductModelImpl implements HRAssetProduct {
+	extends HRAssetProductBaseImpl {
 
 	public HRAssetProductImpl() {
 	}

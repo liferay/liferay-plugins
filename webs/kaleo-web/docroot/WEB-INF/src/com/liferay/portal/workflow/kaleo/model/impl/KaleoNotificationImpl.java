@@ -19,8 +19,7 @@ import com.liferay.portal.workflow.kaleo.model.KaleoNotification;
 /**
  * @author Brian Wing Shun Chan
  */
-public class KaleoNotificationImpl extends KaleoNotificationModelImpl
-	implements KaleoNotification {
+public class KaleoNotificationImpl extends KaleoNotificationBaseImpl {
 
 	public KaleoNotificationImpl() {
 	}

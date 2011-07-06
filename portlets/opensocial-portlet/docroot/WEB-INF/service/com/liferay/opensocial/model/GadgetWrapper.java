@@ -266,6 +266,11 @@ public class GadgetWrapper implements Gadget {
 		return _gadget.toXmlString();
 	}
 
+	public void save()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_gadget.save();
+	}
+
 	public Gadget getWrappedGadget() {
 		return _gadget;
 	}

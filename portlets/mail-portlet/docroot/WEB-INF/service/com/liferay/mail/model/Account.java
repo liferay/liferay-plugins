@@ -14,8 +14,10 @@
 
 package com.liferay.mail.model;
 
+import com.liferay.portal.model.SaveableModel;
+
 /**
- * The model interface for the Account service. Represents a row in the &quot;Mail_Account&quot; database table, with each column mapped to a property of this class.
+ * The extended model interface for the Account service. Represents a row in the &quot;Mail_Account&quot; database table, with each column mapped to a property of this class.
  *
  * @author Brian Wing Shun Chan
  * @see AccountModel
@@ -23,7 +25,7 @@ package com.liferay.mail.model;
  * @see com.liferay.mail.model.impl.AccountModelImpl
  * @generated
  */
-public interface Account extends AccountModel {
+public interface Account extends AccountModel, SaveableModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *

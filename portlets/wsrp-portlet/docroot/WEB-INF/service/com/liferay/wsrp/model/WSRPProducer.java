@@ -14,8 +14,10 @@
 
 package com.liferay.wsrp.model;
 
+import com.liferay.portal.model.SaveableModel;
+
 /**
- * The model interface for the WSRPProducer service. Represents a row in the &quot;WSRP_WSRPProducer&quot; database table, with each column mapped to a property of this class.
+ * The extended model interface for the WSRPProducer service. Represents a row in the &quot;WSRP_WSRPProducer&quot; database table, with each column mapped to a property of this class.
  *
  * @author Brian Wing Shun Chan
  * @see WSRPProducerModel
@@ -23,7 +25,7 @@ package com.liferay.wsrp.model;
  * @see com.liferay.wsrp.model.impl.WSRPProducerModelImpl
  * @generated
  */
-public interface WSRPProducer extends WSRPProducerModel {
+public interface WSRPProducer extends WSRPProducerModel, SaveableModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *

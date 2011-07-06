@@ -322,6 +322,11 @@ public class CheckoutWrapper implements Checkout {
 		return _checkout.toXmlString();
 	}
 
+	public void save()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_checkout.save();
+	}
+
 	public Checkout getWrappedCheckout() {
 		return _checkout;
 	}

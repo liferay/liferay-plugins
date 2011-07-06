@@ -194,7 +194,7 @@ public class MeetupsEntryLocalServiceWrapper implements MeetupsEntryLocalService
 	}
 
 	/**
-	* Updates the meetups entry in the database. Also notifies the appropriate model listeners.
+	* Updates the meetups entry in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	*
 	* @param meetupsEntry the meetups entry
 	* @return the meetups entry that was updated
@@ -207,7 +207,7 @@ public class MeetupsEntryLocalServiceWrapper implements MeetupsEntryLocalService
 	}
 
 	/**
-	* Updates the meetups entry in the database. Also notifies the appropriate model listeners.
+	* Updates the meetups entry in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	*
 	* @param meetupsEntry the meetups entry
 	* @param merge whether to merge the meetups entry with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.

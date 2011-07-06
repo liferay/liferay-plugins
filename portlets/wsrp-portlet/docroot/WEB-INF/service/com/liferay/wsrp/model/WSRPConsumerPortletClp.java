@@ -15,8 +15,11 @@
 package com.liferay.wsrp.model;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.impl.BaseModelImpl;
+
+import com.liferay.wsrp.service.WSRPConsumerPortletLocalServiceUtil;
 
 import java.io.Serializable;
 
@@ -118,6 +121,10 @@ public class WSRPConsumerPortletClp extends BaseModelImpl<WSRPConsumerPortlet>
 
 	public void setPortletHandle(String portletHandle) {
 		_portletHandle = portletHandle;
+	}
+
+	public void save() throws SystemException {
+		WSRPConsumerPortletLocalServiceUtil.updateWSRPConsumerPortlet(this);
 	}
 
 	@Override

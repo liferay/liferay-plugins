@@ -14,8 +14,10 @@
 
 package com.liferay.opensocial.model;
 
+import com.liferay.portal.model.SaveableModel;
+
 /**
- * The model interface for the Gadget service. Represents a row in the &quot;OpenSocial_Gadget&quot; database table, with each column mapped to a property of this class.
+ * The extended model interface for the Gadget service. Represents a row in the &quot;OpenSocial_Gadget&quot; database table, with each column mapped to a property of this class.
  *
  * @author Brian Wing Shun Chan
  * @see GadgetModel
@@ -23,7 +25,7 @@ package com.liferay.opensocial.model;
  * @see com.liferay.opensocial.model.impl.GadgetModelImpl
  * @generated
  */
-public interface Gadget extends GadgetModel {
+public interface Gadget extends GadgetModel, SaveableModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *

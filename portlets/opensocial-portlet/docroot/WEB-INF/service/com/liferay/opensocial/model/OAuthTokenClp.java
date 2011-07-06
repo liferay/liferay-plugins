@@ -14,6 +14,8 @@
 
 package com.liferay.opensocial.model;
 
+import com.liferay.opensocial.service.OAuthTokenLocalServiceUtil;
+
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -176,6 +178,10 @@ public class OAuthTokenClp extends BaseModelImpl<OAuthToken>
 
 	public void setExpiration(long expiration) {
 		_expiration = expiration;
+	}
+
+	public void save() throws SystemException {
+		OAuthTokenLocalServiceUtil.updateOAuthToken(this);
 	}
 
 	@Override

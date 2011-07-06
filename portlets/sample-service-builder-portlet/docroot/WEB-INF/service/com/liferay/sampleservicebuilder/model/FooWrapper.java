@@ -385,6 +385,11 @@ public class FooWrapper implements Foo {
 		return _foo.toXmlString();
 	}
 
+	public void save()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_foo.save();
+	}
+
 	public Foo getWrappedFoo() {
 		return _foo;
 	}

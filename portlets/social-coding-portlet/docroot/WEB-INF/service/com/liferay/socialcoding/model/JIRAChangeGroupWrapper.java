@@ -195,6 +195,11 @@ public class JIRAChangeGroupWrapper implements JIRAChangeGroup {
 		return _jiraChangeGroup.toXmlString();
 	}
 
+	public void save()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_jiraChangeGroup.save();
+	}
+
 	public JIRAChangeGroup getWrappedJIRAChangeGroup() {
 		return _jiraChangeGroup;
 	}

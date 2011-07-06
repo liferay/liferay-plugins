@@ -14,8 +14,10 @@
 
 package com.liferay.calendar.model;
 
+import com.liferay.portal.model.SaveableModel;
+
 /**
- * The model interface for the CalendarResource service. Represents a row in the &quot;CalendarResource&quot; database table, with each column mapped to a property of this class.
+ * The extended model interface for the CalendarResource service. Represents a row in the &quot;CalendarResource&quot; database table, with each column mapped to a property of this class.
  *
  * @author Eduardo Lundgren
  * @see CalendarResourceModel
@@ -23,7 +25,7 @@ package com.liferay.calendar.model;
  * @see com.liferay.calendar.model.impl.CalendarResourceModelImpl
  * @generated
  */
-public interface CalendarResource extends CalendarResourceModel {
+public interface CalendarResource extends CalendarResourceModel, SaveableModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *

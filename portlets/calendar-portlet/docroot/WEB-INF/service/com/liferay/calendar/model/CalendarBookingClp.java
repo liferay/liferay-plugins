@@ -14,6 +14,8 @@
 
 package com.liferay.calendar.model;
 
+import com.liferay.calendar.service.CalendarBookingLocalServiceUtil;
+
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.language.LanguageUtil;
@@ -642,6 +644,10 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 		else {
 			return false;
 		}
+	}
+
+	public void save() throws SystemException {
+		CalendarBookingLocalServiceUtil.updateCalendarBooking(this);
 	}
 
 	@Override

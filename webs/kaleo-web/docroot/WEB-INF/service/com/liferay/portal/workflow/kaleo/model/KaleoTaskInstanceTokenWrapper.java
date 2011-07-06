@@ -515,6 +515,11 @@ public class KaleoTaskInstanceTokenWrapper implements KaleoTaskInstanceToken {
 		return _kaleoTaskInstanceToken.toXmlString();
 	}
 
+	public void save()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_kaleoTaskInstanceToken.save();
+	}
+
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken getKaleoInstanceToken()
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {

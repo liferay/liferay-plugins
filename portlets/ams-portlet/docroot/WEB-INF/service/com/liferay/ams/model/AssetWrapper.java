@@ -331,6 +331,11 @@ public class AssetWrapper implements Asset {
 		return _asset.toXmlString();
 	}
 
+	public void save()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_asset.save();
+	}
+
 	public Asset getWrappedAsset() {
 		return _asset;
 	}

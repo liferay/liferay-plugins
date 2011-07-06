@@ -20,6 +20,8 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
 
+import com.liferay.sampleservicebuilder.service.FooLocalServiceUtil;
+
 import java.io.Serializable;
 
 import java.lang.reflect.Proxy;
@@ -171,6 +173,10 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 
 	public void setField5(String field5) {
 		_field5 = field5;
+	}
+
+	public void save() throws SystemException {
+		FooLocalServiceUtil.updateFoo(this);
 	}
 
 	@Override

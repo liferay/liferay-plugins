@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
+import com.liferay.portal.workflow.kaleo.service.KaleoNotificationRecipientLocalServiceUtil;
 
 import java.io.Serializable;
 
@@ -169,6 +170,10 @@ public class KaleoNotificationRecipientClp extends BaseModelImpl<KaleoNotificati
 
 	public void setAddress(String address) {
 		_address = address;
+	}
+
+	public void save() throws SystemException {
+		KaleoNotificationRecipientLocalServiceUtil.updateKaleoNotificationRecipient(this);
 	}
 
 	@Override

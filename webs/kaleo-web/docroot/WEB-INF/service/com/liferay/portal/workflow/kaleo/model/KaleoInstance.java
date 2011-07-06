@@ -14,8 +14,10 @@
 
 package com.liferay.portal.workflow.kaleo.model;
 
+import com.liferay.portal.model.SaveableModel;
+
 /**
- * The model interface for the KaleoInstance service. Represents a row in the &quot;KaleoInstance&quot; database table, with each column mapped to a property of this class.
+ * The extended model interface for the KaleoInstance service. Represents a row in the &quot;KaleoInstance&quot; database table, with each column mapped to a property of this class.
  *
  * @author Brian Wing Shun Chan
  * @see KaleoInstanceModel
@@ -23,7 +25,7 @@ package com.liferay.portal.workflow.kaleo.model;
  * @see com.liferay.portal.workflow.kaleo.model.impl.KaleoInstanceModelImpl
  * @generated
  */
-public interface KaleoInstance extends KaleoInstanceModel {
+public interface KaleoInstance extends KaleoInstanceModel, SaveableModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *

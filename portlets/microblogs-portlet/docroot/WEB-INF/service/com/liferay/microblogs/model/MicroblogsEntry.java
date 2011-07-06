@@ -14,8 +14,10 @@
 
 package com.liferay.microblogs.model;
 
+import com.liferay.portal.model.SaveableModel;
+
 /**
- * The model interface for the MicroblogsEntry service. Represents a row in the &quot;MicroblogsEntry&quot; database table, with each column mapped to a property of this class.
+ * The extended model interface for the MicroblogsEntry service. Represents a row in the &quot;MicroblogsEntry&quot; database table, with each column mapped to a property of this class.
  *
  * @author Brian Wing Shun Chan
  * @see MicroblogsEntryModel
@@ -23,7 +25,7 @@ package com.liferay.microblogs.model;
  * @see com.liferay.microblogs.model.impl.MicroblogsEntryModelImpl
  * @generated
  */
-public interface MicroblogsEntry extends MicroblogsEntryModel {
+public interface MicroblogsEntry extends MicroblogsEntryModel, SaveableModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *

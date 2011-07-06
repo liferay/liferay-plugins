@@ -19,7 +19,7 @@ import com.liferay.opensocial.model.Gadget;
 /**
  * @author Brian Wing Shun Chan
  */
-public class GadgetImpl extends GadgetModelImpl implements Gadget {
+public class GadgetImpl extends GadgetBaseImpl {
 
 	public GadgetImpl() {
 	}
