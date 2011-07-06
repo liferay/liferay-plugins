@@ -267,6 +267,11 @@ public class WSRPConsumerPortletWrapper implements WSRPConsumerPortlet {
 		return _wsrpConsumerPortlet.toXmlString();
 	}
 
+	public void save()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_wsrpConsumerPortlet.save();
+	}
+
 	public WSRPConsumerPortlet getWrappedWSRPConsumerPortlet() {
 		return _wsrpConsumerPortlet;
 	}

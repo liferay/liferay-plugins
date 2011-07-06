@@ -14,8 +14,10 @@
 
 package com.liferay.socialcoding.model;
 
+import com.liferay.portal.model.SaveableModel;
+
 /**
- * The model interface for the SVNRevision service. Represents a row in the &quot;SC_SVNRevision&quot; database table, with each column mapped to a property of this class.
+ * The extended model interface for the SVNRevision service. Represents a row in the &quot;SC_SVNRevision&quot; database table, with each column mapped to a property of this class.
  *
  * @author Brian Wing Shun Chan
  * @see SVNRevisionModel
@@ -23,7 +25,7 @@ package com.liferay.socialcoding.model;
  * @see com.liferay.socialcoding.model.impl.SVNRevisionModelImpl
  * @generated
  */
-public interface SVNRevision extends SVNRevisionModel {
+public interface SVNRevision extends SVNRevisionModel, SaveableModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *

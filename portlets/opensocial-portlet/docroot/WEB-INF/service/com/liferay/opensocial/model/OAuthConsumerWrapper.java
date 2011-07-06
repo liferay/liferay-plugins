@@ -285,6 +285,11 @@ public class OAuthConsumerWrapper implements OAuthConsumer {
 		return _oAuthConsumer.toXmlString();
 	}
 
+	public void save()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_oAuthConsumer.save();
+	}
+
 	public java.lang.String getKeyName() {
 		return _oAuthConsumer.getKeyName();
 	}

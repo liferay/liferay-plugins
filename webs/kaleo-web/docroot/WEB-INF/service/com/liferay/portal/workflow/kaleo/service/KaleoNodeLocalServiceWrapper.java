@@ -194,7 +194,7 @@ public class KaleoNodeLocalServiceWrapper implements KaleoNodeLocalService {
 	}
 
 	/**
-	* Updates the kaleo node in the database. Also notifies the appropriate model listeners.
+	* Updates the kaleo node in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoNode the kaleo node
 	* @return the kaleo node that was updated
@@ -207,7 +207,7 @@ public class KaleoNodeLocalServiceWrapper implements KaleoNodeLocalService {
 	}
 
 	/**
-	* Updates the kaleo node in the database. Also notifies the appropriate model listeners.
+	* Updates the kaleo node in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoNode the kaleo node
 	* @param merge whether to merge the kaleo node with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.

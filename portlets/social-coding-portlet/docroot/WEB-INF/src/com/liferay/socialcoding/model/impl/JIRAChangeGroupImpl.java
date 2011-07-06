@@ -20,7 +20,7 @@ import com.liferay.socialcoding.model.JIRAChangeGroup;
  * @author Brian Wing Shun Chan
  */
 public class JIRAChangeGroupImpl
-	extends JIRAChangeGroupModelImpl implements JIRAChangeGroup {
+	extends JIRAChangeGroupBaseImpl {
 
 	public JIRAChangeGroupImpl() {
 	}

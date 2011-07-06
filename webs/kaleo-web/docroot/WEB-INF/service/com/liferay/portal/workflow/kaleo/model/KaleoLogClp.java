@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
+import com.liferay.portal.workflow.kaleo.service.KaleoLogLocalServiceUtil;
 
 import java.io.Serializable;
 
@@ -299,6 +300,10 @@ public class KaleoLogClp extends BaseModelImpl<KaleoLog> implements KaleoLog {
 
 	public void setWorkflowContext(String workflowContext) {
 		_workflowContext = workflowContext;
+	}
+
+	public void save() throws SystemException {
+		KaleoLogLocalServiceUtil.updateKaleoLog(this);
 	}
 
 	@Override

@@ -20,8 +20,7 @@ import com.liferay.portal.kernel.util.LocalizationUtil;
 /**
  * @author Brian Wing Shun Chan
  */
-public class KBStructureImpl extends KBStructureModelImpl
-	implements KBStructure {
+public class KBStructureImpl extends KBStructureBaseImpl {
 
 	public KBStructureImpl() {
 	}

@@ -19,7 +19,7 @@ import com.liferay.hr.model.HRJobTitle;
 /**
  * @author Wesley Gong
  */
-public class HRJobTitleImpl extends HRJobTitleModelImpl implements HRJobTitle {
+public class HRJobTitleImpl extends HRJobTitleBaseImpl {
 
 	public HRJobTitleImpl() {
 	}

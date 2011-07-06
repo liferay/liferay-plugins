@@ -20,7 +20,7 @@ import com.liferay.mail.util.PasswordUtil;
 /**
  * @author Scott Lee
  */
-public class AccountImpl extends AccountModelImpl implements Account {
+public class AccountImpl extends AccountBaseImpl {
 
 	public String getPasswordDecrypted() {
 		return PasswordUtil.decrypt(getPassword());

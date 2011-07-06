@@ -422,6 +422,11 @@ public class KaleoTimerWrapper implements KaleoTimer {
 		return _kaleoTimer.toXmlString();
 	}
 
+	public void save()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_kaleoTimer.save();
+	}
+
 	public KaleoTimer getWrappedKaleoTimer() {
 		return _kaleoTimer;
 	}

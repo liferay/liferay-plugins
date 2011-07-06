@@ -568,6 +568,11 @@ public class HRExpenseWrapper implements HRExpense {
 		return _hrExpense.toXmlString();
 	}
 
+	public void save()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_hrExpense.save();
+	}
+
 	public HRExpense getWrappedHRExpense() {
 		return _hrExpense;
 	}

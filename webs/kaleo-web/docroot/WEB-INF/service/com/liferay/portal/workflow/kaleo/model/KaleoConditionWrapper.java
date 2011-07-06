@@ -341,6 +341,11 @@ public class KaleoConditionWrapper implements KaleoCondition {
 		return _kaleoCondition.toXmlString();
 	}
 
+	public void save()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_kaleoCondition.save();
+	}
+
 	public KaleoCondition getWrappedKaleoCondition() {
 		return _kaleoCondition;
 	}

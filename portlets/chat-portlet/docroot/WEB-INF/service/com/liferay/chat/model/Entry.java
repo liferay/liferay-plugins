@@ -14,8 +14,10 @@
 
 package com.liferay.chat.model;
 
+import com.liferay.portal.model.SaveableModel;
+
 /**
- * The model interface for the Entry service. Represents a row in the &quot;Chat_Entry&quot; database table, with each column mapped to a property of this class.
+ * The extended model interface for the Entry service. Represents a row in the &quot;Chat_Entry&quot; database table, with each column mapped to a property of this class.
  *
  * @author Brian Wing Shun Chan
  * @see EntryModel
@@ -23,7 +25,7 @@ package com.liferay.chat.model;
  * @see com.liferay.chat.model.impl.EntryModelImpl
  * @generated
  */
-public interface Entry extends EntryModel {
+public interface Entry extends EntryModel, SaveableModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *

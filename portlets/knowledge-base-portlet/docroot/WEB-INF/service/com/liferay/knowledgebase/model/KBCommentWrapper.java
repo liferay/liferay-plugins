@@ -376,6 +376,11 @@ public class KBCommentWrapper implements KBComment {
 		return _kbComment.toXmlString();
 	}
 
+	public void save()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_kbComment.save();
+	}
+
 	public KBComment getWrappedKBComment() {
 		return _kbComment;
 	}

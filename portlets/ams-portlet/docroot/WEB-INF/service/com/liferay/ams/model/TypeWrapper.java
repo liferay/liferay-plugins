@@ -176,6 +176,11 @@ public class TypeWrapper implements Type {
 		return _type.toXmlString();
 	}
 
+	public void save()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_type.save();
+	}
+
 	public Type getWrappedType() {
 		return _type;
 	}

@@ -14,6 +14,8 @@
 
 package com.liferay.microblogs.model;
 
+import com.liferay.microblogs.service.MicroblogsEntryLocalServiceUtil;
+
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.DateUtil;
@@ -162,6 +164,10 @@ public class MicroblogsEntryClp extends BaseModelImpl<MicroblogsEntry>
 
 	public void setSocialRelationType(int socialRelationType) {
 		_socialRelationType = socialRelationType;
+	}
+
+	public void save() throws SystemException {
+		MicroblogsEntryLocalServiceUtil.updateMicroblogsEntry(this);
 	}
 
 	@Override

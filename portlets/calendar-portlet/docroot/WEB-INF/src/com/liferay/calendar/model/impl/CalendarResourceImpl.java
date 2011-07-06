@@ -20,7 +20,7 @@ import com.liferay.calendar.model.CalendarResource;
  * @author Eduardo Lundgren
  */
 public class CalendarResourceImpl
-	extends CalendarResourceModelImpl implements CalendarResource {
+	extends CalendarResourceBaseImpl {
 
 	public CalendarResourceImpl() {
 	}

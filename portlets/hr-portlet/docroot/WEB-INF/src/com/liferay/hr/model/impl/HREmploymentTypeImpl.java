@@ -20,7 +20,7 @@ import com.liferay.hr.model.HREmploymentType;
  * @author Wesley Gong
  */
 public class HREmploymentTypeImpl
-	extends HREmploymentTypeModelImpl implements HREmploymentType {
+	extends HREmploymentTypeBaseImpl {
 
 	public HREmploymentTypeImpl() {
 	}

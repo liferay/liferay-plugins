@@ -313,6 +313,11 @@ public class StatusWrapper implements Status {
 		return _status.toXmlString();
 	}
 
+	public void save()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_status.save();
+	}
+
 	public Status getWrappedStatus() {
 		return _status;
 	}

@@ -20,7 +20,7 @@ import com.liferay.hr.model.HRUserHistory;
  * @author Wesley Gong
  */
 public class HRUserHistoryImpl
-	extends HRUserHistoryModelImpl implements HRUserHistory {
+	extends HRUserHistoryBaseImpl {
 
 	public HRUserHistoryImpl() {
 	}

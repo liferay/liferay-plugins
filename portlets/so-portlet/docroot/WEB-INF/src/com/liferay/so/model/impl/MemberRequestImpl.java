@@ -22,8 +22,7 @@ import com.liferay.so.model.MemberRequest;
 /**
  * @author Brian Wing Shun Chan
  */
-public class MemberRequestImpl extends MemberRequestModelImpl
-	implements MemberRequest {
+public class MemberRequestImpl extends MemberRequestBaseImpl {
 
 	public MemberRequestImpl() {
 	}

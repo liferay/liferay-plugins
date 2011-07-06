@@ -20,7 +20,7 @@ import com.liferay.hr.model.HRTimeOffType;
  * @author Wesley Gong
  */
 public class HRTimeOffTypeImpl
-	extends HRTimeOffTypeModelImpl implements HRTimeOffType {
+	extends HRTimeOffTypeBaseImpl {
 
 	public HRTimeOffTypeImpl() {
 	}

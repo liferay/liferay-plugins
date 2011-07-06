@@ -461,6 +461,11 @@ public class KaleoTaskAssignmentInstanceWrapper
 		return _kaleoTaskAssignmentInstance.toXmlString();
 	}
 
+	public void save()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_kaleoTaskAssignmentInstance.save();
+	}
+
 	public KaleoTaskAssignmentInstance getWrappedKaleoTaskAssignmentInstance() {
 		return _kaleoTaskAssignmentInstance;
 	}

@@ -20,7 +20,7 @@ import com.liferay.hr.model.HRUserTimeOff;
  * @author Wesley Gong
  */
 public class HRUserTimeOffImpl
-	extends HRUserTimeOffModelImpl implements HRUserTimeOff {
+	extends HRUserTimeOffBaseImpl {
 
 	public HRUserTimeOffImpl() {
 	}

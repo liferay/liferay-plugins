@@ -25,7 +25,7 @@ import java.util.List;
 /**
  * @author Brian Wing Shun Chan
  */
-public class KaleoNodeImpl extends KaleoNodeModelImpl implements KaleoNode {
+public class KaleoNodeImpl extends KaleoNodeBaseImpl {
 
 	public KaleoNodeImpl() {
 	}

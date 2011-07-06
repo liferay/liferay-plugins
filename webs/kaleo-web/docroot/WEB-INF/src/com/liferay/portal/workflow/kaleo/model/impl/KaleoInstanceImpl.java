@@ -31,7 +31,7 @@ import java.util.Map;
  * @author Brian Wing Shun Chan
  */
 public class KaleoInstanceImpl
-	extends KaleoInstanceModelImpl implements KaleoInstance {
+	extends KaleoInstanceBaseImpl {
 
 	public KaleoInstanceImpl() {
 	}

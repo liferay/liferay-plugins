@@ -204,7 +204,7 @@ public class KaleoTimerLocalServiceUtil {
 	}
 
 	/**
-	* Updates the kaleo timer in the database. Also notifies the appropriate model listeners.
+	* Updates the kaleo timer in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoTimer the kaleo timer
 	* @return the kaleo timer that was updated
@@ -217,7 +217,7 @@ public class KaleoTimerLocalServiceUtil {
 	}
 
 	/**
-	* Updates the kaleo timer in the database. Also notifies the appropriate model listeners.
+	* Updates the kaleo timer in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoTimer the kaleo timer
 	* @param merge whether to merge the kaleo timer with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.

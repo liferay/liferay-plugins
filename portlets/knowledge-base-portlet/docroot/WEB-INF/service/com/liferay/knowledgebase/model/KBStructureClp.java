@@ -14,6 +14,8 @@
 
 package com.liferay.knowledgebase.model;
 
+import com.liferay.knowledgebase.service.KBStructureLocalServiceUtil;
+
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.language.LanguageUtil;
@@ -249,6 +251,10 @@ public class KBStructureClp extends BaseModelImpl<KBStructure>
 
 	public java.lang.String[] getLanguageIds() {
 		throw new UnsupportedOperationException();
+	}
+
+	public void save() throws SystemException {
+		KBStructureLocalServiceUtil.updateKBStructure(this);
 	}
 
 	@Override

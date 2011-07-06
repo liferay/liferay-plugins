@@ -14,7 +14,10 @@
 
 package com.liferay.opensocial.model;
 
+import com.liferay.opensocial.service.GadgetLocalServiceUtil;
+
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.impl.BaseModelImpl;
 
@@ -117,6 +120,10 @@ public class GadgetClp extends BaseModelImpl<Gadget> implements Gadget {
 
 	public void setPortletCategoryNames(String portletCategoryNames) {
 		_portletCategoryNames = portletCategoryNames;
+	}
+
+	public void save() throws SystemException {
+		GadgetLocalServiceUtil.updateGadget(this);
 	}
 
 	@Override

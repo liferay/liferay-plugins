@@ -24,7 +24,7 @@ import com.liferay.portal.workflow.kaleo.service.KaleoNodeLocalServiceUtil;
  * @author Brian Wing Shun Chan
  */
 public class KaleoTransitionImpl
-	extends KaleoTransitionModelImpl implements KaleoTransition {
+	extends KaleoTransitionBaseImpl {
 
 	public KaleoTransitionImpl() {
 	}

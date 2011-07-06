@@ -14,6 +14,8 @@
 
 package com.liferay.ams.model;
 
+import com.liferay.ams.service.DefinitionLocalServiceUtil;
+
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -168,6 +170,10 @@ public class DefinitionClp extends BaseModelImpl<Definition>
 
 	public void setPrice(double price) {
 		_price = price;
+	}
+
+	public void save() throws SystemException {
+		DefinitionLocalServiceUtil.updateDefinition(this);
 	}
 
 	@Override

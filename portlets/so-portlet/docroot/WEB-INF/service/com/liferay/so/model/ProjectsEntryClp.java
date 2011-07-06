@@ -21,6 +21,8 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
 
+import com.liferay.so.service.ProjectsEntryLocalServiceUtil;
+
 import java.io.Serializable;
 
 import java.lang.reflect.Proxy;
@@ -153,6 +155,10 @@ public class ProjectsEntryClp extends BaseModelImpl<ProjectsEntry>
 
 	public void setData(String data) {
 		_data = data;
+	}
+
+	public void save() throws SystemException {
+		ProjectsEntryLocalServiceUtil.updateProjectsEntry(this);
 	}
 
 	@Override

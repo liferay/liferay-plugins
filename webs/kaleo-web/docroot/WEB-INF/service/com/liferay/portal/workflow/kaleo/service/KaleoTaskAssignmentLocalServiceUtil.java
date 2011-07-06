@@ -204,7 +204,7 @@ public class KaleoTaskAssignmentLocalServiceUtil {
 	}
 
 	/**
-	* Updates the kaleo task assignment in the database. Also notifies the appropriate model listeners.
+	* Updates the kaleo task assignment in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoTaskAssignment the kaleo task assignment
 	* @return the kaleo task assignment that was updated
@@ -217,7 +217,7 @@ public class KaleoTaskAssignmentLocalServiceUtil {
 	}
 
 	/**
-	* Updates the kaleo task assignment in the database. Also notifies the appropriate model listeners.
+	* Updates the kaleo task assignment in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoTaskAssignment the kaleo task assignment
 	* @param merge whether to merge the kaleo task assignment with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.

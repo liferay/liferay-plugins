@@ -15,9 +15,12 @@
 package com.liferay.socialcoding.model;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.impl.BaseModelImpl;
+
+import com.liferay.socialcoding.service.JIRAIssueLocalServiceUtil;
 
 import java.io.Serializable;
 
@@ -142,6 +145,10 @@ public class JIRAIssueClp extends BaseModelImpl<JIRAIssue> implements JIRAIssue 
 
 	public void setStatus(String status) {
 		_status = status;
+	}
+
+	public void save() throws SystemException {
+		JIRAIssueLocalServiceUtil.updateJIRAIssue(this);
 	}
 
 	@Override

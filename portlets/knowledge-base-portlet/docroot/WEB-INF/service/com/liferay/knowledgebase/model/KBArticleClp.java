@@ -14,6 +14,8 @@
 
 package com.liferay.knowledgebase.model;
 
+import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
+
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.DateUtil;
@@ -361,6 +363,10 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 		else {
 			return false;
 		}
+	}
+
+	public void save() throws SystemException {
+		KBArticleLocalServiceUtil.updateKBArticle(this);
 	}
 
 	@Override

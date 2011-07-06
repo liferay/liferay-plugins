@@ -188,7 +188,7 @@ public interface HRExpenseCurrencyConversionLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Updates the h r expense currency conversion in the database. Also notifies the appropriate model listeners.
+	* Updates the h r expense currency conversion in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	*
 	* @param hrExpenseCurrencyConversion the h r expense currency conversion
 	* @return the h r expense currency conversion that was updated
@@ -199,7 +199,7 @@ public interface HRExpenseCurrencyConversionLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Updates the h r expense currency conversion in the database. Also notifies the appropriate model listeners.
+	* Updates the h r expense currency conversion in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	*
 	* @param hrExpenseCurrencyConversion the h r expense currency conversion
 	* @param merge whether to merge the h r expense currency conversion with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.

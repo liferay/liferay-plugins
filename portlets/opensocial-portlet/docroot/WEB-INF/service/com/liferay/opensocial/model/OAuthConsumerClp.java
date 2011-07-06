@@ -14,7 +14,10 @@
 
 package com.liferay.opensocial.model;
 
+import com.liferay.opensocial.service.OAuthConsumerLocalServiceUtil;
+
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.impl.BaseModelImpl;
 
@@ -134,6 +137,10 @@ public class OAuthConsumerClp extends BaseModelImpl<OAuthConsumer>
 
 	public void setKeyName(java.lang.String keyName) {
 		throw new UnsupportedOperationException();
+	}
+
+	public void save() throws SystemException {
+		OAuthConsumerLocalServiceUtil.updateOAuthConsumer(this);
 	}
 
 	@Override

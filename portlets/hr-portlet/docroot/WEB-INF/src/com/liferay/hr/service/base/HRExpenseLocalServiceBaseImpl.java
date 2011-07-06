@@ -299,7 +299,7 @@ public abstract class HRExpenseLocalServiceBaseImpl
 	}
 
 	/**
-	 * Updates the h r expense in the database. Also notifies the appropriate model listeners.
+	 * Updates the h r expense in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	 *
 	 * @param hrExpense the h r expense
 	 * @return the h r expense that was updated
@@ -311,7 +311,7 @@ public abstract class HRExpenseLocalServiceBaseImpl
 	}
 
 	/**
-	 * Updates the h r expense in the database. Also notifies the appropriate model listeners.
+	 * Updates the h r expense in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	 *
 	 * @param hrExpense the h r expense
 	 * @param merge whether to merge the h r expense with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.

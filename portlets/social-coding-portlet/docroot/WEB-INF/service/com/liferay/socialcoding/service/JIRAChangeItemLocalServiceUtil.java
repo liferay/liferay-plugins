@@ -204,7 +204,7 @@ public class JIRAChangeItemLocalServiceUtil {
 	}
 
 	/**
-	* Updates the j i r a change item in the database. Also notifies the appropriate model listeners.
+	* Updates the j i r a change item in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	*
 	* @param jiraChangeItem the j i r a change item
 	* @return the j i r a change item that was updated
@@ -217,7 +217,7 @@ public class JIRAChangeItemLocalServiceUtil {
 	}
 
 	/**
-	* Updates the j i r a change item in the database. Also notifies the appropriate model listeners.
+	* Updates the j i r a change item in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	*
 	* @param jiraChangeItem the j i r a change item
 	* @param merge whether to merge the j i r a change item with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.

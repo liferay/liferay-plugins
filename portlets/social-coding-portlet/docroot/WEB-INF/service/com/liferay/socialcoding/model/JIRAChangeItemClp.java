@@ -15,8 +15,11 @@
 package com.liferay.socialcoding.model;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.impl.BaseModelImpl;
+
+import com.liferay.socialcoding.service.JIRAChangeItemLocalServiceUtil;
 
 import java.io.Serializable;
 
@@ -108,6 +111,10 @@ public class JIRAChangeItemClp extends BaseModelImpl<JIRAChangeItem>
 
 	public void setNewString(String newString) {
 		_newString = newString;
+	}
+
+	public void save() throws SystemException {
+		JIRAChangeItemLocalServiceUtil.updateJIRAChangeItem(this);
 	}
 
 	@Override

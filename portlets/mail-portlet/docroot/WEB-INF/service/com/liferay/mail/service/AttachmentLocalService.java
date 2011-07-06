@@ -184,7 +184,7 @@ public interface AttachmentLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Updates the attachment in the database. Also notifies the appropriate model listeners.
+	* Updates the attachment in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	*
 	* @param attachment the attachment
 	* @return the attachment that was updated
@@ -195,7 +195,7 @@ public interface AttachmentLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Updates the attachment in the database. Also notifies the appropriate model listeners.
+	* Updates the attachment in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	*
 	* @param attachment the attachment
 	* @param merge whether to merge the attachment with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.

@@ -266,6 +266,11 @@ public class JIRAActionWrapper implements JIRAAction {
 		return _jiraAction.toXmlString();
 	}
 
+	public void save()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_jiraAction.save();
+	}
+
 	public JIRAAction getWrappedJIRAAction() {
 		return _jiraAction;
 	}

@@ -14,8 +14,10 @@
 
 package com.liferay.socialcoding.model;
 
+import com.liferay.portal.model.SaveableModel;
+
 /**
- * The model interface for the JIRAChangeGroup service. Represents a row in the &quot;changegroup&quot; database table, with each column mapped to a property of this class.
+ * The extended model interface for the JIRAChangeGroup service. Represents a row in the &quot;changegroup&quot; database table, with each column mapped to a property of this class.
  *
  * @author Brian Wing Shun Chan
  * @see JIRAChangeGroupModel
@@ -23,7 +25,7 @@ package com.liferay.socialcoding.model;
  * @see com.liferay.socialcoding.model.impl.JIRAChangeGroupModelImpl
  * @generated
  */
-public interface JIRAChangeGroup extends JIRAChangeGroupModel {
+public interface JIRAChangeGroup extends JIRAChangeGroupModel, SaveableModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *

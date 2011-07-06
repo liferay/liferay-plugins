@@ -21,6 +21,8 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
 
+import com.liferay.socialnetworking.service.MeetupsRegistrationLocalServiceUtil;
+
 import java.io.Serializable;
 
 import java.lang.reflect.Proxy;
@@ -137,6 +139,10 @@ public class MeetupsRegistrationClp extends BaseModelImpl<MeetupsRegistration>
 
 	public void setComments(String comments) {
 		_comments = comments;
+	}
+
+	public void save() throws SystemException {
+		MeetupsRegistrationLocalServiceUtil.updateMeetupsRegistration(this);
 	}
 
 	@Override

@@ -21,6 +21,8 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
 
+import com.liferay.socialnetworking.service.WallEntryLocalServiceUtil;
+
 import java.io.Serializable;
 
 import java.lang.reflect.Proxy;
@@ -128,6 +130,10 @@ public class WallEntryClp extends BaseModelImpl<WallEntry> implements WallEntry 
 
 	public void setComments(String comments) {
 		_comments = comments;
+	}
+
+	public void save() throws SystemException {
+		WallEntryLocalServiceUtil.updateWallEntry(this);
 	}
 
 	@Override

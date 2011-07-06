@@ -26,8 +26,7 @@ import com.liferay.portal.workflow.kaleo.service.KaleoTimerLocalServiceUtil;
  * @author Marcellus Tavares
  */
 public class KaleoTimerInstanceTokenImpl
-	extends KaleoTimerInstanceTokenModelImpl
-		implements KaleoTimerInstanceToken {
+	extends KaleoTimerInstanceTokenBaseImpl {
 
 	public KaleoTimerInstanceTokenImpl() {
 	}

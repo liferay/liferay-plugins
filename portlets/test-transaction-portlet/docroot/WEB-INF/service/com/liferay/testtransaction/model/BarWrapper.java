@@ -158,6 +158,11 @@ public class BarWrapper implements Bar {
 		return _bar.toXmlString();
 	}
 
+	public void save()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_bar.save();
+	}
+
 	public Bar getWrappedBar() {
 		return _bar;
 	}

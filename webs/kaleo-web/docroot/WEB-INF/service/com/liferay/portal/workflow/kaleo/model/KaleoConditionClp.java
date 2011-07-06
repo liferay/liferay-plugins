@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
+import com.liferay.portal.workflow.kaleo.service.KaleoConditionLocalServiceUtil;
 
 import java.io.Serializable;
 
@@ -152,6 +153,10 @@ public class KaleoConditionClp extends BaseModelImpl<KaleoCondition>
 
 	public void setScriptLanguage(String scriptLanguage) {
 		_scriptLanguage = scriptLanguage;
+	}
+
+	public void save() throws SystemException {
+		KaleoConditionLocalServiceUtil.updateKaleoCondition(this);
 	}
 
 	@Override

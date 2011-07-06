@@ -187,7 +187,7 @@ public interface KaleoInstanceLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Updates the kaleo instance in the database. Also notifies the appropriate model listeners.
+	* Updates the kaleo instance in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoInstance the kaleo instance
 	* @return the kaleo instance that was updated
@@ -198,7 +198,7 @@ public interface KaleoInstanceLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Updates the kaleo instance in the database. Also notifies the appropriate model listeners.
+	* Updates the kaleo instance in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoInstance the kaleo instance
 	* @param merge whether to merge the kaleo instance with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.

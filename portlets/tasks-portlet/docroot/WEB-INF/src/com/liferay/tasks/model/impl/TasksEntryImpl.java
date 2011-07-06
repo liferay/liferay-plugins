@@ -23,7 +23,7 @@ import com.liferay.tasks.model.TasksEntryConstants;
 /**
  * @author Ryan Park
  */
-public class TasksEntryImpl extends TasksEntryModelImpl implements TasksEntry {
+public class TasksEntryImpl extends TasksEntryBaseImpl {
 
 	public TasksEntryImpl() {
 	}

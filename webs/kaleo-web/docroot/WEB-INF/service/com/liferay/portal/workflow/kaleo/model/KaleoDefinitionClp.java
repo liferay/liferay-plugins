@@ -25,6 +25,7 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
+import com.liferay.portal.workflow.kaleo.service.KaleoDefinitionLocalServiceUtil;
 
 import java.io.Serializable;
 
@@ -280,6 +281,10 @@ public class KaleoDefinitionClp extends BaseModelImpl<KaleoDefinition>
 
 	public boolean hasIncompleteKaleoInstances() {
 		throw new UnsupportedOperationException();
+	}
+
+	public void save() throws SystemException {
+		KaleoDefinitionLocalServiceUtil.updateKaleoDefinition(this);
 	}
 
 	@Override

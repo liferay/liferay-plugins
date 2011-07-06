@@ -19,7 +19,7 @@ import com.liferay.portal.workflow.kaleo.model.KaleoTimer;
 /**
  * @author Brian Wing Shun Chan
  */
-public class KaleoTimerImpl extends KaleoTimerModelImpl implements KaleoTimer {
+public class KaleoTimerImpl extends KaleoTimerBaseImpl {
 
 	public KaleoTimerImpl() {
 	}

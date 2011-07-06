@@ -15,8 +15,11 @@
 package com.liferay.wsrp.model;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.impl.BaseModelImpl;
+
+import com.liferay.wsrp.service.WSRPConsumerLocalServiceUtil;
 
 import java.io.Serializable;
 
@@ -161,6 +164,10 @@ public class WSRPConsumerClp extends BaseModelImpl<WSRPConsumer>
 	public void setRegistrationProperties(
 		com.liferay.portal.kernel.util.UnicodeProperties registrationProperties) {
 		throw new UnsupportedOperationException();
+	}
+
+	public void save() throws SystemException {
+		WSRPConsumerLocalServiceUtil.updateWSRPConsumer(this);
 	}
 
 	@Override

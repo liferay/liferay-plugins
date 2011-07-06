@@ -14,8 +14,10 @@
 
 package com.liferay.knowledgebase.model;
 
+import com.liferay.portal.model.SaveableModel;
+
 /**
- * The model interface for the KBArticle service. Represents a row in the &quot;KBArticle&quot; database table, with each column mapped to a property of this class.
+ * The extended model interface for the KBArticle service. Represents a row in the &quot;KBArticle&quot; database table, with each column mapped to a property of this class.
  *
  * @author Brian Wing Shun Chan
  * @see KBArticleModel
@@ -23,7 +25,7 @@ package com.liferay.knowledgebase.model;
  * @see com.liferay.knowledgebase.model.impl.KBArticleModelImpl
  * @generated
  */
-public interface KBArticle extends KBArticleModel {
+public interface KBArticle extends KBArticleModel, SaveableModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *

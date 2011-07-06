@@ -380,6 +380,11 @@ public class KaleoNotificationRecipientWrapper
 		return _kaleoNotificationRecipient.toXmlString();
 	}
 
+	public void save()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_kaleoNotificationRecipient.save();
+	}
+
 	public KaleoNotificationRecipient getWrappedKaleoNotificationRecipient() {
 		return _kaleoNotificationRecipient;
 	}

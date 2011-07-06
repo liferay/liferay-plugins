@@ -1000,6 +1000,11 @@ public class CalendarBookingWrapper implements CalendarBooking {
 		return _calendarBooking.toXmlString();
 	}
 
+	public void save()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_calendarBooking.save();
+	}
+
 	public com.liferay.calendar.model.CalendarEvent getCalendarEvent()
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {

@@ -14,8 +14,10 @@
 
 package com.liferay.socialcoding.model;
 
+import com.liferay.portal.model.SaveableModel;
+
 /**
- * The model interface for the JIRAChangeItem service. Represents a row in the &quot;changeitem&quot; database table, with each column mapped to a property of this class.
+ * The extended model interface for the JIRAChangeItem service. Represents a row in the &quot;changeitem&quot; database table, with each column mapped to a property of this class.
  *
  * @author Brian Wing Shun Chan
  * @see JIRAChangeItemModel
@@ -23,7 +25,7 @@ package com.liferay.socialcoding.model;
  * @see com.liferay.socialcoding.model.impl.JIRAChangeItemModelImpl
  * @generated
  */
-public interface JIRAChangeItem extends JIRAChangeItemModel {
+public interface JIRAChangeItem extends JIRAChangeItemModel, SaveableModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *

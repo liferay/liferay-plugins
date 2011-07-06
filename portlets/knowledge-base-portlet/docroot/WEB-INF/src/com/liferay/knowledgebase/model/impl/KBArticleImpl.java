@@ -30,7 +30,7 @@ import com.liferay.portlet.documentlibrary.store.DLStoreUtil;
  * @author Peter Shin
  * @author Brian Wing Shun Chan
  */
-public class KBArticleImpl extends KBArticleModelImpl implements KBArticle {
+public class KBArticleImpl extends KBArticleBaseImpl {
 
 	public KBArticleImpl() {
 	}

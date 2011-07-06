@@ -14,8 +14,10 @@
 
 package com.liferay.hr.model;
 
+import com.liferay.portal.model.SaveableModel;
+
 /**
- * The model interface for the HRExpense service. Represents a row in the &quot;HRExpense&quot; database table, with each column mapped to a property of this class.
+ * The extended model interface for the HRExpense service. Represents a row in the &quot;HRExpense&quot; database table, with each column mapped to a property of this class.
  *
  * @author Wesley Gong
  * @see HRExpenseModel
@@ -23,7 +25,7 @@ package com.liferay.hr.model;
  * @see com.liferay.hr.model.impl.HRExpenseModelImpl
  * @generated
  */
-public interface HRExpense extends HRExpenseModel {
+public interface HRExpense extends HRExpenseModel, SaveableModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *

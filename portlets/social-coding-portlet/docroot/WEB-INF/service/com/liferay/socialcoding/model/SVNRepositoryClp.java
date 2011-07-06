@@ -15,8 +15,11 @@
 package com.liferay.socialcoding.model;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.impl.BaseModelImpl;
+
+import com.liferay.socialcoding.service.SVNRepositoryLocalServiceUtil;
 
 import java.io.Serializable;
 
@@ -84,6 +87,10 @@ public class SVNRepositoryClp extends BaseModelImpl<SVNRepository>
 
 	public java.lang.String getShortURL() {
 		throw new UnsupportedOperationException();
+	}
+
+	public void save() throws SystemException {
+		SVNRepositoryLocalServiceUtil.updateSVNRepository(this);
 	}
 
 	@Override

@@ -19,7 +19,7 @@ import com.liferay.portal.workflow.kaleo.model.KaleoLog;
 /**
  * @author Brian Wing Shun Chan
  */
-public class KaleoLogImpl extends KaleoLogModelImpl implements KaleoLog {
+public class KaleoLogImpl extends KaleoLogBaseImpl {
 
 	public KaleoLogImpl() {
 	}

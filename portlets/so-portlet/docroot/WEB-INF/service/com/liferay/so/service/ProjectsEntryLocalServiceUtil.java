@@ -204,7 +204,7 @@ public class ProjectsEntryLocalServiceUtil {
 	}
 
 	/**
-	* Updates the projects entry in the database. Also notifies the appropriate model listeners.
+	* Updates the projects entry in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	*
 	* @param projectsEntry the projects entry
 	* @return the projects entry that was updated
@@ -217,7 +217,7 @@ public class ProjectsEntryLocalServiceUtil {
 	}
 
 	/**
-	* Updates the projects entry in the database. Also notifies the appropriate model listeners.
+	* Updates the projects entry in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	*
 	* @param projectsEntry the projects entry
 	* @param merge whether to merge the projects entry with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.

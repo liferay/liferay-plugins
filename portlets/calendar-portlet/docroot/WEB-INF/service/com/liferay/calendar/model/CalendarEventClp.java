@@ -14,6 +14,8 @@
 
 package com.liferay.calendar.model;
 
+import com.liferay.calendar.service.CalendarEventLocalServiceUtil;
+
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.language.LanguageUtil;
@@ -433,6 +435,10 @@ public class CalendarEventClp extends BaseModelImpl<CalendarEvent>
 
 	public void setSecondReminder(int secondReminder) {
 		_secondReminder = secondReminder;
+	}
+
+	public void save() throws SystemException {
+		CalendarEventLocalServiceUtil.updateCalendarEvent(this);
 	}
 
 	@Override

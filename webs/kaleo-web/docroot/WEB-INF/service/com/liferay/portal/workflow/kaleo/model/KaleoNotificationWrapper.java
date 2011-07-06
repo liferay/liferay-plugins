@@ -431,6 +431,11 @@ public class KaleoNotificationWrapper implements KaleoNotification {
 		return _kaleoNotification.toXmlString();
 	}
 
+	public void save()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_kaleoNotification.save();
+	}
+
 	public KaleoNotification getWrappedKaleoNotification() {
 		return _kaleoNotification;
 	}

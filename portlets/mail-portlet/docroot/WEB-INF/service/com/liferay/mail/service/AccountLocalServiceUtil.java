@@ -203,7 +203,7 @@ public class AccountLocalServiceUtil {
 	}
 
 	/**
-	* Updates the account in the database. Also notifies the appropriate model listeners.
+	* Updates the account in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	*
 	* @param account the account
 	* @return the account that was updated
@@ -216,7 +216,7 @@ public class AccountLocalServiceUtil {
 	}
 
 	/**
-	* Updates the account in the database. Also notifies the appropriate model listeners.
+	* Updates the account in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	*
 	* @param account the account
 	* @param merge whether to merge the account with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.

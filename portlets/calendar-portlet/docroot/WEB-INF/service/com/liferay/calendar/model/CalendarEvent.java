@@ -14,8 +14,10 @@
 
 package com.liferay.calendar.model;
 
+import com.liferay.portal.model.SaveableModel;
+
 /**
- * The model interface for the CalendarEvent service. Represents a row in the &quot;CalendarEvent&quot; database table, with each column mapped to a property of this class.
+ * The extended model interface for the CalendarEvent service. Represents a row in the &quot;CalendarEvent&quot; database table, with each column mapped to a property of this class.
  *
  * @author Eduardo Lundgren
  * @see CalendarEventModel
@@ -23,7 +25,7 @@ package com.liferay.calendar.model;
  * @see com.liferay.calendar.model.impl.CalendarEventModelImpl
  * @generated
  */
-public interface CalendarEvent extends CalendarEventModel {
+public interface CalendarEvent extends CalendarEventModel, SaveableModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *

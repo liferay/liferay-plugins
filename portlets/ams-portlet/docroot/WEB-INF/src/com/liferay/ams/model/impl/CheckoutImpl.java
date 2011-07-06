@@ -19,7 +19,7 @@ import com.liferay.ams.model.Checkout;
 /**
  * @author Brian Wing Shun Chan
  */
-public class CheckoutImpl extends CheckoutModelImpl implements Checkout {
+public class CheckoutImpl extends CheckoutBaseImpl {
 
 	public CheckoutImpl() {
 	}

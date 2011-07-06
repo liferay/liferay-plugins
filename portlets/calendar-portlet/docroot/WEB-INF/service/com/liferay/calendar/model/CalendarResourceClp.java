@@ -14,6 +14,8 @@
 
 package com.liferay.calendar.model;
 
+import com.liferay.calendar.service.CalendarResourceLocalServiceUtil;
+
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.language.LanguageUtil;
@@ -385,6 +387,10 @@ public class CalendarResourceClp extends BaseModelImpl<CalendarResource>
 
 	public void setActive(boolean active) {
 		_active = active;
+	}
+
+	public void save() throws SystemException {
+		CalendarResourceLocalServiceUtil.updateCalendarResource(this);
 	}
 
 	@Override

@@ -14,8 +14,10 @@
 
 package com.liferay.ams.model;
 
+import com.liferay.portal.model.SaveableModel;
+
 /**
- * The model interface for the Checkout service. Represents a row in the &quot;AMS_Checkout&quot; database table, with each column mapped to a property of this class.
+ * The extended model interface for the Checkout service. Represents a row in the &quot;AMS_Checkout&quot; database table, with each column mapped to a property of this class.
  *
  * @author Brian Wing Shun Chan
  * @see CheckoutModel
@@ -23,7 +25,7 @@ package com.liferay.ams.model;
  * @see com.liferay.ams.model.impl.CheckoutModelImpl
  * @generated
  */
-public interface Checkout extends CheckoutModel {
+public interface Checkout extends CheckoutModel, SaveableModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *

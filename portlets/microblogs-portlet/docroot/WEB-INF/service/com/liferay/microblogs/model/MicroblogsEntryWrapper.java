@@ -361,6 +361,11 @@ public class MicroblogsEntryWrapper implements MicroblogsEntry {
 		return _microblogsEntry.toXmlString();
 	}
 
+	public void save()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_microblogsEntry.save();
+	}
+
 	public MicroblogsEntry getWrappedMicroblogsEntry() {
 		return _microblogsEntry;
 	}

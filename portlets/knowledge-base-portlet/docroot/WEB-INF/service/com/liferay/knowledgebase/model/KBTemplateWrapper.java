@@ -367,6 +367,11 @@ public class KBTemplateWrapper implements KBTemplate {
 		return _kbTemplate.toXmlString();
 	}
 
+	public void save()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_kbTemplate.save();
+	}
+
 	public boolean isFreeMarker() {
 		return _kbTemplate.isFreeMarker();
 	}

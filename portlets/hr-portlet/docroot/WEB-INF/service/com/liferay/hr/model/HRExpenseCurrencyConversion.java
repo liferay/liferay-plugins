@@ -14,8 +14,10 @@
 
 package com.liferay.hr.model;
 
+import com.liferay.portal.model.SaveableModel;
+
 /**
- * The model interface for the HRExpenseCurrencyConversion service. Represents a row in the &quot;HRExpenseCurrencyConversion&quot; database table, with each column mapped to a property of this class.
+ * The extended model interface for the HRExpenseCurrencyConversion service. Represents a row in the &quot;HRExpenseCurrencyConversion&quot; database table, with each column mapped to a property of this class.
  *
  * @author Wesley Gong
  * @see HRExpenseCurrencyConversionModel
@@ -24,7 +26,7 @@ package com.liferay.hr.model;
  * @generated
  */
 public interface HRExpenseCurrencyConversion
-	extends HRExpenseCurrencyConversionModel {
+	extends HRExpenseCurrencyConversionModel, SaveableModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *

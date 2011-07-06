@@ -26,7 +26,7 @@ import com.liferay.portal.service.UserLocalServiceUtil;
 /**
  * @author Brian Wing Shun Chan
  */
-public class MessageImpl extends MessageModelImpl implements Message {
+public class MessageImpl extends MessageBaseImpl {
 
 	public MessageImpl() {
 	}

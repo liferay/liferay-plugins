@@ -19,7 +19,7 @@ import com.liferay.mail.model.Folder;
 /**
  * @author Brian Wing Shun Chan
  */
-public class FolderImpl extends FolderModelImpl implements Folder {
+public class FolderImpl extends FolderBaseImpl {
 
 	public FolderImpl() {
 	}

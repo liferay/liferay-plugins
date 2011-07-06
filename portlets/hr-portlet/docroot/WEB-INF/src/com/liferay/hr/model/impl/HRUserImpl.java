@@ -19,7 +19,7 @@ import com.liferay.hr.model.HRUser;
 /**
  * @author Wesley Gong
  */
-public class HRUserImpl extends HRUserModelImpl implements HRUser {
+public class HRUserImpl extends HRUserBaseImpl {
 
 	public HRUserImpl() {
 	}

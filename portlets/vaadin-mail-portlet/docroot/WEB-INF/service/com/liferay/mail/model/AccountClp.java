@@ -14,6 +14,8 @@
 
 package com.liferay.mail.model;
 
+import com.liferay.mail.service.AccountLocalServiceUtil;
+
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -299,6 +301,10 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 
 	public void setPasswordDecrypted(java.lang.String unencryptedPassword) {
 		throw new UnsupportedOperationException();
+	}
+
+	public void save() throws SystemException {
+		AccountLocalServiceUtil.updateAccount(this);
 	}
 
 	@Override

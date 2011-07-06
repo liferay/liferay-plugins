@@ -14,8 +14,10 @@
 
 package com.liferay.socialnetworking.model;
 
+import com.liferay.portal.model.SaveableModel;
+
 /**
- * The model interface for the MeetupsRegistration service. Represents a row in the &quot;SN_MeetupsRegistration&quot; database table, with each column mapped to a property of this class.
+ * The extended model interface for the MeetupsRegistration service. Represents a row in the &quot;SN_MeetupsRegistration&quot; database table, with each column mapped to a property of this class.
  *
  * @author Brian Wing Shun Chan
  * @see MeetupsRegistrationModel
@@ -23,7 +25,8 @@ package com.liferay.socialnetworking.model;
  * @see com.liferay.socialnetworking.model.impl.MeetupsRegistrationModelImpl
  * @generated
  */
-public interface MeetupsRegistration extends MeetupsRegistrationModel {
+public interface MeetupsRegistration extends MeetupsRegistrationModel,
+	SaveableModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *

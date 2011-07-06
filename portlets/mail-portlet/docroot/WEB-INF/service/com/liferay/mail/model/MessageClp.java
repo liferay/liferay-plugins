@@ -14,6 +14,8 @@
 
 package com.liferay.mail.model;
 
+import com.liferay.mail.service.MessageLocalServiceUtil;
+
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.DateUtil;
@@ -224,6 +226,10 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 
 	public boolean hasFlag(int flag) {
 		throw new UnsupportedOperationException();
+	}
+
+	public void save() throws SystemException {
+		MessageLocalServiceUtil.updateMessage(this);
 	}
 
 	@Override

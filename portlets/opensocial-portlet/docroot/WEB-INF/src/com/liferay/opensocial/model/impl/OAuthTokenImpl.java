@@ -19,7 +19,7 @@ import com.liferay.opensocial.model.OAuthToken;
 /**
  * @author Brian Wing Shun Chan
  */
-public class OAuthTokenImpl extends OAuthTokenModelImpl implements OAuthToken {
+public class OAuthTokenImpl extends OAuthTokenBaseImpl {
 
 	public OAuthTokenImpl() {
 	}

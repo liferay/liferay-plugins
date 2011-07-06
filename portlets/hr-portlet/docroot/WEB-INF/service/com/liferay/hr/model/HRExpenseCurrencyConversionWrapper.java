@@ -344,6 +344,11 @@ public class HRExpenseCurrencyConversionWrapper
 		return _hrExpenseCurrencyConversion.toXmlString();
 	}
 
+	public void save()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_hrExpenseCurrencyConversion.save();
+	}
+
 	public HRExpenseCurrencyConversion getWrappedHRExpenseCurrencyConversion() {
 		return _hrExpenseCurrencyConversion;
 	}

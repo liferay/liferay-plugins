@@ -378,6 +378,11 @@ public class MemberRequestWrapper implements MemberRequest {
 		return _memberRequest.toXmlString();
 	}
 
+	public void save()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_memberRequest.save();
+	}
+
 	public MemberRequest getWrappedMemberRequest() {
 		return _memberRequest;
 	}

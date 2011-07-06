@@ -19,7 +19,7 @@ import com.liferay.ams.model.Asset;
 /**
  * @author Brian Wing Shun Chan
  */
-public class AssetImpl extends AssetModelImpl implements Asset {
+public class AssetImpl extends AssetBaseImpl {
 
 	public AssetImpl() {
 	}

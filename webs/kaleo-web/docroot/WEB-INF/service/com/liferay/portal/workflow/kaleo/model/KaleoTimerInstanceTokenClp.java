@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
+import com.liferay.portal.workflow.kaleo.service.KaleoTimerInstanceTokenLocalServiceUtil;
 
 import java.io.Serializable;
 
@@ -213,6 +214,10 @@ public class KaleoTimerInstanceTokenClp extends BaseModelImpl<KaleoTimerInstance
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoTimer getKaleoTimer() {
 		throw new UnsupportedOperationException();
+	}
+
+	public void save() throws SystemException {
+		KaleoTimerInstanceTokenLocalServiceUtil.updateKaleoTimerInstanceToken(this);
 	}
 
 	@Override
