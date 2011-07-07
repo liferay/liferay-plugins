@@ -331,6 +331,10 @@ public class HRExpenseCurrencyConversionWrapper
 		return _hrExpenseCurrencyConversion.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.hr.model.HRExpenseCurrencyConversion> toCacheModel() {
+		return _hrExpenseCurrencyConversion.toCacheModel();
+	}
+
 	public com.liferay.hr.model.HRExpenseCurrencyConversion toEscapedModel() {
 		return new HRExpenseCurrencyConversionWrapper(_hrExpenseCurrencyConversion.toEscapedModel());
 	}

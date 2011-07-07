@@ -41,6 +41,7 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.ResourcePersistence;
@@ -990,6 +991,16 @@ public class HRExpenseTypePersistenceImpl extends BasePersistenceImpl<HRExpenseT
 	private static HRExpenseType _nullHRExpenseType = new HRExpenseTypeImpl() {
 			public Object clone() {
 				return this;
+			}
+
+			public CacheModel<HRExpenseType> toCacheModel() {
+				return _nullHRExpenseTypeCacheModel;
+			}
+		};
+
+	private static CacheModel<HRExpenseType> _nullHRExpenseTypeCacheModel = new CacheModel<HRExpenseType>() {
+			public HRExpenseType toEntityModel() {
+				return _nullHRExpenseType;
 			}
 		};
 }

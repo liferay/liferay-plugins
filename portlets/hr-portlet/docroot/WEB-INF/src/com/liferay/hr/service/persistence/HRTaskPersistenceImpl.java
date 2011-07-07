@@ -38,6 +38,7 @@ import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.ResourcePersistence;
@@ -692,6 +693,16 @@ public class HRTaskPersistenceImpl extends BasePersistenceImpl<HRTask>
 	private static HRTask _nullHRTask = new HRTaskImpl() {
 			public Object clone() {
 				return this;
+			}
+
+			public CacheModel<HRTask> toCacheModel() {
+				return _nullHRTaskCacheModel;
+			}
+		};
+
+	private static CacheModel<HRTask> _nullHRTaskCacheModel = new CacheModel<HRTask>() {
+			public HRTask toEntityModel() {
+				return _nullHRTask;
 			}
 		};
 }

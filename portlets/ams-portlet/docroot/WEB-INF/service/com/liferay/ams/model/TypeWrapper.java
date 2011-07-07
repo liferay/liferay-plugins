@@ -163,6 +163,10 @@ public class TypeWrapper implements Type {
 		return _type.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.ams.model.Type> toCacheModel() {
+		return _type.toCacheModel();
+	}
+
 	public com.liferay.ams.model.Type toEscapedModel() {
 		return new TypeWrapper(_type.toEscapedModel());
 	}

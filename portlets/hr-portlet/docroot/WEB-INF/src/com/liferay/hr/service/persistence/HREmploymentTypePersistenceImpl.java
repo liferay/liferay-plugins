@@ -41,6 +41,7 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.ResourcePersistence;
@@ -993,6 +994,16 @@ public class HREmploymentTypePersistenceImpl extends BasePersistenceImpl<HREmplo
 	private static HREmploymentType _nullHREmploymentType = new HREmploymentTypeImpl() {
 			public Object clone() {
 				return this;
+			}
+
+			public CacheModel<HREmploymentType> toCacheModel() {
+				return _nullHREmploymentTypeCacheModel;
+			}
+		};
+
+	private static CacheModel<HREmploymentType> _nullHREmploymentTypeCacheModel = new CacheModel<HREmploymentType>() {
+			public HREmploymentType toEntityModel() {
+				return _nullHREmploymentType;
 			}
 		};
 }

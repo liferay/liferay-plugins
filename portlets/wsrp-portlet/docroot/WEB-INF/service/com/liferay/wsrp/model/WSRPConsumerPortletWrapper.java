@@ -254,6 +254,10 @@ public class WSRPConsumerPortletWrapper implements WSRPConsumerPortlet {
 		return _wsrpConsumerPortlet.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.wsrp.model.WSRPConsumerPortlet> toCacheModel() {
+		return _wsrpConsumerPortlet.toCacheModel();
+	}
+
 	public com.liferay.wsrp.model.WSRPConsumerPortlet toEscapedModel() {
 		return new WSRPConsumerPortletWrapper(_wsrpConsumerPortlet.toEscapedModel());
 	}

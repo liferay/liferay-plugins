@@ -271,6 +271,10 @@ public class WSRPProducerWrapper implements WSRPProducer {
 		return _wsrpProducer.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.wsrp.model.WSRPProducer> toCacheModel() {
+		return _wsrpProducer.toCacheModel();
+	}
+
 	public com.liferay.wsrp.model.WSRPProducer toEscapedModel() {
 		return new WSRPProducerWrapper(_wsrpProducer.toEscapedModel());
 	}

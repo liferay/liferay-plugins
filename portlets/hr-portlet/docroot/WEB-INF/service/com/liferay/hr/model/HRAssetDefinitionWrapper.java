@@ -400,6 +400,10 @@ public class HRAssetDefinitionWrapper implements HRAssetDefinition {
 		return _hrAssetDefinition.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.hr.model.HRAssetDefinition> toCacheModel() {
+		return _hrAssetDefinition.toCacheModel();
+	}
+
 	public com.liferay.hr.model.HRAssetDefinition toEscapedModel() {
 		return new HRAssetDefinitionWrapper(_hrAssetDefinition.toEscapedModel());
 	}

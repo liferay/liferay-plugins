@@ -418,6 +418,10 @@ public class KaleoNotificationWrapper implements KaleoNotification {
 		return _kaleoNotification.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.portal.workflow.kaleo.model.KaleoNotification> toCacheModel() {
+		return _kaleoNotification.toCacheModel();
+	}
+
 	public com.liferay.portal.workflow.kaleo.model.KaleoNotification toEscapedModel() {
 		return new KaleoNotificationWrapper(_kaleoNotification.toEscapedModel());
 	}

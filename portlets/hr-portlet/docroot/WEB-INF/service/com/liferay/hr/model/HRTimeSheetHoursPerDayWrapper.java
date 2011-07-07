@@ -293,6 +293,10 @@ public class HRTimeSheetHoursPerDayWrapper implements HRTimeSheetHoursPerDay {
 		return _hrTimeSheetHoursPerDay.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.hr.model.HRTimeSheetHoursPerDay> toCacheModel() {
+		return _hrTimeSheetHoursPerDay.toCacheModel();
+	}
+
 	public com.liferay.hr.model.HRTimeSheetHoursPerDay toEscapedModel() {
 		return new HRTimeSheetHoursPerDayWrapper(_hrTimeSheetHoursPerDay.toEscapedModel());
 	}

@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 
@@ -219,6 +220,25 @@ public class TypeModelImpl extends BaseModelImpl<Type> implements TypeModel {
 
 	@Override
 	public void resetOriginalValues() {
+	}
+
+	@Override
+	public CacheModel<Type> toCacheModel() {
+		TypeCacheModel typeCacheModel = new TypeCacheModel();
+
+		typeCacheModel.typeId = getTypeId();
+
+		typeCacheModel.groupId = getGroupId();
+
+		typeCacheModel.name = getName();
+
+		String name = typeCacheModel.name;
+
+		if ((name != null) && (name.length() == 0)) {
+			typeCacheModel.name = null;
+		}
+
+		return typeCacheModel;
 	}
 
 	@Override

@@ -17,6 +17,7 @@ package com.liferay.knowledgebase.model;
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.BaseModel;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.GroupedModel;
 import com.liferay.portal.service.ServiceContext;
 
@@ -318,6 +319,8 @@ public interface KBStructureModel extends BaseModel<KBStructure>, GroupedModel {
 	public int compareTo(KBStructure kbStructure);
 
 	public int hashCode();
+
+	public CacheModel<KBStructure> toCacheModel();
 
 	public KBStructure toEscapedModel();
 

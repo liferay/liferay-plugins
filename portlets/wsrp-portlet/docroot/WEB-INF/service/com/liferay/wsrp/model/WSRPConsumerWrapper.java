@@ -309,6 +309,10 @@ public class WSRPConsumerWrapper implements WSRPConsumer {
 		return _wsrpConsumer.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.wsrp.model.WSRPConsumer> toCacheModel() {
+		return _wsrpConsumer.toCacheModel();
+	}
+
 	public com.liferay.wsrp.model.WSRPConsumer toEscapedModel() {
 		return new WSRPConsumerWrapper(_wsrpConsumer.toEscapedModel());
 	}

@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
@@ -548,6 +549,151 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 
 	@Override
 	public void resetOriginalValues() {
+	}
+
+	@Override
+	public CacheModel<KaleoLog> toCacheModel() {
+		KaleoLogCacheModel kaleoLogCacheModel = new KaleoLogCacheModel();
+
+		kaleoLogCacheModel.kaleoLogId = getKaleoLogId();
+
+		kaleoLogCacheModel.groupId = getGroupId();
+
+		kaleoLogCacheModel.companyId = getCompanyId();
+
+		kaleoLogCacheModel.userId = getUserId();
+
+		kaleoLogCacheModel.userName = getUserName();
+
+		String userName = kaleoLogCacheModel.userName;
+
+		if ((userName != null) && (userName.length() == 0)) {
+			kaleoLogCacheModel.userName = null;
+		}
+
+		Date createDate = getCreateDate();
+
+		if (createDate != null) {
+			kaleoLogCacheModel.createDate = createDate.getTime();
+		}
+
+		Date modifiedDate = getModifiedDate();
+
+		if (modifiedDate != null) {
+			kaleoLogCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+
+		kaleoLogCacheModel.kaleoDefinitionId = getKaleoDefinitionId();
+
+		kaleoLogCacheModel.kaleoInstanceId = getKaleoInstanceId();
+
+		kaleoLogCacheModel.kaleoInstanceTokenId = getKaleoInstanceTokenId();
+
+		kaleoLogCacheModel.kaleoTaskInstanceTokenId = getKaleoTaskInstanceTokenId();
+
+		kaleoLogCacheModel.kaleoNodeId = getKaleoNodeId();
+
+		kaleoLogCacheModel.kaleoNodeName = getKaleoNodeName();
+
+		String kaleoNodeName = kaleoLogCacheModel.kaleoNodeName;
+
+		if ((kaleoNodeName != null) && (kaleoNodeName.length() == 0)) {
+			kaleoLogCacheModel.kaleoNodeName = null;
+		}
+
+		kaleoLogCacheModel.terminalKaleoNode = getTerminalKaleoNode();
+
+		kaleoLogCacheModel.kaleoActionId = getKaleoActionId();
+
+		kaleoLogCacheModel.kaleoActionName = getKaleoActionName();
+
+		String kaleoActionName = kaleoLogCacheModel.kaleoActionName;
+
+		if ((kaleoActionName != null) && (kaleoActionName.length() == 0)) {
+			kaleoLogCacheModel.kaleoActionName = null;
+		}
+
+		kaleoLogCacheModel.kaleoActionDescription = getKaleoActionDescription();
+
+		String kaleoActionDescription = kaleoLogCacheModel.kaleoActionDescription;
+
+		if ((kaleoActionDescription != null) &&
+				(kaleoActionDescription.length() == 0)) {
+			kaleoLogCacheModel.kaleoActionDescription = null;
+		}
+
+		kaleoLogCacheModel.previousKaleoNodeId = getPreviousKaleoNodeId();
+
+		kaleoLogCacheModel.previousKaleoNodeName = getPreviousKaleoNodeName();
+
+		String previousKaleoNodeName = kaleoLogCacheModel.previousKaleoNodeName;
+
+		if ((previousKaleoNodeName != null) &&
+				(previousKaleoNodeName.length() == 0)) {
+			kaleoLogCacheModel.previousKaleoNodeName = null;
+		}
+
+		kaleoLogCacheModel.previousAssigneeClassName = getPreviousAssigneeClassName();
+
+		String previousAssigneeClassName = kaleoLogCacheModel.previousAssigneeClassName;
+
+		if ((previousAssigneeClassName != null) &&
+				(previousAssigneeClassName.length() == 0)) {
+			kaleoLogCacheModel.previousAssigneeClassName = null;
+		}
+
+		kaleoLogCacheModel.previousAssigneeClassPK = getPreviousAssigneeClassPK();
+
+		kaleoLogCacheModel.currentAssigneeClassName = getCurrentAssigneeClassName();
+
+		String currentAssigneeClassName = kaleoLogCacheModel.currentAssigneeClassName;
+
+		if ((currentAssigneeClassName != null) &&
+				(currentAssigneeClassName.length() == 0)) {
+			kaleoLogCacheModel.currentAssigneeClassName = null;
+		}
+
+		kaleoLogCacheModel.currentAssigneeClassPK = getCurrentAssigneeClassPK();
+
+		kaleoLogCacheModel.type = getType();
+
+		String type = kaleoLogCacheModel.type;
+
+		if ((type != null) && (type.length() == 0)) {
+			kaleoLogCacheModel.type = null;
+		}
+
+		kaleoLogCacheModel.comment = getComment();
+
+		String comment = kaleoLogCacheModel.comment;
+
+		if ((comment != null) && (comment.length() == 0)) {
+			kaleoLogCacheModel.comment = null;
+		}
+
+		Date startDate = getStartDate();
+
+		if (startDate != null) {
+			kaleoLogCacheModel.startDate = startDate.getTime();
+		}
+
+		Date endDate = getEndDate();
+
+		if (endDate != null) {
+			kaleoLogCacheModel.endDate = endDate.getTime();
+		}
+
+		kaleoLogCacheModel.duration = getDuration();
+
+		kaleoLogCacheModel.workflowContext = getWorkflowContext();
+
+		String workflowContext = kaleoLogCacheModel.workflowContext;
+
+		if ((workflowContext != null) && (workflowContext.length() == 0)) {
+			kaleoLogCacheModel.workflowContext = null;
+		}
+
+		return kaleoLogCacheModel;
 	}
 
 	@Override

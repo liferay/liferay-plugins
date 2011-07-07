@@ -300,6 +300,10 @@ public class StatusWrapper implements Status {
 		return _status.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.chat.model.Status> toCacheModel() {
+		return _status.toCacheModel();
+	}
+
 	public com.liferay.chat.model.Status toEscapedModel() {
 		return new StatusWrapper(_status.toEscapedModel());
 	}

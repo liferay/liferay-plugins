@@ -311,6 +311,10 @@ public class HRProjectBillingRateWrapper implements HRProjectBillingRate {
 		return _hrProjectBillingRate.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.hr.model.HRProjectBillingRate> toCacheModel() {
+		return _hrProjectBillingRate.toCacheModel();
+	}
+
 	public com.liferay.hr.model.HRProjectBillingRate toEscapedModel() {
 		return new HRProjectBillingRateWrapper(_hrProjectBillingRate.toEscapedModel());
 	}

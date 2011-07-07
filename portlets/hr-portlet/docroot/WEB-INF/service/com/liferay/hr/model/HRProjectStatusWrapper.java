@@ -309,6 +309,10 @@ public class HRProjectStatusWrapper implements HRProjectStatus {
 		return _hrProjectStatus.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.hr.model.HRProjectStatus> toCacheModel() {
+		return _hrProjectStatus.toCacheModel();
+	}
+
 	public com.liferay.hr.model.HRProjectStatus toEscapedModel() {
 		return new HRProjectStatusWrapper(_hrProjectStatus.toEscapedModel());
 	}

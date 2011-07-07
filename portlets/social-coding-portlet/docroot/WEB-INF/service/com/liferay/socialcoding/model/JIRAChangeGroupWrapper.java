@@ -182,6 +182,10 @@ public class JIRAChangeGroupWrapper implements JIRAChangeGroup {
 		return _jiraChangeGroup.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.socialcoding.model.JIRAChangeGroup> toCacheModel() {
+		return _jiraChangeGroup.toCacheModel();
+	}
+
 	public com.liferay.socialcoding.model.JIRAChangeGroup toEscapedModel() {
 		return new JIRAChangeGroupWrapper(_jiraChangeGroup.toEscapedModel());
 	}

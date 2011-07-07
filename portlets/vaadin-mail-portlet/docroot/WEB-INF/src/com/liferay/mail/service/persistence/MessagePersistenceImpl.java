@@ -40,6 +40,7 @@ import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.ResourcePersistence;
@@ -1725,6 +1726,16 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	private static Message _nullMessage = new MessageImpl() {
 			public Object clone() {
 				return this;
+			}
+
+			public CacheModel<Message> toCacheModel() {
+				return _nullMessageCacheModel;
+			}
+		};
+
+	private static CacheModel<Message> _nullMessageCacheModel = new CacheModel<Message>() {
+			public Message toEntityModel() {
+				return _nullMessage;
 			}
 		};
 }

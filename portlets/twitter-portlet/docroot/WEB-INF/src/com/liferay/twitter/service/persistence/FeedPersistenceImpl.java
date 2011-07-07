@@ -36,6 +36,7 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.ResourcePersistence;
@@ -1163,6 +1164,16 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	private static Feed _nullFeed = new FeedImpl() {
 			public Object clone() {
 				return this;
+			}
+
+			public CacheModel<Feed> toCacheModel() {
+				return _nullFeedCacheModel;
+			}
+		};
+
+	private static CacheModel<Feed> _nullFeedCacheModel = new CacheModel<Feed>() {
+			public Feed toEntityModel() {
+				return _nullFeed;
 			}
 		};
 }

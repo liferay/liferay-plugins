@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
@@ -342,6 +343,65 @@ public class HRTerminationTypeModelImpl extends BaseModelImpl<HRTerminationType>
 		hrTerminationTypeModelImpl._setOriginalGroupId = false;
 
 		hrTerminationTypeModelImpl._originalCode = hrTerminationTypeModelImpl._code;
+	}
+
+	@Override
+	public CacheModel<HRTerminationType> toCacheModel() {
+		HRTerminationTypeCacheModel hrTerminationTypeCacheModel = new HRTerminationTypeCacheModel();
+
+		hrTerminationTypeCacheModel.hrTerminationTypeId = getHrTerminationTypeId();
+
+		hrTerminationTypeCacheModel.groupId = getGroupId();
+
+		hrTerminationTypeCacheModel.companyId = getCompanyId();
+
+		hrTerminationTypeCacheModel.userId = getUserId();
+
+		hrTerminationTypeCacheModel.userName = getUserName();
+
+		String userName = hrTerminationTypeCacheModel.userName;
+
+		if ((userName != null) && (userName.length() == 0)) {
+			hrTerminationTypeCacheModel.userName = null;
+		}
+
+		Date createDate = getCreateDate();
+
+		if (createDate != null) {
+			hrTerminationTypeCacheModel.createDate = createDate.getTime();
+		}
+
+		Date modifiedDate = getModifiedDate();
+
+		if (modifiedDate != null) {
+			hrTerminationTypeCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+
+		hrTerminationTypeCacheModel.code = getCode();
+
+		String code = hrTerminationTypeCacheModel.code;
+
+		if ((code != null) && (code.length() == 0)) {
+			hrTerminationTypeCacheModel.code = null;
+		}
+
+		hrTerminationTypeCacheModel.name = getName();
+
+		String name = hrTerminationTypeCacheModel.name;
+
+		if ((name != null) && (name.length() == 0)) {
+			hrTerminationTypeCacheModel.name = null;
+		}
+
+		hrTerminationTypeCacheModel.description = getDescription();
+
+		String description = hrTerminationTypeCacheModel.description;
+
+		if ((description != null) && (description.length() == 0)) {
+			hrTerminationTypeCacheModel.description = null;
+		}
+
+		return hrTerminationTypeCacheModel;
 	}
 
 	@Override

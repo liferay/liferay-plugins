@@ -35,6 +35,7 @@ import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.ResourcePersistence;
@@ -2878,6 +2879,17 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 	private static KaleoTaskAssignment _nullKaleoTaskAssignment = new KaleoTaskAssignmentImpl() {
 			public Object clone() {
 				return this;
+			}
+
+			public CacheModel<KaleoTaskAssignment> toCacheModel() {
+				return _nullKaleoTaskAssignmentCacheModel;
+			}
+		};
+
+	private static CacheModel<KaleoTaskAssignment> _nullKaleoTaskAssignmentCacheModel =
+		new CacheModel<KaleoTaskAssignment>() {
+			public KaleoTaskAssignment toEntityModel() {
+				return _nullKaleoTaskAssignment;
 			}
 		};
 }

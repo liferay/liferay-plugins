@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
@@ -456,6 +457,91 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 		kaleoTaskInstanceTokenModelImpl._originalKaleoTaskId = kaleoTaskInstanceTokenModelImpl._kaleoTaskId;
 
 		kaleoTaskInstanceTokenModelImpl._setOriginalKaleoTaskId = false;
+	}
+
+	@Override
+	public CacheModel<KaleoTaskInstanceToken> toCacheModel() {
+		KaleoTaskInstanceTokenCacheModel kaleoTaskInstanceTokenCacheModel = new KaleoTaskInstanceTokenCacheModel();
+
+		kaleoTaskInstanceTokenCacheModel.kaleoTaskInstanceTokenId = getKaleoTaskInstanceTokenId();
+
+		kaleoTaskInstanceTokenCacheModel.groupId = getGroupId();
+
+		kaleoTaskInstanceTokenCacheModel.companyId = getCompanyId();
+
+		kaleoTaskInstanceTokenCacheModel.userId = getUserId();
+
+		kaleoTaskInstanceTokenCacheModel.userName = getUserName();
+
+		String userName = kaleoTaskInstanceTokenCacheModel.userName;
+
+		if ((userName != null) && (userName.length() == 0)) {
+			kaleoTaskInstanceTokenCacheModel.userName = null;
+		}
+
+		Date createDate = getCreateDate();
+
+		if (createDate != null) {
+			kaleoTaskInstanceTokenCacheModel.createDate = createDate.getTime();
+		}
+
+		Date modifiedDate = getModifiedDate();
+
+		if (modifiedDate != null) {
+			kaleoTaskInstanceTokenCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+
+		kaleoTaskInstanceTokenCacheModel.kaleoDefinitionId = getKaleoDefinitionId();
+
+		kaleoTaskInstanceTokenCacheModel.kaleoInstanceId = getKaleoInstanceId();
+
+		kaleoTaskInstanceTokenCacheModel.kaleoInstanceTokenId = getKaleoInstanceTokenId();
+
+		kaleoTaskInstanceTokenCacheModel.kaleoTaskId = getKaleoTaskId();
+
+		kaleoTaskInstanceTokenCacheModel.kaleoTaskName = getKaleoTaskName();
+
+		String kaleoTaskName = kaleoTaskInstanceTokenCacheModel.kaleoTaskName;
+
+		if ((kaleoTaskName != null) && (kaleoTaskName.length() == 0)) {
+			kaleoTaskInstanceTokenCacheModel.kaleoTaskName = null;
+		}
+
+		kaleoTaskInstanceTokenCacheModel.className = getClassName();
+
+		String className = kaleoTaskInstanceTokenCacheModel.className;
+
+		if ((className != null) && (className.length() == 0)) {
+			kaleoTaskInstanceTokenCacheModel.className = null;
+		}
+
+		kaleoTaskInstanceTokenCacheModel.classPK = getClassPK();
+
+		kaleoTaskInstanceTokenCacheModel.completionUserId = getCompletionUserId();
+
+		kaleoTaskInstanceTokenCacheModel.completed = getCompleted();
+
+		Date completionDate = getCompletionDate();
+
+		if (completionDate != null) {
+			kaleoTaskInstanceTokenCacheModel.completionDate = completionDate.getTime();
+		}
+
+		Date dueDate = getDueDate();
+
+		if (dueDate != null) {
+			kaleoTaskInstanceTokenCacheModel.dueDate = dueDate.getTime();
+		}
+
+		kaleoTaskInstanceTokenCacheModel.workflowContext = getWorkflowContext();
+
+		String workflowContext = kaleoTaskInstanceTokenCacheModel.workflowContext;
+
+		if ((workflowContext != null) && (workflowContext.length() == 0)) {
+			kaleoTaskInstanceTokenCacheModel.workflowContext = null;
+		}
+
+		return kaleoTaskInstanceTokenCacheModel;
 	}
 
 	@Override

@@ -38,6 +38,7 @@ import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.ResourcePersistence;
@@ -690,6 +691,16 @@ public class HRUserTimeOffPersistenceImpl extends BasePersistenceImpl<HRUserTime
 	private static HRUserTimeOff _nullHRUserTimeOff = new HRUserTimeOffImpl() {
 			public Object clone() {
 				return this;
+			}
+
+			public CacheModel<HRUserTimeOff> toCacheModel() {
+				return _nullHRUserTimeOffCacheModel;
+			}
+		};
+
+	private static CacheModel<HRUserTimeOff> _nullHRUserTimeOffCacheModel = new CacheModel<HRUserTimeOff>() {
+			public HRUserTimeOff toEntityModel() {
+				return _nullHRUserTimeOff;
 			}
 		};
 }

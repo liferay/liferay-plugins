@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.AuditedModel;
 import com.liferay.portal.model.BaseModel;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.service.ServiceContext;
 
 import com.liferay.portlet.expando.model.ExpandoBridge;
@@ -249,6 +250,8 @@ public interface AssetModel extends AuditedModel, BaseModel<Asset> {
 	public int compareTo(Asset asset);
 
 	public int hashCode();
+
+	public CacheModel<Asset> toCacheModel();
 
 	public Asset toEscapedModel();
 

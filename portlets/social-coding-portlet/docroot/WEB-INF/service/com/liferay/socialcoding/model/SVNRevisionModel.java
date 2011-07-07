@@ -16,6 +16,7 @@ package com.liferay.socialcoding.model;
 
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.model.BaseModel;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.service.ServiceContext;
 
 import com.liferay.portlet.expando.model.ExpandoBridge;
@@ -169,6 +170,8 @@ public interface SVNRevisionModel extends BaseModel<SVNRevision> {
 	public int compareTo(SVNRevision svnRevision);
 
 	public int hashCode();
+
+	public CacheModel<SVNRevision> toCacheModel();
 
 	public SVNRevision toEscapedModel();
 

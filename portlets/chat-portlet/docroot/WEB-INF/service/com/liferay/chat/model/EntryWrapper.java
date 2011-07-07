@@ -239,6 +239,10 @@ public class EntryWrapper implements Entry {
 		return _entry.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.chat.model.Entry> toCacheModel() {
+		return _entry.toCacheModel();
+	}
+
 	public com.liferay.chat.model.Entry toEscapedModel() {
 		return new EntryWrapper(_entry.toEscapedModel());
 	}

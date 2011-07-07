@@ -381,6 +381,10 @@ public class OAuthTokenWrapper implements OAuthToken {
 		return _oAuthToken.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.opensocial.model.OAuthToken> toCacheModel() {
+		return _oAuthToken.toCacheModel();
+	}
+
 	public com.liferay.opensocial.model.OAuthToken toEscapedModel() {
 		return new OAuthTokenWrapper(_oAuthToken.toEscapedModel());
 	}

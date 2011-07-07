@@ -35,6 +35,7 @@ import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.ResourcePersistence;
@@ -1460,6 +1461,16 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 	private static MeetupsEntry _nullMeetupsEntry = new MeetupsEntryImpl() {
 			public Object clone() {
 				return this;
+			}
+
+			public CacheModel<MeetupsEntry> toCacheModel() {
+				return _nullMeetupsEntryCacheModel;
+			}
+		};
+
+	private static CacheModel<MeetupsEntry> _nullMeetupsEntryCacheModel = new CacheModel<MeetupsEntry>() {
+			public MeetupsEntry toEntityModel() {
+				return _nullMeetupsEntry;
 			}
 		};
 }

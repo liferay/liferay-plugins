@@ -42,6 +42,7 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.ResourcePersistence;
@@ -1801,6 +1802,16 @@ public class KBStructurePersistenceImpl extends BasePersistenceImpl<KBStructure>
 	private static KBStructure _nullKBStructure = new KBStructureImpl() {
 			public Object clone() {
 				return this;
+			}
+
+			public CacheModel<KBStructure> toCacheModel() {
+				return _nullKBStructureCacheModel;
+			}
+		};
+
+	private static CacheModel<KBStructure> _nullKBStructureCacheModel = new CacheModel<KBStructure>() {
+			public KBStructure toEntityModel() {
+				return _nullKBStructure;
 			}
 		};
 }

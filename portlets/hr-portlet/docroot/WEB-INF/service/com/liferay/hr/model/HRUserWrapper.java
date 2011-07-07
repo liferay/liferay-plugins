@@ -491,6 +491,10 @@ public class HRUserWrapper implements HRUser {
 		return _hrUser.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.hr.model.HRUser> toCacheModel() {
+		return _hrUser.toCacheModel();
+	}
+
 	public com.liferay.hr.model.HRUser toEscapedModel() {
 		return new HRUserWrapper(_hrUser.toEscapedModel());
 	}

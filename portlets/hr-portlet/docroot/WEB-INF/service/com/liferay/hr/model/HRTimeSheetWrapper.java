@@ -482,6 +482,10 @@ public class HRTimeSheetWrapper implements HRTimeSheet {
 		return _hrTimeSheet.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.hr.model.HRTimeSheet> toCacheModel() {
+		return _hrTimeSheet.toCacheModel();
+	}
+
 	public com.liferay.hr.model.HRTimeSheet toEscapedModel() {
 		return new HRTimeSheetWrapper(_hrTimeSheet.toEscapedModel());
 	}

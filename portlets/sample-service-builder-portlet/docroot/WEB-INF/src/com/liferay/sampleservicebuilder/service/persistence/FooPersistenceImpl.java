@@ -37,6 +37,7 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.ResourcePersistence;
@@ -1773,6 +1774,16 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 	private static Foo _nullFoo = new FooImpl() {
 			public Object clone() {
 				return this;
+			}
+
+			public CacheModel<Foo> toCacheModel() {
+				return _nullFooCacheModel;
+			}
+		};
+
+	private static CacheModel<Foo> _nullFooCacheModel = new CacheModel<Foo>() {
+			public Foo toEntityModel() {
+				return _nullFoo;
 			}
 		};
 }

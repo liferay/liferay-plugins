@@ -38,6 +38,7 @@ import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.ResourcePersistence;
@@ -686,6 +687,16 @@ public class HRAssetProductPersistenceImpl extends BasePersistenceImpl<HRAssetPr
 	private static HRAssetProduct _nullHRAssetProduct = new HRAssetProductImpl() {
 			public Object clone() {
 				return this;
+			}
+
+			public CacheModel<HRAssetProduct> toCacheModel() {
+				return _nullHRAssetProductCacheModel;
+			}
+		};
+
+	private static CacheModel<HRAssetProduct> _nullHRAssetProductCacheModel = new CacheModel<HRAssetProduct>() {
+			public HRAssetProduct toEntityModel() {
+				return _nullHRAssetProduct;
 			}
 		};
 }

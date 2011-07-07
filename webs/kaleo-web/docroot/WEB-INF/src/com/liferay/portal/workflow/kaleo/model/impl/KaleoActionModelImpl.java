@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
@@ -399,6 +400,95 @@ public class KaleoActionModelImpl extends BaseModelImpl<KaleoAction>
 
 	@Override
 	public void resetOriginalValues() {
+	}
+
+	@Override
+	public CacheModel<KaleoAction> toCacheModel() {
+		KaleoActionCacheModel kaleoActionCacheModel = new KaleoActionCacheModel();
+
+		kaleoActionCacheModel.kaleoActionId = getKaleoActionId();
+
+		kaleoActionCacheModel.groupId = getGroupId();
+
+		kaleoActionCacheModel.companyId = getCompanyId();
+
+		kaleoActionCacheModel.userId = getUserId();
+
+		kaleoActionCacheModel.userName = getUserName();
+
+		String userName = kaleoActionCacheModel.userName;
+
+		if ((userName != null) && (userName.length() == 0)) {
+			kaleoActionCacheModel.userName = null;
+		}
+
+		Date createDate = getCreateDate();
+
+		if (createDate != null) {
+			kaleoActionCacheModel.createDate = createDate.getTime();
+		}
+
+		Date modifiedDate = getModifiedDate();
+
+		if (modifiedDate != null) {
+			kaleoActionCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+
+		kaleoActionCacheModel.kaleoDefinitionId = getKaleoDefinitionId();
+
+		kaleoActionCacheModel.kaleoNodeId = getKaleoNodeId();
+
+		kaleoActionCacheModel.kaleoNodeName = getKaleoNodeName();
+
+		String kaleoNodeName = kaleoActionCacheModel.kaleoNodeName;
+
+		if ((kaleoNodeName != null) && (kaleoNodeName.length() == 0)) {
+			kaleoActionCacheModel.kaleoNodeName = null;
+		}
+
+		kaleoActionCacheModel.name = getName();
+
+		String name = kaleoActionCacheModel.name;
+
+		if ((name != null) && (name.length() == 0)) {
+			kaleoActionCacheModel.name = null;
+		}
+
+		kaleoActionCacheModel.description = getDescription();
+
+		String description = kaleoActionCacheModel.description;
+
+		if ((description != null) && (description.length() == 0)) {
+			kaleoActionCacheModel.description = null;
+		}
+
+		kaleoActionCacheModel.executionType = getExecutionType();
+
+		String executionType = kaleoActionCacheModel.executionType;
+
+		if ((executionType != null) && (executionType.length() == 0)) {
+			kaleoActionCacheModel.executionType = null;
+		}
+
+		kaleoActionCacheModel.script = getScript();
+
+		String script = kaleoActionCacheModel.script;
+
+		if ((script != null) && (script.length() == 0)) {
+			kaleoActionCacheModel.script = null;
+		}
+
+		kaleoActionCacheModel.scriptLanguage = getScriptLanguage();
+
+		String scriptLanguage = kaleoActionCacheModel.scriptLanguage;
+
+		if ((scriptLanguage != null) && (scriptLanguage.length() == 0)) {
+			kaleoActionCacheModel.scriptLanguage = null;
+		}
+
+		kaleoActionCacheModel.priority = getPriority();
+
+		return kaleoActionCacheModel;
 	}
 
 	@Override

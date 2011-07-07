@@ -327,6 +327,10 @@ public class ProjectsEntryWrapper implements ProjectsEntry {
 		return _projectsEntry.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.so.model.ProjectsEntry> toCacheModel() {
+		return _projectsEntry.toCacheModel();
+	}
+
 	public com.liferay.so.model.ProjectsEntry toEscapedModel() {
 		return new ProjectsEntryWrapper(_projectsEntry.toEscapedModel());
 	}

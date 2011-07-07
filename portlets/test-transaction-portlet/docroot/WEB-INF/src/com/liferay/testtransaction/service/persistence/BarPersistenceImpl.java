@@ -35,6 +35,7 @@ import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.ClassNamePersistence;
@@ -1046,6 +1047,16 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 	private static Bar _nullBar = new BarImpl() {
 			public Object clone() {
 				return this;
+			}
+
+			public CacheModel<Bar> toCacheModel() {
+				return _nullBarCacheModel;
+			}
+		};
+
+	private static CacheModel<Bar> _nullBarCacheModel = new CacheModel<Bar>() {
+			public Bar toEntityModel() {
+				return _nullBar;
 			}
 		};
 }

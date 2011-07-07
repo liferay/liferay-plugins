@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
@@ -344,6 +345,61 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 		kaleoConditionModelImpl._originalKaleoNodeId = kaleoConditionModelImpl._kaleoNodeId;
 
 		kaleoConditionModelImpl._setOriginalKaleoNodeId = false;
+	}
+
+	@Override
+	public CacheModel<KaleoCondition> toCacheModel() {
+		KaleoConditionCacheModel kaleoConditionCacheModel = new KaleoConditionCacheModel();
+
+		kaleoConditionCacheModel.kaleoConditionId = getKaleoConditionId();
+
+		kaleoConditionCacheModel.groupId = getGroupId();
+
+		kaleoConditionCacheModel.companyId = getCompanyId();
+
+		kaleoConditionCacheModel.userId = getUserId();
+
+		kaleoConditionCacheModel.userName = getUserName();
+
+		String userName = kaleoConditionCacheModel.userName;
+
+		if ((userName != null) && (userName.length() == 0)) {
+			kaleoConditionCacheModel.userName = null;
+		}
+
+		Date createDate = getCreateDate();
+
+		if (createDate != null) {
+			kaleoConditionCacheModel.createDate = createDate.getTime();
+		}
+
+		Date modifiedDate = getModifiedDate();
+
+		if (modifiedDate != null) {
+			kaleoConditionCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+
+		kaleoConditionCacheModel.kaleoDefinitionId = getKaleoDefinitionId();
+
+		kaleoConditionCacheModel.kaleoNodeId = getKaleoNodeId();
+
+		kaleoConditionCacheModel.script = getScript();
+
+		String script = kaleoConditionCacheModel.script;
+
+		if ((script != null) && (script.length() == 0)) {
+			kaleoConditionCacheModel.script = null;
+		}
+
+		kaleoConditionCacheModel.scriptLanguage = getScriptLanguage();
+
+		String scriptLanguage = kaleoConditionCacheModel.scriptLanguage;
+
+		if ((scriptLanguage != null) && (scriptLanguage.length() == 0)) {
+			kaleoConditionCacheModel.scriptLanguage = null;
+		}
+
+		return kaleoConditionCacheModel;
 	}
 
 	@Override

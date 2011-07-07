@@ -46,6 +46,7 @@ import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.ResourcePersistence;
@@ -1357,6 +1358,16 @@ public class HRJobTitlePersistenceImpl extends BasePersistenceImpl<HRJobTitle>
 	private static HRJobTitle _nullHRJobTitle = new HRJobTitleImpl() {
 			public Object clone() {
 				return this;
+			}
+
+			public CacheModel<HRJobTitle> toCacheModel() {
+				return _nullHRJobTitleCacheModel;
+			}
+		};
+
+	private static CacheModel<HRJobTitle> _nullHRJobTitleCacheModel = new CacheModel<HRJobTitle>() {
+			public HRJobTitle toEntityModel() {
+				return _nullHRJobTitle;
 			}
 		};
 }

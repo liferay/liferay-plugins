@@ -38,6 +38,7 @@ import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.ResourcePersistence;
@@ -596,6 +597,16 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 	private static Type _nullType = new TypeImpl() {
 			public Object clone() {
 				return this;
+			}
+
+			public CacheModel<Type> toCacheModel() {
+				return _nullTypeCacheModel;
+			}
+		};
+
+	private static CacheModel<Type> _nullTypeCacheModel = new CacheModel<Type>() {
+			public Type toEntityModel() {
+				return _nullType;
 			}
 		};
 }

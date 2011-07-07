@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
@@ -342,6 +343,65 @@ public class HREmploymentTypeModelImpl extends BaseModelImpl<HREmploymentType>
 		hrEmploymentTypeModelImpl._setOriginalGroupId = false;
 
 		hrEmploymentTypeModelImpl._originalCode = hrEmploymentTypeModelImpl._code;
+	}
+
+	@Override
+	public CacheModel<HREmploymentType> toCacheModel() {
+		HREmploymentTypeCacheModel hrEmploymentTypeCacheModel = new HREmploymentTypeCacheModel();
+
+		hrEmploymentTypeCacheModel.hrEmploymentTypeId = getHrEmploymentTypeId();
+
+		hrEmploymentTypeCacheModel.groupId = getGroupId();
+
+		hrEmploymentTypeCacheModel.companyId = getCompanyId();
+
+		hrEmploymentTypeCacheModel.userId = getUserId();
+
+		hrEmploymentTypeCacheModel.userName = getUserName();
+
+		String userName = hrEmploymentTypeCacheModel.userName;
+
+		if ((userName != null) && (userName.length() == 0)) {
+			hrEmploymentTypeCacheModel.userName = null;
+		}
+
+		Date createDate = getCreateDate();
+
+		if (createDate != null) {
+			hrEmploymentTypeCacheModel.createDate = createDate.getTime();
+		}
+
+		Date modifiedDate = getModifiedDate();
+
+		if (modifiedDate != null) {
+			hrEmploymentTypeCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+
+		hrEmploymentTypeCacheModel.code = getCode();
+
+		String code = hrEmploymentTypeCacheModel.code;
+
+		if ((code != null) && (code.length() == 0)) {
+			hrEmploymentTypeCacheModel.code = null;
+		}
+
+		hrEmploymentTypeCacheModel.name = getName();
+
+		String name = hrEmploymentTypeCacheModel.name;
+
+		if ((name != null) && (name.length() == 0)) {
+			hrEmploymentTypeCacheModel.name = null;
+		}
+
+		hrEmploymentTypeCacheModel.description = getDescription();
+
+		String description = hrEmploymentTypeCacheModel.description;
+
+		if ((description != null) && (description.length() == 0)) {
+			hrEmploymentTypeCacheModel.description = null;
+		}
+
+		return hrEmploymentTypeCacheModel;
 	}
 
 	@Override

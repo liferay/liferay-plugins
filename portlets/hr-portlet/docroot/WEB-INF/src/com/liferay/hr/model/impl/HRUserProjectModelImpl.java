@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
@@ -330,6 +331,51 @@ public class HRUserProjectModelImpl extends BaseModelImpl<HRUserProject>
 
 	@Override
 	public void resetOriginalValues() {
+	}
+
+	@Override
+	public CacheModel<HRUserProject> toCacheModel() {
+		HRUserProjectCacheModel hrUserProjectCacheModel = new HRUserProjectCacheModel();
+
+		hrUserProjectCacheModel.hrUserProjectId = getHrUserProjectId();
+
+		hrUserProjectCacheModel.groupId = getGroupId();
+
+		hrUserProjectCacheModel.companyId = getCompanyId();
+
+		hrUserProjectCacheModel.userId = getUserId();
+
+		hrUserProjectCacheModel.userName = getUserName();
+
+		String userName = hrUserProjectCacheModel.userName;
+
+		if ((userName != null) && (userName.length() == 0)) {
+			hrUserProjectCacheModel.userName = null;
+		}
+
+		Date createDate = getCreateDate();
+
+		if (createDate != null) {
+			hrUserProjectCacheModel.createDate = createDate.getTime();
+		}
+
+		Date modifiedDate = getModifiedDate();
+
+		if (modifiedDate != null) {
+			hrUserProjectCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+
+		hrUserProjectCacheModel.hrProjectBillingRateId = getHrProjectBillingRateId();
+
+		hrUserProjectCacheModel.hrProjectId = getHrProjectId();
+
+		hrUserProjectCacheModel.hrProjectRoleId = getHrProjectRoleId();
+
+		hrUserProjectCacheModel.hrUserId = getHrUserId();
+
+		hrUserProjectCacheModel.actualRate = getActualRate();
+
+		return hrUserProjectCacheModel;
 	}
 
 	@Override

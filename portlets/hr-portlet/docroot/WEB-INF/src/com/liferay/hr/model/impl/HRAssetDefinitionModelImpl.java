@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
@@ -362,6 +363,77 @@ public class HRAssetDefinitionModelImpl extends BaseModelImpl<HRAssetDefinition>
 
 	@Override
 	public void resetOriginalValues() {
+	}
+
+	@Override
+	public CacheModel<HRAssetDefinition> toCacheModel() {
+		HRAssetDefinitionCacheModel hrAssetDefinitionCacheModel = new HRAssetDefinitionCacheModel();
+
+		hrAssetDefinitionCacheModel.hrAssetDefinitionId = getHrAssetDefinitionId();
+
+		hrAssetDefinitionCacheModel.groupId = getGroupId();
+
+		hrAssetDefinitionCacheModel.companyId = getCompanyId();
+
+		hrAssetDefinitionCacheModel.userId = getUserId();
+
+		hrAssetDefinitionCacheModel.userName = getUserName();
+
+		String userName = hrAssetDefinitionCacheModel.userName;
+
+		if ((userName != null) && (userName.length() == 0)) {
+			hrAssetDefinitionCacheModel.userName = null;
+		}
+
+		Date createDate = getCreateDate();
+
+		if (createDate != null) {
+			hrAssetDefinitionCacheModel.createDate = createDate.getTime();
+		}
+
+		Date modifiedDate = getModifiedDate();
+
+		if (modifiedDate != null) {
+			hrAssetDefinitionCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+
+		hrAssetDefinitionCacheModel.hrAssetProductId = getHrAssetProductId();
+
+		String hrAssetProductId = hrAssetDefinitionCacheModel.hrAssetProductId;
+
+		if ((hrAssetProductId != null) && (hrAssetProductId.length() == 0)) {
+			hrAssetDefinitionCacheModel.hrAssetProductId = null;
+		}
+
+		hrAssetDefinitionCacheModel.hrAssetTypeId = getHrAssetTypeId();
+
+		hrAssetDefinitionCacheModel.hrAssetVendorId = getHrAssetVendorId();
+
+		hrAssetDefinitionCacheModel.definitionNumber = getDefinitionNumber();
+
+		String definitionNumber = hrAssetDefinitionCacheModel.definitionNumber;
+
+		if ((definitionNumber != null) && (definitionNumber.length() == 0)) {
+			hrAssetDefinitionCacheModel.definitionNumber = null;
+		}
+
+		Date orderId = getOrderId();
+
+		if (orderId != null) {
+			hrAssetDefinitionCacheModel.orderId = orderId.getTime();
+		}
+
+		Date orderDate = getOrderDate();
+
+		if (orderDate != null) {
+			hrAssetDefinitionCacheModel.orderDate = orderDate.getTime();
+		}
+
+		hrAssetDefinitionCacheModel.quantity = getQuantity();
+
+		hrAssetDefinitionCacheModel.individualPrice = getIndividualPrice();
+
+		return hrAssetDefinitionCacheModel;
 	}
 
 	@Override

@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
@@ -404,6 +405,101 @@ public class KaleoNotificationModelImpl extends BaseModelImpl<KaleoNotification>
 
 	@Override
 	public void resetOriginalValues() {
+	}
+
+	@Override
+	public CacheModel<KaleoNotification> toCacheModel() {
+		KaleoNotificationCacheModel kaleoNotificationCacheModel = new KaleoNotificationCacheModel();
+
+		kaleoNotificationCacheModel.kaleoNotificationId = getKaleoNotificationId();
+
+		kaleoNotificationCacheModel.groupId = getGroupId();
+
+		kaleoNotificationCacheModel.companyId = getCompanyId();
+
+		kaleoNotificationCacheModel.userId = getUserId();
+
+		kaleoNotificationCacheModel.userName = getUserName();
+
+		String userName = kaleoNotificationCacheModel.userName;
+
+		if ((userName != null) && (userName.length() == 0)) {
+			kaleoNotificationCacheModel.userName = null;
+		}
+
+		Date createDate = getCreateDate();
+
+		if (createDate != null) {
+			kaleoNotificationCacheModel.createDate = createDate.getTime();
+		}
+
+		Date modifiedDate = getModifiedDate();
+
+		if (modifiedDate != null) {
+			kaleoNotificationCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+
+		kaleoNotificationCacheModel.kaleoDefinitionId = getKaleoDefinitionId();
+
+		kaleoNotificationCacheModel.kaleoNodeId = getKaleoNodeId();
+
+		kaleoNotificationCacheModel.kaleoNodeName = getKaleoNodeName();
+
+		String kaleoNodeName = kaleoNotificationCacheModel.kaleoNodeName;
+
+		if ((kaleoNodeName != null) && (kaleoNodeName.length() == 0)) {
+			kaleoNotificationCacheModel.kaleoNodeName = null;
+		}
+
+		kaleoNotificationCacheModel.name = getName();
+
+		String name = kaleoNotificationCacheModel.name;
+
+		if ((name != null) && (name.length() == 0)) {
+			kaleoNotificationCacheModel.name = null;
+		}
+
+		kaleoNotificationCacheModel.description = getDescription();
+
+		String description = kaleoNotificationCacheModel.description;
+
+		if ((description != null) && (description.length() == 0)) {
+			kaleoNotificationCacheModel.description = null;
+		}
+
+		kaleoNotificationCacheModel.executionType = getExecutionType();
+
+		String executionType = kaleoNotificationCacheModel.executionType;
+
+		if ((executionType != null) && (executionType.length() == 0)) {
+			kaleoNotificationCacheModel.executionType = null;
+		}
+
+		kaleoNotificationCacheModel.template = getTemplate();
+
+		String template = kaleoNotificationCacheModel.template;
+
+		if ((template != null) && (template.length() == 0)) {
+			kaleoNotificationCacheModel.template = null;
+		}
+
+		kaleoNotificationCacheModel.templateLanguage = getTemplateLanguage();
+
+		String templateLanguage = kaleoNotificationCacheModel.templateLanguage;
+
+		if ((templateLanguage != null) && (templateLanguage.length() == 0)) {
+			kaleoNotificationCacheModel.templateLanguage = null;
+		}
+
+		kaleoNotificationCacheModel.notificationTypes = getNotificationTypes();
+
+		String notificationTypes = kaleoNotificationCacheModel.notificationTypes;
+
+		if ((notificationTypes != null) && (notificationTypes.length() == 0)) {
+			kaleoNotificationCacheModel.notificationTypes = null;
+		}
+
+		return kaleoNotificationCacheModel;
 	}
 
 	@Override

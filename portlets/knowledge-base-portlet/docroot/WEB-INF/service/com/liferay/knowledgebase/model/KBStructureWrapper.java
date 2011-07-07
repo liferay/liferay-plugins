@@ -406,6 +406,10 @@ public class KBStructureWrapper implements KBStructure {
 		return _kbStructure.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.knowledgebase.model.KBStructure> toCacheModel() {
+		return _kbStructure.toCacheModel();
+	}
+
 	public com.liferay.knowledgebase.model.KBStructure toEscapedModel() {
 		return new KBStructureWrapper(_kbStructure.toEscapedModel());
 	}

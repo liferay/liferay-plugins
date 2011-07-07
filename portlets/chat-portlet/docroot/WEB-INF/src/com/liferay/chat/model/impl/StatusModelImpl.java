@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
@@ -312,6 +313,41 @@ public class StatusModelImpl extends BaseModelImpl<Status>
 		statusModelImpl._originalUserId = statusModelImpl._userId;
 
 		statusModelImpl._setOriginalUserId = false;
+	}
+
+	@Override
+	public CacheModel<Status> toCacheModel() {
+		StatusCacheModel statusCacheModel = new StatusCacheModel();
+
+		statusCacheModel.statusId = getStatusId();
+
+		statusCacheModel.userId = getUserId();
+
+		statusCacheModel.modifiedDate = getModifiedDate();
+
+		statusCacheModel.online = getOnline();
+
+		statusCacheModel.awake = getAwake();
+
+		statusCacheModel.activePanelId = getActivePanelId();
+
+		String activePanelId = statusCacheModel.activePanelId;
+
+		if ((activePanelId != null) && (activePanelId.length() == 0)) {
+			statusCacheModel.activePanelId = null;
+		}
+
+		statusCacheModel.message = getMessage();
+
+		String message = statusCacheModel.message;
+
+		if ((message != null) && (message.length() == 0)) {
+			statusCacheModel.message = null;
+		}
+
+		statusCacheModel.playSound = getPlaySound();
+
+		return statusCacheModel;
 	}
 
 	@Override

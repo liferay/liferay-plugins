@@ -35,6 +35,7 @@ import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.ResourcePersistence;
@@ -1981,6 +1982,16 @@ public class KaleoActionPersistenceImpl extends BasePersistenceImpl<KaleoAction>
 	private static KaleoAction _nullKaleoAction = new KaleoActionImpl() {
 			public Object clone() {
 				return this;
+			}
+
+			public CacheModel<KaleoAction> toCacheModel() {
+				return _nullKaleoActionCacheModel;
+			}
+		};
+
+	private static CacheModel<KaleoAction> _nullKaleoActionCacheModel = new CacheModel<KaleoAction>() {
+			public KaleoAction toEntityModel() {
+				return _nullKaleoAction;
 			}
 		};
 }

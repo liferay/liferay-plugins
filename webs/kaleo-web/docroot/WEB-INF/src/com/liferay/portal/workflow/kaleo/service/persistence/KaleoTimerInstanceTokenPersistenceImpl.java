@@ -35,6 +35,7 @@ import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.ResourcePersistence;
@@ -1366,6 +1367,17 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 	private static KaleoTimerInstanceToken _nullKaleoTimerInstanceToken = new KaleoTimerInstanceTokenImpl() {
 			public Object clone() {
 				return this;
+			}
+
+			public CacheModel<KaleoTimerInstanceToken> toCacheModel() {
+				return _nullKaleoTimerInstanceTokenCacheModel;
+			}
+		};
+
+	private static CacheModel<KaleoTimerInstanceToken> _nullKaleoTimerInstanceTokenCacheModel =
+		new CacheModel<KaleoTimerInstanceToken>() {
+			public KaleoTimerInstanceToken toEntityModel() {
+				return _nullKaleoTimerInstanceToken;
 			}
 		};
 }

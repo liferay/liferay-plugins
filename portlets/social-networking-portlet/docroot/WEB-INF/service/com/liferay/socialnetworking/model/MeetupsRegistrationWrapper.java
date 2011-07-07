@@ -292,6 +292,10 @@ public class MeetupsRegistrationWrapper implements MeetupsRegistration {
 		return _meetupsRegistration.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.socialnetworking.model.MeetupsRegistration> toCacheModel() {
+		return _meetupsRegistration.toCacheModel();
+	}
+
 	public com.liferay.socialnetworking.model.MeetupsRegistration toEscapedModel() {
 		return new MeetupsRegistrationWrapper(_meetupsRegistration.toEscapedModel());
 	}

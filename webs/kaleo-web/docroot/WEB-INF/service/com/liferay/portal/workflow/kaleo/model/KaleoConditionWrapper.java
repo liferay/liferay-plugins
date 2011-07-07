@@ -328,6 +328,10 @@ public class KaleoConditionWrapper implements KaleoCondition {
 		return _kaleoCondition.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.portal.workflow.kaleo.model.KaleoCondition> toCacheModel() {
+		return _kaleoCondition.toCacheModel();
+	}
+
 	public com.liferay.portal.workflow.kaleo.model.KaleoCondition toEscapedModel() {
 		return new KaleoConditionWrapper(_kaleoCondition.toEscapedModel());
 	}

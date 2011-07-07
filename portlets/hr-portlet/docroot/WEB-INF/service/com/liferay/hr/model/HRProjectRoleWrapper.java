@@ -291,6 +291,10 @@ public class HRProjectRoleWrapper implements HRProjectRole {
 		return _hrProjectRole.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.hr.model.HRProjectRole> toCacheModel() {
+		return _hrProjectRole.toCacheModel();
+	}
+
 	public com.liferay.hr.model.HRProjectRole toEscapedModel() {
 		return new HRProjectRoleWrapper(_hrProjectRole.toEscapedModel());
 	}

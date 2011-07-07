@@ -35,6 +35,7 @@ import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.ResourcePersistence;
@@ -1043,6 +1044,16 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 	private static JIRAChangeItem _nullJIRAChangeItem = new JIRAChangeItemImpl() {
 			public Object clone() {
 				return this;
+			}
+
+			public CacheModel<JIRAChangeItem> toCacheModel() {
+				return _nullJIRAChangeItemCacheModel;
+			}
+		};
+
+	private static CacheModel<JIRAChangeItem> _nullJIRAChangeItemCacheModel = new CacheModel<JIRAChangeItem>() {
+			public JIRAChangeItem toEntityModel() {
+				return _nullJIRAChangeItem;
 			}
 		};
 }

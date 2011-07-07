@@ -582,6 +582,10 @@ public class HRProjectWrapper implements HRProject {
 		return _hrProject.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.hr.model.HRProject> toCacheModel() {
+		return _hrProject.toCacheModel();
+	}
+
 	public com.liferay.hr.model.HRProject toEscapedModel() {
 		return new HRProjectWrapper(_hrProject.toEscapedModel());
 	}

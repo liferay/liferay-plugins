@@ -409,6 +409,10 @@ public class KaleoTimerWrapper implements KaleoTimer {
 		return _kaleoTimer.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.portal.workflow.kaleo.model.KaleoTimer> toCacheModel() {
+		return _kaleoTimer.toCacheModel();
+	}
+
 	public com.liferay.portal.workflow.kaleo.model.KaleoTimer toEscapedModel() {
 		return new KaleoTimerWrapper(_kaleoTimer.toEscapedModel());
 	}

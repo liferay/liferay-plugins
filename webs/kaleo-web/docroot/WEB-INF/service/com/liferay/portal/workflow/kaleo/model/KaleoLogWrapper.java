@@ -664,6 +664,10 @@ public class KaleoLogWrapper implements KaleoLog {
 		return _kaleoLog.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.portal.workflow.kaleo.model.KaleoLog> toCacheModel() {
+		return _kaleoLog.toCacheModel();
+	}
+
 	public com.liferay.portal.workflow.kaleo.model.KaleoLog toEscapedModel() {
 		return new KaleoLogWrapper(_kaleoLog.toEscapedModel());
 	}

@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
@@ -342,6 +343,65 @@ public class HRTimeOffFrequencyTypeModelImpl extends BaseModelImpl<HRTimeOffFreq
 		hrTimeOffFrequencyTypeModelImpl._setOriginalGroupId = false;
 
 		hrTimeOffFrequencyTypeModelImpl._originalCode = hrTimeOffFrequencyTypeModelImpl._code;
+	}
+
+	@Override
+	public CacheModel<HRTimeOffFrequencyType> toCacheModel() {
+		HRTimeOffFrequencyTypeCacheModel hrTimeOffFrequencyTypeCacheModel = new HRTimeOffFrequencyTypeCacheModel();
+
+		hrTimeOffFrequencyTypeCacheModel.hrTimeOffFrequencyTypeId = getHrTimeOffFrequencyTypeId();
+
+		hrTimeOffFrequencyTypeCacheModel.groupId = getGroupId();
+
+		hrTimeOffFrequencyTypeCacheModel.companyId = getCompanyId();
+
+		hrTimeOffFrequencyTypeCacheModel.userId = getUserId();
+
+		hrTimeOffFrequencyTypeCacheModel.userName = getUserName();
+
+		String userName = hrTimeOffFrequencyTypeCacheModel.userName;
+
+		if ((userName != null) && (userName.length() == 0)) {
+			hrTimeOffFrequencyTypeCacheModel.userName = null;
+		}
+
+		Date createDate = getCreateDate();
+
+		if (createDate != null) {
+			hrTimeOffFrequencyTypeCacheModel.createDate = createDate.getTime();
+		}
+
+		Date modifiedDate = getModifiedDate();
+
+		if (modifiedDate != null) {
+			hrTimeOffFrequencyTypeCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+
+		hrTimeOffFrequencyTypeCacheModel.code = getCode();
+
+		String code = hrTimeOffFrequencyTypeCacheModel.code;
+
+		if ((code != null) && (code.length() == 0)) {
+			hrTimeOffFrequencyTypeCacheModel.code = null;
+		}
+
+		hrTimeOffFrequencyTypeCacheModel.name = getName();
+
+		String name = hrTimeOffFrequencyTypeCacheModel.name;
+
+		if ((name != null) && (name.length() == 0)) {
+			hrTimeOffFrequencyTypeCacheModel.name = null;
+		}
+
+		hrTimeOffFrequencyTypeCacheModel.description = getDescription();
+
+		String description = hrTimeOffFrequencyTypeCacheModel.description;
+
+		if ((description != null) && (description.length() == 0)) {
+			hrTimeOffFrequencyTypeCacheModel.description = null;
+		}
+
+		return hrTimeOffFrequencyTypeCacheModel;
 	}
 
 	@Override

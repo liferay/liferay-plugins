@@ -17,6 +17,7 @@ package com.liferay.socialnetworking.model;
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.BaseModel;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.GroupedModel;
 import com.liferay.portal.service.ServiceContext;
 
@@ -214,6 +215,8 @@ public interface WallEntryModel extends BaseModel<WallEntry>, GroupedModel {
 	public int compareTo(WallEntry wallEntry);
 
 	public int hashCode();
+
+	public CacheModel<WallEntry> toCacheModel();
 
 	public WallEntry toEscapedModel();
 

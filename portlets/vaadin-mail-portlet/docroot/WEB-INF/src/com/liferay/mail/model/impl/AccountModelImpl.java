@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
@@ -552,6 +553,133 @@ public class AccountModelImpl extends BaseModelImpl<Account>
 		accountModelImpl._setOriginalUserId = false;
 
 		accountModelImpl._originalAddress = accountModelImpl._address;
+	}
+
+	@Override
+	public CacheModel<Account> toCacheModel() {
+		AccountCacheModel accountCacheModel = new AccountCacheModel();
+
+		accountCacheModel.accountId = getAccountId();
+
+		accountCacheModel.companyId = getCompanyId();
+
+		accountCacheModel.userId = getUserId();
+
+		accountCacheModel.userName = getUserName();
+
+		String userName = accountCacheModel.userName;
+
+		if ((userName != null) && (userName.length() == 0)) {
+			accountCacheModel.userName = null;
+		}
+
+		Date createDate = getCreateDate();
+
+		if (createDate != null) {
+			accountCacheModel.createDate = createDate.getTime();
+		}
+
+		Date modifiedDate = getModifiedDate();
+
+		if (modifiedDate != null) {
+			accountCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+
+		accountCacheModel.address = getAddress();
+
+		String address = accountCacheModel.address;
+
+		if ((address != null) && (address.length() == 0)) {
+			accountCacheModel.address = null;
+		}
+
+		accountCacheModel.personalName = getPersonalName();
+
+		String personalName = accountCacheModel.personalName;
+
+		if ((personalName != null) && (personalName.length() == 0)) {
+			accountCacheModel.personalName = null;
+		}
+
+		accountCacheModel.protocol = getProtocol();
+
+		String protocol = accountCacheModel.protocol;
+
+		if ((protocol != null) && (protocol.length() == 0)) {
+			accountCacheModel.protocol = null;
+		}
+
+		accountCacheModel.incomingHostName = getIncomingHostName();
+
+		String incomingHostName = accountCacheModel.incomingHostName;
+
+		if ((incomingHostName != null) && (incomingHostName.length() == 0)) {
+			accountCacheModel.incomingHostName = null;
+		}
+
+		accountCacheModel.incomingPort = getIncomingPort();
+
+		accountCacheModel.incomingSecure = getIncomingSecure();
+
+		accountCacheModel.outgoingHostName = getOutgoingHostName();
+
+		String outgoingHostName = accountCacheModel.outgoingHostName;
+
+		if ((outgoingHostName != null) && (outgoingHostName.length() == 0)) {
+			accountCacheModel.outgoingHostName = null;
+		}
+
+		accountCacheModel.outgoingPort = getOutgoingPort();
+
+		accountCacheModel.outgoingSecure = getOutgoingSecure();
+
+		accountCacheModel.login = getLogin();
+
+		String login = accountCacheModel.login;
+
+		if ((login != null) && (login.length() == 0)) {
+			accountCacheModel.login = null;
+		}
+
+		accountCacheModel.password = getPassword();
+
+		String password = accountCacheModel.password;
+
+		if ((password != null) && (password.length() == 0)) {
+			accountCacheModel.password = null;
+		}
+
+		accountCacheModel.savePassword = getSavePassword();
+
+		accountCacheModel.signature = getSignature();
+
+		String signature = accountCacheModel.signature;
+
+		if ((signature != null) && (signature.length() == 0)) {
+			accountCacheModel.signature = null;
+		}
+
+		accountCacheModel.useSignature = getUseSignature();
+
+		accountCacheModel.folderPrefix = getFolderPrefix();
+
+		String folderPrefix = accountCacheModel.folderPrefix;
+
+		if ((folderPrefix != null) && (folderPrefix.length() == 0)) {
+			accountCacheModel.folderPrefix = null;
+		}
+
+		accountCacheModel.inboxFolderId = getInboxFolderId();
+
+		accountCacheModel.draftFolderId = getDraftFolderId();
+
+		accountCacheModel.sentFolderId = getSentFolderId();
+
+		accountCacheModel.trashFolderId = getTrashFolderId();
+
+		accountCacheModel.defaultSender = getDefaultSender();
+
+		return accountCacheModel;
 	}
 
 	@Override

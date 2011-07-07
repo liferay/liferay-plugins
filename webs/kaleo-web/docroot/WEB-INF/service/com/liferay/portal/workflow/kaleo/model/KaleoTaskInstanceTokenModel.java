@@ -17,6 +17,7 @@ package com.liferay.portal.workflow.kaleo.model;
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.BaseModel;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.GroupedModel;
 import com.liferay.portal.service.ServiceContext;
 
@@ -393,6 +394,8 @@ public interface KaleoTaskInstanceTokenModel extends BaseModel<KaleoTaskInstance
 	public int compareTo(KaleoTaskInstanceToken kaleoTaskInstanceToken);
 
 	public int hashCode();
+
+	public CacheModel<KaleoTaskInstanceToken> toCacheModel();
 
 	public KaleoTaskInstanceToken toEscapedModel();
 

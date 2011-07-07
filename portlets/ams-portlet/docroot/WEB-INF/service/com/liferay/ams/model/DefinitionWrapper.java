@@ -363,6 +363,10 @@ public class DefinitionWrapper implements Definition {
 		return _definition.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.ams.model.Definition> toCacheModel() {
+		return _definition.toCacheModel();
+	}
+
 	public com.liferay.ams.model.Definition toEscapedModel() {
 		return new DefinitionWrapper(_definition.toEscapedModel());
 	}

@@ -37,6 +37,7 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.ResourcePersistence;
@@ -1829,6 +1830,17 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 	private static WSRPConsumerPortlet _nullWSRPConsumerPortlet = new WSRPConsumerPortletImpl() {
 			public Object clone() {
 				return this;
+			}
+
+			public CacheModel<WSRPConsumerPortlet> toCacheModel() {
+				return _nullWSRPConsumerPortletCacheModel;
+			}
+		};
+
+	private static CacheModel<WSRPConsumerPortlet> _nullWSRPConsumerPortletCacheModel =
+		new CacheModel<WSRPConsumerPortlet>() {
+			public WSRPConsumerPortlet toEntityModel() {
+				return _nullWSRPConsumerPortlet;
 			}
 		};
 }

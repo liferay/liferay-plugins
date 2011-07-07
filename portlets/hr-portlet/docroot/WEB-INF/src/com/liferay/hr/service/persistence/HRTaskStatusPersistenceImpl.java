@@ -41,6 +41,7 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.ResourcePersistence;
@@ -988,6 +989,16 @@ public class HRTaskStatusPersistenceImpl extends BasePersistenceImpl<HRTaskStatu
 	private static HRTaskStatus _nullHRTaskStatus = new HRTaskStatusImpl() {
 			public Object clone() {
 				return this;
+			}
+
+			public CacheModel<HRTaskStatus> toCacheModel() {
+				return _nullHRTaskStatusCacheModel;
+			}
+		};
+
+	private static CacheModel<HRTaskStatus> _nullHRTaskStatusCacheModel = new CacheModel<HRTaskStatus>() {
+			public HRTaskStatus toEntityModel() {
+				return _nullHRTaskStatus;
 			}
 		};
 }

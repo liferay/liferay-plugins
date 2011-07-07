@@ -43,6 +43,7 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.security.permission.InlineSQLHelperUtil;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
@@ -4992,6 +4993,16 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 	private static CalendarResource _nullCalendarResource = new CalendarResourceImpl() {
 			public Object clone() {
 				return this;
+			}
+
+			public CacheModel<CalendarResource> toCacheModel() {
+				return _nullCalendarResourceCacheModel;
+			}
+		};
+
+	private static CacheModel<CalendarResource> _nullCalendarResourceCacheModel = new CacheModel<CalendarResource>() {
+			public CalendarResource toEntityModel() {
+				return _nullCalendarResource;
 			}
 		};
 }

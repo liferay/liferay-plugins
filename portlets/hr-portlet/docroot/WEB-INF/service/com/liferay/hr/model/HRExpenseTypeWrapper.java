@@ -291,6 +291,10 @@ public class HRExpenseTypeWrapper implements HRExpenseType {
 		return _hrExpenseType.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.hr.model.HRExpenseType> toCacheModel() {
+		return _hrExpenseType.toCacheModel();
+	}
+
 	public com.liferay.hr.model.HRExpenseType toEscapedModel() {
 		return new HRExpenseTypeWrapper(_hrExpenseType.toEscapedModel());
 	}

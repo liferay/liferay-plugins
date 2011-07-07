@@ -427,6 +427,10 @@ public class KaleoInstanceTokenWrapper implements KaleoInstanceToken {
 		return _kaleoInstanceToken.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken> toCacheModel() {
+		return _kaleoInstanceToken.toCacheModel();
+	}
+
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken toEscapedModel() {
 		return new KaleoInstanceTokenWrapper(_kaleoInstanceToken.toEscapedModel());
 	}

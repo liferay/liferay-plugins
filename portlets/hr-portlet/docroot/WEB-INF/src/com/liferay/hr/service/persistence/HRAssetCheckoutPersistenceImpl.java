@@ -38,6 +38,7 @@ import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.ResourcePersistence;
@@ -688,6 +689,16 @@ public class HRAssetCheckoutPersistenceImpl extends BasePersistenceImpl<HRAssetC
 	private static HRAssetCheckout _nullHRAssetCheckout = new HRAssetCheckoutImpl() {
 			public Object clone() {
 				return this;
+			}
+
+			public CacheModel<HRAssetCheckout> toCacheModel() {
+				return _nullHRAssetCheckoutCacheModel;
+			}
+		};
+
+	private static CacheModel<HRAssetCheckout> _nullHRAssetCheckoutCacheModel = new CacheModel<HRAssetCheckout>() {
+			public HRAssetCheckout toEntityModel() {
+				return _nullHRAssetCheckout;
 			}
 		};
 }

@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
@@ -312,6 +313,59 @@ public class HRAssetProductModelImpl extends BaseModelImpl<HRAssetProduct>
 
 	@Override
 	public void resetOriginalValues() {
+	}
+
+	@Override
+	public CacheModel<HRAssetProduct> toCacheModel() {
+		HRAssetProductCacheModel hrAssetProductCacheModel = new HRAssetProductCacheModel();
+
+		hrAssetProductCacheModel.hrAssetProductId = getHrAssetProductId();
+
+		hrAssetProductCacheModel.groupId = getGroupId();
+
+		hrAssetProductCacheModel.companyId = getCompanyId();
+
+		hrAssetProductCacheModel.userId = getUserId();
+
+		hrAssetProductCacheModel.userName = getUserName();
+
+		String userName = hrAssetProductCacheModel.userName;
+
+		if ((userName != null) && (userName.length() == 0)) {
+			hrAssetProductCacheModel.userName = null;
+		}
+
+		Date createDate = getCreateDate();
+
+		if (createDate != null) {
+			hrAssetProductCacheModel.createDate = createDate.getTime();
+		}
+
+		Date modifiedDate = getModifiedDate();
+
+		if (modifiedDate != null) {
+			hrAssetProductCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+
+		hrAssetProductCacheModel.hrAssetVendorId = getHrAssetVendorId();
+
+		hrAssetProductCacheModel.name = getName();
+
+		String name = hrAssetProductCacheModel.name;
+
+		if ((name != null) && (name.length() == 0)) {
+			hrAssetProductCacheModel.name = null;
+		}
+
+		hrAssetProductCacheModel.description = getDescription();
+
+		String description = hrAssetProductCacheModel.description;
+
+		if ((description != null) && (description.length() == 0)) {
+			hrAssetProductCacheModel.description = null;
+		}
+
+		return hrAssetProductCacheModel;
 	}
 
 	@Override

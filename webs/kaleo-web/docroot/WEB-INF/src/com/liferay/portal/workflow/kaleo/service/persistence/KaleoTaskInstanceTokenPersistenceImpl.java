@@ -39,6 +39,7 @@ import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.ResourcePersistence;
@@ -2500,6 +2501,17 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 	private static KaleoTaskInstanceToken _nullKaleoTaskInstanceToken = new KaleoTaskInstanceTokenImpl() {
 			public Object clone() {
 				return this;
+			}
+
+			public CacheModel<KaleoTaskInstanceToken> toCacheModel() {
+				return _nullKaleoTaskInstanceTokenCacheModel;
+			}
+		};
+
+	private static CacheModel<KaleoTaskInstanceToken> _nullKaleoTaskInstanceTokenCacheModel =
+		new CacheModel<KaleoTaskInstanceToken>() {
+			public KaleoTaskInstanceToken toEntityModel() {
+				return _nullKaleoTaskInstanceToken;
 			}
 		};
 }

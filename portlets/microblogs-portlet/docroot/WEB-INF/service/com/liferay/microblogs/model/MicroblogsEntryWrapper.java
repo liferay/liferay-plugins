@@ -348,6 +348,10 @@ public class MicroblogsEntryWrapper implements MicroblogsEntry {
 		return _microblogsEntry.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.microblogs.model.MicroblogsEntry> toCacheModel() {
+		return _microblogsEntry.toCacheModel();
+	}
+
 	public com.liferay.microblogs.model.MicroblogsEntry toEscapedModel() {
 		return new MicroblogsEntryWrapper(_microblogsEntry.toEscapedModel());
 	}

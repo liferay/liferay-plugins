@@ -448,6 +448,10 @@ public class KaleoTimerInstanceTokenWrapper implements KaleoTimerInstanceToken {
 		return _kaleoTimerInstanceToken.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken> toCacheModel() {
+		return _kaleoTimerInstanceToken.toCacheModel();
+	}
+
 	public com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken toEscapedModel() {
 		return new KaleoTimerInstanceTokenWrapper(_kaleoTimerInstanceToken.toEscapedModel());
 	}

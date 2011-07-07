@@ -38,6 +38,7 @@ import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.ResourcePersistence;
@@ -688,6 +689,16 @@ public class HRTimeSheetDayPersistenceImpl extends BasePersistenceImpl<HRTimeShe
 	private static HRTimeSheetDay _nullHRTimeSheetDay = new HRTimeSheetDayImpl() {
 			public Object clone() {
 				return this;
+			}
+
+			public CacheModel<HRTimeSheetDay> toCacheModel() {
+				return _nullHRTimeSheetDayCacheModel;
+			}
+		};
+
+	private static CacheModel<HRTimeSheetDay> _nullHRTimeSheetDayCacheModel = new CacheModel<HRTimeSheetDay>() {
+			public HRTimeSheetDay toEntityModel() {
+				return _nullHRTimeSheetDay;
 			}
 		};
 }

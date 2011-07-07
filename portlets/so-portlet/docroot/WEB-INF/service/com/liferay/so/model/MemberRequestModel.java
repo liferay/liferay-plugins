@@ -17,6 +17,7 @@ package com.liferay.so.model;
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.BaseModel;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.GroupedModel;
 import com.liferay.portal.service.ServiceContext;
 
@@ -286,6 +287,8 @@ public interface MemberRequestModel extends BaseModel<MemberRequest>,
 	public int compareTo(MemberRequest memberRequest);
 
 	public int hashCode();
+
+	public CacheModel<MemberRequest> toCacheModel();
 
 	public MemberRequest toEscapedModel();
 

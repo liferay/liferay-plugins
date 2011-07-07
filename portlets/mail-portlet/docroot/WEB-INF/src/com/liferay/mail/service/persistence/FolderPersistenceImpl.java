@@ -41,6 +41,7 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.ResourcePersistence;
@@ -1332,6 +1333,16 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 	private static Folder _nullFolder = new FolderImpl() {
 			public Object clone() {
 				return this;
+			}
+
+			public CacheModel<Folder> toCacheModel() {
+				return _nullFolderCacheModel;
+			}
+		};
+
+	private static CacheModel<Folder> _nullFolderCacheModel = new CacheModel<Folder>() {
+			public Folder toEntityModel() {
+				return _nullFolder;
 			}
 		};
 }

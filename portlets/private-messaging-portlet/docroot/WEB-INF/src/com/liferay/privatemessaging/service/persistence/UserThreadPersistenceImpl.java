@@ -35,6 +35,7 @@ import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.ResourcePersistence;
@@ -2644,6 +2645,16 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	private static UserThread _nullUserThread = new UserThreadImpl() {
 			public Object clone() {
 				return this;
+			}
+
+			public CacheModel<UserThread> toCacheModel() {
+				return _nullUserThreadCacheModel;
+			}
+		};
+
+	private static CacheModel<UserThread> _nullUserThreadCacheModel = new CacheModel<UserThread>() {
+			public UserThread toEntityModel() {
+				return _nullUserThread;
 			}
 		};
 }

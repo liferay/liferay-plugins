@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.util.LocalizationUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
@@ -481,6 +482,71 @@ public class KaleoDefinitionModelImpl extends BaseModelImpl<KaleoDefinition>
 		kaleoDefinitionModelImpl._originalVersion = kaleoDefinitionModelImpl._version;
 
 		kaleoDefinitionModelImpl._setOriginalVersion = false;
+	}
+
+	@Override
+	public CacheModel<KaleoDefinition> toCacheModel() {
+		KaleoDefinitionCacheModel kaleoDefinitionCacheModel = new KaleoDefinitionCacheModel();
+
+		kaleoDefinitionCacheModel.kaleoDefinitionId = getKaleoDefinitionId();
+
+		kaleoDefinitionCacheModel.groupId = getGroupId();
+
+		kaleoDefinitionCacheModel.companyId = getCompanyId();
+
+		kaleoDefinitionCacheModel.userId = getUserId();
+
+		kaleoDefinitionCacheModel.userName = getUserName();
+
+		String userName = kaleoDefinitionCacheModel.userName;
+
+		if ((userName != null) && (userName.length() == 0)) {
+			kaleoDefinitionCacheModel.userName = null;
+		}
+
+		Date createDate = getCreateDate();
+
+		if (createDate != null) {
+			kaleoDefinitionCacheModel.createDate = createDate.getTime();
+		}
+
+		Date modifiedDate = getModifiedDate();
+
+		if (modifiedDate != null) {
+			kaleoDefinitionCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+
+		kaleoDefinitionCacheModel.name = getName();
+
+		String name = kaleoDefinitionCacheModel.name;
+
+		if ((name != null) && (name.length() == 0)) {
+			kaleoDefinitionCacheModel.name = null;
+		}
+
+		kaleoDefinitionCacheModel.title = getTitle();
+
+		String title = kaleoDefinitionCacheModel.title;
+
+		if ((title != null) && (title.length() == 0)) {
+			kaleoDefinitionCacheModel.title = null;
+		}
+
+		kaleoDefinitionCacheModel.description = getDescription();
+
+		String description = kaleoDefinitionCacheModel.description;
+
+		if ((description != null) && (description.length() == 0)) {
+			kaleoDefinitionCacheModel.description = null;
+		}
+
+		kaleoDefinitionCacheModel.version = getVersion();
+
+		kaleoDefinitionCacheModel.active = getActive();
+
+		kaleoDefinitionCacheModel.startKaleoNodeId = getStartKaleoNodeId();
+
+		return kaleoDefinitionCacheModel;
 	}
 
 	@Override

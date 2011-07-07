@@ -30,6 +30,7 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
@@ -928,6 +929,141 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		calendarBookingModelImpl._originalGroupId = calendarBookingModelImpl._groupId;
 
 		calendarBookingModelImpl._setOriginalGroupId = false;
+	}
+
+	@Override
+	public CacheModel<CalendarBooking> toCacheModel() {
+		CalendarBookingCacheModel calendarBookingCacheModel = new CalendarBookingCacheModel();
+
+		calendarBookingCacheModel.uuid = getUuid();
+
+		String uuid = calendarBookingCacheModel.uuid;
+
+		if ((uuid != null) && (uuid.length() == 0)) {
+			calendarBookingCacheModel.uuid = null;
+		}
+
+		calendarBookingCacheModel.calendarBookingId = getCalendarBookingId();
+
+		calendarBookingCacheModel.groupId = getGroupId();
+
+		calendarBookingCacheModel.companyId = getCompanyId();
+
+		calendarBookingCacheModel.userId = getUserId();
+
+		calendarBookingCacheModel.userName = getUserName();
+
+		String userName = calendarBookingCacheModel.userName;
+
+		if ((userName != null) && (userName.length() == 0)) {
+			calendarBookingCacheModel.userName = null;
+		}
+
+		Date createDate = getCreateDate();
+
+		if (createDate != null) {
+			calendarBookingCacheModel.createDate = createDate.getTime();
+		}
+
+		Date modifiedDate = getModifiedDate();
+
+		if (modifiedDate != null) {
+			calendarBookingCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+
+		calendarBookingCacheModel.calendarEventId = getCalendarEventId();
+
+		calendarBookingCacheModel.calendarResourceId = getCalendarResourceId();
+
+		calendarBookingCacheModel.classNameId = getClassNameId();
+
+		calendarBookingCacheModel.classPK = getClassPK();
+
+		calendarBookingCacheModel.title = getTitle();
+
+		String title = calendarBookingCacheModel.title;
+
+		if ((title != null) && (title.length() == 0)) {
+			calendarBookingCacheModel.title = null;
+		}
+
+		calendarBookingCacheModel.name = getName();
+
+		String name = calendarBookingCacheModel.name;
+
+		if ((name != null) && (name.length() == 0)) {
+			calendarBookingCacheModel.name = null;
+		}
+
+		calendarBookingCacheModel.description = getDescription();
+
+		String description = calendarBookingCacheModel.description;
+
+		if ((description != null) && (description.length() == 0)) {
+			calendarBookingCacheModel.description = null;
+		}
+
+		calendarBookingCacheModel.location = getLocation();
+
+		String location = calendarBookingCacheModel.location;
+
+		if ((location != null) && (location.length() == 0)) {
+			calendarBookingCacheModel.location = null;
+		}
+
+		Date startDate = getStartDate();
+
+		if (startDate != null) {
+			calendarBookingCacheModel.startDate = startDate.getTime();
+		}
+
+		Date endDate = getEndDate();
+
+		if (endDate != null) {
+			calendarBookingCacheModel.endDate = endDate.getTime();
+		}
+
+		calendarBookingCacheModel.durationHour = getDurationHour();
+
+		calendarBookingCacheModel.durationMinute = getDurationMinute();
+
+		calendarBookingCacheModel.recurrence = getRecurrence();
+
+		String recurrence = calendarBookingCacheModel.recurrence;
+
+		if ((recurrence != null) && (recurrence.length() == 0)) {
+			calendarBookingCacheModel.recurrence = null;
+		}
+
+		calendarBookingCacheModel.type = getType();
+
+		String type = calendarBookingCacheModel.type;
+
+		if ((type != null) && (type.length() == 0)) {
+			calendarBookingCacheModel.type = null;
+		}
+
+		calendarBookingCacheModel.required = getRequired();
+
+		calendarBookingCacheModel.status = getStatus();
+
+		calendarBookingCacheModel.statusByUserId = getStatusByUserId();
+
+		calendarBookingCacheModel.statusByUserName = getStatusByUserName();
+
+		String statusByUserName = calendarBookingCacheModel.statusByUserName;
+
+		if ((statusByUserName != null) && (statusByUserName.length() == 0)) {
+			calendarBookingCacheModel.statusByUserName = null;
+		}
+
+		Date statusDate = getStatusDate();
+
+		if (statusDate != null) {
+			calendarBookingCacheModel.statusDate = statusDate.getTime();
+		}
+
+		return calendarBookingCacheModel;
 	}
 
 	@Override

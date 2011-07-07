@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
@@ -292,6 +293,45 @@ public class HRTimeSheetHoursPerDayModelImpl extends BaseModelImpl<HRTimeSheetHo
 
 	@Override
 	public void resetOriginalValues() {
+	}
+
+	@Override
+	public CacheModel<HRTimeSheetHoursPerDay> toCacheModel() {
+		HRTimeSheetHoursPerDayCacheModel hrTimeSheetHoursPerDayCacheModel = new HRTimeSheetHoursPerDayCacheModel();
+
+		hrTimeSheetHoursPerDayCacheModel.hrTimeSheetHoursPerDayId = getHrTimeSheetHoursPerDayId();
+
+		hrTimeSheetHoursPerDayCacheModel.groupId = getGroupId();
+
+		hrTimeSheetHoursPerDayCacheModel.companyId = getCompanyId();
+
+		hrTimeSheetHoursPerDayCacheModel.userId = getUserId();
+
+		hrTimeSheetHoursPerDayCacheModel.userName = getUserName();
+
+		String userName = hrTimeSheetHoursPerDayCacheModel.userName;
+
+		if ((userName != null) && (userName.length() == 0)) {
+			hrTimeSheetHoursPerDayCacheModel.userName = null;
+		}
+
+		Date createDate = getCreateDate();
+
+		if (createDate != null) {
+			hrTimeSheetHoursPerDayCacheModel.createDate = createDate.getTime();
+		}
+
+		Date modifiedDate = getModifiedDate();
+
+		if (modifiedDate != null) {
+			hrTimeSheetHoursPerDayCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+
+		hrTimeSheetHoursPerDayCacheModel.hrOfficeId = getHrOfficeId();
+
+		hrTimeSheetHoursPerDayCacheModel.hoursPerDay = getHoursPerDay();
+
+		return hrTimeSheetHoursPerDayCacheModel;
 	}
 
 	@Override

@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
@@ -393,6 +394,57 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
 		memberRequestModelImpl._originalStatus = memberRequestModelImpl._status;
 
 		memberRequestModelImpl._setOriginalStatus = false;
+	}
+
+	@Override
+	public CacheModel<MemberRequest> toCacheModel() {
+		MemberRequestCacheModel memberRequestCacheModel = new MemberRequestCacheModel();
+
+		memberRequestCacheModel.memberRequestId = getMemberRequestId();
+
+		memberRequestCacheModel.groupId = getGroupId();
+
+		memberRequestCacheModel.companyId = getCompanyId();
+
+		memberRequestCacheModel.userId = getUserId();
+
+		memberRequestCacheModel.userName = getUserName();
+
+		String userName = memberRequestCacheModel.userName;
+
+		if ((userName != null) && (userName.length() == 0)) {
+			memberRequestCacheModel.userName = null;
+		}
+
+		Date createDate = getCreateDate();
+
+		if (createDate != null) {
+			memberRequestCacheModel.createDate = createDate.getTime();
+		}
+
+		Date modifiedDate = getModifiedDate();
+
+		if (modifiedDate != null) {
+			memberRequestCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+
+		memberRequestCacheModel.key = getKey();
+
+		String key = memberRequestCacheModel.key;
+
+		if ((key != null) && (key.length() == 0)) {
+			memberRequestCacheModel.key = null;
+		}
+
+		memberRequestCacheModel.receiverUserId = getReceiverUserId();
+
+		memberRequestCacheModel.invitedRoleId = getInvitedRoleId();
+
+		memberRequestCacheModel.invitedTeamId = getInvitedTeamId();
+
+		memberRequestCacheModel.status = getStatus();
+
+		return memberRequestCacheModel;
 	}
 
 	@Override

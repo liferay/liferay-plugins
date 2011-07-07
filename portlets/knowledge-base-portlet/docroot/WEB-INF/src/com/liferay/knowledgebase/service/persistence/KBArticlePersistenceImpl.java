@@ -43,6 +43,7 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.security.permission.InlineSQLHelperUtil;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
@@ -24446,6 +24447,16 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	private static KBArticle _nullKBArticle = new KBArticleImpl() {
 			public Object clone() {
 				return this;
+			}
+
+			public CacheModel<KBArticle> toCacheModel() {
+				return _nullKBArticleCacheModel;
+			}
+		};
+
+	private static CacheModel<KBArticle> _nullKBArticleCacheModel = new CacheModel<KBArticle>() {
+			public KBArticle toEntityModel() {
+				return _nullKBArticle;
 			}
 		};
 }

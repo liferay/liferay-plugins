@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 
@@ -322,6 +323,63 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer>
 		wsrpProducerModelImpl._originalGroupId = wsrpProducerModelImpl._groupId;
 
 		wsrpProducerModelImpl._setOriginalGroupId = false;
+	}
+
+	@Override
+	public CacheModel<WSRPProducer> toCacheModel() {
+		WSRPProducerCacheModel wsrpProducerCacheModel = new WSRPProducerCacheModel();
+
+		wsrpProducerCacheModel.uuid = getUuid();
+
+		String uuid = wsrpProducerCacheModel.uuid;
+
+		if ((uuid != null) && (uuid.length() == 0)) {
+			wsrpProducerCacheModel.uuid = null;
+		}
+
+		wsrpProducerCacheModel.wsrpProducerId = getWsrpProducerId();
+
+		wsrpProducerCacheModel.groupId = getGroupId();
+
+		wsrpProducerCacheModel.companyId = getCompanyId();
+
+		Date createDate = getCreateDate();
+
+		if (createDate != null) {
+			wsrpProducerCacheModel.createDate = createDate.getTime();
+		}
+
+		Date modifiedDate = getModifiedDate();
+
+		if (modifiedDate != null) {
+			wsrpProducerCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+
+		wsrpProducerCacheModel.name = getName();
+
+		String name = wsrpProducerCacheModel.name;
+
+		if ((name != null) && (name.length() == 0)) {
+			wsrpProducerCacheModel.name = null;
+		}
+
+		wsrpProducerCacheModel.version = getVersion();
+
+		String version = wsrpProducerCacheModel.version;
+
+		if ((version != null) && (version.length() == 0)) {
+			wsrpProducerCacheModel.version = null;
+		}
+
+		wsrpProducerCacheModel.portletIds = getPortletIds();
+
+		String portletIds = wsrpProducerCacheModel.portletIds;
+
+		if ((portletIds != null) && (portletIds.length() == 0)) {
+			wsrpProducerCacheModel.portletIds = null;
+		}
+
+		return wsrpProducerCacheModel;
 	}
 
 	@Override

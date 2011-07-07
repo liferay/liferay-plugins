@@ -318,6 +318,10 @@ public class AssetWrapper implements Asset {
 		return _asset.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.ams.model.Asset> toCacheModel() {
+		return _asset.toCacheModel();
+	}
+
 	public com.liferay.ams.model.Asset toEscapedModel() {
 		return new AssetWrapper(_asset.toEscapedModel());
 	}

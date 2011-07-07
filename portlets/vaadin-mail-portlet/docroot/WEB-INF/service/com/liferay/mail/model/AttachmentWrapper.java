@@ -291,6 +291,10 @@ public class AttachmentWrapper implements Attachment {
 		return _attachment.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.mail.model.Attachment> toCacheModel() {
+		return _attachment.toCacheModel();
+	}
+
 	public com.liferay.mail.model.Attachment toEscapedModel() {
 		return new AttachmentWrapper(_attachment.toEscapedModel());
 	}

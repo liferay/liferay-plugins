@@ -38,6 +38,7 @@ import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.ResourcePersistence;
@@ -685,6 +686,16 @@ public class HRTimeOffTypePersistenceImpl extends BasePersistenceImpl<HRTimeOffT
 	private static HRTimeOffType _nullHRTimeOffType = new HRTimeOffTypeImpl() {
 			public Object clone() {
 				return this;
+			}
+
+			public CacheModel<HRTimeOffType> toCacheModel() {
+				return _nullHRTimeOffTypeCacheModel;
+			}
+		};
+
+	private static CacheModel<HRTimeOffType> _nullHRTimeOffTypeCacheModel = new CacheModel<HRTimeOffType>() {
+			public HRTimeOffType toEntityModel() {
+				return _nullHRTimeOffType;
 			}
 		};
 }

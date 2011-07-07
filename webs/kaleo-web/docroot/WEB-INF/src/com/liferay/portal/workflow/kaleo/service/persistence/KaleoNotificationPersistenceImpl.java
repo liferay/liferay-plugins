@@ -39,6 +39,7 @@ import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.ResourcePersistence;
@@ -2276,6 +2277,17 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 	private static KaleoNotification _nullKaleoNotification = new KaleoNotificationImpl() {
 			public Object clone() {
 				return this;
+			}
+
+			public CacheModel<KaleoNotification> toCacheModel() {
+				return _nullKaleoNotificationCacheModel;
+			}
+		};
+
+	private static CacheModel<KaleoNotification> _nullKaleoNotificationCacheModel =
+		new CacheModel<KaleoNotification>() {
+			public KaleoNotification toEntityModel() {
+				return _nullKaleoNotification;
 			}
 		};
 }

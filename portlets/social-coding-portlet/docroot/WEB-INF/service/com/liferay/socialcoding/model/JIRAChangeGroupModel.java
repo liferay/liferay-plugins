@@ -16,6 +16,7 @@ package com.liferay.socialcoding.model;
 
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.model.BaseModel;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.service.ServiceContext;
 
 import com.liferay.portlet.expando.model.ExpandoBridge;
@@ -140,6 +141,8 @@ public interface JIRAChangeGroupModel extends BaseModel<JIRAChangeGroup> {
 	public int compareTo(JIRAChangeGroup jiraChangeGroup);
 
 	public int hashCode();
+
+	public CacheModel<JIRAChangeGroup> toCacheModel();
 
 	public JIRAChangeGroup toEscapedModel();
 

@@ -46,6 +46,7 @@ import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.ResourcePersistence;
@@ -1357,6 +1358,16 @@ public class HROfficePersistenceImpl extends BasePersistenceImpl<HROffice>
 	private static HROffice _nullHROffice = new HROfficeImpl() {
 			public Object clone() {
 				return this;
+			}
+
+			public CacheModel<HROffice> toCacheModel() {
+				return _nullHROfficeCacheModel;
+			}
+		};
+
+	private static CacheModel<HROffice> _nullHROfficeCacheModel = new CacheModel<HROffice>() {
+			public HROffice toEntityModel() {
+				return _nullHROffice;
 			}
 		};
 }

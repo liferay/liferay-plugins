@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
@@ -330,6 +331,63 @@ public class HRAssetCheckoutModelImpl extends BaseModelImpl<HRAssetCheckout>
 
 	@Override
 	public void resetOriginalValues() {
+	}
+
+	@Override
+	public CacheModel<HRAssetCheckout> toCacheModel() {
+		HRAssetCheckoutCacheModel hrAssetCheckoutCacheModel = new HRAssetCheckoutCacheModel();
+
+		hrAssetCheckoutCacheModel.hrAssetCheckoutId = getHrAssetCheckoutId();
+
+		hrAssetCheckoutCacheModel.groupId = getGroupId();
+
+		hrAssetCheckoutCacheModel.companyId = getCompanyId();
+
+		hrAssetCheckoutCacheModel.userId = getUserId();
+
+		hrAssetCheckoutCacheModel.userName = getUserName();
+
+		String userName = hrAssetCheckoutCacheModel.userName;
+
+		if ((userName != null) && (userName.length() == 0)) {
+			hrAssetCheckoutCacheModel.userName = null;
+		}
+
+		Date createDate = getCreateDate();
+
+		if (createDate != null) {
+			hrAssetCheckoutCacheModel.createDate = createDate.getTime();
+		}
+
+		Date modifiedDate = getModifiedDate();
+
+		if (modifiedDate != null) {
+			hrAssetCheckoutCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+
+		hrAssetCheckoutCacheModel.hrAssetId = getHrAssetId();
+
+		hrAssetCheckoutCacheModel.hrUserId = getHrUserId();
+
+		Date checkoutDate = getCheckoutDate();
+
+		if (checkoutDate != null) {
+			hrAssetCheckoutCacheModel.checkoutDate = checkoutDate.getTime();
+		}
+
+		Date expectedCheckInDate = getExpectedCheckInDate();
+
+		if (expectedCheckInDate != null) {
+			hrAssetCheckoutCacheModel.expectedCheckInDate = expectedCheckInDate.getTime();
+		}
+
+		Date actualCheckInDate = getActualCheckInDate();
+
+		if (actualCheckInDate != null) {
+			hrAssetCheckoutCacheModel.actualCheckInDate = actualCheckInDate.getTime();
+		}
+
+		return hrAssetCheckoutCacheModel;
 	}
 
 	@Override

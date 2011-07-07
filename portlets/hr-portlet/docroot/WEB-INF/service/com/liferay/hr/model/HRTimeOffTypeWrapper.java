@@ -291,6 +291,10 @@ public class HRTimeOffTypeWrapper implements HRTimeOffType {
 		return _hrTimeOffType.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.hr.model.HRTimeOffType> toCacheModel() {
+		return _hrTimeOffType.toCacheModel();
+	}
+
 	public com.liferay.hr.model.HRTimeOffType toEscapedModel() {
 		return new HRTimeOffTypeWrapper(_hrTimeOffType.toEscapedModel());
 	}

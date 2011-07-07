@@ -273,6 +273,10 @@ public class WallEntryWrapper implements WallEntry {
 		return _wallEntry.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.socialnetworking.model.WallEntry> toCacheModel() {
+		return _wallEntry.toCacheModel();
+	}
+
 	public com.liferay.socialnetworking.model.WallEntry toEscapedModel() {
 		return new WallEntryWrapper(_wallEntry.toEscapedModel());
 	}

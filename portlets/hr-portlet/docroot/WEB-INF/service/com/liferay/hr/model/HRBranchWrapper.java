@@ -273,6 +273,10 @@ public class HRBranchWrapper implements HRBranch {
 		return _hrBranch.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.hr.model.HRBranch> toCacheModel() {
+		return _hrBranch.toCacheModel();
+	}
+
 	public com.liferay.hr.model.HRBranch toEscapedModel() {
 		return new HRBranchWrapper(_hrBranch.toEscapedModel());
 	}

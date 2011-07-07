@@ -421,6 +421,10 @@ public class TasksEntryWrapper implements TasksEntry {
 		return _tasksEntry.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.tasks.model.TasksEntry> toCacheModel() {
+		return _tasksEntry.toCacheModel();
+	}
+
 	public com.liferay.tasks.model.TasksEntry toEscapedModel() {
 		return new TasksEntryWrapper(_tasksEntry.toEscapedModel());
 	}

@@ -427,6 +427,10 @@ public class KaleoTransitionWrapper implements KaleoTransition {
 		return _kaleoTransition.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.portal.workflow.kaleo.model.KaleoTransition> toCacheModel() {
+		return _kaleoTransition.toCacheModel();
+	}
+
 	public com.liferay.portal.workflow.kaleo.model.KaleoTransition toEscapedModel() {
 		return new KaleoTransitionWrapper(_kaleoTransition.toEscapedModel());
 	}

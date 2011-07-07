@@ -40,6 +40,7 @@ import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.ResourcePersistence;
@@ -1026,6 +1027,16 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 	private static Attachment _nullAttachment = new AttachmentImpl() {
 			public Object clone() {
 				return this;
+			}
+
+			public CacheModel<Attachment> toCacheModel() {
+				return _nullAttachmentCacheModel;
+			}
+		};
+
+	private static CacheModel<Attachment> _nullAttachmentCacheModel = new CacheModel<Attachment>() {
+			public Attachment toEntityModel() {
+				return _nullAttachment;
 			}
 		};
 }

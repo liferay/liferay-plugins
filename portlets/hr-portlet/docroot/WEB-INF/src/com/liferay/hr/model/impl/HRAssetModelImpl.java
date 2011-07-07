@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
@@ -317,6 +318,59 @@ public class HRAssetModelImpl extends BaseModelImpl<HRAsset>
 
 	@Override
 	public void resetOriginalValues() {
+	}
+
+	@Override
+	public CacheModel<HRAsset> toCacheModel() {
+		HRAssetCacheModel hrAssetCacheModel = new HRAssetCacheModel();
+
+		hrAssetCacheModel.hrAssetId = getHrAssetId();
+
+		hrAssetCacheModel.groupId = getGroupId();
+
+		hrAssetCacheModel.companyId = getCompanyId();
+
+		hrAssetCacheModel.userId = getUserId();
+
+		hrAssetCacheModel.userName = getUserName();
+
+		String userName = hrAssetCacheModel.userName;
+
+		if ((userName != null) && (userName.length() == 0)) {
+			hrAssetCacheModel.userName = null;
+		}
+
+		Date createDate = getCreateDate();
+
+		if (createDate != null) {
+			hrAssetCacheModel.createDate = createDate.getTime();
+		}
+
+		Date modifiedDate = getModifiedDate();
+
+		if (modifiedDate != null) {
+			hrAssetCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+
+		hrAssetCacheModel.hrAssetDefinitionId = getHrAssetDefinitionId();
+
+		hrAssetCacheModel.hrAssetTypeId = getHrAssetTypeId();
+
+		hrAssetCacheModel.serialNumber = getSerialNumber();
+
+		String serialNumber = hrAssetCacheModel.serialNumber;
+
+		if ((serialNumber != null) && (serialNumber.length() == 0)) {
+			hrAssetCacheModel.serialNumber = null;
+		}
+
+		Date inactiveDate = getInactiveDate();
+
+		if (inactiveDate != null) {
+			hrAssetCacheModel.inactiveDate = inactiveDate.getTime();
+		}
+
+		return hrAssetCacheModel;
 	}
 
 	@Override

@@ -987,6 +987,10 @@ public class CalendarBookingWrapper implements CalendarBooking {
 		return _calendarBooking.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.calendar.model.CalendarBooking> toCacheModel() {
+		return _calendarBooking.toCacheModel();
+	}
+
 	public com.liferay.calendar.model.CalendarBooking toEscapedModel() {
 		return new CalendarBookingWrapper(_calendarBooking.toEscapedModel());
 	}

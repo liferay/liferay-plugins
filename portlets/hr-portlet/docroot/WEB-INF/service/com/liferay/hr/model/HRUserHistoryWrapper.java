@@ -453,6 +453,10 @@ public class HRUserHistoryWrapper implements HRUserHistory {
 		return _hrUserHistory.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.hr.model.HRUserHistory> toCacheModel() {
+		return _hrUserHistory.toCacheModel();
+	}
+
 	public com.liferay.hr.model.HRUserHistory toEscapedModel() {
 		return new HRUserHistoryWrapper(_hrUserHistory.toEscapedModel());
 	}

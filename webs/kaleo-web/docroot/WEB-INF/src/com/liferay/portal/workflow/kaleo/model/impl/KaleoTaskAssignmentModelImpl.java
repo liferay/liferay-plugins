@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
@@ -379,6 +380,82 @@ public class KaleoTaskAssignmentModelImpl extends BaseModelImpl<KaleoTaskAssignm
 
 	@Override
 	public void resetOriginalValues() {
+	}
+
+	@Override
+	public CacheModel<KaleoTaskAssignment> toCacheModel() {
+		KaleoTaskAssignmentCacheModel kaleoTaskAssignmentCacheModel = new KaleoTaskAssignmentCacheModel();
+
+		kaleoTaskAssignmentCacheModel.kaleoTaskAssignmentId = getKaleoTaskAssignmentId();
+
+		kaleoTaskAssignmentCacheModel.groupId = getGroupId();
+
+		kaleoTaskAssignmentCacheModel.companyId = getCompanyId();
+
+		kaleoTaskAssignmentCacheModel.userId = getUserId();
+
+		kaleoTaskAssignmentCacheModel.userName = getUserName();
+
+		String userName = kaleoTaskAssignmentCacheModel.userName;
+
+		if ((userName != null) && (userName.length() == 0)) {
+			kaleoTaskAssignmentCacheModel.userName = null;
+		}
+
+		Date createDate = getCreateDate();
+
+		if (createDate != null) {
+			kaleoTaskAssignmentCacheModel.createDate = createDate.getTime();
+		}
+
+		Date modifiedDate = getModifiedDate();
+
+		if (modifiedDate != null) {
+			kaleoTaskAssignmentCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+
+		kaleoTaskAssignmentCacheModel.kaleoDefinitionId = getKaleoDefinitionId();
+
+		kaleoTaskAssignmentCacheModel.kaleoNodeId = getKaleoNodeId();
+
+		kaleoTaskAssignmentCacheModel.kaleoTaskId = getKaleoTaskId();
+
+		kaleoTaskAssignmentCacheModel.assigneeClassName = getAssigneeClassName();
+
+		String assigneeClassName = kaleoTaskAssignmentCacheModel.assigneeClassName;
+
+		if ((assigneeClassName != null) && (assigneeClassName.length() == 0)) {
+			kaleoTaskAssignmentCacheModel.assigneeClassName = null;
+		}
+
+		kaleoTaskAssignmentCacheModel.assigneeClassPK = getAssigneeClassPK();
+
+		kaleoTaskAssignmentCacheModel.assigneeActionId = getAssigneeActionId();
+
+		String assigneeActionId = kaleoTaskAssignmentCacheModel.assigneeActionId;
+
+		if ((assigneeActionId != null) && (assigneeActionId.length() == 0)) {
+			kaleoTaskAssignmentCacheModel.assigneeActionId = null;
+		}
+
+		kaleoTaskAssignmentCacheModel.assigneeScript = getAssigneeScript();
+
+		String assigneeScript = kaleoTaskAssignmentCacheModel.assigneeScript;
+
+		if ((assigneeScript != null) && (assigneeScript.length() == 0)) {
+			kaleoTaskAssignmentCacheModel.assigneeScript = null;
+		}
+
+		kaleoTaskAssignmentCacheModel.assigneeScriptLanguage = getAssigneeScriptLanguage();
+
+		String assigneeScriptLanguage = kaleoTaskAssignmentCacheModel.assigneeScriptLanguage;
+
+		if ((assigneeScriptLanguage != null) &&
+				(assigneeScriptLanguage.length() == 0)) {
+			kaleoTaskAssignmentCacheModel.assigneeScriptLanguage = null;
+		}
+
+		return kaleoTaskAssignmentCacheModel;
 	}
 
 	@Override

@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
@@ -328,6 +329,75 @@ public class ProjectsEntryModelImpl extends BaseModelImpl<ProjectsEntry>
 
 	@Override
 	public void resetOriginalValues() {
+	}
+
+	@Override
+	public CacheModel<ProjectsEntry> toCacheModel() {
+		ProjectsEntryCacheModel projectsEntryCacheModel = new ProjectsEntryCacheModel();
+
+		projectsEntryCacheModel.projectsEntryId = getProjectsEntryId();
+
+		projectsEntryCacheModel.companyId = getCompanyId();
+
+		projectsEntryCacheModel.userId = getUserId();
+
+		projectsEntryCacheModel.userName = getUserName();
+
+		String userName = projectsEntryCacheModel.userName;
+
+		if ((userName != null) && (userName.length() == 0)) {
+			projectsEntryCacheModel.userName = null;
+		}
+
+		Date createDate = getCreateDate();
+
+		if (createDate != null) {
+			projectsEntryCacheModel.createDate = createDate.getTime();
+		}
+
+		Date modifiedDate = getModifiedDate();
+
+		if (modifiedDate != null) {
+			projectsEntryCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+
+		projectsEntryCacheModel.title = getTitle();
+
+		String title = projectsEntryCacheModel.title;
+
+		if ((title != null) && (title.length() == 0)) {
+			projectsEntryCacheModel.title = null;
+		}
+
+		projectsEntryCacheModel.description = getDescription();
+
+		String description = projectsEntryCacheModel.description;
+
+		if ((description != null) && (description.length() == 0)) {
+			projectsEntryCacheModel.description = null;
+		}
+
+		Date startDate = getStartDate();
+
+		if (startDate != null) {
+			projectsEntryCacheModel.startDate = startDate.getTime();
+		}
+
+		Date endDate = getEndDate();
+
+		if (endDate != null) {
+			projectsEntryCacheModel.endDate = endDate.getTime();
+		}
+
+		projectsEntryCacheModel.data = getData();
+
+		String data = projectsEntryCacheModel.data;
+
+		if ((data != null) && (data.length() == 0)) {
+			projectsEntryCacheModel.data = null;
+		}
+
+		return projectsEntryCacheModel;
 	}
 
 	@Override

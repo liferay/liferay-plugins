@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
@@ -403,6 +404,77 @@ public class HRUserModelImpl extends BaseModelImpl<HRUser>
 
 	@Override
 	public void resetOriginalValues() {
+	}
+
+	@Override
+	public CacheModel<HRUser> toCacheModel() {
+		HRUserCacheModel hrUserCacheModel = new HRUserCacheModel();
+
+		hrUserCacheModel.hrUserId = getHrUserId();
+
+		hrUserCacheModel.groupId = getGroupId();
+
+		hrUserCacheModel.companyId = getCompanyId();
+
+		hrUserCacheModel.userId = getUserId();
+
+		hrUserCacheModel.userName = getUserName();
+
+		String userName = hrUserCacheModel.userName;
+
+		if ((userName != null) && (userName.length() == 0)) {
+			hrUserCacheModel.userName = null;
+		}
+
+		Date createDate = getCreateDate();
+
+		if (createDate != null) {
+			hrUserCacheModel.createDate = createDate.getTime();
+		}
+
+		Date modifiedDate = getModifiedDate();
+
+		if (modifiedDate != null) {
+			hrUserCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+
+		hrUserCacheModel.hrEmploymentTypeId = getHrEmploymentTypeId();
+
+		hrUserCacheModel.hrJobTitleId = getHrJobTitleId();
+
+		hrUserCacheModel.hrOfficeId = getHrOfficeId();
+
+		hrUserCacheModel.hrTerminationTypeId = getHrTerminationTypeId();
+
+		hrUserCacheModel.hrWageTypeId = getHrWageTypeId();
+
+		Date hireDate = getHireDate();
+
+		if (hireDate != null) {
+			hrUserCacheModel.hireDate = hireDate.getTime();
+		}
+
+		Date terminationDate = getTerminationDate();
+
+		if (terminationDate != null) {
+			hrUserCacheModel.terminationDate = terminationDate.getTime();
+		}
+
+		hrUserCacheModel.wageAmount = getWageAmount();
+
+		hrUserCacheModel.wageCurrencyCode = getWageCurrencyCode();
+
+		String wageCurrencyCode = hrUserCacheModel.wageCurrencyCode;
+
+		if ((wageCurrencyCode != null) && (wageCurrencyCode.length() == 0)) {
+			hrUserCacheModel.wageCurrencyCode = null;
+		}
+
+		hrUserCacheModel.benefitsExempt = getBenefitsExempt();
+
+		hrUserCacheModel.overtimeExempt = getOvertimeExempt();
+
+		return hrUserCacheModel;
 	}
 
 	@Override

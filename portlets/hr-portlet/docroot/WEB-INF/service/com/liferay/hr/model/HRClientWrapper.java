@@ -291,6 +291,10 @@ public class HRClientWrapper implements HRClient {
 		return _hrClient.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.hr.model.HRClient> toCacheModel() {
+		return _hrClient.toCacheModel();
+	}
+
 	public com.liferay.hr.model.HRClient toEscapedModel() {
 		return new HRClientWrapper(_hrClient.toEscapedModel());
 	}
