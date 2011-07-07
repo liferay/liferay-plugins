@@ -84,12 +84,13 @@ public class AttachmentLocalServiceImpl extends AttachmentLocalServiceBaseImpl {
 
 			String filePath = getFilePath(
 				attachment.getMessageId(), fileName);
+			
+			InputStream is = getInputStream(attachmentId);
 
 			try {
 				DLStoreUtil.addFile(
 					attachment.getCompanyId(), _PORTLET_ID, _GROUP_ID,
-					_REPOSITORY_ID, filePath, 0, StringPool.BLANK, new Date(),
-					new ServiceContext(), file);
+					_REPOSITORY_ID, filePath, false, new ServiceContext(), is);
 			}
 			catch (DuplicateFileException dfe) {
 				if (_log.isDebugEnabled()) {
