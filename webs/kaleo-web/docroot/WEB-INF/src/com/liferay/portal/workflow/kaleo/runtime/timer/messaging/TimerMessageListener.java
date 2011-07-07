@@ -16,8 +16,12 @@ package com.liferay.portal.workflow.kaleo.runtime.timer.messaging;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.BaseMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
+import com.liferay.portal.kernel.scheduler.SchedulerEngineUtil;
+import com.liferay.portal.kernel.scheduler.StorageType;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
@@ -27,6 +31,7 @@ import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
 import com.liferay.portal.workflow.kaleo.runtime.KaleoSignaler;
 import com.liferay.portal.workflow.kaleo.runtime.WorkflowEngine;
 import com.liferay.portal.workflow.kaleo.service.KaleoTimerInstanceTokenLocalServiceUtil;
+import com.liferay.portal.workflow.kaleo.util.SchedulerUtil;
 import com.liferay.portal.workflow.kaleo.util.WorkflowContextUtil;
 
 import java.io.Serializable;
@@ -51,25 +56,39 @@ public class TimerMessageListener extends BaseMessageListener {
 		long kaleoTimerInstanceTokenId = message.getLong(
 			"kaleoTimerInstanceTokenId");
 
-		KaleoTimerInstanceToken kaleoTimerInstanceToken =
-			getKaleoTimerInstanceToken(message);
+		try {
+			KaleoTimerInstanceToken kaleoTimerInstanceToken =
+				getKaleoTimerInstanceToken(message);
 
-		KaleoInstanceToken kaleoInstanceToken =
-			kaleoTimerInstanceToken.getKaleoInstanceToken();
+			KaleoInstanceToken kaleoInstanceToken =
+				kaleoTimerInstanceToken.getKaleoInstanceToken();
 
-		Map<String, Serializable> workflowContext = WorkflowContextUtil.convert(
-			kaleoTimerInstanceToken.getWorkflowContext());
+			Map<String, Serializable> workflowContext = WorkflowContextUtil.convert(
+				kaleoTimerInstanceToken.getWorkflowContext());
 
-		ServiceContext serviceContext = (ServiceContext)workflowContext.get(
-			WorkflowConstants.CONTEXT_SERVICE_CONTEXT);
+			ServiceContext serviceContext = (ServiceContext)workflowContext.get(
+				WorkflowConstants.CONTEXT_SERVICE_CONTEXT);
 
-		ExecutionContext executionContext =
-			_workflowEngine.executeTimerWorkflowInstance(
-				kaleoTimerInstanceTokenId, serviceContext, workflowContext);
+			ExecutionContext executionContext =
+				_workflowEngine.executeTimerWorkflowInstance(
+					kaleoTimerInstanceTokenId, serviceContext, workflowContext);
 
-		KaleoNode currentKaleoNode = kaleoInstanceToken.getCurrentKaleoNode();
+			KaleoNode currentKaleoNode = kaleoInstanceToken.getCurrentKaleoNode();
 
-		_kaleoSignaler.signalExecute(currentKaleoNode, executionContext);
+			_kaleoSignaler.signalExecute(currentKaleoNode, executionContext);
+		}
+		catch (Exception e) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(
+					"Unable to execute scheduled job.  Unregistering job " +
+					message, e);
+			}
+
+			String groupName = SchedulerUtil.getGroupName(
+				kaleoTimerInstanceTokenId);
+
+			SchedulerEngineUtil.delete(groupName, StorageType.PERSISTED);
+		}
 	}
 
 	protected KaleoTimerInstanceToken getKaleoTimerInstanceToken(
@@ -85,6 +104,9 @@ public class TimerMessageListener extends BaseMessageListener {
 
 		return kaleoTimerInstanceToken;
 	}
+
+	private static Log _log = LogFactoryUtil.getLog(
+		TimerMessageListener.class);
 
 	private KaleoSignaler _kaleoSignaler;
 	private WorkflowEngine _workflowEngine;

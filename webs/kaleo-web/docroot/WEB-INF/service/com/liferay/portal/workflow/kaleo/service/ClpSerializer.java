@@ -266,61 +266,68 @@ public class ClpSerializer {
 
 				method7.invoke(newModel, value7);
 
-				Method method8 = newModelClass.getMethod("setKaleoNodeId",
-						new Class[] { Long.TYPE });
+				Method method8 = newModelClass.getMethod("setKaleoClassName",
+						new Class[] { String.class });
 
-				Long value8 = new Long(oldCplModel.getKaleoNodeId());
+				String value8 = oldCplModel.getKaleoClassName();
 
 				method8.invoke(newModel, value8);
 
-				Method method9 = newModelClass.getMethod("setKaleoNodeName",
-						new Class[] { String.class });
+				Method method9 = newModelClass.getMethod("setKaleoClassPK",
+						new Class[] { Long.TYPE });
 
-				String value9 = oldCplModel.getKaleoNodeName();
+				Long value9 = new Long(oldCplModel.getKaleoClassPK());
 
 				method9.invoke(newModel, value9);
 
-				Method method10 = newModelClass.getMethod("setName",
+				Method method10 = newModelClass.getMethod("setKaleoNodeName",
 						new Class[] { String.class });
 
-				String value10 = oldCplModel.getName();
+				String value10 = oldCplModel.getKaleoNodeName();
 
 				method10.invoke(newModel, value10);
 
-				Method method11 = newModelClass.getMethod("setDescription",
+				Method method11 = newModelClass.getMethod("setName",
 						new Class[] { String.class });
 
-				String value11 = oldCplModel.getDescription();
+				String value11 = oldCplModel.getName();
 
 				method11.invoke(newModel, value11);
 
-				Method method12 = newModelClass.getMethod("setExecutionType",
+				Method method12 = newModelClass.getMethod("setDescription",
 						new Class[] { String.class });
 
-				String value12 = oldCplModel.getExecutionType();
+				String value12 = oldCplModel.getDescription();
 
 				method12.invoke(newModel, value12);
 
-				Method method13 = newModelClass.getMethod("setScript",
+				Method method13 = newModelClass.getMethod("setExecutionType",
 						new Class[] { String.class });
 
-				String value13 = oldCplModel.getScript();
+				String value13 = oldCplModel.getExecutionType();
 
 				method13.invoke(newModel, value13);
 
-				Method method14 = newModelClass.getMethod("setScriptLanguage",
+				Method method14 = newModelClass.getMethod("setScript",
 						new Class[] { String.class });
 
-				String value14 = oldCplModel.getScriptLanguage();
+				String value14 = oldCplModel.getScript();
 
 				method14.invoke(newModel, value14);
 
-				Method method15 = newModelClass.getMethod("setPriority",
-						new Class[] { Integer.TYPE });
+				Method method15 = newModelClass.getMethod("setScriptLanguage",
+						new Class[] { String.class });
 
-				Integer value15 = new Integer(oldCplModel.getPriority());
+				String value15 = oldCplModel.getScriptLanguage();
 
 				method15.invoke(newModel, value15);
+
+				Method method16 = newModelClass.getMethod("setPriority",
+						new Class[] { Integer.TYPE });
+
+				Integer value16 = new Integer(oldCplModel.getPriority());
+
+				method16.invoke(newModel, value16);
 
 				return newModel;
 			}
@@ -936,131 +943,138 @@ public class ClpSerializer {
 
 				method10.invoke(newModel, value10);
 
-				Method method11 = newModelClass.getMethod("setKaleoNodeId",
-						new Class[] { Long.TYPE });
+				Method method11 = newModelClass.getMethod("setKaleoClassName",
+						new Class[] { String.class });
 
-				Long value11 = new Long(oldCplModel.getKaleoNodeId());
+				String value11 = oldCplModel.getKaleoClassName();
 
 				method11.invoke(newModel, value11);
 
-				Method method12 = newModelClass.getMethod("setKaleoNodeName",
-						new Class[] { String.class });
+				Method method12 = newModelClass.getMethod("setKaleoClassPK",
+						new Class[] { Long.TYPE });
 
-				String value12 = oldCplModel.getKaleoNodeName();
+				Long value12 = new Long(oldCplModel.getKaleoClassPK());
 
 				method12.invoke(newModel, value12);
 
-				Method method13 = newModelClass.getMethod("setTerminalKaleoNode",
-						new Class[] { Boolean.TYPE });
+				Method method13 = newModelClass.getMethod("setKaleoNodeName",
+						new Class[] { String.class });
 
-				Boolean value13 = new Boolean(oldCplModel.getTerminalKaleoNode());
+				String value13 = oldCplModel.getKaleoNodeName();
 
 				method13.invoke(newModel, value13);
 
-				Method method14 = newModelClass.getMethod("setKaleoActionId",
-						new Class[] { Long.TYPE });
+				Method method14 = newModelClass.getMethod("setTerminalKaleoNode",
+						new Class[] { Boolean.TYPE });
 
-				Long value14 = new Long(oldCplModel.getKaleoActionId());
+				Boolean value14 = new Boolean(oldCplModel.getTerminalKaleoNode());
 
 				method14.invoke(newModel, value14);
 
-				Method method15 = newModelClass.getMethod("setKaleoActionName",
-						new Class[] { String.class });
+				Method method15 = newModelClass.getMethod("setKaleoActionId",
+						new Class[] { Long.TYPE });
 
-				String value15 = oldCplModel.getKaleoActionName();
+				Long value15 = new Long(oldCplModel.getKaleoActionId());
 
 				method15.invoke(newModel, value15);
 
-				Method method16 = newModelClass.getMethod("setKaleoActionDescription",
+				Method method16 = newModelClass.getMethod("setKaleoActionName",
 						new Class[] { String.class });
 
-				String value16 = oldCplModel.getKaleoActionDescription();
+				String value16 = oldCplModel.getKaleoActionName();
 
 				method16.invoke(newModel, value16);
 
-				Method method17 = newModelClass.getMethod("setPreviousKaleoNodeId",
-						new Class[] { Long.TYPE });
+				Method method17 = newModelClass.getMethod("setKaleoActionDescription",
+						new Class[] { String.class });
 
-				Long value17 = new Long(oldCplModel.getPreviousKaleoNodeId());
+				String value17 = oldCplModel.getKaleoActionDescription();
 
 				method17.invoke(newModel, value17);
 
-				Method method18 = newModelClass.getMethod("setPreviousKaleoNodeName",
-						new Class[] { String.class });
+				Method method18 = newModelClass.getMethod("setPreviousKaleoNodeId",
+						new Class[] { Long.TYPE });
 
-				String value18 = oldCplModel.getPreviousKaleoNodeName();
+				Long value18 = new Long(oldCplModel.getPreviousKaleoNodeId());
 
 				method18.invoke(newModel, value18);
 
-				Method method19 = newModelClass.getMethod("setPreviousAssigneeClassName",
+				Method method19 = newModelClass.getMethod("setPreviousKaleoNodeName",
 						new Class[] { String.class });
 
-				String value19 = oldCplModel.getPreviousAssigneeClassName();
+				String value19 = oldCplModel.getPreviousKaleoNodeName();
 
 				method19.invoke(newModel, value19);
 
-				Method method20 = newModelClass.getMethod("setPreviousAssigneeClassPK",
-						new Class[] { Long.TYPE });
+				Method method20 = newModelClass.getMethod("setPreviousAssigneeClassName",
+						new Class[] { String.class });
 
-				Long value20 = new Long(oldCplModel.getPreviousAssigneeClassPK());
+				String value20 = oldCplModel.getPreviousAssigneeClassName();
 
 				method20.invoke(newModel, value20);
 
-				Method method21 = newModelClass.getMethod("setCurrentAssigneeClassName",
-						new Class[] { String.class });
+				Method method21 = newModelClass.getMethod("setPreviousAssigneeClassPK",
+						new Class[] { Long.TYPE });
 
-				String value21 = oldCplModel.getCurrentAssigneeClassName();
+				Long value21 = new Long(oldCplModel.getPreviousAssigneeClassPK());
 
 				method21.invoke(newModel, value21);
 
-				Method method22 = newModelClass.getMethod("setCurrentAssigneeClassPK",
-						new Class[] { Long.TYPE });
+				Method method22 = newModelClass.getMethod("setCurrentAssigneeClassName",
+						new Class[] { String.class });
 
-				Long value22 = new Long(oldCplModel.getCurrentAssigneeClassPK());
+				String value22 = oldCplModel.getCurrentAssigneeClassName();
 
 				method22.invoke(newModel, value22);
 
-				Method method23 = newModelClass.getMethod("setType",
-						new Class[] { String.class });
+				Method method23 = newModelClass.getMethod("setCurrentAssigneeClassPK",
+						new Class[] { Long.TYPE });
 
-				String value23 = oldCplModel.getType();
+				Long value23 = new Long(oldCplModel.getCurrentAssigneeClassPK());
 
 				method23.invoke(newModel, value23);
 
-				Method method24 = newModelClass.getMethod("setComment",
+				Method method24 = newModelClass.getMethod("setType",
 						new Class[] { String.class });
 
-				String value24 = oldCplModel.getComment();
+				String value24 = oldCplModel.getType();
 
 				method24.invoke(newModel, value24);
 
-				Method method25 = newModelClass.getMethod("setStartDate",
-						new Class[] { Date.class });
+				Method method25 = newModelClass.getMethod("setComment",
+						new Class[] { String.class });
 
-				Date value25 = oldCplModel.getStartDate();
+				String value25 = oldCplModel.getComment();
 
 				method25.invoke(newModel, value25);
 
-				Method method26 = newModelClass.getMethod("setEndDate",
+				Method method26 = newModelClass.getMethod("setStartDate",
 						new Class[] { Date.class });
 
-				Date value26 = oldCplModel.getEndDate();
+				Date value26 = oldCplModel.getStartDate();
 
 				method26.invoke(newModel, value26);
 
-				Method method27 = newModelClass.getMethod("setDuration",
-						new Class[] { Long.TYPE });
+				Method method27 = newModelClass.getMethod("setEndDate",
+						new Class[] { Date.class });
 
-				Long value27 = new Long(oldCplModel.getDuration());
+				Date value27 = oldCplModel.getEndDate();
 
 				method27.invoke(newModel, value27);
 
-				Method method28 = newModelClass.getMethod("setWorkflowContext",
-						new Class[] { String.class });
+				Method method28 = newModelClass.getMethod("setDuration",
+						new Class[] { Long.TYPE });
 
-				String value28 = oldCplModel.getWorkflowContext();
+				Long value28 = new Long(oldCplModel.getDuration());
 
 				method28.invoke(newModel, value28);
+
+				Method method29 = newModelClass.getMethod("setWorkflowContext",
+						new Class[] { String.class });
+
+				String value29 = oldCplModel.getWorkflowContext();
+
+				method29.invoke(newModel, value29);
 
 				return newModel;
 			}
@@ -1154,33 +1168,40 @@ public class ClpSerializer {
 
 				method8.invoke(newModel, value8);
 
-				Method method9 = newModelClass.getMethod("setDescription",
+				Method method9 = newModelClass.getMethod("setMetadata",
 						new Class[] { String.class });
 
-				String value9 = oldCplModel.getDescription();
+				String value9 = oldCplModel.getMetadata();
 
 				method9.invoke(newModel, value9);
 
-				Method method10 = newModelClass.getMethod("setType",
+				Method method10 = newModelClass.getMethod("setDescription",
 						new Class[] { String.class });
 
-				String value10 = oldCplModel.getType();
+				String value10 = oldCplModel.getDescription();
 
 				method10.invoke(newModel, value10);
 
-				Method method11 = newModelClass.getMethod("setInitial",
-						new Class[] { Boolean.TYPE });
+				Method method11 = newModelClass.getMethod("setType",
+						new Class[] { String.class });
 
-				Boolean value11 = new Boolean(oldCplModel.getInitial());
+				String value11 = oldCplModel.getType();
 
 				method11.invoke(newModel, value11);
 
-				Method method12 = newModelClass.getMethod("setTerminal",
+				Method method12 = newModelClass.getMethod("setInitial",
 						new Class[] { Boolean.TYPE });
 
-				Boolean value12 = new Boolean(oldCplModel.getTerminal());
+				Boolean value12 = new Boolean(oldCplModel.getInitial());
 
 				method12.invoke(newModel, value12);
+
+				Method method13 = newModelClass.getMethod("setTerminal",
+						new Class[] { Boolean.TYPE });
+
+				Boolean value13 = new Boolean(oldCplModel.getTerminal());
+
+				method13.invoke(newModel, value13);
 
 				return newModel;
 			}
@@ -1267,61 +1288,68 @@ public class ClpSerializer {
 
 				method7.invoke(newModel, value7);
 
-				Method method8 = newModelClass.getMethod("setKaleoNodeId",
-						new Class[] { Long.TYPE });
+				Method method8 = newModelClass.getMethod("setKaleoClassName",
+						new Class[] { String.class });
 
-				Long value8 = new Long(oldCplModel.getKaleoNodeId());
+				String value8 = oldCplModel.getKaleoClassName();
 
 				method8.invoke(newModel, value8);
 
-				Method method9 = newModelClass.getMethod("setKaleoNodeName",
-						new Class[] { String.class });
+				Method method9 = newModelClass.getMethod("setKaleoClassPK",
+						new Class[] { Long.TYPE });
 
-				String value9 = oldCplModel.getKaleoNodeName();
+				Long value9 = new Long(oldCplModel.getKaleoClassPK());
 
 				method9.invoke(newModel, value9);
 
-				Method method10 = newModelClass.getMethod("setName",
+				Method method10 = newModelClass.getMethod("setKaleoNodeName",
 						new Class[] { String.class });
 
-				String value10 = oldCplModel.getName();
+				String value10 = oldCplModel.getKaleoNodeName();
 
 				method10.invoke(newModel, value10);
 
-				Method method11 = newModelClass.getMethod("setDescription",
+				Method method11 = newModelClass.getMethod("setName",
 						new Class[] { String.class });
 
-				String value11 = oldCplModel.getDescription();
+				String value11 = oldCplModel.getName();
 
 				method11.invoke(newModel, value11);
 
-				Method method12 = newModelClass.getMethod("setExecutionType",
+				Method method12 = newModelClass.getMethod("setDescription",
 						new Class[] { String.class });
 
-				String value12 = oldCplModel.getExecutionType();
+				String value12 = oldCplModel.getDescription();
 
 				method12.invoke(newModel, value12);
 
-				Method method13 = newModelClass.getMethod("setTemplate",
+				Method method13 = newModelClass.getMethod("setExecutionType",
 						new Class[] { String.class });
 
-				String value13 = oldCplModel.getTemplate();
+				String value13 = oldCplModel.getExecutionType();
 
 				method13.invoke(newModel, value13);
 
-				Method method14 = newModelClass.getMethod("setTemplateLanguage",
+				Method method14 = newModelClass.getMethod("setTemplate",
 						new Class[] { String.class });
 
-				String value14 = oldCplModel.getTemplateLanguage();
+				String value14 = oldCplModel.getTemplate();
 
 				method14.invoke(newModel, value14);
 
-				Method method15 = newModelClass.getMethod("setNotificationTypes",
+				Method method15 = newModelClass.getMethod("setTemplateLanguage",
 						new Class[] { String.class });
 
-				String value15 = oldCplModel.getNotificationTypes();
+				String value15 = oldCplModel.getTemplateLanguage();
 
 				method15.invoke(newModel, value15);
+
+				Method method16 = newModelClass.getMethod("setNotificationTypes",
+						new Class[] { String.class });
+
+				String value16 = oldCplModel.getNotificationTypes();
+
+				method16.invoke(newModel, value16);
 
 				return newModel;
 			}
@@ -1636,54 +1664,61 @@ public class ClpSerializer {
 
 				method7.invoke(newModel, value7);
 
-				Method method8 = newModelClass.getMethod("setKaleoNodeId",
-						new Class[] { Long.TYPE });
+				Method method8 = newModelClass.getMethod("setKaleoClassName",
+						new Class[] { String.class });
 
-				Long value8 = new Long(oldCplModel.getKaleoNodeId());
+				String value8 = oldCplModel.getKaleoClassName();
 
 				method8.invoke(newModel, value8);
 
-				Method method9 = newModelClass.getMethod("setKaleoTaskId",
+				Method method9 = newModelClass.getMethod("setKaleoClassPK",
 						new Class[] { Long.TYPE });
 
-				Long value9 = new Long(oldCplModel.getKaleoTaskId());
+				Long value9 = new Long(oldCplModel.getKaleoClassPK());
 
 				method9.invoke(newModel, value9);
 
-				Method method10 = newModelClass.getMethod("setAssigneeClassName",
-						new Class[] { String.class });
+				Method method10 = newModelClass.getMethod("setKaleoNodeId",
+						new Class[] { Long.TYPE });
 
-				String value10 = oldCplModel.getAssigneeClassName();
+				Long value10 = new Long(oldCplModel.getKaleoNodeId());
 
 				method10.invoke(newModel, value10);
 
-				Method method11 = newModelClass.getMethod("setAssigneeClassPK",
-						new Class[] { Long.TYPE });
+				Method method11 = newModelClass.getMethod("setAssigneeClassName",
+						new Class[] { String.class });
 
-				Long value11 = new Long(oldCplModel.getAssigneeClassPK());
+				String value11 = oldCplModel.getAssigneeClassName();
 
 				method11.invoke(newModel, value11);
 
-				Method method12 = newModelClass.getMethod("setAssigneeActionId",
-						new Class[] { String.class });
+				Method method12 = newModelClass.getMethod("setAssigneeClassPK",
+						new Class[] { Long.TYPE });
 
-				String value12 = oldCplModel.getAssigneeActionId();
+				Long value12 = new Long(oldCplModel.getAssigneeClassPK());
 
 				method12.invoke(newModel, value12);
 
-				Method method13 = newModelClass.getMethod("setAssigneeScript",
+				Method method13 = newModelClass.getMethod("setAssigneeActionId",
 						new Class[] { String.class });
 
-				String value13 = oldCplModel.getAssigneeScript();
+				String value13 = oldCplModel.getAssigneeActionId();
 
 				method13.invoke(newModel, value13);
 
-				Method method14 = newModelClass.getMethod("setAssigneeScriptLanguage",
+				Method method14 = newModelClass.getMethod("setAssigneeScript",
 						new Class[] { String.class });
 
-				String value14 = oldCplModel.getAssigneeScriptLanguage();
+				String value14 = oldCplModel.getAssigneeScript();
 
 				method14.invoke(newModel, value14);
+
+				Method method15 = newModelClass.getMethod("setAssigneeScriptLanguage",
+						new Class[] { String.class });
+
+				String value15 = oldCplModel.getAssigneeScriptLanguage();
+
+				method15.invoke(newModel, value15);
 
 				return newModel;
 			}
@@ -2082,17 +2117,17 @@ public class ClpSerializer {
 
 				method7.invoke(newModel, value7);
 
-				Method method8 = newModelClass.getMethod("setKaleoNodeId",
-						new Class[] { Long.TYPE });
+				Method method8 = newModelClass.getMethod("setKaleoClassName",
+						new Class[] { String.class });
 
-				Long value8 = new Long(oldCplModel.getKaleoNodeId());
+				String value8 = oldCplModel.getKaleoClassName();
 
 				method8.invoke(newModel, value8);
 
-				Method method9 = newModelClass.getMethod("setParentKaleoNodeId",
+				Method method9 = newModelClass.getMethod("setKaleoClassPK",
 						new Class[] { Long.TYPE });
 
-				Long value9 = new Long(oldCplModel.getParentKaleoNodeId());
+				Long value9 = new Long(oldCplModel.getKaleoClassPK());
 
 				method9.invoke(newModel, value9);
 
@@ -2103,10 +2138,10 @@ public class ClpSerializer {
 
 				method10.invoke(newModel, value10);
 
-				Method method11 = newModelClass.getMethod("setDefaultTimer",
+				Method method11 = newModelClass.getMethod("setBlocking",
 						new Class[] { Boolean.TYPE });
 
-				Boolean value11 = new Boolean(oldCplModel.getDefaultTimer());
+				Boolean value11 = new Boolean(oldCplModel.getBlocking());
 
 				method11.invoke(newModel, value11);
 
@@ -2130,6 +2165,20 @@ public class ClpSerializer {
 				String value14 = oldCplModel.getScale();
 
 				method14.invoke(newModel, value14);
+
+				Method method15 = newModelClass.getMethod("setRecurrenceDuration",
+						new Class[] { Double.TYPE });
+
+				Double value15 = new Double(oldCplModel.getRecurrenceDuration());
+
+				method15.invoke(newModel, value15);
+
+				Method method16 = newModelClass.getMethod("setRecurrenceScale",
+						new Class[] { String.class });
+
+				String value16 = oldCplModel.getRecurrenceScale();
+
+				method16.invoke(newModel, value16);
 
 				return newModel;
 			}
@@ -2210,68 +2259,96 @@ public class ClpSerializer {
 
 				method6.invoke(newModel, value6);
 
-				Method method7 = newModelClass.getMethod("setKaleoDefinitionId",
-						new Class[] { Long.TYPE });
+				Method method7 = newModelClass.getMethod("setKaleoClassName",
+						new Class[] { String.class });
 
-				Long value7 = new Long(oldCplModel.getKaleoDefinitionId());
+				String value7 = oldCplModel.getKaleoClassName();
 
 				method7.invoke(newModel, value7);
 
-				Method method8 = newModelClass.getMethod("setKaleoInstanceId",
+				Method method8 = newModelClass.getMethod("setKaleoClassPK",
 						new Class[] { Long.TYPE });
 
-				Long value8 = new Long(oldCplModel.getKaleoInstanceId());
+				Long value8 = new Long(oldCplModel.getKaleoClassPK());
 
 				method8.invoke(newModel, value8);
 
-				Method method9 = newModelClass.getMethod("setKaleoInstanceTokenId",
+				Method method9 = newModelClass.getMethod("setKaleoDefinitionId",
 						new Class[] { Long.TYPE });
 
-				Long value9 = new Long(oldCplModel.getKaleoInstanceTokenId());
+				Long value9 = new Long(oldCplModel.getKaleoDefinitionId());
 
 				method9.invoke(newModel, value9);
 
-				Method method10 = newModelClass.getMethod("setKaleoTimerId",
+				Method method10 = newModelClass.getMethod("setKaleoInstanceId",
 						new Class[] { Long.TYPE });
 
-				Long value10 = new Long(oldCplModel.getKaleoTimerId());
+				Long value10 = new Long(oldCplModel.getKaleoInstanceId());
 
 				method10.invoke(newModel, value10);
 
-				Method method11 = newModelClass.getMethod("setKaleoTimerName",
-						new Class[] { String.class });
+				Method method11 = newModelClass.getMethod("setKaleoInstanceTokenId",
+						new Class[] { Long.TYPE });
 
-				String value11 = oldCplModel.getKaleoTimerName();
+				Long value11 = new Long(oldCplModel.getKaleoInstanceTokenId());
 
 				method11.invoke(newModel, value11);
 
-				Method method12 = newModelClass.getMethod("setCompletionUserId",
+				Method method12 = newModelClass.getMethod("setKaleoTaskInstanceTokenId",
 						new Class[] { Long.TYPE });
 
-				Long value12 = new Long(oldCplModel.getCompletionUserId());
+				Long value12 = new Long(oldCplModel.getKaleoTaskInstanceTokenId());
 
 				method12.invoke(newModel, value12);
 
-				Method method13 = newModelClass.getMethod("setCompleted",
-						new Class[] { Boolean.TYPE });
+				Method method13 = newModelClass.getMethod("setKaleoTimerId",
+						new Class[] { Long.TYPE });
 
-				Boolean value13 = new Boolean(oldCplModel.getCompleted());
+				Long value13 = new Long(oldCplModel.getKaleoTimerId());
 
 				method13.invoke(newModel, value13);
 
-				Method method14 = newModelClass.getMethod("setCompletionDate",
-						new Class[] { Date.class });
+				Method method14 = newModelClass.getMethod("setKaleoTimerName",
+						new Class[] { String.class });
 
-				Date value14 = oldCplModel.getCompletionDate();
+				String value14 = oldCplModel.getKaleoTimerName();
 
 				method14.invoke(newModel, value14);
 
-				Method method15 = newModelClass.getMethod("setWorkflowContext",
-						new Class[] { String.class });
+				Method method15 = newModelClass.getMethod("setBlocking",
+						new Class[] { Boolean.TYPE });
 
-				String value15 = oldCplModel.getWorkflowContext();
+				Boolean value15 = new Boolean(oldCplModel.getBlocking());
 
 				method15.invoke(newModel, value15);
+
+				Method method16 = newModelClass.getMethod("setCompletionUserId",
+						new Class[] { Long.TYPE });
+
+				Long value16 = new Long(oldCplModel.getCompletionUserId());
+
+				method16.invoke(newModel, value16);
+
+				Method method17 = newModelClass.getMethod("setCompleted",
+						new Class[] { Boolean.TYPE });
+
+				Boolean value17 = new Boolean(oldCplModel.getCompleted());
+
+				method17.invoke(newModel, value17);
+
+				Method method18 = newModelClass.getMethod("setCompletionDate",
+						new Class[] { Date.class });
+
+				Date value18 = oldCplModel.getCompletionDate();
+
+				method18.invoke(newModel, value18);
+
+				Method method19 = newModelClass.getMethod("setWorkflowContext",
+						new Class[] { String.class });
+
+				String value19 = oldCplModel.getWorkflowContext();
+
+				method19.invoke(newModel, value19);
 
 				return newModel;
 			}
@@ -2612,59 +2689,66 @@ public class ClpSerializer {
 
 				newModel.setKaleoDefinitionId(value7);
 
-				Method method8 = oldModelClass.getMethod("getKaleoNodeId");
+				Method method8 = oldModelClass.getMethod("getKaleoClassName");
 
-				Long value8 = (Long)method8.invoke(oldModel, (Object[])null);
+				String value8 = (String)method8.invoke(oldModel, (Object[])null);
 
-				newModel.setKaleoNodeId(value8);
+				newModel.setKaleoClassName(value8);
 
-				Method method9 = oldModelClass.getMethod("getKaleoNodeName");
+				Method method9 = oldModelClass.getMethod("getKaleoClassPK");
 
-				String value9 = (String)method9.invoke(oldModel, (Object[])null);
+				Long value9 = (Long)method9.invoke(oldModel, (Object[])null);
 
-				newModel.setKaleoNodeName(value9);
+				newModel.setKaleoClassPK(value9);
 
-				Method method10 = oldModelClass.getMethod("getName");
+				Method method10 = oldModelClass.getMethod("getKaleoNodeName");
 
 				String value10 = (String)method10.invoke(oldModel,
 						(Object[])null);
 
-				newModel.setName(value10);
+				newModel.setKaleoNodeName(value10);
 
-				Method method11 = oldModelClass.getMethod("getDescription");
+				Method method11 = oldModelClass.getMethod("getName");
 
 				String value11 = (String)method11.invoke(oldModel,
 						(Object[])null);
 
-				newModel.setDescription(value11);
+				newModel.setName(value11);
 
-				Method method12 = oldModelClass.getMethod("getExecutionType");
+				Method method12 = oldModelClass.getMethod("getDescription");
 
 				String value12 = (String)method12.invoke(oldModel,
 						(Object[])null);
 
-				newModel.setExecutionType(value12);
+				newModel.setDescription(value12);
 
-				Method method13 = oldModelClass.getMethod("getScript");
+				Method method13 = oldModelClass.getMethod("getExecutionType");
 
 				String value13 = (String)method13.invoke(oldModel,
 						(Object[])null);
 
-				newModel.setScript(value13);
+				newModel.setExecutionType(value13);
 
-				Method method14 = oldModelClass.getMethod("getScriptLanguage");
+				Method method14 = oldModelClass.getMethod("getScript");
 
 				String value14 = (String)method14.invoke(oldModel,
 						(Object[])null);
 
-				newModel.setScriptLanguage(value14);
+				newModel.setScript(value14);
 
-				Method method15 = oldModelClass.getMethod("getPriority");
+				Method method15 = oldModelClass.getMethod("getScriptLanguage");
 
-				Integer value15 = (Integer)method15.invoke(oldModel,
+				String value15 = (String)method15.invoke(oldModel,
 						(Object[])null);
 
-				newModel.setPriority(value15);
+				newModel.setScriptLanguage(value15);
+
+				Method method16 = oldModelClass.getMethod("getPriority");
+
+				Integer value16 = (Integer)method16.invoke(oldModel,
+						(Object[])null);
+
+				newModel.setPriority(value16);
 
 				return newModel;
 			}
@@ -3218,131 +3302,138 @@ public class ClpSerializer {
 
 				newModel.setKaleoTaskInstanceTokenId(value10);
 
-				Method method11 = oldModelClass.getMethod("getKaleoNodeId");
+				Method method11 = oldModelClass.getMethod("getKaleoClassName");
 
-				Long value11 = (Long)method11.invoke(oldModel, (Object[])null);
-
-				newModel.setKaleoNodeId(value11);
-
-				Method method12 = oldModelClass.getMethod("getKaleoNodeName");
-
-				String value12 = (String)method12.invoke(oldModel,
+				String value11 = (String)method11.invoke(oldModel,
 						(Object[])null);
 
-				newModel.setKaleoNodeName(value12);
+				newModel.setKaleoClassName(value11);
 
-				Method method13 = oldModelClass.getMethod(
+				Method method12 = oldModelClass.getMethod("getKaleoClassPK");
+
+				Long value12 = (Long)method12.invoke(oldModel, (Object[])null);
+
+				newModel.setKaleoClassPK(value12);
+
+				Method method13 = oldModelClass.getMethod("getKaleoNodeName");
+
+				String value13 = (String)method13.invoke(oldModel,
+						(Object[])null);
+
+				newModel.setKaleoNodeName(value13);
+
+				Method method14 = oldModelClass.getMethod(
 						"getTerminalKaleoNode");
 
-				Boolean value13 = (Boolean)method13.invoke(oldModel,
+				Boolean value14 = (Boolean)method14.invoke(oldModel,
 						(Object[])null);
 
-				newModel.setTerminalKaleoNode(value13);
+				newModel.setTerminalKaleoNode(value14);
 
-				Method method14 = oldModelClass.getMethod("getKaleoActionId");
+				Method method15 = oldModelClass.getMethod("getKaleoActionId");
 
-				Long value14 = (Long)method14.invoke(oldModel, (Object[])null);
+				Long value15 = (Long)method15.invoke(oldModel, (Object[])null);
 
-				newModel.setKaleoActionId(value14);
+				newModel.setKaleoActionId(value15);
 
-				Method method15 = oldModelClass.getMethod("getKaleoActionName");
-
-				String value15 = (String)method15.invoke(oldModel,
-						(Object[])null);
-
-				newModel.setKaleoActionName(value15);
-
-				Method method16 = oldModelClass.getMethod(
-						"getKaleoActionDescription");
+				Method method16 = oldModelClass.getMethod("getKaleoActionName");
 
 				String value16 = (String)method16.invoke(oldModel,
 						(Object[])null);
 
-				newModel.setKaleoActionDescription(value16);
+				newModel.setKaleoActionName(value16);
 
 				Method method17 = oldModelClass.getMethod(
-						"getPreviousKaleoNodeId");
+						"getKaleoActionDescription");
 
-				Long value17 = (Long)method17.invoke(oldModel, (Object[])null);
-
-				newModel.setPreviousKaleoNodeId(value17);
-
-				Method method18 = oldModelClass.getMethod(
-						"getPreviousKaleoNodeName");
-
-				String value18 = (String)method18.invoke(oldModel,
+				String value17 = (String)method17.invoke(oldModel,
 						(Object[])null);
 
-				newModel.setPreviousKaleoNodeName(value18);
+				newModel.setKaleoActionDescription(value17);
+
+				Method method18 = oldModelClass.getMethod(
+						"getPreviousKaleoNodeId");
+
+				Long value18 = (Long)method18.invoke(oldModel, (Object[])null);
+
+				newModel.setPreviousKaleoNodeId(value18);
 
 				Method method19 = oldModelClass.getMethod(
-						"getPreviousAssigneeClassName");
+						"getPreviousKaleoNodeName");
 
 				String value19 = (String)method19.invoke(oldModel,
 						(Object[])null);
 
-				newModel.setPreviousAssigneeClassName(value19);
+				newModel.setPreviousKaleoNodeName(value19);
 
 				Method method20 = oldModelClass.getMethod(
-						"getPreviousAssigneeClassPK");
+						"getPreviousAssigneeClassName");
 
-				Long value20 = (Long)method20.invoke(oldModel, (Object[])null);
+				String value20 = (String)method20.invoke(oldModel,
+						(Object[])null);
 
-				newModel.setPreviousAssigneeClassPK(value20);
+				newModel.setPreviousAssigneeClassName(value20);
 
 				Method method21 = oldModelClass.getMethod(
-						"getCurrentAssigneeClassName");
+						"getPreviousAssigneeClassPK");
 
-				String value21 = (String)method21.invoke(oldModel,
-						(Object[])null);
+				Long value21 = (Long)method21.invoke(oldModel, (Object[])null);
 
-				newModel.setCurrentAssigneeClassName(value21);
+				newModel.setPreviousAssigneeClassPK(value21);
 
 				Method method22 = oldModelClass.getMethod(
-						"getCurrentAssigneeClassPK");
+						"getCurrentAssigneeClassName");
 
-				Long value22 = (Long)method22.invoke(oldModel, (Object[])null);
-
-				newModel.setCurrentAssigneeClassPK(value22);
-
-				Method method23 = oldModelClass.getMethod("getType");
-
-				String value23 = (String)method23.invoke(oldModel,
+				String value22 = (String)method22.invoke(oldModel,
 						(Object[])null);
 
-				newModel.setType(value23);
+				newModel.setCurrentAssigneeClassName(value22);
 
-				Method method24 = oldModelClass.getMethod("getComment");
+				Method method23 = oldModelClass.getMethod(
+						"getCurrentAssigneeClassPK");
+
+				Long value23 = (Long)method23.invoke(oldModel, (Object[])null);
+
+				newModel.setCurrentAssigneeClassPK(value23);
+
+				Method method24 = oldModelClass.getMethod("getType");
 
 				String value24 = (String)method24.invoke(oldModel,
 						(Object[])null);
 
-				newModel.setComment(value24);
+				newModel.setType(value24);
 
-				Method method25 = oldModelClass.getMethod("getStartDate");
+				Method method25 = oldModelClass.getMethod("getComment");
 
-				Date value25 = (Date)method25.invoke(oldModel, (Object[])null);
+				String value25 = (String)method25.invoke(oldModel,
+						(Object[])null);
 
-				newModel.setStartDate(value25);
+				newModel.setComment(value25);
 
-				Method method26 = oldModelClass.getMethod("getEndDate");
+				Method method26 = oldModelClass.getMethod("getStartDate");
 
 				Date value26 = (Date)method26.invoke(oldModel, (Object[])null);
 
-				newModel.setEndDate(value26);
+				newModel.setStartDate(value26);
 
-				Method method27 = oldModelClass.getMethod("getDuration");
+				Method method27 = oldModelClass.getMethod("getEndDate");
 
-				Long value27 = (Long)method27.invoke(oldModel, (Object[])null);
+				Date value27 = (Date)method27.invoke(oldModel, (Object[])null);
 
-				newModel.setDuration(value27);
+				newModel.setEndDate(value27);
 
-				Method method28 = oldModelClass.getMethod("getWorkflowContext");
+				Method method28 = oldModelClass.getMethod("getDuration");
 
-				String value28 = (String)method28.invoke(oldModel,
+				Long value28 = (Long)method28.invoke(oldModel, (Object[])null);
+
+				newModel.setDuration(value28);
+
+				Method method29 = oldModelClass.getMethod("getWorkflowContext");
+
+				String value29 = (String)method29.invoke(oldModel,
 						(Object[])null);
 
-				newModel.setWorkflowContext(value28);
+				newModel.setWorkflowContext(value29);
 
 				return newModel;
 			}
@@ -3424,32 +3515,39 @@ public class ClpSerializer {
 
 				newModel.setName(value8);
 
-				Method method9 = oldModelClass.getMethod("getDescription");
+				Method method9 = oldModelClass.getMethod("getMetadata");
 
 				String value9 = (String)method9.invoke(oldModel, (Object[])null);
 
-				newModel.setDescription(value9);
+				newModel.setMetadata(value9);
 
-				Method method10 = oldModelClass.getMethod("getType");
+				Method method10 = oldModelClass.getMethod("getDescription");
 
 				String value10 = (String)method10.invoke(oldModel,
 						(Object[])null);
 
-				newModel.setType(value10);
+				newModel.setDescription(value10);
 
-				Method method11 = oldModelClass.getMethod("getInitial");
+				Method method11 = oldModelClass.getMethod("getType");
 
-				Boolean value11 = (Boolean)method11.invoke(oldModel,
+				String value11 = (String)method11.invoke(oldModel,
 						(Object[])null);
 
-				newModel.setInitial(value11);
+				newModel.setType(value11);
 
-				Method method12 = oldModelClass.getMethod("getTerminal");
+				Method method12 = oldModelClass.getMethod("getInitial");
 
 				Boolean value12 = (Boolean)method12.invoke(oldModel,
 						(Object[])null);
 
-				newModel.setTerminal(value12);
+				newModel.setInitial(value12);
+
+				Method method13 = oldModelClass.getMethod("getTerminal");
+
+				Boolean value13 = (Boolean)method13.invoke(oldModel,
+						(Object[])null);
+
+				newModel.setTerminal(value13);
 
 				return newModel;
 			}
@@ -3526,60 +3624,67 @@ public class ClpSerializer {
 
 				newModel.setKaleoDefinitionId(value7);
 
-				Method method8 = oldModelClass.getMethod("getKaleoNodeId");
+				Method method8 = oldModelClass.getMethod("getKaleoClassName");
 
-				Long value8 = (Long)method8.invoke(oldModel, (Object[])null);
+				String value8 = (String)method8.invoke(oldModel, (Object[])null);
 
-				newModel.setKaleoNodeId(value8);
+				newModel.setKaleoClassName(value8);
 
-				Method method9 = oldModelClass.getMethod("getKaleoNodeName");
+				Method method9 = oldModelClass.getMethod("getKaleoClassPK");
 
-				String value9 = (String)method9.invoke(oldModel, (Object[])null);
+				Long value9 = (Long)method9.invoke(oldModel, (Object[])null);
 
-				newModel.setKaleoNodeName(value9);
+				newModel.setKaleoClassPK(value9);
 
-				Method method10 = oldModelClass.getMethod("getName");
+				Method method10 = oldModelClass.getMethod("getKaleoNodeName");
 
 				String value10 = (String)method10.invoke(oldModel,
 						(Object[])null);
 
-				newModel.setName(value10);
+				newModel.setKaleoNodeName(value10);
 
-				Method method11 = oldModelClass.getMethod("getDescription");
+				Method method11 = oldModelClass.getMethod("getName");
 
 				String value11 = (String)method11.invoke(oldModel,
 						(Object[])null);
 
-				newModel.setDescription(value11);
+				newModel.setName(value11);
 
-				Method method12 = oldModelClass.getMethod("getExecutionType");
+				Method method12 = oldModelClass.getMethod("getDescription");
 
 				String value12 = (String)method12.invoke(oldModel,
 						(Object[])null);
 
-				newModel.setExecutionType(value12);
+				newModel.setDescription(value12);
 
-				Method method13 = oldModelClass.getMethod("getTemplate");
+				Method method13 = oldModelClass.getMethod("getExecutionType");
 
 				String value13 = (String)method13.invoke(oldModel,
 						(Object[])null);
 
-				newModel.setTemplate(value13);
+				newModel.setExecutionType(value13);
 
-				Method method14 = oldModelClass.getMethod("getTemplateLanguage");
+				Method method14 = oldModelClass.getMethod("getTemplate");
 
 				String value14 = (String)method14.invoke(oldModel,
 						(Object[])null);
 
-				newModel.setTemplateLanguage(value14);
+				newModel.setTemplate(value14);
 
-				Method method15 = oldModelClass.getMethod(
-						"getNotificationTypes");
+				Method method15 = oldModelClass.getMethod("getTemplateLanguage");
 
 				String value15 = (String)method15.invoke(oldModel,
 						(Object[])null);
 
-				newModel.setNotificationTypes(value15);
+				newModel.setTemplateLanguage(value15);
+
+				Method method16 = oldModelClass.getMethod(
+						"getNotificationTypes");
+
+				String value16 = (String)method16.invoke(oldModel,
+						(Object[])null);
+
+				newModel.setNotificationTypes(value16);
 
 				return newModel;
 			}
@@ -3861,53 +3966,59 @@ public class ClpSerializer {
 
 				newModel.setKaleoDefinitionId(value7);
 
-				Method method8 = oldModelClass.getMethod("getKaleoNodeId");
+				Method method8 = oldModelClass.getMethod("getKaleoClassName");
 
-				Long value8 = (Long)method8.invoke(oldModel, (Object[])null);
+				String value8 = (String)method8.invoke(oldModel, (Object[])null);
 
-				newModel.setKaleoNodeId(value8);
+				newModel.setKaleoClassName(value8);
 
-				Method method9 = oldModelClass.getMethod("getKaleoTaskId");
+				Method method9 = oldModelClass.getMethod("getKaleoClassPK");
 
 				Long value9 = (Long)method9.invoke(oldModel, (Object[])null);
 
-				newModel.setKaleoTaskId(value9);
+				newModel.setKaleoClassPK(value9);
 
-				Method method10 = oldModelClass.getMethod(
+				Method method10 = oldModelClass.getMethod("getKaleoNodeId");
+
+				Long value10 = (Long)method10.invoke(oldModel, (Object[])null);
+
+				newModel.setKaleoNodeId(value10);
+
+				Method method11 = oldModelClass.getMethod(
 						"getAssigneeClassName");
 
-				String value10 = (String)method10.invoke(oldModel,
+				String value11 = (String)method11.invoke(oldModel,
 						(Object[])null);
 
-				newModel.setAssigneeClassName(value10);
+				newModel.setAssigneeClassName(value11);
 
-				Method method11 = oldModelClass.getMethod("getAssigneeClassPK");
+				Method method12 = oldModelClass.getMethod("getAssigneeClassPK");
 
-				Long value11 = (Long)method11.invoke(oldModel, (Object[])null);
+				Long value12 = (Long)method12.invoke(oldModel, (Object[])null);
 
-				newModel.setAssigneeClassPK(value11);
+				newModel.setAssigneeClassPK(value12);
 
-				Method method12 = oldModelClass.getMethod("getAssigneeActionId");
-
-				String value12 = (String)method12.invoke(oldModel,
-						(Object[])null);
-
-				newModel.setAssigneeActionId(value12);
-
-				Method method13 = oldModelClass.getMethod("getAssigneeScript");
+				Method method13 = oldModelClass.getMethod("getAssigneeActionId");
 
 				String value13 = (String)method13.invoke(oldModel,
 						(Object[])null);
 
-				newModel.setAssigneeScript(value13);
+				newModel.setAssigneeActionId(value13);
 
-				Method method14 = oldModelClass.getMethod(
-						"getAssigneeScriptLanguage");
+				Method method14 = oldModelClass.getMethod("getAssigneeScript");
 
 				String value14 = (String)method14.invoke(oldModel,
 						(Object[])null);
 
-				newModel.setAssigneeScriptLanguage(value14);
+				newModel.setAssigneeScript(value14);
+
+				Method method15 = oldModelClass.getMethod(
+						"getAssigneeScriptLanguage");
+
+				String value15 = (String)method15.invoke(oldModel,
+						(Object[])null);
+
+				newModel.setAssigneeScriptLanguage(value15);
 
 				return newModel;
 			}
@@ -4266,17 +4377,17 @@ public class ClpSerializer {
 
 				newModel.setKaleoDefinitionId(value7);
 
-				Method method8 = oldModelClass.getMethod("getKaleoNodeId");
+				Method method8 = oldModelClass.getMethod("getKaleoClassName");
 
-				Long value8 = (Long)method8.invoke(oldModel, (Object[])null);
+				String value8 = (String)method8.invoke(oldModel, (Object[])null);
 
-				newModel.setKaleoNodeId(value8);
+				newModel.setKaleoClassName(value8);
 
-				Method method9 = oldModelClass.getMethod("getParentKaleoNodeId");
+				Method method9 = oldModelClass.getMethod("getKaleoClassPK");
 
 				Long value9 = (Long)method9.invoke(oldModel, (Object[])null);
 
-				newModel.setParentKaleoNodeId(value9);
+				newModel.setKaleoClassPK(value9);
 
 				Method method10 = oldModelClass.getMethod("getName");
 
@@ -4285,12 +4396,12 @@ public class ClpSerializer {
 
 				newModel.setName(value10);
 
-				Method method11 = oldModelClass.getMethod("getDefaultTimer");
+				Method method11 = oldModelClass.getMethod("getBlocking");
 
 				Boolean value11 = (Boolean)method11.invoke(oldModel,
 						(Object[])null);
 
-				newModel.setDefaultTimer(value11);
+				newModel.setBlocking(value11);
 
 				Method method12 = oldModelClass.getMethod("getDescription");
 
@@ -4312,6 +4423,21 @@ public class ClpSerializer {
 						(Object[])null);
 
 				newModel.setScale(value14);
+
+				Method method15 = oldModelClass.getMethod(
+						"getRecurrenceDuration");
+
+				Double value15 = (Double)method15.invoke(oldModel,
+						(Object[])null);
+
+				newModel.setRecurrenceDuration(value15);
+
+				Method method16 = oldModelClass.getMethod("getRecurrenceScale");
+
+				String value16 = (String)method16.invoke(oldModel,
+						(Object[])null);
+
+				newModel.setRecurrenceScale(value16);
 
 				return newModel;
 			}
@@ -4383,63 +4509,89 @@ public class ClpSerializer {
 
 				newModel.setModifiedDate(value6);
 
-				Method method7 = oldModelClass.getMethod("getKaleoDefinitionId");
+				Method method7 = oldModelClass.getMethod("getKaleoClassName");
 
-				Long value7 = (Long)method7.invoke(oldModel, (Object[])null);
+				String value7 = (String)method7.invoke(oldModel, (Object[])null);
 
-				newModel.setKaleoDefinitionId(value7);
+				newModel.setKaleoClassName(value7);
 
-				Method method8 = oldModelClass.getMethod("getKaleoInstanceId");
+				Method method8 = oldModelClass.getMethod("getKaleoClassPK");
 
 				Long value8 = (Long)method8.invoke(oldModel, (Object[])null);
 
-				newModel.setKaleoInstanceId(value8);
+				newModel.setKaleoClassPK(value8);
 
-				Method method9 = oldModelClass.getMethod(
-						"getKaleoInstanceTokenId");
+				Method method9 = oldModelClass.getMethod("getKaleoDefinitionId");
 
 				Long value9 = (Long)method9.invoke(oldModel, (Object[])null);
 
-				newModel.setKaleoInstanceTokenId(value9);
+				newModel.setKaleoDefinitionId(value9);
 
-				Method method10 = oldModelClass.getMethod("getKaleoTimerId");
+				Method method10 = oldModelClass.getMethod("getKaleoInstanceId");
 
 				Long value10 = (Long)method10.invoke(oldModel, (Object[])null);
 
-				newModel.setKaleoTimerId(value10);
+				newModel.setKaleoInstanceId(value10);
 
-				Method method11 = oldModelClass.getMethod("getKaleoTimerName");
+				Method method11 = oldModelClass.getMethod(
+						"getKaleoInstanceTokenId");
 
-				String value11 = (String)method11.invoke(oldModel,
-						(Object[])null);
+				Long value11 = (Long)method11.invoke(oldModel, (Object[])null);
 
-				newModel.setKaleoTimerName(value11);
+				newModel.setKaleoInstanceTokenId(value11);
 
-				Method method12 = oldModelClass.getMethod("getCompletionUserId");
+				Method method12 = oldModelClass.getMethod(
+						"getKaleoTaskInstanceTokenId");
 
 				Long value12 = (Long)method12.invoke(oldModel, (Object[])null);
 
-				newModel.setCompletionUserId(value12);
+				newModel.setKaleoTaskInstanceTokenId(value12);
 
-				Method method13 = oldModelClass.getMethod("getCompleted");
+				Method method13 = oldModelClass.getMethod("getKaleoTimerId");
 
-				Boolean value13 = (Boolean)method13.invoke(oldModel,
+				Long value13 = (Long)method13.invoke(oldModel, (Object[])null);
+
+				newModel.setKaleoTimerId(value13);
+
+				Method method14 = oldModelClass.getMethod("getKaleoTimerName");
+
+				String value14 = (String)method14.invoke(oldModel,
 						(Object[])null);
 
-				newModel.setCompleted(value13);
+				newModel.setKaleoTimerName(value14);
 
-				Method method14 = oldModelClass.getMethod("getCompletionDate");
+				Method method15 = oldModelClass.getMethod("getBlocking");
 
-				Date value14 = (Date)method14.invoke(oldModel, (Object[])null);
-
-				newModel.setCompletionDate(value14);
-
-				Method method15 = oldModelClass.getMethod("getWorkflowContext");
-
-				String value15 = (String)method15.invoke(oldModel,
+				Boolean value15 = (Boolean)method15.invoke(oldModel,
 						(Object[])null);
 
-				newModel.setWorkflowContext(value15);
+				newModel.setBlocking(value15);
+
+				Method method16 = oldModelClass.getMethod("getCompletionUserId");
+
+				Long value16 = (Long)method16.invoke(oldModel, (Object[])null);
+
+				newModel.setCompletionUserId(value16);
+
+				Method method17 = oldModelClass.getMethod("getCompleted");
+
+				Boolean value17 = (Boolean)method17.invoke(oldModel,
+						(Object[])null);
+
+				newModel.setCompleted(value17);
+
+				Method method18 = oldModelClass.getMethod("getCompletionDate");
+
+				Date value18 = (Date)method18.invoke(oldModel, (Object[])null);
+
+				newModel.setCompletionDate(value18);
+
+				Method method19 = oldModelClass.getMethod("getWorkflowContext");
+
+				String value19 = (String)method19.invoke(oldModel,
+						(Object[])null);
+
+				newModel.setWorkflowContext(value19);
 
 				return newModel;
 			}

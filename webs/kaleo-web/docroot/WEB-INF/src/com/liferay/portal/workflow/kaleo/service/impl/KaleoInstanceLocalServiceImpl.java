@@ -175,6 +175,11 @@ public class KaleoInstanceLocalServiceImpl
 
 		kaleoTaskInstanceTokenLocalService.
 			deleteKaleoInstanceKaleoTaskInstanceTokens(kaleoInstanceId);
+
+		// Kaleo timer instance tokens
+
+		kaleoTimerInstanceTokenLocalService.deleteKaleoTimerInstanceTokens(
+			kaleoInstanceId);
 	}
 
 	public List<KaleoInstance> getKaleoInstances(

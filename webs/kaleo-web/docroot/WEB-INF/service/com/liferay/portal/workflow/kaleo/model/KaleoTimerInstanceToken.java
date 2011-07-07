@@ -36,6 +36,9 @@ public interface KaleoTimerInstanceToken extends KaleoTimerInstanceTokenModel,
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
+	public com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken getKaleoTaskInstanceToken()
+		throws com.liferay.portal.kernel.exception.SystemException;
+
 	public com.liferay.portal.workflow.kaleo.model.KaleoTimer getKaleoTimer()
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;

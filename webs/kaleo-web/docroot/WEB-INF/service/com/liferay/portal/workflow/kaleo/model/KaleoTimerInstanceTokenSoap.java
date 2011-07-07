@@ -38,11 +38,15 @@ public class KaleoTimerInstanceTokenSoap implements Serializable {
 		soapModel.setUserName(model.getUserName());
 		soapModel.setCreateDate(model.getCreateDate());
 		soapModel.setModifiedDate(model.getModifiedDate());
+		soapModel.setKaleoClassName(model.getKaleoClassName());
+		soapModel.setKaleoClassPK(model.getKaleoClassPK());
 		soapModel.setKaleoDefinitionId(model.getKaleoDefinitionId());
 		soapModel.setKaleoInstanceId(model.getKaleoInstanceId());
 		soapModel.setKaleoInstanceTokenId(model.getKaleoInstanceTokenId());
+		soapModel.setKaleoTaskInstanceTokenId(model.getKaleoTaskInstanceTokenId());
 		soapModel.setKaleoTimerId(model.getKaleoTimerId());
 		soapModel.setKaleoTimerName(model.getKaleoTimerName());
+		soapModel.setBlocking(model.getBlocking());
 		soapModel.setCompletionUserId(model.getCompletionUserId());
 		soapModel.setCompleted(model.getCompleted());
 		soapModel.setCompletionDate(model.getCompletionDate());
@@ -158,6 +162,22 @@ public class KaleoTimerInstanceTokenSoap implements Serializable {
 		_modifiedDate = modifiedDate;
 	}
 
+	public String getKaleoClassName() {
+		return _kaleoClassName;
+	}
+
+	public void setKaleoClassName(String kaleoClassName) {
+		_kaleoClassName = kaleoClassName;
+	}
+
+	public long getKaleoClassPK() {
+		return _kaleoClassPK;
+	}
+
+	public void setKaleoClassPK(long kaleoClassPK) {
+		_kaleoClassPK = kaleoClassPK;
+	}
+
 	public long getKaleoDefinitionId() {
 		return _kaleoDefinitionId;
 	}
@@ -182,6 +202,14 @@ public class KaleoTimerInstanceTokenSoap implements Serializable {
 		_kaleoInstanceTokenId = kaleoInstanceTokenId;
 	}
 
+	public long getKaleoTaskInstanceTokenId() {
+		return _kaleoTaskInstanceTokenId;
+	}
+
+	public void setKaleoTaskInstanceTokenId(long kaleoTaskInstanceTokenId) {
+		_kaleoTaskInstanceTokenId = kaleoTaskInstanceTokenId;
+	}
+
 	public long getKaleoTimerId() {
 		return _kaleoTimerId;
 	}
@@ -196,6 +224,18 @@ public class KaleoTimerInstanceTokenSoap implements Serializable {
 
 	public void setKaleoTimerName(String kaleoTimerName) {
 		_kaleoTimerName = kaleoTimerName;
+	}
+
+	public boolean getBlocking() {
+		return _blocking;
+	}
+
+	public boolean isBlocking() {
+		return _blocking;
+	}
+
+	public void setBlocking(boolean blocking) {
+		_blocking = blocking;
 	}
 
 	public long getCompletionUserId() {
@@ -241,11 +281,15 @@ public class KaleoTimerInstanceTokenSoap implements Serializable {
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
+	private String _kaleoClassName;
+	private long _kaleoClassPK;
 	private long _kaleoDefinitionId;
 	private long _kaleoInstanceId;
 	private long _kaleoInstanceTokenId;
+	private long _kaleoTaskInstanceTokenId;
 	private long _kaleoTimerId;
 	private String _kaleoTimerName;
+	private boolean _blocking;
 	private long _completionUserId;
 	private boolean _completed;
 	private Date _completionDate;

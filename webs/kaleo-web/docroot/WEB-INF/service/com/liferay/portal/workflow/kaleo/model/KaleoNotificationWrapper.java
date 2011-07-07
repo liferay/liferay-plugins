@@ -219,21 +219,39 @@ public class KaleoNotificationWrapper implements KaleoNotification {
 	}
 
 	/**
-	* Returns the kaleo node ID of this kaleo notification.
+	* Returns the kaleo class name of this kaleo notification.
 	*
-	* @return the kaleo node ID of this kaleo notification
+	* @return the kaleo class name of this kaleo notification
 	*/
-	public long getKaleoNodeId() {
-		return _kaleoNotification.getKaleoNodeId();
+	public java.lang.String getKaleoClassName() {
+		return _kaleoNotification.getKaleoClassName();
 	}
 
 	/**
-	* Sets the kaleo node ID of this kaleo notification.
+	* Sets the kaleo class name of this kaleo notification.
 	*
-	* @param kaleoNodeId the kaleo node ID of this kaleo notification
+	* @param kaleoClassName the kaleo class name of this kaleo notification
 	*/
-	public void setKaleoNodeId(long kaleoNodeId) {
-		_kaleoNotification.setKaleoNodeId(kaleoNodeId);
+	public void setKaleoClassName(java.lang.String kaleoClassName) {
+		_kaleoNotification.setKaleoClassName(kaleoClassName);
+	}
+
+	/**
+	* Returns the kaleo class p k of this kaleo notification.
+	*
+	* @return the kaleo class p k of this kaleo notification
+	*/
+	public long getKaleoClassPK() {
+		return _kaleoNotification.getKaleoClassPK();
+	}
+
+	/**
+	* Sets the kaleo class p k of this kaleo notification.
+	*
+	* @param kaleoClassPK the kaleo class p k of this kaleo notification
+	*/
+	public void setKaleoClassPK(long kaleoClassPK) {
+		_kaleoNotification.setKaleoClassPK(kaleoClassPK);
 	}
 
 	/**

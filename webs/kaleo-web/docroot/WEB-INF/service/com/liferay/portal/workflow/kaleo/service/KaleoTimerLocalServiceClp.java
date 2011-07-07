@@ -83,15 +83,17 @@ public class KaleoTimerLocalServiceClp implements KaleoTimerLocalService {
 				"setBeanIdentifier", java.lang.String.class);
 
 		_addKaleoTimerMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
-				"addKaleoTimer", long.class, long.class, long.class,
+				"addKaleoTimer", long.class, java.lang.String.class,
+				long.class,
 				com.liferay.portal.workflow.kaleo.definition.Timer.class,
 				com.liferay.portal.service.ServiceContext.class);
 
-		_getDefaultKaleoTimerMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
-				"getDefaultKaleoTimer", long.class);
+		_getKaleoTimersMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getKaleoTimers", java.lang.String.class, long.class);
 
 		_getKaleoTimersMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
-				"getKaleoTimers", long.class);
+				"getKaleoTimers", java.lang.String.class, long.class,
+				boolean.class);
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoTimer addKaleoTimer(
@@ -499,7 +501,8 @@ public class KaleoTimerLocalServiceClp implements KaleoTimerLocalService {
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoTimer addKaleoTimer(
-		long kaleoDefinitionId, long kaleoNodeId, long parentKaleoNodeId,
+		long kaleoDefinitionId, java.lang.String kaleoClassName,
+		long kaleoClassPK,
 		com.liferay.portal.workflow.kaleo.definition.Timer timer,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -507,7 +510,8 @@ public class KaleoTimerLocalServiceClp implements KaleoTimerLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addKaleoTimerMethodKey15,
-				kaleoDefinitionId, kaleoNodeId, parentKaleoNodeId,
+				kaleoDefinitionId,
+				ClpSerializer.translateInput(kaleoClassName), kaleoClassPK,
 				ClpSerializer.translateInput(timer),
 				ClpSerializer.translateInput(serviceContext));
 
@@ -535,23 +539,18 @@ public class KaleoTimerLocalServiceClp implements KaleoTimerLocalService {
 		return (com.liferay.portal.workflow.kaleo.model.KaleoTimer)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public com.liferay.portal.workflow.kaleo.model.KaleoTimer getDefaultKaleoTimer(
-		long parentKaleoNodeId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTimer> getKaleoTimers(
+		java.lang.String kaleoClassName, long kaleoClassPK)
+		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getDefaultKaleoTimerMethodKey16,
-				parentKaleoNodeId);
+		MethodHandler methodHandler = new MethodHandler(_getKaleoTimersMethodKey16,
+				ClpSerializer.translateInput(kaleoClassName), kaleoClassPK);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
 				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
@@ -565,16 +564,17 @@ public class KaleoTimerLocalServiceClp implements KaleoTimerLocalService {
 			}
 		}
 
-		return (com.liferay.portal.workflow.kaleo.model.KaleoTimer)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTimer>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTimer> getKaleoTimers(
-		long parentKaleoNodeId)
+		java.lang.String kaleoClassName, long kaleoClassPK, boolean blocking)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getKaleoTimersMethodKey17,
-				parentKaleoNodeId);
+				ClpSerializer.translateInput(kaleoClassName), kaleoClassPK,
+				blocking);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -617,6 +617,6 @@ public class KaleoTimerLocalServiceClp implements KaleoTimerLocalService {
 	private MethodKey _getBeanIdentifierMethodKey13;
 	private MethodKey _setBeanIdentifierMethodKey14;
 	private MethodKey _addKaleoTimerMethodKey15;
-	private MethodKey _getDefaultKaleoTimerMethodKey16;
+	private MethodKey _getKaleoTimersMethodKey16;
 	private MethodKey _getKaleoTimersMethodKey17;
 }

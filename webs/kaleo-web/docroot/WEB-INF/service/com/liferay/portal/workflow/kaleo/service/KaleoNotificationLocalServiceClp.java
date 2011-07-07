@@ -84,8 +84,8 @@ public class KaleoNotificationLocalServiceClp
 				"setBeanIdentifier", java.lang.String.class);
 
 		_addKaleoNotificationMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
-				"addKaleoNotification", long.class, long.class,
-				java.lang.String.class,
+				"addKaleoNotification", long.class, java.lang.String.class,
+				long.class, java.lang.String.class,
 				com.liferay.portal.workflow.kaleo.definition.Notification.class,
 				com.liferay.portal.service.ServiceContext.class);
 
@@ -96,7 +96,8 @@ public class KaleoNotificationLocalServiceClp
 				"deleteKaleoDefinitionKaleoNotifications", long.class);
 
 		_getKaleoNotificationsMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
-				"getKaleoNotifications", long.class, java.lang.String.class);
+				"getKaleoNotifications", java.lang.String.class, long.class,
+				java.lang.String.class);
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoNotification addKaleoNotification(
@@ -504,8 +505,8 @@ public class KaleoNotificationLocalServiceClp
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoNotification addKaleoNotification(
-		long kaleoDefinitionId, long kaleoNodeId,
-		java.lang.String kaleoNodeName,
+		long kaleoDefinitionId, java.lang.String kaleoClassName,
+		long kaleoClassPK, java.lang.String kaleoNodeName,
 		com.liferay.portal.workflow.kaleo.definition.Notification notification,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -513,7 +514,8 @@ public class KaleoNotificationLocalServiceClp
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addKaleoNotificationMethodKey15,
-				kaleoDefinitionId, kaleoNodeId,
+				kaleoDefinitionId,
+				ClpSerializer.translateInput(kaleoClassName), kaleoClassPK,
 				ClpSerializer.translateInput(kaleoNodeName),
 				ClpSerializer.translateInput(notification),
 				ClpSerializer.translateInput(serviceContext));
@@ -589,12 +591,14 @@ public class KaleoNotificationLocalServiceClp
 	}
 
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNotification> getKaleoNotifications(
-		long kaleoNodeId, java.lang.String executionType)
+		java.lang.String kaleoClassName, long kaleoClassPK,
+		java.lang.String executionType)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getKaleoNotificationsMethodKey18,
-				kaleoNodeId, ClpSerializer.translateInput(executionType));
+				ClpSerializer.translateInput(kaleoClassName), kaleoClassPK,
+				ClpSerializer.translateInput(executionType));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);

@@ -23,8 +23,8 @@ public class TextNotificationMessageGenerator
 	implements NotificationMessageGenerator {
 
 	public String generateMessage(
-		long kaleoNodeId, String notificationName, String notificationTemplate,
-		ExecutionContext executionContext) {
+		String kaleoClassName, long kaleoClassPK, String notificationName,
+		String notificationTemplate, ExecutionContext executionContext) {
 
 		return notificationTemplate;
 	}

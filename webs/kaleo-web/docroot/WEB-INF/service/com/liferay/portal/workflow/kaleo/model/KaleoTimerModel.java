@@ -190,32 +190,33 @@ public interface KaleoTimerModel extends BaseModel<KaleoTimer>, GroupedModel {
 	public void setKaleoDefinitionId(long kaleoDefinitionId);
 
 	/**
-	 * Returns the kaleo node ID of this kaleo timer.
+	 * Returns the kaleo class name of this kaleo timer.
 	 *
-	 * @return the kaleo node ID of this kaleo timer
+	 * @return the kaleo class name of this kaleo timer
 	 */
-	public long getKaleoNodeId();
+	@AutoEscape
+	public String getKaleoClassName();
 
 	/**
-	 * Sets the kaleo node ID of this kaleo timer.
+	 * Sets the kaleo class name of this kaleo timer.
 	 *
-	 * @param kaleoNodeId the kaleo node ID of this kaleo timer
+	 * @param kaleoClassName the kaleo class name of this kaleo timer
 	 */
-	public void setKaleoNodeId(long kaleoNodeId);
+	public void setKaleoClassName(String kaleoClassName);
 
 	/**
-	 * Returns the parent kaleo node ID of this kaleo timer.
+	 * Returns the kaleo class p k of this kaleo timer.
 	 *
-	 * @return the parent kaleo node ID of this kaleo timer
+	 * @return the kaleo class p k of this kaleo timer
 	 */
-	public long getParentKaleoNodeId();
+	public long getKaleoClassPK();
 
 	/**
-	 * Sets the parent kaleo node ID of this kaleo timer.
+	 * Sets the kaleo class p k of this kaleo timer.
 	 *
-	 * @param parentKaleoNodeId the parent kaleo node ID of this kaleo timer
+	 * @param kaleoClassPK the kaleo class p k of this kaleo timer
 	 */
-	public void setParentKaleoNodeId(long parentKaleoNodeId);
+	public void setKaleoClassPK(long kaleoClassPK);
 
 	/**
 	 * Returns the name of this kaleo timer.
@@ -233,25 +234,25 @@ public interface KaleoTimerModel extends BaseModel<KaleoTimer>, GroupedModel {
 	public void setName(String name);
 
 	/**
-	 * Returns the default timer of this kaleo timer.
+	 * Returns the blocking of this kaleo timer.
 	 *
-	 * @return the default timer of this kaleo timer
+	 * @return the blocking of this kaleo timer
 	 */
-	public boolean getDefaultTimer();
+	public boolean getBlocking();
 
 	/**
-	 * Returns <code>true</code> if this kaleo timer is default timer.
+	 * Returns <code>true</code> if this kaleo timer is blocking.
 	 *
-	 * @return <code>true</code> if this kaleo timer is default timer; <code>false</code> otherwise
+	 * @return <code>true</code> if this kaleo timer is blocking; <code>false</code> otherwise
 	 */
-	public boolean isDefaultTimer();
+	public boolean isBlocking();
 
 	/**
-	 * Sets whether this kaleo timer is default timer.
+	 * Sets whether this kaleo timer is blocking.
 	 *
-	 * @param defaultTimer the default timer of this kaleo timer
+	 * @param blocking the blocking of this kaleo timer
 	 */
-	public void setDefaultTimer(boolean defaultTimer);
+	public void setBlocking(boolean blocking);
 
 	/**
 	 * Returns the description of this kaleo timer.
@@ -296,6 +297,35 @@ public interface KaleoTimerModel extends BaseModel<KaleoTimer>, GroupedModel {
 	 * @param scale the scale of this kaleo timer
 	 */
 	public void setScale(String scale);
+
+	/**
+	 * Returns the recurrence duration of this kaleo timer.
+	 *
+	 * @return the recurrence duration of this kaleo timer
+	 */
+	public double getRecurrenceDuration();
+
+	/**
+	 * Sets the recurrence duration of this kaleo timer.
+	 *
+	 * @param recurrenceDuration the recurrence duration of this kaleo timer
+	 */
+	public void setRecurrenceDuration(double recurrenceDuration);
+
+	/**
+	 * Returns the recurrence scale of this kaleo timer.
+	 *
+	 * @return the recurrence scale of this kaleo timer
+	 */
+	@AutoEscape
+	public String getRecurrenceScale();
+
+	/**
+	 * Sets the recurrence scale of this kaleo timer.
+	 *
+	 * @param recurrenceScale the recurrence scale of this kaleo timer
+	 */
+	public void setRecurrenceScale(String recurrenceScale);
 
 	public boolean isNew();
 

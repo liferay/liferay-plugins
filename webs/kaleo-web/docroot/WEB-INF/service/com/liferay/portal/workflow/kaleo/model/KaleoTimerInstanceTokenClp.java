@@ -123,6 +123,22 @@ public class KaleoTimerInstanceTokenClp extends BaseModelImpl<KaleoTimerInstance
 		_modifiedDate = modifiedDate;
 	}
 
+	public String getKaleoClassName() {
+		return _kaleoClassName;
+	}
+
+	public void setKaleoClassName(String kaleoClassName) {
+		_kaleoClassName = kaleoClassName;
+	}
+
+	public long getKaleoClassPK() {
+		return _kaleoClassPK;
+	}
+
+	public void setKaleoClassPK(long kaleoClassPK) {
+		_kaleoClassPK = kaleoClassPK;
+	}
+
 	public long getKaleoDefinitionId() {
 		return _kaleoDefinitionId;
 	}
@@ -147,6 +163,14 @@ public class KaleoTimerInstanceTokenClp extends BaseModelImpl<KaleoTimerInstance
 		_kaleoInstanceTokenId = kaleoInstanceTokenId;
 	}
 
+	public long getKaleoTaskInstanceTokenId() {
+		return _kaleoTaskInstanceTokenId;
+	}
+
+	public void setKaleoTaskInstanceTokenId(long kaleoTaskInstanceTokenId) {
+		_kaleoTaskInstanceTokenId = kaleoTaskInstanceTokenId;
+	}
+
 	public long getKaleoTimerId() {
 		return _kaleoTimerId;
 	}
@@ -161,6 +185,18 @@ public class KaleoTimerInstanceTokenClp extends BaseModelImpl<KaleoTimerInstance
 
 	public void setKaleoTimerName(String kaleoTimerName) {
 		_kaleoTimerName = kaleoTimerName;
+	}
+
+	public boolean getBlocking() {
+		return _blocking;
+	}
+
+	public boolean isBlocking() {
+		return _blocking;
+	}
+
+	public void setBlocking(boolean blocking) {
+		_blocking = blocking;
 	}
 
 	public long getCompletionUserId() {
@@ -212,6 +248,10 @@ public class KaleoTimerInstanceTokenClp extends BaseModelImpl<KaleoTimerInstance
 		throw new UnsupportedOperationException();
 	}
 
+	public com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken getKaleoTaskInstanceToken() {
+		throw new UnsupportedOperationException();
+	}
+
 	public com.liferay.portal.workflow.kaleo.model.KaleoTimer getKaleoTimer() {
 		throw new UnsupportedOperationException();
 	}
@@ -243,11 +283,15 @@ public class KaleoTimerInstanceTokenClp extends BaseModelImpl<KaleoTimerInstance
 		clone.setUserName(getUserName());
 		clone.setCreateDate(getCreateDate());
 		clone.setModifiedDate(getModifiedDate());
+		clone.setKaleoClassName(getKaleoClassName());
+		clone.setKaleoClassPK(getKaleoClassPK());
 		clone.setKaleoDefinitionId(getKaleoDefinitionId());
 		clone.setKaleoInstanceId(getKaleoInstanceId());
 		clone.setKaleoInstanceTokenId(getKaleoInstanceTokenId());
+		clone.setKaleoTaskInstanceTokenId(getKaleoTaskInstanceTokenId());
 		clone.setKaleoTimerId(getKaleoTimerId());
 		clone.setKaleoTimerName(getKaleoTimerName());
+		clone.setBlocking(getBlocking());
 		clone.setCompletionUserId(getCompletionUserId());
 		clone.setCompleted(getCompleted());
 		clone.setCompletionDate(getCompletionDate());
@@ -308,7 +352,7 @@ public class KaleoTimerInstanceTokenClp extends BaseModelImpl<KaleoTimerInstance
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(33);
+		StringBundler sb = new StringBundler(41);
 
 		sb.append("{kaleoTimerInstanceTokenId=");
 		sb.append(getKaleoTimerInstanceTokenId());
@@ -324,16 +368,24 @@ public class KaleoTimerInstanceTokenClp extends BaseModelImpl<KaleoTimerInstance
 		sb.append(getCreateDate());
 		sb.append(", modifiedDate=");
 		sb.append(getModifiedDate());
+		sb.append(", kaleoClassName=");
+		sb.append(getKaleoClassName());
+		sb.append(", kaleoClassPK=");
+		sb.append(getKaleoClassPK());
 		sb.append(", kaleoDefinitionId=");
 		sb.append(getKaleoDefinitionId());
 		sb.append(", kaleoInstanceId=");
 		sb.append(getKaleoInstanceId());
 		sb.append(", kaleoInstanceTokenId=");
 		sb.append(getKaleoInstanceTokenId());
+		sb.append(", kaleoTaskInstanceTokenId=");
+		sb.append(getKaleoTaskInstanceTokenId());
 		sb.append(", kaleoTimerId=");
 		sb.append(getKaleoTimerId());
 		sb.append(", kaleoTimerName=");
 		sb.append(getKaleoTimerName());
+		sb.append(", blocking=");
+		sb.append(getBlocking());
 		sb.append(", completionUserId=");
 		sb.append(getCompletionUserId());
 		sb.append(", completed=");
@@ -348,7 +400,7 @@ public class KaleoTimerInstanceTokenClp extends BaseModelImpl<KaleoTimerInstance
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(52);
+		StringBundler sb = new StringBundler(64);
 
 		sb.append("<model><model-name>");
 		sb.append(
@@ -384,6 +436,14 @@ public class KaleoTimerInstanceTokenClp extends BaseModelImpl<KaleoTimerInstance
 		sb.append(getModifiedDate());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>kaleoClassName</column-name><column-value><![CDATA[");
+		sb.append(getKaleoClassName());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>kaleoClassPK</column-name><column-value><![CDATA[");
+		sb.append(getKaleoClassPK());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>kaleoDefinitionId</column-name><column-value><![CDATA[");
 		sb.append(getKaleoDefinitionId());
 		sb.append("]]></column-value></column>");
@@ -396,12 +456,20 @@ public class KaleoTimerInstanceTokenClp extends BaseModelImpl<KaleoTimerInstance
 		sb.append(getKaleoInstanceTokenId());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>kaleoTaskInstanceTokenId</column-name><column-value><![CDATA[");
+		sb.append(getKaleoTaskInstanceTokenId());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>kaleoTimerId</column-name><column-value><![CDATA[");
 		sb.append(getKaleoTimerId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>kaleoTimerName</column-name><column-value><![CDATA[");
 		sb.append(getKaleoTimerName());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>blocking</column-name><column-value><![CDATA[");
+		sb.append(getBlocking());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>completionUserId</column-name><column-value><![CDATA[");
@@ -433,11 +501,15 @@ public class KaleoTimerInstanceTokenClp extends BaseModelImpl<KaleoTimerInstance
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
+	private String _kaleoClassName;
+	private long _kaleoClassPK;
 	private long _kaleoDefinitionId;
 	private long _kaleoInstanceId;
 	private long _kaleoInstanceTokenId;
+	private long _kaleoTaskInstanceTokenId;
 	private long _kaleoTimerId;
 	private String _kaleoTimerName;
+	private boolean _blocking;
 	private long _completionUserId;
 	private String _completionUserUuid;
 	private boolean _completed;

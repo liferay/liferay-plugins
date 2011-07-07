@@ -83,8 +83,8 @@ public class KaleoActionLocalServiceClp implements KaleoActionLocalService {
 				"setBeanIdentifier", java.lang.String.class);
 
 		_addKaleoActionMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
-				"addKaleoAction", long.class, long.class,
-				java.lang.String.class,
+				"addKaleoAction", long.class, java.lang.String.class,
+				long.class, java.lang.String.class,
 				com.liferay.portal.workflow.kaleo.definition.Action.class,
 				com.liferay.portal.service.ServiceContext.class);
 
@@ -95,7 +95,8 @@ public class KaleoActionLocalServiceClp implements KaleoActionLocalService {
 				"deleteKaleoDefinitionKaleoActions", long.class);
 
 		_getKaleoActionsMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
-				"getKaleoActions", long.class, java.lang.String.class);
+				"getKaleoActions", java.lang.String.class, long.class,
+				java.lang.String.class);
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoAction addKaleoAction(
@@ -503,8 +504,8 @@ public class KaleoActionLocalServiceClp implements KaleoActionLocalService {
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoAction addKaleoAction(
-		long kaleoDefinitionId, long kaleoNodeId,
-		java.lang.String kaleoNodeName,
+		long kaleoDefinitionId, java.lang.String kaleoClassName,
+		long kaleoClassPK, java.lang.String kaleoNodeName,
 		com.liferay.portal.workflow.kaleo.definition.Action action,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -512,7 +513,8 @@ public class KaleoActionLocalServiceClp implements KaleoActionLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addKaleoActionMethodKey15,
-				kaleoDefinitionId, kaleoNodeId,
+				kaleoDefinitionId,
+				ClpSerializer.translateInput(kaleoClassName), kaleoClassPK,
 				ClpSerializer.translateInput(kaleoNodeName),
 				ClpSerializer.translateInput(action),
 				ClpSerializer.translateInput(serviceContext));
@@ -588,12 +590,14 @@ public class KaleoActionLocalServiceClp implements KaleoActionLocalService {
 	}
 
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoAction> getKaleoActions(
-		long kaleoNodeId, java.lang.String executionType)
+		java.lang.String kaleoClassName, long kaleoClassPK,
+		java.lang.String executionType)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getKaleoActionsMethodKey18,
-				kaleoNodeId, ClpSerializer.translateInput(executionType));
+				ClpSerializer.translateInput(kaleoClassName), kaleoClassPK,
+				ClpSerializer.translateInput(executionType));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);

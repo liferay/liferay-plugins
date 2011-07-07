@@ -56,6 +56,7 @@ public class KaleoNodeLocalServiceImpl extends KaleoNodeLocalServiceBaseImpl {
 		kaleoNode.setModifiedDate(now);
 		kaleoNode.setKaleoDefinitionId(kaleoDefinitionId);
 		kaleoNode.setName(node.getName());
+		kaleoNode.setMetadata(node.getMetadata());
 		kaleoNode.setDescription(node.getDescription());
 		kaleoNode.setType(node.getNodeType().name());
 
@@ -82,8 +83,8 @@ public class KaleoNodeLocalServiceImpl extends KaleoNodeLocalServiceBaseImpl {
 
 		for (Action action : actions) {
 			kaleoActionLocalService.addKaleoAction(
-				kaleoDefinitionId, kaleoNodeId, node.getName(), action,
-				serviceContext);
+				kaleoDefinitionId, KaleoNode.class.getName(), kaleoNodeId,
+				node.getName(), action, serviceContext);
 		}
 
 		// Kaleo notifications
@@ -92,21 +93,17 @@ public class KaleoNodeLocalServiceImpl extends KaleoNodeLocalServiceBaseImpl {
 
 		for (Notification notification : notifications) {
 			kaleoNotificationLocalService.addKaleoNotification(
-				kaleoDefinitionId, kaleoNodeId, node.getName(), notification,
-				serviceContext);
+				kaleoDefinitionId, KaleoNode.class.getName(), kaleoNodeId,
+				node.getName(), notification, serviceContext);
 		}
 
 		// Kaleo timers
 
 		Set<Timer> timers = node.getTimers();
-
 		for (Timer timer : timers) {
-			KaleoNode timerKaleoNode = addKaleoNode(
-				kaleoDefinitionId, timer, serviceContext);
-
 			kaleoTimerLocalService.addKaleoTimer(
-				kaleoDefinitionId, timerKaleoNode.getKaleoNodeId(), kaleoNodeId,
-				timer, serviceContext);
+				kaleoDefinitionId, KaleoNode.class.getName(),
+				kaleoNodeId, timer, serviceContext);
 		}
 
 		return kaleoNode;

@@ -31,7 +31,7 @@ import java.util.Date;
 public class KaleoTimerCacheModel implements CacheModel<KaleoTimer> {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(31);
+		StringBundler sb = new StringBundler(35);
 
 		sb.append("{kaleoTimerId=");
 		sb.append(kaleoTimerId);
@@ -49,20 +49,24 @@ public class KaleoTimerCacheModel implements CacheModel<KaleoTimer> {
 		sb.append(modifiedDate);
 		sb.append(", kaleoDefinitionId=");
 		sb.append(kaleoDefinitionId);
-		sb.append(", kaleoNodeId=");
-		sb.append(kaleoNodeId);
-		sb.append(", parentKaleoNodeId=");
-		sb.append(parentKaleoNodeId);
+		sb.append(", kaleoClassName=");
+		sb.append(kaleoClassName);
+		sb.append(", kaleoClassPK=");
+		sb.append(kaleoClassPK);
 		sb.append(", name=");
 		sb.append(name);
-		sb.append(", defaultTimer=");
-		sb.append(defaultTimer);
+		sb.append(", blocking=");
+		sb.append(blocking);
 		sb.append(", description=");
 		sb.append(description);
 		sb.append(", duration=");
 		sb.append(duration);
 		sb.append(", scale=");
 		sb.append(scale);
+		sb.append(", recurrenceDuration=");
+		sb.append(recurrenceDuration);
+		sb.append(", recurrenceScale=");
+		sb.append(recurrenceScale);
 		sb.append("}");
 
 		return sb.toString();
@@ -92,8 +96,15 @@ public class KaleoTimerCacheModel implements CacheModel<KaleoTimer> {
 		}
 
 		kaleoTimerImpl.setKaleoDefinitionId(kaleoDefinitionId);
-		kaleoTimerImpl.setKaleoNodeId(kaleoNodeId);
-		kaleoTimerImpl.setParentKaleoNodeId(parentKaleoNodeId);
+
+		if (kaleoClassName == null) {
+			kaleoTimerImpl.setKaleoClassName(StringPool.BLANK);
+		}
+		else {
+			kaleoTimerImpl.setKaleoClassName(kaleoClassName);
+		}
+
+		kaleoTimerImpl.setKaleoClassPK(kaleoClassPK);
 
 		if (name == null) {
 			kaleoTimerImpl.setName(StringPool.BLANK);
@@ -102,7 +113,7 @@ public class KaleoTimerCacheModel implements CacheModel<KaleoTimer> {
 			kaleoTimerImpl.setName(name);
 		}
 
-		kaleoTimerImpl.setDefaultTimer(defaultTimer);
+		kaleoTimerImpl.setBlocking(blocking);
 
 		if (description == null) {
 			kaleoTimerImpl.setDescription(StringPool.BLANK);
@@ -120,6 +131,15 @@ public class KaleoTimerCacheModel implements CacheModel<KaleoTimer> {
 			kaleoTimerImpl.setScale(scale);
 		}
 
+		kaleoTimerImpl.setRecurrenceDuration(recurrenceDuration);
+
+		if (recurrenceScale == null) {
+			kaleoTimerImpl.setRecurrenceScale(StringPool.BLANK);
+		}
+		else {
+			kaleoTimerImpl.setRecurrenceScale(recurrenceScale);
+		}
+
 		kaleoTimerImpl.resetOriginalValues();
 
 		return kaleoTimerImpl;
@@ -133,11 +153,13 @@ public class KaleoTimerCacheModel implements CacheModel<KaleoTimer> {
 	public long createDate;
 	public long modifiedDate;
 	public long kaleoDefinitionId;
-	public long kaleoNodeId;
-	public long parentKaleoNodeId;
+	public String kaleoClassName;
+	public long kaleoClassPK;
 	public String name;
-	public boolean defaultTimer;
+	public boolean blocking;
 	public String description;
 	public double duration;
 	public String scale;
+	public double recurrenceDuration;
+	public String recurrenceScale;
 }

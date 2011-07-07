@@ -31,7 +31,7 @@ import java.util.Date;
 public class KaleoLogCacheModel implements CacheModel<KaleoLog> {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(59);
+		StringBundler sb = new StringBundler(61);
 
 		sb.append("{kaleoLogId=");
 		sb.append(kaleoLogId);
@@ -55,8 +55,10 @@ public class KaleoLogCacheModel implements CacheModel<KaleoLog> {
 		sb.append(kaleoInstanceTokenId);
 		sb.append(", kaleoTaskInstanceTokenId=");
 		sb.append(kaleoTaskInstanceTokenId);
-		sb.append(", kaleoNodeId=");
-		sb.append(kaleoNodeId);
+		sb.append(", kaleoClassName=");
+		sb.append(kaleoClassName);
+		sb.append(", kaleoClassPK=");
+		sb.append(kaleoClassPK);
 		sb.append(", kaleoNodeName=");
 		sb.append(kaleoNodeName);
 		sb.append(", terminalKaleoNode=");
@@ -123,7 +125,15 @@ public class KaleoLogCacheModel implements CacheModel<KaleoLog> {
 		kaleoLogImpl.setKaleoInstanceId(kaleoInstanceId);
 		kaleoLogImpl.setKaleoInstanceTokenId(kaleoInstanceTokenId);
 		kaleoLogImpl.setKaleoTaskInstanceTokenId(kaleoTaskInstanceTokenId);
-		kaleoLogImpl.setKaleoNodeId(kaleoNodeId);
+
+		if (kaleoClassName == null) {
+			kaleoLogImpl.setKaleoClassName(StringPool.BLANK);
+		}
+		else {
+			kaleoLogImpl.setKaleoClassName(kaleoClassName);
+		}
+
+		kaleoLogImpl.setKaleoClassPK(kaleoClassPK);
 
 		if (kaleoNodeName == null) {
 			kaleoLogImpl.setKaleoNodeName(StringPool.BLANK);
@@ -223,7 +233,8 @@ public class KaleoLogCacheModel implements CacheModel<KaleoLog> {
 	public long kaleoInstanceId;
 	public long kaleoInstanceTokenId;
 	public long kaleoTaskInstanceTokenId;
-	public long kaleoNodeId;
+	public String kaleoClassName;
+	public long kaleoClassPK;
 	public String kaleoNodeName;
 	public boolean terminalKaleoNode;
 	public long kaleoActionId;

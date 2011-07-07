@@ -31,7 +31,7 @@ import java.util.Date;
 public class KaleoTaskAssignmentCacheModel implements CacheModel<KaleoTaskAssignment> {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(31);
+		StringBundler sb = new StringBundler(33);
 
 		sb.append("{kaleoTaskAssignmentId=");
 		sb.append(kaleoTaskAssignmentId);
@@ -49,10 +49,12 @@ public class KaleoTaskAssignmentCacheModel implements CacheModel<KaleoTaskAssign
 		sb.append(modifiedDate);
 		sb.append(", kaleoDefinitionId=");
 		sb.append(kaleoDefinitionId);
+		sb.append(", kaleoClassName=");
+		sb.append(kaleoClassName);
+		sb.append(", kaleoClassPK=");
+		sb.append(kaleoClassPK);
 		sb.append(", kaleoNodeId=");
 		sb.append(kaleoNodeId);
-		sb.append(", kaleoTaskId=");
-		sb.append(kaleoTaskId);
 		sb.append(", assigneeClassName=");
 		sb.append(assigneeClassName);
 		sb.append(", assigneeClassPK=");
@@ -92,8 +94,16 @@ public class KaleoTaskAssignmentCacheModel implements CacheModel<KaleoTaskAssign
 		}
 
 		kaleoTaskAssignmentImpl.setKaleoDefinitionId(kaleoDefinitionId);
+
+		if (kaleoClassName == null) {
+			kaleoTaskAssignmentImpl.setKaleoClassName(StringPool.BLANK);
+		}
+		else {
+			kaleoTaskAssignmentImpl.setKaleoClassName(kaleoClassName);
+		}
+
+		kaleoTaskAssignmentImpl.setKaleoClassPK(kaleoClassPK);
 		kaleoTaskAssignmentImpl.setKaleoNodeId(kaleoNodeId);
-		kaleoTaskAssignmentImpl.setKaleoTaskId(kaleoTaskId);
 
 		if (assigneeClassName == null) {
 			kaleoTaskAssignmentImpl.setAssigneeClassName(StringPool.BLANK);
@@ -138,8 +148,9 @@ public class KaleoTaskAssignmentCacheModel implements CacheModel<KaleoTaskAssign
 	public long createDate;
 	public long modifiedDate;
 	public long kaleoDefinitionId;
+	public String kaleoClassName;
+	public long kaleoClassPK;
 	public long kaleoNodeId;
-	public long kaleoTaskId;
 	public String assigneeClassName;
 	public long assigneeClassPK;
 	public String assigneeActionId;

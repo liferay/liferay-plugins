@@ -17,9 +17,11 @@ package com.liferay.portal.workflow.kaleo.model.impl;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
+import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken;
 import com.liferay.portal.workflow.kaleo.model.KaleoTimer;
 import com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken;
 import com.liferay.portal.workflow.kaleo.service.KaleoInstanceTokenLocalServiceUtil;
+import com.liferay.portal.workflow.kaleo.service.KaleoTaskInstanceTokenLocalServiceUtil;
 import com.liferay.portal.workflow.kaleo.service.KaleoTimerLocalServiceUtil;
 
 /**
@@ -36,6 +38,13 @@ public class KaleoTimerInstanceTokenImpl
 
 		return KaleoInstanceTokenLocalServiceUtil.getKaleoInstanceToken(
 			getKaleoInstanceTokenId());
+	}
+
+	public KaleoTaskInstanceToken getKaleoTaskInstanceToken()
+		throws SystemException {
+
+		return KaleoTaskInstanceTokenLocalServiceUtil.
+			fetchKaleoTaskInstanceToken(getKaleoTaskInstanceTokenId());
 	}
 
 	public KaleoTimer getKaleoTimer() throws PortalException, SystemException {

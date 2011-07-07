@@ -90,6 +90,7 @@ public class DefaultWorkflowDeployer implements WorkflowDeployer {
 					kaleoDefinitionId, kaleoNode.getKaleoNodeId(), condition,
 					serviceContext);
 			}
+
 		}
 
 		for (Node node : nodes) {

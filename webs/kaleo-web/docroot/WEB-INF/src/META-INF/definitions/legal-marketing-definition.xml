@@ -24,10 +24,10 @@
 		<actions>
 			<notification>
 				<name>Creator Modification Notification</name>
-				<execution-type>onAssignment</execution-type>
 				<template>Your asset was rejected by a reviewer, please modify and resubmit.</template>
 				<template-language>text</template-language>
 				<notification-type>email</notification-type>
+				<execution-type>onAssignment</execution-type>
 			</notification>
 		</actions>
 		<assignments>
@@ -46,10 +46,10 @@
 		<actions>
 			<notification>
 				<name>Market Content Review Notification</name>
-				<execution-type>onAssignment</execution-type>
 				<template>You have a new asset waiting for your review in the workflow.</template>
 				<template-language>text</template-language>
 				<notification-type>email</notification-type>
+				<execution-type>onAssignment</execution-type>
 			</notification>
 		</actions>
 		<assignments>
@@ -106,10 +106,10 @@
 		<actions>
 			<notification>
 				<name>Legal Content Review Notification</name>
-				<execution-type>onAssignment</execution-type>
 				<template>You have a new asset waiting for your review in the workflow.</template>
 				<template-language>text</template-language>
 				<notification-type>email</notification-type>
+				<execution-type>onAssignment</execution-type>
 			</notification>
 		</actions>
 		<assignments>
@@ -166,13 +166,13 @@
 		<actions>
 			<action>
 				<name>Approve Asset</name>
-				<execution-type>onEntry</execution-type>
 				<script>
 					<![CDATA[
 						Packages.com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil.updateStatus(Packages.com.liferay.portal.kernel.workflow.WorkflowConstants.toStatus("approved"), workflowContext);
 					]]>
 				</script>
 				<script-language>javascript</script-language>
+				<execution-type>onEntry</execution-type>
 			</action>
 		</actions>
 	</state>

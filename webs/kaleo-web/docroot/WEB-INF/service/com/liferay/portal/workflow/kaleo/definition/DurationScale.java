@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.definition;
 
+import com.liferay.portal.kernel.scheduler.CronText;
+
 /**
  * @author Michael C. Han
  */
@@ -43,6 +45,27 @@ public enum DurationScale {
 		}
 
 		throw new IllegalArgumentException("Invalid value " + value);
+	}
+
+	public int getIntValue() {
+		if (equals(DAY)) {
+			return CronText.DAILY_FREQUENCY;
+		}
+		else if (equals(HOUR)) {
+			return CronText.HOURLY_FREQUENCY;
+		}
+		else if (equals(MINUTE)) {
+			return CronText.MINUTELY_FREQUENCY;
+		}
+		else if (equals(MONTH)) {
+			return CronText.MONTHLY_FREQUENCY;
+		}
+		else if (equals(WEEK)) {
+			return CronText.WEEKLY_FREQUENCY;
+		}
+		else {
+			return CronText.YEARLY_FREQUENCY;
+		}
 	}
 
 	public String getValue() {

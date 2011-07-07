@@ -1,6 +1,6 @@
 create index IX_50E9112C on KaleoAction (companyId);
+create index IX_4B2545E8 on KaleoAction (kaleoClassName, kaleoClassPK, executionType);
 create index IX_F95A622 on KaleoAction (kaleoDefinitionId);
-create index IX_B88DF9B1 on KaleoAction (kaleoNodeId, executionType);
 
 create index IX_FEE46067 on KaleoCondition (companyId);
 create index IX_DC978A5D on KaleoCondition (kaleoDefinitionId);
@@ -26,7 +26,7 @@ create index IX_F42AAFF6 on KaleoInstanceToken (kaleoInstanceId);
 create index IX_73B5F4DE on KaleoLog (companyId);
 create index IX_6C64B7D4 on KaleoLog (kaleoDefinitionId);
 create index IX_5BC6AB16 on KaleoLog (kaleoInstanceId);
-create index IX_25157F25 on KaleoLog (kaleoInstanceTokenId, kaleoNodeId, type_);
+create index IX_38E935FA on KaleoLog (kaleoInstanceTokenId, kaleoClassName, kaleoClassPK, type_);
 create index IX_470B9FF8 on KaleoLog (kaleoInstanceTokenId, type_);
 create index IX_B0CDCA38 on KaleoLog (kaleoTaskInstanceTokenId);
 
@@ -35,8 +35,8 @@ create index IX_F28C443E on KaleoNode (companyId, kaleoDefinitionId);
 create index IX_32E94DD6 on KaleoNode (kaleoDefinitionId);
 
 create index IX_38829497 on KaleoNotification (companyId);
+create index IX_F3362E93 on KaleoNotification (kaleoClassName, kaleoClassPK, executionType);
 create index IX_4B968E8D on KaleoNotification (kaleoDefinitionId);
-create index IX_A5C459A6 on KaleoNotification (kaleoNodeId, executionType);
 
 create index IX_2C8C4AF4 on KaleoNotificationRecipient (companyId);
 create index IX_AA6697EA on KaleoNotificationRecipient (kaleoDefinitionId);
@@ -47,10 +47,9 @@ create index IX_3FFA633 on KaleoTask (kaleoDefinitionId);
 create index IX_77B3F1A2 on KaleoTask (kaleoNodeId);
 
 create index IX_611732B0 on KaleoTaskAssignment (companyId);
+create index IX_D835C576 on KaleoTaskAssignment (kaleoClassName, kaleoClassPK);
+create index IX_1087068E on KaleoTaskAssignment (kaleoClassName, kaleoClassPK, assigneeClassName);
 create index IX_575C03A6 on KaleoTaskAssignment (kaleoDefinitionId);
-create index IX_BDB2F39B on KaleoTaskAssignment (kaleoNodeId, kaleoTaskId);
-create index IX_4DD12F58 on KaleoTaskAssignment (kaleoTaskId);
-create index IX_24D83D6C on KaleoTaskAssignment (kaleoTaskId, assigneeClassName);
 
 create index IX_6E3CDA1B on KaleoTaskAssignmentInstance (companyId);
 create index IX_C851011 on KaleoTaskAssignmentInstance (kaleoDefinitionId);
@@ -62,11 +61,13 @@ create index IX_608E9519 on KaleoTaskInstanceToken (kaleoDefinitionId);
 create index IX_2CE1159B on KaleoTaskInstanceToken (kaleoInstanceId);
 create index IX_B857A115 on KaleoTaskInstanceToken (kaleoInstanceId, kaleoTaskId);
 
-create index IX_9EA53B18 on KaleoTimer (parentKaleoNodeId);
-create index IX_EBA90B90 on KaleoTimer (parentKaleoNodeId, defaultTimer);
+create index IX_4DE6A889 on KaleoTimer (kaleoClassName, kaleoClassPK);
+create index IX_1A479F32 on KaleoTimer (kaleoClassName, kaleoClassPK, blocking);
 
 create index IX_DB96C55B on KaleoTimerInstanceToken (kaleoInstanceId);
-create index IX_FC60EA2F on KaleoTimerInstanceToken (kaleoInstanceId, kaleoTimerId);
+create index IX_DB279423 on KaleoTimerInstanceToken (kaleoInstanceTokenId, completed);
+create index IX_9932524C on KaleoTimerInstanceToken (kaleoInstanceTokenId, completed, blocking);
+create index IX_13A5BA2C on KaleoTimerInstanceToken (kaleoInstanceTokenId, kaleoTimerId);
 
 create index IX_41D6C6D on KaleoTransition (companyId);
 create index IX_479F3063 on KaleoTransition (kaleoDefinitionId);

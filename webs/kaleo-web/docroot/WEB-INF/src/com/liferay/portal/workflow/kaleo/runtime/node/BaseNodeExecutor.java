@@ -49,19 +49,20 @@ public abstract class BaseNodeExecutor
 		doEnter(currentKaleoNode, executionContext);
 
 		ActionExecutorUtil.executeKaleoActions(
-			currentKaleoNode.getKaleoNodeId(), ExecutionType.ON_ENTRY,
-			executionContext);
+			KaleoNode.class.getName(), currentKaleoNode.getKaleoNodeId(),
+			ExecutionType.ON_ENTRY, executionContext);
 
 		NotificationUtil.sendKaleoNotifications(
-			currentKaleoNode.getKaleoNodeId(), ExecutionType.ON_ENTRY,
-			executionContext);
+			KaleoNode.class.getName(), currentKaleoNode.getKaleoNodeId(),
+			ExecutionType.ON_ENTRY, executionContext);
 
 		List<KaleoTimer> kaleoTimers = kaleoTimerLocalService.getKaleoTimers(
-			currentKaleoNode.getKaleoNodeId());
+			KaleoNode.class.getName(), currentKaleoNode.getKaleoNodeId());
 
 		kaleoTimerInstanceTokenLocalService.addKaleoTimerInstanceTokens(
-			executionContext.getKaleoInstanceToken(), kaleoTimers,
-			executionContext.getWorkflowContext(),
+			executionContext.getKaleoInstanceToken(),
+			executionContext.getKaleoTaskInstanceToken(),
+			kaleoTimers, executionContext.getWorkflowContext(),
 			executionContext.getServiceContext());
 	}
 
@@ -90,18 +91,20 @@ public abstract class BaseNodeExecutor
 		KaleoTimer kaleoTimer = kaleoTimerInstanceToken.getKaleoTimer();
 
 		ActionExecutorUtil.executeKaleoActions(
-			kaleoTimer.getKaleoNodeId(), ExecutionType.ON_TIMER,
-			executionContext);
+			KaleoTimer.class.getName(), kaleoTimer.getKaleoTimerId(),
+			ExecutionType.ON_TIMER, executionContext);
 
 		NotificationUtil.sendKaleoNotifications(
-			kaleoTimer.getKaleoNodeId(), ExecutionType.ON_TIMER,
-			executionContext);
+			KaleoTimer.class.getName(), kaleoTimer.getKaleoTimerId(),
+			ExecutionType.ON_TIMER, executionContext);
 
 		doExecuteTimer(currentKaleoNode, kaleoTimer, executionContext);
 
-		kaleoTimerInstanceTokenLocalService.completeKaleoTimerInstanceToken(
-			kaleoTimerInstanceToken.getKaleoTimerInstanceTokenId(),
-			serviceContext);
+		if (!kaleoTimer.isRecurring()) {
+			kaleoTimerInstanceTokenLocalService.completeKaleoTimerInstanceToken(
+				kaleoTimerInstanceToken.getKaleoTimerInstanceTokenId(),
+				serviceContext);
+		}
 	}
 
 	public void exit(
@@ -109,15 +112,18 @@ public abstract class BaseNodeExecutor
 			List<PathElement> remainingPathElements)
 		throws PortalException, SystemException {
 
+		//complete all non-blocked timers
+		ExecutionUtil.completeKaleoTimerInstances(executionContext);
+
 		doExit(currentKaleoNode, executionContext, remainingPathElements);
 
 		ActionExecutorUtil.executeKaleoActions(
-			currentKaleoNode.getKaleoNodeId(), ExecutionType.ON_EXIT,
-			executionContext);
+			KaleoNode.class.getName(), currentKaleoNode.getKaleoNodeId(),
+			ExecutionType.ON_EXIT, executionContext);
 
 		NotificationUtil.sendKaleoNotifications(
-			currentKaleoNode.getKaleoNodeId(), ExecutionType.ON_EXIT,
-			executionContext);
+			KaleoNode.class.getName(), currentKaleoNode.getKaleoNodeId(),
+			ExecutionType.ON_EXIT, executionContext);
 	}
 
 	protected abstract void doEnter(

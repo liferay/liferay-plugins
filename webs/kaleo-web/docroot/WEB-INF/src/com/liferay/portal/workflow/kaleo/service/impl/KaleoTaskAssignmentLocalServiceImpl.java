@@ -28,6 +28,7 @@ import com.liferay.portal.workflow.kaleo.definition.RoleAssignment;
 import com.liferay.portal.workflow.kaleo.definition.ScriptAssignment;
 import com.liferay.portal.workflow.kaleo.definition.ScriptLanguage;
 import com.liferay.portal.workflow.kaleo.definition.UserAssignment;
+import com.liferay.portal.workflow.kaleo.model.KaleoTask;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment;
 import com.liferay.portal.workflow.kaleo.service.base.KaleoTaskAssignmentLocalServiceBaseImpl;
 import com.liferay.portal.workflow.kaleo.util.RoleRetrievalUtil;
@@ -42,7 +43,7 @@ public class KaleoTaskAssignmentLocalServiceImpl
 	extends KaleoTaskAssignmentLocalServiceBaseImpl {
 
 	public KaleoTaskAssignment addKaleoTaskAssignment(
-			long kaleoDefinitionId, long kaleoNodeId, long kaleoTaskId,
+			long kaleoDefinitionId, String kaleoClassName, long kaleoClassPK,
 			Assignment assignment, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
@@ -61,8 +62,8 @@ public class KaleoTaskAssignmentLocalServiceImpl
 		kaleoTaskAssignment.setCreateDate(now);
 		kaleoTaskAssignment.setModifiedDate(now);
 		kaleoTaskAssignment.setKaleoDefinitionId(kaleoDefinitionId);
-		kaleoTaskAssignment.setKaleoNodeId(kaleoNodeId);
-		kaleoTaskAssignment.setKaleoTaskId(kaleoTaskId);
+		kaleoTaskAssignment.setKaleoClassName(kaleoClassName);
+		kaleoTaskAssignment.setKaleoClassPK(kaleoClassPK);
 		setAssignee(kaleoTaskAssignment, assignment, serviceContext);
 
 		kaleoTaskAssignmentPersistence.update(kaleoTaskAssignment, false);
@@ -84,40 +85,42 @@ public class KaleoTaskAssignmentLocalServiceImpl
 			kaleoDefinitionId);
 	}
 
+	public List<KaleoTaskAssignment> getKaleoTaskAssignments(
+			String kaleoClassName, long kaleoClassPK)
+		throws SystemException {
+
+		return kaleoTaskAssignmentPersistence.findByKCN_KCPK(
+			kaleoClassName, kaleoClassPK);
+	}
+
 	public List<KaleoTaskAssignment> getKaleoTaskAssignments(long kaleoTaskId)
 		throws SystemException {
 
-		return kaleoTaskAssignmentPersistence.findByKaleoTaskId(kaleoTaskId);
-	}
-
-	public List<KaleoTaskAssignment> getKaleoTaskAssignments(
-			long kaleoNodeId, long kaleoTaskId)
-		throws SystemException {
-
-		return kaleoTaskAssignmentPersistence.findByKNI_KTI(
-			kaleoNodeId, kaleoTaskId);
+		return kaleoTaskAssignmentPersistence.findByKCN_KCPK(
+			KaleoTask.class.getName(), kaleoTaskId);
 	}
 
 	public List<KaleoTaskAssignment> getKaleoTaskAssignments(
 			long kaleoTaskId, String assigneeClassName)
 		throws SystemException {
 
-		return kaleoTaskAssignmentPersistence.findByKTI_ACN(
-			kaleoTaskId, assigneeClassName);
+		return kaleoTaskAssignmentPersistence.findByKCN_KCPK_ACN(
+			KaleoTask.class.getName(), kaleoTaskId, assigneeClassName);
 	}
 
 	public int getKaleoTaskAssignmentsCount(long kaleoTaskId)
 		throws SystemException {
 
-		return kaleoTaskAssignmentPersistence.countByKaleoTaskId(kaleoTaskId);
+		return kaleoTaskAssignmentPersistence.countByKCN_KCPK(
+			KaleoTask.class.getName(), kaleoTaskId);
 	}
 
 	public int getKaleoTaskAssignmentsCount(
 			long kaleoTaskId, String assigneeClassName)
 		throws SystemException {
 
-		return kaleoTaskAssignmentPersistence.countByKTI_ACN(
-			kaleoTaskId, assigneeClassName);
+		return kaleoTaskAssignmentPersistence.countByKCN_KCPK_ACN(
+			KaleoTask.class.getName(), kaleoTaskId, assigneeClassName);
 	}
 
 	protected void setAssignee(

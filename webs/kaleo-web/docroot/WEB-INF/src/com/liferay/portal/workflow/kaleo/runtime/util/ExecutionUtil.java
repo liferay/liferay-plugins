@@ -18,9 +18,12 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstance;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
+import com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
 import com.liferay.portal.workflow.kaleo.service.KaleoLogLocalServiceUtil;
 import com.liferay.portal.workflow.kaleo.service.KaleoTimerInstanceTokenLocalServiceUtil;
+
+import java.util.List;
 
 /**
  * @author Marcellus Tavares
@@ -48,6 +51,23 @@ public class ExecutionUtil {
 			kaleoInstanceToken, executionContext.getServiceContext());
 	}
 
+	public static void completeKaleoTimerInstances(
+			ExecutionContext executionContext)
+		throws PortalException, SystemException {
+
+		KaleoInstanceToken kaleoInstanceToken =
+			executionContext.getKaleoInstanceToken();
+
+		List<KaleoTimerInstanceToken> kaleoTimerInstanceTokens =
+			KaleoTimerInstanceTokenLocalServiceUtil.
+				getKaleoTimerInstanceTokens(
+					kaleoInstanceToken.getKaleoInstanceTokenId(), false, false,
+					executionContext.getServiceContext());
+
+		KaleoTimerInstanceTokenLocalServiceUtil.completeKaleoTimerInstanceTokens(
+			kaleoTimerInstanceTokens, executionContext.getServiceContext());
+	}
+
 	public static boolean isKaleoInstanceBlocked(
 			ExecutionContext executionContext)
 		throws SystemException {
@@ -58,7 +78,7 @@ public class ExecutionUtil {
 		int count =
 			KaleoTimerInstanceTokenLocalServiceUtil.
 				getKaleoTimerInstanceTokensCount(
-					kaleoInstanceToken.getKaleoInstanceId(), false,
+					kaleoInstanceToken.getKaleoInstanceTokenId(), false, true,
 					executionContext.getServiceContext());
 
 		if (count > 0) {

@@ -38,13 +38,15 @@ public class KaleoTimerSoap implements Serializable {
 		soapModel.setCreateDate(model.getCreateDate());
 		soapModel.setModifiedDate(model.getModifiedDate());
 		soapModel.setKaleoDefinitionId(model.getKaleoDefinitionId());
-		soapModel.setKaleoNodeId(model.getKaleoNodeId());
-		soapModel.setParentKaleoNodeId(model.getParentKaleoNodeId());
+		soapModel.setKaleoClassName(model.getKaleoClassName());
+		soapModel.setKaleoClassPK(model.getKaleoClassPK());
 		soapModel.setName(model.getName());
-		soapModel.setDefaultTimer(model.getDefaultTimer());
+		soapModel.setBlocking(model.getBlocking());
 		soapModel.setDescription(model.getDescription());
 		soapModel.setDuration(model.getDuration());
 		soapModel.setScale(model.getScale());
+		soapModel.setRecurrenceDuration(model.getRecurrenceDuration());
+		soapModel.setRecurrenceScale(model.getRecurrenceScale());
 
 		return soapModel;
 	}
@@ -161,20 +163,20 @@ public class KaleoTimerSoap implements Serializable {
 		_kaleoDefinitionId = kaleoDefinitionId;
 	}
 
-	public long getKaleoNodeId() {
-		return _kaleoNodeId;
+	public String getKaleoClassName() {
+		return _kaleoClassName;
 	}
 
-	public void setKaleoNodeId(long kaleoNodeId) {
-		_kaleoNodeId = kaleoNodeId;
+	public void setKaleoClassName(String kaleoClassName) {
+		_kaleoClassName = kaleoClassName;
 	}
 
-	public long getParentKaleoNodeId() {
-		return _parentKaleoNodeId;
+	public long getKaleoClassPK() {
+		return _kaleoClassPK;
 	}
 
-	public void setParentKaleoNodeId(long parentKaleoNodeId) {
-		_parentKaleoNodeId = parentKaleoNodeId;
+	public void setKaleoClassPK(long kaleoClassPK) {
+		_kaleoClassPK = kaleoClassPK;
 	}
 
 	public String getName() {
@@ -185,16 +187,16 @@ public class KaleoTimerSoap implements Serializable {
 		_name = name;
 	}
 
-	public boolean getDefaultTimer() {
-		return _defaultTimer;
+	public boolean getBlocking() {
+		return _blocking;
 	}
 
-	public boolean isDefaultTimer() {
-		return _defaultTimer;
+	public boolean isBlocking() {
+		return _blocking;
 	}
 
-	public void setDefaultTimer(boolean defaultTimer) {
-		_defaultTimer = defaultTimer;
+	public void setBlocking(boolean blocking) {
+		_blocking = blocking;
 	}
 
 	public String getDescription() {
@@ -221,6 +223,22 @@ public class KaleoTimerSoap implements Serializable {
 		_scale = scale;
 	}
 
+	public double getRecurrenceDuration() {
+		return _recurrenceDuration;
+	}
+
+	public void setRecurrenceDuration(double recurrenceDuration) {
+		_recurrenceDuration = recurrenceDuration;
+	}
+
+	public String getRecurrenceScale() {
+		return _recurrenceScale;
+	}
+
+	public void setRecurrenceScale(String recurrenceScale) {
+		_recurrenceScale = recurrenceScale;
+	}
+
 	private long _kaleoTimerId;
 	private long _groupId;
 	private long _companyId;
@@ -229,11 +247,13 @@ public class KaleoTimerSoap implements Serializable {
 	private Date _createDate;
 	private Date _modifiedDate;
 	private long _kaleoDefinitionId;
-	private long _kaleoNodeId;
-	private long _parentKaleoNodeId;
+	private String _kaleoClassName;
+	private long _kaleoClassPK;
 	private String _name;
-	private boolean _defaultTimer;
+	private boolean _blocking;
 	private String _description;
 	private double _duration;
 	private String _scale;
+	private double _recurrenceDuration;
+	private String _recurrenceScale;
 }

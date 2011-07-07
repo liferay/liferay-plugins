@@ -237,6 +237,24 @@ public class KaleoNodeWrapper implements KaleoNode {
 	}
 
 	/**
+	* Returns the metadata of this kaleo node.
+	*
+	* @return the metadata of this kaleo node
+	*/
+	public java.lang.String getMetadata() {
+		return _kaleoNode.getMetadata();
+	}
+
+	/**
+	* Sets the metadata of this kaleo node.
+	*
+	* @param metadata the metadata of this kaleo node
+	*/
+	public void setMetadata(java.lang.String metadata) {
+		_kaleoNode.setMetadata(metadata);
+	}
+
+	/**
 	* Returns the description of this kaleo node.
 	*
 	* @return the description of this kaleo node

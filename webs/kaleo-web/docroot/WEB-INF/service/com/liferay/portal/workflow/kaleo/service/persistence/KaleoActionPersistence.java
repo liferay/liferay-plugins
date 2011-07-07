@@ -315,43 +315,48 @@ public interface KaleoActionPersistence extends BasePersistence<KaleoAction> {
 			com.liferay.portal.workflow.kaleo.NoSuchActionException;
 
 	/**
-	* Returns all the kaleo actions where kaleoNodeId = &#63; and executionType = &#63;.
+	* Returns all the kaleo actions where kaleoClassName = &#63; and kaleoClassPK = &#63; and executionType = &#63;.
 	*
-	* @param kaleoNodeId the kaleo node ID
+	* @param kaleoClassName the kaleo class name
+	* @param kaleoClassPK the kaleo class p k
 	* @param executionType the execution type
 	* @return the matching kaleo actions
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoAction> findByKNI_ET(
-		long kaleoNodeId, java.lang.String executionType)
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoAction> findByKCN_KCPK_ET(
+		java.lang.String kaleoClassName, long kaleoClassPK,
+		java.lang.String executionType)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns a range of all the kaleo actions where kaleoNodeId = &#63; and executionType = &#63;.
+	* Returns a range of all the kaleo actions where kaleoClassName = &#63; and kaleoClassPK = &#63; and executionType = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param kaleoNodeId the kaleo node ID
+	* @param kaleoClassName the kaleo class name
+	* @param kaleoClassPK the kaleo class p k
 	* @param executionType the execution type
 	* @param start the lower bound of the range of kaleo actions
 	* @param end the upper bound of the range of kaleo actions (not inclusive)
 	* @return the range of matching kaleo actions
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoAction> findByKNI_ET(
-		long kaleoNodeId, java.lang.String executionType, int start, int end)
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoAction> findByKCN_KCPK_ET(
+		java.lang.String kaleoClassName, long kaleoClassPK,
+		java.lang.String executionType, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns an ordered range of all the kaleo actions where kaleoNodeId = &#63; and executionType = &#63;.
+	* Returns an ordered range of all the kaleo actions where kaleoClassName = &#63; and kaleoClassPK = &#63; and executionType = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param kaleoNodeId the kaleo node ID
+	* @param kaleoClassName the kaleo class name
+	* @param kaleoClassPK the kaleo class p k
 	* @param executionType the execution type
 	* @param start the lower bound of the range of kaleo actions
 	* @param end the upper bound of the range of kaleo actions (not inclusive)
@@ -359,68 +364,75 @@ public interface KaleoActionPersistence extends BasePersistence<KaleoAction> {
 	* @return the ordered range of matching kaleo actions
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoAction> findByKNI_ET(
-		long kaleoNodeId, java.lang.String executionType, int start, int end,
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoAction> findByKCN_KCPK_ET(
+		java.lang.String kaleoClassName, long kaleoClassPK,
+		java.lang.String executionType, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the first kaleo action in the ordered set where kaleoNodeId = &#63; and executionType = &#63;.
+	* Returns the first kaleo action in the ordered set where kaleoClassName = &#63; and kaleoClassPK = &#63; and executionType = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param kaleoNodeId the kaleo node ID
+	* @param kaleoClassName the kaleo class name
+	* @param kaleoClassPK the kaleo class p k
 	* @param executionType the execution type
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo action
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchActionException if a matching kaleo action could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.liferay.portal.workflow.kaleo.model.KaleoAction findByKNI_ET_First(
-		long kaleoNodeId, java.lang.String executionType,
+	public com.liferay.portal.workflow.kaleo.model.KaleoAction findByKCN_KCPK_ET_First(
+		java.lang.String kaleoClassName, long kaleoClassPK,
+		java.lang.String executionType,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.portal.workflow.kaleo.NoSuchActionException;
 
 	/**
-	* Returns the last kaleo action in the ordered set where kaleoNodeId = &#63; and executionType = &#63;.
+	* Returns the last kaleo action in the ordered set where kaleoClassName = &#63; and kaleoClassPK = &#63; and executionType = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param kaleoNodeId the kaleo node ID
+	* @param kaleoClassName the kaleo class name
+	* @param kaleoClassPK the kaleo class p k
 	* @param executionType the execution type
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching kaleo action
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchActionException if a matching kaleo action could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.liferay.portal.workflow.kaleo.model.KaleoAction findByKNI_ET_Last(
-		long kaleoNodeId, java.lang.String executionType,
+	public com.liferay.portal.workflow.kaleo.model.KaleoAction findByKCN_KCPK_ET_Last(
+		java.lang.String kaleoClassName, long kaleoClassPK,
+		java.lang.String executionType,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.portal.workflow.kaleo.NoSuchActionException;
 
 	/**
-	* Returns the kaleo actions before and after the current kaleo action in the ordered set where kaleoNodeId = &#63; and executionType = &#63;.
+	* Returns the kaleo actions before and after the current kaleo action in the ordered set where kaleoClassName = &#63; and kaleoClassPK = &#63; and executionType = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
 	* @param kaleoActionId the primary key of the current kaleo action
-	* @param kaleoNodeId the kaleo node ID
+	* @param kaleoClassName the kaleo class name
+	* @param kaleoClassPK the kaleo class p k
 	* @param executionType the execution type
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next kaleo action
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchActionException if a kaleo action with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.liferay.portal.workflow.kaleo.model.KaleoAction[] findByKNI_ET_PrevAndNext(
-		long kaleoActionId, long kaleoNodeId, java.lang.String executionType,
+	public com.liferay.portal.workflow.kaleo.model.KaleoAction[] findByKCN_KCPK_ET_PrevAndNext(
+		long kaleoActionId, java.lang.String kaleoClassName, long kaleoClassPK,
+		java.lang.String executionType,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.portal.workflow.kaleo.NoSuchActionException;
@@ -487,13 +499,15 @@ public interface KaleoActionPersistence extends BasePersistence<KaleoAction> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Removes all the kaleo actions where kaleoNodeId = &#63; and executionType = &#63; from the database.
+	* Removes all the kaleo actions where kaleoClassName = &#63; and kaleoClassPK = &#63; and executionType = &#63; from the database.
 	*
-	* @param kaleoNodeId the kaleo node ID
+	* @param kaleoClassName the kaleo class name
+	* @param kaleoClassPK the kaleo class p k
 	* @param executionType the execution type
 	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByKNI_ET(long kaleoNodeId, java.lang.String executionType)
+	public void removeByKCN_KCPK_ET(java.lang.String kaleoClassName,
+		long kaleoClassPK, java.lang.String executionType)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -525,14 +539,16 @@ public interface KaleoActionPersistence extends BasePersistence<KaleoAction> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the number of kaleo actions where kaleoNodeId = &#63; and executionType = &#63;.
+	* Returns the number of kaleo actions where kaleoClassName = &#63; and kaleoClassPK = &#63; and executionType = &#63;.
 	*
-	* @param kaleoNodeId the kaleo node ID
+	* @param kaleoClassName the kaleo class name
+	* @param kaleoClassPK the kaleo class p k
 	* @param executionType the execution type
 	* @return the number of matching kaleo actions
 	* @throws SystemException if a system exception occurred
 	*/
-	public int countByKNI_ET(long kaleoNodeId, java.lang.String executionType)
+	public int countByKCN_KCPK_ET(java.lang.String kaleoClassName,
+		long kaleoClassPK, java.lang.String executionType)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

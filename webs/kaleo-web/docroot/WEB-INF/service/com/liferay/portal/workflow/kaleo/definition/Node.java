@@ -26,7 +26,8 @@ import java.util.Set;
  * @author Michael C. Han
  * @author Marcellus Tavares
  */
-public abstract class Node {
+public abstract class Node
+	implements ActionAware, NotificationAware {
 
 	public Node(NodeType nodeType, String name, String description) {
 		_nodeType = nodeType;
@@ -67,6 +68,10 @@ public abstract class Node {
 
 	public String getDescription() {
 		return _description;
+	}
+
+	public String getMetadata() {
+		return _metadata;
 	}
 
 	public String getName() {
@@ -110,6 +115,10 @@ public abstract class Node {
 		_actions = actions;
 	}
 
+	public void setMetadata(String metadata) {
+		_metadata = metadata;
+	}
+
 	public void setNotifications(Set<Notification> notifications) {
 		_notifications = notifications;
 	}
@@ -120,6 +129,7 @@ public abstract class Node {
 
 	private Set<Action> _actions;
 	private String _description;
+	private String _metadata;
 	private String _name;
 	private NodeType _nodeType;
 	private Set<Notification> _notifications;

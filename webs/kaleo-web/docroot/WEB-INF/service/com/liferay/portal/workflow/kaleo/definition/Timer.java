@@ -14,43 +14,93 @@
 
 package com.liferay.portal.workflow.kaleo.definition;
 
+import java.util.Collections;
 import java.util.Set;
 
 /**
  * @author Marcellus Tavares
  */
-public class Timer extends Node {
+public class Timer implements ActionAware, NotificationAware {
 
 	public Timer(
-		String name, String description, boolean defaultValue) {
+		String name, String description, boolean blocking) {
 
-		super(NodeType.TIMER, name, description);
+		_name = name;
+		_blocking = blocking;
+		_description = description;
+	}
 
-		_default = defaultValue;
+	public Set<Action> getActions() {
+		if (_actions == null) {
+			return Collections.emptySet();
+		}
+
+		return _actions;
 	}
 
 	public DelayDuration getDelayDuration() {
 		return _delayDuration;
 	}
 
+	public String getDescription() {
+		return _description;
+	}
+
+	public String getName() {
+		return _name;
+	}
+
+	public Set<Notification> getNotifications() {
+		if (_notifications == null) {
+			return Collections.emptySet();
+		}
+
+		return _notifications;
+	}
+
 	public Set<Assignment> getReassignments() {
+		if (_reassignments == null) {
+			return Collections.emptySet();
+		}
+
 		return _reassignments;
 	}
 
-	public boolean isDefault() {
-		return _default;
+	public DelayDuration getRecurrence() {
+		return _recurrence;
+	}
+
+	public boolean isBlocking() {
+		return _blocking;
+	}
+
+	public void setActions(Set<Action> actions) {
+		_actions = actions;
 	}
 
 	public void setDelayDuration(DelayDuration delayDuration) {
 		_delayDuration = delayDuration;
 	}
 
+	public void setNotifications(Set<Notification> notifications) {
+		_notifications = notifications;
+	}
+
 	public void setReassignments(Set<Assignment> reassignments) {
 		_reassignments = reassignments;
 	}
 
-	private boolean _default;
+	public void setRecurrence(DelayDuration recurrence) {
+		_recurrence = recurrence;
+	}
+
+	private boolean _blocking;
 	private DelayDuration _delayDuration;
+	private String _description;
+	private String _name;
 	private Set<Assignment> _reassignments;
+	private DelayDuration _recurrence;
+	private Set<Action> _actions;
+	private Set<Notification> _notifications;
 
 }

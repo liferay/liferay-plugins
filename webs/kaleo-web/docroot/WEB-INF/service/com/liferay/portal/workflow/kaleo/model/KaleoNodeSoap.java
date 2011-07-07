@@ -39,6 +39,7 @@ public class KaleoNodeSoap implements Serializable {
 		soapModel.setModifiedDate(model.getModifiedDate());
 		soapModel.setKaleoDefinitionId(model.getKaleoDefinitionId());
 		soapModel.setName(model.getName());
+		soapModel.setMetadata(model.getMetadata());
 		soapModel.setDescription(model.getDescription());
 		soapModel.setType(model.getType());
 		soapModel.setInitial(model.getInitial());
@@ -167,6 +168,14 @@ public class KaleoNodeSoap implements Serializable {
 		_name = name;
 	}
 
+	public String getMetadata() {
+		return _metadata;
+	}
+
+	public void setMetadata(String metadata) {
+		_metadata = metadata;
+	}
+
 	public String getDescription() {
 		return _description;
 	}
@@ -216,6 +225,7 @@ public class KaleoNodeSoap implements Serializable {
 	private Date _modifiedDate;
 	private long _kaleoDefinitionId;
 	private String _name;
+	private String _metadata;
 	private String _description;
 	private String _type;
 	private boolean _initial;

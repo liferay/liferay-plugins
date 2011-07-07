@@ -339,6 +339,7 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 		kaleoNodeImpl.setModifiedDate(kaleoNode.getModifiedDate());
 		kaleoNodeImpl.setKaleoDefinitionId(kaleoNode.getKaleoDefinitionId());
 		kaleoNodeImpl.setName(kaleoNode.getName());
+		kaleoNodeImpl.setMetadata(kaleoNode.getMetadata());
 		kaleoNodeImpl.setDescription(kaleoNode.getDescription());
 		kaleoNodeImpl.setType(kaleoNode.getType());
 		kaleoNodeImpl.setInitial(kaleoNode.isInitial());
