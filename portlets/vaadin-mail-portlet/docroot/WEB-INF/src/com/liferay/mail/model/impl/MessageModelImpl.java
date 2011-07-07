@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
@@ -462,6 +463,117 @@ public class MessageModelImpl extends BaseModelImpl<Message>
 		messageModelImpl._originalRemoteMessageId = messageModelImpl._remoteMessageId;
 
 		messageModelImpl._setOriginalRemoteMessageId = false;
+	}
+
+	@Override
+	public CacheModel<Message> toCacheModel() {
+		MessageCacheModel messageCacheModel = new MessageCacheModel();
+
+		messageCacheModel.messageId = getMessageId();
+
+		messageCacheModel.companyId = getCompanyId();
+
+		messageCacheModel.userId = getUserId();
+
+		messageCacheModel.userName = getUserName();
+
+		String userName = messageCacheModel.userName;
+
+		if ((userName != null) && (userName.length() == 0)) {
+			messageCacheModel.userName = null;
+		}
+
+		Date createDate = getCreateDate();
+
+		if (createDate != null) {
+			messageCacheModel.createDate = createDate.getTime();
+		}
+
+		Date modifiedDate = getModifiedDate();
+
+		if (modifiedDate != null) {
+			messageCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+
+		messageCacheModel.accountId = getAccountId();
+
+		messageCacheModel.folderId = getFolderId();
+
+		messageCacheModel.sender = getSender();
+
+		String sender = messageCacheModel.sender;
+
+		if ((sender != null) && (sender.length() == 0)) {
+			messageCacheModel.sender = null;
+		}
+
+		messageCacheModel.to = getTo();
+
+		String to = messageCacheModel.to;
+
+		if ((to != null) && (to.length() == 0)) {
+			messageCacheModel.to = null;
+		}
+
+		messageCacheModel.cc = getCc();
+
+		String cc = messageCacheModel.cc;
+
+		if ((cc != null) && (cc.length() == 0)) {
+			messageCacheModel.cc = null;
+		}
+
+		messageCacheModel.bcc = getBcc();
+
+		String bcc = messageCacheModel.bcc;
+
+		if ((bcc != null) && (bcc.length() == 0)) {
+			messageCacheModel.bcc = null;
+		}
+
+		Date sentDate = getSentDate();
+
+		if (sentDate != null) {
+			messageCacheModel.sentDate = sentDate.getTime();
+		}
+
+		messageCacheModel.subject = getSubject();
+
+		String subject = messageCacheModel.subject;
+
+		if ((subject != null) && (subject.length() == 0)) {
+			messageCacheModel.subject = null;
+		}
+
+		messageCacheModel.preview = getPreview();
+
+		String preview = messageCacheModel.preview;
+
+		if ((preview != null) && (preview.length() == 0)) {
+			messageCacheModel.preview = null;
+		}
+
+		messageCacheModel.body = getBody();
+
+		String body = messageCacheModel.body;
+
+		if ((body != null) && (body.length() == 0)) {
+			messageCacheModel.body = null;
+		}
+
+		messageCacheModel.flags = getFlags();
+
+		String flags = messageCacheModel.flags;
+
+		if ((flags != null) && (flags.length() == 0)) {
+			messageCacheModel.flags = null;
+		}
+
+		messageCacheModel.size = getSize();
+
+		messageCacheModel.remoteMessageId = getRemoteMessageId();
+
+		return messageCacheModel;
 	}
 
 	@Override

@@ -309,6 +309,10 @@ public class HREmploymentTypeWrapper implements HREmploymentType {
 		return _hrEmploymentType.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.hr.model.HREmploymentType> toCacheModel() {
+		return _hrEmploymentType.toCacheModel();
+	}
+
 	public com.liferay.hr.model.HREmploymentType toEscapedModel() {
 		return new HREmploymentTypeWrapper(_hrEmploymentType.toEscapedModel());
 	}

@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
@@ -342,6 +343,65 @@ public class HRTaskStatusModelImpl extends BaseModelImpl<HRTaskStatus>
 		hrTaskStatusModelImpl._setOriginalGroupId = false;
 
 		hrTaskStatusModelImpl._originalCode = hrTaskStatusModelImpl._code;
+	}
+
+	@Override
+	public CacheModel<HRTaskStatus> toCacheModel() {
+		HRTaskStatusCacheModel hrTaskStatusCacheModel = new HRTaskStatusCacheModel();
+
+		hrTaskStatusCacheModel.hrTaskStatusId = getHrTaskStatusId();
+
+		hrTaskStatusCacheModel.groupId = getGroupId();
+
+		hrTaskStatusCacheModel.companyId = getCompanyId();
+
+		hrTaskStatusCacheModel.userId = getUserId();
+
+		hrTaskStatusCacheModel.userName = getUserName();
+
+		String userName = hrTaskStatusCacheModel.userName;
+
+		if ((userName != null) && (userName.length() == 0)) {
+			hrTaskStatusCacheModel.userName = null;
+		}
+
+		Date createDate = getCreateDate();
+
+		if (createDate != null) {
+			hrTaskStatusCacheModel.createDate = createDate.getTime();
+		}
+
+		Date modifiedDate = getModifiedDate();
+
+		if (modifiedDate != null) {
+			hrTaskStatusCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+
+		hrTaskStatusCacheModel.code = getCode();
+
+		String code = hrTaskStatusCacheModel.code;
+
+		if ((code != null) && (code.length() == 0)) {
+			hrTaskStatusCacheModel.code = null;
+		}
+
+		hrTaskStatusCacheModel.name = getName();
+
+		String name = hrTaskStatusCacheModel.name;
+
+		if ((name != null) && (name.length() == 0)) {
+			hrTaskStatusCacheModel.name = null;
+		}
+
+		hrTaskStatusCacheModel.description = getDescription();
+
+		String description = hrTaskStatusCacheModel.description;
+
+		if ((description != null) && (description.length() == 0)) {
+			hrTaskStatusCacheModel.description = null;
+		}
+
+		return hrTaskStatusCacheModel;
 	}
 
 	@Override

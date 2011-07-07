@@ -309,6 +309,10 @@ public class HRBillabilityWrapper implements HRBillability {
 		return _hrBillability.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.hr.model.HRBillability> toCacheModel() {
+		return _hrBillability.toCacheModel();
+	}
+
 	public com.liferay.hr.model.HRBillability toEscapedModel() {
 		return new HRBillabilityWrapper(_hrBillability.toEscapedModel());
 	}

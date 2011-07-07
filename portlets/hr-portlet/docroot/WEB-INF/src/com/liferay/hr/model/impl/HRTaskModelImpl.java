@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
@@ -505,6 +506,137 @@ public class HRTaskModelImpl extends BaseModelImpl<HRTask>
 
 	@Override
 	public void resetOriginalValues() {
+	}
+
+	@Override
+	public CacheModel<HRTask> toCacheModel() {
+		HRTaskCacheModel hrTaskCacheModel = new HRTaskCacheModel();
+
+		hrTaskCacheModel.hrTaskId = getHrTaskId();
+
+		hrTaskCacheModel.groupId = getGroupId();
+
+		hrTaskCacheModel.companyId = getCompanyId();
+
+		hrTaskCacheModel.userId = getUserId();
+
+		hrTaskCacheModel.userName = getUserName();
+
+		String userName = hrTaskCacheModel.userName;
+
+		if ((userName != null) && (userName.length() == 0)) {
+			hrTaskCacheModel.userName = null;
+		}
+
+		Date createDate = getCreateDate();
+
+		if (createDate != null) {
+			hrTaskCacheModel.createDate = createDate.getTime();
+		}
+
+		Date modifiedDate = getModifiedDate();
+
+		if (modifiedDate != null) {
+			hrTaskCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+
+		hrTaskCacheModel.hrBillabilityId = getHrBillabilityId();
+
+		hrTaskCacheModel.hrProjectId = getHrProjectId();
+
+		hrTaskCacheModel.hrTaskStatusId = getHrTaskStatusId();
+
+		hrTaskCacheModel.parentHRTaskId = getParentHRTaskId();
+
+		hrTaskCacheModel.name = getName();
+
+		String name = hrTaskCacheModel.name;
+
+		if ((name != null) && (name.length() == 0)) {
+			hrTaskCacheModel.name = null;
+		}
+
+		hrTaskCacheModel.description = getDescription();
+
+		String description = hrTaskCacheModel.description;
+
+		if ((description != null) && (description.length() == 0)) {
+			hrTaskCacheModel.description = null;
+		}
+
+		Date estimatedStartDate = getEstimatedStartDate();
+
+		if (estimatedStartDate != null) {
+			hrTaskCacheModel.estimatedStartDate = estimatedStartDate.getTime();
+		}
+
+		Date estimatedEndDate = getEstimatedEndDate();
+
+		if (estimatedEndDate != null) {
+			hrTaskCacheModel.estimatedEndDate = estimatedEndDate.getTime();
+		}
+
+		hrTaskCacheModel.estimatedHours = getEstimatedHours();
+
+		hrTaskCacheModel.estimatedHoursCost = getEstimatedHoursCost();
+
+		hrTaskCacheModel.estimatedHoursCostCurrencyCode = getEstimatedHoursCostCurrencyCode();
+
+		String estimatedHoursCostCurrencyCode = hrTaskCacheModel.estimatedHoursCostCurrencyCode;
+
+		if ((estimatedHoursCostCurrencyCode != null) &&
+				(estimatedHoursCostCurrencyCode.length() == 0)) {
+			hrTaskCacheModel.estimatedHoursCostCurrencyCode = null;
+		}
+
+		hrTaskCacheModel.estimatedExpenses = getEstimatedExpenses();
+
+		hrTaskCacheModel.estimatedExpensesCurrencyCode = getEstimatedExpensesCurrencyCode();
+
+		String estimatedExpensesCurrencyCode = hrTaskCacheModel.estimatedExpensesCurrencyCode;
+
+		if ((estimatedExpensesCurrencyCode != null) &&
+				(estimatedExpensesCurrencyCode.length() == 0)) {
+			hrTaskCacheModel.estimatedExpensesCurrencyCode = null;
+		}
+
+		Date actualStartDate = getActualStartDate();
+
+		if (actualStartDate != null) {
+			hrTaskCacheModel.actualStartDate = actualStartDate.getTime();
+		}
+
+		Date actualEndDate = getActualEndDate();
+
+		if (actualEndDate != null) {
+			hrTaskCacheModel.actualEndDate = actualEndDate.getTime();
+		}
+
+		hrTaskCacheModel.actualHours = getActualHours();
+
+		hrTaskCacheModel.actualHoursCost = getActualHoursCost();
+
+		hrTaskCacheModel.actualHoursCostCurrencyCode = getActualHoursCostCurrencyCode();
+
+		String actualHoursCostCurrencyCode = hrTaskCacheModel.actualHoursCostCurrencyCode;
+
+		if ((actualHoursCostCurrencyCode != null) &&
+				(actualHoursCostCurrencyCode.length() == 0)) {
+			hrTaskCacheModel.actualHoursCostCurrencyCode = null;
+		}
+
+		hrTaskCacheModel.actualExpenses = getActualExpenses();
+
+		hrTaskCacheModel.actualExpensesCurrencyCode = getActualExpensesCurrencyCode();
+
+		String actualExpensesCurrencyCode = hrTaskCacheModel.actualExpensesCurrencyCode;
+
+		if ((actualExpensesCurrencyCode != null) &&
+				(actualExpensesCurrencyCode.length() == 0)) {
+			hrTaskCacheModel.actualExpensesCurrencyCode = null;
+		}
+
+		return hrTaskCacheModel;
 	}
 
 	@Override

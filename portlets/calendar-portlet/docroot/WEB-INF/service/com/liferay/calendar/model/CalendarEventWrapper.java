@@ -710,6 +710,10 @@ public class CalendarEventWrapper implements CalendarEvent {
 		return _calendarEvent.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.calendar.model.CalendarEvent> toCacheModel() {
+		return _calendarEvent.toCacheModel();
+	}
+
 	public com.liferay.calendar.model.CalendarEvent toEscapedModel() {
 		return new CalendarEventWrapper(_calendarEvent.toEscapedModel());
 	}

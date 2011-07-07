@@ -41,6 +41,7 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.ResourcePersistence;
@@ -991,6 +992,16 @@ public class HRBillabilityPersistenceImpl extends BasePersistenceImpl<HRBillabil
 	private static HRBillability _nullHRBillability = new HRBillabilityImpl() {
 			public Object clone() {
 				return this;
+			}
+
+			public CacheModel<HRBillability> toCacheModel() {
+				return _nullHRBillabilityCacheModel;
+			}
+		};
+
+	private static CacheModel<HRBillability> _nullHRBillabilityCacheModel = new CacheModel<HRBillability>() {
+			public HRBillability toEntityModel() {
+				return _nullHRBillability;
 			}
 		};
 }

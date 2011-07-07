@@ -291,6 +291,10 @@ public class HRExpenseAccountWrapper implements HRExpenseAccount {
 		return _hrExpenseAccount.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.hr.model.HRExpenseAccount> toCacheModel() {
+		return _hrExpenseAccount.toCacheModel();
+	}
+
 	public com.liferay.hr.model.HRExpenseAccount toEscapedModel() {
 		return new HRExpenseAccountWrapper(_hrExpenseAccount.toEscapedModel());
 	}

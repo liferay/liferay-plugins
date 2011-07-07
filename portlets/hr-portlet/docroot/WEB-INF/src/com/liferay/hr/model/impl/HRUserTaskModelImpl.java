@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
@@ -320,6 +321,49 @@ public class HRUserTaskModelImpl extends BaseModelImpl<HRUserTask>
 
 	@Override
 	public void resetOriginalValues() {
+	}
+
+	@Override
+	public CacheModel<HRUserTask> toCacheModel() {
+		HRUserTaskCacheModel hrUserTaskCacheModel = new HRUserTaskCacheModel();
+
+		hrUserTaskCacheModel.hrUserTaskId = getHrUserTaskId();
+
+		hrUserTaskCacheModel.groupId = getGroupId();
+
+		hrUserTaskCacheModel.companyId = getCompanyId();
+
+		hrUserTaskCacheModel.userId = getUserId();
+
+		hrUserTaskCacheModel.userName = getUserName();
+
+		String userName = hrUserTaskCacheModel.userName;
+
+		if ((userName != null) && (userName.length() == 0)) {
+			hrUserTaskCacheModel.userName = null;
+		}
+
+		Date createDate = getCreateDate();
+
+		if (createDate != null) {
+			hrUserTaskCacheModel.createDate = createDate.getTime();
+		}
+
+		Date modifiedDate = getModifiedDate();
+
+		if (modifiedDate != null) {
+			hrUserTaskCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+
+		hrUserTaskCacheModel.hrBillabilityId = getHrBillabilityId();
+
+		hrUserTaskCacheModel.hrTaskId = getHrTaskId();
+
+		hrUserTaskCacheModel.hrTimesheetId = getHrTimesheetId();
+
+		hrUserTaskCacheModel.hrUserId = getHrUserId();
+
+		return hrUserTaskCacheModel;
 	}
 
 	@Override

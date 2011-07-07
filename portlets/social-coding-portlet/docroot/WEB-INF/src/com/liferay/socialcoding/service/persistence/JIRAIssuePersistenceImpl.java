@@ -37,6 +37,7 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.ResourcePersistence;
@@ -5910,6 +5911,16 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	private static JIRAIssue _nullJIRAIssue = new JIRAIssueImpl() {
 			public Object clone() {
 				return this;
+			}
+
+			public CacheModel<JIRAIssue> toCacheModel() {
+				return _nullJIRAIssueCacheModel;
+			}
+		};
+
+	private static CacheModel<JIRAIssue> _nullJIRAIssueCacheModel = new CacheModel<JIRAIssue>() {
+			public JIRAIssue toEntityModel() {
+				return _nullJIRAIssue;
 			}
 		};
 }

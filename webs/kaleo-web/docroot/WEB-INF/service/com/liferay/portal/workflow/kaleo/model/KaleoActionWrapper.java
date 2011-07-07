@@ -418,6 +418,10 @@ public class KaleoActionWrapper implements KaleoAction {
 		return _kaleoAction.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.portal.workflow.kaleo.model.KaleoAction> toCacheModel() {
+		return _kaleoAction.toCacheModel();
+	}
+
 	public com.liferay.portal.workflow.kaleo.model.KaleoAction toEscapedModel() {
 		return new KaleoActionWrapper(_kaleoAction.toEscapedModel());
 	}

@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
@@ -291,6 +292,43 @@ public class HRBranchModelImpl extends BaseModelImpl<HRBranch>
 
 	@Override
 	public void resetOriginalValues() {
+	}
+
+	@Override
+	public CacheModel<HRBranch> toCacheModel() {
+		HRBranchCacheModel hrBranchCacheModel = new HRBranchCacheModel();
+
+		hrBranchCacheModel.hrBranchId = getHrBranchId();
+
+		hrBranchCacheModel.groupId = getGroupId();
+
+		hrBranchCacheModel.companyId = getCompanyId();
+
+		hrBranchCacheModel.userId = getUserId();
+
+		hrBranchCacheModel.userName = getUserName();
+
+		String userName = hrBranchCacheModel.userName;
+
+		if ((userName != null) && (userName.length() == 0)) {
+			hrBranchCacheModel.userName = null;
+		}
+
+		Date createDate = getCreateDate();
+
+		if (createDate != null) {
+			hrBranchCacheModel.createDate = createDate.getTime();
+		}
+
+		Date modifiedDate = getModifiedDate();
+
+		if (modifiedDate != null) {
+			hrBranchCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+
+		hrBranchCacheModel.organizationId = getOrganizationId();
+
+		return hrBranchCacheModel;
 	}
 
 	@Override

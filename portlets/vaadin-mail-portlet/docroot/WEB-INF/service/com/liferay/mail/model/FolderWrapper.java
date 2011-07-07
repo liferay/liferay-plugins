@@ -309,6 +309,10 @@ public class FolderWrapper implements Folder {
 		return _folder.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.mail.model.Folder> toCacheModel() {
+		return _folder.toCacheModel();
+	}
+
 	public com.liferay.mail.model.Folder toEscapedModel() {
 		return new FolderWrapper(_folder.toEscapedModel());
 	}

@@ -40,6 +40,7 @@ import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.ResourcePersistence;
@@ -3744,6 +3745,16 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	private static Entry _nullEntry = new EntryImpl() {
 			public Object clone() {
 				return this;
+			}
+
+			public CacheModel<Entry> toCacheModel() {
+				return _nullEntryCacheModel;
+			}
+		};
+
+	private static CacheModel<Entry> _nullEntryCacheModel = new CacheModel<Entry>() {
+			public Entry toEntityModel() {
+				return _nullEntry;
 			}
 		};
 }

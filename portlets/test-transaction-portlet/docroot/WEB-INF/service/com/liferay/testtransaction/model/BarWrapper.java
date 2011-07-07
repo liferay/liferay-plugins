@@ -145,6 +145,10 @@ public class BarWrapper implements Bar {
 		return _bar.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.testtransaction.model.Bar> toCacheModel() {
+		return _bar.toCacheModel();
+	}
+
 	public com.liferay.testtransaction.model.Bar toEscapedModel() {
 		return new BarWrapper(_bar.toEscapedModel());
 	}

@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
@@ -431,6 +432,91 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 		oAuthTokenModelImpl._setOriginalModuleId = false;
 
 		oAuthTokenModelImpl._originalTokenName = oAuthTokenModelImpl._tokenName;
+	}
+
+	@Override
+	public CacheModel<OAuthToken> toCacheModel() {
+		OAuthTokenCacheModel oAuthTokenCacheModel = new OAuthTokenCacheModel();
+
+		oAuthTokenCacheModel.oAuthTokenId = getOAuthTokenId();
+
+		oAuthTokenCacheModel.companyId = getCompanyId();
+
+		oAuthTokenCacheModel.userId = getUserId();
+
+		oAuthTokenCacheModel.userName = getUserName();
+
+		String userName = oAuthTokenCacheModel.userName;
+
+		if ((userName != null) && (userName.length() == 0)) {
+			oAuthTokenCacheModel.userName = null;
+		}
+
+		Date createDate = getCreateDate();
+
+		if (createDate != null) {
+			oAuthTokenCacheModel.createDate = createDate.getTime();
+		}
+
+		Date modifiedDate = getModifiedDate();
+
+		if (modifiedDate != null) {
+			oAuthTokenCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+
+		oAuthTokenCacheModel.gadgetKey = getGadgetKey();
+
+		String gadgetKey = oAuthTokenCacheModel.gadgetKey;
+
+		if ((gadgetKey != null) && (gadgetKey.length() == 0)) {
+			oAuthTokenCacheModel.gadgetKey = null;
+		}
+
+		oAuthTokenCacheModel.serviceName = getServiceName();
+
+		String serviceName = oAuthTokenCacheModel.serviceName;
+
+		if ((serviceName != null) && (serviceName.length() == 0)) {
+			oAuthTokenCacheModel.serviceName = null;
+		}
+
+		oAuthTokenCacheModel.moduleId = getModuleId();
+
+		oAuthTokenCacheModel.accessToken = getAccessToken();
+
+		String accessToken = oAuthTokenCacheModel.accessToken;
+
+		if ((accessToken != null) && (accessToken.length() == 0)) {
+			oAuthTokenCacheModel.accessToken = null;
+		}
+
+		oAuthTokenCacheModel.tokenName = getTokenName();
+
+		String tokenName = oAuthTokenCacheModel.tokenName;
+
+		if ((tokenName != null) && (tokenName.length() == 0)) {
+			oAuthTokenCacheModel.tokenName = null;
+		}
+
+		oAuthTokenCacheModel.tokenSecret = getTokenSecret();
+
+		String tokenSecret = oAuthTokenCacheModel.tokenSecret;
+
+		if ((tokenSecret != null) && (tokenSecret.length() == 0)) {
+			oAuthTokenCacheModel.tokenSecret = null;
+		}
+
+		oAuthTokenCacheModel.sessionHandle = getSessionHandle();
+
+		String sessionHandle = oAuthTokenCacheModel.sessionHandle;
+
+		if ((sessionHandle != null) && (sessionHandle.length() == 0)) {
+			oAuthTokenCacheModel.sessionHandle = null;
+		}
+
+		oAuthTokenCacheModel.expiration = getExpiration();
+
+		return oAuthTokenCacheModel;
 	}
 
 	@Override

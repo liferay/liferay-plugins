@@ -16,6 +16,7 @@ package com.liferay.privatemessaging.model;
 
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.BaseModel;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.service.ServiceContext;
 
 import com.liferay.portlet.expando.model.ExpandoBridge;
@@ -238,6 +239,8 @@ public interface UserThreadModel extends BaseModel<UserThread> {
 	public int compareTo(UserThread userThread);
 
 	public int hashCode();
+
+	public CacheModel<UserThread> toCacheModel();
 
 	public UserThread toEscapedModel();
 

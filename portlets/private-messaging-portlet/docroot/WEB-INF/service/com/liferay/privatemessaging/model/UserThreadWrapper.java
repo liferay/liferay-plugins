@@ -310,6 +310,10 @@ public class UserThreadWrapper implements UserThread {
 		return _userThread.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.privatemessaging.model.UserThread> toCacheModel() {
+		return _userThread.toCacheModel();
+	}
+
 	public com.liferay.privatemessaging.model.UserThread toEscapedModel() {
 		return new UserThreadWrapper(_userThread.toEscapedModel());
 	}

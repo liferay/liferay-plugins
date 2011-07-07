@@ -36,6 +36,7 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.GroupPersistence;
@@ -2062,6 +2063,16 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	private static MemberRequest _nullMemberRequest = new MemberRequestImpl() {
 			public Object clone() {
 				return this;
+			}
+
+			public CacheModel<MemberRequest> toCacheModel() {
+				return _nullMemberRequestCacheModel;
+			}
+		};
+
+	private static CacheModel<MemberRequest> _nullMemberRequestCacheModel = new CacheModel<MemberRequest>() {
+			public MemberRequest toEntityModel() {
+				return _nullMemberRequest;
 			}
 		};
 }

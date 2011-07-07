@@ -310,6 +310,10 @@ public class HRExpenseCurrencyWrapper implements HRExpenseCurrency {
 		return _hrExpenseCurrency.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.hr.model.HRExpenseCurrency> toCacheModel() {
+		return _hrExpenseCurrency.toCacheModel();
+	}
+
 	public com.liferay.hr.model.HRExpenseCurrency toEscapedModel() {
 		return new HRExpenseCurrencyWrapper(_hrExpenseCurrency.toEscapedModel());
 	}

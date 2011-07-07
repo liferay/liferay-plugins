@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
@@ -342,6 +343,65 @@ public class HRWageTypeModelImpl extends BaseModelImpl<HRWageType>
 		hrWageTypeModelImpl._setOriginalGroupId = false;
 
 		hrWageTypeModelImpl._originalCode = hrWageTypeModelImpl._code;
+	}
+
+	@Override
+	public CacheModel<HRWageType> toCacheModel() {
+		HRWageTypeCacheModel hrWageTypeCacheModel = new HRWageTypeCacheModel();
+
+		hrWageTypeCacheModel.hrWageTypeId = getHrWageTypeId();
+
+		hrWageTypeCacheModel.groupId = getGroupId();
+
+		hrWageTypeCacheModel.companyId = getCompanyId();
+
+		hrWageTypeCacheModel.userId = getUserId();
+
+		hrWageTypeCacheModel.userName = getUserName();
+
+		String userName = hrWageTypeCacheModel.userName;
+
+		if ((userName != null) && (userName.length() == 0)) {
+			hrWageTypeCacheModel.userName = null;
+		}
+
+		Date createDate = getCreateDate();
+
+		if (createDate != null) {
+			hrWageTypeCacheModel.createDate = createDate.getTime();
+		}
+
+		Date modifiedDate = getModifiedDate();
+
+		if (modifiedDate != null) {
+			hrWageTypeCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+
+		hrWageTypeCacheModel.code = getCode();
+
+		String code = hrWageTypeCacheModel.code;
+
+		if ((code != null) && (code.length() == 0)) {
+			hrWageTypeCacheModel.code = null;
+		}
+
+		hrWageTypeCacheModel.name = getName();
+
+		String name = hrWageTypeCacheModel.name;
+
+		if ((name != null) && (name.length() == 0)) {
+			hrWageTypeCacheModel.name = null;
+		}
+
+		hrWageTypeCacheModel.description = getDescription();
+
+		String description = hrWageTypeCacheModel.description;
+
+		if ((description != null) && (description.length() == 0)) {
+			hrWageTypeCacheModel.description = null;
+		}
+
+		return hrWageTypeCacheModel;
 	}
 
 	@Override

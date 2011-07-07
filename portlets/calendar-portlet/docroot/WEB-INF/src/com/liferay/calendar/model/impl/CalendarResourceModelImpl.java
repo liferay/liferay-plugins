@@ -29,6 +29,7 @@ import com.liferay.portal.kernel.util.LocalizationUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
@@ -652,6 +653,79 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 		calendarResourceModelImpl._originalClassPK = calendarResourceModelImpl._classPK;
 
 		calendarResourceModelImpl._setOriginalClassPK = false;
+	}
+
+	@Override
+	public CacheModel<CalendarResource> toCacheModel() {
+		CalendarResourceCacheModel calendarResourceCacheModel = new CalendarResourceCacheModel();
+
+		calendarResourceCacheModel.uuid = getUuid();
+
+		String uuid = calendarResourceCacheModel.uuid;
+
+		if ((uuid != null) && (uuid.length() == 0)) {
+			calendarResourceCacheModel.uuid = null;
+		}
+
+		calendarResourceCacheModel.calendarResourceId = getCalendarResourceId();
+
+		calendarResourceCacheModel.groupId = getGroupId();
+
+		calendarResourceCacheModel.companyId = getCompanyId();
+
+		calendarResourceCacheModel.userId = getUserId();
+
+		calendarResourceCacheModel.userName = getUserName();
+
+		String userName = calendarResourceCacheModel.userName;
+
+		if ((userName != null) && (userName.length() == 0)) {
+			calendarResourceCacheModel.userName = null;
+		}
+
+		Date createDate = getCreateDate();
+
+		if (createDate != null) {
+			calendarResourceCacheModel.createDate = createDate.getTime();
+		}
+
+		Date modifiedDate = getModifiedDate();
+
+		if (modifiedDate != null) {
+			calendarResourceCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+
+		calendarResourceCacheModel.classNameId = getClassNameId();
+
+		calendarResourceCacheModel.classPK = getClassPK();
+
+		calendarResourceCacheModel.classUuid = getClassUuid();
+
+		String classUuid = calendarResourceCacheModel.classUuid;
+
+		if ((classUuid != null) && (classUuid.length() == 0)) {
+			calendarResourceCacheModel.classUuid = null;
+		}
+
+		calendarResourceCacheModel.name = getName();
+
+		String name = calendarResourceCacheModel.name;
+
+		if ((name != null) && (name.length() == 0)) {
+			calendarResourceCacheModel.name = null;
+		}
+
+		calendarResourceCacheModel.description = getDescription();
+
+		String description = calendarResourceCacheModel.description;
+
+		if ((description != null) && (description.length() == 0)) {
+			calendarResourceCacheModel.description = null;
+		}
+
+		calendarResourceCacheModel.active = getActive();
+
+		return calendarResourceCacheModel;
 	}
 
 	@Override

@@ -291,6 +291,10 @@ public class HRJobTitleWrapper implements HRJobTitle {
 		return _hrJobTitle.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.hr.model.HRJobTitle> toCacheModel() {
+		return _hrJobTitle.toCacheModel();
+	}
+
 	public com.liferay.hr.model.HRJobTitle toEscapedModel() {
 		return new HRJobTitleWrapper(_hrJobTitle.toEscapedModel());
 	}

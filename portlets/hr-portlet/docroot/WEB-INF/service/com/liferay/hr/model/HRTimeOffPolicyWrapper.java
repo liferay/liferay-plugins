@@ -466,6 +466,10 @@ public class HRTimeOffPolicyWrapper implements HRTimeOffPolicy {
 		return _hrTimeOffPolicy.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.hr.model.HRTimeOffPolicy> toCacheModel() {
+		return _hrTimeOffPolicy.toCacheModel();
+	}
+
 	public com.liferay.hr.model.HRTimeOffPolicy toEscapedModel() {
 		return new HRTimeOffPolicyWrapper(_hrTimeOffPolicy.toEscapedModel());
 	}

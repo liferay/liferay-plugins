@@ -310,6 +310,10 @@ public class HRTerminationTypeWrapper implements HRTerminationType {
 		return _hrTerminationType.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.hr.model.HRTerminationType> toCacheModel() {
+		return _hrTerminationType.toCacheModel();
+	}
+
 	public com.liferay.hr.model.HRTerminationType toEscapedModel() {
 		return new HRTerminationTypeWrapper(_hrTerminationType.toEscapedModel());
 	}

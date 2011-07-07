@@ -309,6 +309,10 @@ public class HRWageTypeWrapper implements HRWageType {
 		return _hrWageType.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.hr.model.HRWageType> toCacheModel() {
+		return _hrWageType.toCacheModel();
+	}
+
 	public com.liferay.hr.model.HRWageType toEscapedModel() {
 		return new HRWageTypeWrapper(_hrWageType.toEscapedModel());
 	}

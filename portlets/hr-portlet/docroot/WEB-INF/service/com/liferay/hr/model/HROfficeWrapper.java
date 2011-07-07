@@ -273,6 +273,10 @@ public class HROfficeWrapper implements HROffice {
 		return _hrOffice.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.hr.model.HROffice> toCacheModel() {
+		return _hrOffice.toCacheModel();
+	}
+
 	public com.liferay.hr.model.HROffice toEscapedModel() {
 		return new HROfficeWrapper(_hrOffice.toEscapedModel());
 	}

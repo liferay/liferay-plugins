@@ -382,6 +382,10 @@ public class KaleoNodeWrapper implements KaleoNode {
 		return _kaleoNode.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.portal.workflow.kaleo.model.KaleoNode> toCacheModel() {
+		return _kaleoNode.toCacheModel();
+	}
+
 	public com.liferay.portal.workflow.kaleo.model.KaleoNode toEscapedModel() {
 		return new KaleoNodeWrapper(_kaleoNode.toEscapedModel());
 	}

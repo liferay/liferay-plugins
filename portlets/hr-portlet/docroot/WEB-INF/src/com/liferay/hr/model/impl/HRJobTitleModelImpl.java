@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
@@ -304,6 +305,57 @@ public class HRJobTitleModelImpl extends BaseModelImpl<HRJobTitle>
 
 	@Override
 	public void resetOriginalValues() {
+	}
+
+	@Override
+	public CacheModel<HRJobTitle> toCacheModel() {
+		HRJobTitleCacheModel hrJobTitleCacheModel = new HRJobTitleCacheModel();
+
+		hrJobTitleCacheModel.hrJobTitleId = getHrJobTitleId();
+
+		hrJobTitleCacheModel.groupId = getGroupId();
+
+		hrJobTitleCacheModel.companyId = getCompanyId();
+
+		hrJobTitleCacheModel.userId = getUserId();
+
+		hrJobTitleCacheModel.userName = getUserName();
+
+		String userName = hrJobTitleCacheModel.userName;
+
+		if ((userName != null) && (userName.length() == 0)) {
+			hrJobTitleCacheModel.userName = null;
+		}
+
+		Date createDate = getCreateDate();
+
+		if (createDate != null) {
+			hrJobTitleCacheModel.createDate = createDate.getTime();
+		}
+
+		Date modifiedDate = getModifiedDate();
+
+		if (modifiedDate != null) {
+			hrJobTitleCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+
+		hrJobTitleCacheModel.name = getName();
+
+		String name = hrJobTitleCacheModel.name;
+
+		if ((name != null) && (name.length() == 0)) {
+			hrJobTitleCacheModel.name = null;
+		}
+
+		hrJobTitleCacheModel.description = getDescription();
+
+		String description = hrJobTitleCacheModel.description;
+
+		if ((description != null) && (description.length() == 0)) {
+			hrJobTitleCacheModel.description = null;
+		}
+
+		return hrJobTitleCacheModel;
 	}
 
 	@Override

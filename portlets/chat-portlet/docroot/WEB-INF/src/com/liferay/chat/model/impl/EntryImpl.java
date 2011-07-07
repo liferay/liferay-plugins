@@ -14,8 +14,6 @@
 
 package com.liferay.chat.model.impl;
 
-import com.liferay.chat.model.Entry;
-
 /**
  * @author Brian Wing Shun Chan
  */

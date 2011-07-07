@@ -17,6 +17,7 @@ package com.liferay.calendar.model;
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.BaseModel;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.GroupedModel;
 import com.liferay.portal.service.ServiceContext;
 
@@ -557,6 +558,8 @@ public interface CalendarEventModel extends BaseModel<CalendarEvent>,
 	public int compareTo(CalendarEvent calendarEvent);
 
 	public int hashCode();
+
+	public CacheModel<CalendarEvent> toCacheModel();
 
 	public CalendarEvent toEscapedModel();
 

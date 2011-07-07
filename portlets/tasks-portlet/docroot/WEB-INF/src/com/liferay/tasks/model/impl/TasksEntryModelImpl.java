@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
@@ -448,6 +449,69 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 
 	@Override
 	public void resetOriginalValues() {
+	}
+
+	@Override
+	public CacheModel<TasksEntry> toCacheModel() {
+		TasksEntryCacheModel tasksEntryCacheModel = new TasksEntryCacheModel();
+
+		tasksEntryCacheModel.tasksEntryId = getTasksEntryId();
+
+		tasksEntryCacheModel.groupId = getGroupId();
+
+		tasksEntryCacheModel.companyId = getCompanyId();
+
+		tasksEntryCacheModel.userId = getUserId();
+
+		tasksEntryCacheModel.userName = getUserName();
+
+		String userName = tasksEntryCacheModel.userName;
+
+		if ((userName != null) && (userName.length() == 0)) {
+			tasksEntryCacheModel.userName = null;
+		}
+
+		Date createDate = getCreateDate();
+
+		if (createDate != null) {
+			tasksEntryCacheModel.createDate = createDate.getTime();
+		}
+
+		Date modifiedDate = getModifiedDate();
+
+		if (modifiedDate != null) {
+			tasksEntryCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+
+		tasksEntryCacheModel.title = getTitle();
+
+		String title = tasksEntryCacheModel.title;
+
+		if ((title != null) && (title.length() == 0)) {
+			tasksEntryCacheModel.title = null;
+		}
+
+		tasksEntryCacheModel.priority = getPriority();
+
+		tasksEntryCacheModel.assigneeUserId = getAssigneeUserId();
+
+		tasksEntryCacheModel.resolverUserId = getResolverUserId();
+
+		Date dueDate = getDueDate();
+
+		if (dueDate != null) {
+			tasksEntryCacheModel.dueDate = dueDate.getTime();
+		}
+
+		Date finishDate = getFinishDate();
+
+		if (finishDate != null) {
+			tasksEntryCacheModel.finishDate = finishDate.getTime();
+		}
+
+		tasksEntryCacheModel.status = getStatus();
+
+		return tasksEntryCacheModel;
 	}
 
 	@Override

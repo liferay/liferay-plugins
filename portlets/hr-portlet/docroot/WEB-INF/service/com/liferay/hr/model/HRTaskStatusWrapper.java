@@ -309,6 +309,10 @@ public class HRTaskStatusWrapper implements HRTaskStatus {
 		return _hrTaskStatus.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.hr.model.HRTaskStatus> toCacheModel() {
+		return _hrTaskStatus.toCacheModel();
+	}
+
 	public com.liferay.hr.model.HRTaskStatus toEscapedModel() {
 		return new HRTaskStatusWrapper(_hrTaskStatus.toEscapedModel());
 	}

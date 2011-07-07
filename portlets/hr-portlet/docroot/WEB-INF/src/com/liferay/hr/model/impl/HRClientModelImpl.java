@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
@@ -302,6 +303,57 @@ public class HRClientModelImpl extends BaseModelImpl<HRClient>
 
 	@Override
 	public void resetOriginalValues() {
+	}
+
+	@Override
+	public CacheModel<HRClient> toCacheModel() {
+		HRClientCacheModel hrClientCacheModel = new HRClientCacheModel();
+
+		hrClientCacheModel.hrClientId = getHrClientId();
+
+		hrClientCacheModel.groupId = getGroupId();
+
+		hrClientCacheModel.companyId = getCompanyId();
+
+		hrClientCacheModel.userId = getUserId();
+
+		hrClientCacheModel.userName = getUserName();
+
+		String userName = hrClientCacheModel.userName;
+
+		if ((userName != null) && (userName.length() == 0)) {
+			hrClientCacheModel.userName = null;
+		}
+
+		Date createDate = getCreateDate();
+
+		if (createDate != null) {
+			hrClientCacheModel.createDate = createDate.getTime();
+		}
+
+		Date modifiedDate = getModifiedDate();
+
+		if (modifiedDate != null) {
+			hrClientCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+
+		hrClientCacheModel.name = getName();
+
+		String name = hrClientCacheModel.name;
+
+		if ((name != null) && (name.length() == 0)) {
+			hrClientCacheModel.name = null;
+		}
+
+		hrClientCacheModel.description = getDescription();
+
+		String description = hrClientCacheModel.description;
+
+		if ((description != null) && (description.length() == 0)) {
+			hrClientCacheModel.description = null;
+		}
+
+		return hrClientCacheModel;
 	}
 
 	@Override

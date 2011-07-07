@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
@@ -295,6 +296,43 @@ public class AttachmentModelImpl extends BaseModelImpl<Attachment>
 
 	@Override
 	public void resetOriginalValues() {
+	}
+
+	@Override
+	public CacheModel<Attachment> toCacheModel() {
+		AttachmentCacheModel attachmentCacheModel = new AttachmentCacheModel();
+
+		attachmentCacheModel.attachmentId = getAttachmentId();
+
+		attachmentCacheModel.companyId = getCompanyId();
+
+		attachmentCacheModel.userId = getUserId();
+
+		attachmentCacheModel.accountId = getAccountId();
+
+		attachmentCacheModel.folderId = getFolderId();
+
+		attachmentCacheModel.messageId = getMessageId();
+
+		attachmentCacheModel.contentPath = getContentPath();
+
+		String contentPath = attachmentCacheModel.contentPath;
+
+		if ((contentPath != null) && (contentPath.length() == 0)) {
+			attachmentCacheModel.contentPath = null;
+		}
+
+		attachmentCacheModel.fileName = getFileName();
+
+		String fileName = attachmentCacheModel.fileName;
+
+		if ((fileName != null) && (fileName.length() == 0)) {
+			attachmentCacheModel.fileName = null;
+		}
+
+		attachmentCacheModel.size = getSize();
+
+		return attachmentCacheModel;
 	}
 
 	@Override

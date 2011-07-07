@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
@@ -421,6 +422,75 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 		kaleoTimerInstanceTokenModelImpl._originalKaleoTimerId = kaleoTimerInstanceTokenModelImpl._kaleoTimerId;
 
 		kaleoTimerInstanceTokenModelImpl._setOriginalKaleoTimerId = false;
+	}
+
+	@Override
+	public CacheModel<KaleoTimerInstanceToken> toCacheModel() {
+		KaleoTimerInstanceTokenCacheModel kaleoTimerInstanceTokenCacheModel = new KaleoTimerInstanceTokenCacheModel();
+
+		kaleoTimerInstanceTokenCacheModel.kaleoTimerInstanceTokenId = getKaleoTimerInstanceTokenId();
+
+		kaleoTimerInstanceTokenCacheModel.groupId = getGroupId();
+
+		kaleoTimerInstanceTokenCacheModel.companyId = getCompanyId();
+
+		kaleoTimerInstanceTokenCacheModel.userId = getUserId();
+
+		kaleoTimerInstanceTokenCacheModel.userName = getUserName();
+
+		String userName = kaleoTimerInstanceTokenCacheModel.userName;
+
+		if ((userName != null) && (userName.length() == 0)) {
+			kaleoTimerInstanceTokenCacheModel.userName = null;
+		}
+
+		Date createDate = getCreateDate();
+
+		if (createDate != null) {
+			kaleoTimerInstanceTokenCacheModel.createDate = createDate.getTime();
+		}
+
+		Date modifiedDate = getModifiedDate();
+
+		if (modifiedDate != null) {
+			kaleoTimerInstanceTokenCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+
+		kaleoTimerInstanceTokenCacheModel.kaleoDefinitionId = getKaleoDefinitionId();
+
+		kaleoTimerInstanceTokenCacheModel.kaleoInstanceId = getKaleoInstanceId();
+
+		kaleoTimerInstanceTokenCacheModel.kaleoInstanceTokenId = getKaleoInstanceTokenId();
+
+		kaleoTimerInstanceTokenCacheModel.kaleoTimerId = getKaleoTimerId();
+
+		kaleoTimerInstanceTokenCacheModel.kaleoTimerName = getKaleoTimerName();
+
+		String kaleoTimerName = kaleoTimerInstanceTokenCacheModel.kaleoTimerName;
+
+		if ((kaleoTimerName != null) && (kaleoTimerName.length() == 0)) {
+			kaleoTimerInstanceTokenCacheModel.kaleoTimerName = null;
+		}
+
+		kaleoTimerInstanceTokenCacheModel.completionUserId = getCompletionUserId();
+
+		kaleoTimerInstanceTokenCacheModel.completed = getCompleted();
+
+		Date completionDate = getCompletionDate();
+
+		if (completionDate != null) {
+			kaleoTimerInstanceTokenCacheModel.completionDate = completionDate.getTime();
+		}
+
+		kaleoTimerInstanceTokenCacheModel.workflowContext = getWorkflowContext();
+
+		String workflowContext = kaleoTimerInstanceTokenCacheModel.workflowContext;
+
+		if ((workflowContext != null) && (workflowContext.length() == 0)) {
+			kaleoTimerInstanceTokenCacheModel.workflowContext = null;
+		}
+
+		return kaleoTimerInstanceTokenCacheModel;
 	}
 
 	@Override

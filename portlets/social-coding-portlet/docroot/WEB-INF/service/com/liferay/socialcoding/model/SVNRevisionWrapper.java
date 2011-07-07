@@ -217,6 +217,10 @@ public class SVNRevisionWrapper implements SVNRevision {
 		return _svnRevision.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.socialcoding.model.SVNRevision> toCacheModel() {
+		return _svnRevision.toCacheModel();
+	}
+
 	public com.liferay.socialcoding.model.SVNRevision toEscapedModel() {
 		return new SVNRevisionWrapper(_svnRevision.toEscapedModel());
 	}

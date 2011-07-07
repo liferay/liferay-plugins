@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
@@ -310,6 +311,57 @@ public class AssetModelImpl extends BaseModelImpl<Asset> implements AssetModel {
 
 	@Override
 	public void resetOriginalValues() {
+	}
+
+	@Override
+	public CacheModel<Asset> toCacheModel() {
+		AssetCacheModel assetCacheModel = new AssetCacheModel();
+
+		assetCacheModel.assetId = getAssetId();
+
+		assetCacheModel.companyId = getCompanyId();
+
+		assetCacheModel.userId = getUserId();
+
+		assetCacheModel.userName = getUserName();
+
+		String userName = assetCacheModel.userName;
+
+		if ((userName != null) && (userName.length() == 0)) {
+			assetCacheModel.userName = null;
+		}
+
+		Date createDate = getCreateDate();
+
+		if (createDate != null) {
+			assetCacheModel.createDate = createDate.getTime();
+		}
+
+		Date modifiedDate = getModifiedDate();
+
+		if (modifiedDate != null) {
+			assetCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+
+		assetCacheModel.definitionId = getDefinitionId();
+
+		assetCacheModel.serialNumber = getSerialNumber();
+
+		String serialNumber = assetCacheModel.serialNumber;
+
+		if ((serialNumber != null) && (serialNumber.length() == 0)) {
+			assetCacheModel.serialNumber = null;
+		}
+
+		Date inactiveDate = getInactiveDate();
+
+		if (inactiveDate != null) {
+			assetCacheModel.inactiveDate = inactiveDate.getTime();
+		}
+
+		assetCacheModel.active = getActive();
+
+		return assetCacheModel;
 	}
 
 	@Override

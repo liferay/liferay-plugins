@@ -382,6 +382,10 @@ public class MeetupsEntryWrapper implements MeetupsEntry {
 		return _meetupsEntry.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.socialnetworking.model.MeetupsEntry> toCacheModel() {
+		return _meetupsEntry.toCacheModel();
+	}
+
 	public com.liferay.socialnetworking.model.MeetupsEntry toEscapedModel() {
 		return new MeetupsEntryWrapper(_meetupsEntry.toEscapedModel());
 	}

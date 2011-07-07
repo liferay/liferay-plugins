@@ -401,6 +401,10 @@ public class HRUserTimeOffWrapper implements HRUserTimeOff {
 		return _hrUserTimeOff.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.hr.model.HRUserTimeOff> toCacheModel() {
+		return _hrUserTimeOff.toCacheModel();
+	}
+
 	public com.liferay.hr.model.HRUserTimeOff toEscapedModel() {
 		return new HRUserTimeOffWrapper(_hrUserTimeOff.toEscapedModel());
 	}

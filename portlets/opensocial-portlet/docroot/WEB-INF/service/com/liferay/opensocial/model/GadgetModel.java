@@ -16,6 +16,7 @@ package com.liferay.opensocial.model;
 
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.model.BaseModel;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.service.ServiceContext;
 
 import com.liferay.portlet.expando.model.ExpandoBridge;
@@ -199,6 +200,8 @@ public interface GadgetModel extends BaseModel<Gadget> {
 	public int compareTo(Gadget gadget);
 
 	public int hashCode();
+
+	public CacheModel<Gadget> toCacheModel();
 
 	public Gadget toEscapedModel();
 

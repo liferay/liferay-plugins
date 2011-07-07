@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
@@ -344,6 +345,61 @@ public class KaleoTaskModelImpl extends BaseModelImpl<KaleoTask>
 		kaleoTaskModelImpl._originalKaleoNodeId = kaleoTaskModelImpl._kaleoNodeId;
 
 		kaleoTaskModelImpl._setOriginalKaleoNodeId = false;
+	}
+
+	@Override
+	public CacheModel<KaleoTask> toCacheModel() {
+		KaleoTaskCacheModel kaleoTaskCacheModel = new KaleoTaskCacheModel();
+
+		kaleoTaskCacheModel.kaleoTaskId = getKaleoTaskId();
+
+		kaleoTaskCacheModel.groupId = getGroupId();
+
+		kaleoTaskCacheModel.companyId = getCompanyId();
+
+		kaleoTaskCacheModel.userId = getUserId();
+
+		kaleoTaskCacheModel.userName = getUserName();
+
+		String userName = kaleoTaskCacheModel.userName;
+
+		if ((userName != null) && (userName.length() == 0)) {
+			kaleoTaskCacheModel.userName = null;
+		}
+
+		Date createDate = getCreateDate();
+
+		if (createDate != null) {
+			kaleoTaskCacheModel.createDate = createDate.getTime();
+		}
+
+		Date modifiedDate = getModifiedDate();
+
+		if (modifiedDate != null) {
+			kaleoTaskCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+
+		kaleoTaskCacheModel.kaleoDefinitionId = getKaleoDefinitionId();
+
+		kaleoTaskCacheModel.kaleoNodeId = getKaleoNodeId();
+
+		kaleoTaskCacheModel.name = getName();
+
+		String name = kaleoTaskCacheModel.name;
+
+		if ((name != null) && (name.length() == 0)) {
+			kaleoTaskCacheModel.name = null;
+		}
+
+		kaleoTaskCacheModel.description = getDescription();
+
+		String description = kaleoTaskCacheModel.description;
+
+		if ((description != null) && (description.length() == 0)) {
+			kaleoTaskCacheModel.description = null;
+		}
+
+		return kaleoTaskCacheModel;
 	}
 
 	@Override

@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
@@ -327,6 +328,39 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 		userThreadModelImpl._originalMbThreadId = userThreadModelImpl._mbThreadId;
 
 		userThreadModelImpl._setOriginalMbThreadId = false;
+	}
+
+	@Override
+	public CacheModel<UserThread> toCacheModel() {
+		UserThreadCacheModel userThreadCacheModel = new UserThreadCacheModel();
+
+		userThreadCacheModel.userThreadId = getUserThreadId();
+
+		userThreadCacheModel.companyId = getCompanyId();
+
+		userThreadCacheModel.userId = getUserId();
+
+		Date createDate = getCreateDate();
+
+		if (createDate != null) {
+			userThreadCacheModel.createDate = createDate.getTime();
+		}
+
+		Date modifiedDate = getModifiedDate();
+
+		if (modifiedDate != null) {
+			userThreadCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+
+		userThreadCacheModel.mbThreadId = getMbThreadId();
+
+		userThreadCacheModel.topMBMessageId = getTopMBMessageId();
+
+		userThreadCacheModel.read = getRead();
+
+		userThreadCacheModel.deleted = getDeleted();
+
+		return userThreadCacheModel;
 	}
 
 	@Override

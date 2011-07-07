@@ -38,6 +38,7 @@ import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.ResourcePersistence;
@@ -679,6 +680,16 @@ public class HRUserTaskPersistenceImpl extends BasePersistenceImpl<HRUserTask>
 	private static HRUserTask _nullHRUserTask = new HRUserTaskImpl() {
 			public Object clone() {
 				return this;
+			}
+
+			public CacheModel<HRUserTask> toCacheModel() {
+				return _nullHRUserTaskCacheModel;
+			}
+		};
+
+	private static CacheModel<HRUserTask> _nullHRUserTaskCacheModel = new CacheModel<HRUserTask>() {
+			public HRUserTask toEntityModel() {
+				return _nullHRUserTask;
 			}
 		};
 }

@@ -469,6 +469,10 @@ public class KaleoDefinitionWrapper implements KaleoDefinition {
 		return _kaleoDefinition.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> toCacheModel() {
+		return _kaleoDefinition.toCacheModel();
+	}
+
 	public com.liferay.portal.workflow.kaleo.model.KaleoDefinition toEscapedModel() {
 		return new KaleoDefinitionWrapper(_kaleoDefinition.toEscapedModel());
 	}

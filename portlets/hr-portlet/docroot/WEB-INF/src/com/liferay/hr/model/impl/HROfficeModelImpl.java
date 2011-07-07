@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
@@ -284,6 +285,43 @@ public class HROfficeModelImpl extends BaseModelImpl<HROffice>
 
 	@Override
 	public void resetOriginalValues() {
+	}
+
+	@Override
+	public CacheModel<HROffice> toCacheModel() {
+		HROfficeCacheModel hrOfficeCacheModel = new HROfficeCacheModel();
+
+		hrOfficeCacheModel.hrOfficeId = getHrOfficeId();
+
+		hrOfficeCacheModel.groupId = getGroupId();
+
+		hrOfficeCacheModel.companyId = getCompanyId();
+
+		hrOfficeCacheModel.userId = getUserId();
+
+		hrOfficeCacheModel.userName = getUserName();
+
+		String userName = hrOfficeCacheModel.userName;
+
+		if ((userName != null) && (userName.length() == 0)) {
+			hrOfficeCacheModel.userName = null;
+		}
+
+		Date createDate = getCreateDate();
+
+		if (createDate != null) {
+			hrOfficeCacheModel.createDate = createDate.getTime();
+		}
+
+		Date modifiedDate = getModifiedDate();
+
+		if (modifiedDate != null) {
+			hrOfficeCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+
+		hrOfficeCacheModel.organizationId = getOrganizationId();
+
+		return hrOfficeCacheModel;
 	}
 
 	@Override

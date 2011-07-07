@@ -365,6 +365,10 @@ public class HRUserProjectWrapper implements HRUserProject {
 		return _hrUserProject.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.hr.model.HRUserProject> toCacheModel() {
+		return _hrUserProject.toCacheModel();
+	}
+
 	public com.liferay.hr.model.HRUserProject toEscapedModel() {
 		return new HRUserProjectWrapper(_hrUserProject.toEscapedModel());
 	}

@@ -38,6 +38,7 @@ import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.ResourcePersistence;
@@ -685,6 +686,16 @@ public class HRProjectRolePersistenceImpl extends BasePersistenceImpl<HRProjectR
 	private static HRProjectRole _nullHRProjectRole = new HRProjectRoleImpl() {
 			public Object clone() {
 				return this;
+			}
+
+			public CacheModel<HRProjectRole> toCacheModel() {
+				return _nullHRProjectRoleCacheModel;
+			}
+		};
+
+	private static CacheModel<HRProjectRole> _nullHRProjectRoleCacheModel = new CacheModel<HRProjectRole>() {
+			public HRProjectRole toEntityModel() {
+				return _nullHRProjectRole;
 			}
 		};
 }

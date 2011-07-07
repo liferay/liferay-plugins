@@ -401,6 +401,10 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment {
 		return _kaleoTaskAssignment.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment> toCacheModel() {
+		return _kaleoTaskAssignment.toCacheModel();
+	}
+
 	public com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment toEscapedModel() {
 		return new KaleoTaskAssignmentWrapper(_kaleoTaskAssignment.toEscapedModel());
 	}

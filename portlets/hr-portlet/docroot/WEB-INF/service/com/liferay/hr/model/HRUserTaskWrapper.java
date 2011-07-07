@@ -347,6 +347,10 @@ public class HRUserTaskWrapper implements HRUserTask {
 		return _hrUserTask.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.hr.model.HRUserTask> toCacheModel() {
+		return _hrUserTask.toCacheModel();
+	}
+
 	public com.liferay.hr.model.HRUserTask toEscapedModel() {
 		return new HRUserTaskWrapper(_hrUserTask.toEscapedModel());
 	}

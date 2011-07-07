@@ -16,6 +16,7 @@ package com.liferay.socialcoding.model;
 
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.model.BaseModel;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.service.ServiceContext;
 
 import com.liferay.portlet.expando.model.ExpandoBridge;
@@ -244,6 +245,8 @@ public interface JIRAIssueModel extends BaseModel<JIRAIssue> {
 	public int compareTo(JIRAIssue jiraIssue);
 
 	public int hashCode();
+
+	public CacheModel<JIRAIssue> toCacheModel();
 
 	public JIRAIssue toEscapedModel();
 

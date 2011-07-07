@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
@@ -290,6 +291,49 @@ public class WallEntryModelImpl extends BaseModelImpl<WallEntry>
 
 	@Override
 	public void resetOriginalValues() {
+	}
+
+	@Override
+	public CacheModel<WallEntry> toCacheModel() {
+		WallEntryCacheModel wallEntryCacheModel = new WallEntryCacheModel();
+
+		wallEntryCacheModel.wallEntryId = getWallEntryId();
+
+		wallEntryCacheModel.groupId = getGroupId();
+
+		wallEntryCacheModel.companyId = getCompanyId();
+
+		wallEntryCacheModel.userId = getUserId();
+
+		wallEntryCacheModel.userName = getUserName();
+
+		String userName = wallEntryCacheModel.userName;
+
+		if ((userName != null) && (userName.length() == 0)) {
+			wallEntryCacheModel.userName = null;
+		}
+
+		Date createDate = getCreateDate();
+
+		if (createDate != null) {
+			wallEntryCacheModel.createDate = createDate.getTime();
+		}
+
+		Date modifiedDate = getModifiedDate();
+
+		if (modifiedDate != null) {
+			wallEntryCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+
+		wallEntryCacheModel.comments = getComments();
+
+		String comments = wallEntryCacheModel.comments;
+
+		if ((comments != null) && (comments.length() == 0)) {
+			wallEntryCacheModel.comments = null;
+		}
+
+		return wallEntryCacheModel;
 	}
 
 	@Override

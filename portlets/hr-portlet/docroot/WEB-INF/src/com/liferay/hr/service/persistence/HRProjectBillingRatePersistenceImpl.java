@@ -38,6 +38,7 @@ import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.ResourcePersistence;
@@ -688,6 +689,17 @@ public class HRProjectBillingRatePersistenceImpl extends BasePersistenceImpl<HRP
 	private static HRProjectBillingRate _nullHRProjectBillingRate = new HRProjectBillingRateImpl() {
 			public Object clone() {
 				return this;
+			}
+
+			public CacheModel<HRProjectBillingRate> toCacheModel() {
+				return _nullHRProjectBillingRateCacheModel;
+			}
+		};
+
+	private static CacheModel<HRProjectBillingRate> _nullHRProjectBillingRateCacheModel =
+		new CacheModel<HRProjectBillingRate>() {
+			public HRProjectBillingRate toEntityModel() {
+				return _nullHRProjectBillingRate;
 			}
 		};
 }

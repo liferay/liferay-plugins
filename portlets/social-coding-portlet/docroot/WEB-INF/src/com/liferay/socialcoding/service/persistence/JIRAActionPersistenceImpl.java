@@ -35,6 +35,7 @@ import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.ResourcePersistence;
@@ -1951,6 +1952,16 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	private static JIRAAction _nullJIRAAction = new JIRAActionImpl() {
 			public Object clone() {
 				return this;
+			}
+
+			public CacheModel<JIRAAction> toCacheModel() {
+				return _nullJIRAActionCacheModel;
+			}
+		};
+
+	private static CacheModel<JIRAAction> _nullJIRAActionCacheModel = new CacheModel<JIRAAction>() {
+			public JIRAAction toEntityModel() {
+				return _nullJIRAAction;
 			}
 		};
 }

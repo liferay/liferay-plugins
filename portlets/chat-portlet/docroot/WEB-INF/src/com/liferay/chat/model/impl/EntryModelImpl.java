@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
@@ -267,6 +268,29 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 
 	@Override
 	public void resetOriginalValues() {
+	}
+
+	@Override
+	public CacheModel<Entry> toCacheModel() {
+		EntryCacheModel entryCacheModel = new EntryCacheModel();
+
+		entryCacheModel.entryId = getEntryId();
+
+		entryCacheModel.createDate = getCreateDate();
+
+		entryCacheModel.fromUserId = getFromUserId();
+
+		entryCacheModel.toUserId = getToUserId();
+
+		entryCacheModel.content = getContent();
+
+		String content = entryCacheModel.content;
+
+		if ((content != null) && (content.length() == 0)) {
+			entryCacheModel.content = null;
+		}
+
+		return entryCacheModel;
 	}
 
 	@Override

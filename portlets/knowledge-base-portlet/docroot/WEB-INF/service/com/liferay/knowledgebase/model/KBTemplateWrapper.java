@@ -354,6 +354,10 @@ public class KBTemplateWrapper implements KBTemplate {
 		return _kbTemplate.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.knowledgebase.model.KBTemplate> toCacheModel() {
+		return _kbTemplate.toCacheModel();
+	}
+
 	public com.liferay.knowledgebase.model.KBTemplate toEscapedModel() {
 		return new KBTemplateWrapper(_kbTemplate.toEscapedModel());
 	}

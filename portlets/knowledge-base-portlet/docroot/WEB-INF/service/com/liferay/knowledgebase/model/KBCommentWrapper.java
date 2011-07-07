@@ -363,6 +363,10 @@ public class KBCommentWrapper implements KBComment {
 		return _kbComment.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.knowledgebase.model.KBComment> toCacheModel() {
+		return _kbComment.toCacheModel();
+	}
+
 	public com.liferay.knowledgebase.model.KBComment toEscapedModel() {
 		return new KBCommentWrapper(_kbComment.toEscapedModel());
 	}

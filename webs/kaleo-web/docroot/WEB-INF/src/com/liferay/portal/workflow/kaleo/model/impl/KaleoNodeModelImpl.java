@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
@@ -362,6 +363,71 @@ public class KaleoNodeModelImpl extends BaseModelImpl<KaleoNode>
 
 	@Override
 	public void resetOriginalValues() {
+	}
+
+	@Override
+	public CacheModel<KaleoNode> toCacheModel() {
+		KaleoNodeCacheModel kaleoNodeCacheModel = new KaleoNodeCacheModel();
+
+		kaleoNodeCacheModel.kaleoNodeId = getKaleoNodeId();
+
+		kaleoNodeCacheModel.groupId = getGroupId();
+
+		kaleoNodeCacheModel.companyId = getCompanyId();
+
+		kaleoNodeCacheModel.userId = getUserId();
+
+		kaleoNodeCacheModel.userName = getUserName();
+
+		String userName = kaleoNodeCacheModel.userName;
+
+		if ((userName != null) && (userName.length() == 0)) {
+			kaleoNodeCacheModel.userName = null;
+		}
+
+		Date createDate = getCreateDate();
+
+		if (createDate != null) {
+			kaleoNodeCacheModel.createDate = createDate.getTime();
+		}
+
+		Date modifiedDate = getModifiedDate();
+
+		if (modifiedDate != null) {
+			kaleoNodeCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+
+		kaleoNodeCacheModel.kaleoDefinitionId = getKaleoDefinitionId();
+
+		kaleoNodeCacheModel.name = getName();
+
+		String name = kaleoNodeCacheModel.name;
+
+		if ((name != null) && (name.length() == 0)) {
+			kaleoNodeCacheModel.name = null;
+		}
+
+		kaleoNodeCacheModel.description = getDescription();
+
+		String description = kaleoNodeCacheModel.description;
+
+		if ((description != null) && (description.length() == 0)) {
+			kaleoNodeCacheModel.description = null;
+		}
+
+		kaleoNodeCacheModel.type = getType();
+
+		String type = kaleoNodeCacheModel.type;
+
+		if ((type != null) && (type.length() == 0)) {
+			kaleoNodeCacheModel.type = null;
+		}
+
+		kaleoNodeCacheModel.initial = getInitial();
+
+		kaleoNodeCacheModel.terminal = getTerminal();
+
+		return kaleoNodeCacheModel;
 	}
 
 	@Override

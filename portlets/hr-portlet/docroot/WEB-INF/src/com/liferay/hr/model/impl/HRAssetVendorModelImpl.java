@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
@@ -302,6 +303,57 @@ public class HRAssetVendorModelImpl extends BaseModelImpl<HRAssetVendor>
 
 	@Override
 	public void resetOriginalValues() {
+	}
+
+	@Override
+	public CacheModel<HRAssetVendor> toCacheModel() {
+		HRAssetVendorCacheModel hrAssetVendorCacheModel = new HRAssetVendorCacheModel();
+
+		hrAssetVendorCacheModel.hrAssetVendorId = getHrAssetVendorId();
+
+		hrAssetVendorCacheModel.groupId = getGroupId();
+
+		hrAssetVendorCacheModel.companyId = getCompanyId();
+
+		hrAssetVendorCacheModel.userId = getUserId();
+
+		hrAssetVendorCacheModel.userName = getUserName();
+
+		String userName = hrAssetVendorCacheModel.userName;
+
+		if ((userName != null) && (userName.length() == 0)) {
+			hrAssetVendorCacheModel.userName = null;
+		}
+
+		Date createDate = getCreateDate();
+
+		if (createDate != null) {
+			hrAssetVendorCacheModel.createDate = createDate.getTime();
+		}
+
+		Date modifiedDate = getModifiedDate();
+
+		if (modifiedDate != null) {
+			hrAssetVendorCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+
+		hrAssetVendorCacheModel.name = getName();
+
+		String name = hrAssetVendorCacheModel.name;
+
+		if ((name != null) && (name.length() == 0)) {
+			hrAssetVendorCacheModel.name = null;
+		}
+
+		hrAssetVendorCacheModel.description = getDescription();
+
+		String description = hrAssetVendorCacheModel.description;
+
+		if ((description != null) && (description.length() == 0)) {
+			hrAssetVendorCacheModel.description = null;
+		}
+
+		return hrAssetVendorCacheModel;
 	}
 
 	@Override

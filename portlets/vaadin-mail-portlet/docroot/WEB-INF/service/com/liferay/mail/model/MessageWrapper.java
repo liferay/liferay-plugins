@@ -471,6 +471,10 @@ public class MessageWrapper implements Message {
 		return _message.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.mail.model.Message> toCacheModel() {
+		return _message.toCacheModel();
+	}
+
 	public com.liferay.mail.model.Message toEscapedModel() {
 		return new MessageWrapper(_message.toEscapedModel());
 	}

@@ -291,6 +291,10 @@ public class HRAssetVendorWrapper implements HRAssetVendor {
 		return _hrAssetVendor.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.hr.model.HRAssetVendor> toCacheModel() {
+		return _hrAssetVendor.toCacheModel();
+	}
+
 	public com.liferay.hr.model.HRAssetVendor toEscapedModel() {
 		return new HRAssetVendorWrapper(_hrAssetVendor.toEscapedModel());
 	}

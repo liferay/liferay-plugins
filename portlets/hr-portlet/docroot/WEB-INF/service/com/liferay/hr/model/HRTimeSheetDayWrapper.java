@@ -365,6 +365,10 @@ public class HRTimeSheetDayWrapper implements HRTimeSheetDay {
 		return _hrTimeSheetDay.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.hr.model.HRTimeSheetDay> toCacheModel() {
+		return _hrTimeSheetDay.toCacheModel();
+	}
+
 	public com.liferay.hr.model.HRTimeSheetDay toEscapedModel() {
 		return new HRTimeSheetDayWrapper(_hrTimeSheetDay.toEscapedModel());
 	}

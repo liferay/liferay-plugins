@@ -367,6 +367,10 @@ public class KaleoNotificationRecipientWrapper
 		return _kaleoNotificationRecipient.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient> toCacheModel() {
+		return _kaleoNotificationRecipient.toCacheModel();
+	}
+
 	public com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient toEscapedModel() {
 		return new KaleoNotificationRecipientWrapper(_kaleoNotificationRecipient.toEscapedModel());
 	}

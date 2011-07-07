@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 
@@ -347,6 +348,85 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue>
 		JIRAIssueModelImpl jiraIssueModelImpl = this;
 
 		jiraIssueModelImpl._originalKey = jiraIssueModelImpl._key;
+	}
+
+	@Override
+	public CacheModel<JIRAIssue> toCacheModel() {
+		JIRAIssueCacheModel jiraIssueCacheModel = new JIRAIssueCacheModel();
+
+		jiraIssueCacheModel.jiraIssueId = getJiraIssueId();
+
+		Date createDate = getCreateDate();
+
+		if (createDate != null) {
+			jiraIssueCacheModel.createDate = createDate.getTime();
+		}
+
+		Date modifiedDate = getModifiedDate();
+
+		if (modifiedDate != null) {
+			jiraIssueCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+
+		jiraIssueCacheModel.projectId = getProjectId();
+
+		jiraIssueCacheModel.key = getKey();
+
+		String key = jiraIssueCacheModel.key;
+
+		if ((key != null) && (key.length() == 0)) {
+			jiraIssueCacheModel.key = null;
+		}
+
+		jiraIssueCacheModel.summary = getSummary();
+
+		String summary = jiraIssueCacheModel.summary;
+
+		if ((summary != null) && (summary.length() == 0)) {
+			jiraIssueCacheModel.summary = null;
+		}
+
+		jiraIssueCacheModel.description = getDescription();
+
+		String description = jiraIssueCacheModel.description;
+
+		if ((description != null) && (description.length() == 0)) {
+			jiraIssueCacheModel.description = null;
+		}
+
+		jiraIssueCacheModel.reporterJiraUserId = getReporterJiraUserId();
+
+		String reporterJiraUserId = jiraIssueCacheModel.reporterJiraUserId;
+
+		if ((reporterJiraUserId != null) && (reporterJiraUserId.length() == 0)) {
+			jiraIssueCacheModel.reporterJiraUserId = null;
+		}
+
+		jiraIssueCacheModel.assigneeJiraUserId = getAssigneeJiraUserId();
+
+		String assigneeJiraUserId = jiraIssueCacheModel.assigneeJiraUserId;
+
+		if ((assigneeJiraUserId != null) && (assigneeJiraUserId.length() == 0)) {
+			jiraIssueCacheModel.assigneeJiraUserId = null;
+		}
+
+		jiraIssueCacheModel.resolution = getResolution();
+
+		String resolution = jiraIssueCacheModel.resolution;
+
+		if ((resolution != null) && (resolution.length() == 0)) {
+			jiraIssueCacheModel.resolution = null;
+		}
+
+		jiraIssueCacheModel.status = getStatus();
+
+		String status = jiraIssueCacheModel.status;
+
+		if ((status != null) && (status.length() == 0)) {
+			jiraIssueCacheModel.status = null;
+		}
+
+		return jiraIssueCacheModel;
 	}
 
 	@Override

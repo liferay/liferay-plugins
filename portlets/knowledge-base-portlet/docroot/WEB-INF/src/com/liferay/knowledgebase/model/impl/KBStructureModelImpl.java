@@ -30,6 +30,7 @@ import com.liferay.portal.kernel.util.LocalizationUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
@@ -482,6 +483,65 @@ public class KBStructureModelImpl extends BaseModelImpl<KBStructure>
 		kbStructureModelImpl._originalGroupId = kbStructureModelImpl._groupId;
 
 		kbStructureModelImpl._setOriginalGroupId = false;
+	}
+
+	@Override
+	public CacheModel<KBStructure> toCacheModel() {
+		KBStructureCacheModel kbStructureCacheModel = new KBStructureCacheModel();
+
+		kbStructureCacheModel.uuid = getUuid();
+
+		String uuid = kbStructureCacheModel.uuid;
+
+		if ((uuid != null) && (uuid.length() == 0)) {
+			kbStructureCacheModel.uuid = null;
+		}
+
+		kbStructureCacheModel.kbStructureId = getKbStructureId();
+
+		kbStructureCacheModel.groupId = getGroupId();
+
+		kbStructureCacheModel.companyId = getCompanyId();
+
+		kbStructureCacheModel.userId = getUserId();
+
+		kbStructureCacheModel.userName = getUserName();
+
+		String userName = kbStructureCacheModel.userName;
+
+		if ((userName != null) && (userName.length() == 0)) {
+			kbStructureCacheModel.userName = null;
+		}
+
+		Date createDate = getCreateDate();
+
+		if (createDate != null) {
+			kbStructureCacheModel.createDate = createDate.getTime();
+		}
+
+		Date modifiedDate = getModifiedDate();
+
+		if (modifiedDate != null) {
+			kbStructureCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+
+		kbStructureCacheModel.title = getTitle();
+
+		String title = kbStructureCacheModel.title;
+
+		if ((title != null) && (title.length() == 0)) {
+			kbStructureCacheModel.title = null;
+		}
+
+		kbStructureCacheModel.content = getContent();
+
+		String content = kbStructureCacheModel.content;
+
+		if ((content != null) && (content.length() == 0)) {
+			kbStructureCacheModel.content = null;
+		}
+
+		return kbStructureCacheModel;
 	}
 
 	@Override

@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
@@ -448,6 +449,73 @@ public class HRTimeOffModelImpl extends BaseModelImpl<HRTimeOff>
 
 	@Override
 	public void resetOriginalValues() {
+	}
+
+	@Override
+	public CacheModel<HRTimeOff> toCacheModel() {
+		HRTimeOffCacheModel hrTimeOffCacheModel = new HRTimeOffCacheModel();
+
+		hrTimeOffCacheModel.hrTimeOffId = getHrTimeOffId();
+
+		hrTimeOffCacheModel.groupId = getGroupId();
+
+		hrTimeOffCacheModel.companyId = getCompanyId();
+
+		hrTimeOffCacheModel.userId = getUserId();
+
+		hrTimeOffCacheModel.userName = getUserName();
+
+		String userName = hrTimeOffCacheModel.userName;
+
+		if ((userName != null) && (userName.length() == 0)) {
+			hrTimeOffCacheModel.userName = null;
+		}
+
+		Date createDate = getCreateDate();
+
+		if (createDate != null) {
+			hrTimeOffCacheModel.createDate = createDate.getTime();
+		}
+
+		Date modifiedDate = getModifiedDate();
+
+		if (modifiedDate != null) {
+			hrTimeOffCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+
+		hrTimeOffCacheModel.hrTimeOffTypeId = getHrTimeOffTypeId();
+
+		hrTimeOffCacheModel.hrTimeSheetId = getHrTimeSheetId();
+
+		hrTimeOffCacheModel.hrUserId = getHrUserId();
+
+		hrTimeOffCacheModel.startDayOfYear = getStartDayOfYear();
+
+		hrTimeOffCacheModel.endDayOfYear = getEndDayOfYear();
+
+		hrTimeOffCacheModel.year = getYear();
+
+		hrTimeOffCacheModel.totalHours = getTotalHours();
+
+		hrTimeOffCacheModel.status = getStatus();
+
+		hrTimeOffCacheModel.statusByUserId = getStatusByUserId();
+
+		hrTimeOffCacheModel.statusByUserName = getStatusByUserName();
+
+		String statusByUserName = hrTimeOffCacheModel.statusByUserName;
+
+		if ((statusByUserName != null) && (statusByUserName.length() == 0)) {
+			hrTimeOffCacheModel.statusByUserName = null;
+		}
+
+		Date statusDate = getStatusDate();
+
+		if (statusDate != null) {
+			hrTimeOffCacheModel.statusDate = statusDate.getTime();
+		}
+
+		return hrTimeOffCacheModel;
 	}
 
 	@Override

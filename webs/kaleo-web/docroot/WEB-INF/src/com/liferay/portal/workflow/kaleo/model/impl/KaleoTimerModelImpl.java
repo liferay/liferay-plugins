@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
@@ -378,6 +379,75 @@ public class KaleoTimerModelImpl extends BaseModelImpl<KaleoTimer>
 
 	@Override
 	public void resetOriginalValues() {
+	}
+
+	@Override
+	public CacheModel<KaleoTimer> toCacheModel() {
+		KaleoTimerCacheModel kaleoTimerCacheModel = new KaleoTimerCacheModel();
+
+		kaleoTimerCacheModel.kaleoTimerId = getKaleoTimerId();
+
+		kaleoTimerCacheModel.groupId = getGroupId();
+
+		kaleoTimerCacheModel.companyId = getCompanyId();
+
+		kaleoTimerCacheModel.userId = getUserId();
+
+		kaleoTimerCacheModel.userName = getUserName();
+
+		String userName = kaleoTimerCacheModel.userName;
+
+		if ((userName != null) && (userName.length() == 0)) {
+			kaleoTimerCacheModel.userName = null;
+		}
+
+		Date createDate = getCreateDate();
+
+		if (createDate != null) {
+			kaleoTimerCacheModel.createDate = createDate.getTime();
+		}
+
+		Date modifiedDate = getModifiedDate();
+
+		if (modifiedDate != null) {
+			kaleoTimerCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+
+		kaleoTimerCacheModel.kaleoDefinitionId = getKaleoDefinitionId();
+
+		kaleoTimerCacheModel.kaleoNodeId = getKaleoNodeId();
+
+		kaleoTimerCacheModel.parentKaleoNodeId = getParentKaleoNodeId();
+
+		kaleoTimerCacheModel.name = getName();
+
+		String name = kaleoTimerCacheModel.name;
+
+		if ((name != null) && (name.length() == 0)) {
+			kaleoTimerCacheModel.name = null;
+		}
+
+		kaleoTimerCacheModel.defaultTimer = getDefaultTimer();
+
+		kaleoTimerCacheModel.description = getDescription();
+
+		String description = kaleoTimerCacheModel.description;
+
+		if ((description != null) && (description.length() == 0)) {
+			kaleoTimerCacheModel.description = null;
+		}
+
+		kaleoTimerCacheModel.duration = getDuration();
+
+		kaleoTimerCacheModel.scale = getScale();
+
+		String scale = kaleoTimerCacheModel.scale;
+
+		if ((scale != null) && (scale.length() == 0)) {
+			kaleoTimerCacheModel.scale = null;
+		}
+
+		return kaleoTimerCacheModel;
 	}
 
 	@Override

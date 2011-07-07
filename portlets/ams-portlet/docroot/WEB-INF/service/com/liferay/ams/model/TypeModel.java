@@ -16,6 +16,7 @@ package com.liferay.ams.model;
 
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.model.BaseModel;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.service.ServiceContext;
 
 import com.liferay.portlet.expando.model.ExpandoBridge;
@@ -124,6 +125,8 @@ public interface TypeModel extends BaseModel<Type> {
 	public int compareTo(Type type);
 
 	public int hashCode();
+
+	public CacheModel<Type> toCacheModel();
 
 	public Type toEscapedModel();
 

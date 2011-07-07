@@ -17,6 +17,7 @@ package com.liferay.portal.workflow.kaleo.model;
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.BaseModel;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.GroupedModel;
 import com.liferay.portal.service.ServiceContext;
 
@@ -337,6 +338,8 @@ public interface KaleoTransitionModel extends BaseModel<KaleoTransition>,
 	public int compareTo(KaleoTransition kaleoTransition);
 
 	public int hashCode();
+
+	public CacheModel<KaleoTransition> toCacheModel();
 
 	public KaleoTransition toEscapedModel();
 

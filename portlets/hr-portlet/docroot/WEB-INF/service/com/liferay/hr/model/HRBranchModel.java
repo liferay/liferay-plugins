@@ -17,6 +17,7 @@ package com.liferay.hr.model;
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.BaseModel;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.GroupedModel;
 import com.liferay.portal.service.ServiceContext;
 
@@ -213,6 +214,8 @@ public interface HRBranchModel extends BaseModel<HRBranch>, GroupedModel {
 	public int compareTo(HRBranch hrBranch);
 
 	public int hashCode();
+
+	public CacheModel<HRBranch> toCacheModel();
 
 	public HRBranch toEscapedModel();
 

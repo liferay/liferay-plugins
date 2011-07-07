@@ -46,6 +46,7 @@ import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.ResourcePersistence;
@@ -1360,6 +1361,16 @@ public class HRHolidayPersistenceImpl extends BasePersistenceImpl<HRHoliday>
 	private static HRHoliday _nullHRHoliday = new HRHolidayImpl() {
 			public Object clone() {
 				return this;
+			}
+
+			public CacheModel<HRHoliday> toCacheModel() {
+				return _nullHRHolidayCacheModel;
+			}
+		};
+
+	private static CacheModel<HRHoliday> _nullHRHolidayCacheModel = new CacheModel<HRHoliday>() {
+			public HRHoliday toEntityModel() {
+				return _nullHRHoliday;
 			}
 		};
 }

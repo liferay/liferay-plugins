@@ -42,6 +42,7 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.ResourcePersistence;
@@ -1401,6 +1402,16 @@ public class CalendarEventPersistenceImpl extends BasePersistenceImpl<CalendarEv
 	private static CalendarEvent _nullCalendarEvent = new CalendarEventImpl() {
 			public Object clone() {
 				return this;
+			}
+
+			public CacheModel<CalendarEvent> toCacheModel() {
+				return _nullCalendarEventCacheModel;
+			}
+		};
+
+	private static CacheModel<CalendarEvent> _nullCalendarEventCacheModel = new CacheModel<CalendarEvent>() {
+			public CalendarEvent toEntityModel() {
+				return _nullCalendarEvent;
 			}
 		};
 }

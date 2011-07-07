@@ -372,6 +372,10 @@ public class FooWrapper implements Foo {
 		return _foo.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.sampleservicebuilder.model.Foo> toCacheModel() {
+		return _foo.toCacheModel();
+	}
+
 	public com.liferay.sampleservicebuilder.model.Foo toEscapedModel() {
 		return new FooWrapper(_foo.toEscapedModel());
 	}

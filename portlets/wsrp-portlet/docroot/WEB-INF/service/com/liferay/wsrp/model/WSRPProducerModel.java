@@ -16,6 +16,7 @@ package com.liferay.wsrp.model;
 
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.model.BaseModel;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.service.ServiceContext;
 
 import com.liferay.portlet.expando.model.ExpandoBridge;
@@ -213,6 +214,8 @@ public interface WSRPProducerModel extends BaseModel<WSRPProducer> {
 	public int compareTo(WSRPProducer wsrpProducer);
 
 	public int hashCode();
+
+	public CacheModel<WSRPProducer> toCacheModel();
 
 	public WSRPProducer toEscapedModel();
 

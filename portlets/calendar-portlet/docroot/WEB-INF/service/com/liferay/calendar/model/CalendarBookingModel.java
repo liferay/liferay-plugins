@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.AttachedModel;
 import com.liferay.portal.model.BaseModel;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.GroupedModel;
 import com.liferay.portal.model.WorkflowedModel;
 import com.liferay.portal.service.ServiceContext;
@@ -772,6 +773,8 @@ public interface CalendarBookingModel extends AttachedModel,
 	public int compareTo(CalendarBooking calendarBooking);
 
 	public int hashCode();
+
+	public CacheModel<CalendarBooking> toCacheModel();
 
 	public CalendarBooking toEscapedModel();
 

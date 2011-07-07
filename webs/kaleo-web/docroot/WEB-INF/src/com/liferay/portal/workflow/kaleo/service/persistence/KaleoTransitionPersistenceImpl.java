@@ -36,6 +36,7 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.ResourcePersistence;
@@ -2498,6 +2499,16 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 	private static KaleoTransition _nullKaleoTransition = new KaleoTransitionImpl() {
 			public Object clone() {
 				return this;
+			}
+
+			public CacheModel<KaleoTransition> toCacheModel() {
+				return _nullKaleoTransitionCacheModel;
+			}
+		};
+
+	private static CacheModel<KaleoTransition> _nullKaleoTransitionCacheModel = new CacheModel<KaleoTransition>() {
+			public KaleoTransition toEntityModel() {
+				return _nullKaleoTransition;
 			}
 		};
 }

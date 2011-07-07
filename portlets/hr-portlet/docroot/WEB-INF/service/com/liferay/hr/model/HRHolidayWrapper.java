@@ -354,6 +354,10 @@ public class HRHolidayWrapper implements HRHoliday {
 		return _hrHoliday.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.hr.model.HRHoliday> toCacheModel() {
+		return _hrHoliday.toCacheModel();
+	}
+
 	public com.liferay.hr.model.HRHoliday toEscapedModel() {
 		return new HRHolidayWrapper(_hrHoliday.toEscapedModel());
 	}

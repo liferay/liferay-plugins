@@ -619,6 +619,10 @@ public class HRTaskWrapper implements HRTask {
 		return _hrTask.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.hr.model.HRTask> toCacheModel() {
+		return _hrTask.toCacheModel();
+	}
+
 	public com.liferay.hr.model.HRTask toEscapedModel() {
 		return new HRTaskWrapper(_hrTask.toEscapedModel());
 	}

@@ -164,6 +164,10 @@ public class SVNRepositoryWrapper implements SVNRepository {
 		return _svnRepository.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.socialcoding.model.SVNRepository> toCacheModel() {
+		return _svnRepository.toCacheModel();
+	}
+
 	public com.liferay.socialcoding.model.SVNRepository toEscapedModel() {
 		return new SVNRepositoryWrapper(_svnRepository.toEscapedModel());
 	}

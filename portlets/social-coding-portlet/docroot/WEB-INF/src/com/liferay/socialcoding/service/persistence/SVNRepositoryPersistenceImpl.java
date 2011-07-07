@@ -36,6 +36,7 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.ResourcePersistence;
@@ -881,6 +882,16 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 	private static SVNRepository _nullSVNRepository = new SVNRepositoryImpl() {
 			public Object clone() {
 				return this;
+			}
+
+			public CacheModel<SVNRepository> toCacheModel() {
+				return _nullSVNRepositoryCacheModel;
+			}
+		};
+
+	private static CacheModel<SVNRepository> _nullSVNRepositoryCacheModel = new CacheModel<SVNRepository>() {
+			public SVNRepository toEntityModel() {
+				return _nullSVNRepository;
 			}
 		};
 }

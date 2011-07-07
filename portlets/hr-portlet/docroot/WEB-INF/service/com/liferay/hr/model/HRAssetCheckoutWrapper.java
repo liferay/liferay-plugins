@@ -365,6 +365,10 @@ public class HRAssetCheckoutWrapper implements HRAssetCheckout {
 		return _hrAssetCheckout.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.hr.model.HRAssetCheckout> toCacheModel() {
+		return _hrAssetCheckout.toCacheModel();
+	}
+
 	public com.liferay.hr.model.HRAssetCheckout toEscapedModel() {
 		return new HRAssetCheckoutWrapper(_hrAssetCheckout.toEscapedModel());
 	}

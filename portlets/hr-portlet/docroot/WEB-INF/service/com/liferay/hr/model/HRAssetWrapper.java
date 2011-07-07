@@ -327,6 +327,10 @@ public class HRAssetWrapper implements HRAsset {
 		return _hrAsset.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.hr.model.HRAsset> toCacheModel() {
+		return _hrAsset.toCacheModel();
+	}
+
 	public com.liferay.hr.model.HRAsset toEscapedModel() {
 		return new HRAssetWrapper(_hrAsset.toEscapedModel());
 	}

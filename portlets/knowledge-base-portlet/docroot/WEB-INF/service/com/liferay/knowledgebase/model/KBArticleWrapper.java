@@ -664,6 +664,10 @@ public class KBArticleWrapper implements KBArticle {
 		return _kbArticle.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.knowledgebase.model.KBArticle> toCacheModel() {
+		return _kbArticle.toCacheModel();
+	}
+
 	public com.liferay.knowledgebase.model.KBArticle toEscapedModel() {
 		return new KBArticleWrapper(_kbArticle.toEscapedModel());
 	}

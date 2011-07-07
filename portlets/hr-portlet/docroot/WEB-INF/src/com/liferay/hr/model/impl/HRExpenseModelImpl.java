@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
@@ -459,6 +460,79 @@ public class HRExpenseModelImpl extends BaseModelImpl<HRExpense>
 
 	@Override
 	public void resetOriginalValues() {
+	}
+
+	@Override
+	public CacheModel<HRExpense> toCacheModel() {
+		HRExpenseCacheModel hrExpenseCacheModel = new HRExpenseCacheModel();
+
+		hrExpenseCacheModel.hrExpenseId = getHrExpenseId();
+
+		hrExpenseCacheModel.groupId = getGroupId();
+
+		hrExpenseCacheModel.companyId = getCompanyId();
+
+		hrExpenseCacheModel.userId = getUserId();
+
+		hrExpenseCacheModel.userName = getUserName();
+
+		String userName = hrExpenseCacheModel.userName;
+
+		if ((userName != null) && (userName.length() == 0)) {
+			hrExpenseCacheModel.userName = null;
+		}
+
+		Date createDate = getCreateDate();
+
+		if (createDate != null) {
+			hrExpenseCacheModel.createDate = createDate.getTime();
+		}
+
+		Date modifiedDate = getModifiedDate();
+
+		if (modifiedDate != null) {
+			hrExpenseCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+
+		hrExpenseCacheModel.hrExpenseAccountId = getHrExpenseAccountId();
+
+		hrExpenseCacheModel.hrExpenseTypeId = getHrExpenseTypeId();
+
+		hrExpenseCacheModel.hrUserId = getHrUserId();
+
+		Date expenseDate = getExpenseDate();
+
+		if (expenseDate != null) {
+			hrExpenseCacheModel.expenseDate = expenseDate.getTime();
+		}
+
+		hrExpenseCacheModel.expenseAmount = getExpenseAmount();
+
+		hrExpenseCacheModel.expenseHRExpenseCurrencyId = getExpenseHRExpenseCurrencyId();
+
+		hrExpenseCacheModel.reimbursementAmount = getReimbursementAmount();
+
+		hrExpenseCacheModel.reimbursementHRExpenseCurrencyId = getReimbursementHRExpenseCurrencyId();
+
+		hrExpenseCacheModel.status = getStatus();
+
+		hrExpenseCacheModel.statusByUserId = getStatusByUserId();
+
+		hrExpenseCacheModel.statusByUserName = getStatusByUserName();
+
+		String statusByUserName = hrExpenseCacheModel.statusByUserName;
+
+		if ((statusByUserName != null) && (statusByUserName.length() == 0)) {
+			hrExpenseCacheModel.statusByUserName = null;
+		}
+
+		Date statusDate = getStatusDate();
+
+		if (statusDate != null) {
+			hrExpenseCacheModel.statusDate = statusDate.getTime();
+		}
+
+		return hrExpenseCacheModel;
 	}
 
 	@Override

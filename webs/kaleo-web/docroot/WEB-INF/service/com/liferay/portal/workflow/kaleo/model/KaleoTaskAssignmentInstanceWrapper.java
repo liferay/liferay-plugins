@@ -448,6 +448,10 @@ public class KaleoTaskAssignmentInstanceWrapper
 		return _kaleoTaskAssignmentInstance.hashCode();
 	}
 
+	public com.liferay.portal.model.CacheModel<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance> toCacheModel() {
+		return _kaleoTaskAssignmentInstance.toCacheModel();
+	}
+
 	public com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance toEscapedModel() {
 		return new KaleoTaskAssignmentInstanceWrapper(_kaleoTaskAssignmentInstance.toEscapedModel());
 	}

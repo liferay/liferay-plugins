@@ -38,6 +38,7 @@ import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.ResourcePersistence;
@@ -688,6 +689,17 @@ public class HRExpenseCurrencyPersistenceImpl extends BasePersistenceImpl<HRExpe
 	private static HRExpenseCurrency _nullHRExpenseCurrency = new HRExpenseCurrencyImpl() {
 			public Object clone() {
 				return this;
+			}
+
+			public CacheModel<HRExpenseCurrency> toCacheModel() {
+				return _nullHRExpenseCurrencyCacheModel;
+			}
+		};
+
+	private static CacheModel<HRExpenseCurrency> _nullHRExpenseCurrencyCacheModel =
+		new CacheModel<HRExpenseCurrency>() {
+			public HRExpenseCurrency toEntityModel() {
+				return _nullHRExpenseCurrency;
 			}
 		};
 }

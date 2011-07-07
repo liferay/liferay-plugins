@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
@@ -383,6 +384,76 @@ public class KaleoInstanceTokenModelImpl extends BaseModelImpl<KaleoInstanceToke
 
 	@Override
 	public void resetOriginalValues() {
+	}
+
+	@Override
+	public CacheModel<KaleoInstanceToken> toCacheModel() {
+		KaleoInstanceTokenCacheModel kaleoInstanceTokenCacheModel = new KaleoInstanceTokenCacheModel();
+
+		kaleoInstanceTokenCacheModel.kaleoInstanceTokenId = getKaleoInstanceTokenId();
+
+		kaleoInstanceTokenCacheModel.groupId = getGroupId();
+
+		kaleoInstanceTokenCacheModel.companyId = getCompanyId();
+
+		kaleoInstanceTokenCacheModel.userId = getUserId();
+
+		kaleoInstanceTokenCacheModel.userName = getUserName();
+
+		String userName = kaleoInstanceTokenCacheModel.userName;
+
+		if ((userName != null) && (userName.length() == 0)) {
+			kaleoInstanceTokenCacheModel.userName = null;
+		}
+
+		Date createDate = getCreateDate();
+
+		if (createDate != null) {
+			kaleoInstanceTokenCacheModel.createDate = createDate.getTime();
+		}
+
+		Date modifiedDate = getModifiedDate();
+
+		if (modifiedDate != null) {
+			kaleoInstanceTokenCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+
+		kaleoInstanceTokenCacheModel.kaleoDefinitionId = getKaleoDefinitionId();
+
+		kaleoInstanceTokenCacheModel.kaleoInstanceId = getKaleoInstanceId();
+
+		kaleoInstanceTokenCacheModel.parentKaleoInstanceTokenId = getParentKaleoInstanceTokenId();
+
+		kaleoInstanceTokenCacheModel.currentKaleoNodeId = getCurrentKaleoNodeId();
+
+		kaleoInstanceTokenCacheModel.currentKaleoNodeName = getCurrentKaleoNodeName();
+
+		String currentKaleoNodeName = kaleoInstanceTokenCacheModel.currentKaleoNodeName;
+
+		if ((currentKaleoNodeName != null) &&
+				(currentKaleoNodeName.length() == 0)) {
+			kaleoInstanceTokenCacheModel.currentKaleoNodeName = null;
+		}
+
+		kaleoInstanceTokenCacheModel.className = getClassName();
+
+		String className = kaleoInstanceTokenCacheModel.className;
+
+		if ((className != null) && (className.length() == 0)) {
+			kaleoInstanceTokenCacheModel.className = null;
+		}
+
+		kaleoInstanceTokenCacheModel.classPK = getClassPK();
+
+		kaleoInstanceTokenCacheModel.completed = getCompleted();
+
+		Date completionDate = getCompletionDate();
+
+		if (completionDate != null) {
+			kaleoInstanceTokenCacheModel.completionDate = completionDate.getTime();
+		}
+
+		return kaleoInstanceTokenCacheModel;
 	}
 
 	@Override

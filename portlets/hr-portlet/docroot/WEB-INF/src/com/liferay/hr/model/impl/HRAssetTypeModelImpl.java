@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
@@ -302,6 +303,57 @@ public class HRAssetTypeModelImpl extends BaseModelImpl<HRAssetType>
 
 	@Override
 	public void resetOriginalValues() {
+	}
+
+	@Override
+	public CacheModel<HRAssetType> toCacheModel() {
+		HRAssetTypeCacheModel hrAssetTypeCacheModel = new HRAssetTypeCacheModel();
+
+		hrAssetTypeCacheModel.hrAssetTypeId = getHrAssetTypeId();
+
+		hrAssetTypeCacheModel.groupId = getGroupId();
+
+		hrAssetTypeCacheModel.companyId = getCompanyId();
+
+		hrAssetTypeCacheModel.userId = getUserId();
+
+		hrAssetTypeCacheModel.userName = getUserName();
+
+		String userName = hrAssetTypeCacheModel.userName;
+
+		if ((userName != null) && (userName.length() == 0)) {
+			hrAssetTypeCacheModel.userName = null;
+		}
+
+		Date createDate = getCreateDate();
+
+		if (createDate != null) {
+			hrAssetTypeCacheModel.createDate = createDate.getTime();
+		}
+
+		Date modifiedDate = getModifiedDate();
+
+		if (modifiedDate != null) {
+			hrAssetTypeCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+
+		hrAssetTypeCacheModel.name = getName();
+
+		String name = hrAssetTypeCacheModel.name;
+
+		if ((name != null) && (name.length() == 0)) {
+			hrAssetTypeCacheModel.name = null;
+		}
+
+		hrAssetTypeCacheModel.description = getDescription();
+
+		String description = hrAssetTypeCacheModel.description;
+
+		if ((description != null) && (description.length() == 0)) {
+			hrAssetTypeCacheModel.description = null;
+		}
+
+		return hrAssetTypeCacheModel;
 	}
 
 	@Override

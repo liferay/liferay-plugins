@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.json.JSON;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 
@@ -362,6 +363,62 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 		gadgetModelImpl._setOriginalCompanyId = false;
 
 		gadgetModelImpl._originalUrl = gadgetModelImpl._url;
+	}
+
+	@Override
+	public CacheModel<Gadget> toCacheModel() {
+		GadgetCacheModel gadgetCacheModel = new GadgetCacheModel();
+
+		gadgetCacheModel.uuid = getUuid();
+
+		String uuid = gadgetCacheModel.uuid;
+
+		if ((uuid != null) && (uuid.length() == 0)) {
+			gadgetCacheModel.uuid = null;
+		}
+
+		gadgetCacheModel.gadgetId = getGadgetId();
+
+		gadgetCacheModel.companyId = getCompanyId();
+
+		Date createDate = getCreateDate();
+
+		if (createDate != null) {
+			gadgetCacheModel.createDate = createDate.getTime();
+		}
+
+		Date modifiedDate = getModifiedDate();
+
+		if (modifiedDate != null) {
+			gadgetCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+
+		gadgetCacheModel.name = getName();
+
+		String name = gadgetCacheModel.name;
+
+		if ((name != null) && (name.length() == 0)) {
+			gadgetCacheModel.name = null;
+		}
+
+		gadgetCacheModel.url = getUrl();
+
+		String url = gadgetCacheModel.url;
+
+		if ((url != null) && (url.length() == 0)) {
+			gadgetCacheModel.url = null;
+		}
+
+		gadgetCacheModel.portletCategoryNames = getPortletCategoryNames();
+
+		String portletCategoryNames = gadgetCacheModel.portletCategoryNames;
+
+		if ((portletCategoryNames != null) &&
+				(portletCategoryNames.length() == 0)) {
+			gadgetCacheModel.portletCategoryNames = null;
+		}
+
+		return gadgetCacheModel;
 	}
 
 	@Override

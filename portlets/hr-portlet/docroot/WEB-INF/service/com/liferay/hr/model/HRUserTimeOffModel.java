@@ -17,6 +17,7 @@ package com.liferay.hr.model;
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.BaseModel;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.GroupedModel;
 import com.liferay.portal.service.ServiceContext;
 
@@ -313,6 +314,8 @@ public interface HRUserTimeOffModel extends BaseModel<HRUserTimeOff>,
 	public int compareTo(HRUserTimeOff hrUserTimeOff);
 
 	public int hashCode();
+
+	public CacheModel<HRUserTimeOff> toCacheModel();
 
 	public HRUserTimeOff toEscapedModel();
 
