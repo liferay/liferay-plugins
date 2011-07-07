@@ -84,7 +84,7 @@ public class AttachmentLocalServiceImpl extends AttachmentLocalServiceBaseImpl {
 
 			String filePath = getFilePath(
 				attachment.getMessageId(), fileName);
-			
+
 			InputStream is = getInputStream(attachmentId);
 
 			try {
