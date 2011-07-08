@@ -112,6 +112,7 @@ AUI().use(
 				if (!instance._popup) {
 					instance._popup = new A.Dialog(
 						{
+							constrain2view: true,
 							cssClass: 'so-portlet-sites-dialog',
 							resizable: false,
 							width: 526
@@ -205,6 +206,7 @@ AUI().use(
 				else {
 					var siteTemplate =
 						'<li class="{classNames}">' +
+							'{bookmarkHtml}' +
 							'{joinHtml}' +
 							'<span class="name">{siteName}</span>' +
 						'</li>';
@@ -214,7 +216,6 @@ AUI().use(
 							results,
 							function(result) {
 								var classNames = [];
-								var joinHtml = '';
 
 								if (result.socialOfficeEnabled) {
 									classNames.push('social-office-enabled');
@@ -234,6 +235,7 @@ AUI().use(
 									siteTemplate,
 									{
 										classNames: classNames.join(' '),
+										bookmarkHtml: (result.addBookmarkURL ? '<a class="bookmark add-bookmark" href="' + result.addBookmarkURL + '"></a>' : '<a class="bookmark delete-bookmark" href="' + result.deleteBookmarkURL + '"></a>'),
 										joinHtml: (result.joinUrl ? '<span class="join"><a href="' + result.joinUrl + '">' + Liferay.Language.get('join') + '</a></span>' : ''),
 										siteName: name
 									}
