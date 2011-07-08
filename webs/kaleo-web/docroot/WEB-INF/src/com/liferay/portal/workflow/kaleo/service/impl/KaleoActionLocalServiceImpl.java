@@ -32,8 +32,8 @@ public class KaleoActionLocalServiceImpl
 	extends KaleoActionLocalServiceBaseImpl {
 
 	public KaleoAction addKaleoAction(
-			long kaleoDefinitionId, long kaleoNodeId, String kaleoNodeName,
-			Action action, ServiceContext serviceContext)
+			long kaleoDefinitionId, String kaleoClassName, long kaleoClassPK,
+			String kaleoNodeName, Action action, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		User user = userPersistence.findByPrimaryKey(
@@ -50,7 +50,8 @@ public class KaleoActionLocalServiceImpl
 		kaleoAction.setCreateDate(now);
 		kaleoAction.setModifiedDate(now);
 		kaleoAction.setKaleoDefinitionId(kaleoDefinitionId);
-		kaleoAction.setKaleoNodeId(kaleoNodeId);
+		kaleoAction.setKaleoClassName(kaleoClassName);
+		kaleoAction.setKaleoClassPK(kaleoClassPK);
 		kaleoAction.setKaleoNodeName(kaleoNodeName);
 		kaleoAction.setName(action.getName());
 		kaleoAction.setDescription(action.getDescription());
@@ -77,10 +78,11 @@ public class KaleoActionLocalServiceImpl
 	}
 
 	public List<KaleoAction> getKaleoActions(
-			long kaleoNodeId, String executionType)
+			String kaleoClassName, long kaleoClassPK, String executionType)
 		throws SystemException {
 
-		return kaleoActionPersistence.findByKNI_ET(kaleoNodeId, executionType);
+		return kaleoActionPersistence.findByKCN_KCPK_ET(
+			kaleoClassName, kaleoClassPK, executionType);
 	}
 
 }

@@ -86,33 +86,45 @@ public class KaleoTimerInstanceTokenLocalServiceClp
 
 		_addKaleoTimerInstanceTokenMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
 				"addKaleoTimerInstanceToken", long.class, long.class,
-				java.lang.String.class, java.util.Map.class,
+				long.class, java.lang.String.class, java.util.Map.class,
 				com.liferay.portal.service.ServiceContext.class);
 
 		_addKaleoTimerInstanceTokensMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
 				"addKaleoTimerInstanceTokens",
 				com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken.class,
+				com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken.class,
 				java.util.Collection.class, java.util.Map.class,
 				com.liferay.portal.service.ServiceContext.class);
 
-		_completeKaleoTimerInstanceTokensMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
-				"completeKaleoTimerInstanceTokens", long.class,
-				java.util.Collection.class,
-				com.liferay.portal.service.ServiceContext.class);
-
-		_completeKaleoTimerInstanceTokenMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
+		_completeKaleoTimerInstanceTokenMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
 				"completeKaleoTimerInstanceToken", long.class,
 				com.liferay.portal.service.ServiceContext.class);
 
-		_deleteKaleoTimerInstanceTokenMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
+		_completeKaleoTimerInstanceTokensMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
+				"completeKaleoTimerInstanceTokens", long.class,
+				com.liferay.portal.service.ServiceContext.class);
+
+		_completeKaleoTimerInstanceTokensMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
+				"completeKaleoTimerInstanceTokens", java.util.List.class,
+				com.liferay.portal.service.ServiceContext.class);
+
+		_deleteKaleoTimerInstanceTokenMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
 				"deleteKaleoTimerInstanceToken", long.class, long.class);
 
-		_getKaleoTimerInstanceTokenMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
+		_deleteKaleoTimerInstanceTokensMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteKaleoTimerInstanceTokens", long.class);
+
+		_getKaleoTimerInstanceTokenMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getKaleoTimerInstanceToken", long.class, long.class);
 
-		_getKaleoTimerInstanceTokensCountMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getKaleoTimerInstanceTokensMethodKey23 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getKaleoTimerInstanceTokens", long.class,
+				java.lang.Boolean.class, java.lang.Boolean.class,
+				com.liferay.portal.service.ServiceContext.class);
+
+		_getKaleoTimerInstanceTokensCountMethodKey24 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getKaleoTimerInstanceTokensCount", long.class,
-				java.lang.Boolean.class,
+				java.lang.Boolean.class, java.lang.Boolean.class,
 				com.liferay.portal.service.ServiceContext.class);
 	}
 
@@ -521,8 +533,8 @@ public class KaleoTimerInstanceTokenLocalServiceClp
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken addKaleoTimerInstanceToken(
-		long kaleoInstanceTokenId, long kaleoTimerId,
-		java.lang.String kaleoTimerName,
+		long kaleoInstanceTokenId, long kaleoTaskInstanceTokenId,
+		long kaleoTimerId, java.lang.String kaleoTimerName,
 		java.util.Map<java.lang.String, java.io.Serializable> workflowContext,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -530,7 +542,7 @@ public class KaleoTimerInstanceTokenLocalServiceClp
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addKaleoTimerInstanceTokenMethodKey15,
-				kaleoInstanceTokenId, kaleoTimerId,
+				kaleoInstanceTokenId, kaleoTaskInstanceTokenId, kaleoTimerId,
 				ClpSerializer.translateInput(kaleoTimerName),
 				ClpSerializer.translateInput(workflowContext),
 				ClpSerializer.translateInput(serviceContext));
@@ -561,6 +573,7 @@ public class KaleoTimerInstanceTokenLocalServiceClp
 
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken> addKaleoTimerInstanceTokens(
 		com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken kaleoInstanceToken,
+		com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken kaleoTaskInstanceToken,
 		java.util.Collection<com.liferay.portal.workflow.kaleo.model.KaleoTimer> kaleoTimers,
 		java.util.Map<java.lang.String, java.io.Serializable> workflowContext,
 		com.liferay.portal.service.ServiceContext serviceContext)
@@ -570,6 +583,7 @@ public class KaleoTimerInstanceTokenLocalServiceClp
 
 		MethodHandler methodHandler = new MethodHandler(_addKaleoTimerInstanceTokensMethodKey16,
 				ClpSerializer.translateInput(kaleoInstanceToken),
+				ClpSerializer.translateInput(kaleoTaskInstanceToken),
 				ClpSerializer.translateInput(kaleoTimers),
 				ClpSerializer.translateInput(workflowContext),
 				ClpSerializer.translateInput(serviceContext));
@@ -598,37 +612,6 @@ public class KaleoTimerInstanceTokenLocalServiceClp
 		return (java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken>)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void completeKaleoTimerInstanceTokens(long kaleoInstanceId,
-		java.util.Collection<com.liferay.portal.workflow.kaleo.model.KaleoTimer> kaleoTimers,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_completeKaleoTimerInstanceTokensMethodKey17,
-				kaleoInstanceId, ClpSerializer.translateInput(kaleoTimers),
-				ClpSerializer.translateInput(serviceContext));
-
-		try {
-			_classLoaderProxy.invoke(methodHandler);
-		}
-		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-	}
-
 	public com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken completeKaleoTimerInstanceToken(
 		long kaleoTimerInstanceTokenId,
 		com.liferay.portal.service.ServiceContext serviceContext)
@@ -636,7 +619,7 @@ public class KaleoTimerInstanceTokenLocalServiceClp
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_completeKaleoTimerInstanceTokenMethodKey18,
+		MethodHandler methodHandler = new MethodHandler(_completeKaleoTimerInstanceTokenMethodKey17,
 				kaleoTimerInstanceTokenId,
 				ClpSerializer.translateInput(serviceContext));
 
@@ -664,12 +647,13 @@ public class KaleoTimerInstanceTokenLocalServiceClp
 		return (com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void deleteKaleoTimerInstanceToken(long kaleoInstanceId,
-		long kaleoTimerId)
+	public void completeKaleoTimerInstanceTokens(long kaleoInstanceTokenId,
+		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_deleteKaleoTimerInstanceTokenMethodKey19,
-				kaleoInstanceId, kaleoTimerId);
+		MethodHandler methodHandler = new MethodHandler(_completeKaleoTimerInstanceTokensMethodKey18,
+				kaleoInstanceTokenId,
+				ClpSerializer.translateInput(serviceContext));
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -693,14 +677,97 @@ public class KaleoTimerInstanceTokenLocalServiceClp
 		}
 	}
 
+	public void completeKaleoTimerInstanceTokens(
+		java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken> kaleoTimerInstanceTokens,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		MethodHandler methodHandler = new MethodHandler(_completeKaleoTimerInstanceTokensMethodKey19,
+				ClpSerializer.translateInput(kaleoTimerInstanceTokens),
+				ClpSerializer.translateInput(serviceContext));
+
+		try {
+			_classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
+	public void deleteKaleoTimerInstanceToken(long kaleoInstanceTokenId,
+		long kaleoTimerId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		MethodHandler methodHandler = new MethodHandler(_deleteKaleoTimerInstanceTokenMethodKey20,
+				kaleoInstanceTokenId, kaleoTimerId);
+
+		try {
+			_classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
+	public void deleteKaleoTimerInstanceTokens(long kaleoInstanceId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		MethodHandler methodHandler = new MethodHandler(_deleteKaleoTimerInstanceTokensMethodKey21,
+				kaleoInstanceId);
+
+		try {
+			_classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
 	public com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken getKaleoTimerInstanceToken(
-		long kaleoInstanceId, long kaleoTimerId)
+		long kaleoInstanceTokenId, long kaleoTimerId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getKaleoTimerInstanceTokenMethodKey20,
-				kaleoInstanceId, kaleoTimerId);
+		MethodHandler methodHandler = new MethodHandler(_getKaleoTimerInstanceTokenMethodKey22,
+				kaleoInstanceTokenId, kaleoTimerId);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -726,14 +793,47 @@ public class KaleoTimerInstanceTokenLocalServiceClp
 		return (com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public int getKaleoTimerInstanceTokensCount(long kaleoInstanceId,
-		java.lang.Boolean completed,
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken> getKaleoTimerInstanceTokens(
+		long kaleoInstanceTokenId, java.lang.Boolean completed,
+		java.lang.Boolean blocking,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getKaleoTimerInstanceTokensCountMethodKey21,
-				kaleoInstanceId, ClpSerializer.translateInput(completed),
+		MethodHandler methodHandler = new MethodHandler(_getKaleoTimerInstanceTokensMethodKey23,
+				kaleoInstanceTokenId, ClpSerializer.translateInput(completed),
+				ClpSerializer.translateInput(blocking),
+				ClpSerializer.translateInput(serviceContext));
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken>)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public int getKaleoTimerInstanceTokensCount(long kaleoInstanceTokenId,
+		java.lang.Boolean completed, java.lang.Boolean blocking,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_getKaleoTimerInstanceTokensCountMethodKey24,
+				kaleoInstanceTokenId, ClpSerializer.translateInput(completed),
+				ClpSerializer.translateInput(blocking),
 				ClpSerializer.translateInput(serviceContext));
 
 		try {
@@ -778,9 +878,12 @@ public class KaleoTimerInstanceTokenLocalServiceClp
 	private MethodKey _setBeanIdentifierMethodKey14;
 	private MethodKey _addKaleoTimerInstanceTokenMethodKey15;
 	private MethodKey _addKaleoTimerInstanceTokensMethodKey16;
-	private MethodKey _completeKaleoTimerInstanceTokensMethodKey17;
-	private MethodKey _completeKaleoTimerInstanceTokenMethodKey18;
-	private MethodKey _deleteKaleoTimerInstanceTokenMethodKey19;
-	private MethodKey _getKaleoTimerInstanceTokenMethodKey20;
-	private MethodKey _getKaleoTimerInstanceTokensCountMethodKey21;
+	private MethodKey _completeKaleoTimerInstanceTokenMethodKey17;
+	private MethodKey _completeKaleoTimerInstanceTokensMethodKey18;
+	private MethodKey _completeKaleoTimerInstanceTokensMethodKey19;
+	private MethodKey _deleteKaleoTimerInstanceTokenMethodKey20;
+	private MethodKey _deleteKaleoTimerInstanceTokensMethodKey21;
+	private MethodKey _getKaleoTimerInstanceTokenMethodKey22;
+	private MethodKey _getKaleoTimerInstanceTokensMethodKey23;
+	private MethodKey _getKaleoTimerInstanceTokensCountMethodKey24;
 }

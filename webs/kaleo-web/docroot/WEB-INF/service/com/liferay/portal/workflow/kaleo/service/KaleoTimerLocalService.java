@@ -225,20 +225,20 @@ public interface KaleoTimerLocalService {
 	public void setBeanIdentifier(java.lang.String beanIdentifier);
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoTimer addKaleoTimer(
-		long kaleoDefinitionId, long kaleoNodeId, long parentKaleoNodeId,
+		long kaleoDefinitionId, java.lang.String kaleoClassName,
+		long kaleoClassPK,
 		com.liferay.portal.workflow.kaleo.definition.Timer timer,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.workflow.kaleo.model.KaleoTimer getDefaultKaleoTimer(
-		long parentKaleoNodeId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTimer> getKaleoTimers(
+		java.lang.String kaleoClassName, long kaleoClassPK)
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTimer> getKaleoTimers(
-		long parentKaleoNodeId)
+		java.lang.String kaleoClassName, long kaleoClassPK, boolean blocking)
 		throws com.liferay.portal.kernel.exception.SystemException;
 }

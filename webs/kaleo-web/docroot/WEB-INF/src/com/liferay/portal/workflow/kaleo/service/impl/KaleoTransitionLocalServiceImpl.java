@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.workflow.kaleo.definition.Timer;
 import com.liferay.portal.workflow.kaleo.definition.Transition;
 import com.liferay.portal.workflow.kaleo.model.KaleoNode;
 import com.liferay.portal.workflow.kaleo.model.KaleoTransition;
@@ -64,6 +65,14 @@ public class KaleoTransitionLocalServiceImpl
 		kaleoTransition.setDefaultTransition(transition.isDefault());
 
 		kaleoTransitionPersistence.update(kaleoTransition, false);
+
+		Timer timer = transition.getTimer();
+
+		if (timer != null) {
+			kaleoTimerLocalService.addKaleoTimer(
+				kaleoDefinitionId, KaleoTransition.class.getName(),
+				kaleoTransitionId, timer, serviceContext);
+		}
 
 		return kaleoTransition;
 	}

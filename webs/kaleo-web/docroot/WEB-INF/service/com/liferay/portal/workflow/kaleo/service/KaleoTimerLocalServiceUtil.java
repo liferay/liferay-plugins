@@ -250,27 +250,28 @@ public class KaleoTimerLocalServiceUtil {
 	}
 
 	public static com.liferay.portal.workflow.kaleo.model.KaleoTimer addKaleoTimer(
-		long kaleoDefinitionId, long kaleoNodeId, long parentKaleoNodeId,
+		long kaleoDefinitionId, java.lang.String kaleoClassName,
+		long kaleoClassPK,
 		com.liferay.portal.workflow.kaleo.definition.Timer timer,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
-				   .addKaleoTimer(kaleoDefinitionId, kaleoNodeId,
-			parentKaleoNodeId, timer, serviceContext);
-	}
-
-	public static com.liferay.portal.workflow.kaleo.model.KaleoTimer getDefaultKaleoTimer(
-		long parentKaleoNodeId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getService().getDefaultKaleoTimer(parentKaleoNodeId);
+				   .addKaleoTimer(kaleoDefinitionId, kaleoClassName,
+			kaleoClassPK, timer, serviceContext);
 	}
 
 	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTimer> getKaleoTimers(
-		long parentKaleoNodeId)
+		java.lang.String kaleoClassName, long kaleoClassPK)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().getKaleoTimers(parentKaleoNodeId);
+		return getService().getKaleoTimers(kaleoClassName, kaleoClassPK);
+	}
+
+	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTimer> getKaleoTimers(
+		java.lang.String kaleoClassName, long kaleoClassPK, boolean blocking)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .getKaleoTimers(kaleoClassName, kaleoClassPK, blocking);
 	}
 
 	public static void clearService() {

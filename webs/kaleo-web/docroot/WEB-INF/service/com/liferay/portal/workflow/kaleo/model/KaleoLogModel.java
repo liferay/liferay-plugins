@@ -232,18 +232,33 @@ public interface KaleoLogModel extends BaseModel<KaleoLog>, GroupedModel {
 	public void setKaleoTaskInstanceTokenId(long kaleoTaskInstanceTokenId);
 
 	/**
-	 * Returns the kaleo node ID of this kaleo log.
+	 * Returns the kaleo class name of this kaleo log.
 	 *
-	 * @return the kaleo node ID of this kaleo log
+	 * @return the kaleo class name of this kaleo log
 	 */
-	public long getKaleoNodeId();
+	@AutoEscape
+	public String getKaleoClassName();
 
 	/**
-	 * Sets the kaleo node ID of this kaleo log.
+	 * Sets the kaleo class name of this kaleo log.
 	 *
-	 * @param kaleoNodeId the kaleo node ID of this kaleo log
+	 * @param kaleoClassName the kaleo class name of this kaleo log
 	 */
-	public void setKaleoNodeId(long kaleoNodeId);
+	public void setKaleoClassName(String kaleoClassName);
+
+	/**
+	 * Returns the kaleo class p k of this kaleo log.
+	 *
+	 * @return the kaleo class p k of this kaleo log
+	 */
+	public long getKaleoClassPK();
+
+	/**
+	 * Sets the kaleo class p k of this kaleo log.
+	 *
+	 * @param kaleoClassPK the kaleo class p k of this kaleo log
+	 */
+	public void setKaleoClassPK(long kaleoClassPK);
 
 	/**
 	 * Returns the kaleo node name of this kaleo log.

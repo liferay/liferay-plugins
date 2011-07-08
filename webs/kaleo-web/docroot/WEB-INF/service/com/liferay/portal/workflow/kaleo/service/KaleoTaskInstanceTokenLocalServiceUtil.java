@@ -425,6 +425,12 @@ public class KaleoTaskInstanceTokenLocalServiceUtil {
 			completed, serviceContext);
 	}
 
+	public static com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken fetchKaleoTaskInstanceToken(
+		long kaleoTaskInstanceTokenId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().fetchKaleoTaskInstanceToken(kaleoTaskInstanceTokenId);
+	}
+
 	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken> search(
 		java.lang.String keywords, java.lang.Boolean completed,
 		java.lang.Boolean searchByUserRoles, int start, int end,

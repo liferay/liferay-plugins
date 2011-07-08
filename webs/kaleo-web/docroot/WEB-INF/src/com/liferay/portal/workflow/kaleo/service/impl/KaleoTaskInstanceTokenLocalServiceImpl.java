@@ -27,12 +27,9 @@ import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Role;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
-import com.liferay.portal.workflow.kaleo.NoSuchTimerException;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
-import com.liferay.portal.workflow.kaleo.model.KaleoTask;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken;
-import com.liferay.portal.workflow.kaleo.model.KaleoTimer;
 import com.liferay.portal.workflow.kaleo.service.base.KaleoTaskInstanceTokenLocalServiceBaseImpl;
 import com.liferay.portal.workflow.kaleo.service.persistence.KaleoTaskInstanceTokenQuery;
 import com.liferay.portal.workflow.kaleo.util.GroupUtil;
@@ -165,13 +162,8 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 
 		// Kaleo timers
 
-		KaleoTask kaleoTask = kaleoTaskInstanceToken.getKaleoTask();
-
-		List<KaleoTimer> kaleoTimers = kaleoTimerLocalService.getKaleoTimers(
-			kaleoTask.getKaleoNodeId());
-
 		kaleoTimerInstanceTokenLocalService.completeKaleoTimerInstanceTokens(
-			kaleoTaskInstanceToken.getKaleoInstanceId(), kaleoTimers,
+			kaleoTaskInstanceToken.getKaleoInstanceTokenId(),
 			serviceContext);
 
 		return kaleoTaskInstanceToken;
@@ -435,6 +427,14 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 		return (int)dynamicQueryCount(dynamicQuery);
 	}
 
+	public KaleoTaskInstanceToken fetchKaleoTaskInstanceToken(
+			long kaleoTaskInstanceTokenId)
+		throws SystemException {
+
+		return kaleoTaskInstanceTokenPersistence.fetchByPrimaryKey(
+			kaleoTaskInstanceTokenId);
+	}
+
 	public List<KaleoTaskInstanceToken> search(
 			String keywords, Boolean completed, Boolean searchByUserRoles,
 			int start, int end, OrderByComparator orderByComparator,
@@ -526,30 +526,6 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 		}
 
 		kaleoTaskInstanceTokenPersistence.update(kaleoTaskInstance, false);
-
-		KaleoTimer kaleoTimer = null;
-
-		try {
-			kaleoTimer = kaleoTimerLocalService.getDefaultKaleoTimer(
-				kaleoTaskInstance.getKaleoTaskId());
-		}
-		catch (NoSuchTimerException nste) {
-		}
-
-		if (kaleoTimer != null) {
-			kaleoTimerInstanceTokenLocalService.deleteKaleoTimerInstanceToken(
-				kaleoTaskInstance.getKaleoInstanceId(),
-				kaleoTimer.getKaleoTimerId());
-
-			Map<String, Serializable> workflowContext =
-				WorkflowContextUtil.convert(
-					kaleoTaskInstance.getWorkflowContext());
-
-			kaleoTimerInstanceTokenLocalService.addKaleoTimerInstanceToken(
-				kaleoTaskInstance.getKaleoInstanceTokenId(),
-				kaleoTimer.getKaleoTimerId(), kaleoTimer.getName(),
-				workflowContext, serviceContext);
-		}
 
 		return kaleoTaskInstance;
 	}

@@ -30,13 +30,13 @@ import java.util.List;
 public class ActionExecutorUtil {
 
 	public static void executeKaleoActions(
-			long kaleoNodeId, ExecutionType executionType,
-			ExecutionContext executionContext)
+			String kaleoClassName, long kaleoClassPK,
+			ExecutionType executionType, ExecutionContext executionContext)
 		throws PortalException, SystemException {
 
 		List<KaleoAction> kaleoActions =
 			KaleoActionLocalServiceUtil.getKaleoActions(
-				kaleoNodeId, executionType.getValue());
+				kaleoClassName, kaleoClassPK, executionType.getValue());
 
 		for (KaleoAction kaleoAction : kaleoActions) {
 			long startTime = System.currentTimeMillis();

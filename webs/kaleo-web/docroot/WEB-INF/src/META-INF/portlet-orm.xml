@@ -21,7 +21,8 @@
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<basic name="kaleoDefinitionId" />
-			<basic name="kaleoNodeId" />
+			<basic name="kaleoClassName" />
+			<basic name="kaleoClassPK" />
 			<basic name="kaleoNodeName" />
 			<basic name="name" />
 			<basic name="description" />
@@ -158,7 +159,8 @@
 			<basic name="kaleoInstanceId" />
 			<basic name="kaleoInstanceTokenId" />
 			<basic name="kaleoTaskInstanceTokenId" />
-			<basic name="kaleoNodeId" />
+			<basic name="kaleoClassName" />
+			<basic name="kaleoClassPK" />
 			<basic name="kaleoNodeName" />
 			<basic name="terminalKaleoNode" />
 			<basic name="kaleoActionId" />
@@ -204,6 +206,7 @@
 			</basic>
 			<basic name="kaleoDefinitionId" />
 			<basic name="name" />
+			<basic name="metadata" />
 			<basic name="description" />
 			<basic name="type">
 				<column name="TYPE_" />
@@ -231,7 +234,8 @@
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<basic name="kaleoDefinitionId" />
-			<basic name="kaleoNodeId" />
+			<basic name="kaleoClassName" />
+			<basic name="kaleoClassPK" />
 			<basic name="kaleoNodeName" />
 			<basic name="name" />
 			<basic name="description" />
@@ -304,8 +308,9 @@
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<basic name="kaleoDefinitionId" />
+			<basic name="kaleoClassName" />
+			<basic name="kaleoClassPK" />
 			<basic name="kaleoNodeId" />
-			<basic name="kaleoTaskId" />
 			<basic name="assigneeClassName" />
 			<basic name="assigneeClassPK" />
 			<basic name="assigneeActionId" />
@@ -395,13 +400,15 @@
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<basic name="kaleoDefinitionId" />
-			<basic name="kaleoNodeId" />
-			<basic name="parentKaleoNodeId" />
+			<basic name="kaleoClassName" />
+			<basic name="kaleoClassPK" />
 			<basic name="name" />
-			<basic name="defaultTimer" />
+			<basic name="blocking" />
 			<basic name="description" />
 			<basic name="duration" />
 			<basic name="scale" />
+			<basic name="recurrenceDuration" />
+			<basic name="recurrenceScale" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
@@ -420,11 +427,15 @@
 			<basic name="modifiedDate">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
+			<basic name="kaleoClassName" />
+			<basic name="kaleoClassPK" />
 			<basic name="kaleoDefinitionId" />
 			<basic name="kaleoInstanceId" />
 			<basic name="kaleoInstanceTokenId" />
+			<basic name="kaleoTaskInstanceTokenId" />
 			<basic name="kaleoTimerId" />
 			<basic name="kaleoTimerName" />
+			<basic name="blocking" />
 			<basic name="completionUserId" />
 			<basic name="completed" />
 			<basic name="completionDate">

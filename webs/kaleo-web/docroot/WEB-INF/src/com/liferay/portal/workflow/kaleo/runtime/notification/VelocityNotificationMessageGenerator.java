@@ -39,7 +39,7 @@ public class VelocityNotificationMessageGenerator
 	implements NotificationMessageGenerator {
 
 	public String generateMessage(
-			long kaleoNodeId, String notificationName,
+			String kaleoClassName, long kaleoClassPK, String notificationName,
 			String notificationTemplate, ExecutionContext executionContext)
 		throws NotificationMessageGenerationException {
 
@@ -54,7 +54,8 @@ public class VelocityNotificationMessageGenerator
 			StringWriter stringWriter = new StringWriter();
 
 			velocityEngine.mergeTemplate(
-				notificationName + kaleoNodeId, notificationTemplate,
+				notificationName + kaleoClassName + kaleoClassPK,
+				notificationTemplate,
 				velocityContext, stringWriter);
 
 			return stringWriter.toString();

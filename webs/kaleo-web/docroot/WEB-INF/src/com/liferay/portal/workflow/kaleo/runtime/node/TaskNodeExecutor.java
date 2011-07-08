@@ -18,7 +18,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.service.ServiceContext;
-import com.liferay.portal.workflow.kaleo.NoSuchTimerException;
 import com.liferay.portal.workflow.kaleo.definition.DelayDuration;
 import com.liferay.portal.workflow.kaleo.definition.DurationScale;
 import com.liferay.portal.workflow.kaleo.definition.ExecutionType;
@@ -44,6 +43,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeSet;
 
 /**
  * @author Michael C. Han
@@ -63,24 +63,27 @@ public class TaskNodeExecutor extends BaseNodeExecutor {
 	protected Date calculateDueDate(KaleoTask kaleoTask)
 		throws PortalException, SystemException {
 
-		KaleoTimer kaleoTimer = null;
+		List<KaleoTimer> kaleoTimers = kaleoTimerLocalService.getKaleoTimers(
+			KaleoNode.class.getName(), kaleoTask.getKaleoNodeId());
 
-		try {
-			kaleoTimer = kaleoTimerLocalService.getDefaultKaleoTimer(
-				kaleoTask.getKaleoTaskId());
-		}
-		catch (NoSuchTimerException nste) {
-		}
-
-		if (kaleoTimer == null) {
+		if (kaleoTimers.isEmpty()) {
 			return null;
 		}
 
-		DelayDuration delayDuration = new DelayDuration(
-			kaleoTimer.getDuration(),
-			DurationScale.parse(kaleoTimer.getScale()));
+		TreeSet<Date> sortedDueDates = new TreeSet<Date>();
 
-		return _dueDateCalculator.getDueDate(new Date(), delayDuration);
+		for (KaleoTimer kaleoTimer : kaleoTimers) {
+			DelayDuration delayDuration = new DelayDuration(
+				kaleoTimer.getDuration(),
+				DurationScale.parse(kaleoTimer.getScale()));
+
+			Date dueDate = _dueDateCalculator.getDueDate(
+				new Date(), delayDuration);
+
+			sortedDueDates.add(dueDate);
+		}
+
+		return sortedDueDates.first();
 	}
 
 	protected KaleoTaskInstanceToken createTaskInstanceToken(
@@ -136,12 +139,12 @@ public class TaskNodeExecutor extends BaseNodeExecutor {
 		executionContext.setKaleoTaskInstanceToken(kaleoTaskInstanceToken);
 
 		ActionExecutorUtil.executeKaleoActions(
-			currentKaleoNode.getKaleoNodeId(), ExecutionType.ON_ASSIGNMENT,
-			executionContext);
+			KaleoNode.class.getName(), currentKaleoNode.getKaleoNodeId(),
+			ExecutionType.ON_ASSIGNMENT, executionContext);
 
 		NotificationUtil.sendKaleoNotifications(
-			currentKaleoNode.getKaleoNodeId(), ExecutionType.ON_ASSIGNMENT,
-			executionContext);
+			KaleoNode.class.getName(), currentKaleoNode.getKaleoNodeId(),
+			ExecutionType.ON_ASSIGNMENT, executionContext);
 
 		kaleoLogLocalService.addTaskAssignmentKaleoLog(
 			null, kaleoTaskInstanceToken, "Assigned initial task.",
@@ -160,9 +163,15 @@ public class TaskNodeExecutor extends BaseNodeExecutor {
 			ExecutionContext executionContext)
 		throws PortalException, SystemException {
 
+		List<KaleoTaskAssignment> kaleoTaskReassignments =
+			kaleoTimer.getKaleoTaskReassignments();
+
+		if (kaleoTaskReassignments.isEmpty()) {
+			return;
+		}
+
 		TaskAssignerUtil.reassignKaleoTask(
-			kaleoTimer.getKaleoNodeId(), kaleoTimer.getParentKaleoNodeId(),
-			executionContext);
+			kaleoTaskReassignments, executionContext);
 	}
 
 	@Override

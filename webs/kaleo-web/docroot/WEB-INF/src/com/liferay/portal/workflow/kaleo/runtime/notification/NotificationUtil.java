@@ -32,13 +32,13 @@ import java.util.List;
 public class NotificationUtil {
 
 	public static void sendKaleoNotifications(
-			long kaleoNodeId, ExecutionType executionType,
-			ExecutionContext executionContext)
+			String kaleoClassName, long kaleoClassPK,
+			ExecutionType executionType, ExecutionContext executionContext)
 		throws PortalException, SystemException {
 
 		List<KaleoNotification> kaleoNotifications =
 			KaleoNotificationLocalServiceUtil.getKaleoNotifications(
-				kaleoNodeId, executionType.getValue());
+				kaleoClassName, kaleoClassPK, executionType.getValue());
 
 		for (KaleoNotification kaleoNotification : kaleoNotifications) {
 			_sendKaleoNotification(kaleoNotification, executionContext);
@@ -56,8 +56,10 @@ public class NotificationUtil {
 
 		String notificationMessage =
 			notificationMessageGenerator.generateMessage(
-				kaleoNotification.getKaleoNodeId(), kaleoNotification.getName(),
-				kaleoNotification.getTemplate(), executionContext);
+				kaleoNotification.getKaleoClassName(),
+				kaleoNotification.getKaleoClassPK(),
+				kaleoNotification.getName(), kaleoNotification.getTemplate(),
+				executionContext);
 
 		String notificationSubject = kaleoNotification.getDescription();
 

@@ -240,14 +240,14 @@ public class KaleoActionLocalServiceWrapper implements KaleoActionLocalService {
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoAction addKaleoAction(
-		long kaleoDefinitionId, long kaleoNodeId,
-		java.lang.String kaleoNodeName,
+		long kaleoDefinitionId, java.lang.String kaleoClassName,
+		long kaleoClassPK, java.lang.String kaleoNodeName,
 		com.liferay.portal.workflow.kaleo.definition.Action action,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _kaleoActionLocalService.addKaleoAction(kaleoDefinitionId,
-			kaleoNodeId, kaleoNodeName, action, serviceContext);
+			kaleoClassName, kaleoClassPK, kaleoNodeName, action, serviceContext);
 	}
 
 	public void deleteCompanyKaleoActions(long companyId)
@@ -261,10 +261,11 @@ public class KaleoActionLocalServiceWrapper implements KaleoActionLocalService {
 	}
 
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoAction> getKaleoActions(
-		long kaleoNodeId, java.lang.String executionType)
+		java.lang.String kaleoClassName, long kaleoClassPK,
+		java.lang.String executionType)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return _kaleoActionLocalService.getKaleoActions(kaleoNodeId,
-			executionType);
+		return _kaleoActionLocalService.getKaleoActions(kaleoClassName,
+			kaleoClassPK, executionType);
 	}
 
 	public KaleoActionLocalService getWrappedKaleoActionLocalService() {

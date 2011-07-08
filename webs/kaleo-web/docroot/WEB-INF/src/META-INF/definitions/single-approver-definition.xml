@@ -15,7 +15,6 @@
 			<transition>
 				<name>review</name>
 				<target>review</target>
-				<default>true</default>
 			</transition>
 		</transitions>
 	</state>
@@ -24,10 +23,10 @@
 		<actions>
 			<notification>
 				<name>Creator Modification Notification</name>
-				<execution-type>onAssignment</execution-type>
 				<template>Your submission was rejected by a reviewer, please modify and resubmit.</template>
 				<template-language>text</template-language>
 				<notification-type>email</notification-type>
+				<execution-type>onAssignment</execution-type>
 			</notification>
 		</actions>
 		<assignments>
@@ -37,7 +36,6 @@
 			<transition>
 				<name>resubmit</name>
 				<target>review</target>
-				<default>true</default>
 			</transition>
 		</transitions>
 	</task>
@@ -46,10 +44,10 @@
 		<actions>
 			<notification>
 				<name>Review Notification</name>
-				<execution-type>onAssignment</execution-type>
 				<template>You have a new submission waiting for your review in the workflow.</template>
 				<template-language>text</template-language>
 				<notification-type>email</notification-type>
+				<execution-type>onAssignment</execution-type>
 			</notification>
 		</actions>
 		<assignments>
@@ -88,11 +86,31 @@
 				</role>
 			</roles>
 		</assignments>
+		<task-timers>
+			<task-timer>
+				<name>due date</name>
+				<delay>
+					<duration>5</duration>
+					<scale>minute</scale>
+				</delay>
+				<recurrence>
+					<duration>5</duration>
+					<scale>minute</scale>
+				</recurrence>
+				<timer-actions>
+					<timer-notification>
+						<name>assignment due</name>
+						<template>You have a new submission waiting for your review in the workflow.</template>
+						<template-language>text</template-language>
+						<notification-type>email</notification-type>
+					</timer-notification>
+				</timer-actions>
+			</task-timer>
+		</task-timers>
 		<transitions>
 			<transition>
 				<name>approve</name>
 				<target>approved</target>
-				<default>true</default>
 			</transition>
 			<transition>
 				<name>reject</name>
@@ -106,13 +124,13 @@
 		<actions>
 			<action>
 				<name>approve</name>
-				<execution-type>onEntry</execution-type>
 				<script>
 					<![CDATA[
 						Packages.com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil.updateStatus(Packages.com.liferay.portal.kernel.workflow.WorkflowConstants.toStatus("approved"), workflowContext);
 					]]>
 				</script>
 				<script-language>javascript</script-language>
+				<execution-type>onEntry</execution-type>
 			</action>
 		</actions>
 	</state>

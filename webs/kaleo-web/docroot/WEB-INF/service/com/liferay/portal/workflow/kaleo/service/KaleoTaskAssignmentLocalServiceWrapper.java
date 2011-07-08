@@ -244,13 +244,14 @@ public class KaleoTaskAssignmentLocalServiceWrapper
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment addKaleoTaskAssignment(
-		long kaleoDefinitionId, long kaleoNodeId, long kaleoTaskId,
+		long kaleoDefinitionId, java.lang.String kaleoClassName,
+		long kaleoClassPK,
 		com.liferay.portal.workflow.kaleo.definition.Assignment assignment,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _kaleoTaskAssignmentLocalService.addKaleoTaskAssignment(kaleoDefinitionId,
-			kaleoNodeId, kaleoTaskId, assignment, serviceContext);
+			kaleoClassName, kaleoClassPK, assignment, serviceContext);
 	}
 
 	public void deleteCompanyKaleoTaskAssignments(long companyId)
@@ -265,16 +266,16 @@ public class KaleoTaskAssignmentLocalServiceWrapper
 	}
 
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment> getKaleoTaskAssignments(
-		long kaleoTaskId)
+		java.lang.String kaleoClassName, long kaleoClassPK)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return _kaleoTaskAssignmentLocalService.getKaleoTaskAssignments(kaleoTaskId);
+		return _kaleoTaskAssignmentLocalService.getKaleoTaskAssignments(kaleoClassName,
+			kaleoClassPK);
 	}
 
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment> getKaleoTaskAssignments(
-		long kaleoNodeId, long kaleoTaskId)
+		long kaleoTaskId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return _kaleoTaskAssignmentLocalService.getKaleoTaskAssignments(kaleoNodeId,
-			kaleoTaskId);
+		return _kaleoTaskAssignmentLocalService.getKaleoTaskAssignments(kaleoTaskId);
 	}
 
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment> getKaleoTaskAssignments(

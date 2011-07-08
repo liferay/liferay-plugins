@@ -15,11 +15,10 @@
 package com.liferay.portal.workflow.kaleo.service.impl;
 
 import com.liferay.portal.kernel.bean.BeanReference;
-import com.liferay.portal.kernel.dao.orm.DynamicQuery;
-import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
-import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.DestinationNames;
 import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
@@ -31,12 +30,12 @@ import com.liferay.portal.kernel.scheduler.StorageType;
 import com.liferay.portal.kernel.scheduler.Trigger;
 import com.liferay.portal.kernel.scheduler.messaging.SchedulerEventMessageListenerWrapper;
 import com.liferay.portal.kernel.util.CalendarFactoryUtil;
-import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.workflow.kaleo.definition.DelayDuration;
 import com.liferay.portal.workflow.kaleo.definition.DurationScale;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
+import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken;
 import com.liferay.portal.workflow.kaleo.model.KaleoTimer;
 import com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken;
 import com.liferay.portal.workflow.kaleo.runtime.calendar.DefaultDueDateCalculator;
@@ -44,6 +43,7 @@ import com.liferay.portal.workflow.kaleo.runtime.calendar.DueDateCalculator;
 import com.liferay.portal.workflow.kaleo.runtime.timer.messaging.TimerMessageListener;
 import com.liferay.portal.workflow.kaleo.service.base.KaleoTimerInstanceTokenLocalServiceBaseImpl;
 import com.liferay.portal.workflow.kaleo.util.GroupUtil;
+import com.liferay.portal.workflow.kaleo.util.SchedulerUtil;
 import com.liferay.portal.workflow.kaleo.util.WorkflowContextUtil;
 
 import java.io.Serializable;
@@ -62,7 +62,8 @@ public class KaleoTimerInstanceTokenLocalServiceImpl
 	extends KaleoTimerInstanceTokenLocalServiceBaseImpl {
 
 	public KaleoTimerInstanceToken addKaleoTimerInstanceToken(
-			long kaleoInstanceTokenId, long kaleoTimerId, String kaleoTimerName,
+			long kaleoInstanceTokenId, long kaleoTaskInstanceTokenId,
+			long kaleoTimerId, String kaleoTimerName,
 			Map<String, Serializable> workflowContext,
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
@@ -72,6 +73,10 @@ public class KaleoTimerInstanceTokenLocalServiceImpl
 		KaleoInstanceToken kaleoInstanceToken =
 			kaleoInstanceTokenPersistence.findByPrimaryKey(
 				kaleoInstanceTokenId);
+
+		KaleoTimer kaleoTimer = kaleoTimerPersistence.findByPrimaryKey(
+			kaleoTimerId);
+
 		Date now = new Date();
 
 		long kaleoTimerInstanceTokenId = counterLocalService.increment();
@@ -94,7 +99,13 @@ public class KaleoTimerInstanceTokenLocalServiceImpl
 		kaleoTimerInstanceToken.setKaleoInstanceId(
 			kaleoInstanceToken.getKaleoInstanceId());
 		kaleoTimerInstanceToken.setKaleoInstanceTokenId(kaleoInstanceTokenId);
+		kaleoTimerInstanceToken.setKaleoTaskInstanceTokenId(
+			kaleoTaskInstanceTokenId);
+		kaleoTimerInstanceToken.setKaleoClassName(
+			kaleoTimer.getKaleoClassName());
+		kaleoTimerInstanceToken.setKaleoClassPK(kaleoTimer.getKaleoClassPK());
 		kaleoTimerInstanceToken.setKaleoTimerId(kaleoTimerId);
+		kaleoTimerInstanceToken.setBlocking(kaleoTimer.getBlocking());
 		kaleoTimerInstanceToken.setKaleoTimerName(kaleoTimerName);
 		kaleoTimerInstanceToken.setCompleted(false);
 		kaleoTimerInstanceToken.setWorkflowContext(
@@ -103,13 +114,14 @@ public class KaleoTimerInstanceTokenLocalServiceImpl
 		kaleoTimerInstanceTokenPersistence.update(
 			kaleoTimerInstanceToken, false);
 
-		scheduleTimer(kaleoTimerInstanceToken);
+		scheduleTimer(kaleoTimerInstanceToken, kaleoTimer);
 
 		return kaleoTimerInstanceToken;
 	}
 
 	public List<KaleoTimerInstanceToken> addKaleoTimerInstanceTokens(
 			KaleoInstanceToken kaleoInstanceToken,
+			KaleoTaskInstanceToken kaleoTaskInstanceToken,
 			Collection<KaleoTimer> kaleoTimers,
 			Map<String, Serializable> workflowContext,
 			ServiceContext serviceContext)
@@ -118,10 +130,18 @@ public class KaleoTimerInstanceTokenLocalServiceImpl
 		List<KaleoTimerInstanceToken> kaleoTimerInstanceTokens =
 			new ArrayList<KaleoTimerInstanceToken>(kaleoTimers.size());
 
+		long kaleoTaskInstanceTokenId = 0;
+
+		if (kaleoTaskInstanceToken != null) {
+			kaleoTaskInstanceTokenId =
+				kaleoTaskInstanceToken.getKaleoTaskInstanceTokenId();
+		}
+
 		for (KaleoTimer kaleoTimer : kaleoTimers) {
 			KaleoTimerInstanceToken kaleoTimerInstanceToken =
 				addKaleoTimerInstanceToken(
 					kaleoInstanceToken.getKaleoInstanceTokenId(),
+					kaleoTaskInstanceTokenId,
 					kaleoTimer.getKaleoTimerId(), kaleoTimer.getName(),
 					workflowContext, serviceContext);
 
@@ -129,22 +149,6 @@ public class KaleoTimerInstanceTokenLocalServiceImpl
 		}
 
 		return kaleoTimerInstanceTokens;
-	}
-
-	public void completeKaleoTimerInstanceTokens(
-			long kaleoInstanceId, Collection<KaleoTimer> kaleoTimers,
-			ServiceContext serviceContext)
-		throws PortalException, SystemException {
-
-		for (KaleoTimer kaleoTimer : kaleoTimers) {
-			KaleoTimerInstanceToken kaleoTimerInstanceToken =
-				getKaleoTimerInstanceToken(
-					kaleoInstanceId, kaleoTimer.getKaleoTimerId());
-
-			completeKaleoTimerInstanceToken(
-				kaleoTimerInstanceToken.getKaleoTimerInstanceTokenId(),
-				serviceContext);
-		}
 	}
 
 	public KaleoTimerInstanceToken completeKaleoTimerInstanceToken(
@@ -162,73 +166,105 @@ public class KaleoTimerInstanceTokenLocalServiceImpl
 		kaleoTimerInstanceTokenPersistence.update(
 			kaleoTimerInstanceToken, false);
 
-		deleteTimer(kaleoTimerInstanceToken);
+		deleteScheduledTimer(kaleoTimerInstanceToken);
 
 		return kaleoTimerInstanceToken;
 	}
 
+	public void completeKaleoTimerInstanceTokens(
+			long kaleoInstanceTokenId, ServiceContext serviceContext)
+		throws PortalException, SystemException {
+
+		List<KaleoTimerInstanceToken> kaleoTimerInstanceTokens =
+			kaleoTimerInstanceTokenPersistence.findByKITI_C(
+				kaleoInstanceTokenId, false);
+
+		completeKaleoTimerInstanceTokens(
+			kaleoTimerInstanceTokens, serviceContext);
+	}
+
+	public void completeKaleoTimerInstanceTokens(
+			List<KaleoTimerInstanceToken> kaleoTimerInstanceTokens,
+			ServiceContext serviceContext)
+		throws PortalException, SystemException {
+
+		for (KaleoTimerInstanceToken kaleoTimerInstanceToken :
+				kaleoTimerInstanceTokens) {
+
+			completeKaleoTimerInstanceToken(
+				kaleoTimerInstanceToken.getKaleoTimerInstanceTokenId(),
+				serviceContext);
+		}
+	}
+
 	public void deleteKaleoTimerInstanceToken(
-			long kaleoInstanceId, long kaleoTimerId)
+			long kaleoInstanceTokenId, long kaleoTimerId)
 		throws PortalException, SystemException {
 
 		KaleoTimerInstanceToken kaleoTimerInstanceToken =
-			getKaleoTimerInstanceToken(kaleoInstanceId, kaleoTimerId);
+			getKaleoTimerInstanceToken(kaleoInstanceTokenId, kaleoTimerId);
 
-		deleteTimer(kaleoTimerInstanceToken);
+		deleteScheduledTimer(kaleoTimerInstanceToken);
 
 		kaleoTimerInstanceTokenPersistence.remove(kaleoTimerInstanceToken);
 	}
 
-	public KaleoTimerInstanceToken getKaleoTimerInstanceToken(
-			long kaleoInstanceId, long kaleoTimerId)
-		throws PortalException, SystemException {
+	public void deleteKaleoTimerInstanceTokens(long kaleoInstanceId)
+		throws SystemException {
 
-		return kaleoTimerInstanceTokenPersistence.findByKII_KTI(
-			kaleoInstanceId, kaleoTimerId);
+		List<KaleoTimerInstanceToken> kaleoTimerInstanceTokens =
+			kaleoTimerInstanceTokenPersistence.findByKaleoInstanceId(
+				kaleoInstanceId);
+
+		for (KaleoTimerInstanceToken kaleoTimerInstanceToken :
+				kaleoTimerInstanceTokens) {
+
+			if (kaleoTimerInstanceToken.isCompleted()) {
+				continue;
+			}
+
+			try {
+				deleteScheduledTimer(kaleoTimerInstanceToken);
+			}
+			catch (PortalException e) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(
+						"Unable to unschedule: " + kaleoTimerInstanceToken, e);
+				}
+			}
+
+			kaleoTimerInstanceTokenPersistence.remove(kaleoTimerInstanceToken);
+		}
 	}
 
-	public int getKaleoTimerInstanceTokensCount(
-			long kaleoInstanceId, Boolean completed,
+	public KaleoTimerInstanceToken getKaleoTimerInstanceToken(
+			long kaleoInstanceTokenId, long kaleoTimerId)
+		throws PortalException, SystemException {
+
+		return kaleoTimerInstanceTokenPersistence.findByKITI_KTI(
+			kaleoInstanceTokenId, kaleoTimerId);
+	}
+
+	public List<KaleoTimerInstanceToken> getKaleoTimerInstanceTokens(
+			long kaleoInstanceTokenId, Boolean completed, Boolean blocking,
 			ServiceContext serviceContext)
 		throws SystemException {
 
-		DynamicQuery dynamicQuery = buildDynamicQuery(
-			kaleoInstanceId, completed, serviceContext);
-
-		return (int)dynamicQueryCount(dynamicQuery);
+		return kaleoTimerInstanceTokenPersistence.findByKITI_C_B(
+			kaleoInstanceTokenId, completed, blocking);
 	}
 
-	protected void addCompletedCriterion(
-		DynamicQuery dynamicQuery, Boolean completed) {
+	public int getKaleoTimerInstanceTokensCount(
+			long kaleoInstanceTokenId, Boolean completed, Boolean blocking,
+			ServiceContext serviceContext)
+		throws SystemException {
 
-		if (completed == null) {
-			return;
-		}
-
-		dynamicQuery.add(
-			PropertyFactoryUtil.forName("completed").eq(completed));
+		return kaleoTimerInstanceTokenPersistence.countByKITI_C_B(
+			kaleoInstanceTokenId, completed, blocking);
 	}
 
-	protected DynamicQuery buildDynamicQuery(
-		long kaleoInstanceId, Boolean completed,
-		ServiceContext serviceContext) {
-
-		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
-			KaleoTimerInstanceToken.class, getClass().getClassLoader());
-
-		dynamicQuery.add(
-			PropertyFactoryUtil.forName("companyId").eq(
-				serviceContext.getCompanyId()));
-		dynamicQuery.add(
-			PropertyFactoryUtil.forName("kaleoInstanceId").eq(
-				kaleoInstanceId));
-
-		addCompletedCriterion(dynamicQuery, completed);
-
-		return dynamicQuery;
-	}
-
-	protected void deleteTimer(KaleoTimerInstanceToken kaleoTimerInstanceToken)
+	protected void deleteScheduledTimer(
+			KaleoTimerInstanceToken kaleoTimerInstanceToken)
 		throws PortalException {
 
 		String groupName = getSchedulerGroupName(kaleoTimerInstanceToken);
@@ -239,10 +275,8 @@ public class KaleoTimerInstanceTokenLocalServiceImpl
 	protected String getSchedulerGroupName(
 		KaleoTimerInstanceToken kaleoTimerInstanceToken) {
 
-		return DestinationNames.SCHEDULER_DISPATCH.concat(
-			StringPool.SLASH).concat(
-				String.valueOf(
-					kaleoTimerInstanceToken.getKaleoTimerInstanceTokenId()));
+		return SchedulerUtil.getGroupName(
+			kaleoTimerInstanceToken.getKaleoTimerInstanceTokenId());
 	}
 
 	protected SchedulerEventMessageListenerWrapper registerMessageListener(
@@ -263,18 +297,16 @@ public class KaleoTimerInstanceTokenLocalServiceImpl
 	}
 
 	protected void scheduleTimer(
-			KaleoTimerInstanceToken kaleoTimerInstanceToken)
+			KaleoTimerInstanceToken kaleoTimerInstanceToken,
+			KaleoTimer kaleoTimer)
 		throws PortalException, SystemException {
 
-		deleteTimer(kaleoTimerInstanceToken);
+		deleteScheduledTimer(kaleoTimerInstanceToken);
 
 		String groupName = getSchedulerGroupName(kaleoTimerInstanceToken);
 
 		SchedulerEventMessageListenerWrapper schedulerEventListenerWrapper =
 			registerMessageListener(groupName);
-
-		KaleoTimer kaleoTimer = kaleoTimerPersistence.findByPrimaryKey(
-			kaleoTimerInstanceToken.getKaleoTimerId());
 
 		DelayDuration delayDuration = new DelayDuration(
 			kaleoTimer.getDuration(),
@@ -288,7 +320,20 @@ public class KaleoTimerInstanceTokenLocalServiceImpl
 
 		dueDateCalendar.setTime(dueDate);
 
-		CronText cronText = new CronText(dueDateCalendar);
+		CronText cronText = null;
+
+		if (!kaleoTimer.isRecurring()) {
+			cronText = new CronText(dueDateCalendar);
+		}
+		else {
+			DelayDuration recurrence = new DelayDuration(
+				kaleoTimer.getRecurrenceDuration(),
+				DurationScale.parse(kaleoTimer.getRecurrenceScale()));
+
+			cronText = new CronText(
+				dueDateCalendar, recurrence.getDurationScale().getIntValue(),
+				(int)recurrence.getDuration());
+		}
 
 		Trigger trigger = new CronTrigger(
 			groupName, groupName, cronText.toString());
@@ -309,5 +354,8 @@ public class KaleoTimerInstanceTokenLocalServiceImpl
 
 	@BeanReference(type = TimerMessageListener.class)
 	protected TimerMessageListener timerMessageListener;
+
+	private static Log _log = LogFactoryUtil.getLog(
+		KaleoTimerInstanceTokenLocalServiceImpl.class);
 
 }

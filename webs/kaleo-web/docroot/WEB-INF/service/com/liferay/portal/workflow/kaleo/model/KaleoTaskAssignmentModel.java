@@ -191,6 +191,35 @@ public interface KaleoTaskAssignmentModel extends BaseModel<KaleoTaskAssignment>
 	public void setKaleoDefinitionId(long kaleoDefinitionId);
 
 	/**
+	 * Returns the kaleo class name of this kaleo task assignment.
+	 *
+	 * @return the kaleo class name of this kaleo task assignment
+	 */
+	@AutoEscape
+	public String getKaleoClassName();
+
+	/**
+	 * Sets the kaleo class name of this kaleo task assignment.
+	 *
+	 * @param kaleoClassName the kaleo class name of this kaleo task assignment
+	 */
+	public void setKaleoClassName(String kaleoClassName);
+
+	/**
+	 * Returns the kaleo class p k of this kaleo task assignment.
+	 *
+	 * @return the kaleo class p k of this kaleo task assignment
+	 */
+	public long getKaleoClassPK();
+
+	/**
+	 * Sets the kaleo class p k of this kaleo task assignment.
+	 *
+	 * @param kaleoClassPK the kaleo class p k of this kaleo task assignment
+	 */
+	public void setKaleoClassPK(long kaleoClassPK);
+
+	/**
 	 * Returns the kaleo node ID of this kaleo task assignment.
 	 *
 	 * @return the kaleo node ID of this kaleo task assignment
@@ -203,20 +232,6 @@ public interface KaleoTaskAssignmentModel extends BaseModel<KaleoTaskAssignment>
 	 * @param kaleoNodeId the kaleo node ID of this kaleo task assignment
 	 */
 	public void setKaleoNodeId(long kaleoNodeId);
-
-	/**
-	 * Returns the kaleo task ID of this kaleo task assignment.
-	 *
-	 * @return the kaleo task ID of this kaleo task assignment
-	 */
-	public long getKaleoTaskId();
-
-	/**
-	 * Sets the kaleo task ID of this kaleo task assignment.
-	 *
-	 * @param kaleoTaskId the kaleo task ID of this kaleo task assignment
-	 */
-	public void setKaleoTaskId(long kaleoTaskId);
 
 	/**
 	 * Returns the assignee class name of this kaleo task assignment.

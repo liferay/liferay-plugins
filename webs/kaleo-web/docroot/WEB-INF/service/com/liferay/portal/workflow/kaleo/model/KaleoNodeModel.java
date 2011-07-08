@@ -205,6 +205,21 @@ public interface KaleoNodeModel extends BaseModel<KaleoNode>, GroupedModel {
 	public void setName(String name);
 
 	/**
+	 * Returns the metadata of this kaleo node.
+	 *
+	 * @return the metadata of this kaleo node
+	 */
+	@AutoEscape
+	public String getMetadata();
+
+	/**
+	 * Sets the metadata of this kaleo node.
+	 *
+	 * @param metadata the metadata of this kaleo node
+	 */
+	public void setMetadata(String metadata);
+
+	/**
 	 * Returns the description of this kaleo node.
 	 *
 	 * @return the description of this kaleo node

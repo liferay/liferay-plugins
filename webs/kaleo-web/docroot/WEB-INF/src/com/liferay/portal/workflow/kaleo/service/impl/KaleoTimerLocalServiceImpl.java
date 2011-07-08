@@ -18,9 +18,10 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
-import com.liferay.portal.workflow.kaleo.NoSuchTimerException;
+import com.liferay.portal.workflow.kaleo.definition.Action;
 import com.liferay.portal.workflow.kaleo.definition.Assignment;
 import com.liferay.portal.workflow.kaleo.definition.DelayDuration;
+import com.liferay.portal.workflow.kaleo.definition.Notification;
 import com.liferay.portal.workflow.kaleo.definition.Timer;
 import com.liferay.portal.workflow.kaleo.model.KaleoTimer;
 import com.liferay.portal.workflow.kaleo.service.base.KaleoTimerLocalServiceBaseImpl;
@@ -35,12 +36,11 @@ import java.util.Set;
 public class KaleoTimerLocalServiceImpl extends KaleoTimerLocalServiceBaseImpl {
 
 	public KaleoTimer addKaleoTimer(
-			long kaleoDefinitionId, long kaleoNodeId, long parentKaleoNodeId,
+			long kaleoDefinitionId, String kaleoClassName, long kaleoClassPK,
 			Timer timer, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		// Kaleo timer
-
 		User user = userPersistence.findByPrimaryKey(
 			serviceContext.getUserId());
 		Date now = new Date();
@@ -55,17 +55,41 @@ public class KaleoTimerLocalServiceImpl extends KaleoTimerLocalServiceBaseImpl {
 		kaleoTimer.setCreateDate(now);
 		kaleoTimer.setModifiedDate(now);
 		kaleoTimer.setKaleoDefinitionId(kaleoDefinitionId);
-		kaleoTimer.setKaleoNodeId(kaleoNodeId);
-		kaleoTimer.setParentKaleoNodeId(parentKaleoNodeId);
+		kaleoTimer.setKaleoClassName(kaleoClassName);
+		kaleoTimer.setKaleoClassPK(kaleoClassPK);
 		kaleoTimer.setName(timer.getName());
-		kaleoTimer.setDefaultTimer(timer.isDefault());
-
+		kaleoTimer.setBlocking(timer.isBlocking());
 		DelayDuration delayDuration = timer.getDelayDuration();
 
 		kaleoTimer.setDuration(delayDuration.getDuration());
 		kaleoTimer.setScale(delayDuration.getDurationScale().getValue());
 
+		DelayDuration recurrence = timer.getRecurrence();
+		if (recurrence != null) {
+			kaleoTimer.setRecurrenceDuration(recurrence.getDuration());
+			kaleoTimer.setRecurrenceScale(
+				recurrence.getDurationScale().getValue());
+		}
+
 		kaleoTimerPersistence.update(kaleoTimer, false);
+
+		Set<Action> actions = timer.getActions();
+
+		for (Action action : actions) {
+			kaleoActionLocalService.addKaleoAction(
+				kaleoDefinitionId, KaleoTimer.class.getName(), kaleoTimerId,
+				timer.getName(), action, serviceContext);
+		}
+
+		// Kaleo notifications
+
+		Set<Notification> notifications = timer.getNotifications();
+
+		for (Notification notification : notifications) {
+			kaleoNotificationLocalService.addKaleoNotification(
+				kaleoDefinitionId, KaleoTimer.class.getName(), kaleoTimerId,
+				timer.getName(), notification, serviceContext);
+		}
 
 		// Kaleo assignments
 
@@ -73,30 +97,27 @@ public class KaleoTimerLocalServiceImpl extends KaleoTimerLocalServiceBaseImpl {
 
 		for (Assignment reassignment : reassignments) {
 			kaleoTaskAssignmentLocalService.addKaleoTaskAssignment(
-				kaleoDefinitionId, kaleoNodeId, parentKaleoNodeId, reassignment,
-				serviceContext);
+				kaleoDefinitionId, KaleoTimer.class.getName(), kaleoTimerId,
+				reassignment, serviceContext);
 		}
 
 		return kaleoTimer;
 	}
 
-	public KaleoTimer getDefaultKaleoTimer(long parentKaleoNodeId)
-		throws PortalException, SystemException {
-
-		List<KaleoTimer> kaleoTimers = kaleoTimerPersistence.findByPKNI_DT(
-			parentKaleoNodeId, true);
-
-		if (!kaleoTimers.isEmpty()) {
-			return kaleoTimers.get(0);
-		}
-
-		throw new NoSuchTimerException();
-	}
-
-	public List<KaleoTimer> getKaleoTimers(long parentKaleoNodeId)
+	public List<KaleoTimer> getKaleoTimers(
+			String kaleoClassName, long kaleoClassPK)
 		throws SystemException {
 
-		return kaleoTimerPersistence.findByparentKaleoNodeId(parentKaleoNodeId);
+		return kaleoTimerPersistence.findByKCN_KCPK(
+			kaleoClassName, kaleoClassPK);
+	}
+
+	public List<KaleoTimer> getKaleoTimers(
+			String kaleoClassName, long kaleoClassPK, boolean blocking)
+		throws SystemException {
+
+		return kaleoTimerPersistence.findByKCN_KCPK_Blocking(
+			kaleoClassName, kaleoClassPK, blocking);
 	}
 
 }

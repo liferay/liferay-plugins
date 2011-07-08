@@ -41,7 +41,7 @@ public class KaleoTaskImpl extends KaleoTaskBaseImpl {
 		throws SystemException {
 
 		return KaleoTaskAssignmentLocalServiceUtil.getKaleoTaskAssignments(
-			getKaleoNodeId(), getKaleoTaskId());
+			KaleoTask.class.getName(), getKaleoTaskId());
 	}
 
 }

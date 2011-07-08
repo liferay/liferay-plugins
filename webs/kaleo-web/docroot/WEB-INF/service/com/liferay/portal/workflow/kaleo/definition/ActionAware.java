@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -14,47 +14,15 @@
 
 package com.liferay.portal.workflow.kaleo.definition;
 
+import java.util.Set;
+
 /**
  * @author Michael C. Han
  */
-public class Transition {
+public interface ActionAware {
 
-	public Transition(
-		String name, Node sourceNode, Node targetNode, boolean defaultValue) {
+	public Set<Action> getActions();
 
-		_name = name;
-		_sourceNode = sourceNode;
-		_targetNode = targetNode;
-		_default = defaultValue;
-	}
+	public void setActions(Set<Action> actions);
 
-	public String getName() {
-		return _name;
-	}
-
-	public Node getSourceNode() {
-		return _sourceNode;
-	}
-
-	public Node getTargetNode() {
-		return _targetNode;
-	}
-
-	public Timer getTimer() {
-		return _timer;
-	}
-
-	public boolean isDefault() {
-		return _default;
-	}
-
-	public void setTimers(Timer timer) {
-		_timer = timer;
-	}
-
-	private boolean _default;
-	private String _name;
-	private Node _sourceNode;
-	private Node _targetNode;
-	private Timer _timer;
 }

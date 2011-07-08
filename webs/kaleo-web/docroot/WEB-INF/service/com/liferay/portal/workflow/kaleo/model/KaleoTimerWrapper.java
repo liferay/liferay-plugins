@@ -219,39 +219,39 @@ public class KaleoTimerWrapper implements KaleoTimer {
 	}
 
 	/**
-	* Returns the kaleo node ID of this kaleo timer.
+	* Returns the kaleo class name of this kaleo timer.
 	*
-	* @return the kaleo node ID of this kaleo timer
+	* @return the kaleo class name of this kaleo timer
 	*/
-	public long getKaleoNodeId() {
-		return _kaleoTimer.getKaleoNodeId();
+	public java.lang.String getKaleoClassName() {
+		return _kaleoTimer.getKaleoClassName();
 	}
 
 	/**
-	* Sets the kaleo node ID of this kaleo timer.
+	* Sets the kaleo class name of this kaleo timer.
 	*
-	* @param kaleoNodeId the kaleo node ID of this kaleo timer
+	* @param kaleoClassName the kaleo class name of this kaleo timer
 	*/
-	public void setKaleoNodeId(long kaleoNodeId) {
-		_kaleoTimer.setKaleoNodeId(kaleoNodeId);
+	public void setKaleoClassName(java.lang.String kaleoClassName) {
+		_kaleoTimer.setKaleoClassName(kaleoClassName);
 	}
 
 	/**
-	* Returns the parent kaleo node ID of this kaleo timer.
+	* Returns the kaleo class p k of this kaleo timer.
 	*
-	* @return the parent kaleo node ID of this kaleo timer
+	* @return the kaleo class p k of this kaleo timer
 	*/
-	public long getParentKaleoNodeId() {
-		return _kaleoTimer.getParentKaleoNodeId();
+	public long getKaleoClassPK() {
+		return _kaleoTimer.getKaleoClassPK();
 	}
 
 	/**
-	* Sets the parent kaleo node ID of this kaleo timer.
+	* Sets the kaleo class p k of this kaleo timer.
 	*
-	* @param parentKaleoNodeId the parent kaleo node ID of this kaleo timer
+	* @param kaleoClassPK the kaleo class p k of this kaleo timer
 	*/
-	public void setParentKaleoNodeId(long parentKaleoNodeId) {
-		_kaleoTimer.setParentKaleoNodeId(parentKaleoNodeId);
+	public void setKaleoClassPK(long kaleoClassPK) {
+		_kaleoTimer.setKaleoClassPK(kaleoClassPK);
 	}
 
 	/**
@@ -273,30 +273,30 @@ public class KaleoTimerWrapper implements KaleoTimer {
 	}
 
 	/**
-	* Returns the default timer of this kaleo timer.
+	* Returns the blocking of this kaleo timer.
 	*
-	* @return the default timer of this kaleo timer
+	* @return the blocking of this kaleo timer
 	*/
-	public boolean getDefaultTimer() {
-		return _kaleoTimer.getDefaultTimer();
+	public boolean getBlocking() {
+		return _kaleoTimer.getBlocking();
 	}
 
 	/**
-	* Returns <code>true</code> if this kaleo timer is default timer.
+	* Returns <code>true</code> if this kaleo timer is blocking.
 	*
-	* @return <code>true</code> if this kaleo timer is default timer; <code>false</code> otherwise
+	* @return <code>true</code> if this kaleo timer is blocking; <code>false</code> otherwise
 	*/
-	public boolean isDefaultTimer() {
-		return _kaleoTimer.isDefaultTimer();
+	public boolean isBlocking() {
+		return _kaleoTimer.isBlocking();
 	}
 
 	/**
-	* Sets whether this kaleo timer is default timer.
+	* Sets whether this kaleo timer is blocking.
 	*
-	* @param defaultTimer the default timer of this kaleo timer
+	* @param blocking the blocking of this kaleo timer
 	*/
-	public void setDefaultTimer(boolean defaultTimer) {
-		_kaleoTimer.setDefaultTimer(defaultTimer);
+	public void setBlocking(boolean blocking) {
+		_kaleoTimer.setBlocking(blocking);
 	}
 
 	/**
@@ -351,6 +351,42 @@ public class KaleoTimerWrapper implements KaleoTimer {
 	*/
 	public void setScale(java.lang.String scale) {
 		_kaleoTimer.setScale(scale);
+	}
+
+	/**
+	* Returns the recurrence duration of this kaleo timer.
+	*
+	* @return the recurrence duration of this kaleo timer
+	*/
+	public double getRecurrenceDuration() {
+		return _kaleoTimer.getRecurrenceDuration();
+	}
+
+	/**
+	* Sets the recurrence duration of this kaleo timer.
+	*
+	* @param recurrenceDuration the recurrence duration of this kaleo timer
+	*/
+	public void setRecurrenceDuration(double recurrenceDuration) {
+		_kaleoTimer.setRecurrenceDuration(recurrenceDuration);
+	}
+
+	/**
+	* Returns the recurrence scale of this kaleo timer.
+	*
+	* @return the recurrence scale of this kaleo timer
+	*/
+	public java.lang.String getRecurrenceScale() {
+		return _kaleoTimer.getRecurrenceScale();
+	}
+
+	/**
+	* Sets the recurrence scale of this kaleo timer.
+	*
+	* @param recurrenceScale the recurrence scale of this kaleo timer
+	*/
+	public void setRecurrenceScale(java.lang.String recurrenceScale) {
+		_kaleoTimer.setRecurrenceScale(recurrenceScale);
 	}
 
 	public boolean isNew() {
@@ -429,6 +465,15 @@ public class KaleoTimerWrapper implements KaleoTimer {
 	public void save()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		_kaleoTimer.save();
+	}
+
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment> getKaleoTaskReassignments()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _kaleoTimer.getKaleoTaskReassignments();
+	}
+
+	public boolean isRecurring() {
+		return _kaleoTimer.isRecurring();
 	}
 
 	public KaleoTimer getWrappedKaleoTimer() {

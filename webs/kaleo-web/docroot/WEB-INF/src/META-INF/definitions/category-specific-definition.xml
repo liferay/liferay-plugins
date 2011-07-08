@@ -70,10 +70,10 @@
 		<actions>
 			<notification>
 				<name>Creator Modification Notification</name>
-				<execution-type>onAssignment</execution-type>
 				<template>Your submission was rejected by a reviewer, please modify and resubmit.</template>
 				<template-language>text</template-language>
 				<notification-type>email</notification-type>
+				<execution-type>onAssignment</execution-type>
 			</notification>
 		</actions>
 		<assignments>
@@ -92,10 +92,10 @@
 		<actions>
 			<notification>
 				<name>Review Notification</name>
-				<execution-type>onAssignment</execution-type>
 				<template>You have a new submission waiting for your review in the workflow.</template>
 				<template-language>text</template-language>
 				<notification-type>email</notification-type>
+				<execution-type>onAssignment</execution-type>
 			</notification>
 		</actions>
 		<assignments>
@@ -134,6 +134,24 @@
 				</role>
 			</roles>
 		</assignments>
+		<task-timers>
+			<task-timer>
+				<name></name>
+				<blocking>false</blocking>
+				<delay>
+					<duration>1</duration>
+					<scale>hour</scale>
+				</delay>
+				<timer-actions>
+					<timer-notification>
+						<name></name>
+						<template></template>
+						<template-language>text</template-language>
+						<notification-type>im</notification-type>
+					</timer-notification>
+				</timer-actions>
+			</task-timer>
+		</task-timers>
 		<transitions>
 			<transition>
 				<name>approve</name>
@@ -152,10 +170,10 @@
 		<actions>
 			<notification>
 				<name>Review Notification</name>
-				<execution-type>onAssignment</execution-type>
 				<template>You have a new submission waiting for your review in the workflow.</template>
 				<template-language>text</template-language>
 				<notification-type>email</notification-type>
+				<execution-type>onAssignment</execution-type>
 			</notification>
 		</actions>
 		<assignments>
@@ -212,7 +230,6 @@
 		<actions>
 			<action>
 				<name>approve</name>
-				<execution-type>onEntry</execution-type>
 				<script>
 					<![CDATA[
 						import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -222,6 +239,7 @@
 					]]>
 				</script>
 				<script-language>groovy</script-language>
+				<execution-type>onEntry</execution-type>
 			</action>
 		</actions>
 	</state>

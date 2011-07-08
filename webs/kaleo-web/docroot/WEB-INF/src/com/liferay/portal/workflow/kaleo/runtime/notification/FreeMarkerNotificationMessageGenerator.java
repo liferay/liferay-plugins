@@ -39,7 +39,7 @@ public class FreeMarkerNotificationMessageGenerator
 	implements NotificationMessageGenerator {
 
 	public String generateMessage(
-			long kaleoNodeId, String notificationName,
+			String kaleoClassName, long kaleoClassPK, String notificationName,
 			String notificationTemplate, ExecutionContext executionContext)
 		throws NotificationMessageGenerationException {
 
@@ -55,8 +55,8 @@ public class FreeMarkerNotificationMessageGenerator
 			StringWriter stringWriter = new StringWriter();
 
 			freeMarkerEngine.mergeTemplate(
-				notificationName + kaleoNodeId, notificationTemplate,
-				freeMarketContext, stringWriter);
+				notificationName + kaleoClassName + kaleoClassPK,
+				notificationTemplate, freeMarketContext, stringWriter);
 
 			return stringWriter.toString();
 		}

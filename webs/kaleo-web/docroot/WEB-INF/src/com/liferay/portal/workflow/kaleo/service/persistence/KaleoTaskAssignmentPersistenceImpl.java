@@ -103,48 +103,38 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 			KaleoTaskAssignmentModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST, "countByKaleoDefinitionId",
 			new String[] { Long.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_KALEOTASKID = new FinderPath(KaleoTaskAssignmentModelImpl.ENTITY_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_FIND_BY_KCN_KCPK = new FinderPath(KaleoTaskAssignmentModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoTaskAssignmentModelImpl.FINDER_CACHE_ENABLED,
 			KaleoTaskAssignmentImpl.class, FINDER_CLASS_NAME_LIST,
-			"findByKaleoTaskId",
+			"findByKCN_KCPK",
 			new String[] {
-				Long.class.getName(),
+				String.class.getName(), Long.class.getName(),
 				
 			"java.lang.Integer", "java.lang.Integer",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
-	public static final FinderPath FINDER_PATH_COUNT_BY_KALEOTASKID = new FinderPath(KaleoTaskAssignmentModelImpl.ENTITY_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_COUNT_BY_KCN_KCPK = new FinderPath(KaleoTaskAssignmentModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoTaskAssignmentModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST, "countByKaleoTaskId",
-			new String[] { Long.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_KNI_KTI = new FinderPath(KaleoTaskAssignmentModelImpl.ENTITY_CACHE_ENABLED,
+			FINDER_CLASS_NAME_LIST, "countByKCN_KCPK",
+			new String[] { String.class.getName(), Long.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_KCN_KCPK_ACN = new FinderPath(KaleoTaskAssignmentModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoTaskAssignmentModelImpl.FINDER_CACHE_ENABLED,
 			KaleoTaskAssignmentImpl.class, FINDER_CLASS_NAME_LIST,
-			"findByKNI_KTI",
+			"findByKCN_KCPK_ACN",
 			new String[] {
-				Long.class.getName(), Long.class.getName(),
+				String.class.getName(), Long.class.getName(),
+				String.class.getName(),
 				
 			"java.lang.Integer", "java.lang.Integer",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
-	public static final FinderPath FINDER_PATH_COUNT_BY_KNI_KTI = new FinderPath(KaleoTaskAssignmentModelImpl.ENTITY_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_COUNT_BY_KCN_KCPK_ACN = new FinderPath(KaleoTaskAssignmentModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoTaskAssignmentModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST, "countByKNI_KTI",
-			new String[] { Long.class.getName(), Long.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_KTI_ACN = new FinderPath(KaleoTaskAssignmentModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoTaskAssignmentModelImpl.FINDER_CACHE_ENABLED,
-			KaleoTaskAssignmentImpl.class, FINDER_CLASS_NAME_LIST,
-			"findByKTI_ACN",
+			FINDER_CLASS_NAME_LIST, "countByKCN_KCPK_ACN",
 			new String[] {
-				Long.class.getName(), String.class.getName(),
-				
-			"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
+				String.class.getName(), Long.class.getName(),
+				String.class.getName()
 			});
-	public static final FinderPath FINDER_PATH_COUNT_BY_KTI_ACN = new FinderPath(KaleoTaskAssignmentModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoTaskAssignmentModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST, "countByKTI_ACN",
-			new String[] { Long.class.getName(), String.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(KaleoTaskAssignmentModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoTaskAssignmentModelImpl.FINDER_CACHE_ENABLED,
 			KaleoTaskAssignmentImpl.class, FINDER_CLASS_NAME_LIST, "findAll",
@@ -373,8 +363,9 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 		kaleoTaskAssignmentImpl.setCreateDate(kaleoTaskAssignment.getCreateDate());
 		kaleoTaskAssignmentImpl.setModifiedDate(kaleoTaskAssignment.getModifiedDate());
 		kaleoTaskAssignmentImpl.setKaleoDefinitionId(kaleoTaskAssignment.getKaleoDefinitionId());
+		kaleoTaskAssignmentImpl.setKaleoClassName(kaleoTaskAssignment.getKaleoClassName());
+		kaleoTaskAssignmentImpl.setKaleoClassPK(kaleoTaskAssignment.getKaleoClassPK());
 		kaleoTaskAssignmentImpl.setKaleoNodeId(kaleoTaskAssignment.getKaleoNodeId());
-		kaleoTaskAssignmentImpl.setKaleoTaskId(kaleoTaskAssignment.getKaleoTaskId());
 		kaleoTaskAssignmentImpl.setAssigneeClassName(kaleoTaskAssignment.getAssigneeClassName());
 		kaleoTaskAssignmentImpl.setAssigneeClassPK(kaleoTaskAssignment.getAssigneeClassPK());
 		kaleoTaskAssignmentImpl.setAssigneeActionId(kaleoTaskAssignment.getAssigneeActionId());
@@ -1174,77 +1165,92 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 	}
 
 	/**
-	 * Returns all the kaleo task assignments where kaleoTaskId = &#63;.
+	 * Returns all the kaleo task assignments where kaleoClassName = &#63; and kaleoClassPK = &#63;.
 	 *
-	 * @param kaleoTaskId the kaleo task ID
+	 * @param kaleoClassName the kaleo class name
+	 * @param kaleoClassPK the kaleo class p k
 	 * @return the matching kaleo task assignments
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<KaleoTaskAssignment> findByKaleoTaskId(long kaleoTaskId)
-		throws SystemException {
-		return findByKaleoTaskId(kaleoTaskId, QueryUtil.ALL_POS,
+	public List<KaleoTaskAssignment> findByKCN_KCPK(String kaleoClassName,
+		long kaleoClassPK) throws SystemException {
+		return findByKCN_KCPK(kaleoClassName, kaleoClassPK, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);
 	}
 
 	/**
-	 * Returns a range of all the kaleo task assignments where kaleoTaskId = &#63;.
+	 * Returns a range of all the kaleo task assignments where kaleoClassName = &#63; and kaleoClassPK = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param kaleoTaskId the kaleo task ID
+	 * @param kaleoClassName the kaleo class name
+	 * @param kaleoClassPK the kaleo class p k
 	 * @param start the lower bound of the range of kaleo task assignments
 	 * @param end the upper bound of the range of kaleo task assignments (not inclusive)
 	 * @return the range of matching kaleo task assignments
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<KaleoTaskAssignment> findByKaleoTaskId(long kaleoTaskId,
-		int start, int end) throws SystemException {
-		return findByKaleoTaskId(kaleoTaskId, start, end, null);
+	public List<KaleoTaskAssignment> findByKCN_KCPK(String kaleoClassName,
+		long kaleoClassPK, int start, int end) throws SystemException {
+		return findByKCN_KCPK(kaleoClassName, kaleoClassPK, start, end, null);
 	}
 
 	/**
-	 * Returns an ordered range of all the kaleo task assignments where kaleoTaskId = &#63;.
+	 * Returns an ordered range of all the kaleo task assignments where kaleoClassName = &#63; and kaleoClassPK = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param kaleoTaskId the kaleo task ID
+	 * @param kaleoClassName the kaleo class name
+	 * @param kaleoClassPK the kaleo class p k
 	 * @param start the lower bound of the range of kaleo task assignments
 	 * @param end the upper bound of the range of kaleo task assignments (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching kaleo task assignments
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<KaleoTaskAssignment> findByKaleoTaskId(long kaleoTaskId,
-		int start, int end, OrderByComparator orderByComparator)
-		throws SystemException {
+	public List<KaleoTaskAssignment> findByKCN_KCPK(String kaleoClassName,
+		long kaleoClassPK, int start, int end,
+		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
-				kaleoTaskId,
+				kaleoClassName, kaleoClassPK,
 				
 				String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
 			};
 
-		List<KaleoTaskAssignment> list = (List<KaleoTaskAssignment>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_KALEOTASKID,
+		List<KaleoTaskAssignment> list = (List<KaleoTaskAssignment>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_KCN_KCPK,
 				finderArgs, this);
 
 		if (list == null) {
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(3 +
+				query = new StringBundler(4 +
 						(orderByComparator.getOrderByFields().length * 3));
 			}
 			else {
-				query = new StringBundler(3);
+				query = new StringBundler(4);
 			}
 
 			query.append(_SQL_SELECT_KALEOTASKASSIGNMENT_WHERE);
 
-			query.append(_FINDER_COLUMN_KALEOTASKID_KALEOTASKID_2);
+			if (kaleoClassName == null) {
+				query.append(_FINDER_COLUMN_KCN_KCPK_KALEOCLASSNAME_1);
+			}
+			else {
+				if (kaleoClassName.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_KCN_KCPK_KALEOCLASSNAME_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_KCN_KCPK_KALEOCLASSNAME_2);
+				}
+			}
+
+			query.append(_FINDER_COLUMN_KCN_KCPK_KALEOCLASSPK_2);
 
 			if (orderByComparator != null) {
 				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
@@ -1266,7 +1272,11 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				qPos.add(kaleoTaskId);
+				if (kaleoClassName != null) {
+					qPos.add(kaleoClassName);
+				}
+
+				qPos.add(kaleoClassPK);
 
 				list = (List<KaleoTaskAssignment>)QueryUtil.list(q,
 						getDialect(), start, end);
@@ -1276,13 +1286,13 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 			}
 			finally {
 				if (list == null) {
-					FinderCacheUtil.removeResult(FINDER_PATH_FIND_BY_KALEOTASKID,
+					FinderCacheUtil.removeResult(FINDER_PATH_FIND_BY_KCN_KCPK,
 						finderArgs);
 				}
 				else {
 					cacheResult(list);
 
-					FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_KALEOTASKID,
+					FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_KCN_KCPK,
 						finderArgs, list);
 				}
 
@@ -1294,31 +1304,35 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 	}
 
 	/**
-	 * Returns the first kaleo task assignment in the ordered set where kaleoTaskId = &#63;.
+	 * Returns the first kaleo task assignment in the ordered set where kaleoClassName = &#63; and kaleoClassPK = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param kaleoTaskId the kaleo task ID
+	 * @param kaleoClassName the kaleo class name
+	 * @param kaleoClassPK the kaleo class p k
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching kaleo task assignment
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTaskAssignmentException if a matching kaleo task assignment could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public KaleoTaskAssignment findByKaleoTaskId_First(long kaleoTaskId,
-		OrderByComparator orderByComparator)
+	public KaleoTaskAssignment findByKCN_KCPK_First(String kaleoClassName,
+		long kaleoClassPK, OrderByComparator orderByComparator)
 		throws NoSuchTaskAssignmentException, SystemException {
-		List<KaleoTaskAssignment> list = findByKaleoTaskId(kaleoTaskId, 0, 1,
-				orderByComparator);
+		List<KaleoTaskAssignment> list = findByKCN_KCPK(kaleoClassName,
+				kaleoClassPK, 0, 1, orderByComparator);
 
 		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
+			StringBundler msg = new StringBundler(6);
 
 			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("kaleoTaskId=");
-			msg.append(kaleoTaskId);
+			msg.append("kaleoClassName=");
+			msg.append(kaleoClassName);
+
+			msg.append(", kaleoClassPK=");
+			msg.append(kaleoClassPK);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -1330,33 +1344,37 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 	}
 
 	/**
-	 * Returns the last kaleo task assignment in the ordered set where kaleoTaskId = &#63;.
+	 * Returns the last kaleo task assignment in the ordered set where kaleoClassName = &#63; and kaleoClassPK = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param kaleoTaskId the kaleo task ID
+	 * @param kaleoClassName the kaleo class name
+	 * @param kaleoClassPK the kaleo class p k
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching kaleo task assignment
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTaskAssignmentException if a matching kaleo task assignment could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public KaleoTaskAssignment findByKaleoTaskId_Last(long kaleoTaskId,
-		OrderByComparator orderByComparator)
+	public KaleoTaskAssignment findByKCN_KCPK_Last(String kaleoClassName,
+		long kaleoClassPK, OrderByComparator orderByComparator)
 		throws NoSuchTaskAssignmentException, SystemException {
-		int count = countByKaleoTaskId(kaleoTaskId);
+		int count = countByKCN_KCPK(kaleoClassName, kaleoClassPK);
 
-		List<KaleoTaskAssignment> list = findByKaleoTaskId(kaleoTaskId,
-				count - 1, count, orderByComparator);
+		List<KaleoTaskAssignment> list = findByKCN_KCPK(kaleoClassName,
+				kaleoClassPK, count - 1, count, orderByComparator);
 
 		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
+			StringBundler msg = new StringBundler(6);
 
 			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("kaleoTaskId=");
-			msg.append(kaleoTaskId);
+			msg.append("kaleoClassName=");
+			msg.append(kaleoClassName);
+
+			msg.append(", kaleoClassPK=");
+			msg.append(kaleoClassPK);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -1368,21 +1386,22 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 	}
 
 	/**
-	 * Returns the kaleo task assignments before and after the current kaleo task assignment in the ordered set where kaleoTaskId = &#63;.
+	 * Returns the kaleo task assignments before and after the current kaleo task assignment in the ordered set where kaleoClassName = &#63; and kaleoClassPK = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
 	 * @param kaleoTaskAssignmentId the primary key of the current kaleo task assignment
-	 * @param kaleoTaskId the kaleo task ID
+	 * @param kaleoClassName the kaleo class name
+	 * @param kaleoClassPK the kaleo class p k
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next kaleo task assignment
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTaskAssignmentException if a kaleo task assignment with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public KaleoTaskAssignment[] findByKaleoTaskId_PrevAndNext(
-		long kaleoTaskAssignmentId, long kaleoTaskId,
+	public KaleoTaskAssignment[] findByKCN_KCPK_PrevAndNext(
+		long kaleoTaskAssignmentId, String kaleoClassName, long kaleoClassPK,
 		OrderByComparator orderByComparator)
 		throws NoSuchTaskAssignmentException, SystemException {
 		KaleoTaskAssignment kaleoTaskAssignment = findByPrimaryKey(kaleoTaskAssignmentId);
@@ -1394,13 +1413,13 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 
 			KaleoTaskAssignment[] array = new KaleoTaskAssignmentImpl[3];
 
-			array[0] = getByKaleoTaskId_PrevAndNext(session,
-					kaleoTaskAssignment, kaleoTaskId, orderByComparator, true);
+			array[0] = getByKCN_KCPK_PrevAndNext(session, kaleoTaskAssignment,
+					kaleoClassName, kaleoClassPK, orderByComparator, true);
 
 			array[1] = kaleoTaskAssignment;
 
-			array[2] = getByKaleoTaskId_PrevAndNext(session,
-					kaleoTaskAssignment, kaleoTaskId, orderByComparator, false);
+			array[2] = getByKCN_KCPK_PrevAndNext(session, kaleoTaskAssignment,
+					kaleoClassName, kaleoClassPK, orderByComparator, false);
 
 			return array;
 		}
@@ -1412,9 +1431,9 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 		}
 	}
 
-	protected KaleoTaskAssignment getByKaleoTaskId_PrevAndNext(
-		Session session, KaleoTaskAssignment kaleoTaskAssignment,
-		long kaleoTaskId, OrderByComparator orderByComparator, boolean previous) {
+	protected KaleoTaskAssignment getByKCN_KCPK_PrevAndNext(Session session,
+		KaleoTaskAssignment kaleoTaskAssignment, String kaleoClassName,
+		long kaleoClassPK, OrderByComparator orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -1427,7 +1446,19 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 
 		query.append(_SQL_SELECT_KALEOTASKASSIGNMENT_WHERE);
 
-		query.append(_FINDER_COLUMN_KALEOTASKID_KALEOTASKID_2);
+		if (kaleoClassName == null) {
+			query.append(_FINDER_COLUMN_KCN_KCPK_KALEOCLASSNAME_1);
+		}
+		else {
+			if (kaleoClassName.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_KCN_KCPK_KALEOCLASSNAME_3);
+			}
+			else {
+				query.append(_FINDER_COLUMN_KCN_KCPK_KALEOCLASSNAME_2);
+			}
+		}
+
+		query.append(_FINDER_COLUMN_KCN_KCPK_KALEOCLASSPK_2);
 
 		if (orderByComparator != null) {
 			String[] orderByFields = orderByComparator.getOrderByFields();
@@ -1496,7 +1527,11 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 
 		QueryPos qPos = QueryPos.getInstance(q);
 
-		qPos.add(kaleoTaskId);
+		if (kaleoClassName != null) {
+			qPos.add(kaleoClassName);
+		}
+
+		qPos.add(kaleoClassPK);
 
 		if (orderByComparator != null) {
 			Object[] values = orderByComparator.getOrderByValues(kaleoTaskAssignment);
@@ -1517,409 +1552,51 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 	}
 
 	/**
-	 * Returns all the kaleo task assignments where kaleoNodeId = &#63; and kaleoTaskId = &#63;.
+	 * Returns all the kaleo task assignments where kaleoClassName = &#63; and kaleoClassPK = &#63; and assigneeClassName = &#63;.
 	 *
-	 * @param kaleoNodeId the kaleo node ID
-	 * @param kaleoTaskId the kaleo task ID
-	 * @return the matching kaleo task assignments
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<KaleoTaskAssignment> findByKNI_KTI(long kaleoNodeId,
-		long kaleoTaskId) throws SystemException {
-		return findByKNI_KTI(kaleoNodeId, kaleoTaskId, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
-	}
-
-	/**
-	 * Returns a range of all the kaleo task assignments where kaleoNodeId = &#63; and kaleoTaskId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param kaleoNodeId the kaleo node ID
-	 * @param kaleoTaskId the kaleo task ID
-	 * @param start the lower bound of the range of kaleo task assignments
-	 * @param end the upper bound of the range of kaleo task assignments (not inclusive)
-	 * @return the range of matching kaleo task assignments
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<KaleoTaskAssignment> findByKNI_KTI(long kaleoNodeId,
-		long kaleoTaskId, int start, int end) throws SystemException {
-		return findByKNI_KTI(kaleoNodeId, kaleoTaskId, start, end, null);
-	}
-
-	/**
-	 * Returns an ordered range of all the kaleo task assignments where kaleoNodeId = &#63; and kaleoTaskId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param kaleoNodeId the kaleo node ID
-	 * @param kaleoTaskId the kaleo task ID
-	 * @param start the lower bound of the range of kaleo task assignments
-	 * @param end the upper bound of the range of kaleo task assignments (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @return the ordered range of matching kaleo task assignments
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<KaleoTaskAssignment> findByKNI_KTI(long kaleoNodeId,
-		long kaleoTaskId, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				kaleoNodeId, kaleoTaskId,
-				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
-
-		List<KaleoTaskAssignment> list = (List<KaleoTaskAssignment>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_KNI_KTI,
-				finderArgs, this);
-
-		if (list == null) {
-			StringBundler query = null;
-
-			if (orderByComparator != null) {
-				query = new StringBundler(4 +
-						(orderByComparator.getOrderByFields().length * 3));
-			}
-			else {
-				query = new StringBundler(4);
-			}
-
-			query.append(_SQL_SELECT_KALEOTASKASSIGNMENT_WHERE);
-
-			query.append(_FINDER_COLUMN_KNI_KTI_KALEONODEID_2);
-
-			query.append(_FINDER_COLUMN_KNI_KTI_KALEOTASKID_2);
-
-			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
-			}
-
-			else {
-				query.append(KaleoTaskAssignmentModelImpl.ORDER_BY_JPQL);
-			}
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(kaleoNodeId);
-
-				qPos.add(kaleoTaskId);
-
-				list = (List<KaleoTaskAssignment>)QueryUtil.list(q,
-						getDialect(), start, end);
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					FinderCacheUtil.removeResult(FINDER_PATH_FIND_BY_KNI_KTI,
-						finderArgs);
-				}
-				else {
-					cacheResult(list);
-
-					FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_KNI_KTI,
-						finderArgs, list);
-				}
-
-				closeSession(session);
-			}
-		}
-
-		return list;
-	}
-
-	/**
-	 * Returns the first kaleo task assignment in the ordered set where kaleoNodeId = &#63; and kaleoTaskId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param kaleoNodeId the kaleo node ID
-	 * @param kaleoTaskId the kaleo task ID
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the first matching kaleo task assignment
-	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTaskAssignmentException if a matching kaleo task assignment could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public KaleoTaskAssignment findByKNI_KTI_First(long kaleoNodeId,
-		long kaleoTaskId, OrderByComparator orderByComparator)
-		throws NoSuchTaskAssignmentException, SystemException {
-		List<KaleoTaskAssignment> list = findByKNI_KTI(kaleoNodeId,
-				kaleoTaskId, 0, 1, orderByComparator);
-
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("kaleoNodeId=");
-			msg.append(kaleoNodeId);
-
-			msg.append(", kaleoTaskId=");
-			msg.append(kaleoTaskId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchTaskAssignmentException(msg.toString());
-		}
-		else {
-			return list.get(0);
-		}
-	}
-
-	/**
-	 * Returns the last kaleo task assignment in the ordered set where kaleoNodeId = &#63; and kaleoTaskId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param kaleoNodeId the kaleo node ID
-	 * @param kaleoTaskId the kaleo task ID
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the last matching kaleo task assignment
-	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTaskAssignmentException if a matching kaleo task assignment could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public KaleoTaskAssignment findByKNI_KTI_Last(long kaleoNodeId,
-		long kaleoTaskId, OrderByComparator orderByComparator)
-		throws NoSuchTaskAssignmentException, SystemException {
-		int count = countByKNI_KTI(kaleoNodeId, kaleoTaskId);
-
-		List<KaleoTaskAssignment> list = findByKNI_KTI(kaleoNodeId,
-				kaleoTaskId, count - 1, count, orderByComparator);
-
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("kaleoNodeId=");
-			msg.append(kaleoNodeId);
-
-			msg.append(", kaleoTaskId=");
-			msg.append(kaleoTaskId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchTaskAssignmentException(msg.toString());
-		}
-		else {
-			return list.get(0);
-		}
-	}
-
-	/**
-	 * Returns the kaleo task assignments before and after the current kaleo task assignment in the ordered set where kaleoNodeId = &#63; and kaleoTaskId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param kaleoTaskAssignmentId the primary key of the current kaleo task assignment
-	 * @param kaleoNodeId the kaleo node ID
-	 * @param kaleoTaskId the kaleo task ID
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the previous, current, and next kaleo task assignment
-	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTaskAssignmentException if a kaleo task assignment with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public KaleoTaskAssignment[] findByKNI_KTI_PrevAndNext(
-		long kaleoTaskAssignmentId, long kaleoNodeId, long kaleoTaskId,
-		OrderByComparator orderByComparator)
-		throws NoSuchTaskAssignmentException, SystemException {
-		KaleoTaskAssignment kaleoTaskAssignment = findByPrimaryKey(kaleoTaskAssignmentId);
-
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			KaleoTaskAssignment[] array = new KaleoTaskAssignmentImpl[3];
-
-			array[0] = getByKNI_KTI_PrevAndNext(session, kaleoTaskAssignment,
-					kaleoNodeId, kaleoTaskId, orderByComparator, true);
-
-			array[1] = kaleoTaskAssignment;
-
-			array[2] = getByKNI_KTI_PrevAndNext(session, kaleoTaskAssignment,
-					kaleoNodeId, kaleoTaskId, orderByComparator, false);
-
-			return array;
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
-
-	protected KaleoTaskAssignment getByKNI_KTI_PrevAndNext(Session session,
-		KaleoTaskAssignment kaleoTaskAssignment, long kaleoNodeId,
-		long kaleoTaskId, OrderByComparator orderByComparator, boolean previous) {
-		StringBundler query = null;
-
-		if (orderByComparator != null) {
-			query = new StringBundler(6 +
-					(orderByComparator.getOrderByFields().length * 6));
-		}
-		else {
-			query = new StringBundler(3);
-		}
-
-		query.append(_SQL_SELECT_KALEOTASKASSIGNMENT_WHERE);
-
-		query.append(_FINDER_COLUMN_KNI_KTI_KALEONODEID_2);
-
-		query.append(_FINDER_COLUMN_KNI_KTI_KALEOTASKID_2);
-
-		if (orderByComparator != null) {
-			String[] orderByFields = orderByComparator.getOrderByFields();
-
-			if (orderByFields.length > 0) {
-				query.append(WHERE_AND);
-			}
-
-			for (int i = 0; i < orderByFields.length; i++) {
-				query.append(_ORDER_BY_ENTITY_ALIAS);
-				query.append(orderByFields[i]);
-
-				if ((i + 1) < orderByFields.length) {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(WHERE_GREATER_THAN_HAS_NEXT);
-					}
-					else {
-						query.append(WHERE_LESSER_THAN_HAS_NEXT);
-					}
-				}
-				else {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(WHERE_GREATER_THAN);
-					}
-					else {
-						query.append(WHERE_LESSER_THAN);
-					}
-				}
-			}
-
-			query.append(ORDER_BY_CLAUSE);
-
-			for (int i = 0; i < orderByFields.length; i++) {
-				query.append(_ORDER_BY_ENTITY_ALIAS);
-				query.append(orderByFields[i]);
-
-				if ((i + 1) < orderByFields.length) {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(ORDER_BY_ASC_HAS_NEXT);
-					}
-					else {
-						query.append(ORDER_BY_DESC_HAS_NEXT);
-					}
-				}
-				else {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(ORDER_BY_ASC);
-					}
-					else {
-						query.append(ORDER_BY_DESC);
-					}
-				}
-			}
-		}
-
-		else {
-			query.append(KaleoTaskAssignmentModelImpl.ORDER_BY_JPQL);
-		}
-
-		String sql = query.toString();
-
-		Query q = session.createQuery(sql);
-
-		q.setFirstResult(0);
-		q.setMaxResults(2);
-
-		QueryPos qPos = QueryPos.getInstance(q);
-
-		qPos.add(kaleoNodeId);
-
-		qPos.add(kaleoTaskId);
-
-		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByValues(kaleoTaskAssignment);
-
-			for (Object value : values) {
-				qPos.add(value);
-			}
-		}
-
-		List<KaleoTaskAssignment> list = q.list();
-
-		if (list.size() == 2) {
-			return list.get(1);
-		}
-		else {
-			return null;
-		}
-	}
-
-	/**
-	 * Returns all the kaleo task assignments where kaleoTaskId = &#63; and assigneeClassName = &#63;.
-	 *
-	 * @param kaleoTaskId the kaleo task ID
+	 * @param kaleoClassName the kaleo class name
+	 * @param kaleoClassPK the kaleo class p k
 	 * @param assigneeClassName the assignee class name
 	 * @return the matching kaleo task assignments
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<KaleoTaskAssignment> findByKTI_ACN(long kaleoTaskId,
-		String assigneeClassName) throws SystemException {
-		return findByKTI_ACN(kaleoTaskId, assigneeClassName, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+	public List<KaleoTaskAssignment> findByKCN_KCPK_ACN(String kaleoClassName,
+		long kaleoClassPK, String assigneeClassName) throws SystemException {
+		return findByKCN_KCPK_ACN(kaleoClassName, kaleoClassPK,
+			assigneeClassName, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
-	 * Returns a range of all the kaleo task assignments where kaleoTaskId = &#63; and assigneeClassName = &#63;.
+	 * Returns a range of all the kaleo task assignments where kaleoClassName = &#63; and kaleoClassPK = &#63; and assigneeClassName = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param kaleoTaskId the kaleo task ID
+	 * @param kaleoClassName the kaleo class name
+	 * @param kaleoClassPK the kaleo class p k
 	 * @param assigneeClassName the assignee class name
 	 * @param start the lower bound of the range of kaleo task assignments
 	 * @param end the upper bound of the range of kaleo task assignments (not inclusive)
 	 * @return the range of matching kaleo task assignments
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<KaleoTaskAssignment> findByKTI_ACN(long kaleoTaskId,
-		String assigneeClassName, int start, int end) throws SystemException {
-		return findByKTI_ACN(kaleoTaskId, assigneeClassName, start, end, null);
+	public List<KaleoTaskAssignment> findByKCN_KCPK_ACN(String kaleoClassName,
+		long kaleoClassPK, String assigneeClassName, int start, int end)
+		throws SystemException {
+		return findByKCN_KCPK_ACN(kaleoClassName, kaleoClassPK,
+			assigneeClassName, start, end, null);
 	}
 
 	/**
-	 * Returns an ordered range of all the kaleo task assignments where kaleoTaskId = &#63; and assigneeClassName = &#63;.
+	 * Returns an ordered range of all the kaleo task assignments where kaleoClassName = &#63; and kaleoClassPK = &#63; and assigneeClassName = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param kaleoTaskId the kaleo task ID
+	 * @param kaleoClassName the kaleo class name
+	 * @param kaleoClassPK the kaleo class p k
 	 * @param assigneeClassName the assignee class name
 	 * @param start the lower bound of the range of kaleo task assignments
 	 * @param end the upper bound of the range of kaleo task assignments (not inclusive)
@@ -1927,43 +1604,55 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 	 * @return the ordered range of matching kaleo task assignments
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<KaleoTaskAssignment> findByKTI_ACN(long kaleoTaskId,
-		String assigneeClassName, int start, int end,
+	public List<KaleoTaskAssignment> findByKCN_KCPK_ACN(String kaleoClassName,
+		long kaleoClassPK, String assigneeClassName, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
-				kaleoTaskId, assigneeClassName,
+				kaleoClassName, kaleoClassPK, assigneeClassName,
 				
 				String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
 			};
 
-		List<KaleoTaskAssignment> list = (List<KaleoTaskAssignment>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_KTI_ACN,
+		List<KaleoTaskAssignment> list = (List<KaleoTaskAssignment>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_KCN_KCPK_ACN,
 				finderArgs, this);
 
 		if (list == null) {
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(4 +
+				query = new StringBundler(5 +
 						(orderByComparator.getOrderByFields().length * 3));
 			}
 			else {
-				query = new StringBundler(4);
+				query = new StringBundler(5);
 			}
 
 			query.append(_SQL_SELECT_KALEOTASKASSIGNMENT_WHERE);
 
-			query.append(_FINDER_COLUMN_KTI_ACN_KALEOTASKID_2);
+			if (kaleoClassName == null) {
+				query.append(_FINDER_COLUMN_KCN_KCPK_ACN_KALEOCLASSNAME_1);
+			}
+			else {
+				if (kaleoClassName.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_KCN_KCPK_ACN_KALEOCLASSNAME_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_KCN_KCPK_ACN_KALEOCLASSNAME_2);
+				}
+			}
+
+			query.append(_FINDER_COLUMN_KCN_KCPK_ACN_KALEOCLASSPK_2);
 
 			if (assigneeClassName == null) {
-				query.append(_FINDER_COLUMN_KTI_ACN_ASSIGNEECLASSNAME_1);
+				query.append(_FINDER_COLUMN_KCN_KCPK_ACN_ASSIGNEECLASSNAME_1);
 			}
 			else {
 				if (assigneeClassName.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_KTI_ACN_ASSIGNEECLASSNAME_3);
+					query.append(_FINDER_COLUMN_KCN_KCPK_ACN_ASSIGNEECLASSNAME_3);
 				}
 				else {
-					query.append(_FINDER_COLUMN_KTI_ACN_ASSIGNEECLASSNAME_2);
+					query.append(_FINDER_COLUMN_KCN_KCPK_ACN_ASSIGNEECLASSNAME_2);
 				}
 			}
 
@@ -1987,7 +1676,11 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				qPos.add(kaleoTaskId);
+				if (kaleoClassName != null) {
+					qPos.add(kaleoClassName);
+				}
+
+				qPos.add(kaleoClassPK);
 
 				if (assigneeClassName != null) {
 					qPos.add(assigneeClassName);
@@ -2001,13 +1694,13 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 			}
 			finally {
 				if (list == null) {
-					FinderCacheUtil.removeResult(FINDER_PATH_FIND_BY_KTI_ACN,
+					FinderCacheUtil.removeResult(FINDER_PATH_FIND_BY_KCN_KCPK_ACN,
 						finderArgs);
 				}
 				else {
 					cacheResult(list);
 
-					FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_KTI_ACN,
+					FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_KCN_KCPK_ACN,
 						finderArgs, list);
 				}
 
@@ -2019,32 +1712,37 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 	}
 
 	/**
-	 * Returns the first kaleo task assignment in the ordered set where kaleoTaskId = &#63; and assigneeClassName = &#63;.
+	 * Returns the first kaleo task assignment in the ordered set where kaleoClassName = &#63; and kaleoClassPK = &#63; and assigneeClassName = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param kaleoTaskId the kaleo task ID
+	 * @param kaleoClassName the kaleo class name
+	 * @param kaleoClassPK the kaleo class p k
 	 * @param assigneeClassName the assignee class name
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching kaleo task assignment
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTaskAssignmentException if a matching kaleo task assignment could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public KaleoTaskAssignment findByKTI_ACN_First(long kaleoTaskId,
-		String assigneeClassName, OrderByComparator orderByComparator)
+	public KaleoTaskAssignment findByKCN_KCPK_ACN_First(String kaleoClassName,
+		long kaleoClassPK, String assigneeClassName,
+		OrderByComparator orderByComparator)
 		throws NoSuchTaskAssignmentException, SystemException {
-		List<KaleoTaskAssignment> list = findByKTI_ACN(kaleoTaskId,
-				assigneeClassName, 0, 1, orderByComparator);
+		List<KaleoTaskAssignment> list = findByKCN_KCPK_ACN(kaleoClassName,
+				kaleoClassPK, assigneeClassName, 0, 1, orderByComparator);
 
 		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
+			StringBundler msg = new StringBundler(8);
 
 			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("kaleoTaskId=");
-			msg.append(kaleoTaskId);
+			msg.append("kaleoClassName=");
+			msg.append(kaleoClassName);
+
+			msg.append(", kaleoClassPK=");
+			msg.append(kaleoClassPK);
 
 			msg.append(", assigneeClassName=");
 			msg.append(assigneeClassName);
@@ -2059,34 +1757,41 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 	}
 
 	/**
-	 * Returns the last kaleo task assignment in the ordered set where kaleoTaskId = &#63; and assigneeClassName = &#63;.
+	 * Returns the last kaleo task assignment in the ordered set where kaleoClassName = &#63; and kaleoClassPK = &#63; and assigneeClassName = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param kaleoTaskId the kaleo task ID
+	 * @param kaleoClassName the kaleo class name
+	 * @param kaleoClassPK the kaleo class p k
 	 * @param assigneeClassName the assignee class name
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching kaleo task assignment
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTaskAssignmentException if a matching kaleo task assignment could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public KaleoTaskAssignment findByKTI_ACN_Last(long kaleoTaskId,
-		String assigneeClassName, OrderByComparator orderByComparator)
+	public KaleoTaskAssignment findByKCN_KCPK_ACN_Last(String kaleoClassName,
+		long kaleoClassPK, String assigneeClassName,
+		OrderByComparator orderByComparator)
 		throws NoSuchTaskAssignmentException, SystemException {
-		int count = countByKTI_ACN(kaleoTaskId, assigneeClassName);
+		int count = countByKCN_KCPK_ACN(kaleoClassName, kaleoClassPK,
+				assigneeClassName);
 
-		List<KaleoTaskAssignment> list = findByKTI_ACN(kaleoTaskId,
-				assigneeClassName, count - 1, count, orderByComparator);
+		List<KaleoTaskAssignment> list = findByKCN_KCPK_ACN(kaleoClassName,
+				kaleoClassPK, assigneeClassName, count - 1, count,
+				orderByComparator);
 
 		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
+			StringBundler msg = new StringBundler(8);
 
 			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("kaleoTaskId=");
-			msg.append(kaleoTaskId);
+			msg.append("kaleoClassName=");
+			msg.append(kaleoClassName);
+
+			msg.append(", kaleoClassPK=");
+			msg.append(kaleoClassPK);
 
 			msg.append(", assigneeClassName=");
 			msg.append(assigneeClassName);
@@ -2101,23 +1806,24 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 	}
 
 	/**
-	 * Returns the kaleo task assignments before and after the current kaleo task assignment in the ordered set where kaleoTaskId = &#63; and assigneeClassName = &#63;.
+	 * Returns the kaleo task assignments before and after the current kaleo task assignment in the ordered set where kaleoClassName = &#63; and kaleoClassPK = &#63; and assigneeClassName = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
 	 * @param kaleoTaskAssignmentId the primary key of the current kaleo task assignment
-	 * @param kaleoTaskId the kaleo task ID
+	 * @param kaleoClassName the kaleo class name
+	 * @param kaleoClassPK the kaleo class p k
 	 * @param assigneeClassName the assignee class name
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next kaleo task assignment
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTaskAssignmentException if a kaleo task assignment with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public KaleoTaskAssignment[] findByKTI_ACN_PrevAndNext(
-		long kaleoTaskAssignmentId, long kaleoTaskId, String assigneeClassName,
-		OrderByComparator orderByComparator)
+	public KaleoTaskAssignment[] findByKCN_KCPK_ACN_PrevAndNext(
+		long kaleoTaskAssignmentId, String kaleoClassName, long kaleoClassPK,
+		String assigneeClassName, OrderByComparator orderByComparator)
 		throws NoSuchTaskAssignmentException, SystemException {
 		KaleoTaskAssignment kaleoTaskAssignment = findByPrimaryKey(kaleoTaskAssignmentId);
 
@@ -2128,13 +1834,15 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 
 			KaleoTaskAssignment[] array = new KaleoTaskAssignmentImpl[3];
 
-			array[0] = getByKTI_ACN_PrevAndNext(session, kaleoTaskAssignment,
-					kaleoTaskId, assigneeClassName, orderByComparator, true);
+			array[0] = getByKCN_KCPK_ACN_PrevAndNext(session,
+					kaleoTaskAssignment, kaleoClassName, kaleoClassPK,
+					assigneeClassName, orderByComparator, true);
 
 			array[1] = kaleoTaskAssignment;
 
-			array[2] = getByKTI_ACN_PrevAndNext(session, kaleoTaskAssignment,
-					kaleoTaskId, assigneeClassName, orderByComparator, false);
+			array[2] = getByKCN_KCPK_ACN_PrevAndNext(session,
+					kaleoTaskAssignment, kaleoClassName, kaleoClassPK,
+					assigneeClassName, orderByComparator, false);
 
 			return array;
 		}
@@ -2146,10 +1854,10 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 		}
 	}
 
-	protected KaleoTaskAssignment getByKTI_ACN_PrevAndNext(Session session,
-		KaleoTaskAssignment kaleoTaskAssignment, long kaleoTaskId,
-		String assigneeClassName, OrderByComparator orderByComparator,
-		boolean previous) {
+	protected KaleoTaskAssignment getByKCN_KCPK_ACN_PrevAndNext(
+		Session session, KaleoTaskAssignment kaleoTaskAssignment,
+		String kaleoClassName, long kaleoClassPK, String assigneeClassName,
+		OrderByComparator orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -2162,17 +1870,29 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 
 		query.append(_SQL_SELECT_KALEOTASKASSIGNMENT_WHERE);
 
-		query.append(_FINDER_COLUMN_KTI_ACN_KALEOTASKID_2);
+		if (kaleoClassName == null) {
+			query.append(_FINDER_COLUMN_KCN_KCPK_ACN_KALEOCLASSNAME_1);
+		}
+		else {
+			if (kaleoClassName.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_KCN_KCPK_ACN_KALEOCLASSNAME_3);
+			}
+			else {
+				query.append(_FINDER_COLUMN_KCN_KCPK_ACN_KALEOCLASSNAME_2);
+			}
+		}
+
+		query.append(_FINDER_COLUMN_KCN_KCPK_ACN_KALEOCLASSPK_2);
 
 		if (assigneeClassName == null) {
-			query.append(_FINDER_COLUMN_KTI_ACN_ASSIGNEECLASSNAME_1);
+			query.append(_FINDER_COLUMN_KCN_KCPK_ACN_ASSIGNEECLASSNAME_1);
 		}
 		else {
 			if (assigneeClassName.equals(StringPool.BLANK)) {
-				query.append(_FINDER_COLUMN_KTI_ACN_ASSIGNEECLASSNAME_3);
+				query.append(_FINDER_COLUMN_KCN_KCPK_ACN_ASSIGNEECLASSNAME_3);
 			}
 			else {
-				query.append(_FINDER_COLUMN_KTI_ACN_ASSIGNEECLASSNAME_2);
+				query.append(_FINDER_COLUMN_KCN_KCPK_ACN_ASSIGNEECLASSNAME_2);
 			}
 		}
 
@@ -2243,7 +1963,11 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 
 		QueryPos qPos = QueryPos.getInstance(q);
 
-		qPos.add(kaleoTaskId);
+		if (kaleoClassName != null) {
+			qPos.add(kaleoClassName);
+		}
+
+		qPos.add(kaleoClassPK);
 
 		if (assigneeClassName != null) {
 			qPos.add(assigneeClassName);
@@ -2404,44 +2128,32 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 	}
 
 	/**
-	 * Removes all the kaleo task assignments where kaleoTaskId = &#63; from the database.
+	 * Removes all the kaleo task assignments where kaleoClassName = &#63; and kaleoClassPK = &#63; from the database.
 	 *
-	 * @param kaleoTaskId the kaleo task ID
+	 * @param kaleoClassName the kaleo class name
+	 * @param kaleoClassPK the kaleo class p k
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void removeByKaleoTaskId(long kaleoTaskId) throws SystemException {
-		for (KaleoTaskAssignment kaleoTaskAssignment : findByKaleoTaskId(
-				kaleoTaskId)) {
-			kaleoTaskAssignmentPersistence.remove(kaleoTaskAssignment);
-		}
-	}
-
-	/**
-	 * Removes all the kaleo task assignments where kaleoNodeId = &#63; and kaleoTaskId = &#63; from the database.
-	 *
-	 * @param kaleoNodeId the kaleo node ID
-	 * @param kaleoTaskId the kaleo task ID
-	 * @throws SystemException if a system exception occurred
-	 */
-	public void removeByKNI_KTI(long kaleoNodeId, long kaleoTaskId)
+	public void removeByKCN_KCPK(String kaleoClassName, long kaleoClassPK)
 		throws SystemException {
-		for (KaleoTaskAssignment kaleoTaskAssignment : findByKNI_KTI(
-				kaleoNodeId, kaleoTaskId)) {
+		for (KaleoTaskAssignment kaleoTaskAssignment : findByKCN_KCPK(
+				kaleoClassName, kaleoClassPK)) {
 			kaleoTaskAssignmentPersistence.remove(kaleoTaskAssignment);
 		}
 	}
 
 	/**
-	 * Removes all the kaleo task assignments where kaleoTaskId = &#63; and assigneeClassName = &#63; from the database.
+	 * Removes all the kaleo task assignments where kaleoClassName = &#63; and kaleoClassPK = &#63; and assigneeClassName = &#63; from the database.
 	 *
-	 * @param kaleoTaskId the kaleo task ID
+	 * @param kaleoClassName the kaleo class name
+	 * @param kaleoClassPK the kaleo class p k
 	 * @param assigneeClassName the assignee class name
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void removeByKTI_ACN(long kaleoTaskId, String assigneeClassName)
-		throws SystemException {
-		for (KaleoTaskAssignment kaleoTaskAssignment : findByKTI_ACN(
-				kaleoTaskId, assigneeClassName)) {
+	public void removeByKCN_KCPK_ACN(String kaleoClassName, long kaleoClassPK,
+		String assigneeClassName) throws SystemException {
+		for (KaleoTaskAssignment kaleoTaskAssignment : findByKCN_KCPK_ACN(
+				kaleoClassName, kaleoClassPK, assigneeClassName)) {
 			kaleoTaskAssignmentPersistence.remove(kaleoTaskAssignment);
 		}
 	}
@@ -2565,71 +2277,18 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 	}
 
 	/**
-	 * Returns the number of kaleo task assignments where kaleoTaskId = &#63;.
+	 * Returns the number of kaleo task assignments where kaleoClassName = &#63; and kaleoClassPK = &#63;.
 	 *
-	 * @param kaleoTaskId the kaleo task ID
+	 * @param kaleoClassName the kaleo class name
+	 * @param kaleoClassPK the kaleo class p k
 	 * @return the number of matching kaleo task assignments
 	 * @throws SystemException if a system exception occurred
 	 */
-	public int countByKaleoTaskId(long kaleoTaskId) throws SystemException {
-		Object[] finderArgs = new Object[] { kaleoTaskId };
-
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_KALEOTASKID,
-				finderArgs, this);
-
-		if (count == null) {
-			StringBundler query = new StringBundler(2);
-
-			query.append(_SQL_COUNT_KALEOTASKASSIGNMENT_WHERE);
-
-			query.append(_FINDER_COLUMN_KALEOTASKID_KALEOTASKID_2);
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(kaleoTaskId);
-
-				count = (Long)q.uniqueResult();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (count == null) {
-					count = Long.valueOf(0);
-				}
-
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_KALEOTASKID,
-					finderArgs, count);
-
-				closeSession(session);
-			}
-		}
-
-		return count.intValue();
-	}
-
-	/**
-	 * Returns the number of kaleo task assignments where kaleoNodeId = &#63; and kaleoTaskId = &#63;.
-	 *
-	 * @param kaleoNodeId the kaleo node ID
-	 * @param kaleoTaskId the kaleo task ID
-	 * @return the number of matching kaleo task assignments
-	 * @throws SystemException if a system exception occurred
-	 */
-	public int countByKNI_KTI(long kaleoNodeId, long kaleoTaskId)
+	public int countByKCN_KCPK(String kaleoClassName, long kaleoClassPK)
 		throws SystemException {
-		Object[] finderArgs = new Object[] { kaleoNodeId, kaleoTaskId };
+		Object[] finderArgs = new Object[] { kaleoClassName, kaleoClassPK };
 
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_KNI_KTI,
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_KCN_KCPK,
 				finderArgs, this);
 
 		if (count == null) {
@@ -2637,9 +2296,19 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 
 			query.append(_SQL_COUNT_KALEOTASKASSIGNMENT_WHERE);
 
-			query.append(_FINDER_COLUMN_KNI_KTI_KALEONODEID_2);
+			if (kaleoClassName == null) {
+				query.append(_FINDER_COLUMN_KCN_KCPK_KALEOCLASSNAME_1);
+			}
+			else {
+				if (kaleoClassName.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_KCN_KCPK_KALEOCLASSNAME_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_KCN_KCPK_KALEOCLASSNAME_2);
+				}
+			}
 
-			query.append(_FINDER_COLUMN_KNI_KTI_KALEOTASKID_2);
+			query.append(_FINDER_COLUMN_KCN_KCPK_KALEOCLASSPK_2);
 
 			String sql = query.toString();
 
@@ -2652,9 +2321,11 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				qPos.add(kaleoNodeId);
+				if (kaleoClassName != null) {
+					qPos.add(kaleoClassName);
+				}
 
-				qPos.add(kaleoTaskId);
+				qPos.add(kaleoClassPK);
 
 				count = (Long)q.uniqueResult();
 			}
@@ -2666,7 +2337,7 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 					count = Long.valueOf(0);
 				}
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_KNI_KTI,
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_KCN_KCPK,
 					finderArgs, count);
 
 				closeSession(session);
@@ -2677,36 +2348,51 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 	}
 
 	/**
-	 * Returns the number of kaleo task assignments where kaleoTaskId = &#63; and assigneeClassName = &#63;.
+	 * Returns the number of kaleo task assignments where kaleoClassName = &#63; and kaleoClassPK = &#63; and assigneeClassName = &#63;.
 	 *
-	 * @param kaleoTaskId the kaleo task ID
+	 * @param kaleoClassName the kaleo class name
+	 * @param kaleoClassPK the kaleo class p k
 	 * @param assigneeClassName the assignee class name
 	 * @return the number of matching kaleo task assignments
 	 * @throws SystemException if a system exception occurred
 	 */
-	public int countByKTI_ACN(long kaleoTaskId, String assigneeClassName)
-		throws SystemException {
-		Object[] finderArgs = new Object[] { kaleoTaskId, assigneeClassName };
+	public int countByKCN_KCPK_ACN(String kaleoClassName, long kaleoClassPK,
+		String assigneeClassName) throws SystemException {
+		Object[] finderArgs = new Object[] {
+				kaleoClassName, kaleoClassPK, assigneeClassName
+			};
 
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_KTI_ACN,
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_KCN_KCPK_ACN,
 				finderArgs, this);
 
 		if (count == null) {
-			StringBundler query = new StringBundler(3);
+			StringBundler query = new StringBundler(4);
 
 			query.append(_SQL_COUNT_KALEOTASKASSIGNMENT_WHERE);
 
-			query.append(_FINDER_COLUMN_KTI_ACN_KALEOTASKID_2);
+			if (kaleoClassName == null) {
+				query.append(_FINDER_COLUMN_KCN_KCPK_ACN_KALEOCLASSNAME_1);
+			}
+			else {
+				if (kaleoClassName.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_KCN_KCPK_ACN_KALEOCLASSNAME_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_KCN_KCPK_ACN_KALEOCLASSNAME_2);
+				}
+			}
+
+			query.append(_FINDER_COLUMN_KCN_KCPK_ACN_KALEOCLASSPK_2);
 
 			if (assigneeClassName == null) {
-				query.append(_FINDER_COLUMN_KTI_ACN_ASSIGNEECLASSNAME_1);
+				query.append(_FINDER_COLUMN_KCN_KCPK_ACN_ASSIGNEECLASSNAME_1);
 			}
 			else {
 				if (assigneeClassName.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_KTI_ACN_ASSIGNEECLASSNAME_3);
+					query.append(_FINDER_COLUMN_KCN_KCPK_ACN_ASSIGNEECLASSNAME_3);
 				}
 				else {
-					query.append(_FINDER_COLUMN_KTI_ACN_ASSIGNEECLASSNAME_2);
+					query.append(_FINDER_COLUMN_KCN_KCPK_ACN_ASSIGNEECLASSNAME_2);
 				}
 			}
 
@@ -2721,7 +2407,11 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				qPos.add(kaleoTaskId);
+				if (kaleoClassName != null) {
+					qPos.add(kaleoClassName);
+				}
+
+				qPos.add(kaleoClassPK);
 
 				if (assigneeClassName != null) {
 					qPos.add(assigneeClassName);
@@ -2737,7 +2427,7 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 					count = Long.valueOf(0);
 				}
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_KTI_ACN,
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_KCN_KCPK_ACN,
 					finderArgs, count);
 
 				closeSession(session);
@@ -2863,13 +2553,17 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 	private static final String _FINDER_COLUMN_COMPANYID_COMPANYID_2 = "kaleoTaskAssignment.companyId = ?";
 	private static final String _FINDER_COLUMN_KALEODEFINITIONID_KALEODEFINITIONID_2 =
 		"kaleoTaskAssignment.kaleoDefinitionId = ?";
-	private static final String _FINDER_COLUMN_KALEOTASKID_KALEOTASKID_2 = "kaleoTaskAssignment.kaleoTaskId = ?";
-	private static final String _FINDER_COLUMN_KNI_KTI_KALEONODEID_2 = "kaleoTaskAssignment.kaleoNodeId = ? AND ";
-	private static final String _FINDER_COLUMN_KNI_KTI_KALEOTASKID_2 = "kaleoTaskAssignment.kaleoTaskId = ?";
-	private static final String _FINDER_COLUMN_KTI_ACN_KALEOTASKID_2 = "kaleoTaskAssignment.kaleoTaskId = ? AND ";
-	private static final String _FINDER_COLUMN_KTI_ACN_ASSIGNEECLASSNAME_1 = "kaleoTaskAssignment.assigneeClassName IS NULL";
-	private static final String _FINDER_COLUMN_KTI_ACN_ASSIGNEECLASSNAME_2 = "kaleoTaskAssignment.assigneeClassName = ?";
-	private static final String _FINDER_COLUMN_KTI_ACN_ASSIGNEECLASSNAME_3 = "(kaleoTaskAssignment.assigneeClassName IS NULL OR kaleoTaskAssignment.assigneeClassName = ?)";
+	private static final String _FINDER_COLUMN_KCN_KCPK_KALEOCLASSNAME_1 = "kaleoTaskAssignment.kaleoClassName IS NULL AND ";
+	private static final String _FINDER_COLUMN_KCN_KCPK_KALEOCLASSNAME_2 = "kaleoTaskAssignment.kaleoClassName = ? AND ";
+	private static final String _FINDER_COLUMN_KCN_KCPK_KALEOCLASSNAME_3 = "(kaleoTaskAssignment.kaleoClassName IS NULL OR kaleoTaskAssignment.kaleoClassName = ?) AND ";
+	private static final String _FINDER_COLUMN_KCN_KCPK_KALEOCLASSPK_2 = "kaleoTaskAssignment.kaleoClassPK = ?";
+	private static final String _FINDER_COLUMN_KCN_KCPK_ACN_KALEOCLASSNAME_1 = "kaleoTaskAssignment.kaleoClassName IS NULL AND ";
+	private static final String _FINDER_COLUMN_KCN_KCPK_ACN_KALEOCLASSNAME_2 = "kaleoTaskAssignment.kaleoClassName = ? AND ";
+	private static final String _FINDER_COLUMN_KCN_KCPK_ACN_KALEOCLASSNAME_3 = "(kaleoTaskAssignment.kaleoClassName IS NULL OR kaleoTaskAssignment.kaleoClassName = ?) AND ";
+	private static final String _FINDER_COLUMN_KCN_KCPK_ACN_KALEOCLASSPK_2 = "kaleoTaskAssignment.kaleoClassPK = ? AND ";
+	private static final String _FINDER_COLUMN_KCN_KCPK_ACN_ASSIGNEECLASSNAME_1 = "kaleoTaskAssignment.assigneeClassName IS NULL";
+	private static final String _FINDER_COLUMN_KCN_KCPK_ACN_ASSIGNEECLASSNAME_2 = "kaleoTaskAssignment.assigneeClassName = ?";
+	private static final String _FINDER_COLUMN_KCN_KCPK_ACN_ASSIGNEECLASSNAME_3 = "(kaleoTaskAssignment.assigneeClassName IS NULL OR kaleoTaskAssignment.assigneeClassName = ?)";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "kaleoTaskAssignment.";
 	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No KaleoTaskAssignment exists with the primary key ";
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No KaleoTaskAssignment exists with the key {";

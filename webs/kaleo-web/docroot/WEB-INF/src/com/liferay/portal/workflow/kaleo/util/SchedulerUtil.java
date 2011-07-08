@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -12,18 +12,21 @@
  * details.
  */
 
-package com.liferay.portal.workflow.kaleo.runtime.notification;
+package com.liferay.portal.workflow.kaleo.util;
 
-import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
+import com.liferay.portal.kernel.messaging.DestinationNames;
+import com.liferay.portal.kernel.util.StringPool;
 
 /**
  * @author Michael C. Han
  */
-public interface NotificationMessageGenerator {
+public class SchedulerUtil {
 
-	public String generateMessage(
-			String kaleoClassName, long kaleoClassPK, String notificationName,
-			String notificationTemplate, ExecutionContext executionContext)
-		throws NotificationMessageGenerationException;
+	public static final String getGroupName(long kaleoTimerInstanceTokenId) {
+		String groupName = DestinationNames.SCHEDULER_DISPATCH.concat(
+			StringPool.SLASH).concat(
+			String.valueOf(kaleoTimerInstanceTokenId));
 
+		return groupName;
+	}
 }

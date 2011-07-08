@@ -191,18 +191,33 @@ public interface KaleoNotificationModel extends BaseModel<KaleoNotification>,
 	public void setKaleoDefinitionId(long kaleoDefinitionId);
 
 	/**
-	 * Returns the kaleo node ID of this kaleo notification.
+	 * Returns the kaleo class name of this kaleo notification.
 	 *
-	 * @return the kaleo node ID of this kaleo notification
+	 * @return the kaleo class name of this kaleo notification
 	 */
-	public long getKaleoNodeId();
+	@AutoEscape
+	public String getKaleoClassName();
 
 	/**
-	 * Sets the kaleo node ID of this kaleo notification.
+	 * Sets the kaleo class name of this kaleo notification.
 	 *
-	 * @param kaleoNodeId the kaleo node ID of this kaleo notification
+	 * @param kaleoClassName the kaleo class name of this kaleo notification
 	 */
-	public void setKaleoNodeId(long kaleoNodeId);
+	public void setKaleoClassName(String kaleoClassName);
+
+	/**
+	 * Returns the kaleo class p k of this kaleo notification.
+	 *
+	 * @return the kaleo class p k of this kaleo notification
+	 */
+	public long getKaleoClassPK();
+
+	/**
+	 * Sets the kaleo class p k of this kaleo notification.
+	 *
+	 * @param kaleoClassPK the kaleo class p k of this kaleo notification
+	 */
+	public void setKaleoClassPK(long kaleoClassPK);
 
 	/**
 	 * Returns the kaleo node name of this kaleo notification.

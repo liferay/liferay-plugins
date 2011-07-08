@@ -273,21 +273,39 @@ public class KaleoLogWrapper implements KaleoLog {
 	}
 
 	/**
-	* Returns the kaleo node ID of this kaleo log.
+	* Returns the kaleo class name of this kaleo log.
 	*
-	* @return the kaleo node ID of this kaleo log
+	* @return the kaleo class name of this kaleo log
 	*/
-	public long getKaleoNodeId() {
-		return _kaleoLog.getKaleoNodeId();
+	public java.lang.String getKaleoClassName() {
+		return _kaleoLog.getKaleoClassName();
 	}
 
 	/**
-	* Sets the kaleo node ID of this kaleo log.
+	* Sets the kaleo class name of this kaleo log.
 	*
-	* @param kaleoNodeId the kaleo node ID of this kaleo log
+	* @param kaleoClassName the kaleo class name of this kaleo log
 	*/
-	public void setKaleoNodeId(long kaleoNodeId) {
-		_kaleoLog.setKaleoNodeId(kaleoNodeId);
+	public void setKaleoClassName(java.lang.String kaleoClassName) {
+		_kaleoLog.setKaleoClassName(kaleoClassName);
+	}
+
+	/**
+	* Returns the kaleo class p k of this kaleo log.
+	*
+	* @return the kaleo class p k of this kaleo log
+	*/
+	public long getKaleoClassPK() {
+		return _kaleoLog.getKaleoClassPK();
+	}
+
+	/**
+	* Sets the kaleo class p k of this kaleo log.
+	*
+	* @param kaleoClassPK the kaleo class p k of this kaleo log
+	*/
+	public void setKaleoClassPK(long kaleoClassPK) {
+		_kaleoLog.setKaleoClassPK(kaleoClassPK);
 	}
 
 	/**
