@@ -244,7 +244,7 @@ if (!fieldsEditingDisabled) {
 	webFields.all('select').each(toggleOptions);
 
 	<c:if test="<%= !fieldsEditingDisabled %>">
-		webFields.delegate(['click', 'keydown'], toggleOptions, 'select');
+		webFields.delegate(['change', 'click', 'keydown'], toggleOptions, 'select');
 		webFields.delegate('click', toggleValidationOptions, '.validation-link');
 
 		webFields.delegate(
