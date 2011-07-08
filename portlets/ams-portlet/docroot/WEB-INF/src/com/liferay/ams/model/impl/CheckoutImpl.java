@@ -14,8 +14,6 @@
 
 package com.liferay.ams.model.impl;
 
-import com.liferay.ams.model.Checkout;
-
 /**
  * @author Brian Wing Shun Chan
  */

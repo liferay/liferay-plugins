@@ -14,8 +14,6 @@
 
 package com.liferay.socialcoding.model.impl;
 
-import com.liferay.socialcoding.model.JIRAChangeGroup;
-
 /**
  * @author Brian Wing Shun Chan
  */

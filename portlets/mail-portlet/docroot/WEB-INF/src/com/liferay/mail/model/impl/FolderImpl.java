@@ -14,8 +14,6 @@
 
 package com.liferay.mail.model.impl;
 
-import com.liferay.mail.model.Folder;
-
 /**
  * @author Brian Wing Shun Chan
  */

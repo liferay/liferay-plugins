@@ -94,7 +94,7 @@ public class PasswordPrompt extends Window implements Button.ClickListener {
 
 	//@Override
 	public void buttonClick(ClickEvent event) {
-		if (event.getButton() == loginBtn){
+		if (event.getButton() == loginBtn) {
 			String password = this.password.getValue().toString();
 
 			try {
@@ -102,12 +102,12 @@ public class PasswordPrompt extends Window implements Button.ClickListener {
 				String result = obj.getString("status");
 				String message = obj.getString("message");
 
-				if (result.equals("success")){
+				if (result.equals("success")) {
 					getWindow().showNotification(Lang.get(message));
 					status = Status.VALIDATED;
 					account.setPasswordDecrypted(password);
 
-					if (savePassword.booleanValue() && !account.isSavePassword()){
+					if (savePassword.booleanValue() && !account.isSavePassword()) {
 						account.setSavePassword(true);
 						Controller.get().getAccountManager().updateAccount(account, Controller.get());
 					}
@@ -122,21 +122,21 @@ public class PasswordPrompt extends Window implements Button.ClickListener {
 			} catch (SystemException e) {
 				_log.warn("Failed to save password", e);
 			}
-		} else if (event.getButton() == cancelBtn){
+		} else if (event.getButton() == cancelBtn) {
 			status = Status.CANCELED;
 			close();
 		}
 	}
 
-	public String getPassword(){
+	public String getPassword() {
 		return password.getValue().toString();
 	}
 
-	public Account getAccount(){
+	public Account getAccount() {
 		return account;
 	}
 
-	public Status getStatus(){
+	public Status getStatus() {
 		return status;
 	}
 

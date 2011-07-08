@@ -14,7 +14,6 @@
 
 package com.liferay.knowledgebase.model.impl;
 
-import com.liferay.knowledgebase.model.KBStructure;
 import com.liferay.portal.kernel.util.LocalizationUtil;
 
 /**

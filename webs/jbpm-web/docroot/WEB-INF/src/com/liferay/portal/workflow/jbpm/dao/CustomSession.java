@@ -453,7 +453,7 @@ public class CustomSession {
 	}
 
 	public WorkflowDefinitionExtensionImpl findWorkflowDefinitonExtension(
-		long processDefinitionId){
+		long processDefinitionId) {
 
 		try {
 			Criteria criteria = _session.createCriteria(
@@ -728,7 +728,7 @@ public class CustomSession {
 		return criteria;
 	}
 
-	protected int criteriaCount(Criteria criteria){
+	protected int criteriaCount(Criteria criteria) {
 		criteria.setProjection(Projections.rowCount());
 
 		List<Integer> results = criteria.list();

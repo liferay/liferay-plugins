@@ -144,7 +144,7 @@ public class MessageList extends CustomComponent {
 
 	}
 
-	public MessageListTable getTable(){
+	public MessageListTable getTable() {
 		return table;
 	}
 

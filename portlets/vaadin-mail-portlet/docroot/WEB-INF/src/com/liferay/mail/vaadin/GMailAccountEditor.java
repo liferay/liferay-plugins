@@ -41,7 +41,7 @@ public class GMailAccountEditor extends AccountEditor {
 		applyTemplate();
 	}
 
-	private void applyTemplate(){
+	private void applyTemplate() {
 		mailInHostNameField.setValue("imap.gmail.com");
 		mailInPortCombo.setValue(993);
 		mailInSecureCheckBox.setValue(true);

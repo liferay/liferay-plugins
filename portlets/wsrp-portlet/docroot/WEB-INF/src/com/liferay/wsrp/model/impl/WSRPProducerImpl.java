@@ -14,8 +14,6 @@
 
 package com.liferay.wsrp.model.impl;
 
-import com.liferay.wsrp.model.WSRPProducer;
-
 /**
  * @author Brian Wing Shun Chan
  */

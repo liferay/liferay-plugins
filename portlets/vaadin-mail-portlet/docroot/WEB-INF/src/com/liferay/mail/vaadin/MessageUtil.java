@@ -88,8 +88,8 @@ public class MessageUtil {
 	}
 
 	private static boolean isFlagged(Message m, int flag) {
-		for(String flagStr : m.getFlags().split(",")){
-			if (flagStr.equals(String.valueOf(flag))){
+		for (String flagStr : m.getFlags().split(",")) {
+			if (flagStr.equals(String.valueOf(flag))) {
 				return true;
 			}
 		}

@@ -14,8 +14,6 @@
 
 package com.liferay.privatemessaging.model.impl;
 
-import com.liferay.privatemessaging.model.UserThread;
-
 /**
  * @author Brian Wing Shun Chan
  */

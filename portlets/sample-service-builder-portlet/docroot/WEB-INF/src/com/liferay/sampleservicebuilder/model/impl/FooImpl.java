@@ -14,8 +14,6 @@
 
 package com.liferay.sampleservicebuilder.model.impl;
 
-import com.liferay.sampleservicebuilder.model.Foo;
-
 /**
  * @author Brian Wing Shun Chan
  */

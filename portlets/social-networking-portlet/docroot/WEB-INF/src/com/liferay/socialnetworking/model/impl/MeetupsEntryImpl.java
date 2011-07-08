@@ -14,8 +14,6 @@
 
 package com.liferay.socialnetworking.model.impl;
 
-import com.liferay.socialnetworking.model.MeetupsEntry;
-
 /**
  * @author Brian Wing Shun Chan
  */

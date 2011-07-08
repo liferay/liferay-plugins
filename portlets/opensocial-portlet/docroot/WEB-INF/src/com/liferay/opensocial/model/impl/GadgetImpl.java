@@ -14,8 +14,6 @@
 
 package com.liferay.opensocial.model.impl;
 
-import com.liferay.opensocial.model.Gadget;
-
 /**
  * @author Brian Wing Shun Chan
  */

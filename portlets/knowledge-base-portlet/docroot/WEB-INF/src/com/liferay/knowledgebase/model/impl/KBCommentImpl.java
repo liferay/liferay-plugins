@@ -14,8 +14,6 @@
 
 package com.liferay.knowledgebase.model.impl;
 
-import com.liferay.knowledgebase.model.KBComment;
-
 /**
  * @author Peter Shin
  */

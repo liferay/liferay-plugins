@@ -158,9 +158,9 @@ public class MailApplication extends Application {
 						long id = Long.parseLong(accountParam);
 						account = AccountLocalServiceUtil.getAccount(id);
 
-						if (!account.isSavePassword()){
+						if (!account.isSavePassword()) {
 							String password = Controller.get().getPasswordRetriever().getPassword(account.getAccountId());
-							if (password != null){
+							if (password != null) {
 								try {
 									Controller.get().getMailManager().storePassword(account.getAccountId(), password);
 									Controller.get().getAccountManager().updateAccount(account, controller);
@@ -191,7 +191,7 @@ public class MailApplication extends Application {
 						mainMailView.setHeight("550px");
 						window.setContent(mainMailView);
 						mainMailView.show(account);
-					} else if (!promptOpen){
+					} else if (!promptOpen) {
 						window.open(new ExternalResource(summaryViewURL));
 					}
 				} else {
@@ -205,9 +205,9 @@ public class MailApplication extends Application {
 						loading.setHeight("550px");
 						window.setContent(loading);
 
-						if (!account.isSavePassword()){
+						if (!account.isSavePassword()) {
 							String password = Controller.get().getPasswordRetriever().getPassword(account.getAccountId());
-							if (password != null){
+							if (password != null) {
 								try {
 									Controller.get().getMailManager().storePassword(account.getAccountId(), password);
 									Controller.get().getAccountManager().updateAccount(account, controller);
@@ -225,7 +225,7 @@ public class MailApplication extends Application {
 							}
 						}
 
-						if (!promptOpen){
+						if (!promptOpen) {
 							mainMailView = new MainMailView();
 							mainMailView.setHeight("550px");
 							window.setContent(mainMailView);
@@ -255,7 +255,7 @@ public class MailApplication extends Application {
 			// nothing to do
 		}
 
-		public void showPasswordPrompt(Account account, final Window window){
+		public void showPasswordPrompt(Account account, final Window window) {
 			PasswordPrompt prompt = new PasswordPrompt(account);
 			account = null;
 			prompt.addListener(new Window.CloseListener() {
@@ -266,7 +266,7 @@ public class MailApplication extends Application {
 					mainMailView = new MainMailView();
 					mainMailView.setHeight("550px");
 
-					if (prompt.getStatus() == Status.VALIDATED){
+					if (prompt.getStatus() == Status.VALIDATED) {
 						mainMailView.setEnabled(true);
 
 						try {
@@ -283,7 +283,7 @@ public class MailApplication extends Application {
 						mainMailView.show(prompt.getAccount());
 						mainMailView.update();
 
-					} else if (prompt.getStatus() == Status.CANCELED){
+					} else if (prompt.getStatus() == Status.CANCELED) {
 						window.open(new ExternalResource(summaryViewURL));
 					}
 				}
@@ -344,7 +344,7 @@ public class MailApplication extends Application {
 					Controller.get().getMailManager().synchronizeAccount(composer.getFrom().getAccountId());
 
 					// Refresh main mail view if necessary
-					if (previousView instanceof MainMailView){
+					if (previousView instanceof MainMailView) {
 						((MainMailView)previousView).update();
 					}
 

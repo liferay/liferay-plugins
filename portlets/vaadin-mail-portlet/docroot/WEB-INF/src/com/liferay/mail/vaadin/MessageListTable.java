@@ -354,7 +354,7 @@ public class MessageListTable extends Table
 
 	private MessageContainer getMessageContainer() {
 		Container c = getContainerDataSource();
-		if (c instanceof MessageContainer){
+		if (c instanceof MessageContainer) {
 			return (MessageContainer) getContainerDataSource();
 		}
 		return null;

@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <!DOCTYPE project>
 
-<project name="micro-blogs-portlet" basedir="." default="deploy">
+<project name="microblogs-portlet" basedir="." default="deploy">
 	<import file="../build-common-portlet.xml" />
 </project>

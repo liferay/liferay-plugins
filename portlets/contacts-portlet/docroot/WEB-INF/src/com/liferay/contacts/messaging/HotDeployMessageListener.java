@@ -14,12 +14,12 @@
 
 package com.liferay.contacts.messaging;
 
+import com.liferay.contacts.util.ContactsExtensionsUtil;
 import com.liferay.portal.kernel.messaging.BaseMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.util.MethodKey;
 import com.liferay.portal.kernel.util.PortletClassInvoker;
 import com.liferay.portal.service.PortletLocalServiceUtil;
-import com.liferay.contacts.util.ContactsExtensionsUtil;
 
 /**
  * @author Ryan Park

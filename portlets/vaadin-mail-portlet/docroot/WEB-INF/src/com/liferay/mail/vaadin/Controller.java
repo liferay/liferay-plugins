@@ -136,7 +136,7 @@ public class Controller {
 		return user;
 	}
 
-	public PortletConfig getPortletConfig(){
+	public PortletConfig getPortletConfig() {
 		return config;
 	}
 

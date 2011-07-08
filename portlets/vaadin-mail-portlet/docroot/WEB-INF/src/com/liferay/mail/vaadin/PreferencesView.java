@@ -207,7 +207,7 @@ public class PreferencesView extends VerticalLayout {
 
 	private void synchronizeAccount(final Account account) {
 		try {
-			if (account.isSavePassword()){
+			if (account.isSavePassword()) {
 				controller.getMailManager().synchronizeAccount(account.getAccountId());
 			}
 		}
