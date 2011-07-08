@@ -57,4 +57,5 @@ public class Transition {
 	private Node _sourceNode;
 	private Node _targetNode;
 	private Timer _timer;
+
 }

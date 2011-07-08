@@ -276,20 +276,20 @@ public class KaleoTimerInstanceTokenLocalServiceWrapper
 			serviceContext);
 	}
 
-	public void completeKaleoTimerInstanceTokens(long kaleoInstanceTokenId,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		_kaleoTimerInstanceTokenLocalService.completeKaleoTimerInstanceTokens(kaleoInstanceTokenId,
-			serviceContext);
-	}
-
 	public void completeKaleoTimerInstanceTokens(
 		java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken> kaleoTimerInstanceTokens,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		_kaleoTimerInstanceTokenLocalService.completeKaleoTimerInstanceTokens(kaleoTimerInstanceTokens,
+			serviceContext);
+	}
+
+	public void completeKaleoTimerInstanceTokens(long kaleoInstanceTokenId,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_kaleoTimerInstanceTokenLocalService.completeKaleoTimerInstanceTokens(kaleoInstanceTokenId,
 			serviceContext);
 	}
 
@@ -315,8 +315,7 @@ public class KaleoTimerInstanceTokenLocalServiceWrapper
 	}
 
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken> getKaleoTimerInstanceTokens(
-		long kaleoInstanceTokenId, java.lang.Boolean completed,
-		java.lang.Boolean blocking,
+		long kaleoInstanceTokenId, boolean completed, boolean blocking,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _kaleoTimerInstanceTokenLocalService.getKaleoTimerInstanceTokens(kaleoInstanceTokenId,
@@ -324,7 +323,7 @@ public class KaleoTimerInstanceTokenLocalServiceWrapper
 	}
 
 	public int getKaleoTimerInstanceTokensCount(long kaleoInstanceTokenId,
-		java.lang.Boolean completed, java.lang.Boolean blocking,
+		boolean completed, boolean blocking,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _kaleoTimerInstanceTokenLocalService.getKaleoTimerInstanceTokensCount(kaleoInstanceTokenId,

@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -24,9 +24,9 @@ public class SchedulerUtil {
 
 	public static final String getGroupName(long kaleoTimerInstanceTokenId) {
 		String groupName = DestinationNames.SCHEDULER_DISPATCH.concat(
-			StringPool.SLASH).concat(
-			String.valueOf(kaleoTimerInstanceTokenId));
+			StringPool.SLASH).concat(String.valueOf(kaleoTimerInstanceTokenId));
 
 		return groupName;
 	}
+
 }

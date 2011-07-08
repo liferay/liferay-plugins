@@ -47,6 +47,10 @@ public class KaleoLogCacheModel implements CacheModel<KaleoLog> {
 		sb.append(createDate);
 		sb.append(", modifiedDate=");
 		sb.append(modifiedDate);
+		sb.append(", kaleoClassName=");
+		sb.append(kaleoClassName);
+		sb.append(", kaleoClassPK=");
+		sb.append(kaleoClassPK);
 		sb.append(", kaleoDefinitionId=");
 		sb.append(kaleoDefinitionId);
 		sb.append(", kaleoInstanceId=");
@@ -55,10 +59,6 @@ public class KaleoLogCacheModel implements CacheModel<KaleoLog> {
 		sb.append(kaleoInstanceTokenId);
 		sb.append(", kaleoTaskInstanceTokenId=");
 		sb.append(kaleoTaskInstanceTokenId);
-		sb.append(", kaleoClassName=");
-		sb.append(kaleoClassName);
-		sb.append(", kaleoClassPK=");
-		sb.append(kaleoClassPK);
 		sb.append(", kaleoNodeName=");
 		sb.append(kaleoNodeName);
 		sb.append(", terminalKaleoNode=");
@@ -121,11 +121,6 @@ public class KaleoLogCacheModel implements CacheModel<KaleoLog> {
 			kaleoLogImpl.setModifiedDate(new Date(modifiedDate));
 		}
 
-		kaleoLogImpl.setKaleoDefinitionId(kaleoDefinitionId);
-		kaleoLogImpl.setKaleoInstanceId(kaleoInstanceId);
-		kaleoLogImpl.setKaleoInstanceTokenId(kaleoInstanceTokenId);
-		kaleoLogImpl.setKaleoTaskInstanceTokenId(kaleoTaskInstanceTokenId);
-
 		if (kaleoClassName == null) {
 			kaleoLogImpl.setKaleoClassName(StringPool.BLANK);
 		}
@@ -134,6 +129,10 @@ public class KaleoLogCacheModel implements CacheModel<KaleoLog> {
 		}
 
 		kaleoLogImpl.setKaleoClassPK(kaleoClassPK);
+		kaleoLogImpl.setKaleoDefinitionId(kaleoDefinitionId);
+		kaleoLogImpl.setKaleoInstanceId(kaleoInstanceId);
+		kaleoLogImpl.setKaleoInstanceTokenId(kaleoInstanceTokenId);
+		kaleoLogImpl.setKaleoTaskInstanceTokenId(kaleoTaskInstanceTokenId);
 
 		if (kaleoNodeName == null) {
 			kaleoLogImpl.setKaleoNodeName(StringPool.BLANK);
@@ -229,12 +228,12 @@ public class KaleoLogCacheModel implements CacheModel<KaleoLog> {
 	public String userName;
 	public long createDate;
 	public long modifiedDate;
+	public String kaleoClassName;
+	public long kaleoClassPK;
 	public long kaleoDefinitionId;
 	public long kaleoInstanceId;
 	public long kaleoInstanceTokenId;
 	public long kaleoTaskInstanceTokenId;
-	public String kaleoClassName;
-	public long kaleoClassPK;
 	public String kaleoNodeName;
 	public boolean terminalKaleoNode;
 	public long kaleoActionId;

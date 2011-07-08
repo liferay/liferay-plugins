@@ -38,7 +38,7 @@ public class KaleoNotificationLocalServiceImpl
 	extends KaleoNotificationLocalServiceBaseImpl {
 
 	public KaleoNotification addKaleoNotification(
-			long kaleoDefinitionId, String kaleoClassName, long kaleoClassPK,
+			String kaleoClassName, long kaleoClassPK, long kaleoDefinitionId,
 			String kaleoNodeName, Notification notification,
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
@@ -59,9 +59,9 @@ public class KaleoNotificationLocalServiceImpl
 		kaleoNotification.setUserName(user.getFullName());
 		kaleoNotification.setCreateDate(now);
 		kaleoNotification.setModifiedDate(now);
-		kaleoNotification.setKaleoDefinitionId(kaleoDefinitionId);
 		kaleoNotification.setKaleoClassName(kaleoClassName);
 		kaleoNotification.setKaleoClassPK(kaleoClassPK);
+		kaleoNotification.setKaleoDefinitionId(kaleoDefinitionId);
 		kaleoNotification.setKaleoNodeName(kaleoNodeName);
 		kaleoNotification.setName(notification.getName());
 		kaleoNotification.setDescription(notification.getDescription());

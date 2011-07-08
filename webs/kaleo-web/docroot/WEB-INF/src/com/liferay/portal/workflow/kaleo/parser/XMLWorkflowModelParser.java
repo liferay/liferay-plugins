@@ -131,6 +131,10 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 	protected void parseActionElements(
 		List<Element> actionElements, ActionAware actionAware) {
 
+		if (!actionElements.isEmpty()) {
+			return;
+		}
+
 		Set<Action> actions = new HashSet<Action>(actionElements.size());
 
 		for (Element actionElement : actionElements) {
@@ -158,16 +162,12 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 
 		List<Element> actionElements = actionsElement.elements("action");
 
-		if (!actionElements.isEmpty()) {
-			parseActionElements(actionElements, node);
-		}
+		parseActionElements(actionElements, node);
 
 		List<Element> notificationElements = actionsElement.elements(
 			"notification");
 
-		if (!notificationElements.isEmpty()) {
-			parseNotificationElements(notificationElements, node);
-		}
+		parseNotificationElements(notificationElements, node);
 	}
 
 	protected Set<Assignment> parseAssignments(Element assignmentsElement) {
@@ -271,19 +271,16 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 			name, description, script, scriptLanguage);
 
 		String metadata = conditionElement.elementText("metadata");
+
 		condition.setMetadata(metadata);
 
 		Element actionsElement = conditionElement.element("actions");
 
-		if (actionsElement != null) {
-			parseActionsElement(actionsElement, condition);
-		}
+		parseActionsElement(actionsElement, condition);
 
 		Element timersElement = conditionElement.element("timers");
 
-		if (timersElement != null) {
-			parseTimerElements(timersElement, condition);
-		}
+		parseTimerElements(timersElement, condition);
 
 		return condition;
 	}
@@ -308,19 +305,16 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 		Fork fork = new Fork(name, description);
 
 		String metadata = forkElement.elementText("metadata");
+
 		fork.setMetadata(metadata);
 
 		Element actionsElement = forkElement.element("actions");
 
-		if (actionsElement != null) {
-			parseActionsElement(actionsElement, fork);
-		}
+		parseActionsElement(actionsElement, fork);
 
 		Element timersElement = forkElement.element("timers");
 
-		if (timersElement != null) {
-			parseTimerElements(timersElement, fork);
-		}
+		parseTimerElements(timersElement, fork);
 
 		return fork;
 	}
@@ -332,19 +326,16 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 		Join join = new Join(name, description);
 
 		String metadata = joinElement.elementText("metadata");
+
 		join.setMetadata(metadata);
 
 		Element actionsElement = joinElement.element("actions");
 
-		if (actionsElement != null) {
-			parseActionsElement(actionsElement, join);
-		}
+		parseActionsElement(actionsElement, join);
 
 		Element timersElement = joinElement.element("timers");
 
-		if (timersElement != null) {
-			parseTimerElements(timersElement, join);
-		}
+		parseTimerElements(timersElement, join);
 
 		return join;
 	}
@@ -352,6 +343,10 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 	protected void parseNotificationElements(
 		List<Element> notificationElements,
 		NotificationAware notificationAware) {
+
+		if (notificationElements.isEmpty()) {
+			return;
+		}
 
 		Set<Notification> notifications = new HashSet<Notification>(
 			notificationElements.size());
@@ -456,19 +451,16 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 		State state = new State(name, description, initial);
 
 		String metadata = stateElement.elementText("metadata");
+
 		state.setMetadata(metadata);
 
 		Element actionsElement = stateElement.element("actions");
 
-		if (actionsElement != null) {
-			parseActionsElement(actionsElement, state);
-		}
+		parseActionsElement(actionsElement, state);
 
 		Element timersElement = stateElement.element("timers");
 
-		if (timersElement != null) {
-			parseTimerElements(timersElement, state);
-		}
+		parseTimerElements(timersElement, state);
 
 		return state;
 	}
@@ -480,13 +472,12 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 		Task task = new Task(name, description);
 
 		String metadata = taskElement.elementText("metadata");
+
 		task.setMetadata(metadata);
 
 		Element actionsElement = taskElement.element("actions");
 
-		if (actionsElement != null) {
-			parseActionsElement(actionsElement, task);
-		}
+		parseActionsElement(actionsElement, task);
 
 		Element assignmentsElement = taskElement.element("assignments");
 
@@ -498,15 +489,17 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 
 		Element timersElement = taskElement.element("task-timers");
 
-		if (timersElement != null) {
-			parseTaskTimerElements(timersElement, task);
-		}
+		parseTaskTimerElements(timersElement, task);
 
 		return task;
 	}
 
 	protected void parseTaskTimerElements(
 		Element taskTimersElement, Node node) {
+
+		if (taskTimersElement == null) {
+			return;
+		}
 
 		List<Element> taskTimerElements = taskTimersElement.elements(
 			"task-timer");
@@ -527,7 +520,6 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 	}
 
 	protected void parseTimerActions(Element timersElement, Timer timer) {
-
 		if (timersElement == null) {
 			return;
 		}
@@ -535,16 +527,12 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 		List<Element> timerActionElements = timersElement.elements(
 			"timer-action");
 
-		if (!timerActionElements.isEmpty()) {
-			parseActionElements(timerActionElements, timer);
-		}
+		parseActionElements(timerActionElements, timer);
 
 		List<Element> timerNotificationElements = timersElement.elements(
 			"timer-notification");
 
-		if (!timerNotificationElements.isEmpty()) {
-			parseNotificationElements(timerNotificationElements, timer);
-		}
+		parseNotificationElements(timerNotificationElements, timer);
 
 		Element reassignmentsElement = timersElement.element(
 			"reassignments");
@@ -589,6 +577,9 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 	}
 
 	protected void parseTimerElements(Element timersElement, Node node) {
+		if (timersElement == null) {
+			return;
+		}
 
 		List<Element> timerElements = timersElement.elements("timer");
 

@@ -59,13 +59,13 @@ public class ExecutionUtil {
 			executionContext.getKaleoInstanceToken();
 
 		List<KaleoTimerInstanceToken> kaleoTimerInstanceTokens =
-			KaleoTimerInstanceTokenLocalServiceUtil.
-				getKaleoTimerInstanceTokens(
-					kaleoInstanceToken.getKaleoInstanceTokenId(), false, false,
-					executionContext.getServiceContext());
+			KaleoTimerInstanceTokenLocalServiceUtil.getKaleoTimerInstanceTokens(
+				kaleoInstanceToken.getKaleoInstanceTokenId(), false, false,
+				executionContext.getServiceContext());
 
-		KaleoTimerInstanceTokenLocalServiceUtil.completeKaleoTimerInstanceTokens(
-			kaleoTimerInstanceTokens, executionContext.getServiceContext());
+		KaleoTimerInstanceTokenLocalServiceUtil.
+			completeKaleoTimerInstanceTokens(
+				kaleoTimerInstanceTokens, executionContext.getServiceContext());
 	}
 
 	public static boolean isKaleoInstanceBlocked(

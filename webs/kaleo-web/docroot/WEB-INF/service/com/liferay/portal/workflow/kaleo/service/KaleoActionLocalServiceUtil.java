@@ -250,15 +250,15 @@ public class KaleoActionLocalServiceUtil {
 	}
 
 	public static com.liferay.portal.workflow.kaleo.model.KaleoAction addKaleoAction(
-		long kaleoDefinitionId, java.lang.String kaleoClassName,
-		long kaleoClassPK, java.lang.String kaleoNodeName,
+		java.lang.String kaleoClassName, long kaleoClassPK,
+		long kaleoDefinitionId, java.lang.String kaleoNodeName,
 		com.liferay.portal.workflow.kaleo.definition.Action action,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
-				   .addKaleoAction(kaleoDefinitionId, kaleoClassName,
-			kaleoClassPK, kaleoNodeName, action, serviceContext);
+				   .addKaleoAction(kaleoClassName, kaleoClassPK,
+			kaleoDefinitionId, kaleoNodeName, action, serviceContext);
 	}
 
 	public static void deleteCompanyKaleoActions(long companyId)

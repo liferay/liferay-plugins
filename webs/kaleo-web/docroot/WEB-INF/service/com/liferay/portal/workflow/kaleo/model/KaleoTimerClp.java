@@ -123,14 +123,6 @@ public class KaleoTimerClp extends BaseModelImpl<KaleoTimer>
 		_modifiedDate = modifiedDate;
 	}
 
-	public long getKaleoDefinitionId() {
-		return _kaleoDefinitionId;
-	}
-
-	public void setKaleoDefinitionId(long kaleoDefinitionId) {
-		_kaleoDefinitionId = kaleoDefinitionId;
-	}
-
 	public String getKaleoClassName() {
 		return _kaleoClassName;
 	}
@@ -145,6 +137,14 @@ public class KaleoTimerClp extends BaseModelImpl<KaleoTimer>
 
 	public void setKaleoClassPK(long kaleoClassPK) {
 		_kaleoClassPK = kaleoClassPK;
+	}
+
+	public long getKaleoDefinitionId() {
+		return _kaleoDefinitionId;
+	}
+
+	public void setKaleoDefinitionId(long kaleoDefinitionId) {
+		_kaleoDefinitionId = kaleoDefinitionId;
 	}
 
 	public String getName() {
@@ -242,9 +242,9 @@ public class KaleoTimerClp extends BaseModelImpl<KaleoTimer>
 		clone.setUserName(getUserName());
 		clone.setCreateDate(getCreateDate());
 		clone.setModifiedDate(getModifiedDate());
-		clone.setKaleoDefinitionId(getKaleoDefinitionId());
 		clone.setKaleoClassName(getKaleoClassName());
 		clone.setKaleoClassPK(getKaleoClassPK());
+		clone.setKaleoDefinitionId(getKaleoDefinitionId());
 		clone.setName(getName());
 		clone.setBlocking(getBlocking());
 		clone.setDescription(getDescription());
@@ -324,12 +324,12 @@ public class KaleoTimerClp extends BaseModelImpl<KaleoTimer>
 		sb.append(getCreateDate());
 		sb.append(", modifiedDate=");
 		sb.append(getModifiedDate());
-		sb.append(", kaleoDefinitionId=");
-		sb.append(getKaleoDefinitionId());
 		sb.append(", kaleoClassName=");
 		sb.append(getKaleoClassName());
 		sb.append(", kaleoClassPK=");
 		sb.append(getKaleoClassPK());
+		sb.append(", kaleoDefinitionId=");
+		sb.append(getKaleoDefinitionId());
 		sb.append(", name=");
 		sb.append(getName());
 		sb.append(", blocking=");
@@ -385,16 +385,16 @@ public class KaleoTimerClp extends BaseModelImpl<KaleoTimer>
 		sb.append(getModifiedDate());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>kaleoDefinitionId</column-name><column-value><![CDATA[");
-		sb.append(getKaleoDefinitionId());
-		sb.append("]]></column-value></column>");
-		sb.append(
 			"<column><column-name>kaleoClassName</column-name><column-value><![CDATA[");
 		sb.append(getKaleoClassName());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>kaleoClassPK</column-name><column-value><![CDATA[");
 		sb.append(getKaleoClassPK());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>kaleoDefinitionId</column-name><column-value><![CDATA[");
+		sb.append(getKaleoDefinitionId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>name</column-name><column-value><![CDATA[");
@@ -438,9 +438,9 @@ public class KaleoTimerClp extends BaseModelImpl<KaleoTimer>
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
-	private long _kaleoDefinitionId;
 	private String _kaleoClassName;
 	private long _kaleoClassPK;
+	private long _kaleoDefinitionId;
 	private String _name;
 	private boolean _blocking;
 	private String _description;

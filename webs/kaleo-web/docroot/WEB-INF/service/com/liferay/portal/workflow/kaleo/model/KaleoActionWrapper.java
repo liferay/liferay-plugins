@@ -201,24 +201,6 @@ public class KaleoActionWrapper implements KaleoAction {
 	}
 
 	/**
-	* Returns the kaleo definition ID of this kaleo action.
-	*
-	* @return the kaleo definition ID of this kaleo action
-	*/
-	public long getKaleoDefinitionId() {
-		return _kaleoAction.getKaleoDefinitionId();
-	}
-
-	/**
-	* Sets the kaleo definition ID of this kaleo action.
-	*
-	* @param kaleoDefinitionId the kaleo definition ID of this kaleo action
-	*/
-	public void setKaleoDefinitionId(long kaleoDefinitionId) {
-		_kaleoAction.setKaleoDefinitionId(kaleoDefinitionId);
-	}
-
-	/**
 	* Returns the kaleo class name of this kaleo action.
 	*
 	* @return the kaleo class name of this kaleo action
@@ -252,6 +234,24 @@ public class KaleoActionWrapper implements KaleoAction {
 	*/
 	public void setKaleoClassPK(long kaleoClassPK) {
 		_kaleoAction.setKaleoClassPK(kaleoClassPK);
+	}
+
+	/**
+	* Returns the kaleo definition ID of this kaleo action.
+	*
+	* @return the kaleo definition ID of this kaleo action
+	*/
+	public long getKaleoDefinitionId() {
+		return _kaleoAction.getKaleoDefinitionId();
+	}
+
+	/**
+	* Sets the kaleo definition ID of this kaleo action.
+	*
+	* @param kaleoDefinitionId the kaleo definition ID of this kaleo action
+	*/
+	public void setKaleoDefinitionId(long kaleoDefinitionId) {
+		_kaleoAction.setKaleoDefinitionId(kaleoDefinitionId);
 	}
 
 	/**

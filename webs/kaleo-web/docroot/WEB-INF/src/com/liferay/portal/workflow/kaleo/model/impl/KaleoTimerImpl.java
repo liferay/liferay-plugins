@@ -38,7 +38,12 @@ public class KaleoTimerImpl extends KaleoTimerBaseImpl {
 	}
 
 	public boolean isRecurring() {
-		return Validator.isNotNull(getRecurrenceScale());
+		if (Validator.isNotNull(getRecurrenceScale())) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 
 }

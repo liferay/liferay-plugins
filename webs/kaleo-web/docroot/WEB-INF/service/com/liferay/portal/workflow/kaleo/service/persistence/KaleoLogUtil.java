@@ -831,59 +831,59 @@ public class KaleoLogUtil {
 	}
 
 	/**
-	* Returns all the kaleo logs where kaleoInstanceTokenId = &#63; and kaleoClassName = &#63; and kaleoClassPK = &#63; and type = &#63;.
+	* Returns all the kaleo logs where kaleoClassName = &#63; and kaleoClassPK = &#63; and kaleoInstanceTokenId = &#63; and type = &#63;.
 	*
-	* @param kaleoInstanceTokenId the kaleo instance token ID
 	* @param kaleoClassName the kaleo class name
 	* @param kaleoClassPK the kaleo class p k
+	* @param kaleoInstanceTokenId the kaleo instance token ID
 	* @param type the type
 	* @return the matching kaleo logs
 	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoLog> findByKITI_KCN_KCPK_T(
-		long kaleoInstanceTokenId, java.lang.String kaleoClassName,
-		long kaleoClassPK, java.lang.String type)
+	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoLog> findByKCN_KCPK_KITI_T(
+		java.lang.String kaleoClassName, long kaleoClassPK,
+		long kaleoInstanceTokenId, java.lang.String type)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence()
-				   .findByKITI_KCN_KCPK_T(kaleoInstanceTokenId, kaleoClassName,
-			kaleoClassPK, type);
+				   .findByKCN_KCPK_KITI_T(kaleoClassName, kaleoClassPK,
+			kaleoInstanceTokenId, type);
 	}
 
 	/**
-	* Returns a range of all the kaleo logs where kaleoInstanceTokenId = &#63; and kaleoClassName = &#63; and kaleoClassPK = &#63; and type = &#63;.
+	* Returns a range of all the kaleo logs where kaleoClassName = &#63; and kaleoClassPK = &#63; and kaleoInstanceTokenId = &#63; and type = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param kaleoInstanceTokenId the kaleo instance token ID
 	* @param kaleoClassName the kaleo class name
 	* @param kaleoClassPK the kaleo class p k
+	* @param kaleoInstanceTokenId the kaleo instance token ID
 	* @param type the type
 	* @param start the lower bound of the range of kaleo logs
 	* @param end the upper bound of the range of kaleo logs (not inclusive)
 	* @return the range of matching kaleo logs
 	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoLog> findByKITI_KCN_KCPK_T(
-		long kaleoInstanceTokenId, java.lang.String kaleoClassName,
-		long kaleoClassPK, java.lang.String type, int start, int end)
+	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoLog> findByKCN_KCPK_KITI_T(
+		java.lang.String kaleoClassName, long kaleoClassPK,
+		long kaleoInstanceTokenId, java.lang.String type, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence()
-				   .findByKITI_KCN_KCPK_T(kaleoInstanceTokenId, kaleoClassName,
-			kaleoClassPK, type, start, end);
+				   .findByKCN_KCPK_KITI_T(kaleoClassName, kaleoClassPK,
+			kaleoInstanceTokenId, type, start, end);
 	}
 
 	/**
-	* Returns an ordered range of all the kaleo logs where kaleoInstanceTokenId = &#63; and kaleoClassName = &#63; and kaleoClassPK = &#63; and type = &#63;.
+	* Returns an ordered range of all the kaleo logs where kaleoClassName = &#63; and kaleoClassPK = &#63; and kaleoInstanceTokenId = &#63; and type = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param kaleoInstanceTokenId the kaleo instance token ID
 	* @param kaleoClassName the kaleo class name
 	* @param kaleoClassPK the kaleo class p k
+	* @param kaleoInstanceTokenId the kaleo instance token ID
 	* @param type the type
 	* @param start the lower bound of the range of kaleo logs
 	* @param end the upper bound of the range of kaleo logs (not inclusive)
@@ -891,97 +891,96 @@ public class KaleoLogUtil {
 	* @return the ordered range of matching kaleo logs
 	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoLog> findByKITI_KCN_KCPK_T(
-		long kaleoInstanceTokenId, java.lang.String kaleoClassName,
-		long kaleoClassPK, java.lang.String type, int start, int end,
+	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoLog> findByKCN_KCPK_KITI_T(
+		java.lang.String kaleoClassName, long kaleoClassPK,
+		long kaleoInstanceTokenId, java.lang.String type, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence()
-				   .findByKITI_KCN_KCPK_T(kaleoInstanceTokenId, kaleoClassName,
-			kaleoClassPK, type, start, end, orderByComparator);
+				   .findByKCN_KCPK_KITI_T(kaleoClassName, kaleoClassPK,
+			kaleoInstanceTokenId, type, start, end, orderByComparator);
 	}
 
 	/**
-	* Returns the first kaleo log in the ordered set where kaleoInstanceTokenId = &#63; and kaleoClassName = &#63; and kaleoClassPK = &#63; and type = &#63;.
+	* Returns the first kaleo log in the ordered set where kaleoClassName = &#63; and kaleoClassPK = &#63; and kaleoInstanceTokenId = &#63; and type = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param kaleoInstanceTokenId the kaleo instance token ID
 	* @param kaleoClassName the kaleo class name
 	* @param kaleoClassPK the kaleo class p k
+	* @param kaleoInstanceTokenId the kaleo instance token ID
 	* @param type the type
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo log
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchLogException if a matching kaleo log could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static com.liferay.portal.workflow.kaleo.model.KaleoLog findByKITI_KCN_KCPK_T_First(
-		long kaleoInstanceTokenId, java.lang.String kaleoClassName,
-		long kaleoClassPK, java.lang.String type,
+	public static com.liferay.portal.workflow.kaleo.model.KaleoLog findByKCN_KCPK_KITI_T_First(
+		java.lang.String kaleoClassName, long kaleoClassPK,
+		long kaleoInstanceTokenId, java.lang.String type,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.portal.workflow.kaleo.NoSuchLogException {
 		return getPersistence()
-				   .findByKITI_KCN_KCPK_T_First(kaleoInstanceTokenId,
-			kaleoClassName, kaleoClassPK, type, orderByComparator);
+				   .findByKCN_KCPK_KITI_T_First(kaleoClassName, kaleoClassPK,
+			kaleoInstanceTokenId, type, orderByComparator);
 	}
 
 	/**
-	* Returns the last kaleo log in the ordered set where kaleoInstanceTokenId = &#63; and kaleoClassName = &#63; and kaleoClassPK = &#63; and type = &#63;.
+	* Returns the last kaleo log in the ordered set where kaleoClassName = &#63; and kaleoClassPK = &#63; and kaleoInstanceTokenId = &#63; and type = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param kaleoInstanceTokenId the kaleo instance token ID
 	* @param kaleoClassName the kaleo class name
 	* @param kaleoClassPK the kaleo class p k
+	* @param kaleoInstanceTokenId the kaleo instance token ID
 	* @param type the type
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching kaleo log
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchLogException if a matching kaleo log could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static com.liferay.portal.workflow.kaleo.model.KaleoLog findByKITI_KCN_KCPK_T_Last(
-		long kaleoInstanceTokenId, java.lang.String kaleoClassName,
-		long kaleoClassPK, java.lang.String type,
+	public static com.liferay.portal.workflow.kaleo.model.KaleoLog findByKCN_KCPK_KITI_T_Last(
+		java.lang.String kaleoClassName, long kaleoClassPK,
+		long kaleoInstanceTokenId, java.lang.String type,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.portal.workflow.kaleo.NoSuchLogException {
 		return getPersistence()
-				   .findByKITI_KCN_KCPK_T_Last(kaleoInstanceTokenId,
-			kaleoClassName, kaleoClassPK, type, orderByComparator);
+				   .findByKCN_KCPK_KITI_T_Last(kaleoClassName, kaleoClassPK,
+			kaleoInstanceTokenId, type, orderByComparator);
 	}
 
 	/**
-	* Returns the kaleo logs before and after the current kaleo log in the ordered set where kaleoInstanceTokenId = &#63; and kaleoClassName = &#63; and kaleoClassPK = &#63; and type = &#63;.
+	* Returns the kaleo logs before and after the current kaleo log in the ordered set where kaleoClassName = &#63; and kaleoClassPK = &#63; and kaleoInstanceTokenId = &#63; and type = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
 	* @param kaleoLogId the primary key of the current kaleo log
-	* @param kaleoInstanceTokenId the kaleo instance token ID
 	* @param kaleoClassName the kaleo class name
 	* @param kaleoClassPK the kaleo class p k
+	* @param kaleoInstanceTokenId the kaleo instance token ID
 	* @param type the type
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next kaleo log
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchLogException if a kaleo log with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static com.liferay.portal.workflow.kaleo.model.KaleoLog[] findByKITI_KCN_KCPK_T_PrevAndNext(
-		long kaleoLogId, long kaleoInstanceTokenId,
-		java.lang.String kaleoClassName, long kaleoClassPK,
-		java.lang.String type,
+	public static com.liferay.portal.workflow.kaleo.model.KaleoLog[] findByKCN_KCPK_KITI_T_PrevAndNext(
+		long kaleoLogId, java.lang.String kaleoClassName, long kaleoClassPK,
+		long kaleoInstanceTokenId, java.lang.String type,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.portal.workflow.kaleo.NoSuchLogException {
 		return getPersistence()
-				   .findByKITI_KCN_KCPK_T_PrevAndNext(kaleoLogId,
-			kaleoInstanceTokenId, kaleoClassName, kaleoClassPK, type,
+				   .findByKCN_KCPK_KITI_T_PrevAndNext(kaleoLogId,
+			kaleoClassName, kaleoClassPK, kaleoInstanceTokenId, type,
 			orderByComparator);
 	}
 
@@ -1094,21 +1093,21 @@ public class KaleoLogUtil {
 	}
 
 	/**
-	* Removes all the kaleo logs where kaleoInstanceTokenId = &#63; and kaleoClassName = &#63; and kaleoClassPK = &#63; and type = &#63; from the database.
+	* Removes all the kaleo logs where kaleoClassName = &#63; and kaleoClassPK = &#63; and kaleoInstanceTokenId = &#63; and type = &#63; from the database.
 	*
-	* @param kaleoInstanceTokenId the kaleo instance token ID
 	* @param kaleoClassName the kaleo class name
 	* @param kaleoClassPK the kaleo class p k
+	* @param kaleoInstanceTokenId the kaleo instance token ID
 	* @param type the type
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByKITI_KCN_KCPK_T(long kaleoInstanceTokenId,
+	public static void removeByKCN_KCPK_KITI_T(
 		java.lang.String kaleoClassName, long kaleoClassPK,
-		java.lang.String type)
+		long kaleoInstanceTokenId, java.lang.String type)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		getPersistence()
-			.removeByKITI_KCN_KCPK_T(kaleoInstanceTokenId, kaleoClassName,
-			kaleoClassPK, type);
+			.removeByKCN_KCPK_KITI_T(kaleoClassName, kaleoClassPK,
+			kaleoInstanceTokenId, type);
 	}
 
 	/**
@@ -1186,22 +1185,21 @@ public class KaleoLogUtil {
 	}
 
 	/**
-	* Returns the number of kaleo logs where kaleoInstanceTokenId = &#63; and kaleoClassName = &#63; and kaleoClassPK = &#63; and type = &#63;.
+	* Returns the number of kaleo logs where kaleoClassName = &#63; and kaleoClassPK = &#63; and kaleoInstanceTokenId = &#63; and type = &#63;.
 	*
-	* @param kaleoInstanceTokenId the kaleo instance token ID
 	* @param kaleoClassName the kaleo class name
 	* @param kaleoClassPK the kaleo class p k
+	* @param kaleoInstanceTokenId the kaleo instance token ID
 	* @param type the type
 	* @return the number of matching kaleo logs
 	* @throws SystemException if a system exception occurred
 	*/
-	public static int countByKITI_KCN_KCPK_T(long kaleoInstanceTokenId,
-		java.lang.String kaleoClassName, long kaleoClassPK,
-		java.lang.String type)
+	public static int countByKCN_KCPK_KITI_T(java.lang.String kaleoClassName,
+		long kaleoClassPK, long kaleoInstanceTokenId, java.lang.String type)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence()
-				   .countByKITI_KCN_KCPK_T(kaleoInstanceTokenId,
-			kaleoClassName, kaleoClassPK, type);
+				   .countByKCN_KCPK_KITI_T(kaleoClassName, kaleoClassPK,
+			kaleoInstanceTokenId, type);
 	}
 
 	/**

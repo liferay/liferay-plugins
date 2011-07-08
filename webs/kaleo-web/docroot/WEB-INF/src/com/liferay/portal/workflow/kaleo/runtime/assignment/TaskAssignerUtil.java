@@ -31,21 +31,20 @@ import java.util.List;
 public class TaskAssignerUtil {
 
 	public static void reassignKaleoTask(
-			List<KaleoTaskAssignment> kaleoTaskReassignments,
+			List<KaleoTaskAssignment> kaleoTaskAssignments,
 			ExecutionContext executionContext)
 		throws PortalException, SystemException {
 
-		List<KaleoTaskAssignment> kaleoTaskAssignments =
+		List<KaleoTaskAssignment> reassignedKaleoTaskAssignments =
 			new ArrayList<KaleoTaskAssignment>();
 
-		for (KaleoTaskAssignment kaleoTaskReassignment :
-				kaleoTaskReassignments) {
-
+		for (KaleoTaskAssignment kaleoTaskAssignment : kaleoTaskAssignments) {
 			Collection<KaleoTaskAssignment> calculatedKaleoTaskAssignments =
 				_taskAssignmentSelector.calculateTaskAssignments(
-					kaleoTaskReassignment, executionContext);
+					kaleoTaskAssignment, executionContext);
 
-			kaleoTaskAssignments.addAll(calculatedKaleoTaskAssignments);
+			reassignedKaleoTaskAssignments.addAll(
+				calculatedKaleoTaskAssignments);
 		}
 
 		KaleoTaskInstanceToken kaleoTaskInstanceToken =
@@ -55,7 +54,7 @@ public class TaskAssignerUtil {
 			deleteKaleoTaskAssignmentInstances(kaleoTaskInstanceToken);
 
 		KaleoTaskAssignmentInstanceLocalServiceUtil.addTaskAssignmentInstances(
-			kaleoTaskInstanceToken, kaleoTaskAssignments,
+			kaleoTaskInstanceToken, reassignedKaleoTaskAssignments,
 			executionContext.getWorkflowContext(),
 			executionContext.getServiceContext());
 	}

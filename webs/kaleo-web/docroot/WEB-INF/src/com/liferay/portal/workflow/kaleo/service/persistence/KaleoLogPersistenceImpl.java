@@ -140,21 +140,21 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 			KaleoLogModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST, "countByKITI_T",
 			new String[] { Long.class.getName(), String.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_KITI_KCN_KCPK_T = new FinderPath(KaleoLogModelImpl.ENTITY_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_FIND_BY_KCN_KCPK_KITI_T = new FinderPath(KaleoLogModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoLogModelImpl.FINDER_CACHE_ENABLED, KaleoLogImpl.class,
-			FINDER_CLASS_NAME_LIST, "findByKITI_KCN_KCPK_T",
+			FINDER_CLASS_NAME_LIST, "findByKCN_KCPK_KITI_T",
 			new String[] {
-				Long.class.getName(), String.class.getName(),
+				String.class.getName(), Long.class.getName(),
 				Long.class.getName(), String.class.getName(),
 				
 			"java.lang.Integer", "java.lang.Integer",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
-	public static final FinderPath FINDER_PATH_COUNT_BY_KITI_KCN_KCPK_T = new FinderPath(KaleoLogModelImpl.ENTITY_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_COUNT_BY_KCN_KCPK_KITI_T = new FinderPath(KaleoLogModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoLogModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST, "countByKITI_KCN_KCPK_T",
+			FINDER_CLASS_NAME_LIST, "countByKCN_KCPK_KITI_T",
 			new String[] {
-				Long.class.getName(), String.class.getName(),
+				String.class.getName(), Long.class.getName(),
 				Long.class.getName(), String.class.getName()
 			});
 	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(KaleoLogModelImpl.ENTITY_CACHE_ENABLED,
@@ -376,12 +376,12 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 		kaleoLogImpl.setUserName(kaleoLog.getUserName());
 		kaleoLogImpl.setCreateDate(kaleoLog.getCreateDate());
 		kaleoLogImpl.setModifiedDate(kaleoLog.getModifiedDate());
+		kaleoLogImpl.setKaleoClassName(kaleoLog.getKaleoClassName());
+		kaleoLogImpl.setKaleoClassPK(kaleoLog.getKaleoClassPK());
 		kaleoLogImpl.setKaleoDefinitionId(kaleoLog.getKaleoDefinitionId());
 		kaleoLogImpl.setKaleoInstanceId(kaleoLog.getKaleoInstanceId());
 		kaleoLogImpl.setKaleoInstanceTokenId(kaleoLog.getKaleoInstanceTokenId());
 		kaleoLogImpl.setKaleoTaskInstanceTokenId(kaleoLog.getKaleoTaskInstanceTokenId());
-		kaleoLogImpl.setKaleoClassName(kaleoLog.getKaleoClassName());
-		kaleoLogImpl.setKaleoClassPK(kaleoLog.getKaleoClassPK());
 		kaleoLogImpl.setKaleoNodeName(kaleoLog.getKaleoNodeName());
 		kaleoLogImpl.setTerminalKaleoNode(kaleoLog.isTerminalKaleoNode());
 		kaleoLogImpl.setKaleoActionId(kaleoLog.getKaleoActionId());
@@ -2259,55 +2259,56 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 	}
 
 	/**
-	 * Returns all the kaleo logs where kaleoInstanceTokenId = &#63; and kaleoClassName = &#63; and kaleoClassPK = &#63; and type = &#63;.
+	 * Returns all the kaleo logs where kaleoClassName = &#63; and kaleoClassPK = &#63; and kaleoInstanceTokenId = &#63; and type = &#63;.
 	 *
-	 * @param kaleoInstanceTokenId the kaleo instance token ID
 	 * @param kaleoClassName the kaleo class name
 	 * @param kaleoClassPK the kaleo class p k
+	 * @param kaleoInstanceTokenId the kaleo instance token ID
 	 * @param type the type
 	 * @return the matching kaleo logs
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<KaleoLog> findByKITI_KCN_KCPK_T(long kaleoInstanceTokenId,
-		String kaleoClassName, long kaleoClassPK, String type)
+	public List<KaleoLog> findByKCN_KCPK_KITI_T(String kaleoClassName,
+		long kaleoClassPK, long kaleoInstanceTokenId, String type)
 		throws SystemException {
-		return findByKITI_KCN_KCPK_T(kaleoInstanceTokenId, kaleoClassName,
-			kaleoClassPK, type, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+		return findByKCN_KCPK_KITI_T(kaleoClassName, kaleoClassPK,
+			kaleoInstanceTokenId, type, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			null);
 	}
 
 	/**
-	 * Returns a range of all the kaleo logs where kaleoInstanceTokenId = &#63; and kaleoClassName = &#63; and kaleoClassPK = &#63; and type = &#63;.
+	 * Returns a range of all the kaleo logs where kaleoClassName = &#63; and kaleoClassPK = &#63; and kaleoInstanceTokenId = &#63; and type = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param kaleoInstanceTokenId the kaleo instance token ID
 	 * @param kaleoClassName the kaleo class name
 	 * @param kaleoClassPK the kaleo class p k
+	 * @param kaleoInstanceTokenId the kaleo instance token ID
 	 * @param type the type
 	 * @param start the lower bound of the range of kaleo logs
 	 * @param end the upper bound of the range of kaleo logs (not inclusive)
 	 * @return the range of matching kaleo logs
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<KaleoLog> findByKITI_KCN_KCPK_T(long kaleoInstanceTokenId,
-		String kaleoClassName, long kaleoClassPK, String type, int start,
+	public List<KaleoLog> findByKCN_KCPK_KITI_T(String kaleoClassName,
+		long kaleoClassPK, long kaleoInstanceTokenId, String type, int start,
 		int end) throws SystemException {
-		return findByKITI_KCN_KCPK_T(kaleoInstanceTokenId, kaleoClassName,
-			kaleoClassPK, type, start, end, null);
+		return findByKCN_KCPK_KITI_T(kaleoClassName, kaleoClassPK,
+			kaleoInstanceTokenId, type, start, end, null);
 	}
 
 	/**
-	 * Returns an ordered range of all the kaleo logs where kaleoInstanceTokenId = &#63; and kaleoClassName = &#63; and kaleoClassPK = &#63; and type = &#63;.
+	 * Returns an ordered range of all the kaleo logs where kaleoClassName = &#63; and kaleoClassPK = &#63; and kaleoInstanceTokenId = &#63; and type = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param kaleoInstanceTokenId the kaleo instance token ID
 	 * @param kaleoClassName the kaleo class name
 	 * @param kaleoClassPK the kaleo class p k
+	 * @param kaleoInstanceTokenId the kaleo instance token ID
 	 * @param type the type
 	 * @param start the lower bound of the range of kaleo logs
 	 * @param end the upper bound of the range of kaleo logs (not inclusive)
@@ -2315,17 +2316,17 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 	 * @return the ordered range of matching kaleo logs
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<KaleoLog> findByKITI_KCN_KCPK_T(long kaleoInstanceTokenId,
-		String kaleoClassName, long kaleoClassPK, String type, int start,
+	public List<KaleoLog> findByKCN_KCPK_KITI_T(String kaleoClassName,
+		long kaleoClassPK, long kaleoInstanceTokenId, String type, int start,
 		int end, OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
-				kaleoInstanceTokenId, kaleoClassName, kaleoClassPK, type,
+				kaleoClassName, kaleoClassPK, kaleoInstanceTokenId, type,
 				
 				String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
 			};
 
-		List<KaleoLog> list = (List<KaleoLog>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_KITI_KCN_KCPK_T,
+		List<KaleoLog> list = (List<KaleoLog>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_KCN_KCPK_KITI_T,
 				finderArgs, this);
 
 		if (list == null) {
@@ -2341,31 +2342,31 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 
 			query.append(_SQL_SELECT_KALEOLOG_WHERE);
 
-			query.append(_FINDER_COLUMN_KITI_KCN_KCPK_T_KALEOINSTANCETOKENID_2);
-
 			if (kaleoClassName == null) {
-				query.append(_FINDER_COLUMN_KITI_KCN_KCPK_T_KALEOCLASSNAME_1);
+				query.append(_FINDER_COLUMN_KCN_KCPK_KITI_T_KALEOCLASSNAME_1);
 			}
 			else {
 				if (kaleoClassName.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_KITI_KCN_KCPK_T_KALEOCLASSNAME_3);
+					query.append(_FINDER_COLUMN_KCN_KCPK_KITI_T_KALEOCLASSNAME_3);
 				}
 				else {
-					query.append(_FINDER_COLUMN_KITI_KCN_KCPK_T_KALEOCLASSNAME_2);
+					query.append(_FINDER_COLUMN_KCN_KCPK_KITI_T_KALEOCLASSNAME_2);
 				}
 			}
 
-			query.append(_FINDER_COLUMN_KITI_KCN_KCPK_T_KALEOCLASSPK_2);
+			query.append(_FINDER_COLUMN_KCN_KCPK_KITI_T_KALEOCLASSPK_2);
+
+			query.append(_FINDER_COLUMN_KCN_KCPK_KITI_T_KALEOINSTANCETOKENID_2);
 
 			if (type == null) {
-				query.append(_FINDER_COLUMN_KITI_KCN_KCPK_T_TYPE_1);
+				query.append(_FINDER_COLUMN_KCN_KCPK_KITI_T_TYPE_1);
 			}
 			else {
 				if (type.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_KITI_KCN_KCPK_T_TYPE_3);
+					query.append(_FINDER_COLUMN_KCN_KCPK_KITI_T_TYPE_3);
 				}
 				else {
-					query.append(_FINDER_COLUMN_KITI_KCN_KCPK_T_TYPE_2);
+					query.append(_FINDER_COLUMN_KCN_KCPK_KITI_T_TYPE_2);
 				}
 			}
 
@@ -2389,13 +2390,13 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				qPos.add(kaleoInstanceTokenId);
-
 				if (kaleoClassName != null) {
 					qPos.add(kaleoClassName);
 				}
 
 				qPos.add(kaleoClassPK);
+
+				qPos.add(kaleoInstanceTokenId);
 
 				if (type != null) {
 					qPos.add(type);
@@ -2409,13 +2410,13 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 			}
 			finally {
 				if (list == null) {
-					FinderCacheUtil.removeResult(FINDER_PATH_FIND_BY_KITI_KCN_KCPK_T,
+					FinderCacheUtil.removeResult(FINDER_PATH_FIND_BY_KCN_KCPK_KITI_T,
 						finderArgs);
 				}
 				else {
 					cacheResult(list);
 
-					FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_KITI_KCN_KCPK_T,
+					FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_KCN_KCPK_KITI_T,
 						finderArgs, list);
 				}
 
@@ -2427,79 +2428,27 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 	}
 
 	/**
-	 * Returns the first kaleo log in the ordered set where kaleoInstanceTokenId = &#63; and kaleoClassName = &#63; and kaleoClassPK = &#63; and type = &#63;.
+	 * Returns the first kaleo log in the ordered set where kaleoClassName = &#63; and kaleoClassPK = &#63; and kaleoInstanceTokenId = &#63; and type = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param kaleoInstanceTokenId the kaleo instance token ID
 	 * @param kaleoClassName the kaleo class name
 	 * @param kaleoClassPK the kaleo class p k
+	 * @param kaleoInstanceTokenId the kaleo instance token ID
 	 * @param type the type
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching kaleo log
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchLogException if a matching kaleo log could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public KaleoLog findByKITI_KCN_KCPK_T_First(long kaleoInstanceTokenId,
-		String kaleoClassName, long kaleoClassPK, String type,
+	public KaleoLog findByKCN_KCPK_KITI_T_First(String kaleoClassName,
+		long kaleoClassPK, long kaleoInstanceTokenId, String type,
 		OrderByComparator orderByComparator)
 		throws NoSuchLogException, SystemException {
-		List<KaleoLog> list = findByKITI_KCN_KCPK_T(kaleoInstanceTokenId,
-				kaleoClassName, kaleoClassPK, type, 0, 1, orderByComparator);
-
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(10);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("kaleoInstanceTokenId=");
-			msg.append(kaleoInstanceTokenId);
-
-			msg.append(", kaleoClassName=");
-			msg.append(kaleoClassName);
-
-			msg.append(", kaleoClassPK=");
-			msg.append(kaleoClassPK);
-
-			msg.append(", type=");
-			msg.append(type);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchLogException(msg.toString());
-		}
-		else {
-			return list.get(0);
-		}
-	}
-
-	/**
-	 * Returns the last kaleo log in the ordered set where kaleoInstanceTokenId = &#63; and kaleoClassName = &#63; and kaleoClassPK = &#63; and type = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param kaleoInstanceTokenId the kaleo instance token ID
-	 * @param kaleoClassName the kaleo class name
-	 * @param kaleoClassPK the kaleo class p k
-	 * @param type the type
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the last matching kaleo log
-	 * @throws com.liferay.portal.workflow.kaleo.NoSuchLogException if a matching kaleo log could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public KaleoLog findByKITI_KCN_KCPK_T_Last(long kaleoInstanceTokenId,
-		String kaleoClassName, long kaleoClassPK, String type,
-		OrderByComparator orderByComparator)
-		throws NoSuchLogException, SystemException {
-		int count = countByKITI_KCN_KCPK_T(kaleoInstanceTokenId,
-				kaleoClassName, kaleoClassPK, type);
-
-		List<KaleoLog> list = findByKITI_KCN_KCPK_T(kaleoInstanceTokenId,
-				kaleoClassName, kaleoClassPK, type, count - 1, count,
+		List<KaleoLog> list = findByKCN_KCPK_KITI_T(kaleoClassName,
+				kaleoClassPK, kaleoInstanceTokenId, type, 0, 1,
 				orderByComparator);
 
 		if (list.isEmpty()) {
@@ -2507,14 +2456,14 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 
 			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("kaleoInstanceTokenId=");
-			msg.append(kaleoInstanceTokenId);
-
-			msg.append(", kaleoClassName=");
+			msg.append("kaleoClassName=");
 			msg.append(kaleoClassName);
 
 			msg.append(", kaleoClassPK=");
 			msg.append(kaleoClassPK);
+
+			msg.append(", kaleoInstanceTokenId=");
+			msg.append(kaleoInstanceTokenId);
 
 			msg.append(", type=");
 			msg.append(type);
@@ -2529,24 +2478,77 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 	}
 
 	/**
-	 * Returns the kaleo logs before and after the current kaleo log in the ordered set where kaleoInstanceTokenId = &#63; and kaleoClassName = &#63; and kaleoClassPK = &#63; and type = &#63;.
+	 * Returns the last kaleo log in the ordered set where kaleoClassName = &#63; and kaleoClassPK = &#63; and kaleoInstanceTokenId = &#63; and type = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param kaleoClassName the kaleo class name
+	 * @param kaleoClassPK the kaleo class p k
+	 * @param kaleoInstanceTokenId the kaleo instance token ID
+	 * @param type the type
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching kaleo log
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchLogException if a matching kaleo log could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoLog findByKCN_KCPK_KITI_T_Last(String kaleoClassName,
+		long kaleoClassPK, long kaleoInstanceTokenId, String type,
+		OrderByComparator orderByComparator)
+		throws NoSuchLogException, SystemException {
+		int count = countByKCN_KCPK_KITI_T(kaleoClassName, kaleoClassPK,
+				kaleoInstanceTokenId, type);
+
+		List<KaleoLog> list = findByKCN_KCPK_KITI_T(kaleoClassName,
+				kaleoClassPK, kaleoInstanceTokenId, type, count - 1, count,
+				orderByComparator);
+
+		if (list.isEmpty()) {
+			StringBundler msg = new StringBundler(10);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("kaleoClassName=");
+			msg.append(kaleoClassName);
+
+			msg.append(", kaleoClassPK=");
+			msg.append(kaleoClassPK);
+
+			msg.append(", kaleoInstanceTokenId=");
+			msg.append(kaleoInstanceTokenId);
+
+			msg.append(", type=");
+			msg.append(type);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchLogException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	/**
+	 * Returns the kaleo logs before and after the current kaleo log in the ordered set where kaleoClassName = &#63; and kaleoClassPK = &#63; and kaleoInstanceTokenId = &#63; and type = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
 	 * @param kaleoLogId the primary key of the current kaleo log
-	 * @param kaleoInstanceTokenId the kaleo instance token ID
 	 * @param kaleoClassName the kaleo class name
 	 * @param kaleoClassPK the kaleo class p k
+	 * @param kaleoInstanceTokenId the kaleo instance token ID
 	 * @param type the type
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next kaleo log
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchLogException if a kaleo log with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public KaleoLog[] findByKITI_KCN_KCPK_T_PrevAndNext(long kaleoLogId,
-		long kaleoInstanceTokenId, String kaleoClassName, long kaleoClassPK,
+	public KaleoLog[] findByKCN_KCPK_KITI_T_PrevAndNext(long kaleoLogId,
+		String kaleoClassName, long kaleoClassPK, long kaleoInstanceTokenId,
 		String type, OrderByComparator orderByComparator)
 		throws NoSuchLogException, SystemException {
 		KaleoLog kaleoLog = findByPrimaryKey(kaleoLogId);
@@ -2558,14 +2560,14 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 
 			KaleoLog[] array = new KaleoLogImpl[3];
 
-			array[0] = getByKITI_KCN_KCPK_T_PrevAndNext(session, kaleoLog,
-					kaleoInstanceTokenId, kaleoClassName, kaleoClassPK, type,
+			array[0] = getByKCN_KCPK_KITI_T_PrevAndNext(session, kaleoLog,
+					kaleoClassName, kaleoClassPK, kaleoInstanceTokenId, type,
 					orderByComparator, true);
 
 			array[1] = kaleoLog;
 
-			array[2] = getByKITI_KCN_KCPK_T_PrevAndNext(session, kaleoLog,
-					kaleoInstanceTokenId, kaleoClassName, kaleoClassPK, type,
+			array[2] = getByKCN_KCPK_KITI_T_PrevAndNext(session, kaleoLog,
+					kaleoClassName, kaleoClassPK, kaleoInstanceTokenId, type,
 					orderByComparator, false);
 
 			return array;
@@ -2578,10 +2580,10 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 		}
 	}
 
-	protected KaleoLog getByKITI_KCN_KCPK_T_PrevAndNext(Session session,
-		KaleoLog kaleoLog, long kaleoInstanceTokenId, String kaleoClassName,
-		long kaleoClassPK, String type, OrderByComparator orderByComparator,
-		boolean previous) {
+	protected KaleoLog getByKCN_KCPK_KITI_T_PrevAndNext(Session session,
+		KaleoLog kaleoLog, String kaleoClassName, long kaleoClassPK,
+		long kaleoInstanceTokenId, String type,
+		OrderByComparator orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -2594,31 +2596,31 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 
 		query.append(_SQL_SELECT_KALEOLOG_WHERE);
 
-		query.append(_FINDER_COLUMN_KITI_KCN_KCPK_T_KALEOINSTANCETOKENID_2);
-
 		if (kaleoClassName == null) {
-			query.append(_FINDER_COLUMN_KITI_KCN_KCPK_T_KALEOCLASSNAME_1);
+			query.append(_FINDER_COLUMN_KCN_KCPK_KITI_T_KALEOCLASSNAME_1);
 		}
 		else {
 			if (kaleoClassName.equals(StringPool.BLANK)) {
-				query.append(_FINDER_COLUMN_KITI_KCN_KCPK_T_KALEOCLASSNAME_3);
+				query.append(_FINDER_COLUMN_KCN_KCPK_KITI_T_KALEOCLASSNAME_3);
 			}
 			else {
-				query.append(_FINDER_COLUMN_KITI_KCN_KCPK_T_KALEOCLASSNAME_2);
+				query.append(_FINDER_COLUMN_KCN_KCPK_KITI_T_KALEOCLASSNAME_2);
 			}
 		}
 
-		query.append(_FINDER_COLUMN_KITI_KCN_KCPK_T_KALEOCLASSPK_2);
+		query.append(_FINDER_COLUMN_KCN_KCPK_KITI_T_KALEOCLASSPK_2);
+
+		query.append(_FINDER_COLUMN_KCN_KCPK_KITI_T_KALEOINSTANCETOKENID_2);
 
 		if (type == null) {
-			query.append(_FINDER_COLUMN_KITI_KCN_KCPK_T_TYPE_1);
+			query.append(_FINDER_COLUMN_KCN_KCPK_KITI_T_TYPE_1);
 		}
 		else {
 			if (type.equals(StringPool.BLANK)) {
-				query.append(_FINDER_COLUMN_KITI_KCN_KCPK_T_TYPE_3);
+				query.append(_FINDER_COLUMN_KCN_KCPK_KITI_T_TYPE_3);
 			}
 			else {
-				query.append(_FINDER_COLUMN_KITI_KCN_KCPK_T_TYPE_2);
+				query.append(_FINDER_COLUMN_KCN_KCPK_KITI_T_TYPE_2);
 			}
 		}
 
@@ -2689,13 +2691,13 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 
 		QueryPos qPos = QueryPos.getInstance(q);
 
-		qPos.add(kaleoInstanceTokenId);
-
 		if (kaleoClassName != null) {
 			qPos.add(kaleoClassName);
 		}
 
 		qPos.add(kaleoClassPK);
+
+		qPos.add(kaleoInstanceTokenId);
 
 		if (type != null) {
 			qPos.add(type);
@@ -2894,19 +2896,19 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 	}
 
 	/**
-	 * Removes all the kaleo logs where kaleoInstanceTokenId = &#63; and kaleoClassName = &#63; and kaleoClassPK = &#63; and type = &#63; from the database.
+	 * Removes all the kaleo logs where kaleoClassName = &#63; and kaleoClassPK = &#63; and kaleoInstanceTokenId = &#63; and type = &#63; from the database.
 	 *
-	 * @param kaleoInstanceTokenId the kaleo instance token ID
 	 * @param kaleoClassName the kaleo class name
 	 * @param kaleoClassPK the kaleo class p k
+	 * @param kaleoInstanceTokenId the kaleo instance token ID
 	 * @param type the type
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void removeByKITI_KCN_KCPK_T(long kaleoInstanceTokenId,
-		String kaleoClassName, long kaleoClassPK, String type)
+	public void removeByKCN_KCPK_KITI_T(String kaleoClassName,
+		long kaleoClassPK, long kaleoInstanceTokenId, String type)
 		throws SystemException {
-		for (KaleoLog kaleoLog : findByKITI_KCN_KCPK_T(kaleoInstanceTokenId,
-				kaleoClassName, kaleoClassPK, type)) {
+		for (KaleoLog kaleoLog : findByKCN_KCPK_KITI_T(kaleoClassName,
+				kaleoClassPK, kaleoInstanceTokenId, type)) {
 			kaleoLogPersistence.remove(kaleoLog);
 		}
 	}
@@ -3209,23 +3211,22 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 	}
 
 	/**
-	 * Returns the number of kaleo logs where kaleoInstanceTokenId = &#63; and kaleoClassName = &#63; and kaleoClassPK = &#63; and type = &#63;.
+	 * Returns the number of kaleo logs where kaleoClassName = &#63; and kaleoClassPK = &#63; and kaleoInstanceTokenId = &#63; and type = &#63;.
 	 *
-	 * @param kaleoInstanceTokenId the kaleo instance token ID
 	 * @param kaleoClassName the kaleo class name
 	 * @param kaleoClassPK the kaleo class p k
+	 * @param kaleoInstanceTokenId the kaleo instance token ID
 	 * @param type the type
 	 * @return the number of matching kaleo logs
 	 * @throws SystemException if a system exception occurred
 	 */
-	public int countByKITI_KCN_KCPK_T(long kaleoInstanceTokenId,
-		String kaleoClassName, long kaleoClassPK, String type)
-		throws SystemException {
+	public int countByKCN_KCPK_KITI_T(String kaleoClassName, long kaleoClassPK,
+		long kaleoInstanceTokenId, String type) throws SystemException {
 		Object[] finderArgs = new Object[] {
-				kaleoInstanceTokenId, kaleoClassName, kaleoClassPK, type
+				kaleoClassName, kaleoClassPK, kaleoInstanceTokenId, type
 			};
 
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_KITI_KCN_KCPK_T,
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_KCN_KCPK_KITI_T,
 				finderArgs, this);
 
 		if (count == null) {
@@ -3233,31 +3234,31 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 
 			query.append(_SQL_COUNT_KALEOLOG_WHERE);
 
-			query.append(_FINDER_COLUMN_KITI_KCN_KCPK_T_KALEOINSTANCETOKENID_2);
-
 			if (kaleoClassName == null) {
-				query.append(_FINDER_COLUMN_KITI_KCN_KCPK_T_KALEOCLASSNAME_1);
+				query.append(_FINDER_COLUMN_KCN_KCPK_KITI_T_KALEOCLASSNAME_1);
 			}
 			else {
 				if (kaleoClassName.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_KITI_KCN_KCPK_T_KALEOCLASSNAME_3);
+					query.append(_FINDER_COLUMN_KCN_KCPK_KITI_T_KALEOCLASSNAME_3);
 				}
 				else {
-					query.append(_FINDER_COLUMN_KITI_KCN_KCPK_T_KALEOCLASSNAME_2);
+					query.append(_FINDER_COLUMN_KCN_KCPK_KITI_T_KALEOCLASSNAME_2);
 				}
 			}
 
-			query.append(_FINDER_COLUMN_KITI_KCN_KCPK_T_KALEOCLASSPK_2);
+			query.append(_FINDER_COLUMN_KCN_KCPK_KITI_T_KALEOCLASSPK_2);
+
+			query.append(_FINDER_COLUMN_KCN_KCPK_KITI_T_KALEOINSTANCETOKENID_2);
 
 			if (type == null) {
-				query.append(_FINDER_COLUMN_KITI_KCN_KCPK_T_TYPE_1);
+				query.append(_FINDER_COLUMN_KCN_KCPK_KITI_T_TYPE_1);
 			}
 			else {
 				if (type.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_KITI_KCN_KCPK_T_TYPE_3);
+					query.append(_FINDER_COLUMN_KCN_KCPK_KITI_T_TYPE_3);
 				}
 				else {
-					query.append(_FINDER_COLUMN_KITI_KCN_KCPK_T_TYPE_2);
+					query.append(_FINDER_COLUMN_KCN_KCPK_KITI_T_TYPE_2);
 				}
 			}
 
@@ -3272,13 +3273,13 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				qPos.add(kaleoInstanceTokenId);
-
 				if (kaleoClassName != null) {
 					qPos.add(kaleoClassName);
 				}
 
 				qPos.add(kaleoClassPK);
+
+				qPos.add(kaleoInstanceTokenId);
 
 				if (type != null) {
 					qPos.add(type);
@@ -3294,7 +3295,7 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 					count = Long.valueOf(0);
 				}
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_KITI_KCN_KCPK_T,
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_KCN_KCPK_KITI_T,
 					finderArgs, count);
 
 				closeSession(session);
@@ -3426,15 +3427,15 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 	private static final String _FINDER_COLUMN_KITI_T_TYPE_1 = "kaleoLog.type IS NULL";
 	private static final String _FINDER_COLUMN_KITI_T_TYPE_2 = "kaleoLog.type = ?";
 	private static final String _FINDER_COLUMN_KITI_T_TYPE_3 = "(kaleoLog.type IS NULL OR kaleoLog.type = ?)";
-	private static final String _FINDER_COLUMN_KITI_KCN_KCPK_T_KALEOINSTANCETOKENID_2 =
+	private static final String _FINDER_COLUMN_KCN_KCPK_KITI_T_KALEOCLASSNAME_1 = "kaleoLog.kaleoClassName IS NULL AND ";
+	private static final String _FINDER_COLUMN_KCN_KCPK_KITI_T_KALEOCLASSNAME_2 = "kaleoLog.kaleoClassName = ? AND ";
+	private static final String _FINDER_COLUMN_KCN_KCPK_KITI_T_KALEOCLASSNAME_3 = "(kaleoLog.kaleoClassName IS NULL OR kaleoLog.kaleoClassName = ?) AND ";
+	private static final String _FINDER_COLUMN_KCN_KCPK_KITI_T_KALEOCLASSPK_2 = "kaleoLog.kaleoClassPK = ? AND ";
+	private static final String _FINDER_COLUMN_KCN_KCPK_KITI_T_KALEOINSTANCETOKENID_2 =
 		"kaleoLog.kaleoInstanceTokenId = ? AND ";
-	private static final String _FINDER_COLUMN_KITI_KCN_KCPK_T_KALEOCLASSNAME_1 = "kaleoLog.kaleoClassName IS NULL AND ";
-	private static final String _FINDER_COLUMN_KITI_KCN_KCPK_T_KALEOCLASSNAME_2 = "kaleoLog.kaleoClassName = ? AND ";
-	private static final String _FINDER_COLUMN_KITI_KCN_KCPK_T_KALEOCLASSNAME_3 = "(kaleoLog.kaleoClassName IS NULL OR kaleoLog.kaleoClassName = ?) AND ";
-	private static final String _FINDER_COLUMN_KITI_KCN_KCPK_T_KALEOCLASSPK_2 = "kaleoLog.kaleoClassPK = ? AND ";
-	private static final String _FINDER_COLUMN_KITI_KCN_KCPK_T_TYPE_1 = "kaleoLog.type IS NULL";
-	private static final String _FINDER_COLUMN_KITI_KCN_KCPK_T_TYPE_2 = "kaleoLog.type = ?";
-	private static final String _FINDER_COLUMN_KITI_KCN_KCPK_T_TYPE_3 = "(kaleoLog.type IS NULL OR kaleoLog.type = ?)";
+	private static final String _FINDER_COLUMN_KCN_KCPK_KITI_T_TYPE_1 = "kaleoLog.type IS NULL";
+	private static final String _FINDER_COLUMN_KCN_KCPK_KITI_T_TYPE_2 = "kaleoLog.type = ?";
+	private static final String _FINDER_COLUMN_KCN_KCPK_KITI_T_TYPE_3 = "(kaleoLog.type IS NULL OR kaleoLog.type = ?)";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "kaleoLog.";
 	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No KaleoLog exists with the primary key ";
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No KaleoLog exists with the key {";

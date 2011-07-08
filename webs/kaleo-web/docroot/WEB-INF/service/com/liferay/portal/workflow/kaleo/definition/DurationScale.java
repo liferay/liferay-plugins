@@ -47,7 +47,7 @@ public enum DurationScale {
 		throw new IllegalArgumentException("Invalid value " + value);
 	}
 
-	public int getIntValue() {
+	public int getIntegerValue() {
 		if (equals(DAY)) {
 			return CronText.DAILY_FREQUENCY;
 		}

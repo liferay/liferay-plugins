@@ -47,12 +47,12 @@ public class KaleoActionCacheModel implements CacheModel<KaleoAction> {
 		sb.append(createDate);
 		sb.append(", modifiedDate=");
 		sb.append(modifiedDate);
-		sb.append(", kaleoDefinitionId=");
-		sb.append(kaleoDefinitionId);
 		sb.append(", kaleoClassName=");
 		sb.append(kaleoClassName);
 		sb.append(", kaleoClassPK=");
 		sb.append(kaleoClassPK);
+		sb.append(", kaleoDefinitionId=");
+		sb.append(kaleoDefinitionId);
 		sb.append(", kaleoNodeName=");
 		sb.append(kaleoNodeName);
 		sb.append(", name=");
@@ -95,8 +95,6 @@ public class KaleoActionCacheModel implements CacheModel<KaleoAction> {
 			kaleoActionImpl.setModifiedDate(new Date(modifiedDate));
 		}
 
-		kaleoActionImpl.setKaleoDefinitionId(kaleoDefinitionId);
-
 		if (kaleoClassName == null) {
 			kaleoActionImpl.setKaleoClassName(StringPool.BLANK);
 		}
@@ -105,6 +103,7 @@ public class KaleoActionCacheModel implements CacheModel<KaleoAction> {
 		}
 
 		kaleoActionImpl.setKaleoClassPK(kaleoClassPK);
+		kaleoActionImpl.setKaleoDefinitionId(kaleoDefinitionId);
 
 		if (kaleoNodeName == null) {
 			kaleoActionImpl.setKaleoNodeName(StringPool.BLANK);
@@ -162,9 +161,9 @@ public class KaleoActionCacheModel implements CacheModel<KaleoAction> {
 	public String userName;
 	public long createDate;
 	public long modifiedDate;
-	public long kaleoDefinitionId;
 	public String kaleoClassName;
 	public long kaleoClassPK;
+	public long kaleoDefinitionId;
 	public String kaleoNodeName;
 	public String name;
 	public String description;

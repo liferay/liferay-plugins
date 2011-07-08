@@ -36,7 +36,7 @@ import java.util.Set;
 public class KaleoTimerLocalServiceImpl extends KaleoTimerLocalServiceBaseImpl {
 
 	public KaleoTimer addKaleoTimer(
-			long kaleoDefinitionId, String kaleoClassName, long kaleoClassPK,
+			String kaleoClassName, long kaleoClassPK, long kaleoDefinitionId,
 			Timer timer, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
@@ -54,41 +54,36 @@ public class KaleoTimerLocalServiceImpl extends KaleoTimerLocalServiceBaseImpl {
 		kaleoTimer.setUserName(user.getFullName());
 		kaleoTimer.setCreateDate(now);
 		kaleoTimer.setModifiedDate(now);
-		kaleoTimer.setKaleoDefinitionId(kaleoDefinitionId);
 		kaleoTimer.setKaleoClassName(kaleoClassName);
 		kaleoTimer.setKaleoClassPK(kaleoClassPK);
+		kaleoTimer.setKaleoDefinitionId(kaleoDefinitionId);
 		kaleoTimer.setName(timer.getName());
 		kaleoTimer.setBlocking(timer.isBlocking());
+
 		DelayDuration delayDuration = timer.getDelayDuration();
 
 		kaleoTimer.setDuration(delayDuration.getDuration());
 		kaleoTimer.setScale(delayDuration.getDurationScale().getValue());
 
-		DelayDuration recurrence = timer.getRecurrence();
-		if (recurrence != null) {
-			kaleoTimer.setRecurrenceDuration(recurrence.getDuration());
+		DelayDuration recurrenceDelayDuration = timer.getRecurrence();
+
+		if (recurrenceDelayDuration != null) {
+			kaleoTimer.setRecurrenceDuration(
+				recurrenceDelayDuration.getDuration());
 			kaleoTimer.setRecurrenceScale(
-				recurrence.getDurationScale().getValue());
+				recurrenceDelayDuration.getDurationScale().getValue());
 		}
 
 		kaleoTimerPersistence.update(kaleoTimer, false);
+
+		// Kaleo actions
 
 		Set<Action> actions = timer.getActions();
 
 		for (Action action : actions) {
 			kaleoActionLocalService.addKaleoAction(
-				kaleoDefinitionId, KaleoTimer.class.getName(), kaleoTimerId,
+				KaleoTimer.class.getName(), kaleoTimerId, kaleoDefinitionId,
 				timer.getName(), action, serviceContext);
-		}
-
-		// Kaleo notifications
-
-		Set<Notification> notifications = timer.getNotifications();
-
-		for (Notification notification : notifications) {
-			kaleoNotificationLocalService.addKaleoNotification(
-				kaleoDefinitionId, KaleoTimer.class.getName(), kaleoTimerId,
-				timer.getName(), notification, serviceContext);
 		}
 
 		// Kaleo assignments
@@ -97,8 +92,18 @@ public class KaleoTimerLocalServiceImpl extends KaleoTimerLocalServiceBaseImpl {
 
 		for (Assignment reassignment : reassignments) {
 			kaleoTaskAssignmentLocalService.addKaleoTaskAssignment(
-				kaleoDefinitionId, KaleoTimer.class.getName(), kaleoTimerId,
+				KaleoTimer.class.getName(), kaleoTimerId, kaleoDefinitionId,
 				reassignment, serviceContext);
+		}
+
+		// Kaleo notifications
+
+		Set<Notification> notifications = timer.getNotifications();
+
+		for (Notification notification : notifications) {
+			kaleoNotificationLocalService.addKaleoNotification(
+				KaleoTimer.class.getName(), kaleoTimerId, kaleoDefinitionId,
+				timer.getName(), notification, serviceContext);
 		}
 
 		return kaleoTimer;

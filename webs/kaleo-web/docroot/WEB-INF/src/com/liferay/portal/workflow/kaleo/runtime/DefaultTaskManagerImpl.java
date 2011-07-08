@@ -180,13 +180,11 @@ public class DefaultTaskManagerImpl
 
 		ActionExecutorUtil.executeKaleoActions(
 			KaleoNode.class.getName(), kaleoTask.getKaleoNodeId(),
-			ExecutionType.ON_ASSIGNMENT,
-			executionContext);
+			ExecutionType.ON_ASSIGNMENT, executionContext);
 
 		NotificationUtil.sendKaleoNotifications(
 			KaleoNode.class.getName(), kaleoTask.getKaleoNodeId(),
-			ExecutionType.ON_ASSIGNMENT,
-			executionContext);
+			ExecutionType.ON_ASSIGNMENT, executionContext);
 
 		kaleoLogLocalService.addTaskAssignmentKaleoLog(
 			previousTaskAssignmentInstances, kaleoTaskInstanceToken,

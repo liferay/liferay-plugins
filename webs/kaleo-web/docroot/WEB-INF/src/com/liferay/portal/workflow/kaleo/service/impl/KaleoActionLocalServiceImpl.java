@@ -32,7 +32,7 @@ public class KaleoActionLocalServiceImpl
 	extends KaleoActionLocalServiceBaseImpl {
 
 	public KaleoAction addKaleoAction(
-			long kaleoDefinitionId, String kaleoClassName, long kaleoClassPK,
+			String kaleoClassName, long kaleoClassPK, long kaleoDefinitionId,
 			String kaleoNodeName, Action action, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
@@ -49,9 +49,9 @@ public class KaleoActionLocalServiceImpl
 		kaleoAction.setUserName(user.getFullName());
 		kaleoAction.setCreateDate(now);
 		kaleoAction.setModifiedDate(now);
-		kaleoAction.setKaleoDefinitionId(kaleoDefinitionId);
 		kaleoAction.setKaleoClassName(kaleoClassName);
 		kaleoAction.setKaleoClassPK(kaleoClassPK);
+		kaleoAction.setKaleoDefinitionId(kaleoDefinitionId);
 		kaleoAction.setKaleoNodeName(kaleoNodeName);
 		kaleoAction.setName(action.getName());
 		kaleoAction.setDescription(action.getDescription());

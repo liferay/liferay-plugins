@@ -243,14 +243,14 @@ public class KaleoNotificationLocalServiceWrapper
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoNotification addKaleoNotification(
-		long kaleoDefinitionId, java.lang.String kaleoClassName,
-		long kaleoClassPK, java.lang.String kaleoNodeName,
+		java.lang.String kaleoClassName, long kaleoClassPK,
+		long kaleoDefinitionId, java.lang.String kaleoNodeName,
 		com.liferay.portal.workflow.kaleo.definition.Notification notification,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _kaleoNotificationLocalService.addKaleoNotification(kaleoDefinitionId,
-			kaleoClassName, kaleoClassPK, kaleoNodeName, notification,
+		return _kaleoNotificationLocalService.addKaleoNotification(kaleoClassName,
+			kaleoClassPK, kaleoDefinitionId, kaleoNodeName, notification,
 			serviceContext);
 	}
 

@@ -338,9 +338,9 @@ public class KaleoActionPersistenceImpl extends BasePersistenceImpl<KaleoAction>
 		kaleoActionImpl.setUserName(kaleoAction.getUserName());
 		kaleoActionImpl.setCreateDate(kaleoAction.getCreateDate());
 		kaleoActionImpl.setModifiedDate(kaleoAction.getModifiedDate());
-		kaleoActionImpl.setKaleoDefinitionId(kaleoAction.getKaleoDefinitionId());
 		kaleoActionImpl.setKaleoClassName(kaleoAction.getKaleoClassName());
 		kaleoActionImpl.setKaleoClassPK(kaleoAction.getKaleoClassPK());
+		kaleoActionImpl.setKaleoDefinitionId(kaleoAction.getKaleoDefinitionId());
 		kaleoActionImpl.setKaleoNodeName(kaleoAction.getKaleoNodeName());
 		kaleoActionImpl.setName(kaleoAction.getName());
 		kaleoActionImpl.setDescription(kaleoAction.getDescription());

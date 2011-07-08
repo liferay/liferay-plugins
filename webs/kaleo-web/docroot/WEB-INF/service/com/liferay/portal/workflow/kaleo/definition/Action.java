@@ -27,12 +27,14 @@ public class Action {
 
 		_name = name;
 		_description = description;
+
 		if (Validator.isNotNull(executionType)) {
 			_executionType = ExecutionType.parse(executionType);
 		}
 		else {
 			_executionType = ExecutionType.ON_TIMER;
 		}
+
 		_script = script;
 		_scriptLanguage = ScriptLanguage.parse(scriptLanguage);
 		_priority = priority;

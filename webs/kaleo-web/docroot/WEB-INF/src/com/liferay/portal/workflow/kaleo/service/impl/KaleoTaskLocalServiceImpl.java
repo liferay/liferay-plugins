@@ -63,7 +63,7 @@ public class KaleoTaskLocalServiceImpl extends KaleoTaskLocalServiceBaseImpl {
 
 		for (Assignment assignment : assignments) {
 			kaleoTaskAssignmentLocalService.addKaleoTaskAssignment(
-				kaleoDefinitionId, KaleoTask.class.getName(), kaleoTaskId,
+				KaleoTask.class.getName(), kaleoTaskId, kaleoDefinitionId,
 				assignment, serviceContext);
 		}
 

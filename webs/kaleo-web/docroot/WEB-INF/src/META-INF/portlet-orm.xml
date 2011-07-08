@@ -20,9 +20,9 @@
 			<basic name="modifiedDate">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
-			<basic name="kaleoDefinitionId" />
 			<basic name="kaleoClassName" />
 			<basic name="kaleoClassPK" />
+			<basic name="kaleoDefinitionId" />
 			<basic name="kaleoNodeName" />
 			<basic name="name" />
 			<basic name="description" />
@@ -155,12 +155,12 @@
 			<basic name="modifiedDate">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
+			<basic name="kaleoClassName" />
+			<basic name="kaleoClassPK" />
 			<basic name="kaleoDefinitionId" />
 			<basic name="kaleoInstanceId" />
 			<basic name="kaleoInstanceTokenId" />
 			<basic name="kaleoTaskInstanceTokenId" />
-			<basic name="kaleoClassName" />
-			<basic name="kaleoClassPK" />
 			<basic name="kaleoNodeName" />
 			<basic name="terminalKaleoNode" />
 			<basic name="kaleoActionId" />
@@ -233,9 +233,9 @@
 			<basic name="modifiedDate">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
-			<basic name="kaleoDefinitionId" />
 			<basic name="kaleoClassName" />
 			<basic name="kaleoClassPK" />
+			<basic name="kaleoDefinitionId" />
 			<basic name="kaleoNodeName" />
 			<basic name="name" />
 			<basic name="description" />
@@ -307,9 +307,9 @@
 			<basic name="modifiedDate">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
-			<basic name="kaleoDefinitionId" />
 			<basic name="kaleoClassName" />
 			<basic name="kaleoClassPK" />
+			<basic name="kaleoDefinitionId" />
 			<basic name="kaleoNodeId" />
 			<basic name="assigneeClassName" />
 			<basic name="assigneeClassPK" />
@@ -399,9 +399,9 @@
 			<basic name="modifiedDate">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
-			<basic name="kaleoDefinitionId" />
 			<basic name="kaleoClassName" />
 			<basic name="kaleoClassPK" />
+			<basic name="kaleoDefinitionId" />
 			<basic name="name" />
 			<basic name="blocking" />
 			<basic name="description" />

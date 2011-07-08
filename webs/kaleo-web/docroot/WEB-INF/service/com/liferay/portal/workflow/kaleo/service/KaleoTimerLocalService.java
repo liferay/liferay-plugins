@@ -225,8 +225,8 @@ public interface KaleoTimerLocalService {
 	public void setBeanIdentifier(java.lang.String beanIdentifier);
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoTimer addKaleoTimer(
-		long kaleoDefinitionId, java.lang.String kaleoClassName,
-		long kaleoClassPK,
+		java.lang.String kaleoClassName, long kaleoClassPK,
+		long kaleoDefinitionId,
 		com.liferay.portal.workflow.kaleo.definition.Timer timer,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,

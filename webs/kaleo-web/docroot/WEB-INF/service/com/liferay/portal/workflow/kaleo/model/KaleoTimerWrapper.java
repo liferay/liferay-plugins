@@ -201,24 +201,6 @@ public class KaleoTimerWrapper implements KaleoTimer {
 	}
 
 	/**
-	* Returns the kaleo definition ID of this kaleo timer.
-	*
-	* @return the kaleo definition ID of this kaleo timer
-	*/
-	public long getKaleoDefinitionId() {
-		return _kaleoTimer.getKaleoDefinitionId();
-	}
-
-	/**
-	* Sets the kaleo definition ID of this kaleo timer.
-	*
-	* @param kaleoDefinitionId the kaleo definition ID of this kaleo timer
-	*/
-	public void setKaleoDefinitionId(long kaleoDefinitionId) {
-		_kaleoTimer.setKaleoDefinitionId(kaleoDefinitionId);
-	}
-
-	/**
 	* Returns the kaleo class name of this kaleo timer.
 	*
 	* @return the kaleo class name of this kaleo timer
@@ -252,6 +234,24 @@ public class KaleoTimerWrapper implements KaleoTimer {
 	*/
 	public void setKaleoClassPK(long kaleoClassPK) {
 		_kaleoTimer.setKaleoClassPK(kaleoClassPK);
+	}
+
+	/**
+	* Returns the kaleo definition ID of this kaleo timer.
+	*
+	* @return the kaleo definition ID of this kaleo timer
+	*/
+	public long getKaleoDefinitionId() {
+		return _kaleoTimer.getKaleoDefinitionId();
+	}
+
+	/**
+	* Sets the kaleo definition ID of this kaleo timer.
+	*
+	* @param kaleoDefinitionId the kaleo definition ID of this kaleo timer
+	*/
+	public void setKaleoDefinitionId(long kaleoDefinitionId) {
+		_kaleoTimer.setKaleoDefinitionId(kaleoDefinitionId);
 	}
 
 	/**

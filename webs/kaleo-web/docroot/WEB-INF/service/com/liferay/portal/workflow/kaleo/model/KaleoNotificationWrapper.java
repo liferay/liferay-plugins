@@ -201,24 +201,6 @@ public class KaleoNotificationWrapper implements KaleoNotification {
 	}
 
 	/**
-	* Returns the kaleo definition ID of this kaleo notification.
-	*
-	* @return the kaleo definition ID of this kaleo notification
-	*/
-	public long getKaleoDefinitionId() {
-		return _kaleoNotification.getKaleoDefinitionId();
-	}
-
-	/**
-	* Sets the kaleo definition ID of this kaleo notification.
-	*
-	* @param kaleoDefinitionId the kaleo definition ID of this kaleo notification
-	*/
-	public void setKaleoDefinitionId(long kaleoDefinitionId) {
-		_kaleoNotification.setKaleoDefinitionId(kaleoDefinitionId);
-	}
-
-	/**
 	* Returns the kaleo class name of this kaleo notification.
 	*
 	* @return the kaleo class name of this kaleo notification
@@ -252,6 +234,24 @@ public class KaleoNotificationWrapper implements KaleoNotification {
 	*/
 	public void setKaleoClassPK(long kaleoClassPK) {
 		_kaleoNotification.setKaleoClassPK(kaleoClassPK);
+	}
+
+	/**
+	* Returns the kaleo definition ID of this kaleo notification.
+	*
+	* @return the kaleo definition ID of this kaleo notification
+	*/
+	public long getKaleoDefinitionId() {
+		return _kaleoNotification.getKaleoDefinitionId();
+	}
+
+	/**
+	* Sets the kaleo definition ID of this kaleo notification.
+	*
+	* @param kaleoDefinitionId the kaleo definition ID of this kaleo notification
+	*/
+	public void setKaleoDefinitionId(long kaleoDefinitionId) {
+		_kaleoNotification.setKaleoDefinitionId(kaleoDefinitionId);
 	}
 
 	/**
