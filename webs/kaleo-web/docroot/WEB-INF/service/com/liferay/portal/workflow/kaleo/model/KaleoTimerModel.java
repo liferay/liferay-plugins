@@ -176,20 +176,6 @@ public interface KaleoTimerModel extends BaseModel<KaleoTimer>, GroupedModel {
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Returns the kaleo definition ID of this kaleo timer.
-	 *
-	 * @return the kaleo definition ID of this kaleo timer
-	 */
-	public long getKaleoDefinitionId();
-
-	/**
-	 * Sets the kaleo definition ID of this kaleo timer.
-	 *
-	 * @param kaleoDefinitionId the kaleo definition ID of this kaleo timer
-	 */
-	public void setKaleoDefinitionId(long kaleoDefinitionId);
-
-	/**
 	 * Returns the kaleo class name of this kaleo timer.
 	 *
 	 * @return the kaleo class name of this kaleo timer
@@ -217,6 +203,20 @@ public interface KaleoTimerModel extends BaseModel<KaleoTimer>, GroupedModel {
 	 * @param kaleoClassPK the kaleo class p k of this kaleo timer
 	 */
 	public void setKaleoClassPK(long kaleoClassPK);
+
+	/**
+	 * Returns the kaleo definition ID of this kaleo timer.
+	 *
+	 * @return the kaleo definition ID of this kaleo timer
+	 */
+	public long getKaleoDefinitionId();
+
+	/**
+	 * Sets the kaleo definition ID of this kaleo timer.
+	 *
+	 * @param kaleoDefinitionId the kaleo definition ID of this kaleo timer
+	 */
+	public void setKaleoDefinitionId(long kaleoDefinitionId);
 
 	/**
 	 * Returns the name of this kaleo timer.

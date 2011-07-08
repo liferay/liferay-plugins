@@ -201,6 +201,42 @@ public class KaleoLogWrapper implements KaleoLog {
 	}
 
 	/**
+	* Returns the kaleo class name of this kaleo log.
+	*
+	* @return the kaleo class name of this kaleo log
+	*/
+	public java.lang.String getKaleoClassName() {
+		return _kaleoLog.getKaleoClassName();
+	}
+
+	/**
+	* Sets the kaleo class name of this kaleo log.
+	*
+	* @param kaleoClassName the kaleo class name of this kaleo log
+	*/
+	public void setKaleoClassName(java.lang.String kaleoClassName) {
+		_kaleoLog.setKaleoClassName(kaleoClassName);
+	}
+
+	/**
+	* Returns the kaleo class p k of this kaleo log.
+	*
+	* @return the kaleo class p k of this kaleo log
+	*/
+	public long getKaleoClassPK() {
+		return _kaleoLog.getKaleoClassPK();
+	}
+
+	/**
+	* Sets the kaleo class p k of this kaleo log.
+	*
+	* @param kaleoClassPK the kaleo class p k of this kaleo log
+	*/
+	public void setKaleoClassPK(long kaleoClassPK) {
+		_kaleoLog.setKaleoClassPK(kaleoClassPK);
+	}
+
+	/**
 	* Returns the kaleo definition ID of this kaleo log.
 	*
 	* @return the kaleo definition ID of this kaleo log
@@ -270,42 +306,6 @@ public class KaleoLogWrapper implements KaleoLog {
 	*/
 	public void setKaleoTaskInstanceTokenId(long kaleoTaskInstanceTokenId) {
 		_kaleoLog.setKaleoTaskInstanceTokenId(kaleoTaskInstanceTokenId);
-	}
-
-	/**
-	* Returns the kaleo class name of this kaleo log.
-	*
-	* @return the kaleo class name of this kaleo log
-	*/
-	public java.lang.String getKaleoClassName() {
-		return _kaleoLog.getKaleoClassName();
-	}
-
-	/**
-	* Sets the kaleo class name of this kaleo log.
-	*
-	* @param kaleoClassName the kaleo class name of this kaleo log
-	*/
-	public void setKaleoClassName(java.lang.String kaleoClassName) {
-		_kaleoLog.setKaleoClassName(kaleoClassName);
-	}
-
-	/**
-	* Returns the kaleo class p k of this kaleo log.
-	*
-	* @return the kaleo class p k of this kaleo log
-	*/
-	public long getKaleoClassPK() {
-		return _kaleoLog.getKaleoClassPK();
-	}
-
-	/**
-	* Sets the kaleo class p k of this kaleo log.
-	*
-	* @param kaleoClassPK the kaleo class p k of this kaleo log
-	*/
-	public void setKaleoClassPK(long kaleoClassPK) {
-		_kaleoLog.setKaleoClassPK(kaleoClassPK);
 	}
 
 	/**

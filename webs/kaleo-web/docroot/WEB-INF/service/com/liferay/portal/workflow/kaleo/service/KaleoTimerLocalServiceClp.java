@@ -83,7 +83,7 @@ public class KaleoTimerLocalServiceClp implements KaleoTimerLocalService {
 				"setBeanIdentifier", java.lang.String.class);
 
 		_addKaleoTimerMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
-				"addKaleoTimer", long.class, java.lang.String.class,
+				"addKaleoTimer", java.lang.String.class, long.class,
 				long.class,
 				com.liferay.portal.workflow.kaleo.definition.Timer.class,
 				com.liferay.portal.service.ServiceContext.class);
@@ -501,8 +501,8 @@ public class KaleoTimerLocalServiceClp implements KaleoTimerLocalService {
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoTimer addKaleoTimer(
-		long kaleoDefinitionId, java.lang.String kaleoClassName,
-		long kaleoClassPK,
+		java.lang.String kaleoClassName, long kaleoClassPK,
+		long kaleoDefinitionId,
 		com.liferay.portal.workflow.kaleo.definition.Timer timer,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -510,9 +510,8 @@ public class KaleoTimerLocalServiceClp implements KaleoTimerLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addKaleoTimerMethodKey15,
-				kaleoDefinitionId,
 				ClpSerializer.translateInput(kaleoClassName), kaleoClassPK,
-				ClpSerializer.translateInput(timer),
+				kaleoDefinitionId, ClpSerializer.translateInput(timer),
 				ClpSerializer.translateInput(serviceContext));
 
 		try {

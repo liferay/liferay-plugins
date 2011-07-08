@@ -351,9 +351,9 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 		kaleoNotificationImpl.setUserName(kaleoNotification.getUserName());
 		kaleoNotificationImpl.setCreateDate(kaleoNotification.getCreateDate());
 		kaleoNotificationImpl.setModifiedDate(kaleoNotification.getModifiedDate());
-		kaleoNotificationImpl.setKaleoDefinitionId(kaleoNotification.getKaleoDefinitionId());
 		kaleoNotificationImpl.setKaleoClassName(kaleoNotification.getKaleoClassName());
 		kaleoNotificationImpl.setKaleoClassPK(kaleoNotification.getKaleoClassPK());
+		kaleoNotificationImpl.setKaleoDefinitionId(kaleoNotification.getKaleoDefinitionId());
 		kaleoNotificationImpl.setKaleoNodeName(kaleoNotification.getKaleoNodeName());
 		kaleoNotificationImpl.setName(kaleoNotification.getName());
 		kaleoNotificationImpl.setDescription(kaleoNotification.getDescription());

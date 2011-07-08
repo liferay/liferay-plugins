@@ -47,12 +47,12 @@ public class KaleoTimerCacheModel implements CacheModel<KaleoTimer> {
 		sb.append(createDate);
 		sb.append(", modifiedDate=");
 		sb.append(modifiedDate);
-		sb.append(", kaleoDefinitionId=");
-		sb.append(kaleoDefinitionId);
 		sb.append(", kaleoClassName=");
 		sb.append(kaleoClassName);
 		sb.append(", kaleoClassPK=");
 		sb.append(kaleoClassPK);
+		sb.append(", kaleoDefinitionId=");
+		sb.append(kaleoDefinitionId);
 		sb.append(", name=");
 		sb.append(name);
 		sb.append(", blocking=");
@@ -95,8 +95,6 @@ public class KaleoTimerCacheModel implements CacheModel<KaleoTimer> {
 			kaleoTimerImpl.setModifiedDate(new Date(modifiedDate));
 		}
 
-		kaleoTimerImpl.setKaleoDefinitionId(kaleoDefinitionId);
-
 		if (kaleoClassName == null) {
 			kaleoTimerImpl.setKaleoClassName(StringPool.BLANK);
 		}
@@ -105,6 +103,7 @@ public class KaleoTimerCacheModel implements CacheModel<KaleoTimer> {
 		}
 
 		kaleoTimerImpl.setKaleoClassPK(kaleoClassPK);
+		kaleoTimerImpl.setKaleoDefinitionId(kaleoDefinitionId);
 
 		if (name == null) {
 			kaleoTimerImpl.setName(StringPool.BLANK);
@@ -152,9 +151,9 @@ public class KaleoTimerCacheModel implements CacheModel<KaleoTimer> {
 	public String userName;
 	public long createDate;
 	public long modifiedDate;
-	public long kaleoDefinitionId;
 	public String kaleoClassName;
 	public long kaleoClassPK;
+	public long kaleoDefinitionId;
 	public String name;
 	public boolean blocking;
 	public String description;

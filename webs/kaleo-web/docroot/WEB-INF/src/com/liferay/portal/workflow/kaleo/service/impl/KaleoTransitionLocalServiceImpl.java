@@ -66,12 +66,14 @@ public class KaleoTransitionLocalServiceImpl
 
 		kaleoTransitionPersistence.update(kaleoTransition, false);
 
+		// Kaleo timer
+
 		Timer timer = transition.getTimer();
 
 		if (timer != null) {
 			kaleoTimerLocalService.addKaleoTimer(
-				kaleoDefinitionId, KaleoTransition.class.getName(),
-				kaleoTransitionId, timer, serviceContext);
+				KaleoTransition.class.getName(), kaleoTransitionId,
+				kaleoDefinitionId, timer, serviceContext);
 		}
 
 		return kaleoTransition;

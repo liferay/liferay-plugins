@@ -324,9 +324,9 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 		kaleoTimerImpl.setUserName(kaleoTimer.getUserName());
 		kaleoTimerImpl.setCreateDate(kaleoTimer.getCreateDate());
 		kaleoTimerImpl.setModifiedDate(kaleoTimer.getModifiedDate());
-		kaleoTimerImpl.setKaleoDefinitionId(kaleoTimer.getKaleoDefinitionId());
 		kaleoTimerImpl.setKaleoClassName(kaleoTimer.getKaleoClassName());
 		kaleoTimerImpl.setKaleoClassPK(kaleoTimer.getKaleoClassPK());
+		kaleoTimerImpl.setKaleoDefinitionId(kaleoTimer.getKaleoDefinitionId());
 		kaleoTimerImpl.setName(kaleoTimer.getName());
 		kaleoTimerImpl.setBlocking(kaleoTimer.isBlocking());
 		kaleoTimerImpl.setDescription(kaleoTimer.getDescription());

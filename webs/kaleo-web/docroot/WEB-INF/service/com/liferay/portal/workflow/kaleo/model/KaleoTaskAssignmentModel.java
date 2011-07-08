@@ -177,20 +177,6 @@ public interface KaleoTaskAssignmentModel extends BaseModel<KaleoTaskAssignment>
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Returns the kaleo definition ID of this kaleo task assignment.
-	 *
-	 * @return the kaleo definition ID of this kaleo task assignment
-	 */
-	public long getKaleoDefinitionId();
-
-	/**
-	 * Sets the kaleo definition ID of this kaleo task assignment.
-	 *
-	 * @param kaleoDefinitionId the kaleo definition ID of this kaleo task assignment
-	 */
-	public void setKaleoDefinitionId(long kaleoDefinitionId);
-
-	/**
 	 * Returns the kaleo class name of this kaleo task assignment.
 	 *
 	 * @return the kaleo class name of this kaleo task assignment
@@ -218,6 +204,20 @@ public interface KaleoTaskAssignmentModel extends BaseModel<KaleoTaskAssignment>
 	 * @param kaleoClassPK the kaleo class p k of this kaleo task assignment
 	 */
 	public void setKaleoClassPK(long kaleoClassPK);
+
+	/**
+	 * Returns the kaleo definition ID of this kaleo task assignment.
+	 *
+	 * @return the kaleo definition ID of this kaleo task assignment
+	 */
+	public long getKaleoDefinitionId();
+
+	/**
+	 * Sets the kaleo definition ID of this kaleo task assignment.
+	 *
+	 * @param kaleoDefinitionId the kaleo definition ID of this kaleo task assignment
+	 */
+	public void setKaleoDefinitionId(long kaleoDefinitionId);
 
 	/**
 	 * Returns the kaleo node ID of this kaleo task assignment.

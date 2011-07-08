@@ -250,15 +250,15 @@ public class KaleoTaskAssignmentLocalServiceUtil {
 	}
 
 	public static com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment addKaleoTaskAssignment(
-		long kaleoDefinitionId, java.lang.String kaleoClassName,
-		long kaleoClassPK,
+		java.lang.String kaleoClassName, long kaleoClassPK,
+		long kaleoDefinitionId,
 		com.liferay.portal.workflow.kaleo.definition.Assignment assignment,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
-				   .addKaleoTaskAssignment(kaleoDefinitionId, kaleoClassName,
-			kaleoClassPK, assignment, serviceContext);
+				   .addKaleoTaskAssignment(kaleoClassName, kaleoClassPK,
+			kaleoDefinitionId, assignment, serviceContext);
 	}
 
 	public static void deleteCompanyKaleoTaskAssignments(long companyId)
@@ -273,12 +273,6 @@ public class KaleoTaskAssignmentLocalServiceUtil {
 	}
 
 	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment> getKaleoTaskAssignments(
-		java.lang.String kaleoClassName, long kaleoClassPK)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().getKaleoTaskAssignments(kaleoClassName, kaleoClassPK);
-	}
-
-	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment> getKaleoTaskAssignments(
 		long kaleoTaskId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().getKaleoTaskAssignments(kaleoTaskId);
@@ -289,6 +283,12 @@ public class KaleoTaskAssignmentLocalServiceUtil {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .getKaleoTaskAssignments(kaleoTaskId, assigneeClassName);
+	}
+
+	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment> getKaleoTaskAssignments(
+		java.lang.String kaleoClassName, long kaleoClassPK)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getKaleoTaskAssignments(kaleoClassName, kaleoClassPK);
 	}
 
 	public static int getKaleoTaskAssignmentsCount(long kaleoTaskId)

@@ -47,12 +47,12 @@ public class KaleoTaskAssignmentCacheModel implements CacheModel<KaleoTaskAssign
 		sb.append(createDate);
 		sb.append(", modifiedDate=");
 		sb.append(modifiedDate);
-		sb.append(", kaleoDefinitionId=");
-		sb.append(kaleoDefinitionId);
 		sb.append(", kaleoClassName=");
 		sb.append(kaleoClassName);
 		sb.append(", kaleoClassPK=");
 		sb.append(kaleoClassPK);
+		sb.append(", kaleoDefinitionId=");
+		sb.append(kaleoDefinitionId);
 		sb.append(", kaleoNodeId=");
 		sb.append(kaleoNodeId);
 		sb.append(", assigneeClassName=");
@@ -93,8 +93,6 @@ public class KaleoTaskAssignmentCacheModel implements CacheModel<KaleoTaskAssign
 			kaleoTaskAssignmentImpl.setModifiedDate(new Date(modifiedDate));
 		}
 
-		kaleoTaskAssignmentImpl.setKaleoDefinitionId(kaleoDefinitionId);
-
 		if (kaleoClassName == null) {
 			kaleoTaskAssignmentImpl.setKaleoClassName(StringPool.BLANK);
 		}
@@ -103,6 +101,7 @@ public class KaleoTaskAssignmentCacheModel implements CacheModel<KaleoTaskAssign
 		}
 
 		kaleoTaskAssignmentImpl.setKaleoClassPK(kaleoClassPK);
+		kaleoTaskAssignmentImpl.setKaleoDefinitionId(kaleoDefinitionId);
 		kaleoTaskAssignmentImpl.setKaleoNodeId(kaleoNodeId);
 
 		if (assigneeClassName == null) {
@@ -147,9 +146,9 @@ public class KaleoTaskAssignmentCacheModel implements CacheModel<KaleoTaskAssign
 	public String userName;
 	public long createDate;
 	public long modifiedDate;
-	public long kaleoDefinitionId;
 	public String kaleoClassName;
 	public long kaleoClassPK;
+	public long kaleoDefinitionId;
 	public long kaleoNodeId;
 	public String assigneeClassName;
 	public long assigneeClassPK;

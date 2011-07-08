@@ -14,8 +14,6 @@
 
 package com.liferay.portal.workflow.kaleo.model.impl;
 
-import com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment;
-
 /**
  * @author Brian Wing Shun Chan
  */

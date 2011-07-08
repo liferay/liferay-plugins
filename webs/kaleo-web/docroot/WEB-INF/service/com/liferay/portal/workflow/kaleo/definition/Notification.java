@@ -30,12 +30,14 @@ public class Notification {
 
 		_name = name;
 		_description = description;
+
 		if (Validator.isNotNull(executionType)) {
 			_executionType = ExecutionType.parse(executionType);
 		}
 		else {
 			_executionType = ExecutionType.ON_TIMER;
 		}
+
 		_template = template;
 		_templateLanguage = TemplateLanguage.parse(templateLanguage);
 	}

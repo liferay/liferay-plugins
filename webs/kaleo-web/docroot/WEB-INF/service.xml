@@ -23,9 +23,9 @@
 
 		<!-- Other fields -->
 
-		<column name="kaleoDefinitionId" type="long" />
 		<column name="kaleoClassName" type="String" />
 		<column name="kaleoClassPK" type="long" />
+		<column name="kaleoDefinitionId" type="long" />
 		<column name="kaleoNodeName" type="String" />
 		<column name="name" type="String" />
 		<column name="description" type="String" />
@@ -290,12 +290,12 @@
 
 		<!-- Other fields -->
 
+		<column name="kaleoClassName" type="String" />
+		<column name="kaleoClassPK" type="long" />
 		<column name="kaleoDefinitionId" type="long" />
 		<column name="kaleoInstanceId" type="long" />
 		<column name="kaleoInstanceTokenId" type="long" />
 		<column name="kaleoTaskInstanceTokenId" type="long" />
-		<column name="kaleoClassName" type="String" />
-		<column name="kaleoClassPK" type="long" />
 		<column name="kaleoNodeName" type="String" />
 		<column name="terminalKaleoNode" type="boolean" />
 		<column name="kaleoActionId" type="long" />
@@ -338,10 +338,10 @@
 			<finder-column name="kaleoInstanceTokenId" />
 			<finder-column name="type" />
 		</finder>
-		<finder name="KITI_KCN_KCPK_T" return-type="Collection">
-			<finder-column name="kaleoInstanceTokenId" />
+		<finder name="KCN_KCPK_KITI_T" return-type="Collection">
 			<finder-column name="kaleoClassName" />
 			<finder-column name="kaleoClassPK" />
+			<finder-column name="kaleoInstanceTokenId" />
 			<finder-column name="type" />
 		</finder>
 	</entity>
@@ -417,9 +417,9 @@
 
 		<!-- Other fields -->
 
-		<column name="kaleoDefinitionId" type="long" />
 		<column name="kaleoClassName" type="String" />
 		<column name="kaleoClassPK" type="long" />
+		<column name="kaleoDefinitionId" type="long" />
 		<column name="kaleoNodeName" type="String" />
 		<column name="name" type="String" />
 		<column name="description" type="String" />
@@ -564,9 +564,9 @@
 
 		<!-- Other fields -->
 
-		<column name="kaleoDefinitionId" type="long" />
 		<column name="kaleoClassName" type="String" />
 		<column name="kaleoClassPK" type="long" />
+		<column name="kaleoDefinitionId" type="long" />
 		<column name="kaleoNodeId" type="long" />
 		<column name="assigneeClassName" type="String" />
 		<column name="assigneeClassPK" type="long" />
@@ -733,9 +733,9 @@
 
 		<!-- Other fields -->
 
-		<column name="kaleoDefinitionId" type="long" />
 		<column name="kaleoClassName" type="String" />
 		<column name="kaleoClassPK" type="long" />
+		<column name="kaleoDefinitionId" type="long" />
 		<column name="name" type="String" />
 		<column name="blocking" type="boolean" />
 		<column name="description" type="String" />

@@ -163,8 +163,7 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 		// Kaleo timers
 
 		kaleoTimerInstanceTokenLocalService.completeKaleoTimerInstanceTokens(
-			kaleoTaskInstanceToken.getKaleoInstanceTokenId(),
-			serviceContext);
+			kaleoTaskInstanceToken.getKaleoInstanceTokenId(), serviceContext);
 
 		return kaleoTaskInstanceToken;
 	}
@@ -210,6 +209,14 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 
 		kaleoTaskAssignmentInstanceLocalService.
 			deleteKaleoInstanceKaleoTaskAssignmentInstances(kaleoInstanceId);
+	}
+
+	public KaleoTaskInstanceToken fetchKaleoTaskInstanceToken(
+			long kaleoTaskInstanceTokenId)
+		throws SystemException {
+
+		return kaleoTaskInstanceTokenPersistence.fetchByPrimaryKey(
+			kaleoTaskInstanceTokenId);
 	}
 
 	public List<KaleoTaskInstanceToken> getCompanyKaleoTaskInstanceTokens(
@@ -425,14 +432,6 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 		addCompletedCriterion(dynamicQuery, completed);
 
 		return (int)dynamicQueryCount(dynamicQuery);
-	}
-
-	public KaleoTaskInstanceToken fetchKaleoTaskInstanceToken(
-			long kaleoTaskInstanceTokenId)
-		throws SystemException {
-
-		return kaleoTaskInstanceTokenPersistence.fetchByPrimaryKey(
-			kaleoTaskInstanceTokenId);
 	}
 
 	public List<KaleoTaskInstanceToken> search(

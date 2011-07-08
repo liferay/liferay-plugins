@@ -290,22 +290,22 @@ public class KaleoTimerInstanceTokenLocalServiceUtil {
 	}
 
 	public static void completeKaleoTimerInstanceTokens(
-		long kaleoInstanceTokenId,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		getService()
-			.completeKaleoTimerInstanceTokens(kaleoInstanceTokenId,
-			serviceContext);
-	}
-
-	public static void completeKaleoTimerInstanceTokens(
 		java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken> kaleoTimerInstanceTokens,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		getService()
 			.completeKaleoTimerInstanceTokens(kaleoTimerInstanceTokens,
+			serviceContext);
+	}
+
+	public static void completeKaleoTimerInstanceTokens(
+		long kaleoInstanceTokenId,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService()
+			.completeKaleoTimerInstanceTokens(kaleoInstanceTokenId,
 			serviceContext);
 	}
 
@@ -332,8 +332,7 @@ public class KaleoTimerInstanceTokenLocalServiceUtil {
 	}
 
 	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken> getKaleoTimerInstanceTokens(
-		long kaleoInstanceTokenId, java.lang.Boolean completed,
-		java.lang.Boolean blocking,
+		long kaleoInstanceTokenId, boolean completed, boolean blocking,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService()
@@ -342,8 +341,7 @@ public class KaleoTimerInstanceTokenLocalServiceUtil {
 	}
 
 	public static int getKaleoTimerInstanceTokensCount(
-		long kaleoInstanceTokenId, java.lang.Boolean completed,
-		java.lang.Boolean blocking,
+		long kaleoInstanceTokenId, boolean completed, boolean blocking,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService()

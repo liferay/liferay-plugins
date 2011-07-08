@@ -60,28 +60,32 @@ public class TimerMessageListener extends BaseMessageListener {
 			KaleoTimerInstanceToken kaleoTimerInstanceToken =
 				getKaleoTimerInstanceToken(message);
 
-			KaleoInstanceToken kaleoInstanceToken =
-				kaleoTimerInstanceToken.getKaleoInstanceToken();
-
-			Map<String, Serializable> workflowContext = WorkflowContextUtil.convert(
-				kaleoTimerInstanceToken.getWorkflowContext());
+			Map<String, Serializable> workflowContext =
+				WorkflowContextUtil.convert(
+					kaleoTimerInstanceToken.getWorkflowContext());
 
 			ServiceContext serviceContext = (ServiceContext)workflowContext.get(
 				WorkflowConstants.CONTEXT_SERVICE_CONTEXT);
 
+			KaleoInstanceToken kaleoInstanceToken =
+				kaleoTimerInstanceToken.getKaleoInstanceToken();
+
+			KaleoNode currentKaleoNode =
+				kaleoInstanceToken.getCurrentKaleoNode();
+
 			ExecutionContext executionContext =
 				_workflowEngine.executeTimerWorkflowInstance(
-					kaleoTimerInstanceTokenId, serviceContext, workflowContext);
-
-			KaleoNode currentKaleoNode = kaleoInstanceToken.getCurrentKaleoNode();
+					kaleoTimerInstanceTokenId, serviceContext,
+					workflowContext);
 
 			_kaleoSignaler.signalExecute(currentKaleoNode, executionContext);
 		}
 		catch (Exception e) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
-					"Unable to execute scheduled job.  Unregistering job " +
-					message, e);
+					"Unable to execute scheduled job. Unregistering job " +
+						message,
+					e);
 			}
 
 			String groupName = SchedulerUtil.getGroupName(

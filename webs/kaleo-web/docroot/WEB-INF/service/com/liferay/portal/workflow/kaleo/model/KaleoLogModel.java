@@ -176,6 +176,35 @@ public interface KaleoLogModel extends BaseModel<KaleoLog>, GroupedModel {
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
+	 * Returns the kaleo class name of this kaleo log.
+	 *
+	 * @return the kaleo class name of this kaleo log
+	 */
+	@AutoEscape
+	public String getKaleoClassName();
+
+	/**
+	 * Sets the kaleo class name of this kaleo log.
+	 *
+	 * @param kaleoClassName the kaleo class name of this kaleo log
+	 */
+	public void setKaleoClassName(String kaleoClassName);
+
+	/**
+	 * Returns the kaleo class p k of this kaleo log.
+	 *
+	 * @return the kaleo class p k of this kaleo log
+	 */
+	public long getKaleoClassPK();
+
+	/**
+	 * Sets the kaleo class p k of this kaleo log.
+	 *
+	 * @param kaleoClassPK the kaleo class p k of this kaleo log
+	 */
+	public void setKaleoClassPK(long kaleoClassPK);
+
+	/**
 	 * Returns the kaleo definition ID of this kaleo log.
 	 *
 	 * @return the kaleo definition ID of this kaleo log
@@ -230,35 +259,6 @@ public interface KaleoLogModel extends BaseModel<KaleoLog>, GroupedModel {
 	 * @param kaleoTaskInstanceTokenId the kaleo task instance token ID of this kaleo log
 	 */
 	public void setKaleoTaskInstanceTokenId(long kaleoTaskInstanceTokenId);
-
-	/**
-	 * Returns the kaleo class name of this kaleo log.
-	 *
-	 * @return the kaleo class name of this kaleo log
-	 */
-	@AutoEscape
-	public String getKaleoClassName();
-
-	/**
-	 * Sets the kaleo class name of this kaleo log.
-	 *
-	 * @param kaleoClassName the kaleo class name of this kaleo log
-	 */
-	public void setKaleoClassName(String kaleoClassName);
-
-	/**
-	 * Returns the kaleo class p k of this kaleo log.
-	 *
-	 * @return the kaleo class p k of this kaleo log
-	 */
-	public long getKaleoClassPK();
-
-	/**
-	 * Sets the kaleo class p k of this kaleo log.
-	 *
-	 * @param kaleoClassPK the kaleo class p k of this kaleo log
-	 */
-	public void setKaleoClassPK(long kaleoClassPK);
 
 	/**
 	 * Returns the kaleo node name of this kaleo log.

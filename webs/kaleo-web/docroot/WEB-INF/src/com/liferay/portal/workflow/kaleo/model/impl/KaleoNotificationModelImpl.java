@@ -66,9 +66,9 @@ public class KaleoNotificationModelImpl extends BaseModelImpl<KaleoNotification>
 			{ "userName", Types.VARCHAR },
 			{ "createDate", Types.TIMESTAMP },
 			{ "modifiedDate", Types.TIMESTAMP },
-			{ "kaleoDefinitionId", Types.BIGINT },
 			{ "kaleoClassName", Types.VARCHAR },
 			{ "kaleoClassPK", Types.BIGINT },
+			{ "kaleoDefinitionId", Types.BIGINT },
 			{ "kaleoNodeName", Types.VARCHAR },
 			{ "name", Types.VARCHAR },
 			{ "description", Types.VARCHAR },
@@ -77,7 +77,7 @@ public class KaleoNotificationModelImpl extends BaseModelImpl<KaleoNotification>
 			{ "templateLanguage", Types.VARCHAR },
 			{ "notificationTypes", Types.VARCHAR }
 		};
-	public static final String TABLE_SQL_CREATE = "create table KaleoNotification (kaleoNotificationId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoDefinitionId LONG,kaleoClassName VARCHAR(200) null,kaleoClassPK LONG,kaleoNodeName VARCHAR(200) null,name VARCHAR(200) null,description STRING null,executionType VARCHAR(20) null,template TEXT null,templateLanguage VARCHAR(75) null,notificationTypes VARCHAR(25) null)";
+	public static final String TABLE_SQL_CREATE = "create table KaleoNotification (kaleoNotificationId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoClassName VARCHAR(200) null,kaleoClassPK LONG,kaleoDefinitionId LONG,kaleoNodeName VARCHAR(200) null,name VARCHAR(200) null,description STRING null,executionType VARCHAR(20) null,template TEXT null,templateLanguage VARCHAR(75) null,notificationTypes VARCHAR(25) null)";
 	public static final String TABLE_SQL_DROP = "drop table KaleoNotification";
 	public static final String ORDER_BY_JPQL = " ORDER BY kaleoNotification.kaleoNotificationId ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY KaleoNotification.kaleoNotificationId ASC";
@@ -190,14 +190,6 @@ public class KaleoNotificationModelImpl extends BaseModelImpl<KaleoNotification>
 		_modifiedDate = modifiedDate;
 	}
 
-	public long getKaleoDefinitionId() {
-		return _kaleoDefinitionId;
-	}
-
-	public void setKaleoDefinitionId(long kaleoDefinitionId) {
-		_kaleoDefinitionId = kaleoDefinitionId;
-	}
-
 	public String getKaleoClassName() {
 		if (_kaleoClassName == null) {
 			return StringPool.BLANK;
@@ -217,6 +209,14 @@ public class KaleoNotificationModelImpl extends BaseModelImpl<KaleoNotification>
 
 	public void setKaleoClassPK(long kaleoClassPK) {
 		_kaleoClassPK = kaleoClassPK;
+	}
+
+	public long getKaleoDefinitionId() {
+		return _kaleoDefinitionId;
+	}
+
+	public void setKaleoDefinitionId(long kaleoDefinitionId) {
+		_kaleoDefinitionId = kaleoDefinitionId;
 	}
 
 	public String getKaleoNodeName() {
@@ -352,9 +352,9 @@ public class KaleoNotificationModelImpl extends BaseModelImpl<KaleoNotification>
 		kaleoNotificationImpl.setUserName(getUserName());
 		kaleoNotificationImpl.setCreateDate(getCreateDate());
 		kaleoNotificationImpl.setModifiedDate(getModifiedDate());
-		kaleoNotificationImpl.setKaleoDefinitionId(getKaleoDefinitionId());
 		kaleoNotificationImpl.setKaleoClassName(getKaleoClassName());
 		kaleoNotificationImpl.setKaleoClassPK(getKaleoClassPK());
+		kaleoNotificationImpl.setKaleoDefinitionId(getKaleoDefinitionId());
 		kaleoNotificationImpl.setKaleoNodeName(getKaleoNodeName());
 		kaleoNotificationImpl.setName(getName());
 		kaleoNotificationImpl.setDescription(getDescription());
@@ -454,8 +454,6 @@ public class KaleoNotificationModelImpl extends BaseModelImpl<KaleoNotification>
 			kaleoNotificationCacheModel.modifiedDate = modifiedDate.getTime();
 		}
 
-		kaleoNotificationCacheModel.kaleoDefinitionId = getKaleoDefinitionId();
-
 		kaleoNotificationCacheModel.kaleoClassName = getKaleoClassName();
 
 		String kaleoClassName = kaleoNotificationCacheModel.kaleoClassName;
@@ -465,6 +463,8 @@ public class KaleoNotificationModelImpl extends BaseModelImpl<KaleoNotification>
 		}
 
 		kaleoNotificationCacheModel.kaleoClassPK = getKaleoClassPK();
+
+		kaleoNotificationCacheModel.kaleoDefinitionId = getKaleoDefinitionId();
 
 		kaleoNotificationCacheModel.kaleoNodeName = getKaleoNodeName();
 
@@ -543,12 +543,12 @@ public class KaleoNotificationModelImpl extends BaseModelImpl<KaleoNotification>
 		sb.append(getCreateDate());
 		sb.append(", modifiedDate=");
 		sb.append(getModifiedDate());
-		sb.append(", kaleoDefinitionId=");
-		sb.append(getKaleoDefinitionId());
 		sb.append(", kaleoClassName=");
 		sb.append(getKaleoClassName());
 		sb.append(", kaleoClassPK=");
 		sb.append(getKaleoClassPK());
+		sb.append(", kaleoDefinitionId=");
+		sb.append(getKaleoDefinitionId());
 		sb.append(", kaleoNodeName=");
 		sb.append(getKaleoNodeName());
 		sb.append(", name=");
@@ -604,16 +604,16 @@ public class KaleoNotificationModelImpl extends BaseModelImpl<KaleoNotification>
 		sb.append(getModifiedDate());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>kaleoDefinitionId</column-name><column-value><![CDATA[");
-		sb.append(getKaleoDefinitionId());
-		sb.append("]]></column-value></column>");
-		sb.append(
 			"<column><column-name>kaleoClassName</column-name><column-value><![CDATA[");
 		sb.append(getKaleoClassName());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>kaleoClassPK</column-name><column-value><![CDATA[");
 		sb.append(getKaleoClassPK());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>kaleoDefinitionId</column-name><column-value><![CDATA[");
+		sb.append(getKaleoDefinitionId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>kaleoNodeName</column-name><column-value><![CDATA[");
@@ -661,9 +661,9 @@ public class KaleoNotificationModelImpl extends BaseModelImpl<KaleoNotification>
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
-	private long _kaleoDefinitionId;
 	private String _kaleoClassName;
 	private long _kaleoClassPK;
+	private long _kaleoDefinitionId;
 	private String _kaleoNodeName;
 	private String _name;
 	private String _description;

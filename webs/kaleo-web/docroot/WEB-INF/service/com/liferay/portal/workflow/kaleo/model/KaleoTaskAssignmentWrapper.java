@@ -201,24 +201,6 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment {
 	}
 
 	/**
-	* Returns the kaleo definition ID of this kaleo task assignment.
-	*
-	* @return the kaleo definition ID of this kaleo task assignment
-	*/
-	public long getKaleoDefinitionId() {
-		return _kaleoTaskAssignment.getKaleoDefinitionId();
-	}
-
-	/**
-	* Sets the kaleo definition ID of this kaleo task assignment.
-	*
-	* @param kaleoDefinitionId the kaleo definition ID of this kaleo task assignment
-	*/
-	public void setKaleoDefinitionId(long kaleoDefinitionId) {
-		_kaleoTaskAssignment.setKaleoDefinitionId(kaleoDefinitionId);
-	}
-
-	/**
 	* Returns the kaleo class name of this kaleo task assignment.
 	*
 	* @return the kaleo class name of this kaleo task assignment
@@ -252,6 +234,24 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment {
 	*/
 	public void setKaleoClassPK(long kaleoClassPK) {
 		_kaleoTaskAssignment.setKaleoClassPK(kaleoClassPK);
+	}
+
+	/**
+	* Returns the kaleo definition ID of this kaleo task assignment.
+	*
+	* @return the kaleo definition ID of this kaleo task assignment
+	*/
+	public long getKaleoDefinitionId() {
+		return _kaleoTaskAssignment.getKaleoDefinitionId();
+	}
+
+	/**
+	* Sets the kaleo definition ID of this kaleo task assignment.
+	*
+	* @param kaleoDefinitionId the kaleo definition ID of this kaleo task assignment
+	*/
+	public void setKaleoDefinitionId(long kaleoDefinitionId) {
+		_kaleoTaskAssignment.setKaleoDefinitionId(kaleoDefinitionId);
 	}
 
 	/**

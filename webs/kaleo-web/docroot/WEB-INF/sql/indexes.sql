@@ -24,9 +24,9 @@ create index IX_7BDB04B4 on KaleoInstanceToken (kaleoDefinitionId);
 create index IX_F42AAFF6 on KaleoInstanceToken (kaleoInstanceId);
 
 create index IX_73B5F4DE on KaleoLog (companyId);
+create index IX_E66A153A on KaleoLog (kaleoClassName, kaleoClassPK, kaleoInstanceTokenId, type_);
 create index IX_6C64B7D4 on KaleoLog (kaleoDefinitionId);
 create index IX_5BC6AB16 on KaleoLog (kaleoInstanceId);
-create index IX_38E935FA on KaleoLog (kaleoInstanceTokenId, kaleoClassName, kaleoClassPK, type_);
 create index IX_470B9FF8 on KaleoLog (kaleoInstanceTokenId, type_);
 create index IX_B0CDCA38 on KaleoLog (kaleoTaskInstanceTokenId);
 

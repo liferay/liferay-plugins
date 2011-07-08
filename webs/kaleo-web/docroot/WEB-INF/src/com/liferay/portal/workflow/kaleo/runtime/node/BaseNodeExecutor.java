@@ -112,7 +112,6 @@ public abstract class BaseNodeExecutor
 			List<PathElement> remainingPathElements)
 		throws PortalException, SystemException {
 
-		//complete all non-blocked timers
 		ExecutionUtil.completeKaleoTimerInstances(executionContext);
 
 		doExit(currentKaleoNode, executionContext, remainingPathElements);

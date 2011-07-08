@@ -83,7 +83,7 @@ public class KaleoActionLocalServiceClp implements KaleoActionLocalService {
 				"setBeanIdentifier", java.lang.String.class);
 
 		_addKaleoActionMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
-				"addKaleoAction", long.class, java.lang.String.class,
+				"addKaleoAction", java.lang.String.class, long.class,
 				long.class, java.lang.String.class,
 				com.liferay.portal.workflow.kaleo.definition.Action.class,
 				com.liferay.portal.service.ServiceContext.class);
@@ -504,8 +504,8 @@ public class KaleoActionLocalServiceClp implements KaleoActionLocalService {
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoAction addKaleoAction(
-		long kaleoDefinitionId, java.lang.String kaleoClassName,
-		long kaleoClassPK, java.lang.String kaleoNodeName,
+		java.lang.String kaleoClassName, long kaleoClassPK,
+		long kaleoDefinitionId, java.lang.String kaleoNodeName,
 		com.liferay.portal.workflow.kaleo.definition.Action action,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -513,9 +513,8 @@ public class KaleoActionLocalServiceClp implements KaleoActionLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addKaleoActionMethodKey15,
-				kaleoDefinitionId,
 				ClpSerializer.translateInput(kaleoClassName), kaleoClassPK,
-				ClpSerializer.translateInput(kaleoNodeName),
+				kaleoDefinitionId, ClpSerializer.translateInput(kaleoNodeName),
 				ClpSerializer.translateInput(action),
 				ClpSerializer.translateInput(serviceContext));
 

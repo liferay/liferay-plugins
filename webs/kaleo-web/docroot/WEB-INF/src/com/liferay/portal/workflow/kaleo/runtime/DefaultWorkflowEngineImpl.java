@@ -120,17 +120,17 @@ public class DefaultWorkflowEngineImpl
 			KaleoInstanceToken kaleoInstanceToken =
 				kaleoTimerInstanceToken.getKaleoInstanceToken();
 
-			KaleoTaskInstanceToken kaleoTaskInstanceToken =
-				kaleoTimerInstanceToken.getKaleoTaskInstanceToken();
-
-			KaleoNode currentKaleoNode =
-				kaleoInstanceToken.getCurrentKaleoNode();
-
 			ExecutionContext executionContext = new ExecutionContext(
 				kaleoInstanceToken, kaleoTimerInstanceToken,
 				workflowContext, serviceContext);
 
+			KaleoTaskInstanceToken kaleoTaskInstanceToken =
+				kaleoTimerInstanceToken.getKaleoTaskInstanceToken();
+
 			executionContext.setKaleoTaskInstanceToken(kaleoTaskInstanceToken);
+
+			KaleoNode currentKaleoNode =
+				kaleoInstanceToken.getCurrentKaleoNode();
 
 			NodeExecutor nodeExecutor = NodeExecutorFactory.getNodeExecutor(
 				NodeType.valueOf(currentKaleoNode.getType()));

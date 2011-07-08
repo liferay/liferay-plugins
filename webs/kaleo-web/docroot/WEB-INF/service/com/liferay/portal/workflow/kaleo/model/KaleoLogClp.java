@@ -122,6 +122,22 @@ public class KaleoLogClp extends BaseModelImpl<KaleoLog> implements KaleoLog {
 		_modifiedDate = modifiedDate;
 	}
 
+	public String getKaleoClassName() {
+		return _kaleoClassName;
+	}
+
+	public void setKaleoClassName(String kaleoClassName) {
+		_kaleoClassName = kaleoClassName;
+	}
+
+	public long getKaleoClassPK() {
+		return _kaleoClassPK;
+	}
+
+	public void setKaleoClassPK(long kaleoClassPK) {
+		_kaleoClassPK = kaleoClassPK;
+	}
+
 	public long getKaleoDefinitionId() {
 		return _kaleoDefinitionId;
 	}
@@ -152,22 +168,6 @@ public class KaleoLogClp extends BaseModelImpl<KaleoLog> implements KaleoLog {
 
 	public void setKaleoTaskInstanceTokenId(long kaleoTaskInstanceTokenId) {
 		_kaleoTaskInstanceTokenId = kaleoTaskInstanceTokenId;
-	}
-
-	public String getKaleoClassName() {
-		return _kaleoClassName;
-	}
-
-	public void setKaleoClassName(String kaleoClassName) {
-		_kaleoClassName = kaleoClassName;
-	}
-
-	public long getKaleoClassPK() {
-		return _kaleoClassPK;
-	}
-
-	public void setKaleoClassPK(long kaleoClassPK) {
-		_kaleoClassPK = kaleoClassPK;
 	}
 
 	public String getKaleoNodeName() {
@@ -336,12 +336,12 @@ public class KaleoLogClp extends BaseModelImpl<KaleoLog> implements KaleoLog {
 		clone.setUserName(getUserName());
 		clone.setCreateDate(getCreateDate());
 		clone.setModifiedDate(getModifiedDate());
+		clone.setKaleoClassName(getKaleoClassName());
+		clone.setKaleoClassPK(getKaleoClassPK());
 		clone.setKaleoDefinitionId(getKaleoDefinitionId());
 		clone.setKaleoInstanceId(getKaleoInstanceId());
 		clone.setKaleoInstanceTokenId(getKaleoInstanceTokenId());
 		clone.setKaleoTaskInstanceTokenId(getKaleoTaskInstanceTokenId());
-		clone.setKaleoClassName(getKaleoClassName());
-		clone.setKaleoClassPK(getKaleoClassPK());
 		clone.setKaleoNodeName(getKaleoNodeName());
 		clone.setTerminalKaleoNode(getTerminalKaleoNode());
 		clone.setKaleoActionId(getKaleoActionId());
@@ -431,6 +431,10 @@ public class KaleoLogClp extends BaseModelImpl<KaleoLog> implements KaleoLog {
 		sb.append(getCreateDate());
 		sb.append(", modifiedDate=");
 		sb.append(getModifiedDate());
+		sb.append(", kaleoClassName=");
+		sb.append(getKaleoClassName());
+		sb.append(", kaleoClassPK=");
+		sb.append(getKaleoClassPK());
 		sb.append(", kaleoDefinitionId=");
 		sb.append(getKaleoDefinitionId());
 		sb.append(", kaleoInstanceId=");
@@ -439,10 +443,6 @@ public class KaleoLogClp extends BaseModelImpl<KaleoLog> implements KaleoLog {
 		sb.append(getKaleoInstanceTokenId());
 		sb.append(", kaleoTaskInstanceTokenId=");
 		sb.append(getKaleoTaskInstanceTokenId());
-		sb.append(", kaleoClassName=");
-		sb.append(getKaleoClassName());
-		sb.append(", kaleoClassPK=");
-		sb.append(getKaleoClassPK());
 		sb.append(", kaleoNodeName=");
 		sb.append(getKaleoNodeName());
 		sb.append(", terminalKaleoNode=");
@@ -518,6 +518,14 @@ public class KaleoLogClp extends BaseModelImpl<KaleoLog> implements KaleoLog {
 		sb.append(getModifiedDate());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>kaleoClassName</column-name><column-value><![CDATA[");
+		sb.append(getKaleoClassName());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>kaleoClassPK</column-name><column-value><![CDATA[");
+		sb.append(getKaleoClassPK());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>kaleoDefinitionId</column-name><column-value><![CDATA[");
 		sb.append(getKaleoDefinitionId());
 		sb.append("]]></column-value></column>");
@@ -532,14 +540,6 @@ public class KaleoLogClp extends BaseModelImpl<KaleoLog> implements KaleoLog {
 		sb.append(
 			"<column><column-name>kaleoTaskInstanceTokenId</column-name><column-value><![CDATA[");
 		sb.append(getKaleoTaskInstanceTokenId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>kaleoClassName</column-name><column-value><![CDATA[");
-		sb.append(getKaleoClassName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>kaleoClassPK</column-name><column-value><![CDATA[");
-		sb.append(getKaleoClassPK());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>kaleoNodeName</column-name><column-value><![CDATA[");
@@ -623,12 +623,12 @@ public class KaleoLogClp extends BaseModelImpl<KaleoLog> implements KaleoLog {
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
+	private String _kaleoClassName;
+	private long _kaleoClassPK;
 	private long _kaleoDefinitionId;
 	private long _kaleoInstanceId;
 	private long _kaleoInstanceTokenId;
 	private long _kaleoTaskInstanceTokenId;
-	private String _kaleoClassName;
-	private long _kaleoClassPK;
 	private String _kaleoNodeName;
 	private boolean _terminalKaleoNode;
 	private long _kaleoActionId;

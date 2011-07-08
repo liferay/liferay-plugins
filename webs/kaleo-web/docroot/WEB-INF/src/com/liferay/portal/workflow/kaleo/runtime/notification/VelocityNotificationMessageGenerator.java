@@ -55,8 +55,7 @@ public class VelocityNotificationMessageGenerator
 
 			velocityEngine.mergeTemplate(
 				notificationName + kaleoClassName + kaleoClassPK,
-				notificationTemplate,
-				velocityContext, stringWriter);
+				notificationTemplate, velocityContext, stringWriter);
 
 			return stringWriter.toString();
 		}

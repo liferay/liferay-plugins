@@ -177,20 +177,6 @@ public interface KaleoNotificationModel extends BaseModel<KaleoNotification>,
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Returns the kaleo definition ID of this kaleo notification.
-	 *
-	 * @return the kaleo definition ID of this kaleo notification
-	 */
-	public long getKaleoDefinitionId();
-
-	/**
-	 * Sets the kaleo definition ID of this kaleo notification.
-	 *
-	 * @param kaleoDefinitionId the kaleo definition ID of this kaleo notification
-	 */
-	public void setKaleoDefinitionId(long kaleoDefinitionId);
-
-	/**
 	 * Returns the kaleo class name of this kaleo notification.
 	 *
 	 * @return the kaleo class name of this kaleo notification
@@ -218,6 +204,20 @@ public interface KaleoNotificationModel extends BaseModel<KaleoNotification>,
 	 * @param kaleoClassPK the kaleo class p k of this kaleo notification
 	 */
 	public void setKaleoClassPK(long kaleoClassPK);
+
+	/**
+	 * Returns the kaleo definition ID of this kaleo notification.
+	 *
+	 * @return the kaleo definition ID of this kaleo notification
+	 */
+	public long getKaleoDefinitionId();
+
+	/**
+	 * Sets the kaleo definition ID of this kaleo notification.
+	 *
+	 * @param kaleoDefinitionId the kaleo definition ID of this kaleo notification
+	 */
+	public void setKaleoDefinitionId(long kaleoDefinitionId);
 
 	/**
 	 * Returns the kaleo node name of this kaleo notification.

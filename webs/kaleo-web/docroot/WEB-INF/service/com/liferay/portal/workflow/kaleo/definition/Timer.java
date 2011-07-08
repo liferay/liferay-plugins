@@ -94,13 +94,13 @@ public class Timer implements ActionAware, NotificationAware {
 		_recurrence = recurrence;
 	}
 
+	private Set<Action> _actions;
 	private boolean _blocking;
 	private DelayDuration _delayDuration;
 	private String _description;
 	private String _name;
+	private Set<Notification> _notifications;
 	private Set<Assignment> _reassignments;
 	private DelayDuration _recurrence;
-	private Set<Action> _actions;
-	private Set<Notification> _notifications;
 
 }

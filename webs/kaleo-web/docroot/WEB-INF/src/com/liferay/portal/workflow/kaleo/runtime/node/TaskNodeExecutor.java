@@ -61,7 +61,7 @@ public class TaskNodeExecutor extends BaseNodeExecutor {
 	}
 
 	protected Date calculateDueDate(KaleoTask kaleoTask)
-		throws PortalException, SystemException {
+		throws SystemException {
 
 		List<KaleoTimer> kaleoTimers = kaleoTimerLocalService.getKaleoTimers(
 			KaleoNode.class.getName(), kaleoTask.getKaleoNodeId());

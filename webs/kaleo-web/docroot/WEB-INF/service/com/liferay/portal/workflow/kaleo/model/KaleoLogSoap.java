@@ -37,12 +37,12 @@ public class KaleoLogSoap implements Serializable {
 		soapModel.setUserName(model.getUserName());
 		soapModel.setCreateDate(model.getCreateDate());
 		soapModel.setModifiedDate(model.getModifiedDate());
+		soapModel.setKaleoClassName(model.getKaleoClassName());
+		soapModel.setKaleoClassPK(model.getKaleoClassPK());
 		soapModel.setKaleoDefinitionId(model.getKaleoDefinitionId());
 		soapModel.setKaleoInstanceId(model.getKaleoInstanceId());
 		soapModel.setKaleoInstanceTokenId(model.getKaleoInstanceTokenId());
 		soapModel.setKaleoTaskInstanceTokenId(model.getKaleoTaskInstanceTokenId());
-		soapModel.setKaleoClassName(model.getKaleoClassName());
-		soapModel.setKaleoClassPK(model.getKaleoClassPK());
 		soapModel.setKaleoNodeName(model.getKaleoNodeName());
 		soapModel.setTerminalKaleoNode(model.getTerminalKaleoNode());
 		soapModel.setKaleoActionId(model.getKaleoActionId());
@@ -168,6 +168,22 @@ public class KaleoLogSoap implements Serializable {
 		_modifiedDate = modifiedDate;
 	}
 
+	public String getKaleoClassName() {
+		return _kaleoClassName;
+	}
+
+	public void setKaleoClassName(String kaleoClassName) {
+		_kaleoClassName = kaleoClassName;
+	}
+
+	public long getKaleoClassPK() {
+		return _kaleoClassPK;
+	}
+
+	public void setKaleoClassPK(long kaleoClassPK) {
+		_kaleoClassPK = kaleoClassPK;
+	}
+
 	public long getKaleoDefinitionId() {
 		return _kaleoDefinitionId;
 	}
@@ -198,22 +214,6 @@ public class KaleoLogSoap implements Serializable {
 
 	public void setKaleoTaskInstanceTokenId(long kaleoTaskInstanceTokenId) {
 		_kaleoTaskInstanceTokenId = kaleoTaskInstanceTokenId;
-	}
-
-	public String getKaleoClassName() {
-		return _kaleoClassName;
-	}
-
-	public void setKaleoClassName(String kaleoClassName) {
-		_kaleoClassName = kaleoClassName;
-	}
-
-	public long getKaleoClassPK() {
-		return _kaleoClassPK;
-	}
-
-	public void setKaleoClassPK(long kaleoClassPK) {
-		_kaleoClassPK = kaleoClassPK;
 	}
 
 	public String getKaleoNodeName() {
@@ -363,12 +363,12 @@ public class KaleoLogSoap implements Serializable {
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
+	private String _kaleoClassName;
+	private long _kaleoClassPK;
 	private long _kaleoDefinitionId;
 	private long _kaleoInstanceId;
 	private long _kaleoInstanceTokenId;
 	private long _kaleoTaskInstanceTokenId;
-	private String _kaleoClassName;
-	private long _kaleoClassPK;
 	private String _kaleoNodeName;
 	private boolean _terminalKaleoNode;
 	private long _kaleoActionId;

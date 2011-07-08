@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -20,6 +20,7 @@ import java.util.Set;
  * @author Michael C. Han
  */
 public interface NotificationAware {
+
 	public Set<Notification> getNotifications();
 
 	public void setNotifications(Set<Notification> notifications);

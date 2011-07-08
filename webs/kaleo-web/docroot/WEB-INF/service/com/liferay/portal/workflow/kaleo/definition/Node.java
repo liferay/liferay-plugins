@@ -26,8 +26,7 @@ import java.util.Set;
  * @author Michael C. Han
  * @author Marcellus Tavares
  */
-public abstract class Node
-	implements ActionAware, NotificationAware {
+public abstract class Node implements ActionAware, NotificationAware {
 
 	public Node(NodeType nodeType, String name, String description) {
 		_nodeType = nodeType;
