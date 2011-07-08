@@ -14,8 +14,6 @@
 
 package com.liferay.microblogs.model.impl;
 
-import com.liferay.microblogs.model.MicroblogsEntry;
-
 /**
  * @author Brian Wing Shun Chan
  */

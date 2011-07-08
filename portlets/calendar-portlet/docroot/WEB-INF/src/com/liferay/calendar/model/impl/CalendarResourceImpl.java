@@ -14,8 +14,6 @@
 
 package com.liferay.calendar.model.impl;
 
-import com.liferay.calendar.model.CalendarResource;
-
 /**
  * @author Eduardo Lundgren
  */

@@ -21,7 +21,6 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.socialcoding.model.JIRAIssue;
 import com.liferay.socialcoding.model.SVNRepository;
-import com.liferay.socialcoding.model.SVNRevision;
 import com.liferay.socialcoding.service.JIRAIssueLocalServiceUtil;
 import com.liferay.socialcoding.service.SVNRepositoryLocalServiceUtil;
 import com.liferay.socialcoding.svn.util.SVNConstants;

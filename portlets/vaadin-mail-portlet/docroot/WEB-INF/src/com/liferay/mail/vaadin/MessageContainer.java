@@ -108,7 +108,7 @@ public class MessageContainer extends BeanItemContainer<Message> implements Prop
 					.getFolderId(), keywords, pageNumber, PAGE_SIZE,
 					orderByField, orderByType);
 			messages = messagesDisplay.getMessages();
-			} catch(Exception e){
+			} catch(Exception e) {
 				_log.error("Failed loading messages from Mailbox");
 			}
 		}

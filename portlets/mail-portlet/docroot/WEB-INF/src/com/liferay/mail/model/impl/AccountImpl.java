@@ -14,7 +14,6 @@
 
 package com.liferay.mail.model.impl;
 
-import com.liferay.mail.model.Account;
 import com.liferay.mail.util.PasswordUtil;
 
 /**

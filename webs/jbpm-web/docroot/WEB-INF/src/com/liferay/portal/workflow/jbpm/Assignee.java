@@ -19,7 +19,7 @@ package com.liferay.portal.workflow.jbpm;
  */
 public class Assignee {
 
-	public Assignee(){
+	public Assignee() {
 	}
 
 	public Assignee(
@@ -44,15 +44,15 @@ public class Assignee {
 		return _assigneeId;
 	}
 
-	public long getCompanyId(){
+	public long getCompanyId() {
 		return _companyId;
 	}
 
-	public long getGroupId(){
+	public long getGroupId() {
 		return _groupId;
 	}
 
-	public long getTaskInstanceExtensionId(){
+	public long getTaskInstanceExtensionId() {
 		return _taskInstanceExtensionId;
 	}
 
@@ -76,7 +76,7 @@ public class Assignee {
 		_groupId = groupId;
 	}
 
-	public void setTaskInstanceExtensionId(long taskInstanceExtensionId){
+	public void setTaskInstanceExtensionId(long taskInstanceExtensionId) {
 		_taskInstanceExtensionId = taskInstanceExtensionId;
 	}
 

@@ -91,9 +91,9 @@ if (userInfo != null) {
 				<%
 				}
 				%>
-			
+
 			</td>
-		</tr>		
+		</tr>
 
 <%
 	}

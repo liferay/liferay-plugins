@@ -14,8 +14,6 @@
 
 package com.liferay.wsrp.model.impl;
 
-import com.liferay.wsrp.model.WSRPConsumerPortlet;
-
 /**
  * @author Brian Wing Shun Chan
  */

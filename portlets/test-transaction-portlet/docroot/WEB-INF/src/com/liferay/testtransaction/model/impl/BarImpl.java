@@ -14,8 +14,6 @@
 
 package com.liferay.testtransaction.model.impl;
 
-import com.liferay.testtransaction.model.Bar;
-
 /**
  * @author Brian Wing Shun Chan
  */

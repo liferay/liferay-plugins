@@ -17,8 +17,6 @@
 
 package com.liferay.so.model.impl;
 
-import com.liferay.so.model.ProjectsEntry;
-
 /**
  * @author Brian Wing Shun Chan
  */

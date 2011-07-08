@@ -213,7 +213,7 @@ public class FolderTree extends Tree implements DropHandler, Action.Handler {
 		SourceIs isFromMessageList = new SourceIs(messageList.getTable());
 
 		List<TargetItemIs> rootItemCriterias = new ArrayList<TargetItemIs>();
-		for(Object root : rootItemIds()){
+		for (Object root : rootItemIds()) {
 			rootItemCriterias.add(new TargetItemIs(this, root));
 		}
 		Or or = new Or(rootItemCriterias.toArray(new TargetItemIs[rootItemCriterias.size()]));
@@ -499,9 +499,9 @@ public class FolderTree extends Tree implements DropHandler, Action.Handler {
 	private void synchronizeAccount(final long accountId, Controller controller) {
 		try {
 			Account acc = AccountLocalServiceUtil.getAccount(accountId);
-			if (acc.isSavePassword()){
+			if (acc.isSavePassword()) {
 				controller.getMailManager().synchronizeAccount(accountId);
-			} else if (controller.getPasswordRetriever().getPassword(accountId) != null){
+			} else if (controller.getPasswordRetriever().getPassword(accountId) != null) {
 				controller.getMailManager().synchronizeAccount(accountId);
 			}
 		}

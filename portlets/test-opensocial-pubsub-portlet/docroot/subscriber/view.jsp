@@ -20,8 +20,8 @@
 
 <div>
 	<aui:select name="subscribeTopic" label="">
-		<aui:option label="String"/>
-		<aui:option label="Array"/>
+		<aui:option label="String" />
+		<aui:option label="Array" />
 	</aui:select>
 
 	<aui:button name="subscribe" value="Subscribe" />

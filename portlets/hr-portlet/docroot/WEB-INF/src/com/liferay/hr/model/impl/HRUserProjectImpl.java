@@ -14,8 +14,6 @@
 
 package com.liferay.hr.model.impl;
 
-import com.liferay.hr.model.HRUserProject;
-
 /**
  * @author Wesley Gong
  */

@@ -501,7 +501,7 @@ public class Composer extends CustomComponent {
 	}
 
 	private void fireSave(boolean skipPasswordCheck) {
-		if (!getFrom().isSavePassword() && !skipPasswordCheck){
+		if (!getFrom().isSavePassword() && !skipPasswordCheck) {
 			Account account = getFrom();
 			String password = null;
 			try {
@@ -510,7 +510,7 @@ public class Composer extends CustomComponent {
 			} catch (SystemException e2) {
 			}
 
-			if (password != null){
+			if (password != null) {
 				try {
 					Controller.get().getMailManager().storePassword(account.getAccountId(), password);
 					Controller.get().getAccountManager().updateAccount(account, Controller.get());
@@ -528,7 +528,7 @@ public class Composer extends CustomComponent {
 					//@Override
 					public void windowClose(CloseEvent e) {
 						PasswordPrompt prompt = (PasswordPrompt)e.getWindow();
-						if (prompt.getStatus() == PasswordPrompt.Status.VALIDATED){
+						if (prompt.getStatus() == PasswordPrompt.Status.VALIDATED) {
 							fireSave(true);
 						}
 					}
@@ -549,7 +549,7 @@ public class Composer extends CustomComponent {
 				listener.messageSaved(this, msg);
 			}
 		} catch (MailException me) {
-			if (me.getType() == MailException.MESSAGE_HAS_NO_RECIPIENTS){
+			if (me.getType() == MailException.MESSAGE_HAS_NO_RECIPIENTS) {
 				getApplication().getMainWindow().showNotification(
 						Lang.get("please-specify-at-least-one-recipient"),
 						me.getMessage(),Notification.TYPE_ERROR_MESSAGE );
@@ -574,7 +574,7 @@ public class Composer extends CustomComponent {
 	}
 
 	private void fireSend(boolean skipPasswordCheck) {
-		if (!getFrom().isSavePassword() && !skipPasswordCheck){
+		if (!getFrom().isSavePassword() && !skipPasswordCheck) {
 			/*
 			 *	Password not saved, try to get it from the password retriever or from the user
 			 */
@@ -588,7 +588,7 @@ public class Composer extends CustomComponent {
 				// Don't do anything, the password prompt will be displayed later
 			}
 
-			if (password != null){
+			if (password != null) {
 				try {
 					Controller.get().getMailManager().storePassword(account.getAccountId(), password);
 					Controller.get().getAccountManager().updateAccount(account, Controller.get());
@@ -605,7 +605,7 @@ public class Composer extends CustomComponent {
 				prompt.addListener(new Window.CloseListener() {
 					public void windowClose(CloseEvent e) {
 						PasswordPrompt prompt = (PasswordPrompt)e.getWindow();
-						if (prompt.getStatus() == PasswordPrompt.Status.VALIDATED){
+						if (prompt.getStatus() == PasswordPrompt.Status.VALIDATED) {
 							fireSend(true);
 						}
 					}
@@ -927,23 +927,23 @@ public class Composer extends CustomComponent {
 		public void messageSent(Composer composer, Message message);
 	}
 
-	public void focusToField(){
+	public void focusToField() {
 		toField.focus();
 	}
 
-	public void focusCCField(){
+	public void focusCCField() {
 		ccField.focus();
 	}
 
-	public void focusBCCField(){
+	public void focusBCCField() {
 		bccField.focus();
 	}
 
-	public void focusSubject(){
+	public void focusSubject() {
 		subject.focus();
 	}
 
-	public void focusBody(){
+	public void focusBody() {
 		message.focus();
 	}
 

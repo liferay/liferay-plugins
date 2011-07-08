@@ -14,7 +14,6 @@
 
 package com.liferay.socialcoding.model.impl;
 
-import com.liferay.socialcoding.model.SVNRepository;
 import com.liferay.socialcoding.svn.util.SVNConstants;
 
 /**

@@ -274,9 +274,9 @@ public class FolderContainer implements Hierarchical, ItemSetChangeNotifier {
 
 	}
 
-	public boolean isModifiable(Object itemId){
+	public boolean isModifiable(Object itemId) {
 		ItemId id = (ItemId) itemId;
-		if (id.isAccount()){
+		if (id.isAccount()) {
 			return false;
 		} else {
 			Folder f = id.getFolder();

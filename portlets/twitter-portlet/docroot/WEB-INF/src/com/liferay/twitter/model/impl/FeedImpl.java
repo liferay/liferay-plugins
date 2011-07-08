@@ -14,8 +14,6 @@
 
 package com.liferay.twitter.model.impl;
 
-import com.liferay.twitter.model.Feed;
-
 /**
  * @author Brian Wing Shun Chan
  */

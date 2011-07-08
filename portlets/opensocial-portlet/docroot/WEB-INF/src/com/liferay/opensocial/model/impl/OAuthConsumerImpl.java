@@ -14,7 +14,6 @@
 
 package com.liferay.opensocial.model.impl;
 
-import com.liferay.opensocial.model.OAuthConsumer;
 import com.liferay.portal.kernel.util.GetterUtil;
 
 /**
