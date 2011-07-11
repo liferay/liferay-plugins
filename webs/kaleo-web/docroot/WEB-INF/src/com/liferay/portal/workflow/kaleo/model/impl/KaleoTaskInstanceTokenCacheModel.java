@@ -91,14 +91,8 @@ public class KaleoTaskInstanceTokenCacheModel implements CacheModel<KaleoTaskIns
 			kaleoTaskInstanceTokenImpl.setUserName(userName);
 		}
 
-		if (createDate > 0) {
-			kaleoTaskInstanceTokenImpl.setCreateDate(new Date(createDate));
-		}
-
-		if (modifiedDate > 0) {
-			kaleoTaskInstanceTokenImpl.setModifiedDate(new Date(modifiedDate));
-		}
-
+		kaleoTaskInstanceTokenImpl.setCreateDate(new Date(createDate));
+		kaleoTaskInstanceTokenImpl.setModifiedDate(new Date(modifiedDate));
 		kaleoTaskInstanceTokenImpl.setKaleoDefinitionId(kaleoDefinitionId);
 		kaleoTaskInstanceTokenImpl.setKaleoInstanceId(kaleoInstanceId);
 		kaleoTaskInstanceTokenImpl.setKaleoInstanceTokenId(kaleoInstanceTokenId);
@@ -121,15 +115,8 @@ public class KaleoTaskInstanceTokenCacheModel implements CacheModel<KaleoTaskIns
 		kaleoTaskInstanceTokenImpl.setClassPK(classPK);
 		kaleoTaskInstanceTokenImpl.setCompletionUserId(completionUserId);
 		kaleoTaskInstanceTokenImpl.setCompleted(completed);
-
-		if (completionDate > 0) {
-			kaleoTaskInstanceTokenImpl.setCompletionDate(new Date(
-					completionDate));
-		}
-
-		if (dueDate > 0) {
-			kaleoTaskInstanceTokenImpl.setDueDate(new Date(dueDate));
-		}
+		kaleoTaskInstanceTokenImpl.setCompletionDate(new Date(completionDate));
+		kaleoTaskInstanceTokenImpl.setDueDate(new Date(dueDate));
 
 		if (workflowContext == null) {
 			kaleoTaskInstanceTokenImpl.setWorkflowContext(StringPool.BLANK);

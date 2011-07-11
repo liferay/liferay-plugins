@@ -105,13 +105,8 @@ public class AccountCacheModel implements CacheModel<Account> {
 			accountImpl.setUserName(userName);
 		}
 
-		if (createDate > 0) {
-			accountImpl.setCreateDate(new Date(createDate));
-		}
-
-		if (modifiedDate > 0) {
-			accountImpl.setModifiedDate(new Date(modifiedDate));
-		}
+		accountImpl.setCreateDate(new Date(createDate));
+		accountImpl.setModifiedDate(new Date(modifiedDate));
 
 		if (address == null) {
 			accountImpl.setAddress(StringPool.BLANK);

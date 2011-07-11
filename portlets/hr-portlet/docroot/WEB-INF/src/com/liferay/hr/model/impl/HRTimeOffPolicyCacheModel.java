@@ -88,23 +88,13 @@ public class HRTimeOffPolicyCacheModel implements CacheModel<HRTimeOffPolicy> {
 			hrTimeOffPolicyImpl.setUserName(userName);
 		}
 
-		if (createDate > 0) {
-			hrTimeOffPolicyImpl.setCreateDate(new Date(createDate));
-		}
-
-		if (modifiedDate > 0) {
-			hrTimeOffPolicyImpl.setModifiedDate(new Date(modifiedDate));
-		}
-
+		hrTimeOffPolicyImpl.setCreateDate(new Date(createDate));
+		hrTimeOffPolicyImpl.setModifiedDate(new Date(modifiedDate));
 		hrTimeOffPolicyImpl.setHrTimeOffTypeId(hrTimeOffTypeId);
 		hrTimeOffPolicyImpl.setHrUserId(hrUserId);
 		hrTimeOffPolicyImpl.setAccrueHRTimeOffFrequencyTypeId(accrueHRTimeOffFrequencyTypeId);
 		hrTimeOffPolicyImpl.setResetHRTimeOffFrequencyTypeId(resetHRTimeOffFrequencyTypeId);
-
-		if (effectiveDate > 0) {
-			hrTimeOffPolicyImpl.setEffectiveDate(new Date(effectiveDate));
-		}
-
+		hrTimeOffPolicyImpl.setEffectiveDate(new Date(effectiveDate));
 		hrTimeOffPolicyImpl.setInactive(inactive);
 		hrTimeOffPolicyImpl.setHoursAllowed(hoursAllowed);
 		hrTimeOffPolicyImpl.setHoursBaseAmount(hoursBaseAmount);

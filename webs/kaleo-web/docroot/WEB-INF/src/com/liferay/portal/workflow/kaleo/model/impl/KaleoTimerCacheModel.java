@@ -87,13 +87,8 @@ public class KaleoTimerCacheModel implements CacheModel<KaleoTimer> {
 			kaleoTimerImpl.setUserName(userName);
 		}
 
-		if (createDate > 0) {
-			kaleoTimerImpl.setCreateDate(new Date(createDate));
-		}
-
-		if (modifiedDate > 0) {
-			kaleoTimerImpl.setModifiedDate(new Date(modifiedDate));
-		}
+		kaleoTimerImpl.setCreateDate(new Date(createDate));
+		kaleoTimerImpl.setModifiedDate(new Date(modifiedDate));
 
 		if (kaleoClassName == null) {
 			kaleoTimerImpl.setKaleoClassName(StringPool.BLANK);

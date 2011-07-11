@@ -113,13 +113,8 @@ public class KaleoLogCacheModel implements CacheModel<KaleoLog> {
 			kaleoLogImpl.setUserName(userName);
 		}
 
-		if (createDate > 0) {
-			kaleoLogImpl.setCreateDate(new Date(createDate));
-		}
-
-		if (modifiedDate > 0) {
-			kaleoLogImpl.setModifiedDate(new Date(modifiedDate));
-		}
+		kaleoLogImpl.setCreateDate(new Date(createDate));
+		kaleoLogImpl.setModifiedDate(new Date(modifiedDate));
 
 		if (kaleoClassName == null) {
 			kaleoLogImpl.setKaleoClassName(StringPool.BLANK);
@@ -199,14 +194,8 @@ public class KaleoLogCacheModel implements CacheModel<KaleoLog> {
 			kaleoLogImpl.setComment(comment);
 		}
 
-		if (startDate > 0) {
-			kaleoLogImpl.setStartDate(new Date(startDate));
-		}
-
-		if (endDate > 0) {
-			kaleoLogImpl.setEndDate(new Date(endDate));
-		}
-
+		kaleoLogImpl.setStartDate(new Date(startDate));
+		kaleoLogImpl.setEndDate(new Date(endDate));
 		kaleoLogImpl.setDuration(duration);
 
 		if (workflowContext == null) {

@@ -104,14 +104,8 @@ public class HRProjectCacheModel implements CacheModel<HRProject> {
 			hrProjectImpl.setUserName(userName);
 		}
 
-		if (createDate > 0) {
-			hrProjectImpl.setCreateDate(new Date(createDate));
-		}
-
-		if (modifiedDate > 0) {
-			hrProjectImpl.setModifiedDate(new Date(modifiedDate));
-		}
-
+		hrProjectImpl.setCreateDate(new Date(createDate));
+		hrProjectImpl.setModifiedDate(new Date(modifiedDate));
 		hrProjectImpl.setHrClientId(hrClientId);
 		hrProjectImpl.setHrProjectStatusId(hrProjectStatusId);
 
@@ -129,14 +123,8 @@ public class HRProjectCacheModel implements CacheModel<HRProject> {
 			hrProjectImpl.setDescription(description);
 		}
 
-		if (estimatedStartDate > 0) {
-			hrProjectImpl.setEstimatedStartDate(new Date(estimatedStartDate));
-		}
-
-		if (estimatedEndDate > 0) {
-			hrProjectImpl.setEstimatedEndDate(new Date(estimatedEndDate));
-		}
-
+		hrProjectImpl.setEstimatedStartDate(new Date(estimatedStartDate));
+		hrProjectImpl.setEstimatedEndDate(new Date(estimatedEndDate));
 		hrProjectImpl.setEstimatedHours(estimatedHours);
 		hrProjectImpl.setEstimatedHoursCost(estimatedHoursCost);
 
@@ -156,14 +144,8 @@ public class HRProjectCacheModel implements CacheModel<HRProject> {
 			hrProjectImpl.setEstimatedExpensesCurrencyCode(estimatedExpensesCurrencyCode);
 		}
 
-		if (actualStartDate > 0) {
-			hrProjectImpl.setActualStartDate(new Date(actualStartDate));
-		}
-
-		if (actualEndDate > 0) {
-			hrProjectImpl.setActualEndDate(new Date(actualEndDate));
-		}
-
+		hrProjectImpl.setActualStartDate(new Date(actualStartDate));
+		hrProjectImpl.setActualEndDate(new Date(actualEndDate));
 		hrProjectImpl.setActualHours(actualHours);
 		hrProjectImpl.setActualHoursCost(actualHoursCost);
 

@@ -75,13 +75,8 @@ public class ProjectsEntryCacheModel implements CacheModel<ProjectsEntry> {
 			projectsEntryImpl.setUserName(userName);
 		}
 
-		if (createDate > 0) {
-			projectsEntryImpl.setCreateDate(new Date(createDate));
-		}
-
-		if (modifiedDate > 0) {
-			projectsEntryImpl.setModifiedDate(new Date(modifiedDate));
-		}
+		projectsEntryImpl.setCreateDate(new Date(createDate));
+		projectsEntryImpl.setModifiedDate(new Date(modifiedDate));
 
 		if (title == null) {
 			projectsEntryImpl.setTitle(StringPool.BLANK);
@@ -97,13 +92,8 @@ public class ProjectsEntryCacheModel implements CacheModel<ProjectsEntry> {
 			projectsEntryImpl.setDescription(description);
 		}
 
-		if (startDate > 0) {
-			projectsEntryImpl.setStartDate(new Date(startDate));
-		}
-
-		if (endDate > 0) {
-			projectsEntryImpl.setEndDate(new Date(endDate));
-		}
+		projectsEntryImpl.setStartDate(new Date(startDate));
+		projectsEntryImpl.setEndDate(new Date(endDate));
 
 		if (data == null) {
 			projectsEntryImpl.setData(StringPool.BLANK);

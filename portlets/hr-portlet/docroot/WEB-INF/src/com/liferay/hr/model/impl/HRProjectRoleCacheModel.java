@@ -72,13 +72,8 @@ public class HRProjectRoleCacheModel implements CacheModel<HRProjectRole> {
 			hrProjectRoleImpl.setUserName(userName);
 		}
 
-		if (createDate > 0) {
-			hrProjectRoleImpl.setCreateDate(new Date(createDate));
-		}
-
-		if (modifiedDate > 0) {
-			hrProjectRoleImpl.setModifiedDate(new Date(modifiedDate));
-		}
+		hrProjectRoleImpl.setCreateDate(new Date(createDate));
+		hrProjectRoleImpl.setModifiedDate(new Date(modifiedDate));
 
 		if (name == null) {
 			hrProjectRoleImpl.setName(StringPool.BLANK);

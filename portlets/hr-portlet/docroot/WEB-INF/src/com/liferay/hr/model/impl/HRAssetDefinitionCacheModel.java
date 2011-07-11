@@ -84,13 +84,8 @@ public class HRAssetDefinitionCacheModel implements CacheModel<HRAssetDefinition
 			hrAssetDefinitionImpl.setUserName(userName);
 		}
 
-		if (createDate > 0) {
-			hrAssetDefinitionImpl.setCreateDate(new Date(createDate));
-		}
-
-		if (modifiedDate > 0) {
-			hrAssetDefinitionImpl.setModifiedDate(new Date(modifiedDate));
-		}
+		hrAssetDefinitionImpl.setCreateDate(new Date(createDate));
+		hrAssetDefinitionImpl.setModifiedDate(new Date(modifiedDate));
 
 		if (hrAssetProductId == null) {
 			hrAssetDefinitionImpl.setHrAssetProductId(StringPool.BLANK);
@@ -109,14 +104,8 @@ public class HRAssetDefinitionCacheModel implements CacheModel<HRAssetDefinition
 			hrAssetDefinitionImpl.setDefinitionNumber(definitionNumber);
 		}
 
-		if (orderId > 0) {
-			hrAssetDefinitionImpl.setOrderId(new Date(orderId));
-		}
-
-		if (orderDate > 0) {
-			hrAssetDefinitionImpl.setOrderDate(new Date(orderDate));
-		}
-
+		hrAssetDefinitionImpl.setOrderId(new Date(orderId));
+		hrAssetDefinitionImpl.setOrderDate(new Date(orderDate));
 		hrAssetDefinitionImpl.setQuantity(quantity);
 		hrAssetDefinitionImpl.setIndividualPrice(individualPrice);
 

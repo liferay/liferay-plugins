@@ -75,14 +75,8 @@ public class KaleoTaskCacheModel implements CacheModel<KaleoTask> {
 			kaleoTaskImpl.setUserName(userName);
 		}
 
-		if (createDate > 0) {
-			kaleoTaskImpl.setCreateDate(new Date(createDate));
-		}
-
-		if (modifiedDate > 0) {
-			kaleoTaskImpl.setModifiedDate(new Date(modifiedDate));
-		}
-
+		kaleoTaskImpl.setCreateDate(new Date(createDate));
+		kaleoTaskImpl.setModifiedDate(new Date(modifiedDate));
 		kaleoTaskImpl.setKaleoDefinitionId(kaleoDefinitionId);
 		kaleoTaskImpl.setKaleoNodeId(kaleoNodeId);
 

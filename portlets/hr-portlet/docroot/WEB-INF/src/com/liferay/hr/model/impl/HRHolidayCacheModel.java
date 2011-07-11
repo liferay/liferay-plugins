@@ -78,13 +78,8 @@ public class HRHolidayCacheModel implements CacheModel<HRHoliday> {
 			hrHolidayImpl.setUserName(userName);
 		}
 
-		if (createDate > 0) {
-			hrHolidayImpl.setCreateDate(new Date(createDate));
-		}
-
-		if (modifiedDate > 0) {
-			hrHolidayImpl.setModifiedDate(new Date(modifiedDate));
-		}
+		hrHolidayImpl.setCreateDate(new Date(createDate));
+		hrHolidayImpl.setModifiedDate(new Date(modifiedDate));
 
 		if (name == null) {
 			hrHolidayImpl.setName(StringPool.BLANK);

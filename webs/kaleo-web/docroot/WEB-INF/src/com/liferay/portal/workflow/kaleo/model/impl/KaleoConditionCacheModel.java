@@ -75,14 +75,8 @@ public class KaleoConditionCacheModel implements CacheModel<KaleoCondition> {
 			kaleoConditionImpl.setUserName(userName);
 		}
 
-		if (createDate > 0) {
-			kaleoConditionImpl.setCreateDate(new Date(createDate));
-		}
-
-		if (modifiedDate > 0) {
-			kaleoConditionImpl.setModifiedDate(new Date(modifiedDate));
-		}
-
+		kaleoConditionImpl.setCreateDate(new Date(createDate));
+		kaleoConditionImpl.setModifiedDate(new Date(modifiedDate));
 		kaleoConditionImpl.setKaleoDefinitionId(kaleoDefinitionId);
 		kaleoConditionImpl.setKaleoNodeId(kaleoNodeId);
 

@@ -71,14 +71,8 @@ public class FeedCacheModel implements CacheModel<Feed> {
 			feedImpl.setUserName(userName);
 		}
 
-		if (createDate > 0) {
-			feedImpl.setCreateDate(new Date(createDate));
-		}
-
-		if (modifiedDate > 0) {
-			feedImpl.setModifiedDate(new Date(modifiedDate));
-		}
-
+		feedImpl.setCreateDate(new Date(createDate));
+		feedImpl.setModifiedDate(new Date(modifiedDate));
 		feedImpl.setTwitterUserId(twitterUserId);
 
 		if (twitterScreenName == null) {

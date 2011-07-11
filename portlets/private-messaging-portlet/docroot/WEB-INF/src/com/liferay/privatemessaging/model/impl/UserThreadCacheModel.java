@@ -62,15 +62,8 @@ public class UserThreadCacheModel implements CacheModel<UserThread> {
 		userThreadImpl.setUserThreadId(userThreadId);
 		userThreadImpl.setCompanyId(companyId);
 		userThreadImpl.setUserId(userId);
-
-		if (createDate > 0) {
-			userThreadImpl.setCreateDate(new Date(createDate));
-		}
-
-		if (modifiedDate > 0) {
-			userThreadImpl.setModifiedDate(new Date(modifiedDate));
-		}
-
+		userThreadImpl.setCreateDate(new Date(createDate));
+		userThreadImpl.setModifiedDate(new Date(modifiedDate));
 		userThreadImpl.setMbThreadId(mbThreadId);
 		userThreadImpl.setTopMBMessageId(topMBMessageId);
 		userThreadImpl.setRead(read);

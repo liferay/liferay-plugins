@@ -112,14 +112,8 @@ public class KBArticleCacheModel implements CacheModel<KBArticle> {
 			kbArticleImpl.setUserName(userName);
 		}
 
-		if (createDate > 0) {
-			kbArticleImpl.setCreateDate(new Date(createDate));
-		}
-
-		if (modifiedDate > 0) {
-			kbArticleImpl.setModifiedDate(new Date(modifiedDate));
-		}
-
+		kbArticleImpl.setCreateDate(new Date(createDate));
+		kbArticleImpl.setModifiedDate(new Date(modifiedDate));
 		kbArticleImpl.setRootResourcePrimKey(rootResourcePrimKey);
 		kbArticleImpl.setParentResourcePrimKey(parentResourcePrimKey);
 		kbArticleImpl.setVersion(version);
@@ -168,9 +162,7 @@ public class KBArticleCacheModel implements CacheModel<KBArticle> {
 			kbArticleImpl.setStatusByUserName(statusByUserName);
 		}
 
-		if (statusDate > 0) {
-			kbArticleImpl.setStatusDate(new Date(statusDate));
-		}
+		kbArticleImpl.setStatusDate(new Date(statusDate));
 
 		kbArticleImpl.resetOriginalValues();
 

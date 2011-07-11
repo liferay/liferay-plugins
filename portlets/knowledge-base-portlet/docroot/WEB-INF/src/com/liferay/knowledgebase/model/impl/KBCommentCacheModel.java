@@ -85,14 +85,8 @@ public class KBCommentCacheModel implements CacheModel<KBComment> {
 			kbCommentImpl.setUserName(userName);
 		}
 
-		if (createDate > 0) {
-			kbCommentImpl.setCreateDate(new Date(createDate));
-		}
-
-		if (modifiedDate > 0) {
-			kbCommentImpl.setModifiedDate(new Date(modifiedDate));
-		}
-
+		kbCommentImpl.setCreateDate(new Date(createDate));
+		kbCommentImpl.setModifiedDate(new Date(modifiedDate));
 		kbCommentImpl.setClassNameId(classNameId);
 		kbCommentImpl.setClassPK(classPK);
 

@@ -87,13 +87,8 @@ public class KaleoNotificationCacheModel implements CacheModel<KaleoNotification
 			kaleoNotificationImpl.setUserName(userName);
 		}
 
-		if (createDate > 0) {
-			kaleoNotificationImpl.setCreateDate(new Date(createDate));
-		}
-
-		if (modifiedDate > 0) {
-			kaleoNotificationImpl.setModifiedDate(new Date(modifiedDate));
-		}
+		kaleoNotificationImpl.setCreateDate(new Date(createDate));
+		kaleoNotificationImpl.setModifiedDate(new Date(modifiedDate));
 
 		if (kaleoClassName == null) {
 			kaleoNotificationImpl.setKaleoClassName(StringPool.BLANK);
