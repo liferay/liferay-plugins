@@ -370,11 +370,17 @@ public class HRTimeOffFrequencyTypeModelImpl extends BaseModelImpl<HRTimeOffFreq
 		if (createDate != null) {
 			hrTimeOffFrequencyTypeCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			hrTimeOffFrequencyTypeCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			hrTimeOffFrequencyTypeCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			hrTimeOffFrequencyTypeCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		hrTimeOffFrequencyTypeCacheModel.code = getCode();

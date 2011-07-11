@@ -424,11 +424,17 @@ public class KaleoTaskAssignmentInstanceModelImpl extends BaseModelImpl<KaleoTas
 		if (createDate != null) {
 			kaleoTaskAssignmentInstanceCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			kaleoTaskAssignmentInstanceCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			kaleoTaskAssignmentInstanceCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			kaleoTaskAssignmentInstanceCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		kaleoTaskAssignmentInstanceCacheModel.kaleoDefinitionId = getKaleoDefinitionId();
@@ -465,6 +471,9 @@ public class KaleoTaskAssignmentInstanceModelImpl extends BaseModelImpl<KaleoTas
 
 		if (completionDate != null) {
 			kaleoTaskAssignmentInstanceCacheModel.completionDate = completionDate.getTime();
+		}
+		else {
+			kaleoTaskAssignmentInstanceCacheModel.completionDate = Long.MIN_VALUE;
 		}
 
 		return kaleoTaskAssignmentInstanceCacheModel;

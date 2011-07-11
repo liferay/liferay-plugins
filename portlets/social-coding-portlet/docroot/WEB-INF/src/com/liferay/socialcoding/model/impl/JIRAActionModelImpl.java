@@ -313,11 +313,17 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction>
 		if (createDate != null) {
 			jiraActionCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			jiraActionCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			jiraActionCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			jiraActionCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		jiraActionCacheModel.jiraIssueId = getJiraIssueId();

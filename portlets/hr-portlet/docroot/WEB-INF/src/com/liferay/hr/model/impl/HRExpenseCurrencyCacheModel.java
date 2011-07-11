@@ -74,8 +74,19 @@ public class HRExpenseCurrencyCacheModel implements CacheModel<HRExpenseCurrency
 			hrExpenseCurrencyImpl.setUserName(userName);
 		}
 
-		hrExpenseCurrencyImpl.setCreateDate(new Date(createDate));
-		hrExpenseCurrencyImpl.setModifiedDate(new Date(modifiedDate));
+		if (createDate == Long.MIN_VALUE) {
+			hrExpenseCurrencyImpl.setCreateDate(null);
+		}
+		else {
+			hrExpenseCurrencyImpl.setCreateDate(new Date(createDate));
+		}
+
+		if (modifiedDate == Long.MIN_VALUE) {
+			hrExpenseCurrencyImpl.setModifiedDate(null);
+		}
+		else {
+			hrExpenseCurrencyImpl.setModifiedDate(new Date(modifiedDate));
+		}
 
 		if (code == null) {
 			hrExpenseCurrencyImpl.setCode(StringPool.BLANK);

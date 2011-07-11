@@ -330,11 +330,17 @@ public class HRProjectBillingRateModelImpl extends BaseModelImpl<HRProjectBillin
 		if (createDate != null) {
 			hrProjectBillingRateCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			hrProjectBillingRateCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			hrProjectBillingRateCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			hrProjectBillingRateCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		hrProjectBillingRateCacheModel.hrProjectId = getHrProjectId();

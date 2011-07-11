@@ -331,11 +331,17 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 		if (createDate != null) {
 			wsrpConsumerPortletCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			wsrpConsumerPortletCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			wsrpConsumerPortletCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			wsrpConsumerPortletCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		wsrpConsumerPortletCacheModel.wsrpConsumerId = getWsrpConsumerId();

@@ -70,8 +70,19 @@ public class WallEntryCacheModel implements CacheModel<WallEntry> {
 			wallEntryImpl.setUserName(userName);
 		}
 
-		wallEntryImpl.setCreateDate(new Date(createDate));
-		wallEntryImpl.setModifiedDate(new Date(modifiedDate));
+		if (createDate == Long.MIN_VALUE) {
+			wallEntryImpl.setCreateDate(null);
+		}
+		else {
+			wallEntryImpl.setCreateDate(new Date(createDate));
+		}
+
+		if (modifiedDate == Long.MIN_VALUE) {
+			wallEntryImpl.setModifiedDate(null);
+		}
+		else {
+			wallEntryImpl.setModifiedDate(new Date(modifiedDate));
+		}
 
 		if (comments == null) {
 			wallEntryImpl.setComments(StringPool.BLANK);

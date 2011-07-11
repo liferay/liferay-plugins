@@ -363,11 +363,17 @@ public class FolderModelImpl extends BaseModelImpl<Folder>
 		if (createDate != null) {
 			folderCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			folderCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			folderCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			folderCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		folderCacheModel.accountId = getAccountId();

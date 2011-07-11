@@ -370,11 +370,17 @@ public class HRWageTypeModelImpl extends BaseModelImpl<HRWageType>
 		if (createDate != null) {
 			hrWageTypeCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			hrWageTypeCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			hrWageTypeCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			hrWageTypeCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		hrWageTypeCacheModel.code = getCode();

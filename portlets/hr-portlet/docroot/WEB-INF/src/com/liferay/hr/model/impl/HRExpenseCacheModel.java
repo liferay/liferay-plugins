@@ -92,12 +92,31 @@ public class HRExpenseCacheModel implements CacheModel<HRExpense> {
 			hrExpenseImpl.setUserName(userName);
 		}
 
-		hrExpenseImpl.setCreateDate(new Date(createDate));
-		hrExpenseImpl.setModifiedDate(new Date(modifiedDate));
+		if (createDate == Long.MIN_VALUE) {
+			hrExpenseImpl.setCreateDate(null);
+		}
+		else {
+			hrExpenseImpl.setCreateDate(new Date(createDate));
+		}
+
+		if (modifiedDate == Long.MIN_VALUE) {
+			hrExpenseImpl.setModifiedDate(null);
+		}
+		else {
+			hrExpenseImpl.setModifiedDate(new Date(modifiedDate));
+		}
+
 		hrExpenseImpl.setHrExpenseAccountId(hrExpenseAccountId);
 		hrExpenseImpl.setHrExpenseTypeId(hrExpenseTypeId);
 		hrExpenseImpl.setHrUserId(hrUserId);
-		hrExpenseImpl.setExpenseDate(new Date(expenseDate));
+
+		if (expenseDate == Long.MIN_VALUE) {
+			hrExpenseImpl.setExpenseDate(null);
+		}
+		else {
+			hrExpenseImpl.setExpenseDate(new Date(expenseDate));
+		}
+
 		hrExpenseImpl.setExpenseAmount(expenseAmount);
 		hrExpenseImpl.setExpenseHRExpenseCurrencyId(expenseHRExpenseCurrencyId);
 		hrExpenseImpl.setReimbursementAmount(reimbursementAmount);
@@ -112,7 +131,12 @@ public class HRExpenseCacheModel implements CacheModel<HRExpense> {
 			hrExpenseImpl.setStatusByUserName(statusByUserName);
 		}
 
-		hrExpenseImpl.setStatusDate(new Date(statusDate));
+		if (statusDate == Long.MIN_VALUE) {
+			hrExpenseImpl.setStatusDate(null);
+		}
+		else {
+			hrExpenseImpl.setStatusDate(new Date(statusDate));
+		}
 
 		hrExpenseImpl.resetOriginalValues();
 

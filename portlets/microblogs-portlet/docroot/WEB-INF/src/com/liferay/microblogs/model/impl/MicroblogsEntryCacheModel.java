@@ -75,8 +75,19 @@ public class MicroblogsEntryCacheModel implements CacheModel<MicroblogsEntry> {
 			microblogsEntryImpl.setUserName(userName);
 		}
 
-		microblogsEntryImpl.setCreateDate(new Date(createDate));
-		microblogsEntryImpl.setModifiedDate(new Date(modifiedDate));
+		if (createDate == Long.MIN_VALUE) {
+			microblogsEntryImpl.setCreateDate(null);
+		}
+		else {
+			microblogsEntryImpl.setCreateDate(new Date(createDate));
+		}
+
+		if (modifiedDate == Long.MIN_VALUE) {
+			microblogsEntryImpl.setModifiedDate(null);
+		}
+		else {
+			microblogsEntryImpl.setModifiedDate(new Date(modifiedDate));
+		}
 
 		if (content == null) {
 			microblogsEntryImpl.setContent(StringPool.BLANK);

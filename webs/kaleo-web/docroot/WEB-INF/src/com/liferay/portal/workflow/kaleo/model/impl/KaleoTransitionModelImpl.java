@@ -460,11 +460,17 @@ public class KaleoTransitionModelImpl extends BaseModelImpl<KaleoTransition>
 		if (createDate != null) {
 			kaleoTransitionCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			kaleoTransitionCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			kaleoTransitionCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			kaleoTransitionCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		kaleoTransitionCacheModel.kaleoDefinitionId = getKaleoDefinitionId();

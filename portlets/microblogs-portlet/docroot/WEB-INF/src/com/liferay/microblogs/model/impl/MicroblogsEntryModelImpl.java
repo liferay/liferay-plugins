@@ -413,11 +413,17 @@ public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 		if (createDate != null) {
 			microblogsEntryCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			microblogsEntryCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			microblogsEntryCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			microblogsEntryCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		microblogsEntryCacheModel.content = getContent();

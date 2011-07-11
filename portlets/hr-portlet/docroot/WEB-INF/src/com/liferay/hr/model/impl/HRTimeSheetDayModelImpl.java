@@ -358,11 +358,17 @@ public class HRTimeSheetDayModelImpl extends BaseModelImpl<HRTimeSheetDay>
 		if (createDate != null) {
 			hrTimeSheetDayCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			hrTimeSheetDayCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			hrTimeSheetDayCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			hrTimeSheetDayCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		hrTimeSheetDayCacheModel.hrTimeSheetId = getHrTimeSheetId();

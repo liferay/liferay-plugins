@@ -105,8 +105,19 @@ public class AccountCacheModel implements CacheModel<Account> {
 			accountImpl.setUserName(userName);
 		}
 
-		accountImpl.setCreateDate(new Date(createDate));
-		accountImpl.setModifiedDate(new Date(modifiedDate));
+		if (createDate == Long.MIN_VALUE) {
+			accountImpl.setCreateDate(null);
+		}
+		else {
+			accountImpl.setCreateDate(new Date(createDate));
+		}
+
+		if (modifiedDate == Long.MIN_VALUE) {
+			accountImpl.setModifiedDate(null);
+		}
+		else {
+			accountImpl.setModifiedDate(new Date(modifiedDate));
+		}
 
 		if (address == null) {
 			accountImpl.setAddress(StringPool.BLANK);

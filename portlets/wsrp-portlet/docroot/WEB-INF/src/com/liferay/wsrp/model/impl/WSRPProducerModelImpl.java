@@ -348,11 +348,17 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer>
 		if (createDate != null) {
 			wsrpProducerCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			wsrpProducerCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			wsrpProducerCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			wsrpProducerCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		wsrpProducerCacheModel.name = getName();

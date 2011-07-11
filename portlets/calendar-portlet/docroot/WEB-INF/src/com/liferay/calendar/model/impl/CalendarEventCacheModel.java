@@ -103,8 +103,19 @@ public class CalendarEventCacheModel implements CacheModel<CalendarEvent> {
 			calendarEventImpl.setUserName(userName);
 		}
 
-		calendarEventImpl.setCreateDate(new Date(createDate));
-		calendarEventImpl.setModifiedDate(new Date(modifiedDate));
+		if (createDate == Long.MIN_VALUE) {
+			calendarEventImpl.setCreateDate(null);
+		}
+		else {
+			calendarEventImpl.setCreateDate(new Date(createDate));
+		}
+
+		if (modifiedDate == Long.MIN_VALUE) {
+			calendarEventImpl.setModifiedDate(null);
+		}
+		else {
+			calendarEventImpl.setModifiedDate(new Date(modifiedDate));
+		}
 
 		if (title == null) {
 			calendarEventImpl.setTitle(StringPool.BLANK);
@@ -127,8 +138,20 @@ public class CalendarEventCacheModel implements CacheModel<CalendarEvent> {
 			calendarEventImpl.setLocation(location);
 		}
 
-		calendarEventImpl.setStartDate(new Date(startDate));
-		calendarEventImpl.setEndDate(new Date(endDate));
+		if (startDate == Long.MIN_VALUE) {
+			calendarEventImpl.setStartDate(null);
+		}
+		else {
+			calendarEventImpl.setStartDate(new Date(startDate));
+		}
+
+		if (endDate == Long.MIN_VALUE) {
+			calendarEventImpl.setEndDate(null);
+		}
+		else {
+			calendarEventImpl.setEndDate(new Date(endDate));
+		}
+
 		calendarEventImpl.setDurationHour(durationHour);
 		calendarEventImpl.setDurationMinute(durationMinute);
 		calendarEventImpl.setAllDay(allDay);

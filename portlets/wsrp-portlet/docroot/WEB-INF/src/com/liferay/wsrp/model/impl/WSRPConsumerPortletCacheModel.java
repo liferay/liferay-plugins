@@ -67,8 +67,21 @@ public class WSRPConsumerPortletCacheModel implements CacheModel<WSRPConsumerPor
 
 		wsrpConsumerPortletImpl.setWsrpConsumerPortletId(wsrpConsumerPortletId);
 		wsrpConsumerPortletImpl.setCompanyId(companyId);
-		wsrpConsumerPortletImpl.setCreateDate(new Date(createDate));
-		wsrpConsumerPortletImpl.setModifiedDate(new Date(modifiedDate));
+
+		if (createDate == Long.MIN_VALUE) {
+			wsrpConsumerPortletImpl.setCreateDate(null);
+		}
+		else {
+			wsrpConsumerPortletImpl.setCreateDate(new Date(createDate));
+		}
+
+		if (modifiedDate == Long.MIN_VALUE) {
+			wsrpConsumerPortletImpl.setModifiedDate(null);
+		}
+		else {
+			wsrpConsumerPortletImpl.setModifiedDate(new Date(modifiedDate));
+		}
+
 		wsrpConsumerPortletImpl.setWsrpConsumerId(wsrpConsumerId);
 
 		if (name == null) {

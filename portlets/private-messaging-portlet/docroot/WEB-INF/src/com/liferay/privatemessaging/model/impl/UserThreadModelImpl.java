@@ -345,11 +345,17 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 		if (createDate != null) {
 			userThreadCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			userThreadCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			userThreadCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			userThreadCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		userThreadCacheModel.mbThreadId = getMbThreadId();

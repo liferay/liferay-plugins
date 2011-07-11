@@ -65,8 +65,21 @@ public class JIRAIssueCacheModel implements CacheModel<JIRAIssue> {
 		JIRAIssueImpl jiraIssueImpl = new JIRAIssueImpl();
 
 		jiraIssueImpl.setJiraIssueId(jiraIssueId);
-		jiraIssueImpl.setCreateDate(new Date(createDate));
-		jiraIssueImpl.setModifiedDate(new Date(modifiedDate));
+
+		if (createDate == Long.MIN_VALUE) {
+			jiraIssueImpl.setCreateDate(null);
+		}
+		else {
+			jiraIssueImpl.setCreateDate(new Date(createDate));
+		}
+
+		if (modifiedDate == Long.MIN_VALUE) {
+			jiraIssueImpl.setModifiedDate(null);
+		}
+		else {
+			jiraIssueImpl.setModifiedDate(new Date(modifiedDate));
+		}
+
 		jiraIssueImpl.setProjectId(projectId);
 
 		if (key == null) {

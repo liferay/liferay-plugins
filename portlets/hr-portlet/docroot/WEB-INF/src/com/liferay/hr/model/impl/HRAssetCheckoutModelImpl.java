@@ -358,11 +358,17 @@ public class HRAssetCheckoutModelImpl extends BaseModelImpl<HRAssetCheckout>
 		if (createDate != null) {
 			hrAssetCheckoutCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			hrAssetCheckoutCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			hrAssetCheckoutCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			hrAssetCheckoutCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		hrAssetCheckoutCacheModel.hrAssetId = getHrAssetId();
@@ -374,17 +380,26 @@ public class HRAssetCheckoutModelImpl extends BaseModelImpl<HRAssetCheckout>
 		if (checkoutDate != null) {
 			hrAssetCheckoutCacheModel.checkoutDate = checkoutDate.getTime();
 		}
+		else {
+			hrAssetCheckoutCacheModel.checkoutDate = Long.MIN_VALUE;
+		}
 
 		Date expectedCheckInDate = getExpectedCheckInDate();
 
 		if (expectedCheckInDate != null) {
 			hrAssetCheckoutCacheModel.expectedCheckInDate = expectedCheckInDate.getTime();
 		}
+		else {
+			hrAssetCheckoutCacheModel.expectedCheckInDate = Long.MIN_VALUE;
+		}
 
 		Date actualCheckInDate = getActualCheckInDate();
 
 		if (actualCheckInDate != null) {
 			hrAssetCheckoutCacheModel.actualCheckInDate = actualCheckInDate.getTime();
+		}
+		else {
+			hrAssetCheckoutCacheModel.actualCheckInDate = Long.MIN_VALUE;
 		}
 
 		return hrAssetCheckoutCacheModel;

@@ -446,11 +446,17 @@ public class HRTimeSheetModelImpl extends BaseModelImpl<HRTimeSheet>
 		if (createDate != null) {
 			hrTimeSheetCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			hrTimeSheetCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			hrTimeSheetCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			hrTimeSheetCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		hrTimeSheetCacheModel.hrUserId = getHrUserId();
@@ -477,6 +483,9 @@ public class HRTimeSheetModelImpl extends BaseModelImpl<HRTimeSheet>
 
 		if (statusDate != null) {
 			hrTimeSheetCacheModel.statusDate = statusDate.getTime();
+		}
+		else {
+			hrTimeSheetCacheModel.statusDate = Long.MIN_VALUE;
 		}
 
 		return hrTimeSheetCacheModel;

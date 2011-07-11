@@ -93,8 +93,19 @@ public class KaleoTimerInstanceTokenCacheModel implements CacheModel<KaleoTimerI
 			kaleoTimerInstanceTokenImpl.setUserName(userName);
 		}
 
-		kaleoTimerInstanceTokenImpl.setCreateDate(new Date(createDate));
-		kaleoTimerInstanceTokenImpl.setModifiedDate(new Date(modifiedDate));
+		if (createDate == Long.MIN_VALUE) {
+			kaleoTimerInstanceTokenImpl.setCreateDate(null);
+		}
+		else {
+			kaleoTimerInstanceTokenImpl.setCreateDate(new Date(createDate));
+		}
+
+		if (modifiedDate == Long.MIN_VALUE) {
+			kaleoTimerInstanceTokenImpl.setModifiedDate(null);
+		}
+		else {
+			kaleoTimerInstanceTokenImpl.setModifiedDate(new Date(modifiedDate));
+		}
 
 		if (kaleoClassName == null) {
 			kaleoTimerInstanceTokenImpl.setKaleoClassName(StringPool.BLANK);
@@ -120,7 +131,14 @@ public class KaleoTimerInstanceTokenCacheModel implements CacheModel<KaleoTimerI
 		kaleoTimerInstanceTokenImpl.setBlocking(blocking);
 		kaleoTimerInstanceTokenImpl.setCompletionUserId(completionUserId);
 		kaleoTimerInstanceTokenImpl.setCompleted(completed);
-		kaleoTimerInstanceTokenImpl.setCompletionDate(new Date(completionDate));
+
+		if (completionDate == Long.MIN_VALUE) {
+			kaleoTimerInstanceTokenImpl.setCompletionDate(null);
+		}
+		else {
+			kaleoTimerInstanceTokenImpl.setCompletionDate(new Date(
+					completionDate));
+		}
 
 		if (workflowContext == null) {
 			kaleoTimerInstanceTokenImpl.setWorkflowContext(StringPool.BLANK);

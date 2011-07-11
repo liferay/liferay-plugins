@@ -348,11 +348,17 @@ public class HRUserTaskModelImpl extends BaseModelImpl<HRUserTask>
 		if (createDate != null) {
 			hrUserTaskCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			hrUserTaskCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			hrUserTaskCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			hrUserTaskCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		hrUserTaskCacheModel.hrBillabilityId = getHrBillabilityId();

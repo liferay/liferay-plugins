@@ -370,11 +370,17 @@ public class HRTaskStatusModelImpl extends BaseModelImpl<HRTaskStatus>
 		if (createDate != null) {
 			hrTaskStatusCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			hrTaskStatusCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			hrTaskStatusCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			hrTaskStatusCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		hrTaskStatusCacheModel.code = getCode();

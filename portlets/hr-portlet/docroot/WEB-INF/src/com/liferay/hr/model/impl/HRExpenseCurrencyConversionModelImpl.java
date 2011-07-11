@@ -401,11 +401,17 @@ public class HRExpenseCurrencyConversionModelImpl extends BaseModelImpl<HRExpens
 		if (createDate != null) {
 			hrExpenseCurrencyConversionCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			hrExpenseCurrencyConversionCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			hrExpenseCurrencyConversionCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			hrExpenseCurrencyConversionCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		hrExpenseCurrencyConversionCacheModel.fromHRExpenseCurrencyId = getFromHRExpenseCurrencyId();
@@ -416,6 +422,9 @@ public class HRExpenseCurrencyConversionModelImpl extends BaseModelImpl<HRExpens
 
 		if (conversionDate != null) {
 			hrExpenseCurrencyConversionCacheModel.conversionDate = conversionDate.getTime();
+		}
+		else {
+			hrExpenseCurrencyConversionCacheModel.conversionDate = Long.MIN_VALUE;
 		}
 
 		hrExpenseCurrencyConversionCacheModel.conversionValue = getConversionValue();

@@ -484,11 +484,17 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 		if (createDate != null) {
 			kaleoTaskInstanceTokenCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			kaleoTaskInstanceTokenCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			kaleoTaskInstanceTokenCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			kaleoTaskInstanceTokenCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		kaleoTaskInstanceTokenCacheModel.kaleoDefinitionId = getKaleoDefinitionId();
@@ -526,11 +532,17 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 		if (completionDate != null) {
 			kaleoTaskInstanceTokenCacheModel.completionDate = completionDate.getTime();
 		}
+		else {
+			kaleoTaskInstanceTokenCacheModel.completionDate = Long.MIN_VALUE;
+		}
 
 		Date dueDate = getDueDate();
 
 		if (dueDate != null) {
 			kaleoTaskInstanceTokenCacheModel.dueDate = dueDate.getTime();
+		}
+		else {
+			kaleoTaskInstanceTokenCacheModel.dueDate = Long.MIN_VALUE;
 		}
 
 		kaleoTaskInstanceTokenCacheModel.workflowContext = getWorkflowContext();

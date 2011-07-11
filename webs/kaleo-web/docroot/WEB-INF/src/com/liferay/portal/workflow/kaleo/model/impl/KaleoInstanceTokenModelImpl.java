@@ -411,11 +411,17 @@ public class KaleoInstanceTokenModelImpl extends BaseModelImpl<KaleoInstanceToke
 		if (createDate != null) {
 			kaleoInstanceTokenCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			kaleoInstanceTokenCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			kaleoInstanceTokenCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			kaleoInstanceTokenCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		kaleoInstanceTokenCacheModel.kaleoDefinitionId = getKaleoDefinitionId();
@@ -451,6 +457,9 @@ public class KaleoInstanceTokenModelImpl extends BaseModelImpl<KaleoInstanceToke
 
 		if (completionDate != null) {
 			kaleoInstanceTokenCacheModel.completionDate = completionDate.getTime();
+		}
+		else {
+			kaleoInstanceTokenCacheModel.completionDate = Long.MIN_VALUE;
 		}
 
 		return kaleoInstanceTokenCacheModel;

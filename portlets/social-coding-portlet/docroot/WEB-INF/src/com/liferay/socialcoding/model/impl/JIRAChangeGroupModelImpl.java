@@ -258,6 +258,9 @@ public class JIRAChangeGroupModelImpl extends BaseModelImpl<JIRAChangeGroup>
 		if (createDate != null) {
 			jiraChangeGroupCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			jiraChangeGroupCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		jiraChangeGroupCacheModel.jiraIssueId = getJiraIssueId();
 

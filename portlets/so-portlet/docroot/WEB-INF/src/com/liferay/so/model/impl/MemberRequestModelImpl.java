@@ -421,11 +421,17 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
 		if (createDate != null) {
 			memberRequestCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			memberRequestCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			memberRequestCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			memberRequestCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		memberRequestCacheModel.key = getKey();

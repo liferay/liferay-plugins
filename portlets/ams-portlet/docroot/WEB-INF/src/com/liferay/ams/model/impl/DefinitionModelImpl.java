@@ -370,11 +370,17 @@ public class DefinitionModelImpl extends BaseModelImpl<Definition>
 		if (createDate != null) {
 			definitionCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			definitionCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			definitionCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			definitionCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		definitionCacheModel.typeId = getTypeId();
@@ -399,6 +405,9 @@ public class DefinitionModelImpl extends BaseModelImpl<Definition>
 
 		if (orderDate != null) {
 			definitionCacheModel.orderDate = orderDate.getTime();
+		}
+		else {
+			definitionCacheModel.orderDate = Long.MIN_VALUE;
 		}
 
 		definitionCacheModel.quantity = getQuantity();

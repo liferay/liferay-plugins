@@ -372,11 +372,17 @@ public class HRHolidayModelImpl extends BaseModelImpl<HRHoliday>
 		if (createDate != null) {
 			hrHolidayCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			hrHolidayCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			hrHolidayCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			hrHolidayCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		hrHolidayCacheModel.name = getName();

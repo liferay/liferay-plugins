@@ -289,6 +289,9 @@ public class SVNRevisionModelImpl extends BaseModelImpl<SVNRevision>
 		if (createDate != null) {
 			svnRevisionCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			svnRevisionCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		svnRevisionCacheModel.svnRepositoryId = getSvnRepositoryId();
 

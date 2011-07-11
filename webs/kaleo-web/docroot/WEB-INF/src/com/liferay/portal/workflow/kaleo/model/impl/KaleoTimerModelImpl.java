@@ -436,11 +436,17 @@ public class KaleoTimerModelImpl extends BaseModelImpl<KaleoTimer>
 		if (createDate != null) {
 			kaleoTimerCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			kaleoTimerCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			kaleoTimerCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			kaleoTimerCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		kaleoTimerCacheModel.kaleoClassName = getKaleoClassName();

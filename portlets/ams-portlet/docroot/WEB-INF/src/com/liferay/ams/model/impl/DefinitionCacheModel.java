@@ -80,8 +80,20 @@ public class DefinitionCacheModel implements CacheModel<Definition> {
 			definitionImpl.setUserName(userName);
 		}
 
-		definitionImpl.setCreateDate(new Date(createDate));
-		definitionImpl.setModifiedDate(new Date(modifiedDate));
+		if (createDate == Long.MIN_VALUE) {
+			definitionImpl.setCreateDate(null);
+		}
+		else {
+			definitionImpl.setCreateDate(new Date(createDate));
+		}
+
+		if (modifiedDate == Long.MIN_VALUE) {
+			definitionImpl.setModifiedDate(null);
+		}
+		else {
+			definitionImpl.setModifiedDate(new Date(modifiedDate));
+		}
+
 		definitionImpl.setTypeId(typeId);
 
 		if (manufacturer == null) {
@@ -98,7 +110,13 @@ public class DefinitionCacheModel implements CacheModel<Definition> {
 			definitionImpl.setModel(model);
 		}
 
-		definitionImpl.setOrderDate(new Date(orderDate));
+		if (orderDate == Long.MIN_VALUE) {
+			definitionImpl.setOrderDate(null);
+		}
+		else {
+			definitionImpl.setOrderDate(new Date(orderDate));
+		}
+
 		definitionImpl.setQuantity(quantity);
 		definitionImpl.setPrice(price);
 

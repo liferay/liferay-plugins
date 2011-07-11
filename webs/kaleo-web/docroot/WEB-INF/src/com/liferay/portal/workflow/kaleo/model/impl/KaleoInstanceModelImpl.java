@@ -416,11 +416,17 @@ public class KaleoInstanceModelImpl extends BaseModelImpl<KaleoInstance>
 		if (createDate != null) {
 			kaleoInstanceCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			kaleoInstanceCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			kaleoInstanceCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			kaleoInstanceCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		kaleoInstanceCacheModel.kaleoDefinitionId = getKaleoDefinitionId();
@@ -454,6 +460,9 @@ public class KaleoInstanceModelImpl extends BaseModelImpl<KaleoInstance>
 
 		if (completionDate != null) {
 			kaleoInstanceCacheModel.completionDate = completionDate.getTime();
+		}
+		else {
+			kaleoInstanceCacheModel.completionDate = Long.MIN_VALUE;
 		}
 
 		kaleoInstanceCacheModel.workflowContext = getWorkflowContext();

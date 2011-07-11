@@ -390,11 +390,17 @@ public class HRAssetDefinitionModelImpl extends BaseModelImpl<HRAssetDefinition>
 		if (createDate != null) {
 			hrAssetDefinitionCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			hrAssetDefinitionCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			hrAssetDefinitionCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			hrAssetDefinitionCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		hrAssetDefinitionCacheModel.hrAssetProductId = getHrAssetProductId();
@@ -422,11 +428,17 @@ public class HRAssetDefinitionModelImpl extends BaseModelImpl<HRAssetDefinition>
 		if (orderId != null) {
 			hrAssetDefinitionCacheModel.orderId = orderId.getTime();
 		}
+		else {
+			hrAssetDefinitionCacheModel.orderId = Long.MIN_VALUE;
+		}
 
 		Date orderDate = getOrderDate();
 
 		if (orderDate != null) {
 			hrAssetDefinitionCacheModel.orderDate = orderDate.getTime();
+		}
+		else {
+			hrAssetDefinitionCacheModel.orderDate = Long.MIN_VALUE;
 		}
 
 		hrAssetDefinitionCacheModel.quantity = getQuantity();

@@ -578,11 +578,17 @@ public class AccountModelImpl extends BaseModelImpl<Account>
 		if (createDate != null) {
 			accountCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			accountCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			accountCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			accountCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		accountCacheModel.address = getAddress();

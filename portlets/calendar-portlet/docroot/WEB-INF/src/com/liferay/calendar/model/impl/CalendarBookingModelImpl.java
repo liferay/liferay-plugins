@@ -964,11 +964,17 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		if (createDate != null) {
 			calendarBookingCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			calendarBookingCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			calendarBookingCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			calendarBookingCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		calendarBookingCacheModel.calendarEventId = getCalendarEventId();
@@ -1016,11 +1022,17 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		if (startDate != null) {
 			calendarBookingCacheModel.startDate = startDate.getTime();
 		}
+		else {
+			calendarBookingCacheModel.startDate = Long.MIN_VALUE;
+		}
 
 		Date endDate = getEndDate();
 
 		if (endDate != null) {
 			calendarBookingCacheModel.endDate = endDate.getTime();
+		}
+		else {
+			calendarBookingCacheModel.endDate = Long.MIN_VALUE;
 		}
 
 		calendarBookingCacheModel.durationHour = getDurationHour();
@@ -1061,6 +1073,9 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 
 		if (statusDate != null) {
 			calendarBookingCacheModel.statusDate = statusDate.getTime();
+		}
+		else {
+			calendarBookingCacheModel.statusDate = Long.MIN_VALUE;
 		}
 
 		return calendarBookingCacheModel;

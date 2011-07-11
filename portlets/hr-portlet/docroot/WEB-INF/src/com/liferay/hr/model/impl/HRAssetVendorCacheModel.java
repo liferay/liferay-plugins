@@ -72,8 +72,19 @@ public class HRAssetVendorCacheModel implements CacheModel<HRAssetVendor> {
 			hrAssetVendorImpl.setUserName(userName);
 		}
 
-		hrAssetVendorImpl.setCreateDate(new Date(createDate));
-		hrAssetVendorImpl.setModifiedDate(new Date(modifiedDate));
+		if (createDate == Long.MIN_VALUE) {
+			hrAssetVendorImpl.setCreateDate(null);
+		}
+		else {
+			hrAssetVendorImpl.setCreateDate(new Date(createDate));
+		}
+
+		if (modifiedDate == Long.MIN_VALUE) {
+			hrAssetVendorImpl.setModifiedDate(null);
+		}
+		else {
+			hrAssetVendorImpl.setModifiedDate(new Date(modifiedDate));
+		}
 
 		if (name == null) {
 			hrAssetVendorImpl.setName(StringPool.BLANK);

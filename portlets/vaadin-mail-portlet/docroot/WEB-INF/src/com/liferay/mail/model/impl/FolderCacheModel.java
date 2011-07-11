@@ -73,8 +73,20 @@ public class FolderCacheModel implements CacheModel<Folder> {
 			folderImpl.setUserName(userName);
 		}
 
-		folderImpl.setCreateDate(new Date(createDate));
-		folderImpl.setModifiedDate(new Date(modifiedDate));
+		if (createDate == Long.MIN_VALUE) {
+			folderImpl.setCreateDate(null);
+		}
+		else {
+			folderImpl.setCreateDate(new Date(createDate));
+		}
+
+		if (modifiedDate == Long.MIN_VALUE) {
+			folderImpl.setModifiedDate(null);
+		}
+		else {
+			folderImpl.setModifiedDate(new Date(modifiedDate));
+		}
+
 		folderImpl.setAccountId(accountId);
 
 		if (fullName == null) {

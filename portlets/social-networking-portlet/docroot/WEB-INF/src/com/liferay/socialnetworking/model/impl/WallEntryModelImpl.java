@@ -318,11 +318,17 @@ public class WallEntryModelImpl extends BaseModelImpl<WallEntry>
 		if (createDate != null) {
 			wallEntryCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			wallEntryCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			wallEntryCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			wallEntryCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		wallEntryCacheModel.comments = getComments();

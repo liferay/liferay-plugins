@@ -688,11 +688,17 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 		if (createDate != null) {
 			calendarResourceCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			calendarResourceCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			calendarResourceCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			calendarResourceCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		calendarResourceCacheModel.classNameId = getClassNameId();

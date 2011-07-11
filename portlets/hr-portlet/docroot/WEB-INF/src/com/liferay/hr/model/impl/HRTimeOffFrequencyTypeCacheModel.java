@@ -74,8 +74,19 @@ public class HRTimeOffFrequencyTypeCacheModel implements CacheModel<HRTimeOffFre
 			hrTimeOffFrequencyTypeImpl.setUserName(userName);
 		}
 
-		hrTimeOffFrequencyTypeImpl.setCreateDate(new Date(createDate));
-		hrTimeOffFrequencyTypeImpl.setModifiedDate(new Date(modifiedDate));
+		if (createDate == Long.MIN_VALUE) {
+			hrTimeOffFrequencyTypeImpl.setCreateDate(null);
+		}
+		else {
+			hrTimeOffFrequencyTypeImpl.setCreateDate(new Date(createDate));
+		}
+
+		if (modifiedDate == Long.MIN_VALUE) {
+			hrTimeOffFrequencyTypeImpl.setModifiedDate(null);
+		}
+		else {
+			hrTimeOffFrequencyTypeImpl.setModifiedDate(new Date(modifiedDate));
+		}
 
 		if (code == null) {
 			hrTimeOffFrequencyTypeImpl.setCode(StringPool.BLANK);

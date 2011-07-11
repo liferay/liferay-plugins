@@ -533,11 +533,17 @@ public class HRTaskModelImpl extends BaseModelImpl<HRTask>
 		if (createDate != null) {
 			hrTaskCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			hrTaskCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			hrTaskCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			hrTaskCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		hrTaskCacheModel.hrBillabilityId = getHrBillabilityId();
@@ -569,11 +575,17 @@ public class HRTaskModelImpl extends BaseModelImpl<HRTask>
 		if (estimatedStartDate != null) {
 			hrTaskCacheModel.estimatedStartDate = estimatedStartDate.getTime();
 		}
+		else {
+			hrTaskCacheModel.estimatedStartDate = Long.MIN_VALUE;
+		}
 
 		Date estimatedEndDate = getEstimatedEndDate();
 
 		if (estimatedEndDate != null) {
 			hrTaskCacheModel.estimatedEndDate = estimatedEndDate.getTime();
+		}
+		else {
+			hrTaskCacheModel.estimatedEndDate = Long.MIN_VALUE;
 		}
 
 		hrTaskCacheModel.estimatedHours = getEstimatedHours();
@@ -605,11 +617,17 @@ public class HRTaskModelImpl extends BaseModelImpl<HRTask>
 		if (actualStartDate != null) {
 			hrTaskCacheModel.actualStartDate = actualStartDate.getTime();
 		}
+		else {
+			hrTaskCacheModel.actualStartDate = Long.MIN_VALUE;
+		}
 
 		Date actualEndDate = getActualEndDate();
 
 		if (actualEndDate != null) {
 			hrTaskCacheModel.actualEndDate = actualEndDate.getTime();
+		}
+		else {
+			hrTaskCacheModel.actualEndDate = Long.MIN_VALUE;
 		}
 
 		hrTaskCacheModel.actualHours = getActualHours();

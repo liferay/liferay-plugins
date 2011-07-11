@@ -71,8 +71,20 @@ public class MeetupsRegistrationCacheModel implements CacheModel<MeetupsRegistra
 			meetupsRegistrationImpl.setUserName(userName);
 		}
 
-		meetupsRegistrationImpl.setCreateDate(new Date(createDate));
-		meetupsRegistrationImpl.setModifiedDate(new Date(modifiedDate));
+		if (createDate == Long.MIN_VALUE) {
+			meetupsRegistrationImpl.setCreateDate(null);
+		}
+		else {
+			meetupsRegistrationImpl.setCreateDate(new Date(createDate));
+		}
+
+		if (modifiedDate == Long.MIN_VALUE) {
+			meetupsRegistrationImpl.setModifiedDate(null);
+		}
+		else {
+			meetupsRegistrationImpl.setModifiedDate(new Date(modifiedDate));
+		}
+
 		meetupsRegistrationImpl.setMeetupsEntryId(meetupsEntryId);
 		meetupsRegistrationImpl.setStatus(status);
 

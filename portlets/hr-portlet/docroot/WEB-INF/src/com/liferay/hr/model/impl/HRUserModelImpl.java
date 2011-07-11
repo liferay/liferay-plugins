@@ -431,11 +431,17 @@ public class HRUserModelImpl extends BaseModelImpl<HRUser>
 		if (createDate != null) {
 			hrUserCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			hrUserCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			hrUserCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			hrUserCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		hrUserCacheModel.hrEmploymentTypeId = getHrEmploymentTypeId();
@@ -453,11 +459,17 @@ public class HRUserModelImpl extends BaseModelImpl<HRUser>
 		if (hireDate != null) {
 			hrUserCacheModel.hireDate = hireDate.getTime();
 		}
+		else {
+			hrUserCacheModel.hireDate = Long.MIN_VALUE;
+		}
 
 		Date terminationDate = getTerminationDate();
 
 		if (terminationDate != null) {
 			hrUserCacheModel.terminationDate = terminationDate.getTime();
+		}
+		else {
+			hrUserCacheModel.terminationDate = Long.MIN_VALUE;
 		}
 
 		hrUserCacheModel.wageAmount = getWageAmount();

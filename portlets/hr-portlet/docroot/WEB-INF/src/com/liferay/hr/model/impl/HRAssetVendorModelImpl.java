@@ -330,11 +330,17 @@ public class HRAssetVendorModelImpl extends BaseModelImpl<HRAssetVendor>
 		if (createDate != null) {
 			hrAssetVendorCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			hrAssetVendorCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			hrAssetVendorCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			hrAssetVendorCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		hrAssetVendorCacheModel.name = getName();

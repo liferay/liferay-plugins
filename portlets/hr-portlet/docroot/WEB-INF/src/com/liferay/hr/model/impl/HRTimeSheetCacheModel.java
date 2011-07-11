@@ -84,8 +84,20 @@ public class HRTimeSheetCacheModel implements CacheModel<HRTimeSheet> {
 			hrTimeSheetImpl.setUserName(userName);
 		}
 
-		hrTimeSheetImpl.setCreateDate(new Date(createDate));
-		hrTimeSheetImpl.setModifiedDate(new Date(modifiedDate));
+		if (createDate == Long.MIN_VALUE) {
+			hrTimeSheetImpl.setCreateDate(null);
+		}
+		else {
+			hrTimeSheetImpl.setCreateDate(new Date(createDate));
+		}
+
+		if (modifiedDate == Long.MIN_VALUE) {
+			hrTimeSheetImpl.setModifiedDate(null);
+		}
+		else {
+			hrTimeSheetImpl.setModifiedDate(new Date(modifiedDate));
+		}
+
 		hrTimeSheetImpl.setHrUserId(hrUserId);
 		hrTimeSheetImpl.setStartDayOfYear(startDayOfYear);
 		hrTimeSheetImpl.setEndDayOfYear(endDayOfYear);
@@ -100,7 +112,12 @@ public class HRTimeSheetCacheModel implements CacheModel<HRTimeSheet> {
 			hrTimeSheetImpl.setStatusByUserName(statusByUserName);
 		}
 
-		hrTimeSheetImpl.setStatusDate(new Date(statusDate));
+		if (statusDate == Long.MIN_VALUE) {
+			hrTimeSheetImpl.setStatusDate(null);
+		}
+		else {
+			hrTimeSheetImpl.setStatusDate(new Date(statusDate));
+		}
 
 		hrTimeSheetImpl.resetOriginalValues();
 

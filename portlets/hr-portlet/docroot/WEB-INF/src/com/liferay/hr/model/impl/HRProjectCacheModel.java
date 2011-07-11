@@ -104,8 +104,20 @@ public class HRProjectCacheModel implements CacheModel<HRProject> {
 			hrProjectImpl.setUserName(userName);
 		}
 
-		hrProjectImpl.setCreateDate(new Date(createDate));
-		hrProjectImpl.setModifiedDate(new Date(modifiedDate));
+		if (createDate == Long.MIN_VALUE) {
+			hrProjectImpl.setCreateDate(null);
+		}
+		else {
+			hrProjectImpl.setCreateDate(new Date(createDate));
+		}
+
+		if (modifiedDate == Long.MIN_VALUE) {
+			hrProjectImpl.setModifiedDate(null);
+		}
+		else {
+			hrProjectImpl.setModifiedDate(new Date(modifiedDate));
+		}
+
 		hrProjectImpl.setHrClientId(hrClientId);
 		hrProjectImpl.setHrProjectStatusId(hrProjectStatusId);
 
@@ -123,8 +135,20 @@ public class HRProjectCacheModel implements CacheModel<HRProject> {
 			hrProjectImpl.setDescription(description);
 		}
 
-		hrProjectImpl.setEstimatedStartDate(new Date(estimatedStartDate));
-		hrProjectImpl.setEstimatedEndDate(new Date(estimatedEndDate));
+		if (estimatedStartDate == Long.MIN_VALUE) {
+			hrProjectImpl.setEstimatedStartDate(null);
+		}
+		else {
+			hrProjectImpl.setEstimatedStartDate(new Date(estimatedStartDate));
+		}
+
+		if (estimatedEndDate == Long.MIN_VALUE) {
+			hrProjectImpl.setEstimatedEndDate(null);
+		}
+		else {
+			hrProjectImpl.setEstimatedEndDate(new Date(estimatedEndDate));
+		}
+
 		hrProjectImpl.setEstimatedHours(estimatedHours);
 		hrProjectImpl.setEstimatedHoursCost(estimatedHoursCost);
 
@@ -144,8 +168,20 @@ public class HRProjectCacheModel implements CacheModel<HRProject> {
 			hrProjectImpl.setEstimatedExpensesCurrencyCode(estimatedExpensesCurrencyCode);
 		}
 
-		hrProjectImpl.setActualStartDate(new Date(actualStartDate));
-		hrProjectImpl.setActualEndDate(new Date(actualEndDate));
+		if (actualStartDate == Long.MIN_VALUE) {
+			hrProjectImpl.setActualStartDate(null);
+		}
+		else {
+			hrProjectImpl.setActualStartDate(new Date(actualStartDate));
+		}
+
+		if (actualEndDate == Long.MIN_VALUE) {
+			hrProjectImpl.setActualEndDate(null);
+		}
+		else {
+			hrProjectImpl.setActualEndDate(new Date(actualEndDate));
+		}
+
 		hrProjectImpl.setActualHours(actualHours);
 		hrProjectImpl.setActualHoursCost(actualHoursCost);
 
