@@ -74,13 +74,8 @@ public class HREmploymentTypeCacheModel implements CacheModel<HREmploymentType> 
 			hrEmploymentTypeImpl.setUserName(userName);
 		}
 
-		if (createDate > 0) {
-			hrEmploymentTypeImpl.setCreateDate(new Date(createDate));
-		}
-
-		if (modifiedDate > 0) {
-			hrEmploymentTypeImpl.setModifiedDate(new Date(modifiedDate));
-		}
+		hrEmploymentTypeImpl.setCreateDate(new Date(createDate));
+		hrEmploymentTypeImpl.setModifiedDate(new Date(modifiedDate));
 
 		if (code == null) {
 			hrEmploymentTypeImpl.setCode(StringPool.BLANK);

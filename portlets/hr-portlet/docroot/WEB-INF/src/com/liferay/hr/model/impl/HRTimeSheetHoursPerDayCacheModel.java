@@ -72,14 +72,8 @@ public class HRTimeSheetHoursPerDayCacheModel implements CacheModel<HRTimeSheetH
 			hrTimeSheetHoursPerDayImpl.setUserName(userName);
 		}
 
-		if (createDate > 0) {
-			hrTimeSheetHoursPerDayImpl.setCreateDate(new Date(createDate));
-		}
-
-		if (modifiedDate > 0) {
-			hrTimeSheetHoursPerDayImpl.setModifiedDate(new Date(modifiedDate));
-		}
-
+		hrTimeSheetHoursPerDayImpl.setCreateDate(new Date(createDate));
+		hrTimeSheetHoursPerDayImpl.setModifiedDate(new Date(modifiedDate));
 		hrTimeSheetHoursPerDayImpl.setHrOfficeId(hrOfficeId);
 		hrTimeSheetHoursPerDayImpl.setHoursPerDay(hoursPerDay);
 

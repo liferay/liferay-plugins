@@ -76,14 +76,8 @@ public class HRAssetCacheModel implements CacheModel<HRAsset> {
 			hrAssetImpl.setUserName(userName);
 		}
 
-		if (createDate > 0) {
-			hrAssetImpl.setCreateDate(new Date(createDate));
-		}
-
-		if (modifiedDate > 0) {
-			hrAssetImpl.setModifiedDate(new Date(modifiedDate));
-		}
-
+		hrAssetImpl.setCreateDate(new Date(createDate));
+		hrAssetImpl.setModifiedDate(new Date(modifiedDate));
 		hrAssetImpl.setHrAssetDefinitionId(hrAssetDefinitionId);
 		hrAssetImpl.setHrAssetTypeId(hrAssetTypeId);
 
@@ -94,9 +88,7 @@ public class HRAssetCacheModel implements CacheModel<HRAsset> {
 			hrAssetImpl.setSerialNumber(serialNumber);
 		}
 
-		if (inactiveDate > 0) {
-			hrAssetImpl.setInactiveDate(new Date(inactiveDate));
-		}
+		hrAssetImpl.setInactiveDate(new Date(inactiveDate));
 
 		hrAssetImpl.resetOriginalValues();
 

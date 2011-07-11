@@ -72,13 +72,8 @@ public class HRClientCacheModel implements CacheModel<HRClient> {
 			hrClientImpl.setUserName(userName);
 		}
 
-		if (createDate > 0) {
-			hrClientImpl.setCreateDate(new Date(createDate));
-		}
-
-		if (modifiedDate > 0) {
-			hrClientImpl.setModifiedDate(new Date(modifiedDate));
-		}
+		hrClientImpl.setCreateDate(new Date(createDate));
+		hrClientImpl.setModifiedDate(new Date(modifiedDate));
 
 		if (name == null) {
 			hrClientImpl.setName(StringPool.BLANK);

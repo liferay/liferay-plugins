@@ -76,14 +76,8 @@ public class HRUserTaskCacheModel implements CacheModel<HRUserTask> {
 			hrUserTaskImpl.setUserName(userName);
 		}
 
-		if (createDate > 0) {
-			hrUserTaskImpl.setCreateDate(new Date(createDate));
-		}
-
-		if (modifiedDate > 0) {
-			hrUserTaskImpl.setModifiedDate(new Date(modifiedDate));
-		}
-
+		hrUserTaskImpl.setCreateDate(new Date(createDate));
+		hrUserTaskImpl.setModifiedDate(new Date(modifiedDate));
 		hrUserTaskImpl.setHrBillabilityId(hrBillabilityId);
 		hrUserTaskImpl.setHrTaskId(hrTaskId);
 		hrUserTaskImpl.setHrTimesheetId(hrTimesheetId);

@@ -78,14 +78,8 @@ public class HRTimeSheetDayCacheModel implements CacheModel<HRTimeSheetDay> {
 			hrTimeSheetDayImpl.setUserName(userName);
 		}
 
-		if (createDate > 0) {
-			hrTimeSheetDayImpl.setCreateDate(new Date(createDate));
-		}
-
-		if (modifiedDate > 0) {
-			hrTimeSheetDayImpl.setModifiedDate(new Date(modifiedDate));
-		}
-
+		hrTimeSheetDayImpl.setCreateDate(new Date(createDate));
+		hrTimeSheetDayImpl.setModifiedDate(new Date(modifiedDate));
 		hrTimeSheetDayImpl.setHrTimeSheetId(hrTimeSheetId);
 		hrTimeSheetDayImpl.setHrUserId(hrUserId);
 		hrTimeSheetDayImpl.setDayOfYear(dayOfYear);

@@ -92,22 +92,12 @@ public class HRExpenseCacheModel implements CacheModel<HRExpense> {
 			hrExpenseImpl.setUserName(userName);
 		}
 
-		if (createDate > 0) {
-			hrExpenseImpl.setCreateDate(new Date(createDate));
-		}
-
-		if (modifiedDate > 0) {
-			hrExpenseImpl.setModifiedDate(new Date(modifiedDate));
-		}
-
+		hrExpenseImpl.setCreateDate(new Date(createDate));
+		hrExpenseImpl.setModifiedDate(new Date(modifiedDate));
 		hrExpenseImpl.setHrExpenseAccountId(hrExpenseAccountId);
 		hrExpenseImpl.setHrExpenseTypeId(hrExpenseTypeId);
 		hrExpenseImpl.setHrUserId(hrUserId);
-
-		if (expenseDate > 0) {
-			hrExpenseImpl.setExpenseDate(new Date(expenseDate));
-		}
-
+		hrExpenseImpl.setExpenseDate(new Date(expenseDate));
 		hrExpenseImpl.setExpenseAmount(expenseAmount);
 		hrExpenseImpl.setExpenseHRExpenseCurrencyId(expenseHRExpenseCurrencyId);
 		hrExpenseImpl.setReimbursementAmount(reimbursementAmount);
@@ -122,9 +112,7 @@ public class HRExpenseCacheModel implements CacheModel<HRExpense> {
 			hrExpenseImpl.setStatusByUserName(statusByUserName);
 		}
 
-		if (statusDate > 0) {
-			hrExpenseImpl.setStatusDate(new Date(statusDate));
-		}
+		hrExpenseImpl.setStatusDate(new Date(statusDate));
 
 		hrExpenseImpl.resetOriginalValues();
 

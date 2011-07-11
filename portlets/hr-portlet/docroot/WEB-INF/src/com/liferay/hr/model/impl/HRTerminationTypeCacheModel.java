@@ -74,13 +74,8 @@ public class HRTerminationTypeCacheModel implements CacheModel<HRTerminationType
 			hrTerminationTypeImpl.setUserName(userName);
 		}
 
-		if (createDate > 0) {
-			hrTerminationTypeImpl.setCreateDate(new Date(createDate));
-		}
-
-		if (modifiedDate > 0) {
-			hrTerminationTypeImpl.setModifiedDate(new Date(modifiedDate));
-		}
+		hrTerminationTypeImpl.setCreateDate(new Date(createDate));
+		hrTerminationTypeImpl.setModifiedDate(new Date(modifiedDate));
 
 		if (code == null) {
 			hrTerminationTypeImpl.setCode(StringPool.BLANK);

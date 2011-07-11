@@ -78,13 +78,8 @@ public class MemberRequestCacheModel implements CacheModel<MemberRequest> {
 			memberRequestImpl.setUserName(userName);
 		}
 
-		if (createDate > 0) {
-			memberRequestImpl.setCreateDate(new Date(createDate));
-		}
-
-		if (modifiedDate > 0) {
-			memberRequestImpl.setModifiedDate(new Date(modifiedDate));
-		}
+		memberRequestImpl.setCreateDate(new Date(createDate));
+		memberRequestImpl.setModifiedDate(new Date(modifiedDate));
 
 		if (key == null) {
 			memberRequestImpl.setKey(StringPool.BLANK);

@@ -78,14 +78,8 @@ public class HRUserProjectCacheModel implements CacheModel<HRUserProject> {
 			hrUserProjectImpl.setUserName(userName);
 		}
 
-		if (createDate > 0) {
-			hrUserProjectImpl.setCreateDate(new Date(createDate));
-		}
-
-		if (modifiedDate > 0) {
-			hrUserProjectImpl.setModifiedDate(new Date(modifiedDate));
-		}
-
+		hrUserProjectImpl.setCreateDate(new Date(createDate));
+		hrUserProjectImpl.setModifiedDate(new Date(modifiedDate));
 		hrUserProjectImpl.setHrProjectBillingRateId(hrProjectBillingRateId);
 		hrUserProjectImpl.setHrProjectId(hrProjectId);
 		hrUserProjectImpl.setHrProjectRoleId(hrProjectRoleId);

@@ -62,14 +62,8 @@ public class OAuthConsumerCacheModel implements CacheModel<OAuthConsumer> {
 
 		oAuthConsumerImpl.setOAuthConsumerId(oAuthConsumerId);
 		oAuthConsumerImpl.setCompanyId(companyId);
-
-		if (createDate > 0) {
-			oAuthConsumerImpl.setCreateDate(new Date(createDate));
-		}
-
-		if (modifiedDate > 0) {
-			oAuthConsumerImpl.setModifiedDate(new Date(modifiedDate));
-		}
+		oAuthConsumerImpl.setCreateDate(new Date(createDate));
+		oAuthConsumerImpl.setModifiedDate(new Date(modifiedDate));
 
 		if (gadgetKey == null) {
 			oAuthConsumerImpl.setGadgetKey(StringPool.BLANK);

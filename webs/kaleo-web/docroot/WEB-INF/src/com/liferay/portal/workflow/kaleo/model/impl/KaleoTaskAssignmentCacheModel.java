@@ -85,13 +85,8 @@ public class KaleoTaskAssignmentCacheModel implements CacheModel<KaleoTaskAssign
 			kaleoTaskAssignmentImpl.setUserName(userName);
 		}
 
-		if (createDate > 0) {
-			kaleoTaskAssignmentImpl.setCreateDate(new Date(createDate));
-		}
-
-		if (modifiedDate > 0) {
-			kaleoTaskAssignmentImpl.setModifiedDate(new Date(modifiedDate));
-		}
+		kaleoTaskAssignmentImpl.setCreateDate(new Date(createDate));
+		kaleoTaskAssignmentImpl.setModifiedDate(new Date(modifiedDate));
 
 		if (kaleoClassName == null) {
 			kaleoTaskAssignmentImpl.setKaleoClassName(StringPool.BLANK);

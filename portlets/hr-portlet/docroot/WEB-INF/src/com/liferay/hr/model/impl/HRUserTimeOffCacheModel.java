@@ -82,14 +82,8 @@ public class HRUserTimeOffCacheModel implements CacheModel<HRUserTimeOff> {
 			hrUserTimeOffImpl.setUserName(userName);
 		}
 
-		if (createDate > 0) {
-			hrUserTimeOffImpl.setCreateDate(new Date(createDate));
-		}
-
-		if (modifiedDate > 0) {
-			hrUserTimeOffImpl.setModifiedDate(new Date(modifiedDate));
-		}
-
+		hrUserTimeOffImpl.setCreateDate(new Date(createDate));
+		hrUserTimeOffImpl.setModifiedDate(new Date(modifiedDate));
 		hrUserTimeOffImpl.setHrTimeOffTypeId(hrTimeOffTypeId);
 		hrUserTimeOffImpl.setHrUserId(hrUserId);
 		hrUserTimeOffImpl.setYear(year);

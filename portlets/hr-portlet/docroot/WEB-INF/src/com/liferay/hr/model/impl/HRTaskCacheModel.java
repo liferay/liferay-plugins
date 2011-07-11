@@ -108,14 +108,8 @@ public class HRTaskCacheModel implements CacheModel<HRTask> {
 			hrTaskImpl.setUserName(userName);
 		}
 
-		if (createDate > 0) {
-			hrTaskImpl.setCreateDate(new Date(createDate));
-		}
-
-		if (modifiedDate > 0) {
-			hrTaskImpl.setModifiedDate(new Date(modifiedDate));
-		}
-
+		hrTaskImpl.setCreateDate(new Date(createDate));
+		hrTaskImpl.setModifiedDate(new Date(modifiedDate));
 		hrTaskImpl.setHrBillabilityId(hrBillabilityId);
 		hrTaskImpl.setHrProjectId(hrProjectId);
 		hrTaskImpl.setHrTaskStatusId(hrTaskStatusId);
@@ -135,14 +129,8 @@ public class HRTaskCacheModel implements CacheModel<HRTask> {
 			hrTaskImpl.setDescription(description);
 		}
 
-		if (estimatedStartDate > 0) {
-			hrTaskImpl.setEstimatedStartDate(new Date(estimatedStartDate));
-		}
-
-		if (estimatedEndDate > 0) {
-			hrTaskImpl.setEstimatedEndDate(new Date(estimatedEndDate));
-		}
-
+		hrTaskImpl.setEstimatedStartDate(new Date(estimatedStartDate));
+		hrTaskImpl.setEstimatedEndDate(new Date(estimatedEndDate));
 		hrTaskImpl.setEstimatedHours(estimatedHours);
 		hrTaskImpl.setEstimatedHoursCost(estimatedHoursCost);
 
@@ -162,14 +150,8 @@ public class HRTaskCacheModel implements CacheModel<HRTask> {
 			hrTaskImpl.setEstimatedExpensesCurrencyCode(estimatedExpensesCurrencyCode);
 		}
 
-		if (actualStartDate > 0) {
-			hrTaskImpl.setActualStartDate(new Date(actualStartDate));
-		}
-
-		if (actualEndDate > 0) {
-			hrTaskImpl.setActualEndDate(new Date(actualEndDate));
-		}
-
+		hrTaskImpl.setActualStartDate(new Date(actualStartDate));
+		hrTaskImpl.setActualEndDate(new Date(actualEndDate));
 		hrTaskImpl.setActualHours(actualHours);
 		hrTaskImpl.setActualHoursCost(actualHoursCost);
 

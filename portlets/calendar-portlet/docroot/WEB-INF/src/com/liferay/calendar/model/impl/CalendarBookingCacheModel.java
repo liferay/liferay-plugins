@@ -115,14 +115,8 @@ public class CalendarBookingCacheModel implements CacheModel<CalendarBooking> {
 			calendarBookingImpl.setUserName(userName);
 		}
 
-		if (createDate > 0) {
-			calendarBookingImpl.setCreateDate(new Date(createDate));
-		}
-
-		if (modifiedDate > 0) {
-			calendarBookingImpl.setModifiedDate(new Date(modifiedDate));
-		}
-
+		calendarBookingImpl.setCreateDate(new Date(createDate));
+		calendarBookingImpl.setModifiedDate(new Date(modifiedDate));
 		calendarBookingImpl.setCalendarEventId(calendarEventId);
 		calendarBookingImpl.setCalendarResourceId(calendarResourceId);
 		calendarBookingImpl.setClassNameId(classNameId);
@@ -156,14 +150,8 @@ public class CalendarBookingCacheModel implements CacheModel<CalendarBooking> {
 			calendarBookingImpl.setLocation(location);
 		}
 
-		if (startDate > 0) {
-			calendarBookingImpl.setStartDate(new Date(startDate));
-		}
-
-		if (endDate > 0) {
-			calendarBookingImpl.setEndDate(new Date(endDate));
-		}
-
+		calendarBookingImpl.setStartDate(new Date(startDate));
+		calendarBookingImpl.setEndDate(new Date(endDate));
 		calendarBookingImpl.setDurationHour(durationHour);
 		calendarBookingImpl.setDurationMinute(durationMinute);
 
@@ -192,9 +180,7 @@ public class CalendarBookingCacheModel implements CacheModel<CalendarBooking> {
 			calendarBookingImpl.setStatusByUserName(statusByUserName);
 		}
 
-		if (statusDate > 0) {
-			calendarBookingImpl.setStatusDate(new Date(statusDate));
-		}
+		calendarBookingImpl.setStatusDate(new Date(statusDate));
 
 		calendarBookingImpl.resetOriginalValues();
 

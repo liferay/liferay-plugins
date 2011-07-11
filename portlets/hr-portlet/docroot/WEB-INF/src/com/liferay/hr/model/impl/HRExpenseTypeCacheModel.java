@@ -72,13 +72,8 @@ public class HRExpenseTypeCacheModel implements CacheModel<HRExpenseType> {
 			hrExpenseTypeImpl.setUserName(userName);
 		}
 
-		if (createDate > 0) {
-			hrExpenseTypeImpl.setCreateDate(new Date(createDate));
-		}
-
-		if (modifiedDate > 0) {
-			hrExpenseTypeImpl.setModifiedDate(new Date(modifiedDate));
-		}
+		hrExpenseTypeImpl.setCreateDate(new Date(createDate));
+		hrExpenseTypeImpl.setModifiedDate(new Date(modifiedDate));
 
 		if (name == null) {
 			hrExpenseTypeImpl.setName(StringPool.BLANK);

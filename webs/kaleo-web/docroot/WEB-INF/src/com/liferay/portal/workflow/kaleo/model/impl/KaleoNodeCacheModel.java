@@ -81,14 +81,8 @@ public class KaleoNodeCacheModel implements CacheModel<KaleoNode> {
 			kaleoNodeImpl.setUserName(userName);
 		}
 
-		if (createDate > 0) {
-			kaleoNodeImpl.setCreateDate(new Date(createDate));
-		}
-
-		if (modifiedDate > 0) {
-			kaleoNodeImpl.setModifiedDate(new Date(modifiedDate));
-		}
-
+		kaleoNodeImpl.setCreateDate(new Date(createDate));
+		kaleoNodeImpl.setModifiedDate(new Date(modifiedDate));
 		kaleoNodeImpl.setKaleoDefinitionId(kaleoDefinitionId);
 
 		if (name == null) {

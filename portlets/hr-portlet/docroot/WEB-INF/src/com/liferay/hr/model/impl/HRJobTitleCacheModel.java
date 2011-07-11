@@ -72,13 +72,8 @@ public class HRJobTitleCacheModel implements CacheModel<HRJobTitle> {
 			hrJobTitleImpl.setUserName(userName);
 		}
 
-		if (createDate > 0) {
-			hrJobTitleImpl.setCreateDate(new Date(createDate));
-		}
-
-		if (modifiedDate > 0) {
-			hrJobTitleImpl.setModifiedDate(new Date(modifiedDate));
-		}
+		hrJobTitleImpl.setCreateDate(new Date(createDate));
+		hrJobTitleImpl.setModifiedDate(new Date(modifiedDate));
 
 		if (name == null) {
 			hrJobTitleImpl.setName(StringPool.BLANK);

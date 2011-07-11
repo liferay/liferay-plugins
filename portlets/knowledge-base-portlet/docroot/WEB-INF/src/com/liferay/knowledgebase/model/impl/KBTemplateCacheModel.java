@@ -85,13 +85,8 @@ public class KBTemplateCacheModel implements CacheModel<KBTemplate> {
 			kbTemplateImpl.setUserName(userName);
 		}
 
-		if (createDate > 0) {
-			kbTemplateImpl.setCreateDate(new Date(createDate));
-		}
-
-		if (modifiedDate > 0) {
-			kbTemplateImpl.setModifiedDate(new Date(modifiedDate));
-		}
+		kbTemplateImpl.setCreateDate(new Date(createDate));
+		kbTemplateImpl.setModifiedDate(new Date(modifiedDate));
 
 		if (title == null) {
 			kbTemplateImpl.setTitle(StringPool.BLANK);

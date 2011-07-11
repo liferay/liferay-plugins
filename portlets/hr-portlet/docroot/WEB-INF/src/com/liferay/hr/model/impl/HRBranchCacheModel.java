@@ -70,14 +70,8 @@ public class HRBranchCacheModel implements CacheModel<HRBranch> {
 			hrBranchImpl.setUserName(userName);
 		}
 
-		if (createDate > 0) {
-			hrBranchImpl.setCreateDate(new Date(createDate));
-		}
-
-		if (modifiedDate > 0) {
-			hrBranchImpl.setModifiedDate(new Date(modifiedDate));
-		}
-
+		hrBranchImpl.setCreateDate(new Date(createDate));
+		hrBranchImpl.setModifiedDate(new Date(modifiedDate));
 		hrBranchImpl.setOrganizationId(organizationId);
 
 		hrBranchImpl.resetOriginalValues();

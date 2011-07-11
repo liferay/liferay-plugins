@@ -85,14 +85,8 @@ public class KaleoTransitionCacheModel implements CacheModel<KaleoTransition> {
 			kaleoTransitionImpl.setUserName(userName);
 		}
 
-		if (createDate > 0) {
-			kaleoTransitionImpl.setCreateDate(new Date(createDate));
-		}
-
-		if (modifiedDate > 0) {
-			kaleoTransitionImpl.setModifiedDate(new Date(modifiedDate));
-		}
-
+		kaleoTransitionImpl.setCreateDate(new Date(createDate));
+		kaleoTransitionImpl.setModifiedDate(new Date(modifiedDate));
 		kaleoTransitionImpl.setKaleoDefinitionId(kaleoDefinitionId);
 		kaleoTransitionImpl.setKaleoNodeId(kaleoNodeId);
 

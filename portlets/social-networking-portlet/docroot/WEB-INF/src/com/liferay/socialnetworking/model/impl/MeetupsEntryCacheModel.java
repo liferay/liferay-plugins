@@ -81,13 +81,8 @@ public class MeetupsEntryCacheModel implements CacheModel<MeetupsEntry> {
 			meetupsEntryImpl.setUserName(userName);
 		}
 
-		if (createDate > 0) {
-			meetupsEntryImpl.setCreateDate(new Date(createDate));
-		}
-
-		if (modifiedDate > 0) {
-			meetupsEntryImpl.setModifiedDate(new Date(modifiedDate));
-		}
+		meetupsEntryImpl.setCreateDate(new Date(createDate));
+		meetupsEntryImpl.setModifiedDate(new Date(modifiedDate));
 
 		if (title == null) {
 			meetupsEntryImpl.setTitle(StringPool.BLANK);
@@ -103,14 +98,8 @@ public class MeetupsEntryCacheModel implements CacheModel<MeetupsEntry> {
 			meetupsEntryImpl.setDescription(description);
 		}
 
-		if (startDate > 0) {
-			meetupsEntryImpl.setStartDate(new Date(startDate));
-		}
-
-		if (endDate > 0) {
-			meetupsEntryImpl.setEndDate(new Date(endDate));
-		}
-
+		meetupsEntryImpl.setStartDate(new Date(startDate));
+		meetupsEntryImpl.setEndDate(new Date(endDate));
 		meetupsEntryImpl.setTotalAttendees(totalAttendees);
 		meetupsEntryImpl.setMaxAttendees(maxAttendees);
 		meetupsEntryImpl.setPrice(price);

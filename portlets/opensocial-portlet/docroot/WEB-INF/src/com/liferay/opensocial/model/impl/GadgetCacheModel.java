@@ -67,14 +67,8 @@ public class GadgetCacheModel implements CacheModel<Gadget> {
 
 		gadgetImpl.setGadgetId(gadgetId);
 		gadgetImpl.setCompanyId(companyId);
-
-		if (createDate > 0) {
-			gadgetImpl.setCreateDate(new Date(createDate));
-		}
-
-		if (modifiedDate > 0) {
-			gadgetImpl.setModifiedDate(new Date(modifiedDate));
-		}
+		gadgetImpl.setCreateDate(new Date(createDate));
+		gadgetImpl.setModifiedDate(new Date(modifiedDate));
 
 		if (name == null) {
 			gadgetImpl.setName(StringPool.BLANK);

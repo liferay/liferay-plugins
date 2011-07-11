@@ -91,14 +91,8 @@ public class MessageCacheModel implements CacheModel<Message> {
 			messageImpl.setUserName(userName);
 		}
 
-		if (createDate > 0) {
-			messageImpl.setCreateDate(new Date(createDate));
-		}
-
-		if (modifiedDate > 0) {
-			messageImpl.setModifiedDate(new Date(modifiedDate));
-		}
-
+		messageImpl.setCreateDate(new Date(createDate));
+		messageImpl.setModifiedDate(new Date(modifiedDate));
 		messageImpl.setAccountId(accountId);
 		messageImpl.setFolderId(folderId);
 
@@ -130,9 +124,7 @@ public class MessageCacheModel implements CacheModel<Message> {
 			messageImpl.setBcc(bcc);
 		}
 
-		if (sentDate > 0) {
-			messageImpl.setSentDate(new Date(sentDate));
-		}
+		messageImpl.setSentDate(new Date(sentDate));
 
 		if (subject == null) {
 			messageImpl.setSubject(StringPool.BLANK);
