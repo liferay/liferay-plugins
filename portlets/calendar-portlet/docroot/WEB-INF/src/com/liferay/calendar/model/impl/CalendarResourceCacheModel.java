@@ -89,8 +89,20 @@ public class CalendarResourceCacheModel implements CacheModel<CalendarResource> 
 			calendarResourceImpl.setUserName(userName);
 		}
 
-		calendarResourceImpl.setCreateDate(new Date(createDate));
-		calendarResourceImpl.setModifiedDate(new Date(modifiedDate));
+		if (createDate == Long.MIN_VALUE) {
+			calendarResourceImpl.setCreateDate(null);
+		}
+		else {
+			calendarResourceImpl.setCreateDate(new Date(createDate));
+		}
+
+		if (modifiedDate == Long.MIN_VALUE) {
+			calendarResourceImpl.setModifiedDate(null);
+		}
+		else {
+			calendarResourceImpl.setModifiedDate(new Date(modifiedDate));
+		}
+
 		calendarResourceImpl.setClassNameId(classNameId);
 		calendarResourceImpl.setClassPK(classPK);
 

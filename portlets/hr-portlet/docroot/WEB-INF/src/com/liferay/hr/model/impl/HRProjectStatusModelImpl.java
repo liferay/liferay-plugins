@@ -370,11 +370,17 @@ public class HRProjectStatusModelImpl extends BaseModelImpl<HRProjectStatus>
 		if (createDate != null) {
 			hrProjectStatusCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			hrProjectStatusCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			hrProjectStatusCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			hrProjectStatusCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		hrProjectStatusCacheModel.code = getCode();

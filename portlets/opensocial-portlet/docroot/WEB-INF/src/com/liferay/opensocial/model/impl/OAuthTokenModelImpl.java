@@ -457,11 +457,17 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 		if (createDate != null) {
 			oAuthTokenCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			oAuthTokenCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			oAuthTokenCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			oAuthTokenCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		oAuthTokenCacheModel.gadgetKey = getGadgetKey();

@@ -330,11 +330,17 @@ public class HRClientModelImpl extends BaseModelImpl<HRClient>
 		if (createDate != null) {
 			hrClientCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			hrClientCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			hrClientCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			hrClientCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		hrClientCacheModel.name = getName();

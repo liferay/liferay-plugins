@@ -345,11 +345,17 @@ public class HRExpenseCurrencyModelImpl extends BaseModelImpl<HRExpenseCurrency>
 		if (createDate != null) {
 			hrExpenseCurrencyCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			hrExpenseCurrencyCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			hrExpenseCurrencyCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			hrExpenseCurrencyCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		hrExpenseCurrencyCacheModel.code = getCode();

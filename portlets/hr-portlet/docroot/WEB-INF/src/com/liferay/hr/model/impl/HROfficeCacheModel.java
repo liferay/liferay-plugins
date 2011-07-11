@@ -70,8 +70,20 @@ public class HROfficeCacheModel implements CacheModel<HROffice> {
 			hrOfficeImpl.setUserName(userName);
 		}
 
-		hrOfficeImpl.setCreateDate(new Date(createDate));
-		hrOfficeImpl.setModifiedDate(new Date(modifiedDate));
+		if (createDate == Long.MIN_VALUE) {
+			hrOfficeImpl.setCreateDate(null);
+		}
+		else {
+			hrOfficeImpl.setCreateDate(new Date(createDate));
+		}
+
+		if (modifiedDate == Long.MIN_VALUE) {
+			hrOfficeImpl.setModifiedDate(null);
+		}
+		else {
+			hrOfficeImpl.setModifiedDate(new Date(modifiedDate));
+		}
+
 		hrOfficeImpl.setOrganizationId(organizationId);
 
 		hrOfficeImpl.resetOriginalValues();

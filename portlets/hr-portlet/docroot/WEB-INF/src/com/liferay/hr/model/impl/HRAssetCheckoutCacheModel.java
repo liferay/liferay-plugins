@@ -78,13 +78,44 @@ public class HRAssetCheckoutCacheModel implements CacheModel<HRAssetCheckout> {
 			hrAssetCheckoutImpl.setUserName(userName);
 		}
 
-		hrAssetCheckoutImpl.setCreateDate(new Date(createDate));
-		hrAssetCheckoutImpl.setModifiedDate(new Date(modifiedDate));
+		if (createDate == Long.MIN_VALUE) {
+			hrAssetCheckoutImpl.setCreateDate(null);
+		}
+		else {
+			hrAssetCheckoutImpl.setCreateDate(new Date(createDate));
+		}
+
+		if (modifiedDate == Long.MIN_VALUE) {
+			hrAssetCheckoutImpl.setModifiedDate(null);
+		}
+		else {
+			hrAssetCheckoutImpl.setModifiedDate(new Date(modifiedDate));
+		}
+
 		hrAssetCheckoutImpl.setHrAssetId(hrAssetId);
 		hrAssetCheckoutImpl.setHrUserId(hrUserId);
-		hrAssetCheckoutImpl.setCheckoutDate(new Date(checkoutDate));
-		hrAssetCheckoutImpl.setExpectedCheckInDate(new Date(expectedCheckInDate));
-		hrAssetCheckoutImpl.setActualCheckInDate(new Date(actualCheckInDate));
+
+		if (checkoutDate == Long.MIN_VALUE) {
+			hrAssetCheckoutImpl.setCheckoutDate(null);
+		}
+		else {
+			hrAssetCheckoutImpl.setCheckoutDate(new Date(checkoutDate));
+		}
+
+		if (expectedCheckInDate == Long.MIN_VALUE) {
+			hrAssetCheckoutImpl.setExpectedCheckInDate(null);
+		}
+		else {
+			hrAssetCheckoutImpl.setExpectedCheckInDate(new Date(
+					expectedCheckInDate));
+		}
+
+		if (actualCheckInDate == Long.MIN_VALUE) {
+			hrAssetCheckoutImpl.setActualCheckInDate(null);
+		}
+		else {
+			hrAssetCheckoutImpl.setActualCheckInDate(new Date(actualCheckInDate));
+		}
 
 		hrAssetCheckoutImpl.resetOriginalValues();
 

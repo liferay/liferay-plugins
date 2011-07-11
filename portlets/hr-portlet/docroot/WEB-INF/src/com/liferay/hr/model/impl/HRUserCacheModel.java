@@ -90,15 +90,40 @@ public class HRUserCacheModel implements CacheModel<HRUser> {
 			hrUserImpl.setUserName(userName);
 		}
 
-		hrUserImpl.setCreateDate(new Date(createDate));
-		hrUserImpl.setModifiedDate(new Date(modifiedDate));
+		if (createDate == Long.MIN_VALUE) {
+			hrUserImpl.setCreateDate(null);
+		}
+		else {
+			hrUserImpl.setCreateDate(new Date(createDate));
+		}
+
+		if (modifiedDate == Long.MIN_VALUE) {
+			hrUserImpl.setModifiedDate(null);
+		}
+		else {
+			hrUserImpl.setModifiedDate(new Date(modifiedDate));
+		}
+
 		hrUserImpl.setHrEmploymentTypeId(hrEmploymentTypeId);
 		hrUserImpl.setHrJobTitleId(hrJobTitleId);
 		hrUserImpl.setHrOfficeId(hrOfficeId);
 		hrUserImpl.setHrTerminationTypeId(hrTerminationTypeId);
 		hrUserImpl.setHrWageTypeId(hrWageTypeId);
-		hrUserImpl.setHireDate(new Date(hireDate));
-		hrUserImpl.setTerminationDate(new Date(terminationDate));
+
+		if (hireDate == Long.MIN_VALUE) {
+			hrUserImpl.setHireDate(null);
+		}
+		else {
+			hrUserImpl.setHireDate(new Date(hireDate));
+		}
+
+		if (terminationDate == Long.MIN_VALUE) {
+			hrUserImpl.setTerminationDate(null);
+		}
+		else {
+			hrUserImpl.setTerminationDate(new Date(terminationDate));
+		}
+
 		hrUserImpl.setWageAmount(wageAmount);
 
 		if (wageCurrencyCode == null) {

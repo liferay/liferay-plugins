@@ -340,11 +340,17 @@ public class HRAssetProductModelImpl extends BaseModelImpl<HRAssetProduct>
 		if (createDate != null) {
 			hrAssetProductCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			hrAssetProductCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			hrAssetProductCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			hrAssetProductCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		hrAssetProductCacheModel.hrAssetVendorId = getHrAssetVendorId();

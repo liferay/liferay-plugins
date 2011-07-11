@@ -74,8 +74,19 @@ public class HRTaskStatusCacheModel implements CacheModel<HRTaskStatus> {
 			hrTaskStatusImpl.setUserName(userName);
 		}
 
-		hrTaskStatusImpl.setCreateDate(new Date(createDate));
-		hrTaskStatusImpl.setModifiedDate(new Date(modifiedDate));
+		if (createDate == Long.MIN_VALUE) {
+			hrTaskStatusImpl.setCreateDate(null);
+		}
+		else {
+			hrTaskStatusImpl.setCreateDate(new Date(createDate));
+		}
+
+		if (modifiedDate == Long.MIN_VALUE) {
+			hrTaskStatusImpl.setModifiedDate(null);
+		}
+		else {
+			hrTaskStatusImpl.setModifiedDate(new Date(modifiedDate));
+		}
 
 		if (code == null) {
 			hrTaskStatusImpl.setCode(StringPool.BLANK);

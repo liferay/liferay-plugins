@@ -115,8 +115,20 @@ public class CalendarBookingCacheModel implements CacheModel<CalendarBooking> {
 			calendarBookingImpl.setUserName(userName);
 		}
 
-		calendarBookingImpl.setCreateDate(new Date(createDate));
-		calendarBookingImpl.setModifiedDate(new Date(modifiedDate));
+		if (createDate == Long.MIN_VALUE) {
+			calendarBookingImpl.setCreateDate(null);
+		}
+		else {
+			calendarBookingImpl.setCreateDate(new Date(createDate));
+		}
+
+		if (modifiedDate == Long.MIN_VALUE) {
+			calendarBookingImpl.setModifiedDate(null);
+		}
+		else {
+			calendarBookingImpl.setModifiedDate(new Date(modifiedDate));
+		}
+
 		calendarBookingImpl.setCalendarEventId(calendarEventId);
 		calendarBookingImpl.setCalendarResourceId(calendarResourceId);
 		calendarBookingImpl.setClassNameId(classNameId);
@@ -150,8 +162,20 @@ public class CalendarBookingCacheModel implements CacheModel<CalendarBooking> {
 			calendarBookingImpl.setLocation(location);
 		}
 
-		calendarBookingImpl.setStartDate(new Date(startDate));
-		calendarBookingImpl.setEndDate(new Date(endDate));
+		if (startDate == Long.MIN_VALUE) {
+			calendarBookingImpl.setStartDate(null);
+		}
+		else {
+			calendarBookingImpl.setStartDate(new Date(startDate));
+		}
+
+		if (endDate == Long.MIN_VALUE) {
+			calendarBookingImpl.setEndDate(null);
+		}
+		else {
+			calendarBookingImpl.setEndDate(new Date(endDate));
+		}
+
 		calendarBookingImpl.setDurationHour(durationHour);
 		calendarBookingImpl.setDurationMinute(durationMinute);
 
@@ -180,7 +204,12 @@ public class CalendarBookingCacheModel implements CacheModel<CalendarBooking> {
 			calendarBookingImpl.setStatusByUserName(statusByUserName);
 		}
 
-		calendarBookingImpl.setStatusDate(new Date(statusDate));
+		if (statusDate == Long.MIN_VALUE) {
+			calendarBookingImpl.setStatusDate(null);
+		}
+		else {
+			calendarBookingImpl.setStatusDate(new Date(statusDate));
+		}
 
 		calendarBookingImpl.resetOriginalValues();
 

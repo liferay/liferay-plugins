@@ -361,11 +361,17 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue>
 		if (createDate != null) {
 			jiraIssueCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			jiraIssueCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			jiraIssueCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			jiraIssueCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		jiraIssueCacheModel.projectId = getProjectId();

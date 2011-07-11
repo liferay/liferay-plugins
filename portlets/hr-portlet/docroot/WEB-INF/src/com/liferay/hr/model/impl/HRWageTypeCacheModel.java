@@ -74,8 +74,19 @@ public class HRWageTypeCacheModel implements CacheModel<HRWageType> {
 			hrWageTypeImpl.setUserName(userName);
 		}
 
-		hrWageTypeImpl.setCreateDate(new Date(createDate));
-		hrWageTypeImpl.setModifiedDate(new Date(modifiedDate));
+		if (createDate == Long.MIN_VALUE) {
+			hrWageTypeImpl.setCreateDate(null);
+		}
+		else {
+			hrWageTypeImpl.setCreateDate(new Date(createDate));
+		}
+
+		if (modifiedDate == Long.MIN_VALUE) {
+			hrWageTypeImpl.setModifiedDate(null);
+		}
+		else {
+			hrWageTypeImpl.setModifiedDate(new Date(modifiedDate));
+		}
 
 		if (code == null) {
 			hrWageTypeImpl.setCode(StringPool.BLANK);

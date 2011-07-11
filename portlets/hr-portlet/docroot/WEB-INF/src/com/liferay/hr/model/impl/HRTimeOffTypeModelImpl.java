@@ -330,11 +330,17 @@ public class HRTimeOffTypeModelImpl extends BaseModelImpl<HRTimeOffType>
 		if (createDate != null) {
 			hrTimeOffTypeCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			hrTimeOffTypeCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			hrTimeOffTypeCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			hrTimeOffTypeCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		hrTimeOffTypeCacheModel.name = getName();

@@ -339,11 +339,17 @@ public class OAuthConsumerModelImpl extends BaseModelImpl<OAuthConsumer>
 		if (createDate != null) {
 			oAuthConsumerCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			oAuthConsumerCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			oAuthConsumerCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			oAuthConsumerCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		oAuthConsumerCacheModel.gadgetKey = getGadgetKey();

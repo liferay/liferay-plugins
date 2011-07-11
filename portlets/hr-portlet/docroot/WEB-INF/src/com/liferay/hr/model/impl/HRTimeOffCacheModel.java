@@ -90,8 +90,20 @@ public class HRTimeOffCacheModel implements CacheModel<HRTimeOff> {
 			hrTimeOffImpl.setUserName(userName);
 		}
 
-		hrTimeOffImpl.setCreateDate(new Date(createDate));
-		hrTimeOffImpl.setModifiedDate(new Date(modifiedDate));
+		if (createDate == Long.MIN_VALUE) {
+			hrTimeOffImpl.setCreateDate(null);
+		}
+		else {
+			hrTimeOffImpl.setCreateDate(new Date(createDate));
+		}
+
+		if (modifiedDate == Long.MIN_VALUE) {
+			hrTimeOffImpl.setModifiedDate(null);
+		}
+		else {
+			hrTimeOffImpl.setModifiedDate(new Date(modifiedDate));
+		}
+
 		hrTimeOffImpl.setHrTimeOffTypeId(hrTimeOffTypeId);
 		hrTimeOffImpl.setHrTimeSheetId(hrTimeSheetId);
 		hrTimeOffImpl.setHrUserId(hrUserId);
@@ -109,7 +121,12 @@ public class HRTimeOffCacheModel implements CacheModel<HRTimeOff> {
 			hrTimeOffImpl.setStatusByUserName(statusByUserName);
 		}
 
-		hrTimeOffImpl.setStatusDate(new Date(statusDate));
+		if (statusDate == Long.MIN_VALUE) {
+			hrTimeOffImpl.setStatusDate(null);
+		}
+		else {
+			hrTimeOffImpl.setStatusDate(new Date(statusDate));
+		}
 
 		hrTimeOffImpl.resetOriginalValues();
 

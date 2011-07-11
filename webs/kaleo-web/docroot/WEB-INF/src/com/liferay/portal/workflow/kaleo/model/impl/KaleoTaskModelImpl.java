@@ -372,11 +372,17 @@ public class KaleoTaskModelImpl extends BaseModelImpl<KaleoTask>
 		if (createDate != null) {
 			kaleoTaskCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			kaleoTaskCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			kaleoTaskCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			kaleoTaskCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		kaleoTaskCacheModel.kaleoDefinitionId = getKaleoDefinitionId();

@@ -336,11 +336,17 @@ public class AssetModelImpl extends BaseModelImpl<Asset> implements AssetModel {
 		if (createDate != null) {
 			assetCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			assetCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			assetCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			assetCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		assetCacheModel.definitionId = getDefinitionId();
@@ -357,6 +363,9 @@ public class AssetModelImpl extends BaseModelImpl<Asset> implements AssetModel {
 
 		if (inactiveDate != null) {
 			assetCacheModel.inactiveDate = inactiveDate.getTime();
+		}
+		else {
+			assetCacheModel.inactiveDate = Long.MIN_VALUE;
 		}
 
 		assetCacheModel.active = getActive();

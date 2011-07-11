@@ -508,11 +508,17 @@ public class HRProjectModelImpl extends BaseModelImpl<HRProject>
 		if (createDate != null) {
 			hrProjectCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			hrProjectCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			hrProjectCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			hrProjectCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		hrProjectCacheModel.hrClientId = getHrClientId();
@@ -540,11 +546,17 @@ public class HRProjectModelImpl extends BaseModelImpl<HRProject>
 		if (estimatedStartDate != null) {
 			hrProjectCacheModel.estimatedStartDate = estimatedStartDate.getTime();
 		}
+		else {
+			hrProjectCacheModel.estimatedStartDate = Long.MIN_VALUE;
+		}
 
 		Date estimatedEndDate = getEstimatedEndDate();
 
 		if (estimatedEndDate != null) {
 			hrProjectCacheModel.estimatedEndDate = estimatedEndDate.getTime();
+		}
+		else {
+			hrProjectCacheModel.estimatedEndDate = Long.MIN_VALUE;
 		}
 
 		hrProjectCacheModel.estimatedHours = getEstimatedHours();
@@ -576,11 +588,17 @@ public class HRProjectModelImpl extends BaseModelImpl<HRProject>
 		if (actualStartDate != null) {
 			hrProjectCacheModel.actualStartDate = actualStartDate.getTime();
 		}
+		else {
+			hrProjectCacheModel.actualStartDate = Long.MIN_VALUE;
+		}
 
 		Date actualEndDate = getActualEndDate();
 
 		if (actualEndDate != null) {
 			hrProjectCacheModel.actualEndDate = actualEndDate.getTime();
+		}
+		else {
+			hrProjectCacheModel.actualEndDate = Long.MIN_VALUE;
 		}
 
 		hrProjectCacheModel.actualHours = getActualHours();

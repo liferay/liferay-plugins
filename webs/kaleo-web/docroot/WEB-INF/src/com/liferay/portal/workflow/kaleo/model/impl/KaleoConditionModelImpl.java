@@ -372,11 +372,17 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 		if (createDate != null) {
 			kaleoConditionCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			kaleoConditionCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			kaleoConditionCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			kaleoConditionCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		kaleoConditionCacheModel.kaleoDefinitionId = getKaleoDefinitionId();

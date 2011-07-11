@@ -370,11 +370,17 @@ public class HRTerminationTypeModelImpl extends BaseModelImpl<HRTerminationType>
 		if (createDate != null) {
 			hrTerminationTypeCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			hrTerminationTypeCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			hrTerminationTypeCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			hrTerminationTypeCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		hrTerminationTypeCacheModel.code = getCode();

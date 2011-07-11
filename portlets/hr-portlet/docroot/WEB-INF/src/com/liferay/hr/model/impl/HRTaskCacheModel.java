@@ -108,8 +108,20 @@ public class HRTaskCacheModel implements CacheModel<HRTask> {
 			hrTaskImpl.setUserName(userName);
 		}
 
-		hrTaskImpl.setCreateDate(new Date(createDate));
-		hrTaskImpl.setModifiedDate(new Date(modifiedDate));
+		if (createDate == Long.MIN_VALUE) {
+			hrTaskImpl.setCreateDate(null);
+		}
+		else {
+			hrTaskImpl.setCreateDate(new Date(createDate));
+		}
+
+		if (modifiedDate == Long.MIN_VALUE) {
+			hrTaskImpl.setModifiedDate(null);
+		}
+		else {
+			hrTaskImpl.setModifiedDate(new Date(modifiedDate));
+		}
+
 		hrTaskImpl.setHrBillabilityId(hrBillabilityId);
 		hrTaskImpl.setHrProjectId(hrProjectId);
 		hrTaskImpl.setHrTaskStatusId(hrTaskStatusId);
@@ -129,8 +141,20 @@ public class HRTaskCacheModel implements CacheModel<HRTask> {
 			hrTaskImpl.setDescription(description);
 		}
 
-		hrTaskImpl.setEstimatedStartDate(new Date(estimatedStartDate));
-		hrTaskImpl.setEstimatedEndDate(new Date(estimatedEndDate));
+		if (estimatedStartDate == Long.MIN_VALUE) {
+			hrTaskImpl.setEstimatedStartDate(null);
+		}
+		else {
+			hrTaskImpl.setEstimatedStartDate(new Date(estimatedStartDate));
+		}
+
+		if (estimatedEndDate == Long.MIN_VALUE) {
+			hrTaskImpl.setEstimatedEndDate(null);
+		}
+		else {
+			hrTaskImpl.setEstimatedEndDate(new Date(estimatedEndDate));
+		}
+
 		hrTaskImpl.setEstimatedHours(estimatedHours);
 		hrTaskImpl.setEstimatedHoursCost(estimatedHoursCost);
 
@@ -150,8 +174,20 @@ public class HRTaskCacheModel implements CacheModel<HRTask> {
 			hrTaskImpl.setEstimatedExpensesCurrencyCode(estimatedExpensesCurrencyCode);
 		}
 
-		hrTaskImpl.setActualStartDate(new Date(actualStartDate));
-		hrTaskImpl.setActualEndDate(new Date(actualEndDate));
+		if (actualStartDate == Long.MIN_VALUE) {
+			hrTaskImpl.setActualStartDate(null);
+		}
+		else {
+			hrTaskImpl.setActualStartDate(new Date(actualStartDate));
+		}
+
+		if (actualEndDate == Long.MIN_VALUE) {
+			hrTaskImpl.setActualEndDate(null);
+		}
+		else {
+			hrTaskImpl.setActualEndDate(new Date(actualEndDate));
+		}
+
 		hrTaskImpl.setActualHours(actualHours);
 		hrTaskImpl.setActualHoursCost(actualHoursCost);
 

@@ -591,11 +591,17 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 		if (createDate != null) {
 			kaleoLogCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			kaleoLogCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			kaleoLogCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			kaleoLogCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		kaleoLogCacheModel.kaleoClassName = getKaleoClassName();
@@ -699,11 +705,17 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 		if (startDate != null) {
 			kaleoLogCacheModel.startDate = startDate.getTime();
 		}
+		else {
+			kaleoLogCacheModel.startDate = Long.MIN_VALUE;
+		}
 
 		Date endDate = getEndDate();
 
 		if (endDate != null) {
 			kaleoLogCacheModel.endDate = endDate.getTime();
+		}
+		else {
+			kaleoLogCacheModel.endDate = Long.MIN_VALUE;
 		}
 
 		kaleoLogCacheModel.duration = getDuration();

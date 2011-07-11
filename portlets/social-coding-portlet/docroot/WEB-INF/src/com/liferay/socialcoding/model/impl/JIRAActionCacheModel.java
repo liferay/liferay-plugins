@@ -67,8 +67,20 @@ public class JIRAActionCacheModel implements CacheModel<JIRAAction> {
 			jiraActionImpl.setJiraUserId(jiraUserId);
 		}
 
-		jiraActionImpl.setCreateDate(new Date(createDate));
-		jiraActionImpl.setModifiedDate(new Date(modifiedDate));
+		if (createDate == Long.MIN_VALUE) {
+			jiraActionImpl.setCreateDate(null);
+		}
+		else {
+			jiraActionImpl.setCreateDate(new Date(createDate));
+		}
+
+		if (modifiedDate == Long.MIN_VALUE) {
+			jiraActionImpl.setModifiedDate(null);
+		}
+		else {
+			jiraActionImpl.setModifiedDate(new Date(modifiedDate));
+		}
+
 		jiraActionImpl.setJiraIssueId(jiraIssueId);
 
 		if (type == null) {

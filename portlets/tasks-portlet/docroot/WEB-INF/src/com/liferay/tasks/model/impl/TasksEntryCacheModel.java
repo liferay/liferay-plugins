@@ -82,8 +82,19 @@ public class TasksEntryCacheModel implements CacheModel<TasksEntry> {
 			tasksEntryImpl.setUserName(userName);
 		}
 
-		tasksEntryImpl.setCreateDate(new Date(createDate));
-		tasksEntryImpl.setModifiedDate(new Date(modifiedDate));
+		if (createDate == Long.MIN_VALUE) {
+			tasksEntryImpl.setCreateDate(null);
+		}
+		else {
+			tasksEntryImpl.setCreateDate(new Date(createDate));
+		}
+
+		if (modifiedDate == Long.MIN_VALUE) {
+			tasksEntryImpl.setModifiedDate(null);
+		}
+		else {
+			tasksEntryImpl.setModifiedDate(new Date(modifiedDate));
+		}
 
 		if (title == null) {
 			tasksEntryImpl.setTitle(StringPool.BLANK);
@@ -95,8 +106,21 @@ public class TasksEntryCacheModel implements CacheModel<TasksEntry> {
 		tasksEntryImpl.setPriority(priority);
 		tasksEntryImpl.setAssigneeUserId(assigneeUserId);
 		tasksEntryImpl.setResolverUserId(resolverUserId);
-		tasksEntryImpl.setDueDate(new Date(dueDate));
-		tasksEntryImpl.setFinishDate(new Date(finishDate));
+
+		if (dueDate == Long.MIN_VALUE) {
+			tasksEntryImpl.setDueDate(null);
+		}
+		else {
+			tasksEntryImpl.setDueDate(new Date(dueDate));
+		}
+
+		if (finishDate == Long.MIN_VALUE) {
+			tasksEntryImpl.setFinishDate(null);
+		}
+		else {
+			tasksEntryImpl.setFinishDate(new Date(finishDate));
+		}
+
 		tasksEntryImpl.setStatus(status);
 
 		tasksEntryImpl.resetOriginalValues();

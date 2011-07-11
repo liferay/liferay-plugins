@@ -332,11 +332,17 @@ public class HRJobTitleModelImpl extends BaseModelImpl<HRJobTitle>
 		if (createDate != null) {
 			hrJobTitleCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			hrJobTitleCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			hrJobTitleCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			hrJobTitleCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		hrJobTitleCacheModel.name = getName();

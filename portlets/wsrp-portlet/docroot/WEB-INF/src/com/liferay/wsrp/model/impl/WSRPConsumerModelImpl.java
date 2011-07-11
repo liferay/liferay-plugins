@@ -357,11 +357,17 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 		if (createDate != null) {
 			wsrpConsumerCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			wsrpConsumerCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			wsrpConsumerCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			wsrpConsumerCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		wsrpConsumerCacheModel.name = getName();

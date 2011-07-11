@@ -70,8 +70,20 @@ public class WSRPProducerCacheModel implements CacheModel<WSRPProducer> {
 		wsrpProducerImpl.setWsrpProducerId(wsrpProducerId);
 		wsrpProducerImpl.setGroupId(groupId);
 		wsrpProducerImpl.setCompanyId(companyId);
-		wsrpProducerImpl.setCreateDate(new Date(createDate));
-		wsrpProducerImpl.setModifiedDate(new Date(modifiedDate));
+
+		if (createDate == Long.MIN_VALUE) {
+			wsrpProducerImpl.setCreateDate(null);
+		}
+		else {
+			wsrpProducerImpl.setCreateDate(new Date(createDate));
+		}
+
+		if (modifiedDate == Long.MIN_VALUE) {
+			wsrpProducerImpl.setModifiedDate(null);
+		}
+		else {
+			wsrpProducerImpl.setModifiedDate(new Date(modifiedDate));
+		}
 
 		if (name == null) {
 			wsrpProducerImpl.setName(StringPool.BLANK);

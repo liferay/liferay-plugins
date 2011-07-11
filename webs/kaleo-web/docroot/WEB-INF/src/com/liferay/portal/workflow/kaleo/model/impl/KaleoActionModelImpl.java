@@ -442,11 +442,17 @@ public class KaleoActionModelImpl extends BaseModelImpl<KaleoAction>
 		if (createDate != null) {
 			kaleoActionCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			kaleoActionCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			kaleoActionCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			kaleoActionCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		kaleoActionCacheModel.kaleoClassName = getKaleoClassName();

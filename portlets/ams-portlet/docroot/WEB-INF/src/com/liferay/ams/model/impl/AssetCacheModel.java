@@ -73,8 +73,20 @@ public class AssetCacheModel implements CacheModel<Asset> {
 			assetImpl.setUserName(userName);
 		}
 
-		assetImpl.setCreateDate(new Date(createDate));
-		assetImpl.setModifiedDate(new Date(modifiedDate));
+		if (createDate == Long.MIN_VALUE) {
+			assetImpl.setCreateDate(null);
+		}
+		else {
+			assetImpl.setCreateDate(new Date(createDate));
+		}
+
+		if (modifiedDate == Long.MIN_VALUE) {
+			assetImpl.setModifiedDate(null);
+		}
+		else {
+			assetImpl.setModifiedDate(new Date(modifiedDate));
+		}
+
 		assetImpl.setDefinitionId(definitionId);
 
 		if (serialNumber == null) {
@@ -84,7 +96,13 @@ public class AssetCacheModel implements CacheModel<Asset> {
 			assetImpl.setSerialNumber(serialNumber);
 		}
 
-		assetImpl.setInactiveDate(new Date(inactiveDate));
+		if (inactiveDate == Long.MIN_VALUE) {
+			assetImpl.setInactiveDate(null);
+		}
+		else {
+			assetImpl.setInactiveDate(new Date(inactiveDate));
+		}
+
 		assetImpl.setActive(active);
 
 		assetImpl.resetOriginalValues();

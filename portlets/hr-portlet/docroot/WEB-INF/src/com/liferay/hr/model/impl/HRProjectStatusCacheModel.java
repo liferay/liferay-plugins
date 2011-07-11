@@ -74,8 +74,19 @@ public class HRProjectStatusCacheModel implements CacheModel<HRProjectStatus> {
 			hrProjectStatusImpl.setUserName(userName);
 		}
 
-		hrProjectStatusImpl.setCreateDate(new Date(createDate));
-		hrProjectStatusImpl.setModifiedDate(new Date(modifiedDate));
+		if (createDate == Long.MIN_VALUE) {
+			hrProjectStatusImpl.setCreateDate(null);
+		}
+		else {
+			hrProjectStatusImpl.setCreateDate(new Date(createDate));
+		}
+
+		if (modifiedDate == Long.MIN_VALUE) {
+			hrProjectStatusImpl.setModifiedDate(null);
+		}
+		else {
+			hrProjectStatusImpl.setModifiedDate(new Date(modifiedDate));
+		}
 
 		if (code == null) {
 			hrProjectStatusImpl.setCode(StringPool.BLANK);

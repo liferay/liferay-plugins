@@ -345,11 +345,17 @@ public class HRAssetModelImpl extends BaseModelImpl<HRAsset>
 		if (createDate != null) {
 			hrAssetCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			hrAssetCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			hrAssetCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			hrAssetCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		hrAssetCacheModel.hrAssetDefinitionId = getHrAssetDefinitionId();
@@ -368,6 +374,9 @@ public class HRAssetModelImpl extends BaseModelImpl<HRAsset>
 
 		if (inactiveDate != null) {
 			hrAssetCacheModel.inactiveDate = inactiveDate.getTime();
+		}
+		else {
+			hrAssetCacheModel.inactiveDate = Long.MIN_VALUE;
 		}
 
 		return hrAssetCacheModel;

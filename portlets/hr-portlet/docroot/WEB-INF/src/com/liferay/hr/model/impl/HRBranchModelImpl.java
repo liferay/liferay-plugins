@@ -319,11 +319,17 @@ public class HRBranchModelImpl extends BaseModelImpl<HRBranch>
 		if (createDate != null) {
 			hrBranchCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			hrBranchCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			hrBranchCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			hrBranchCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		hrBranchCacheModel.organizationId = getOrganizationId();

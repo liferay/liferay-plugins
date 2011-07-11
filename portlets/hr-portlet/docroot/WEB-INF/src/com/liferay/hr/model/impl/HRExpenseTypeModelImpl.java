@@ -355,11 +355,17 @@ public class HRExpenseTypeModelImpl extends BaseModelImpl<HRExpenseType>
 		if (createDate != null) {
 			hrExpenseTypeCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			hrExpenseTypeCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			hrExpenseTypeCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			hrExpenseTypeCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		hrExpenseTypeCacheModel.name = getName();

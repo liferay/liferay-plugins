@@ -87,8 +87,19 @@ public class KaleoActionCacheModel implements CacheModel<KaleoAction> {
 			kaleoActionImpl.setUserName(userName);
 		}
 
-		kaleoActionImpl.setCreateDate(new Date(createDate));
-		kaleoActionImpl.setModifiedDate(new Date(modifiedDate));
+		if (createDate == Long.MIN_VALUE) {
+			kaleoActionImpl.setCreateDate(null);
+		}
+		else {
+			kaleoActionImpl.setCreateDate(new Date(createDate));
+		}
+
+		if (modifiedDate == Long.MIN_VALUE) {
+			kaleoActionImpl.setModifiedDate(null);
+		}
+		else {
+			kaleoActionImpl.setModifiedDate(new Date(modifiedDate));
+		}
 
 		if (kaleoClassName == null) {
 			kaleoActionImpl.setKaleoClassName(StringPool.BLANK);

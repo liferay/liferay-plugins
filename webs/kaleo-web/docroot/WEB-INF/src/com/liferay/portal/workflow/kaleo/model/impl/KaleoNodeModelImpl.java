@@ -405,11 +405,17 @@ public class KaleoNodeModelImpl extends BaseModelImpl<KaleoNode>
 		if (createDate != null) {
 			kaleoNodeCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			kaleoNodeCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			kaleoNodeCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			kaleoNodeCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		kaleoNodeCacheModel.kaleoDefinitionId = getKaleoDefinitionId();

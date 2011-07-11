@@ -328,11 +328,17 @@ public class CheckoutModelImpl extends BaseModelImpl<Checkout>
 		if (createDate != null) {
 			checkoutCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			checkoutCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			checkoutCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			checkoutCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		checkoutCacheModel.assetId = getAssetId();
@@ -342,17 +348,26 @@ public class CheckoutModelImpl extends BaseModelImpl<Checkout>
 		if (checkOutDate != null) {
 			checkoutCacheModel.checkOutDate = checkOutDate.getTime();
 		}
+		else {
+			checkoutCacheModel.checkOutDate = Long.MIN_VALUE;
+		}
 
 		Date expectedCheckInDate = getExpectedCheckInDate();
 
 		if (expectedCheckInDate != null) {
 			checkoutCacheModel.expectedCheckInDate = expectedCheckInDate.getTime();
 		}
+		else {
+			checkoutCacheModel.expectedCheckInDate = Long.MIN_VALUE;
+		}
 
 		Date actualCheckInDate = getActualCheckInDate();
 
 		if (actualCheckInDate != null) {
 			checkoutCacheModel.actualCheckInDate = actualCheckInDate.getTime();
+		}
+		else {
+			checkoutCacheModel.actualCheckInDate = Long.MIN_VALUE;
 		}
 
 		return checkoutCacheModel;

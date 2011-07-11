@@ -74,8 +74,20 @@ public class HRProjectBillingRateCacheModel implements CacheModel<HRProjectBilli
 			hrProjectBillingRateImpl.setUserName(userName);
 		}
 
-		hrProjectBillingRateImpl.setCreateDate(new Date(createDate));
-		hrProjectBillingRateImpl.setModifiedDate(new Date(modifiedDate));
+		if (createDate == Long.MIN_VALUE) {
+			hrProjectBillingRateImpl.setCreateDate(null);
+		}
+		else {
+			hrProjectBillingRateImpl.setCreateDate(new Date(createDate));
+		}
+
+		if (modifiedDate == Long.MIN_VALUE) {
+			hrProjectBillingRateImpl.setModifiedDate(null);
+		}
+		else {
+			hrProjectBillingRateImpl.setModifiedDate(new Date(modifiedDate));
+		}
+
 		hrProjectBillingRateImpl.setHrProjectId(hrProjectId);
 		hrProjectBillingRateImpl.setHrProjectRoleId(hrProjectRoleId);
 		hrProjectBillingRateImpl.setRate(rate);

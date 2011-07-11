@@ -85,8 +85,20 @@ public class KaleoInstanceCacheModel implements CacheModel<KaleoInstance> {
 			kaleoInstanceImpl.setUserName(userName);
 		}
 
-		kaleoInstanceImpl.setCreateDate(new Date(createDate));
-		kaleoInstanceImpl.setModifiedDate(new Date(modifiedDate));
+		if (createDate == Long.MIN_VALUE) {
+			kaleoInstanceImpl.setCreateDate(null);
+		}
+		else {
+			kaleoInstanceImpl.setCreateDate(new Date(createDate));
+		}
+
+		if (modifiedDate == Long.MIN_VALUE) {
+			kaleoInstanceImpl.setModifiedDate(null);
+		}
+		else {
+			kaleoInstanceImpl.setModifiedDate(new Date(modifiedDate));
+		}
+
 		kaleoInstanceImpl.setKaleoDefinitionId(kaleoDefinitionId);
 
 		if (kaleoDefinitionName == null) {
@@ -108,7 +120,13 @@ public class KaleoInstanceCacheModel implements CacheModel<KaleoInstance> {
 
 		kaleoInstanceImpl.setClassPK(classPK);
 		kaleoInstanceImpl.setCompleted(completed);
-		kaleoInstanceImpl.setCompletionDate(new Date(completionDate));
+
+		if (completionDate == Long.MIN_VALUE) {
+			kaleoInstanceImpl.setCompletionDate(null);
+		}
+		else {
+			kaleoInstanceImpl.setCompletionDate(new Date(completionDate));
+		}
 
 		if (workflowContext == null) {
 			kaleoInstanceImpl.setWorkflowContext(StringPool.BLANK);

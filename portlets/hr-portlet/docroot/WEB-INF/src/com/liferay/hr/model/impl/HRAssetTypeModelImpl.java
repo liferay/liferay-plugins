@@ -330,11 +330,17 @@ public class HRAssetTypeModelImpl extends BaseModelImpl<HRAssetType>
 		if (createDate != null) {
 			hrAssetTypeCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			hrAssetTypeCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			hrAssetTypeCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			hrAssetTypeCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		hrAssetTypeCacheModel.name = getName();

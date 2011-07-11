@@ -381,11 +381,17 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry>
 		if (createDate != null) {
 			meetupsEntryCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			meetupsEntryCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			meetupsEntryCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			meetupsEntryCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		meetupsEntryCacheModel.title = getTitle();
@@ -409,11 +415,17 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry>
 		if (startDate != null) {
 			meetupsEntryCacheModel.startDate = startDate.getTime();
 		}
+		else {
+			meetupsEntryCacheModel.startDate = Long.MIN_VALUE;
+		}
 
 		Date endDate = getEndDate();
 
 		if (endDate != null) {
 			meetupsEntryCacheModel.endDate = endDate.getTime();
+		}
+		else {
+			meetupsEntryCacheModel.endDate = Long.MIN_VALUE;
 		}
 
 		meetupsEntryCacheModel.totalAttendees = getTotalAttendees();

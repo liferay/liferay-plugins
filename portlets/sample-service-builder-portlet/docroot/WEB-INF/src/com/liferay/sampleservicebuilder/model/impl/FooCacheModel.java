@@ -87,8 +87,19 @@ public class FooCacheModel implements CacheModel<Foo> {
 			fooImpl.setUserName(userName);
 		}
 
-		fooImpl.setCreateDate(new Date(createDate));
-		fooImpl.setModifiedDate(new Date(modifiedDate));
+		if (createDate == Long.MIN_VALUE) {
+			fooImpl.setCreateDate(null);
+		}
+		else {
+			fooImpl.setCreateDate(new Date(createDate));
+		}
+
+		if (modifiedDate == Long.MIN_VALUE) {
+			fooImpl.setModifiedDate(null);
+		}
+		else {
+			fooImpl.setModifiedDate(new Date(modifiedDate));
+		}
 
 		if (field1 == null) {
 			fooImpl.setField1(StringPool.BLANK);
@@ -99,7 +110,13 @@ public class FooCacheModel implements CacheModel<Foo> {
 
 		fooImpl.setField2(field2);
 		fooImpl.setField3(field3);
-		fooImpl.setField4(new Date(field4));
+
+		if (field4 == Long.MIN_VALUE) {
+			fooImpl.setField4(null);
+		}
+		else {
+			fooImpl.setField4(new Date(field4));
+		}
 
 		if (field5 == null) {
 			fooImpl.setField5(StringPool.BLANK);

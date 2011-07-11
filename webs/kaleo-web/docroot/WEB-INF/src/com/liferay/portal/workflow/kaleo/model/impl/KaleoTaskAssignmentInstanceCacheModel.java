@@ -87,8 +87,21 @@ public class KaleoTaskAssignmentInstanceCacheModel implements CacheModel<KaleoTa
 			kaleoTaskAssignmentInstanceImpl.setUserName(userName);
 		}
 
-		kaleoTaskAssignmentInstanceImpl.setCreateDate(new Date(createDate));
-		kaleoTaskAssignmentInstanceImpl.setModifiedDate(new Date(modifiedDate));
+		if (createDate == Long.MIN_VALUE) {
+			kaleoTaskAssignmentInstanceImpl.setCreateDate(null);
+		}
+		else {
+			kaleoTaskAssignmentInstanceImpl.setCreateDate(new Date(createDate));
+		}
+
+		if (modifiedDate == Long.MIN_VALUE) {
+			kaleoTaskAssignmentInstanceImpl.setModifiedDate(null);
+		}
+		else {
+			kaleoTaskAssignmentInstanceImpl.setModifiedDate(new Date(
+					modifiedDate));
+		}
+
 		kaleoTaskAssignmentInstanceImpl.setKaleoDefinitionId(kaleoDefinitionId);
 		kaleoTaskAssignmentInstanceImpl.setKaleoInstanceId(kaleoInstanceId);
 		kaleoTaskAssignmentInstanceImpl.setKaleoInstanceTokenId(kaleoInstanceTokenId);
@@ -111,8 +124,14 @@ public class KaleoTaskAssignmentInstanceCacheModel implements CacheModel<KaleoTa
 
 		kaleoTaskAssignmentInstanceImpl.setAssigneeClassPK(assigneeClassPK);
 		kaleoTaskAssignmentInstanceImpl.setCompleted(completed);
-		kaleoTaskAssignmentInstanceImpl.setCompletionDate(new Date(
-				completionDate));
+
+		if (completionDate == Long.MIN_VALUE) {
+			kaleoTaskAssignmentInstanceImpl.setCompletionDate(null);
+		}
+		else {
+			kaleoTaskAssignmentInstanceImpl.setCompletionDate(new Date(
+					completionDate));
+		}
 
 		kaleoTaskAssignmentInstanceImpl.resetOriginalValues();
 

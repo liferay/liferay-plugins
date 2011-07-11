@@ -476,11 +476,17 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 		if (createDate != null) {
 			tasksEntryCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			tasksEntryCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			tasksEntryCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			tasksEntryCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		tasksEntryCacheModel.title = getTitle();
@@ -502,11 +508,17 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 		if (dueDate != null) {
 			tasksEntryCacheModel.dueDate = dueDate.getTime();
 		}
+		else {
+			tasksEntryCacheModel.dueDate = Long.MIN_VALUE;
+		}
 
 		Date finishDate = getFinishDate();
 
 		if (finishDate != null) {
 			tasksEntryCacheModel.finishDate = finishDate.getTime();
+		}
+		else {
+			tasksEntryCacheModel.finishDate = Long.MIN_VALUE;
 		}
 
 		tasksEntryCacheModel.status = getStatus();

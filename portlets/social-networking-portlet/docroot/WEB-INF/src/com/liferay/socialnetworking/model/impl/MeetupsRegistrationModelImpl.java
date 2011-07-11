@@ -356,11 +356,17 @@ public class MeetupsRegistrationModelImpl extends BaseModelImpl<MeetupsRegistrat
 		if (createDate != null) {
 			meetupsRegistrationCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			meetupsRegistrationCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			meetupsRegistrationCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			meetupsRegistrationCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		meetupsRegistrationCacheModel.meetupsEntryId = getMeetupsEntryId();

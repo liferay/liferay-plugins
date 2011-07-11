@@ -81,8 +81,19 @@ public class KBStructureCacheModel implements CacheModel<KBStructure> {
 			kbStructureImpl.setUserName(userName);
 		}
 
-		kbStructureImpl.setCreateDate(new Date(createDate));
-		kbStructureImpl.setModifiedDate(new Date(modifiedDate));
+		if (createDate == Long.MIN_VALUE) {
+			kbStructureImpl.setCreateDate(null);
+		}
+		else {
+			kbStructureImpl.setCreateDate(new Date(createDate));
+		}
+
+		if (modifiedDate == Long.MIN_VALUE) {
+			kbStructureImpl.setModifiedDate(null);
+		}
+		else {
+			kbStructureImpl.setModifiedDate(new Date(modifiedDate));
+		}
 
 		if (title == null) {
 			kbStructureImpl.setTitle(StringPool.BLANK);

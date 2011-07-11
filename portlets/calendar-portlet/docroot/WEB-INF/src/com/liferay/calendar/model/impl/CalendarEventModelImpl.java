@@ -752,11 +752,17 @@ public class CalendarEventModelImpl extends BaseModelImpl<CalendarEvent>
 		if (createDate != null) {
 			calendarEventCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			calendarEventCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			calendarEventCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			calendarEventCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		calendarEventCacheModel.title = getTitle();
@@ -788,11 +794,17 @@ public class CalendarEventModelImpl extends BaseModelImpl<CalendarEvent>
 		if (startDate != null) {
 			calendarEventCacheModel.startDate = startDate.getTime();
 		}
+		else {
+			calendarEventCacheModel.startDate = Long.MIN_VALUE;
+		}
 
 		Date endDate = getEndDate();
 
 		if (endDate != null) {
 			calendarEventCacheModel.endDate = endDate.getTime();
+		}
+		else {
+			calendarEventCacheModel.endDate = Long.MIN_VALUE;
 		}
 
 		calendarEventCacheModel.durationHour = getDurationHour();

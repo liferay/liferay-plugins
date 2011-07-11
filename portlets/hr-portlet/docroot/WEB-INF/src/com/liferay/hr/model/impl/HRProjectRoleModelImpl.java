@@ -330,11 +330,17 @@ public class HRProjectRoleModelImpl extends BaseModelImpl<HRProjectRole>
 		if (createDate != null) {
 			hrProjectRoleCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			hrProjectRoleCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			hrProjectRoleCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			hrProjectRoleCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		hrProjectRoleCacheModel.name = getName();

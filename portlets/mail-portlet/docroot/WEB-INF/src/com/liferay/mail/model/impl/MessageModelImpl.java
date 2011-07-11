@@ -488,11 +488,17 @@ public class MessageModelImpl extends BaseModelImpl<Message>
 		if (createDate != null) {
 			messageCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			messageCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			messageCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			messageCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		messageCacheModel.accountId = getAccountId();
@@ -535,6 +541,9 @@ public class MessageModelImpl extends BaseModelImpl<Message>
 
 		if (sentDate != null) {
 			messageCacheModel.sentDate = sentDate.getTime();
+		}
+		else {
+			messageCacheModel.sentDate = Long.MIN_VALUE;
 		}
 
 		messageCacheModel.subject = getSubject();

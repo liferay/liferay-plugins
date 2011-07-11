@@ -81,8 +81,19 @@ public class OAuthTokenCacheModel implements CacheModel<OAuthToken> {
 			oAuthTokenImpl.setUserName(userName);
 		}
 
-		oAuthTokenImpl.setCreateDate(new Date(createDate));
-		oAuthTokenImpl.setModifiedDate(new Date(modifiedDate));
+		if (createDate == Long.MIN_VALUE) {
+			oAuthTokenImpl.setCreateDate(null);
+		}
+		else {
+			oAuthTokenImpl.setCreateDate(new Date(createDate));
+		}
+
+		if (modifiedDate == Long.MIN_VALUE) {
+			oAuthTokenImpl.setModifiedDate(null);
+		}
+		else {
+			oAuthTokenImpl.setModifiedDate(new Date(modifiedDate));
+		}
 
 		if (gadgetKey == null) {
 			oAuthTokenImpl.setGadgetKey(StringPool.BLANK);

@@ -518,11 +518,17 @@ public class KBStructureModelImpl extends BaseModelImpl<KBStructure>
 		if (createDate != null) {
 			kbStructureCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			kbStructureCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			kbStructureCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			kbStructureCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		kbStructureCacheModel.title = getTitle();

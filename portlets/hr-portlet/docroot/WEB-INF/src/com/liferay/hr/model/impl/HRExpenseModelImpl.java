@@ -487,11 +487,17 @@ public class HRExpenseModelImpl extends BaseModelImpl<HRExpense>
 		if (createDate != null) {
 			hrExpenseCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			hrExpenseCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			hrExpenseCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			hrExpenseCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		hrExpenseCacheModel.hrExpenseAccountId = getHrExpenseAccountId();
@@ -504,6 +510,9 @@ public class HRExpenseModelImpl extends BaseModelImpl<HRExpense>
 
 		if (expenseDate != null) {
 			hrExpenseCacheModel.expenseDate = expenseDate.getTime();
+		}
+		else {
+			hrExpenseCacheModel.expenseDate = Long.MIN_VALUE;
 		}
 
 		hrExpenseCacheModel.expenseAmount = getExpenseAmount();
@@ -530,6 +539,9 @@ public class HRExpenseModelImpl extends BaseModelImpl<HRExpense>
 
 		if (statusDate != null) {
 			hrExpenseCacheModel.statusDate = statusDate.getTime();
+		}
+		else {
+			hrExpenseCacheModel.statusDate = Long.MIN_VALUE;
 		}
 
 		return hrExpenseCacheModel;

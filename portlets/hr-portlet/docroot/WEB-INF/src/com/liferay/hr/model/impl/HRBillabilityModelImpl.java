@@ -370,11 +370,17 @@ public class HRBillabilityModelImpl extends BaseModelImpl<HRBillability>
 		if (createDate != null) {
 			hrBillabilityCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			hrBillabilityCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			hrBillabilityCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			hrBillabilityCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		hrBillabilityCacheModel.code = getCode();

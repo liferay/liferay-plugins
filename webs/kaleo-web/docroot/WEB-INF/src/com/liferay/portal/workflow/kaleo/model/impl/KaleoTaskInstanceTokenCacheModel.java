@@ -91,8 +91,20 @@ public class KaleoTaskInstanceTokenCacheModel implements CacheModel<KaleoTaskIns
 			kaleoTaskInstanceTokenImpl.setUserName(userName);
 		}
 
-		kaleoTaskInstanceTokenImpl.setCreateDate(new Date(createDate));
-		kaleoTaskInstanceTokenImpl.setModifiedDate(new Date(modifiedDate));
+		if (createDate == Long.MIN_VALUE) {
+			kaleoTaskInstanceTokenImpl.setCreateDate(null);
+		}
+		else {
+			kaleoTaskInstanceTokenImpl.setCreateDate(new Date(createDate));
+		}
+
+		if (modifiedDate == Long.MIN_VALUE) {
+			kaleoTaskInstanceTokenImpl.setModifiedDate(null);
+		}
+		else {
+			kaleoTaskInstanceTokenImpl.setModifiedDate(new Date(modifiedDate));
+		}
+
 		kaleoTaskInstanceTokenImpl.setKaleoDefinitionId(kaleoDefinitionId);
 		kaleoTaskInstanceTokenImpl.setKaleoInstanceId(kaleoInstanceId);
 		kaleoTaskInstanceTokenImpl.setKaleoInstanceTokenId(kaleoInstanceTokenId);
@@ -115,8 +127,21 @@ public class KaleoTaskInstanceTokenCacheModel implements CacheModel<KaleoTaskIns
 		kaleoTaskInstanceTokenImpl.setClassPK(classPK);
 		kaleoTaskInstanceTokenImpl.setCompletionUserId(completionUserId);
 		kaleoTaskInstanceTokenImpl.setCompleted(completed);
-		kaleoTaskInstanceTokenImpl.setCompletionDate(new Date(completionDate));
-		kaleoTaskInstanceTokenImpl.setDueDate(new Date(dueDate));
+
+		if (completionDate == Long.MIN_VALUE) {
+			kaleoTaskInstanceTokenImpl.setCompletionDate(null);
+		}
+		else {
+			kaleoTaskInstanceTokenImpl.setCompletionDate(new Date(
+					completionDate));
+		}
+
+		if (dueDate == Long.MIN_VALUE) {
+			kaleoTaskInstanceTokenImpl.setDueDate(null);
+		}
+		else {
+			kaleoTaskInstanceTokenImpl.setDueDate(new Date(dueDate));
+		}
 
 		if (workflowContext == null) {
 			kaleoTaskInstanceTokenImpl.setWorkflowContext(StringPool.BLANK);

@@ -447,11 +447,17 @@ public class KaleoNotificationModelImpl extends BaseModelImpl<KaleoNotification>
 		if (createDate != null) {
 			kaleoNotificationCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			kaleoNotificationCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			kaleoNotificationCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			kaleoNotificationCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		kaleoNotificationCacheModel.kaleoClassName = getKaleoClassName();

@@ -386,11 +386,17 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 		if (createDate != null) {
 			gadgetCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			gadgetCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			gadgetCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			gadgetCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		gadgetCacheModel.name = getName();

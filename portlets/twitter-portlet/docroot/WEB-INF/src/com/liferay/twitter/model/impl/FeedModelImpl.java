@@ -370,11 +370,17 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 		if (createDate != null) {
 			feedCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			feedCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			feedCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			feedCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		feedCacheModel.twitterUserId = getTwitterUserId();

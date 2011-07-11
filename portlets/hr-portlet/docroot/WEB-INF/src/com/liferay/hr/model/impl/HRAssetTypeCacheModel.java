@@ -72,8 +72,19 @@ public class HRAssetTypeCacheModel implements CacheModel<HRAssetType> {
 			hrAssetTypeImpl.setUserName(userName);
 		}
 
-		hrAssetTypeImpl.setCreateDate(new Date(createDate));
-		hrAssetTypeImpl.setModifiedDate(new Date(modifiedDate));
+		if (createDate == Long.MIN_VALUE) {
+			hrAssetTypeImpl.setCreateDate(null);
+		}
+		else {
+			hrAssetTypeImpl.setCreateDate(new Date(createDate));
+		}
+
+		if (modifiedDate == Long.MIN_VALUE) {
+			hrAssetTypeImpl.setModifiedDate(null);
+		}
+		else {
+			hrAssetTypeImpl.setModifiedDate(new Date(modifiedDate));
+		}
 
 		if (name == null) {
 			hrAssetTypeImpl.setName(StringPool.BLANK);

@@ -312,11 +312,17 @@ public class HROfficeModelImpl extends BaseModelImpl<HROffice>
 		if (createDate != null) {
 			hrOfficeCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			hrOfficeCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			hrOfficeCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			hrOfficeCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		hrOfficeCacheModel.organizationId = getOrganizationId();

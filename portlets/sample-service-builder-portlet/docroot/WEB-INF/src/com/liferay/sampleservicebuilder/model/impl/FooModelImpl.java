@@ -471,11 +471,17 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 		if (createDate != null) {
 			fooCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			fooCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			fooCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			fooCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		fooCacheModel.field1 = getField1();
@@ -494,6 +500,9 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 
 		if (field4 != null) {
 			fooCacheModel.field4 = field4.getTime();
+		}
+		else {
+			fooCacheModel.field4 = Long.MIN_VALUE;
 		}
 
 		fooCacheModel.field5 = getField5();

@@ -358,11 +358,17 @@ public class HRUserProjectModelImpl extends BaseModelImpl<HRUserProject>
 		if (createDate != null) {
 			hrUserProjectCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			hrUserProjectCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			hrUserProjectCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			hrUserProjectCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		hrUserProjectCacheModel.hrProjectBillingRateId = getHrProjectBillingRateId();

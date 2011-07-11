@@ -354,11 +354,17 @@ public class ProjectsEntryModelImpl extends BaseModelImpl<ProjectsEntry>
 		if (createDate != null) {
 			projectsEntryCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			projectsEntryCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			projectsEntryCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			projectsEntryCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		projectsEntryCacheModel.title = getTitle();
@@ -382,11 +388,17 @@ public class ProjectsEntryModelImpl extends BaseModelImpl<ProjectsEntry>
 		if (startDate != null) {
 			projectsEntryCacheModel.startDate = startDate.getTime();
 		}
+		else {
+			projectsEntryCacheModel.startDate = Long.MIN_VALUE;
+		}
 
 		Date endDate = getEndDate();
 
 		if (endDate != null) {
 			projectsEntryCacheModel.endDate = endDate.getTime();
+		}
+		else {
+			projectsEntryCacheModel.endDate = Long.MIN_VALUE;
 		}
 
 		projectsEntryCacheModel.data = getData();

@@ -726,11 +726,17 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		if (createDate != null) {
 			kbArticleCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			kbArticleCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			kbArticleCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			kbArticleCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		kbArticleCacheModel.rootResourcePrimKey = getRootResourcePrimKey();
@@ -797,6 +803,9 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 
 		if (statusDate != null) {
 			kbArticleCacheModel.statusDate = statusDate.getTime();
+		}
+		else {
+			kbArticleCacheModel.statusDate = Long.MIN_VALUE;
 		}
 
 		return kbArticleCacheModel;

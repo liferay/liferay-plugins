@@ -509,11 +509,17 @@ public class KaleoDefinitionModelImpl extends BaseModelImpl<KaleoDefinition>
 		if (createDate != null) {
 			kaleoDefinitionCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			kaleoDefinitionCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			kaleoDefinitionCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			kaleoDefinitionCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		kaleoDefinitionCacheModel.name = getName();

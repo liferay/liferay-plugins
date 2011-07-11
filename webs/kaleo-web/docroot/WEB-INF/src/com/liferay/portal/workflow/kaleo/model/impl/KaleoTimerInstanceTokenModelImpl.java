@@ -498,11 +498,17 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 		if (createDate != null) {
 			kaleoTimerInstanceTokenCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			kaleoTimerInstanceTokenCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			kaleoTimerInstanceTokenCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			kaleoTimerInstanceTokenCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		kaleoTimerInstanceTokenCacheModel.kaleoClassName = getKaleoClassName();
@@ -543,6 +549,9 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 
 		if (completionDate != null) {
 			kaleoTimerInstanceTokenCacheModel.completionDate = completionDate.getTime();
+		}
+		else {
+			kaleoTimerInstanceTokenCacheModel.completionDate = Long.MIN_VALUE;
 		}
 
 		kaleoTimerInstanceTokenCacheModel.workflowContext = getWorkflowContext();
