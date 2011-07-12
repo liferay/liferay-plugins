@@ -106,7 +106,7 @@ List<MBMessage> messages = treeWalker.getMessages();
 
 <aui:script>
 	function <portlet:namespace />deletePost(messageId) {
-		document.<portlet:namespace />fm2.<portlet:namespace /><%=  Constants.CMD %>.value = "<%= Constants.DELETE %>";
+		document.<portlet:namespace />fm2.<portlet:namespace /><%= Constants.CMD %>.value = "<%= Constants.DELETE %>";
 		document.<portlet:namespace />fm2.<portlet:namespace />messageId.value = messageId;
 
 		<portlet:namespace />submitCommentForm();

@@ -25,7 +25,7 @@
 
 		SVNRepository svnRepository = SVNRepositoryLocalServiceUtil.getSVNRepository(svnURL);
 
-  		List<SVNRevision> svnRevisions = null;
+ 		List<SVNRevision> svnRevisions = null;
 
 		if (all) {
 			svnRevisions = SVNRevisionLocalServiceUtil.getSVNRevisions(svnRepository.getSvnRepositoryId(), 0, 100);

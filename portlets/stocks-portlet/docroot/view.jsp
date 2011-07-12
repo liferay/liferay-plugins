@@ -189,7 +189,7 @@
 				<table border="0" cellpadding="0" cellspacing="0" width="579">
 				<tr>
 					<td align="center">
-						<img  alt="<liferay-ui:message key="chart" />" src="<%= HttpUtil.getProtocol(request) %>://chart.bigcharts.com/bc3/quickchart/chart.asp?symb=<%= symbol %>&freq=<%= freq %>&time=<%= time %>" />
+						<img alt="<liferay-ui:message key="chart" />" src="<%= HttpUtil.getProtocol(request) %>://chart.bigcharts.com/bc3/quickchart/chart.asp?symb=<%= symbol %>&freq=<%= freq %>&time=<%= time %>" />
 					</td>
 				</tr>
 				</table>

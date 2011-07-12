@@ -25,7 +25,7 @@ Folder folder = FolderLocalServiceUtil.getFolder(folderId);
 <aui:layout cssClass="mail-status" />
 
 <aui:form name="dialogFm" onSubmit="event.preventDefault();">
-	<aui:input name="folderId"  type="hidden" value="<%= folderId %>" />
+	<aui:input name="folderId" type="hidden" value="<%= folderId %>" />
 
 	<aui:input name="displayName" value="<%= folder.getDisplayName() %>" />
 
