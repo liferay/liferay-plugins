@@ -27,7 +27,7 @@
 		<style>
 			.ie6 .maps-content img {
  				behavior: expression(this.pngSet=true);
-  			}
+ 			}
 		</style>
 
 		<script src="https://www.google.com/jsapi?key=<%= license %>" type="text/javascript"></script>

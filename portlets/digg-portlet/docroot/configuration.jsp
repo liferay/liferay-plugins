@@ -96,7 +96,7 @@
 	<div class="fld <%= domain ? "selected" : "" %>">
 		<aui:input checked="<%= domain %>" cssClass="news-type r" inlineField="true" label="" name="preferences--newsType--" type="radio" value="domain" />
 
-		<aui:select  cssClass="source-pop-or-up" inlineField="true" label="" name="preferences--sourcePopOrUp--">
+		<aui:select cssClass="source-pop-or-up" inlineField="true" label="" name="preferences--sourcePopOrUp--">
 			<aui:option label="popular" selected='<%= sourcePopOrUp.equals("popular") %>' value="popular" />
 			<aui:option label="upcoming" selected='<%= sourcePopOrUp.equals("upcoming") %>' value="upcoming" />
 			<aui:option label="all" selected='<%= sourcePopOrUp.equals("all") %>' value="all" />
@@ -248,7 +248,7 @@
 	<div class="fld <%= friends ? "selected" : "" %> f">
 		<aui:input checked="<%= friends %>" cssClass="news-type r" inlineField="true" label="" name="preferences--newsType--" type="radio" value="friends" />
 
-		<aui:select cssClass="news-friends"  inlineField="true" label="Stories your friends have" name="preferences--newsFriends--">
+		<aui:select cssClass="news-friends" inlineField="true" label="Stories your friends have" name="preferences--newsFriends--">
 			<aui:option label="dugg" selected='<%= newsFriends.equals("dugg") %>' value="dugg" />
 			<aui:option label="submitted" selected='<%= newsFriends.equals("submissions") %>' value="submissions" />
 			<aui:option label="commented on" selected='<%= newsFriends.equals("commented") %>' value="commented" />

@@ -50,7 +50,7 @@ KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_
 						</c:if>
 
 						<%
-						for (AssetEntry assetEntry :  mostRecentAssetEntries) {
+						for (AssetEntry assetEntry : mostRecentAssetEntries) {
 							AssetRendererFactory assetRendererFactory = AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassName(assetEntry.getClassName());
 
 							AssetRenderer assetRenderer = assetRendererFactory.getAssetRenderer(assetEntry.getClassPK());

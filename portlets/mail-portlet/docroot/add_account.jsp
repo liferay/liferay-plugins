@@ -163,7 +163,7 @@ for (int i = 0; i < accountsJSONArray.length(); i++) {
 
 			Liferay.Mail.setStatus('info', '<liferay-ui:message key="adding-account" />', true);
 
-			var form =  event.currentTarget;
+			var form = event.currentTarget;
 
 			A.io.request(
 				themeDisplay.getLayoutURL() + '/-/mail/update_account',
