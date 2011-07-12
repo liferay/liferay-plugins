@@ -40,13 +40,13 @@ import javax.portlet.PortletPreferences;
  */
 public class SitesUtil {
 
-	public static List<Group> getBookmarkedSites(PortletPreferences preferences)
+	public static List<Group> getStarredSites(PortletPreferences preferences)
 		throws Exception {
 
-		String bookmarkGroupIds = preferences.getValue(
-			"bookmarkGroupIds", StringPool.BLANK);
+		String starredGroupIds = preferences.getValue(
+			"starredGroupIds", StringPool.BLANK);
 
-		long[] groupIds = StringUtil.split(bookmarkGroupIds, 0L);
+		long[] groupIds = StringUtil.split(starredGroupIds, 0L);
 
 		List<Group> groups = new ArrayList<Group>(groupIds.length);
 
@@ -57,9 +57,9 @@ public class SitesUtil {
 				groups.add(group);
 			}
 			catch (Exception e) {
-				StringUtil.remove(bookmarkGroupIds, String.valueOf(groupId));
+				StringUtil.remove(starredGroupIds, String.valueOf(groupId));
 
-				preferences.setValue("bookmarkGroupIds", bookmarkGroupIds);
+				preferences.setValue("starredGroupIds", starredGroupIds);
 
 				preferences.store();
 			}

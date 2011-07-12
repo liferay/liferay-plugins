@@ -245,7 +245,7 @@ public class SitesPortlet extends MVCPortlet {
 				themeDisplay.getCompanyId(), keywords, null, params);
 		}
 		else {
-			groups = SitesUtil.getBookmarkedSites(preferences);
+			groups = SitesUtil.getStarredSites(preferences);
 
 			count = groups.size();
 
@@ -265,8 +265,7 @@ public class SitesPortlet extends MVCPortlet {
 		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
 		for (Group group : groups) {
-			JSONObject groupJSONObject =
-				JSONFactoryUtil.createJSONObject();
+			JSONObject groupJSONObject = JSONFactoryUtil.createJSONObject();
 
 			groupJSONObject.put("name", group.getDescriptiveName());
 			groupJSONObject.put("description", group.getDescription());
@@ -319,36 +318,32 @@ public class SitesPortlet extends MVCPortlet {
 				groupJSONObject.put("joinUrl", portletURL.toString());
 			}
 
-			PortletURL bookmarkPortletURL = resourceResponse.createActionURL();
+			PortletURL starPortletURL = resourceResponse.createActionURL();
 
-			bookmarkPortletURL.setWindowState(WindowState.NORMAL);
+			starPortletURL.setWindowState(WindowState.NORMAL);
 
-			bookmarkPortletURL.setParameter(
-				ActionRequest.ACTION_NAME, "updateBookmarks");
-			bookmarkPortletURL.setParameter(
+			starPortletURL.setParameter(
+				ActionRequest.ACTION_NAME, "updateStars");
+			starPortletURL.setParameter(
 				"redirect", themeDisplay.getURLCurrent());
-			bookmarkPortletURL.setParameter(
-				"bookmarkGroupId", String.valueOf(group.getGroupId()));
-			bookmarkPortletURL.setParameter(
-				"portletResource", portletResource);
+			starPortletURL.setParameter(
+				"starredGroupId", String.valueOf(group.getGroupId()));
+			starPortletURL.setParameter("portletResource", portletResource);
 
-			String bookmarkGroupIds = preferences.getValue(
-				"bookmarkGroupIds", StringPool.BLANK);
+			String starredGroupIds = preferences.getValue(
+				"starredGroupIds", StringPool.BLANK);
 
 			if (!StringUtil.contains(
-				bookmarkGroupIds, String.valueOf(group.getGroupId()))) {
+				starredGroupIds, String.valueOf(group.getGroupId()))) {
 
-				bookmarkPortletURL.setParameter(Constants.CMD, Constants.ADD);
+				starPortletURL.setParameter(Constants.CMD, Constants.ADD);
 
-				groupJSONObject.put(
-					"addBookmarkURL", bookmarkPortletURL.toString());
+				groupJSONObject.put("starURL", starPortletURL.toString());
 			}
 			else {
-				bookmarkPortletURL.setParameter(
-					Constants.CMD, Constants.DELETE);
+				starPortletURL.setParameter(Constants.CMD, Constants.DELETE);
 
-				groupJSONObject.put(
-					"deleteBookmarkURL", bookmarkPortletURL.toString());
+				groupJSONObject.put("unstarURL", starPortletURL.toString());
 			}
 
 			jsonArray.put(groupJSONObject);
@@ -386,14 +381,14 @@ public class SitesPortlet extends MVCPortlet {
 		}
 	}
 
-	public void updateBookmarks(
+	public void updateStars(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
 		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
 
-		long bookmarkGroupId = ParamUtil.getLong(
-			actionRequest, "bookmarkGroupId");
+		long starredGroupId = ParamUtil.getLong(
+			actionRequest, "starredGroupId");
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
@@ -401,7 +396,7 @@ public class SitesPortlet extends MVCPortlet {
 			actionResponse);
 
 		try {
-			GroupServiceUtil.getGroup(bookmarkGroupId);
+			GroupServiceUtil.getGroup(starredGroupId);
 		}
 		catch (Exception e) {
 			jsonObject.put("result", "failure");
@@ -421,19 +416,19 @@ public class SitesPortlet extends MVCPortlet {
 				actionRequest, portletResource);
 		}
 
-		String bookmarkGroupIds = preferences.getValue(
-			"bookmarkGroupIds", StringPool.BLANK);
+		String starredGroupIds = preferences.getValue(
+			"starredGroupIds", StringPool.BLANK);
 
 		if (cmd.equals(Constants.ADD)) {
-			bookmarkGroupIds = StringUtil.add(
-				bookmarkGroupIds, String.valueOf(bookmarkGroupId));
+			starredGroupIds = StringUtil.add(
+				starredGroupIds, String.valueOf(starredGroupId));
 		}
 		else if (cmd.equals(Constants.DELETE)) {
-			bookmarkGroupIds = StringUtil.remove(
-				bookmarkGroupIds, String.valueOf(bookmarkGroupId));
+			starredGroupIds = StringUtil.remove(
+				starredGroupIds, String.valueOf(starredGroupId));
 		}
 
-		preferences.setValue("bookmarkGroupIds", bookmarkGroupIds);
+		preferences.setValue("starredGroupIds", starredGroupIds);
 
 		preferences.store();
 

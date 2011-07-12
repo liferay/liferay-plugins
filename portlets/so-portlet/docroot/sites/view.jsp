@@ -45,7 +45,7 @@ pageContext.setAttribute("portletURL", portletURL);
 	</div>
 
 	<%
-	List<Group> groups = SitesUtil.getBookmarkedSites(preferences);
+	List<Group> groups = SitesUtil.getStarredSites(preferences);
 
 	int count = groups.size();
 
@@ -64,7 +64,7 @@ pageContext.setAttribute("portletURL", portletURL);
 				<%
 				boolean alternate = false;
 
-				String bookmarkGroupIds = preferences.getValue("bookmarkGroupIds", StringPool.BLANK);
+				String starredGroupIds = preferences.getValue("starredGroupIds", StringPool.BLANK);
 
 				for (Group group : groups) {
 					String className = StringPool.BLANK;
@@ -86,25 +86,29 @@ pageContext.setAttribute("portletURL", portletURL);
 
 					<li class="<%= className %>">
 						<c:choose>
-							<c:when test="<%= !StringUtil.contains(bookmarkGroupIds, String.valueOf(group.getGroupId())) %>">
-								<liferay-portlet:actionURL name="updateBookmarks" var="addBookmarkURL">
-									<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.ADD %>" />
-									<portlet:param name="redirect" value="<%= currentURL %>" />
-									<portlet:param name="bookmarkGroupId" value="<%= String.valueOf(group.getGroupId()) %>" />
-									<portlet:param name="portletResource" value="<%= portletResource %>" />
-								</liferay-portlet:actionURL>
+							<c:when test="<%= !StringUtil.contains(starredGroupIds, String.valueOf(group.getGroupId())) %>">
+								<span class="star">
+									<liferay-portlet:actionURL name="updateStars" var="starURL">
+										<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.ADD %>" />
+										<portlet:param name="redirect" value="<%= currentURL %>" />
+										<portlet:param name="starredGroupId" value="<%= String.valueOf(group.getGroupId()) %>" />
+										<portlet:param name="portletResource" value="<%= portletResource %>" />
+									</liferay-portlet:actionURL>
 
-								<a class="bookmark add-bookmark" href="<%= addBookmarkURL %>"></a>
+									<a class="star" href="<%= starURL %>"><liferay-ui:message key="star" /></a>
+								</span>
 							</c:when>
 							<c:otherwise>
-								<liferay-portlet:actionURL name="updateBookmarks" var="deleteBookmarkURL">
-									<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE %>" />
-									<portlet:param name="redirect" value="<%= currentURL %>" />
-									<portlet:param name="bookmarkGroupId" value="<%= String.valueOf(group.getGroupId()) %>" />
-									<portlet:param name="portletResource" value="<%= portletResource %>" />
-								</liferay-portlet:actionURL>
+								<span class="unstar">
+									<liferay-portlet:actionURL name="updateStars" var="unstarURL">
+										<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE %>" />
+										<portlet:param name="redirect" value="<%= currentURL %>" />
+										<portlet:param name="starredGroupId" value="<%= String.valueOf(group.getGroupId()) %>" />
+										<portlet:param name="portletResource" value="<%= portletResource %>" />
+									</liferay-portlet:actionURL>
 
-								<a class="bookmark delete-bookmark" href="<%= deleteBookmarkURL %>"></a>
+									<a href="<%= unstarURL %>"><liferay-ui:message key="unstar" /></a>
+								</span>
 							</c:otherwise>
 						</c:choose>
 
@@ -153,7 +157,7 @@ pageContext.setAttribute("portletURL", portletURL);
 			</c:when>
 			<c:otherwise>
 				<li class="empty">
-					<liferay-ui:message key="bookmark-some-sites-to-customize-your-initial-list" />
+					<liferay-ui:message key="favorite-some-sites-to-customize-your-initial-list" />
 				</li>
 			</c:otherwise>
 		</c:choose>
@@ -272,7 +276,26 @@ pageContext.setAttribute("portletURL", portletURL);
 						}
 					);
 				},
-				'a.bookmark'
+				'.star a'
+			);
+
+			siteList.delegate(
+				'click',
+				function(event) {
+					event.preventDefault();
+
+					A.io.request(
+						event.currentTarget.get('href'),
+						{
+							after: {
+								success: function(event, id, obj) {
+									Liferay.SO.Sites.updateSites();
+								}
+							}
+						}
+					);
+				},
+				'.unstar a'
 			);
 		}
 	);
