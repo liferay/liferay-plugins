@@ -97,8 +97,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		DLStoreUtil.addFile(
 			serviceContext.getCompanyId(), CompanyConstants.SYSTEM_STRING,
 			GroupConstants.DEFAULT_PARENT_GROUP_ID, CompanyConstants.SYSTEM,
-			dirName + StringPool.SLASH + shortFileName, 0, StringPool.BLANK,
-			serviceContext.getModifiedDate(null), serviceContext, bytes);
+			dirName + StringPool.SLASH + shortFileName, serviceContext, bytes);
 	}
 
 	public KBArticle addKBArticle(

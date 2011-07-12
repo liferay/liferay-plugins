@@ -79,8 +79,7 @@ public class KBArticleAttachmentsUtil {
 					kbArticle.getCompanyId(), CompanyConstants.SYSTEM_STRING,
 					GroupConstants.DEFAULT_PARENT_GROUP_ID,
 					CompanyConstants.SYSTEM,
-					newDirName + StringPool.SLASH + shortFileName, 0,
-					StringPool.BLANK, serviceContext.getModifiedDate(null),
+					newDirName + StringPool.SLASH + shortFileName,
 					serviceContext, bytes);
 			}
 

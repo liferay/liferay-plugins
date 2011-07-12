@@ -472,8 +472,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 					portletDataContext.getCompanyId(),
 					CompanyConstants.SYSTEM_STRING,
 					GroupConstants.DEFAULT_PARENT_GROUP_ID,
-					CompanyConstants.SYSTEM, fileName, 0, StringPool.BLANK,
-					serviceContext.getCreateDate(null), serviceContext, bytes);
+					CompanyConstants.SYSTEM, fileName, serviceContext, bytes);
 			}
 
 			dirNames.put(resourcePrimKey, dirName);
