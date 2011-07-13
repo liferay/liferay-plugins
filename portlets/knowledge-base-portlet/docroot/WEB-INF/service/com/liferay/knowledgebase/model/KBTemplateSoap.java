@@ -41,8 +41,6 @@ public class KBTemplateSoap implements Serializable {
 		soapModel.setModifiedDate(model.getModifiedDate());
 		soapModel.setTitle(model.getTitle());
 		soapModel.setContent(model.getContent());
-		soapModel.setEngineType(model.getEngineType());
-		soapModel.setCacheable(model.getCacheable());
 
 		return soapModel;
 	}
@@ -175,26 +173,6 @@ public class KBTemplateSoap implements Serializable {
 		_content = content;
 	}
 
-	public int getEngineType() {
-		return _engineType;
-	}
-
-	public void setEngineType(int engineType) {
-		_engineType = engineType;
-	}
-
-	public boolean getCacheable() {
-		return _cacheable;
-	}
-
-	public boolean isCacheable() {
-		return _cacheable;
-	}
-
-	public void setCacheable(boolean cacheable) {
-		_cacheable = cacheable;
-	}
-
 	private String _uuid;
 	private long _kbTemplateId;
 	private long _groupId;
@@ -205,6 +183,4 @@ public class KBTemplateSoap implements Serializable {
 	private Date _modifiedDate;
 	private String _title;
 	private String _content;
-	private int _engineType;
-	private boolean _cacheable;
 }

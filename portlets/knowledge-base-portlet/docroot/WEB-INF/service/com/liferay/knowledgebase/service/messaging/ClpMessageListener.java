@@ -18,8 +18,6 @@ import com.liferay.knowledgebase.service.ClpSerializer;
 import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
 import com.liferay.knowledgebase.service.KBArticleServiceUtil;
 import com.liferay.knowledgebase.service.KBCommentLocalServiceUtil;
-import com.liferay.knowledgebase.service.KBStructureLocalServiceUtil;
-import com.liferay.knowledgebase.service.KBStructureServiceUtil;
 import com.liferay.knowledgebase.service.KBTemplateLocalServiceUtil;
 import com.liferay.knowledgebase.service.KBTemplateServiceUtil;
 
@@ -45,9 +43,6 @@ public class ClpMessageListener extends BaseMessageListener {
 			KBArticleServiceUtil.clearService();
 			KBCommentLocalServiceUtil.clearService();
 
-			KBStructureLocalServiceUtil.clearService();
-
-			KBStructureServiceUtil.clearService();
 			KBTemplateLocalServiceUtil.clearService();
 
 			KBTemplateServiceUtil.clearService();

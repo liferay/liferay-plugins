@@ -29,10 +29,6 @@ create unique index IX_FD56A55D on KBComment (userId, classNameId, classPK);
 create index IX_8E470726 on KBComment (uuid_);
 create unique index IX_791D1844 on KBComment (uuid_, groupId);
 
-create index IX_362A7848 on KBStructure (groupId);
-create index IX_C917CD2 on KBStructure (uuid_);
-create unique index IX_201E4418 on KBStructure (uuid_, groupId);
-
 create index IX_83D9CC13 on KBTemplate (groupId);
 create index IX_9909475D on KBTemplate (uuid_);
 create unique index IX_40AA25ED on KBTemplate (uuid_, groupId);

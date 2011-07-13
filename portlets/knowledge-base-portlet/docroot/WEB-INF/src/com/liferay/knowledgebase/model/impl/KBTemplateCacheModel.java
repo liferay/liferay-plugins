@@ -32,7 +32,7 @@ import java.util.Date;
 public class KBTemplateCacheModel implements CacheModel<KBTemplate> {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(25);
+		StringBundler sb = new StringBundler(21);
 
 		sb.append("{uuid=");
 		sb.append(uuid);
@@ -54,10 +54,6 @@ public class KBTemplateCacheModel implements CacheModel<KBTemplate> {
 		sb.append(title);
 		sb.append(", content=");
 		sb.append(content);
-		sb.append(", engineType=");
-		sb.append(engineType);
-		sb.append(", cacheable=");
-		sb.append(cacheable);
 		sb.append("}");
 
 		return sb.toString();
@@ -85,19 +81,8 @@ public class KBTemplateCacheModel implements CacheModel<KBTemplate> {
 			kbTemplateImpl.setUserName(userName);
 		}
 
-		if (createDate == Long.MIN_VALUE) {
-			kbTemplateImpl.setCreateDate(null);
-		}
-		else {
-			kbTemplateImpl.setCreateDate(new Date(createDate));
-		}
-
-		if (modifiedDate == Long.MIN_VALUE) {
-			kbTemplateImpl.setModifiedDate(null);
-		}
-		else {
-			kbTemplateImpl.setModifiedDate(new Date(modifiedDate));
-		}
+		kbTemplateImpl.setCreateDate(new Date(createDate));
+		kbTemplateImpl.setModifiedDate(new Date(modifiedDate));
 
 		if (title == null) {
 			kbTemplateImpl.setTitle(StringPool.BLANK);
@@ -112,9 +97,6 @@ public class KBTemplateCacheModel implements CacheModel<KBTemplate> {
 		else {
 			kbTemplateImpl.setContent(content);
 		}
-
-		kbTemplateImpl.setEngineType(engineType);
-		kbTemplateImpl.setCacheable(cacheable);
 
 		kbTemplateImpl.resetOriginalValues();
 
@@ -131,6 +113,4 @@ public class KBTemplateCacheModel implements CacheModel<KBTemplate> {
 	public long modifiedDate;
 	public String title;
 	public String content;
-	public int engineType;
-	public boolean cacheable;
 }

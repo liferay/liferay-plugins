@@ -22,9 +22,6 @@ import com.liferay.knowledgebase.model.impl.KBTemplateModelImpl;
 import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
-import com.liferay.portal.kernel.dao.jdbc.MappingSqlQuery;
-import com.liferay.portal.kernel.dao.jdbc.MappingSqlQueryFactoryUtil;
-import com.liferay.portal.kernel.dao.jdbc.RowMapper;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
@@ -394,8 +391,6 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 		kbTemplateImpl.setModifiedDate(kbTemplate.getModifiedDate());
 		kbTemplateImpl.setTitle(kbTemplate.getTitle());
 		kbTemplateImpl.setContent(kbTemplate.getContent());
-		kbTemplateImpl.setEngineType(kbTemplate.getEngineType());
-		kbTemplateImpl.setCacheable(kbTemplate.isCacheable());
 
 		return kbTemplateImpl;
 	}
@@ -2100,234 +2095,6 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	}
 
 	/**
-	 * Returns all the k b articles associated with the k b template.
-	 *
-	 * @param pk the primary key of the k b template
-	 * @return the k b articles associated with the k b template
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<com.liferay.knowledgebase.model.KBArticle> getKBArticles(
-		long pk) throws SystemException {
-		return getKBArticles(pk, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
-	}
-
-	/**
-	 * Returns a range of all the k b articles associated with the k b template.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param pk the primary key of the k b template
-	 * @param start the lower bound of the range of k b templates
-	 * @param end the upper bound of the range of k b templates (not inclusive)
-	 * @return the range of k b articles associated with the k b template
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<com.liferay.knowledgebase.model.KBArticle> getKBArticles(
-		long pk, int start, int end) throws SystemException {
-		return getKBArticles(pk, start, end, null);
-	}
-
-	public static final FinderPath FINDER_PATH_GET_KBARTICLES = new FinderPath(com.liferay.knowledgebase.model.impl.KBArticleModelImpl.ENTITY_CACHE_ENABLED,
-			com.liferay.knowledgebase.model.impl.KBArticleModelImpl.FINDER_CACHE_ENABLED,
-			com.liferay.knowledgebase.model.impl.KBArticleImpl.class,
-			com.liferay.knowledgebase.service.persistence.KBArticlePersistenceImpl.FINDER_CLASS_NAME_LIST,
-			"getKBArticles",
-			new String[] {
-				Long.class.getName(), "java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			});
-
-	/**
-	 * Returns an ordered range of all the k b articles associated with the k b template.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param pk the primary key of the k b template
-	 * @param start the lower bound of the range of k b templates
-	 * @param end the upper bound of the range of k b templates (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @return the ordered range of k b articles associated with the k b template
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<com.liferay.knowledgebase.model.KBArticle> getKBArticles(
-		long pk, int start, int end, OrderByComparator orderByComparator)
-		throws SystemException {
-		Object[] finderArgs = new Object[] {
-				pk, String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
-
-		List<com.liferay.knowledgebase.model.KBArticle> list = (List<com.liferay.knowledgebase.model.KBArticle>)FinderCacheUtil.getResult(FINDER_PATH_GET_KBARTICLES,
-				finderArgs, this);
-
-		if (list == null) {
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				String sql = null;
-
-				if (orderByComparator != null) {
-					sql = _SQL_GETKBARTICLES.concat(ORDER_BY_CLAUSE)
-											.concat(orderByComparator.getOrderBy());
-				}
-				else {
-					sql = _SQL_GETKBARTICLES.concat(com.liferay.knowledgebase.model.impl.KBArticleModelImpl.ORDER_BY_SQL);
-				}
-
-				SQLQuery q = session.createSQLQuery(sql);
-
-				q.addEntity("KBArticle",
-					com.liferay.knowledgebase.model.impl.KBArticleImpl.class);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(pk);
-
-				list = (List<com.liferay.knowledgebase.model.KBArticle>)QueryUtil.list(q,
-						getDialect(), start, end);
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					FinderCacheUtil.removeResult(FINDER_PATH_GET_KBARTICLES,
-						finderArgs);
-				}
-				else {
-					kbArticlePersistence.cacheResult(list);
-
-					FinderCacheUtil.putResult(FINDER_PATH_GET_KBARTICLES,
-						finderArgs, list);
-				}
-
-				closeSession(session);
-			}
-		}
-
-		return list;
-	}
-
-	public static final FinderPath FINDER_PATH_GET_KBARTICLES_SIZE = new FinderPath(com.liferay.knowledgebase.model.impl.KBArticleModelImpl.ENTITY_CACHE_ENABLED,
-			com.liferay.knowledgebase.model.impl.KBArticleModelImpl.FINDER_CACHE_ENABLED,
-			com.liferay.knowledgebase.model.impl.KBArticleImpl.class,
-			com.liferay.knowledgebase.service.persistence.KBArticlePersistenceImpl.FINDER_CLASS_NAME_LIST,
-			"getKBArticlesSize", new String[] { Long.class.getName() });
-
-	/**
-	 * Returns the number of k b articles associated with the k b template.
-	 *
-	 * @param pk the primary key of the k b template
-	 * @return the number of k b articles associated with the k b template
-	 * @throws SystemException if a system exception occurred
-	 */
-	public int getKBArticlesSize(long pk) throws SystemException {
-		Object[] finderArgs = new Object[] { pk };
-
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_GET_KBARTICLES_SIZE,
-				finderArgs, this);
-
-		if (count == null) {
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				SQLQuery q = session.createSQLQuery(_SQL_GETKBARTICLESSIZE);
-
-				q.addScalar(COUNT_COLUMN_NAME,
-					com.liferay.portal.kernel.dao.orm.Type.LONG);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(pk);
-
-				count = (Long)q.uniqueResult();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (count == null) {
-					count = Long.valueOf(0);
-				}
-
-				FinderCacheUtil.putResult(FINDER_PATH_GET_KBARTICLES_SIZE,
-					finderArgs, count);
-
-				closeSession(session);
-			}
-		}
-
-		return count.intValue();
-	}
-
-	public static final FinderPath FINDER_PATH_CONTAINS_KBARTICLE = new FinderPath(com.liferay.knowledgebase.model.impl.KBArticleModelImpl.ENTITY_CACHE_ENABLED,
-			com.liferay.knowledgebase.model.impl.KBArticleModelImpl.FINDER_CACHE_ENABLED,
-			com.liferay.knowledgebase.model.impl.KBArticleImpl.class,
-			com.liferay.knowledgebase.service.persistence.KBArticlePersistenceImpl.FINDER_CLASS_NAME_LIST,
-			"containsKBArticle",
-			new String[] { Long.class.getName(), Long.class.getName() });
-
-	/**
-	 * Returns <code>true</code> if the k b article is associated with the k b template.
-	 *
-	 * @param pk the primary key of the k b template
-	 * @param kbArticlePK the primary key of the k b article
-	 * @return <code>true</code> if the k b article is associated with the k b template; <code>false</code> otherwise
-	 * @throws SystemException if a system exception occurred
-	 */
-	public boolean containsKBArticle(long pk, long kbArticlePK)
-		throws SystemException {
-		Object[] finderArgs = new Object[] { pk, kbArticlePK };
-
-		Boolean value = (Boolean)FinderCacheUtil.getResult(FINDER_PATH_CONTAINS_KBARTICLE,
-				finderArgs, this);
-
-		if (value == null) {
-			try {
-				value = Boolean.valueOf(containsKBArticle.contains(pk,
-							kbArticlePK));
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (value == null) {
-					value = Boolean.FALSE;
-				}
-
-				FinderCacheUtil.putResult(FINDER_PATH_CONTAINS_KBARTICLE,
-					finderArgs, value);
-			}
-		}
-
-		return value.booleanValue();
-	}
-
-	/**
-	 * Returns <code>true</code> if the k b template has any k b articles associated with it.
-	 *
-	 * @param pk the primary key of the k b template to check for associations with k b articles
-	 * @return <code>true</code> if the k b template has any k b articles associated with it; <code>false</code> otherwise
-	 * @throws SystemException if a system exception occurred
-	 */
-	public boolean containsKBArticles(long pk) throws SystemException {
-		if (getKBArticlesSize(pk) > 0) {
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
-
-	/**
 	 * Initializes the k b template persistence.
 	 */
 	public void afterPropertiesSet() {
@@ -2350,8 +2117,6 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 				_log.error(e);
 			}
 		}
-
-		containsKBArticle = new ContainsKBArticle(this);
 	}
 
 	public void destroy() {
@@ -2364,8 +2129,6 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	protected KBArticlePersistence kbArticlePersistence;
 	@BeanReference(type = KBCommentPersistence.class)
 	protected KBCommentPersistence kbCommentPersistence;
-	@BeanReference(type = KBStructurePersistence.class)
-	protected KBStructurePersistence kbStructurePersistence;
 	@BeanReference(type = KBTemplatePersistence.class)
 	protected KBTemplatePersistence kbTemplatePersistence;
 	@BeanReference(type = ResourcePersistence.class)
@@ -2374,44 +2137,10 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	protected UserPersistence userPersistence;
 	@BeanReference(type = SocialActivityPersistence.class)
 	protected SocialActivityPersistence socialActivityPersistence;
-	protected ContainsKBArticle containsKBArticle;
-
-	protected class ContainsKBArticle {
-		protected ContainsKBArticle(KBTemplatePersistenceImpl persistenceImpl) {
-			super();
-
-			_mappingSqlQuery = MappingSqlQueryFactoryUtil.getMappingSqlQuery(getDataSource(),
-					_SQL_CONTAINSKBARTICLE,
-					new int[] { java.sql.Types.BIGINT, java.sql.Types.BIGINT },
-					RowMapper.COUNT);
-		}
-
-		protected boolean contains(long kbTemplateId, long kbArticleId) {
-			List<Integer> results = _mappingSqlQuery.execute(new Object[] {
-						new Long(kbTemplateId), new Long(kbArticleId)
-					});
-
-			if (results.size() > 0) {
-				Integer count = results.get(0);
-
-				if (count.intValue() > 0) {
-					return true;
-				}
-			}
-
-			return false;
-		}
-
-		private MappingSqlQuery<Integer> _mappingSqlQuery;
-	}
-
 	private static final String _SQL_SELECT_KBTEMPLATE = "SELECT kbTemplate FROM KBTemplate kbTemplate";
 	private static final String _SQL_SELECT_KBTEMPLATE_WHERE = "SELECT kbTemplate FROM KBTemplate kbTemplate WHERE ";
 	private static final String _SQL_COUNT_KBTEMPLATE = "SELECT COUNT(kbTemplate) FROM KBTemplate kbTemplate";
 	private static final String _SQL_COUNT_KBTEMPLATE_WHERE = "SELECT COUNT(kbTemplate) FROM KBTemplate kbTemplate WHERE ";
-	private static final String _SQL_GETKBARTICLES = "SELECT {KBArticle.*} FROM KBArticle INNER JOIN KBTemplate ON (KBTemplate.kbTemplateId = KBArticle.kbTemplateId) WHERE (KBTemplate.kbTemplateId = ?)";
-	private static final String _SQL_GETKBARTICLESSIZE = "SELECT COUNT(*) AS COUNT_VALUE FROM KBArticle WHERE kbTemplateId = ?";
-	private static final String _SQL_CONTAINSKBARTICLE = "SELECT COUNT(*) AS COUNT_VALUE FROM KBArticle WHERE kbTemplateId = ? AND kbArticleId = ?";
 	private static final String _FINDER_COLUMN_UUID_UUID_1 = "kbTemplate.uuid IS NULL";
 	private static final String _FINDER_COLUMN_UUID_UUID_2 = "kbTemplate.uuid = ?";
 	private static final String _FINDER_COLUMN_UUID_UUID_3 = "(kbTemplate.uuid IS NULL OR kbTemplate.uuid = ?)";

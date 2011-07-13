@@ -277,35 +277,32 @@ public class KBArticleLocalServiceUtil {
 	public static com.liferay.knowledgebase.model.KBArticle addKBArticle(
 		long userId, long parentResourcePrimKey, java.lang.String title,
 		java.lang.String content, java.lang.String description,
-		long kbTemplateId, java.lang.String[] sections,
-		java.lang.String dirName,
+		java.lang.String[] sections, java.lang.String dirName,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .addKBArticle(userId, parentResourcePrimKey, title, content,
-			description, kbTemplateId, sections, dirName, serviceContext);
+			description, sections, dirName, serviceContext);
 	}
 
 	public static void addKBArticleResources(
 		com.liferay.knowledgebase.model.KBArticle kbArticle,
-		boolean addCommunityPermissions, boolean addGuestPermissions)
+		boolean addGroupPermissions, boolean addGuestPermissions)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		getService()
-			.addKBArticleResources(kbArticle, addCommunityPermissions,
+			.addKBArticleResources(kbArticle, addGroupPermissions,
 			addGuestPermissions);
 	}
 
 	public static void addKBArticleResources(
 		com.liferay.knowledgebase.model.KBArticle kbArticle,
-		java.lang.String[] communityPermissions,
-		java.lang.String[] guestPermissions)
+		java.lang.String[] groupPermissions, java.lang.String[] guestPermissions)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		getService()
-			.addKBArticleResources(kbArticle, communityPermissions,
-			guestPermissions);
+			.addKBArticleResources(kbArticle, groupPermissions, guestPermissions);
 	}
 
 	public static void checkAttachments()
@@ -397,20 +394,6 @@ public class KBArticleLocalServiceUtil {
 	public static int getKBArticleVersionsCount(long resourcePrimKey, int status)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().getKBArticleVersionsCount(resourcePrimKey, status);
-	}
-
-	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> getKBTemplateKBArticles(
-		long kbTemplateId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService()
-				   .getKBTemplateKBArticles(kbTemplateId, start, end,
-			orderByComparator);
-	}
-
-	public static int getKBTemplateKBArticlesCount(long kbTemplateId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().getKBTemplateKBArticlesCount(kbTemplateId);
 	}
 
 	public static com.liferay.knowledgebase.model.KBArticle getLatestKBArticle(
@@ -511,14 +494,13 @@ public class KBArticleLocalServiceUtil {
 	public static com.liferay.knowledgebase.model.KBArticle updateKBArticle(
 		long userId, long resourcePrimKey, java.lang.String title,
 		java.lang.String content, java.lang.String description,
-		long kbTemplateId, java.lang.String[] sections,
-		java.lang.String dirName,
+		java.lang.String[] sections, java.lang.String dirName,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .updateKBArticle(userId, resourcePrimKey, title, content,
-			description, kbTemplateId, sections, dirName, serviceContext);
+			description, sections, dirName, serviceContext);
 	}
 
 	public static void updateKBArticleAsset(long userId,
@@ -533,18 +515,12 @@ public class KBArticleLocalServiceUtil {
 
 	public static void updateKBArticleResources(
 		com.liferay.knowledgebase.model.KBArticle kbArticle,
-		java.lang.String[] communityPermissions,
-		java.lang.String[] guestPermissions)
+		java.lang.String[] groupPermissions, java.lang.String[] guestPermissions)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		getService()
-			.updateKBArticleResources(kbArticle, communityPermissions,
+			.updateKBArticleResources(kbArticle, groupPermissions,
 			guestPermissions);
-	}
-
-	public static void updateKBArticlesKBTemplates(long[] kbArticleIds)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getService().updateKBArticlesKBTemplates(kbArticleIds);
 	}
 
 	public static void updateKBArticlesPriorities(

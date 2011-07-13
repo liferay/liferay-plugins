@@ -15,15 +15,6 @@
 		<property name="service" ref="com.liferay.knowledgebase.service.KBCommentLocalService" />
 	</bean>
 	<bean id="com.liferay.knowledgebase.service.persistence.KBCommentPersistence" class="com.liferay.knowledgebase.service.persistence.KBCommentPersistenceImpl" parent="basePersistence" />
-	<bean id="com.liferay.knowledgebase.service.KBStructureLocalService" class="com.liferay.knowledgebase.service.impl.KBStructureLocalServiceImpl" />
-	<bean id="com.liferay.knowledgebase.service.KBStructureLocalServiceUtil" class="com.liferay.knowledgebase.service.KBStructureLocalServiceUtil">
-		<property name="service" ref="com.liferay.knowledgebase.service.KBStructureLocalService" />
-	</bean>
-	<bean id="com.liferay.knowledgebase.service.KBStructureService" class="com.liferay.knowledgebase.service.impl.KBStructureServiceImpl" />
-	<bean id="com.liferay.knowledgebase.service.KBStructureServiceUtil" class="com.liferay.knowledgebase.service.KBStructureServiceUtil">
-		<property name="service" ref="com.liferay.knowledgebase.service.KBStructureService" />
-	</bean>
-	<bean id="com.liferay.knowledgebase.service.persistence.KBStructurePersistence" class="com.liferay.knowledgebase.service.persistence.KBStructurePersistenceImpl" parent="basePersistence" />
 	<bean id="com.liferay.knowledgebase.service.KBTemplateLocalService" class="com.liferay.knowledgebase.service.impl.KBTemplateLocalServiceImpl" />
 	<bean id="com.liferay.knowledgebase.service.KBTemplateLocalServiceUtil" class="com.liferay.knowledgebase.service.KBTemplateLocalServiceUtil">
 		<property name="service" ref="com.liferay.knowledgebase.service.KBTemplateLocalService" />

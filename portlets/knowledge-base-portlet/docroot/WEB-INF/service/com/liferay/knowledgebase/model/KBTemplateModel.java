@@ -220,41 +220,6 @@ public interface KBTemplateModel extends BaseModel<KBTemplate>, GroupedModel {
 	 */
 	public void setContent(String content);
 
-	/**
-	 * Returns the engine type of this k b template.
-	 *
-	 * @return the engine type of this k b template
-	 */
-	public int getEngineType();
-
-	/**
-	 * Sets the engine type of this k b template.
-	 *
-	 * @param engineType the engine type of this k b template
-	 */
-	public void setEngineType(int engineType);
-
-	/**
-	 * Returns the cacheable of this k b template.
-	 *
-	 * @return the cacheable of this k b template
-	 */
-	public boolean getCacheable();
-
-	/**
-	 * Returns <code>true</code> if this k b template is cacheable.
-	 *
-	 * @return <code>true</code> if this k b template is cacheable; <code>false</code> otherwise
-	 */
-	public boolean isCacheable();
-
-	/**
-	 * Sets whether this k b template is cacheable.
-	 *
-	 * @param cacheable the cacheable of this k b template
-	 */
-	public void setCacheable(boolean cacheable);
-
 	public boolean isNew();
 
 	public void setNew(boolean n);

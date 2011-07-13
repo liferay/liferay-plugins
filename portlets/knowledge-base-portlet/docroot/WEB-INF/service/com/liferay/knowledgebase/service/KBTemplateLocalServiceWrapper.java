@@ -259,31 +259,29 @@ public class KBTemplateLocalServiceWrapper implements KBTemplateLocalService {
 
 	public com.liferay.knowledgebase.model.KBTemplate addKBTemplate(
 		long userId, java.lang.String title, java.lang.String content,
-		int engineType, boolean cacheable,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _kbTemplateLocalService.addKBTemplate(userId, title, content,
-			engineType, cacheable, serviceContext);
+			serviceContext);
 	}
 
 	public void addKBTemplateResources(
 		com.liferay.knowledgebase.model.KBTemplate kbTemplate,
-		boolean addCommunityPermissions, boolean addGuestPermissions)
+		boolean addGroupPermissions, boolean addGuestPermissions)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		_kbTemplateLocalService.addKBTemplateResources(kbTemplate,
-			addCommunityPermissions, addGuestPermissions);
+			addGroupPermissions, addGuestPermissions);
 	}
 
 	public void addKBTemplateResources(
 		com.liferay.knowledgebase.model.KBTemplate kbTemplate,
-		java.lang.String[] communityPermissions,
-		java.lang.String[] guestPermissions)
+		java.lang.String[] groupPermissions, java.lang.String[] guestPermissions)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		_kbTemplateLocalService.addKBTemplateResources(kbTemplate,
-			communityPermissions, guestPermissions);
+			groupPermissions, guestPermissions);
 	}
 
 	public void deleteGroupKBTemplates(long groupId)
@@ -323,22 +321,20 @@ public class KBTemplateLocalServiceWrapper implements KBTemplateLocalService {
 
 	public com.liferay.knowledgebase.model.KBTemplate updateKBTemplate(
 		long kbTemplateId, java.lang.String title, java.lang.String content,
-		int engineType, boolean cacheable,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _kbTemplateLocalService.updateKBTemplate(kbTemplateId, title,
-			content, engineType, cacheable, serviceContext);
+			content, serviceContext);
 	}
 
 	public void updateKBTemplateResources(
 		com.liferay.knowledgebase.model.KBTemplate kbTemplate,
-		java.lang.String[] communityPermissions,
-		java.lang.String[] guestPermissions)
+		java.lang.String[] groupPermissions, java.lang.String[] guestPermissions)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		_kbTemplateLocalService.updateKBTemplateResources(kbTemplate,
-			communityPermissions, guestPermissions);
+			groupPermissions, guestPermissions);
 	}
 
 	public KBTemplateLocalService getWrappedKBTemplateLocalService() {

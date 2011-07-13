@@ -84,14 +84,14 @@ public class KBArticleServiceSoap {
 	public static com.liferay.knowledgebase.model.KBArticleSoap addKBArticle(
 		java.lang.String portletId, long parentResourcePrimKey,
 		java.lang.String title, java.lang.String content,
-		java.lang.String description, long kbTemplateId,
-		java.lang.String[] sections, java.lang.String dirName,
+		java.lang.String description, java.lang.String[] sections,
+		java.lang.String dirName,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws RemoteException {
 		try {
 			com.liferay.knowledgebase.model.KBArticle returnValue = KBArticleServiceUtil.addKBArticle(portletId,
 					parentResourcePrimKey, title, content, description,
-					kbTemplateId, sections, dirName, serviceContext);
+					sections, dirName, serviceContext);
 
 			return com.liferay.knowledgebase.model.KBArticleSoap.toSoapModel(returnValue);
 		}
@@ -441,29 +441,16 @@ public class KBArticleServiceSoap {
 
 	public static com.liferay.knowledgebase.model.KBArticleSoap updateKBArticle(
 		long resourcePrimKey, java.lang.String title, java.lang.String content,
-		java.lang.String description, long kbTemplateId,
-		java.lang.String[] sections, java.lang.String dirName,
+		java.lang.String description, java.lang.String[] sections,
+		java.lang.String dirName,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws RemoteException {
 		try {
 			com.liferay.knowledgebase.model.KBArticle returnValue = KBArticleServiceUtil.updateKBArticle(resourcePrimKey,
-					title, content, description, kbTemplateId, sections,
-					dirName, serviceContext);
+					title, content, description, sections, dirName,
+					serviceContext);
 
 			return com.liferay.knowledgebase.model.KBArticleSoap.toSoapModel(returnValue);
-		}
-		catch (Exception e) {
-			_log.error(e, e);
-
-			throw new RemoteException(e.getMessage());
-		}
-	}
-
-	public static void updateKBArticlesKBTemplates(long[] kbArticleIds,
-		long kbTemplateId) throws RemoteException {
-		try {
-			KBArticleServiceUtil.updateKBArticlesKBTemplates(kbArticleIds,
-				kbTemplateId);
 		}
 		catch (Exception e) {
 			_log.error(e, e);

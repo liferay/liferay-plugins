@@ -67,12 +67,12 @@ import java.rmi.RemoteException;
 public class KBTemplateServiceSoap {
 	public static com.liferay.knowledgebase.model.KBTemplateSoap addKBTemplate(
 		java.lang.String portletId, java.lang.String title,
-		java.lang.String content, int engineType, boolean cacheable,
+		java.lang.String content,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws RemoteException {
 		try {
 			com.liferay.knowledgebase.model.KBTemplate returnValue = KBTemplateServiceUtil.addKBTemplate(portletId,
-					title, content, engineType, cacheable, serviceContext);
+					title, content, serviceContext);
 
 			return com.liferay.knowledgebase.model.KBTemplateSoap.toSoapModel(returnValue);
 		}
@@ -175,12 +175,11 @@ public class KBTemplateServiceSoap {
 
 	public static com.liferay.knowledgebase.model.KBTemplateSoap updateKBTemplate(
 		long kbTemplateId, java.lang.String title, java.lang.String content,
-		int engineType, boolean cacheable,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws RemoteException {
 		try {
 			com.liferay.knowledgebase.model.KBTemplate returnValue = KBTemplateServiceUtil.updateKBTemplate(kbTemplateId,
-					title, content, engineType, cacheable, serviceContext);
+					title, content, serviceContext);
 
 			return com.liferay.knowledgebase.model.KBTemplateSoap.toSoapModel(returnValue);
 		}

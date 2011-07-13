@@ -40,14 +40,13 @@ public class KBArticleServiceWrapper implements KBArticleService {
 	public com.liferay.knowledgebase.model.KBArticle addKBArticle(
 		java.lang.String portletId, long parentResourcePrimKey,
 		java.lang.String title, java.lang.String content,
-		java.lang.String description, long kbTemplateId,
-		java.lang.String[] sections, java.lang.String dirName,
+		java.lang.String description, java.lang.String[] sections,
+		java.lang.String dirName,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _kbArticleService.addKBArticle(portletId, parentResourcePrimKey,
-			title, content, description, kbTemplateId, sections, dirName,
-			serviceContext);
+			title, content, description, sections, dirName, serviceContext);
 	}
 
 	public void deleteAttachment(long companyId, long groupId,
@@ -236,21 +235,13 @@ public class KBArticleServiceWrapper implements KBArticleService {
 
 	public com.liferay.knowledgebase.model.KBArticle updateKBArticle(
 		long resourcePrimKey, java.lang.String title, java.lang.String content,
-		java.lang.String description, long kbTemplateId,
-		java.lang.String[] sections, java.lang.String dirName,
+		java.lang.String description, java.lang.String[] sections,
+		java.lang.String dirName,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _kbArticleService.updateKBArticle(resourcePrimKey, title,
-			content, description, kbTemplateId, sections, dirName,
-			serviceContext);
-	}
-
-	public void updateKBArticlesKBTemplates(long[] kbArticleIds,
-		long kbTemplateId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		_kbArticleService.updateKBArticlesKBTemplates(kbArticleIds, kbTemplateId);
+			content, description, sections, dirName, serviceContext);
 	}
 
 	public void updateKBArticlesPriorities(long groupId,
