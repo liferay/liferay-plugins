@@ -15,7 +15,6 @@
 package com.liferay.knowledgebase.hook.listeners;
 
 import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
-import com.liferay.knowledgebase.service.KBStructureLocalServiceUtil;
 import com.liferay.knowledgebase.service.KBTemplateLocalServiceUtil;
 import com.liferay.portal.ModelListenerException;
 import com.liferay.portal.model.BaseModelListener;
@@ -40,8 +39,6 @@ public class GroupListener extends BaseModelListener<Group> {
 		KBArticleLocalServiceUtil.deleteGroupKBArticles(group.getGroupId());
 
 		KBTemplateLocalServiceUtil.deleteGroupKBTemplates(group.getGroupId());
-
-		KBStructureLocalServiceUtil.deleteGroupKBStructures(group.getGroupId());
 	}
 
 }

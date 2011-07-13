@@ -16,20 +16,15 @@ package com.liferay.knowledgebase.admin.social;
 
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.model.KBComment;
-import com.liferay.knowledgebase.model.KBStructure;
 import com.liferay.knowledgebase.model.KBTemplate;
 import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
 import com.liferay.knowledgebase.service.KBCommentLocalServiceUtil;
-import com.liferay.knowledgebase.service.KBStructureLocalServiceUtil;
 import com.liferay.knowledgebase.service.KBTemplateLocalServiceUtil;
 import com.liferay.knowledgebase.service.permission.KBArticlePermission;
-import com.liferay.knowledgebase.service.permission.KBStructurePermission;
 import com.liferay.knowledgebase.service.permission.KBTemplatePermission;
 import com.liferay.knowledgebase.util.ActionKeys;
 import com.liferay.knowledgebase.util.KnowledgeBaseUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
-import com.liferay.portal.kernel.util.LocaleUtil;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -38,8 +33,6 @@ import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portlet.social.model.BaseSocialActivityInterpreter;
 import com.liferay.portlet.social.model.SocialActivity;
 import com.liferay.portlet.social.model.SocialActivityFeedEntry;
-
-import java.util.Locale;
 
 /**
  * @author Peter Shin
@@ -63,9 +56,6 @@ public class AdminActivityInterpreter extends BaseSocialActivityInterpreter {
 		}
 		else if (className.equals(KBComment.class.getName())) {
 			return doInterpretKBComment(activity, themeDisplay);
-		}
-		else if (className.equals(KBStructure.class.getName())) {
-			return doInterpretKBStructure(activity, themeDisplay);
 		}
 		else if (className.equals(KBTemplate.class.getName())) {
 			return doInterpretKBTemplate(activity, themeDisplay);
@@ -180,62 +170,6 @@ public class AdminActivityInterpreter extends BaseSocialActivityInterpreter {
 		return new SocialActivityFeedEntry(link, title, body);
 	}
 
-	protected SocialActivityFeedEntry doInterpretKBStructure(
-			SocialActivity activity, ThemeDisplay themeDisplay)
-		throws Exception {
-
-		PermissionChecker permissionChecker =
-			themeDisplay.getPermissionChecker();
-
-		KBStructure kbStructure = KBStructureLocalServiceUtil.getKBStructure(
-			activity.getClassPK());
-
-		if (!KBStructurePermission.contains(
-				permissionChecker, kbStructure, ActionKeys.VIEW)) {
-
-			return null;
-		}
-
-		// Link
-
-		String link = StringPool.BLANK;
-
-		// Title
-
-		String key = StringPool.BLANK;
-
-		if (activity.getType() == AdminActivityKeys.ADD_KB_STRUCTURE) {
-			key = "activity-knowledge-base-admin-add-kb-structure";
-		}
-		else if (activity.getType() == AdminActivityKeys.UPDATE_KB_STRUCTURE) {
-			key = "activity-knowledge-base-admin-update-kb-structure";
-		}
-
-		String content = kbStructure.getTitle(themeDisplay.getLocale());
-
-		if (Validator.isNotNull(activity.getExtraData())) {
-			Locale locale = LocaleUtil.fromLanguageId(activity.getExtraData());
-
-			StringBundler sb = new StringBundler(5);
-
-			sb.append(content);
-			sb.append(StringPool.SPACE);
-			sb.append(StringPool.OPEN_PARENTHESIS);
-			sb.append(locale.getDisplayName(themeDisplay.getLocale()));
-			sb.append(StringPool.CLOSE_PARENTHESIS);
-
-			content = sb.toString();
-		}
-
-		String title = getTitle(activity, key, content, link, themeDisplay);
-
-		// Body
-
-		String body = StringPool.BLANK;
-
-		return new SocialActivityFeedEntry(link, title, body);
-	}
-
 	protected SocialActivityFeedEntry doInterpretKBTemplate(
 			SocialActivity activity, ThemeDisplay themeDisplay)
 		throws Exception {
@@ -307,7 +241,7 @@ public class AdminActivityInterpreter extends BaseSocialActivityInterpreter {
 
 	private static final String[] _CLASS_NAMES = new String[] {
 		KBArticle.class.getName(), KBComment.class.getName(),
-		KBStructure.class.getName(), KBTemplate.class.getName()
+		KBTemplate.class.getName()
 	};
 
 }

@@ -23,9 +23,6 @@ import com.liferay.knowledgebase.util.comparator.KBArticleTitleComparator;
 import com.liferay.knowledgebase.util.comparator.KBArticleUserNameComparator;
 import com.liferay.knowledgebase.util.comparator.KBArticleVersionComparator;
 import com.liferay.knowledgebase.util.comparator.KBArticleViewCountComparator;
-import com.liferay.knowledgebase.util.comparator.KBStructureCreateDateComparator;
-import com.liferay.knowledgebase.util.comparator.KBStructureModifiedDateComparator;
-import com.liferay.knowledgebase.util.comparator.KBStructureUserNameComparator;
 import com.liferay.knowledgebase.util.comparator.KBTemplateCreateDateComparator;
 import com.liferay.knowledgebase.util.comparator.KBTemplateModifiedDateComparator;
 import com.liferay.knowledgebase.util.comparator.KBTemplateTitleComparator;
@@ -186,32 +183,6 @@ public class KnowledgeBaseUtil {
 		}
 
 		return url;
-	}
-
-	public static OrderByComparator getKBStructureOrderByComparator(
-		String orderByCol, String orderByType) {
-
-		if (Validator.isNull(orderByCol) || Validator.isNull(orderByType)) {
-			return null;
-		}
-
-		boolean ascending = false;
-
-		if (orderByType.equals("asc")) {
-			ascending = true;
-		}
-
-		if (orderByCol.equals("create-date")) {
-			return new KBStructureCreateDateComparator(ascending);
-		}
-		else if (orderByCol.equals("modified-date")) {
-			return new KBStructureModifiedDateComparator(ascending);
-		}
-		else if (orderByCol.equals("user-name")) {
-			return new KBStructureUserNameComparator(ascending);
-		}
-
-		return null;
 	}
 
 	public static OrderByComparator getKBTemplateOrderByComparator(

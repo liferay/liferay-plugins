@@ -14,35 +14,21 @@
 
 package com.liferay.knowledgebase.admin.portlet;
 
-import com.liferay.knowledgebase.DuplicateKBStructureFieldLabelException;
-import com.liferay.knowledgebase.DuplicateKBStructureFieldNameException;
-import com.liferay.knowledgebase.DuplicateKBStructureOptionLabelException;
-import com.liferay.knowledgebase.DuplicateKBStructureOptionValueException;
 import com.liferay.knowledgebase.KBArticleContentException;
 import com.liferay.knowledgebase.KBArticlePriorityException;
 import com.liferay.knowledgebase.KBArticleSectionException;
 import com.liferay.knowledgebase.KBArticleTitleException;
 import com.liferay.knowledgebase.KBCommentContentException;
-import com.liferay.knowledgebase.KBStructureFieldLabelException;
-import com.liferay.knowledgebase.KBStructureFieldNameException;
-import com.liferay.knowledgebase.KBStructureOptionLabelException;
-import com.liferay.knowledgebase.KBStructureOptionValueException;
-import com.liferay.knowledgebase.KBStructureTitleException;
 import com.liferay.knowledgebase.KBTemplateContentException;
 import com.liferay.knowledgebase.KBTemplateTitleException;
 import com.liferay.knowledgebase.NoSuchArticleException;
 import com.liferay.knowledgebase.NoSuchCommentException;
-import com.liferay.knowledgebase.NoSuchStructureException;
 import com.liferay.knowledgebase.NoSuchTemplateException;
-import com.liferay.knowledgebase.admin.util.KBStructureContentUtil;
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.model.KBComment;
-import com.liferay.knowledgebase.model.KBStructure;
-import com.liferay.knowledgebase.model.KBStructureField;
 import com.liferay.knowledgebase.model.KBTemplate;
 import com.liferay.knowledgebase.service.KBArticleServiceUtil;
 import com.liferay.knowledgebase.service.KBCommentLocalServiceUtil;
-import com.liferay.knowledgebase.service.KBStructureServiceUtil;
 import com.liferay.knowledgebase.service.KBTemplateServiceUtil;
 import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.knowledgebase.util.WebKeys;
@@ -182,45 +168,6 @@ public class AdminPortlet extends MVCPortlet {
 		KBCommentLocalServiceUtil.deleteKBComment(kbCommentId);
 	}
 
-	public void deleteKBStructure(
-			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws Exception {
-
-		long kbStructureId = ParamUtil.getLong(actionRequest, "kbStructureId");
-
-		KBStructureServiceUtil.deleteKBStructure(kbStructureId);
-	}
-
-	public void deleteKBStructureLocalization(
-			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws Exception {
-
-		long kbStructureId = ParamUtil.getLong(actionRequest, "kbStructureId");
-
-		String localizedLanguageId = ParamUtil.getString(
-			actionRequest, "localizedLanguageId");
-
-		ServiceContext serviceContext = ServiceContextFactory.getInstance(
-			KBStructure.class.getName(), actionRequest);
-
-		KBStructureServiceUtil.deleteKBStructureLocalization(
-			kbStructureId, localizedLanguageId, serviceContext);
-	}
-
-	public void deleteKBStructures(
-			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws Exception {
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		long[] kbStructureIds = StringUtil.split(
-			ParamUtil.getString(actionRequest, "kbStructureIds"), 0L);
-
-		KBStructureServiceUtil.deleteKBStructures(
-			themeDisplay.getScopeGroupId(), kbStructureIds);
-	}
-
 	public void deleteKBTemplate(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
@@ -293,23 +240,9 @@ public class AdminPortlet extends MVCPortlet {
 
 			renderRequest.setAttribute(
 				WebKeys.KNOWLEDGE_BASE_KB_TEMPLATE, kbTemplate);
-
-			KBStructure kbStructure = null;
-
-			long kbStructureId = ParamUtil.getLong(
-				renderRequest, "kbStructureId");
-
-			if (kbStructureId > 0) {
-				kbStructure = KBStructureServiceUtil.getKBStructure(
-					kbStructureId);
-			}
-
-			renderRequest.setAttribute(
-				WebKeys.KNOWLEDGE_BASE_KB_STRUCTURE, kbStructure);
 		}
 		catch (Exception e) {
 			if (e instanceof NoSuchArticleException ||
-				e instanceof NoSuchStructureException ||
 				e instanceof NoSuchTemplateException ||
 				e instanceof PrincipalException) {
 
@@ -567,39 +500,6 @@ public class AdminPortlet extends MVCPortlet {
 		}
 	}
 
-	public void updateKBStructure(
-			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws Exception {
-
-		String portletId = PortalUtil.getPortletId(actionRequest);
-
-		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
-
-		long kbStructureId = ParamUtil.getLong(actionRequest, "kbStructureId");
-
-		String localizedLanguageId = ParamUtil.getString(
-			actionRequest, "localizedLanguageId");
-		String title = ParamUtil.getString(
-			actionRequest, "title_" + localizedLanguageId);
-
-		List<KBStructureField> kbStructureFields =
-			KBStructureContentUtil.getKBStructureFields(actionRequest);
-
-		ServiceContext serviceContext = ServiceContextFactory.getInstance(
-			KBStructure.class.getName(), actionRequest);
-
-		if (cmd.equals(Constants.ADD)) {
-			KBStructureServiceUtil.addKBStructure(
-				portletId, localizedLanguageId, title, kbStructureFields,
-				serviceContext);
-		}
-		else if (cmd.equals(Constants.UPDATE)) {
-			KBStructureServiceUtil.updateKBStructure(
-				kbStructureId, localizedLanguageId, title, kbStructureFields,
-				serviceContext);
-		}
-	}
-
 	public void updateKBTemplate(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
@@ -652,8 +552,6 @@ public class AdminPortlet extends MVCPortlet {
 			SessionErrors.contains(
 				renderRequest, NoSuchSubscriptionException.class.getName()) ||
 			SessionErrors.contains(
-				renderRequest, NoSuchStructureException.class.getName()) ||
-			SessionErrors.contains(
 				renderRequest, NoSuchTemplateException.class.getName()) ||
 			SessionErrors.contains(
 				renderRequest, PrincipalException.class.getName())) {
@@ -668,10 +566,6 @@ public class AdminPortlet extends MVCPortlet {
 	@Override
 	protected boolean isSessionErrorException(Throwable cause) {
 		if (cause instanceof DuplicateFileException ||
-			cause instanceof DuplicateKBStructureFieldLabelException ||
-			cause instanceof DuplicateKBStructureFieldNameException ||
-			cause instanceof DuplicateKBStructureOptionLabelException ||
-			cause instanceof DuplicateKBStructureOptionValueException ||
 			cause instanceof FileNameException ||
 			cause instanceof FileSizeException ||
 			cause instanceof KBArticleContentException ||
@@ -679,17 +573,11 @@ public class AdminPortlet extends MVCPortlet {
 			cause instanceof KBArticleSectionException ||
 			cause instanceof KBArticleTitleException ||
 			cause instanceof KBCommentContentException ||
-			cause instanceof KBStructureFieldLabelException ||
-			cause instanceof KBStructureFieldNameException ||
-			cause instanceof KBStructureOptionLabelException ||
-			cause instanceof KBStructureOptionValueException ||
-			cause instanceof KBStructureTitleException ||
 			cause instanceof KBTemplateContentException ||
 			cause instanceof KBTemplateTitleException ||
 			cause instanceof NoSuchArticleException ||
 			cause instanceof NoSuchCommentException ||
 			cause instanceof NoSuchFileException ||
-			cause instanceof NoSuchStructureException ||
 			cause instanceof NoSuchTemplateException ||
 			cause instanceof PrincipalException) {
 

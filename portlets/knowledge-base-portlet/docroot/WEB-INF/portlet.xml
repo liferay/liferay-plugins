@@ -78,14 +78,6 @@
 				<value>true</value>
 			</preference>
 			<preference>
-				<name>enableKBStructureKBComments</name>
-				<value>true</value>
-			</preference>
-			<preference>
-				<name>showKBStructureKBComments</name>
-				<value>true</value>
-			</preference>
-			<preference>
 				<name>enableKBTemplateKBComments</name>
 				<value>true</value>
 			</preference>
