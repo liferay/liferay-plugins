@@ -9,7 +9,7 @@
  *
  * Liferay Social Office is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
- * FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License
+ * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License
  * for more details.
  *
  * You should have received a copy of the GNU General Public License along with
@@ -32,7 +32,9 @@ String defaultTabs1 = preferences.getValue("defaultTabs1", "friends");
 
 String tabs1 = ParamUtil.getString(request, "tabs1", defaultTabs1);
 
-preferences.setValue("defaultTabs1", tabs1);
+if (!defaultTabs1.equals(tabs1)) {
+	preferences.setValue("defaultTabs1", tabs1);
 
-preferences.store();
+	preferences.store();
+}
 %>
