@@ -18,7 +18,6 @@ import com.liferay.knowledgebase.KBArticleContentException;
 import com.liferay.knowledgebase.KBArticlePriorityException;
 import com.liferay.knowledgebase.KBArticleSectionException;
 import com.liferay.knowledgebase.KBArticleTitleException;
-import com.liferay.knowledgebase.NoSuchArticleException;
 import com.liferay.knowledgebase.admin.social.AdminActivityKeys;
 import com.liferay.knowledgebase.admin.util.AdminSubscriptionSender;
 import com.liferay.knowledgebase.admin.util.AdminUtil;
@@ -102,8 +101,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 	public KBArticle addKBArticle(
 			long userId, long parentResourcePrimKey, String title,
-			String content, String description, long kbTemplateId,
-			String[] sections, String dirName, ServiceContext serviceContext)
+			String content, String description, String[] sections,
+			String dirName, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		// KB article
@@ -138,7 +137,6 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		kbArticle.setTitle(title);
 		kbArticle.setContent(content);
 		kbArticle.setDescription(description);
-		kbArticle.setKbTemplateId(kbTemplateId);
 		kbArticle.setPriority(priority);
 		kbArticle.setSections(
 			StringUtil.merge(AdminUtil.escapeSections(sections)));
@@ -508,21 +506,6 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		return kbArticlePersistence.countByR_S(resourcePrimKey, status);
 	}
 
-	public List<KBArticle> getKBTemplateKBArticles(
-			long kbTemplateId, int start, int end,
-			OrderByComparator orderByComparator)
-		throws SystemException {
-
-		return kbTemplatePersistence.getKBArticles(
-			kbTemplateId, start, end, orderByComparator);
-	}
-
-	public int getKBTemplateKBArticlesCount(long kbTemplateId)
-		throws SystemException {
-
-		return kbTemplatePersistence.getKBArticlesSize(kbTemplateId);
-	}
-
 	public KBArticle getLatestKBArticle(long resourcePrimKey, int status)
 		throws PortalException, SystemException {
 
@@ -737,8 +720,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 	public KBArticle updateKBArticle(
 			long userId, long resourcePrimKey, String title, String content,
-			String description, long kbTemplateId, String[] sections,
-			String dirName, ServiceContext serviceContext)
+			String description, String[] sections, String dirName,
+			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		// KB article
@@ -792,7 +775,6 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		kbArticle.setTitle(title);
 		kbArticle.setContent(content);
 		kbArticle.setDescription(description);
-		kbArticle.setKbTemplateId(kbTemplateId);
 		kbArticle.setPriority(oldPriority);
 		kbArticle.setSections(
 			StringUtil.merge(AdminUtil.escapeSections(sections)));
@@ -862,26 +844,6 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			kbArticle.getCompanyId(), kbArticle.getGroupId(),
 			KBArticle.class.getName(), kbArticle.getResourcePrimKey(),
 			groupPermissions, guestPermissions);
-	}
-
-	public void updateKBArticlesKBTemplates(long[] kbArticleIds)
-		throws SystemException {
-
-		for (long kbArticleId : kbArticleIds) {
-			KBArticle kbArticle = null;
-
-			try {
-				kbArticle = kbArticlePersistence.findByPrimaryKey(kbArticleId);
-			}
-			catch (NoSuchArticleException nsae) {
-				continue;
-			}
-
-			kbArticle.setKbTemplateId(
-				KBArticleConstants.DEFAULT_KB_TEMPLATE_ID);
-
-			kbArticlePersistence.update(kbArticle, false);
-		}
 	}
 
 	public void updateKBArticlesPriorities(

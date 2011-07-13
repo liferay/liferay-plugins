@@ -23,7 +23,6 @@ import com.liferay.knowledgebase.service.base.KBArticleServiceBaseImpl;
 import com.liferay.knowledgebase.service.permission.AdminPermission;
 import com.liferay.knowledgebase.service.permission.DisplayPermission;
 import com.liferay.knowledgebase.service.permission.KBArticlePermission;
-import com.liferay.knowledgebase.service.permission.KBTemplatePermission;
 import com.liferay.knowledgebase.util.ActionKeys;
 import com.liferay.knowledgebase.util.KnowledgeBaseUtil;
 import com.liferay.knowledgebase.util.PortletKeys;
@@ -41,7 +40,6 @@ import com.liferay.portal.kernel.util.UnmodifiableList;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Group;
-import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
@@ -96,8 +94,8 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 
 	public KBArticle addKBArticle(
 			String portletId, long parentResourcePrimKey, String title,
-			String content, String description, long kbTemplateId,
-			String[] sections, String dirName, ServiceContext serviceContext)
+			String content, String description, String[] sections,
+			String dirName, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		if (portletId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN)) {
@@ -113,7 +111,7 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 
 		return kbArticleLocalService.addKBArticle(
 			getUserId(), parentResourcePrimKey, title, content, description,
-			kbTemplateId, sections, dirName, serviceContext);
+			sections, dirName, serviceContext);
 	}
 
 	public void deleteAttachment(
@@ -621,31 +619,16 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 
 	public KBArticle updateKBArticle(
 			long resourcePrimKey, String title, String content,
-			String description, long kbTemplateId, String[] sections,
-			String dirName, ServiceContext serviceContext)
+			String description, String[] sections, String dirName,
+			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		KBArticlePermission.check(
 			getPermissionChecker(), resourcePrimKey, ActionKeys.UPDATE);
 
 		return kbArticleLocalService.updateKBArticle(
-			getUserId(), resourcePrimKey, title, content, description,
-			kbTemplateId, sections, dirName, serviceContext);
-	}
-
-	public void updateKBArticlesKBTemplates(
-			long[] kbArticleIds, long kbTemplateId)
-		throws PortalException, SystemException {
-
-		if (!KBTemplatePermission.contains(
-				getPermissionChecker(), kbTemplateId, ActionKeys.DELETE) &&
-			!KBTemplatePermission.contains(
-				getPermissionChecker(), kbTemplateId, ActionKeys.UPDATE)) {
-
-			throw new PrincipalException();
-		}
-
-		kbArticleLocalService.updateKBArticlesKBTemplates(kbArticleIds);
+			getUserId(), resourcePrimKey, title, content, description, sections,
+			dirName, serviceContext);
 	}
 
 	public void updateKBArticlesPriorities(

@@ -16,7 +16,6 @@ package com.liferay.knowledgebase.util;
 
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.util.comparator.KBArticleCreateDateComparator;
-import com.liferay.knowledgebase.util.comparator.KBArticleKBTemplateIdComparator;
 import com.liferay.knowledgebase.util.comparator.KBArticleModifiedDateComparator;
 import com.liferay.knowledgebase.util.comparator.KBArticlePriorityComparator;
 import com.liferay.knowledgebase.util.comparator.KBArticleStatusComparator;
@@ -28,7 +27,6 @@ import com.liferay.knowledgebase.util.comparator.KBStructureCreateDateComparator
 import com.liferay.knowledgebase.util.comparator.KBStructureModifiedDateComparator;
 import com.liferay.knowledgebase.util.comparator.KBStructureUserNameComparator;
 import com.liferay.knowledgebase.util.comparator.KBTemplateCreateDateComparator;
-import com.liferay.knowledgebase.util.comparator.KBTemplateEngineTypeComparator;
 import com.liferay.knowledgebase.util.comparator.KBTemplateModifiedDateComparator;
 import com.liferay.knowledgebase.util.comparator.KBTemplateTitleComparator;
 import com.liferay.knowledgebase.util.comparator.KBTemplateUserNameComparator;
@@ -83,9 +81,6 @@ public class KnowledgeBaseUtil {
 		else if (orderByCol.equals("status")) {
 			return new KBArticleStatusComparator(ascending);
 		}
-		else if (orderByCol.equals("template-id")) {
-			return new KBArticleKBTemplateIdComparator(ascending);
-		}
 		else if (orderByCol.equals("title")) {
 			return new KBArticleTitleComparator(ascending);
 		}
@@ -138,14 +133,6 @@ public class KnowledgeBaseUtil {
 				SortFactoryUtil.create(fieldName, Sort.SCORE_TYPE, !reverse),
 				SortFactoryUtil.create(
 					Field.MODIFIED_DATE, Sort.LONG_TYPE, true)
-			};
-		}
-		else if (orderByCol.equals("template-id")) {
-			String fieldName = "kbTemplateId";
-
-			return new Sort[] {
-				SortFactoryUtil.create(fieldName, Sort.LONG_TYPE, reverse),
-				SortFactoryUtil.create(null, Sort.SCORE_TYPE, false)
 			};
 		}
 		else if (orderByCol.equals("title")) {
@@ -242,9 +229,6 @@ public class KnowledgeBaseUtil {
 
 		if (orderByCol.equals("create-date")) {
 			return new KBTemplateCreateDateComparator(ascending);
-		}
-		else if (orderByCol.equals("engine-type")) {
-			return new KBTemplateEngineTypeComparator(ascending);
 		}
 		else if (orderByCol.equals("modified-date")) {
 			return new KBTemplateModifiedDateComparator(ascending);

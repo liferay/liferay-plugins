@@ -48,7 +48,7 @@ if (enableKBArticleViewCountIncrement) {
 
 	<liferay-util:include page="/admin/article_icons.jsp" servletContext="<%= application %>" />
 
-	<%= KBArticleContentCacheUtil.getContent(request) %>
+	<%= kbArticle.getContent() %>
 
 	<liferay-util:include page="/admin/article_attachments.jsp" servletContext="<%= application %>" />
 

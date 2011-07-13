@@ -268,11 +268,6 @@
 	margin: 0 0 5px;
 }
 
-.knowledge-base-portlet .kb-selected-template {
-	display: block;
-	margin: 5px 0 0;
-}
-
 .knowledge-base-portlet .kb-structure-option-editor {
 	padding: 0 0 0 20px;
 }
@@ -280,9 +275,4 @@
 .knowledge-base-portlet .kb-submit-buttons {
 	margin-top: 0;
 	padding-top: 10px;
-}
-
-.knowledge-base-portlet .kb-template-editor {
-	height: 500px;
-	width: 100%;
 }

@@ -20,4 +20,4 @@
 KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_ARTICLE);
 %>
 
-<%= KBArticleContentCacheUtil.getContent(request) %>
+<%= kbArticle.getContent() %>

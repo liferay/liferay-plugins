@@ -33,7 +33,6 @@
 		<column name="title" type="String" />
 		<column name="content" type="String" />
 		<column name="description" type="String" />
-		<column name="kbTemplateId" type="long" />
 		<column name="priority" type="double" />
 		<column name="sections" type="String" />
 		<column name="viewCount" type="int" />
@@ -287,12 +286,6 @@
 
 		<column name="title" type="String" />
 		<column name="content" type="String" />
-		<column name="engineType" type="int" />
-		<column name="cacheable" type="boolean" />
-
-		<!-- Relationships -->
-
-		<column name="kbArticles" type="Collection" entity="KBArticle" mapping-key="kbTemplateId" />
 
 		<!-- Order -->
 
@@ -327,6 +320,5 @@
 		<exception>KBStructureTitle</exception>
 		<exception>KBTemplateContent</exception>
 		<exception>KBTemplateTitle</exception>
-		<exception>RequiredKBTemplate</exception>
 	</exceptions>
 </service-builder>
