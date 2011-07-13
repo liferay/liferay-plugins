@@ -116,7 +116,7 @@ public class KnowledgeBaseUtil {
 		}
 
 		if (orderByCol.equals("create-date")) {
-			String fieldName = "createDate";
+			String fieldName = Field.CREATE_DATE;
 
 			return new Sort[] {
 				SortFactoryUtil.create(fieldName, Sort.LONG_TYPE, reverse),

@@ -14,11 +14,14 @@
 
 package com.liferay.knowledgebase.admin.util;
 
+import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.util.KnowledgeBaseUtil;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.search.Document;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.HitsOpenSearchImpl;
+import com.liferay.portal.kernel.search.Indexer;
+import com.liferay.portal.kernel.search.IndexerRegistryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.theme.ThemeDisplay;
@@ -35,6 +38,11 @@ public class AdminOpenSearchImpl extends HitsOpenSearchImpl {
 	public static final String SEARCH_PATH = "/c/knowledge_base/open_search";
 
 	public static final String TITLE = "Liferay Knowledge Base Search: ";
+
+	@Override
+	public Indexer getIndexer() {
+		return IndexerRegistryUtil.getIndexer(KBArticle.class);
+	}
 
 	@Override
 	public String getPortletId() {
