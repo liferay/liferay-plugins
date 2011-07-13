@@ -49,7 +49,6 @@ String dirName = ParamUtil.getString(request, "dirName");
 	<aui:input name="workflowAction" type="hidden" value="<%= WorkflowConstants.ACTION_SAVE_DRAFT %>" />
 
 	<liferay-ui:error exception="<%= KBArticleContentException.class %>" message="please-enter-valid-content" />
-	<liferay-ui:error exception="<%= KBArticleSectionException.class %>" message="please-select-at-least-one-section" />
 	<liferay-ui:error exception="<%= KBArticleTitleException.class %>" message="please-enter-a-valid-title" />
 
 	<liferay-ui:asset-categories-error />
@@ -96,29 +95,31 @@ String dirName = ParamUtil.getString(request, "dirName");
 			</div>
 		</aui:field-wrapper>
 
-		<aui:model-context bean="<%= null %>" model="<%= KBArticle.class %>" />
+		<c:if test="<%= Validator.isNotNull(PortletPropsValues.ADMIN_KB_ARTICLE_SECTIONS) %>">
+			<aui:model-context bean="<%= null %>" model="<%= KBArticle.class %>" />
 
-		<aui:select cssClass='<%= (parentResourcePrimKey != KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) ? "aui-helper-hidden" : StringPool.BLANK %>' ignoreRequestValue="<%= true %>" multiple="<%= true %>" name="sections">
+			<aui:select cssClass='<%= (parentResourcePrimKey != KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) ? "aui-helper-hidden" : StringPool.BLANK %>' ignoreRequestValue="<%= true %>" multiple="<%= true %>" name="sections">
 
-			<%
-			Map<String, String> sectionsMap = new TreeMap<String, String>();
+				<%
+				Map<String, String> sectionsMap = new TreeMap<String, String>();
 
-			for (String section : PortletPropsValues.ADMIN_KB_ARTICLE_SECTIONS) {
-				sectionsMap.put(LanguageUtil.get(pageContext, section), section);
-			}
+				for (String section : PortletPropsValues.ADMIN_KB_ARTICLE_SECTIONS) {
+					sectionsMap.put(LanguageUtil.get(pageContext, section), section);
+				}
 
-			for (Map.Entry<String, String> entry : sectionsMap.entrySet()) {
-			%>
+				for (Map.Entry<String, String> entry : sectionsMap.entrySet()) {
+				%>
 
-				<aui:option label="<%= entry.getKey() %>" selected="<%= ArrayUtil.contains(sections, entry.getValue()) %>" value="<%= entry.getValue() %>" />
+					<aui:option label="<%= entry.getKey() %>" selected="<%= ArrayUtil.contains(sections, entry.getValue()) %>" value="<%= entry.getValue() %>" />
 
-			<%
-			}
-			%>
+				<%
+				}
+				%>
 
-		</aui:select>
+			</aui:select>
 
-		<aui:model-context bean="<%= kbArticle %>" model="<%= KBArticle.class %>" />
+			<aui:model-context bean="<%= kbArticle %>" model="<%= KBArticle.class %>" />
+		</c:if>
 
 		<c:if test="<%= enableKBArticleAssetCategories %>">
 			<aui:input classPK="<%= (kbArticle != null) ? kbArticle.getClassPK() : 0 %>" name="categories" type="assetCategories" />

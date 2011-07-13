@@ -267,7 +267,6 @@
 	<exceptions>
 		<exception>KBArticleContent</exception>
 		<exception>KBArticlePriority</exception>
-		<exception>KBArticleSection</exception>
 		<exception>KBArticleTitle</exception>
 		<exception>KBCommentContent</exception>
 		<exception>KBTemplateContent</exception>

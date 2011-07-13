@@ -46,6 +46,10 @@ import net.htmlparser.jericho.Source;
 public class AdminUtil {
 
 	public static String[] escapeSections(String[] sections) {
+		if (Validator.isNull(sections)) {
+			return new String[0];
+		}
+
 		sections = ArrayUtil.clone(sections);
 
 		for (int i = 0; i < sections.length; i++) {
