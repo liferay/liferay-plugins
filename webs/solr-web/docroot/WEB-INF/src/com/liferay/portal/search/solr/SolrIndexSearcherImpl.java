@@ -47,13 +47,14 @@ import com.liferay.portal.search.solr.facet.SolrFacetQueryCollector;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.apache.solr.client.solrj.SolrQuery.ORDER;
 import org.apache.solr.client.solrj.SolrQuery;
+import org.apache.solr.client.solrj.SolrQuery.ORDER;
 import org.apache.solr.client.solrj.SolrServer;
 import org.apache.solr.client.solrj.response.FacetField;
 import org.apache.solr.client.solrj.response.QueryResponse;
@@ -197,7 +198,7 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 
 	protected String getSnippet(
 		SolrDocument solrDocument, Set<String> queryTerms,
-		Map<String, Map<String, List<String>>> highlights) {
+		Map<String, Map<String, List<String>>> highlights, Locale locale) {
 
 		if (Validator.isNull(highlights)) {
 			return StringPool.BLANK;
@@ -205,7 +206,14 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 
 		String key = (String)solrDocument.getFieldValue(Field.UID);
 
-		List<String> snippets = highlights.get(key).get(Field.CONTENT);
+		String localizedName = DocumentImpl.getLocalizedName(
+			locale, Field.CONTENT);
+
+		List<String> snippets = highlights.get(key).get(localizedName);
+
+		if ((snippets == null) || snippets.isEmpty()) {
+			snippets = highlights.get(key).get(Field.CONTENT);
+		}
 
 		String snippet = StringUtil.merge(snippets, "...");
 
@@ -296,15 +304,17 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 					solrDocument.getFieldValue("score").toString());
 			}
 
-			subsetDocs[j] = document;
+			String subsetSnippet = StringPool.BLANK;
 
 			if (highlightEnabled) {
-				subsetSnippets[j] = getSnippet(
-					solrDocument, queryTerms, highlights);
+				subsetSnippet = getSnippet(
+					solrDocument, queryTerms, highlights,
+					queryConfig.getLocale());
 			}
-			else {
-				subsetSnippets[j] = StringPool.BLANK;
-			}
+
+			document.addText(Field.SNIPPET, subsetSnippet);
+			subsetSnippets[j] = subsetSnippet;
+			subsetDocs[j] = document;
 
 			subsetScores[j] = score / maxScore;
 
