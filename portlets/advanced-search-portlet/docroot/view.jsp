@@ -50,7 +50,7 @@ searchContext.addFacet(scopeFacet);
 List<FacetConfiguration> facetConfigurations = FacetConfigurationUtil.load(searchConfiguration);
 
 for (FacetConfiguration facetConfiguration : facetConfigurations) {
-	facet = FacetFactoryUtil.create(searchContext, facetConfiguration);
+	Facet facet = FacetFactoryUtil.create(searchContext, facetConfiguration);
 
 	searchContext.addFacet(facet);
 }
@@ -58,8 +58,6 @@ for (FacetConfiguration facetConfiguration : facetConfigurations) {
 Hits hits = FacetedSearcher.getInstance().search(searchContext);
 
 String[] queryTerms = hits.getQueryTerms();
-
-int rightColumn = 100;
 %>
 
 <liferay-portlet:renderURL varImpl="searchURL" />
