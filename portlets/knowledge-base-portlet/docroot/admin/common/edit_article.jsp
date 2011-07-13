@@ -121,13 +121,9 @@ String dirName = ParamUtil.getString(request, "dirName");
 			<aui:model-context bean="<%= kbArticle %>" model="<%= KBArticle.class %>" />
 		</c:if>
 
-		<c:if test="<%= enableKBArticleAssetCategories %>">
-			<aui:input classPK="<%= (kbArticle != null) ? kbArticle.getClassPK() : 0 %>" name="categories" type="assetCategories" />
-		</c:if>
+		<aui:input classPK="<%= (kbArticle != null) ? kbArticle.getClassPK() : 0 %>" name="categories" type="assetCategories" />
 
-		<c:if test="<%= enableKBArticleAssetTags %>">
-			<aui:input classPK="<%= (kbArticle != null) ? kbArticle.getClassPK() : 0 %>" name="tags" type="assetTags" />
-		</c:if>
+		<aui:input classPK="<%= (kbArticle != null) ? kbArticle.getClassPK() : 0 %>" name="tags" type="assetTags" />
 
 		<c:if test="<%= kbArticle == null %>">
 			<aui:field-wrapper cssClass='<%= (parentResourcePrimKey != KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) ? "aui-helper-hidden" : StringPool.BLANK %>' label="permissions">
