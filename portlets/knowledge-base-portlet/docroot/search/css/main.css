@@ -1,0 +1,13 @@
+/* ---------- Portlet ---------- */
+
+.knowledge-base-portlet-search .kb-search-header {
+	margin: 0 0 15px;
+}
+
+.knowledge-base-portlet-search .kb-search-keywords input {
+	width: 100%;
+}
+
+.knowledge-base-portlet-search .kb-search-keywords .aui-field-content {
+	margin: 0;
+}

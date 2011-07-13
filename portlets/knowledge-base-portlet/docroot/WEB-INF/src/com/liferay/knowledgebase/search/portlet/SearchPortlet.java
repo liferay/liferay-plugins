@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.knowledgebase.section.portlet;
+package com.liferay.knowledgebase.search.portlet;
 
 import com.liferay.knowledgebase.KBArticleContentException;
 import com.liferay.knowledgebase.KBArticlePriorityException;
@@ -74,7 +74,7 @@ import javax.servlet.http.HttpServletRequest;
  * @author Peter Shin
  * @author Brian Wing Shun Chan
  */
-public class SectionPortlet extends MVCPortlet {
+public class SearchPortlet extends MVCPortlet {
 
 	public void addAttachment(
 			ActionRequest actionRequest, ActionResponse actionResponse)
@@ -363,7 +363,7 @@ public class SectionPortlet extends MVCPortlet {
 			String editURL = PortalUtil.getLayoutFullURL(themeDisplay);
 
 			editURL = HttpUtil.setParameter(
-				editURL, "p_p_id", PortletKeys.KNOWLEDGE_BASE_SECTION);
+				editURL, "p_p_id", PortletKeys.KNOWLEDGE_BASE_SEARCH);
 			editURL = HttpUtil.setParameter(
 				editURL, namespace + "jspPage", jspPath + "edit_article.jsp");
 			editURL = HttpUtil.setParameter(
