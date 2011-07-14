@@ -23,7 +23,6 @@
 <%@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
-<%@ page import="com.liferay.mysubscriptions.search.SubscriptionSearch" %>
 <%@ page import="com.liferay.mysubscriptions.transaction.SubscriptionTransactionUtil" %>
 <%@ page import="com.liferay.mysubscriptions.util.comparator.SubscriptionClassNameIdComparator" %>
 <%@ page import="com.liferay.mysubscriptions.util.MySubscriptionsUtil" %>
