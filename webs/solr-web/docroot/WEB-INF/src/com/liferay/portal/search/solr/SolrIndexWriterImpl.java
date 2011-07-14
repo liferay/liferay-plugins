@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.search.Document;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.IndexWriter;
+import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
@@ -38,7 +39,7 @@ import org.apache.solr.common.SolrInputDocument;
  */
 public class SolrIndexWriterImpl implements IndexWriter {
 
-	public void addDocument(long companyId, Document document)
+	public void addDocument(SearchContext searchContext, Document document)
 		throws SearchException {
 
 		try {
@@ -55,7 +56,8 @@ public class SolrIndexWriterImpl implements IndexWriter {
 		}
 	}
 
-	public void addDocuments(long companyId, Collection<Document> documents)
+	public void addDocuments(
+			SearchContext searchContext, Collection<Document> documents)
 		throws SearchException {
 
 		try {
@@ -79,7 +81,7 @@ public class SolrIndexWriterImpl implements IndexWriter {
 		}
 	}
 
-	public void deleteDocument(long companyId, String uid)
+	public void deleteDocument(SearchContext searchContext, String uid)
 		throws SearchException {
 
 		try {
@@ -96,18 +98,22 @@ public class SolrIndexWriterImpl implements IndexWriter {
 		}
 	}
 
-	public void deleteDocuments(long companyId, Collection<String> uids)
+	public void deleteDocuments(
+			SearchContext searchContext, Collection<String> uids)
 		throws SearchException {
 
 		for (String uid : uids) {
-			deleteDocument(companyId, uid);
+			deleteDocument(searchContext, uid);
 		}
 	}
 
-	public void deletePortletDocuments(long companyId, String portletId)
+	public void deletePortletDocuments(
+			SearchContext searchContext, String portletId)
 		throws SearchException {
 
 		try {
+			long companyId = searchContext.getCompanyId();
+
 			StringBundler sb = null;
 
 			if (companyId > 0) {
@@ -150,22 +156,23 @@ public class SolrIndexWriterImpl implements IndexWriter {
 		_solrServer = solrServer;
 	}
 
-	public void updateDocument(long companyId, Document document)
+	public void updateDocument(SearchContext searchContext, Document document)
 		throws SearchException {
 
-		deleteDocument(companyId, document.getUID());
+		deleteDocument(searchContext, document.getUID());
 
-		addDocument(companyId, document);
+		addDocument(searchContext, document);
 	}
 
-	public void updateDocuments(long companyId, Collection<Document> documents)
+	public void updateDocuments(
+			SearchContext searchContext, Collection<Document> documents)
 		throws SearchException {
 
 		for (Document document : documents) {
-			deleteDocument(companyId, document.getUID());
+			deleteDocument(searchContext, document.getUID());
 		}
 
-		addDocuments(companyId, documents);
+		addDocuments(searchContext, documents);
 	}
 
 	protected SolrInputDocument getSolrInputDocument(Document document) {

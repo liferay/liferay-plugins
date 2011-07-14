@@ -68,7 +68,8 @@ import org.apache.solr.common.SolrDocumentList;
 public class SolrIndexSearcherImpl implements IndexSearcher {
 
 	public Hits search(
-			long companyId, Query query, Sort[] sorts, int start, int end)
+			String searchEngineId, long companyId, Query query, Sort[] sorts,
+			int start, int end)
 		throws SearchException {
 
 		try {
