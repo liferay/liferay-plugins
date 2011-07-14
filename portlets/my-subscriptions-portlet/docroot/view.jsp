@@ -81,11 +81,8 @@
 				<liferay-ui:search-container-column-text
 					href="<%= rowURL %>"
 					name="title"
-				>
-					<aui:column first="true" width="80">
-						<%= MySubscriptionsUtil.getTitleText(subscription.getClassName(), subscription.getClassPK(), ((assetRenderer != null) ? assetRenderer.getTitle(locale) : null)) %>
-					</aui:column>
-				</liferay-ui:search-container-column-text>
+					value="<%= MySubscriptionsUtil.getTitleText(subscription.getClassName(), subscription.getClassPK(), ((assetRenderer != null) ? assetRenderer.getTitle(locale) : null)) %>"
+				/>
 
 				<liferay-ui:search-container-column-text
 					href="<%= rowURL %>"
