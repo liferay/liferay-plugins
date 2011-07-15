@@ -69,6 +69,17 @@
 		<header-portlet-css>/section/css/main.css</header-portlet-css>
 		<css-class-wrapper>knowledge-base-portlet knowledge-base-portlet-section</css-class-wrapper>
 	</portlet>
+	<portlet>
+		<portlet-name>5</portlet-name>
+		<icon>/icons/search.png</icon>
+		<configuration-action-class>com.liferay.portal.kernel.portlet.DefaultConfigurationAction</configuration-action-class>
+		<friendly-url-mapper-class>com.liferay.portal.kernel.portlet.DefaultFriendlyURLMapper</friendly-url-mapper-class>
+		<friendly-url-mapping>knowledge_base_search</friendly-url-mapping>
+		<friendly-url-routes>com/liferay/knowledgebase/search/portlet/search-friendly-url-routes.xml</friendly-url-routes>
+		<header-portlet-css>/admin/css/common.css</header-portlet-css>
+		<header-portlet-css>/search/css/main.css</header-portlet-css>
+		<css-class-wrapper>knowledge-base-portlet knowledge-base-portlet-search</css-class-wrapper>
+	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>
 		<role-link>Administrator</role-link>

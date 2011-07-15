@@ -3,7 +3,7 @@
 
 <routes>
 	<route>
-		<pattern>/{instanceId}/rss</pattern>
+		<pattern>/rss</pattern>
 		<ignored-parameter name="jspPage" />
 		<ignored-parameter name="p_p_state" />
 		<implicit-parameter name="p_p_cacheability">cacheLevelPage</implicit-parameter>
@@ -11,21 +11,21 @@
 		<implicit-parameter name="p_p_resource_id">rss</implicit-parameter>
 	</route>
 	<route>
-		<pattern>/{instanceId}/{resourcePrimKey:\d+}</pattern>
-		<implicit-parameter name="jspPage">/section/view_article.jsp</implicit-parameter>
+		<pattern>/{resourcePrimKey:\d+}</pattern>
+		<implicit-parameter name="jspPage">/search/view_article.jsp</implicit-parameter>
 		<implicit-parameter name="p_p_state">normal</implicit-parameter>
 	</route>
 	<route>
-		<pattern>/{instanceId}/{resourcePrimKey:\d+}/{status:-?\d+}/history</pattern>
-		<implicit-parameter name="jspPage">/section/history.jsp</implicit-parameter>
+		<pattern>/{resourcePrimKey:\d+}/{status:-?\d+}/history</pattern>
+		<implicit-parameter name="jspPage">/search/history.jsp</implicit-parameter>
 		<implicit-parameter name="p_p_state">normal</implicit-parameter>
 	</route>
 	<route>
-		<pattern>/{instanceId}/{resourcePrimKey:\d+}/{status:-?\d+}/history/{p_p_state}</pattern>
-		<implicit-parameter name="jspPage">/section/history.jsp</implicit-parameter>
+		<pattern>/{resourcePrimKey:\d+}/{status:-?\d+}/history/{p_p_state}</pattern>
+		<implicit-parameter name="jspPage">/search/history.jsp</implicit-parameter>
 	</route>
 	<route>
-		<pattern>/{instanceId}/{resourcePrimKey:\d+}/{p_p_state}</pattern>
-		<implicit-parameter name="jspPage">/section/view_article.jsp</implicit-parameter>
+		<pattern>/{resourcePrimKey:\d+}/{p_p_state}</pattern>
+		<implicit-parameter name="jspPage">/search/view_article.jsp</implicit-parameter>
 	</route>
 </routes>

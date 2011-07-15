@@ -14,7 +14,7 @@
  */
 --%>
 
-<%@ include file="/display/init.jsp" %>
+<%@ include file="/search/init.jsp" %>
 
 <%
 String keywords = ParamUtil.getString(request, "keywords");
@@ -23,10 +23,12 @@ String orderByCol = ParamUtil.getString(request, "orderByCol", "score");
 String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 %>
 
-<liferay-util:include page="/display/top_links.jsp" servletContext="<%= application %>" />
+<div class="kb-search-header">
+	<liferay-util:include page="/search/view.jsp" servletContext="<%= application %>" />
+</div>
 
 <liferay-portlet:renderURL varImpl="iteratorURL">
-	<portlet:param name="jspPage" value="/display/search.jsp" />
+	<portlet:param name="jspPage" value="/search/search.jsp" />
 	<portlet:param name="keywords" value="<%= keywords %>" />
 </liferay-portlet:renderURL>
 
@@ -76,7 +78,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 		modelVar="tuple"
 	>
 		<liferay-portlet:renderURL varImpl="rowURL">
-			<portlet:param name="jspPage" value="/display/view_article.jsp" />
+			<portlet:param name="jspPage" value="/search/view_article.jsp" />
 			<portlet:param name="resourcePrimKey" value="<%= (String)tuple.getObject(0) %>" />
 		</liferay-portlet:renderURL>
 
@@ -114,16 +116,6 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 				name="modified-date"
 				orderable="<%= true %>"
 				value='<%= dateFormatDate.format(tuple.getObject(4)) + "<br />" + dateFormatTime.format(tuple.getObject(4)) %>'
-			/>
-		</c:if>
-
-		<c:if test="<%= showKBArticleStatusColumn && DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADMINISTRATOR) %>">
-			<liferay-ui:search-container-column-text
-				cssClass="kb-column-no-wrap"
-				href="<%= rowURL %>"
-				name="status"
-				orderable="<%= true %>"
-				value='<%= WorkflowConstants.STATUS_APPROVED + " (" + LanguageUtil.get(pageContext, WorkflowConstants.LABEL_APPROVED) + ")" %>'
 			/>
 		</c:if>
 

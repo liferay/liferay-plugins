@@ -16,8 +16,6 @@
 
 <%@ include file="/init.jsp" %>
 
-<%@ page import="com.liferay.knowledgebase.display.search.KBArticleSearch" %>
-
 <%
 PortletPreferences preferences = renderRequest.getPreferences();
 
@@ -27,13 +25,9 @@ if (Validator.isNotNull(portletResource)) {
 	preferences = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
 }
 
-String kbArticlesOrderByCol = preferences.getValue("kbArticlesOrderByCol", StringPool.BLANK);
-String kbArticlesOrderByType = preferences.getValue("kbArticlesOrderByType", StringPool.BLANK);
-boolean showKBArticlePriorityColumn = GetterUtil.getBoolean(preferences.getValue("showKBArticlePriorityColumn", null));
 boolean showKBArticleAuthorColumn = GetterUtil.getBoolean(preferences.getValue("showKBArticleAuthorColumn", null));
 boolean showKBArticleCreateDateColumn = GetterUtil.getBoolean(preferences.getValue("showKBArticleCreateDateColumn", null));
 boolean showKBArticleModifiedDateColumn = GetterUtil.getBoolean(preferences.getValue("showKBArticleModifiedDateColumn", null));
-boolean showKBArticleStatusColumn = GetterUtil.getBoolean(preferences.getValue("showKBArticleStatusColumn", null));
 boolean showKBArticleViewsColumn = GetterUtil.getBoolean(preferences.getValue("showKBArticleViewsColumn", null));
 
 boolean enableKBArticleDescription = GetterUtil.getBoolean(preferences.getValue("enableKBArticleDescription", null));
@@ -42,9 +36,6 @@ boolean showKBArticleAssetEntries = GetterUtil.getBoolean(preferences.getValue("
 boolean enableKBArticleKBComments = GetterUtil.getBoolean(preferences.getValue("enableKBArticleKBComments", null));
 boolean showKBArticleKBComments = GetterUtil.getBoolean(preferences.getValue("showKBArticleKBComments", null));
 boolean enableKBArticleViewCountIncrement = GetterUtil.getBoolean(preferences.getValue("enableKBArticleViewCountIncrement", null));
-
-boolean enableKBTemplateKBComments = GetterUtil.getBoolean(preferences.getValue("enableKBTemplateKBComments", null));
-boolean showKBTemplateKBComments = GetterUtil.getBoolean(preferences.getValue("showKBTemplateKBComments", null));
 
 int rssDelta = GetterUtil.getInteger(preferences.getValue("rssDelta", null));
 String rssDisplayStyle = preferences.getValue("rssDisplayStyle", StringPool.BLANK);
