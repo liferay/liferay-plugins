@@ -135,11 +135,8 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 		Element rootElement = document.getRootElement();
 
-		// KB templates are imported before KB articles. See
-		// AdminPortletDataHandlerImp#importKBArticle.
-
-		importKBTemplates(portletDataContext, rootElement);
 		importKBArticles(portletDataContext, rootElement);
+		importKBTemplates(portletDataContext, rootElement);
 		importKBComments(portletDataContext, rootElement);
 
 		return null;
@@ -375,15 +372,9 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			(Map<Long, Long>)portletDataContext.getNewPrimaryKeysMap(
 				KBArticle.class);
 
-		Map<Long, Long> kbTemplatePKs =
-			(Map<Long, Long>)portletDataContext.getNewPrimaryKeysMap(
-				KBTemplate.class);
-
 		long userId = portletDataContext.getUserId(kbArticle.getUserUuid());
 		long parentResourcePrimKey = MapUtil.getLong(
 			kbArticlePKs, kbArticle.getParentResourcePrimKey());
-		long kbTemplateId = MapUtil.getLong(
-			kbTemplatePKs, kbArticle.getKbTemplateId());
 		String[] sections = AdminUtil.unescapeSections(kbArticle.getSections());
 		String dirName = MapUtil.getString(
 			dirNames, String.valueOf(kbArticle.getResourcePrimKey()));
@@ -406,7 +397,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 				KBArticleLocalServiceUtil.updateKBArticle(
 					userId, existingKBArticle.getResourcePrimKey(),
 					kbArticle.getTitle(), kbArticle.getContent(),
-					kbArticle.getDescription(), kbTemplateId, sections, dirName,
+					kbArticle.getDescription(), sections, dirName,
 					serviceContext);
 
 				KBArticleLocalServiceUtil.moveKBArticle(
@@ -485,10 +476,6 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			Element kbArticleElement)
 		throws Exception {
 
-		Map<Long, Long> kbTemplatePKs =
-			(Map<Long, Long>)portletDataContext.getNewPrimaryKeysMap(
-				KBTemplate.class);
-
 		Element versionsElement = kbArticleElement.element("versions");
 
 		List<Element> kbArticleElements = versionsElement.elements(
@@ -503,8 +490,6 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 			long curUserId = portletDataContext.getUserId(
 				curKBArticle.getUserUuid());
-			long curKBTemplateId = MapUtil.getLong(
-				kbTemplatePKs, curKBArticle.getKbTemplateId());
 			String[] curSections = AdminUtil.unescapeSections(
 				curKBArticle.getSections());
 			String curDirName = StringPool.BLANK;
@@ -523,14 +508,14 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 				importedKBArticle = KBArticleLocalServiceUtil.addKBArticle(
 					curUserId, parentResourcePrimKey, curKBArticle.getTitle(),
 					curKBArticle.getContent(), curKBArticle.getDescription(),
-					curKBTemplateId, curSections, curDirName, serviceContext);
+					curSections, curDirName, serviceContext);
 			}
 			else {
 				importedKBArticle = KBArticleLocalServiceUtil.updateKBArticle(
 					curUserId, importedKBArticle.getResourcePrimKey(),
 					curKBArticle.getTitle(), curKBArticle.getContent(),
-					curKBArticle.getDescription(), curKBTemplateId, curSections,
-					curDirName, serviceContext);
+					curKBArticle.getDescription(), curSections, curDirName,
+					serviceContext);
 			}
 		}
 
@@ -663,7 +648,6 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 				importedKBTemplate = KBTemplateLocalServiceUtil.addKBTemplate(
 					userId, kbTemplate.getTitle(), kbTemplate.getContent(),
-					kbTemplate.getEngineType(), kbTemplate.isCacheable(),
 					serviceContext);
 			}
 			else {
@@ -671,14 +655,12 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 					KBTemplateLocalServiceUtil.updateKBTemplate(
 						existingKBTemplate.getKbTemplateId(),
 						kbTemplate.getTitle(), kbTemplate.getContent(),
-						kbTemplate.getEngineType(), kbTemplate.isCacheable(),
 						serviceContext);
 			}
 		}
 		else {
 			importedKBTemplate = KBTemplateLocalServiceUtil.addKBTemplate(
 				userId, kbTemplate.getTitle(), kbTemplate.getContent(),
-				kbTemplate.getEngineType(), kbTemplate.isCacheable(),
 				serviceContext);
 		}
 

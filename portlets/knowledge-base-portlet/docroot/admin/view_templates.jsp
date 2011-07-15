@@ -26,47 +26,6 @@
 	<liferay-portlet:renderURLParams varImpl="searchURL" />
 	<aui:input name="kbTemplateIds" type="hidden" />
 
-	<liferay-ui:error exception="<%= RequiredKBTemplateException.class %>">
-
-		<%
-		RequiredKBTemplateException rkbte = (RequiredKBTemplateException)errorException;
-
-		KBTemplate kbTemplate = rkbte.getKBTemplate();
-		%>
-
-		<liferay-portlet:renderURL var="kbTemplateKBArticlesURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-			<portlet:param name="jspPage" value='<%= jspPath + "template_articles.jsp" %>' />
-			<portlet:param name="kbTemplateId" value="<%= String.valueOf(kbTemplate.getKbTemplateId()) %>" />
-		</liferay-portlet:renderURL>
-
-		<%
-		StringBundler kbArticlesSB = new StringBundler(5);
-
-		kbArticlesSB.append("<a href=\"javascript:var kbTemplateKBArticlesWindow = window.open('");
-		kbArticlesSB.append(kbTemplateKBArticlesURL);
-		kbArticlesSB.append("', 'kbTemplateKBArticles', 'directories=no,height=640,location=no,menubar=no,resizable=yes,scrollbars=yes,status=no,toolbar=no,width=680'); void(''); kbTemplateKBArticlesWindow.focus();\">");
-		kbArticlesSB.append(LanguageUtil.get(pageContext, "articles"));
-		kbArticlesSB.append("</a>");
-		%>
-
-		<liferay-portlet:renderURL var="viewKBTemplateURL">
-			<portlet:param name="jspPage" value='<%= jspPath + "view_template.jsp" %>' />
-			<portlet:param name="kbTemplateId" value="<%= String.valueOf(kbTemplate.getKbTemplateId()) %>" />
-		</liferay-portlet:renderURL>
-
-		<%
-		StringBundler kbTemplateSB = new StringBundler(5);
-
-		kbTemplateSB.append("<a href=\"");
-		kbTemplateSB.append(viewKBTemplateURL);
-		kbTemplateSB.append("\">");
-		kbTemplateSB.append(kbTemplate.getTitle());
-		kbTemplateSB.append("</a>");
-		%>
-
-		<%= LanguageUtil.format(pageContext, "please-update-these-x-before-deleting-x", new String[] {kbArticlesSB.toString(), kbTemplateSB.toString()}, false) %>
-	</liferay-ui:error>
-
 	<aui:fieldset>
 		<liferay-portlet:renderURL varImpl="iteratorURL">
 			<portlet:param name="jspPage" value="/admin/view_templates.jsp" />
@@ -118,13 +77,6 @@
 					name="modified-date"
 					orderable="<%= true %>"
 					value='<%= dateFormatDate.format(kbTemplate.getModifiedDate()) + "<br />" + dateFormatTime.format(kbTemplate.getModifiedDate()) %>'
-				/>
-
-				<liferay-ui:search-container-column-text
-					cssClass="kb-column-no-wrap"
-					name="engine-type"
-					orderable="<%= true %>"
-					value='<%= kbTemplate.getEngineType() + " (" + LanguageUtil.get(pageContext, KBTemplateConstants.getEngineTypeLabel(kbTemplate.getEngineType())) + ")" %>'
 				/>
 
 				<liferay-ui:search-container-column-jsp

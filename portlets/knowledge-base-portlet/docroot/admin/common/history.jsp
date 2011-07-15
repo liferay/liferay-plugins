@@ -155,7 +155,6 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 							<portlet:param name="title" value="<%= curKBArticle.getTitle() %>" />
 							<portlet:param name="content" value="<%= curKBArticle.getContent() %>" />
 							<portlet:param name="description" value="<%= curKBArticle.getDescription() %>" />
-							<portlet:param name="kbTemplateId" value="<%= String.valueOf(curKBArticle.getKbTemplateId()) %>" />
 							<portlet:param name="workflowAction" value="<%= String.valueOf(WorkflowConstants.ACTION_PUBLISH) %>" />
 						</liferay-portlet:actionURL>
 

@@ -15,8 +15,6 @@
 package com.liferay.knowledgebase.model.impl;
 
 import com.liferay.knowledgebase.model.KBArticleConstants;
-import com.liferay.knowledgebase.model.KBTemplate;
-import com.liferay.knowledgebase.service.KBTemplateLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
@@ -59,22 +57,6 @@ public class KBArticleImpl extends KBArticleBaseImpl {
 		}
 
 		return getKbArticleId();
-	}
-
-	public KBTemplate getKBTemplate() throws PortalException, SystemException {
-		if (hasKBTemplate()) {
-			return KBTemplateLocalServiceUtil.getKBTemplate(getKbTemplateId());
-		}
-
-		return null;
-	}
-
-	public boolean hasKBTemplate() {
-		if (getKbTemplateId() != KBArticleConstants.DEFAULT_KB_TEMPLATE_ID) {
-			return true;
-		}
-
-		return false;
 	}
 
 	public boolean isFirstVersion() {

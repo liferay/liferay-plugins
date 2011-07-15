@@ -36,5 +36,5 @@ KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_
 </div>
 
 <div class="kb-entity-body">
-	<%= KBArticleContentCacheUtil.getContent(request) %>
+	<%= kbArticle.getContent() %>
 </div>

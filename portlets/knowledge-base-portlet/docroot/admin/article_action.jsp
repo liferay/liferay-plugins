@@ -37,7 +37,7 @@ KBArticle kbArticle = (KBArticle)row.getObject();
 	/>
 
 	<c:if test="<%= KBArticlePermission.contains(permissionChecker, kbArticle, ActionKeys.UPDATE) %>">
-		<liferay-portlet:renderURL var="editKBArticleURL">
+		<liferay-portlet:renderURL var="editURL">
 			<portlet:param name="jspPage" value='<%= jspPath + "edit_article.jsp" %>' />
 			<portlet:param name="redirect" value="<%= redirect %>" />
 			<portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
@@ -45,24 +45,8 @@ KBArticle kbArticle = (KBArticle)row.getObject();
 
 		<liferay-ui:icon
 			image="edit"
-			message="edit-article"
 			method="get"
-			url="<%= editKBArticleURL %>"
-		/>
-	</c:if>
-
-	<c:if test="<%= kbArticle.hasKBTemplate() && KBTemplatePermission.contains(permissionChecker, kbArticle.getKBTemplate(), ActionKeys.UPDATE) %>">
-		<liferay-portlet:renderURL var="editKBTemplateURL">
-			<portlet:param name="jspPage" value='<%= jspPath + "edit_template.jsp" %>' />
-			<portlet:param name="redirect" value="<%= redirect %>" />
-			<portlet:param name="kbTemplateId" value="<%= String.valueOf(kbArticle.getKbTemplateId()) %>" />
-		</liferay-portlet:renderURL>
-
-		<liferay-ui:icon
-			image="../file_system/small/xml"
-			message="edit-template"
-			method="get"
-			url="<%= editKBTemplateURL %>"
+			url="<%= editURL %>"
 		/>
 	</c:if>
 

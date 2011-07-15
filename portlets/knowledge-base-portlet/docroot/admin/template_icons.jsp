@@ -44,27 +44,6 @@ long kbTemplateId = ParamUtil.getLong(request, "kbTemplateId");
 				</td>
 			</c:if>
 
-			<c:if test="<%= KBTemplatePermission.contains(permissionChecker, kbTemplate, ActionKeys.DELETE) || KBTemplatePermission.contains(permissionChecker, kbTemplate, ActionKeys.UPDATE) %>">
-				<td>
-					<liferay-portlet:renderURL var="kbTemplateKBArticlesURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-						<portlet:param name="jspPage" value='<%= jspPath + "template_articles.jsp" %>' />
-						<portlet:param name="kbTemplateId" value="<%= String.valueOf(kbTemplate.getKbTemplateId()) %>" />
-					</liferay-portlet:renderURL>
-
-					<%
-					String taglibURL = "javascript:var kbTemplateKBArticlesWindow = window.open('" + kbTemplateKBArticlesURL + "', 'kbTemplateKBArticles', 'directories=no,height=640,location=no,menubar=no,resizable=yes,scrollbars=yes,status=no,toolbar=no,width=680'); void(''); kbTemplateKBArticlesWindow.focus();";
-					%>
-
-					<liferay-ui:icon
-						image="all_pages"
-						label="<%= true %>"
-						message="template-articles"
-						method="get"
-						url="<%= taglibURL %>"
-					/>
-				</td>
-			</c:if>
-
 			<c:if test="<%= KBTemplatePermission.contains(permissionChecker, kbTemplate, ActionKeys.UPDATE) %>">
 				<td>
 					<liferay-portlet:renderURL var="editURL">

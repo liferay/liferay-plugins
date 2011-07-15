@@ -22,8 +22,6 @@ KBTemplate kbTemplate = (KBTemplate)request.getAttribute(WebKeys.KNOWLEDGE_BASE_
 long kbTemplateId = BeanParamUtil.getLong(kbTemplate, request, "kbTemplateId");
 
 String content = BeanParamUtil.getString(kbTemplate, request, "content");
-int engineType = BeanParamUtil.getInteger(kbTemplate, request, "engineType", KBTemplateConstants.DEFAULT_ENGINE_TYPE);
-boolean cacheable = BeanParamUtil.getBoolean(kbTemplate, request, "cacheable", true);
 
 if ((request.getParameter("content") == null) && (kbTemplate == null)) {
 	content = AdminUtil.getKBTemplateContent(engineType);
@@ -44,23 +42,8 @@ if ((request.getParameter("content") == null) && (kbTemplate == null)) {
 <aui:form action="<%= updateKBTemplateURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "updateKBTemplate();" %>'>
 	<aui:input name="<%= Constants.CMD %>" type="hidden" />
 
+	<liferay-ui:error exception="<%= KBTemplateContentException.class %>" message="please-enter-valid-content" />
 	<liferay-ui:error exception="<%= KBTemplateTitleException.class %>" message="please-enter-a-valid-title" />
-
-	<liferay-ui:error exception="<%= KBTemplateContentException.class %>">
-
-		<%
-		KBTemplateContentException kbtce = (KBTemplateContentException)errorException;
-		%>
-
-		<c:choose>
-			<c:when test="<%= Validator.isNotNull(kbtce.getMessage()) %>">
-				<%= kbtce.getMessage() %>
-			</c:when>
-			<c:otherwise>
-				<liferay-ui:message key="please-enter-valid-content" />
-			</c:otherwise>
-		</c:choose>
-	</liferay-ui:error>
 
 	<aui:model-context bean="<%= kbTemplate %>" model="<%= KBTemplate.class %>" />
 
@@ -68,32 +51,9 @@ if ((request.getParameter("content") == null) && (kbTemplate == null)) {
 		<aui:input name="title" />
 
 		<aui:field-wrapper label="content">
-			<textarea class="kb-template-editor" name="<portlet:namespace />content" wrap="off"><%= content %></textarea>
-		</aui:field-wrapper>
+			<liferay-ui:input-editor width="100%" />
 
-		<%
-		String taglibOnChange = renderResponse.getNamespace() + "updateEngineType(this.value);";
-		%>
-
-		<aui:field-wrapper label="engine">
-			<aui:select inlineField="<%= true %>" label="" name="engineType" onChange="<%= taglibOnChange %>">
-
-				<%
-				for (int curEngineType : KBTemplateConstants.ENGINE_TYPES) {
-				%>
-
-					<aui:option label="<%= KBTemplateConstants.getEngineTypeLabel(curEngineType) %>" selected="<%= engineType == curEngineType %>" value="<%= curEngineType %>" />
-
-				<%
-				}
-				%>
-
-			</aui:select>
-
-			<aui:select inlineField="<%= true %>" label="" name="cacheable">
-				<aui:option label="enable-cache" selected="<%= cacheable %>" value="<%= true %>" />
-				<aui:option label="disable-cache" selected="<%= !cacheable %>" value="<%= false %>" />
-			</aui:select>
+			<aui:input name="content" type="hidden" />
 		</aui:field-wrapper>
 
 		<c:if test="<%= kbTemplate == null %>">
@@ -113,19 +73,13 @@ if ((request.getParameter("content") == null) && (kbTemplate == null)) {
 </aui:form>
 
 <aui:script>
-	function <portlet:namespace />updateEngineType(value) {
-		if (value == "<%= KBTemplateConstants.ENGINE_TYPE_FREEMARKER %>") {
-			document.<portlet:namespace />fm.<portlet:namespace />content.value = "<%= UnicodeFormatter.toString(AdminUtil.getKBTemplateContent(KBTemplateConstants.ENGINE_TYPE_FREEMARKER)) %>";
-		}
-		else if (value == "<%= KBTemplateConstants.ENGINE_TYPE_VELOCITY %>") {
-			document.<portlet:namespace />fm.<portlet:namespace />content.value = "<%= UnicodeFormatter.toString(AdminUtil.getKBTemplateContent(KBTemplateConstants.ENGINE_TYPE_VELOCITY)) %>";
-		}
+	function <portlet:namespace />initEditor() {
+		return "<%= UnicodeFormatter.toString(content) %>";
 	}
 
 	function <portlet:namespace />updateKBTemplate() {
 		document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = "<%= (kbTemplate == null) ? Constants.ADD : Constants.UPDATE %>";
+		document.<portlet:namespace />fm.<portlet:namespace />content.value = window.<portlet:namespace />editor.getHTML();
 		submitForm(document.<portlet:namespace />fm);
 	}
-
-	Liferay.Util.enableTextareaTabs(document.<portlet:namespace />fm.<portlet:namespace />content);
 </aui:script>

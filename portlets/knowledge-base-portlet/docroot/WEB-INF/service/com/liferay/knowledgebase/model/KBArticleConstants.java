@@ -20,8 +20,6 @@ package com.liferay.knowledgebase.model;
  */
 public class KBArticleConstants {
 
-	public static final long DEFAULT_KB_TEMPLATE_ID = 0;
-
 	public static final long DEFAULT_PARENT_RESOURCE_PRIM_KEY = 0;
 
 	public static final double DEFAULT_PRIORITY = 1.0;

@@ -23,7 +23,6 @@
 		<field name="description" type="String">
 			<hint-collection name="TEXTAREA" />
 		</field>
-		<field name="kbTemplateId" type="long" />
 		<field name="priority" type="double" />
 		<field name="sections" type="String">
 			<hint name="max-length">4000</hint>
@@ -84,10 +83,6 @@
 		</field>
 		<field name="content" type="String">
 			<hint-collection name="CLOB" />
-		</field>
-		<field name="engineType" type="int" />
-		<field name="cacheable" type="boolean">
-			<hint name="default-value">true</hint>
 		</field>
 	</model>
 </model-hints>

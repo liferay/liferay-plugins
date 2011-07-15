@@ -46,16 +46,6 @@ String jspPage = ParamUtil.getString(request, "jspPage");
 		urls.add(kbTemplatesURL.toString());
 		value = jspPage.contains("template") ? names.get(names.size() - 1) : value;
 	}
-
-	if (false) {//if (AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.VIEW_KB_STRUCTURES)) {
-		PortletURL kbStructuresURL = renderResponse.createRenderURL();
-
-		kbStructuresURL.setParameter("jspPage", "/admin/view_structures.jsp");
-
-		names.add("structures");
-		urls.add(kbStructuresURL.toString());
-		value = jspPage.contains("structure") ? names.get(names.size() - 1) : value;
-	}
 	%>
 
 	<liferay-ui:tabs
@@ -63,7 +53,6 @@ String jspPage = ParamUtil.getString(request, "jspPage");
 		param="topTabs"
 		url0="<%= (urls.size() > 0) ? urls.get(0) : null %>"
 		url1="<%= (urls.size() > 1) ? urls.get(1) : null %>"
-		url2="<%= (urls.size() > 2) ? urls.get(2) : null %>"
 		value="<%= value %>"
 	/>
 </c:if>
