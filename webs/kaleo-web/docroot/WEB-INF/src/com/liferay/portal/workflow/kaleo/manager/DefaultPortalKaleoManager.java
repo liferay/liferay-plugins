@@ -226,11 +226,11 @@ public class DefaultPortalKaleoManager
 			User defaultUser, Company company, Group companyGroup,
 			String assetClassName, String workflowDefinitionName)
 		throws PortalException, SystemException {
-
+		
 		try {
 			WorkflowDefinitionLinkLocalServiceUtil.
 				getDefaultWorkflowDefinitionLink(
-					company.getCompanyId(), assetClassName, 0);
+					company.getCompanyId(), assetClassName, 0, 0);
 
 			return;
 		}
@@ -256,7 +256,7 @@ public class DefaultPortalKaleoManager
 
 		WorkflowDefinitionLinkLocalServiceUtil.addWorkflowDefinitionLink(
 			defaultUser.getUserId(), company.getCompanyId(),
-			companyGroup.getGroupId(), assetClassName, 0,
+			companyGroup.getGroupId(), assetClassName, 0, 0,
 			workflowDefinition.getName(), workflowDefinition.getVersion());
 	}
 
