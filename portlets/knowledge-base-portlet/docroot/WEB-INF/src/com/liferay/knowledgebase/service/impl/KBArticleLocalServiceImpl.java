@@ -16,7 +16,6 @@ package com.liferay.knowledgebase.service.impl;
 
 import com.liferay.knowledgebase.KBArticleContentException;
 import com.liferay.knowledgebase.KBArticlePriorityException;
-import com.liferay.knowledgebase.KBArticleSectionException;
 import com.liferay.knowledgebase.KBArticleTitleException;
 import com.liferay.knowledgebase.admin.social.AdminActivityKeys;
 import com.liferay.knowledgebase.admin.util.AdminSubscriptionSender;
@@ -112,7 +111,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		double priority = getPriority(groupId, parentResourcePrimKey);
 		Date now = new Date();
 
-		validate(title, content, sections);
+		validate(title, content);
 
 		long kbArticleId = counterLocalService.increment();
 
@@ -730,7 +729,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		int version = KBArticleConstants.DEFAULT_VERSION;
 		int status = WorkflowConstants.STATUS_DRAFT;
 
-		validate(title, content, sections);
+		validate(title, content);
 
 		KBArticle oldKBArticle = getLatestKBArticle(
 			resourcePrimKey, WorkflowConstants.STATUS_ANY);
@@ -1435,7 +1434,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		}
 	}
 
-	protected void validate(String title, String content, String[] sections)
+	protected void validate(String title, String content)
 		throws PortalException {
 
 		if (Validator.isNull(title)) {
@@ -1444,10 +1443,6 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		if (Validator.isNull(content)) {
 			throw new KBArticleContentException();
-		}
-
-		if (Validator.isNull(sections)) {
-			throw new KBArticleSectionException();
 		}
 	}
 

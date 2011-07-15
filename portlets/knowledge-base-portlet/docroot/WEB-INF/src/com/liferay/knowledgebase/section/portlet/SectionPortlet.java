@@ -16,7 +16,6 @@ package com.liferay.knowledgebase.section.portlet;
 
 import com.liferay.knowledgebase.KBArticleContentException;
 import com.liferay.knowledgebase.KBArticlePriorityException;
-import com.liferay.knowledgebase.KBArticleSectionException;
 import com.liferay.knowledgebase.KBArticleTitleException;
 import com.liferay.knowledgebase.KBCommentContentException;
 import com.liferay.knowledgebase.NoSuchArticleException;
@@ -491,7 +490,6 @@ public class SectionPortlet extends MVCPortlet {
 			cause instanceof FileSizeException ||
 			cause instanceof KBArticleContentException ||
 			cause instanceof KBArticlePriorityException ||
-			cause instanceof KBArticleSectionException ||
 			cause instanceof KBArticleTitleException ||
 			cause instanceof KBCommentContentException ||
 			cause instanceof NoSuchArticleException ||
