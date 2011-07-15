@@ -194,6 +194,10 @@ public class FindKBArticleAction extends BaseStrutsAction {
 		portletURL.setParameter(
 			"resourcePrimKey", String.valueOf(resourcePrimKey));
 
+		if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_SECTION)) {
+			portletURL.setWindowState(LiferayWindowState.MAXIMIZED);
+		}
+
 		return portletURL;
 	}
 

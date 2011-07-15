@@ -45,6 +45,9 @@ public class PortletPropsKeys {
 	public static final String ADMIN_KB_ARTICLE_DEFAULT_SECTIONS =
 		"admin.kb.article.default.sections";
 
+	public static final String ADMIN_KB_ARTICLE_INCREMENT_PRIORITY_ENABLED =
+		"admin.kb.article.increment.priority.enabled";
+
 	public static final String ADMIN_KB_ARTICLE_SECTIONS =
 		"admin.kb.article.sections";
 
