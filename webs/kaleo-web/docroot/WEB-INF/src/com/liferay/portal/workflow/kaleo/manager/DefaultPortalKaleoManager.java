@@ -226,7 +226,7 @@ public class DefaultPortalKaleoManager
 			User defaultUser, Company company, Group companyGroup,
 			String assetClassName, String workflowDefinitionName)
 		throws PortalException, SystemException {
-		
+
 		try {
 			WorkflowDefinitionLinkLocalServiceUtil.
 				getDefaultWorkflowDefinitionLink(
