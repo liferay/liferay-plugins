@@ -143,7 +143,7 @@ catch (NoSuchRecordSetException nsrse) {
 				>
 
 					<%
-					buffer.append(StringUtil.shorten(curRecordSet.getDescription(), 100));
+					buffer.append(StringUtil.shorten(curRecordSet.getDescription(locale), 100));
 					%>
 
 				</liferay-ui:search-container-column-text>
