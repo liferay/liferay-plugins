@@ -23,7 +23,6 @@ import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
-import com.liferay.portlet.social.model.SocialRelation;
 import com.liferay.portlet.social.model.SocialRelationConstants;
 import com.liferay.portlet.social.model.SocialRequest;
 import com.liferay.portlet.social.model.SocialRequestConstants;
@@ -63,14 +62,8 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			SocialRelationConstants.TYPE_UNI_ENEMY);
 
 		if (type == SocialRelationConstants.TYPE_UNI_ENEMY) {
-			List<SocialRelation> relations =
-				SocialRelationLocalServiceUtil.getRelations(
-					themeDisplay.getUserId(), userId, QueryUtil.ALL_POS,
-					QueryUtil.ALL_POS);
-
-			for (SocialRelation relation : relations) {
-				SocialRelationLocalServiceUtil.deleteRelation(relation);
-			}
+			SocialRelationLocalServiceUtil.deleteRelations(
+				themeDisplay.getUserId(), userId);
 		}
 		else if (blocked) {
 			return;
