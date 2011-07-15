@@ -53,22 +53,6 @@
 			<hint name="default-value">true</hint>
 		</field>
 	</model>
-	<model name="com.liferay.knowledgebase.model.KBStructure">
-		<field name="uuid" type="String" />
-		<field name="kbStructureId" type="long" />
-		<field name="groupId" type="long" />
-		<field name="companyId" type="long" />
-		<field name="userId" type="long" />
-		<field name="userName" type="String" />
-		<field name="createDate" type="Date" />
-		<field name="modifiedDate" type="Date" />
-		<field name="title" type="String" localized="true">
-			<hint name="max-length">4000</hint>
-		</field>
-		<field name="content" type="String">
-			<hint-collection name="CLOB" />
-		</field>
-	</model>
 	<model name="com.liferay.knowledgebase.model.KBTemplate">
 		<field name="uuid" type="String" />
 		<field name="kbTemplateId" type="long" />

@@ -225,45 +225,6 @@
 
 		<reference package-path="com.liferay.portlet.social" entity="SocialActivity" />
 	</entity>
-	<entity name="KBStructure" uuid="true" local-service="true" remote-service="true">
-
-		<!-- PK fields -->
-
-		<column name="kbStructureId" type="long" primary="true" />
-
-		<!-- Group instance -->
-
-		<column name="groupId" type="long" />
-
-		<!-- Audit fields -->
-
-		<column name="companyId" type="long" />
-		<column name="userId" type="long" />
-		<column name="userName" type="String" />
-		<column name="createDate" type="Date" />
-		<column name="modifiedDate" type="Date" />
-
-		<!-- Other fields -->
-
-		<column name="title" type="String" localized="true" />
-		<column name="content" type="String" />
-
-		<!-- Order -->
-
-		<order by="desc">
-			<order-column name="modifiedDate" />
-		</order>
-
-		<!-- Finder methods -->
-
-		<finder name="GroupId" return-type="Collection">
-			<finder-column name="groupId" />
-		</finder>
-
-		<!-- References -->
-
-		<reference package-path="com.liferay.portlet.social" entity="SocialActivity" />
-	</entity>
 	<entity name="KBTemplate" uuid="true" local-service="true" remote-service="true">
 
 		<!-- PK fields -->
@@ -304,20 +265,11 @@
 		<reference package-path="com.liferay.portlet.social" entity="SocialActivity" />
 	</entity>
 	<exceptions>
-		<exception>DuplicateKBStructureFieldLabel</exception>
-		<exception>DuplicateKBStructureFieldName</exception>
-		<exception>DuplicateKBStructureOptionLabel</exception>
-		<exception>DuplicateKBStructureOptionValue</exception>
 		<exception>KBArticleContent</exception>
 		<exception>KBArticlePriority</exception>
 		<exception>KBArticleSection</exception>
 		<exception>KBArticleTitle</exception>
 		<exception>KBCommentContent</exception>
-		<exception>KBStructureFieldLabel</exception>
-		<exception>KBStructureFieldName</exception>
-		<exception>KBStructureOptionLabel</exception>
-		<exception>KBStructureOptionValue</exception>
-		<exception>KBStructureTitle</exception>
 		<exception>KBTemplateContent</exception>
 		<exception>KBTemplateTitle</exception>
 	</exceptions>

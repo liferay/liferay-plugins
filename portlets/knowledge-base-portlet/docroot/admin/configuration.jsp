@@ -317,11 +317,6 @@ else if (tabs2.equals("article-updated-email")) {
 
 						<aui:input label="show-comments" name="preferences--showKBTemplateKBComments--" type="checkbox" value="<%= showKBTemplateKBComments %>" />
 					</c:when>
-					<c:when test='<%= tabs3.equals("structure") %>'>
-						<aui:input label="enable-comments" name="preferences--enableKBStructureKBComments--" type="checkbox" value="<%= enableKBStructureKBComments %>" />
-
-						<aui:input label="show-comments" name="preferences--showKBStructureKBComments--" type="checkbox" value="<%= showKBStructureKBComments %>" />
-					</c:when>
 				</c:choose>
 			</c:when>
 		</c:choose>

@@ -56,23 +56,4 @@ public class PortletPropsValues {
 	public static final String[] ADMIN_KB_ARTICLE_SECTIONS =
 		PortletProps.getArray(PortletPropsKeys.ADMIN_KB_ARTICLE_SECTIONS);
 
-	public static final String ADMIN_KB_STRUCTURE_CONTENT = PortletProps.get(
-		PortletPropsKeys.ADMIN_KB_STRUCTURE_CONTENT);
-
-	public static final String ADMIN_KB_TEMPLATE_CONTENT_FREEMARKER =
-		PortletProps.get(PortletPropsKeys.ADMIN_KB_TEMPLATE_CONTENT_FREEMARKER);
-
-	public static final String ADMIN_KB_TEMPLATE_CONTENT_VELOCITY =
-		PortletProps.get(PortletPropsKeys.ADMIN_KB_TEMPLATE_CONTENT_VELOCITY);
-
-	public static final String ADMIN_KB_TEMPLATE_ERROR_FREEMARKER =
-		PortletProps.get(PortletPropsKeys.ADMIN_KB_TEMPLATE_ERROR_FREEMARKER);
-
-	public static final String ADMIN_KB_TEMPLATE_ERROR_VELOCITY =
-		PortletProps.get(PortletPropsKeys.ADMIN_KB_TEMPLATE_ERROR_VELOCITY);
-
-	public static final String[] ADMIN_KB_TEMPLATE_RESTRICTED_VARIABLES =
-		PortletProps.getArray(
-			PortletPropsKeys.ADMIN_KB_TEMPLATE_RESTRICTED_VARIABLES);
-
 }
