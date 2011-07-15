@@ -108,27 +108,26 @@ public class KBTemplateLocalServiceImpl extends KBTemplateLocalServiceBaseImpl {
 	}
 
 	public void addKBTemplateResources(
-			KBTemplate kbTemplate, boolean addCommunityPermissions,
+			KBTemplate kbTemplate, boolean addGroupPermissions,
 			boolean addGuestPermissions)
 		throws PortalException, SystemException {
 
 		resourceLocalService.addResources(
 			kbTemplate.getCompanyId(), kbTemplate.getGroupId(),
 			kbTemplate.getUserId(), KBTemplate.class.getName(),
-			kbTemplate.getKbTemplateId(), false, addCommunityPermissions,
+			kbTemplate.getKbTemplateId(), false, addGroupPermissions,
 			addGuestPermissions);
 	}
 
 	public void addKBTemplateResources(
-			KBTemplate kbTemplate, String[] communityPermissions,
+			KBTemplate kbTemplate, String[] groupPermissions,
 			String[] guestPermissions)
 		throws PortalException, SystemException {
 
 		resourceLocalService.addModelResources(
 			kbTemplate.getCompanyId(), kbTemplate.getGroupId(),
 			kbTemplate.getUserId(), KBTemplate.class.getName(),
-			kbTemplate.getKbTemplateId(), communityPermissions,
-			guestPermissions);
+			kbTemplate.getKbTemplateId(), groupPermissions, guestPermissions);
 	}
 
 	public void deleteGroupKBTemplates(long groupId)
@@ -268,14 +267,14 @@ public class KBTemplateLocalServiceImpl extends KBTemplateLocalServiceBaseImpl {
 	}
 
 	public void updateKBTemplateResources(
-			KBTemplate kbTemplate, String[] communityPermissions,
+			KBTemplate kbTemplate, String[] groupPermissions,
 			String[] guestPermissions)
 		throws PortalException, SystemException {
 
 		resourceLocalService.updateResources(
 			kbTemplate.getCompanyId(), kbTemplate.getGroupId(),
 			KBTemplate.class.getName(), kbTemplate.getKbTemplateId(),
-			communityPermissions, guestPermissions);
+			groupPermissions, guestPermissions);
 	}
 
 	protected DynamicQuery buildDynamicQuery(

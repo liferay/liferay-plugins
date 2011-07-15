@@ -184,27 +184,26 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	}
 
 	public void addKBArticleResources(
-			KBArticle kbArticle, boolean addCommunityPermissions,
+			KBArticle kbArticle, boolean addGroupPermissions,
 			boolean addGuestPermissions)
 		throws PortalException, SystemException {
 
 		resourceLocalService.addResources(
 			kbArticle.getCompanyId(), kbArticle.getGroupId(),
 			kbArticle.getUserId(), KBArticle.class.getName(),
-			kbArticle.getResourcePrimKey(), false, addCommunityPermissions,
+			kbArticle.getResourcePrimKey(), false, addGroupPermissions,
 			addGuestPermissions);
 	}
 
 	public void addKBArticleResources(
-			KBArticle kbArticle, String[] communityPermissions,
+			KBArticle kbArticle, String[] groupPermissions,
 			String[] guestPermissions)
 		throws PortalException, SystemException {
 
 		resourceLocalService.addModelResources(
 			kbArticle.getCompanyId(), kbArticle.getGroupId(),
 			kbArticle.getUserId(), KBArticle.class.getName(),
-			kbArticle.getResourcePrimKey(), communityPermissions,
-			guestPermissions);
+			kbArticle.getResourcePrimKey(), groupPermissions, guestPermissions);
 	}
 
 	public void checkAttachments() throws PortalException, SystemException {
@@ -855,14 +854,14 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	}
 
 	public void updateKBArticleResources(
-			KBArticle kbArticle, String[] communityPermissions,
+			KBArticle kbArticle, String[] groupPermissions,
 			String[] guestPermissions)
 		throws PortalException, SystemException {
 
 		resourceLocalService.updateResources(
 			kbArticle.getCompanyId(), kbArticle.getGroupId(),
 			KBArticle.class.getName(), kbArticle.getResourcePrimKey(),
-			communityPermissions, guestPermissions);
+			groupPermissions, guestPermissions);
 	}
 
 	public void updateKBArticlesKBTemplates(long[] kbArticleIds)

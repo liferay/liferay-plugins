@@ -128,27 +128,26 @@ public class KBStructureLocalServiceImpl
 	}
 
 	public void addKBStructureResources(
-			KBStructure kbStructure, boolean addCommunityPermissions,
+			KBStructure kbStructure, boolean addGroupPermissions,
 			boolean addGuestPermissions)
 		throws PortalException, SystemException {
 
 		resourceLocalService.addResources(
 			kbStructure.getCompanyId(), kbStructure.getGroupId(),
 			kbStructure.getUserId(), KBStructure.class.getName(),
-			kbStructure.getKbStructureId(), false, addCommunityPermissions,
+			kbStructure.getKbStructureId(), false, addGroupPermissions,
 			addGuestPermissions);
 	}
 
 	public void addKBStructureResources(
-			KBStructure kbStructure, String[] communityPermissions,
+			KBStructure kbStructure, String[] groupPermissions,
 			String[] guestPermissions)
 		throws PortalException, SystemException {
 
 		resourceLocalService.addModelResources(
 			kbStructure.getCompanyId(), kbStructure.getGroupId(),
 			kbStructure.getUserId(), KBStructure.class.getName(),
-			kbStructure.getKbStructureId(), communityPermissions,
-			guestPermissions);
+			kbStructure.getKbStructureId(), groupPermissions, guestPermissions);
 	}
 
 	public void deleteGroupKBStructures(long groupId)
@@ -307,14 +306,14 @@ public class KBStructureLocalServiceImpl
 	}
 
 	public void updateKBStructureResources(
-			KBStructure kbStructure, String[] communityPermissions,
+			KBStructure kbStructure, String[] groupPermissions,
 			String[] guestPermissions)
 		throws PortalException, SystemException {
 
 		resourceLocalService.updateResources(
 			kbStructure.getCompanyId(), kbStructure.getGroupId(),
 			KBStructure.class.getName(), kbStructure.getKbStructureId(),
-			communityPermissions, guestPermissions);
+			groupPermissions, guestPermissions);
 	}
 
 	protected DynamicQuery buildDynamicQuery(
