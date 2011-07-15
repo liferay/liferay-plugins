@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayOutputStream;
 import com.liferay.portal.kernel.io.unsync.UnsyncPrintWriter;
 import com.liferay.portal.kernel.io.unsync.UnsyncStringWriter;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.UnsyncPrintWriterPool;
 
 import java.io.OutputStream;
 import java.io.PrintWriter;
@@ -84,7 +85,7 @@ public class TestRenderResponse extends RenderResponseWrapper {
 
 		if (_printWriter == null) {
 			_unsyncStringWriter = new UnsyncStringWriter();
-			_printWriter = UnsyncPrintWriter.borrow(_unsyncStringWriter);
+			_printWriter = UnsyncPrintWriterPool.borrow(_unsyncStringWriter);
 		}
 
 		return _printWriter;
