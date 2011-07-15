@@ -50,16 +50,8 @@
 				<value>false</value>
 			</preference>
 			<preference>
-				<name>enableKBArticleAssetCategories</name>
-				<value>false</value>
-			</preference>
-			<preference>
-				<name>enableKBArticleAssetTags</name>
-				<value>true</value>
-			</preference>
-			<preference>
 				<name>enableKBArticleRatings</name>
-				<value>false</value>
+				<value>true</value>
 			</preference>
 			<preference>
 				<name>showKBArticleAssetEntries</name>
@@ -167,16 +159,8 @@
 				<value>false</value>
 			</preference>
 			<preference>
-				<name>enableKBArticleAssetCategories</name>
-				<value>false</value>
-			</preference>
-			<preference>
-				<name>enableKBArticleAssetTags</name>
-				<value>true</value>
-			</preference>
-			<preference>
 				<name>enableKBArticleRatings</name>
-				<value>false</value>
+				<value>true</value>
 			</preference>
 			<preference>
 				<name>showKBArticleAssetEntries</name>
@@ -188,7 +172,7 @@
 			</preference>
 			<preference>
 				<name>showKBArticleKBComments</name>
-				<value>true</value>
+				<value>false</value>
 			</preference>
 			<preference>
 				<name>enableKBArticleViewCountIncrement</name>
@@ -270,16 +254,8 @@
 				<value>false</value>
 			</preference>
 			<preference>
-				<name>enableKBArticleAssetCategories</name>
-				<value>false</value>
-			</preference>
-			<preference>
-				<name>enableKBArticleAssetTags</name>
-				<value>true</value>
-			</preference>
-			<preference>
 				<name>enableKBArticleRatings</name>
-				<value>false</value>
+				<value>true</value>
 			</preference>
 			<preference>
 				<name>showKBArticleAssetEntries</name>
@@ -291,7 +267,7 @@
 			</preference>
 			<preference>
 				<name>showKBArticleKBComments</name>
-				<value>true</value>
+				<value>false</value>
 			</preference>
 			<preference>
 				<name>enableKBArticleViewCountIncrement</name>
@@ -391,16 +367,8 @@
 				<value>false</value>
 			</preference>
 			<preference>
-				<name>enableKBArticleAssetCategories</name>
-				<value>false</value>
-			</preference>
-			<preference>
-				<name>enableKBArticleAssetTags</name>
-				<value>true</value>
-			</preference>
-			<preference>
 				<name>enableKBArticleRatings</name>
-				<value>false</value>
+				<value>true</value>
 			</preference>
 			<preference>
 				<name>showKBArticleAssetEntries</name>
@@ -412,7 +380,7 @@
 			</preference>
 			<preference>
 				<name>showKBArticleKBComments</name>
-				<value>true</value>
+				<value>false</value>
 			</preference>
 			<preference>
 				<name>enableKBArticleViewCountIncrement</name>

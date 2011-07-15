@@ -298,10 +298,6 @@ else if (tabs2.equals("article-updated-email")) {
 					<c:when test='<%= tabs3.equals("article") %>'>
 						<aui:input label="enable-description" name="preferences--enableKBArticleDescription--" type="checkbox" value="<%= enableKBArticleDescription %>" />
 
-						<aui:input label="enable-categories" name="preferences--enableKBArticleAssetCategories--" type="checkbox" value="<%= enableKBArticleAssetCategories %>" />
-
-						<aui:input label="enable-tags" name="preferences--enableKBArticleAssetTags--" type="checkbox" value="<%= enableKBArticleAssetTags %>" />
-
 						<aui:input label="enable-ratings" name="preferences--enableKBArticleRatings--" type="checkbox" value="<%= enableKBArticleRatings %>" />
 
 						<aui:input label="show-asset-entries" name="preferences--showKBArticleAssetEntries--" type="checkbox" value="<%= showKBArticleAssetEntries %>" />

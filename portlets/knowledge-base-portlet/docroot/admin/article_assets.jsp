@@ -20,29 +20,23 @@
 KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_ARTICLE);
 %>
 
-<c:if test="<%= enableKBArticleAssetCategories || enableKBArticleAssetTags %>">
-	<liferay-util:buffer var="html">
-		<c:if test="<%= enableKBArticleAssetCategories %>">
-			<liferay-ui:asset-categories-summary
-				className="<%= KBArticle.class.getName() %>"
-				classPK="<%= kbArticle.getClassPK() %>"
-				portletURL="<%= renderResponse.createRenderURL() %>"
-			/>
-		</c:if>
+<liferay-util:buffer var="html">
+	<liferay-ui:asset-categories-summary
+		className="<%= KBArticle.class.getName() %>"
+		classPK="<%= kbArticle.getClassPK() %>"
+		portletURL="<%= renderResponse.createRenderURL() %>"
+	/>
 
-		<c:if test="<%= enableKBArticleAssetTags %>">
-			<liferay-ui:asset-tags-summary
-				className="<%= KBArticle.class.getName() %>"
-				classPK="<%= kbArticle.getClassPK() %>"
-				message="tags"
-				portletURL="<%= renderResponse.createRenderURL() %>"
-			/>
-		</c:if>
-	</liferay-util:buffer>
+	<liferay-ui:asset-tags-summary
+		className="<%= KBArticle.class.getName() %>"
+		classPK="<%= kbArticle.getClassPK() %>"
+		message="tags"
+		portletURL="<%= renderResponse.createRenderURL() %>"
+	/>
+</liferay-util:buffer>
 
-	<c:if test="<%= Validator.isNotNull(html.trim()) %>">
-		<div class="kb-article-assets">
-			<%= html %>
-		</div>
-	</c:if>
+<c:if test="<%= Validator.isNotNull(html.trim()) %>">
+	<div class="kb-article-assets">
+		<%= html %>
+	</div>
 </c:if>
