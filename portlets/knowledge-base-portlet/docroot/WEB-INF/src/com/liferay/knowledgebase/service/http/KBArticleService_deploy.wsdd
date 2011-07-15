@@ -25,7 +25,6 @@
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="title" type="tns:string"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="content" type="tns:string"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="description" type="tns:string"></parameter>
-			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="kbTemplateId" type="tns:long"></parameter>
 			<parameter xmlns:tns="urn:http.service.knowledgebase.liferay.com" qname="sections" type="tns:ArrayOf_xsd_string"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="dirName" type="tns:string"></parameter>
 			<parameter xmlns:tns="http://service.portal.liferay.com" qname="serviceContext" type="tns:ServiceContext"></parameter>
@@ -158,16 +157,11 @@
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="title" type="tns:string"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="content" type="tns:string"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="description" type="tns:string"></parameter>
-			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="kbTemplateId" type="tns:long"></parameter>
 			<parameter xmlns:tns="urn:http.service.knowledgebase.liferay.com" qname="sections" type="tns:ArrayOf_xsd_string"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="dirName" type="tns:string"></parameter>
 			<parameter xmlns:tns="http://service.portal.liferay.com" qname="serviceContext" type="tns:ServiceContext"></parameter>
 		</operation>
-		<operation xmlns:operNS="urn:http.service.knowledgebase.liferay.com" name="updateKBArticlesKBTemplates" qname="operNS:updateKBArticlesKBTemplates" soapAction="">
-			<parameter xmlns:tns="urn:http.service.knowledgebase.liferay.com" qname="kbArticleIds" type="tns:ArrayOf_xsd_long"></parameter>
-			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="kbTemplateId" type="tns:long"></parameter>
-		</operation>
-		<parameter name="allowedMethods" value="addAttachment addKBArticle deleteAttachment deleteKBArticle deleteKBArticles getGroupKBArticles getGroupKBArticlesCount getKBArticle getKBArticleAndAllDescendants getKBArticleSearchDisplay getKBArticleVersions getKBArticleVersionsCount getKBArticles getLatestKBArticle getSectionsKBArticles getSectionsKBArticlesCount getSiblingKBArticles getSiblingKBArticlesCount moveKBArticle subscribeGroupKBArticles subscribeKBArticle unsubscribeGroupKBArticles unsubscribeKBArticle updateAttachments updateKBArticle updateKBArticlesKBTemplates" />
+		<parameter name="allowedMethods" value="addAttachment addKBArticle deleteAttachment deleteKBArticle deleteKBArticles getGroupKBArticles getGroupKBArticlesCount getKBArticle getKBArticleAndAllDescendants getKBArticleSearchDisplay getKBArticleVersions getKBArticleVersionsCount getKBArticles getLatestKBArticle getSectionsKBArticles getSectionsKBArticlesCount getSiblingKBArticles getSiblingKBArticlesCount moveKBArticle subscribeGroupKBArticles subscribeKBArticle unsubscribeGroupKBArticles unsubscribeKBArticle updateAttachments updateKBArticle" />
 		<parameter name="className" value="com.liferay.knowledgebase.service.http.KBArticleServiceSoap" />
 		<parameter name="schemaUnqualified" value="http://model.knowledgebase.liferay.com,http://model.portal.liferay.com,http://service.portal.liferay.com,http://util.kernel.portal.liferay.com,http://xml.apache.org/xml-soap,urn:http.service.knowledgebase.liferay.com" />
 		<parameter name="typeMappingVersion" value="1.2" />

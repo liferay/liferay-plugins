@@ -33,7 +33,7 @@ public class KBArticleServiceClp implements KBArticleService {
 		_addKBArticleMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
 				"addKBArticle", java.lang.String.class, long.class,
 				java.lang.String.class, java.lang.String.class,
-				java.lang.String.class, long.class, java.lang.String[].class,
+				java.lang.String.class, java.lang.String[].class,
 				java.lang.String.class,
 				com.liferay.portal.service.ServiceContext.class);
 
@@ -134,14 +134,11 @@ public class KBArticleServiceClp implements KBArticleService {
 
 		_updateKBArticleMethodKey26 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateKBArticle", long.class, java.lang.String.class,
-				java.lang.String.class, java.lang.String.class, long.class,
+				java.lang.String.class, java.lang.String.class,
 				java.lang.String[].class, java.lang.String.class,
 				com.liferay.portal.service.ServiceContext.class);
 
-		_updateKBArticlesKBTemplatesMethodKey27 = new MethodKey(_classLoaderProxy.getClassName(),
-				"updateKBArticlesKBTemplates", long[].class, long.class);
-
-		_updateKBArticlesPrioritiesMethodKey28 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateKBArticlesPrioritiesMethodKey27 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateKBArticlesPriorities", long.class, java.util.Map.class);
 	}
 
@@ -182,8 +179,8 @@ public class KBArticleServiceClp implements KBArticleService {
 	public com.liferay.knowledgebase.model.KBArticle addKBArticle(
 		java.lang.String portletId, long parentResourcePrimKey,
 		java.lang.String title, java.lang.String content,
-		java.lang.String description, long kbTemplateId,
-		java.lang.String[] sections, java.lang.String dirName,
+		java.lang.String description, java.lang.String[] sections,
+		java.lang.String dirName,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -193,7 +190,7 @@ public class KBArticleServiceClp implements KBArticleService {
 				ClpSerializer.translateInput(portletId), parentResourcePrimKey,
 				ClpSerializer.translateInput(title),
 				ClpSerializer.translateInput(content),
-				ClpSerializer.translateInput(description), kbTemplateId,
+				ClpSerializer.translateInput(description),
 				ClpSerializer.translateInput(sections),
 				ClpSerializer.translateInput(dirName),
 				ClpSerializer.translateInput(serviceContext));
@@ -964,8 +961,8 @@ public class KBArticleServiceClp implements KBArticleService {
 
 	public com.liferay.knowledgebase.model.KBArticle updateKBArticle(
 		long resourcePrimKey, java.lang.String title, java.lang.String content,
-		java.lang.String description, long kbTemplateId,
-		java.lang.String[] sections, java.lang.String dirName,
+		java.lang.String description, java.lang.String[] sections,
+		java.lang.String dirName,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -974,7 +971,7 @@ public class KBArticleServiceClp implements KBArticleService {
 		MethodHandler methodHandler = new MethodHandler(_updateKBArticleMethodKey26,
 				resourcePrimKey, ClpSerializer.translateInput(title),
 				ClpSerializer.translateInput(content),
-				ClpSerializer.translateInput(description), kbTemplateId,
+				ClpSerializer.translateInput(description),
 				ClpSerializer.translateInput(sections),
 				ClpSerializer.translateInput(dirName),
 				ClpSerializer.translateInput(serviceContext));
@@ -1003,40 +1000,11 @@ public class KBArticleServiceClp implements KBArticleService {
 		return (com.liferay.knowledgebase.model.KBArticle)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void updateKBArticlesKBTemplates(long[] kbArticleIds,
-		long kbTemplateId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_updateKBArticlesKBTemplatesMethodKey27,
-				ClpSerializer.translateInput(kbArticleIds), kbTemplateId);
-
-		try {
-			_classLoaderProxy.invoke(methodHandler);
-		}
-		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-	}
-
 	public void updateKBArticlesPriorities(long groupId,
 		java.util.Map<java.lang.Long, java.lang.Double> resourcePrimKeyToPriorityMap)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_updateKBArticlesPrioritiesMethodKey28,
+		MethodHandler methodHandler = new MethodHandler(_updateKBArticlesPrioritiesMethodKey27,
 				groupId,
 				ClpSerializer.translateInput(resourcePrimKeyToPriorityMap));
 
@@ -1094,6 +1062,5 @@ public class KBArticleServiceClp implements KBArticleService {
 	private MethodKey _unsubscribeKBArticleMethodKey24;
 	private MethodKey _updateAttachmentsMethodKey25;
 	private MethodKey _updateKBArticleMethodKey26;
-	private MethodKey _updateKBArticlesKBTemplatesMethodKey27;
-	private MethodKey _updateKBArticlesPrioritiesMethodKey28;
+	private MethodKey _updateKBArticlesPrioritiesMethodKey27;
 }

@@ -27,23 +27,7 @@ Liferay.Service.registerClass(
 		unsubscribeKBArticle: true,
 		updateAttachments: true,
 		updateKBArticle: true,
-		updateKBArticlesKBTemplates: true,
 		updateKBArticlesPriorities: true
-	}
-);
-
-Liferay.Service.registerClass(
-	Liferay.Service.KB, "KBStructure",
-	{
-		addKBStructure: true,
-		deleteKBStructure: true,
-		deleteKBStructureLocalization: true,
-		deleteKBStructures: true,
-		getGroupKBStructures: true,
-		getGroupKBStructuresCount: true,
-		getKBStructure: true,
-		getKBStructureSearchDisplay: true,
-		updateKBStructure: true
 	}
 );
 

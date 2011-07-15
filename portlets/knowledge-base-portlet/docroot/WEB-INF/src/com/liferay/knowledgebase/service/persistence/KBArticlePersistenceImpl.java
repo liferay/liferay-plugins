@@ -773,7 +773,6 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		kbArticleImpl.setTitle(kbArticle.getTitle());
 		kbArticleImpl.setContent(kbArticle.getContent());
 		kbArticleImpl.setDescription(kbArticle.getDescription());
-		kbArticleImpl.setKbTemplateId(kbArticle.getKbTemplateId());
 		kbArticleImpl.setPriority(kbArticle.getPriority());
 		kbArticleImpl.setSections(kbArticle.getSections());
 		kbArticleImpl.setViewCount(kbArticle.getViewCount());
@@ -24215,8 +24214,6 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	protected KBArticlePersistence kbArticlePersistence;
 	@BeanReference(type = KBCommentPersistence.class)
 	protected KBCommentPersistence kbCommentPersistence;
-	@BeanReference(type = KBStructurePersistence.class)
-	protected KBStructurePersistence kbStructurePersistence;
 	@BeanReference(type = KBTemplatePersistence.class)
 	protected KBTemplatePersistence kbTemplatePersistence;
 	@BeanReference(type = CompanyPersistence.class)

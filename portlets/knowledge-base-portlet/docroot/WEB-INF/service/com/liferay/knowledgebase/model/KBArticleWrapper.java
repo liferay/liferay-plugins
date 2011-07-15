@@ -349,24 +349,6 @@ public class KBArticleWrapper implements KBArticle {
 	}
 
 	/**
-	* Returns the kb template ID of this k b article.
-	*
-	* @return the kb template ID of this k b article
-	*/
-	public long getKbTemplateId() {
-		return _kbArticle.getKbTemplateId();
-	}
-
-	/**
-	* Sets the kb template ID of this k b article.
-	*
-	* @param kbTemplateId the kb template ID of this k b article
-	*/
-	public void setKbTemplateId(long kbTemplateId) {
-		_kbArticle.setKbTemplateId(kbTemplateId);
-	}
-
-	/**
 	* Returns the priority of this k b article.
 	*
 	* @return the priority of this k b article
@@ -698,16 +680,6 @@ public class KBArticleWrapper implements KBArticle {
 
 	public long getClassPK() {
 		return _kbArticle.getClassPK();
-	}
-
-	public com.liferay.knowledgebase.model.KBTemplate getKBTemplate()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return _kbArticle.getKBTemplate();
-	}
-
-	public boolean hasKBTemplate() {
-		return _kbArticle.hasKBTemplate();
 	}
 
 	public boolean isFirstVersion() {

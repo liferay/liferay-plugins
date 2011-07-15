@@ -297,20 +297,6 @@ public interface KBArticleModel extends BaseModel<KBArticle>, GroupedModel,
 	public void setDescription(String description);
 
 	/**
-	 * Returns the kb template ID of this k b article.
-	 *
-	 * @return the kb template ID of this k b article
-	 */
-	public long getKbTemplateId();
-
-	/**
-	 * Sets the kb template ID of this k b article.
-	 *
-	 * @param kbTemplateId the kb template ID of this k b article
-	 */
-	public void setKbTemplateId(long kbTemplateId);
-
-	/**
 	 * Returns the priority of this k b article.
 	 *
 	 * @return the priority of this k b article

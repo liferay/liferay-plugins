@@ -2953,8 +2953,6 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	protected KBArticlePersistence kbArticlePersistence;
 	@BeanReference(type = KBCommentPersistence.class)
 	protected KBCommentPersistence kbCommentPersistence;
-	@BeanReference(type = KBStructurePersistence.class)
-	protected KBStructurePersistence kbStructurePersistence;
 	@BeanReference(type = KBTemplatePersistence.class)
 	protected KBTemplatePersistence kbTemplatePersistence;
 	@BeanReference(type = ResourcePersistence.class)

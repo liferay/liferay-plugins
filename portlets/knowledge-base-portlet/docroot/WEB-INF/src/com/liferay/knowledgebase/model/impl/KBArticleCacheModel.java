@@ -32,7 +32,7 @@ import java.util.Date;
 public class KBArticleCacheModel implements CacheModel<KBArticle> {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(51);
+		StringBundler sb = new StringBundler(49);
 
 		sb.append("{uuid=");
 		sb.append(uuid);
@@ -64,8 +64,6 @@ public class KBArticleCacheModel implements CacheModel<KBArticle> {
 		sb.append(content);
 		sb.append(", description=");
 		sb.append(description);
-		sb.append(", kbTemplateId=");
-		sb.append(kbTemplateId);
 		sb.append(", priority=");
 		sb.append(priority);
 		sb.append(", sections=");
@@ -112,20 +110,8 @@ public class KBArticleCacheModel implements CacheModel<KBArticle> {
 			kbArticleImpl.setUserName(userName);
 		}
 
-		if (createDate == Long.MIN_VALUE) {
-			kbArticleImpl.setCreateDate(null);
-		}
-		else {
-			kbArticleImpl.setCreateDate(new Date(createDate));
-		}
-
-		if (modifiedDate == Long.MIN_VALUE) {
-			kbArticleImpl.setModifiedDate(null);
-		}
-		else {
-			kbArticleImpl.setModifiedDate(new Date(modifiedDate));
-		}
-
+		kbArticleImpl.setCreateDate(new Date(createDate));
+		kbArticleImpl.setModifiedDate(new Date(modifiedDate));
 		kbArticleImpl.setRootResourcePrimKey(rootResourcePrimKey);
 		kbArticleImpl.setParentResourcePrimKey(parentResourcePrimKey);
 		kbArticleImpl.setVersion(version);
@@ -151,7 +137,6 @@ public class KBArticleCacheModel implements CacheModel<KBArticle> {
 			kbArticleImpl.setDescription(description);
 		}
 
-		kbArticleImpl.setKbTemplateId(kbTemplateId);
 		kbArticleImpl.setPriority(priority);
 
 		if (sections == null) {
@@ -174,12 +159,7 @@ public class KBArticleCacheModel implements CacheModel<KBArticle> {
 			kbArticleImpl.setStatusByUserName(statusByUserName);
 		}
 
-		if (statusDate == Long.MIN_VALUE) {
-			kbArticleImpl.setStatusDate(null);
-		}
-		else {
-			kbArticleImpl.setStatusDate(new Date(statusDate));
-		}
+		kbArticleImpl.setStatusDate(new Date(statusDate));
 
 		kbArticleImpl.resetOriginalValues();
 
@@ -201,7 +181,6 @@ public class KBArticleCacheModel implements CacheModel<KBArticle> {
 	public String title;
 	public String content;
 	public String description;
-	public long kbTemplateId;
 	public double priority;
 	public String sections;
 	public int viewCount;

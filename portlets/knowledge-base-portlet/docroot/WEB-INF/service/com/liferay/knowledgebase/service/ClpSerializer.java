@@ -16,7 +16,6 @@ package com.liferay.knowledgebase.service;
 
 import com.liferay.knowledgebase.model.KBArticleClp;
 import com.liferay.knowledgebase.model.KBCommentClp;
-import com.liferay.knowledgebase.model.KBStructureClp;
 import com.liferay.knowledgebase.model.KBTemplateClp;
 
 import com.liferay.portal.kernel.log.Log;
@@ -108,10 +107,6 @@ public class ClpSerializer {
 
 		if (oldModelClassName.equals(KBCommentClp.class.getName())) {
 			return translateInputKBComment(oldModel);
-		}
-
-		if (oldModelClassName.equals(KBStructureClp.class.getName())) {
-			return translateInputKBStructure(oldModel);
 		}
 
 		if (oldModelClassName.equals(KBTemplateClp.class.getName())) {
@@ -254,75 +249,68 @@ public class ClpSerializer {
 
 				method14.invoke(newModel, value14);
 
-				Method method15 = newModelClass.getMethod("setKbTemplateId",
-						new Class[] { Long.TYPE });
+				Method method15 = newModelClass.getMethod("setPriority",
+						new Class[] { Double.TYPE });
 
-				Long value15 = new Long(oldCplModel.getKbTemplateId());
+				Double value15 = new Double(oldCplModel.getPriority());
 
 				method15.invoke(newModel, value15);
 
-				Method method16 = newModelClass.getMethod("setPriority",
-						new Class[] { Double.TYPE });
+				Method method16 = newModelClass.getMethod("setSections",
+						new Class[] { String.class });
 
-				Double value16 = new Double(oldCplModel.getPriority());
+				String value16 = oldCplModel.getSections();
 
 				method16.invoke(newModel, value16);
 
-				Method method17 = newModelClass.getMethod("setSections",
-						new Class[] { String.class });
+				Method method17 = newModelClass.getMethod("setViewCount",
+						new Class[] { Integer.TYPE });
 
-				String value17 = oldCplModel.getSections();
+				Integer value17 = new Integer(oldCplModel.getViewCount());
 
 				method17.invoke(newModel, value17);
 
-				Method method18 = newModelClass.getMethod("setViewCount",
-						new Class[] { Integer.TYPE });
+				Method method18 = newModelClass.getMethod("setLatest",
+						new Class[] { Boolean.TYPE });
 
-				Integer value18 = new Integer(oldCplModel.getViewCount());
+				Boolean value18 = new Boolean(oldCplModel.getLatest());
 
 				method18.invoke(newModel, value18);
 
-				Method method19 = newModelClass.getMethod("setLatest",
+				Method method19 = newModelClass.getMethod("setMain",
 						new Class[] { Boolean.TYPE });
 
-				Boolean value19 = new Boolean(oldCplModel.getLatest());
+				Boolean value19 = new Boolean(oldCplModel.getMain());
 
 				method19.invoke(newModel, value19);
 
-				Method method20 = newModelClass.getMethod("setMain",
-						new Class[] { Boolean.TYPE });
+				Method method20 = newModelClass.getMethod("setStatus",
+						new Class[] { Integer.TYPE });
 
-				Boolean value20 = new Boolean(oldCplModel.getMain());
+				Integer value20 = new Integer(oldCplModel.getStatus());
 
 				method20.invoke(newModel, value20);
 
-				Method method21 = newModelClass.getMethod("setStatus",
-						new Class[] { Integer.TYPE });
+				Method method21 = newModelClass.getMethod("setStatusByUserId",
+						new Class[] { Long.TYPE });
 
-				Integer value21 = new Integer(oldCplModel.getStatus());
+				Long value21 = new Long(oldCplModel.getStatusByUserId());
 
 				method21.invoke(newModel, value21);
 
-				Method method22 = newModelClass.getMethod("setStatusByUserId",
-						new Class[] { Long.TYPE });
+				Method method22 = newModelClass.getMethod("setStatusByUserName",
+						new Class[] { String.class });
 
-				Long value22 = new Long(oldCplModel.getStatusByUserId());
+				String value22 = oldCplModel.getStatusByUserName();
 
 				method22.invoke(newModel, value22);
 
-				Method method23 = newModelClass.getMethod("setStatusByUserName",
-						new Class[] { String.class });
-
-				String value23 = oldCplModel.getStatusByUserName();
-
-				method23.invoke(newModel, value23);
-
-				Method method24 = newModelClass.getMethod("setStatusDate",
+				Method method23 = newModelClass.getMethod("setStatusDate",
 						new Class[] { Date.class });
 
-				Date value24 = oldCplModel.getStatusDate();
+				Date value23 = oldCplModel.getStatusDate();
 
-				method24.invoke(newModel, value24);
+				method23.invoke(newModel, value23);
 
 				return newModel;
 			}
@@ -450,105 +438,6 @@ public class ClpSerializer {
 		return oldModel;
 	}
 
-	public static Object translateInputKBStructure(BaseModel<?> oldModel) {
-		KBStructureClp oldCplModel = (KBStructureClp)oldModel;
-
-		Thread currentThread = Thread.currentThread();
-
-		ClassLoader contextClassLoader = currentThread.getContextClassLoader();
-
-		try {
-			currentThread.setContextClassLoader(_classLoader);
-
-			try {
-				Class<?> newModelClass = Class.forName("com.liferay.knowledgebase.model.impl.KBStructureImpl",
-						true, _classLoader);
-
-				Object newModel = newModelClass.newInstance();
-
-				Method method0 = newModelClass.getMethod("setUuid",
-						new Class[] { String.class });
-
-				String value0 = oldCplModel.getUuid();
-
-				method0.invoke(newModel, value0);
-
-				Method method1 = newModelClass.getMethod("setKbStructureId",
-						new Class[] { Long.TYPE });
-
-				Long value1 = new Long(oldCplModel.getKbStructureId());
-
-				method1.invoke(newModel, value1);
-
-				Method method2 = newModelClass.getMethod("setGroupId",
-						new Class[] { Long.TYPE });
-
-				Long value2 = new Long(oldCplModel.getGroupId());
-
-				method2.invoke(newModel, value2);
-
-				Method method3 = newModelClass.getMethod("setCompanyId",
-						new Class[] { Long.TYPE });
-
-				Long value3 = new Long(oldCplModel.getCompanyId());
-
-				method3.invoke(newModel, value3);
-
-				Method method4 = newModelClass.getMethod("setUserId",
-						new Class[] { Long.TYPE });
-
-				Long value4 = new Long(oldCplModel.getUserId());
-
-				method4.invoke(newModel, value4);
-
-				Method method5 = newModelClass.getMethod("setUserName",
-						new Class[] { String.class });
-
-				String value5 = oldCplModel.getUserName();
-
-				method5.invoke(newModel, value5);
-
-				Method method6 = newModelClass.getMethod("setCreateDate",
-						new Class[] { Date.class });
-
-				Date value6 = oldCplModel.getCreateDate();
-
-				method6.invoke(newModel, value6);
-
-				Method method7 = newModelClass.getMethod("setModifiedDate",
-						new Class[] { Date.class });
-
-				Date value7 = oldCplModel.getModifiedDate();
-
-				method7.invoke(newModel, value7);
-
-				Method method8 = newModelClass.getMethod("setTitle",
-						new Class[] { String.class });
-
-				String value8 = oldCplModel.getTitle();
-
-				method8.invoke(newModel, value8);
-
-				Method method9 = newModelClass.getMethod("setContent",
-						new Class[] { String.class });
-
-				String value9 = oldCplModel.getContent();
-
-				method9.invoke(newModel, value9);
-
-				return newModel;
-			}
-			catch (Exception e) {
-				_log.error(e, e);
-			}
-		}
-		finally {
-			currentThread.setContextClassLoader(contextClassLoader);
-		}
-
-		return oldModel;
-	}
-
 	public static Object translateInputKBTemplate(BaseModel<?> oldModel) {
 		KBTemplateClp oldCplModel = (KBTemplateClp)oldModel;
 
@@ -635,20 +524,6 @@ public class ClpSerializer {
 
 				method9.invoke(newModel, value9);
 
-				Method method10 = newModelClass.getMethod("setEngineType",
-						new Class[] { Integer.TYPE });
-
-				Integer value10 = new Integer(oldCplModel.getEngineType());
-
-				method10.invoke(newModel, value10);
-
-				Method method11 = newModelClass.getMethod("setCacheable",
-						new Class[] { Boolean.TYPE });
-
-				Boolean value11 = new Boolean(oldCplModel.getCacheable());
-
-				method11.invoke(newModel, value11);
-
 				return newModel;
 			}
 			catch (Exception e) {
@@ -687,11 +562,6 @@ public class ClpSerializer {
 		if (oldModelClassName.equals(
 					"com.liferay.knowledgebase.model.impl.KBCommentImpl")) {
 			return translateOutputKBComment(oldModel);
-		}
-
-		if (oldModelClassName.equals(
-					"com.liferay.knowledgebase.model.impl.KBStructureImpl")) {
-			return translateOutputKBStructure(oldModel);
 		}
 
 		if (oldModelClassName.equals(
@@ -843,72 +713,66 @@ public class ClpSerializer {
 
 				newModel.setDescription(value14);
 
-				Method method15 = oldModelClass.getMethod("getKbTemplateId");
+				Method method15 = oldModelClass.getMethod("getPriority");
 
-				Long value15 = (Long)method15.invoke(oldModel, (Object[])null);
-
-				newModel.setKbTemplateId(value15);
-
-				Method method16 = oldModelClass.getMethod("getPriority");
-
-				Double value16 = (Double)method16.invoke(oldModel,
+				Double value15 = (Double)method15.invoke(oldModel,
 						(Object[])null);
 
-				newModel.setPriority(value16);
+				newModel.setPriority(value15);
 
-				Method method17 = oldModelClass.getMethod("getSections");
+				Method method16 = oldModelClass.getMethod("getSections");
 
-				String value17 = (String)method17.invoke(oldModel,
+				String value16 = (String)method16.invoke(oldModel,
 						(Object[])null);
 
-				newModel.setSections(value17);
+				newModel.setSections(value16);
 
-				Method method18 = oldModelClass.getMethod("getViewCount");
+				Method method17 = oldModelClass.getMethod("getViewCount");
 
-				Integer value18 = (Integer)method18.invoke(oldModel,
+				Integer value17 = (Integer)method17.invoke(oldModel,
 						(Object[])null);
 
-				newModel.setViewCount(value18);
+				newModel.setViewCount(value17);
 
-				Method method19 = oldModelClass.getMethod("getLatest");
+				Method method18 = oldModelClass.getMethod("getLatest");
+
+				Boolean value18 = (Boolean)method18.invoke(oldModel,
+						(Object[])null);
+
+				newModel.setLatest(value18);
+
+				Method method19 = oldModelClass.getMethod("getMain");
 
 				Boolean value19 = (Boolean)method19.invoke(oldModel,
 						(Object[])null);
 
-				newModel.setLatest(value19);
+				newModel.setMain(value19);
 
-				Method method20 = oldModelClass.getMethod("getMain");
+				Method method20 = oldModelClass.getMethod("getStatus");
 
-				Boolean value20 = (Boolean)method20.invoke(oldModel,
+				Integer value20 = (Integer)method20.invoke(oldModel,
 						(Object[])null);
 
-				newModel.setMain(value20);
+				newModel.setStatus(value20);
 
-				Method method21 = oldModelClass.getMethod("getStatus");
+				Method method21 = oldModelClass.getMethod("getStatusByUserId");
 
-				Integer value21 = (Integer)method21.invoke(oldModel,
+				Long value21 = (Long)method21.invoke(oldModel, (Object[])null);
+
+				newModel.setStatusByUserId(value21);
+
+				Method method22 = oldModelClass.getMethod("getStatusByUserName");
+
+				String value22 = (String)method22.invoke(oldModel,
 						(Object[])null);
 
-				newModel.setStatus(value21);
+				newModel.setStatusByUserName(value22);
 
-				Method method22 = oldModelClass.getMethod("getStatusByUserId");
+				Method method23 = oldModelClass.getMethod("getStatusDate");
 
-				Long value22 = (Long)method22.invoke(oldModel, (Object[])null);
+				Date value23 = (Date)method23.invoke(oldModel, (Object[])null);
 
-				newModel.setStatusByUserId(value22);
-
-				Method method23 = oldModelClass.getMethod("getStatusByUserName");
-
-				String value23 = (String)method23.invoke(oldModel,
-						(Object[])null);
-
-				newModel.setStatusByUserName(value23);
-
-				Method method24 = oldModelClass.getMethod("getStatusDate");
-
-				Date value24 = (Date)method24.invoke(oldModel, (Object[])null);
-
-				newModel.setStatusDate(value24);
+				newModel.setStatusDate(value23);
 
 				return newModel;
 			}
@@ -1023,92 +887,6 @@ public class ClpSerializer {
 		return oldModel;
 	}
 
-	public static Object translateOutputKBStructure(BaseModel<?> oldModel) {
-		Thread currentThread = Thread.currentThread();
-
-		ClassLoader contextClassLoader = currentThread.getContextClassLoader();
-
-		try {
-			currentThread.setContextClassLoader(_classLoader);
-
-			try {
-				KBStructureClp newModel = new KBStructureClp();
-
-				Class<?> oldModelClass = oldModel.getClass();
-
-				Method method0 = oldModelClass.getMethod("getUuid");
-
-				String value0 = (String)method0.invoke(oldModel, (Object[])null);
-
-				newModel.setUuid(value0);
-
-				Method method1 = oldModelClass.getMethod("getKbStructureId");
-
-				Long value1 = (Long)method1.invoke(oldModel, (Object[])null);
-
-				newModel.setKbStructureId(value1);
-
-				Method method2 = oldModelClass.getMethod("getGroupId");
-
-				Long value2 = (Long)method2.invoke(oldModel, (Object[])null);
-
-				newModel.setGroupId(value2);
-
-				Method method3 = oldModelClass.getMethod("getCompanyId");
-
-				Long value3 = (Long)method3.invoke(oldModel, (Object[])null);
-
-				newModel.setCompanyId(value3);
-
-				Method method4 = oldModelClass.getMethod("getUserId");
-
-				Long value4 = (Long)method4.invoke(oldModel, (Object[])null);
-
-				newModel.setUserId(value4);
-
-				Method method5 = oldModelClass.getMethod("getUserName");
-
-				String value5 = (String)method5.invoke(oldModel, (Object[])null);
-
-				newModel.setUserName(value5);
-
-				Method method6 = oldModelClass.getMethod("getCreateDate");
-
-				Date value6 = (Date)method6.invoke(oldModel, (Object[])null);
-
-				newModel.setCreateDate(value6);
-
-				Method method7 = oldModelClass.getMethod("getModifiedDate");
-
-				Date value7 = (Date)method7.invoke(oldModel, (Object[])null);
-
-				newModel.setModifiedDate(value7);
-
-				Method method8 = oldModelClass.getMethod("getTitle");
-
-				String value8 = (String)method8.invoke(oldModel, (Object[])null);
-
-				newModel.setTitle(value8);
-
-				Method method9 = oldModelClass.getMethod("getContent");
-
-				String value9 = (String)method9.invoke(oldModel, (Object[])null);
-
-				newModel.setContent(value9);
-
-				return newModel;
-			}
-			catch (Exception e) {
-				_log.error(e, e);
-			}
-		}
-		finally {
-			currentThread.setContextClassLoader(contextClassLoader);
-		}
-
-		return oldModel;
-	}
-
 	public static Object translateOutputKBTemplate(BaseModel<?> oldModel) {
 		Thread currentThread = Thread.currentThread();
 
@@ -1181,20 +959,6 @@ public class ClpSerializer {
 				String value9 = (String)method9.invoke(oldModel, (Object[])null);
 
 				newModel.setContent(value9);
-
-				Method method10 = oldModelClass.getMethod("getEngineType");
-
-				Integer value10 = (Integer)method10.invoke(oldModel,
-						(Object[])null);
-
-				newModel.setEngineType(value10);
-
-				Method method11 = oldModelClass.getMethod("getCacheable");
-
-				Boolean value11 = (Boolean)method11.invoke(oldModel,
-						(Object[])null);
-
-				newModel.setCacheable(value11);
 
 				return newModel;
 			}

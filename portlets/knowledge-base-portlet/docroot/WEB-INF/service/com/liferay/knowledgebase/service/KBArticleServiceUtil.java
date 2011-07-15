@@ -52,15 +52,14 @@ public class KBArticleServiceUtil {
 	public static com.liferay.knowledgebase.model.KBArticle addKBArticle(
 		java.lang.String portletId, long parentResourcePrimKey,
 		java.lang.String title, java.lang.String content,
-		java.lang.String description, long kbTemplateId,
-		java.lang.String[] sections, java.lang.String dirName,
+		java.lang.String description, java.lang.String[] sections,
+		java.lang.String dirName,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .addKBArticle(portletId, parentResourcePrimKey, title,
-			content, description, kbTemplateId, sections, dirName,
-			serviceContext);
+			content, description, sections, dirName, serviceContext);
 	}
 
 	public static void deleteAttachment(long companyId, long groupId,
@@ -263,21 +262,14 @@ public class KBArticleServiceUtil {
 
 	public static com.liferay.knowledgebase.model.KBArticle updateKBArticle(
 		long resourcePrimKey, java.lang.String title, java.lang.String content,
-		java.lang.String description, long kbTemplateId,
-		java.lang.String[] sections, java.lang.String dirName,
+		java.lang.String description, java.lang.String[] sections,
+		java.lang.String dirName,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .updateKBArticle(resourcePrimKey, title, content,
-			description, kbTemplateId, sections, dirName, serviceContext);
-	}
-
-	public static void updateKBArticlesKBTemplates(long[] kbArticleIds,
-		long kbTemplateId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		getService().updateKBArticlesKBTemplates(kbArticleIds, kbTemplateId);
+			description, sections, dirName, serviceContext);
 	}
 
 	public static void updateKBArticlesPriorities(long groupId,

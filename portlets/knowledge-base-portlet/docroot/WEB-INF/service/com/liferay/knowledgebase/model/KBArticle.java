@@ -39,12 +39,6 @@ public interface KBArticle extends KBArticleModel, SaveableModel {
 
 	public long getClassPK();
 
-	public com.liferay.knowledgebase.model.KBTemplate getKBTemplate()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
-
-	public boolean hasKBTemplate();
-
 	public boolean isFirstVersion();
 
 	public boolean isResourceMain();

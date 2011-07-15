@@ -149,34 +149,6 @@ public class KBTemplateClp extends BaseModelImpl<KBTemplate>
 		_content = content;
 	}
 
-	public int getEngineType() {
-		return _engineType;
-	}
-
-	public void setEngineType(int engineType) {
-		_engineType = engineType;
-	}
-
-	public boolean getCacheable() {
-		return _cacheable;
-	}
-
-	public boolean isCacheable() {
-		return _cacheable;
-	}
-
-	public void setCacheable(boolean cacheable) {
-		_cacheable = cacheable;
-	}
-
-	public boolean isFreeMarker() {
-		throw new UnsupportedOperationException();
-	}
-
-	public boolean isVelocity() {
-		throw new UnsupportedOperationException();
-	}
-
 	public void save() throws SystemException {
 		KBTemplateLocalServiceUtil.updateKBTemplate(this);
 	}
@@ -207,8 +179,6 @@ public class KBTemplateClp extends BaseModelImpl<KBTemplate>
 		clone.setModifiedDate(getModifiedDate());
 		clone.setTitle(getTitle());
 		clone.setContent(getContent());
-		clone.setEngineType(getEngineType());
-		clone.setCacheable(getCacheable());
 
 		return clone;
 	}
@@ -260,7 +230,7 @@ public class KBTemplateClp extends BaseModelImpl<KBTemplate>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(25);
+		StringBundler sb = new StringBundler(21);
 
 		sb.append("{uuid=");
 		sb.append(getUuid());
@@ -282,17 +252,13 @@ public class KBTemplateClp extends BaseModelImpl<KBTemplate>
 		sb.append(getTitle());
 		sb.append(", content=");
 		sb.append(getContent());
-		sb.append(", engineType=");
-		sb.append(getEngineType());
-		sb.append(", cacheable=");
-		sb.append(getCacheable());
 		sb.append("}");
 
 		return sb.toString();
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(40);
+		StringBundler sb = new StringBundler(34);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.knowledgebase.model.KBTemplate");
@@ -338,14 +304,6 @@ public class KBTemplateClp extends BaseModelImpl<KBTemplate>
 			"<column><column-name>content</column-name><column-value><![CDATA[");
 		sb.append(getContent());
 		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>engineType</column-name><column-value><![CDATA[");
-		sb.append(getEngineType());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>cacheable</column-name><column-value><![CDATA[");
-		sb.append(getCacheable());
-		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -363,6 +321,4 @@ public class KBTemplateClp extends BaseModelImpl<KBTemplate>
 	private Date _modifiedDate;
 	private String _title;
 	private String _content;
-	private int _engineType;
-	private boolean _cacheable;
 }

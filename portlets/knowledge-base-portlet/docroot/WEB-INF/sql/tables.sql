@@ -14,7 +14,6 @@ create table KBArticle (
 	title STRING null,
 	content TEXT null,
 	description STRING null,
-	kbTemplateId LONG,
 	priority DOUBLE,
 	sections STRING null,
 	viewCount INTEGER,
@@ -41,19 +40,6 @@ create table KBComment (
 	helpful BOOLEAN
 );
 
-create table KBStructure (
-	uuid_ VARCHAR(75) null,
-	kbStructureId LONG not null primary key,
-	groupId LONG,
-	companyId LONG,
-	userId LONG,
-	userName VARCHAR(75) null,
-	createDate DATE null,
-	modifiedDate DATE null,
-	title STRING null,
-	content TEXT null
-);
-
 create table KBTemplate (
 	uuid_ VARCHAR(75) null,
 	kbTemplateId LONG not null primary key,
@@ -64,7 +50,5 @@ create table KBTemplate (
 	createDate DATE null,
 	modifiedDate DATE null,
 	title STRING null,
-	content TEXT null,
-	engineType INTEGER,
-	cacheable BOOLEAN
+	content TEXT null
 );
