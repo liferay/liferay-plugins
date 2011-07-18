@@ -11,16 +11,29 @@
 	<bean id="com.liferay.portal.search.solr.server.BasicAuthSolrServer" class="com.liferay.portal.search.solr.server.BasicAuthSolrServer">
 		<constructor-arg type="java.lang.String" value="http://localhost:8080/solr" />
 	</bean>
-	<bean id="com.liferay.portal.kernel.search.IndexSearcher" class="com.liferay.portal.search.solr.SolrIndexSearcherImpl">
+	<bean id="com.liferay.portal.search.solr.SolrIndexSearcherImpl" class="com.liferay.portal.search.solr.SolrIndexSearcherImpl">
 		<property name="solrServer" ref="com.liferay.portal.search.solr.server.BasicAuthSolrServer" />
 		<property name="swallowException" value="true" />
 	</bean>
-	<bean id="com.liferay.portal.kernel.search.IndexWriter" class="com.liferay.portal.search.solr.SolrIndexWriterImpl">
+	<bean id="com.liferay.portal.search.solr.SolrIndexWriterImpl" class="com.liferay.portal.search.solr.SolrIndexWriterImpl">
 		<property name="commit" value="true" />
 		<property name="solrServer" ref="com.liferay.portal.search.solr.server.BasicAuthSolrServer" />
 	</bean>
-	<bean id="com.liferay.portal.kernel.search.SearchEngine" class="com.liferay.portal.search.solr.SolrSearchEngineImpl">
-		<property name="searcher" ref="com.liferay.portal.kernel.search.IndexSearcher" />
-		<property name="writer" ref="com.liferay.portal.kernel.search.IndexWriter" />
+	<bean id="com.liferay.portal.search.solr.SolrSearchEngineImpl" class="com.liferay.portal.kernel.search.BaseSearchEngine">
+		<property name="name" value="SYSTEM_ENGINE" />
+		<property name="clusteredWrite" value="false" />
+		<property name="luceneBased" value="true" />
+		<property name="searcher" ref="com.liferay.portal.search.solr.SolrIndexSearcherImpl" />
+		<property name="vendor" value="SOLR"/>
+		<property name="writer" ref="com.liferay.portal.search.solr.SolrIndexWriterImpl" />
 	</bean>
+
+	<bean id="searchEngineConfigurator.solr" class="com.liferay.portal.kernel.search.PluginSearchEngineConfigurator">
+		<property name="searchEngines">
+			<list>
+				<ref bean="com.liferay.portal.search.solr.SolrSearchEngineImpl" />
+			</list>
+		</property>
+	</bean>
+
 </beans>
