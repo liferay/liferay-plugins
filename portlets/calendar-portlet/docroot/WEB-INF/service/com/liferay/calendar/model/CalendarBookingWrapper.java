@@ -1004,9 +1004,9 @@ public class CalendarBookingWrapper implements CalendarBooking {
 		return _calendarBooking.toXmlString();
 	}
 
-	public void save()
+	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_calendarBooking.save();
+		_calendarBooking.persist();
 	}
 
 	public com.liferay.calendar.model.CalendarEvent getCalendarEvent()

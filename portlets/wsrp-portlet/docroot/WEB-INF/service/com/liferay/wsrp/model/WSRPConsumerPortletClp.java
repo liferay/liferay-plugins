@@ -123,7 +123,7 @@ public class WSRPConsumerPortletClp extends BaseModelImpl<WSRPConsumerPortlet>
 		_portletHandle = portletHandle;
 	}
 
-	public void save() throws SystemException {
+	public void persist() throws SystemException {
 		WSRPConsumerPortletLocalServiceUtil.updateWSRPConsumerPortlet(this);
 	}
 

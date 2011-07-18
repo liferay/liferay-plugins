@@ -29,6 +29,8 @@ import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.IndexerRegistryUtil;
 import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.model.PersistedModel;
+import com.liferay.portal.service.PersistedModelLocalServiceRegistryUtil;
 import com.liferay.portal.service.ResourceLocalService;
 import com.liferay.portal.service.ResourceService;
 import com.liferay.portal.service.UserLocalService;
@@ -41,6 +43,8 @@ import com.liferay.tasks.service.TasksEntryLocalService;
 import com.liferay.tasks.service.TasksEntryService;
 import com.liferay.tasks.service.persistence.TasksEntryFinder;
 import com.liferay.tasks.service.persistence.TasksEntryPersistence;
+
+import java.io.Serializable;
 
 import java.util.List;
 
@@ -232,6 +236,11 @@ public abstract class TasksEntryLocalServiceBaseImpl
 	public TasksEntry getTasksEntry(long tasksEntryId)
 		throws PortalException, SystemException {
 		return tasksEntryPersistence.findByPrimaryKey(tasksEntryId);
+	}
+
+	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
+		throws PortalException, SystemException {
+		return tasksEntryPersistence.findByPrimaryKey(primaryKeyObj);
 	}
 
 	/**
@@ -502,6 +511,16 @@ public abstract class TasksEntryLocalServiceBaseImpl
 	 */
 	public void setUserPersistence(UserPersistence userPersistence) {
 		this.userPersistence = userPersistence;
+	}
+
+	public void afterPropertiesSet() {
+		PersistedModelLocalServiceRegistryUtil.register("com.liferay.tasks.model.TasksEntry",
+			tasksEntryLocalService);
+	}
+
+	public void destroy() {
+		PersistedModelLocalServiceRegistryUtil.unregister(
+			"com.liferay.tasks.model.TasksEntry");
 	}
 
 	/**

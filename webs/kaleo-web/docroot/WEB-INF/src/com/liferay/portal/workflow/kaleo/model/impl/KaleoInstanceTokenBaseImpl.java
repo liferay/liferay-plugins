@@ -37,7 +37,7 @@ public abstract class KaleoInstanceTokenBaseImpl
 	 *
 	 * Never modify or reference this class directly. All methods that expect a kaleo instance token model instance should use the {@link KaleoInstanceToken} interface instead.
 	 */
-	public void save() throws SystemException {
+	public void persist() throws SystemException {
 		KaleoInstanceTokenLocalServiceUtil.updateKaleoInstanceToken(this);
 	}
 }

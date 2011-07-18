@@ -62,52 +62,55 @@ public class KaleoTaskAssignmentLocalServiceClp
 		_getKaleoTaskAssignmentMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getKaleoTaskAssignment", long.class);
 
-		_getKaleoTaskAssignmentsMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getPersistedModelMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getPersistedModel", java.io.Serializable.class);
+
+		_getKaleoTaskAssignmentsMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getKaleoTaskAssignments", int.class, int.class);
 
-		_getKaleoTaskAssignmentsCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getKaleoTaskAssignmentsCountMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getKaleoTaskAssignmentsCount");
 
-		_updateKaleoTaskAssignmentMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateKaleoTaskAssignmentMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateKaleoTaskAssignment",
 				com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment.class);
 
-		_updateKaleoTaskAssignmentMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateKaleoTaskAssignmentMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateKaleoTaskAssignment",
 				com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment.class,
 				boolean.class);
 
-		_getBeanIdentifierMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getBeanIdentifierMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getBeanIdentifier");
 
-		_setBeanIdentifierMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+		_setBeanIdentifierMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
 				"setBeanIdentifier", java.lang.String.class);
 
-		_addKaleoTaskAssignmentMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+		_addKaleoTaskAssignmentMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
 				"addKaleoTaskAssignment", java.lang.String.class, long.class,
 				long.class,
 				com.liferay.portal.workflow.kaleo.definition.Assignment.class,
 				com.liferay.portal.service.ServiceContext.class);
 
-		_deleteCompanyKaleoTaskAssignmentsMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+		_deleteCompanyKaleoTaskAssignmentsMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
 				"deleteCompanyKaleoTaskAssignments", long.class);
 
-		_deleteKaleoDefinitionKaleoTaskAssignmentsMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
+		_deleteKaleoDefinitionKaleoTaskAssignmentsMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
 				"deleteKaleoDefinitionKaleoTaskAssignments", long.class);
 
-		_getKaleoTaskAssignmentsMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getKaleoTaskAssignmentsMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getKaleoTaskAssignments", long.class);
 
-		_getKaleoTaskAssignmentsMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getKaleoTaskAssignmentsMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getKaleoTaskAssignments", long.class, java.lang.String.class);
 
-		_getKaleoTaskAssignmentsMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getKaleoTaskAssignmentsMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getKaleoTaskAssignments", java.lang.String.class, long.class);
 
-		_getKaleoTaskAssignmentsCountMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getKaleoTaskAssignmentsCountMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getKaleoTaskAssignmentsCount", long.class);
 
-		_getKaleoTaskAssignmentsCountMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getKaleoTaskAssignmentsCountMethodKey23 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getKaleoTaskAssignmentsCount", long.class,
 				java.lang.String.class);
 	}
@@ -366,12 +369,45 @@ public class KaleoTaskAssignmentLocalServiceClp
 		return (com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_getPersistedModelMethodKey9,
+				ClpSerializer.translateInput(primaryKeyObj));
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.portal.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment> getKaleoTaskAssignments(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getKaleoTaskAssignmentsMethodKey9,
+		MethodHandler methodHandler = new MethodHandler(_getKaleoTaskAssignmentsMethodKey10,
 				start, end);
 
 		try {
@@ -398,7 +434,7 @@ public class KaleoTaskAssignmentLocalServiceClp
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getKaleoTaskAssignmentsCountMethodKey10);
+		MethodHandler methodHandler = new MethodHandler(_getKaleoTaskAssignmentsCountMethodKey11);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -425,7 +461,7 @@ public class KaleoTaskAssignmentLocalServiceClp
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateKaleoTaskAssignmentMethodKey11,
+		MethodHandler methodHandler = new MethodHandler(_updateKaleoTaskAssignmentMethodKey12,
 				ClpSerializer.translateInput(kaleoTaskAssignment));
 
 		try {
@@ -454,7 +490,7 @@ public class KaleoTaskAssignmentLocalServiceClp
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateKaleoTaskAssignmentMethodKey12,
+		MethodHandler methodHandler = new MethodHandler(_updateKaleoTaskAssignmentMethodKey13,
 				ClpSerializer.translateInput(kaleoTaskAssignment), merge);
 
 		try {
@@ -480,7 +516,7 @@ public class KaleoTaskAssignmentLocalServiceClp
 	public java.lang.String getBeanIdentifier() {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey13);
+		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey14);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -499,7 +535,7 @@ public class KaleoTaskAssignmentLocalServiceClp
 	}
 
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey14,
+		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey15,
 				ClpSerializer.translateInput(beanIdentifier));
 
 		try {
@@ -525,7 +561,7 @@ public class KaleoTaskAssignmentLocalServiceClp
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_addKaleoTaskAssignmentMethodKey15,
+		MethodHandler methodHandler = new MethodHandler(_addKaleoTaskAssignmentMethodKey16,
 				ClpSerializer.translateInput(kaleoClassName), kaleoClassPK,
 				kaleoDefinitionId, ClpSerializer.translateInput(assignment),
 				ClpSerializer.translateInput(serviceContext));
@@ -556,7 +592,7 @@ public class KaleoTaskAssignmentLocalServiceClp
 
 	public void deleteCompanyKaleoTaskAssignments(long companyId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_deleteCompanyKaleoTaskAssignmentsMethodKey16,
+		MethodHandler methodHandler = new MethodHandler(_deleteCompanyKaleoTaskAssignmentsMethodKey17,
 				companyId);
 
 		try {
@@ -580,7 +616,7 @@ public class KaleoTaskAssignmentLocalServiceClp
 	public void deleteKaleoDefinitionKaleoTaskAssignments(
 		long kaleoDefinitionId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_deleteKaleoDefinitionKaleoTaskAssignmentsMethodKey17,
+		MethodHandler methodHandler = new MethodHandler(_deleteKaleoDefinitionKaleoTaskAssignmentsMethodKey18,
 				kaleoDefinitionId);
 
 		try {
@@ -606,7 +642,7 @@ public class KaleoTaskAssignmentLocalServiceClp
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getKaleoTaskAssignmentsMethodKey18,
+		MethodHandler methodHandler = new MethodHandler(_getKaleoTaskAssignmentsMethodKey19,
 				kaleoTaskId);
 
 		try {
@@ -634,7 +670,7 @@ public class KaleoTaskAssignmentLocalServiceClp
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getKaleoTaskAssignmentsMethodKey19,
+		MethodHandler methodHandler = new MethodHandler(_getKaleoTaskAssignmentsMethodKey20,
 				kaleoTaskId, ClpSerializer.translateInput(assigneeClassName));
 
 		try {
@@ -662,7 +698,7 @@ public class KaleoTaskAssignmentLocalServiceClp
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getKaleoTaskAssignmentsMethodKey20,
+		MethodHandler methodHandler = new MethodHandler(_getKaleoTaskAssignmentsMethodKey21,
 				ClpSerializer.translateInput(kaleoClassName), kaleoClassPK);
 
 		try {
@@ -689,7 +725,7 @@ public class KaleoTaskAssignmentLocalServiceClp
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getKaleoTaskAssignmentsCountMethodKey21,
+		MethodHandler methodHandler = new MethodHandler(_getKaleoTaskAssignmentsCountMethodKey22,
 				kaleoTaskId);
 
 		try {
@@ -717,7 +753,7 @@ public class KaleoTaskAssignmentLocalServiceClp
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getKaleoTaskAssignmentsCountMethodKey22,
+		MethodHandler methodHandler = new MethodHandler(_getKaleoTaskAssignmentsCountMethodKey23,
 				kaleoTaskId, ClpSerializer.translateInput(assigneeClassName));
 
 		try {
@@ -754,18 +790,19 @@ public class KaleoTaskAssignmentLocalServiceClp
 	private MethodKey _dynamicQueryMethodKey6;
 	private MethodKey _dynamicQueryCountMethodKey7;
 	private MethodKey _getKaleoTaskAssignmentMethodKey8;
-	private MethodKey _getKaleoTaskAssignmentsMethodKey9;
-	private MethodKey _getKaleoTaskAssignmentsCountMethodKey10;
-	private MethodKey _updateKaleoTaskAssignmentMethodKey11;
+	private MethodKey _getPersistedModelMethodKey9;
+	private MethodKey _getKaleoTaskAssignmentsMethodKey10;
+	private MethodKey _getKaleoTaskAssignmentsCountMethodKey11;
 	private MethodKey _updateKaleoTaskAssignmentMethodKey12;
-	private MethodKey _getBeanIdentifierMethodKey13;
-	private MethodKey _setBeanIdentifierMethodKey14;
-	private MethodKey _addKaleoTaskAssignmentMethodKey15;
-	private MethodKey _deleteCompanyKaleoTaskAssignmentsMethodKey16;
-	private MethodKey _deleteKaleoDefinitionKaleoTaskAssignmentsMethodKey17;
-	private MethodKey _getKaleoTaskAssignmentsMethodKey18;
+	private MethodKey _updateKaleoTaskAssignmentMethodKey13;
+	private MethodKey _getBeanIdentifierMethodKey14;
+	private MethodKey _setBeanIdentifierMethodKey15;
+	private MethodKey _addKaleoTaskAssignmentMethodKey16;
+	private MethodKey _deleteCompanyKaleoTaskAssignmentsMethodKey17;
+	private MethodKey _deleteKaleoDefinitionKaleoTaskAssignmentsMethodKey18;
 	private MethodKey _getKaleoTaskAssignmentsMethodKey19;
 	private MethodKey _getKaleoTaskAssignmentsMethodKey20;
-	private MethodKey _getKaleoTaskAssignmentsCountMethodKey21;
+	private MethodKey _getKaleoTaskAssignmentsMethodKey21;
 	private MethodKey _getKaleoTaskAssignmentsCountMethodKey22;
+	private MethodKey _getKaleoTaskAssignmentsCountMethodKey23;
 }

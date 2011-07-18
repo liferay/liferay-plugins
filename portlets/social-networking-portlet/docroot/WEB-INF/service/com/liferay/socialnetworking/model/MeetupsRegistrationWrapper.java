@@ -309,9 +309,9 @@ public class MeetupsRegistrationWrapper implements MeetupsRegistration {
 		return _meetupsRegistration.toXmlString();
 	}
 
-	public void save()
+	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_meetupsRegistration.save();
+		_meetupsRegistration.persist();
 	}
 
 	public MeetupsRegistration getWrappedMeetupsRegistration() {

@@ -462,9 +462,9 @@ public class KaleoTimerWrapper implements KaleoTimer {
 		return _kaleoTimer.toXmlString();
 	}
 
-	public void save()
+	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_kaleoTimer.save();
+		_kaleoTimer.persist();
 	}
 
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment> getKaleoTaskReassignments()

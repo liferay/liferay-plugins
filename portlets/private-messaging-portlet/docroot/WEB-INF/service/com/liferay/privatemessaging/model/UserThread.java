@@ -14,7 +14,7 @@
 
 package com.liferay.privatemessaging.model;
 
-import com.liferay.portal.model.SaveableModel;
+import com.liferay.portal.model.PersistedModel;
 
 /**
  * The extended model interface for the UserThread service. Represents a row in the &quot;PM_UserThread&quot; database table, with each column mapped to a property of this class.
@@ -25,7 +25,7 @@ import com.liferay.portal.model.SaveableModel;
  * @see com.liferay.privatemessaging.model.impl.UserThreadModelImpl
  * @generated
  */
-public interface UserThread extends UserThreadModel, SaveableModel {
+public interface UserThread extends UserThreadModel, PersistedModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *

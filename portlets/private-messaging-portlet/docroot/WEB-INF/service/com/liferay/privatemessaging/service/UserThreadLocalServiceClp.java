@@ -61,75 +61,78 @@ public class UserThreadLocalServiceClp implements UserThreadLocalService {
 		_getUserThreadMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getUserThread", long.class);
 
-		_getUserThreadsMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getPersistedModelMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getPersistedModel", java.io.Serializable.class);
+
+		_getUserThreadsMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getUserThreads", int.class, int.class);
 
-		_getUserThreadsCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getUserThreadsCountMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getUserThreadsCount");
 
-		_updateUserThreadMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateUserThreadMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateUserThread",
 				com.liferay.privatemessaging.model.UserThread.class);
 
-		_updateUserThreadMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateUserThreadMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateUserThread",
 				com.liferay.privatemessaging.model.UserThread.class,
 				boolean.class);
 
-		_getBeanIdentifierMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getBeanIdentifierMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getBeanIdentifier");
 
-		_setBeanIdentifierMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+		_setBeanIdentifierMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
 				"setBeanIdentifier", java.lang.String.class);
 
-		_addPrivateMessageMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+		_addPrivateMessageMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
 				"addPrivateMessage", long.class, long.class,
 				java.lang.String.class, java.lang.String.class,
 				java.lang.String.class, java.util.List.class,
 				com.liferay.portal.theme.ThemeDisplay.class);
 
-		_addPrivateMessageBranchMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+		_addPrivateMessageBranchMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
 				"addPrivateMessageBranch", long.class, long.class,
 				java.lang.String.class, java.util.List.class,
 				com.liferay.portal.theme.ThemeDisplay.class);
 
-		_addUserThreadMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
+		_addUserThreadMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
 				"addUserThread", long.class, long.class, long.class,
 				boolean.class, boolean.class);
 
-		_deleteUserMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
+		_deleteUserMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
 				"deleteUser", long.class);
 
-		_deleteUserThreadMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
+		_deleteUserThreadMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
 				"deleteUserThread", long.class, long.class);
 
-		_getMBThreadUserThreadsMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getMBThreadUserThreadsMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getMBThreadUserThreads", long.class);
 
-		_getUserThreadMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getUserThreadMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getUserThread", long.class, long.class);
 
-		_getUserUserThreadCountMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getUserUserThreadCountMethodKey23 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getUserUserThreadCount", long.class, boolean.class);
 
-		_getUserUserThreadCountMethodKey23 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getUserUserThreadCountMethodKey24 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getUserUserThreadCount", long.class, boolean.class,
 				boolean.class);
 
-		_getUserUserThreadsMethodKey24 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getUserUserThreadsMethodKey25 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getUserUserThreads", long.class, boolean.class);
 
-		_getUserUserThreadsMethodKey25 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getUserUserThreadsMethodKey26 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getUserUserThreads", long.class, boolean.class, boolean.class);
 
-		_getUserUserThreadsMethodKey26 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getUserUserThreadsMethodKey27 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getUserUserThreads", long.class, boolean.class, int.class,
 				int.class);
 
-		_markUserThreadAsReadMethodKey27 = new MethodKey(_classLoaderProxy.getClassName(),
+		_markUserThreadAsReadMethodKey28 = new MethodKey(_classLoaderProxy.getClassName(),
 				"markUserThreadAsRead", long.class, long.class);
 
-		_markUserThreadAsUnreadMethodKey28 = new MethodKey(_classLoaderProxy.getClassName(),
+		_markUserThreadAsUnreadMethodKey29 = new MethodKey(_classLoaderProxy.getClassName(),
 				"markUserThreadAsUnread", long.class, long.class);
 	}
 
@@ -387,12 +390,45 @@ public class UserThreadLocalServiceClp implements UserThreadLocalService {
 		return (com.liferay.privatemessaging.model.UserThread)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_getPersistedModelMethodKey9,
+				ClpSerializer.translateInput(primaryKeyObj));
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.portal.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public java.util.List<com.liferay.privatemessaging.model.UserThread> getUserThreads(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getUserThreadsMethodKey9,
+		MethodHandler methodHandler = new MethodHandler(_getUserThreadsMethodKey10,
 				start, end);
 
 		try {
@@ -419,7 +455,7 @@ public class UserThreadLocalServiceClp implements UserThreadLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getUserThreadsCountMethodKey10);
+		MethodHandler methodHandler = new MethodHandler(_getUserThreadsCountMethodKey11);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -446,7 +482,7 @@ public class UserThreadLocalServiceClp implements UserThreadLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateUserThreadMethodKey11,
+		MethodHandler methodHandler = new MethodHandler(_updateUserThreadMethodKey12,
 				ClpSerializer.translateInput(userThread));
 
 		try {
@@ -474,7 +510,7 @@ public class UserThreadLocalServiceClp implements UserThreadLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateUserThreadMethodKey12,
+		MethodHandler methodHandler = new MethodHandler(_updateUserThreadMethodKey13,
 				ClpSerializer.translateInput(userThread), merge);
 
 		try {
@@ -500,7 +536,7 @@ public class UserThreadLocalServiceClp implements UserThreadLocalService {
 	public java.lang.String getBeanIdentifier() {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey13);
+		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey14);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -519,7 +555,7 @@ public class UserThreadLocalServiceClp implements UserThreadLocalService {
 	}
 
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey14,
+		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey15,
 				ClpSerializer.translateInput(beanIdentifier));
 
 		try {
@@ -545,7 +581,7 @@ public class UserThreadLocalServiceClp implements UserThreadLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_addPrivateMessageMethodKey15,
+		MethodHandler methodHandler = new MethodHandler(_addPrivateMessageMethodKey16,
 				userId, mbThreadId, ClpSerializer.translateInput(to),
 				ClpSerializer.translateInput(subject),
 				ClpSerializer.translateInput(body),
@@ -584,7 +620,7 @@ public class UserThreadLocalServiceClp implements UserThreadLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_addPrivateMessageBranchMethodKey16,
+		MethodHandler methodHandler = new MethodHandler(_addPrivateMessageBranchMethodKey17,
 				userId, parentMBMessageId, ClpSerializer.translateInput(body),
 				ClpSerializer.translateInput(files),
 				ClpSerializer.translateInput(themeDisplay));
@@ -617,7 +653,7 @@ public class UserThreadLocalServiceClp implements UserThreadLocalService {
 		long topMBMessageId, boolean read, boolean deleted)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_addUserThreadMethodKey17,
+		MethodHandler methodHandler = new MethodHandler(_addUserThreadMethodKey18,
 				userId, mbThreadId, topMBMessageId, read, deleted);
 
 		try {
@@ -645,7 +681,7 @@ public class UserThreadLocalServiceClp implements UserThreadLocalService {
 	public void deleteUser(long userId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_deleteUserMethodKey18,
+		MethodHandler methodHandler = new MethodHandler(_deleteUserMethodKey19,
 				userId);
 
 		try {
@@ -673,7 +709,7 @@ public class UserThreadLocalServiceClp implements UserThreadLocalService {
 	public void deleteUserThread(long userId, long mbThreadId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_deleteUserThreadMethodKey19,
+		MethodHandler methodHandler = new MethodHandler(_deleteUserThreadMethodKey20,
 				userId, mbThreadId);
 
 		try {
@@ -703,7 +739,7 @@ public class UserThreadLocalServiceClp implements UserThreadLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getMBThreadUserThreadsMethodKey20,
+		MethodHandler methodHandler = new MethodHandler(_getMBThreadUserThreadsMethodKey21,
 				mbThreadId);
 
 		try {
@@ -732,7 +768,7 @@ public class UserThreadLocalServiceClp implements UserThreadLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getUserThreadMethodKey21,
+		MethodHandler methodHandler = new MethodHandler(_getUserThreadMethodKey22,
 				userId, mbThreadId);
 
 		try {
@@ -763,7 +799,7 @@ public class UserThreadLocalServiceClp implements UserThreadLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getUserUserThreadCountMethodKey22,
+		MethodHandler methodHandler = new MethodHandler(_getUserUserThreadCountMethodKey23,
 				userId, deleted);
 
 		try {
@@ -790,7 +826,7 @@ public class UserThreadLocalServiceClp implements UserThreadLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getUserUserThreadCountMethodKey23,
+		MethodHandler methodHandler = new MethodHandler(_getUserUserThreadCountMethodKey24,
 				userId, read, deleted);
 
 		try {
@@ -818,7 +854,7 @@ public class UserThreadLocalServiceClp implements UserThreadLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getUserUserThreadsMethodKey24,
+		MethodHandler methodHandler = new MethodHandler(_getUserUserThreadsMethodKey25,
 				userId, deleted);
 
 		try {
@@ -846,7 +882,7 @@ public class UserThreadLocalServiceClp implements UserThreadLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getUserUserThreadsMethodKey25,
+		MethodHandler methodHandler = new MethodHandler(_getUserUserThreadsMethodKey26,
 				userId, read, deleted);
 
 		try {
@@ -874,7 +910,7 @@ public class UserThreadLocalServiceClp implements UserThreadLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getUserUserThreadsMethodKey26,
+		MethodHandler methodHandler = new MethodHandler(_getUserUserThreadsMethodKey27,
 				userId, deleted, start, end);
 
 		try {
@@ -900,7 +936,7 @@ public class UserThreadLocalServiceClp implements UserThreadLocalService {
 	public void markUserThreadAsRead(long userId, long mbThreadId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_markUserThreadAsReadMethodKey27,
+		MethodHandler methodHandler = new MethodHandler(_markUserThreadAsReadMethodKey28,
 				userId, mbThreadId);
 
 		try {
@@ -928,7 +964,7 @@ public class UserThreadLocalServiceClp implements UserThreadLocalService {
 	public void markUserThreadAsUnread(long userId, long mbThreadId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_markUserThreadAsUnreadMethodKey28,
+		MethodHandler methodHandler = new MethodHandler(_markUserThreadAsUnreadMethodKey29,
 				userId, mbThreadId);
 
 		try {
@@ -967,24 +1003,25 @@ public class UserThreadLocalServiceClp implements UserThreadLocalService {
 	private MethodKey _dynamicQueryMethodKey6;
 	private MethodKey _dynamicQueryCountMethodKey7;
 	private MethodKey _getUserThreadMethodKey8;
-	private MethodKey _getUserThreadsMethodKey9;
-	private MethodKey _getUserThreadsCountMethodKey10;
-	private MethodKey _updateUserThreadMethodKey11;
+	private MethodKey _getPersistedModelMethodKey9;
+	private MethodKey _getUserThreadsMethodKey10;
+	private MethodKey _getUserThreadsCountMethodKey11;
 	private MethodKey _updateUserThreadMethodKey12;
-	private MethodKey _getBeanIdentifierMethodKey13;
-	private MethodKey _setBeanIdentifierMethodKey14;
-	private MethodKey _addPrivateMessageMethodKey15;
-	private MethodKey _addPrivateMessageBranchMethodKey16;
-	private MethodKey _addUserThreadMethodKey17;
-	private MethodKey _deleteUserMethodKey18;
-	private MethodKey _deleteUserThreadMethodKey19;
-	private MethodKey _getMBThreadUserThreadsMethodKey20;
-	private MethodKey _getUserThreadMethodKey21;
-	private MethodKey _getUserUserThreadCountMethodKey22;
+	private MethodKey _updateUserThreadMethodKey13;
+	private MethodKey _getBeanIdentifierMethodKey14;
+	private MethodKey _setBeanIdentifierMethodKey15;
+	private MethodKey _addPrivateMessageMethodKey16;
+	private MethodKey _addPrivateMessageBranchMethodKey17;
+	private MethodKey _addUserThreadMethodKey18;
+	private MethodKey _deleteUserMethodKey19;
+	private MethodKey _deleteUserThreadMethodKey20;
+	private MethodKey _getMBThreadUserThreadsMethodKey21;
+	private MethodKey _getUserThreadMethodKey22;
 	private MethodKey _getUserUserThreadCountMethodKey23;
-	private MethodKey _getUserUserThreadsMethodKey24;
+	private MethodKey _getUserUserThreadCountMethodKey24;
 	private MethodKey _getUserUserThreadsMethodKey25;
 	private MethodKey _getUserUserThreadsMethodKey26;
-	private MethodKey _markUserThreadAsReadMethodKey27;
-	private MethodKey _markUserThreadAsUnreadMethodKey28;
+	private MethodKey _getUserUserThreadsMethodKey27;
+	private MethodKey _markUserThreadAsReadMethodKey28;
+	private MethodKey _markUserThreadAsUnreadMethodKey29;
 }

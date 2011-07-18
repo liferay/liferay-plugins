@@ -308,9 +308,9 @@ public class AttachmentWrapper implements Attachment {
 		return _attachment.toXmlString();
 	}
 
-	public void save()
+	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_attachment.save();
+		_attachment.persist();
 	}
 
 	public Attachment getWrappedAttachment() {

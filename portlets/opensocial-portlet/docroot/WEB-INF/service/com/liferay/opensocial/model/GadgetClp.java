@@ -122,7 +122,7 @@ public class GadgetClp extends BaseModelImpl<Gadget> implements Gadget {
 		_portletCategoryNames = portletCategoryNames;
 	}
 
-	public void save() throws SystemException {
+	public void persist() throws SystemException {
 		GadgetLocalServiceUtil.updateGadget(this);
 	}
 

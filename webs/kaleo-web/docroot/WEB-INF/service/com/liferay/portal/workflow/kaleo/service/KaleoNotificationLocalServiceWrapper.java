@@ -166,6 +166,13 @@ public class KaleoNotificationLocalServiceWrapper
 		return _kaleoNotificationLocalService.getKaleoNotification(kaleoNotificationId);
 	}
 
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _kaleoNotificationLocalService.getPersistedModel(primaryKeyObj);
+	}
+
 	/**
 	* Returns a range of all the kaleo notifications.
 	*

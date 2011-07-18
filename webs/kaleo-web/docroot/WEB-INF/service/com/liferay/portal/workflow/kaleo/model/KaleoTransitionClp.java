@@ -207,7 +207,7 @@ public class KaleoTransitionClp extends BaseModelImpl<KaleoTransition>
 		throw new UnsupportedOperationException();
 	}
 
-	public void save() throws SystemException {
+	public void persist() throws SystemException {
 		KaleoTransitionLocalServiceUtil.updateKaleoTransition(this);
 	}
 

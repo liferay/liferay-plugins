@@ -72,7 +72,7 @@ public class BarClp extends BaseModelImpl<Bar> implements Bar {
 		_text = text;
 	}
 
-	public void save() throws SystemException {
+	public void persist() throws SystemException {
 		BarLocalServiceUtil.updateBar(this);
 	}
 

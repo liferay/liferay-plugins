@@ -281,7 +281,7 @@ public class HRExpenseClp extends BaseModelImpl<HRExpense> implements HRExpense 
 		}
 	}
 
-	public void save() throws SystemException {
+	public void persist() throws SystemException {
 		HRExpenseLocalServiceUtil.updateHRExpense(this);
 	}
 

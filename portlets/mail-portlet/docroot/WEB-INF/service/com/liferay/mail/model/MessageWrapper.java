@@ -488,9 +488,9 @@ public class MessageWrapper implements Message {
 		return _message.toXmlString();
 	}
 
-	public void save()
+	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_message.save();
+		_message.persist();
 	}
 
 	public long getGroupId()

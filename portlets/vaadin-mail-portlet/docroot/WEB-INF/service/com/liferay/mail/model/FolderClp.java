@@ -147,7 +147,7 @@ public class FolderClp extends BaseModelImpl<Folder> implements Folder {
 		_remoteMessageCount = remoteMessageCount;
 	}
 
-	public void save() throws SystemException {
+	public void persist() throws SystemException {
 		FolderLocalServiceUtil.updateFolder(this);
 	}
 

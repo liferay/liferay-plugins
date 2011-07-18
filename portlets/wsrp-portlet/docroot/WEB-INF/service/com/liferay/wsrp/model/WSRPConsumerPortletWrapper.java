@@ -271,9 +271,9 @@ public class WSRPConsumerPortletWrapper implements WSRPConsumerPortlet {
 		return _wsrpConsumerPortlet.toXmlString();
 	}
 
-	public void save()
+	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_wsrpConsumerPortlet.save();
+		_wsrpConsumerPortlet.persist();
 	}
 
 	public WSRPConsumerPortlet getWrappedWSRPConsumerPortlet() {

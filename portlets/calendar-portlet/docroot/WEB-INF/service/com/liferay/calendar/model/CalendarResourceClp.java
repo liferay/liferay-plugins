@@ -389,7 +389,7 @@ public class CalendarResourceClp extends BaseModelImpl<CalendarResource>
 		_active = active;
 	}
 
-	public void save() throws SystemException {
+	public void persist() throws SystemException {
 		CalendarResourceLocalServiceUtil.updateCalendarResource(this);
 	}
 

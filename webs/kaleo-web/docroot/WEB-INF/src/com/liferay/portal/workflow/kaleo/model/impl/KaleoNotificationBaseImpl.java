@@ -37,7 +37,7 @@ public abstract class KaleoNotificationBaseImpl
 	 *
 	 * Never modify or reference this class directly. All methods that expect a kaleo notification model instance should use the {@link KaleoNotification} interface instead.
 	 */
-	public void save() throws SystemException {
+	public void persist() throws SystemException {
 		KaleoNotificationLocalServiceUtil.updateKaleoNotification(this);
 	}
 }

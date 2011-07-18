@@ -59,26 +59,29 @@ public class AccountLocalServiceClp implements AccountLocalService {
 		_getAccountMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getAccount", long.class);
 
-		_getAccountsMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getPersistedModelMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getPersistedModel", java.io.Serializable.class);
+
+		_getAccountsMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getAccounts", int.class, int.class);
 
-		_getAccountsCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getAccountsCountMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getAccountsCount");
 
-		_updateAccountMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateAccountMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateAccount", com.liferay.mail.model.Account.class);
 
-		_updateAccountMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateAccountMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateAccount", com.liferay.mail.model.Account.class,
 				boolean.class);
 
-		_getBeanIdentifierMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getBeanIdentifierMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getBeanIdentifier");
 
-		_setBeanIdentifierMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+		_setBeanIdentifierMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
 				"setBeanIdentifier", java.lang.String.class);
 
-		_addAccountMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+		_addAccountMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
 				"addAccount", long.class, java.lang.String.class,
 				java.lang.String.class, java.lang.String.class,
 				java.lang.String.class, int.class, boolean.class,
@@ -87,21 +90,21 @@ public class AccountLocalServiceClp implements AccountLocalService {
 				java.lang.String.class, boolean.class, java.lang.String.class,
 				long.class, long.class, long.class, long.class, boolean.class);
 
-		_deleteAccountsMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+		_deleteAccountsMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
 				"deleteAccounts", long.class);
 
-		_getAccountMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getAccountMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getAccount", long.class, java.lang.String.class);
 
-		_getAccountsMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getAccountsMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getAccounts", long.class);
 
-		_updateAccountMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateAccountMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateAccount", long.class, java.lang.String.class,
 				java.lang.String.class, boolean.class, java.lang.String.class,
 				boolean.class, java.lang.String.class, boolean.class);
 
-		_updateFoldersMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateFoldersMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateFolders", long.class, long.class, long.class,
 				long.class, long.class);
 	}
@@ -362,12 +365,45 @@ public class AccountLocalServiceClp implements AccountLocalService {
 		return (com.liferay.mail.model.Account)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_getPersistedModelMethodKey9,
+				ClpSerializer.translateInput(primaryKeyObj));
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.portal.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public java.util.List<com.liferay.mail.model.Account> getAccounts(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getAccountsMethodKey9,
+		MethodHandler methodHandler = new MethodHandler(_getAccountsMethodKey10,
 				start, end);
 
 		try {
@@ -394,7 +430,7 @@ public class AccountLocalServiceClp implements AccountLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getAccountsCountMethodKey10);
+		MethodHandler methodHandler = new MethodHandler(_getAccountsCountMethodKey11);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -421,7 +457,7 @@ public class AccountLocalServiceClp implements AccountLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateAccountMethodKey11,
+		MethodHandler methodHandler = new MethodHandler(_updateAccountMethodKey12,
 				ClpSerializer.translateInput(account));
 
 		try {
@@ -449,7 +485,7 @@ public class AccountLocalServiceClp implements AccountLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateAccountMethodKey12,
+		MethodHandler methodHandler = new MethodHandler(_updateAccountMethodKey13,
 				ClpSerializer.translateInput(account), merge);
 
 		try {
@@ -475,7 +511,7 @@ public class AccountLocalServiceClp implements AccountLocalService {
 	public java.lang.String getBeanIdentifier() {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey13);
+		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey14);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -494,7 +530,7 @@ public class AccountLocalServiceClp implements AccountLocalService {
 	}
 
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey14,
+		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey15,
 				ClpSerializer.translateInput(beanIdentifier));
 
 		try {
@@ -525,7 +561,7 @@ public class AccountLocalServiceClp implements AccountLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_addAccountMethodKey15,
+		MethodHandler methodHandler = new MethodHandler(_addAccountMethodKey16,
 				userId, ClpSerializer.translateInput(address),
 				ClpSerializer.translateInput(personalName),
 				ClpSerializer.translateInput(protocol),
@@ -565,7 +601,7 @@ public class AccountLocalServiceClp implements AccountLocalService {
 	public void deleteAccounts(long userId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_deleteAccountsMethodKey16,
+		MethodHandler methodHandler = new MethodHandler(_deleteAccountsMethodKey17,
 				userId);
 
 		try {
@@ -596,7 +632,7 @@ public class AccountLocalServiceClp implements AccountLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getAccountMethodKey17,
+		MethodHandler methodHandler = new MethodHandler(_getAccountMethodKey18,
 				userId, ClpSerializer.translateInput(address));
 
 		try {
@@ -627,7 +663,7 @@ public class AccountLocalServiceClp implements AccountLocalService {
 		long userId) throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getAccountsMethodKey18,
+		MethodHandler methodHandler = new MethodHandler(_getAccountsMethodKey19,
 				userId);
 
 		try {
@@ -658,7 +694,7 @@ public class AccountLocalServiceClp implements AccountLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateAccountMethodKey19,
+		MethodHandler methodHandler = new MethodHandler(_updateAccountMethodKey20,
 				accountId, ClpSerializer.translateInput(personalName),
 				ClpSerializer.translateInput(password), savePassword,
 				ClpSerializer.translateInput(signature), useSignature,
@@ -695,7 +731,7 @@ public class AccountLocalServiceClp implements AccountLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateFoldersMethodKey20,
+		MethodHandler methodHandler = new MethodHandler(_updateFoldersMethodKey21,
 				accountId, inboxFolderId, draftFolderId, sentFolderId,
 				trashFolderId);
 
@@ -737,16 +773,17 @@ public class AccountLocalServiceClp implements AccountLocalService {
 	private MethodKey _dynamicQueryMethodKey6;
 	private MethodKey _dynamicQueryCountMethodKey7;
 	private MethodKey _getAccountMethodKey8;
-	private MethodKey _getAccountsMethodKey9;
-	private MethodKey _getAccountsCountMethodKey10;
-	private MethodKey _updateAccountMethodKey11;
+	private MethodKey _getPersistedModelMethodKey9;
+	private MethodKey _getAccountsMethodKey10;
+	private MethodKey _getAccountsCountMethodKey11;
 	private MethodKey _updateAccountMethodKey12;
-	private MethodKey _getBeanIdentifierMethodKey13;
-	private MethodKey _setBeanIdentifierMethodKey14;
-	private MethodKey _addAccountMethodKey15;
-	private MethodKey _deleteAccountsMethodKey16;
-	private MethodKey _getAccountMethodKey17;
-	private MethodKey _getAccountsMethodKey18;
-	private MethodKey _updateAccountMethodKey19;
-	private MethodKey _updateFoldersMethodKey20;
+	private MethodKey _updateAccountMethodKey13;
+	private MethodKey _getBeanIdentifierMethodKey14;
+	private MethodKey _setBeanIdentifierMethodKey15;
+	private MethodKey _addAccountMethodKey16;
+	private MethodKey _deleteAccountsMethodKey17;
+	private MethodKey _getAccountMethodKey18;
+	private MethodKey _getAccountsMethodKey19;
+	private MethodKey _updateAccountMethodKey20;
+	private MethodKey _updateFoldersMethodKey21;
 }

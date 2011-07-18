@@ -14,7 +14,7 @@
 
 package com.liferay.opensocial.model;
 
-import com.liferay.portal.model.SaveableModel;
+import com.liferay.portal.model.PersistedModel;
 
 /**
  * The extended model interface for the OAuthToken service. Represents a row in the &quot;OpenSocial_OAuthToken&quot; database table, with each column mapped to a property of this class.
@@ -25,7 +25,7 @@ import com.liferay.portal.model.SaveableModel;
  * @see com.liferay.opensocial.model.impl.OAuthTokenModelImpl
  * @generated
  */
-public interface OAuthToken extends OAuthTokenModel, SaveableModel {
+public interface OAuthToken extends OAuthTokenModel, PersistedModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *

@@ -437,7 +437,7 @@ public class CalendarEventClp extends BaseModelImpl<CalendarEvent>
 		_secondReminder = secondReminder;
 	}
 
-	public void save() throws SystemException {
+	public void persist() throws SystemException {
 		CalendarEventLocalServiceUtil.updateCalendarEvent(this);
 	}
 

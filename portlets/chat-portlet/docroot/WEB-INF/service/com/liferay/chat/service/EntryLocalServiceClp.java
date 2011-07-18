@@ -59,38 +59,41 @@ public class EntryLocalServiceClp implements EntryLocalService {
 		_getEntryMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getEntry", long.class);
 
-		_getEntriesMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getPersistedModelMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getPersistedModel", java.io.Serializable.class);
+
+		_getEntriesMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getEntries", int.class, int.class);
 
-		_getEntriesCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getEntriesCountMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getEntriesCount");
 
-		_updateEntryMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateEntryMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateEntry", com.liferay.chat.model.Entry.class);
 
-		_updateEntryMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateEntryMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateEntry", com.liferay.chat.model.Entry.class, boolean.class);
 
-		_getBeanIdentifierMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getBeanIdentifierMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getBeanIdentifier");
 
-		_setBeanIdentifierMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+		_setBeanIdentifierMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
 				"setBeanIdentifier", java.lang.String.class);
 
-		_addEntryMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+		_addEntryMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
 				"addEntry", long.class, long.class, java.lang.String.class);
 
-		_addEntryMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+		_addEntryMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
 				"addEntry", long.class, long.class, long.class,
 				java.lang.String.class);
 
-		_deleteEntriesMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
+		_deleteEntriesMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
 				"deleteEntries", long.class);
 
-		_getNewEntriesMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getNewEntriesMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getNewEntries", long.class, long.class, int.class, int.class);
 
-		_getOldEntriesMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getOldEntriesMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getOldEntries", long.class, int.class, int.class);
 	}
 
@@ -345,11 +348,44 @@ public class EntryLocalServiceClp implements EntryLocalService {
 		return (com.liferay.chat.model.Entry)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_getPersistedModelMethodKey9,
+				ClpSerializer.translateInput(primaryKeyObj));
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.portal.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public java.util.List<com.liferay.chat.model.Entry> getEntries(int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getEntriesMethodKey9,
+		MethodHandler methodHandler = new MethodHandler(_getEntriesMethodKey10,
 				start, end);
 
 		try {
@@ -376,7 +412,7 @@ public class EntryLocalServiceClp implements EntryLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getEntriesCountMethodKey10);
+		MethodHandler methodHandler = new MethodHandler(_getEntriesCountMethodKey11);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -403,7 +439,7 @@ public class EntryLocalServiceClp implements EntryLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateEntryMethodKey11,
+		MethodHandler methodHandler = new MethodHandler(_updateEntryMethodKey12,
 				ClpSerializer.translateInput(entry));
 
 		try {
@@ -431,7 +467,7 @@ public class EntryLocalServiceClp implements EntryLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateEntryMethodKey12,
+		MethodHandler methodHandler = new MethodHandler(_updateEntryMethodKey13,
 				ClpSerializer.translateInput(entry), merge);
 
 		try {
@@ -457,7 +493,7 @@ public class EntryLocalServiceClp implements EntryLocalService {
 	public java.lang.String getBeanIdentifier() {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey13);
+		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey14);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -476,7 +512,7 @@ public class EntryLocalServiceClp implements EntryLocalService {
 	}
 
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey14,
+		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey15,
 				ClpSerializer.translateInput(beanIdentifier));
 
 		try {
@@ -498,7 +534,7 @@ public class EntryLocalServiceClp implements EntryLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_addEntryMethodKey15,
+		MethodHandler methodHandler = new MethodHandler(_addEntryMethodKey16,
 				fromUserId, toUserId, ClpSerializer.translateInput(content));
 
 		try {
@@ -526,7 +562,7 @@ public class EntryLocalServiceClp implements EntryLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_addEntryMethodKey16,
+		MethodHandler methodHandler = new MethodHandler(_addEntryMethodKey17,
 				createDate, fromUserId, toUserId,
 				ClpSerializer.translateInput(content));
 
@@ -552,7 +588,7 @@ public class EntryLocalServiceClp implements EntryLocalService {
 
 	public void deleteEntries(long userId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_deleteEntriesMethodKey17,
+		MethodHandler methodHandler = new MethodHandler(_deleteEntriesMethodKey18,
 				userId);
 
 		try {
@@ -578,7 +614,7 @@ public class EntryLocalServiceClp implements EntryLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getNewEntriesMethodKey18,
+		MethodHandler methodHandler = new MethodHandler(_getNewEntriesMethodKey19,
 				userId, createDate, start, end);
 
 		try {
@@ -606,7 +642,7 @@ public class EntryLocalServiceClp implements EntryLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getOldEntriesMethodKey19,
+		MethodHandler methodHandler = new MethodHandler(_getOldEntriesMethodKey20,
 				createDate, start, end);
 
 		try {
@@ -643,15 +679,16 @@ public class EntryLocalServiceClp implements EntryLocalService {
 	private MethodKey _dynamicQueryMethodKey6;
 	private MethodKey _dynamicQueryCountMethodKey7;
 	private MethodKey _getEntryMethodKey8;
-	private MethodKey _getEntriesMethodKey9;
-	private MethodKey _getEntriesCountMethodKey10;
-	private MethodKey _updateEntryMethodKey11;
+	private MethodKey _getPersistedModelMethodKey9;
+	private MethodKey _getEntriesMethodKey10;
+	private MethodKey _getEntriesCountMethodKey11;
 	private MethodKey _updateEntryMethodKey12;
-	private MethodKey _getBeanIdentifierMethodKey13;
-	private MethodKey _setBeanIdentifierMethodKey14;
-	private MethodKey _addEntryMethodKey15;
+	private MethodKey _updateEntryMethodKey13;
+	private MethodKey _getBeanIdentifierMethodKey14;
+	private MethodKey _setBeanIdentifierMethodKey15;
 	private MethodKey _addEntryMethodKey16;
-	private MethodKey _deleteEntriesMethodKey17;
-	private MethodKey _getNewEntriesMethodKey18;
-	private MethodKey _getOldEntriesMethodKey19;
+	private MethodKey _addEntryMethodKey17;
+	private MethodKey _deleteEntriesMethodKey18;
+	private MethodKey _getNewEntriesMethodKey19;
+	private MethodKey _getOldEntriesMethodKey20;
 }

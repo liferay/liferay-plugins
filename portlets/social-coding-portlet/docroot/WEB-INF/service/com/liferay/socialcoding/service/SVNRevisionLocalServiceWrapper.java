@@ -164,6 +164,13 @@ public class SVNRevisionLocalServiceWrapper implements SVNRevisionLocalService {
 		return _svnRevisionLocalService.getSVNRevision(svnRevisionId);
 	}
 
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _svnRevisionLocalService.getPersistedModel(primaryKeyObj);
+	}
+
 	/**
 	* Returns a range of all the s v n revisions.
 	*

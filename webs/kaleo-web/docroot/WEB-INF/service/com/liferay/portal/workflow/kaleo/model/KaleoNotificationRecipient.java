@@ -14,7 +14,7 @@
 
 package com.liferay.portal.workflow.kaleo.model;
 
-import com.liferay.portal.model.SaveableModel;
+import com.liferay.portal.model.PersistedModel;
 
 /**
  * The extended model interface for the KaleoNotificationRecipient service. Represents a row in the &quot;KaleoNotificationRecipient&quot; database table, with each column mapped to a property of this class.
@@ -26,7 +26,7 @@ import com.liferay.portal.model.SaveableModel;
  * @generated
  */
 public interface KaleoNotificationRecipient
-	extends KaleoNotificationRecipientModel, SaveableModel {
+	extends KaleoNotificationRecipientModel, PersistedModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *

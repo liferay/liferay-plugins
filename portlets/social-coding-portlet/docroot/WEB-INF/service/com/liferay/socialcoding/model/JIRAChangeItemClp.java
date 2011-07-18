@@ -113,7 +113,7 @@ public class JIRAChangeItemClp extends BaseModelImpl<JIRAChangeItem>
 		_newString = newString;
 	}
 
-	public void save() throws SystemException {
+	public void persist() throws SystemException {
 		JIRAChangeItemLocalServiceUtil.updateJIRAChangeItem(this);
 	}
 

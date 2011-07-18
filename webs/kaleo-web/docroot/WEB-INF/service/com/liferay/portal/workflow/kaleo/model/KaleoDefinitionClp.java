@@ -283,7 +283,7 @@ public class KaleoDefinitionClp extends BaseModelImpl<KaleoDefinition>
 		throw new UnsupportedOperationException();
 	}
 
-	public void save() throws SystemException {
+	public void persist() throws SystemException {
 		KaleoDefinitionLocalServiceUtil.updateKaleoDefinition(this);
 	}
 

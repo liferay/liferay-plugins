@@ -38,7 +38,7 @@ public abstract class ProjectsEntryBaseImpl extends ProjectsEntryModelImpl
 	 *
 	 * Never modify or reference this class directly. All methods that expect a projects entry model instance should use the {@link ProjectsEntry} interface instead.
 	 */
-	public void save() throws SystemException {
+	public void persist() throws SystemException {
 		ProjectsEntryLocalServiceUtil.updateProjectsEntry(this);
 	}
 }

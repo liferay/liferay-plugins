@@ -38,7 +38,7 @@ public abstract class WSRPProducerBaseImpl extends WSRPProducerModelImpl
 	 *
 	 * Never modify or reference this class directly. All methods that expect a w s r p producer model instance should use the {@link WSRPProducer} interface instead.
 	 */
-	public void save() throws SystemException {
+	public void persist() throws SystemException {
 		WSRPProducerLocalServiceUtil.updateWSRPProducer(this);
 	}
 }

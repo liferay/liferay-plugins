@@ -451,11 +451,17 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 		if (createDate != null) {
 			kbCommentCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			kbCommentCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			kbCommentCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			kbCommentCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		kbCommentCacheModel.classNameId = getClassNameId();

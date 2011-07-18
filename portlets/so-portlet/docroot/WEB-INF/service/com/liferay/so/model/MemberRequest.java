@@ -14,7 +14,7 @@
 
 package com.liferay.so.model;
 
-import com.liferay.portal.model.SaveableModel;
+import com.liferay.portal.model.PersistedModel;
 
 /**
  * The extended model interface for the MemberRequest service. Represents a row in the &quot;SO_MemberRequest&quot; database table, with each column mapped to a property of this class.
@@ -25,7 +25,7 @@ import com.liferay.portal.model.SaveableModel;
  * @see com.liferay.so.model.impl.MemberRequestModelImpl
  * @generated
  */
-public interface MemberRequest extends MemberRequestModel, SaveableModel {
+public interface MemberRequest extends MemberRequestModel, PersistedModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *

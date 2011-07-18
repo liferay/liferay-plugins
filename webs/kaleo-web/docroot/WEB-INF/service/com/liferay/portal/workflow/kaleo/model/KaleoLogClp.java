@@ -310,7 +310,7 @@ public class KaleoLogClp extends BaseModelImpl<KaleoLog> implements KaleoLog {
 		_workflowContext = workflowContext;
 	}
 
-	public void save() throws SystemException {
+	public void persist() throws SystemException {
 		KaleoLogLocalServiceUtil.updateKaleoLog(this);
 	}
 

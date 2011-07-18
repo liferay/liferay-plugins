@@ -214,7 +214,7 @@ public class KaleoInstanceClp extends BaseModelImpl<KaleoInstance>
 		throw new UnsupportedOperationException();
 	}
 
-	public void save() throws SystemException {
+	public void persist() throws SystemException {
 		KaleoInstanceLocalServiceUtil.updateKaleoInstance(this);
 	}
 

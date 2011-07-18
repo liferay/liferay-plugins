@@ -38,7 +38,7 @@ public abstract class HRExpenseCurrencyBaseImpl
 	 *
 	 * Never modify or reference this class directly. All methods that expect a h r expense currency model instance should use the {@link HRExpenseCurrency} interface instead.
 	 */
-	public void save() throws SystemException {
+	public void persist() throws SystemException {
 		HRExpenseCurrencyLocalServiceUtil.updateHRExpenseCurrency(this);
 	}
 }

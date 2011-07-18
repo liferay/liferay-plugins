@@ -157,7 +157,7 @@ public class ProjectsEntryClp extends BaseModelImpl<ProjectsEntry>
 		_data = data;
 	}
 
-	public void save() throws SystemException {
+	public void persist() throws SystemException {
 		ProjectsEntryLocalServiceUtil.updateProjectsEntry(this);
 	}
 

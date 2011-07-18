@@ -113,7 +113,7 @@ public class EntryClp extends BaseModelImpl<Entry> implements Entry {
 		_content = content;
 	}
 
-	public void save() throws SystemException {
+	public void persist() throws SystemException {
 		EntryLocalServiceUtil.updateEntry(this);
 	}
 

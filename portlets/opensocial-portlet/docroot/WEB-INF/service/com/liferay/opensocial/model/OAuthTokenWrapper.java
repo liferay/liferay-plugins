@@ -398,9 +398,9 @@ public class OAuthTokenWrapper implements OAuthToken {
 		return _oAuthToken.toXmlString();
 	}
 
-	public void save()
+	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_oAuthToken.save();
+		_oAuthToken.persist();
 	}
 
 	public OAuthToken getWrappedOAuthToken() {

@@ -37,7 +37,7 @@ public abstract class KaleoDefinitionBaseImpl extends KaleoDefinitionModelImpl
 	 *
 	 * Never modify or reference this class directly. All methods that expect a kaleo definition model instance should use the {@link KaleoDefinition} interface instead.
 	 */
-	public void save() throws SystemException {
+	public void persist() throws SystemException {
 		KaleoDefinitionLocalServiceUtil.updateKaleoDefinition(this);
 	}
 }

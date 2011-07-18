@@ -59,22 +59,25 @@ public class AssetLocalServiceClp implements AssetLocalService {
 		_getAssetMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getAsset", long.class);
 
-		_getAssetsMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getPersistedModelMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getPersistedModel", java.io.Serializable.class);
+
+		_getAssetsMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getAssets", int.class, int.class);
 
-		_getAssetsCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getAssetsCountMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getAssetsCount");
 
-		_updateAssetMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateAssetMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateAsset", com.liferay.ams.model.Asset.class);
 
-		_updateAssetMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateAssetMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateAsset", com.liferay.ams.model.Asset.class, boolean.class);
 
-		_getBeanIdentifierMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getBeanIdentifierMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getBeanIdentifier");
 
-		_setBeanIdentifierMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+		_setBeanIdentifierMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
 				"setBeanIdentifier", java.lang.String.class);
 	}
 
@@ -329,11 +332,44 @@ public class AssetLocalServiceClp implements AssetLocalService {
 		return (com.liferay.ams.model.Asset)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_getPersistedModelMethodKey9,
+				ClpSerializer.translateInput(primaryKeyObj));
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.portal.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public java.util.List<com.liferay.ams.model.Asset> getAssets(int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getAssetsMethodKey9,
+		MethodHandler methodHandler = new MethodHandler(_getAssetsMethodKey10,
 				start, end);
 
 		try {
@@ -360,7 +396,7 @@ public class AssetLocalServiceClp implements AssetLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getAssetsCountMethodKey10);
+		MethodHandler methodHandler = new MethodHandler(_getAssetsCountMethodKey11);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -387,7 +423,7 @@ public class AssetLocalServiceClp implements AssetLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateAssetMethodKey11,
+		MethodHandler methodHandler = new MethodHandler(_updateAssetMethodKey12,
 				ClpSerializer.translateInput(asset));
 
 		try {
@@ -415,7 +451,7 @@ public class AssetLocalServiceClp implements AssetLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateAssetMethodKey12,
+		MethodHandler methodHandler = new MethodHandler(_updateAssetMethodKey13,
 				ClpSerializer.translateInput(asset), merge);
 
 		try {
@@ -441,7 +477,7 @@ public class AssetLocalServiceClp implements AssetLocalService {
 	public java.lang.String getBeanIdentifier() {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey13);
+		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey14);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -460,7 +496,7 @@ public class AssetLocalServiceClp implements AssetLocalService {
 	}
 
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey14,
+		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey15,
 				ClpSerializer.translateInput(beanIdentifier));
 
 		try {
@@ -491,10 +527,11 @@ public class AssetLocalServiceClp implements AssetLocalService {
 	private MethodKey _dynamicQueryMethodKey6;
 	private MethodKey _dynamicQueryCountMethodKey7;
 	private MethodKey _getAssetMethodKey8;
-	private MethodKey _getAssetsMethodKey9;
-	private MethodKey _getAssetsCountMethodKey10;
-	private MethodKey _updateAssetMethodKey11;
+	private MethodKey _getPersistedModelMethodKey9;
+	private MethodKey _getAssetsMethodKey10;
+	private MethodKey _getAssetsCountMethodKey11;
 	private MethodKey _updateAssetMethodKey12;
-	private MethodKey _getBeanIdentifierMethodKey13;
-	private MethodKey _setBeanIdentifierMethodKey14;
+	private MethodKey _updateAssetMethodKey13;
+	private MethodKey _getBeanIdentifierMethodKey14;
+	private MethodKey _setBeanIdentifierMethodKey15;
 }

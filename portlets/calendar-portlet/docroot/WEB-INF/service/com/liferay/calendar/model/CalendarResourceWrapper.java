@@ -611,9 +611,9 @@ public class CalendarResourceWrapper implements CalendarResource {
 		return _calendarResource.toXmlString();
 	}
 
-	public void save()
+	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_calendarResource.save();
+		_calendarResource.persist();
 	}
 
 	public CalendarResource getWrappedCalendarResource() {

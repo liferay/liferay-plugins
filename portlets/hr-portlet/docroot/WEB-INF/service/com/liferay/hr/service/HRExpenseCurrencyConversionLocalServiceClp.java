@@ -63,25 +63,28 @@ public class HRExpenseCurrencyConversionLocalServiceClp
 		_getHRExpenseCurrencyConversionMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getHRExpenseCurrencyConversion", long.class);
 
-		_getHRExpenseCurrencyConversionsMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getPersistedModelMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getPersistedModel", java.io.Serializable.class);
+
+		_getHRExpenseCurrencyConversionsMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getHRExpenseCurrencyConversions", int.class, int.class);
 
-		_getHRExpenseCurrencyConversionsCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getHRExpenseCurrencyConversionsCountMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getHRExpenseCurrencyConversionsCount");
 
-		_updateHRExpenseCurrencyConversionMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateHRExpenseCurrencyConversionMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateHRExpenseCurrencyConversion",
 				com.liferay.hr.model.HRExpenseCurrencyConversion.class);
 
-		_updateHRExpenseCurrencyConversionMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateHRExpenseCurrencyConversionMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateHRExpenseCurrencyConversion",
 				com.liferay.hr.model.HRExpenseCurrencyConversion.class,
 				boolean.class);
 
-		_getBeanIdentifierMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getBeanIdentifierMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getBeanIdentifier");
 
-		_setBeanIdentifierMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+		_setBeanIdentifierMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
 				"setBeanIdentifier", java.lang.String.class);
 	}
 
@@ -340,12 +343,45 @@ public class HRExpenseCurrencyConversionLocalServiceClp
 		return (com.liferay.hr.model.HRExpenseCurrencyConversion)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_getPersistedModelMethodKey9,
+				ClpSerializer.translateInput(primaryKeyObj));
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.portal.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public java.util.List<com.liferay.hr.model.HRExpenseCurrencyConversion> getHRExpenseCurrencyConversions(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getHRExpenseCurrencyConversionsMethodKey9,
+		MethodHandler methodHandler = new MethodHandler(_getHRExpenseCurrencyConversionsMethodKey10,
 				start, end);
 
 		try {
@@ -372,7 +408,7 @@ public class HRExpenseCurrencyConversionLocalServiceClp
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getHRExpenseCurrencyConversionsCountMethodKey10);
+		MethodHandler methodHandler = new MethodHandler(_getHRExpenseCurrencyConversionsCountMethodKey11);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -399,7 +435,7 @@ public class HRExpenseCurrencyConversionLocalServiceClp
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateHRExpenseCurrencyConversionMethodKey11,
+		MethodHandler methodHandler = new MethodHandler(_updateHRExpenseCurrencyConversionMethodKey12,
 				ClpSerializer.translateInput(hrExpenseCurrencyConversion));
 
 		try {
@@ -428,7 +464,7 @@ public class HRExpenseCurrencyConversionLocalServiceClp
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateHRExpenseCurrencyConversionMethodKey12,
+		MethodHandler methodHandler = new MethodHandler(_updateHRExpenseCurrencyConversionMethodKey13,
 				ClpSerializer.translateInput(hrExpenseCurrencyConversion), merge);
 
 		try {
@@ -454,7 +490,7 @@ public class HRExpenseCurrencyConversionLocalServiceClp
 	public java.lang.String getBeanIdentifier() {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey13);
+		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey14);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -473,7 +509,7 @@ public class HRExpenseCurrencyConversionLocalServiceClp
 	}
 
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey14,
+		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey15,
 				ClpSerializer.translateInput(beanIdentifier));
 
 		try {
@@ -504,10 +540,11 @@ public class HRExpenseCurrencyConversionLocalServiceClp
 	private MethodKey _dynamicQueryMethodKey6;
 	private MethodKey _dynamicQueryCountMethodKey7;
 	private MethodKey _getHRExpenseCurrencyConversionMethodKey8;
-	private MethodKey _getHRExpenseCurrencyConversionsMethodKey9;
-	private MethodKey _getHRExpenseCurrencyConversionsCountMethodKey10;
-	private MethodKey _updateHRExpenseCurrencyConversionMethodKey11;
+	private MethodKey _getPersistedModelMethodKey9;
+	private MethodKey _getHRExpenseCurrencyConversionsMethodKey10;
+	private MethodKey _getHRExpenseCurrencyConversionsCountMethodKey11;
 	private MethodKey _updateHRExpenseCurrencyConversionMethodKey12;
-	private MethodKey _getBeanIdentifierMethodKey13;
-	private MethodKey _setBeanIdentifierMethodKey14;
+	private MethodKey _updateHRExpenseCurrencyConversionMethodKey13;
+	private MethodKey _getBeanIdentifierMethodKey14;
+	private MethodKey _setBeanIdentifierMethodKey15;
 }

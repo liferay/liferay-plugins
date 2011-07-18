@@ -61,31 +61,34 @@ public class SVNRepositoryLocalServiceClp implements SVNRepositoryLocalService {
 		_getSVNRepositoryMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getSVNRepository", long.class);
 
-		_getSVNRepositoriesMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getPersistedModelMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getPersistedModel", java.io.Serializable.class);
+
+		_getSVNRepositoriesMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getSVNRepositories", int.class, int.class);
 
-		_getSVNRepositoriesCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getSVNRepositoriesCountMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getSVNRepositoriesCount");
 
-		_updateSVNRepositoryMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateSVNRepositoryMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateSVNRepository",
 				com.liferay.socialcoding.model.SVNRepository.class);
 
-		_updateSVNRepositoryMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateSVNRepositoryMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateSVNRepository",
 				com.liferay.socialcoding.model.SVNRepository.class,
 				boolean.class);
 
-		_getBeanIdentifierMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getBeanIdentifierMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getBeanIdentifier");
 
-		_setBeanIdentifierMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+		_setBeanIdentifierMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
 				"setBeanIdentifier", java.lang.String.class);
 
-		_getSVNRepositoryMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getSVNRepositoryMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getSVNRepository", java.lang.String.class);
 
-		_updateSVNRepositoryMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateSVNRepositoryMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateSVNRepository", java.lang.String.class);
 	}
 
@@ -343,12 +346,45 @@ public class SVNRepositoryLocalServiceClp implements SVNRepositoryLocalService {
 		return (com.liferay.socialcoding.model.SVNRepository)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_getPersistedModelMethodKey9,
+				ClpSerializer.translateInput(primaryKeyObj));
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.portal.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public java.util.List<com.liferay.socialcoding.model.SVNRepository> getSVNRepositories(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getSVNRepositoriesMethodKey9,
+		MethodHandler methodHandler = new MethodHandler(_getSVNRepositoriesMethodKey10,
 				start, end);
 
 		try {
@@ -375,7 +411,7 @@ public class SVNRepositoryLocalServiceClp implements SVNRepositoryLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getSVNRepositoriesCountMethodKey10);
+		MethodHandler methodHandler = new MethodHandler(_getSVNRepositoriesCountMethodKey11);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -402,7 +438,7 @@ public class SVNRepositoryLocalServiceClp implements SVNRepositoryLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateSVNRepositoryMethodKey11,
+		MethodHandler methodHandler = new MethodHandler(_updateSVNRepositoryMethodKey12,
 				ClpSerializer.translateInput(svnRepository));
 
 		try {
@@ -431,7 +467,7 @@ public class SVNRepositoryLocalServiceClp implements SVNRepositoryLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateSVNRepositoryMethodKey12,
+		MethodHandler methodHandler = new MethodHandler(_updateSVNRepositoryMethodKey13,
 				ClpSerializer.translateInput(svnRepository), merge);
 
 		try {
@@ -457,7 +493,7 @@ public class SVNRepositoryLocalServiceClp implements SVNRepositoryLocalService {
 	public java.lang.String getBeanIdentifier() {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey13);
+		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey14);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -476,7 +512,7 @@ public class SVNRepositoryLocalServiceClp implements SVNRepositoryLocalService {
 	}
 
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey14,
+		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey15,
 				ClpSerializer.translateInput(beanIdentifier));
 
 		try {
@@ -499,7 +535,7 @@ public class SVNRepositoryLocalServiceClp implements SVNRepositoryLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getSVNRepositoryMethodKey15,
+		MethodHandler methodHandler = new MethodHandler(_getSVNRepositoryMethodKey16,
 				ClpSerializer.translateInput(url));
 
 		try {
@@ -529,7 +565,7 @@ public class SVNRepositoryLocalServiceClp implements SVNRepositoryLocalService {
 	public void updateSVNRepository(java.lang.String url)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_updateSVNRepositoryMethodKey16,
+		MethodHandler methodHandler = new MethodHandler(_updateSVNRepositoryMethodKey17,
 				ClpSerializer.translateInput(url));
 
 		try {
@@ -568,12 +604,13 @@ public class SVNRepositoryLocalServiceClp implements SVNRepositoryLocalService {
 	private MethodKey _dynamicQueryMethodKey6;
 	private MethodKey _dynamicQueryCountMethodKey7;
 	private MethodKey _getSVNRepositoryMethodKey8;
-	private MethodKey _getSVNRepositoriesMethodKey9;
-	private MethodKey _getSVNRepositoriesCountMethodKey10;
-	private MethodKey _updateSVNRepositoryMethodKey11;
+	private MethodKey _getPersistedModelMethodKey9;
+	private MethodKey _getSVNRepositoriesMethodKey10;
+	private MethodKey _getSVNRepositoriesCountMethodKey11;
 	private MethodKey _updateSVNRepositoryMethodKey12;
-	private MethodKey _getBeanIdentifierMethodKey13;
-	private MethodKey _setBeanIdentifierMethodKey14;
-	private MethodKey _getSVNRepositoryMethodKey15;
-	private MethodKey _updateSVNRepositoryMethodKey16;
+	private MethodKey _updateSVNRepositoryMethodKey13;
+	private MethodKey _getBeanIdentifierMethodKey14;
+	private MethodKey _setBeanIdentifierMethodKey15;
+	private MethodKey _getSVNRepositoryMethodKey16;
+	private MethodKey _updateSVNRepositoryMethodKey17;
 }

@@ -436,11 +436,17 @@ public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 		if (createDate != null) {
 			kbTemplateCacheModel.createDate = createDate.getTime();
 		}
+		else {
+			kbTemplateCacheModel.createDate = Long.MIN_VALUE;
+		}
 
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
 			kbTemplateCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			kbTemplateCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
 		kbTemplateCacheModel.title = getTitle();

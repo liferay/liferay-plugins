@@ -38,7 +38,7 @@ public abstract class KaleoTaskAssignmentInstanceBaseImpl
 	 *
 	 * Never modify or reference this class directly. All methods that expect a kaleo task assignment instance model instance should use the {@link KaleoTaskAssignmentInstance} interface instead.
 	 */
-	public void save() throws SystemException {
+	public void persist() throws SystemException {
 		KaleoTaskAssignmentInstanceLocalServiceUtil.updateKaleoTaskAssignmentInstance(this);
 	}
 }

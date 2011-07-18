@@ -39,6 +39,8 @@ import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.IndexerRegistryUtil;
 import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.model.PersistedModel;
+import com.liferay.portal.service.PersistedModelLocalServiceRegistryUtil;
 import com.liferay.portal.service.ResourceLocalService;
 import com.liferay.portal.service.ResourceService;
 import com.liferay.portal.service.UserLocalService;
@@ -48,6 +50,8 @@ import com.liferay.portal.service.persistence.UserPersistence;
 
 import com.liferay.portlet.social.service.SocialActivityLocalService;
 import com.liferay.portlet.social.service.persistence.SocialActivityPersistence;
+
+import java.io.Serializable;
 
 import java.util.List;
 
@@ -239,6 +243,11 @@ public abstract class KBTemplateLocalServiceBaseImpl
 	public KBTemplate getKBTemplate(long kbTemplateId)
 		throws PortalException, SystemException {
 		return kbTemplatePersistence.findByPrimaryKey(kbTemplateId);
+	}
+
+	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
+		throws PortalException, SystemException {
+		return kbTemplatePersistence.findByPrimaryKey(primaryKeyObj);
 	}
 
 	/**
@@ -637,6 +646,16 @@ public abstract class KBTemplateLocalServiceBaseImpl
 	public void setSocialActivityPersistence(
 		SocialActivityPersistence socialActivityPersistence) {
 		this.socialActivityPersistence = socialActivityPersistence;
+	}
+
+	public void afterPropertiesSet() {
+		PersistedModelLocalServiceRegistryUtil.register("com.liferay.knowledgebase.model.KBTemplate",
+			kbTemplateLocalService);
+	}
+
+	public void destroy() {
+		PersistedModelLocalServiceRegistryUtil.unregister(
+			"com.liferay.knowledgebase.model.KBTemplate");
 	}
 
 	/**

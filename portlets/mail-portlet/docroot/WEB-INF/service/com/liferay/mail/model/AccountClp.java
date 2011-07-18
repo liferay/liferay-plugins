@@ -303,7 +303,7 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 		throw new UnsupportedOperationException();
 	}
 
-	public void save() throws SystemException {
+	public void persist() throws SystemException {
 		AccountLocalServiceUtil.updateAccount(this);
 	}
 

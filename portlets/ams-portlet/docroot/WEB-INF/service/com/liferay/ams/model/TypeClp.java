@@ -80,7 +80,7 @@ public class TypeClp extends BaseModelImpl<Type> implements Type {
 		_name = name;
 	}
 
-	public void save() throws SystemException {
+	public void persist() throws SystemException {
 		TypeLocalServiceUtil.updateType(this);
 	}
 

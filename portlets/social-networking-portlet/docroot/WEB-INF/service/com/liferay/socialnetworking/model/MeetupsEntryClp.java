@@ -181,7 +181,7 @@ public class MeetupsEntryClp extends BaseModelImpl<MeetupsEntry>
 		_thumbnailId = thumbnailId;
 	}
 
-	public void save() throws SystemException {
+	public void persist() throws SystemException {
 		MeetupsEntryLocalServiceUtil.updateMeetupsEntry(this);
 	}
 

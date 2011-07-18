@@ -175,7 +175,7 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 		_field5 = field5;
 	}
 
-	public void save() throws SystemException {
+	public void persist() throws SystemException {
 		FooLocalServiceUtil.updateFoo(this);
 	}
 

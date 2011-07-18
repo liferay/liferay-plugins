@@ -148,7 +148,7 @@ public class HRExpenseCurrencyClp extends BaseModelImpl<HRExpenseCurrency>
 		_description = description;
 	}
 
-	public void save() throws SystemException {
+	public void persist() throws SystemException {
 		HRExpenseCurrencyLocalServiceUtil.updateHRExpenseCurrency(this);
 	}
 

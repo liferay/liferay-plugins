@@ -14,7 +14,7 @@
 
 package com.liferay.hr.model;
 
-import com.liferay.portal.model.SaveableModel;
+import com.liferay.portal.model.PersistedModel;
 
 /**
  * The extended model interface for the HRExpenseCurrency service. Represents a row in the &quot;HRExpenseCurrency&quot; database table, with each column mapped to a property of this class.
@@ -25,7 +25,7 @@ import com.liferay.portal.model.SaveableModel;
  * @see com.liferay.hr.model.impl.HRExpenseCurrencyModelImpl
  * @generated
  */
-public interface HRExpenseCurrency extends HRExpenseCurrencyModel, SaveableModel {
+public interface HRExpenseCurrency extends HRExpenseCurrencyModel, PersistedModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *

@@ -228,7 +228,7 @@ public class KaleoInstanceTokenClp extends BaseModelImpl<KaleoInstanceToken>
 		throw new UnsupportedOperationException();
 	}
 
-	public void save() throws SystemException {
+	public void persist() throws SystemException {
 		KaleoInstanceTokenLocalServiceUtil.updateKaleoInstanceToken(this);
 	}
 

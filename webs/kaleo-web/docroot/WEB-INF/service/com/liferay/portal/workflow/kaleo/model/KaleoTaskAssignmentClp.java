@@ -195,7 +195,7 @@ public class KaleoTaskAssignmentClp extends BaseModelImpl<KaleoTaskAssignment>
 		_assigneeScriptLanguage = assigneeScriptLanguage;
 	}
 
-	public void save() throws SystemException {
+	public void persist() throws SystemException {
 		KaleoTaskAssignmentLocalServiceUtil.updateKaleoTaskAssignment(this);
 	}
 

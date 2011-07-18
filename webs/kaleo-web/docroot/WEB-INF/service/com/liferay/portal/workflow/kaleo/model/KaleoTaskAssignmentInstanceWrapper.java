@@ -465,9 +465,9 @@ public class KaleoTaskAssignmentInstanceWrapper
 		return _kaleoTaskAssignmentInstance.toXmlString();
 	}
 
-	public void save()
+	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_kaleoTaskAssignmentInstance.save();
+		_kaleoTaskAssignmentInstance.persist();
 	}
 
 	public KaleoTaskAssignmentInstance getWrappedKaleoTaskAssignmentInstance() {

@@ -59,32 +59,35 @@ public class FeedLocalServiceClp implements FeedLocalService {
 		_getFeedMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getFeed", long.class);
 
-		_getFeedsMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getPersistedModelMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getPersistedModel", java.io.Serializable.class);
+
+		_getFeedsMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getFeeds", int.class, int.class);
 
-		_getFeedsCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getFeedsCountMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getFeedsCount");
 
-		_updateFeedMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateFeedMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateFeed", com.liferay.twitter.model.Feed.class);
 
-		_updateFeedMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateFeedMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateFeed", com.liferay.twitter.model.Feed.class,
 				boolean.class);
 
-		_getBeanIdentifierMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getBeanIdentifierMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getBeanIdentifier");
 
-		_setBeanIdentifierMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+		_setBeanIdentifierMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
 				"setBeanIdentifier", java.lang.String.class);
 
-		_updateFeedMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateFeedMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateFeed", long.class);
 
-		_updateFeedsMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateFeedsMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateFeeds");
 
-		_updateFeedsMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateFeedsMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateFeeds", long.class);
 	}
 
@@ -339,11 +342,44 @@ public class FeedLocalServiceClp implements FeedLocalService {
 		return (com.liferay.twitter.model.Feed)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_getPersistedModelMethodKey9,
+				ClpSerializer.translateInput(primaryKeyObj));
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.portal.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public java.util.List<com.liferay.twitter.model.Feed> getFeeds(int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getFeedsMethodKey9,
+		MethodHandler methodHandler = new MethodHandler(_getFeedsMethodKey10,
 				start, end);
 
 		try {
@@ -370,7 +406,7 @@ public class FeedLocalServiceClp implements FeedLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getFeedsCountMethodKey10);
+		MethodHandler methodHandler = new MethodHandler(_getFeedsCountMethodKey11);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -397,7 +433,7 @@ public class FeedLocalServiceClp implements FeedLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateFeedMethodKey11,
+		MethodHandler methodHandler = new MethodHandler(_updateFeedMethodKey12,
 				ClpSerializer.translateInput(feed));
 
 		try {
@@ -425,7 +461,7 @@ public class FeedLocalServiceClp implements FeedLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateFeedMethodKey12,
+		MethodHandler methodHandler = new MethodHandler(_updateFeedMethodKey13,
 				ClpSerializer.translateInput(feed), merge);
 
 		try {
@@ -451,7 +487,7 @@ public class FeedLocalServiceClp implements FeedLocalService {
 	public java.lang.String getBeanIdentifier() {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey13);
+		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey14);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -470,7 +506,7 @@ public class FeedLocalServiceClp implements FeedLocalService {
 	}
 
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey14,
+		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey15,
 				ClpSerializer.translateInput(beanIdentifier));
 
 		try {
@@ -490,7 +526,7 @@ public class FeedLocalServiceClp implements FeedLocalService {
 	public void updateFeed(long userId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_updateFeedMethodKey15,
+		MethodHandler methodHandler = new MethodHandler(_updateFeedMethodKey16,
 				userId);
 
 		try {
@@ -518,7 +554,7 @@ public class FeedLocalServiceClp implements FeedLocalService {
 	public void updateFeeds()
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_updateFeedsMethodKey16);
+		MethodHandler methodHandler = new MethodHandler(_updateFeedsMethodKey17);
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -545,7 +581,7 @@ public class FeedLocalServiceClp implements FeedLocalService {
 	public void updateFeeds(long companyId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_updateFeedsMethodKey17,
+		MethodHandler methodHandler = new MethodHandler(_updateFeedsMethodKey18,
 				companyId);
 
 		try {
@@ -584,13 +620,14 @@ public class FeedLocalServiceClp implements FeedLocalService {
 	private MethodKey _dynamicQueryMethodKey6;
 	private MethodKey _dynamicQueryCountMethodKey7;
 	private MethodKey _getFeedMethodKey8;
-	private MethodKey _getFeedsMethodKey9;
-	private MethodKey _getFeedsCountMethodKey10;
-	private MethodKey _updateFeedMethodKey11;
+	private MethodKey _getPersistedModelMethodKey9;
+	private MethodKey _getFeedsMethodKey10;
+	private MethodKey _getFeedsCountMethodKey11;
 	private MethodKey _updateFeedMethodKey12;
-	private MethodKey _getBeanIdentifierMethodKey13;
-	private MethodKey _setBeanIdentifierMethodKey14;
-	private MethodKey _updateFeedMethodKey15;
-	private MethodKey _updateFeedsMethodKey16;
+	private MethodKey _updateFeedMethodKey13;
+	private MethodKey _getBeanIdentifierMethodKey14;
+	private MethodKey _setBeanIdentifierMethodKey15;
+	private MethodKey _updateFeedMethodKey16;
 	private MethodKey _updateFeedsMethodKey17;
+	private MethodKey _updateFeedsMethodKey18;
 }

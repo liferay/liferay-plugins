@@ -92,7 +92,7 @@ public class JIRAChangeGroupClp extends BaseModelImpl<JIRAChangeGroup>
 		_jiraIssueId = jiraIssueId;
 	}
 
-	public void save() throws SystemException {
+	public void persist() throws SystemException {
 		JIRAChangeGroupLocalServiceUtil.updateJIRAChangeGroup(this);
 	}
 

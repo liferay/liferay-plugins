@@ -158,7 +158,7 @@ public class HRExpenseCurrencyConversionClp extends BaseModelImpl<HRExpenseCurre
 		_conversionValue = conversionValue;
 	}
 
-	public void save() throws SystemException {
+	public void persist() throws SystemException {
 		HRExpenseCurrencyConversionLocalServiceUtil.updateHRExpenseCurrencyConversion(this);
 	}
 

@@ -317,6 +317,12 @@ public abstract class GadgetServiceBaseImpl extends PrincipalBean
 		this.userPersistence = userPersistence;
 	}
 
+	public void afterPropertiesSet() {
+	}
+
+	public void destroy() {
+	}
+
 	/**
 	 * Returns the Spring bean ID for this bean.
 	 *

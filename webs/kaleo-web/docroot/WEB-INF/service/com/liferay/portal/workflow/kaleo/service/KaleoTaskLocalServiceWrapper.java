@@ -164,6 +164,13 @@ public class KaleoTaskLocalServiceWrapper implements KaleoTaskLocalService {
 		return _kaleoTaskLocalService.getKaleoTask(kaleoTaskId);
 	}
 
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _kaleoTaskLocalService.getPersistedModel(primaryKeyObj);
+	}
+
 	/**
 	* Returns a range of all the kaleo tasks.
 	*

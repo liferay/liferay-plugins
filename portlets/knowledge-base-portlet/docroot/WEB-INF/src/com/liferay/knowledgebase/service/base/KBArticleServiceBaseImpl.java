@@ -789,6 +789,12 @@ public abstract class KBArticleServiceBaseImpl extends PrincipalBean
 		this.socialActivityPersistence = socialActivityPersistence;
 	}
 
+	public void afterPropertiesSet() {
+	}
+
+	public void destroy() {
+	}
+
 	/**
 	 * Returns the Spring bean ID for this bean.
 	 *

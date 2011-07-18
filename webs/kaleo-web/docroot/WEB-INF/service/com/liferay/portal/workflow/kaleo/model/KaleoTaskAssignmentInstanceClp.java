@@ -208,7 +208,7 @@ public class KaleoTaskAssignmentInstanceClp extends BaseModelImpl<KaleoTaskAssig
 		_completionDate = completionDate;
 	}
 
-	public void save() throws SystemException {
+	public void persist() throws SystemException {
 		KaleoTaskAssignmentInstanceLocalServiceUtil.updateKaleoTaskAssignmentInstance(this);
 	}
 

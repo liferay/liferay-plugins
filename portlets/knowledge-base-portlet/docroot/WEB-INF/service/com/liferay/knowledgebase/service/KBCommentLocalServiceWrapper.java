@@ -164,6 +164,13 @@ public class KBCommentLocalServiceWrapper implements KBCommentLocalService {
 		return _kbCommentLocalService.getKBComment(kbCommentId);
 	}
 
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _kbCommentLocalService.getPersistedModel(primaryKeyObj);
+	}
+
 	/**
 	* Returns the k b comment with the UUID in the group.
 	*

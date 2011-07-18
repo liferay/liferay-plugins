@@ -164,6 +164,13 @@ public class KaleoNodeLocalServiceWrapper implements KaleoNodeLocalService {
 		return _kaleoNodeLocalService.getKaleoNode(kaleoNodeId);
 	}
 
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _kaleoNodeLocalService.getPersistedModel(primaryKeyObj);
+	}
+
 	/**
 	* Returns a range of all the kaleo nodes.
 	*

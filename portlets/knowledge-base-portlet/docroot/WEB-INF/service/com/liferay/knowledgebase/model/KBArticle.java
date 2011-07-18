@@ -14,7 +14,7 @@
 
 package com.liferay.knowledgebase.model;
 
-import com.liferay.portal.model.SaveableModel;
+import com.liferay.portal.model.PersistedModel;
 
 /**
  * The extended model interface for the KBArticle service. Represents a row in the &quot;KBArticle&quot; database table, with each column mapped to a property of this class.
@@ -25,7 +25,7 @@ import com.liferay.portal.model.SaveableModel;
  * @see com.liferay.knowledgebase.model.impl.KBArticleModelImpl
  * @generated
  */
-public interface KBArticle extends KBArticleModel, SaveableModel {
+public interface KBArticle extends KBArticleModel, PersistedModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *

@@ -181,9 +181,9 @@ public class SVNRepositoryWrapper implements SVNRepository {
 		return _svnRepository.toXmlString();
 	}
 
-	public void save()
+	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_svnRepository.save();
+		_svnRepository.persist();
 	}
 
 	public java.lang.String getName() {

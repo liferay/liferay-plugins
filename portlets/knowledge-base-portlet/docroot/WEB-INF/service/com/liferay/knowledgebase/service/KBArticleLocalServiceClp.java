@@ -60,169 +60,172 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		_getKBArticleMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getKBArticle", long.class);
 
-		_getKBArticleByUuidAndGroupIdMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getPersistedModelMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getPersistedModel", java.io.Serializable.class);
+
+		_getKBArticleByUuidAndGroupIdMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getKBArticleByUuidAndGroupId", java.lang.String.class,
 				long.class);
 
-		_getKBArticlesMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getKBArticlesMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getKBArticles", int.class, int.class);
 
-		_getKBArticlesCountMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getKBArticlesCountMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getKBArticlesCount");
-
-		_updateKBArticleMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
-				"updateKBArticle",
-				com.liferay.knowledgebase.model.KBArticle.class);
 
 		_updateKBArticleMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateKBArticle",
+				com.liferay.knowledgebase.model.KBArticle.class);
+
+		_updateKBArticleMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateKBArticle",
 				com.liferay.knowledgebase.model.KBArticle.class, boolean.class);
 
-		_getBeanIdentifierMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getBeanIdentifierMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getBeanIdentifier");
 
-		_setBeanIdentifierMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+		_setBeanIdentifierMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
 				"setBeanIdentifier", java.lang.String.class);
 
-		_addAttachmentMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+		_addAttachmentMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
 				"addAttachment", java.lang.String.class,
 				java.lang.String.class, byte[].class,
 				com.liferay.portal.service.ServiceContext.class);
 
-		_addKBArticleMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
+		_addKBArticleMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
 				"addKBArticle", long.class, long.class, java.lang.String.class,
 				java.lang.String.class, java.lang.String.class,
 				java.lang.String[].class, java.lang.String.class,
 				com.liferay.portal.service.ServiceContext.class);
 
-		_addKBArticleResourcesMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
+		_addKBArticleResourcesMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
 				"addKBArticleResources",
 				com.liferay.knowledgebase.model.KBArticle.class, boolean.class,
 				boolean.class);
 
-		_addKBArticleResourcesMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
+		_addKBArticleResourcesMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
 				"addKBArticleResources",
 				com.liferay.knowledgebase.model.KBArticle.class,
 				java.lang.String[].class, java.lang.String[].class);
 
-		_checkAttachmentsMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
+		_checkAttachmentsMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
 				"checkAttachments");
 
-		_deleteAttachmentMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
+		_deleteAttachmentMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
 				"deleteAttachment", long.class, java.lang.String.class);
 
-		_deleteGroupKBArticlesMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
+		_deleteGroupKBArticlesMethodKey23 = new MethodKey(_classLoaderProxy.getClassName(),
 				"deleteGroupKBArticles", long.class);
 
-		_deleteKBArticlesMethodKey23 = new MethodKey(_classLoaderProxy.getClassName(),
+		_deleteKBArticlesMethodKey24 = new MethodKey(_classLoaderProxy.getClassName(),
 				"deleteKBArticles", long[].class);
 
-		_getCompanyKBArticlesMethodKey24 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getCompanyKBArticlesMethodKey25 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getCompanyKBArticles", long.class, int.class, int.class,
 				int.class,
 				com.liferay.portal.kernel.util.OrderByComparator.class);
 
-		_getCompanyKBArticlesCountMethodKey25 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getCompanyKBArticlesCountMethodKey26 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getCompanyKBArticlesCount", long.class, int.class);
 
-		_getGroupKBArticlesMethodKey26 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getGroupKBArticlesMethodKey27 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getGroupKBArticles", long.class, int.class, int.class,
 				int.class,
 				com.liferay.portal.kernel.util.OrderByComparator.class);
 
-		_getGroupKBArticlesCountMethodKey27 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getGroupKBArticlesCountMethodKey28 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getGroupKBArticlesCount", long.class, int.class);
 
-		_getKBArticleMethodKey28 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getKBArticleMethodKey29 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getKBArticle", long.class, int.class);
 
-		_getKBArticleAndAllDescendantsMethodKey29 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getKBArticleAndAllDescendantsMethodKey30 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getKBArticleAndAllDescendants", long.class, int.class,
 				com.liferay.portal.kernel.util.OrderByComparator.class);
 
-		_getKBArticlesMethodKey30 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getKBArticlesMethodKey31 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getKBArticles", long[].class, int.class,
 				com.liferay.portal.kernel.util.OrderByComparator.class);
 
-		_getKBArticleVersionsMethodKey31 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getKBArticleVersionsMethodKey32 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getKBArticleVersions", long.class, int.class, int.class,
 				int.class,
 				com.liferay.portal.kernel.util.OrderByComparator.class);
 
-		_getKBArticleVersionsCountMethodKey32 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getKBArticleVersionsCountMethodKey33 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getKBArticleVersionsCount", long.class, int.class);
 
-		_getLatestKBArticleMethodKey33 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getLatestKBArticleMethodKey34 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getLatestKBArticle", long.class, int.class);
 
-		_getSectionsKBArticlesMethodKey34 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getSectionsKBArticlesMethodKey35 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getSectionsKBArticles", long.class, java.lang.String[].class,
 				int.class, int.class, int.class,
 				com.liferay.portal.kernel.util.OrderByComparator.class);
 
-		_getSectionsKBArticlesCountMethodKey35 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getSectionsKBArticlesCountMethodKey36 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getSectionsKBArticlesCount", long.class,
 				java.lang.String[].class, int.class);
 
-		_getSiblingKBArticlesMethodKey36 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getSiblingKBArticlesMethodKey37 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getSiblingKBArticles", long.class, long.class, int.class,
 				int.class, int.class,
 				com.liferay.portal.kernel.util.OrderByComparator.class);
 
-		_getSiblingKBArticlesCountMethodKey37 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getSiblingKBArticlesCountMethodKey38 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getSiblingKBArticlesCount", long.class, long.class, int.class);
 
-		_moveKBArticleMethodKey38 = new MethodKey(_classLoaderProxy.getClassName(),
+		_moveKBArticleMethodKey39 = new MethodKey(_classLoaderProxy.getClassName(),
 				"moveKBArticle", long.class, long.class, long.class,
 				double.class);
 
-		_searchMethodKey39 = new MethodKey(_classLoaderProxy.getClassName(),
+		_searchMethodKey40 = new MethodKey(_classLoaderProxy.getClassName(),
 				"search", long.class, java.lang.String.class,
 				java.lang.String.class, int.class, java.util.Date.class,
 				java.util.Date.class, boolean.class, int.class, int.class,
 				com.liferay.portal.kernel.util.OrderByComparator.class);
 
-		_subscribeGroupKBArticlesMethodKey40 = new MethodKey(_classLoaderProxy.getClassName(),
+		_subscribeGroupKBArticlesMethodKey41 = new MethodKey(_classLoaderProxy.getClassName(),
 				"subscribeGroupKBArticles", long.class, long.class);
 
-		_subscribeKBArticleMethodKey41 = new MethodKey(_classLoaderProxy.getClassName(),
+		_subscribeKBArticleMethodKey42 = new MethodKey(_classLoaderProxy.getClassName(),
 				"subscribeKBArticle", long.class, long.class, long.class);
 
-		_unsubscribeGroupKBArticlesMethodKey42 = new MethodKey(_classLoaderProxy.getClassName(),
+		_unsubscribeGroupKBArticlesMethodKey43 = new MethodKey(_classLoaderProxy.getClassName(),
 				"unsubscribeGroupKBArticles", long.class, long.class);
 
-		_unsubscribeKBArticleMethodKey43 = new MethodKey(_classLoaderProxy.getClassName(),
+		_unsubscribeKBArticleMethodKey44 = new MethodKey(_classLoaderProxy.getClassName(),
 				"unsubscribeKBArticle", long.class, long.class);
 
-		_updateAttachmentsMethodKey44 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateAttachmentsMethodKey45 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateAttachments", long.class, java.lang.String.class,
 				com.liferay.portal.service.ServiceContext.class);
 
-		_updateKBArticleMethodKey45 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateKBArticleMethodKey46 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateKBArticle", long.class, long.class,
 				java.lang.String.class, java.lang.String.class,
 				java.lang.String.class, java.lang.String[].class,
 				java.lang.String.class,
 				com.liferay.portal.service.ServiceContext.class);
 
-		_updateKBArticleAssetMethodKey46 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateKBArticleAssetMethodKey47 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateKBArticleAsset", long.class,
 				com.liferay.knowledgebase.model.KBArticle.class, long[].class,
 				java.lang.String[].class);
 
-		_updateKBArticleResourcesMethodKey47 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateKBArticleResourcesMethodKey48 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateKBArticleResources",
 				com.liferay.knowledgebase.model.KBArticle.class,
 				java.lang.String[].class, java.lang.String[].class);
 
-		_updateKBArticlesPrioritiesMethodKey48 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateKBArticlesPrioritiesMethodKey49 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateKBArticlesPriorities", java.util.Map.class);
 
-		_updateStatusMethodKey49 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateStatusMethodKey50 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateStatus", long.class, long.class, int.class,
 				com.liferay.portal.service.ServiceContext.class);
 
-		_updateViewCountMethodKey50 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateViewCountMethodKey51 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateViewCount", long.class, long.class, int.class);
 	}
 
@@ -485,13 +488,46 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		return (com.liferay.knowledgebase.model.KBArticle)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_getPersistedModelMethodKey9,
+				ClpSerializer.translateInput(primaryKeyObj));
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.portal.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public com.liferay.knowledgebase.model.KBArticle getKBArticleByUuidAndGroupId(
 		java.lang.String uuid, long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getKBArticleByUuidAndGroupIdMethodKey9,
+		MethodHandler methodHandler = new MethodHandler(_getKBArticleByUuidAndGroupIdMethodKey10,
 				ClpSerializer.translateInput(uuid), groupId);
 
 		try {
@@ -523,7 +559,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getKBArticlesMethodKey10,
+		MethodHandler methodHandler = new MethodHandler(_getKBArticlesMethodKey11,
 				start, end);
 
 		try {
@@ -550,7 +586,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getKBArticlesCountMethodKey11);
+		MethodHandler methodHandler = new MethodHandler(_getKBArticlesCountMethodKey12);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -577,7 +613,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateKBArticleMethodKey12,
+		MethodHandler methodHandler = new MethodHandler(_updateKBArticleMethodKey13,
 				ClpSerializer.translateInput(kbArticle));
 
 		try {
@@ -605,7 +641,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateKBArticleMethodKey13,
+		MethodHandler methodHandler = new MethodHandler(_updateKBArticleMethodKey14,
 				ClpSerializer.translateInput(kbArticle), merge);
 
 		try {
@@ -631,7 +667,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 	public java.lang.String getBeanIdentifier() {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey14);
+		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey15);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -650,7 +686,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 	}
 
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey15,
+		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey16,
 				ClpSerializer.translateInput(beanIdentifier));
 
 		try {
@@ -672,7 +708,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_addAttachmentMethodKey16,
+		MethodHandler methodHandler = new MethodHandler(_addAttachmentMethodKey17,
 				ClpSerializer.translateInput(dirName),
 				ClpSerializer.translateInput(shortFileName),
 				ClpSerializer.translateInput(bytes),
@@ -709,7 +745,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_addKBArticleMethodKey17,
+		MethodHandler methodHandler = new MethodHandler(_addKBArticleMethodKey18,
 				userId, parentResourcePrimKey,
 				ClpSerializer.translateInput(title),
 				ClpSerializer.translateInput(content),
@@ -747,7 +783,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		boolean addGroupPermissions, boolean addGuestPermissions)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_addKBArticleResourcesMethodKey18,
+		MethodHandler methodHandler = new MethodHandler(_addKBArticleResourcesMethodKey19,
 				ClpSerializer.translateInput(kbArticle), addGroupPermissions,
 				addGuestPermissions);
 
@@ -778,7 +814,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		java.lang.String[] groupPermissions, java.lang.String[] guestPermissions)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_addKBArticleResourcesMethodKey19,
+		MethodHandler methodHandler = new MethodHandler(_addKBArticleResourcesMethodKey20,
 				ClpSerializer.translateInput(kbArticle),
 				ClpSerializer.translateInput(groupPermissions),
 				ClpSerializer.translateInput(guestPermissions));
@@ -808,7 +844,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 	public void checkAttachments()
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_checkAttachmentsMethodKey20);
+		MethodHandler methodHandler = new MethodHandler(_checkAttachmentsMethodKey21);
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -835,7 +871,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 	public void deleteAttachment(long companyId, java.lang.String fileName)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_deleteAttachmentMethodKey21,
+		MethodHandler methodHandler = new MethodHandler(_deleteAttachmentMethodKey22,
 				companyId, ClpSerializer.translateInput(fileName));
 
 		try {
@@ -863,7 +899,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 	public void deleteGroupKBArticles(long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_deleteGroupKBArticlesMethodKey22,
+		MethodHandler methodHandler = new MethodHandler(_deleteGroupKBArticlesMethodKey23,
 				groupId);
 
 		try {
@@ -891,7 +927,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 	public void deleteKBArticles(long[] resourcePrimKeys)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_deleteKBArticlesMethodKey23,
+		MethodHandler methodHandler = new MethodHandler(_deleteKBArticlesMethodKey24,
 				ClpSerializer.translateInput(resourcePrimKeys));
 
 		try {
@@ -922,7 +958,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getCompanyKBArticlesMethodKey24,
+		MethodHandler methodHandler = new MethodHandler(_getCompanyKBArticlesMethodKey25,
 				companyId, status, start, end,
 				ClpSerializer.translateInput(orderByComparator));
 
@@ -950,7 +986,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getCompanyKBArticlesCountMethodKey25,
+		MethodHandler methodHandler = new MethodHandler(_getCompanyKBArticlesCountMethodKey26,
 				companyId, status);
 
 		try {
@@ -979,7 +1015,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getGroupKBArticlesMethodKey26,
+		MethodHandler methodHandler = new MethodHandler(_getGroupKBArticlesMethodKey27,
 				groupId, status, start, end,
 				ClpSerializer.translateInput(orderByComparator));
 
@@ -1007,7 +1043,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getGroupKBArticlesCountMethodKey27,
+		MethodHandler methodHandler = new MethodHandler(_getGroupKBArticlesCountMethodKey28,
 				groupId, status);
 
 		try {
@@ -1036,7 +1072,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getKBArticleMethodKey28,
+		MethodHandler methodHandler = new MethodHandler(_getKBArticleMethodKey29,
 				resourcePrimKey, version);
 
 		try {
@@ -1069,7 +1105,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getKBArticleAndAllDescendantsMethodKey29,
+		MethodHandler methodHandler = new MethodHandler(_getKBArticleAndAllDescendantsMethodKey30,
 				resourcePrimKey, status,
 				ClpSerializer.translateInput(orderByComparator));
 
@@ -1099,7 +1135,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getKBArticlesMethodKey30,
+		MethodHandler methodHandler = new MethodHandler(_getKBArticlesMethodKey31,
 				ClpSerializer.translateInput(resourcePrimKeys), status,
 				ClpSerializer.translateInput(orderByComparator));
 
@@ -1129,7 +1165,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getKBArticleVersionsMethodKey31,
+		MethodHandler methodHandler = new MethodHandler(_getKBArticleVersionsMethodKey32,
 				resourcePrimKey, status, start, end,
 				ClpSerializer.translateInput(orderByComparator));
 
@@ -1157,7 +1193,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getKBArticleVersionsCountMethodKey32,
+		MethodHandler methodHandler = new MethodHandler(_getKBArticleVersionsCountMethodKey33,
 				resourcePrimKey, status);
 
 		try {
@@ -1186,7 +1222,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getLatestKBArticleMethodKey33,
+		MethodHandler methodHandler = new MethodHandler(_getLatestKBArticleMethodKey34,
 				resourcePrimKey, status);
 
 		try {
@@ -1220,7 +1256,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getSectionsKBArticlesMethodKey34,
+		MethodHandler methodHandler = new MethodHandler(_getSectionsKBArticlesMethodKey35,
 				groupId, ClpSerializer.translateInput(sections), status, start,
 				end, ClpSerializer.translateInput(orderByComparator));
 
@@ -1249,7 +1285,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getSectionsKBArticlesCountMethodKey35,
+		MethodHandler methodHandler = new MethodHandler(_getSectionsKBArticlesCountMethodKey36,
 				groupId, ClpSerializer.translateInput(sections), status);
 
 		try {
@@ -1279,7 +1315,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getSiblingKBArticlesMethodKey36,
+		MethodHandler methodHandler = new MethodHandler(_getSiblingKBArticlesMethodKey37,
 				groupId, parentResourcePrimKey, status, start, end,
 				ClpSerializer.translateInput(orderByComparator));
 
@@ -1308,7 +1344,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getSiblingKBArticlesCountMethodKey37,
+		MethodHandler methodHandler = new MethodHandler(_getSiblingKBArticlesCountMethodKey38,
 				groupId, parentResourcePrimKey, status);
 
 		try {
@@ -1335,7 +1371,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		long parentResourcePrimKey, double priority)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_moveKBArticleMethodKey38,
+		MethodHandler methodHandler = new MethodHandler(_moveKBArticleMethodKey39,
 				userId, resourcePrimKey, parentResourcePrimKey, priority);
 
 		try {
@@ -1368,7 +1404,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_searchMethodKey39,
+		MethodHandler methodHandler = new MethodHandler(_searchMethodKey40,
 				groupId, ClpSerializer.translateInput(title),
 				ClpSerializer.translateInput(content), status,
 				ClpSerializer.translateInput(startDate),
@@ -1398,7 +1434,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 	public void subscribeGroupKBArticles(long userId, long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_subscribeGroupKBArticlesMethodKey40,
+		MethodHandler methodHandler = new MethodHandler(_subscribeGroupKBArticlesMethodKey41,
 				userId, groupId);
 
 		try {
@@ -1427,7 +1463,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		long resourcePrimKey)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_subscribeKBArticleMethodKey41,
+		MethodHandler methodHandler = new MethodHandler(_subscribeKBArticleMethodKey42,
 				userId, groupId, resourcePrimKey);
 
 		try {
@@ -1455,7 +1491,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 	public void unsubscribeGroupKBArticles(long userId, long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_unsubscribeGroupKBArticlesMethodKey42,
+		MethodHandler methodHandler = new MethodHandler(_unsubscribeGroupKBArticlesMethodKey43,
 				userId, groupId);
 
 		try {
@@ -1483,7 +1519,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 	public void unsubscribeKBArticle(long userId, long resourcePrimKey)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_unsubscribeKBArticleMethodKey43,
+		MethodHandler methodHandler = new MethodHandler(_unsubscribeKBArticleMethodKey44,
 				userId, resourcePrimKey);
 
 		try {
@@ -1515,7 +1551,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateAttachmentsMethodKey44,
+		MethodHandler methodHandler = new MethodHandler(_updateAttachmentsMethodKey45,
 				resourcePrimKey, ClpSerializer.translateInput(dirName),
 				ClpSerializer.translateInput(serviceContext));
 
@@ -1552,7 +1588,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateKBArticleMethodKey45,
+		MethodHandler methodHandler = new MethodHandler(_updateKBArticleMethodKey46,
 				userId, resourcePrimKey, ClpSerializer.translateInput(title),
 				ClpSerializer.translateInput(content),
 				ClpSerializer.translateInput(description),
@@ -1589,7 +1625,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		long[] assetCategoryIds, java.lang.String[] assetTagNames)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_updateKBArticleAssetMethodKey46,
+		MethodHandler methodHandler = new MethodHandler(_updateKBArticleAssetMethodKey47,
 				userId, ClpSerializer.translateInput(kbArticle),
 				ClpSerializer.translateInput(assetCategoryIds),
 				ClpSerializer.translateInput(assetTagNames));
@@ -1621,7 +1657,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		java.lang.String[] groupPermissions, java.lang.String[] guestPermissions)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_updateKBArticleResourcesMethodKey47,
+		MethodHandler methodHandler = new MethodHandler(_updateKBArticleResourcesMethodKey48,
 				ClpSerializer.translateInput(kbArticle),
 				ClpSerializer.translateInput(groupPermissions),
 				ClpSerializer.translateInput(guestPermissions));
@@ -1652,7 +1688,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		java.util.Map<java.lang.Long, java.lang.Double> resourcePrimKeyToPriorityMap)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_updateKBArticlesPrioritiesMethodKey48,
+		MethodHandler methodHandler = new MethodHandler(_updateKBArticlesPrioritiesMethodKey49,
 				ClpSerializer.translateInput(resourcePrimKeyToPriorityMap));
 
 		try {
@@ -1684,7 +1720,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateStatusMethodKey49,
+		MethodHandler methodHandler = new MethodHandler(_updateStatusMethodKey50,
 				userId, resourcePrimKey, status,
 				ClpSerializer.translateInput(serviceContext));
 
@@ -1715,7 +1751,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 	public void updateViewCount(long userId, long resourcePrimKey, int viewCount)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_updateViewCountMethodKey50,
+		MethodHandler methodHandler = new MethodHandler(_updateViewCountMethodKey51,
 				userId, resourcePrimKey, viewCount);
 
 		try {
@@ -1754,46 +1790,47 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 	private MethodKey _dynamicQueryMethodKey6;
 	private MethodKey _dynamicQueryCountMethodKey7;
 	private MethodKey _getKBArticleMethodKey8;
-	private MethodKey _getKBArticleByUuidAndGroupIdMethodKey9;
-	private MethodKey _getKBArticlesMethodKey10;
-	private MethodKey _getKBArticlesCountMethodKey11;
-	private MethodKey _updateKBArticleMethodKey12;
+	private MethodKey _getPersistedModelMethodKey9;
+	private MethodKey _getKBArticleByUuidAndGroupIdMethodKey10;
+	private MethodKey _getKBArticlesMethodKey11;
+	private MethodKey _getKBArticlesCountMethodKey12;
 	private MethodKey _updateKBArticleMethodKey13;
-	private MethodKey _getBeanIdentifierMethodKey14;
-	private MethodKey _setBeanIdentifierMethodKey15;
-	private MethodKey _addAttachmentMethodKey16;
-	private MethodKey _addKBArticleMethodKey17;
-	private MethodKey _addKBArticleResourcesMethodKey18;
+	private MethodKey _updateKBArticleMethodKey14;
+	private MethodKey _getBeanIdentifierMethodKey15;
+	private MethodKey _setBeanIdentifierMethodKey16;
+	private MethodKey _addAttachmentMethodKey17;
+	private MethodKey _addKBArticleMethodKey18;
 	private MethodKey _addKBArticleResourcesMethodKey19;
-	private MethodKey _checkAttachmentsMethodKey20;
-	private MethodKey _deleteAttachmentMethodKey21;
-	private MethodKey _deleteGroupKBArticlesMethodKey22;
-	private MethodKey _deleteKBArticlesMethodKey23;
-	private MethodKey _getCompanyKBArticlesMethodKey24;
-	private MethodKey _getCompanyKBArticlesCountMethodKey25;
-	private MethodKey _getGroupKBArticlesMethodKey26;
-	private MethodKey _getGroupKBArticlesCountMethodKey27;
-	private MethodKey _getKBArticleMethodKey28;
-	private MethodKey _getKBArticleAndAllDescendantsMethodKey29;
-	private MethodKey _getKBArticlesMethodKey30;
-	private MethodKey _getKBArticleVersionsMethodKey31;
-	private MethodKey _getKBArticleVersionsCountMethodKey32;
-	private MethodKey _getLatestKBArticleMethodKey33;
-	private MethodKey _getSectionsKBArticlesMethodKey34;
-	private MethodKey _getSectionsKBArticlesCountMethodKey35;
-	private MethodKey _getSiblingKBArticlesMethodKey36;
-	private MethodKey _getSiblingKBArticlesCountMethodKey37;
-	private MethodKey _moveKBArticleMethodKey38;
-	private MethodKey _searchMethodKey39;
-	private MethodKey _subscribeGroupKBArticlesMethodKey40;
-	private MethodKey _subscribeKBArticleMethodKey41;
-	private MethodKey _unsubscribeGroupKBArticlesMethodKey42;
-	private MethodKey _unsubscribeKBArticleMethodKey43;
-	private MethodKey _updateAttachmentsMethodKey44;
-	private MethodKey _updateKBArticleMethodKey45;
-	private MethodKey _updateKBArticleAssetMethodKey46;
-	private MethodKey _updateKBArticleResourcesMethodKey47;
-	private MethodKey _updateKBArticlesPrioritiesMethodKey48;
-	private MethodKey _updateStatusMethodKey49;
-	private MethodKey _updateViewCountMethodKey50;
+	private MethodKey _addKBArticleResourcesMethodKey20;
+	private MethodKey _checkAttachmentsMethodKey21;
+	private MethodKey _deleteAttachmentMethodKey22;
+	private MethodKey _deleteGroupKBArticlesMethodKey23;
+	private MethodKey _deleteKBArticlesMethodKey24;
+	private MethodKey _getCompanyKBArticlesMethodKey25;
+	private MethodKey _getCompanyKBArticlesCountMethodKey26;
+	private MethodKey _getGroupKBArticlesMethodKey27;
+	private MethodKey _getGroupKBArticlesCountMethodKey28;
+	private MethodKey _getKBArticleMethodKey29;
+	private MethodKey _getKBArticleAndAllDescendantsMethodKey30;
+	private MethodKey _getKBArticlesMethodKey31;
+	private MethodKey _getKBArticleVersionsMethodKey32;
+	private MethodKey _getKBArticleVersionsCountMethodKey33;
+	private MethodKey _getLatestKBArticleMethodKey34;
+	private MethodKey _getSectionsKBArticlesMethodKey35;
+	private MethodKey _getSectionsKBArticlesCountMethodKey36;
+	private MethodKey _getSiblingKBArticlesMethodKey37;
+	private MethodKey _getSiblingKBArticlesCountMethodKey38;
+	private MethodKey _moveKBArticleMethodKey39;
+	private MethodKey _searchMethodKey40;
+	private MethodKey _subscribeGroupKBArticlesMethodKey41;
+	private MethodKey _subscribeKBArticleMethodKey42;
+	private MethodKey _unsubscribeGroupKBArticlesMethodKey43;
+	private MethodKey _unsubscribeKBArticleMethodKey44;
+	private MethodKey _updateAttachmentsMethodKey45;
+	private MethodKey _updateKBArticleMethodKey46;
+	private MethodKey _updateKBArticleAssetMethodKey47;
+	private MethodKey _updateKBArticleResourcesMethodKey48;
+	private MethodKey _updateKBArticlesPrioritiesMethodKey49;
+	private MethodKey _updateStatusMethodKey50;
+	private MethodKey _updateViewCountMethodKey51;
 }

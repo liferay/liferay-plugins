@@ -147,7 +147,7 @@ public class JIRAIssueClp extends BaseModelImpl<JIRAIssue> implements JIRAIssue 
 		_status = status;
 	}
 
-	public void save() throws SystemException {
+	public void persist() throws SystemException {
 		JIRAIssueLocalServiceUtil.updateJIRAIssue(this);
 	}
 

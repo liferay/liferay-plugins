@@ -14,7 +14,7 @@
 
 package com.liferay.wsrp.model;
 
-import com.liferay.portal.model.SaveableModel;
+import com.liferay.portal.model.PersistedModel;
 
 /**
  * The extended model interface for the WSRPConsumer service. Represents a row in the &quot;WSRP_WSRPConsumer&quot; database table, with each column mapped to a property of this class.
@@ -25,7 +25,7 @@ import com.liferay.portal.model.SaveableModel;
  * @see com.liferay.wsrp.model.impl.WSRPConsumerModelImpl
  * @generated
  */
-public interface WSRPConsumer extends WSRPConsumerModel, SaveableModel {
+public interface WSRPConsumer extends WSRPConsumerModel, PersistedModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *

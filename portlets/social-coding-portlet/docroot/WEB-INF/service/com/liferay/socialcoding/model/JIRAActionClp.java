@@ -124,7 +124,7 @@ public class JIRAActionClp extends BaseModelImpl<JIRAAction>
 		_jiraGroupName = jiraGroupName;
 	}
 
-	public void save() throws SystemException {
+	public void persist() throws SystemException {
 		JIRAActionLocalServiceUtil.updateJIRAAction(this);
 	}
 

@@ -37,7 +37,7 @@ public abstract class KaleoConditionBaseImpl extends KaleoConditionModelImpl
 	 *
 	 * Never modify or reference this class directly. All methods that expect a kaleo condition model instance should use the {@link KaleoCondition} interface instead.
 	 */
-	public void save() throws SystemException {
+	public void persist() throws SystemException {
 		KaleoConditionLocalServiceUtil.updateKaleoCondition(this);
 	}
 }

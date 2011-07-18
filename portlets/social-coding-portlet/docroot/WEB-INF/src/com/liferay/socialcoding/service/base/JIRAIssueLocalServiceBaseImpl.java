@@ -29,6 +29,8 @@ import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.IndexerRegistryUtil;
 import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.model.PersistedModel;
+import com.liferay.portal.service.PersistedModelLocalServiceRegistryUtil;
 import com.liferay.portal.service.ResourceLocalService;
 import com.liferay.portal.service.ResourceService;
 import com.liferay.portal.service.UserLocalService;
@@ -52,6 +54,8 @@ import com.liferay.socialcoding.service.persistence.JIRAIssueFinder;
 import com.liferay.socialcoding.service.persistence.JIRAIssuePersistence;
 import com.liferay.socialcoding.service.persistence.SVNRepositoryPersistence;
 import com.liferay.socialcoding.service.persistence.SVNRevisionPersistence;
+
+import java.io.Serializable;
 
 import java.util.List;
 
@@ -241,6 +245,11 @@ public abstract class JIRAIssueLocalServiceBaseImpl
 	public JIRAIssue getJIRAIssue(long jiraIssueId)
 		throws PortalException, SystemException {
 		return jiraIssuePersistence.findByPrimaryKey(jiraIssueId);
+	}
+
+	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
+		throws PortalException, SystemException {
+		return jiraIssuePersistence.findByPrimaryKey(primaryKeyObj);
 	}
 
 	/**
@@ -720,6 +729,16 @@ public abstract class JIRAIssueLocalServiceBaseImpl
 	 */
 	public void setUserPersistence(UserPersistence userPersistence) {
 		this.userPersistence = userPersistence;
+	}
+
+	public void afterPropertiesSet() {
+		PersistedModelLocalServiceRegistryUtil.register("com.liferay.socialcoding.model.JIRAIssue",
+			jiraIssueLocalService);
+	}
+
+	public void destroy() {
+		PersistedModelLocalServiceRegistryUtil.unregister(
+			"com.liferay.socialcoding.model.JIRAIssue");
 	}
 
 	/**

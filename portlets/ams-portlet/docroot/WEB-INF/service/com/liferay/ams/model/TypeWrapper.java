@@ -180,9 +180,9 @@ public class TypeWrapper implements Type {
 		return _type.toXmlString();
 	}
 
-	public void save()
+	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_type.save();
+		_type.persist();
 	}
 
 	public Type getWrappedType() {

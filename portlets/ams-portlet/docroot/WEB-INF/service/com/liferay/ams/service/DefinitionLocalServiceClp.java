@@ -59,23 +59,26 @@ public class DefinitionLocalServiceClp implements DefinitionLocalService {
 		_getDefinitionMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getDefinition", long.class);
 
-		_getDefinitionsMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getPersistedModelMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getPersistedModel", java.io.Serializable.class);
+
+		_getDefinitionsMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getDefinitions", int.class, int.class);
 
-		_getDefinitionsCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getDefinitionsCountMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getDefinitionsCount");
 
-		_updateDefinitionMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateDefinitionMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateDefinition", com.liferay.ams.model.Definition.class);
 
-		_updateDefinitionMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateDefinitionMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateDefinition", com.liferay.ams.model.Definition.class,
 				boolean.class);
 
-		_getBeanIdentifierMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getBeanIdentifierMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getBeanIdentifier");
 
-		_setBeanIdentifierMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+		_setBeanIdentifierMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
 				"setBeanIdentifier", java.lang.String.class);
 	}
 
@@ -330,12 +333,45 @@ public class DefinitionLocalServiceClp implements DefinitionLocalService {
 		return (com.liferay.ams.model.Definition)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_getPersistedModelMethodKey9,
+				ClpSerializer.translateInput(primaryKeyObj));
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.portal.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public java.util.List<com.liferay.ams.model.Definition> getDefinitions(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getDefinitionsMethodKey9,
+		MethodHandler methodHandler = new MethodHandler(_getDefinitionsMethodKey10,
 				start, end);
 
 		try {
@@ -362,7 +398,7 @@ public class DefinitionLocalServiceClp implements DefinitionLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getDefinitionsCountMethodKey10);
+		MethodHandler methodHandler = new MethodHandler(_getDefinitionsCountMethodKey11);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -389,7 +425,7 @@ public class DefinitionLocalServiceClp implements DefinitionLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateDefinitionMethodKey11,
+		MethodHandler methodHandler = new MethodHandler(_updateDefinitionMethodKey12,
 				ClpSerializer.translateInput(definition));
 
 		try {
@@ -417,7 +453,7 @@ public class DefinitionLocalServiceClp implements DefinitionLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateDefinitionMethodKey12,
+		MethodHandler methodHandler = new MethodHandler(_updateDefinitionMethodKey13,
 				ClpSerializer.translateInput(definition), merge);
 
 		try {
@@ -443,7 +479,7 @@ public class DefinitionLocalServiceClp implements DefinitionLocalService {
 	public java.lang.String getBeanIdentifier() {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey13);
+		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey14);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -462,7 +498,7 @@ public class DefinitionLocalServiceClp implements DefinitionLocalService {
 	}
 
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey14,
+		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey15,
 				ClpSerializer.translateInput(beanIdentifier));
 
 		try {
@@ -493,10 +529,11 @@ public class DefinitionLocalServiceClp implements DefinitionLocalService {
 	private MethodKey _dynamicQueryMethodKey6;
 	private MethodKey _dynamicQueryCountMethodKey7;
 	private MethodKey _getDefinitionMethodKey8;
-	private MethodKey _getDefinitionsMethodKey9;
-	private MethodKey _getDefinitionsCountMethodKey10;
-	private MethodKey _updateDefinitionMethodKey11;
+	private MethodKey _getPersistedModelMethodKey9;
+	private MethodKey _getDefinitionsMethodKey10;
+	private MethodKey _getDefinitionsCountMethodKey11;
 	private MethodKey _updateDefinitionMethodKey12;
-	private MethodKey _getBeanIdentifierMethodKey13;
-	private MethodKey _setBeanIdentifierMethodKey14;
+	private MethodKey _updateDefinitionMethodKey13;
+	private MethodKey _getBeanIdentifierMethodKey14;
+	private MethodKey _setBeanIdentifierMethodKey15;
 }

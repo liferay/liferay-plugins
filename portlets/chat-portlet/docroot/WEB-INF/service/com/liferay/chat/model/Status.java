@@ -14,7 +14,7 @@
 
 package com.liferay.chat.model;
 
-import com.liferay.portal.model.SaveableModel;
+import com.liferay.portal.model.PersistedModel;
 
 /**
  * The extended model interface for the Status service. Represents a row in the &quot;Chat_Status&quot; database table, with each column mapped to a property of this class.
@@ -25,7 +25,7 @@ import com.liferay.portal.model.SaveableModel;
  * @see com.liferay.chat.model.impl.StatusModelImpl
  * @generated
  */
-public interface Status extends StatusModel, SaveableModel {
+public interface Status extends StatusModel, PersistedModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *

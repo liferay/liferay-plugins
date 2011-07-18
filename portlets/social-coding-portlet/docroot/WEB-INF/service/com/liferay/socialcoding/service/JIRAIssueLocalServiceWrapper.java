@@ -164,6 +164,13 @@ public class JIRAIssueLocalServiceWrapper implements JIRAIssueLocalService {
 		return _jiraIssueLocalService.getJIRAIssue(jiraIssueId);
 	}
 
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _jiraIssueLocalService.getPersistedModel(primaryKeyObj);
+	}
+
 	/**
 	* Returns a range of all the j i r a issues.
 	*

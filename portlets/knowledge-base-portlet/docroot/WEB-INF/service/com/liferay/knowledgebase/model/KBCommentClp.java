@@ -177,7 +177,7 @@ public class KBCommentClp extends BaseModelImpl<KBComment> implements KBComment 
 		_helpful = helpful;
 	}
 
-	public void save() throws SystemException {
+	public void persist() throws SystemException {
 		KBCommentLocalServiceUtil.updateKBComment(this);
 	}
 

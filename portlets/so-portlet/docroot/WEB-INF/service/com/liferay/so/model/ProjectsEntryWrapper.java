@@ -344,9 +344,9 @@ public class ProjectsEntryWrapper implements ProjectsEntry {
 		return _projectsEntry.toXmlString();
 	}
 
-	public void save()
+	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_projectsEntry.save();
+		_projectsEntry.persist();
 	}
 
 	public ProjectsEntry getWrappedProjectsEntry() {

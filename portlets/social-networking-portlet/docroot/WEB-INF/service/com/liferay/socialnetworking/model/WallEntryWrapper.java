@@ -290,9 +290,9 @@ public class WallEntryWrapper implements WallEntry {
 		return _wallEntry.toXmlString();
 	}
 
-	public void save()
+	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_wallEntry.save();
+		_wallEntry.persist();
 	}
 
 	public WallEntry getWrappedWallEntry() {

@@ -349,7 +349,7 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 		}
 	}
 
-	public void save() throws SystemException {
+	public void persist() throws SystemException {
 		KBArticleLocalServiceUtil.updateKBArticle(this);
 	}
 
