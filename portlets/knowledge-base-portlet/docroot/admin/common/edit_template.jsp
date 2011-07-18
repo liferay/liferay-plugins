@@ -22,10 +22,6 @@ KBTemplate kbTemplate = (KBTemplate)request.getAttribute(WebKeys.KNOWLEDGE_BASE_
 long kbTemplateId = BeanParamUtil.getLong(kbTemplate, request, "kbTemplateId");
 
 String content = BeanParamUtil.getString(kbTemplate, request, "content");
-
-if ((request.getParameter("content") == null) && (kbTemplate == null)) {
-	content = AdminUtil.getKBTemplateContent(engineType);
-}
 %>
 
 <liferay-ui:header
