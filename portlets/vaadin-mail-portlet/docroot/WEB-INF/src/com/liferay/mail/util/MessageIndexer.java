@@ -58,10 +58,14 @@ public class MessageIndexer extends BaseIndexer {
 
 	@Override
 	protected void doDelete(Object obj) throws Exception {
+		SearchContext searchContext = new SearchContext();
+		searchContext.setSearchEngineId(SearchEngineUtil.SYSTEM_ENGINE_ID);
+
 		if (obj instanceof Account) {
 			Account account = (Account)obj;
 
-			BooleanQuery booleanQuery = BooleanQueryFactoryUtil.create();
+			BooleanQuery booleanQuery = BooleanQueryFactoryUtil.create(
+				searchContext);
 
 			booleanQuery.addRequiredTerm(Field.PORTLET_ID, PORTLET_ID);
 
@@ -81,7 +85,8 @@ public class MessageIndexer extends BaseIndexer {
 		else if (obj instanceof Folder) {
 			Folder folder = (Folder)obj;
 
-			BooleanQuery booleanQuery = BooleanQueryFactoryUtil.create();
+			BooleanQuery booleanQuery = BooleanQueryFactoryUtil.create(
+				searchContext);
 
 			booleanQuery.addRequiredTerm(Field.PORTLET_ID, PORTLET_ID);
 
