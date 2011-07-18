@@ -36,5 +36,5 @@ KBTemplate kbTemplate = (KBTemplate)request.getAttribute(WebKeys.KNOWLEDGE_BASE_
 </div>
 
 <div class="kb-entity-body">
-	<pre><%= HtmlUtil.escape(kbTemplate.getContent()) %></pre>
+	<%= kbTemplate.getContent() %>
 </div>
