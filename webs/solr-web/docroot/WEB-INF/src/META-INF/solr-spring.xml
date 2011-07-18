@@ -8,6 +8,9 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"
 >
 	<bean class="com.liferay.portal.spring.context.PortletBeanFactoryPostProcessor" />
+
+	<!-- Solr search engine -->
+
 	<bean id="com.liferay.portal.search.solr.server.BasicAuthSolrServer" class="com.liferay.portal.search.solr.server.BasicAuthSolrServer">
 		<constructor-arg type="java.lang.String" value="http://localhost:8080/solr" />
 	</bean>
@@ -20,20 +23,21 @@
 		<property name="solrServer" ref="com.liferay.portal.search.solr.server.BasicAuthSolrServer" />
 	</bean>
 	<bean id="com.liferay.portal.search.solr.SolrSearchEngineImpl" class="com.liferay.portal.kernel.search.BaseSearchEngine">
-		<property name="name" value="SYSTEM_ENGINE" />
 		<property name="clusteredWrite" value="false" />
+		<property name="indexSearcher" ref="com.liferay.portal.search.solr.SolrIndexSearcherImpl" />
+		<property name="indexWriter" ref="com.liferay.portal.search.solr.SolrIndexWriterImpl" />
 		<property name="luceneBased" value="true" />
-		<property name="searcher" ref="com.liferay.portal.search.solr.SolrIndexSearcherImpl" />
-		<property name="vendor" value="SOLR"/>
-		<property name="writer" ref="com.liferay.portal.search.solr.SolrIndexWriterImpl" />
+		<property name="name" value="SYSTEM_ENGINE" />
+		<property name="vendor" value="SOLR" />
 	</bean>
 
-	<bean id="searchEngineConfigurator.solr" class="com.liferay.portal.kernel.search.PluginSearchEngineConfigurator">
+	<!-- Configurator -->
+
+	<bean id="com.liferay.portal.kernel.search.PluginSearchEngineConfigurator" class="com.liferay.portal.kernel.search.PluginSearchEngineConfigurator">
 		<property name="searchEngines">
 			<list>
 				<ref bean="com.liferay.portal.search.solr.SolrSearchEngineImpl" />
 			</list>
 		</property>
 	</bean>
-
 </beans>
