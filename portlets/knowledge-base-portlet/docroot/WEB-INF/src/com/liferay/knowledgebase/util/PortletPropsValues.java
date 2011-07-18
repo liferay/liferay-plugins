@@ -53,6 +53,10 @@ public class PortletPropsValues {
 		PortletProps.getArray(
 			PortletPropsKeys.ADMIN_KB_ARTICLE_DEFAULT_SECTIONS);
 
+	public static final boolean ADMIN_KB_ARTICLE_INCREMENT_PRIORITY_ENABLED =
+		GetterUtil.getBoolean(PortletProps.get(
+			PortletPropsKeys.ADMIN_KB_ARTICLE_INCREMENT_PRIORITY_ENABLED));
+
 	public static final String[] ADMIN_KB_ARTICLE_SECTIONS =
 		PortletProps.getArray(PortletPropsKeys.ADMIN_KB_ARTICLE_SECTIONS);
 

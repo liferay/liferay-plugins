@@ -46,13 +46,4 @@ boolean enableKBArticleViewCountIncrement = GetterUtil.getBoolean(preferences.ge
 int rssDelta = GetterUtil.getInteger(preferences.getValue("rssDelta", null));
 String rssDisplayStyle = preferences.getValue("rssDisplayStyle", StringPool.BLANK);
 String rssFormat = preferences.getValue("rssFormat", StringPool.BLANK);
-
-if (kbArticleWindowState.equals(WindowState.MAXIMIZED.toString()) && windowState.equals(WindowState.MAXIMIZED)) {
-	PortletURL portletURL = renderResponse.createRenderURL();
-
-	portletURL.setWindowState(WindowState.NORMAL);
-	portletURL.setPortletMode(PortletMode.VIEW);
-
-	portletDisplay.setURLBack(portletURL.toString());
-}
 %>

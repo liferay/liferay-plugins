@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portlet.PortletPreferencesFactoryUtil;
 
@@ -49,8 +50,11 @@ public class KBArticleSearch extends SearchContainer<KBArticle> {
 			PortletPreferences preferences =
 				PortletPreferencesFactoryUtil.getPortletSetup(portletRequest);
 
-			int delta = GetterUtil.getInteger(
+			int defaultDelta = GetterUtil.getInteger(
 				preferences.getValue("kbArticlesDelta", null));
+
+			int delta = ParamUtil.getInteger(
+				portletRequest, getDeltaParam(), defaultDelta);
 
 			setDelta(delta);
 
