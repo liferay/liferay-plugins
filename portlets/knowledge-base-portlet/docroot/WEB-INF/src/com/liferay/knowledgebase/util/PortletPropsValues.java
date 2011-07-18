@@ -32,8 +32,9 @@ public class PortletPropsValues {
 		PortletProps.get(PortletPropsKeys.ADMIN_EMAIL_KB_ARTICLE_ADDED_BODY);
 
 	public static final boolean ADMIN_EMAIL_KB_ARTICLE_ADDED_ENABLED =
-		GetterUtil.getBoolean(PortletProps.get(
-			PortletPropsKeys.ADMIN_EMAIL_KB_ARTICLE_ADDED_ENABLED));
+		GetterUtil.getBoolean(
+			PortletProps.get(
+				PortletPropsKeys.ADMIN_EMAIL_KB_ARTICLE_ADDED_ENABLED));
 
 	public static final String ADMIN_EMAIL_KB_ARTICLE_ADDED_SUBJECT =
 		PortletProps.get(PortletPropsKeys.ADMIN_EMAIL_KB_ARTICLE_ADDED_SUBJECT);
@@ -42,8 +43,9 @@ public class PortletPropsValues {
 		PortletProps.get(PortletPropsKeys.ADMIN_EMAIL_KB_ARTICLE_UPDATED_BODY);
 
 	public static final boolean ADMIN_EMAIL_KB_ARTICLE_UPDATED_ENABLED =
-		GetterUtil.getBoolean(PortletProps.get(
-			PortletPropsKeys.ADMIN_EMAIL_KB_ARTICLE_UPDATED_ENABLED));
+		GetterUtil.getBoolean(
+			PortletProps.get(
+				PortletPropsKeys.ADMIN_EMAIL_KB_ARTICLE_UPDATED_ENABLED));
 
 	public static final String ADMIN_EMAIL_KB_ARTICLE_UPDATED_SUBJECT =
 		PortletProps.get(
@@ -54,8 +56,9 @@ public class PortletPropsValues {
 			PortletPropsKeys.ADMIN_KB_ARTICLE_DEFAULT_SECTIONS);
 
 	public static final boolean ADMIN_KB_ARTICLE_INCREMENT_PRIORITY_ENABLED =
-		GetterUtil.getBoolean(PortletProps.get(
-			PortletPropsKeys.ADMIN_KB_ARTICLE_INCREMENT_PRIORITY_ENABLED));
+		GetterUtil.getBoolean(
+			PortletProps.get(
+				PortletPropsKeys.ADMIN_KB_ARTICLE_INCREMENT_PRIORITY_ENABLED));
 
 	public static final String[] ADMIN_KB_ARTICLE_SECTIONS =
 		PortletProps.getArray(PortletPropsKeys.ADMIN_KB_ARTICLE_SECTIONS);
