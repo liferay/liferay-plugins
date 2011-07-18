@@ -33,7 +33,7 @@
 
 	<!-- Configurator -->
 
-	<bean id="com.liferay.portal.kernel.search.PluginSearchEngineConfigurator" class="com.liferay.portal.kernel.search.PluginSearchEngineConfigurator">
+	<bean id="searchEngineConfigurator.solr" class="com.liferay.portal.kernel.search.PluginSearchEngineConfigurator">
 		<property name="searchEngines">
 			<list>
 				<ref bean="com.liferay.portal.search.solr.SolrSearchEngineImpl" />
