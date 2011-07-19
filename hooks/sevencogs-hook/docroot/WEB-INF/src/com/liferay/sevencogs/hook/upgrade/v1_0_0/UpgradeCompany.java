@@ -1999,7 +1999,7 @@ public class UpgradeCompany extends UpgradeProcess {
 
 		WorkflowDefinitionLinkLocalServiceUtil.updateWorkflowDefinitionLink(
 			defaultUserId, companyId, group.getGroupId(),
-			JournalArticle.class.getName(), 0, workflowDefinitionName,
+			JournalArticle.class.getName(), 0, 0, workflowDefinitionName,
 			workflowDefinitionVersion);
 	}
 
