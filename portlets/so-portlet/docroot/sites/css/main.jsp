@@ -69,7 +69,8 @@
 		}
 
 		li.empty {
-			background-image: url(<%= themeImagesPath %>/messages/alert.png);
+			background: url(<%= themeImagesPath %>/messages/alert.png) no-repeat 0 3px;
+			padding-left: 25px;
 		}
 
 		li.empty:hover {
@@ -95,6 +96,14 @@
 	ul.site-list li:hover {
 		-moz-border-radius: 4px;
 		border-radius: 4px;
+	}
+
+	.search {
+		margin: 10px 0;
+	}
+
+	.hide-notice {
+		float: right;
 	}
 }
 
