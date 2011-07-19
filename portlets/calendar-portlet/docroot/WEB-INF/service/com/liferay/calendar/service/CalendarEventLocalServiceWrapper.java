@@ -167,6 +167,13 @@ public class CalendarEventLocalServiceWrapper
 		return _calendarEventLocalService.getCalendarEvent(calendarEventId);
 	}
 
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _calendarEventLocalService.getPersistedModel(primaryKeyObj);
+	}
+
 	/**
 	* Returns the calendar event with the UUID in the group.
 	*

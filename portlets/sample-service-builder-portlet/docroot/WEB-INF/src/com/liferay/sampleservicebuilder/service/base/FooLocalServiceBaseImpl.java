@@ -29,6 +29,8 @@ import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.IndexerRegistryUtil;
 import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.model.PersistedModel;
+import com.liferay.portal.service.PersistedModelLocalServiceRegistryUtil;
 import com.liferay.portal.service.ResourceLocalService;
 import com.liferay.portal.service.ResourceService;
 import com.liferay.portal.service.UserLocalService;
@@ -47,6 +49,8 @@ import com.liferay.sampleservicebuilder.model.Foo;
 import com.liferay.sampleservicebuilder.service.FooLocalService;
 import com.liferay.sampleservicebuilder.service.FooService;
 import com.liferay.sampleservicebuilder.service.persistence.FooPersistence;
+
+import java.io.Serializable;
 
 import java.util.List;
 
@@ -232,6 +236,11 @@ public abstract class FooLocalServiceBaseImpl implements FooLocalService,
 	 */
 	public Foo getFoo(long fooId) throws PortalException, SystemException {
 		return fooPersistence.findByPrimaryKey(fooId);
+	}
+
+	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
+		throws PortalException, SystemException {
+		return fooPersistence.findByPrimaryKey(primaryKeyObj);
 	}
 
 	/**
@@ -604,6 +613,16 @@ public abstract class FooLocalServiceBaseImpl implements FooLocalService,
 	 */
 	public void setAssetTagPersistence(AssetTagPersistence assetTagPersistence) {
 		this.assetTagPersistence = assetTagPersistence;
+	}
+
+	public void afterPropertiesSet() {
+		PersistedModelLocalServiceRegistryUtil.register("com.liferay.sampleservicebuilder.model.Foo",
+			fooLocalService);
+	}
+
+	public void destroy() {
+		PersistedModelLocalServiceRegistryUtil.unregister(
+			"com.liferay.sampleservicebuilder.model.Foo");
 	}
 
 	/**

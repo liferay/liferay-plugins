@@ -141,7 +141,7 @@ public class MeetupsRegistrationClp extends BaseModelImpl<MeetupsRegistration>
 		_comments = comments;
 	}
 
-	public void save() throws SystemException {
+	public void persist() throws SystemException {
 		MeetupsRegistrationLocalServiceUtil.updateMeetupsRegistration(this);
 	}
 

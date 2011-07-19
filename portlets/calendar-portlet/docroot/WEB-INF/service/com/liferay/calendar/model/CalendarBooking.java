@@ -14,7 +14,7 @@
 
 package com.liferay.calendar.model;
 
-import com.liferay.portal.model.SaveableModel;
+import com.liferay.portal.model.PersistedModel;
 
 /**
  * The extended model interface for the CalendarBooking service. Represents a row in the &quot;CalendarBooking&quot; database table, with each column mapped to a property of this class.
@@ -25,7 +25,7 @@ import com.liferay.portal.model.SaveableModel;
  * @see com.liferay.calendar.model.impl.CalendarBookingModelImpl
  * @generated
  */
-public interface CalendarBooking extends CalendarBookingModel, SaveableModel {
+public interface CalendarBooking extends CalendarBookingModel, PersistedModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *

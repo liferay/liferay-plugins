@@ -89,7 +89,7 @@ public class SVNRepositoryClp extends BaseModelImpl<SVNRepository>
 		throw new UnsupportedOperationException();
 	}
 
-	public void save() throws SystemException {
+	public void persist() throws SystemException {
 		SVNRepositoryLocalServiceUtil.updateSVNRepository(this);
 	}
 

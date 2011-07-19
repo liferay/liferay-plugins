@@ -149,7 +149,7 @@ public class KBTemplateClp extends BaseModelImpl<KBTemplate>
 		_content = content;
 	}
 
-	public void save() throws SystemException {
+	public void persist() throws SystemException {
 		KBTemplateLocalServiceUtil.updateKBTemplate(this);
 	}
 

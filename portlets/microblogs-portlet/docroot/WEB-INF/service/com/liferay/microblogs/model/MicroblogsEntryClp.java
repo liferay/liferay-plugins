@@ -166,7 +166,7 @@ public class MicroblogsEntryClp extends BaseModelImpl<MicroblogsEntry>
 		_socialRelationType = socialRelationType;
 	}
 
-	public void save() throws SystemException {
+	public void persist() throws SystemException {
 		MicroblogsEntryLocalServiceUtil.updateMicroblogsEntry(this);
 	}
 

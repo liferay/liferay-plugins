@@ -327,9 +327,9 @@ public class HRExpenseCurrencyWrapper implements HRExpenseCurrency {
 		return _hrExpenseCurrency.toXmlString();
 	}
 
-	public void save()
+	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_hrExpenseCurrency.save();
+		_hrExpenseCurrency.persist();
 	}
 
 	public HRExpenseCurrency getWrappedHRExpenseCurrency() {

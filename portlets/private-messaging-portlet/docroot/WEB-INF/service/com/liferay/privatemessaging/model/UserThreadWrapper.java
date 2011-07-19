@@ -327,9 +327,9 @@ public class UserThreadWrapper implements UserThread {
 		return _userThread.toXmlString();
 	}
 
-	public void save()
+	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_userThread.save();
+		_userThread.persist();
 	}
 
 	public UserThread getWrappedUserThread() {

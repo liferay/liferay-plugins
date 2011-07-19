@@ -389,9 +389,9 @@ public class FooWrapper implements Foo {
 		return _foo.toXmlString();
 	}
 
-	public void save()
+	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_foo.save();
+		_foo.persist();
 	}
 
 	public Foo getWrappedFoo() {

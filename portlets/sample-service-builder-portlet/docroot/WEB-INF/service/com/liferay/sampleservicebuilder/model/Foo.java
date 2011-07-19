@@ -14,7 +14,7 @@
 
 package com.liferay.sampleservicebuilder.model;
 
-import com.liferay.portal.model.SaveableModel;
+import com.liferay.portal.model.PersistedModel;
 
 /**
  * The extended model interface for the Foo service. Represents a row in the &quot;SSB_Foo&quot; database table, with each column mapped to a property of this class.
@@ -25,7 +25,7 @@ import com.liferay.portal.model.SaveableModel;
  * @see com.liferay.sampleservicebuilder.model.impl.FooModelImpl
  * @generated
  */
-public interface Foo extends FooModel, SaveableModel {
+public interface Foo extends FooModel, PersistedModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *

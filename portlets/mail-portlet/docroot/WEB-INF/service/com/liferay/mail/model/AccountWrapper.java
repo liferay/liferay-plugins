@@ -659,9 +659,9 @@ public class AccountWrapper implements Account {
 		return _account.toXmlString();
 	}
 
-	public void save()
+	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_account.save();
+		_account.persist();
 	}
 
 	public java.lang.String getPasswordDecrypted() {

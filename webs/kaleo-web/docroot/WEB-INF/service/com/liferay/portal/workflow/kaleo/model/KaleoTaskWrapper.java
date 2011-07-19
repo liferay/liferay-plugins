@@ -345,9 +345,9 @@ public class KaleoTaskWrapper implements KaleoTask {
 		return _kaleoTask.toXmlString();
 	}
 
-	public void save()
+	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_kaleoTask.save();
+		_kaleoTask.persist();
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoNode getKaleoNode()

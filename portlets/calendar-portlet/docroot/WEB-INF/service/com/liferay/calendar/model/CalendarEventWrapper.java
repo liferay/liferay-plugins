@@ -727,9 +727,9 @@ public class CalendarEventWrapper implements CalendarEvent {
 		return _calendarEvent.toXmlString();
 	}
 
-	public void save()
+	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_calendarEvent.save();
+		_calendarEvent.persist();
 	}
 
 	public CalendarEvent getWrappedCalendarEvent() {

@@ -699,9 +699,9 @@ public class KaleoLogWrapper implements KaleoLog {
 		return _kaleoLog.toXmlString();
 	}
 
-	public void save()
+	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_kaleoLog.save();
+		_kaleoLog.persist();
 	}
 
 	public KaleoLog getWrappedKaleoLog() {

@@ -140,7 +140,7 @@ public class HRExpenseTypeClp extends BaseModelImpl<HRExpenseType>
 		_description = description;
 	}
 
-	public void save() throws SystemException {
+	public void persist() throws SystemException {
 		HRExpenseTypeLocalServiceUtil.updateHRExpenseType(this);
 	}
 

@@ -38,7 +38,7 @@ public abstract class OAuthTokenBaseImpl extends OAuthTokenModelImpl
 	 *
 	 * Never modify or reference this class directly. All methods that expect a o auth token model instance should use the {@link OAuthToken} interface instead.
 	 */
-	public void save() throws SystemException {
+	public void persist() throws SystemException {
 		OAuthTokenLocalServiceUtil.updateOAuthToken(this);
 	}
 }

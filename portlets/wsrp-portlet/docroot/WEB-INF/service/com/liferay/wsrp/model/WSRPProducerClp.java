@@ -135,7 +135,7 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 		throw new UnsupportedOperationException();
 	}
 
-	public void save() throws SystemException {
+	public void persist() throws SystemException {
 		WSRPProducerLocalServiceUtil.updateWSRPProducer(this);
 	}
 

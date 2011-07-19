@@ -324,9 +324,9 @@ public class JIRAIssueWrapper implements JIRAIssue {
 		return _jiraIssue.toXmlString();
 	}
 
-	public void save()
+	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_jiraIssue.save();
+		_jiraIssue.persist();
 	}
 
 	public JIRAIssue getWrappedJIRAIssue() {

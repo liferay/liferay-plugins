@@ -151,7 +151,7 @@ public class AssetClp extends BaseModelImpl<Asset> implements Asset {
 		_active = active;
 	}
 
-	public void save() throws SystemException {
+	public void persist() throws SystemException {
 		AssetLocalServiceUtil.updateAsset(this);
 	}
 

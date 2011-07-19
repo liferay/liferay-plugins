@@ -138,7 +138,7 @@ public class AttachmentClp extends BaseModelImpl<Attachment>
 		_size = size;
 	}
 
-	public void save() throws SystemException {
+	public void persist() throws SystemException {
 		AttachmentLocalServiceUtil.updateAttachment(this);
 	}
 

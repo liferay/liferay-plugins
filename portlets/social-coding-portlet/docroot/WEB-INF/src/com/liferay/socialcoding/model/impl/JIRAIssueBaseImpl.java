@@ -38,7 +38,7 @@ public abstract class JIRAIssueBaseImpl extends JIRAIssueModelImpl
 	 *
 	 * Never modify or reference this class directly. All methods that expect a j i r a issue model instance should use the {@link JIRAIssue} interface instead.
 	 */
-	public void save() throws SystemException {
+	public void persist() throws SystemException {
 		JIRAIssueLocalServiceUtil.updateJIRAIssue(this);
 	}
 }

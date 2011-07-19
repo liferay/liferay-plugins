@@ -260,6 +260,12 @@ public abstract class MicroblogsEntryServiceBaseImpl extends PrincipalBean
 		this.userPersistence = userPersistence;
 	}
 
+	public void afterPropertiesSet() {
+	}
+
+	public void destroy() {
+	}
+
 	/**
 	 * Returns the Spring bean ID for this bean.
 	 *

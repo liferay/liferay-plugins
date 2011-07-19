@@ -162,9 +162,9 @@ public class BarWrapper implements Bar {
 		return _bar.toXmlString();
 	}
 
-	public void save()
+	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_bar.save();
+		_bar.persist();
 	}
 
 	public Bar getWrappedBar() {

@@ -141,7 +141,7 @@ public class StatusClp extends BaseModelImpl<Status> implements Status {
 		_playSound = playSound;
 	}
 
-	public void save() throws SystemException {
+	public void persist() throws SystemException {
 		StatusLocalServiceUtil.updateStatus(this);
 	}
 

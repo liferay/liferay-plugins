@@ -38,7 +38,7 @@ public abstract class MeetupsEntryBaseImpl extends MeetupsEntryModelImpl
 	 *
 	 * Never modify or reference this class directly. All methods that expect a meetups entry model instance should use the {@link MeetupsEntry} interface instead.
 	 */
-	public void save() throws SystemException {
+	public void persist() throws SystemException {
 		MeetupsEntryLocalServiceUtil.updateMeetupsEntry(this);
 	}
 }

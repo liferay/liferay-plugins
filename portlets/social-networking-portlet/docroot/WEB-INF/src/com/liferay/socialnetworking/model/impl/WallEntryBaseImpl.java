@@ -38,7 +38,7 @@ public abstract class WallEntryBaseImpl extends WallEntryModelImpl
 	 *
 	 * Never modify or reference this class directly. All methods that expect a wall entry model instance should use the {@link WallEntry} interface instead.
 	 */
-	public void save() throws SystemException {
+	public void persist() throws SystemException {
 		WallEntryLocalServiceUtil.updateWallEntry(this);
 	}
 }

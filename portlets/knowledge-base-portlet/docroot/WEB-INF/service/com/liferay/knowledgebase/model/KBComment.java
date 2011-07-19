@@ -14,7 +14,7 @@
 
 package com.liferay.knowledgebase.model;
 
-import com.liferay.portal.model.SaveableModel;
+import com.liferay.portal.model.PersistedModel;
 
 /**
  * The extended model interface for the KBComment service. Represents a row in the &quot;KBComment&quot; database table, with each column mapped to a property of this class.
@@ -25,7 +25,7 @@ import com.liferay.portal.model.SaveableModel;
  * @see com.liferay.knowledgebase.model.impl.KBCommentModelImpl
  * @generated
  */
-public interface KBComment extends KBCommentModel, SaveableModel {
+public interface KBComment extends KBCommentModel, PersistedModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *

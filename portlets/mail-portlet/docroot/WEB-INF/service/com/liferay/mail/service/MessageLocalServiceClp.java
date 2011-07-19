@@ -59,72 +59,75 @@ public class MessageLocalServiceClp implements MessageLocalService {
 		_getMessageMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getMessage", long.class);
 
-		_getMessagesMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getPersistedModelMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getPersistedModel", java.io.Serializable.class);
+
+		_getMessagesMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getMessages", int.class, int.class);
 
-		_getMessagesCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getMessagesCountMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getMessagesCount");
 
-		_updateMessageMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateMessageMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateMessage", com.liferay.mail.model.Message.class);
 
-		_updateMessageMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateMessageMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateMessage", com.liferay.mail.model.Message.class,
 				boolean.class);
 
-		_getBeanIdentifierMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getBeanIdentifierMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getBeanIdentifier");
 
-		_setBeanIdentifierMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+		_setBeanIdentifierMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
 				"setBeanIdentifier", java.lang.String.class);
 
-		_addMessageMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+		_addMessageMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
 				"addMessage", long.class, long.class, java.lang.String.class,
 				java.lang.String.class, java.lang.String.class,
 				java.lang.String.class, java.util.Date.class,
 				java.lang.String.class, java.lang.String.class,
 				java.lang.String.class, long.class);
 
-		_deleteMessagesMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+		_deleteMessagesMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
 				"deleteMessages", long.class);
 
-		_getAccountUnreadMessagesCountMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getAccountUnreadMessagesCountMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getAccountUnreadMessagesCount", long.class);
 
-		_getCompanyMessagesMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getCompanyMessagesMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getCompanyMessages", long.class, int.class, int.class);
 
-		_getCompanyMessagesCountMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getCompanyMessagesCountMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getCompanyMessagesCount", long.class);
 
-		_getFolderMessagesMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getFolderMessagesMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getFolderMessages", long.class);
 
-		_getFolderMessagesCountMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getFolderMessagesCountMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getFolderMessagesCount", long.class);
 
-		_getFolderUnreadMessagesCountMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getFolderUnreadMessagesCountMethodKey23 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getFolderUnreadMessagesCount", long.class);
 
-		_getMessageMethodKey23 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getMessageMethodKey24 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getMessage", long.class, long.class);
 
-		_getRemoteMessageMethodKey24 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getRemoteMessageMethodKey25 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getRemoteMessage", long.class, boolean.class);
 
-		_populateMessagesMethodKey25 = new MethodKey(_classLoaderProxy.getClassName(),
+		_populateMessagesMethodKey26 = new MethodKey(_classLoaderProxy.getClassName(),
 				"populateMessages", java.util.List.class, long.class,
 				java.lang.String.class, int.class, int.class,
 				java.lang.String.class, java.lang.String.class);
 
-		_updateContentMethodKey26 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateContentMethodKey27 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateContent", long.class, java.lang.String.class,
 				java.lang.String.class);
 
-		_updateFlagMethodKey27 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateFlagMethodKey28 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateFlag", long.class, int.class, boolean.class);
 
-		_updateMessageMethodKey28 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateMessageMethodKey29 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateMessage", long.class, long.class,
 				java.lang.String.class, java.lang.String.class,
 				java.lang.String.class, java.lang.String.class,
@@ -388,12 +391,45 @@ public class MessageLocalServiceClp implements MessageLocalService {
 		return (com.liferay.mail.model.Message)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_getPersistedModelMethodKey9,
+				ClpSerializer.translateInput(primaryKeyObj));
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.portal.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public java.util.List<com.liferay.mail.model.Message> getMessages(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getMessagesMethodKey9,
+		MethodHandler methodHandler = new MethodHandler(_getMessagesMethodKey10,
 				start, end);
 
 		try {
@@ -420,7 +456,7 @@ public class MessageLocalServiceClp implements MessageLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getMessagesCountMethodKey10);
+		MethodHandler methodHandler = new MethodHandler(_getMessagesCountMethodKey11);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -447,7 +483,7 @@ public class MessageLocalServiceClp implements MessageLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateMessageMethodKey11,
+		MethodHandler methodHandler = new MethodHandler(_updateMessageMethodKey12,
 				ClpSerializer.translateInput(message));
 
 		try {
@@ -475,7 +511,7 @@ public class MessageLocalServiceClp implements MessageLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateMessageMethodKey12,
+		MethodHandler methodHandler = new MethodHandler(_updateMessageMethodKey13,
 				ClpSerializer.translateInput(message), merge);
 
 		try {
@@ -501,7 +537,7 @@ public class MessageLocalServiceClp implements MessageLocalService {
 	public java.lang.String getBeanIdentifier() {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey13);
+		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey14);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -520,7 +556,7 @@ public class MessageLocalServiceClp implements MessageLocalService {
 	}
 
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey14,
+		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey15,
 				ClpSerializer.translateInput(beanIdentifier));
 
 		try {
@@ -546,7 +582,7 @@ public class MessageLocalServiceClp implements MessageLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_addMessageMethodKey15,
+		MethodHandler methodHandler = new MethodHandler(_addMessageMethodKey16,
 				userId, folderId, ClpSerializer.translateInput(sender),
 				ClpSerializer.translateInput(to),
 				ClpSerializer.translateInput(cc),
@@ -583,7 +619,7 @@ public class MessageLocalServiceClp implements MessageLocalService {
 	public void deleteMessages(long folderId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_deleteMessagesMethodKey16,
+		MethodHandler methodHandler = new MethodHandler(_deleteMessagesMethodKey17,
 				folderId);
 
 		try {
@@ -612,7 +648,7 @@ public class MessageLocalServiceClp implements MessageLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getAccountUnreadMessagesCountMethodKey17,
+		MethodHandler methodHandler = new MethodHandler(_getAccountUnreadMessagesCountMethodKey18,
 				accountId);
 
 		try {
@@ -640,7 +676,7 @@ public class MessageLocalServiceClp implements MessageLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getCompanyMessagesMethodKey18,
+		MethodHandler methodHandler = new MethodHandler(_getCompanyMessagesMethodKey19,
 				companyId, start, end);
 
 		try {
@@ -667,7 +703,7 @@ public class MessageLocalServiceClp implements MessageLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getCompanyMessagesCountMethodKey19,
+		MethodHandler methodHandler = new MethodHandler(_getCompanyMessagesCountMethodKey20,
 				companyId);
 
 		try {
@@ -695,7 +731,7 @@ public class MessageLocalServiceClp implements MessageLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getFolderMessagesMethodKey20,
+		MethodHandler methodHandler = new MethodHandler(_getFolderMessagesMethodKey21,
 				folderId);
 
 		try {
@@ -722,7 +758,7 @@ public class MessageLocalServiceClp implements MessageLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getFolderMessagesCountMethodKey21,
+		MethodHandler methodHandler = new MethodHandler(_getFolderMessagesCountMethodKey22,
 				folderId);
 
 		try {
@@ -749,7 +785,7 @@ public class MessageLocalServiceClp implements MessageLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getFolderUnreadMessagesCountMethodKey22,
+		MethodHandler methodHandler = new MethodHandler(_getFolderUnreadMessagesCountMethodKey23,
 				folderId);
 
 		try {
@@ -778,7 +814,7 @@ public class MessageLocalServiceClp implements MessageLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getMessageMethodKey23,
+		MethodHandler methodHandler = new MethodHandler(_getMessageMethodKey24,
 				folderId, remoteMessageId);
 
 		try {
@@ -811,7 +847,7 @@ public class MessageLocalServiceClp implements MessageLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getRemoteMessageMethodKey24,
+		MethodHandler methodHandler = new MethodHandler(_getRemoteMessageMethodKey25,
 				folderId, oldest);
 
 		try {
@@ -845,7 +881,7 @@ public class MessageLocalServiceClp implements MessageLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_populateMessagesMethodKey25,
+		MethodHandler methodHandler = new MethodHandler(_populateMessagesMethodKey26,
 				ClpSerializer.translateInput(messages), folderId,
 				ClpSerializer.translateInput(keywords), pageNumber,
 				messagesPerPage, ClpSerializer.translateInput(orderByField),
@@ -877,7 +913,7 @@ public class MessageLocalServiceClp implements MessageLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateContentMethodKey26,
+		MethodHandler methodHandler = new MethodHandler(_updateContentMethodKey27,
 				messageId, ClpSerializer.translateInput(body),
 				ClpSerializer.translateInput(flags));
 
@@ -911,7 +947,7 @@ public class MessageLocalServiceClp implements MessageLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateFlagMethodKey27,
+		MethodHandler methodHandler = new MethodHandler(_updateFlagMethodKey28,
 				messageId, flag, value);
 
 		try {
@@ -947,7 +983,7 @@ public class MessageLocalServiceClp implements MessageLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateMessageMethodKey28,
+		MethodHandler methodHandler = new MethodHandler(_updateMessageMethodKey29,
 				messageId, folderId, ClpSerializer.translateInput(sender),
 				ClpSerializer.translateInput(to),
 				ClpSerializer.translateInput(cc),
@@ -995,24 +1031,25 @@ public class MessageLocalServiceClp implements MessageLocalService {
 	private MethodKey _dynamicQueryMethodKey6;
 	private MethodKey _dynamicQueryCountMethodKey7;
 	private MethodKey _getMessageMethodKey8;
-	private MethodKey _getMessagesMethodKey9;
-	private MethodKey _getMessagesCountMethodKey10;
-	private MethodKey _updateMessageMethodKey11;
+	private MethodKey _getPersistedModelMethodKey9;
+	private MethodKey _getMessagesMethodKey10;
+	private MethodKey _getMessagesCountMethodKey11;
 	private MethodKey _updateMessageMethodKey12;
-	private MethodKey _getBeanIdentifierMethodKey13;
-	private MethodKey _setBeanIdentifierMethodKey14;
-	private MethodKey _addMessageMethodKey15;
-	private MethodKey _deleteMessagesMethodKey16;
-	private MethodKey _getAccountUnreadMessagesCountMethodKey17;
-	private MethodKey _getCompanyMessagesMethodKey18;
-	private MethodKey _getCompanyMessagesCountMethodKey19;
-	private MethodKey _getFolderMessagesMethodKey20;
-	private MethodKey _getFolderMessagesCountMethodKey21;
-	private MethodKey _getFolderUnreadMessagesCountMethodKey22;
-	private MethodKey _getMessageMethodKey23;
-	private MethodKey _getRemoteMessageMethodKey24;
-	private MethodKey _populateMessagesMethodKey25;
-	private MethodKey _updateContentMethodKey26;
-	private MethodKey _updateFlagMethodKey27;
-	private MethodKey _updateMessageMethodKey28;
+	private MethodKey _updateMessageMethodKey13;
+	private MethodKey _getBeanIdentifierMethodKey14;
+	private MethodKey _setBeanIdentifierMethodKey15;
+	private MethodKey _addMessageMethodKey16;
+	private MethodKey _deleteMessagesMethodKey17;
+	private MethodKey _getAccountUnreadMessagesCountMethodKey18;
+	private MethodKey _getCompanyMessagesMethodKey19;
+	private MethodKey _getCompanyMessagesCountMethodKey20;
+	private MethodKey _getFolderMessagesMethodKey21;
+	private MethodKey _getFolderMessagesCountMethodKey22;
+	private MethodKey _getFolderUnreadMessagesCountMethodKey23;
+	private MethodKey _getMessageMethodKey24;
+	private MethodKey _getRemoteMessageMethodKey25;
+	private MethodKey _populateMessagesMethodKey26;
+	private MethodKey _updateContentMethodKey27;
+	private MethodKey _updateFlagMethodKey28;
+	private MethodKey _updateMessageMethodKey29;
 }

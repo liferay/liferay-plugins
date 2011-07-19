@@ -147,7 +147,7 @@ public class CheckoutClp extends BaseModelImpl<Checkout> implements Checkout {
 		_actualCheckInDate = actualCheckInDate;
 	}
 
-	public void save() throws SystemException {
+	public void persist() throws SystemException {
 		CheckoutLocalServiceUtil.updateCheckout(this);
 	}
 

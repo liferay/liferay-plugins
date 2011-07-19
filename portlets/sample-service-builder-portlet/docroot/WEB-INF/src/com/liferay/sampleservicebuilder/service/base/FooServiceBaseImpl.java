@@ -355,6 +355,12 @@ public abstract class FooServiceBaseImpl extends PrincipalBean
 		this.assetTagPersistence = assetTagPersistence;
 	}
 
+	public void afterPropertiesSet() {
+	}
+
+	public void destroy() {
+	}
+
 	/**
 	 * Returns the Spring bean ID for this bean.
 	 *

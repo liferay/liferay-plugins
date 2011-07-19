@@ -148,7 +148,7 @@ public class FeedClp extends BaseModelImpl<Feed> implements Feed {
 		_lastStatusId = lastStatusId;
 	}
 
-	public void save() throws SystemException {
+	public void persist() throws SystemException {
 		FeedLocalServiceUtil.updateFeed(this);
 	}
 

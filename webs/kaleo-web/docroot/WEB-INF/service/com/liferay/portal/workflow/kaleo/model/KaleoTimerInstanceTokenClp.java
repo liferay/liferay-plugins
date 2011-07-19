@@ -256,7 +256,7 @@ public class KaleoTimerInstanceTokenClp extends BaseModelImpl<KaleoTimerInstance
 		throw new UnsupportedOperationException();
 	}
 
-	public void save() throws SystemException {
+	public void persist() throws SystemException {
 		KaleoTimerInstanceTokenLocalServiceUtil.updateKaleoTimerInstanceToken(this);
 	}
 

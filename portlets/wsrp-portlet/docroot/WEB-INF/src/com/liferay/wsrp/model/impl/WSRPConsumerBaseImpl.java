@@ -38,7 +38,7 @@ public abstract class WSRPConsumerBaseImpl extends WSRPConsumerModelImpl
 	 *
 	 * Never modify or reference this class directly. All methods that expect a w s r p consumer model instance should use the {@link WSRPConsumer} interface instead.
 	 */
-	public void save() throws SystemException {
+	public void persist() throws SystemException {
 		WSRPConsumerLocalServiceUtil.updateWSRPConsumer(this);
 	}
 }

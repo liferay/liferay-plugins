@@ -162,6 +162,13 @@ public class MessageLocalServiceWrapper implements MessageLocalService {
 		return _messageLocalService.getMessage(messageId);
 	}
 
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _messageLocalService.getPersistedModel(primaryKeyObj);
+	}
+
 	/**
 	* Returns a range of all the messages.
 	*

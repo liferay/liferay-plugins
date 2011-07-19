@@ -162,6 +162,13 @@ public class AccountLocalServiceWrapper implements AccountLocalService {
 		return _accountLocalService.getAccount(accountId);
 	}
 
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _accountLocalService.getPersistedModel(primaryKeyObj);
+	}
+
 	/**
 	* Returns a range of all the accounts.
 	*

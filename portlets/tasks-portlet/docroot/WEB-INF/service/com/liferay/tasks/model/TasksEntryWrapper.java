@@ -438,9 +438,9 @@ public class TasksEntryWrapper implements TasksEntry {
 		return _tasksEntry.toXmlString();
 	}
 
-	public void save()
+	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_tasksEntry.save();
+		_tasksEntry.persist();
 	}
 
 	public java.lang.String getAssigneeFullName() {

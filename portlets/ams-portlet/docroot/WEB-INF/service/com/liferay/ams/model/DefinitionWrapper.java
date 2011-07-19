@@ -380,9 +380,9 @@ public class DefinitionWrapper implements Definition {
 		return _definition.toXmlString();
 	}
 
-	public void save()
+	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_definition.save();
+		_definition.persist();
 	}
 
 	public Definition getWrappedDefinition() {

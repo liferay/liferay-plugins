@@ -164,6 +164,13 @@ public class WallEntryLocalServiceWrapper implements WallEntryLocalService {
 		return _wallEntryLocalService.getWallEntry(wallEntryId);
 	}
 
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _wallEntryLocalService.getPersistedModel(primaryKeyObj);
+	}
+
 	/**
 	* Returns a range of all the wall entries.
 	*

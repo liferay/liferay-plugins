@@ -328,9 +328,9 @@ public class FeedWrapper implements Feed {
 		return _feed.toXmlString();
 	}
 
-	public void save()
+	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_feed.save();
+		_feed.persist();
 	}
 
 	public Feed getWrappedFeed() {

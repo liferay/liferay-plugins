@@ -38,7 +38,7 @@ public abstract class JIRAChangeItemBaseImpl extends JIRAChangeItemModelImpl
 	 *
 	 * Never modify or reference this class directly. All methods that expect a j i r a change item model instance should use the {@link JIRAChangeItem} interface instead.
 	 */
-	public void save() throws SystemException {
+	public void persist() throws SystemException {
 		JIRAChangeItemLocalServiceUtil.updateJIRAChangeItem(this);
 	}
 }

@@ -39,12 +39,14 @@ import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.IndexerRegistryUtil;
 import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.model.PersistedModel;
 import com.liferay.portal.service.CompanyLocalService;
 import com.liferay.portal.service.CompanyService;
 import com.liferay.portal.service.GroupLocalService;
 import com.liferay.portal.service.GroupService;
 import com.liferay.portal.service.LayoutLocalService;
 import com.liferay.portal.service.LayoutService;
+import com.liferay.portal.service.PersistedModelLocalServiceRegistryUtil;
 import com.liferay.portal.service.PortletPreferencesLocalService;
 import com.liferay.portal.service.PortletPreferencesService;
 import com.liferay.portal.service.ResourceLocalService;
@@ -69,6 +71,8 @@ import com.liferay.portlet.ratings.service.RatingsStatsLocalService;
 import com.liferay.portlet.ratings.service.persistence.RatingsStatsPersistence;
 import com.liferay.portlet.social.service.SocialActivityLocalService;
 import com.liferay.portlet.social.service.persistence.SocialActivityPersistence;
+
+import java.io.Serializable;
 
 import java.util.List;
 
@@ -260,6 +264,11 @@ public abstract class KBArticleLocalServiceBaseImpl
 	public KBArticle getKBArticle(long kbArticleId)
 		throws PortalException, SystemException {
 		return kbArticlePersistence.findByPrimaryKey(kbArticleId);
+	}
+
+	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
+		throws PortalException, SystemException {
+		return kbArticlePersistence.findByPrimaryKey(primaryKeyObj);
 	}
 
 	/**
@@ -1047,6 +1056,16 @@ public abstract class KBArticleLocalServiceBaseImpl
 	public void setSocialActivityPersistence(
 		SocialActivityPersistence socialActivityPersistence) {
 		this.socialActivityPersistence = socialActivityPersistence;
+	}
+
+	public void afterPropertiesSet() {
+		PersistedModelLocalServiceRegistryUtil.register("com.liferay.knowledgebase.model.KBArticle",
+			kbArticleLocalService);
+	}
+
+	public void destroy() {
+		PersistedModelLocalServiceRegistryUtil.unregister(
+			"com.liferay.knowledgebase.model.KBArticle");
 	}
 
 	/**

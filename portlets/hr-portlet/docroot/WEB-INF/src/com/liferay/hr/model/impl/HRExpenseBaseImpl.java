@@ -38,7 +38,7 @@ public abstract class HRExpenseBaseImpl extends HRExpenseModelImpl
 	 *
 	 * Never modify or reference this class directly. All methods that expect a h r expense model instance should use the {@link HRExpense} interface instead.
 	 */
-	public void save() throws SystemException {
+	public void persist() throws SystemException {
 		HRExpenseLocalServiceUtil.updateHRExpense(this);
 	}
 }

@@ -166,7 +166,7 @@ public class WSRPConsumerClp extends BaseModelImpl<WSRPConsumer>
 		throw new UnsupportedOperationException();
 	}
 
-	public void save() throws SystemException {
+	public void persist() throws SystemException {
 		WSRPConsumerLocalServiceUtil.updateWSRPConsumer(this);
 	}
 

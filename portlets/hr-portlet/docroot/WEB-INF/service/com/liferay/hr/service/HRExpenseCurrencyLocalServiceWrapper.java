@@ -166,6 +166,13 @@ public class HRExpenseCurrencyLocalServiceWrapper
 		return _hrExpenseCurrencyLocalService.getHRExpenseCurrency(hrExpenseCurrencyId);
 	}
 
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _hrExpenseCurrencyLocalService.getPersistedModel(primaryKeyObj);
+	}
+
 	/**
 	* Returns a range of all the h r expense currencies.
 	*

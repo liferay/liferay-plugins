@@ -444,9 +444,9 @@ public class KaleoInstanceWrapper implements KaleoInstance {
 		return _kaleoInstance.toXmlString();
 	}
 
-	public void save()
+	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_kaleoInstance.save();
+		_kaleoInstance.persist();
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoDefinition getKaleoDefinition()

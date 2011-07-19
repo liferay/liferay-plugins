@@ -59,22 +59,25 @@ public class TypeLocalServiceClp implements TypeLocalService {
 		_getTypeMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getType", long.class);
 
-		_getTypesMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getPersistedModelMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getPersistedModel", java.io.Serializable.class);
+
+		_getTypesMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getTypes", int.class, int.class);
 
-		_getTypesCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getTypesCountMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getTypesCount");
 
-		_updateTypeMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateTypeMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateType", com.liferay.ams.model.Type.class);
 
-		_updateTypeMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateTypeMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateType", com.liferay.ams.model.Type.class, boolean.class);
 
-		_getBeanIdentifierMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getBeanIdentifierMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getBeanIdentifier");
 
-		_setBeanIdentifierMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+		_setBeanIdentifierMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
 				"setBeanIdentifier", java.lang.String.class);
 	}
 
@@ -328,11 +331,44 @@ public class TypeLocalServiceClp implements TypeLocalService {
 		return (com.liferay.ams.model.Type)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_getPersistedModelMethodKey9,
+				ClpSerializer.translateInput(primaryKeyObj));
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.portal.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public java.util.List<com.liferay.ams.model.Type> getTypes(int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getTypesMethodKey9,
+		MethodHandler methodHandler = new MethodHandler(_getTypesMethodKey10,
 				start, end);
 
 		try {
@@ -359,7 +395,7 @@ public class TypeLocalServiceClp implements TypeLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getTypesCountMethodKey10);
+		MethodHandler methodHandler = new MethodHandler(_getTypesCountMethodKey11);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -386,7 +422,7 @@ public class TypeLocalServiceClp implements TypeLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateTypeMethodKey11,
+		MethodHandler methodHandler = new MethodHandler(_updateTypeMethodKey12,
 				ClpSerializer.translateInput(type));
 
 		try {
@@ -414,7 +450,7 @@ public class TypeLocalServiceClp implements TypeLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateTypeMethodKey12,
+		MethodHandler methodHandler = new MethodHandler(_updateTypeMethodKey13,
 				ClpSerializer.translateInput(type), merge);
 
 		try {
@@ -440,7 +476,7 @@ public class TypeLocalServiceClp implements TypeLocalService {
 	public java.lang.String getBeanIdentifier() {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey13);
+		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey14);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -459,7 +495,7 @@ public class TypeLocalServiceClp implements TypeLocalService {
 	}
 
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey14,
+		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey15,
 				ClpSerializer.translateInput(beanIdentifier));
 
 		try {
@@ -490,10 +526,11 @@ public class TypeLocalServiceClp implements TypeLocalService {
 	private MethodKey _dynamicQueryMethodKey6;
 	private MethodKey _dynamicQueryCountMethodKey7;
 	private MethodKey _getTypeMethodKey8;
-	private MethodKey _getTypesMethodKey9;
-	private MethodKey _getTypesCountMethodKey10;
-	private MethodKey _updateTypeMethodKey11;
+	private MethodKey _getPersistedModelMethodKey9;
+	private MethodKey _getTypesMethodKey10;
+	private MethodKey _getTypesCountMethodKey11;
 	private MethodKey _updateTypeMethodKey12;
-	private MethodKey _getBeanIdentifierMethodKey13;
-	private MethodKey _setBeanIdentifierMethodKey14;
+	private MethodKey _updateTypeMethodKey13;
+	private MethodKey _getBeanIdentifierMethodKey14;
+	private MethodKey _setBeanIdentifierMethodKey15;
 }

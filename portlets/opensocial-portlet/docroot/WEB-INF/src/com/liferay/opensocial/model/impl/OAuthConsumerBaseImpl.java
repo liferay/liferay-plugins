@@ -38,7 +38,7 @@ public abstract class OAuthConsumerBaseImpl extends OAuthConsumerModelImpl
 	 *
 	 * Never modify or reference this class directly. All methods that expect a o auth consumer model instance should use the {@link OAuthConsumer} interface instead.
 	 */
-	public void save() throws SystemException {
+	public void persist() throws SystemException {
 		OAuthConsumerLocalServiceUtil.updateOAuthConsumer(this);
 	}
 }

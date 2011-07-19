@@ -203,7 +203,7 @@ public class KaleoNotificationClp extends BaseModelImpl<KaleoNotification>
 		_notificationTypes = notificationTypes;
 	}
 
-	public void save() throws SystemException {
+	public void persist() throws SystemException {
 		KaleoNotificationLocalServiceUtil.updateKaleoNotification(this);
 	}
 

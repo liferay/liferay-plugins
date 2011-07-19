@@ -176,6 +176,13 @@ public class WSRPProducerLocalServiceUtil {
 		return getService().getWSRPProducer(wsrpProducerId);
 	}
 
+	public static com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().getPersistedModel(primaryKeyObj);
+	}
+
 	/**
 	* Returns the w s r p producer with the UUID in the group.
 	*

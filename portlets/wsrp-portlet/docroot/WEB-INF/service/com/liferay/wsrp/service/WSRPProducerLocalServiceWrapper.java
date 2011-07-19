@@ -166,6 +166,13 @@ public class WSRPProducerLocalServiceWrapper implements WSRPProducerLocalService
 		return _wsrpProducerLocalService.getWSRPProducer(wsrpProducerId);
 	}
 
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _wsrpProducerLocalService.getPersistedModel(primaryKeyObj);
+	}
+
 	/**
 	* Returns the w s r p producer with the UUID in the group.
 	*

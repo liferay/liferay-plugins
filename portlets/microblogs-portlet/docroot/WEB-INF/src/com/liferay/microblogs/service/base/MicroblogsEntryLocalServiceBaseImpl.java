@@ -35,12 +35,16 @@ import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.IndexerRegistryUtil;
 import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.model.PersistedModel;
+import com.liferay.portal.service.PersistedModelLocalServiceRegistryUtil;
 import com.liferay.portal.service.ResourceLocalService;
 import com.liferay.portal.service.ResourceService;
 import com.liferay.portal.service.UserLocalService;
 import com.liferay.portal.service.UserService;
 import com.liferay.portal.service.persistence.ResourcePersistence;
 import com.liferay.portal.service.persistence.UserPersistence;
+
+import java.io.Serializable;
 
 import java.util.List;
 
@@ -233,6 +237,11 @@ public abstract class MicroblogsEntryLocalServiceBaseImpl
 	public MicroblogsEntry getMicroblogsEntry(long microblogsEntryId)
 		throws PortalException, SystemException {
 		return microblogsEntryPersistence.findByPrimaryKey(microblogsEntryId);
+	}
+
+	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
+		throws PortalException, SystemException {
+		return microblogsEntryPersistence.findByPrimaryKey(primaryKeyObj);
 	}
 
 	/**
@@ -507,6 +516,16 @@ public abstract class MicroblogsEntryLocalServiceBaseImpl
 	 */
 	public void setUserPersistence(UserPersistence userPersistence) {
 		this.userPersistence = userPersistence;
+	}
+
+	public void afterPropertiesSet() {
+		PersistedModelLocalServiceRegistryUtil.register("com.liferay.microblogs.model.MicroblogsEntry",
+			microblogsEntryLocalService);
+	}
+
+	public void destroy() {
+		PersistedModelLocalServiceRegistryUtil.unregister(
+			"com.liferay.microblogs.model.MicroblogsEntry");
 	}
 
 	/**

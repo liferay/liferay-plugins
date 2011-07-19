@@ -203,7 +203,7 @@ public class KaleoActionClp extends BaseModelImpl<KaleoAction>
 		_priority = priority;
 	}
 
-	public void save() throws SystemException {
+	public void persist() throws SystemException {
 		KaleoActionLocalServiceUtil.updateKaleoAction(this);
 	}
 

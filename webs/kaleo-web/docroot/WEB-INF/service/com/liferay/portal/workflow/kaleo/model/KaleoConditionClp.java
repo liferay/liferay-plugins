@@ -155,7 +155,7 @@ public class KaleoConditionClp extends BaseModelImpl<KaleoCondition>
 		_scriptLanguage = scriptLanguage;
 	}
 
-	public void save() throws SystemException {
+	public void persist() throws SystemException {
 		KaleoConditionLocalServiceUtil.updateKaleoCondition(this);
 	}
 

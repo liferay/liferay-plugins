@@ -399,9 +399,9 @@ public class MeetupsEntryWrapper implements MeetupsEntry {
 		return _meetupsEntry.toXmlString();
 	}
 
-	public void save()
+	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_meetupsEntry.save();
+		_meetupsEntry.persist();
 	}
 
 	public MeetupsEntry getWrappedMeetupsEntry() {

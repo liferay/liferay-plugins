@@ -59,51 +59,54 @@ public class BarLocalServiceClp implements BarLocalService {
 		_getBarMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getBar", long.class);
 
-		_getBarsMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getPersistedModelMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getPersistedModel", java.io.Serializable.class);
+
+		_getBarsMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getBars", int.class, int.class);
 
-		_getBarsCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getBarsCountMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getBarsCount");
 
-		_updateBarMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateBarMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateBar", com.liferay.testtransaction.model.Bar.class);
 
-		_updateBarMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateBarMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateBar", com.liferay.testtransaction.model.Bar.class,
 				boolean.class);
 
-		_getBeanIdentifierMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getBeanIdentifierMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getBeanIdentifier");
 
-		_setBeanIdentifierMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+		_setBeanIdentifierMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
 				"setBeanIdentifier", java.lang.String.class);
 
-		_addBar_RollbackMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+		_addBar_RollbackMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
 				"addBar_Rollback", java.lang.String.class);
 
-		_addBar_SuccessMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+		_addBar_SuccessMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
 				"addBar_Success", java.lang.String.class);
 
-		_addBarAndClassName_PortalRollbackMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
+		_addBarAndClassName_PortalRollbackMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
 				"addBarAndClassName_PortalRollback", java.lang.String.class);
 
-		_addBarAndClassName_PortletRollbackMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
+		_addBarAndClassName_PortletRollbackMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
 				"addBarAndClassName_PortletRollback", java.lang.String.class);
 
-		_deleteBarAndClassNameMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
+		_deleteBarAndClassNameMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
 				"deleteBarAndClassName",
 				com.liferay.testtransaction.model.Bar.class);
 
-		_getBarMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getBarMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getBar", java.lang.String.class);
 
-		_hasBarMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
+		_hasBarMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
 				"hasBar", java.lang.String.class);
 
-		_hasClassNameMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
+		_hasClassNameMethodKey23 = new MethodKey(_classLoaderProxy.getClassName(),
 				"hasClassName");
 
-		_testAddClassNameAndBar_SuccessMethodKey23 = new MethodKey(_classLoaderProxy.getClassName(),
+		_testAddClassNameAndBar_SuccessMethodKey24 = new MethodKey(_classLoaderProxy.getClassName(),
 				"testAddClassNameAndBar_Success", java.lang.String.class);
 	}
 
@@ -357,12 +360,45 @@ public class BarLocalServiceClp implements BarLocalService {
 		return (com.liferay.testtransaction.model.Bar)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_getPersistedModelMethodKey9,
+				ClpSerializer.translateInput(primaryKeyObj));
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.portal.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public java.util.List<com.liferay.testtransaction.model.Bar> getBars(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getBarsMethodKey9,
+		MethodHandler methodHandler = new MethodHandler(_getBarsMethodKey10,
 				start, end);
 
 		try {
@@ -389,7 +425,7 @@ public class BarLocalServiceClp implements BarLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getBarsCountMethodKey10);
+		MethodHandler methodHandler = new MethodHandler(_getBarsCountMethodKey11);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -416,7 +452,7 @@ public class BarLocalServiceClp implements BarLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateBarMethodKey11,
+		MethodHandler methodHandler = new MethodHandler(_updateBarMethodKey12,
 				ClpSerializer.translateInput(bar));
 
 		try {
@@ -444,7 +480,7 @@ public class BarLocalServiceClp implements BarLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateBarMethodKey12,
+		MethodHandler methodHandler = new MethodHandler(_updateBarMethodKey13,
 				ClpSerializer.translateInput(bar), merge);
 
 		try {
@@ -470,7 +506,7 @@ public class BarLocalServiceClp implements BarLocalService {
 	public java.lang.String getBeanIdentifier() {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey13);
+		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey14);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -489,7 +525,7 @@ public class BarLocalServiceClp implements BarLocalService {
 	}
 
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey14,
+		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey15,
 				ClpSerializer.translateInput(beanIdentifier));
 
 		try {
@@ -508,7 +544,7 @@ public class BarLocalServiceClp implements BarLocalService {
 
 	public void addBar_Rollback(java.lang.String text)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_addBar_RollbackMethodKey15,
+		MethodHandler methodHandler = new MethodHandler(_addBar_RollbackMethodKey16,
 				ClpSerializer.translateInput(text));
 
 		try {
@@ -534,7 +570,7 @@ public class BarLocalServiceClp implements BarLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_addBar_SuccessMethodKey16,
+		MethodHandler methodHandler = new MethodHandler(_addBar_SuccessMethodKey17,
 				ClpSerializer.translateInput(text));
 
 		try {
@@ -559,7 +595,7 @@ public class BarLocalServiceClp implements BarLocalService {
 
 	public void addBarAndClassName_PortalRollback(java.lang.String text)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_addBarAndClassName_PortalRollbackMethodKey17,
+		MethodHandler methodHandler = new MethodHandler(_addBarAndClassName_PortalRollbackMethodKey18,
 				ClpSerializer.translateInput(text));
 
 		try {
@@ -582,7 +618,7 @@ public class BarLocalServiceClp implements BarLocalService {
 
 	public void addBarAndClassName_PortletRollback(java.lang.String text)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_addBarAndClassName_PortletRollbackMethodKey18,
+		MethodHandler methodHandler = new MethodHandler(_addBarAndClassName_PortletRollbackMethodKey19,
 				ClpSerializer.translateInput(text));
 
 		try {
@@ -606,7 +642,7 @@ public class BarLocalServiceClp implements BarLocalService {
 	public void deleteBarAndClassName(com.liferay.testtransaction.model.Bar bar)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_deleteBarAndClassNameMethodKey19,
+		MethodHandler methodHandler = new MethodHandler(_deleteBarAndClassNameMethodKey20,
 				ClpSerializer.translateInput(bar));
 
 		try {
@@ -636,7 +672,7 @@ public class BarLocalServiceClp implements BarLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getBarMethodKey20,
+		MethodHandler methodHandler = new MethodHandler(_getBarMethodKey21,
 				ClpSerializer.translateInput(text));
 
 		try {
@@ -667,7 +703,7 @@ public class BarLocalServiceClp implements BarLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_hasBarMethodKey21,
+		MethodHandler methodHandler = new MethodHandler(_hasBarMethodKey22,
 				ClpSerializer.translateInput(text));
 
 		try {
@@ -694,7 +730,7 @@ public class BarLocalServiceClp implements BarLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_hasClassNameMethodKey22);
+		MethodHandler methodHandler = new MethodHandler(_hasClassNameMethodKey23);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -718,7 +754,7 @@ public class BarLocalServiceClp implements BarLocalService {
 
 	public void testAddClassNameAndBar_Success(java.lang.String text)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_testAddClassNameAndBar_SuccessMethodKey23,
+		MethodHandler methodHandler = new MethodHandler(_testAddClassNameAndBar_SuccessMethodKey24,
 				ClpSerializer.translateInput(text));
 
 		try {
@@ -753,19 +789,20 @@ public class BarLocalServiceClp implements BarLocalService {
 	private MethodKey _dynamicQueryMethodKey6;
 	private MethodKey _dynamicQueryCountMethodKey7;
 	private MethodKey _getBarMethodKey8;
-	private MethodKey _getBarsMethodKey9;
-	private MethodKey _getBarsCountMethodKey10;
-	private MethodKey _updateBarMethodKey11;
+	private MethodKey _getPersistedModelMethodKey9;
+	private MethodKey _getBarsMethodKey10;
+	private MethodKey _getBarsCountMethodKey11;
 	private MethodKey _updateBarMethodKey12;
-	private MethodKey _getBeanIdentifierMethodKey13;
-	private MethodKey _setBeanIdentifierMethodKey14;
-	private MethodKey _addBar_RollbackMethodKey15;
-	private MethodKey _addBar_SuccessMethodKey16;
-	private MethodKey _addBarAndClassName_PortalRollbackMethodKey17;
-	private MethodKey _addBarAndClassName_PortletRollbackMethodKey18;
-	private MethodKey _deleteBarAndClassNameMethodKey19;
-	private MethodKey _getBarMethodKey20;
-	private MethodKey _hasBarMethodKey21;
-	private MethodKey _hasClassNameMethodKey22;
-	private MethodKey _testAddClassNameAndBar_SuccessMethodKey23;
+	private MethodKey _updateBarMethodKey13;
+	private MethodKey _getBeanIdentifierMethodKey14;
+	private MethodKey _setBeanIdentifierMethodKey15;
+	private MethodKey _addBar_RollbackMethodKey16;
+	private MethodKey _addBar_SuccessMethodKey17;
+	private MethodKey _addBarAndClassName_PortalRollbackMethodKey18;
+	private MethodKey _addBarAndClassName_PortletRollbackMethodKey19;
+	private MethodKey _deleteBarAndClassNameMethodKey20;
+	private MethodKey _getBarMethodKey21;
+	private MethodKey _hasBarMethodKey22;
+	private MethodKey _hasClassNameMethodKey23;
+	private MethodKey _testAddClassNameAndBar_SuccessMethodKey24;
 }

@@ -14,7 +14,7 @@
 
 package com.liferay.testtransaction.model;
 
-import com.liferay.portal.model.SaveableModel;
+import com.liferay.portal.model.PersistedModel;
 
 /**
  * The extended model interface for the Bar service. Represents a row in the &quot;TT_Bar&quot; database table, with each column mapped to a property of this class.
@@ -25,7 +25,7 @@ import com.liferay.portal.model.SaveableModel;
  * @see com.liferay.testtransaction.model.impl.BarModelImpl
  * @generated
  */
-public interface Bar extends BarModel, SaveableModel {
+public interface Bar extends BarModel, PersistedModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *

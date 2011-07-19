@@ -37,7 +37,7 @@ public abstract class KaleoLogBaseImpl extends KaleoLogModelImpl
 	 *
 	 * Never modify or reference this class directly. All methods that expect a kaleo log model instance should use the {@link KaleoLog} interface instead.
 	 */
-	public void save() throws SystemException {
+	public void persist() throws SystemException {
 		KaleoLogLocalServiceUtil.updateKaleoLog(this);
 	}
 }

@@ -234,9 +234,9 @@ public class SVNRevisionWrapper implements SVNRevision {
 		return _svnRevision.toXmlString();
 	}
 
-	public void save()
+	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_svnRevision.save();
+		_svnRevision.persist();
 	}
 
 	public com.liferay.socialcoding.model.SVNRepository getSVNRepository() {

@@ -172,7 +172,7 @@ public class DefinitionClp extends BaseModelImpl<Definition>
 		_price = price;
 	}
 
-	public void save() throws SystemException {
+	public void persist() throws SystemException {
 		DefinitionLocalServiceUtil.updateDefinition(this);
 	}
 

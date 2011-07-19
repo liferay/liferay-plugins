@@ -14,7 +14,7 @@
 
 package com.liferay.portal.workflow.kaleo.model;
 
-import com.liferay.portal.model.SaveableModel;
+import com.liferay.portal.model.PersistedModel;
 
 /**
  * The extended model interface for the KaleoCondition service. Represents a row in the &quot;KaleoCondition&quot; database table, with each column mapped to a property of this class.
@@ -25,7 +25,7 @@ import com.liferay.portal.model.SaveableModel;
  * @see com.liferay.portal.workflow.kaleo.model.impl.KaleoConditionModelImpl
  * @generated
  */
-public interface KaleoCondition extends KaleoConditionModel, SaveableModel {
+public interface KaleoCondition extends KaleoConditionModel, PersistedModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *

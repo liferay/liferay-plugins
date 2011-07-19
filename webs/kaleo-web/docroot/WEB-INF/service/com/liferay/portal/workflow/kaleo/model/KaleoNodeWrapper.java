@@ -417,9 +417,9 @@ public class KaleoNodeWrapper implements KaleoNode {
 		return _kaleoNode.toXmlString();
 	}
 
-	public void save()
+	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_kaleoNode.save();
+		_kaleoNode.persist();
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoTransition getDefaultKaleoTransition()

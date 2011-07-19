@@ -453,9 +453,9 @@ public class KaleoActionWrapper implements KaleoAction {
 		return _kaleoAction.toXmlString();
 	}
 
-	public void save()
+	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_kaleoAction.save();
+		_kaleoAction.persist();
 	}
 
 	public KaleoAction getWrappedKaleoAction() {

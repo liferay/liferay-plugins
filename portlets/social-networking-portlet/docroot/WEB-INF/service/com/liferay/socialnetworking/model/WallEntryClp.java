@@ -132,7 +132,7 @@ public class WallEntryClp extends BaseModelImpl<WallEntry> implements WallEntry 
 		_comments = comments;
 	}
 
-	public void save() throws SystemException {
+	public void persist() throws SystemException {
 		WallEntryLocalServiceUtil.updateWallEntry(this);
 	}
 

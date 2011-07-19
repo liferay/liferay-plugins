@@ -39,7 +39,7 @@ public abstract class HRExpenseCurrencyConversionBaseImpl
 	 *
 	 * Never modify or reference this class directly. All methods that expect a h r expense currency conversion model instance should use the {@link HRExpenseCurrencyConversion} interface instead.
 	 */
-	public void save() throws SystemException {
+	public void persist() throws SystemException {
 		HRExpenseCurrencyConversionLocalServiceUtil.updateHRExpenseCurrencyConversion(this);
 	}
 }

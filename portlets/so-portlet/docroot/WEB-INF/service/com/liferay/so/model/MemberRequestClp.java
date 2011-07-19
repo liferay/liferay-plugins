@@ -174,7 +174,7 @@ public class MemberRequestClp extends BaseModelImpl<MemberRequest>
 		_status = status;
 	}
 
-	public void save() throws SystemException {
+	public void persist() throws SystemException {
 		MemberRequestLocalServiceUtil.updateMemberRequest(this);
 	}
 

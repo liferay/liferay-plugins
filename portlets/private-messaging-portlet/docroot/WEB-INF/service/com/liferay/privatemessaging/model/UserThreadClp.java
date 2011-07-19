@@ -149,7 +149,7 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 		_deleted = deleted;
 	}
 
-	public void save() throws SystemException {
+	public void persist() throws SystemException {
 		UserThreadLocalServiceUtil.updateUserThread(this);
 	}
 

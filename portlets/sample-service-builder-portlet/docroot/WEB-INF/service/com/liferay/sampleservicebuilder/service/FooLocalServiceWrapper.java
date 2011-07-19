@@ -160,6 +160,13 @@ public class FooLocalServiceWrapper implements FooLocalService {
 		return _fooLocalService.getFoo(fooId);
 	}
 
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _fooLocalService.getPersistedModel(primaryKeyObj);
+	}
+
 	/**
 	* Returns the foo with the UUID in the group.
 	*

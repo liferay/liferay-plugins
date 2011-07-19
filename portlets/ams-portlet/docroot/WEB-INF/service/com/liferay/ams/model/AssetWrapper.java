@@ -335,9 +335,9 @@ public class AssetWrapper implements Asset {
 		return _asset.toXmlString();
 	}
 
-	public void save()
+	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_asset.save();
+		_asset.persist();
 	}
 
 	public Asset getWrappedAsset() {

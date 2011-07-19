@@ -256,9 +256,9 @@ public class EntryWrapper implements Entry {
 		return _entry.toXmlString();
 	}
 
-	public void save()
+	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_entry.save();
+		_entry.persist();
 	}
 
 	public Entry getWrappedEntry() {

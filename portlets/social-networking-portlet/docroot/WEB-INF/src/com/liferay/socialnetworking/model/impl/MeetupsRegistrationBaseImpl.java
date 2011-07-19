@@ -38,7 +38,7 @@ public abstract class MeetupsRegistrationBaseImpl
 	 *
 	 * Never modify or reference this class directly. All methods that expect a meetups registration model instance should use the {@link MeetupsRegistration} interface instead.
 	 */
-	public void save() throws SystemException {
+	public void persist() throws SystemException {
 		MeetupsRegistrationLocalServiceUtil.updateMeetupsRegistration(this);
 	}
 }

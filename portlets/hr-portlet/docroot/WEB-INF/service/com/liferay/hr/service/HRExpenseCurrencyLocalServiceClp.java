@@ -62,24 +62,27 @@ public class HRExpenseCurrencyLocalServiceClp
 		_getHRExpenseCurrencyMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getHRExpenseCurrency", long.class);
 
-		_getHRExpenseCurrenciesMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getPersistedModelMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getPersistedModel", java.io.Serializable.class);
+
+		_getHRExpenseCurrenciesMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getHRExpenseCurrencies", int.class, int.class);
 
-		_getHRExpenseCurrenciesCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getHRExpenseCurrenciesCountMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getHRExpenseCurrenciesCount");
-
-		_updateHRExpenseCurrencyMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
-				"updateHRExpenseCurrency",
-				com.liferay.hr.model.HRExpenseCurrency.class);
 
 		_updateHRExpenseCurrencyMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateHRExpenseCurrency",
+				com.liferay.hr.model.HRExpenseCurrency.class);
+
+		_updateHRExpenseCurrencyMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateHRExpenseCurrency",
 				com.liferay.hr.model.HRExpenseCurrency.class, boolean.class);
 
-		_getBeanIdentifierMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getBeanIdentifierMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getBeanIdentifier");
 
-		_setBeanIdentifierMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+		_setBeanIdentifierMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
 				"setBeanIdentifier", java.lang.String.class);
 	}
 
@@ -337,12 +340,45 @@ public class HRExpenseCurrencyLocalServiceClp
 		return (com.liferay.hr.model.HRExpenseCurrency)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_getPersistedModelMethodKey9,
+				ClpSerializer.translateInput(primaryKeyObj));
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.portal.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public java.util.List<com.liferay.hr.model.HRExpenseCurrency> getHRExpenseCurrencies(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getHRExpenseCurrenciesMethodKey9,
+		MethodHandler methodHandler = new MethodHandler(_getHRExpenseCurrenciesMethodKey10,
 				start, end);
 
 		try {
@@ -369,7 +405,7 @@ public class HRExpenseCurrencyLocalServiceClp
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getHRExpenseCurrenciesCountMethodKey10);
+		MethodHandler methodHandler = new MethodHandler(_getHRExpenseCurrenciesCountMethodKey11);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -396,7 +432,7 @@ public class HRExpenseCurrencyLocalServiceClp
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateHRExpenseCurrencyMethodKey11,
+		MethodHandler methodHandler = new MethodHandler(_updateHRExpenseCurrencyMethodKey12,
 				ClpSerializer.translateInput(hrExpenseCurrency));
 
 		try {
@@ -424,7 +460,7 @@ public class HRExpenseCurrencyLocalServiceClp
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateHRExpenseCurrencyMethodKey12,
+		MethodHandler methodHandler = new MethodHandler(_updateHRExpenseCurrencyMethodKey13,
 				ClpSerializer.translateInput(hrExpenseCurrency), merge);
 
 		try {
@@ -450,7 +486,7 @@ public class HRExpenseCurrencyLocalServiceClp
 	public java.lang.String getBeanIdentifier() {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey13);
+		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey14);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -469,7 +505,7 @@ public class HRExpenseCurrencyLocalServiceClp
 	}
 
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey14,
+		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey15,
 				ClpSerializer.translateInput(beanIdentifier));
 
 		try {
@@ -500,10 +536,11 @@ public class HRExpenseCurrencyLocalServiceClp
 	private MethodKey _dynamicQueryMethodKey6;
 	private MethodKey _dynamicQueryCountMethodKey7;
 	private MethodKey _getHRExpenseCurrencyMethodKey8;
-	private MethodKey _getHRExpenseCurrenciesMethodKey9;
-	private MethodKey _getHRExpenseCurrenciesCountMethodKey10;
-	private MethodKey _updateHRExpenseCurrencyMethodKey11;
+	private MethodKey _getPersistedModelMethodKey9;
+	private MethodKey _getHRExpenseCurrenciesMethodKey10;
+	private MethodKey _getHRExpenseCurrenciesCountMethodKey11;
 	private MethodKey _updateHRExpenseCurrencyMethodKey12;
-	private MethodKey _getBeanIdentifierMethodKey13;
-	private MethodKey _setBeanIdentifierMethodKey14;
+	private MethodKey _updateHRExpenseCurrencyMethodKey13;
+	private MethodKey _getBeanIdentifierMethodKey14;
+	private MethodKey _setBeanIdentifierMethodKey15;
 }

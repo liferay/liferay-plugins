@@ -14,7 +14,7 @@
 
 package com.liferay.mail.model;
 
-import com.liferay.portal.model.SaveableModel;
+import com.liferay.portal.model.PersistedModel;
 
 /**
  * The extended model interface for the Message service. Represents a row in the &quot;Mail_Message&quot; database table, with each column mapped to a property of this class.
@@ -25,7 +25,7 @@ import com.liferay.portal.model.SaveableModel;
  * @see com.liferay.mail.model.impl.MessageModelImpl
  * @generated
  */
-public interface Message extends MessageModel, SaveableModel {
+public interface Message extends MessageModel, PersistedModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *

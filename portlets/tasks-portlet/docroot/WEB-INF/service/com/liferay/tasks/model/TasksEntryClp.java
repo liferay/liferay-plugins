@@ -215,7 +215,7 @@ public class TasksEntryClp extends BaseModelImpl<TasksEntry>
 		throw new UnsupportedOperationException();
 	}
 
-	public void save() throws SystemException {
+	public void persist() throws SystemException {
 		TasksEntryLocalServiceUtil.updateTasksEntry(this);
 	}
 

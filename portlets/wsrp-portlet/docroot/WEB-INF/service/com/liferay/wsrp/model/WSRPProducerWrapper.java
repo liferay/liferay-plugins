@@ -288,9 +288,9 @@ public class WSRPProducerWrapper implements WSRPProducer {
 		return _wsrpProducer.toXmlString();
 	}
 
-	public void save()
+	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_wsrpProducer.save();
+		_wsrpProducer.persist();
 	}
 
 	public java.lang.String getURL(java.lang.String portalURL) {

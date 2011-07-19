@@ -14,7 +14,7 @@
 
 package com.liferay.ams.model;
 
-import com.liferay.portal.model.SaveableModel;
+import com.liferay.portal.model.PersistedModel;
 
 /**
  * The extended model interface for the Definition service. Represents a row in the &quot;AMS_Definition&quot; database table, with each column mapped to a property of this class.
@@ -25,7 +25,7 @@ import com.liferay.portal.model.SaveableModel;
  * @see com.liferay.ams.model.impl.DefinitionModelImpl
  * @generated
  */
-public interface Definition extends DefinitionModel, SaveableModel {
+public interface Definition extends DefinitionModel, PersistedModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *

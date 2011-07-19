@@ -317,9 +317,9 @@ public class StatusWrapper implements Status {
 		return _status.toXmlString();
 	}
 
-	public void save()
+	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_status.save();
+		_status.persist();
 	}
 
 	public Status getWrappedStatus() {

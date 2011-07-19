@@ -166,6 +166,13 @@ public class KBArticleLocalServiceWrapper implements KBArticleLocalService {
 		return _kbArticleLocalService.getKBArticle(kbArticleId);
 	}
 
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _kbArticleLocalService.getPersistedModel(primaryKeyObj);
+	}
+
 	/**
 	* Returns the k b article with the UUID in the group.
 	*

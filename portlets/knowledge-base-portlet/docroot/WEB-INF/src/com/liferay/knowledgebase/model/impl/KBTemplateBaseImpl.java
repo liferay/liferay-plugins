@@ -38,7 +38,7 @@ public abstract class KBTemplateBaseImpl extends KBTemplateModelImpl
 	 *
 	 * Never modify or reference this class directly. All methods that expect a k b template model instance should use the {@link KBTemplate} interface instead.
 	 */
-	public void save() throws SystemException {
+	public void persist() throws SystemException {
 		KBTemplateLocalServiceUtil.updateKBTemplate(this);
 	}
 }

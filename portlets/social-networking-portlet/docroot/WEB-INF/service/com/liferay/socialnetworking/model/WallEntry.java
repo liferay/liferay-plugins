@@ -14,7 +14,7 @@
 
 package com.liferay.socialnetworking.model;
 
-import com.liferay.portal.model.SaveableModel;
+import com.liferay.portal.model.PersistedModel;
 
 /**
  * The extended model interface for the WallEntry service. Represents a row in the &quot;SN_WallEntry&quot; database table, with each column mapped to a property of this class.
@@ -25,7 +25,7 @@ import com.liferay.portal.model.SaveableModel;
  * @see com.liferay.socialnetworking.model.impl.WallEntryModelImpl
  * @generated
  */
-public interface WallEntry extends WallEntryModel, SaveableModel {
+public interface WallEntry extends WallEntryModel, PersistedModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *

@@ -59,63 +59,66 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 		_getMemberRequestMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getMemberRequest", long.class);
 
-		_getMemberRequestsMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getPersistedModelMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getPersistedModel", java.io.Serializable.class);
+
+		_getMemberRequestsMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getMemberRequests", int.class, int.class);
 
-		_getMemberRequestsCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getMemberRequestsCountMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getMemberRequestsCount");
 
-		_updateMemberRequestMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateMemberRequestMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateMemberRequest", com.liferay.so.model.MemberRequest.class);
 
-		_updateMemberRequestMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateMemberRequestMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateMemberRequest",
 				com.liferay.so.model.MemberRequest.class, boolean.class);
 
-		_getBeanIdentifierMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getBeanIdentifierMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getBeanIdentifier");
 
-		_setBeanIdentifierMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+		_setBeanIdentifierMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
 				"setBeanIdentifier", java.lang.String.class);
 
-		_addMemberRequestMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+		_addMemberRequestMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
 				"addMemberRequest", long.class, long.class, long.class,
 				java.lang.String.class, long.class, long.class,
 				com.liferay.portal.theme.ThemeDisplay.class);
 
-		_addMemberRequestsMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+		_addMemberRequestsMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
 				"addMemberRequests", long.class, long.class, long[].class,
 				long.class, long.class,
 				com.liferay.portal.theme.ThemeDisplay.class);
 
-		_addMemberRequestsMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
+		_addMemberRequestsMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
 				"addMemberRequests", long.class, long.class,
 				java.lang.String[].class, long.class, long.class,
 				com.liferay.portal.theme.ThemeDisplay.class);
 
-		_getMemberRequestMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getMemberRequestMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getMemberRequest", long.class, long.class, int.class);
 
-		_getReceiverMemberRequestMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getReceiverMemberRequestMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getReceiverMemberRequest", long.class, int.class, int.class);
 
-		_getReceiverMemberRequestCountMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getReceiverMemberRequestCountMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getReceiverMemberRequestCount", long.class);
 
-		_getReceiverStatusMemberRequestMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getReceiverStatusMemberRequestMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getReceiverStatusMemberRequest", long.class, int.class,
 				int.class, int.class);
 
-		_getReceiverStatusMemberRequestCountMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getReceiverStatusMemberRequestCountMethodKey23 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getReceiverStatusMemberRequestCount", long.class, int.class);
 
-		_hasPendingMemberRequestMethodKey23 = new MethodKey(_classLoaderProxy.getClassName(),
+		_hasPendingMemberRequestMethodKey24 = new MethodKey(_classLoaderProxy.getClassName(),
 				"hasPendingMemberRequest", long.class, long.class);
 
-		_updateMemberRequestMethodKey24 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateMemberRequestMethodKey25 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateMemberRequest", long.class, long.class, int.class);
 
-		_updateMemberRequestMethodKey25 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateMemberRequestMethodKey26 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateMemberRequest", java.lang.String.class, long.class);
 	}
 
@@ -373,12 +376,45 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 		return (com.liferay.so.model.MemberRequest)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_getPersistedModelMethodKey9,
+				ClpSerializer.translateInput(primaryKeyObj));
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.portal.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public java.util.List<com.liferay.so.model.MemberRequest> getMemberRequests(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getMemberRequestsMethodKey9,
+		MethodHandler methodHandler = new MethodHandler(_getMemberRequestsMethodKey10,
 				start, end);
 
 		try {
@@ -405,7 +441,7 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getMemberRequestsCountMethodKey10);
+		MethodHandler methodHandler = new MethodHandler(_getMemberRequestsCountMethodKey11);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -432,7 +468,7 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateMemberRequestMethodKey11,
+		MethodHandler methodHandler = new MethodHandler(_updateMemberRequestMethodKey12,
 				ClpSerializer.translateInput(memberRequest));
 
 		try {
@@ -460,7 +496,7 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateMemberRequestMethodKey12,
+		MethodHandler methodHandler = new MethodHandler(_updateMemberRequestMethodKey13,
 				ClpSerializer.translateInput(memberRequest), merge);
 
 		try {
@@ -486,7 +522,7 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 	public java.lang.String getBeanIdentifier() {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey13);
+		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey14);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -505,7 +541,7 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 	}
 
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey14,
+		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey15,
 				ClpSerializer.translateInput(beanIdentifier));
 
 		try {
@@ -530,7 +566,7 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_addMemberRequestMethodKey15,
+		MethodHandler methodHandler = new MethodHandler(_addMemberRequestMethodKey16,
 				userId, groupId, receiverUserId,
 				ClpSerializer.translateInput(receiverEmailAddress),
 				invitedRoleId, invitedTeamId,
@@ -565,7 +601,7 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_addMemberRequestsMethodKey16,
+		MethodHandler methodHandler = new MethodHandler(_addMemberRequestsMethodKey17,
 				userId, groupId, ClpSerializer.translateInput(receiverUserIds),
 				invitedRoleId, invitedTeamId,
 				ClpSerializer.translateInput(themeDisplay));
@@ -597,7 +633,7 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 		long invitedTeamId, com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_addMemberRequestsMethodKey17,
+		MethodHandler methodHandler = new MethodHandler(_addMemberRequestsMethodKey18,
 				userId, groupId, ClpSerializer.translateInput(emailAddresses),
 				invitedRoleId, invitedTeamId,
 				ClpSerializer.translateInput(themeDisplay));
@@ -630,7 +666,7 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getMemberRequestMethodKey18,
+		MethodHandler methodHandler = new MethodHandler(_getMemberRequestMethodKey19,
 				groupId, receiverUserId, status);
 
 		try {
@@ -662,7 +698,7 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getReceiverMemberRequestMethodKey19,
+		MethodHandler methodHandler = new MethodHandler(_getReceiverMemberRequestMethodKey20,
 				receiverUserId, start, end);
 
 		try {
@@ -689,7 +725,7 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getReceiverMemberRequestCountMethodKey20,
+		MethodHandler methodHandler = new MethodHandler(_getReceiverMemberRequestCountMethodKey21,
 				receiverUserId);
 
 		try {
@@ -717,7 +753,7 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getReceiverStatusMemberRequestMethodKey21,
+		MethodHandler methodHandler = new MethodHandler(_getReceiverStatusMemberRequestMethodKey22,
 				receiverUserId, status, start, end);
 
 		try {
@@ -744,7 +780,7 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 		int status) throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getReceiverStatusMemberRequestCountMethodKey22,
+		MethodHandler methodHandler = new MethodHandler(_getReceiverStatusMemberRequestCountMethodKey23,
 				receiverUserId, status);
 
 		try {
@@ -771,7 +807,7 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_hasPendingMemberRequestMethodKey23,
+		MethodHandler methodHandler = new MethodHandler(_hasPendingMemberRequestMethodKey24,
 				groupId, receiverUserId);
 
 		try {
@@ -798,7 +834,7 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 		long memberRequestId, int status) throws java.lang.Exception {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateMemberRequestMethodKey24,
+		MethodHandler methodHandler = new MethodHandler(_updateMemberRequestMethodKey25,
 				userId, memberRequestId, status);
 
 		try {
@@ -827,7 +863,7 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateMemberRequestMethodKey25,
+		MethodHandler methodHandler = new MethodHandler(_updateMemberRequestMethodKey26,
 				ClpSerializer.translateInput(key), receiverUserId);
 
 		try {
@@ -868,21 +904,22 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 	private MethodKey _dynamicQueryMethodKey6;
 	private MethodKey _dynamicQueryCountMethodKey7;
 	private MethodKey _getMemberRequestMethodKey8;
-	private MethodKey _getMemberRequestsMethodKey9;
-	private MethodKey _getMemberRequestsCountMethodKey10;
-	private MethodKey _updateMemberRequestMethodKey11;
+	private MethodKey _getPersistedModelMethodKey9;
+	private MethodKey _getMemberRequestsMethodKey10;
+	private MethodKey _getMemberRequestsCountMethodKey11;
 	private MethodKey _updateMemberRequestMethodKey12;
-	private MethodKey _getBeanIdentifierMethodKey13;
-	private MethodKey _setBeanIdentifierMethodKey14;
-	private MethodKey _addMemberRequestMethodKey15;
-	private MethodKey _addMemberRequestsMethodKey16;
+	private MethodKey _updateMemberRequestMethodKey13;
+	private MethodKey _getBeanIdentifierMethodKey14;
+	private MethodKey _setBeanIdentifierMethodKey15;
+	private MethodKey _addMemberRequestMethodKey16;
 	private MethodKey _addMemberRequestsMethodKey17;
-	private MethodKey _getMemberRequestMethodKey18;
-	private MethodKey _getReceiverMemberRequestMethodKey19;
-	private MethodKey _getReceiverMemberRequestCountMethodKey20;
-	private MethodKey _getReceiverStatusMemberRequestMethodKey21;
-	private MethodKey _getReceiverStatusMemberRequestCountMethodKey22;
-	private MethodKey _hasPendingMemberRequestMethodKey23;
-	private MethodKey _updateMemberRequestMethodKey24;
+	private MethodKey _addMemberRequestsMethodKey18;
+	private MethodKey _getMemberRequestMethodKey19;
+	private MethodKey _getReceiverMemberRequestMethodKey20;
+	private MethodKey _getReceiverMemberRequestCountMethodKey21;
+	private MethodKey _getReceiverStatusMemberRequestMethodKey22;
+	private MethodKey _getReceiverStatusMemberRequestCountMethodKey23;
+	private MethodKey _hasPendingMemberRequestMethodKey24;
 	private MethodKey _updateMemberRequestMethodKey25;
+	private MethodKey _updateMemberRequestMethodKey26;
 }

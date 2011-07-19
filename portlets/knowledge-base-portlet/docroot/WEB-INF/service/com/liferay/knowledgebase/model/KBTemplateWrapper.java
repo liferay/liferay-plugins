@@ -326,9 +326,9 @@ public class KBTemplateWrapper implements KBTemplate {
 		return _kbTemplate.toXmlString();
 	}
 
-	public void save()
+	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_kbTemplate.save();
+		_kbTemplate.persist();
 	}
 
 	public KBTemplate getWrappedKBTemplate() {

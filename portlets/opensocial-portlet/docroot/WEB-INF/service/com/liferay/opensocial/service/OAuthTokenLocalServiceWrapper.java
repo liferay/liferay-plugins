@@ -164,6 +164,13 @@ public class OAuthTokenLocalServiceWrapper implements OAuthTokenLocalService {
 		return _oAuthTokenLocalService.getOAuthToken(oAuthTokenId);
 	}
 
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _oAuthTokenLocalService.getPersistedModel(primaryKeyObj);
+	}
+
 	/**
 	* Returns a range of all the o auth tokens.
 	*

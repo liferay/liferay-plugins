@@ -62,38 +62,41 @@ public class MeetupsRegistrationLocalServiceClp
 		_getMeetupsRegistrationMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getMeetupsRegistration", long.class);
 
-		_getMeetupsRegistrationsMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getPersistedModelMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getPersistedModel", java.io.Serializable.class);
+
+		_getMeetupsRegistrationsMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getMeetupsRegistrations", int.class, int.class);
 
-		_getMeetupsRegistrationsCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getMeetupsRegistrationsCountMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getMeetupsRegistrationsCount");
 
-		_updateMeetupsRegistrationMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateMeetupsRegistrationMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateMeetupsRegistration",
 				com.liferay.socialnetworking.model.MeetupsRegistration.class);
 
-		_updateMeetupsRegistrationMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateMeetupsRegistrationMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateMeetupsRegistration",
 				com.liferay.socialnetworking.model.MeetupsRegistration.class,
 				boolean.class);
 
-		_getBeanIdentifierMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getBeanIdentifierMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getBeanIdentifier");
 
-		_setBeanIdentifierMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+		_setBeanIdentifierMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
 				"setBeanIdentifier", java.lang.String.class);
 
-		_getMeetupsRegistrationsMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getMeetupsRegistrationsMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getMeetupsRegistrations", long.class, int.class, int.class,
 				int.class);
 
-		_getMeetupsRegistrationMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getMeetupsRegistrationMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getMeetupsRegistration", long.class, long.class);
 
-		_getMeetupsRegistrationsCountMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getMeetupsRegistrationsCountMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getMeetupsRegistrationsCount", long.class, int.class);
 
-		_updateMeetupsRegistrationMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateMeetupsRegistrationMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateMeetupsRegistration", long.class, long.class, int.class,
 				java.lang.String.class);
 	}
@@ -352,12 +355,45 @@ public class MeetupsRegistrationLocalServiceClp
 		return (com.liferay.socialnetworking.model.MeetupsRegistration)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_getPersistedModelMethodKey9,
+				ClpSerializer.translateInput(primaryKeyObj));
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.portal.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public java.util.List<com.liferay.socialnetworking.model.MeetupsRegistration> getMeetupsRegistrations(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getMeetupsRegistrationsMethodKey9,
+		MethodHandler methodHandler = new MethodHandler(_getMeetupsRegistrationsMethodKey10,
 				start, end);
 
 		try {
@@ -384,7 +420,7 @@ public class MeetupsRegistrationLocalServiceClp
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getMeetupsRegistrationsCountMethodKey10);
+		MethodHandler methodHandler = new MethodHandler(_getMeetupsRegistrationsCountMethodKey11);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -411,7 +447,7 @@ public class MeetupsRegistrationLocalServiceClp
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateMeetupsRegistrationMethodKey11,
+		MethodHandler methodHandler = new MethodHandler(_updateMeetupsRegistrationMethodKey12,
 				ClpSerializer.translateInput(meetupsRegistration));
 
 		try {
@@ -440,7 +476,7 @@ public class MeetupsRegistrationLocalServiceClp
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateMeetupsRegistrationMethodKey12,
+		MethodHandler methodHandler = new MethodHandler(_updateMeetupsRegistrationMethodKey13,
 				ClpSerializer.translateInput(meetupsRegistration), merge);
 
 		try {
@@ -466,7 +502,7 @@ public class MeetupsRegistrationLocalServiceClp
 	public java.lang.String getBeanIdentifier() {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey13);
+		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey14);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -485,7 +521,7 @@ public class MeetupsRegistrationLocalServiceClp
 	}
 
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey14,
+		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey15,
 				ClpSerializer.translateInput(beanIdentifier));
 
 		try {
@@ -507,7 +543,7 @@ public class MeetupsRegistrationLocalServiceClp
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getMeetupsRegistrationsMethodKey15,
+		MethodHandler methodHandler = new MethodHandler(_getMeetupsRegistrationsMethodKey16,
 				meetupsEntryId, status, start, end);
 
 		try {
@@ -536,7 +572,7 @@ public class MeetupsRegistrationLocalServiceClp
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getMeetupsRegistrationMethodKey16,
+		MethodHandler methodHandler = new MethodHandler(_getMeetupsRegistrationMethodKey17,
 				userId, meetupsEntryId);
 
 		try {
@@ -567,7 +603,7 @@ public class MeetupsRegistrationLocalServiceClp
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getMeetupsRegistrationsCountMethodKey17,
+		MethodHandler methodHandler = new MethodHandler(_getMeetupsRegistrationsCountMethodKey18,
 				meetupsEntryId, status);
 
 		try {
@@ -596,7 +632,7 @@ public class MeetupsRegistrationLocalServiceClp
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateMeetupsRegistrationMethodKey18,
+		MethodHandler methodHandler = new MethodHandler(_updateMeetupsRegistrationMethodKey19,
 				userId, meetupsEntryId, status,
 				ClpSerializer.translateInput(comments));
 
@@ -638,14 +674,15 @@ public class MeetupsRegistrationLocalServiceClp
 	private MethodKey _dynamicQueryMethodKey6;
 	private MethodKey _dynamicQueryCountMethodKey7;
 	private MethodKey _getMeetupsRegistrationMethodKey8;
-	private MethodKey _getMeetupsRegistrationsMethodKey9;
-	private MethodKey _getMeetupsRegistrationsCountMethodKey10;
-	private MethodKey _updateMeetupsRegistrationMethodKey11;
+	private MethodKey _getPersistedModelMethodKey9;
+	private MethodKey _getMeetupsRegistrationsMethodKey10;
+	private MethodKey _getMeetupsRegistrationsCountMethodKey11;
 	private MethodKey _updateMeetupsRegistrationMethodKey12;
-	private MethodKey _getBeanIdentifierMethodKey13;
-	private MethodKey _setBeanIdentifierMethodKey14;
-	private MethodKey _getMeetupsRegistrationsMethodKey15;
-	private MethodKey _getMeetupsRegistrationMethodKey16;
-	private MethodKey _getMeetupsRegistrationsCountMethodKey17;
-	private MethodKey _updateMeetupsRegistrationMethodKey18;
+	private MethodKey _updateMeetupsRegistrationMethodKey13;
+	private MethodKey _getBeanIdentifierMethodKey14;
+	private MethodKey _setBeanIdentifierMethodKey15;
+	private MethodKey _getMeetupsRegistrationsMethodKey16;
+	private MethodKey _getMeetupsRegistrationMethodKey17;
+	private MethodKey _getMeetupsRegistrationsCountMethodKey18;
+	private MethodKey _updateMeetupsRegistrationMethodKey19;
 }

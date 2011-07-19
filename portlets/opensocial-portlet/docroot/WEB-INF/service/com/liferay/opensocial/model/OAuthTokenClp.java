@@ -180,7 +180,7 @@ public class OAuthTokenClp extends BaseModelImpl<OAuthToken>
 		_expiration = expiration;
 	}
 
-	public void save() throws SystemException {
+	public void persist() throws SystemException {
 		OAuthTokenLocalServiceUtil.updateOAuthToken(this);
 	}
 

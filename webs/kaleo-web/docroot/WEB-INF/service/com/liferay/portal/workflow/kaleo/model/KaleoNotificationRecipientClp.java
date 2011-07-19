@@ -172,7 +172,7 @@ public class KaleoNotificationRecipientClp extends BaseModelImpl<KaleoNotificati
 		_address = address;
 	}
 
-	public void save() throws SystemException {
+	public void persist() throws SystemException {
 		KaleoNotificationRecipientLocalServiceUtil.updateKaleoNotificationRecipient(this);
 	}
 

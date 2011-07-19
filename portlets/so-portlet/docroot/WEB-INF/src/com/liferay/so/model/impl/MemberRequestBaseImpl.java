@@ -38,7 +38,7 @@ public abstract class MemberRequestBaseImpl extends MemberRequestModelImpl
 	 *
 	 * Never modify or reference this class directly. All methods that expect a member request model instance should use the {@link MemberRequest} interface instead.
 	 */
-	public void save() throws SystemException {
+	public void persist() throws SystemException {
 		MemberRequestLocalServiceUtil.updateMemberRequest(this);
 	}
 }

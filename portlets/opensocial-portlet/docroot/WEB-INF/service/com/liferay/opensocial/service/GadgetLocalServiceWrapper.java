@@ -162,6 +162,13 @@ public class GadgetLocalServiceWrapper implements GadgetLocalService {
 		return _gadgetLocalService.getGadget(gadgetId);
 	}
 
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _gadgetLocalService.getPersistedModel(primaryKeyObj);
+	}
+
 	/**
 	* Returns a range of all the gadgets.
 	*

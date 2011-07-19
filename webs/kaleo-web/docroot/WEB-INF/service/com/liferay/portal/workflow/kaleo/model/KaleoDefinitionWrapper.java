@@ -486,9 +486,9 @@ public class KaleoDefinitionWrapper implements KaleoDefinition {
 		return _kaleoDefinition.toXmlString();
 	}
 
-	public void save()
+	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_kaleoDefinition.save();
+		_kaleoDefinition.persist();
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoNode getKaleoStartNode()

@@ -215,7 +215,7 @@ public class KaleoTimerClp extends BaseModelImpl<KaleoTimer>
 		throw new UnsupportedOperationException();
 	}
 
-	public void save() throws SystemException {
+	public void persist() throws SystemException {
 		KaleoTimerLocalServiceUtil.updateKaleoTimer(this);
 	}
 

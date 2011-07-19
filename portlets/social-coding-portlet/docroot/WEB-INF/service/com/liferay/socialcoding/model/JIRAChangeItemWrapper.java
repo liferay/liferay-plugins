@@ -253,9 +253,9 @@ public class JIRAChangeItemWrapper implements JIRAChangeItem {
 		return _jiraChangeItem.toXmlString();
 	}
 
-	public void save()
+	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_jiraChangeItem.save();
+		_jiraChangeItem.persist();
 	}
 
 	public JIRAChangeItem getWrappedJIRAChangeItem() {
