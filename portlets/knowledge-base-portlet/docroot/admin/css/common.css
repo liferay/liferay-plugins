@@ -184,6 +184,13 @@
 	margin: 0;
 }
 
+.knowledge-base-portlet .kb-entity-body .kb-article-comments .kb-all-comments,
+.knowledge-base-portlet .kb-entity-body .kb-template-comments .kb-all-comments {
+	color: #7D7D7D;
+	font-weight: bold;
+	margin: 0 10px 10px;
+}
+
 .knowledge-base-portlet .kb-entity-body .kb-article-comments .kb-helpful-inputs,
 .knowledge-base-portlet .kb-entity-body .kb-template-comments .kb-helpful-inputs {
 	margin: 4px 0 0;
