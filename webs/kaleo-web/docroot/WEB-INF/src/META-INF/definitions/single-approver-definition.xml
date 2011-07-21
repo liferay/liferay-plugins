@@ -49,6 +49,17 @@
 				<notification-type>email</notification-type>
 				<execution-type>onAssignment</execution-type>
 			</notification>
+			<notification>
+				<name>Review Completion Notification</name>
+				<template>
+					Your submission has been reviewed and the reviewer has applied the following ${taskComments}.</template>
+				<template-language>freemarker</template-language>
+				<notification-type>email</notification-type>
+				<recipients>
+					<user />
+				</recipients>
+				<execution-type>onExit</execution-type>
+			</notification>
 		</actions>
 		<assignments>
 			<roles>
@@ -86,27 +97,6 @@
 				</role>
 			</roles>
 		</assignments>
-		<task-timers>
-			<task-timer>
-				<name>due date</name>
-				<delay>
-					<duration>5</duration>
-					<scale>minute</scale>
-				</delay>
-				<recurrence>
-					<duration>5</duration>
-					<scale>minute</scale>
-				</recurrence>
-				<timer-actions>
-					<timer-notification>
-						<name>assignment due</name>
-						<template>You have a new submission waiting for your review in the workflow.</template>
-						<template-language>text</template-language>
-						<notification-type>email</notification-type>
-					</timer-notification>
-				</timer-actions>
-			</task-timer>
-		</task-timers>
 		<transitions>
 			<transition>
 				<name>approve</name>

@@ -19,6 +19,8 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
+import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.kernel.workflow.WorkflowException;
 import com.liferay.portal.kernel.workflow.WorkflowTask;
 import com.liferay.portal.model.Role;
@@ -94,8 +96,8 @@ public class DefaultTaskManagerImpl
 
 		try {
 			return doCompleteWorkflowTask(
-				workflowTaskInstanceId, comment, workflowContext,
-				serviceContext);
+				workflowTaskInstanceId, transitionName, comment,
+				workflowContext, serviceContext);
 		}
 		catch (Exception e) {
 			throw new WorkflowException(e);
@@ -178,6 +180,9 @@ public class DefaultTaskManagerImpl
 
 		KaleoTask kaleoTask = kaleoTaskInstanceToken.getKaleoTask();
 
+		workflowContext.put(
+			WorkflowConstants.CONTEXT_TASK_COMMENTS, comment);
+
 		ActionExecutorUtil.executeKaleoActions(
 			KaleoNode.class.getName(), kaleoTask.getKaleoNodeId(),
 			ExecutionType.ON_ASSIGNMENT, executionContext);
@@ -195,7 +200,7 @@ public class DefaultTaskManagerImpl
 	}
 
 	protected WorkflowTask doCompleteWorkflowTask(
-			long workflowTaskInstanceId, String comment,
+			long workflowTaskInstanceId, String transitionName, String comment,
 			Map<String, Serializable> workflowContext,
 			ServiceContext serviceContext)
 		throws Exception {
@@ -203,6 +208,14 @@ public class DefaultTaskManagerImpl
 		KaleoTaskInstanceToken kaleoTaskInstanceToken =
 			kaleoTaskInstanceTokenLocalService.getKaleoTaskInstanceToken(
 				workflowTaskInstanceId);
+
+		if (Validator.isNotNull(transitionName)) {
+			//validate that the transition actually exists before moving forward
+			KaleoNode currentKaleoNode =
+				kaleoTaskInstanceToken.getKaleoTask().getKaleoNode();
+
+			currentKaleoNode.getKaleoTransition(transitionName);
+		}
 
 		workflowContext = updateWorkflowContext(
 			workflowContext, kaleoTaskInstanceToken);

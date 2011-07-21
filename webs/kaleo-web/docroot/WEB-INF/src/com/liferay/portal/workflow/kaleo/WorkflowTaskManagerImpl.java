@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.PrimitiveLongSet;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.kernel.workflow.WorkflowException;
 import com.liferay.portal.kernel.workflow.WorkflowTask;
 import com.liferay.portal.kernel.workflow.WorkflowTaskManager;
@@ -113,6 +114,11 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 				workflowContext = WorkflowContextUtil.convert(
 					kaleoInstanceToken.getKaleoInstance().getWorkflowContext());
 			}
+
+			workflowContext.put(
+				WorkflowConstants.CONTEXT_TASK_COMMENTS, comment);
+			workflowContext.put(
+				WorkflowConstants.CONTEXT_TRANSITION_NAME, transitionName);
 
 			ExecutionContext executionContext = new ExecutionContext(
 				kaleoInstanceToken, workflowContext, serviceContext);

@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.kernel.workflow.WorkflowDefinition;
 import com.liferay.portal.kernel.workflow.WorkflowException;
@@ -283,6 +284,14 @@ public class DefaultWorkflowEngineImpl
 			KaleoInstanceToken kaleoInstanceToken =
 				kaleoInstance.getRootKaleoInstanceToken(serviceContext);
 
+			if (Validator.isNotNull(transitionName)) {
+				//validate that the transition actually exists before moving forward
+				KaleoNode currentKaleoNode =
+					kaleoInstanceToken.getCurrentKaleoNode();
+
+				currentKaleoNode.getKaleoTransition(transitionName);
+			}
+
 			serviceContext.setScopeGroupId(kaleoInstanceToken.getGroupId());
 
 			return new WorkflowInstanceAdapter(
@@ -315,6 +324,14 @@ public class DefaultWorkflowEngineImpl
 							workflowDefinitionVersion);
 			}
 
+			KaleoNode kaleoStartNode = kaleoDefinition.getKaleoStartNode();
+
+			if (Validator.isNotNull(transitionName)) {
+				//validate that the transition actually exists
+				//before moving forward
+				kaleoStartNode.getKaleoTransition(transitionName);
+			}
+
 			long scopeGroupId = serviceContext.getScopeGroupId();
 
 			if (scopeGroupId != WorkflowConstants.DEFAULT_GROUP_ID) {
@@ -337,8 +354,6 @@ public class DefaultWorkflowEngineImpl
 			KaleoInstanceToken rootKaleoInstanceToken =
 				kaleoInstance.getRootKaleoInstanceToken(
 					workflowContext, serviceContext);
-
-			KaleoNode kaleoStartNode = kaleoDefinition.getKaleoStartNode();
 
 			rootKaleoInstanceToken.setCurrentKaleoNode(kaleoStartNode);
 
