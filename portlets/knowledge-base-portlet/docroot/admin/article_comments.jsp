@@ -93,6 +93,10 @@ boolean helpful = BeanParamUtil.getBoolean(kbComment, request, "helpful", true);
 
 						<c:if test="<%= total > 0 %>">
 							<div class="separator"><!-- --></div>
+
+							<div class="kb-all-comments">
+								<%= LanguageUtil.format(pageContext, "all-comments-x", total) %>
+							</div>
 						</c:if>
 
 						<%
