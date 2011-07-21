@@ -138,13 +138,16 @@ public class KaleoNotificationRecipientLocalServiceImpl
 					serviceContext.getCompanyId(),
 					userRecipient.getScreenName());
 			}
-			else {
+			else if (Validator.isNotNull(userRecipient.getEmailAddress())){
 				user = userLocalService.getUserByEmailAddress(
 					serviceContext.getCompanyId(),
 					userRecipient.getEmailAddress());
 			}
 
-			kaleoNotificationRecipient.setRecipientClassPK(user.getUserId());
+			if (user != null) {
+				kaleoNotificationRecipient.setRecipientClassPK(
+					user.getUserId());
+			}
 		}
 		else {
 			AddressRecipient addressRecipient = (AddressRecipient)recipient;
