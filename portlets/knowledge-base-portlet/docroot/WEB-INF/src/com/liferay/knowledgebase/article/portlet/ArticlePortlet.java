@@ -39,6 +39,7 @@ import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.security.auth.PrincipalException;
@@ -445,14 +446,40 @@ public class ArticlePortlet extends MVCPortlet {
 		}
 	}
 
-	protected long getResourcePrimKey(RenderRequest renderRequest) {
+	protected long getResourcePrimKey(RenderRequest renderRequest)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)renderRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
 		PortletPreferences preferences = renderRequest.getPreferences();
 
 		long defaultValue = GetterUtil.getLong(
 			preferences.getValue("resourcePrimKey", null));
 
-		return ParamUtil.getLong(
+		String jspPage = renderRequest.getParameter("jspPage");
+
+		if ((defaultValue == 0) && Validator.equals(viewJSP, jspPage)) {
+			return 0;
+		}
+
+		long resourcePrimKey = ParamUtil.getLong(
 			renderRequest, "resourcePrimKey", defaultValue);
+
+		if ((resourcePrimKey == 0) || (resourcePrimKey != defaultValue)) {
+			return resourcePrimKey;
+		}
+
+		PermissionChecker permissionChecker =
+			themeDisplay.getPermissionChecker();
+
+		if (!KBArticlePermission.contains(
+				permissionChecker, defaultValue, ActionKeys.VIEW)) {
+
+			return 0;
+		}
+
+		return defaultValue;
 	}
 
 	protected int getStatus(RenderRequest renderRequest) throws Exception {
