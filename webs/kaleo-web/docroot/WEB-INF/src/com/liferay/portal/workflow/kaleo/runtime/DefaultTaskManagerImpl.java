@@ -180,9 +180,6 @@ public class DefaultTaskManagerImpl
 
 		KaleoTask kaleoTask = kaleoTaskInstanceToken.getKaleoTask();
 
-		workflowContext.put(
-			WorkflowConstants.CONTEXT_TASK_COMMENTS, comment);
-
 		ActionExecutorUtil.executeKaleoActions(
 			KaleoNode.class.getName(), kaleoTask.getKaleoNodeId(),
 			ExecutionType.ON_ASSIGNMENT, executionContext);
@@ -190,6 +187,9 @@ public class DefaultTaskManagerImpl
 		NotificationUtil.sendKaleoNotifications(
 			KaleoNode.class.getName(), kaleoTask.getKaleoNodeId(),
 			ExecutionType.ON_ASSIGNMENT, executionContext);
+
+		workflowContext.put(
+			WorkflowConstants.CONTEXT_TASK_COMMENTS, comment);
 
 		kaleoLogLocalService.addTaskAssignmentKaleoLog(
 			previousTaskAssignmentInstances, kaleoTaskInstanceToken,
@@ -210,9 +210,13 @@ public class DefaultTaskManagerImpl
 				workflowTaskInstanceId);
 
 		if (Validator.isNotNull(transitionName)) {
-			//validate that the transition actually exists before moving forward
-			KaleoNode currentKaleoNode =
-				kaleoTaskInstanceToken.getKaleoTask().getKaleoNode();
+
+			// Validate that the transition actually exists before moving
+			// forward
+
+			KaleoTask kaleoTask = kaleoTaskInstanceToken.getKaleoTask();
+
+			KaleoNode currentKaleoNode = kaleoTask.getKaleoNode();
 
 			currentKaleoNode.getKaleoTransition(transitionName);
 		}
