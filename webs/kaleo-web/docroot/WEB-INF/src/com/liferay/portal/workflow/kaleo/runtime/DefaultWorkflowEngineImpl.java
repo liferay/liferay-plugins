@@ -285,7 +285,10 @@ public class DefaultWorkflowEngineImpl
 				kaleoInstance.getRootKaleoInstanceToken(serviceContext);
 
 			if (Validator.isNotNull(transitionName)) {
-				//validate that the transition actually exists before moving forward
+
+				// Validate that the transition actually exists before moving
+				// forward
+
 				KaleoNode currentKaleoNode =
 					kaleoInstanceToken.getCurrentKaleoNode();
 
@@ -327,8 +330,10 @@ public class DefaultWorkflowEngineImpl
 			KaleoNode kaleoStartNode = kaleoDefinition.getKaleoStartNode();
 
 			if (Validator.isNotNull(transitionName)) {
-				//validate that the transition actually exists
-				//before moving forward
+
+				// Validate that the transition actually exists before moving
+				// forward
+
 				kaleoStartNode.getKaleoTransition(transitionName);
 			}
 

@@ -138,7 +138,7 @@ public class KaleoNotificationRecipientLocalServiceImpl
 					serviceContext.getCompanyId(),
 					userRecipient.getScreenName());
 			}
-			else if (Validator.isNotNull(userRecipient.getEmailAddress())){
+			else if (Validator.isNotNull(userRecipient.getEmailAddress())) {
 				user = userLocalService.getUserByEmailAddress(
 					serviceContext.getCompanyId(),
 					userRecipient.getEmailAddress());

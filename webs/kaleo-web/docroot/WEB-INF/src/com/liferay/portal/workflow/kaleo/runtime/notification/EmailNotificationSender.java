@@ -25,6 +25,7 @@ import com.liferay.portal.model.UserGroupRole;
 import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.UserGroupRoleLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
+import com.liferay.portal.workflow.kaleo.model.KaleoInstance;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
 import com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance;
@@ -232,7 +233,10 @@ public class EmailNotificationSender implements NotificationSender {
 			KaleoInstanceToken kaleoInstanceToken =
 				executionContext.getKaleoInstanceToken();
 
-			userId = kaleoInstanceToken.getKaleoInstance().getUserId();
+			KaleoInstance kaleoInstance =
+				kaleoInstanceToken.getKaleoInstance();
+
+			userId = kaleoInstance.getUserId();
 		}
 
 		User user = UserLocalServiceUtil.getUser(userId);
