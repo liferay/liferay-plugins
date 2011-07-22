@@ -9,9 +9,9 @@
 				<action-key>CONFIGURATION</action-key>
 				<action-key>VIEW</action-key>
 			</supports>
-			<community-defaults>
+			<site-member-defaults>
 				<action-key>VIEW</action-key>
-			</community-defaults>
+			</site-member-defaults>
 			<guest-defaults>
 			</guest-defaults>
 			<guest-unsupported>
@@ -28,9 +28,9 @@
 				<action-key>CONFIGURATION</action-key>
 				<action-key>VIEW</action-key>
 			</supports>
-			<community-defaults>
+			<site-member-defaults>
 				<action-key>VIEW</action-key>
-			</community-defaults>
+			</site-member-defaults>
 			<guest-defaults>
 				<action-key>VIEW</action-key>
 			</guest-defaults>
@@ -45,9 +45,9 @@
 			<supports>
 				<action-key>VIEW</action-key>
 			</supports>
-			<community-defaults>
+			<site-member-defaults>
 				<action-key>VIEW</action-key>
-			</community-defaults>
+			</site-member-defaults>
 			<guest-defaults>
 			</guest-defaults>
 			<guest-unsupported />
@@ -61,9 +61,9 @@
 				<action-key>CONFIGURATION</action-key>
 				<action-key>VIEW</action-key>
 			</supports>
-			<community-defaults>
+			<site-member-defaults>
 				<action-key>VIEW</action-key>
-			</community-defaults>
+			</site-member-defaults>
 			<guest-defaults>
 				<action-key>VIEW</action-key>
 			</guest-defaults>
@@ -82,9 +82,9 @@
 				<action-key>PERMISSIONS</action-key>
 				<action-key>PUBLISH_GADGET</action-key>
 			</supports>
-			<community-defaults>
+			<site-member-defaults>
 				<action-key>PUBLISH_GADGET</action-key>
-			</community-defaults>
+			</site-member-defaults>
 			<guest-defaults />
 			<guest-unsupported>
 				<action-key>PERMISSIONS</action-key>
@@ -103,9 +103,9 @@
 				<action-key>PERMISSIONS</action-key>
 				<action-key>UPDATE</action-key>
 			</supports>
-			<community-defaults>
+			<site-member-defaults>
 				<action-key>VIEW</action-key>
-			</community-defaults>
+			</site-member-defaults>
 			<guest-defaults>
 				<action-key>VIEW</action-key>
 			</guest-defaults>
