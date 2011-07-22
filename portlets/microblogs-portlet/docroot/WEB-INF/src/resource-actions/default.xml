@@ -8,9 +8,9 @@
 			<supports>
 				<action-key>VIEW</action-key>
 			</supports>
-			<community-defaults>
+			<site-member-defaults>
 				<action-key>VIEW</action-key>
-			</community-defaults>
+			</site-member-defaults>
 			<guest-defaults>
 				<action-key>VIEW</action-key>
 			</guest-defaults>
@@ -28,9 +28,9 @@
 				<action-key>ADD_ENTRY</action-key>
 				<action-key>PERMISSIONS</action-key>
 			</supports>
-			<community-defaults>
+			<site-member-defaults>
 				<action-key>ADD_ENTRY</action-key>
-			</community-defaults>
+			</site-member-defaults>
 			<guest-defaults />
 			<guest-unsupported>
 				<action-key>ADD_ENTRY</action-key>
@@ -51,9 +51,9 @@
 				<action-key>UPDATE</action-key>
 				<action-key>VIEW</action-key>
 			</supports>
-			<community-defaults>
+			<site-member-defaults>
 				<action-key>VIEW</action-key>
-			</community-defaults>
+			</site-member-defaults>
 			<guest-defaults>
 				<action-key>VIEW</action-key>
 			</guest-defaults>

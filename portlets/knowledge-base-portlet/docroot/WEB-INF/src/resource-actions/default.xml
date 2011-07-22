@@ -10,7 +10,7 @@
 				<action-key>CONFIGURATION</action-key>
 				<action-key>VIEW</action-key>
 			</supports>
-			<community-defaults />
+			<site-member-defaults />
 			<guest-defaults />
 			<guest-unsupported>
 				<action-key>ACCESS_IN_CONTROL_PANEL</action-key>
@@ -27,9 +27,9 @@
 				<action-key>CONFIGURATION</action-key>
 				<action-key>VIEW</action-key>
 			</supports>
-			<community-defaults>
+			<site-member-defaults>
 				<action-key>VIEW</action-key>
-			</community-defaults>
+			</site-member-defaults>
 			<guest-defaults>
 				<action-key>VIEW</action-key>
 			</guest-defaults>
@@ -46,9 +46,9 @@
 				<action-key>CONFIGURATION</action-key>
 				<action-key>VIEW</action-key>
 			</supports>
-			<community-defaults>
+			<site-member-defaults>
 				<action-key>VIEW</action-key>
-			</community-defaults>
+			</site-member-defaults>
 			<guest-defaults>
 				<action-key>VIEW</action-key>
 			</guest-defaults>
@@ -65,9 +65,9 @@
 				<action-key>CONFIGURATION</action-key>
 				<action-key>VIEW</action-key>
 			</supports>
-			<community-defaults>
+			<site-member-defaults>
 				<action-key>VIEW</action-key>
-			</community-defaults>
+			</site-member-defaults>
 			<guest-defaults>
 				<action-key>VIEW</action-key>
 			</guest-defaults>
@@ -84,9 +84,9 @@
 				<action-key>CONFIGURATION</action-key>
 				<action-key>VIEW</action-key>
 			</supports>
-			<community-defaults>
+			<site-member-defaults>
 				<action-key>VIEW</action-key>
-			</community-defaults>
+			</site-member-defaults>
 			<guest-defaults>
 				<action-key>VIEW</action-key>
 			</guest-defaults>
@@ -111,9 +111,9 @@
 				<action-key>UPDATE_KB_ARTICLES_PRIORITIES</action-key>
 				<action-key>VIEW_KB_TEMPLATES</action-key>
 			</supports>
-			<community-defaults>
+			<site-member-defaults>
 				<action-key>SUBSCRIBE</action-key>
-			</community-defaults>
+			</site-member-defaults>
 			<guest-defaults />
 			<guest-unsupported>
 				<action-key>ADD_KB_ARTICLE</action-key>
@@ -141,9 +141,9 @@
 				<action-key>SUBSCRIBE</action-key>
 				<action-key>VIEW_KB_TEMPLATES</action-key>
 			</supports>
-			<community-defaults>
+			<site-member-defaults>
 				<action-key>SUBSCRIBE</action-key>
-			</community-defaults>
+			</site-member-defaults>
 			<guest-defaults />
 			<guest-unsupported>
 				<action-key>ADD_KB_ARTICLE</action-key>
@@ -169,10 +169,10 @@
 				<action-key>UPDATE</action-key>
 				<action-key>VIEW</action-key>
 			</supports>
-			<community-defaults>
+			<site-member-defaults>
 				<action-key>SUBSCRIBE</action-key>
 				<action-key>VIEW</action-key>
-			</community-defaults>
+			</site-member-defaults>
 			<guest-defaults>
 				<action-key>VIEW</action-key>
 			</guest-defaults>
@@ -197,9 +197,9 @@
 				<action-key>UPDATE</action-key>
 				<action-key>VIEW</action-key>
 			</supports>
-			<community-defaults>
+			<site-member-defaults>
 				<action-key>VIEW</action-key>
-			</community-defaults>
+			</site-member-defaults>
 			<guest-defaults>
 				<action-key>VIEW</action-key>
 			</guest-defaults>
