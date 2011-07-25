@@ -64,7 +64,7 @@ try {
 									}
 									%>
 
-									<%= DDMXSDUtil.getHTML(pageContext, ddmStructure.getXsd()) %>
+									<%= DDMXSDUtil.getHTML(pageContext, ddmStructure.getXsd(), locale) %>
 
 									<aui:button-row>
 										<aui:button onClick='<%= renderResponse.getNamespace() + "publishRecord();" %>' type="submit" value="send" />
