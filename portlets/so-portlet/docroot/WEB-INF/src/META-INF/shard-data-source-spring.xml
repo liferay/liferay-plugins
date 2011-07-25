@@ -8,10 +8,11 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"
 >
-	<bean id="com.liferay.portal.dao.shard.ShardAdvice" class="com.liferay.portal.dao.shard.ShardAdvice" />
-	<aop:config>
-		<aop:aspect ref="com.liferay.portal.dao.shard.ShardAdvice">
-			<aop:around pointcut="bean(*Persistence) || bean(*Finder)" method="invokePersistence" />
-		</aop:aspect>
+	<bean id="com.liferay.portal.dao.shard.advice.ShardAdvice" class="com.liferay.portal.dao.shard.advice.ShardAdvice" />
+	<bean id="com.liferay.portal.dao.shard.advice.ShardPersistenceAdvice" class="com.liferay.portal.dao.shard.advice.ShardPersistenceAdvice">
+		<property name="shardAdvice" ref="com.liferay.portal.dao.shard.advice.ShardAdvice" />
+	</bean>
+	<aop:config proxy-target-class="false">
+		<aop:advisor advice-ref="com.liferay.portal.dao.shard.advice.ShardPersistenceAdvice" pointcut="bean(*Persistence) || bean(*Finder)" />
 	</aop:config>
 </beans>
