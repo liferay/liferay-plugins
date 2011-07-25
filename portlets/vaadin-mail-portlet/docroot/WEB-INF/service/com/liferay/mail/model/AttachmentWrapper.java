@@ -282,7 +282,7 @@ public class AttachmentWrapper implements Attachment {
 		return new AttachmentWrapper((Attachment)_attachment.clone());
 	}
 
-	public int compareTo(com.liferay.mail.model.Attachment attachment) {
+	public int compareTo(Attachment attachment) {
 		return _attachment.compareTo(attachment);
 	}
 
@@ -291,11 +291,11 @@ public class AttachmentWrapper implements Attachment {
 		return _attachment.hashCode();
 	}
 
-	public com.liferay.portal.model.CacheModel<com.liferay.mail.model.Attachment> toCacheModel() {
+	public com.liferay.portal.model.CacheModel<Attachment> toCacheModel() {
 		return _attachment.toCacheModel();
 	}
 
-	public com.liferay.mail.model.Attachment toEscapedModel() {
+	public Attachment toEscapedModel() {
 		return new AttachmentWrapper(_attachment.toEscapedModel());
 	}
 

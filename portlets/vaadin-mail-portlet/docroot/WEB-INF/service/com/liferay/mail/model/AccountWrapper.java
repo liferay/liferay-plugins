@@ -633,7 +633,7 @@ public class AccountWrapper implements Account {
 		return new AccountWrapper((Account)_account.clone());
 	}
 
-	public int compareTo(com.liferay.mail.model.Account account) {
+	public int compareTo(Account account) {
 		return _account.compareTo(account);
 	}
 
@@ -642,11 +642,11 @@ public class AccountWrapper implements Account {
 		return _account.hashCode();
 	}
 
-	public com.liferay.portal.model.CacheModel<com.liferay.mail.model.Account> toCacheModel() {
+	public com.liferay.portal.model.CacheModel<Account> toCacheModel() {
 		return _account.toCacheModel();
 	}
 
-	public com.liferay.mail.model.Account toEscapedModel() {
+	public Account toEscapedModel() {
 		return new AccountWrapper(_account.toEscapedModel());
 	}
 
