@@ -52,6 +52,7 @@
 <%@ page import="com.liferay.portal.service.UserLocalServiceUtil" %>
 <%@ page import="com.liferay.portal.util.PortalUtil" %>
 <%@ page import="com.liferay.portal.util.comparator.UserLoginDateComparator" %>
+<%@ page import="com.liferay.portlet.shopping.util.comparator.OrderDateComparator" %>
 <%@ page import="com.liferay.portlet.social.model.SocialRelationConstants" %>
 <%@ page import="com.liferay.portlet.social.service.SocialRelationLocalServiceUtil" %>
 
