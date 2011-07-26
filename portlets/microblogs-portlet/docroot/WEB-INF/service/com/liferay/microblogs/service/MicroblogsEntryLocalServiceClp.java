@@ -106,7 +106,8 @@ public class MicroblogsEntryLocalServiceClp
 
 		_getReceiverMicroblogsEntryMicroblogsEntriesMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getReceiverMicroblogsEntryMicroblogsEntries", int.class,
-				long.class, int.class, int.class);
+				long.class, int.class, int.class,
+				com.liferay.portal.kernel.util.OrderByComparator.class);
 
 		_getReceiverMicroblogsEntryMicroblogsEntriesCountMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getReceiverMicroblogsEntryMicroblogsEntriesCount", int.class,
@@ -734,12 +735,14 @@ public class MicroblogsEntryLocalServiceClp
 	}
 
 	public java.util.List<com.liferay.microblogs.model.MicroblogsEntry> getReceiverMicroblogsEntryMicroblogsEntries(
-		int type, long receiverMicroblogsEntryId, int start, int end)
+		int type, long receiverMicroblogsEntryId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getReceiverMicroblogsEntryMicroblogsEntriesMethodKey21,
-				type, receiverMicroblogsEntryId, start, end);
+				type, receiverMicroblogsEntryId, start, end,
+				ClpSerializer.translateInput(orderByComparator));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
