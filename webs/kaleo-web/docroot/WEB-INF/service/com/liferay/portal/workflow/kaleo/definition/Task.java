@@ -14,6 +14,7 @@
 
 package com.liferay.portal.workflow.kaleo.definition;
 
+import java.util.Collections;
 import java.util.Set;
 
 /**
@@ -29,6 +30,14 @@ public class Task extends Node {
 		return _assignments;
 	}
 
+	public Set<Form> getForms() {
+		if (_forms == null) {
+			return Collections.emptySet();
+		}
+
+		return _forms;
+	}
+
 	public State getStartState() {
 		return _startState;
 	}
@@ -41,6 +50,10 @@ public class Task extends Node {
 		_assignments = assignments;
 	}
 
+	public void setForms(Set<Form> forms) {
+		_forms = forms;
+	}
+
 	public void setStartState(State startState) {
 		_startState = startState;
 	}
@@ -50,6 +63,7 @@ public class Task extends Node {
 	}
 
 	private Set<Assignment> _assignments;
+	private Set<Form> _forms;
 	private State _startState;
 	private State _targetState;
 
