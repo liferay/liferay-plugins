@@ -20,14 +20,12 @@ import com.liferay.opensocial.service.GadgetLocalServiceUtil;
 import com.liferay.opensocial.service.permission.GadgetPermission;
 import com.liferay.opensocial.shindig.util.ShindigUtil;
 import com.liferay.opensocial.util.ActionKeys;
-import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayInputStream;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.Folder;
 import com.liferay.portal.kernel.util.Constants;
-import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -40,10 +38,8 @@ import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.documentlibrary.service.DLAppServiceUtil;
 import com.liferay.portlet.documentlibrary.util.comparator.RepositoryModelNameComparator;
-import com.liferay.util.servlet.PortletResponseUtil;
 
 import java.io.IOException;
-import java.io.InputStream;
 
 import java.util.List;
 import java.util.Map;
@@ -229,7 +225,7 @@ public class EditorPortlet extends AdminPortlet {
 
 		jsonObject.put("fileEntryURL", fileEntryURL);
 
-		writeJSON(resourceRequest, resourceResponse, jsonObject.toString());
+		writeJSON(resourceRequest, resourceResponse, jsonObject);
 	}
 
 	protected void serveAddFolder(
@@ -257,7 +253,7 @@ public class EditorPortlet extends AdminPortlet {
 
 		jsonObject.put("folderId", folder.getFolderId());
 
-		writeJSON(resourceRequest, resourceResponse, jsonObject.toString());
+		writeJSON(resourceRequest, resourceResponse, jsonObject);
 	}
 
 	protected void serveDeleteFileEntry(
@@ -292,7 +288,7 @@ public class EditorPortlet extends AdminPortlet {
 
 		jsonObject.put("error", jsonError);
 
-		writeJSON(resourceRequest, resourceResponse, jsonObject.toString());
+		writeJSON(resourceRequest, resourceResponse, jsonObject);
 	}
 
 	protected void serveGetFileEntryContent(
@@ -309,7 +305,7 @@ public class EditorPortlet extends AdminPortlet {
 
 		jsonObject.put("content", content);
 
-		writeJSON(resourceRequest, resourceResponse, jsonObject.toString());
+		writeJSON(resourceRequest, resourceResponse, jsonObject);
 	}
 
 	protected void serveGetFolderChildren(
@@ -402,7 +398,7 @@ public class EditorPortlet extends AdminPortlet {
 			}
 		}
 
-		writeJSON(resourceRequest, resourceResponse, jsonArray.toString());
+		writeJSON(resourceRequest, resourceResponse, jsonArray);
 	}
 
 	protected void serveGetRenderParameters(
@@ -451,7 +447,7 @@ public class EditorPortlet extends AdminPortlet {
 
 		jsonObject.put("specUrl", fileEntryURL);
 
-		writeJSON(resourceRequest, resourceResponse, jsonObject.toString());
+		writeJSON(resourceRequest, resourceResponse, jsonObject);
 	}
 
 	protected void serveUpdateFileEntryContent(
@@ -478,7 +474,7 @@ public class EditorPortlet extends AdminPortlet {
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-		writeJSON(resourceRequest, resourceResponse, jsonObject.toString());
+		writeJSON(resourceRequest, resourceResponse, jsonObject);
 	}
 
 	protected void serveUpdateFileEntryTitle(
@@ -506,7 +502,7 @@ public class EditorPortlet extends AdminPortlet {
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-		writeJSON(resourceRequest, resourceResponse, jsonObject.toString());
+		writeJSON(resourceRequest, resourceResponse, jsonObject);
 	}
 
 	protected void serveUpdateFolderName(
@@ -529,20 +525,7 @@ public class EditorPortlet extends AdminPortlet {
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-		writeJSON(resourceRequest, resourceResponse, jsonObject.toString());
-	}
-
-	protected void writeJSON(
-			ResourceRequest resourceRequest, ResourceResponse resourceResponse,
-			String json)
-		throws IOException {
-
-		InputStream inputStream = new UnsyncByteArrayInputStream(
-			json.getBytes());
-
-		PortletResponseUtil.sendFile(
-			resourceRequest, resourceResponse, null, inputStream,
-			ContentTypes.TEXT_JAVASCRIPT);
+		writeJSON(resourceRequest, resourceResponse, jsonObject);
 	}
 
 }

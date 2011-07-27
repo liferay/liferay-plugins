@@ -17,10 +17,10 @@ package com.liferay.samplehibernate.servlet;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.servlet.HttpHeaders;
+import com.liferay.portal.kernel.servlet.ServletResponseUtil;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.samplehibernate.FoodItemComponentImpl;
-import com.liferay.util.servlet.ServletResponseUtil;
 
 import java.io.IOException;
 
