@@ -44,10 +44,10 @@ portletURL.setParameter("jspPage", "/status_update/view.jsp");
 	List<MicroblogsEntry> microblogsEntries = null;
 
 	if (microblogsEntryUserId == themeDisplay.getUserId()) {
-		microblogsEntries = MicroblogsEntryLocalServiceUtil.getUserMicroblogsEntries(microblogsEntryUserId, 0, 1);
+		microblogsEntries = MicroblogsEntryLocalServiceUtil.getUserMicroblogsEntries(microblogsEntryUserId, 0, 0, 1);
 	}
 	else {
-		microblogsEntries = MicroblogsEntryServiceUtil.getUserMicroblogsEntries(microblogsEntryUserId, 0, 1);
+		microblogsEntries = MicroblogsEntryServiceUtil.getUserMicroblogsEntries(microblogsEntryUserId, 0, 0, 1);
 	}
 
 	request.setAttribute(WebKeys.MICROBLOGS_ENTRIES, microblogsEntries);

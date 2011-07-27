@@ -43,11 +43,17 @@
 					(MicroblogsEntry.socialRelationType = SocialRelation.type_)
 			WHERE
 				(
-					(MicroblogsEntry.socialRelationType = ?) OR
-					(SocialRelation.userId1 = ?)
-				) AND
+					(
+						(MicroblogsEntry.socialRelationType = ?) OR
+						(SocialRelation.userId1 = ?)
+					) AND
+					(
+						MicroblogsEntry.userId = ?
+					)
+				) OR
 				(
-					MicroblogsEntry.userId = ?
+					(MicroblogsEntry.userId = ?) AND 
+					(MicroblogsEntry.userId = ?)
 				)
 		]]>
 	</sql>
@@ -83,6 +89,29 @@
 				(
 					(MicroblogsEntry.userId = ?) AND
 					(AssetTag.name = ?)
+				)
+		]]>
+	</sql>
+	<sql id="com.liferay.microblogs.service.persistence.MicroblogsEntryFinder.countByU_T_MU">
+		<![CDATA[
+			SELECT
+				COUNT(DISTINCT MicroblogsEntry.microblogsEntryId) AS COUNT_VALUE
+			FROM
+				MicroblogsEntry
+			LEFT JOIN
+				SocialRelation ON
+					(MicroblogsEntry.receiverUserId = SocialRelation.userId2) AND
+					(MicroblogsEntry.socialRelationType = SocialRelation.type_)
+			WHERE
+				(
+					(MicroblogsEntry.socialRelationType = ?) OR
+					(SocialRelation.userId1 = ?)
+				) AND
+				(
+					MicroblogsEntry.type = ?
+				) AND
+				(
+					MicroblogsEntry.userId = ?
 				)
 		]]>
 	</sql>
@@ -130,11 +159,17 @@
 					(MicroblogsEntry.socialRelationType = SocialRelation.type_)
 			WHERE
 				(
-					(MicroblogsEntry.socialRelationType = ?) OR
-					(SocialRelation.userId1 = ?)
-				) AND
+					(
+						(MicroblogsEntry.socialRelationType = ?) OR
+						(SocialRelation.userId1 = ?)
+					) AND
+					(
+						MicroblogsEntry.userId = ?
+					)
+				) OR
 				(
-					MicroblogsEntry.userId = ?
+					(MicroblogsEntry.userId = ?) AND
+					(MicroblogsEntry.userId = ?)
 				)
 			ORDER BY
 				MicroblogsEntry.createDate DESC
@@ -172,6 +207,31 @@
 				(
 					(MicroblogsEntry.userId = ?) AND
 					(AssetTag.name = ?)
+				)
+			ORDER BY
+				MicroblogsEntry.createDate DESC
+		]]>
+	</sql>
+	<sql id="com.liferay.microblogs.service.persistence.MicroblogsEntryFinder.findByU_T_MU">
+		<![CDATA[
+			SELECT
+				DISTINCT {MicroblogsEntry.*}
+			FROM
+				MicroblogsEntry
+			LEFT JOIN
+				SocialRelation ON
+					(MicroblogsEntry.receiverUserId = SocialRelation.userId2) AND
+					(MicroblogsEntry.socialRelationType = SocialRelation.type_)
+			WHERE
+				(
+					(MicroblogsEntry.socialRelationType = ?) OR
+					(SocialRelation.userId1 = ?)
+				) AND
+				(
+					MicroblogsEntry.type = ?
+				) AND
+				(
+					MicroblogsEntry.userId = ?
 				)
 			ORDER BY
 				MicroblogsEntry.createDate DESC
