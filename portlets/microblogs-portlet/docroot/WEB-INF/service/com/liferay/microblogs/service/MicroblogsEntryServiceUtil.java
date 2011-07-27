@@ -96,10 +96,27 @@ public class MicroblogsEntryServiceUtil {
 				   .getUserMicroblogsEntries(microblogsEntryUserId, start, end);
 	}
 
+	public static java.util.List<com.liferay.microblogs.model.MicroblogsEntry> getUserMicroblogsEntries(
+		long microblogsEntryUserId, int type, int start, int end)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .getUserMicroblogsEntries(microblogsEntryUserId, type,
+			start, end);
+	}
+
 	public static int getUserMicroblogsEntriesCount(long microblogsEntryUserId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService().getUserMicroblogsEntriesCount(microblogsEntryUserId);
+	}
+
+	public static int getUserMicroblogsEntriesCount(
+		long microblogsEntryUserId, int type)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .getUserMicroblogsEntriesCount(microblogsEntryUserId, type);
 	}
 
 	public static com.liferay.microblogs.model.MicroblogsEntry updateMicroblogsEntry(
