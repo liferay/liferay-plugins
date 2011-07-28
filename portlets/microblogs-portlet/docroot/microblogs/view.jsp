@@ -102,7 +102,7 @@ portletURL.setParameter("tabs1", tabs1);
 		total = MicroblogsEntryLocalServiceUtil.getReceiverUserMicroblogsEntriesCount(MicroblogsEntryConstants.TYPE_REPLY, receiverUserId);
 	}
 	else if (receiverMicroblogsEntryId > 0) {
-		results.addAll(MicroblogsEntryLocalServiceUtil.getReceiverMicroblogsEntryMicroblogsEntries(MicroblogsEntryConstants.TYPE_REPLY, receiverMicroblogsEntryId, searchContainer.getStart(), searchContainer.getEnd(), new OrderDateComparator(true)));
+		results.addAll(MicroblogsEntryLocalServiceUtil.getReceiverMicroblogsEntryMicroblogsEntries(MicroblogsEntryConstants.TYPE_REPLY, receiverMicroblogsEntryId, searchContainer.getStart(), searchContainer.getEnd(), new MicroblogsEntryCreateDateComparator(true)));
 		total = MicroblogsEntryLocalServiceUtil.getReceiverMicroblogsEntryMicroblogsEntriesCount(MicroblogsEntryConstants.TYPE_REPLY, receiverMicroblogsEntryId);
 
 		try {
