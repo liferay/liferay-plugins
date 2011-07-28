@@ -144,7 +144,7 @@ public class InstanceUtil {
 		LayoutSetPrototype layoutSetPrototype =
 			LayoutSetPrototypeLocalServiceUtil.addLayoutSetPrototype(
 				defaultUserId, companyId, localeNamesMap, description, active,
-				serviceContext);
+				true, true, serviceContext);
 
 		UnicodeProperties settingsProperties =
 			layoutSetPrototype.getSettingsProperties();
