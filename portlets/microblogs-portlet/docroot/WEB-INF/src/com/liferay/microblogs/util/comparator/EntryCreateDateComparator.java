@@ -21,7 +21,7 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 /**
  * @author Jonathan Lee
  */
-public class MicroblogsEntryCreateDateComparator extends OrderByComparator {
+public class EntryCreateDateComparator extends OrderByComparator {
 
 	public static String ORDER_BY_ASC = "createDate ASC";
 
@@ -29,11 +29,11 @@ public class MicroblogsEntryCreateDateComparator extends OrderByComparator {
 
 	public static String[] ORDER_BY_FIELDS = {"createDate"};
 
-	public MicroblogsEntryCreateDateComparator() {
+	public EntryCreateDateComparator() {
 		this(false);
 	}
 
-	public MicroblogsEntryCreateDateComparator(boolean ascending) {
+	public EntryCreateDateComparator(boolean ascending) {
 		_ascending = ascending;
 	}
 
