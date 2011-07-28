@@ -33,7 +33,7 @@ PortletURL portletURL = (PortletURL)request.getAttribute(WebKeys.MICROBLOGS_ENTR
 <%
 for (MicroblogsEntry microblogsEntry : microblogsEntries) {
 	String userDisplayURL = StringPool.BLANK;
-	String userEmail = StringPool.BLANK;
+	String userScreenName = StringPool.BLANK;
 	String userFullName = PortalUtil.getUserName(microblogsEntry.getUserId(), microblogsEntry.getUserName());
 	String userPortaitURL = StringPool.BLANK;
 
@@ -41,7 +41,7 @@ for (MicroblogsEntry microblogsEntry : microblogsEntries) {
 		User curUser = UserLocalServiceUtil.getUserById(microblogsEntry.getUserId());
 
 		userDisplayURL = curUser.getDisplayURL(themeDisplay);
-		userEmail = curUser.getEmailAddress();
+		userScreenName = curUser.getScreenName();
 		userPortaitURL = curUser.getPortraitURL(themeDisplay);
 	}
 	catch (NoSuchUserException nsue) {
@@ -57,7 +57,7 @@ for (MicroblogsEntry microblogsEntry : microblogsEntries) {
 
 		<div class="<%= (themeDisplay.getUserId() == microblogsEntry.getUserId()) ? "my-entry-bubble" : "entry-bubble" %> ">
 			<div class="user-name">
-				<span><%= userFullName %></span> <span class="small"><%= userEmail %></span>
+				<span><%= userFullName %></span> <span class="small">(<%= userScreenName %>)</span>
 
 				<c:if test="<%= microblogsEntry.getType() == MicroblogsEntryConstants.TYPE_REPOST %>">
 					<span class="small"><liferay-ui:message key="reposted-from" /></span> <span><%= PortalUtil.getUserName(microblogsEntry.getReceiverUserId(), StringPool.BLANK) %></span>
@@ -99,7 +99,7 @@ for (MicroblogsEntry microblogsEntry : microblogsEntries) {
 				<%
 				String content = microblogsEntry.getContent();
 
-				Pattern pattern = Pattern.compile("#\\w+");
+				Pattern pattern = Pattern.compile("[#|@]\\w+");
 
 				Matcher matcher = pattern.matcher(content);
 
@@ -114,20 +114,27 @@ for (MicroblogsEntry microblogsEntry : microblogsEntries) {
 
 					String assetTagName = result.substring(1);
 
-					viewURL.setParameter("tabs1", HtmlUtil.escape(assetTagName));
-					viewURL.setParameter("assetTagName", assetTagName);
+					if (result.startsWith("#")) {
+						viewURL.setParameter("assetTagName", assetTagName);
 
-					content = StringUtil.replace(content, result, "<a href=\"" + viewURL + "\">" + result + "</a>");
-				}
+						content = StringUtil.replace(content, result, "<a href=\"" + viewURL + "\">" + result + "</a>");
+					}
+					else if (result.startsWith("@")) {
+						try {
+							User taggedUser = UserLocalServiceUtil.getUserByScreenName(microblogsEntry.getCompanyId(), assetTagName);
 
-				if (microblogsEntry.getType() == MicroblogsEntryConstants.TYPE_REPLY) {
-					String receiverUserFullName = PortalUtil.getUserName(microblogsEntry.getReceiverUserId(), StringPool.BLANK);
+							assetTagName = PortalUtil.getUserName(taggedUser.getUserId(), assetTagName);
 
-					viewURL.setParameter("tabs1", receiverUserFullName);
-					viewURL.setParameter("receiverUserId", String.valueOf(microblogsEntry.getReceiverUserId()));
-					viewURL.setParameter("assetTagName", StringPool.BLANK);
+							viewURL.setParameter("receiverUserId", String.valueOf(taggedUser.getUserId()));
+						}
+						catch (NoSuchUserException nsue){
+							viewURL.setParameter("receiverUserId", String.valueOf(0));
+						}
 
-					content = "@<a href=\"" + viewURL + "\">" + receiverUserFullName + "</a> " + content;
+						viewURL.setParameter("tabs1", assetTagName);
+
+						content = StringUtil.replace(content, result, "@<a href=\"" + viewURL + "\">" + assetTagName + "</a>");
+					}
 				}
 				%>
 

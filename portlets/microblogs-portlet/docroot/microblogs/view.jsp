@@ -26,7 +26,7 @@ String tabs1 = ParamUtil.getString(request, "tabs1", "timeline");
 String tabs1Names = "timeline,mentions";
 String assetTagName = ParamUtil.getString(request, "assetTagName");
 
-if (!tabs1.equals("timeline")) {
+if (!tabs1.equals("timeline") && !tabs1.equals("mentions")) {
 	tabs1Names += "," + tabs1;
 }
 
@@ -98,8 +98,16 @@ portletURL.setParameter("tabs1", tabs1);
 			receiverUserId = group.getClassPK();
 		}
 
-		results = MicroblogsEntryLocalServiceUtil.getReceiverUserMicroblogsEntries(MicroblogsEntryConstants.TYPE_REPLY, receiverUserId, searchContainer.getStart(), searchContainer.getEnd());
-		total = MicroblogsEntryLocalServiceUtil.getReceiverUserMicroblogsEntriesCount(MicroblogsEntryConstants.TYPE_REPLY, receiverUserId);
+		try {
+			User taggedUser = UserLocalServiceUtil.getUserById(receiverUserId);
+
+			assetTagName = taggedUser.getScreenName();
+		}
+		catch (NoSuchUserException nsue){
+		}
+
+		results = MicroblogsEntryServiceUtil.getMicroblogsEntries(assetTagName, searchContainer.getStart(), searchContainer.getEnd());
+		total = MicroblogsEntryServiceUtil.getMicroblogsEntriesCount(assetTagName);
 	}
 	else if (receiverMicroblogsEntryId > 0) {
 		results.addAll(MicroblogsEntryLocalServiceUtil.getReceiverMicroblogsEntryMicroblogsEntries(MicroblogsEntryConstants.TYPE_REPLY, receiverMicroblogsEntryId, searchContainer.getStart(), searchContainer.getEnd(), new OrderDateComparator(true)));
@@ -119,7 +127,7 @@ portletURL.setParameter("tabs1", tabs1);
 		results = MicroblogsEntryServiceUtil.getUserMicroblogsEntries(receiverUserId, searchContainer.getStart(), searchContainer.getEnd());
 		total = MicroblogsEntryServiceUtil.getUserMicroblogsEntriesCount(receiverUserId);
 
-		portletURL.setParameter("assetTagName", String.valueOf(receiverUserId));
+		portletURL.setParameter("receiverUserId", String.valueOf(receiverUserId));
 	}
 	else if (Validator.isNotNull(assetTagName)) {
 		results = MicroblogsEntryServiceUtil.getMicroblogsEntries(assetTagName, searchContainer.getStart(), searchContainer.getEnd());
