@@ -131,7 +131,7 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 	protected void parseActionElements(
 		List<Element> actionElements, ActionAware actionAware) {
 
-		if (!actionElements.isEmpty()) {
+		if (actionElements.isEmpty()) {
 			return;
 		}
 
