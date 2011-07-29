@@ -17,14 +17,14 @@
 <%@ include file="/init.jsp" %>
 
 <%
+String tabs1 = ParamUtil.getString(request, "tabs1", "timeline");
+
 String redirect = ParamUtil.getString(request, "redirect");
 
-long receiverMicroblogsEntryId = ParamUtil.getLong(request, "receiverMicroblogsEntryId");
 long receiverUserId = ParamUtil.getLong(request, "receiverUserId");
+long receiverMicroblogsEntryId = ParamUtil.getLong(request, "receiverMicroblogsEntryId");
 
 String assetTagName = ParamUtil.getString(request, "assetTagName");
-
-String tabs1 = ParamUtil.getString(request, "tabs1", "timeline");
 
 String tabs1Names = "timeline,mentions";
 
