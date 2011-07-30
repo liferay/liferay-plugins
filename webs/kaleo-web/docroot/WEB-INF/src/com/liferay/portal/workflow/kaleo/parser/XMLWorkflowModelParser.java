@@ -166,7 +166,9 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 
 		parseActionElements(actionElements, node);
 
-		if (node.getNodeType().equals(NodeType.TASK)) {
+		NodeType nodeType = node.getNodeType();
+
+		if (nodeType.equals(NodeType.TASK)) {
 			List<Element> formElements = actionsElement.elements("form");
 
 			parseFormElements(formElements, (Task)node);
@@ -340,11 +342,11 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 
 			Form form = new Form(formTemplateId);
 
-			forms.add(form);
-
 			String description = formElement.elementText("description");
+
 			form.setDescription(description);
 
+			forms.add(form);
 		}
 
 		task.setForms(forms);

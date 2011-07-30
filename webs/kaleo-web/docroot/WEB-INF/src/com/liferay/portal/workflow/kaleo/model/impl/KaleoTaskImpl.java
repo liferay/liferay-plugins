@@ -52,4 +52,5 @@ public class KaleoTaskImpl extends KaleoTaskBaseImpl {
 		return KaleoTaskFormLocalServiceUtil.getKaleoTaskForms(
 			getKaleoTaskId());
 	}
+
 }
