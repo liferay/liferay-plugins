@@ -792,7 +792,7 @@
 		<order by="asc">
 			<order-column name="kaleoTimerId" />
 		</order>
-		
+
 		<!-- Finder methods -->
 
 		<finder name="KCN_KCPK" return-type="Collection">

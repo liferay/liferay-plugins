@@ -15,20 +15,11 @@
 package com.liferay.portal.workflow.kaleo.model.impl;
 
 /**
- * The extended model implementation for the KaleoTaskForm service. Represents a row in the &quot;KaleoTaskForm&quot; database table, with each column mapped to a property of this class.
- *
- * <p>
- * Helper methods and all application logic should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link com.liferay.portal.workflow.kaleo.model.KaleoTaskForm} interface.
- * </p>
- *
  * @author Brian Wing Shun Chan
  */
 public class KaleoTaskFormImpl extends KaleoTaskFormBaseImpl {
-	/*
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this class directly. All methods that expect a kaleo task form model instance should use the {@link com.liferay.portal.workflow.kaleo.model.KaleoTaskForm} interface instead.
-	 */
+
 	public KaleoTaskFormImpl() {
 	}
+
 }
