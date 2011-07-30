@@ -64,7 +64,6 @@ for (MicroblogsEntry microblogsEntry : microblogsEntries) {
 				</c:if>
 
 				<c:if test="<%= replyTotal > 0 %>">
-
 					<portlet:renderURL var="conversationURL" windowState="<%= LiferayWindowState.NORMAL.toString() %>">
 						<portlet:param name="jspPage" value="/microblogs/view.jsp" />
 						<portlet:param name="redirect" value="<%= redirect %>" />
@@ -80,7 +79,6 @@ for (MicroblogsEntry microblogsEntry : microblogsEntries) {
 				</c:if>
 
 				<c:if test="<%= microblogsEntry.getType() == MicroblogsEntryConstants.TYPE_REPLY %>">
-
 					<portlet:renderURL var="conversationURL" windowState="<%= LiferayWindowState.NORMAL.toString() %>">
 						<portlet:param name="jspPage" value="/microblogs/view.jsp" />
 						<portlet:param name="redirect" value="<%= redirect %>" />
@@ -91,8 +89,6 @@ for (MicroblogsEntry microblogsEntry : microblogsEntries) {
 					<liferay-ui:icon
 						cssClass="microblogs-reply-icon"
 						image="conversation"
-						label="<%= false %>"
-						message="view-conversation"
 						url="<%= conversationURL %>"
 					/>
 				</c:if>
