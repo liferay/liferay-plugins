@@ -65,8 +65,8 @@ public class MicroblogsEntryPermission {
 			MicroblogsEntry microblogsEntry, String actionId)
 		throws SystemException {
 
-		if (actionId.equals(ActionKeys.UPDATE) ||
-			actionId.equals(ActionKeys.DELETE)) {
+		if (actionId.equals(ActionKeys.DELETE) ||
+			actionId.equals(ActionKeys.UPDATE)) {
 
 			if (permissionChecker.hasOwnerPermission(
 					microblogsEntry.getCompanyId(),
