@@ -46,8 +46,6 @@ for (MicroblogsEntry microblogsEntry : microblogsEntries) {
 	}
 	catch (NoSuchUserException nsue) {
 	}
-
-	int replyTotal = MicroblogsEntryLocalServiceUtil.getReceiverMicroblogsEntryMicroblogsEntriesCount(MicroblogsEntryConstants.TYPE_REPLY, microblogsEntry.getMicroblogsEntryId());
 %>
 
 	<div class="microblogs-entry">
@@ -63,7 +61,11 @@ for (MicroblogsEntry microblogsEntry : microblogsEntries) {
 					<span class="small"><liferay-ui:message key="reposted-from" /></span> <span><%= PortalUtil.getUserName(microblogsEntry.getReceiverUserId(), StringPool.BLANK) %></span>
 				</c:if>
 
-				<c:if test="<%= replyTotal > 0 %>">
+				<%
+				int replyCount = MicroblogsEntryLocalServiceUtil.getReceiverMicroblogsEntryMicroblogsEntriesCount(MicroblogsEntryConstants.TYPE_REPLY, microblogsEntry.getMicroblogsEntryId());
+				%>
+
+				<c:if test="<%= replyCount > 0 %>">
 					<portlet:renderURL var="conversationURL" windowState="<%= LiferayWindowState.NORMAL.toString() %>">
 						<portlet:param name="jspPage" value="/microblogs/view.jsp" />
 						<portlet:param name="redirect" value="<%= redirect %>" />
