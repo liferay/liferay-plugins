@@ -21,6 +21,7 @@ import com.liferay.microblogs.model.MicroblogsEntryConstants;
 import com.liferay.microblogs.service.base.MicroblogsEntryLocalServiceBaseImpl;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
@@ -175,11 +176,12 @@ public class MicroblogsEntryLocalServiceImpl
 	}
 
 	public List<MicroblogsEntry> getReceiverMicroblogsEntryMicroblogsEntries(
-			int type, long receiverMicroblogsEntryId, int start, int end)
+			int type, long receiverMicroblogsEntryId, int start, int end,
+			OrderByComparator orderByComparator)
 		throws SystemException {
 
 		return microblogsEntryPersistence.findByT_RMEI(
-			type, receiverMicroblogsEntryId, start, end);
+			type, receiverMicroblogsEntryId, start, end, orderByComparator);
 	}
 
 	public int getReceiverMicroblogsEntryMicroblogsEntriesCount(

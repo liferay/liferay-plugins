@@ -183,3 +183,10 @@
 .microblogs-portlet .aui-tabview-list {
 	margin-top: 5px;
 }
+
+.microblogs-portlet .microblogs-reply-icon {
+	float: right;
+	font-size: 10px;
+	font-weight: normal;
+	margin: 5px -3px;
+}
