@@ -294,11 +294,12 @@ public class MicroblogsEntryLocalServiceUtil {
 	}
 
 	public static java.util.List<com.liferay.microblogs.model.MicroblogsEntry> getReceiverMicroblogsEntryMicroblogsEntries(
-		int type, long receiverMicroblogsEntryId, int start, int end)
+		int type, long receiverMicroblogsEntryId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .getReceiverMicroblogsEntryMicroblogsEntries(type,
-			receiverMicroblogsEntryId, start, end);
+			receiverMicroblogsEntryId, start, end, orderByComparator);
 	}
 
 	public static int getReceiverMicroblogsEntryMicroblogsEntriesCount(
