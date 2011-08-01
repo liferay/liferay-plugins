@@ -110,7 +110,7 @@ public class ServicePreAction extends Action {
 		ThemeDisplay themeDisplay, String currentURL) {
 
 		String urlFragment1 =
-			themeDisplay.getPathMain() + "/my_places/view?groupId=";
+			themeDisplay.getPathMain() + "/my_sites/view?groupId=";
 
 		if (!StringUtil.startsWith(currentURL, urlFragment1)) {
 			return false;
