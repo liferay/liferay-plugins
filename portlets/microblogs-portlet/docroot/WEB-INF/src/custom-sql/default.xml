@@ -43,17 +43,11 @@
 					(MicroblogsEntry.socialRelationType = SocialRelation.type_)
 			WHERE
 				(
-					(
-						(MicroblogsEntry.socialRelationType = ?) OR
-						(SocialRelation.userId1 = ?)
-					) AND
-					(
-						MicroblogsEntry.userId = ?
-					)
-				) OR
+					(MicroblogsEntry.socialRelationType = ?) OR
+					(SocialRelation.userId1 = ?)
+				) AND
 				(
-					(MicroblogsEntry.userId = ?) AND 
-					(MicroblogsEntry.userId = ?)
+					MicroblogsEntry.userId = ?
 				)
 		]]>
 	</sql>
@@ -159,17 +153,11 @@
 					(MicroblogsEntry.socialRelationType = SocialRelation.type_)
 			WHERE
 				(
-					(
-						(MicroblogsEntry.socialRelationType = ?) OR
-						(SocialRelation.userId1 = ?)
-					) AND
-					(
-						MicroblogsEntry.userId = ?
-					)
-				) OR
+					(MicroblogsEntry.socialRelationType = ?) OR
+					(SocialRelation.userId1 = ?)
+				) AND
 				(
-					(MicroblogsEntry.userId = ?) AND
-					(MicroblogsEntry.userId = ?)
+					MicroblogsEntry.userId = ?
 				)
 			ORDER BY
 				MicroblogsEntry.createDate DESC

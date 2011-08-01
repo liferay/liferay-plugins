@@ -141,8 +141,6 @@ public class MicroblogsEntryFinderImpl
 			qPos.add(MicroblogsEntryConstants.TYPE_EVERYONE);
 			qPos.add(userId);
 			qPos.add(microblogsEntryUserId);
-			qPos.add(userId);
-			qPos.add(microblogsEntryUserId);
 
 			Iterator<Long> itr = q.list().iterator();
 
@@ -300,8 +298,6 @@ public class MicroblogsEntryFinderImpl
 			QueryPos qPos = QueryPos.getInstance(q);
 
 			qPos.add(MicroblogsEntryConstants.TYPE_EVERYONE);
-			qPos.add(userId);
-			qPos.add(microblogsEntryUserId);
 			qPos.add(userId);
 			qPos.add(microblogsEntryUserId);
 
