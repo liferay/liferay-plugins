@@ -17,14 +17,16 @@
 <%@ include file="/init.jsp" %>
 
 <%
+String tabs1 = ParamUtil.getString(request, "tabs1", "timeline");
+
 String redirect = ParamUtil.getString(request, "redirect");
 
-long receiverMicroblogsEntryId = ParamUtil.getLong(request, "receiverMicroblogsEntryId");
 long receiverUserId = ParamUtil.getLong(request, "receiverUserId");
+long receiverMicroblogsEntryId = ParamUtil.getLong(request, "receiverMicroblogsEntryId");
 
-String tabs1 = ParamUtil.getString(request, "tabs1", "timeline");
-String tabs1Names = "timeline,mentions";
 String assetTagName = ParamUtil.getString(request, "assetTagName");
+
+String tabs1Names = "timeline,mentions";
 
 if (!tabs1.equals("timeline") && !tabs1.equals("mentions")) {
 	tabs1Names += "," + tabs1;
@@ -68,7 +70,7 @@ portletURL.setParameter("tabs1", tabs1);
 
 	searchContainer.setDeltaConfigurable(false);
 
-	List<MicroblogsEntry> results = new ArrayList<MicroblogsEntry>();
+	List<MicroblogsEntry> results = null;
 	int total = 0;
 
 	if (tabs1.equals("timeline")) {
@@ -110,12 +112,19 @@ portletURL.setParameter("tabs1", tabs1);
 		total = MicroblogsEntryServiceUtil.getMicroblogsEntriesCount(assetTagName);
 	}
 	else if (receiverMicroblogsEntryId > 0) {
-		results.addAll(MicroblogsEntryLocalServiceUtil.getReceiverMicroblogsEntryMicroblogsEntries(MicroblogsEntryConstants.TYPE_REPLY, receiverMicroblogsEntryId, searchContainer.getStart(), searchContainer.getEnd(), new OrderDateComparator(true)));
 		total = MicroblogsEntryLocalServiceUtil.getReceiverMicroblogsEntryMicroblogsEntriesCount(MicroblogsEntryConstants.TYPE_REPLY, receiverMicroblogsEntryId);
+
+		List<MicroblogsEntry> replyEntries = MicroblogsEntryLocalServiceUtil.getReceiverMicroblogsEntryMicroblogsEntries(MicroblogsEntryConstants.TYPE_REPLY, receiverMicroblogsEntryId, searchContainer.getStart(), searchContainer.getEnd(), new EntryCreateDateComparator(true));
+
+		results = new ArrayList<MicroblogsEntry>(total + 1);
+
+		results.addAll(replyEntries);
 
 		try {
 			MicroblogsEntry receiverMicroblogsEntry = MicroblogsEntryServiceUtil.getMicroblogsEntry(receiverMicroblogsEntryId);
+
 			results.add(0, receiverMicroblogsEntry);
+
 			total++;
 		}
 		catch (NoSuchEntryException nsee) {
