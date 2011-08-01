@@ -86,8 +86,6 @@ public class WorkflowTaskAdapter extends DefaultWorkflowTask {
 			addWorkflowTaskForm(workflowTaskForm);
 		}
 
-		setWorkflowTaskAssignees(workflowTaskAssignees);
-
 		setWorkflowTaskId(kaleoTaskInstanceToken.getKaleoTaskInstanceTokenId());
 	}
 
