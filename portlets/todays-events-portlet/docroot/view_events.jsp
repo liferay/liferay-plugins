@@ -38,11 +38,11 @@ List<CalEvent> events = (List<CalEvent>)request.getAttribute("view.jsp-events");
 			<%
 			Group group = GroupLocalServiceUtil.getGroup(event.getGroupId());
 
-			LiferayPortletURL groupURL = PortletURLFactoryUtil.create(request, PortletKeys.MY_PLACES, layout.getPlid(), PortletRequest.ACTION_PHASE);
+			LiferayPortletURL groupURL = PortletURLFactoryUtil.create(request, PortletKeys.MY_SITES, layout.getPlid(), PortletRequest.ACTION_PHASE);
 
 			groupURL.setWindowState(LiferayWindowState.NORMAL);
 
-			groupURL.setParameter("struts_action", "/my_places/view");
+			groupURL.setParameter("struts_action", "/my_sites/view");
 			groupURL.setParameter("groupId", String.valueOf(group.getGroupId()));
 
 			if (group.hasPublicLayouts()) {

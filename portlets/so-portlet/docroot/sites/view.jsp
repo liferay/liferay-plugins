@@ -93,8 +93,8 @@ pageContext.setAttribute("portletURL", portletURL);
 						<span class="name">
 							<c:choose>
 								<c:when test="<%= group.hasPrivateLayouts() || group.hasPublicLayouts() %>">
-									<liferay-portlet:actionURL windowState="<%= LiferayWindowState.NORMAL.toString() %>" portletName="<%= PortletKeys.MY_PLACES %>" var="siteURL">
-										<portlet:param name="struts_action" value="/my_places/view" />
+									<liferay-portlet:actionURL windowState="<%= LiferayWindowState.NORMAL.toString() %>" portletName="<%= PortletKeys.MY_SITES %>" var="siteURL">
+										<portlet:param name="struts_action" value="/my_sites/view" />
 										<portlet:param name="groupId" value="<%= String.valueOf(group.getGroupId()) %>" />
 										<portlet:param name="privateLayout" value="<%= String.valueOf(!group.hasPublicLayouts()) %>" />
 									</liferay-portlet:actionURL>
