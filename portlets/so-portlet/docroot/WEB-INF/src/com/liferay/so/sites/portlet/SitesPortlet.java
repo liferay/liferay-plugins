@@ -256,12 +256,12 @@ public class SitesPortlet extends MVCPortlet {
 			if (group.hasPrivateLayouts() || group.hasPublicLayouts()) {
 				PortletURL portletURL = PortletURLFactoryUtil.create(
 					PortalUtil.getHttpServletRequest(resourceRequest),
-					PortletKeys.MY_PLACES, themeDisplay.getLayout().getPlid(),
+					PortletKeys.MY_SITES, themeDisplay.getLayout().getPlid(),
 					PortletRequest.ACTION_PHASE);
 
 				portletURL.setWindowState(WindowState.NORMAL);
 
-				portletURL.setParameter("struts_action", "/my_places/view");
+				portletURL.setParameter("struts_action", "/my_sites/view");
 				portletURL.setParameter(
 					"groupId", String.valueOf(group.getGroupId()));
 				portletURL.setParameter(
@@ -387,7 +387,7 @@ public class SitesPortlet extends MVCPortlet {
 		}
 
 		for (Layout layout : layouts) {
-			LayoutLocalServiceUtil.deleteLayout(layout, true);
+			LayoutLocalServiceUtil.deleteLayout(layout, true, serviceContext);
 		}
 	}
 

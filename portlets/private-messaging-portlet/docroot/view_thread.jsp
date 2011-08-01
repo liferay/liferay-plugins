@@ -52,8 +52,8 @@ UserThreadLocalServiceUtil.markUserThreadAsRead(user.getUserId(), mbThreadId);
 
 		<c:choose>
 			<c:when test="<%= LAYOUT_USER_PUBLIC_LAYOUTS_ENABLED %>">
-				<liferay-portlet:actionURL portletName="<%= PortletKeys.MY_PLACES %>" var="publicPagesURL">
-					<portlet:param name="struts_action" value="/my_places/view" />
+				<liferay-portlet:actionURL portletName="<%= PortletKeys.MY_SITES %>" var="publicPagesURL">
+					<portlet:param name="struts_action" value="/my_sites/view" />
 					<portlet:param name="groupId" value="<%= String.valueOf(curUser.getGroup().getGroupId()) %>" />
 					<portlet:param name="privateLayout" value="<%= Boolean.FALSE.toString() %>" />
 				</liferay-portlet:actionURL>
@@ -75,8 +75,8 @@ UserThreadLocalServiceUtil.markUserThreadAsRead(user.getUserId(), mbThreadId);
 
 	<c:choose>
 		<c:when test="<%= LAYOUT_USER_PUBLIC_LAYOUTS_ENABLED %>">
-			<liferay-portlet:actionURL portletName="<%= PortletKeys.MY_PLACES %>" var="selfPublicPagesURL">
-				<portlet:param name="struts_action" value="/my_places/view" />
+			<liferay-portlet:actionURL portletName="<%= PortletKeys.MY_SITES %>" var="selfPublicPagesURL">
+				<portlet:param name="struts_action" value="/my_sites/view" />
 				<portlet:param name="groupId" value="<%= String.valueOf(user.getGroup().getGroupId()) %>" />
 				<portlet:param name="privateLayout" value="<%= Boolean.FALSE.toString() %>" />
 			</liferay-portlet:actionURL>
@@ -124,8 +124,8 @@ UserThreadLocalServiceUtil.markUserThreadAsRead(user.getUserId(), mbThreadId);
 			<aui:layout>
 				<c:choose>
 					<c:when test="<%= LAYOUT_USER_PUBLIC_LAYOUTS_ENABLED %>">
-						<liferay-portlet:actionURL portletName="<%= PortletKeys.MY_PLACES %>" var="publicPagesURL">
-							<portlet:param name="struts_action" value="/my_places/view" />
+						<liferay-portlet:actionURL portletName="<%= PortletKeys.MY_SITES %>" var="publicPagesURL">
+							<portlet:param name="struts_action" value="/my_sites/view" />
 							<portlet:param name="groupId" value="<%= String.valueOf(curUser.getGroup().getGroupId()) %>" />
 							<portlet:param name="privateLayout" value="<%= Boolean.FALSE.toString() %>" />
 						</liferay-portlet:actionURL>
