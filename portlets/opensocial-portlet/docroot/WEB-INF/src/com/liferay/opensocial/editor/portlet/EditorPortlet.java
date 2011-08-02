@@ -212,7 +212,7 @@ public class EditorPortlet extends AdminPortlet {
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 		FileEntry fileEntry = DLAppServiceUtil.addFileEntry(
-			folder.getRepositoryId(), folderId,
+			folder.getRepositoryId(), folderId, StringPool.BLANK,
 			resourceRequest.getContentType(), fileEntryTitle,
 			StringPool.BLANK, StringPool.BLANK, bytes, serviceContext);
 
