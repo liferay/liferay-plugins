@@ -17,17 +17,18 @@
 <%@ include file="/html/taglib/ui/social_bookmark/init.jsp" %>
 
 <%
-	String linkedinDisplayStyle = StringPool.BLANK;
-	if (displayStyle.equals("vertical")) {
-		linkedinDisplayStyle = "data-counter='top'";
-	}
-	else if (displayStyle.equals("horizontal")) {
-		linkedinDisplayStyle = "data-counter='right'";
-	}
+String linkedinDisplayStyle = StringPool.BLANK;
+
+if (displayStyle.equals("horizontal")) {
+	linkedinDisplayStyle = "data-counter=\"right\"";
+}
+else if (displayStyle.equals("vertical")) {
+	linkedinDisplayStyle = "data-counter=\"top\"";
+}
 %>
 
 <liferay-util:html-bottom outputKey="taglib_ui_social_bookmark_linkedin">
 	<script type="text/javascript" src="http://platform.linkedin.com/in.js"></script>
 </liferay-util:html-bottom>
 
-<script type="in/share" data-url="<%= url %>" <%= linkedinDisplayStyle%>></script>
+<script <%= linkedinDisplayStyle %> data-url="<%= url %>" type="in/share"></script>

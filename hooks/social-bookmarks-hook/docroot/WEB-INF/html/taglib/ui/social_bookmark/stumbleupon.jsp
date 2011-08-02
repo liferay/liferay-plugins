@@ -17,17 +17,14 @@
 <%@ include file="/html/taglib/ui/social_bookmark/init.jsp" %>
 
 <%
-	String stumbleUponDisplayStyle = "2";
-	if (displayStyle.equals("simple")) {
-		stumbleUponDisplayStyle = "4";
-	}
-	else if (displayStyle.equals("vertical")) {
-		stumbleUponDisplayStyle = "5";
-	}
+String stumbleUponDisplayStyle = "2";
+
+if (displayStyle.equals("simple")) {
+	stumbleUponDisplayStyle = "4";
+}
+else if (displayStyle.equals("vertical")) {
+	stumbleUponDisplayStyle = "5";
+}
 %>
 
-<script type="text/javascript" src="http://www.stumbleupon.com/hostedbadge.php?s=<%= stumbleUponDisplayStyle%>&r=<%= HttpUtil.encodeURL(url) %>"></script>
-
-
-
-
+<script src="http://www.stumbleupon.com/hostedbadge.php?s=<%= stumbleUponDisplayStyle%>&r=<%= HttpUtil.encodeURL(url) %>" type="text/javascript"></script>

@@ -17,10 +17,11 @@
 <%@ include file="/html/taglib/ui/social_bookmark/init.jsp" %>
 
 <%
-	String slashdotDisplayStyle = StringPool.BLANK;
-	if (displayStyle.equals("vertical")) {
-		slashdotDisplayStyle = "slashdot_badge_style='v0'";
-	}
+String slashdotDisplayStyle = StringPool.BLANK;
+
+if (displayStyle.equals("vertical")) {
+	slashdotDisplayStyle = "slashdot_badge_style='v0'";
+}
 %>
 
 <script type="text/javascript">
@@ -28,4 +29,5 @@
 	slashdot_url="<%= url %>";
 	<%= slashdotDisplayStyle %>
 </script>
+
 <script src="http://slashdot.org/slashdot-it.js" type="text/javascript"></script>

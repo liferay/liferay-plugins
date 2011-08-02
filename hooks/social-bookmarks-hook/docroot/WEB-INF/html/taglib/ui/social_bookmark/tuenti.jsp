@@ -17,14 +17,15 @@
 <%@ include file="/html/taglib/ui/social_bookmark/init.jsp" %>
 
 <%
-	String tuentiDisplayStyle = StringPool.BLANK;
-	if (displayStyle.equals("simple")) {
-		tuentiDisplayStyle = "icon-style='small'";
-	}
+String tuentiDisplayStyle = StringPool.BLANK;
+
+if (displayStyle.equals("simple")) {
+	tuentiDisplayStyle = "icon-style=\"small\"";
+}
 %>
+
 <liferay-util:html-bottom outputKey="taglib_ui_social_bookmark_tuenti">
-	<script type="text/javascript" src="http://widgets.tuenti.com/widgets.js"></script>
+	<script src="http://widgets.tuenti.com/widgets.js" type="text/javascript"></script>
 </liferay-util:html-bottom>
 
-
-<a href="http://www.tuenti.com/share" class="tuenti-share-button" <%= tuentiDisplayStyle%> share-url="<%= url %>"></a>
+<a class="tuenti-share-button" <%= tuentiDisplayStyle%> href="http://www.tuenti.com/share" share-url="<%= url %>"></a>
