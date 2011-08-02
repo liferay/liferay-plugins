@@ -26,7 +26,6 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.model.GroupConstants;
 import com.liferay.portal.model.User;
-import com.liferay.portal.service.ServiceContext;
 import com.liferay.portlet.documentlibrary.DuplicateDirectoryException;
 import com.liferay.portlet.documentlibrary.DuplicateFileException;
 import com.liferay.portlet.documentlibrary.NoSuchDirectoryException;
@@ -86,8 +85,7 @@ public class AttachmentLocalServiceImpl extends AttachmentLocalServiceBaseImpl {
 
 			try {
 				DLStoreUtil.addFile(
-					attachment.getCompanyId(), _PORTLET_ID, _GROUP_ID,
-					_REPOSITORY_ID, filePath, new ServiceContext(), file);
+					attachment.getCompanyId(), _REPOSITORY_ID, filePath, file);
 			}
 			catch (DuplicateFileException dfe) {
 				if (_log.isDebugEnabled()) {
@@ -117,8 +115,7 @@ public class AttachmentLocalServiceImpl extends AttachmentLocalServiceBaseImpl {
 
 		try {
 			DLStoreUtil.deleteFile(
-				attachment.getCompanyId(), _PORTLET_ID, _REPOSITORY_ID,
-				filePath);
+				attachment.getCompanyId(), _REPOSITORY_ID, filePath);
 		}
 		catch (NoSuchDirectoryException nsde) {
 			if (_log.isDebugEnabled()) {
@@ -150,7 +147,7 @@ public class AttachmentLocalServiceImpl extends AttachmentLocalServiceBaseImpl {
 
 		try {
 			DLStoreUtil.deleteDirectory(
-				companyId, _PORTLET_ID, _REPOSITORY_ID, directoryPath);
+				companyId, _REPOSITORY_ID, directoryPath);
 		}
 		catch (NoSuchDirectoryException nsde) {
 			if (_log.isDebugEnabled()) {
