@@ -14,7 +14,6 @@
 
 package com.liferay.mysubscriptions.portlet;
 
-import com.liferay.portal.NoSuchSubscriptionException;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.WebKeys;
@@ -27,6 +26,7 @@ import javax.portlet.ActionResponse;
 
 /**
  * @author Peter Shin
+ * @author Jonathan Lee
  */
 public class MySubscriptionsPortlet extends MVCPortlet {
 
@@ -45,16 +45,10 @@ public class MySubscriptionsPortlet extends MVCPortlet {
 			ParamUtil.getString(actionRequest, "subscriptionIds"), 0L);
 
 		for (long subscriptionId : subscriptionIds) {
-			SubscriptionLocalServiceUtil.deleteSubscription(subscriptionId);
+			if (subscriptionId != 0) {
+				SubscriptionLocalServiceUtil.deleteSubscription(subscriptionId);
+			}
 		}
-	}
-
-	protected boolean isSessionErrorException(Throwable cause) {
-		if (cause instanceof NoSuchSubscriptionException) {
-			return true;
-		}
-
-		return false;
 	}
 
 }
