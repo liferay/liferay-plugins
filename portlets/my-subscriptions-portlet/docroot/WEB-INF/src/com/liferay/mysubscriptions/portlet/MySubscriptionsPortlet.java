@@ -45,7 +45,7 @@ public class MySubscriptionsPortlet extends MVCPortlet {
 			ParamUtil.getString(actionRequest, "subscriptionIds"), 0L);
 
 		for (long subscriptionId : subscriptionIds) {
-			if (subscriptionId != 0) {
+			if (subscriptionId > 0) {
 				SubscriptionLocalServiceUtil.deleteSubscription(subscriptionId);
 			}
 		}

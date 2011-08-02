@@ -19,17 +19,9 @@
 <%
 ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_ROW);
 
-Subscription subscription = null;
+Subscription subscription = (Subscription)row.getObject();
 
-if (row != null) {
-	subscription = (Subscription)row.getObject();
-}
-
-AssetRenderer assetRenderer = null;
-
-if (subscription != null) {
-	assetRenderer = MySubscriptionsUtil.getAssetRenderer(subscription.getClassName(), subscription.getClassPK());
-}
+AssetRenderer assetRenderer = MySubscriptionsUtil.getAssetRenderer(subscription.getClassName(), subscription.getClassPK());
 %>
 
 <liferay-ui:icon-menu>
@@ -38,7 +30,7 @@ if (subscription != null) {
 	String viewURL = null;
 
 	if (assetRenderer != null) {
-		viewURL = assetRenderer.getURLViewInContext((LiferayPortletRequest)renderRequest, (LiferayPortletResponse)renderResponse, currentURL);
+		viewURL = assetRenderer.getURLViewInContext(liferayPortletRequest, liferayPortletResponse, currentURL);
 	}
 	else {
 		viewURL = MySubscriptionsUtil.getAssetURLViewInContext(subscription.getClassName(), subscription.getClassPK());
@@ -51,22 +43,22 @@ if (subscription != null) {
 	/>
 
 	<%
-	String viewPopupURL = null;
+	String displayPopupHREF = null;
 
 	if (assetRenderer != null) {
-		PortletURL popupPortletURL = assetRenderer.getURLView((LiferayPortletResponse)renderResponse, LiferayWindowState.POP_UP);
+		PortletURL displayPopupURL = assetRenderer.getURLView(liferayPortletResponse, LiferayWindowState.POP_UP);
 
-		if (popupPortletURL != null) {
-			viewPopupURL = "javascript:displayPopup('" + popupPortletURL.toString() + "', 'my-subscription');";
+		if (displayPopupURL != null) {
+			displayPopupHREF = "javascript:displayPopup('" + displayPopupURL.toString() + "', 'my-subscription');";
 		}
 	}
 	%>
 
-	<c:if test="<%= viewPopupURL != null %>">
+	<c:if test="<%= displayPopupHREF != null %>">
 		<liferay-ui:icon
-			src="/html/themes/classic/images/portlet/pop_up.png"
 			message="view-in-popup"
-			url="<%= viewPopupURL %>"
+			src="../portlet/pop_up.png"
+			url="<%= displayPopupHREF %>"
 		/>
 	</c:if>
 
