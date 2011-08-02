@@ -206,8 +206,6 @@ public class AttachmentLocalServiceImpl extends AttachmentLocalServiceBaseImpl {
 	private static final long _GROUP_ID =
 		GroupConstants.DEFAULT_PARENT_GROUP_ID;
 
-	private static final String _PORTLET_ID = CompanyConstants.SYSTEM_STRING;
-
 	private static final long _REPOSITORY_ID = CompanyConstants.SYSTEM;
 
 	private static Log _log = LogFactoryUtil.getLog(

@@ -83,9 +83,12 @@ public class AttachmentLocalServiceImpl extends AttachmentLocalServiceBaseImpl {
 			String filePath = getFilePath(
 				attachment.getMessageId(), fileName);
 
+			InputStream is = getInputStream(attachmentId);
+
 			try {
 				DLStoreUtil.addFile(
-					attachment.getCompanyId(), _REPOSITORY_ID, filePath, file);
+					attachment.getCompanyId(), _REPOSITORY_ID, filePath, false,
+					is);
 			}
 			catch (DuplicateFileException dfe) {
 				if (_log.isDebugEnabled()) {
@@ -97,7 +100,6 @@ public class AttachmentLocalServiceImpl extends AttachmentLocalServiceBaseImpl {
 		return attachment;
 	}
 
-	@Override
 	public void deleteAttachment(long attachmentId)
 		throws PortalException, SystemException {
 
@@ -203,8 +205,6 @@ public class AttachmentLocalServiceImpl extends AttachmentLocalServiceBaseImpl {
 
 	private static final long _GROUP_ID =
 		GroupConstants.DEFAULT_PARENT_GROUP_ID;
-
-	private static final String _PORTLET_ID = CompanyConstants.SYSTEM_STRING;
 
 	private static final long _REPOSITORY_ID = CompanyConstants.SYSTEM;
 
