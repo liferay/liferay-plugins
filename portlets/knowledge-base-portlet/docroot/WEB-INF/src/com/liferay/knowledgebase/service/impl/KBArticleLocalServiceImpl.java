@@ -59,7 +59,6 @@ import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.kernel.workflow.WorkflowHandlerRegistryUtil;
 import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.model.Group;
-import com.liferay.portal.model.GroupConstants;
 import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.Subscription;
 import com.liferay.portal.model.User;
@@ -94,9 +93,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		throws PortalException, SystemException {
 
 		DLStoreUtil.addFile(
-			serviceContext.getCompanyId(), CompanyConstants.SYSTEM_STRING,
-			GroupConstants.DEFAULT_PARENT_GROUP_ID, CompanyConstants.SYSTEM,
-			dirName + StringPool.SLASH + shortFileName, serviceContext, bytes);
+			serviceContext.getCompanyId(), CompanyConstants.SYSTEM,
+			dirName + StringPool.SLASH + shortFileName, bytes);
 	}
 
 	public KBArticle addKBArticle(
@@ -213,9 +211,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	public void deleteAttachment(long companyId, String fileName)
 		throws PortalException, SystemException {
 
-		DLStoreUtil.deleteFile(
-			companyId, CompanyConstants.SYSTEM_STRING, CompanyConstants.SYSTEM,
-			fileName);
+		DLStoreUtil.deleteFile(companyId, CompanyConstants.SYSTEM, fileName);
 	}
 
 	public void deleteGroupKBArticles(long groupId)
@@ -1134,13 +1130,11 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		for (int i = 0; i < fileNames.length - 50; i++) {
 			DLStoreUtil.deleteDirectory(
-				companyId, CompanyConstants.SYSTEM_STRING,
-				CompanyConstants.SYSTEM, fileNames[i]);
+				companyId, CompanyConstants.SYSTEM, fileNames[i]);
 		}
 
 		DLStoreUtil.deleteDirectory(
-			companyId, CompanyConstants.SYSTEM_STRING, CompanyConstants.SYSTEM,
-			dirName);
+			companyId, CompanyConstants.SYSTEM, dirName);
 	}
 
 	protected void deleteAssets(KBArticle kbArticle)
@@ -1172,8 +1166,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		try {
 			DLStoreUtil.deleteDirectory(
-				kbArticle.getCompanyId(), CompanyConstants.SYSTEM_STRING,
-				CompanyConstants.SYSTEM,
+				kbArticle.getCompanyId(), CompanyConstants.SYSTEM,
 				KBArticleConstants.DIR_NAME_PREFIX + folderId);
 		}
 		catch (NoSuchDirectoryException nsde) {
