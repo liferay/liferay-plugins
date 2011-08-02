@@ -158,8 +158,8 @@ public class UpgradeCompany extends UpgradeProcess {
 
 		try {
 			return DLAppLocalServiceUtil.addFileEntry(
-				userId, groupId, folderId, mimeType, title, description,
-				StringPool.BLANK, bytes, serviceContext);
+				userId, groupId, folderId, fileName, mimeType, title,
+				description, StringPool.BLANK, bytes, serviceContext);
 		}
 		catch (DuplicateFileException dfe) {
 			return DLAppLocalServiceUtil.updateFileEntry(
@@ -280,7 +280,7 @@ public class UpgradeCompany extends UpgradeProcess {
 			group.getCreatorUserId(), group.getGroupId(), privateLayout,
 			LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, name, StringPool.BLANK,
 			StringPool.BLANK, LayoutConstants.TYPE_PORTLET, false, friendlyURL,
-			serviceContext);
+			false, serviceContext);
 
 		LayoutTypePortlet layoutTypePortlet =
 			(LayoutTypePortlet)layout.getLayoutType();
@@ -592,8 +592,12 @@ public class UpgradeCompany extends UpgradeProcess {
 				GroupLocalServiceUtil.deleteGroup(group.getGroupId());
 			}
 			else {
-				LayoutLocalServiceUtil.deleteLayouts(group.getGroupId(), false);
-				LayoutLocalServiceUtil.deleteLayouts(group.getGroupId(), true);
+				ServiceContext serviceContext = new ServiceContext();
+
+				LayoutLocalServiceUtil.deleteLayouts(
+					group.getGroupId(), false, serviceContext);
+				LayoutLocalServiceUtil.deleteLayouts(
+					group.getGroupId(), true, serviceContext);
 			}
 		}
 
