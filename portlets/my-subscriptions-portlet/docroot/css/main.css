@@ -13,16 +13,16 @@
 	font-weight: bold;
 }
 
-.my-subscriptions-portlet .asset-name input{
+.my-subscriptions-portlet .asset-name input {
 	display: none;
 }
 
-.my-subscriptions-portlet .results-row td {
+.my-subscriptions-portlet .results-row td, 
+.my-subscriptions-portlet .results-row.hover td {
 	border-style: none;
 }
 
 .my-subscriptions-portlet .results-row.asset-name td,
-.my-subscriptions-portlet .results-row.asset-name.alt td
-{
+.my-subscriptions-portlet .results-row.asset-name.alt td {
 	background: #dcdcdc;
 }

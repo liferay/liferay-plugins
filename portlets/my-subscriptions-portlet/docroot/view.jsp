@@ -69,17 +69,9 @@
 				AssetRenderer assetRenderer = MySubscriptionsUtil.getAssetRenderer(subscription.getClassName(), subscription.getClassPK());
 
 				String rowURL = null;
-				String popupURL = null;
 
 				if (assetRenderer != null) {
 					rowURL = assetRenderer.getURLViewInContext((LiferayPortletRequest)renderRequest, (LiferayPortletResponse)renderResponse, currentURL);
-
-					PortletURL popupPortletURL = assetRenderer.getURLView((LiferayPortletResponse)renderResponse, LiferayWindowState.POP_UP);
-
-					if (popupPortletURL != null) {
-						popupURL = "javascript:displayPopup('" + popupPortletURL.toString() + "', 'my-subscription');";
-					}
-
 				}
 				else {
 					rowURL = MySubscriptionsUtil.getAssetURLViewInContext(subscription.getClassName(), subscription.getClassPK());
@@ -93,15 +85,6 @@
 					<aui:column first="true" width="80">
 						<%= MySubscriptionsUtil.getTitleText(subscription.getClassName(), subscription.getClassPK(), ((assetRenderer != null) ? assetRenderer.getTitle(locale) : null)) %>
 					</aui:column>
-
-					<c:if test="<%= popupURL != null %>">
-						<aui:column last="true" width="20">
-							<liferay-ui:icon
-								image="open_window"
-								url="<%= popupURL %>"
-							/>
-						</aui:column>
-					</c:if>
 				</liferay-ui:search-container-column-text>
 
 				<liferay-ui:search-container-column-text
@@ -116,20 +99,10 @@
 					value="<%= dateFormatDateTime.format(subscription.getCreateDate()) %>"
 				/>
 
-				<liferay-ui:search-container-column-text
+				<liferay-ui:search-container-column-jsp
 					align="right"
-				>
-					<portlet:actionURL name="unsubscribe" var="unsubscribeURL">
-						<portlet:param name="redirect" value="<%= currentURL %>" />
-						<portlet:param name="subscriptionIds" value="<%= String.valueOf(subscription.getSubscriptionId()) %>" />
-					</portlet:actionURL>
-
-					<liferay-ui:icon
-						image="unsubscribe"
-						label="<%= true %>"
-						url="<%= unsubscribeURL %>"
-					/>
-				</liferay-ui:search-container-column-text>
+					path="/subscription_action.jsp"
+				/>
 			</liferay-ui:search-container-row>
 
 			<liferay-ui:search-iterator />
