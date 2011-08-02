@@ -46,7 +46,6 @@ import com.liferay.portal.kernel.xml.Document;
 import com.liferay.portal.kernel.xml.Element;
 import com.liferay.portal.kernel.xml.SAXReaderUtil;
 import com.liferay.portal.model.CompanyConstants;
-import com.liferay.portal.model.GroupConstants;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portlet.documentlibrary.store.DLStoreUtil;
 
@@ -460,10 +459,8 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 					fileElement.attributeValue("path"));
 
 				DLStoreUtil.addFile(
-					portletDataContext.getCompanyId(),
-					CompanyConstants.SYSTEM_STRING,
-					GroupConstants.DEFAULT_PARENT_GROUP_ID,
-					CompanyConstants.SYSTEM, fileName, serviceContext, bytes);
+					portletDataContext.getCompanyId(), CompanyConstants.SYSTEM,
+					fileName, bytes);
 			}
 
 			dirNames.put(resourcePrimKey, dirName);
@@ -557,8 +554,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		}
 		finally {
 			DLStoreUtil.deleteDirectory(
-				portletDataContext.getCompanyId(),
-				CompanyConstants.SYSTEM_STRING, CompanyConstants.SYSTEM,
+				portletDataContext.getCompanyId(), CompanyConstants.SYSTEM,
 				"knowledgebase/temp/import/" + importId);
 		}
 	}

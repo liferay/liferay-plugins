@@ -20,7 +20,6 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CompanyConstants;
-import com.liferay.portal.model.GroupConstants;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portlet.documentlibrary.store.DLStoreUtil;
 
@@ -43,8 +42,7 @@ public class KBArticleAttachmentsUtil {
 			}
 
 			DLStoreUtil.deleteDirectory(
-				companyId, CompanyConstants.SYSTEM_STRING,
-				CompanyConstants.SYSTEM, "knowledgebase/articles");
+				companyId, CompanyConstants.SYSTEM, "knowledgebase/articles");
 		}
 		catch (Exception e) {
 			_log.error(e.getMessage());
@@ -76,16 +74,12 @@ public class KBArticleAttachmentsUtil {
 					fileName);
 
 				DLStoreUtil.addFile(
-					kbArticle.getCompanyId(), CompanyConstants.SYSTEM_STRING,
-					GroupConstants.DEFAULT_PARENT_GROUP_ID,
-					CompanyConstants.SYSTEM,
-					newDirName + StringPool.SLASH + shortFileName,
-					serviceContext, bytes);
+					kbArticle.getCompanyId(), CompanyConstants.SYSTEM,
+					newDirName + StringPool.SLASH + shortFileName, bytes);
 			}
 
 			DLStoreUtil.deleteDirectory(
-				kbArticle.getCompanyId(), CompanyConstants.SYSTEM_STRING,
-				CompanyConstants.SYSTEM, oldDirName);
+				kbArticle.getCompanyId(), CompanyConstants.SYSTEM, oldDirName);
 
 			if (_log.isInfoEnabled()) {
 				_log.info("Added attachments for " + folderId);

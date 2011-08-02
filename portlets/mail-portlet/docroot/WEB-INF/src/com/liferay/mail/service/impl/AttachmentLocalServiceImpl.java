@@ -24,7 +24,6 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CompanyConstants;
-import com.liferay.portal.model.GroupConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portlet.documentlibrary.DuplicateDirectoryException;
 import com.liferay.portlet.documentlibrary.DuplicateFileException;
@@ -202,9 +201,6 @@ public class AttachmentLocalServiceImpl extends AttachmentLocalServiceBaseImpl {
 	}
 
 	private static final String _DIRECTORY_PATH_PREFIX = "mail/";
-
-	private static final long _GROUP_ID =
-		GroupConstants.DEFAULT_PARENT_GROUP_ID;
 
 	private static final long _REPOSITORY_ID = CompanyConstants.SYSTEM;
 
