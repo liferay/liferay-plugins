@@ -43,22 +43,7 @@ public class MySubscriptionsUtil {
 		String className, long classPK) {
 
 		try {
-			if (className.equals(MBThread.class.getName())) {
-				className = MBMessage.class.getName();
-
-				MBThread mbThread = null;
-
-				mbThread = MBThreadLocalServiceUtil.getThread(classPK);
-
-				classPK = mbThread.getRootMessageId();
-			}
-
-			AssetRendererFactory assetRendererFactory =
-				AssetRendererFactoryRegistryUtil.
-					getAssetRendererFactoryByClassName(
-						className);
-
-			return assetRendererFactory.getAssetRenderer(classPK);
+			return doGetAssetRenderer(className, classPK);
 		}
 		catch (Exception e) {
 		}
@@ -103,7 +88,13 @@ public class MySubscriptionsUtil {
 			title = "Message Board at ";
 		}
 
-		title += getGroupTitle(className, classPK);
+		try {
+			Group group = GroupLocalServiceUtil.getGroup(classPK);
+
+			title += group.getDescriptiveName();
+		}
+		catch (Exception e) {
+		}
 
 		if (Validator.isNull(title)) {
 			title = String.valueOf(classPK);
@@ -112,18 +103,23 @@ public class MySubscriptionsUtil {
 		return title;
 	}
 
-	protected static String getGroupTitle(String className, long classPK) {
-		String groupTitle = null;
+	protected static AssetRenderer doGetAssetRenderer(
+			String className, long classPK)
+		throws Exception {
 
-		try {
-			Group group = GroupLocalServiceUtil.getGroup(classPK);
-			groupTitle = group.getDescriptiveName();
+		if (className.equals(MBThread.class.getName())) {
+			className = MBMessage.class.getName();
 
+			MBThread mbThread = MBThreadLocalServiceUtil.getThread(classPK);
+
+			classPK = mbThread.getRootMessageId();
 		}
-		catch (Exception e) {
-		}
 
-		return groupTitle;
+		AssetRendererFactory assetRendererFactory =
+			AssetRendererFactoryRegistryUtil.
+				getAssetRendererFactoryByClassName(className);
+
+		return assetRendererFactory.getAssetRenderer(classPK);
 	}
 
 }

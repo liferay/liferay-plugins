@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.mysubscriptions.controlpanel;
+package com.liferay.mysubscriptions.portlet;
 
 import com.liferay.portal.model.Portlet;
 import com.liferay.portal.security.permission.PermissionChecker;

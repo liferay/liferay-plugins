@@ -36,8 +36,8 @@
 			rowChecker="<%= new RowChecker(renderResponse) %>"
 		>
 			<liferay-ui:search-container-results
-				results="<%= SubscriptionTransactionUtil.getSubscriptions(user.getUserId(), searchContainer.getStart(), searchContainer.getEnd(),new SubscriptionClassNameIdComparator(true)) %>"
-				total="<%= SubscriptionTransactionUtil.getSubscriptionsCount(user.getUserId()) %>"
+				results="<%= SubscriptionLocalServiceUtil.getUserSubscriptions(user.getUserId(), searchContainer.getStart(), searchContainer.getEnd(), new SubscriptionClassNameIdComparator(true)) %>"
+				total="<%= SubscriptionLocalServiceUtil.getUserSubscriptionsCount(user.getUserId()) %>"
 			/>
 
 			<%
@@ -52,18 +52,18 @@
 			>
 
 				<%
-				if (!subscription.getClassName().equals(subscriptionClassName)) {
+				if (!subscriptionClassName.equals(subscription.getClassName())) {
 					subscriptionClassName = subscription.getClassName();
 
-					ResultRow insertRow = new ResultRow(null, 0, searchContainer.getCur());
+					ResultRow resultRow = new ResultRow(null, 0, searchContainer.getCur());
 
-					insertRow.addText("left", "top", 4, MySubscriptionsUtil.getClassNameIdText(subscription.getClassNameId(), locale));
-					insertRow.setClassHoverName("asset-name");
-					insertRow.setClassName("asset-name");
+					resultRow.addText("left", "top", 4, MySubscriptionsUtil.getClassNameIdText(subscription.getClassNameId(), locale));
+					resultRow.setClassHoverName("asset-name");
+					resultRow.setClassName("asset-name");
 
-					List resultRows = searchContainer.getResultRows();
+					List<ResultRow> resultRows = searchContainer.getResultRows();
 
-					resultRows.add(insertRow);
+					resultRows.add(resultRow);
 				}
 
 				AssetRenderer assetRenderer = MySubscriptionsUtil.getAssetRenderer(subscription.getClassName(), subscription.getClassPK());
