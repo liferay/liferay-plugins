@@ -18,7 +18,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Group;
-import com.liferay.portal.security.permission.ResourceActionsUtil;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PortletKeys;
@@ -30,8 +29,6 @@ import com.liferay.portlet.messageboards.model.MBCategory;
 import com.liferay.portlet.messageboards.model.MBMessage;
 import com.liferay.portlet.messageboards.model.MBThread;
 import com.liferay.portlet.messageboards.service.MBThreadLocalServiceUtil;
-
-import java.util.Locale;
 
 /**
  * @author Peter Shin
@@ -65,12 +62,6 @@ public class MySubscriptionsUtil {
 		}
 
 		return null;
-	}
-
-	public static String getClassNameIdText(long classNameId, Locale locale) {
-		String className = PortalUtil.getClassName(classNameId);
-
-		return ResourceActionsUtil.getModelResource(locale, className);
 	}
 
 	public static String getTitleText(
