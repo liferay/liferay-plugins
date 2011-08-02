@@ -33,7 +33,6 @@ public interface SubscriptionTransaction {
 			OrderByComparator orderByComparator)
 		throws SystemException;
 
-	public int getSubscriptionsCount(long userId)
-		throws SystemException;
+	public int getSubscriptionsCount(long userId) throws SystemException;
 
 }

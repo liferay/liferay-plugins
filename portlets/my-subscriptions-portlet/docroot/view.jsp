@@ -41,7 +41,7 @@
 			/>
 
 			<%
-				String subscriptionClassName = StringPool.BLANK;
+			String subscriptionClassName = StringPool.BLANK;
 			%>
 
 			<liferay-ui:search-container-row
@@ -113,28 +113,33 @@
 	</aui:fieldset>
 </aui:form>
 
-<aui:script use="aui-base,aui-dialog,aui-dialog-iframe,aui-io">
-	displayPopup = function(url, title) {
-		var dialog = new A.Dialog(
-			{
-				align: {
-					node: null,
-					points: ['tc', 'tc']
-				},
-				constrain2view: true,
-				cssClass: 'portlet-my-subscription',
-				modal: true,
-				resizable: false,
-				title: title,
-				width: 950
-			}
-		).plug(
-			A.Plugin.DialogIframe,
-			{
-				uri: url
-			}
-		).render();
-	};
+<aui:script>
+	Liferay.provide(
+		window,
+		'<portlet:namespace />displayPopup',
+		function(url, title) {
+			var dialog = new A.Dialog(
+				{
+					align: {
+						node: null,
+						points: ['tc', 'tc']
+					},
+					constrain2view: true,
+					cssClass: 'portlet-my-subscription',
+					modal: true,
+					resizable: false,
+					title: title,
+					width: 950
+				}
+			).plug(
+				A.Plugin.DialogIframe,
+				{
+					uri: url
+				}
+			).render();
+		},
+		['aui-dialog', 'aui-dialog-iframe']
+	);
 
 	Liferay.provide(
 		window,
@@ -142,6 +147,7 @@
 		function() {
 			document.<portlet:namespace />fm.method = "post";
 			document.<portlet:namespace />fm.<portlet:namespace />subscriptionIds.value = Liferay.Util.listCheckedExcept(document.<portlet:namespace />fm, "<portlet:namespace />allRowIds");
+
 			submitForm(document.<portlet:namespace />fm);
 		},
 		['liferay-util-list-fields']

@@ -54,7 +54,6 @@ if (subscription != null) {
 	String viewPopupURL = null;
 
 	if (assetRenderer != null) {
-
 		PortletURL popupPortletURL = assetRenderer.getURLView((LiferayPortletResponse)renderResponse, LiferayWindowState.POP_UP);
 
 		if (popupPortletURL != null) {
