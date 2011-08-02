@@ -1,0 +1,33 @@
+<%--
+/**
+ * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+--%>
+
+<%@ include file="/html/taglib/ui/social_bookmark/init.jsp" %>
+
+<%
+	String linkedinDisplayStyle = StringPool.BLANK;
+	if (displayStyle.equals("vertical")) {
+		linkedinDisplayStyle = "data-counter='top'";
+	}
+	else if (displayStyle.equals("horizontal")) {
+		linkedinDisplayStyle = "data-counter='right'";
+	}
+%>
+
+<liferay-util:html-bottom outputKey="taglib_ui_social_bookmark_linkedin">
+	<script type="text/javascript" src="http://platform.linkedin.com/in.js"></script>
+</liferay-util:html-bottom>
+
+<script type="in/share" data-url="<%= url %>" <%= linkedinDisplayStyle%>></script>
