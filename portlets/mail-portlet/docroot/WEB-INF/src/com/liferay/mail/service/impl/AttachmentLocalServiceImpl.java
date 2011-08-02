@@ -87,7 +87,8 @@ public class AttachmentLocalServiceImpl extends AttachmentLocalServiceBaseImpl {
 
 			try {
 				DLStoreUtil.addFile(
-					attachment.getCompanyId(), _REPOSITORY_ID, filePath, false, is);
+					attachment.getCompanyId(), _REPOSITORY_ID, filePath, false,
+					is);
 			}
 			catch (DuplicateFileException dfe) {
 				if (_log.isDebugEnabled()) {
