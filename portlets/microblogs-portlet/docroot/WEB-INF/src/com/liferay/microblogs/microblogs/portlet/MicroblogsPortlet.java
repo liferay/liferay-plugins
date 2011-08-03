@@ -99,6 +99,6 @@ public class MicroblogsPortlet extends MVCPortlet {
 		return assetTagNames.toArray(new String[assetTagNames.size()]);
 	}
 
-	private Pattern _pattern = Pattern.compile("[#|@]\\w+");
+	private Pattern _pattern = Pattern.compile("[#|@]\\S*");
 
 }

@@ -101,7 +101,7 @@ for (MicroblogsEntry microblogsEntry : microblogsEntries) {
 				<%
 				String content = microblogsEntry.getContent();
 
-				Pattern pattern = Pattern.compile("[#|@]\\w+");
+				Pattern pattern = Pattern.compile("[#|@]\\S*");
 
 				Matcher matcher = pattern.matcher(content);
 
@@ -118,8 +118,6 @@ for (MicroblogsEntry microblogsEntry : microblogsEntries) {
 
 					if (result.startsWith("#")) {
 						viewURL.setParameter("assetTagName", assetTagName);
-
-						content = StringUtil.replace(content, result, "<a href=\"" + viewURL + "\">" + result + "</a>");
 					}
 					else if (result.startsWith("@")) {
 						try {
@@ -132,11 +130,11 @@ for (MicroblogsEntry microblogsEntry : microblogsEntries) {
 						catch (NoSuchUserException nsue){
 							viewURL.setParameter("receiverUserId", String.valueOf(0));
 						}
-
-						viewURL.setParameter("tabs1", assetTagName);
-
-						content = StringUtil.replace(content, result, "@<a href=\"" + viewURL + "\">" + assetTagName + "</a>");
 					}
+
+					viewURL.setParameter("tabs1", assetTagName);
+
+					content = StringUtil.replace(content, result, "#<a href=\"" + viewURL + "\">" + assetTagName + "</a>");
 				}
 				%>
 
