@@ -29,6 +29,8 @@ AUI().add(
 
 		var LABEL = 'label';
 
+		var LABEL_NODE = 'labelNode';
+		
 		var TPL_CLOSE_BUTTON = '<a class="gadget-editor-tab-close" href="javascript:;"></a>';
 
 		var TPL_DIV = '<div></div>';
@@ -463,7 +465,7 @@ AUI().add(
 
 						closeButton.on('click', instance._onCloseButtonClick, instance);
 
-						instance.get(CONTENT_BOX).append(closeButton);
+						instance.get(LABEL_NODE).append(closeButton);
 					},
 
 					_renderDirtyIndicator: function() {
@@ -473,7 +475,7 @@ AUI().add(
 
 						dirtyIndicatorNode.hide();
 
-						instance.get(CONTENT_BOX).prepend(dirtyIndicatorNode);
+						instance.get(LABEL_NODE).prepend(dirtyIndicatorNode);
 
 						instance.set(DIRTY_INDICATOR_NODE, dirtyIndicatorNode);
 					},
@@ -495,7 +497,6 @@ AUI().add(
 	},
 	'',
 	{
-		requires: ['aui-tabs-base'],
-		use: []
+		requires: ['aui-tabs-base']
 	}
 );
