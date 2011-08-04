@@ -59,11 +59,9 @@ import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.kernel.workflow.WorkflowHandlerRegistryUtil;
 import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.model.Group;
-import com.liferay.portal.model.PortletPreferencesIds;
 import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.Subscription;
 import com.liferay.portal.model.User;
-import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextUtil;
 import com.liferay.portal.util.PortalUtil;
@@ -1325,19 +1323,6 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			body = AdminUtil.getEmailKBArticleUpdatedBody(preferences);
 		}
 
-		PortletPreferencesIds portletPreferencesIds =
-			serviceContext.getPortletPreferencesIds();
-
-		String portletId = portletPreferencesIds.getPortletId();
-
-		long groupId = kbArticle.getGroupId();
-
-		Group group = GroupLocalServiceUtil.getGroup(groupId);
-
-		if (group.isLayout()) {
-			groupId = group.getParentGroupId();
-		}
-
 		SubscriptionSender subscriptionSender = new AdminSubscriptionSender(
 			kbArticle, serviceContext);
 
@@ -1350,12 +1335,11 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			kbArticleDiffs.get("title"));
 		subscriptionSender.setContextUserPrefix("ARTICLE");
 		subscriptionSender.setFrom(fromAddress, fromName);
-		subscriptionSender.setGroupId(groupId);
-		subscriptionSender.setScopeGroupId(kbArticle.getGroupId());
-		subscriptionSender.setPortletId(portletId);
 		subscriptionSender.setHtmlFormat(true);
 		subscriptionSender.setMailId("kb_article", kbArticle.getKbArticleId());
+		subscriptionSender.setPortletId(serviceContext.getPortletId());
 		subscriptionSender.setReplyToAddress(fromAddress);
+		subscriptionSender.setScopeGroupId(kbArticle.getGroupId());
 		subscriptionSender.setSubject(subject);
 		subscriptionSender.setUserId(kbArticle.getUserId());
 
