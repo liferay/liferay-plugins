@@ -25,7 +25,7 @@ if (group.isCommunity()) {
 	groups.add(group);
 }
 else if (group.isUser() && themeDisplay.isSignedIn()) {
-	groups.addAll(user.getMyPlaces());
+	groups.addAll(user.getMySites());
 }
 else {
 	groups.add(GroupLocalServiceUtil.getGroup(themeDisplay.getCompanyId(), GroupConstants.GUEST));
