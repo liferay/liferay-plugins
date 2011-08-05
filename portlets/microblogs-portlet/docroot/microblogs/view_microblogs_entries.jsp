@@ -134,7 +134,7 @@ for (MicroblogsEntry microblogsEntry : microblogsEntries) {
 
 					viewURL.setParameter("tabs1", assetTagName);
 
-					content = StringUtil.replace(content, result, "#<a href=\"" + viewURL + "\">" + assetTagName + "</a>");
+					content = StringUtil.replace(content, result, "<a href=\"" + viewURL + "\">" + assetTagName + "</a>");
 				}
 				%>
 
