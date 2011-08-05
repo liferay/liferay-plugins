@@ -62,29 +62,31 @@
 			<aui:input label="" name="mbThread" type="checkbox" data-mbThreadId="<%= userThread.getMbThreadId() %>" />
 		</liferay-ui:search-container-column-text>
 
-		<liferay-ui:search-container-column-text align="center">
+		<liferay-ui:search-container-column-text valign="top">
+
 			<%
 			long userId = PrivateMessagingUtil.getThreadRepresentativeUserId(user.getUserId(), userThread.getMbThreadId());
-
-			User curUser = UserLocalServiceUtil.getUser(userId);
 			%>
 
 			<liferay-ui:user-display
-				userId="<%= curUser.getUserId() %>"
-				userName="<%= curUser.getFullName() %>"
+				userId="<%= userId %>"
 				displayStyle="<%= 2 %>"
 			/>
-		</liferay-ui:search-container-column-text>
 
-		<liferay-ui:search-container-column-text>
-			<aui:layout>
+			<div class="last-thread">
 
 				<%
-				List<User> users = PrivateMessagingUtil.getThreadUsers(user.getUserId(), userThread.getMbThreadId(), false);
+				List<User> users = PrivateMessagingUtil.getThreadUsers(user.getUserId(), userThread.getMbThreadId());
 
 				if (users.isEmpty()) {
 					users.add(user);
 				}
+
+				MBMessage lastMBMessage = PrivateMessagingUtil.getLastThreadMessage(user.getUserId(), userThread.getMbThreadId());
+
+				PortletURL viewThreadURL = renderResponse.createRenderURL();
+
+				viewThreadURL.setParameter("mbThreadId", String.valueOf(userThread.getMbThreadId()));
 
 				for (int i = 0; i < users.size(); i++) {
 					User curUser = users.get(i);
@@ -109,38 +111,24 @@
 						,
 					</c:if>
 
-					<%
+				<%
 				}
 				%>
 
-			</aui:layout>
+				<span class="date"><%= dateFormatDateTime.format(lastMBMessage.getCreateDate()) %></span>
 
-			<aui:layout>
-
-				<%
-				MBMessage lastMBMessage = PrivateMessagingUtil.getLastThreadMessage(user.getUserId(), userThread.getMbThreadId());
-				%>
-
-				<%= dateFormatDateTime.format(lastMBMessage.getCreateDate()) %>
-
-			</aui:layout>
-		</liferay-ui:search-container-column-text>
-
-		<liferay-ui:search-container-column-text>
-
-			<%
-			MBMessage lastMBMessage = PrivateMessagingUtil.getLastThreadMessage(user.getUserId(), userThread.getMbThreadId());
-
-			PortletURL viewThreadURL = renderResponse.createRenderURL();
-
-			viewThreadURL.setParameter("mbThreadId", String.valueOf(userThread.getMbThreadId()));
-			%>
-
-			<a href="<%= viewThreadURL.toString() %>">
-				<%= HtmlUtil.escape(StringUtil.shorten(lastMBMessage.getSubject(), 50)) %><br />
-
-				<%= HtmlUtil.escape(StringUtil.shorten(lastMBMessage.getBody(), 100)) %>
-			</a>
+				<div class="subject">
+					<a href="<%= viewThreadURL.toString() %>"><%= HtmlUtil.escape(StringUtil.shorten(lastMBMessage.getSubject(), 50)) %></a>
+				</div>
+				<div class="body">
+					<c:if test="<%= user.getUserId() == lastMBMessage.getUserId() %>">
+						<liferay-ui:icon
+							src="/html/themes/classic/images/mail/replied.png"
+						/>
+					</c:if>
+					<%= HtmlUtil.escape(StringUtil.shorten(lastMBMessage.getBody(), 100)) %>
+				</div>
+			</div>
 		</liferay-ui:search-container-column-text>
 	</liferay-ui:search-container-row>
 

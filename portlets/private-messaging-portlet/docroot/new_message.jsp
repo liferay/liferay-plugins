@@ -44,10 +44,10 @@ if (mbThreadId != 0) {
 		<aui:input name="mbThreadId" type="hidden" value="<%= mbThreadId %>" />
 
 		<div id="<portlet:namespace />autoCompleteContainer">
-			<aui:input name="to" value="<%= to %>" />
+			<aui:input cssClass="message-to" name="to" value="<%= to %>" />
 		</div>
 
-		<aui:input name="subject" value="<%= subject %>" />
+		<aui:input cssClass="message-subject" name="subject" value="<%= subject %>" />
 
 		<label class="aui-field-label">
 			<liferay-ui:message key="message" />
