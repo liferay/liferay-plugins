@@ -88,8 +88,8 @@ public class KaleoDefinitionLocalServiceImpl
 	}
 
 	public KaleoDefinition addKaleoDefinition(
-			String name, String title, String description, int version,
-			ServiceContext serviceContext)
+			String name, String title, String description, String content,
+			int version, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		User user = userPersistence.findByPrimaryKey(
@@ -109,6 +109,7 @@ public class KaleoDefinitionLocalServiceImpl
 		kaleoDefinition.setName(name);
 		kaleoDefinition.setTitle(title);
 		kaleoDefinition.setDescription(description);
+		kaleoDefinition.setContent(content);
 		kaleoDefinition.setVersion(version);
 		kaleoDefinition.setActive(false);
 
@@ -294,7 +295,23 @@ public class KaleoDefinitionLocalServiceImpl
 
 		return addKaleoDefinition(
 			kaleoDefinition.getName(), title, kaleoDefinition.getDescription(),
-			kaleoDefinition.getVersion() + 1, serviceContext);
+			kaleoDefinition.getContent(), kaleoDefinition.getVersion() + 1,
+			serviceContext);
+	}
+
+	public KaleoDefinition updateContent(
+			String name, int version, String title, String content,
+			ServiceContext serviceContext)
+		throws PortalException, SystemException {
+
+		KaleoDefinition kaleoDefinition = incrementKaleoDefinition(
+			name, title, serviceContext);
+
+		kaleoDefinition.setContent(content);
+
+		kaleoDefinitionPersistence.update(kaleoDefinition, false);
+
+		return kaleoDefinition;
 	}
 
 	public KaleoDefinition updateTitle(
