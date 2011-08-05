@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-destroy-method="destroy" default-init-method="afterPropertiesSet" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<bean id="com.liferay.marketplace.service.AppLocalService" class="com.liferay.marketplace.service.impl.AppLocalServiceImpl" />
+	<bean id="com.liferay.marketplace.service.AppLocalServiceUtil" class="com.liferay.marketplace.service.AppLocalServiceUtil">
+		<property name="service" ref="com.liferay.marketplace.service.AppLocalService" />
+	</bean>
+	<bean id="com.liferay.marketplace.service.persistence.AppPersistence" class="com.liferay.marketplace.service.persistence.AppPersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.marketplace.service.ModuleLocalService" class="com.liferay.marketplace.service.impl.ModuleLocalServiceImpl" />
+	<bean id="com.liferay.marketplace.service.ModuleLocalServiceUtil" class="com.liferay.marketplace.service.ModuleLocalServiceUtil">
+		<property name="service" ref="com.liferay.marketplace.service.ModuleLocalService" />
+	</bean>
+	<bean id="com.liferay.marketplace.service.persistence.ModulePersistence" class="com.liferay.marketplace.service.persistence.ModulePersistenceImpl" parent="basePersistence" />
+</beans>
