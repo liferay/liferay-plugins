@@ -296,6 +296,21 @@ public interface KaleoDefinitionModel extends BaseModel<KaleoDefinition>,
 	public void setDescription(String description);
 
 	/**
+	 * Returns the content of this kaleo definition.
+	 *
+	 * @return the content of this kaleo definition
+	 */
+	@AutoEscape
+	public String getContent();
+
+	/**
+	 * Sets the content of this kaleo definition.
+	 *
+	 * @param content the content of this kaleo definition
+	 */
+	public void setContent(String content);
+
+	/**
 	 * Returns the version of this kaleo definition.
 	 *
 	 * @return the version of this kaleo definition

@@ -71,6 +71,7 @@
 		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="title" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="content" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="version" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 		<property name="active" type="com.liferay.portal.dao.orm.hibernate.BooleanType" column="active_" />
 		<property name="startKaleoNodeId" type="com.liferay.portal.dao.orm.hibernate.LongType" />

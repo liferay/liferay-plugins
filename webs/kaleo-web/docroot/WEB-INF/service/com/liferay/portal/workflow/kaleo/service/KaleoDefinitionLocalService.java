@@ -249,7 +249,7 @@ public interface KaleoDefinitionLocalService extends PersistedModelLocalService 
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoDefinition addKaleoDefinition(
 		java.lang.String name, java.lang.String title,
-		java.lang.String description, int version,
+		java.lang.String description, java.lang.String content, int version,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
@@ -324,6 +324,13 @@ public interface KaleoDefinitionLocalService extends PersistedModelLocalService 
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoDefinition incrementKaleoDefinition(
 		java.lang.String name, java.lang.String title,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.portal.workflow.kaleo.model.KaleoDefinition updateContent(
+		java.lang.String name, int version, java.lang.String title,
+		java.lang.String content,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;

@@ -351,6 +351,24 @@ public class KaleoDefinitionWrapper implements KaleoDefinition {
 	}
 
 	/**
+	* Returns the content of this kaleo definition.
+	*
+	* @return the content of this kaleo definition
+	*/
+	public java.lang.String getContent() {
+		return _kaleoDefinition.getContent();
+	}
+
+	/**
+	* Sets the content of this kaleo definition.
+	*
+	* @param content the content of this kaleo definition
+	*/
+	public void setContent(java.lang.String content) {
+		_kaleoDefinition.setContent(content);
+	}
+
+	/**
 	* Returns the version of this kaleo definition.
 	*
 	* @return the version of this kaleo definition
