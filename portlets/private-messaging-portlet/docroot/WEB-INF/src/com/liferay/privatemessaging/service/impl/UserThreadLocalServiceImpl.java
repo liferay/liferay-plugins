@@ -45,6 +45,8 @@ import com.liferay.privatemessaging.service.UserThreadLocalServiceUtil;
 import com.liferay.privatemessaging.service.base.UserThreadLocalServiceBaseImpl;
 import com.liferay.privatemessaging.util.PrivateMessagingConstants;
 
+import java.io.File;
+
 import java.text.Format;
 
 import java.util.ArrayList;
@@ -60,7 +62,7 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 
 	public MBMessage addPrivateMessage(
 			long userId, long mbThreadId, String to, String subject,
-			String body, List<ObjectValuePair<String, byte[]>> files,
+			String body, List<ObjectValuePair<String, File>> files,
 			ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
 
@@ -86,7 +88,7 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 
 	public MBMessage addPrivateMessageBranch(
 			long userId, long parentMBMessageId, String body,
-			List<ObjectValuePair<String, byte[]>> files,
+			List<ObjectValuePair<String, File>> files,
 			ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
 
@@ -221,7 +223,7 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 	protected MBMessage addPrivateMessage(
 			long userId, long mbThreadId, long parentMBMessageId,
 			List<User> recipients, String subject, String body,
-			List<ObjectValuePair<String, byte[]>> files,
+			List<ObjectValuePair<String, File>> files,
 			ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
 
