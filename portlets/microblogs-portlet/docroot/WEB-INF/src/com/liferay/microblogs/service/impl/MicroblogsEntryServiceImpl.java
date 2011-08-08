@@ -98,11 +98,27 @@ public class MicroblogsEntryServiceImpl extends MicroblogsEntryServiceBaseImpl {
 			getUserId(), microblogsEntryUserId, start, end);
 	}
 
+	public List<MicroblogsEntry> getUserMicroblogsEntries(
+			long microblogsEntryUserId, int type, int start, int end)
+		throws PortalException, SystemException {
+
+		return microblogsEntryFinder.findByU_T_MU(
+			getUserId(), type, microblogsEntryUserId, start, end);
+	}
+
 	public int getUserMicroblogsEntriesCount(long microblogsEntryUserId)
 		throws PortalException, SystemException {
 
 		return microblogsEntryFinder.countByU_MU(
 			getUserId(), microblogsEntryUserId);
+	}
+
+	public int getUserMicroblogsEntriesCount(
+			long microblogsEntryUserId, int type)
+		throws PortalException, SystemException {
+
+		return microblogsEntryFinder.countByU_T_MU(
+			getUserId(), type, microblogsEntryUserId);
 	}
 
 	public MicroblogsEntry updateMicroblogsEntry(
