@@ -28,7 +28,7 @@ String assetTagName = ParamUtil.getString(request, "assetTagName");
 
 String tabs1Names = "timeline,mentions";
 
-if (!tabs1.equals("timeline")) {
+if (!tabs1.equals("timeline") && !tabs1.equals("mentions")) {
 	tabs1Names += "," + tabs1;
 }
 
@@ -100,8 +100,16 @@ portletURL.setParameter("tabs1", tabs1);
 			receiverUserId = group.getClassPK();
 		}
 
-		results = MicroblogsEntryLocalServiceUtil.getReceiverUserMicroblogsEntries(MicroblogsEntryConstants.TYPE_REPLY, receiverUserId, searchContainer.getStart(), searchContainer.getEnd());
-		total = MicroblogsEntryLocalServiceUtil.getReceiverUserMicroblogsEntriesCount(MicroblogsEntryConstants.TYPE_REPLY, receiverUserId);
+		try {
+			User taggedUser = UserLocalServiceUtil.getUserById(receiverUserId);
+
+			assetTagName = taggedUser.getScreenName();
+		}
+		catch (NoSuchUserException nsue){
+		}
+
+		results = MicroblogsEntryServiceUtil.getMicroblogsEntries(assetTagName, searchContainer.getStart(), searchContainer.getEnd());
+		total = MicroblogsEntryServiceUtil.getMicroblogsEntriesCount(assetTagName);
 	}
 	else if (receiverMicroblogsEntryId > 0) {
 		total = MicroblogsEntryLocalServiceUtil.getReceiverMicroblogsEntryMicroblogsEntriesCount(MicroblogsEntryConstants.TYPE_REPLY, receiverMicroblogsEntryId);
