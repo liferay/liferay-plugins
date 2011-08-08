@@ -18,17 +18,17 @@
 --%>
 
 <%
-boolean socialOfficeEnabled = GetterUtil.getBoolean(myPlace.getExpandoBridge().getAttribute("socialOfficeEnabled"));
+boolean socialOfficeEnabled = GetterUtil.getBoolean(mySite.getExpandoBridge().getAttribute("socialOfficeEnabled"));
 %>
 
 <span class="site-name">
-	<c:if test="<%= regularSite && !myPlace.isControlPanel() %>">
+	<c:if test="<%= regularSite && !mySite.isControlPanel() %>">
 		<c:choose>
 			<c:when test="<%= socialOfficeEnabled %>">
-				<liferay-ui:icon message="<%= myPlace.getDescriptiveName() %>" src='<%= themeDisplay.getPathContext() + "/html/icons/social_office.png" %>' />
+				<liferay-ui:icon message="<%= mySite.getDescriptiveName() %>" src='<%= themeDisplay.getPathContext() + "/html/icons/social_office.png" %>' />
 			</c:when>
 			<c:otherwise>
-				<liferay-ui:icon message="<%= myPlace.getDescriptiveName() %>" src='<%= themeDisplay.getPathContext() + "/html/icons/sites_admin.png" %>' />
+				<liferay-ui:icon message="<%= mySite.getDescriptiveName() %>" src='<%= themeDisplay.getPathContext() + "/html/icons/sites_admin.png" %>' />
 			</c:otherwise>
 		</c:choose>
 	</c:if>
