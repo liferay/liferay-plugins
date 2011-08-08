@@ -48,15 +48,16 @@ int count = groups.size();
 		<input type="submit" value="<liferay-ui:message key="search" />" />
 	</div>
 
-	<c:if test="<%= groups.isEmpty() %>">
-
-		<%
-		String hideNotice = preferences.getValue("hideNotice", StringPool.BLANK);
-
+	<%
+	if (groups.isEmpty()) {
 		groups = SitesUtil.getVisibleSites(themeDisplay.getCompanyId(), themeDisplay.getUserId(), searchName, maxResultSize);
 		count = SitesUtil.getVisibleSitesCount(themeDisplay.getCompanyId(), themeDisplay.getUserId(), searchName);
-		%>
+	}
 
+	boolean hideNotice = GetterUtil.getBoolean(preferences.getValue("hide-notice", StringPool.BLANK), false);
+	%>
+
+	<c:if test="<%= groups.isEmpty() && !hideNotice %>">
 		<div class="portlet-msg-info star-msg-info <%= hideNotice %>">
 			<liferay-ui:message key="star-some-sites-to-customize-your-sites-list" />
 
@@ -71,7 +72,6 @@ int count = groups.size();
 	</c:if>
 
 	<ul class="site-list">
-
 		<c:choose>
 			<c:when test="<%= !groups.isEmpty() %>">
 
@@ -227,29 +227,6 @@ int count = groups.size();
 		}
 	).render(controlContainer);
 
-	var hideNotice = A.one('.so-portlet-sites .star-msg-info');
-
-	if (hideNotice) {
-		hideNotice.delegate(
-			'click',
-			function(event) {
-				event.preventDefault();
-
-				A.io.request(
-					event.currentTarget.get('href'),
-					{
-						after: {
-							success: function(event, id, obj) {
-								hideNotice.hide();
-							}
-						}
-					}
-				);
-			},
-			'.hide-notice a'
-		);
-	}
-
 	var searchInput = A.one('#<portlet:namespace />name');
 
 	var siteList = A.one('.so-portlet-sites .site-list');
@@ -291,4 +268,26 @@ int count = groups.size();
 		},
 		'.action a'
 	);
+
+	<c:if test="<%= groups.isEmpty() && !hideNotice %>">
+		A.one('.so-portlet-sites .star-msg-info .hide-notice a').on(
+			'click',
+			function(event) {
+				event.preventDefault();
+
+				var link = event.currentTarget;
+
+				A.io.request(
+					link.get('href'),
+					{
+						after: {
+							success: function(event, id, obj) {
+								link.ancestor('.star-msg-info').hide();
+							}
+						}
+					}
+				);
+			}
+		);
+	</c:if>
 </aui:script>
