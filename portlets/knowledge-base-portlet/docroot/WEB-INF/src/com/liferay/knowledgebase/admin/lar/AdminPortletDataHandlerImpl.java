@@ -178,7 +178,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			String shortFileName = FileUtil.getShortFileName(fileName);
 
 			String path = rootPath + StringPool.SLASH + shortFileName;
-			byte[] bytes = DLStoreUtil.getFile(
+			byte[] bytes = DLStoreUtil.getFileAsBytes(
 				kbArticle.getCompanyId(), CompanyConstants.SYSTEM, fileName);
 
 			Element fileElement = kbArticleAttachmentsElement.addElement(
