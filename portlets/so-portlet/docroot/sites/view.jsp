@@ -45,8 +45,15 @@ pageContext.setAttribute("portletURL", portletURL);
 	</div>
 
 	<%
-	List<Group> groups = SitesUtil.getVisibleSites(themeDisplay.getCompanyId(), themeDisplay.getUserId(), searchName, maxResultSize);
-	int count = SitesUtil.getVisibleSitesCount(themeDisplay.getCompanyId(), themeDisplay.getUserId(), searchName);
+	List<Group> groups = SitesUtil.getBookmarkedSites(preferences);
+
+	int count = groups.size();
+
+	if (groups.isEmpty()) {
+		groups = SitesUtil.getVisibleSites(themeDisplay.getCompanyId(), themeDisplay.getUserId(), searchName, maxResultSize);
+
+		count = SitesUtil.getVisibleSitesCount(themeDisplay.getCompanyId(), themeDisplay.getUserId(), searchName);
+	}
 	%>
 
 	<ul class="site-list">
@@ -56,6 +63,8 @@ pageContext.setAttribute("portletURL", portletURL);
 
 				<%
 				boolean alternate = false;
+
+				String bookmarkGroupIds = preferences.getValue("bookmarkGroupIds", StringPool.BLANK);
 
 				for (Group group : groups) {
 					String className = StringPool.BLANK;
@@ -76,6 +85,29 @@ pageContext.setAttribute("portletURL", portletURL);
 				%>
 
 					<li class="<%= className %>">
+						<c:choose>
+							<c:when test="<%= !StringUtil.contains(bookmarkGroupIds, String.valueOf(group.getGroupId())) %>">
+								<liferay-portlet:actionURL name="updateBookmarks" var="addBookmarkURL">
+									<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.ADD %>" />
+									<portlet:param name="redirect" value="<%= currentURL %>" />
+									<portlet:param name="bookmarkGroupId" value="<%= String.valueOf(group.getGroupId()) %>" />
+									<portlet:param name="portletResource" value="<%= portletResource %>" />
+								</liferay-portlet:actionURL>
+
+								<a class="bookmark add-bookmark" href="<%= addBookmarkURL %>"></a>
+							</c:when>
+							<c:otherwise>
+								<liferay-portlet:actionURL name="updateBookmarks" var="deleteBookmarkURL">
+									<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE %>" />
+									<portlet:param name="redirect" value="<%= currentURL %>" />
+									<portlet:param name="bookmarkGroupId" value="<%= String.valueOf(group.getGroupId()) %>" />
+									<portlet:param name="portletResource" value="<%= portletResource %>" />
+								</liferay-portlet:actionURL>
+
+								<a class="bookmark delete-bookmark" href="<%= deleteBookmarkURL %>"></a>
+							</c:otherwise>
+						</c:choose>
+
 						<c:if test="<%= !member %>">
 							<span class="join">
 								<liferay-portlet:actionURL windowState="<%= WindowState.NORMAL.toString() %>" portletName="<%= PortletKeys.SITES_ADMIN %>" var="joinURL">
@@ -121,7 +153,7 @@ pageContext.setAttribute("portletURL", portletURL);
 			</c:when>
 			<c:otherwise>
 				<li class="empty">
-					<liferay-ui:message key="there-are-no-results" />
+					<liferay-ui:message key="bookmark-some-sites-to-customize-your-initial-list" />
 				</li>
 			</c:otherwise>
 		</c:choose>
@@ -141,17 +173,17 @@ pageContext.setAttribute("portletURL", portletURL);
 				{
 					siteList: '.so-portlet-sites .site-list',
 					siteListContainer: '.so-portlet-sites .site-list-container',
-					siteListURL: '<portlet:resourceURL id="getSites" />',
+					siteListURL: '<portlet:resourceURL id="getSites"><portlet:param name="portletResource" value="<%= portletResource %>" /></portlet:resourceURL>',
 					siteSearchInput: '#<portlet:namespace />name'
 				}
 			);
 
-			<c:if test="<%= PortalPermissionUtil.contains(permissionChecker, ActionKeys.ADD_COMMUNITY) %>">
-				var controlContainer = A.one('.so-portlet-sites .control-container');
+			var controlContainer = A.one('.so-portlet-sites .control-container');
 
-				var addSiteButton = new A.Toolbar(
-					{
-						children: [
+			var addSiteButton = new A.Toolbar(
+				{
+					children: [
+						<c:if test="<%= PortalPermissionUtil.contains(permissionChecker, ActionKeys.ADD_COMMUNITY) %>">
 							{
 								icon: 'plusthick',
 								label: '<liferay-ui:message key="add-site" />',
@@ -165,22 +197,22 @@ pageContext.setAttribute("portletURL", portletURL);
 									}
 								}
 							},
-							{
-								label: '<liferay-ui:message key="directory" />',
-								on: {
-									click: function(event) {
-										<liferay-portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>" var="viewSitesURL">
-											<portlet:param name="jspPage" value="/sites/view_sites.jsp" />
-										</liferay-portlet:renderURL>
+						</c:if>
+						{
+							label: '<liferay-ui:message key="directory" />',
+							on: {
+								click: function(event) {
+									<liferay-portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>" var="viewSitesURL">
+										<portlet:param name="jspPage" value="/sites/view_sites.jsp" />
+									</liferay-portlet:renderURL>
 
-										Liferay.SO.Sites.displayPopup('<%= viewSitesURL %>', '<liferay-ui:message key="sites" />');
-									}
+									Liferay.SO.Sites.displayPopup('<%= viewSitesURL %>', '<liferay-ui:message key="sites" />');
 								}
 							}
-						]
-					}
-				).render(controlContainer);
-			</c:if>
+						}
+					]
+				}
+			).render(controlContainer);
 
 			var searchInput = A.one('#<portlet:namespace />name');
 
@@ -222,6 +254,25 @@ pageContext.setAttribute("portletURL", portletURL);
 					);
 				},
 				'.join a'
+			);
+
+			siteList.delegate(
+				'click',
+				function(event) {
+					event.preventDefault();
+
+					A.io.request(
+						event.currentTarget.get('href'),
+						{
+							after: {
+								success: function(event, id, obj) {
+									Liferay.SO.Sites.updateSites();
+								}
+							}
+						}
+					);
+				},
+				'a.bookmark'
 			);
 		}
 	);

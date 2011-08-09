@@ -48,6 +48,7 @@ import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PortletKeys;
 import com.liferay.portal.util.comparator.GroupNameComparator;
+import com.liferay.portlet.PortletPreferencesFactoryUtil;
 import com.liferay.portlet.PortletURLFactoryUtil;
 import com.liferay.so.sites.util.SitesUtil;
 import com.liferay.so.util.WebKeys;
@@ -60,6 +61,7 @@ import java.util.List;
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletException;
+import javax.portlet.PortletPreferences;
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletURL;
 import javax.portlet.ResourceRequest;
@@ -209,6 +211,16 @@ public class SitesPortlet extends MVCPortlet {
 		List<Group> groups = null;
 		int count = 0;
 
+		PortletPreferences preferences = resourceRequest.getPreferences();
+
+		String portletResource = ParamUtil.getString(
+			resourceRequest, "portletResource");
+
+		if (Validator.isNotNull(portletResource)) {
+			preferences = PortletPreferencesFactoryUtil.getPortletSetup(
+				resourceRequest, portletResource);
+		}
+
 		if (directory) {
 			LinkedHashMap<String, Object> params =
 				new LinkedHashMap<String, Object>();
@@ -233,13 +245,19 @@ public class SitesPortlet extends MVCPortlet {
 				themeDisplay.getCompanyId(), keywords, null, params);
 		}
 		else {
-			groups = SitesUtil.getVisibleSites(
-				themeDisplay.getCompanyId(), themeDisplay.getUserId(),
-				keywords, maxResultSize);
+			groups = SitesUtil.getBookmarkedSites(preferences);
 
-			count = SitesUtil.getVisibleSitesCount(
-				themeDisplay.getCompanyId(), themeDisplay.getUserId(),
-				keywords);
+			count = groups.size();
+
+			if (groups.isEmpty() || Validator.isNotNull(keywords)) {
+				groups = SitesUtil.getVisibleSites(
+					themeDisplay.getCompanyId(), themeDisplay.getUserId(),
+					keywords, maxResultSize);
+
+				count = SitesUtil.getVisibleSitesCount(
+					themeDisplay.getCompanyId(), themeDisplay.getUserId(),
+					keywords);
+			}
 		}
 
 		jsonObject.put("count", count);
@@ -301,6 +319,38 @@ public class SitesPortlet extends MVCPortlet {
 				groupJSONObject.put("joinUrl", portletURL.toString());
 			}
 
+			PortletURL bookmarkPortletURL = resourceResponse.createActionURL();
+
+			bookmarkPortletURL.setWindowState(WindowState.NORMAL);
+
+			bookmarkPortletURL.setParameter(
+				ActionRequest.ACTION_NAME, "updateBookmarks");
+			bookmarkPortletURL.setParameter(
+				"redirect", themeDisplay.getURLCurrent());
+			bookmarkPortletURL.setParameter(
+				"bookmarkGroupId", String.valueOf(group.getGroupId()));
+			bookmarkPortletURL.setParameter(
+				"portletResource", portletResource);
+
+			String bookmarkGroupIds = preferences.getValue(
+				"bookmarkGroupIds", StringPool.BLANK);
+
+			if (!StringUtil.contains(
+				bookmarkGroupIds, String.valueOf(group.getGroupId()))) {
+
+				bookmarkPortletURL.setParameter(Constants.CMD, Constants.ADD);
+
+				groupJSONObject.put(
+					"addBookmarkURL", bookmarkPortletURL.toString());
+			}
+			else {
+				bookmarkPortletURL.setParameter(
+					Constants.CMD, Constants.DELETE);
+
+				groupJSONObject.put(
+					"deleteBookmarkURL", bookmarkPortletURL.toString());
+			}
+
 			jsonArray.put(groupJSONObject);
 		}
 
@@ -334,6 +384,62 @@ public class SitesPortlet extends MVCPortlet {
 		catch (Exception e) {
 			throw new PortletException(e);
 		}
+	}
+
+	public void updateBookmarks(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
+
+		long bookmarkGroupId = ParamUtil.getLong(
+			actionRequest, "bookmarkGroupId");
+
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
+		HttpServletResponse response = PortalUtil.getHttpServletResponse(
+			actionResponse);
+
+		try {
+			GroupServiceUtil.getGroup(bookmarkGroupId);
+		}
+		catch (Exception e) {
+			jsonObject.put("result", "failure");
+
+			ServletResponseUtil.write(response, jsonObject.toString());
+
+			return;
+		}
+
+		PortletPreferences preferences = actionRequest.getPreferences();
+
+		String portletResource = ParamUtil.getString(
+			actionRequest, "portletResource");
+
+		if (Validator.isNotNull(portletResource)) {
+			preferences = PortletPreferencesFactoryUtil.getPortletSetup(
+				actionRequest, portletResource);
+		}
+
+		String bookmarkGroupIds = preferences.getValue(
+			"bookmarkGroupIds", StringPool.BLANK);
+
+		if (cmd.equals(Constants.ADD)) {
+			bookmarkGroupIds = StringUtil.add(
+				bookmarkGroupIds, String.valueOf(bookmarkGroupId));
+		}
+		else if (cmd.equals(Constants.DELETE)) {
+			bookmarkGroupIds = StringUtil.remove(
+				bookmarkGroupIds, String.valueOf(bookmarkGroupId));
+		}
+
+		preferences.setValue("bookmarkGroupIds", bookmarkGroupIds);
+
+		preferences.store();
+
+		jsonObject.put("result", "success");
+
+		ServletResponseUtil.write(response, jsonObject.toString());
 	}
 
 	protected void doAddSite(
