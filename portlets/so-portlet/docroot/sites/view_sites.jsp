@@ -95,7 +95,7 @@ int totalGroups = GroupLocalServiceUtil.searchCount(themeDisplay.getCompanyId(),
 			<li class="<%= classNames %>">
 				<c:choose>
 					<c:when test="<%= !StringUtil.contains(starredGroupIds, String.valueOf(group.getGroupId())) %>">
-						<span class="star">
+						<span class="action star">
 							<liferay-portlet:actionURL name="updateStars" var="starURL">
 								<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.ADD %>" />
 								<portlet:param name="redirect" value="<%= currentURL %>" />
@@ -107,7 +107,7 @@ int totalGroups = GroupLocalServiceUtil.searchCount(themeDisplay.getCompanyId(),
 						</span>
 					</c:when>
 					<c:otherwise>
-						<span class="unstar">
+						<span class="action unstar">
 							<liferay-portlet:actionURL name="updateStars" var="unstarURL">
 								<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE %>" />
 								<portlet:param name="redirect" value="<%= currentURL %>" />
@@ -129,7 +129,7 @@ int totalGroups = GroupLocalServiceUtil.searchCount(themeDisplay.getCompanyId(),
 						<portlet:param name="addUserIds" value="<%= String.valueOf(user.getUserId()) %>" />
 					</liferay-portlet:actionURL>
 
-					<span class="join">
+					<span class="action join">
 						<a href="<%= joinURL %>"><liferay-ui:message key="join" /></a>
 					</span>
 				</c:if>
@@ -370,52 +370,6 @@ int totalGroups = GroupLocalServiceUtil.searchCount(themeDisplay.getCompanyId(),
 				}
 			);
 		},
-		'.join a'
-	);
-
-	directoryContainer.one('.directory-list').delegate(
-		'click',
-		function(event) {
-			event.preventDefault();
-
-			A.io.request(
-				event.currentTarget.get('href'),
-				{
-					after: {
-						success: function(event, id, obj) {
-							Liferay.SO.Sites.updateSites();
-
-							var targetPage = A.DataType.Number.parse(currentPageNode.html());
-
-							directoryList.sendRequest(keywordsInput.get('value'), getRequestTemplate(targetPage));
-						}
-					}
-				}
-			);
-		},
-		'.star a'
-	);
-
-	directoryContainer.one('.directory-list').delegate(
-		'click',
-		function(event) {
-			event.preventDefault();
-
-			A.io.request(
-				event.currentTarget.get('href'),
-				{
-					after: {
-						success: function(event, id, obj) {
-							Liferay.SO.Sites.updateSites();
-
-							var targetPage = A.DataType.Number.parse(currentPageNode.html());
-
-							directoryList.sendRequest(keywordsInput.get('value'), getRequestTemplate(targetPage));
-						}
-					}
-				}
-			);
-		},
-		'.unstar a'
+		'.action a'
 	);
 </aui:script>
