@@ -40,7 +40,11 @@ AUI().use(
 			getCurrentTimestamp: function() {
 				var instance = this;
 
-				return (new Date()).getTime();
+				var currentChatServerTime = A.one('#currentChatServerTime').val() || 0;
+
+				var offset = A.Lang.now() - currentChatServerTime;
+
+				return A.Lang.now() - offset;
 			},
 
 			getUserImagePath: function(userId) {
