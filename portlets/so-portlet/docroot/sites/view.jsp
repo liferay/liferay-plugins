@@ -92,7 +92,6 @@ pageContext.setAttribute("portletURL", portletURL);
 										<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.ADD %>" />
 										<portlet:param name="redirect" value="<%= currentURL %>" />
 										<portlet:param name="starredGroupId" value="<%= String.valueOf(group.getGroupId()) %>" />
-										<portlet:param name="portletResource" value="<%= portletResource %>" />
 									</liferay-portlet:actionURL>
 
 									<a class="star" href="<%= starURL %>"><liferay-ui:message key="star" /></a>
@@ -104,7 +103,6 @@ pageContext.setAttribute("portletURL", portletURL);
 										<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE %>" />
 										<portlet:param name="redirect" value="<%= currentURL %>" />
 										<portlet:param name="starredGroupId" value="<%= String.valueOf(group.getGroupId()) %>" />
-										<portlet:param name="portletResource" value="<%= portletResource %>" />
 									</liferay-portlet:actionURL>
 
 									<a href="<%= unstarURL %>"><liferay-ui:message key="unstar" /></a>

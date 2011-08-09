@@ -211,15 +211,9 @@ public class SitesPortlet extends MVCPortlet {
 		List<Group> groups = null;
 		int count = 0;
 
-		PortletPreferences preferences = resourceRequest.getPreferences();
-
-		String portletResource = ParamUtil.getString(
-			resourceRequest, "portletResource");
-
-		if (Validator.isNotNull(portletResource)) {
-			preferences = PortletPreferencesFactoryUtil.getPortletSetup(
-				resourceRequest, portletResource);
-		}
+		PortletPreferences preferences =
+			PortletPreferencesFactoryUtil.getPortletSetup(
+				resourceRequest, "5_WAR_soportlet");
 
 		if (directory) {
 			LinkedHashMap<String, Object> params =
@@ -328,7 +322,6 @@ public class SitesPortlet extends MVCPortlet {
 				"redirect", themeDisplay.getURLCurrent());
 			starPortletURL.setParameter(
 				"starredGroupId", String.valueOf(group.getGroupId()));
-			starPortletURL.setParameter("portletResource", portletResource);
 
 			String starredGroupIds = preferences.getValue(
 				"starredGroupIds", StringPool.BLANK);
@@ -406,15 +399,9 @@ public class SitesPortlet extends MVCPortlet {
 			return;
 		}
 
-		PortletPreferences preferences = actionRequest.getPreferences();
-
-		String portletResource = ParamUtil.getString(
-			actionRequest, "portletResource");
-
-		if (Validator.isNotNull(portletResource)) {
-			preferences = PortletPreferencesFactoryUtil.getPortletSetup(
-				actionRequest, portletResource);
-		}
+		PortletPreferences preferences =
+			PortletPreferencesFactoryUtil.getPortletSetup(
+				actionRequest, "5_WAR_soportlet");
 
 		String starredGroupIds = preferences.getValue(
 			"starredGroupIds", StringPool.BLANK);
