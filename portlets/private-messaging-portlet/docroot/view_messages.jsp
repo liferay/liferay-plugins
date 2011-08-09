@@ -115,17 +115,21 @@
 				}
 				%>
 
-				<span class="date"><%= dateFormatDateTime.format(lastMBMessage.getCreateDate()) %></span>
+				<span class="date">
+					<%= dateFormatDateTime.format(lastMBMessage.getCreateDate()) %>
+				</span>
 
 				<div class="subject">
 					<a href="<%= viewThreadURL.toString() %>"><%= HtmlUtil.escape(StringUtil.shorten(lastMBMessage.getSubject(), 50)) %></a>
 				</div>
+
 				<div class="body">
 					<c:if test="<%= user.getUserId() == lastMBMessage.getUserId() %>">
 						<liferay-ui:icon
 							src="/html/themes/classic/images/mail/replied.png"
 						/>
 					</c:if>
+
 					<%= HtmlUtil.escape(StringUtil.shorten(lastMBMessage.getBody(), 100)) %>
 				</div>
 			</div>

@@ -206,8 +206,7 @@ public class PrivateMessagingUtil {
 		// Users who have contributed to the thread
 
 		List<MBMessage> mbMessages = getThreadMessages(
-			userId, mbThreadId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-			false);
+			userId, mbThreadId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, false);
 
 		for (MBMessage mbMessage : mbMessages) {
 			if (userId == mbMessage.getUserId()) {

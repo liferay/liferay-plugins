@@ -16,7 +16,7 @@
 .private-messaging-portlet .controls .col-1 {
 	text-align: left;
 }
-	
+
 .private-messaging-portlet .controls .col-2 {
 	text-align: right;
 }
@@ -32,7 +32,7 @@
 .private-messaging-portlet .message-subject input{
 	width: 300px;
 }
-	
+
 .private-messaging-portlet .message-body {
 	height: 70px;
 	width: 450px;
@@ -41,9 +41,9 @@
 .private-messaging-portlet .message-body-container {
 	margin-top: 10px;
 }
-	
+
 .private-messaging-portlet .profile-link {
-	text-transform: capitalize;	
+	text-transform: capitalize;
 }
 
 .private-messaging-portlet .results-header {
@@ -67,7 +67,7 @@
 }
 
 .private-messaging-portlet .messages .date {
-	color: #777777;
+	color: #777;
 	font-size: 11px;
 	margin-bottom: 4px;
 }
@@ -92,7 +92,7 @@
 
 .private-messaging-portlet .results-grid .results-row td,
 .private-messaging-portlet .results-grid .results-row.alt td {
-	background: none repeat scroll 0 0 #FFFFFF;
+	background: none repeat scroll 0 0 #FFF;
 	border: 1px solid #CFCFCF;
 	padding: 5px 10px;
 }
@@ -105,7 +105,7 @@
 /* Thread */
 
 .private-messaging-portlet .thread .body {
-	padding-top: 5px;	
+	padding-top: 5px;
 }
 
 .private-messaging-portlet .thread .thread-info {
@@ -114,15 +114,15 @@
 }
 
 .private-messaging-portlet .thread .taglib-search-iterator-page-iterator-bottom {
-	display: none;	
+	display: none;
 }
-	
+
 .private-messaging-portlet .thread .results-row {
 	border: 1px solid #CFCFCF;
 }
 
 .private-messaging-portlet .thread .date {
-	color: #777777;
+	color: #777;
 	font-size: 11px;
 	margin-bottom: 4px;
 }
