@@ -206,7 +206,7 @@ AUI().use(
 				else {
 					var siteTemplate =
 						'<li class="{classNames}">' +
-							'{bookmarkHtml}' +
+							'{starHtml}' +
 							'{joinHtml}' +
 							'<span class="name">{siteName}</span>' +
 						'</li>';
@@ -235,7 +235,7 @@ AUI().use(
 									siteTemplate,
 									{
 										classNames: classNames.join(' '),
-										bookmarkHtml: (result.addBookmarkURL ? '<a class="bookmark add-bookmark" href="' + result.addBookmarkURL + '"></a>' : '<a class="bookmark delete-bookmark" href="' + result.deleteBookmarkURL + '"></a>'),
+										starHtml: (result.starURL ? '<span class="star"><a href="' + result.starURL + '">' + Liferay.Language.get('star') + '</a></span>' : '<span class="unstar"><a href="' + result.unstarURL + '">' + Liferay.Language.get('unstar') + '</a></span>'),
 										joinHtml: (result.joinUrl ? '<span class="join"><a href="' + result.joinUrl + '">' + Liferay.Language.get('join') + '</a></span>' : ''),
 										siteName: name
 									}

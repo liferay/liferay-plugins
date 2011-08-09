@@ -36,16 +36,18 @@
 				display: block;
 			}
 
-			.add-bookmark {
+			.star a {
 				background: url(<%= request.getContextPath() %>/sites/images/star-empty.png) no-repeat 0 50%;
 				float: right;
+				font-size: 0px;
 				height: 16px;
 				width: 16px;
 			}
 
-			.delete-bookmark {
+			.unstar a {
 				background: url(<%= request.getContextPath() %>/sites/images/star.png) no-repeat 0 50%;
 				float: right;
+				font-size: 0px;
 				height: 16px;
 				width: 16px;
 			}
@@ -106,16 +108,18 @@
 			background: url(<%= PortalUtil.getPathContext() %>/html/icons/sites_admin.png) no-repeat 5px 5px;
 			padding: 5px 10px 5px 25px;
 
-			.add-bookmark {
+			.star a {
 				background: url(<%= request.getContextPath() %>/sites/images/star-empty.png) no-repeat 0 50%;
 				float: right;
+				font-size: 0px;
 				height: 16px;
 				width: 16px;
 			}
 
-			.delete-bookmark {
+			.unstar a {
 				background: url(<%= request.getContextPath() %>/sites/images/star.png) no-repeat 0 50%;
 				float: right;
+				font-size: 0px;
 				height: 16px;
 				width: 16px;
 			}

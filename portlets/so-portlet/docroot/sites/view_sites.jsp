@@ -72,7 +72,7 @@ int totalGroups = GroupLocalServiceUtil.searchCount(themeDisplay.getCompanyId(),
 		<%
 		boolean alternate = false;
 
-		String bookmarkGroupIds = preferences.getValue("bookmarkGroupIds", StringPool.BLANK);
+		String starredGroupIds = preferences.getValue("starredGroupIds", StringPool.BLANK);
 
 		for (Group group : groups) {
 			String classNames = StringPool.BLANK;
@@ -94,25 +94,29 @@ int totalGroups = GroupLocalServiceUtil.searchCount(themeDisplay.getCompanyId(),
 
 			<li class="<%= classNames %>">
 				<c:choose>
-					<c:when test="<%= !StringUtil.contains(bookmarkGroupIds, String.valueOf(group.getGroupId())) %>">
-						<liferay-portlet:actionURL name="updateBookmarks" var="addBookmarkURL">
-							<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.ADD %>" />
-							<portlet:param name="redirect" value="<%= currentURL %>" />
-							<portlet:param name="bookmarkGroupId" value="<%= String.valueOf(group.getGroupId()) %>" />
-							<portlet:param name="portletResource" value="<%= portletResource %>" />
-						</liferay-portlet:actionURL>
+					<c:when test="<%= !StringUtil.contains(starredGroupIds, String.valueOf(group.getGroupId())) %>">
+						<span class="star">
+							<liferay-portlet:actionURL name="updateStars" var="starURL">
+								<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.ADD %>" />
+								<portlet:param name="redirect" value="<%= currentURL %>" />
+								<portlet:param name="starredGroupId" value="<%= String.valueOf(group.getGroupId()) %>" />
+								<portlet:param name="portletResource" value="<%= portletResource %>" />
+							</liferay-portlet:actionURL>
 
-						<a class="bookmark add-bookmark" href="<%= addBookmarkURL %>"></a>
+							<a href="<%= starURL %>"><liferay-ui:message key="star" /></a>
+						</span>
 					</c:when>
 					<c:otherwise>
-						<liferay-portlet:actionURL name="updateBookmarks" var="deleteBookmarkURL">
-							<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE %>" />
-							<portlet:param name="redirect" value="<%= currentURL %>" />
-							<portlet:param name="bookmarkGroupId" value="<%= String.valueOf(group.getGroupId()) %>" />
-							<portlet:param name="portletResource" value="<%= portletResource %>" />
-						</liferay-portlet:actionURL>
+						<span class="unstar">
+							<liferay-portlet:actionURL name="updateStars" var="unstarURL">
+								<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE %>" />
+								<portlet:param name="redirect" value="<%= currentURL %>" />
+								<portlet:param name="starredGroupId" value="<%= String.valueOf(group.getGroupId()) %>" />
+								<portlet:param name="portletResource" value="<%= portletResource %>" />
+							</liferay-portlet:actionURL>
 
-						<a class="bookmark delete-bookmark" href="<%= deleteBookmarkURL %>"></a>
+							<a href="<%= unstarURL %>"><liferay-ui:message key="unstar" /></a>
+						</span>
 					</c:otherwise>
 				</c:choose>
 
@@ -222,7 +226,7 @@ int totalGroups = GroupLocalServiceUtil.searchCount(themeDisplay.getCompanyId(),
 		else {
 			var siteTemplate =
 				'<li class="{classNames}">' +
-					'{bookmarkHtml}' +
+					'{starHtml}' +
 					'{joinHtml}' +
 					'<span class="name">{siteName}</span>' +
 					'<span class="description">{siteDescription}</span>'
@@ -257,7 +261,7 @@ int totalGroups = GroupLocalServiceUtil.searchCount(themeDisplay.getCompanyId(),
 							siteTemplate,
 							{
 								classNames: classNames.join(' '),
-								bookmarkHtml: (result.addBookmarkURL ? '<a class="bookmark add-bookmark" href="' + result.addBookmarkURL + '"></a>' : '<a class="bookmark delete-bookmark" href="' + result.deleteBookmarkURL + '"></a>'),
+								starHtml: (result.starURL ? '<span class="star"><a href="' + result.starURL + '">' + Liferay.Language.get('star') + '</a></span>' : '<span class="unstar"><a href="' + result.unstarURL + '">' + Liferay.Language.get('unstar') + '</a></span>'),
 								joinHtml: (result.joinUrl ? '<span class="join"><a href="' + result.joinUrl + '">' + Liferay.Language.get('join') + '</a></span>' : ''),
 								siteDescription: result.description,
 								siteName: name
@@ -389,6 +393,29 @@ int totalGroups = GroupLocalServiceUtil.searchCount(themeDisplay.getCompanyId(),
 				}
 			);
 		},
-		'a.bookmark'
+		'.star a'
+	);
+
+	directoryContainer.one('.directory-list').delegate(
+		'click',
+		function(event) {
+			event.preventDefault();
+
+			A.io.request(
+				event.currentTarget.get('href'),
+				{
+					after: {
+						success: function(event, id, obj) {
+							Liferay.SO.Sites.updateSites();
+
+							var targetPage = A.DataType.Number.parse(currentPageNode.html());
+
+							directoryList.sendRequest(keywordsInput.get('value'), getRequestTemplate(targetPage));
+						}
+					}
+				}
+			);
+		},
+		'.unstar a'
 	);
 </aui:script>
