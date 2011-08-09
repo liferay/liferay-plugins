@@ -258,6 +258,9 @@ public class SitesPortlet extends MVCPortlet {
 
 		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
+		String starredGroupIds = preferences.getValue(
+			"starredGroupIds", StringPool.BLANK);
+
 		for (Group group : groups) {
 			JSONObject groupJSONObject = JSONFactoryUtil.createJSONObject();
 
@@ -323,11 +326,8 @@ public class SitesPortlet extends MVCPortlet {
 			starPortletURL.setParameter(
 				"starredGroupId", String.valueOf(group.getGroupId()));
 
-			String starredGroupIds = preferences.getValue(
-				"starredGroupIds", StringPool.BLANK);
-
 			if (!StringUtil.contains(
-				starredGroupIds, String.valueOf(group.getGroupId()))) {
+					starredGroupIds, String.valueOf(group.getGroupId()))) {
 
 				starPortletURL.setParameter(Constants.CMD, Constants.ADD);
 
@@ -358,7 +358,7 @@ public class SitesPortlet extends MVCPortlet {
 			PortletPreferencesFactoryUtil.getPortletSetup(
 				actionRequest, "5_WAR_soportlet");
 
-		preferences.setValue("hideNotice", "aui-helper-hidden");
+		preferences.setValue("hide-notice", Boolean.TRUE.toString());
 
 		preferences.store();
 	}
