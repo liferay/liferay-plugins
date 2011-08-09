@@ -210,6 +210,7 @@ UserThreadLocalServiceUtil.markUserThreadAsRead(user.getUserId(), mbThreadId);
 		<div>
 			<textarea class="message-body" name="<portlet:namespace />body"></textarea>
 		</div>
+
 		<div>
 			<label class="aui-field-label">
 				<liferay-ui:message key="attachments" />
