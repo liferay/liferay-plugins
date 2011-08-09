@@ -30,7 +30,7 @@ AUI().add(
 		var LABEL = 'label';
 
 		var LABEL_NODE = 'labelNode';
-		
+
 		var TPL_CLOSE_BUTTON = '<a class="gadget-editor-tab-close" href="javascript:;"></a>';
 
 		var TPL_DIV = '<div></div>';

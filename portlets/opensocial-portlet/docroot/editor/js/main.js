@@ -2135,6 +2135,6 @@ AUI().add(
 	},
 	'',
 	{
-		requires: [ 'aui-dialog','aui-form','aui-loading-mask','aui-panel','aui-resize','aui-toolbar','gadget-editor-tabs','gadget-editor-tree','liferay-open-social-gadget','liferay-util-window','stylesheet' ]
+		requires: ['aui-dialog', 'aui-form', 'aui-loading-mask', 'aui-panel', 'aui-resize', 'aui-toolbar', 'gadget-editor-tabs', 'gadget-editor-tree', 'liferay-open-social-gadget', 'liferay-util-window', 'stylesheet']
 	}
 );
