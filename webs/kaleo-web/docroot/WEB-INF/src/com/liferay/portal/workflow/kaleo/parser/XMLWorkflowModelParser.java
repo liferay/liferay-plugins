@@ -56,6 +56,7 @@ import java.util.Set;
 /**
  * @author Michael C. Han
  * @author Marcellus Tavares
+ * @author Eduardo Lundgren
  */
 public class XMLWorkflowModelParser implements WorkflowModelParser {
 
@@ -81,7 +82,8 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 		String description = rootElement.elementText("description");
 		int version = GetterUtil.getInteger(rootElement.elementText("version"));
 
-		Definition definition = new Definition(name, description, version);
+		Definition definition = new Definition(
+			name, description, document.formattedString(), version);
 
 		List<Element> conditionElements = rootElement.elements("condition");
 
