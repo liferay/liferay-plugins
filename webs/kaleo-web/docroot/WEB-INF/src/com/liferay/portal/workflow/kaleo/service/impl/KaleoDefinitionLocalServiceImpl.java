@@ -299,21 +299,6 @@ public class KaleoDefinitionLocalServiceImpl
 			serviceContext);
 	}
 
-	public KaleoDefinition updateContent(
-			String name, int version, String title, String content,
-			ServiceContext serviceContext)
-		throws PortalException, SystemException {
-
-		KaleoDefinition kaleoDefinition = incrementKaleoDefinition(
-			name, title, serviceContext);
-
-		kaleoDefinition.setContent(content);
-
-		kaleoDefinitionPersistence.update(kaleoDefinition, false);
-
-		return kaleoDefinition;
-	}
-
 	public KaleoDefinition updateTitle(
 			String name, int version, String title,
 			ServiceContext serviceContext)
