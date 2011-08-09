@@ -41,7 +41,7 @@ else {
 
 List<Group> groups = GroupLocalServiceUtil.search(themeDisplay.getCompanyId(), searchKeywords, null, params, 0, 20, new GroupNameComparator(true));
 
-int totalGroups = GroupLocalServiceUtil.searchCount(themeDisplay.getCompanyId(), searchKeywords, null, params);
+int groupsCount = GroupLocalServiceUtil.searchCount(themeDisplay.getCompanyId(), searchKeywords, null, params);
 %>
 
 <div class="directory">
@@ -61,7 +61,7 @@ int totalGroups = GroupLocalServiceUtil.searchCount(themeDisplay.getCompanyId(),
 		<div class="buttons-right">
 			<aui:button cssClass="previous" disabled="<%= true %>" value="previous" />
 
-			<aui:button cssClass="next" disabled="<%= totalGroups < 20 %>" value="next" />
+			<aui:button cssClass="next" disabled="<%= groupsCount < 20 %>" value="next" />
 		</div>
 
 		<div style="clear: both;"><!-- --></div>
@@ -99,8 +99,8 @@ int totalGroups = GroupLocalServiceUtil.searchCount(themeDisplay.getCompanyId(),
 							<liferay-portlet:actionURL name="updateStars" var="starURL">
 								<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.ADD %>" />
 								<portlet:param name="redirect" value="<%= currentURL %>" />
-								<portlet:param name="starredGroupId" value="<%= String.valueOf(group.getGroupId()) %>" />
 								<portlet:param name="portletResource" value="<%= portletResource %>" />
+								<portlet:param name="starredGroupId" value="<%= String.valueOf(group.getGroupId()) %>" />
 							</liferay-portlet:actionURL>
 
 							<a href="<%= starURL %>"><liferay-ui:message key="star" /></a>
@@ -111,8 +111,8 @@ int totalGroups = GroupLocalServiceUtil.searchCount(themeDisplay.getCompanyId(),
 							<liferay-portlet:actionURL name="updateStars" var="unstarURL">
 								<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE %>" />
 								<portlet:param name="redirect" value="<%= currentURL %>" />
-								<portlet:param name="starredGroupId" value="<%= String.valueOf(group.getGroupId()) %>" />
 								<portlet:param name="portletResource" value="<%= portletResource %>" />
+								<portlet:param name="starredGroupId" value="<%= String.valueOf(group.getGroupId()) %>" />
 							</liferay-portlet:actionURL>
 
 							<a href="<%= unstarURL %>"><liferay-ui:message key="unstar" /></a>
@@ -166,7 +166,7 @@ int totalGroups = GroupLocalServiceUtil.searchCount(themeDisplay.getCompanyId(),
 	<aui:button-row>
 		<div class="directory-navigation buttons-left">
 			<span class="page-indicator">
-				<%= LanguageUtil.format(pageContext, "page-x-of-x", new String[] {"<span class=\"current\">1</span>", "<span class=\"total\">" + String.valueOf((int)Math.ceil(totalGroups / 20.0)) + "</span>"}) %>
+				<%= LanguageUtil.format(pageContext, "page-x-of-x", new String[] {"<span class=\"current\">1</span>", "<span class=\"total\">" + String.valueOf((int)Math.ceil(groupsCount / 20.0)) + "</span>"}) %>
 			</span>
 		</div>
 
@@ -261,10 +261,10 @@ int totalGroups = GroupLocalServiceUtil.searchCount(themeDisplay.getCompanyId(),
 							siteTemplate,
 							{
 								classNames: classNames.join(' '),
-								starHtml: (result.starURL ? '<span class="star"><a href="' + result.starURL + '">' + Liferay.Language.get('star') + '</a></span>' : '<span class="unstar"><a href="' + result.unstarURL + '">' + Liferay.Language.get('unstar') + '</a></span>'),
 								joinHtml: (result.joinUrl ? '<span class="join"><a href="' + result.joinUrl + '">' + Liferay.Language.get('join') + '</a></span>' : ''),
 								siteDescription: result.description,
-								siteName: name
+								siteName: name,
+								starHtml: (result.starURL ? '<span class="star"><a href="' + result.starURL + '">' + Liferay.Language.get('star') + '</a></span>' : '<span class="unstar"><a href="' + result.unstarURL + '">' + Liferay.Language.get('unstar') + '</a></span>')
 							}
 						);
 					}
@@ -274,8 +274,8 @@ int totalGroups = GroupLocalServiceUtil.searchCount(themeDisplay.getCompanyId(),
 
 		this._listNode.html(buffer.join(''));
 
-		var currentPage = Math.floor(options.start/20) + 1;
-		var totalPage = Math.ceil(count/20);
+		var currentPage = Math.floor(options.start / 20) + 1;
+		var totalPage = Math.ceil(count / 20);
 
 		currentPageNode.html(currentPage);
 		totalPageNode.html(totalPage);
