@@ -32,6 +32,10 @@ portletURL.setWindowState(WindowState.NORMAL);
 portletURL.setParameter("tabs1", tabs1);
 
 pageContext.setAttribute("portletURL", portletURL);
+
+List<Group> groups = SitesUtil.getStarredSites(preferences);
+
+int count = groups.size();
 %>
 
 <form action="<%= portletURL.toString() %>" method="get" name="<portlet:namespace />fm">
@@ -44,17 +48,27 @@ pageContext.setAttribute("portletURL", portletURL);
 		<input type="submit" value="<liferay-ui:message key="search" />" />
 	</div>
 
-	<%
-	List<Group> groups = SitesUtil.getStarredSites(preferences);
+	<c:if test="<%= groups.isEmpty() %>">
 
-	int count = groups.size();
+		<%
+			String hideNotice = preferences.getValue("hideNotice", StringPool.BLANK);
 
-	if (groups.isEmpty()) {
-		groups = SitesUtil.getVisibleSites(themeDisplay.getCompanyId(), themeDisplay.getUserId(), searchName, maxResultSize);
+			groups = SitesUtil.getVisibleSites(themeDisplay.getCompanyId(), themeDisplay.getUserId(), searchName, maxResultSize);
+			count = SitesUtil.getVisibleSitesCount(themeDisplay.getCompanyId(), themeDisplay.getUserId(), searchName);
+		%>
 
-		count = SitesUtil.getVisibleSitesCount(themeDisplay.getCompanyId(), themeDisplay.getUserId(), searchName);
-	}
-	%>
+		<div class="portlet-msg-info star-msg-info <%= hideNotice %>">
+			<liferay-ui:message key="star-some-sites-to-customize-your-sites-list" />
+
+			<span class="hide-notice">
+				<liferay-portlet:actionURL name="hideNotice" var="hideNoticeURL">
+					<portlet:param name="redirect" value="<%= currentURL %>" />
+				</liferay-portlet:actionURL>
+
+				<a href="<%= hideNoticeURL %>"><liferay-ui:message key="hide" /></a>
+			</span>
+		</div>
+	</c:if>
 
 	<ul class="site-list">
 
@@ -155,7 +169,7 @@ pageContext.setAttribute("portletURL", portletURL);
 			</c:when>
 			<c:otherwise>
 				<li class="empty">
-					<liferay-ui:message key="favorite-some-sites-to-customize-your-initial-list" />
+					<liferay-ui:message key="you-are-not-a-member-of-any-sites.-search-or-open-the-directory-to-get-started" />
 				</li>
 			</c:otherwise>
 		</c:choose>
@@ -215,6 +229,29 @@ pageContext.setAttribute("portletURL", portletURL);
 					]
 				}
 			).render(controlContainer);
+
+			var hideNotice = A.one('.so-portlet-sites .star-msg-info');
+
+			if (hideNotice) {
+				hideNotice.delegate(
+					'click',
+					function(event) {
+						event.preventDefault();
+
+						A.io.request(
+							event.currentTarget.get('href'),
+							{
+								after: {
+									success: function(event, id, obj) {
+										hideNotice.hide();
+									}
+								}
+							}
+						);
+					},
+					'.hide-notice a'
+				);
+			}
 
 			var searchInput = A.one('#<portlet:namespace />name');
 

@@ -350,6 +350,19 @@ public class SitesPortlet extends MVCPortlet {
 		ServletResponseUtil.write(response, jsonObject.toString());
 	}
 
+	public void hideNotice(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		PortletPreferences preferences =
+			PortletPreferencesFactoryUtil.getPortletSetup(
+				actionRequest, "5_WAR_soportlet");
+
+		preferences.setValue("hideNotice", "aui-helper-hidden");
+
+		preferences.store();
+	}
+
 	@Override
 	public void serveResource(
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
