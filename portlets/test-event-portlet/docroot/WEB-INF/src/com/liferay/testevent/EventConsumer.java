@@ -33,9 +33,6 @@ import javax.portlet.RenderResponse;
  */
 public class EventConsumer extends GenericPortlet {
 
-	boolean passed = false;
-	boolean runTest = true;
-
 	@Override
 	public void processEvent(EventRequest request, EventResponse response)
 		throws PortletException, IOException {
@@ -44,10 +41,10 @@ public class EventConsumer extends GenericPortlet {
 			EventProducer.KEY, StringPool.BLANK);
 
 		if (Validator.isNull(value)) {
-			passed = true;
+			_passedTest = true;
 		}
 
-		runTest = false;
+		_runTest = false;
 	}
 
 	@Override
@@ -56,23 +53,28 @@ public class EventConsumer extends GenericPortlet {
 
 		PrintWriter writer = response.getWriter();
 
-		if (runTest) {
-			writer.write("Click 'Process Event' to run test");
+		try {
+			if (_runTest) {
+				writer.write("Click 'Process Event' to run test");
+
+				return;
+			}
+
+			if (_passedTest) {
+				writer.write("PASSED");
+			}
+			else {
+				writer.write("FAILED");
+			}
 		}
-		else {
-			try {
-				if (passed) {
-					writer.write("PASSED");
-				}
-				else {
-					writer.write("FAILED");
-				}
-			}
-			finally {
-				writer.close();
-				runTest = true;
-			}
+		finally {
+			writer.close();
+
+			_runTest = true;
 		}
 	}
+
+	private boolean _passedTest;
+	private boolean _runTest;
 
 }

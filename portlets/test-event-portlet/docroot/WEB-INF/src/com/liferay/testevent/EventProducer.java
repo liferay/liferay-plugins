@@ -14,6 +14,8 @@
 
 package com.liferay.testevent;
 
+import com.liferay.portal.kernel.util.ContentTypes;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
@@ -33,9 +35,10 @@ import javax.xml.namespace.QName;
  */
 public class EventProducer extends GenericPortlet {
 
-	public static final String KEY = "ABC";
 	public static final QName EVENT_QNAME = new QName(
 		"http://www.liferay.com", "lps18191");
+
+	public static final String KEY = "ABC";
 
 	@Override
 	public void processAction(ActionRequest request, ActionResponse response)
@@ -53,7 +56,7 @@ public class EventProducer extends GenericPortlet {
 	public void doView(RenderRequest request,RenderResponse response) 
 		throws PortletException, IOException {
 
-		response.setContentType("text/html");
+		response.setContentType(ContentTypes.TEXT_HTML);
 
 		PrintWriter writer = response.getWriter();
 
