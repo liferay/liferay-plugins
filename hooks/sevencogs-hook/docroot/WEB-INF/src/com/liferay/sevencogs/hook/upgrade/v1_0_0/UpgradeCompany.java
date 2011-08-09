@@ -88,6 +88,7 @@ import com.liferay.portlet.wiki.model.WikiPage;
 import com.liferay.portlet.wiki.service.WikiNodeLocalServiceUtil;
 import com.liferay.portlet.wiki.service.WikiPageLocalServiceUtil;
 
+import java.io.File;
 import java.io.InputStream;
 
 import java.util.ArrayList;
@@ -221,7 +222,7 @@ public class UpgradeCompany extends UpgradeProcess {
 		JournalArticle journalArticle =
 			JournalArticleLocalServiceUtil.addArticle(
 				userId, groupId, 0, 0, StringPool.BLANK, true,
-				JournalArticleConstants.DEFAULT_VERSION, titleMap, null,
+				JournalArticleConstants.VERSION_DEFAULT, titleMap, null,
 				content, "general", structureId, templateId, StringPool.BLANK,
 				1, 1, 2008, 0, 0, 0, 0, 0, 0, 0, true, 0, 0, 0, 0, 0, true,
 				true, false, StringPool.BLANK, null, null, StringPool.BLANK,
@@ -315,8 +316,8 @@ public class UpgradeCompany extends UpgradeProcess {
 		return MBMessageLocalServiceUtil.addMessage(
 			userId, userName, groupId, categoryId, threadId, parentMessageId,
 			subject, body, StringPool.BLANK,
-			new ArrayList<ObjectValuePair<String, byte[]>>(), false, -1.0,
-			false, serviceContext);
+			new ArrayList<ObjectValuePair<String, File>>(), false, -1.0, false,
+			serviceContext);
 	}
 
 	protected String addPortletId(
@@ -519,7 +520,7 @@ public class UpgradeCompany extends UpgradeProcess {
 
 		addPortletId(layout, PortletKeys.RECENT_DOCUMENTS, "column-1");
 		addPortletId(layout, PortletKeys.DOCUMENT_LIBRARY, "column-1");
-		addPortletId(layout, PortletKeys.IMAGE_GALLERY, "column-1");
+		addPortletId(layout, PortletKeys.IMAGE_GALLERY_DISPLAY, "column-1");
 
 		portletId = addPortletId(
 			layout, PortletKeys.JOURNAL_CONTENT, "column-2");
@@ -1604,7 +1605,7 @@ public class UpgradeCompany extends UpgradeProcess {
 			group, "Documents", true, "/documents", "2_columns_iii");
 
 		addPortletId(layout, PortletKeys.DOCUMENT_LIBRARY, "column-1");
-		addPortletId(layout, PortletKeys.IMAGE_GALLERY, "column-1");
+		addPortletId(layout, PortletKeys.IMAGE_GALLERY_DISPLAY, "column-1");
 
 		portletId = addPortletId(
 			layout, PortletKeys.JOURNAL_CONTENT, "column-2");
