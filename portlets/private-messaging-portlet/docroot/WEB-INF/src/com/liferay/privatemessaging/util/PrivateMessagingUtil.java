@@ -176,6 +176,15 @@ public class PrivateMessagingUtil {
 			}
 		}
 
+		List<UserThread> userThreads =
+			UserThreadLocalServiceUtil.getMBThreadUserThreads(mbThreadId);
+
+		for (UserThread userThread : userThreads) {
+			if (userId != userThread.getUserId()) {
+				return userThread.getUserId();
+			}
+		}
+
 		return userId;
 	}
 
@@ -189,50 +198,44 @@ public class PrivateMessagingUtil {
 		return mbMessages.get(0).getSubject();
 	}
 
-	public static List<User> getThreadUsers(
-			long userId, long mbThreadId, boolean all)
+	public static List<User> getThreadUsers(long userId, long mbThreadId)
 		throws PortalException, SystemException {
 
 		List<User> users = new ArrayList<User>();
 
-		if (all) {
+		// Users who have contributed to the thread
 
-			// Users who can view the thread
+		List<MBMessage> mbMessages = getThreadMessages(
+			userId, mbThreadId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			false);
 
-			List<UserThread> userThreads =
-				UserThreadLocalServiceUtil.getMBThreadUserThreads(mbThreadId);
+		for (MBMessage mbMessage : mbMessages) {
+			if (userId == mbMessage.getUserId()) {
+				continue;
+			}
 
-			for (UserThread userThread : userThreads) {
-				if (userId == userThread.getUserId()) {
-					continue;
-				}
+			User user = UserLocalServiceUtil.getUser(mbMessage.getUserId());
 
-				User user = UserLocalServiceUtil.getUser(
-					userThread.getUserId());
-
-				if (!users.contains(user)) {
-					users.add(user);
-				}
+			if (!users.contains(user)) {
+				users.add(user);
 			}
 		}
-		else {
 
-			// Users who have contributed to the thread
+		// Users who can view the thread
 
-			List<MBMessage> mbMessages = getThreadMessages(
-				userId, mbThreadId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-				false);
+		List<UserThread> userThreads =
+			UserThreadLocalServiceUtil.getMBThreadUserThreads(mbThreadId);
 
-			for (MBMessage mbMessage : mbMessages) {
-				if (userId == mbMessage.getUserId()) {
-					continue;
-				}
+		for (UserThread userThread : userThreads) {
+			if (userId == userThread.getUserId()) {
+				continue;
+			}
 
-				User user = UserLocalServiceUtil.getUser(mbMessage.getUserId());
+			User user = UserLocalServiceUtil.getUser(
+				userThread.getUserId());
 
-				if (!users.contains(user)) {
-					users.add(user);
-				}
+			if (!users.contains(user)) {
+				users.add(user);
 			}
 		}
 

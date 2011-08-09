@@ -20,9 +20,21 @@
 .private-messaging-portlet .controls .col-2 {
 	text-align: right;
 }
+
+.private-messaging-portlet .controls .back-button {
+	float: right;
+}
+
+.private-messaging-portlet .message-to input{
+	width: 300px
+}
+
+.private-messaging-portlet .message-subject input{
+	width: 300px;
+}
 	
 .private-messaging-portlet .message-body {
-	height: 50px;
+	height: 70px;
 	width: 450px;
 }
 
@@ -38,7 +50,8 @@
 	display: none;
 }
 
-.private-messaging-portlet .taglib-user-display .user-details .user-name {
+.private-messaging-portlet .taglib-user-display.display-style-2 .user-name,
+.private-messaging-portlet .taglib-user-display.display-style-2 .user-details {
 	display: none;
 }
 
@@ -48,12 +61,23 @@
 	width: 25px;
 }
 
-.private-messaging-portlet .messages .taglib-search-iterator .col-2 {
-	width: 50px;
+.private-messaging-portlet .messages .subject {
+	font-size: 16px;
+	margin-bottom: 4px;
 }
 
-.private-messaging-portlet .messages .taglib-search-iterator .col-3 {
-	width: 150px;
+.private-messaging-portlet .messages .date {
+	color: #777777;
+	font-size: 11px;
+	margin-bottom: 4px;
+}
+
+.private-messaging-portlet .messages .taglib-user-display {
+	float: left;
+}
+
+.private-messaging-portlet .messages .last-thread {
+	margin-left: 65px;
 }
 
 /* Results */
@@ -69,17 +93,13 @@
 .private-messaging-portlet .results-grid .results-row td,
 .private-messaging-portlet .results-grid .results-row.alt td {
 	background: none repeat scroll 0 0 #FFFFFF;
-	border-bottom: 1px solid #CFCFCF;
+	border: 1px solid #CFCFCF;
 	padding: 5px 10px;
 }
 
 .private-messaging-portlet .results-grid .results-row.unread td {
 	background: none repeat scroll 0 0 #F0F5F7;
 	font-weight: bold;
-}
-
-.private-messaging-portlet .results-grid .results-row.hover .subject {
-	text-decoration: underline;
 }
 
 /* Thread */
@@ -91,14 +111,6 @@
 .private-messaging-portlet .thread .thread-info {
 	margin-bottom: 5px;
 	padding: 5px;
-}
-
-.private-messaging-portlet .thread .taglib-search-iterator .col-1 {
-	width: 50px;
-}
-
-.private-messaging-portlet .thread .taglib-search-iterator .col-2 {
-	padding-left: 0px;
 }
 
 .private-messaging-portlet .thread .taglib-search-iterator-page-iterator-bottom {
@@ -117,4 +129,12 @@
 
 .private-messaging-portlet .thread .name {
 	font-weight: bold;
+}
+
+.private-messaging-portlet .thread .taglib-user-display {
+	float: left;
+}
+
+.private-messaging-portlet .thread .message {
+	margin-left: 65px;
 }
