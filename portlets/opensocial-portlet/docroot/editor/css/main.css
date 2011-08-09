@@ -112,7 +112,7 @@
 
 .opensocial-portlet-editor .aui-tabview-list .aui-tab-content .gadget-editor-tab-close {
 	background-image: url(../images/close.png);
-	opacity: 0.2;
+	opacity: 0.4;
 }
 
 .opensocial-portlet-editor .aui-tabview-list .aui-tab-content .gadget-editor-tab-close:hover {
