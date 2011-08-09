@@ -73,6 +73,7 @@
 			<basic name="name" />
 			<basic name="title" />
 			<basic name="description" />
+			<basic name="content" />
 			<basic name="version" />
 			<basic name="active">
 				<column name="ACTIVE_" />
