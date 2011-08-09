@@ -30,8 +30,8 @@ public class Definition {
 		String name, String description, String content, int version) {
 
 		_name = name;
-		_content = content;
 		_description = description;
+		_content = content;
 		_version = version;
 	}
 
