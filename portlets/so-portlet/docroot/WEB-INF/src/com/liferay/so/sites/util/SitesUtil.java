@@ -40,10 +40,11 @@ import javax.portlet.PortletPreferences;
  */
 public class SitesUtil {
 
-	public static List<Group> getStarredSites(PortletPreferences preferences)
+	public static List<Group> getStarredSites(
+			PortletPreferences portletPreferences)
 		throws Exception {
 
-		String starredGroupIds = preferences.getValue(
+		String starredGroupIds = portletPreferences.getValue(
 			"starredGroupIds", StringPool.BLANK);
 
 		long[] groupIds = StringUtil.split(starredGroupIds, 0L);
@@ -59,9 +60,9 @@ public class SitesUtil {
 			catch (Exception e) {
 				StringUtil.remove(starredGroupIds, String.valueOf(groupId));
 
-				preferences.setValue("starredGroupIds", starredGroupIds);
+				portletPreferences.setValue("starredGroupIds", starredGroupIds);
 
-				preferences.store();
+				portletPreferences.store();
 			}
 		}
 
@@ -168,7 +169,7 @@ public class SitesUtil {
 
 			params.put("types", types);
 
-			int count = GroupLocalServiceUtil.searchCount(
+			int groupsCount = GroupLocalServiceUtil.searchCount(
 				comapnyId, keywords, null, params);
 
 			params.clear();
@@ -181,7 +182,7 @@ public class SitesUtil {
 
 			params.put("types", types);
 
-			return count + GroupLocalServiceUtil.searchCount(
+			return groupsCount + GroupLocalServiceUtil.searchCount(
 				comapnyId, keywords, null, params);
 		}
 	}

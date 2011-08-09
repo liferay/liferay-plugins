@@ -25,6 +25,14 @@ String tabs1 = ParamUtil.getString(request, "tabs1", "my-sites");
 String name = ParamUtil.getString(request, "name");
 String searchName = DAOParamUtil.getLike(request, "name");
 
+List<Group> groups = SitesUtil.getStarredSites(preferences);
+int groupsCount = groups.size();
+
+if (groups.isEmpty()) {
+	groups = SitesUtil.getVisibleSites(themeDisplay.getCompanyId(), themeDisplay.getUserId(), searchName, maxResultSize);
+	groupsCount = SitesUtil.getVisibleSitesCount(themeDisplay.getCompanyId(), themeDisplay.getUserId(), searchName);
+}
+
 PortletURL portletURL = renderResponse.createRenderURL();
 
 portletURL.setWindowState(WindowState.NORMAL);
@@ -32,10 +40,6 @@ portletURL.setWindowState(WindowState.NORMAL);
 portletURL.setParameter("tabs1", tabs1);
 
 pageContext.setAttribute("portletURL", portletURL);
-
-List<Group> groups = SitesUtil.getStarredSites(preferences);
-
-int count = groups.size();
 %>
 
 <form action="<%= portletURL.toString() %>" method="get" name="<portlet:namespace />fm">
@@ -49,11 +53,6 @@ int count = groups.size();
 	</div>
 
 	<%
-	if (groups.isEmpty()) {
-		groups = SitesUtil.getVisibleSites(themeDisplay.getCompanyId(), themeDisplay.getUserId(), searchName, maxResultSize);
-		count = SitesUtil.getVisibleSitesCount(themeDisplay.getCompanyId(), themeDisplay.getUserId(), searchName);
-	}
-
 	boolean hideNotice = GetterUtil.getBoolean(preferences.getValue("hide-notice", StringPool.BLANK), false);
 	%>
 
@@ -161,9 +160,9 @@ int count = groups.size();
 				}
 				%>
 
-				<c:if test="<%= count > maxResultSize %>">
+				<c:if test="<%= groupsCount > maxResultSize %>">
 					<li class="more">
-						<a href="javascript:;"><liferay-ui:message key="view-all" /> (<%= count %>)</a>
+						<a href="javascript:;"><liferay-ui:message key="view-all" /> (<%= groupsCount %>)</a>
 					</li>
 				</c:if>
 			</c:when>

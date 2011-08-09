@@ -23,7 +23,6 @@ import com.liferay.portal.kernel.dao.search.DAOParamUtil;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
-import com.liferay.portal.kernel.servlet.ServletResponseUtil;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.MethodKey;
@@ -67,8 +66,6 @@ import javax.portlet.PortletURL;
 import javax.portlet.ResourceRequest;
 import javax.portlet.ResourceResponse;
 import javax.portlet.WindowState;
-
-import javax.servlet.http.HttpServletResponse;
 
 /**
  * @author Ryan Park
@@ -114,10 +111,7 @@ public class SitesPortlet extends MVCPortlet {
 				jsonObject.put("message", themeDisplay.translate(message));
 			}
 
-			HttpServletResponse response = PortalUtil.getHttpServletResponse(
-				actionResponse);
-
-			ServletResponseUtil.write(response, jsonObject.toString());
+			writeJSON(actionRequest, actionResponse, jsonObject);
 		}
 	}
 
@@ -173,10 +167,7 @@ public class SitesPortlet extends MVCPortlet {
 			jsonObject.put("layouts", jsonArray);
 		}
 
-		HttpServletResponse response = PortalUtil.getHttpServletResponse(
-			resourceResponse);
-
-		ServletResponseUtil.write(response, jsonObject.toString());
+		writeJSON(resourceRequest, resourceResponse, jsonObject);
 	}
 
 	public void getSites(
@@ -209,9 +200,9 @@ public class SitesPortlet extends MVCPortlet {
 			WebKeys.THEME_DISPLAY);
 
 		List<Group> groups = null;
-		int count = 0;
+		int groupsCount = 0;
 
-		PortletPreferences preferences =
+		PortletPreferences portletPreferences =
 			PortletPreferencesFactoryUtil.getPortletSetup(
 				resourceRequest, "5_WAR_soportlet");
 
@@ -234,38 +225,35 @@ public class SitesPortlet extends MVCPortlet {
 			groups = GroupLocalServiceUtil.search(
 				themeDisplay.getCompanyId(), keywords, null, params, start, end,
 				new GroupNameComparator(true));
-
-			count = GroupLocalServiceUtil.searchCount(
+			groupsCount = GroupLocalServiceUtil.searchCount(
 				themeDisplay.getCompanyId(), keywords, null, params);
 		}
 		else {
-			groups = SitesUtil.getStarredSites(preferences);
-
-			count = groups.size();
+			groups = SitesUtil.getStarredSites(portletPreferences);
+			groupsCount = groups.size();
 
 			if (groups.isEmpty() || Validator.isNotNull(keywords)) {
 				groups = SitesUtil.getVisibleSites(
 					themeDisplay.getCompanyId(), themeDisplay.getUserId(),
 					keywords, maxResultSize);
-
-				count = SitesUtil.getVisibleSitesCount(
+				groupsCount = SitesUtil.getVisibleSitesCount(
 					themeDisplay.getCompanyId(), themeDisplay.getUserId(),
 					keywords);
 			}
 		}
 
-		jsonObject.put("count", count);
+		jsonObject.put("count", groupsCount);
 
 		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
-		String starredGroupIds = preferences.getValue(
+		String starredGroupIds = portletPreferences.getValue(
 			"starredGroupIds", StringPool.BLANK);
 
 		for (Group group : groups) {
 			JSONObject groupJSONObject = JSONFactoryUtil.createJSONObject();
 
-			groupJSONObject.put("name", group.getDescriptiveName());
 			groupJSONObject.put("description", group.getDescription());
+			groupJSONObject.put("name", group.getDescriptiveName());
 
 			if (group.hasPrivateLayouts() || group.hasPublicLayouts()) {
 				PortletURL portletURL = PortletURLFactoryUtil.create(
@@ -344,23 +332,20 @@ public class SitesPortlet extends MVCPortlet {
 
 		jsonObject.put("sites", jsonArray);
 
-		HttpServletResponse response = PortalUtil.getHttpServletResponse(
-			resourceResponse);
-
-		ServletResponseUtil.write(response, jsonObject.toString());
+		writeJSON(resourceRequest, resourceResponse, jsonObject);
 	}
 
 	public void hideNotice(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		PortletPreferences preferences =
+		PortletPreferences portletPreferences =
 			PortletPreferencesFactoryUtil.getPortletSetup(
 				actionRequest, "5_WAR_soportlet");
 
-		preferences.setValue("hide-notice", Boolean.TRUE.toString());
+		portletPreferences.setValue("hide-notice", Boolean.TRUE.toString());
 
-		preferences.store();
+		portletPreferences.store();
 	}
 
 	@Override
@@ -398,25 +383,22 @@ public class SitesPortlet extends MVCPortlet {
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-		HttpServletResponse response = PortalUtil.getHttpServletResponse(
-			actionResponse);
-
 		try {
 			GroupServiceUtil.getGroup(starredGroupId);
 		}
 		catch (Exception e) {
 			jsonObject.put("result", "failure");
 
-			ServletResponseUtil.write(response, jsonObject.toString());
+			writeJSON(actionRequest, actionResponse, jsonObject);
 
 			return;
 		}
 
-		PortletPreferences preferences =
+		PortletPreferences portletPreferences =
 			PortletPreferencesFactoryUtil.getPortletSetup(
 				actionRequest, "5_WAR_soportlet");
 
-		String starredGroupIds = preferences.getValue(
+		String starredGroupIds = portletPreferences.getValue(
 			"starredGroupIds", StringPool.BLANK);
 
 		if (cmd.equals(Constants.ADD)) {
@@ -428,13 +410,13 @@ public class SitesPortlet extends MVCPortlet {
 				starredGroupIds, String.valueOf(starredGroupId));
 		}
 
-		preferences.setValue("starredGroupIds", starredGroupIds);
+		portletPreferences.setValue("starredGroupIds", starredGroupIds);
 
-		preferences.store();
+		portletPreferences.store();
 
 		jsonObject.put("result", "success");
 
-		ServletResponseUtil.write(response, jsonObject.toString());
+		writeJSON(actionRequest, actionResponse, jsonObject);
 	}
 
 	protected void doAddSite(
