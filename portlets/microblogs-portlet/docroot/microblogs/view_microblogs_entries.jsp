@@ -33,16 +33,16 @@ PortletURL portletURL = (PortletURL)request.getAttribute(WebKeys.MICROBLOGS_ENTR
 <%
 for (MicroblogsEntry microblogsEntry : microblogsEntries) {
 	String userDisplayURL = StringPool.BLANK;
-	String userScreenName = StringPool.BLANK;
 	String userFullName = PortalUtil.getUserName(microblogsEntry.getUserId(), microblogsEntry.getUserName());
 	String userPortaitURL = StringPool.BLANK;
+	String userScreenName = StringPool.BLANK;
 
 	try {
 		User curUser = UserLocalServiceUtil.getUserById(microblogsEntry.getUserId());
 
 		userDisplayURL = curUser.getDisplayURL(themeDisplay);
-		userScreenName = curUser.getScreenName();
 		userPortaitURL = curUser.getPortraitURL(themeDisplay);
+		userScreenName = curUser.getScreenName();
 	}
 	catch (NoSuchUserException nsue) {
 	}
@@ -127,7 +127,7 @@ for (MicroblogsEntry microblogsEntry : microblogsEntries) {
 
 							viewURL.setParameter("receiverUserId", String.valueOf(taggedUser.getUserId()));
 						}
-						catch (NoSuchUserException nsue){
+						catch (NoSuchUserException nsue) {
 							viewURL.setParameter("receiverUserId", String.valueOf(0));
 						}
 					}

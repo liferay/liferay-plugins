@@ -34,9 +34,9 @@ String modifiedDate = StringPool.BLANK;
 long receiverUserId = 0;
 
 String receiverUserDisplayURL = StringPool.BLANK;
-String receiverUserScreenName = StringPool.BLANK;
 String receiverUserFullName = StringPool.BLANK;
 String receiverUserPortaitURL = StringPool.BLANK;
+String receiverUserScreenName = StringPool.BLANK;
 
 boolean edit = ParamUtil.getBoolean(request, "edit");
 boolean reply = ParamUtil.getBoolean(request, "reply");
@@ -53,8 +53,8 @@ if ((microblogsEntry != null) && (reply || repost)) {
 		User receiverUser = UserLocalServiceUtil.getUserById(microblogsEntry.getUserId());
 
 		receiverUserDisplayURL = receiverUser.getDisplayURL(themeDisplay);
-		receiverUserScreenName = receiverUser.getScreenName();
 		receiverUserPortaitURL = receiverUser.getPortraitURL(themeDisplay);
+		receiverUserScreenName = receiverUser.getScreenName();
 	}
 	catch (NoSuchUserException nsue) {
 	}
