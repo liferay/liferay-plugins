@@ -34,7 +34,7 @@ String modifiedDate = StringPool.BLANK;
 long receiverUserId = 0;
 
 String receiverUserDisplayURL = StringPool.BLANK;
-String receiverUserEmail = StringPool.BLANK;
+String receiverUserScreenName = StringPool.BLANK;
 String receiverUserFullName = StringPool.BLANK;
 String receiverUserPortaitURL = StringPool.BLANK;
 
@@ -53,7 +53,7 @@ if ((microblogsEntry != null) && (reply || repost)) {
 		User receiverUser = UserLocalServiceUtil.getUserById(microblogsEntry.getUserId());
 
 		receiverUserDisplayURL = receiverUser.getDisplayURL(themeDisplay);
-		receiverUserEmail = receiverUser.getEmailAddress();
+		receiverUserScreenName = receiverUser.getScreenName();
 		receiverUserPortaitURL = receiverUser.getPortraitURL(themeDisplay);
 	}
 	catch (NoSuchUserException nsue) {
@@ -101,7 +101,7 @@ header = LanguageUtil.format(pageContext, header, receiverUserFullName);
 
 				<div class="entry-bubble">
 					<div class="user-name">
-						<span><%= receiverUserFullName %></span> <span class="small"><%= receiverUserEmail %></span>
+						<span><%= receiverUserFullName %></span> <span class="small">(<%= receiverUserScreenName %>)</span>
 					</div>
 
 					<div class="content">
@@ -222,7 +222,7 @@ header = LanguageUtil.format(pageContext, header, receiverUserFullName);
 	);
 
 	<c:if test="<%= reply %>">
-		contentInput.set('value', '');
+		contentInput.set('value', '@<%= receiverUserScreenName %> ');
 
 		contentInput.focus();
 	</c:if>
