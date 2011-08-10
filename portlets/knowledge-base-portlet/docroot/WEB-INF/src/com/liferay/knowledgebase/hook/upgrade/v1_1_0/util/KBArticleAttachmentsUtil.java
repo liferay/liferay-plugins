@@ -69,7 +69,7 @@ public class KBArticleAttachmentsUtil {
 
 			for (String fileName : fileNames) {
 				String shortFileName = FileUtil.getShortFileName(fileName);
-				byte[] bytes = DLStoreUtil.getFile(
+				byte[] bytes = DLStoreUtil.getFileAsBytes(
 					kbArticle.getCompanyId(), CompanyConstants.SYSTEM,
 					fileName);
 

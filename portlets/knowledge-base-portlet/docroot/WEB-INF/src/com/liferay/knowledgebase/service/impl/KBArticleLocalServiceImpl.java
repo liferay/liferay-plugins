@@ -705,7 +705,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		for (String fileName : kbArticle.getAttachmentsFileNames()) {
 			String shortFileName = FileUtil.getShortFileName(fileName);
 
-			byte[] bytes = DLStoreUtil.getFile(
+			byte[] bytes = DLStoreUtil.getFileAsBytes(
 				kbArticle.getCompanyId(), CompanyConstants.SYSTEM, fileName);
 
 			addAttachment(dirName, shortFileName, bytes, serviceContext);
@@ -1012,7 +1012,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			serviceContext.getCompanyId(), CompanyConstants.SYSTEM, dirName);
 
 		for (String fileName : fileNames) {
-			byte[] bytes = DLStoreUtil.getFile(
+			byte[] bytes = DLStoreUtil.getFileAsBytes(
 				serviceContext.getCompanyId(), CompanyConstants.SYSTEM,
 				fileName);
 
