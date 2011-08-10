@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.ObjectValuePair;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.PropsKeys;
@@ -1722,9 +1723,14 @@ public class UpgradeCompany extends UpgradeProcess {
 	protected void setupRoles(long companyId, long defaultUserId)
 		throws Exception {
 
+		Map<Locale, String> descriptionMap = new HashMap<Locale, String>();
+
+		descriptionMap.put(
+			LocaleUtil.getDefault(),
+			"Publishers are responsible for publishing content.");
+
 		Role publisherRole = RoleLocalServiceUtil.addRole(
-			defaultUserId, companyId, "Publisher", null,
-			"Publishers are responsible for publishing content.",
+			defaultUserId, companyId, "Publisher", null, descriptionMap,
 			RoleConstants.TYPE_REGULAR);
 
 		setRolePermissions(
@@ -1745,9 +1751,14 @@ public class UpgradeCompany extends UpgradeProcess {
 				ActionKeys.PERMISSIONS, ActionKeys.UPDATE, ActionKeys.VIEW
 			});
 
+		descriptionMap.clear();
+
+		descriptionMap.put(
+			LocaleUtil.getDefault(),
+			"Writers are responsible for creating content.");
+
 		Role writerRole = RoleLocalServiceUtil.addRole(
-			defaultUserId, companyId, "Writer", null,
-			"Writers are responsible for creating content.",
+			defaultUserId, companyId, "Writer", null, descriptionMap,
 			RoleConstants.TYPE_REGULAR);
 
 		setRolePermissions(
