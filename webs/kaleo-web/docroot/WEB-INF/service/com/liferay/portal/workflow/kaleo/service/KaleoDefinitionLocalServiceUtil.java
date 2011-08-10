@@ -391,16 +391,6 @@ public class KaleoDefinitionLocalServiceUtil {
 		return getService().incrementKaleoDefinition(name, title, serviceContext);
 	}
 
-	public static com.liferay.portal.workflow.kaleo.model.KaleoDefinition updateContent(
-		java.lang.String name, int version, java.lang.String title,
-		java.lang.String content,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getService()
-				   .updateContent(name, version, title, content, serviceContext);
-	}
-
 	public static com.liferay.portal.workflow.kaleo.model.KaleoDefinition updateTitle(
 		java.lang.String name, int version, java.lang.String title,
 		com.liferay.portal.service.ServiceContext serviceContext)
