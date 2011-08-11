@@ -82,8 +82,6 @@ portletURL.setParameter("socialRelationType", String.valueOf(socialRelationType)
 							<aui:button type="submit" value="search" />
 						</div>
 
-						<br />
-
 						<%
 						LinkedHashMap<String, Object> params = new LinkedHashMap<String, Object>();
 

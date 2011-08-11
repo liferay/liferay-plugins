@@ -46,8 +46,6 @@ portletURL.setParameter("jspPage", "/members/view.jsp");
 			<aui:button type="submit" value="search" />
 		</aui:form>
 
-		<br />
-
 		<div class="members-container">
 
 		<%

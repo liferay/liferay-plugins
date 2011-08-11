@@ -38,8 +38,6 @@ String keywords = ParamUtil.getString(request, "keywords");
 	emptyResultsMessage="no-users-were-found"
 	iteratorURL="<%= portletURL %>"
 >
-	<br />
-
 	<liferay-ui:search-container-results
 		results="<%= UserLocalServiceUtil.search(company.getCompanyId(), keywords, WorkflowConstants.STATUS_APPROVED, null, searchContainer.getStart(), searchContainer.getEnd(), new UserLastNameComparator(true)) %>"
 		total="<%= UserLocalServiceUtil.searchCount(company.getCompanyId(), keywords, WorkflowConstants.STATUS_APPROVED, null) %>"

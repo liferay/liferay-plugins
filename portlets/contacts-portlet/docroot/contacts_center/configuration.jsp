@@ -18,45 +18,45 @@
 
 <liferay-portlet:actionURL portletConfiguration="true" var="configurationURL" />
 
-<aui:form action="<%= configurationURL %>" method="post" name="fm">
-	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
+<div class="contacts-portlet">
+	<aui:form action="<%= configurationURL %>" method="post" name="fm">
+		<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
 
-	<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" persistState="<%= true %>" title="contacts-home">
-		<aui:input name="preferences--usersPerSection--" size="2" type="text" value="<%= usersPerSection %>" />
-	</liferay-ui:panel>
+		<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" persistState="<%= true %>" title="contacts-home">
+			<aui:input name="preferences--usersPerSection--" size="2" type="text" value="<%= usersPerSection %>" />
+		</liferay-ui:panel>
 
-	<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" persistState="<%= true %>" title="user-profile">
-		<aui:input name="preferences--showUsersInformation--" type="checkbox" value="<%= showUsersInformation %>" />
+		<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" persistState="<%= true %>" title="user-profile">
+			<aui:input name="preferences--showUsersInformation--" type="checkbox" value="<%= showUsersInformation %>" />
 
-		<aui:field-wrapper cssClass="lfr-user-profile-preferences">
-			<aui:column>
-				<aui:input name="preferences--showAdditionalEmailAddresses--" type="checkbox" value="<%= showAdditionalEmailAddresses %>" />
+			<aui:field-wrapper cssClass="lfr-user-profile-preferences">
+				<aui:column>
+					<aui:input name="preferences--showAdditionalEmailAddresses--" type="checkbox" value="<%= showAdditionalEmailAddresses %>" />
 
-				<aui:input name="preferences--showAddresses--" type="checkbox" value="<%= showAddresses %>" />
+					<aui:input name="preferences--showAddresses--" type="checkbox" value="<%= showAddresses %>" />
 
-				<aui:input name="preferences--showComments--" type="checkbox" value="<%= showComments %>" />
+					<aui:input name="preferences--showComments--" type="checkbox" value="<%= showComments %>" />
 
-				<aui:input name="preferences--showInstantMessenger--" type="checkbox" value="<%= showInstantMessenger %>" />
-			</aui:column>
+					<aui:input name="preferences--showInstantMessenger--" type="checkbox" value="<%= showInstantMessenger %>" />
+				</aui:column>
 
-			<aui:column>
-				<aui:input name="preferences--showPhones--" type="checkbox" value="<%= showPhones %>" />
+				<aui:column>
+					<aui:input name="preferences--showPhones--" type="checkbox" value="<%= showPhones %>" />
 
-				<aui:input label="show-sms" name="preferences--showSMS--" type="checkbox" value="<%= showSMS %>" />
+					<aui:input label="show-sms" name="preferences--showSMS--" type="checkbox" value="<%= showSMS %>" />
 
-				<aui:input name="preferences--showSocialNetwork--" type="checkbox" value="<%= showSocialNetwork %>" />
+					<aui:input name="preferences--showSocialNetwork--" type="checkbox" value="<%= showSocialNetwork %>" />
 
-				<aui:input name="preferences--showWebsites--" type="checkbox" value="<%= showWebsites %>" />
-			</aui:column>
-		</aui:field-wrapper>
+					<aui:input name="preferences--showWebsites--" type="checkbox" value="<%= showWebsites %>" />
+				</aui:column>
+			</aui:field-wrapper>
 
-		<br />
+			<aui:input name="preferences--showUsersRecentActivity--" type="checkbox" value="<%= showUsersRecentActivity %>" />
+		</liferay-ui:panel>
 
-		<aui:input name="preferences--showUsersRecentActivity--" type="checkbox" value="<%= showUsersRecentActivity %>" />
-	</liferay-ui:panel>
-
-	<aui:button type="submit" />
-</aui:form>
+		<aui:button type="submit" />
+	</aui:form>
+</div>
 
 <aui:script use="aui-base">
 	var showUserInfoCheckbox = A.one('#<portlet:namespace />showUsersInformationCheckbox');
