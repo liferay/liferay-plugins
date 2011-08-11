@@ -287,6 +287,9 @@
 	white-space: nowrap
 }
 
+.contacts-portlet .lfr-menu-list .edit-profile {
+	cursor: pointer;
+}
 .contacts-portlet .lfr-panel{
 	margin-bottom: 1em;
 }
