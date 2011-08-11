@@ -81,6 +81,10 @@ ECJ was automatically installed. Please rerun your task.
 	</if>
 
 	<target name="compile-java">
+		<copy todir="${javac.destdir}">
+			<fileset dir="${javac.srcdir}" excludes="**/*.java" />
+		</copy>
+
 		<javac
 			classpathref="${javac.classpathref}"
 			compiler="${javac.compiler}"
@@ -92,10 +96,6 @@ ECJ was automatically installed. Please rerun your task.
 			nowarn="${javac.nowarn}"
 			srcdir="${javac.srcdir}"
 		/>
-
-		<copy todir="${javac.destdir}">
-			<fileset dir="${javac.srcdir}" excludes="**/*.java" />
-		</copy>
 	</target>
 
 	<target name="format-javadoc">
