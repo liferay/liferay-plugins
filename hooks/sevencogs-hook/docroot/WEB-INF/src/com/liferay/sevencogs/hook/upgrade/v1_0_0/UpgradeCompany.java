@@ -29,7 +29,6 @@ import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
-import com.liferay.portal.model.Address;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.GroupConstants;
 import com.liferay.portal.model.Layout;
@@ -974,8 +973,7 @@ public class UpgradeCompany extends UpgradeProcess {
 		Organization organization =
 			OrganizationLocalServiceUtil.addOrganization(
 				userId, parentOrganizationId, name, type, recursable, regionId,
-				countryId, statusId, comments, true, new ArrayList<Address>(),
-				serviceContext);
+				countryId, statusId, comments, true, serviceContext);
 
 		// Group
 
@@ -1632,8 +1630,7 @@ public class UpgradeCompany extends UpgradeProcess {
 
 		organization = OrganizationLocalServiceUtil.addOrganization(
 			userId, parentOrganizationId, name, type, recursable, regionId,
-			countryId, statusId, comments, true, new ArrayList<Address>(),
-			serviceContext);
+			countryId, statusId, comments, true, serviceContext);
 
 		// Group
 
