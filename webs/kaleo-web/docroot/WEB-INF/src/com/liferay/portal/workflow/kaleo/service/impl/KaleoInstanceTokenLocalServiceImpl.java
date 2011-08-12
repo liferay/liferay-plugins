@@ -26,6 +26,7 @@ import com.liferay.portal.workflow.kaleo.model.KaleoNode;
 import com.liferay.portal.workflow.kaleo.model.impl.KaleoInstanceTokenImpl;
 import com.liferay.portal.workflow.kaleo.service.base.KaleoInstanceTokenLocalServiceBaseImpl;
 import com.liferay.portal.workflow.kaleo.util.GroupUtil;
+import com.liferay.portal.workflow.kaleo.util.UserUtil;
 
 import java.io.Serializable;
 
@@ -48,8 +49,10 @@ public class KaleoInstanceTokenLocalServiceImpl
 		KaleoInstanceToken parentKaleoInstanceToken =
 			kaleoInstanceTokenPersistence.findByPrimaryKey(
 				parentKaleoInstanceTokenId);
-		User user = userPersistence.findByPrimaryKey(
-			parentKaleoInstanceToken.getUserId());
+
+		User user = UserUtil.getServiceContextUser(
+			serviceContext, userPersistence, userLocalService);
+
 		Date now = new Date();
 
 		long kaleoInstanceTokenId = counterLocalService.increment();
@@ -186,8 +189,9 @@ public class KaleoInstanceTokenLocalServiceImpl
 
 		// Kaleo instance token
 
-		User user = userPersistence.findByPrimaryKey(
-			serviceContext.getUserId());
+		User user = UserUtil.getServiceContextUser(
+			serviceContext, userPersistence, userLocalService);
+
 		Date now = new Date();
 
 		rootKaleoInstanceTokenId = counterLocalService.increment();

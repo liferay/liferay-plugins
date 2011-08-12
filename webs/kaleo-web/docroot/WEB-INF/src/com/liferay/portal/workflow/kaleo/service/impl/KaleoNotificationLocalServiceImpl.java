@@ -25,6 +25,7 @@ import com.liferay.portal.workflow.kaleo.definition.NotificationType;
 import com.liferay.portal.workflow.kaleo.definition.Recipient;
 import com.liferay.portal.workflow.kaleo.model.KaleoNotification;
 import com.liferay.portal.workflow.kaleo.service.base.KaleoNotificationLocalServiceBaseImpl;
+import com.liferay.portal.workflow.kaleo.util.UserUtil;
 
 import java.util.Date;
 import java.util.Iterator;
@@ -45,8 +46,9 @@ public class KaleoNotificationLocalServiceImpl
 
 		// Kaleo notification
 
-		User user = userPersistence.findByPrimaryKey(
-			serviceContext.getUserId());
+		User user = UserUtil.getServiceContextUser(
+			serviceContext, userPersistence, userLocalService);
+
 		Date now = new Date();
 
 		long kaleoNotificationId = counterLocalService.increment();

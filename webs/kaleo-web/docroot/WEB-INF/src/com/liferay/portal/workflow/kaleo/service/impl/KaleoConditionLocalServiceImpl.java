@@ -21,6 +21,7 @@ import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.workflow.kaleo.definition.Condition;
 import com.liferay.portal.workflow.kaleo.model.KaleoCondition;
 import com.liferay.portal.workflow.kaleo.service.base.KaleoConditionLocalServiceBaseImpl;
+import com.liferay.portal.workflow.kaleo.util.UserUtil;
 
 import java.util.Date;
 
@@ -36,8 +37,9 @@ public class KaleoConditionLocalServiceImpl
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
-		User user = userPersistence.findByPrimaryKey(
-			serviceContext.getUserId());
+		User user = UserUtil.getServiceContextUser(
+			serviceContext, userPersistence, userLocalService);
+
 		Date now = new Date();
 
 		long kaleoConditionId = counterLocalService.increment();

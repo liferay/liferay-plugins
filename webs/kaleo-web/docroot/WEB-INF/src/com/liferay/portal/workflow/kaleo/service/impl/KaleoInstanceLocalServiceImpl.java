@@ -50,8 +50,14 @@ public class KaleoInstanceLocalServiceImpl
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
-		User user = userPersistence.findByPrimaryKey(
+		User user = userPersistence.fetchByPrimaryKey(
 			serviceContext.getUserId());
+
+		if (user == null) {
+			user = userLocalService.getDefaultUser(
+				serviceContext.getCompanyId());
+		}
+
 		Date now = new Date();
 
 		long kaleoInstanceId = counterLocalService.increment();

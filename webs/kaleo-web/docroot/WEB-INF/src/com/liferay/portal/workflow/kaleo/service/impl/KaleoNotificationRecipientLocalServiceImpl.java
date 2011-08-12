@@ -28,6 +28,7 @@ import com.liferay.portal.workflow.kaleo.definition.UserRecipient;
 import com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient;
 import com.liferay.portal.workflow.kaleo.service.base.KaleoNotificationRecipientLocalServiceBaseImpl;
 import com.liferay.portal.workflow.kaleo.util.RoleRetrievalUtil;
+import com.liferay.portal.workflow.kaleo.util.UserUtil;
 
 import java.util.Date;
 import java.util.List;
@@ -43,8 +44,9 @@ public class KaleoNotificationRecipientLocalServiceImpl
 			Recipient recipient, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
-		User user = userPersistence.findByPrimaryKey(
-			serviceContext.getUserId());
+		User user = UserUtil.getServiceContextUser(
+			serviceContext, userPersistence, userLocalService);
+
 		Date now = new Date();
 
 		long kaleoNotificationRecipientId = counterLocalService.increment();
