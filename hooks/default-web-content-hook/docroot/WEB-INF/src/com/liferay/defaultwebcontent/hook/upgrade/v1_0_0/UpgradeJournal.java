@@ -40,19 +40,14 @@ public class UpgradeJournal extends UpgradeProcess {
 	protected void addJournalStructures(long groupId, long userId)
 		throws Exception {
 
-		ServiceContext serviceContext = new ServiceContext();
-
-		serviceContext.setAddCommunityPermissions(true);
-		serviceContext.setAddGuestPermissions(true);
-
-		Map<Locale, String> descriptionMap = new HashMap<Locale, String>();
-		Map<Locale, String> nameMap = new HashMap<Locale, String>();
-
 		// Article
 
-		String structureId = "ARTICLE";
+		Map<Locale, String> nameMap = new HashMap<Locale, String>();
 
 		nameMap.put(LocaleUtil.getDefault(), "Article");
+
+		Map<Locale, String> descriptionMap = new HashMap<Locale, String>();
+
 		descriptionMap.put(
 			LocaleUtil.getDefault(),
 			"This structure accommodates article title, both main, and " +
@@ -60,18 +55,19 @@ public class UpgradeJournal extends UpgradeProcess {
 
 		String xsd = getFileAsString("/structures/article.xml");
 
+		ServiceContext serviceContext = new ServiceContext();
+
+		serviceContext.setAddCommunityPermissions(true);
+		serviceContext.setAddGuestPermissions(true);
+
 		JournalStructureLocalServiceUtil.addStructure(
-			userId, groupId, structureId, false, StringPool.BLANK, nameMap,
+			userId, groupId, "ARTICLE", false, StringPool.BLANK, nameMap,
 			descriptionMap, xsd, serviceContext);
 
 		// Carousel
 
-		nameMap.clear();
-		descriptionMap.clear();
-
-		structureId = "MULTIPLE-ITEM-CAROUSEL";
-
 		nameMap.put(LocaleUtil.getDefault(), "Carousel");
+
 		descriptionMap.put(
 			LocaleUtil.getDefault(),
 			"This is a simple carousel structure designed to handle other " +
@@ -81,68 +77,58 @@ public class UpgradeJournal extends UpgradeProcess {
 			"/structures/multiple_item_carousel.xml");
 
 		JournalStructureLocalServiceUtil.addStructure(
-			userId, groupId, structureId, false, StringPool.BLANK, nameMap,
-			descriptionMap, xsd, serviceContext);
+			userId, groupId, "MULTIPLE-ITEM-CAROUSEL", false, StringPool.BLANK,
+			nameMap, descriptionMap, xsd, serviceContext);
 
 		// Multiple Item
 
-		nameMap.clear();
-		descriptionMap.clear();
-
-		structureId = "MULTIPLE-ITEM";
-
 		nameMap.put(LocaleUtil.getDefault(), "Multiple Item");
+
 		descriptionMap.put(
 			LocaleUtil.getDefault(),
 			"This is a simple structure with a single repeatable element " +
 				"that includes an HTML field, and text-box for a title and " +
-					"url designation.");
+					"URL designation.");
 
 		xsd = getFileAsString("/structures/multiple_item.xml");
 
 		JournalStructureLocalServiceUtil.addStructure(
-			userId, groupId, structureId, false, StringPool.BLANK, nameMap,
+			userId, groupId, "MULTIPLE-ITEM", false, StringPool.BLANK, nameMap,
 			descriptionMap, xsd, serviceContext);
 	}
 
 	protected void addJournalTemplates(long groupId, long userId)
 		throws Exception {
 
+		// Regular Article Description
+
+		Map<Locale, String> nameMap = new HashMap<Locale, String>();
+
+		nameMap.put(LocaleUtil.getDefault(), "Regular Article Description");
+
+		Map<Locale, String> descriptionMap = new HashMap<Locale, String>();
+
+		descriptionMap.put(
+			LocaleUtil.getDefault(),
+			"This template only displays brief descriptions of web content");
+
+		String xsl = getFileAsString(
+			"/templates/article_description.vm");
+
 		ServiceContext serviceContext = new ServiceContext();
 
 		serviceContext.setAddCommunityPermissions(true);
 		serviceContext.setAddGuestPermissions(true);
 
-		Map<Locale, String> descriptionMap = new HashMap<Locale, String>();
-		Map<Locale, String> nameMap = new HashMap<Locale, String>();
-
-		// Regular Article Description
-
-		String templateId = "ARTICLE-DESCRIPTION";
-		String structureId = "ARTICLE";
-
-		nameMap.put(LocaleUtil.getDefault(), "Regular Article Description");
-		descriptionMap.put(
-			LocaleUtil.getDefault(),
-			"This template only displays brief descriptions of web content");
-
-		String type = "vm";
-		String xsl = getFileAsString(
-			"/templates/article_description.vm");
-
 		JournalTemplateLocalServiceUtil.addTemplate(
-			userId, groupId, templateId, false, structureId, nameMap,
-			descriptionMap, xsl, true, type, true, false, StringPool.BLANK,
+			userId, groupId, "ARTICLE-DESCRIPTION", false, "ARTICLE", nameMap,
+			descriptionMap, xsl, true, "vm", true, false, StringPool.BLANK,
 			null, serviceContext);
 
 		// Regular Article
 
-		nameMap.clear();
-		descriptionMap.clear();
-
-		templateId = "REGULAR-ARTICLE";
-
 		nameMap.put(LocaleUtil.getDefault(), "Regular Article");
+
 		descriptionMap.put(
 			LocaleUtil.getDefault(),
 			"This is the regular article template, it handles basic article " +
@@ -152,19 +138,14 @@ public class UpgradeJournal extends UpgradeProcess {
 		xsl = getFileAsString("/templates/regular_article.vm");
 
 		JournalTemplateLocalServiceUtil.addTemplate(
-			userId, groupId, templateId, false, structureId, nameMap,
-			descriptionMap, xsl, true, type, true, false, StringPool.BLANK,
+			userId, groupId, "REGULAR-ARTICLE", false, "ARTICLE", nameMap,
+			descriptionMap, xsl, true, "vm", true, false, StringPool.BLANK,
 			null, serviceContext);
 
 		// Carousel
 
-		nameMap.clear();
-		descriptionMap.clear();
-
-		templateId = "MULTIPLE-ITEM-CAROUSEL";
-		structureId = "MULTIPLE-ITEM-CAROUSEL";
-
 		nameMap.put(LocaleUtil.getDefault(), "Carousel");
+
 		descriptionMap.put(
 			LocaleUtil.getDefault(),
 			"This is the carousel template that utilizes Alloy UI to display " +
@@ -173,19 +154,14 @@ public class UpgradeJournal extends UpgradeProcess {
 		xsl = getFileAsString("/templates/multiple_item_carousel.vm");
 
 		JournalTemplateLocalServiceUtil.addTemplate(
-			userId, groupId, templateId, false, structureId, nameMap,
-			descriptionMap, xsl, true, type, true, false, StringPool.BLANK,
-			null, serviceContext);
+			userId, groupId, "MULTIPLE-ITEM-CAROUSEL", false,
+			"MULTIPLE-ITEM-CAROUSEL", nameMap, descriptionMap, xsl, true, "vm",
+			true, false, StringPool.BLANK, null, serviceContext);
 
 		// Featured Items
 
-		nameMap.clear();
-		descriptionMap.clear();
-
-		templateId = "MULTIPLE-ITEM-FEATURE";
-		structureId = "MULTIPLE-ITEM";
-
 		nameMap.put(LocaleUtil.getDefault(), "Featured Items");
+
 		descriptionMap.put(
 			LocaleUtil.getDefault(),
 			"This is a template that utilizes the Multiple Item Structure, " +
@@ -194,9 +170,9 @@ public class UpgradeJournal extends UpgradeProcess {
 		xsl = getFileAsString("/templates/multiple_item_feature.vm");
 
 		JournalTemplateLocalServiceUtil.addTemplate(
-			userId, groupId, templateId, false, structureId, nameMap,
-			descriptionMap, xsl, true, type, true, false, StringPool.BLANK,
-			null, serviceContext);
+			userId, groupId, "MULTIPLE-ITEM-FEATURE", false, "MULTIPLE-ITEM",
+			nameMap, descriptionMap, xsl, true, "vm", true, false,
+			StringPool.BLANK, null, serviceContext);
 	}
 
 	@Override
