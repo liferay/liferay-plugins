@@ -32,7 +32,7 @@ import com.liferay.portal.workflow.jbpm.ProcessInstanceExtensionImpl;
 import com.liferay.portal.workflow.jbpm.TaskInstanceExtensionImpl;
 import com.liferay.portal.workflow.jbpm.WorkflowDefinitionExtensionImpl;
 import com.liferay.portal.workflow.jbpm.WorkflowLogImpl;
-import com.liferay.portal.workflow.jbpm.util.RoleRetrievalUtil;
+import com.liferay.portal.workflow.jbpm.util.RoleUtil;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -568,7 +568,7 @@ public class CustomSession {
 			return;
 		}
 
-		List<Long> roleIds = RoleRetrievalUtil.getRoleIds(serviceContext);
+		List<Long> roleIds = RoleUtil.getRoleIds(serviceContext);
 
 		List<UserGroupRole> userGroupRoles =
 			UserGroupRoleLocalServiceUtil.getUserGroupRoles(
@@ -660,7 +660,8 @@ public class CustomSession {
 					junction.add(
 						Restrictions.like(
 							"workflowContext",
-							"%\"entryClassPK\":\"%" + assetPrimaryKey + "%\"%"));
+							"%\"entryClassPK\":\"%" + assetPrimaryKey +
+								"%\"%"));
 				}
 			}
 

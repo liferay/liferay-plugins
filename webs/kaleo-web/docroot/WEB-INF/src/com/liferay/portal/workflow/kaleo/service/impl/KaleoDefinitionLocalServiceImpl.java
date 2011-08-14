@@ -23,7 +23,6 @@ import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.workflow.kaleo.NoSuchDefinitionException;
 import com.liferay.portal.workflow.kaleo.model.KaleoDefinition;
 import com.liferay.portal.workflow.kaleo.service.base.KaleoDefinitionLocalServiceBaseImpl;
-import com.liferay.portal.workflow.kaleo.util.UserUtil;
 
 import java.util.Date;
 import java.util.List;
@@ -93,9 +92,8 @@ public class KaleoDefinitionLocalServiceImpl
 			int version, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
-		User user = UserUtil.getServiceContextUser(
-			serviceContext, userPersistence, userLocalService);
-
+		User user = userPersistence.findByPrimaryKey(
+			serviceContext.getGuestOrUserId());
 		Date now = new Date();
 
 		long kaleoDefinitionId = counterLocalService.increment();

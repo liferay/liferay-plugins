@@ -24,7 +24,6 @@ import com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken;
 import com.liferay.portal.workflow.kaleo.service.base.KaleoTaskAssignmentInstanceLocalServiceBaseImpl;
-import com.liferay.portal.workflow.kaleo.util.UserUtil;
 
 import java.io.Serializable;
 
@@ -47,9 +46,8 @@ public class KaleoTaskAssignmentInstanceLocalServiceImpl
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
-		User user = UserUtil.getServiceContextUser(
-			serviceContext, userPersistence, userLocalService);
-
+		User user = userPersistence.findByPrimaryKey(
+			serviceContext.getGuestOrUserId());
 		Date now = new Date();
 
 		long kaleoTaskAssignmentInstanceId = counterLocalService.increment();

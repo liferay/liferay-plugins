@@ -44,7 +44,6 @@ import com.liferay.portal.workflow.kaleo.runtime.timer.messaging.TimerMessageLis
 import com.liferay.portal.workflow.kaleo.service.base.KaleoTimerInstanceTokenLocalServiceBaseImpl;
 import com.liferay.portal.workflow.kaleo.util.GroupUtil;
 import com.liferay.portal.workflow.kaleo.util.SchedulerUtil;
-import com.liferay.portal.workflow.kaleo.util.UserUtil;
 import com.liferay.portal.workflow.kaleo.util.WorkflowContextUtil;
 
 import java.io.Serializable;
@@ -69,9 +68,8 @@ public class KaleoTimerInstanceTokenLocalServiceImpl
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
-		User user = UserUtil.getServiceContextUser(
-			serviceContext, userPersistence, userLocalService);
-
+		User user = userPersistence.findByPrimaryKey(
+			serviceContext.getGuestOrUserId());
 		KaleoInstanceToken kaleoInstanceToken =
 			kaleoInstanceTokenPersistence.findByPrimaryKey(
 				kaleoInstanceTokenId);

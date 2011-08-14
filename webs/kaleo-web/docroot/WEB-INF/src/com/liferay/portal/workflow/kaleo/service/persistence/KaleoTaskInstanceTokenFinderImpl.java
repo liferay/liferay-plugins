@@ -30,7 +30,7 @@ import com.liferay.portal.model.UserGroupRole;
 import com.liferay.portal.service.UserGroupRoleLocalServiceUtil;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken;
-import com.liferay.portal.workflow.kaleo.util.RoleRetrievalUtil;
+import com.liferay.portal.workflow.kaleo.util.RoleUtil;
 import com.liferay.util.dao.orm.CustomSQLUtil;
 
 import java.sql.Timestamp;
@@ -489,7 +489,7 @@ public class KaleoTaskInstanceTokenFinderImpl
 		}
 
 		if (searchByUserRoles) {
-			List<Long> roleIds = RoleRetrievalUtil.getRoleIds(
+			List<Long> roleIds = RoleUtil.getRoleIds(
 				kaleoTaskInstanceTokenQuery.getServiceContext());
 
 			List<UserGroupRole >userGroupRoles =
@@ -730,7 +730,7 @@ public class KaleoTaskInstanceTokenFinderImpl
 		if (searchByUserRoles) {
 			qPos.add(Role.class.getName());
 
-			List<Long> roleIds = RoleRetrievalUtil.getRoleIds(
+			List<Long> roleIds = RoleUtil.getRoleIds(
 				kaleoTaskInstanceTokenQuery.getServiceContext());
 
 			List<UserGroupRole >userGroupRoles =

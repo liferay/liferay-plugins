@@ -38,7 +38,7 @@ import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserGroupRoleLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.workflow.jbpm.dao.CustomSession;
-import com.liferay.portal.workflow.jbpm.util.AssigneeRetrievalUtil;
+import com.liferay.portal.workflow.jbpm.util.AssigneeUtil;
 import com.liferay.portal.workflow.jbpm.util.WorkflowContextUtil;
 
 import java.io.Serializable;
@@ -270,10 +270,9 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 						curTaskInstance.getId());
 
 				if (taskInstanceExtensionImpl == null) {
-					List<Assignee> assignees =
-						AssigneeRetrievalUtil.getAssignees(
-							companyId, groupId, curTaskInstance.getActorId(),
-							curTaskInstance.getPooledActors());
+					List<Assignee> assignees = AssigneeUtil.getAssignees(
+						companyId, groupId, curTaskInstance.getActorId(),
+						curTaskInstance.getPooledActors());
 
 					String workflowContextJSON =
 						WorkflowContextUtil.convertToJSON(workflowContext);
