@@ -26,7 +26,7 @@ import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.workflow.jbpm.util.Assignment;
 import com.liferay.portal.workflow.jbpm.util.AssignmentType;
 import com.liferay.portal.workflow.jbpm.util.RoleAssignment;
-import com.liferay.portal.workflow.jbpm.util.RoleRetrievalUtil;
+import com.liferay.portal.workflow.jbpm.util.RoleUtil;
 import com.liferay.portal.workflow.jbpm.util.UserAssignment;
 
 import java.util.ArrayList;
@@ -112,13 +112,13 @@ public class IdentityAssignmentHandler implements AssignmentHandler {
 			if (assignmentType.equals(AssignmentType.ROLE)) {
 				RoleAssignment roleAssignment = (RoleAssignment)assignment;
 
-				int roleType = RoleRetrievalUtil.getRoleType(
+				int roleType = RoleUtil.getRoleType(
 					roleAssignment.getRoleType());
 
 				ServiceContext serviceContext = new ServiceContext();
 				serviceContext.setCompanyId(companyId);
 
-				Role role = RoleRetrievalUtil.getRole(
+				Role role = RoleUtil.getRole(
 					roleAssignment.getRoleName(), roleType,
 					roleAssignment.isAutoCreate(), serviceContext);
 

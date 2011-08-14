@@ -28,7 +28,7 @@ import com.liferay.portal.kernel.workflow.WorkflowInstance;
 import com.liferay.portal.kernel.workflow.WorkflowInstanceManager;
 import com.liferay.portal.workflow.jbpm.comparator.WorkflowInstanceStateComparator;
 import com.liferay.portal.workflow.jbpm.dao.CustomSession;
-import com.liferay.portal.workflow.jbpm.util.AssigneeRetrievalUtil;
+import com.liferay.portal.workflow.jbpm.util.AssigneeUtil;
 import com.liferay.portal.workflow.jbpm.util.WorkflowContextUtil;
 
 import java.io.Serializable;
@@ -514,7 +514,7 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 
 		if (taskInstances != null) {
 			for (TaskInstance taskInstance : taskInstances) {
-				List<Assignee> assignees = AssigneeRetrievalUtil.getAssignees(
+				List<Assignee> assignees = AssigneeUtil.getAssignees(
 					companyId, groupId, taskInstance.getActorId(),
 					taskInstance.getPooledActors());
 
