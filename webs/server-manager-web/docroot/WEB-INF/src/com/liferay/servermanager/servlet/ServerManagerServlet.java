@@ -34,7 +34,6 @@ import com.liferay.servermanager.executor.RootExecutor;
 import com.liferay.servermanager.util.JSONKeys;
 
 import java.io.IOException;
-
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -118,7 +117,7 @@ public class ServerManagerServlet extends HttpServlet {
 		try {
 			Queue<String> arguments = new LinkedList<String>();
 
-			String path = request.getServletPath();
+			String path = request.getPathInfo();
 
 			path = path.toLowerCase();
 
