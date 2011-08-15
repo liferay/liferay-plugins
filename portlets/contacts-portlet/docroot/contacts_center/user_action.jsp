@@ -198,40 +198,6 @@ else {
 				message="edit-profile"
 			/>
 		</div>
-
-		<aui:script use="aui-base,aui-dialog,aui-dialog-iframe">
-			var editProfile = A.one('.contacts-portlet .edit-profile');
-
-			editProfile.on(
-				'click',
-				function(event) {
-					event.halt(true);
-
-					displayPopup('<%= themeDisplay.getURLMyAccount().toString() %>', 'Edit Profile');
-				}
-			);
-
-			var displayPopup = function(url, title) {
-				var dialog = new A.Dialog(
-					{
-						align: {
-							node: null,
-							points: ['tc', 'tc']
-						},
-						constrain2view: true,
-						modal: true,
-						resizable: false,
-						title: title,
-						width: 950
-					}
-				).plug(
-					A.Plugin.DialogIframe,
-					{
-						uri: url
-					}
-				).render();
-			};
-		</aui:script>
 	</c:if>
 
 	<portlet:resourceURL id="exportVCard" var="exportURL">
@@ -244,3 +210,35 @@ else {
 		url="<%= exportURL %>"
 	/>
 </liferay-ui:icon-menu>
+
+<c:if test="<%= user.getUserId() == user2.getUserId() %>">
+	<aui:script use="aui-base,aui-dialog,aui-dialog-iframe">
+		var editProfile = A.one('.contacts-portlet .edit-profile');
+
+		editProfile.on(
+			'click',
+			function(event) {
+				event.halt(true);
+
+				var dialog = new A.Dialog(
+					{
+						align: {
+							node: null,
+							points: ['tc', 'tc']
+						},
+						constrain2view: true,
+						modal: true,
+						resizable: false,
+						title: '<liferay-ui:message key="edit-profile" />',
+						width: 950
+					}
+				).plug(
+					A.Plugin.DialogIframe,
+					{
+						uri: '<%= themeDisplay.getURLMyAccount().toString() %>'
+					}
+				).render();
+			}
+		);
+	</aui:script>
+</c:if>
