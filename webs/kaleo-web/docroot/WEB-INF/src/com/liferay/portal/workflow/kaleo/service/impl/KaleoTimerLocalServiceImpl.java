@@ -41,8 +41,9 @@ public class KaleoTimerLocalServiceImpl extends KaleoTimerLocalServiceBaseImpl {
 		throws PortalException, SystemException {
 
 		// Kaleo timer
+
 		User user = userPersistence.findByPrimaryKey(
-			serviceContext.getUserId());
+			serviceContext.getGuestOrUserId());
 		Date now = new Date();
 
 		long kaleoTimerId = counterLocalService.increment();

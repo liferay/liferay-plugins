@@ -31,7 +31,7 @@ import com.liferay.portal.workflow.kaleo.definition.UserAssignment;
 import com.liferay.portal.workflow.kaleo.model.KaleoTask;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment;
 import com.liferay.portal.workflow.kaleo.service.base.KaleoTaskAssignmentLocalServiceBaseImpl;
-import com.liferay.portal.workflow.kaleo.util.RoleRetrievalUtil;
+import com.liferay.portal.workflow.kaleo.util.RoleUtil;
 
 import java.util.Date;
 import java.util.List;
@@ -48,7 +48,7 @@ public class KaleoTaskAssignmentLocalServiceImpl
 		throws PortalException, SystemException {
 
 		User user = userPersistence.findByPrimaryKey(
-			serviceContext.getUserId());
+			serviceContext.getGuestOrUserId());
 		Date now = new Date();
 
 		long kaleoTaskAssignmentId = counterLocalService.increment();
@@ -149,10 +149,10 @@ public class KaleoTaskAssignmentLocalServiceImpl
 			Role role = null;
 
 			if (Validator.isNotNull(roleAssignment.getRoleName())) {
-				int roleType = RoleRetrievalUtil.getRoleType(
+				int roleType = RoleUtil.getRoleType(
 					roleAssignment.getRoleType());
 
-				role = RoleRetrievalUtil.getRole(
+				role = RoleUtil.getRole(
 					roleAssignment.getRoleName(), roleType,
 					roleAssignment.isAutoCreate(), serviceContext);
 			}

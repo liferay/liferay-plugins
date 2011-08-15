@@ -42,7 +42,7 @@ public class KaleoTransitionLocalServiceImpl
 		// Kaleo transition
 
 		User user = userPersistence.findByPrimaryKey(
-			serviceContext.getUserId());
+			serviceContext.getGuestOrUserId());
 		Date now = new Date();
 
 		long kaleoTransitionId = counterLocalService.increment();

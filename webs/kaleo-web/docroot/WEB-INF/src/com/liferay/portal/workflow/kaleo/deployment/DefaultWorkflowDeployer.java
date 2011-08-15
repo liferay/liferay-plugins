@@ -25,6 +25,7 @@ import com.liferay.portal.workflow.kaleo.definition.Condition;
 import com.liferay.portal.workflow.kaleo.definition.Definition;
 import com.liferay.portal.workflow.kaleo.definition.Node;
 import com.liferay.portal.workflow.kaleo.definition.NodeType;
+import com.liferay.portal.workflow.kaleo.definition.State;
 import com.liferay.portal.workflow.kaleo.definition.Task;
 import com.liferay.portal.workflow.kaleo.definition.Transition;
 import com.liferay.portal.workflow.kaleo.model.KaleoDefinition;
@@ -124,7 +125,13 @@ public class DefaultWorkflowDeployer implements WorkflowDeployer {
 			}
 		}
 
-		String startKaleoNodeName = definition.getInitialState().getName();
+		State initialState = definition.getInitialState();
+
+		if (initialState == null) {
+			throw new WorkflowException("No initial state found in definition");
+		}
+
+		String startKaleoNodeName = initialState.getName();
 
 		KaleoNode kaleoNode = kaleoNodesMap.get(startKaleoNodeName);
 

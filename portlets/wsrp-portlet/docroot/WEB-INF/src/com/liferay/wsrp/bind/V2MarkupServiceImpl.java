@@ -78,7 +78,6 @@ import oasis.names.tc.wsrp.v2.types.ResourceParams;
 import oasis.names.tc.wsrp.v2.types.ResourceResponse;
 import oasis.names.tc.wsrp.v2.types.RuntimeContext;
 import oasis.names.tc.wsrp.v2.types.UpdateResponse;
-import oasis.names.tc.wsrp.v2.types.UploadContext;
 
 import org.apache.axis.message.MessageElement;
 
@@ -384,44 +383,6 @@ public class V2MarkupServiceImpl
 
 		InteractionParams interactionParams =
 			performBlockingInteraction.getInteractionParams();
-
-		UploadContext[] uploadContexts = interactionParams.getUploadContexts();
-
-		if (uploadContexts != null) {
-			for (UploadContext uploadContext : uploadContexts) {
-				NamedString mimeAttribute = uploadContext.getMimeAttributes(0);
-
-				String[] mimeAttributeValues = StringUtil.split(
-					mimeAttribute.getValue(), StringPool.SEMICOLON);
-
-				String name = StringUtil.replace(
-					mimeAttributeValues[1], "name=", StringPool.BLANK);
-
-				name = StringUtil.trim(name);
-
-				String fileName = StringUtil.replace(
-					mimeAttributeValues[2], "filename=", StringPool.BLANK);
-
-				fileName = StringUtil.trim(fileName);
-
-				String contentType = uploadContext.getMimeType();
-
-				String charSet = null;
-
-				if (contentType.contains(StringPool.SEMICOLON)) {
-					int pos = contentType.indexOf(StringPool.SEMICOLON);
-
-					charSet = contentType.substring(pos + 1);
-					charSet = StringUtil.trim(charSet);
-
-					contentType = contentType.substring(0, pos);
-				}
-
-				httpOptions.addFilePart(
-					name, fileName, uploadContext.getUploadData(), contentType,
-					charSet);
-			}
-		}
 
 		MarkupParams markupParams =
 			performBlockingInteraction.getMarkupParams();

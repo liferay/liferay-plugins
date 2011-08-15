@@ -33,7 +33,7 @@ import java.util.Map;
 /**
  * @author Michael C. Han
  */
-public class RoleRetrievalUtil {
+public class RoleUtil {
 
 	public static Role getRole(
 			String name, int roleType, boolean autoCreate,

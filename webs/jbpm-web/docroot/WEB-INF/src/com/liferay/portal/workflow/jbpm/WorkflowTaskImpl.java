@@ -19,7 +19,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.workflow.DefaultWorkflowTask;
 import com.liferay.portal.kernel.workflow.WorkflowTaskAssignee;
-import com.liferay.portal.workflow.jbpm.util.AssigneeRetrievalUtil;
+import com.liferay.portal.workflow.jbpm.util.AssigneeUtil;
 import com.liferay.portal.workflow.jbpm.util.WorkflowContextUtil;
 
 import java.util.ArrayList;
@@ -65,7 +65,7 @@ public class WorkflowTaskImpl extends DefaultWorkflowTask {
 		long groupId = GetterUtil.getLong(
 			(String)contextInstance.getVariable("groupId"));
 
-		List<Assignee> assignees = AssigneeRetrievalUtil.getAssignees(
+		List<Assignee> assignees = AssigneeUtil.getAssignees(
 			companyId, groupId, taskInstance.getActorId(),
 			taskInstance.getPooledActors());
 
