@@ -286,6 +286,6 @@
 	white-space: nowrap
 }
 
-.contacts-portlet .lfr-menu-list .edit-profile {
+.contacts-portlet .edit-profile {
 	cursor: pointer;
 }
