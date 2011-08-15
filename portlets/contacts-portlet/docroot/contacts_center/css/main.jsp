@@ -238,7 +238,7 @@
 
 .contacts-portlet .members-container {
 	clear: both;
-	margin: 10px 0;
+	margin: 1em 0;
 }
 
 .contacts-portlet .letter-anchors {
@@ -288,13 +288,13 @@
 }
 
 .contacts-portlet .lfr-panel{
-	margin-bottom: 10px;
+	margin-bottom: 1em;
 }
 
 .contacts-portlet .taglib-header {
-	margin-bottom: 10px;
+	margin-bottom: 1em;
 }
 
 .contacts-portlet .lfr-search-container {
-	margin-top: 10px;
+	margin-top: 1em;
 }
