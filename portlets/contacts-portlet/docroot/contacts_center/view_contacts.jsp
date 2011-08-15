@@ -180,7 +180,7 @@ portletURL.setParameter("socialRelationType", String.valueOf(socialRelationType)
 								<portlet:param name="socialRelationType" value="<%= String.valueOf(SocialRelationConstants.TYPE_BI_FRIEND) %>" />
 							</portlet:renderURL>
 
-							<a href="<%= viewURL %>"><liferay-ui:message arguments="<%= String.valueOf(friendUsersCount) %>" key="view-x-friends" /></a>
+							<a href="<%= viewURL %>"><liferay-ui:message arguments="<%= String.valueOf(friendUsersCount) %>" key="manage-x-friends" /></a>
 						</liferay-ui:panel>
 					</c:if>
 
@@ -205,7 +205,7 @@ portletURL.setParameter("socialRelationType", String.valueOf(socialRelationType)
 								<portlet:param name="socialRelationType" value="<%= String.valueOf(SocialRelationConstants.TYPE_BI_COWORKER) %>" />
 							</portlet:renderURL>
 
-							<a href="<%= viewURL %>"><liferay-ui:message arguments="<%= String.valueOf(coworkerUsersCount) %>" key="view-x-coworkers" /></a>
+							<a href="<%= viewURL %>"><liferay-ui:message arguments="<%= String.valueOf(coworkerUsersCount) %>" key="manage-x-coworkers" /></a>
 						</liferay-ui:panel>
 					</c:if>
 
@@ -230,7 +230,7 @@ portletURL.setParameter("socialRelationType", String.valueOf(socialRelationType)
 								<portlet:param name="socialRelationType" value="<%= String.valueOf(SocialRelationConstants.TYPE_UNI_FOLLOWER) %>" />
 							</portlet:renderURL>
 
-							<a href="<%= viewURL %>"><liferay-ui:message arguments="<%= String.valueOf(followingUsersCount) %>" key="view-x-people-you-are-following" /></a>
+							<a href="<%= viewURL %>"><liferay-ui:message arguments="<%= String.valueOf(followingUsersCount) %>" key="manage-x-people-you-are-following" /></a>
 						</liferay-ui:panel>
 					</c:if>
 

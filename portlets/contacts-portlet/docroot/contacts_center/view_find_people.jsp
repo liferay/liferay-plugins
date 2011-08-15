@@ -34,42 +34,31 @@ String keywords = ParamUtil.getString(request, "keywords");
 	<portlet:param name="topLink" value="<%= topLink %>" />
 </liferay-portlet:renderURL>
 
-<aui:form action="<%= searchURL %>" method="get" name="fm">
-	<liferay-portlet:renderURLParams varImpl="searchURL" />
-	<aui:input name="topLink" type="hidden" value="<%= topLink %>" />
+<liferay-ui:search-container
+	emptyResultsMessage="no-users-were-found"
+	iteratorURL="<%= portletURL %>"
+>
+	<br />
 
-	<liferay-ui:search-container
-		emptyResultsMessage="no-users-were-found"
-		iteratorURL="<%= portletURL %>"
+	<liferay-ui:search-container-results
+		results="<%= UserLocalServiceUtil.search(company.getCompanyId(), keywords, WorkflowConstants.STATUS_APPROVED, null, searchContainer.getStart(), searchContainer.getEnd(), new UserLastNameComparator(true)) %>"
+		total="<%= UserLocalServiceUtil.searchCount(company.getCompanyId(), keywords, WorkflowConstants.STATUS_APPROVED, null) %>"
+	/>
+
+	<liferay-ui:search-container-row
+		className="com.liferay.portal.model.User"
+		escapedModel="<%= true %>"
+		keyProperty="userId"
+		modelVar="user2"
 	>
-		<div>
-			<aui:input inlineField="<%= true %>" id="keywords" label="" name="keywords" size="30" title="search-users" type="text" />
+		<liferay-portlet:renderURL varImpl="rowURL">
+			<portlet:param name="jspPage" value="/contacts_center/view_user.jsp" />
+			<portlet:param name="backURL" value="<%= currentURL %>" />
+			<portlet:param name="userId" value="<%= String.valueOf(user2.getUserId()) %>" />
+		</liferay-portlet:renderURL>
 
-			<aui:button type="submit" value="search" />
-		</div>
+		<%@ include file="/contacts_center/user_columns.jspf" %>
+	</liferay-ui:search-container-row>
 
-		<br />
-
-		<liferay-ui:search-container-results
-			results="<%= UserLocalServiceUtil.search(company.getCompanyId(), keywords, WorkflowConstants.STATUS_APPROVED, null, searchContainer.getStart(), searchContainer.getEnd(), new UserLastNameComparator(true)) %>"
-			total="<%= UserLocalServiceUtil.searchCount(company.getCompanyId(), keywords, WorkflowConstants.STATUS_APPROVED, null) %>"
-		/>
-
-		<liferay-ui:search-container-row
-			className="com.liferay.portal.model.User"
-			escapedModel="<%= true %>"
-			keyProperty="userId"
-			modelVar="user2"
-		>
-			<liferay-portlet:renderURL varImpl="rowURL">
-				<portlet:param name="jspPage" value="/contacts_center/view_user.jsp" />
-				<portlet:param name="backURL" value="<%= currentURL %>" />
-				<portlet:param name="userId" value="<%= String.valueOf(user2.getUserId()) %>" />
-			</liferay-portlet:renderURL>
-
-			<%@ include file="/contacts_center/user_columns.jspf" %>
-		</liferay-ui:search-container-row>
-
-		<liferay-ui:search-iterator />
-	</liferay-ui:search-container>
-</aui:form>
+	<liferay-ui:search-iterator />
+</liferay-ui:search-container>
