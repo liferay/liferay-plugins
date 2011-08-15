@@ -771,7 +771,7 @@ Please find a solution that does not require portal-impl.jar.
 					excludes="**/META-INF/context.xml"
 				/>
 			</then>
-		<else>
+			<else>
 				<zip
 					basedir="${docroot.dir}"
 					destfile="${plugin.file}"
