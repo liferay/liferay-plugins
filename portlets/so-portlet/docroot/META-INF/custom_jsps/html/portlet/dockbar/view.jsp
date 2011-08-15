@@ -32,17 +32,22 @@ int x = html.indexOf("<li class=\"user-avatar \" id=\"_145_userAvatar\">");
 		<%= html.substring(0, x) %>
 
 		<%
-		Group userGroup = user.getGroup();
+		Group mySite = user.getGroup();
 
-		Layout userHomeLayout = LayoutLocalServiceUtil.getLayout(userGroup.getGroupId(), true, 1);
+		PortletURL portletURL = new PortletURLImpl(request, PortletKeys.MY_SITES, plid, PortletRequest.ACTION_PHASE);
 
-		userHomeLayout.getRegularURL(request);
+		portletURL.setWindowState(WindowState.NORMAL);
+		portletURL.setPortletMode(PortletMode.VIEW);
+
+		portletURL.setParameter("struts_action", "/my_sites/view");
+		portletURL.setParameter("groupId", String.valueOf(mySite.getGroupId()));
+		portletURL.setParameter("privateLayout", Boolean.TRUE.toString());
 		%>
 
 		<li>
-			<liferay-ui:icon message="<%= userGroup.getDescriptiveName() %>" src='<%= themeDisplay.getPathContext() + "/html/icons/social_office.png" %>' />
+			<liferay-ui:icon message="<%= LanguageUtil.get(pageContext, "my-private-pages") %>" src='<%= themeDisplay.getPathContext() + "/html/icons/social_office.png" %>' />
 
-			<a href="<%= PortalUtil.getLayoutFullURL(userHomeLayout, themeDisplay) %>"><%= userHomeLayout.getName() %></a>
+			<a href="<%= portletURL %>"><%= LanguageUtil.get(pageContext, "my-private-pages") %></a>
 		</li>
 
 		<li class="aui-toolbar-separator">
@@ -55,4 +60,3 @@ int x = html.indexOf("<li class=\"user-avatar \" id=\"_145_userAvatar\">");
 		<%= html %>
 	</c:otherwise>
 </c:choose>
-
