@@ -192,14 +192,15 @@ else {
 	</c:choose>
 
 	<c:if test="<%= user.getUserId() == user2.getUserId() %>">
-		<liferay-ui:icon
-			cssClass="edit-profile"
-			image="edit"
-			message="edit-profile"
-		/>
+		<div class="edit-profile">
+			<liferay-ui:icon
+				image="edit"
+				message="edit-profile"
+			/>
+		</div>
 
 		<aui:script use="aui-base,aui-dialog,aui-dialog-iframe">
-			var editProfile = A.one('.contacts-portlet .lfr-menu-list .edit-profile');
+			var editProfile = A.one('.contacts-portlet .edit-profile');
 
 			editProfile.on(
 				'click',
