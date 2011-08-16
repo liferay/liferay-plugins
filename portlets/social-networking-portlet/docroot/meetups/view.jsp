@@ -81,7 +81,7 @@ for (int i = 0; i < meetupsEntries.size(); i++) {
 				thumbnailURL = request.getContextPath() + "/meetups/images/calendar.png";
 			}
 			else {
-				thumbnailURL = themeDisplay.getPathImage() + "/meetups?img_id=" + meetupsEntry.getThumbnailId() + "&t=" + ImageServletTokenUtil.getToken(meetupsEntry.getThumbnailId());
+				thumbnailURL = themeDisplay.getPathImage() + "/meetups?img_id=" + meetupsEntry.getThumbnailId() + "&t=" + WebServerServletTokenUtil.getToken(meetupsEntry.getThumbnailId());
 			}
 			%>
 
