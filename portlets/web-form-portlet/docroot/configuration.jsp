@@ -78,7 +78,7 @@ if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0
 
 				<aui:input cssClass="lfr-input-text-container" name="preferences--subject--" value="<%= subject %>" />
 
-				<aui:input cssClass="lfr-input-text-container" name="preferences--emailAddress--" value="<%= emailAddress %>" />
+				<aui:input cssClass="lfr-input-text-container" helpMessage="add-emails-separated-by-commas" label="email-addresses" name="preferences--emailAddress--" value="<%= emailAddress %>"/>
 			</aui:fieldset>
 
 			<aui:fieldset cssClass="handle-data" label="database">

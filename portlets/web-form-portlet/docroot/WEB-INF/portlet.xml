@@ -22,6 +22,7 @@
 		<supports>
 			<mime-type>text/html</mime-type>
 		</supports>
+		<resource-bundle>content.Language</resource-bundle>
 		<portlet-info>
 			<title>Web Form</title>
 			<short-title>Web Form</short-title>
