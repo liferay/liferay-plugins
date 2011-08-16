@@ -381,7 +381,6 @@ public class WebFormPortlet extends MVCPortlet {
 		Map<String,String> fieldsMap, PortletPreferences preferences) {
 
 		try {
-			String subject = preferences.getValue("subject", StringPool.BLANK);
 			String emailAddresses = preferences.getValue(
 				"emailAddress", StringPool.BLANK);
 
@@ -393,6 +392,7 @@ public class WebFormPortlet extends MVCPortlet {
 				return false;
 			}
 
+			String subject = preferences.getValue("subject", StringPool.BLANK);
 			String body = getMailBody(fieldsMap);
 
 			InternetAddress fromAddress = null;
@@ -409,16 +409,17 @@ public class WebFormPortlet extends MVCPortlet {
 				_log.error(e, e);
 			}
 
-			InternetAddress[] toAddress = InternetAddress.parse(emailAddresses);
-			
+			InternetAddress[] toAddresses = InternetAddress.parse(
+				emailAddresses);
+
 			if (fromAddress == null) {
-				fromAddress = toAddress[0];
+				fromAddress = toAddresses[0];
 			}
 
 			MailMessage mailMessage = new MailMessage(
 				fromAddress, subject, body, false);
-			
-			mailMessage.setTo(toAddress);
+
+			mailMessage.setTo(toAddresses);
 
 			MailServiceUtil.sendEmail(mailMessage);
 
