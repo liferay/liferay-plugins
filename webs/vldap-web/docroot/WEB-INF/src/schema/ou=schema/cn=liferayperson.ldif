@@ -1,7 +1,0 @@
-version: 1
-dn: cn=liferayperson, ou=schema
-objectclass: metaSchema
-objectclass: top
-cn: liferayperson
-m-dependencies: system
-creatorsname: uid=admin,ou=system

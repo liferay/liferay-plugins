@@ -17,12 +17,11 @@ package com.liferay.vldap.server.handler;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.directory.shared.ldap.message.ResultCodeEnum;
-import org.apache.directory.shared.ldap.message.internal.InternalLdapResult;
-import org.apache.directory.shared.ldap.message.internal.InternalRequest;
-import org.apache.directory.shared.ldap.message.internal.InternalResponse;
-import org.apache.directory.shared.ldap.message.internal.InternalResultResponse;
-import org.apache.directory.shared.ldap.message.internal.InternalResultResponseRequest;
+import org.apache.directory.shared.ldap.model.message.LdapResult;
+import org.apache.directory.shared.ldap.model.message.Response;
+import org.apache.directory.shared.ldap.model.message.ResultCodeEnum;
+import org.apache.directory.shared.ldap.model.message.ResultResponse;
+import org.apache.directory.shared.ldap.model.message.ResultResponseRequest;
 
 /**
  * @author Jonathan Potter
@@ -30,36 +29,30 @@ import org.apache.directory.shared.ldap.message.internal.InternalResultResponseR
  */
 public abstract class BaseLdapHandler implements LdapHandler {
 
-	protected InternalResponse getInternalResponse(
-		InternalRequest internalRequest) {
+	protected <R extends ResultResponse, T extends ResultResponseRequest<R>> R
+		getResponse(T request) {
 
-		return getInternalResponse(internalRequest, ResultCodeEnum.SUCCESS);
+		return getResponse(request, ResultCodeEnum.SUCCESS);
 	}
 
-	protected InternalResponse getInternalResponse(
-		InternalRequest internalRequest, ResultCodeEnum resultCode) {
+	protected <R extends ResultResponse, T extends ResultResponseRequest<R>> R
+		getResponse(T request, ResultCodeEnum resultCode) {
 
-		InternalResultResponseRequest internalResultResponseRequest =
-			(InternalResultResponseRequest)internalRequest;
+		R response = request.getResultResponse();
 
-		InternalResultResponse internalResultResponse =
-			internalResultResponseRequest.getResultResponse();
+		LdapResult ldapResult = response.getLdapResult();
 
-		InternalLdapResult internalLdapResult =
-			internalResultResponse.getLdapResult();
+		ldapResult.setResultCode(resultCode);
 
-		internalLdapResult.setResultCode(resultCode);
-
-		return internalResultResponse;
+		return response;
 	}
 
-	protected List<InternalResponse> toList(InternalResponse internalResponse) {
-		List<InternalResponse> internalResponses =
-			new ArrayList<InternalResponse>();
+	protected List<Response> toList(Response response) {
+		List<Response> responses = new ArrayList<Response>();
 
-		internalResponses.add(internalResponse);
+		responses.add(response);
 
-		return internalResponses;
+		return responses;
 	}
 
 }

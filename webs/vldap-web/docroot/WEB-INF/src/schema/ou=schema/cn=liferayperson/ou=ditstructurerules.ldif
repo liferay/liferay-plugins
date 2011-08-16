@@ -1,5 +1,0 @@
-version: 1
-dn: ou=ditStructureRules, cn=liferayperson, ou=schema
-objectclass: organizationalUnit
-objectclass: top
-ou: ditstructurerules

@@ -27,10 +27,10 @@ import java.util.Map;
 
 import javax.net.ssl.SSLContext;
 
-import org.apache.directory.shared.ldap.message.internal.InternalExtendedRequest;
-import org.apache.directory.shared.ldap.message.internal.InternalExtendedResponse;
-import org.apache.directory.shared.ldap.message.internal.InternalRequest;
-import org.apache.directory.shared.ldap.message.internal.InternalResponse;
+import org.apache.directory.shared.ldap.model.message.ExtendedRequest;
+import org.apache.directory.shared.ldap.model.message.ExtendedResponse;
+import org.apache.directory.shared.ldap.model.message.Request;
+import org.apache.directory.shared.ldap.model.message.Response;
 import org.apache.mina.core.filterchain.IoFilterChain;
 import org.apache.mina.core.session.IoSession;
 import org.apache.mina.filter.ssl.SslFilter;
@@ -41,18 +41,18 @@ import org.apache.mina.filter.ssl.SslFilter;
  */
 public class ExtendedLdapHandler extends BaseLdapHandler {
 
-	public List<InternalResponse> messageReceived(
-		InternalRequest internalRequest, IoSession ioSession,
+	public List<Response> messageReceived(
+		Request request, IoSession ioSession,
 		LdapHandlerContext ldapHandlerContext) {
 
 		try {
-			InternalExtendedRequest internalExtendedRequest =
-				(InternalExtendedRequest)internalRequest;
+			ExtendedRequest<ExtendedResponse> extendedRequest =
+				(ExtendedRequest<ExtendedResponse>)request;
 
-			String oid = internalExtendedRequest.getOid();
+			String oid = extendedRequest.getRequestName();
 
 			if (oid.equals(OIDConstants.START_TLS)) {
-				return handleStartTLS(internalExtendedRequest, ioSession);
+				return handleStartTLS(extendedRequest, ioSession);
 			}
 		}
 		catch (Exception e) {
@@ -62,8 +62,8 @@ public class ExtendedLdapHandler extends BaseLdapHandler {
 		return null;
 	}
 
-	protected List<InternalResponse> handleStartTLS(
-			InternalExtendedRequest internalExtendedRequest,
+	protected List<Response> handleStartTLS(
+			ExtendedRequest<ExtendedResponse> extendedRequest,
 			IoSession ioSession)
 		throws Exception {
 
@@ -75,20 +75,18 @@ public class ExtendedLdapHandler extends BaseLdapHandler {
 
 		ioFilterChain.addFirst("sslFilter", sslFilter);
 
-		InternalExtendedResponse internalExtendedResponse =
-			(InternalExtendedResponse)getInternalResponse(
-				internalExtendedRequest);
+		ExtendedResponse extendedResponse = getResponse(extendedRequest);
 
-		internalExtendedResponse.setResponseName(OIDConstants.START_TLS);
+		extendedResponse.setResponseName(OIDConstants.START_TLS);
 
 		Map<Object, Object> sessionAttributes = new HashMap<Object, Object>();
 
 		sessionAttributes.put(SslFilter.DISABLE_ENCRYPTION_ONCE, true);
 
-		internalExtendedResponse.put(
+		extendedResponse.put(
 			VLDAPConstants.SESSION_ATTRIBUTES, sessionAttributes);
 
-		return toList(internalExtendedResponse);
+		return toList(extendedResponse);
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(ExtendedLdapHandler.class);

@@ -40,14 +40,15 @@ import javax.security.sasl.Sasl;
 import javax.security.sasl.SaslException;
 import javax.security.sasl.SaslServer;
 
-import org.apache.directory.shared.ldap.message.ResultCodeEnum;
-import org.apache.directory.shared.ldap.message.internal.InternalBindRequest;
-import org.apache.directory.shared.ldap.message.internal.InternalBindResponse;
-import org.apache.directory.shared.ldap.message.internal.InternalRequest;
-import org.apache.directory.shared.ldap.message.internal.InternalResponse;
-import org.apache.directory.shared.ldap.name.DN;
-import org.apache.directory.shared.ldap.name.RDN;
-import org.apache.directory.shared.ldap.util.StringTools;
+import org.apache.directory.shared.ldap.model.entry.Value;
+import org.apache.directory.shared.ldap.model.message.BindRequest;
+import org.apache.directory.shared.ldap.model.message.BindResponse;
+import org.apache.directory.shared.ldap.model.message.Request;
+import org.apache.directory.shared.ldap.model.message.Response;
+import org.apache.directory.shared.ldap.model.message.ResultCodeEnum;
+import org.apache.directory.shared.ldap.model.name.Dn;
+import org.apache.directory.shared.ldap.model.name.Rdn;
+import org.apache.directory.shared.util.StringConstants;
 import org.apache.mina.core.session.IoSession;
 
 /**
@@ -58,33 +59,31 @@ public class BindLdapHandler extends BaseLdapHandler {
 
 	public static final String DIGEST_MD5 = "DIGEST-MD5";
 
-	public List<InternalResponse> messageReceived(
-			InternalRequest internalRequest, IoSession ioSession,
+	public List<Response> messageReceived(
+			Request request, IoSession ioSession,
 			LdapHandlerContext ldapHandlerContext)
 		throws Exception {
 
-		InternalBindRequest internalBindRequest =
-			(InternalBindRequest)internalRequest;
+		BindRequest bindRequest = (BindRequest)request;
 
 		String saslMechanism = GetterUtil.getString(
-			internalBindRequest.getSaslMechanism());
+			bindRequest.getSaslMechanism());
 
-		InternalResponse internalResponse = null;
+		Response response = null;
 
 		if (saslMechanism.equals(DIGEST_MD5)) {
-			internalResponse = getSaslInternalResponse(
-				internalBindRequest, ioSession, ldapHandlerContext);
+			response = getSaslResponse(
+				bindRequest, ioSession, ldapHandlerContext);
 		}
-		else if (internalBindRequest.isSimple()) {
-			internalResponse = getSimpleInternalResponse(
-				internalBindRequest, ioSession, ldapHandlerContext);
+		else if (bindRequest.isSimple()) {
+			response = getSimpleResponse(
+				bindRequest, ioSession, ldapHandlerContext);
 		}
 		else {
-			internalResponse = getUnsupportedInternalResponse(
-				internalBindRequest);
+			response = getUnsupportedResponse(bindRequest);
 		}
 
-		return toList(internalResponse);
+		return toList(response);
 	}
 
 	protected String getSaslHostName(IoSession ioSession) {
@@ -104,13 +103,13 @@ public class BindLdapHandler extends BaseLdapHandler {
 		return saslHostName;
 	}
 
-	protected InternalResponse getSaslInternalResponse(
-			InternalBindRequest internalBindRequest, IoSession ioSession,
+	protected Response getSaslResponse(
+			BindRequest bindRequest, IoSession ioSession,
 			LdapHandlerContext ldapHandlerContext)
 		throws Exception {
 
-		if (internalBindRequest.getCredentials() == null) {
-			internalBindRequest.setCredentials(StringTools.EMPTY_BYTES);
+		if (bindRequest.getCredentials() == null) {
+			bindRequest.setCredentials(StringConstants.EMPTY_BYTES);
 		}
 
 		SaslServer saslServer = ldapHandlerContext.getSaslServer();
@@ -136,13 +135,12 @@ public class BindLdapHandler extends BaseLdapHandler {
 				}
 			}
 
+			BindResponse bindResponse = bindRequest.getResultResponse();
+
 			byte[] challenge = saslServer.evaluateResponse(
-				internalBindRequest.getCredentials());
+				bindRequest.getCredentials());
 
-			InternalBindResponse internalBindResponse =
-				(InternalBindResponse)internalBindRequest.getResultResponse();
-
-			internalBindResponse.setServerSaslCreds(challenge);
+			bindResponse.setServerSaslCreds(challenge);
 		}
 		catch (SaslException sasle) {
 			_log.error(sasle, sasle);
@@ -150,8 +148,7 @@ public class BindLdapHandler extends BaseLdapHandler {
 			ldapHandlerContext.setSaslCallbackHandler(null);
 			ldapHandlerContext.setSaslServer(null);
 
-			return getInternalResponse(
-				internalBindRequest, ResultCodeEnum.INVALID_CREDENTIALS);
+			return getResponse(bindRequest, ResultCodeEnum.INVALID_CREDENTIALS);
 		}
 
 		if (saslServer.isComplete()) {
@@ -161,30 +158,28 @@ public class BindLdapHandler extends BaseLdapHandler {
 			ldapHandlerContext.setSaslCallbackHandler(null);
 			ldapHandlerContext.setSaslServer(null);
 
-			DN name = saslCallbackHandler.getName();
+			Dn name = saslCallbackHandler.getName();
 
 			setCompany(ldapHandlerContext, name);
 			setUser(ldapHandlerContext, name);
 
-			return getInternalResponse(
-				internalBindRequest, ResultCodeEnum.SUCCESS);
+			return getResponse(bindRequest, ResultCodeEnum.SUCCESS);
 		}
 		else {
-			return getInternalResponse(
-				internalBindRequest, ResultCodeEnum.SASL_BIND_IN_PROGRESS);
+			return getResponse(
+				bindRequest, ResultCodeEnum.SASL_BIND_IN_PROGRESS);
 		}
 	}
 
-	protected InternalResponse getSimpleInternalResponse(
-			InternalBindRequest internalBindRequest, IoSession ioSession,
+	protected Response getSimpleResponse(
+			BindRequest bindRequest, IoSession ioSession,
 			LdapHandlerContext ldapHandlerContext)
 		throws Exception {
 
-		DN name = internalBindRequest.getName();
+		Dn name = bindRequest.getName();
 
 		if (Validator.isNull(name.getName())) {
-			return getInternalResponse(
-				internalBindRequest, ResultCodeEnum.SUCCESS);
+			return getResponse(bindRequest, ResultCodeEnum.SUCCESS);
 		}
 
 		Company company = setCompany(ldapHandlerContext, name);
@@ -192,11 +187,10 @@ public class BindLdapHandler extends BaseLdapHandler {
 		String screenName = getValue(name, "cn");
 
 		if (Validator.isNull(screenName)) {
-			return getInternalResponse(
-				internalBindRequest, ResultCodeEnum.INVALID_CREDENTIALS);
+			return getResponse(bindRequest, ResultCodeEnum.INVALID_CREDENTIALS);
 		}
 
-		String password = new String(internalBindRequest.getCredentials());
+		String password = new String(bindRequest.getCredentials());
 		Map<String, String[]> headerMap = new HashMap<String, String[]>();
 		Map<String, String[]> parameterMap = new HashMap<String, String[]>();
 		Map<String, Object> resultsMap = new HashMap<String, Object>();
@@ -206,37 +200,35 @@ public class BindLdapHandler extends BaseLdapHandler {
 			parameterMap, resultsMap);
 
 		if (authResult != Authenticator.SUCCESS) {
-			return getInternalResponse(
-				internalBindRequest, ResultCodeEnum.INVALID_CREDENTIALS);
+			return getResponse(bindRequest, ResultCodeEnum.INVALID_CREDENTIALS);
 		}
 
 		setUser(ldapHandlerContext, name);
 
-		return getInternalResponse(internalBindRequest, ResultCodeEnum.SUCCESS);
+		return getResponse(bindRequest, ResultCodeEnum.SUCCESS);
 	}
 
-	protected InternalResponse getUnsupportedInternalResponse(
-		InternalBindRequest internalBindRequest) {
+	protected Response getUnsupportedResponse(
+		BindRequest bindRequest) {
 
-		return getInternalResponse(
-			internalBindRequest, ResultCodeEnum.AUTH_METHOD_NOT_SUPPORTED);
+		return getResponse(
+			bindRequest, ResultCodeEnum.AUTH_METHOD_NOT_SUPPORTED);
 	}
 
-	protected String getValue(DN dn, String normType) {
-		for (RDN rdn : dn) {
+	protected String getValue(Dn dn, String normType) {
+		for (Rdn rdn : dn) {
 			String rdnNormType = rdn.getNormType();
-			String rdnNormValue = rdn.getNormValue();
+			Value<?> rdnNormValue = rdn.getNormValue();
 
 			if (rdnNormType.equalsIgnoreCase(normType)) {
-				return GetterUtil.getString(rdnNormValue);
+				return GetterUtil.getString(rdnNormValue.getString());
 			}
 		}
 
 		return StringPool.BLANK;
 	}
 
-	protected Company setCompany(
-			LdapHandlerContext ldapHandlerContext, DN name)
+	protected Company setCompany(LdapHandlerContext ldapHandlerContext, Dn name)
 		throws Exception {
 
 		String webId = getValue(name, "webId");
@@ -257,7 +249,7 @@ public class BindLdapHandler extends BaseLdapHandler {
 		return company;
 	}
 
-	protected User setUser(LdapHandlerContext ldapHandlerContext, DN name)
+	protected User setUser(LdapHandlerContext ldapHandlerContext, Dn name)
 		throws Exception {
 
 		String screenName = getValue(name, "cn");

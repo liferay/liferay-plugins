@@ -95,7 +95,7 @@ public class OutputLogExecutor extends BaseExecutor {
 		return _simpleDateFormat.format(date);
 	}
 
-	private Format _simpleDateFormat =
+	private static Format _simpleDateFormat =
 		FastDateFormatFactoryUtil.getSimpleDateFormat("yyyy-MM-dd");
 
 }

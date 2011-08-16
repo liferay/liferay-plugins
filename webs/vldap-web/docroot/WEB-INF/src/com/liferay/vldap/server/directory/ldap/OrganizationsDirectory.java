@@ -12,28 +12,22 @@
  * details.
  */
 
-package com.liferay.vldap.server.handler;
+package com.liferay.vldap.server.directory.ldap;
 
-import com.liferay.vldap.server.handler.util.LdapHandlerContext;
-
-import java.util.Collections;
-import java.util.List;
-
-import org.apache.directory.shared.ldap.model.message.Request;
-import org.apache.directory.shared.ldap.model.message.Response;
-import org.apache.mina.core.session.IoSession;
+import com.liferay.portal.model.Company;
 
 /**
- * @author Jonathan Potter
  * @author Brian Wing Shun Chan
+ * @author Jonathan Potter
  */
-public class UnbindLdapHandler extends BaseLdapHandler {
+public class OrganizationsDirectory extends Directory {
 
-	public List<Response> messageReceived(
-		Request request, IoSession ioSession,
-		LdapHandlerContext ldapHandlerContext) {
+	public OrganizationsDirectory(String top, Company company) {
+		addAttribute("objectclass", "organizationalUnit");
+		addAttribute("objectclass", "top");
+		addAttribute("ou", "Organizations");
 
-		return Collections.emptyList();
+		setName(top, company, "Organizations");
 	}
 
 }

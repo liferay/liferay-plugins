@@ -14,18 +14,19 @@
 
 package com.liferay.vldap.server.handler;
 
-import com.liferay.vldap.server.directory.Attribute;
-import com.liferay.vldap.server.directory.Directory;
-import com.liferay.vldap.server.directory.RootDirectory;
+import com.liferay.vldap.server.directory.DirectoryTree;
+import com.liferay.vldap.server.directory.SearchBase;
+import com.liferay.vldap.server.directory.ldap.Directory;
 import com.liferay.vldap.server.handler.util.LdapHandlerContext;
+import com.liferay.vldap.util.PortletPropsValues;
 
 import java.util.List;
 
-import org.apache.directory.shared.ldap.entry.Value;
-import org.apache.directory.shared.ldap.message.ResultCodeEnum;
-import org.apache.directory.shared.ldap.message.internal.InternalCompareRequest;
-import org.apache.directory.shared.ldap.message.internal.InternalRequest;
-import org.apache.directory.shared.ldap.message.internal.InternalResponse;
+import org.apache.directory.shared.ldap.model.entry.Value;
+import org.apache.directory.shared.ldap.model.message.CompareRequest;
+import org.apache.directory.shared.ldap.model.message.Request;
+import org.apache.directory.shared.ldap.model.message.Response;
+import org.apache.directory.shared.ldap.model.message.ResultCodeEnum;
 import org.apache.mina.core.session.IoSession;
 
 /**
@@ -34,39 +35,38 @@ import org.apache.mina.core.session.IoSession;
  */
 public class CompareLdapHandler extends BaseLdapHandler {
 
-	public List<InternalResponse> messageReceived(
-			InternalRequest internalRequest, IoSession ioSession,
+	public List<Response> messageReceived(
+			Request request, IoSession ioSession,
 			LdapHandlerContext ldapHandlerContext)
 		throws Exception {
 
-		InternalCompareRequest internalCompareRequest =
-			(InternalCompareRequest)internalRequest;
+		CompareRequest compareRequest = (CompareRequest)request;
 
-		String attributeId = internalCompareRequest.getAttributeId();
-		Value<?> value = internalCompareRequest.getAssertionValue();
+		SearchBase searchBase = DirectoryTree.getSearchBase(
+			compareRequest.getName(), PortletPropsValues.SEARCH_MAX_SIZE);
 
-		Directory directory = new RootDirectory(internalRequest);
-
-		directory = directory.findBase(internalCompareRequest.getName());
-
-		if (directory != null) {
-
-			// Initialize member attributes so they can be compared
-
-			directory.getDirectories();
-
-			Attribute attribute = directory.getAttribute(
-				attributeId, value.getString());
-
-			if (attribute != null) {
-				return toList(
-					getInternalResponse(
-						internalRequest, ResultCodeEnum.COMPARE_TRUE));
-			}
+		if (searchBase == null) {
+			return toList(
+				getResponse(compareRequest, ResultCodeEnum.COMPARE_FALSE));
 		}
 
-		return toList(
-			getInternalResponse(internalRequest, ResultCodeEnum.COMPARE_FALSE));
+		Directory directory = searchBase.getDirectory();
+
+		if (directory == null) {
+			return toList(
+				getResponse(compareRequest, ResultCodeEnum.COMPARE_FALSE));
+		}
+
+		Value<?> value = compareRequest.getAssertionValue();
+
+		if (!directory.hasAttribute(
+				compareRequest.getAttributeId(), value.getString())) {
+
+			return toList(
+				getResponse(compareRequest, ResultCodeEnum.COMPARE_FALSE));
+		}
+
+		return toList(getResponse(compareRequest, ResultCodeEnum.COMPARE_TRUE));
 	}
 
 }
