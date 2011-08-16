@@ -164,4 +164,6 @@
 
 		</div>
 	</div>
+
+	<aui:input name="currentChatServerTime" type="hidden" useNamespace="false" value="<%= System.currentTimeMillis() %>" />
 </c:if>
