@@ -18,6 +18,6 @@
 		<license osi-approved="true">LGPL</license>
 	</licenses>
 	<liferay-versions>
-		<liferay-version>6.0.0+</liferay-version>
+		<liferay-version>6.1.0+</liferay-version>
 	</liferay-versions>
 </plugin-package>
