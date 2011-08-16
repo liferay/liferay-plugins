@@ -21,7 +21,7 @@
 	<classpathentry kind="lib" path="/portal-trunk/util-bridges/util-bridges.jar" />
 	<classpathentry kind="lib" path="/portal-trunk/util-java/util-java.jar" />
 	<classpathentry kind="lib" path="/portal-trunk/util-taglib/util-taglib.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/mina-core-2.0.3.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/shared-all-1.0.0-M4.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/mina-core.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/shared-all.jar" />
 	<classpathentry kind="output" path="bin" />
 </classpath>
