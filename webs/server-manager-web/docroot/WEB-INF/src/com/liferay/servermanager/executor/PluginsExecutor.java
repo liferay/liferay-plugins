@@ -38,8 +38,7 @@ public class PluginsExecutor extends BaseExecutor {
 			Queue<String> arguments)
 		throws Exception {
 
-		new PluginExecutor().executeCreate(
-			request, responseJSONObject, arguments);
+		_pluginExecutor.executeCreate(request, responseJSONObject, arguments);
 	}
 
 	@Override
