@@ -5,6 +5,10 @@ AUI().use(
 	'stylesheet',
 	'swfobject',
 	function(A) {
+		var Lang = A.Lang;
+
+		var now = Lang.now;
+
 		Liferay.namespace('Chat');
 
 		Liferay.Chat.Util = {
@@ -40,17 +44,29 @@ AUI().use(
 			getCurrentTimestamp: function() {
 				var instance = this;
 
-				var currentChatServerTime = A.one('#currentChatServerTime').val() || 0;
-
-				var offset = A.Lang.now() - currentChatServerTime;
-
-				return A.Lang.now() - offset;
+				return now() - instance._getOffset();
 			},
 
 			getUserImagePath: function(userId) {
 				var instance = this;
 
 				return themeDisplay.getPathImage() + '/user_portrait?img_id=' + userId;
+			},
+
+			_getOffset: function() {
+				var instance = this;
+
+				var offset = instance._offset;
+
+				if (Lang.isUndefined(offset)) {
+					var currentChatServerTime = A.one('#currentChatServerTime').val() || 0;
+
+					offset = now() - currentChatServerTime;
+
+					instance._offset = offset;
+				}
+
+				return offset;
 			},
 
 			TIMESTAMP_24: (24 * 60 * 60 * 1000)
