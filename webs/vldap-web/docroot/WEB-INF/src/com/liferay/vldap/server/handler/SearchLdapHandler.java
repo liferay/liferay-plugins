@@ -127,7 +127,7 @@ public class SearchLdapHandler extends BaseLdapHandler {
 		}
 
 		if (searchScope.equals(SearchScope.ONELEVEL) ||
-				 searchScope.equals(SearchScope.SUBTREE)) {
+			searchScope.equals(SearchScope.SUBTREE)) {
 
 			StopWatch stopWatch = new StopWatch();
 
@@ -170,7 +170,7 @@ public class SearchLdapHandler extends BaseLdapHandler {
 		// These are commented out because we probably don't need to filter
 		// the nodes that we got back from the search, because the search
 		// is now efficient enough to return only nodes that would have matched
-		// the filter. However we could still filter them here also just to
+		// the filter. However, we could still filter them here also just to
 		// make sure. I haven't tried every query, so in some cases we may have
 		// nodes that need to be filtered here.
 

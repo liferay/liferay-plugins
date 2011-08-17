@@ -14,6 +14,8 @@
 
 package com.liferay.vldap.server.directory.ldap;
 
+import com.liferay.vldap.util.LdapUtil;
+
 /**
  * @author Jonathan Potter
  * @author Brian Wing Shun Chan
@@ -25,11 +27,11 @@ public class TopDirectory extends Directory {
 		addAttribute("objectclass", "top");
 		addAttribute("o", "Liferay");
 
-		_name = "o=".concat(escape(top));
+		_name = "o=".concat(LdapUtil.escape(top));
 	}
 
 	@Override
-	public String getName() {
+	protected String getName() {
 		return _name;
 	}
 
