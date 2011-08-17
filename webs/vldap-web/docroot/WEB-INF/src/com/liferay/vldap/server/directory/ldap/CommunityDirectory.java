@@ -42,7 +42,7 @@ public class CommunityDirectory extends Directory {
 
 		addMemberAttributes(top, company, params);
 
-		setName(top, company, community.getName(), "Communities");
+		setName(top, company, "Communities", community.getName());
 	}
 
 }

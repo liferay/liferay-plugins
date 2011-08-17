@@ -89,7 +89,9 @@ public class SearchLdapHandler extends BaseLdapHandler {
 			LdapHandlerContext ldapHandlerContext)
 		throws Exception {
 
-		SearchBase searchBase = DirectoryTree.getSearchBase(
+		DirectoryTree directoryTree = new DirectoryTree();
+
+		SearchBase searchBase = directoryTree.getSearchBase(
 			searchRequest.getBase(), getSizeLimit(searchRequest));
 
 		if (searchBase == null) {
@@ -123,14 +125,15 @@ public class SearchLdapHandler extends BaseLdapHandler {
 				searchBase.setSizeLimit(searchBase.getSizeLimit() - 1);
 			}
 		}
-		else if (searchScope.equals(SearchScope.ONELEVEL) ||
+
+		if (searchScope.equals(SearchScope.ONELEVEL) ||
 				 searchScope.equals(SearchScope.SUBTREE)) {
 
 			StopWatch stopWatch = new StopWatch();
 
 			stopWatch.start();
 
-			List<Directory> subdirectories = DirectoryTree.getDirectories(
+			List<Directory> subdirectories = directoryTree.getDirectories(
 				searchBase, searchRequest.getFilter(), searchScope);
 
 			for (Directory subdirectory : subdirectories) {

@@ -29,11 +29,11 @@ import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.UserGroupLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.util.comparator.UserScreenNameComparator;
-import com.liferay.vldap.server.directory.DirectoryTree;
 import com.liferay.vldap.server.directory.FilterConstraint;
 import com.liferay.vldap.server.directory.SearchBase;
 import com.liferay.vldap.server.directory.ldap.Directory;
 import com.liferay.vldap.server.directory.ldap.UserDirectory;
+import com.liferay.vldap.util.LdapUtil;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -190,9 +190,9 @@ public class UserBuilder extends DirectoryBuilder {
 
 		Dn dn = new Dn(member);
 
-		String companyWebId = DirectoryTree.getRdnValue(dn, 1);
-		String type = DirectoryTree.getRdnValue(dn, 2);
-		String typeValue = DirectoryTree.getRdnValue(dn, 3);
+		String companyWebId = LdapUtil.getRdnValue(dn, 1);
+		String type = LdapUtil.getRdnValue(dn, 2);
+		String typeValue = LdapUtil.getRdnValue(dn, 3);
 
 		Company company = CompanyLocalServiceUtil.getCompanyByWebId(
 			companyWebId);

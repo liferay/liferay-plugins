@@ -44,7 +44,7 @@ public class UserGroupDirectory extends Directory {
 
 		addMemberAttributes(top, company, params);
 
-		setName(top, company, userGroup.getName(), "User Groups");
+		setName(top, company, "User Groups", userGroup.getName());
 	}
 
 }

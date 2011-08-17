@@ -24,6 +24,7 @@ import com.liferay.portal.model.Company;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.util.comparator.UserScreenNameComparator;
+import com.liferay.vldap.util.LdapUtil;
 import com.liferay.vldap.util.PortletPropsValues;
 
 import java.util.ArrayList;
@@ -39,6 +40,32 @@ import org.apache.directory.shared.ldap.model.name.Dn;
  * @author Brian Wing Shun Chan
  */
 public abstract class Directory {
+
+	public static String escape(String name) {
+		int pos = name.indexOf(CharPool.EQUAL);
+
+		String suffix = name.substring(pos + 1);
+
+		char[] charArray = suffix.toCharArray();
+
+		StringBundler sb = new StringBundler();
+
+		for (char c : charArray) {
+			for (char escapeChar : _ESCAPE_CHARS) {
+				if (c == escapeChar) {
+					sb.append(CharPool.BACK_SLASH);
+
+					break;
+				}
+			}
+
+			sb.append(c);
+		}
+
+		String escapedSuffix = sb.toString();
+
+		return name.substring(0, pos + 1) + escapedSuffix;
+	}
 
 	public boolean hasAttribute(String attributeId) {
 		for (Attribute attribute : getAttributes()) {
@@ -128,32 +155,6 @@ public abstract class Directory {
 		return false;
 	}
 
-	protected String escape(String name) {
-		int pos = name.indexOf(CharPool.EQUAL);
-
-		String suffix = name.substring(pos + 1);
-
-		char[] charArray = suffix.toCharArray();
-
-		StringBundler sb = new StringBundler();
-
-		for (char c : charArray) {
-			for (char escapeChar : _ESCAPE_CHARS) {
-				if (c == escapeChar) {
-					sb.append(CharPool.BACK_SLASH);
-
-					break;
-				}
-			}
-
-			sb.append(c);
-		}
-
-		String escapedSuffix = sb.toString();
-
-		return name.substring(0, pos + 1) + escapedSuffix;
-	}
-
 	protected List<Attribute> getAttributes() {
 		return _attributes;
 	}
@@ -171,32 +172,14 @@ public abstract class Directory {
 		}
 	}
 
-	protected String getName() {
+	public String getName() {
 		return _name;
 	}
 
 	protected void setName(
 		String top, Company company, String... organizationUnits) {
 
-		StringBundler sb = new StringBundler(
-			3 + (organizationUnits.length * 3));
-
-		for (String organizationUnit : organizationUnits) {
-			if (!organizationUnit.startsWith("cn=") &&
-				!organizationUnit.startsWith("ou=")) {
-
-				sb.append("ou=");
-			}
-
-			sb.append(escape(organizationUnit));
-			sb.append(",");
-		}
-
-		sb.append(escape(company.getWebId()));
-		sb.append(",o=");
-		sb.append(escape(top));
-
-		_name = sb.toString();
+		_name = LdapUtil.createName(top, company, organizationUnits);
 	}
 
 	/**
