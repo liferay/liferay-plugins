@@ -175,7 +175,7 @@
 		<zip
 			basedir="."
 			destfile="dist/liferay-plugins-sdk-${lp.version}.zip"
-			excludes="build.*.properties,dist/**,clients/*-client/**,ext/*-ext/**,hooks/*-hook/**,layouttpl/*-layouttpl/**,portlets/*-portlet/**,summary.*,themes/*-theme/**,webs/*-web/**"
+			excludes=".git/**,build.*.properties,dist/**,clients/*-client/**,ext/*-ext/**,hooks/*-hook/**,layouttpl/*-layouttpl/**,portlets/*-portlet/**,summary.*,themes/*-theme/**,webs/*-web/**"
 		/>
 	</target>
 
