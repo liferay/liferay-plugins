@@ -101,7 +101,7 @@ public class DirectoryBuilder {
 
 	private static Log _log = LogFactoryUtil.getLog(DirectoryBuilder.class);
 
-	private boolean _built = false;
+	private boolean _built;
 	private List<DirectoryBuilder> _directoryBuilders =
 		new ArrayList<DirectoryBuilder>();
 

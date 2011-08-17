@@ -113,7 +113,7 @@ public class DirectoryTree {
 
 		List<Directory> directories = new ArrayList<Directory>();
 
-		List<FilterConstraint> filterConstraints = _toFilterConstraints(
+		List<FilterConstraint> filterConstraints = toFilterConstraints(
 			exprNode);
 
 		boolean subtree = searchScope.equals(SearchScope.SUBTREE);
@@ -281,20 +281,20 @@ public class DirectoryTree {
 			company, users.get(0));
 	}
 
-	private List<FilterConstraint> _toFilterConstraints(ExprNode exprNode) {
+	protected List<FilterConstraint> toFilterConstraints(ExprNode exprNode) {
 		if (exprNode.isLeaf()) {
 			LeafNode leafNode = (LeafNode)exprNode;
 
-			return _toFilterConstraintsFromLeafNode(leafNode);
+			return toFilterConstraintsFromLeafNode(leafNode);
 		}
 		else {
 			BranchNode branchNode = (BranchNode)exprNode;
 
-			return _toFilterConstraintsFromBranchNode(branchNode);
+			return toFilterConstraintsFromBranchNode(branchNode);
 		}
 	}
 
-	private List<FilterConstraint> _toFilterConstraintsFromBranchNode(
+	protected List<FilterConstraint> toFilterConstraintsFromBranchNode(
 		BranchNode branchNode) {
 
 		if (branchNode instanceof AndNode) {
@@ -303,7 +303,7 @@ public class DirectoryTree {
 
 			for (ExprNode exprNode : branchNode.getChildren()) {
 				List<FilterConstraint> childFilterConstraints =
-					_toFilterConstraints(exprNode);
+					toFilterConstraints(exprNode);
 
 				if (childFilterConstraints == null) {
 					continue;
@@ -323,7 +323,7 @@ public class DirectoryTree {
 
 			for (ExprNode exprNode : branchNode.getChildren()) {
 				List<FilterConstraint> childFilterConstraints =
-					_toFilterConstraints(exprNode);
+					toFilterConstraints(exprNode);
 
 				if (childFilterConstraints == null) {
 					continue;
@@ -342,7 +342,7 @@ public class DirectoryTree {
 		return null;
 	}
 
-	private List<FilterConstraint> _toFilterConstraintsFromLeafNode(
+	protected List<FilterConstraint> toFilterConstraintsFromLeafNode(
 		LeafNode leafNode) {
 
 		if (leafNode instanceof EqualityNode<?>) {

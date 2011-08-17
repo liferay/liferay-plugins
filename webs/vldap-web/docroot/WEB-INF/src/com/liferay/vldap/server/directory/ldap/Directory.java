@@ -16,8 +16,6 @@ package com.liferay.vldap.server.directory.ldap;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.util.CharPool;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Company;
@@ -40,32 +38,6 @@ import org.apache.directory.shared.ldap.model.name.Dn;
  * @author Brian Wing Shun Chan
  */
 public abstract class Directory {
-
-	public static String escape(String name) {
-		int pos = name.indexOf(CharPool.EQUAL);
-
-		String suffix = name.substring(pos + 1);
-
-		char[] charArray = suffix.toCharArray();
-
-		StringBundler sb = new StringBundler();
-
-		for (char c : charArray) {
-			for (char escapeChar : _ESCAPE_CHARS) {
-				if (c == escapeChar) {
-					sb.append(CharPool.BACK_SLASH);
-
-					break;
-				}
-			}
-
-			sb.append(c);
-		}
-
-		String escapedSuffix = sb.toString();
-
-		return name.substring(0, pos + 1) + escapedSuffix;
-	}
 
 	public boolean hasAttribute(String attributeId) {
 		for (Attribute attribute : getAttributes()) {
@@ -172,22 +144,15 @@ public abstract class Directory {
 		}
 	}
 
-	public String getName() {
+	protected String getName() {
 		return _name;
 	}
 
 	protected void setName(
 		String top, Company company, String... organizationUnits) {
 
-		_name = LdapUtil.createName(top, company, organizationUnits);
+		_name = LdapUtil.buildName(top, company, organizationUnits);
 	}
-
-	/**
-	 * http://www.rlmueller.net/CharactersEscaped.htm
-	 */
-	private static final char[] _ESCAPE_CHARS = {
-		 ',', '\\', '#', '+', '<', '>', ';', '"', '='
-	};
 
 	private static Log _log = LogFactoryUtil.getLog(Directory.class);
 
