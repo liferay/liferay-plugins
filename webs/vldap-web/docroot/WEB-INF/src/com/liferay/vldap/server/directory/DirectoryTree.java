@@ -60,6 +60,7 @@ import com.liferay.vldap.server.directory.ldap.UserDirectory;
 import com.liferay.vldap.server.directory.ldap.UserGroupDirectory;
 import com.liferay.vldap.server.directory.ldap.UserGroupsDirectory;
 import com.liferay.vldap.server.directory.ldap.UsersDirectory;
+import com.liferay.vldap.util.LdapUtil;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -79,30 +80,13 @@ import org.apache.directory.shared.ldap.model.filter.PresenceNode;
 import org.apache.directory.shared.ldap.model.filter.SubstringNode;
 import org.apache.directory.shared.ldap.model.message.SearchScope;
 import org.apache.directory.shared.ldap.model.name.Dn;
-import org.apache.directory.shared.ldap.model.name.Rdn;
 
 /**
  * @author Jonathan Potter
  */
 public class DirectoryTree {
 
-	public static List<Directory> getDirectories(
-		SearchBase searchBase, ExprNode exprNode, SearchScope searchScope) {
-
-		return _instance._getDirectories(searchBase, exprNode, searchScope);
-	}
-
-	public static String getRdnValue(Dn dn, int index) {
-		return _instance._getRdnValue(dn, index);
-	}
-
-	public static SearchBase getSearchBase(Dn dn, long sizeLimit)
-		throws Exception {
-
-		return _instance._getSearchBase(dn, sizeLimit);
-	}
-
-	private DirectoryTree() {
+	public DirectoryTree() {
 		_rootBuilder.addDirectoryBuilder(_topBuilder);
 		_topBuilder.addDirectoryBuilder(_companyBuilder);
 
@@ -124,7 +108,7 @@ public class DirectoryTree {
 		_userGroupBuilder.addDirectoryBuilder(_userBuilder);
 	}
 
-	private List<Directory> _getDirectories(
+	public List<Directory> getDirectories(
 		SearchBase searchBase, ExprNode exprNode, SearchScope searchScope) {
 
 		List<Directory> directories = new ArrayList<Directory>();
@@ -148,32 +132,16 @@ public class DirectoryTree {
 		return directories;
 	}
 
-	private String _getRdnValue(Dn dn, int index) {
-		try {
-			index = dn.size() - 1 - index;
-
-			if (index < dn.size()) {
-				Rdn rdn = dn.getRdn(index);
-
-				return rdn.getValue(rdn.getNormType()).toString();
-			}
-		}
-		catch (Exception e) {
-		}
-
-		return null;
-	}
-
-	private SearchBase _getSearchBase(Dn dn, long sizeLimit) throws Exception {
+	public SearchBase getSearchBase(Dn dn, long sizeLimit) throws Exception {
 		if (dn == null) {
 			return null;
 		}
 
-		String top = getRdnValue(dn, 0);
-		String companyWebId = getRdnValue(dn, 1);
-		String type = getRdnValue(dn, 2);
-		String typeValue = getRdnValue(dn, 3);
-		String screenName = getRdnValue(dn, 4);
+		String top = LdapUtil.getRdnValue(dn, 0);
+		String companyWebId = LdapUtil.getRdnValue(dn, 1);
+		String type = LdapUtil.getRdnValue(dn, 2);
+		String typeValue = LdapUtil.getRdnValue(dn, 3);
+		String screenName = LdapUtil.getRdnValue(dn, 4);
 
 		if (Validator.isNull(top)) {
 			return new SearchBase(new RootDirectory(), _rootBuilder);
@@ -423,8 +391,6 @@ public class DirectoryTree {
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(DirectoryBuilder.class);
-
-	private static DirectoryTree _instance = new DirectoryTree();
 
 	private CommunitiesBuilder _communitiesBuilder = new CommunitiesBuilder();
 	private CommunityBuilder _communityBuilder = new CommunityBuilder();

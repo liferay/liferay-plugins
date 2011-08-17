@@ -42,7 +42,9 @@ public class CompareLdapHandler extends BaseLdapHandler {
 
 		CompareRequest compareRequest = (CompareRequest)request;
 
-		SearchBase searchBase = DirectoryTree.getSearchBase(
+		DirectoryTree directoryTree = new DirectoryTree();
+
+		SearchBase searchBase = directoryTree.getSearchBase(
 			compareRequest.getName(), PortletPropsValues.SEARCH_MAX_SIZE);
 
 		if (searchBase == null) {

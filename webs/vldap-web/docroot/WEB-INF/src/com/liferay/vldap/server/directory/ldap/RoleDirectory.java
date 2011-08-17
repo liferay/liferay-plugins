@@ -43,7 +43,7 @@ public class RoleDirectory extends Directory {
 
 		addMemberAttributes(top, company, params);
 
-		setName(top, company, role.getName(), "Roles");
+		setName(top, company, "Roles", role.getName());
 	}
 
 }

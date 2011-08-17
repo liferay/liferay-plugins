@@ -18,11 +18,11 @@ import com.liferay.portal.model.Role;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
-import com.liferay.vldap.server.directory.DirectoryTree;
 import com.liferay.vldap.server.directory.FilterConstraint;
 import com.liferay.vldap.server.directory.SearchBase;
 import com.liferay.vldap.server.directory.ldap.Directory;
 import com.liferay.vldap.server.directory.ldap.RoleDirectory;
+import com.liferay.vldap.util.LdapUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -101,8 +101,7 @@ public class RoleBuilder extends DirectoryBuilder {
 
 			String member = filterConstraint.getValue("member");
 
-			String screenName = DirectoryTree.getRdnValue(
-				new Dn(member), 3);
+			String screenName = LdapUtil.getRdnValue(new Dn(member), 3);
 
 			if (screenName != null) {
 				User user = UserLocalServiceUtil.getUserByScreenName(

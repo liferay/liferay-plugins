@@ -25,9 +25,10 @@ import com.liferay.portal.model.User;
 import com.liferay.portal.model.UserGroup;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
+import com.liferay.vldap.util.LdapUtil;
 
 import java.text.Format;
-
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -40,15 +41,27 @@ public class UserDirectory extends Directory {
 	public UserDirectory(String top, Company company, User user)
 		throws Exception {
 
+		Date createDate = user.getCreateDate();
+
+		if (createDate == null) {
+			createDate = new Date();
+		}
+
+		Date modifyDate = user.getModifiedDate();
+
+		if (modifyDate == null) {
+			modifyDate = new Date();
+		}
+
 		addAttribute("cn", user.getScreenName());
 		addAttribute(
-			"createTimestamp", _simpleDateFormat.format(user.getCreateDate()));
+			"createTimestamp", _simpleDateFormat.format(createDate));
 		addAttribute("displayName", user.getFullName());
 		addAttribute("givenName", user.getFirstName());
 		addAttribute("mail", user.getEmailAddress());
 		addAttribute(
 			"modifyTimestamp",
-			_simpleDateFormat.format(user.getModifiedDate()));
+			_simpleDateFormat.format(modifyDate));
 		addAttribute("sn", user.getLastName());
 		addAttribute("objectclass", "groupOfNames");
 		addAttribute("objectclass", "inetOrgPerson");
@@ -57,11 +70,9 @@ public class UserDirectory extends Directory {
 		addAttribute("uid", String.valueOf(user.getUserId()));
 		addAttribute("uuid", user.getUuid());
 
-		setName(top, company);
+		String name = LdapUtil.createName(top, company);
 
-		String name = getName();
-
-		setName(top, company, "cn=" + user.getScreenName(), "Users");
+		setName(top, company, "Users", "cn=" + user.getScreenName());
 
 		long groupClassNameId = PortalUtil.getClassNameId(
 			Group.class.getName());

@@ -42,7 +42,7 @@ public class OrganizationDirectory extends Directory {
 
 		addMemberAttributes(top, company, params);
 
-		setName(top, company, organization.getName(), "Organizations");
+		setName(top, company, "Organizations", organization.getName());
 	}
 
 }
