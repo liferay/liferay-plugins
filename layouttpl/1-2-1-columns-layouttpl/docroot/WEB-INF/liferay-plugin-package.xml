@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
-<!DOCTYPE plugin-package PUBLIC "-//Liferay//DTD Plugin Package 6.0.0//EN" "http://www.liferay.com/dtd/liferay-plugin-package_6_0_0.dtd">
+<!DOCTYPE plugin-package PUBLIC "-//Liferay//DTD Plugin Package 6.1.0//EN" "http://www.liferay.com/dtd/liferay-plugin-package_6_1_0.dtd">
 
 <plugin-package>
 	<name>1-2-1 Columns Templates</name>
-	<module-id>liferay/1-2-1-columns-layouttpl/6.0.0.1/war</module-id>
+	<module-id>liferay/1-2-1-columns-layouttpl/6.1.0.1/war</module-id>
 	<types>
 		<type>layout-template</type>
 	</types>
@@ -17,6 +17,6 @@
 		<license osi-approved="true">LGPL</license>
 	</licenses>
 	<liferay-versions>
-		<liferay-version>6.0.0+</liferay-version>
+		<liferay-version>6.1.0+</liferay-version>
 	</liferay-versions>
 </plugin-package>
