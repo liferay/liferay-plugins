@@ -7,7 +7,7 @@
 	</compatibility>
 	<theme id="night-and-day" name="Night and Day Theme">
 		<color-scheme id="default" name="Night">
-        	<css-class>night</css-class>
+			<css-class>night</css-class>
 		</color-scheme>
 		<color-scheme id="day" name="Day">
 			<css-class>day</css-class>
