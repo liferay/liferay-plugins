@@ -24,17 +24,17 @@ String tabs1 = ParamUtil.getString(request, "tabs1", "month");
 
 String eventType = ParamUtil.getString(request, "eventType");
 
-String[] urlArray = PortalUtil.stripURLAnchor(portletURL.toString(), "&#");
-
-String urlWithoutAnchor = urlArray[0];
-String urlAnchor = urlArray[1];
-
 PortletURL portletURL = renderResponse.createRenderURL();
 
 portletURL.setWindowState(WindowState.MAXIMIZED);
 
 portletURL.setParameter("struts_action", "/calendar/view");
 portletURL.setParameter("tabs1", tabs1);
+
+String[] urlArray = PortalUtil.stripURLAnchor(portletURL.toString(), "&#");
+
+String urlWithoutAnchor = urlArray[0];
+String urlAnchor = urlArray[1];
 %>
 
 <form method="post" name="<portlet:namespace />fm">
