@@ -235,8 +235,8 @@ AUI().use(
 									siteTemplate,
 									{
 										classNames: classNames.join(' '),
-										starHtml: (result.starURL ? '<span class="star"><a href="' + result.starURL + '">' + Liferay.Language.get('star') + '</a></span>' : '<span class="unstar"><a href="' + result.unstarURL + '">' + Liferay.Language.get('unstar') + '</a></span>'),
-										joinHtml: (result.joinUrl ? '<span class="join"><a href="' + result.joinUrl + '">' + Liferay.Language.get('join') + '</a></span>' : ''),
+										starHtml: (result.starURL ? '<span class="action star"><a href="' + result.starURL + '">' + Liferay.Language.get('star') + '</a></span>' : '<span class="action unstar"><a href="' + result.unstarURL + '">' + Liferay.Language.get('unstar') + '</a></span>'),
+										joinHtml: (result.joinUrl ? '<span class="action join"><a href="' + result.joinUrl + '">' + Liferay.Language.get('join') + '</a></span>' : ''),
 										siteName: name
 									}
 								);
