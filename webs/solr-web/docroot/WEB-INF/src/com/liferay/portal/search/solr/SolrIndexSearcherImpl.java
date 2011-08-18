@@ -103,83 +103,7 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 		throws SearchException {
 
 		try {
-			SolrQuery solrQuery = translateQuery(
-				searchContext.getCompanyId(), query, searchContext.getSorts(),
-				searchContext.getStart(), searchContext.getEnd());
-
-			Map<String, Facet> facets = searchContext.getFacets();
-
-			for (Facet facet : facets.values()) {
-				if (facet.isStatic()) {
-					continue;
-				}
-
-				FacetConfiguration facetConfiguration =
-					facet.getFacetConfiguration();
-
-				if (facet instanceof RangeFacet) {
-					solrQuery.addFacetField(facetConfiguration.getFieldName());
-
-					JSONObject dataJSONObject = facetConfiguration.getData();
-
-					JSONArray rangesJSONArray = dataJSONObject.getJSONArray(
-						"ranges");
-
-					if (rangesJSONArray != null) {
-						for (int i = 0; i < rangesJSONArray.length(); i++) {
-							JSONObject rangeJSONObject =
-								rangesJSONArray.getJSONObject(i);
-
-							String range = rangeJSONObject.getString("range");
-
-							String facetQuery =
-								facetConfiguration.getFieldName() +
-									StringPool.COLON + range;
-
-							solrQuery.addFacetQuery(facetQuery);
-						}
-					}
-				}
-				else {
-					solrQuery.addFacetField(facetConfiguration.getFieldName());
-				}
-			}
-
-			solrQuery.setFacetLimit(-1);
-
-			QueryResponse queryResponse = _solrServer.query(solrQuery);
-
-			boolean allResults = false;
-
-			if (solrQuery.getRows() == 0) {
-				allResults = true;
-			}
-
-			List<FacetField> facetFields = queryResponse.getFacetFields();
-
-			if (facetFields != null) {
-				for (FacetField facetField : facetFields) {
-					Facet facet = facets.get(facetField.getName());
-
-					FacetCollector facetCollector = null;
-
-					if (facet instanceof RangeFacet) {
-						facetCollector = new SolrFacetQueryCollector(
-							facetField.getName(),
-							queryResponse.getFacetQuery());
-					}
-					else {
-						facetCollector = new SolrFacetFieldCollector(
-							facetField.getName(), facetField);
-					}
-
-					facet.setFacetCollector(facetCollector);
-				}
-			}
-
-			return subset(
-				solrQuery, query, query.getQueryConfig(), queryResponse,
-				allResults);
+			return doSearch(searchContext, query);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -194,6 +118,90 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 
 	public void setSwallowException(boolean swallowException) {
 		_swallowException = swallowException;
+	}
+
+	protected Hits doSearch(SearchContext searchContext, Query query)
+		throws Exception {
+
+		SolrQuery solrQuery = translateQuery(
+			searchContext.getCompanyId(), query, searchContext.getSorts(),
+			searchContext.getStart(), searchContext.getEnd());
+
+		Map<String, Facet> facets = searchContext.getFacets();
+
+		for (Facet facet : facets.values()) {
+			if (facet.isStatic()) {
+				continue;
+			}
+
+			FacetConfiguration facetConfiguration =
+				facet.getFacetConfiguration();
+
+			if (facet instanceof RangeFacet) {
+				solrQuery.addFacetField(facetConfiguration.getFieldName());
+
+				JSONObject dataJSONObject = facetConfiguration.getData();
+
+				JSONArray rangesJSONArray = dataJSONObject.getJSONArray(
+					"ranges");
+
+				if (rangesJSONArray == null) {
+					continue;
+				}
+
+				for (int i = 0; i < rangesJSONArray.length(); i++) {
+					JSONObject rangeJSONObject =
+						rangesJSONArray.getJSONObject(i);
+
+					String range = rangeJSONObject.getString("range");
+
+					String facetQuery =
+						facetConfiguration.getFieldName() +
+							StringPool.COLON + range;
+
+					solrQuery.addFacetQuery(facetQuery);
+				}
+			}
+			else {
+				solrQuery.addFacetField(facetConfiguration.getFieldName());
+			}
+		}
+
+		solrQuery.setFacetLimit(-1);
+
+		QueryResponse queryResponse = _solrServer.query(solrQuery);
+
+		boolean allResults = false;
+
+		if (solrQuery.getRows() == 0) {
+			allResults = true;
+		}
+
+		List<FacetField> facetFields = queryResponse.getFacetFields();
+
+		if (facetFields != null) {
+			for (FacetField facetField : facetFields) {
+				Facet facet = facets.get(facetField.getName());
+
+				FacetCollector facetCollector = null;
+
+				if (facet instanceof RangeFacet) {
+					facetCollector = new SolrFacetQueryCollector(
+						facetField.getName(),
+						queryResponse.getFacetQuery());
+				}
+				else {
+					facetCollector = new SolrFacetFieldCollector(
+						facetField.getName(), facetField);
+				}
+
+				facet.setFacetCollector(facetCollector);
+			}
+		}
+
+		return subset(
+			solrQuery, query, query.getQueryConfig(), queryResponse,
+			allResults);
 	}
 
 	protected String getSnippet(
