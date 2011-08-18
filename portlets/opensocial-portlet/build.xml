@@ -43,6 +43,10 @@
 				token="org.apache.shindig.sample.container.SampleContainerGuiceModule:"
 				value="" 
 			/>
+			<replacefilter 
+				token="org.apache.shindig.common.servlet.GuiceServletContextListener"
+				value="com.liferay.opensocial.shindig.servlet.GuiceServletContextListener" 
+			/>
 		</replace>
 
 		<!-- Remove system.properties -->
