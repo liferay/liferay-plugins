@@ -92,6 +92,7 @@ public class BasicAuthSolrServer extends SolrServer {
 		return _server.getParser();
 	}
 
+	@Override
 	public NamedList<Object> request(SolrRequest solrRequest)
 		throws IOException, SolrServerException {
 

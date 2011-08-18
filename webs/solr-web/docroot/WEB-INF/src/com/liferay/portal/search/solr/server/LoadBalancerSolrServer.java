@@ -29,6 +29,7 @@ public class LoadBalancerSolrServer extends SolrServer {
 		_solrServerFactory = solrServerFactory;
 	}
 
+	@Override
 	public NamedList<Object> request(SolrRequest solrRequest)
 		throws SolrServerException {
 
