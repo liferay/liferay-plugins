@@ -37,6 +37,7 @@ public class GadgetPortlet extends BaseGadgetPortlet {
 		return ShindigUtil.getGadget(portletConfig.getPortletName());
 	}
 
+	@Override
 	protected void overrideConfiguration(
 			GadgetSpec gadgetSpec, Portlet portlet,
 			PortletDisplay portletDisplay)

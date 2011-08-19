@@ -40,6 +40,7 @@ public class LiferayJsonContainerConfig extends JsonContainerConfig {
 		super(containers, null, null, expressions);
 	}
 
+	@Override
 	public String getString(String container, String property) {
 		String value = super.getString(container, property);
 

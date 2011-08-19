@@ -41,6 +41,7 @@ import org.apache.shindig.social.sample.oauth.SampleOAuthDataStore;
  */
 public class LiferayModule extends AbstractModule {
 
+	@Override
 	protected void configure() {
 		bind(String.class).annotatedWith(
 			Names.named("shindig.canonical.json.db")).toInstance(
