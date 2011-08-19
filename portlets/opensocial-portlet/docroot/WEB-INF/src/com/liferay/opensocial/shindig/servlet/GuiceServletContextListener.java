@@ -36,13 +36,11 @@ public class GuiceServletContextListener extends BasePortalLifecycle
 
 		registerPortalLifecycle();
 	}
-
 	@Override
 	protected void doPortalDestroy() throws Exception {
 		_guiceServletContextListener.contextDestroyed(
 			_destroyedServletContextEvent);
 	}
-
 	@Override
 	protected void doPortalInit() throws Exception {
 		_guiceServletContextListener.contextInitialized(
@@ -50,10 +48,8 @@ public class GuiceServletContextListener extends BasePortalLifecycle
 	}
 
 	private ServletContextEvent _destroyedServletContextEvent;
-
-	private ServletContextEvent _initializedServletContextEvent;
-
 	private ServletContextListener _guiceServletContextListener =
 		new org.apache.shindig.common.servlet.GuiceServletContextListener();
+	private ServletContextEvent _initializedServletContextEvent;
 
 }
