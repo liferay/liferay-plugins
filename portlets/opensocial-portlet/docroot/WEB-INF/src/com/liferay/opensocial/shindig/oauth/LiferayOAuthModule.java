@@ -29,6 +29,7 @@ import org.apache.shindig.gadgets.oauth.OAuthStore;
  */
 public class LiferayOAuthModule extends AbstractModule {
 
+	@Override
 	protected void configure() {
 		bind(BlobCrypter.class).annotatedWith(
 			Names.named(OAuthFetcherConfig.OAUTH_STATE_CRYPTER)).toProvider(
