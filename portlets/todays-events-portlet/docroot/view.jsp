@@ -21,7 +21,7 @@ Group group = GroupLocalServiceUtil.getGroup(layout.getGroupId());
 
 List<Group> groups = new ArrayList<Group>();
 
-if (group.isCommunity()) {
+if (group.isRegularSite()) {
 	groups.add(group);
 }
 else if (group.isUser() && themeDisplay.isSignedIn()) {

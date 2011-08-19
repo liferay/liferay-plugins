@@ -19,18 +19,19 @@
 <div class="filter-container asset-tag-filter">
 
 	<%
-	List<AssetTag> assetTags = AssetTagLocalServiceUtil.getGroupTags(themeDisplay.getScopeGroupId());
+	List<AssetTagStats> assetTagStatses = AssetTagStatsLocalServiceUtil.getTagStats(PortalUtil.getClassNameId(TasksEntry.class), QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
-	if (!assetTags.isEmpty()) {
-		for (AssetTag assetTag : assetTags) {
-			AssetTagStats assetTagStats = AssetTagStatsLocalServiceUtil.getTagStats(assetTag.getTagId(), PortalUtil.getClassNameId(TasksEntry.class));
-
+	if (!assetTagStatses.isEmpty()) {
+		for (AssetTagStats assetTagStats : assetTagStatses) {
 			if (assetTagStats.getAssetCount() > 0) {
+				AssetTag assetTag = AssetTagLocalServiceUtil.getTag(assetTagStats.getTagId());
 	%>
 
-				<span class="asset-tag" data-assetTagId="<%= assetTag.getTagId() %>">
-					<a href="javascript:;"><%= assetTag.getName() %></a>
-				</span>
+				<c:if test="<%= (group.isRegularSite() && assetTag.getGroupId() == group.getGroupId()) || group.isUser() %>">
+					<span class="asset-tag" data-assetTagId="<%= assetTag.getTagId() %>">
+						<a href="javascript:;"><%= assetTag.getName() %></a>
+					</span>
+				</c:if>
 
 	<%
 			}

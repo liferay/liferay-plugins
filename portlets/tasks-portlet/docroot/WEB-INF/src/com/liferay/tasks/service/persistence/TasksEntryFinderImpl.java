@@ -89,7 +89,7 @@ public class TasksEntryFinderImpl
 					sb.append(CustomSQLUtil.get(FIND_BY_C_T));
 
 					if ((i + 1) < assetTagIds.length) {
-						sb.append(" AND AssetEntry.classPK IN (");
+						sb.append(" OR AssetEntry.classPK IN (");
 					}
 				}
 
@@ -211,7 +211,7 @@ public class TasksEntryFinderImpl
 					sb.append(CustomSQLUtil.get(FIND_BY_C_T));
 
 					if ((i + 1) < assetTagIds.length) {
-						sb.append(" AND AssetEntry.classPK IN (");
+						sb.append(" OR AssetEntry.classPK IN (");
 					}
 				}
 
