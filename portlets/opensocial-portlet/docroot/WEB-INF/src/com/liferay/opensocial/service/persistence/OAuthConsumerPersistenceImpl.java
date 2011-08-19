@@ -1409,10 +1409,12 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(OAuthConsumerPersistenceImpl.class);
 	private static OAuthConsumer _nullOAuthConsumer = new OAuthConsumerImpl() {
+			@Override
 			public Object clone() {
 				return this;
 			}
 
+			@Override
 			public CacheModel<OAuthConsumer> toCacheModel() {
 				return _nullOAuthConsumerCacheModel;
 			}
