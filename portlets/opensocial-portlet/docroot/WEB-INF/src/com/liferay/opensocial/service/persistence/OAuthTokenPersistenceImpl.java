@@ -81,7 +81,7 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 			FINDER_CLASS_NAME_LIST, "findByG_S",
 			new String[] {
 				String.class.getName(), String.class.getName(),
-
+				
 			"java.lang.Integer", "java.lang.Integer",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
@@ -124,11 +124,11 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_G_S_M_T,
 			new Object[] {
 				Long.valueOf(oAuthToken.getUserId()),
-
+				
 			oAuthToken.getGadgetKey(),
-
+				
 			oAuthToken.getServiceName(), Long.valueOf(oAuthToken.getModuleId()),
-
+				
 			oAuthToken.getTokenName()
 			}, oAuthToken);
 
@@ -183,11 +183,11 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_G_S_M_T,
 			new Object[] {
 				Long.valueOf(oAuthToken.getUserId()),
-
+				
 			oAuthToken.getGadgetKey(),
-
+				
 			oAuthToken.getServiceName(), Long.valueOf(oAuthToken.getModuleId()),
-
+				
 			oAuthToken.getTokenName()
 			});
 	}
@@ -299,12 +299,12 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_G_S_M_T,
 			new Object[] {
 				Long.valueOf(oAuthTokenModelImpl.getUserId()),
-
+				
 			oAuthTokenModelImpl.getGadgetKey(),
-
+				
 			oAuthTokenModelImpl.getServiceName(),
 				Long.valueOf(oAuthTokenModelImpl.getModuleId()),
-
+				
 			oAuthTokenModelImpl.getTokenName()
 			});
 
@@ -357,12 +357,12 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_G_S_M_T,
 				new Object[] {
 					Long.valueOf(oAuthTokenModelImpl.getOriginalUserId()),
-
+					
 				oAuthTokenModelImpl.getOriginalGadgetKey(),
-
+					
 				oAuthTokenModelImpl.getOriginalServiceName(),
 					Long.valueOf(oAuthTokenModelImpl.getOriginalModuleId()),
-
+					
 				oAuthTokenModelImpl.getOriginalTokenName()
 				});
 		}
@@ -379,12 +379,12 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_G_S_M_T,
 				new Object[] {
 					Long.valueOf(oAuthToken.getUserId()),
-
+					
 				oAuthToken.getGadgetKey(),
-
+					
 				oAuthToken.getServiceName(),
 					Long.valueOf(oAuthToken.getModuleId()),
-
+					
 				oAuthToken.getTokenName()
 				}, oAuthToken);
 		}
@@ -572,7 +572,7 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 		throws SystemException {
 		Object[] finderArgs = new Object[] {
 				gadgetKey, serviceName,
-
+				
 				String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
 			};
@@ -1598,10 +1598,12 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(OAuthTokenPersistenceImpl.class);
 	private static OAuthToken _nullOAuthToken = new OAuthTokenImpl() {
+			@Override
 			public Object clone() {
 				return this;
 			}
 
+			@Override
 			public CacheModel<OAuthToken> toCacheModel() {
 				return _nullOAuthTokenCacheModel;
 			}
