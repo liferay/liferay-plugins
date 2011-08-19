@@ -20,5 +20,7 @@
 	<classpathentry kind="lib" path="/portal-trunk/util-bridges/util-bridges.jar" />
 	<classpathentry kind="lib" path="/portal-trunk/util-java/util-java.jar" />
 	<classpathentry kind="lib" path="/portal-trunk/util-taglib/util-taglib.jar" />
+	<classpathentry kind="lib" path="tmp/WEB-INF/lib/apache-solr-core-1.4.1.jar" />
+	<classpathentry kind="lib" path="tmp/WEB-INF/lib/apache-solr-solrj-1.4.1.jar" />
 	<classpathentry kind="output" path="bin" />
 </classpath>
