@@ -58,25 +58,26 @@ public class MailPortlet extends MVCPortlet {
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		UploadPortletRequest uploadRequest = PortalUtil.getUploadPortletRequest(
-			actionRequest);
+		UploadPortletRequest uploadPortletRequest =
+			PortalUtil.getUploadPortletRequest(actionRequest);
 
-		long accountId = ParamUtil.getLong(uploadRequest, "accountId");
-		long messageId = ParamUtil.getLong(uploadRequest, "messageId");
-		String to = ParamUtil.getString(uploadRequest, "to");
-		String cc = ParamUtil.getString(uploadRequest, "cc");
-		String bcc = ParamUtil.getString(uploadRequest, "bcc");
-		String subject = ParamUtil.getString(uploadRequest, "subject");
-		String body = ParamUtil.getString(uploadRequest, "body");
+		long accountId = ParamUtil.getLong(uploadPortletRequest, "accountId");
+		long messageId = ParamUtil.getLong(uploadPortletRequest, "messageId");
+		String to = ParamUtil.getString(uploadPortletRequest, "to");
+		String cc = ParamUtil.getString(uploadPortletRequest, "cc");
+		String bcc = ParamUtil.getString(uploadPortletRequest, "bcc");
+		String subject = ParamUtil.getString(uploadPortletRequest, "subject");
+		String body = ParamUtil.getString(uploadPortletRequest, "body");
 
 		int attachmentCount = ParamUtil.getInteger(
-			uploadRequest, "attachmentCount");
+			uploadPortletRequest, "attachmentCount");
 
 		List<MailFile> mailFiles = new ArrayList<MailFile>();
 
 		for (int i = 1; i <= attachmentCount; i++) {
-			File file = uploadRequest.getFile("attachment" + i);
-			String filename = uploadRequest.getFileName("attachment" + i);
+			File file = uploadPortletRequest.getFile("attachment" + i);
+			String filename = uploadPortletRequest.getFileName(
+				"attachment" + i);
 
 			if (FileUtil.getBytes(file) != null) {
 				mailFiles.add(new MailFile(file, filename, file.length()));

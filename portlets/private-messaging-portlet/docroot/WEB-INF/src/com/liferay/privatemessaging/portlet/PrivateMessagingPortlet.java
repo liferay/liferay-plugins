@@ -148,20 +148,20 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		UploadPortletRequest uploadRequest = PortalUtil.getUploadPortletRequest(
-			actionRequest);
+		UploadPortletRequest uploadPortletRequest =
+			PortalUtil.getUploadPortletRequest(actionRequest);
 
-		long userId = ParamUtil.getLong(uploadRequest, "userId");
-		long mbThreadId = ParamUtil.getLong(uploadRequest, "mbThreadId");
-		String to = ParamUtil.getString(uploadRequest, "to");
-		String subject = ParamUtil.getString(uploadRequest, "subject");
-		String body = ParamUtil.getString(uploadRequest, "body");
+		long userId = ParamUtil.getLong(uploadPortletRequest, "userId");
+		long mbThreadId = ParamUtil.getLong(uploadPortletRequest, "mbThreadId");
+		String to = ParamUtil.getString(uploadPortletRequest, "to");
+		String subject = ParamUtil.getString(uploadPortletRequest, "subject");
+		String body = ParamUtil.getString(uploadPortletRequest, "body");
 		List<ObjectValuePair<String, File>> files =
 			new ArrayList<ObjectValuePair<String, File>>();
 
 		for (int i = 1; i <= 3; i++) {
-			File file = uploadRequest.getFile("msgFile" + i);
-			String fileName = uploadRequest.getFileName("msgFile" + i);
+			File file = uploadPortletRequest.getFile("msgFile" + i);
+			String fileName = uploadPortletRequest.getFileName("msgFile" + i);
 
 			try {
 				if ((file != null) && (file.length() > 0)) {

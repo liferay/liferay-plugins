@@ -77,17 +77,17 @@ public class SearchPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		UploadPortletRequest uploadRequest = PortalUtil.getUploadPortletRequest(
-			actionRequest);
+		UploadPortletRequest uploadPortletRequest =
+			PortalUtil.getUploadPortletRequest(actionRequest);
 
 		String portletId = PortalUtil.getPortletId(actionRequest);
 
 		long resourcePrimKey = ParamUtil.getLong(
-			uploadRequest, "resourcePrimKey");
+			uploadPortletRequest, "resourcePrimKey");
 
-		String dirName = ParamUtil.getString(uploadRequest, "dirName");
-		File file = uploadRequest.getFile("file");
-		String fileName = uploadRequest.getFileName("file");
+		String dirName = ParamUtil.getString(uploadPortletRequest, "dirName");
+		File file = uploadPortletRequest.getFile("file");
+		String fileName = uploadPortletRequest.getFileName("file");
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			KBArticle.class.getName(), actionRequest);

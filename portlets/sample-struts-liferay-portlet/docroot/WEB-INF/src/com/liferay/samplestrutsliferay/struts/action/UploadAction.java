@@ -44,10 +44,10 @@ public class UploadAction extends PortletAction {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		UploadPortletRequest uploadRequest = PortalUtil.getUploadPortletRequest(
-			actionRequest);
+		UploadPortletRequest uploadPortletRequest =
+			PortalUtil.getUploadPortletRequest(actionRequest);
 
-		File file = uploadRequest.getFile("file_location");
+		File file = uploadPortletRequest.getFile("file_location");
 
 		if (_log.isInfoEnabled()) {
 			_log.info(file);
