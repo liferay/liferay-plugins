@@ -45,9 +45,12 @@ int x = html.indexOf("<li class=\"user-avatar \" id=\"_145_userAvatar\">");
 		%>
 
 		<li>
-			<liferay-ui:icon message="<%= LanguageUtil.get(pageContext, "my-private-pages") %>" src='<%= themeDisplay.getPathContext() + "/html/icons/social_office.png" %>' />
+			<liferay-ui:icon
+				message="my-private-pages"
+				src='<%= themeDisplay.getPathContext() + "/html/icons/social_office.png" %>'
+			/>
 
-			<a href="<%= portletURL %>"><%= LanguageUtil.get(pageContext, "my-private-pages") %></a>
+			<a href="<%= portletURL %>"><liferay-ui:message key="my-private-pages" /></a>
 		</li>
 
 		<li class="aui-toolbar-separator">
