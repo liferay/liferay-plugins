@@ -106,17 +106,18 @@ public class TestPortlet extends LiferayPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		UploadPortletRequest uploadRequest = PortalUtil.getUploadPortletRequest(
-			actionRequest);
+		UploadPortletRequest uploadPortletRequest =
+			PortalUtil.getUploadPortletRequest(actionRequest);
 
 		String actionRequestTitle = ParamUtil.getString(actionRequest, "title");
-		String uploadRequestTitle = ParamUtil.getString(uploadRequest, "title");
+		String uploadPortletRequestTitle = ParamUtil.getString(
+			uploadPortletRequest, "title");
 
-		File file = uploadRequest.getFile("fileName");
+		File file = uploadPortletRequest.getFile("fileName");
 
 		if (_log.isInfoEnabled()) {
 			_log.info("actionRequestTitle " + actionRequestTitle);
-			_log.info("uploadRequestTitle " + uploadRequestTitle);
+			_log.info("uploadPortletRequestTitle " + uploadPortletRequestTitle);
 			_log.info("File " + file + " " + file.length());
 		}
 	}
