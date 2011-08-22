@@ -14,6 +14,7 @@
 
 package com.liferay.opensocial.shindig.servlet;
 
+import com.liferay.portal.kernel.portlet.PortletClassLoaderUtil;
 import com.liferay.portal.kernel.util.BasePortalLifecycle;
 
 import javax.servlet.ServletContextEvent;
@@ -26,9 +27,8 @@ public class GuiceServletContextListener extends BasePortalLifecycle
 	implements ServletContextListener {
 
 	public void contextDestroyed(ServletContextEvent servletContextEvent) {
-		_destroyedServletContextEvent = servletContextEvent;
-
-		portalDestroy();
+		_guiceServletContextListener.contextDestroyed(
+			servletContextEvent);
 	}
 
 	public void contextInitialized(ServletContextEvent servletContextEvent) {
@@ -38,16 +38,22 @@ public class GuiceServletContextListener extends BasePortalLifecycle
 	}
 	@Override
 	protected void doPortalDestroy() throws Exception {
-		_guiceServletContextListener.contextDestroyed(
-			_destroyedServletContextEvent);
 	}
 	@Override
 	protected void doPortalInit() throws Exception {
+		Thread currentThread = Thread.currentThread();
+
+		ClassLoader contextClassLoader = currentThread.getContextClassLoader();
+
+		currentThread.setContextClassLoader(
+			PortletClassLoaderUtil.getClassLoader());
+
 		_guiceServletContextListener.contextInitialized(
 			_initializedServletContextEvent);
+
+		currentThread.setContextClassLoader(contextClassLoader);
 	}
 
-	private ServletContextEvent _destroyedServletContextEvent;
 	private ServletContextListener _guiceServletContextListener =
 		new org.apache.shindig.common.servlet.GuiceServletContextListener();
 	private ServletContextEvent _initializedServletContextEvent;
