@@ -178,6 +178,16 @@
 	background-image: url(../images/url.png);
 }
 
+.aui-resize-handle-l {
+	cursor: col-resize;
+	left: 0;
+}
+
+.aui-resize-handle-t {
+	cursor: row-resize;
+	left: 0;
+}
+
 .ie .opensocial-portlet-editor .aui-tabview-list .aui-tab-content .gadget-editor-tab-close {
 	filter: alpha(opacity=20);
 }
