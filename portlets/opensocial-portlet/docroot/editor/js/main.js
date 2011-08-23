@@ -357,7 +357,7 @@ AUI().add(
 
 						var permissions = node.get('permissions');
 
-						permissions.deletePermission = event.deletePermission;
+						permissions.unpublishPermission = event.unpublishPermission;
 
 						node.setAttrs(
 							{

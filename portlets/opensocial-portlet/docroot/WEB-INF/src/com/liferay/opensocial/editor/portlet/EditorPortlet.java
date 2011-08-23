@@ -160,12 +160,13 @@ public class EditorPortlet extends AdminPortlet {
 			String publishGadgetRedirect = ParamUtil.getString(
 				actionRequest, "publishGadgetRedirect");
 
-			boolean deletePermission = GadgetPermission.contains(
+			boolean unpublishPermission = GadgetPermission.contains(
 				permissionChecker, groupId, gadget.getGadgetId(),
 				ActionKeys.DELETE);
 
 			publishGadgetRedirect = HttpUtil.addParameter(
-				publishGadgetRedirect, "deletePermission", deletePermission);
+				publishGadgetRedirect, "unpublishPermission",
+				unpublishPermission);
 
 			publishGadgetRedirect = HttpUtil.addParameter(
 				publishGadgetRedirect, "gadgetId", gadget.getGadgetId());
