@@ -185,17 +185,17 @@ public class KaleoTaskInstanceTokenLocalServiceClp
 				com.liferay.portal.service.ServiceContext.class);
 
 		_searchMethodKey37 = new MethodKey(_classLoaderProxy.getClassName(),
-				"search", java.lang.String.class, java.lang.String[].class,
-				java.lang.Boolean.class, java.lang.Boolean.class, int.class,
-				int.class,
-				com.liferay.portal.kernel.util.OrderByComparator.class,
-				com.liferay.portal.service.ServiceContext.class);
-
-		_searchMethodKey38 = new MethodKey(_classLoaderProxy.getClassName(),
 				"search", java.lang.String.class, java.lang.String.class,
 				java.lang.Long[].class, java.util.Date.class,
 				java.util.Date.class, java.lang.Boolean.class,
 				java.lang.Boolean.class, boolean.class, int.class, int.class,
+				com.liferay.portal.kernel.util.OrderByComparator.class,
+				com.liferay.portal.service.ServiceContext.class);
+
+		_searchMethodKey38 = new MethodKey(_classLoaderProxy.getClassName(),
+				"search", java.lang.String.class, java.lang.String[].class,
+				java.lang.Boolean.class, java.lang.Boolean.class, int.class,
+				int.class,
 				com.liferay.portal.kernel.util.OrderByComparator.class,
 				com.liferay.portal.service.ServiceContext.class);
 
@@ -213,16 +213,16 @@ public class KaleoTaskInstanceTokenLocalServiceClp
 				com.liferay.portal.service.ServiceContext.class);
 
 		_searchCountMethodKey41 = new MethodKey(_classLoaderProxy.getClassName(),
-				"searchCount", java.lang.String.class,
-				java.lang.String[].class, java.lang.Boolean.class,
-				java.lang.Boolean.class,
-				com.liferay.portal.service.ServiceContext.class);
-
-		_searchCountMethodKey42 = new MethodKey(_classLoaderProxy.getClassName(),
 				"searchCount", java.lang.String.class, java.lang.String.class,
 				java.lang.Long[].class, java.util.Date.class,
 				java.util.Date.class, java.lang.Boolean.class,
 				java.lang.Boolean.class, boolean.class,
+				com.liferay.portal.service.ServiceContext.class);
+
+		_searchCountMethodKey42 = new MethodKey(_classLoaderProxy.getClassName(),
+				"searchCount", java.lang.String.class,
+				java.lang.String[].class, java.lang.Boolean.class,
+				java.lang.Boolean.class,
 				com.liferay.portal.service.ServiceContext.class);
 
 		_searchCountMethodKey43 = new MethodKey(_classLoaderProxy.getClassName(),
@@ -1329,20 +1329,25 @@ public class KaleoTaskInstanceTokenLocalServiceClp
 	}
 
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken> search(
-		java.lang.String keywords, java.lang.String[] assetTypes,
-		java.lang.Boolean completed, java.lang.Boolean searchByUserRoles,
-		int start, int end,
+		java.lang.String taskName, java.lang.String assetType,
+		java.lang.Long[] assetPrimaryKeys, java.util.Date dueDateGT,
+		java.util.Date dueDateLT, java.lang.Boolean completed,
+		java.lang.Boolean searchByUserRoles, boolean andOperator, int start,
+		int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_searchMethodKey37,
-				ClpSerializer.translateInput(keywords),
-				ClpSerializer.translateInput(assetTypes),
+				ClpSerializer.translateInput(taskName),
+				ClpSerializer.translateInput(assetType),
+				ClpSerializer.translateInput(assetPrimaryKeys),
+				ClpSerializer.translateInput(dueDateGT),
+				ClpSerializer.translateInput(dueDateLT),
 				ClpSerializer.translateInput(completed),
-				ClpSerializer.translateInput(searchByUserRoles), start, end,
-				ClpSerializer.translateInput(orderByComparator),
+				ClpSerializer.translateInput(searchByUserRoles), andOperator,
+				start, end, ClpSerializer.translateInput(orderByComparator),
 				ClpSerializer.translateInput(serviceContext));
 
 		try {
@@ -1366,25 +1371,20 @@ public class KaleoTaskInstanceTokenLocalServiceClp
 	}
 
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken> search(
-		java.lang.String taskName, java.lang.String assetType,
-		java.lang.Long[] assetPrimaryKeys, java.util.Date dueDateGT,
-		java.util.Date dueDateLT, java.lang.Boolean completed,
-		java.lang.Boolean searchByUserRoles, boolean andOperator, int start,
-		int end,
+		java.lang.String keywords, java.lang.String[] assetTypes,
+		java.lang.Boolean completed, java.lang.Boolean searchByUserRoles,
+		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_searchMethodKey38,
-				ClpSerializer.translateInput(taskName),
-				ClpSerializer.translateInput(assetType),
-				ClpSerializer.translateInput(assetPrimaryKeys),
-				ClpSerializer.translateInput(dueDateGT),
-				ClpSerializer.translateInput(dueDateLT),
+				ClpSerializer.translateInput(keywords),
+				ClpSerializer.translateInput(assetTypes),
 				ClpSerializer.translateInput(completed),
-				ClpSerializer.translateInput(searchByUserRoles), andOperator,
-				start, end, ClpSerializer.translateInput(orderByComparator),
+				ClpSerializer.translateInput(searchByUserRoles), start, end,
+				ClpSerializer.translateInput(orderByComparator),
 				ClpSerializer.translateInput(serviceContext));
 
 		try {
@@ -1481,18 +1481,23 @@ public class KaleoTaskInstanceTokenLocalServiceClp
 		return ((Integer)returnObj).intValue();
 	}
 
-	public int searchCount(java.lang.String keywords,
-		java.lang.String[] assetTypes, java.lang.Boolean completed,
-		java.lang.Boolean searchByUserRoles,
+	public int searchCount(java.lang.String taskName,
+		java.lang.String assetType, java.lang.Long[] assetPrimaryKeys,
+		java.util.Date dueDateGT, java.util.Date dueDateLT,
+		java.lang.Boolean completed, java.lang.Boolean searchByUserRoles,
+		boolean andOperator,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_searchCountMethodKey41,
-				ClpSerializer.translateInput(keywords),
-				ClpSerializer.translateInput(assetTypes),
+				ClpSerializer.translateInput(taskName),
+				ClpSerializer.translateInput(assetType),
+				ClpSerializer.translateInput(assetPrimaryKeys),
+				ClpSerializer.translateInput(dueDateGT),
+				ClpSerializer.translateInput(dueDateLT),
 				ClpSerializer.translateInput(completed),
-				ClpSerializer.translateInput(searchByUserRoles),
+				ClpSerializer.translateInput(searchByUserRoles), andOperator,
 				ClpSerializer.translateInput(serviceContext));
 
 		try {
@@ -1515,23 +1520,18 @@ public class KaleoTaskInstanceTokenLocalServiceClp
 		return ((Integer)returnObj).intValue();
 	}
 
-	public int searchCount(java.lang.String taskName,
-		java.lang.String assetType, java.lang.Long[] assetPrimaryKeys,
-		java.util.Date dueDateGT, java.util.Date dueDateLT,
-		java.lang.Boolean completed, java.lang.Boolean searchByUserRoles,
-		boolean andOperator,
+	public int searchCount(java.lang.String keywords,
+		java.lang.String[] assetTypes, java.lang.Boolean completed,
+		java.lang.Boolean searchByUserRoles,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_searchCountMethodKey42,
-				ClpSerializer.translateInput(taskName),
-				ClpSerializer.translateInput(assetType),
-				ClpSerializer.translateInput(assetPrimaryKeys),
-				ClpSerializer.translateInput(dueDateGT),
-				ClpSerializer.translateInput(dueDateLT),
+				ClpSerializer.translateInput(keywords),
+				ClpSerializer.translateInput(assetTypes),
 				ClpSerializer.translateInput(completed),
-				ClpSerializer.translateInput(searchByUserRoles), andOperator,
+				ClpSerializer.translateInput(searchByUserRoles),
 				ClpSerializer.translateInput(serviceContext));
 
 		try {
