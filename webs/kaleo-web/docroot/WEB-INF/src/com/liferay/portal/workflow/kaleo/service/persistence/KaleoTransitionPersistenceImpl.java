@@ -2499,10 +2499,12 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(KaleoTransitionPersistenceImpl.class);
 	private static KaleoTransition _nullKaleoTransition = new KaleoTransitionImpl() {
+			@Override
 			public Object clone() {
 				return this;
 			}
 
+			@Override
 			public CacheModel<KaleoTransition> toCacheModel() {
 				return _nullKaleoTransitionCacheModel;
 			}

@@ -43,6 +43,7 @@ public class ClpMessageListener extends BaseMessageListener {
 		return ClpSerializer.getServletContextName();
 	}
 
+	@Override
 	protected void doReceive(Message message) throws Exception {
 		String command = message.getString("command");
 		String servletContextName = message.getString("servletContextName");

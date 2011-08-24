@@ -2396,10 +2396,12 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(KaleoTaskAssignmentInstancePersistenceImpl.class);
 	private static KaleoTaskAssignmentInstance _nullKaleoTaskAssignmentInstance = new KaleoTaskAssignmentInstanceImpl() {
+			@Override
 			public Object clone() {
 				return this;
 			}
 
+			@Override
 			public CacheModel<KaleoTaskAssignmentInstance> toCacheModel() {
 				return _nullKaleoTaskAssignmentInstanceCacheModel;
 			}

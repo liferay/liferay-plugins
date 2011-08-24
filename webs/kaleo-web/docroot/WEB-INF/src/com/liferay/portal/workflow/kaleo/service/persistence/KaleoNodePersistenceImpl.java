@@ -2471,10 +2471,12 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(KaleoNodePersistenceImpl.class);
 	private static KaleoNode _nullKaleoNode = new KaleoNodeImpl() {
+			@Override
 			public Object clone() {
 				return this;
 			}
 
+			@Override
 			public CacheModel<KaleoNode> toCacheModel() {
 				return _nullKaleoNodeCacheModel;
 			}
