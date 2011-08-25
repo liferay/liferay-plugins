@@ -449,18 +449,6 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 	}
 
 	public List<KaleoTaskInstanceToken> search(
-			String keywords, String[] assetTypes, Boolean completed,
-			Boolean searchByUserRoles, int start, int end,
-			OrderByComparator orderByComparator, ServiceContext serviceContext)
-		throws SystemException {
-
-		return search(
-			keywords, assetTypes, null, null, null, completed,
-			searchByUserRoles, true, start, end, orderByComparator,
-			serviceContext);
-	}
-
-	public List<KaleoTaskInstanceToken> search(
 			String taskName, String assetType, Long[] assetPrimaryKeys,
 			Date dueDateGT, Date dueDateLT, Boolean completed,
 			Boolean searchByUserRoles, boolean andOperator, int start, int end,
@@ -471,6 +459,18 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 			taskName, getAssetTypes(assetType), assetPrimaryKeys, dueDateGT,
 			dueDateLT, completed, searchByUserRoles, andOperator, start, end,
 			orderByComparator, serviceContext);
+	}
+
+	public List<KaleoTaskInstanceToken> search(
+			String keywords, String[] assetTypes, Boolean completed,
+			Boolean searchByUserRoles, int start, int end,
+			OrderByComparator orderByComparator, ServiceContext serviceContext)
+		throws SystemException {
+
+		return search(
+			keywords, assetTypes, null, null, null, completed,
+			searchByUserRoles, true, start, end, orderByComparator,
+			serviceContext);
 	}
 
 	public List<KaleoTaskInstanceToken> search(
@@ -510,16 +510,6 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 	}
 
 	public int searchCount(
-			String keywords, String[] assetTypes, Boolean completed,
-			Boolean searchByUserRoles, ServiceContext serviceContext)
-		throws SystemException {
-
-		return searchCount(
-			keywords, assetTypes, null, null, null, completed,
-			searchByUserRoles, true, serviceContext);
-	}
-
-	public int searchCount(
 			String taskName, String assetType, Long[] assetPrimaryKeys,
 			Date dueDateGT, Date dueDateLT, Boolean completed,
 			Boolean searchByUserRoles, boolean andOperator,
@@ -530,6 +520,16 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 			taskName, getAssetTypes(assetType), assetPrimaryKeys, dueDateGT,
 			dueDateLT, completed, searchByUserRoles, andOperator,
 			serviceContext);
+	}
+
+	public int searchCount(
+			String keywords, String[] assetTypes, Boolean completed,
+			Boolean searchByUserRoles, ServiceContext serviceContext)
+		throws SystemException {
+
+		return searchCount(
+			keywords, assetTypes, null, null, null, completed,
+			searchByUserRoles, true, serviceContext);
 	}
 
 	public int searchCount(
