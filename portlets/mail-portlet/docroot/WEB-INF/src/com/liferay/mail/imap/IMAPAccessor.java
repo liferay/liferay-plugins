@@ -521,6 +521,10 @@ public class IMAPAccessor {
 		IMAPFolder imapFolder = null;
 
 		try {
+			if (!FolderLocalServiceUtil.exists(folderId)) {
+				return;
+			}
+
 			imapFolder = openFolder(folderId);
 
 			com.liferay.mail.model.Folder folder =
