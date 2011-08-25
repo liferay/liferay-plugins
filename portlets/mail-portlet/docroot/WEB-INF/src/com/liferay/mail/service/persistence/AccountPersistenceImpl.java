@@ -1338,10 +1338,12 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(AccountPersistenceImpl.class);
 	private static Account _nullAccount = new AccountImpl() {
+			@Override
 			public Object clone() {
 				return this;
 			}
 
+			@Override
 			public CacheModel<Account> toCacheModel() {
 				return _nullAccountCacheModel;
 			}
