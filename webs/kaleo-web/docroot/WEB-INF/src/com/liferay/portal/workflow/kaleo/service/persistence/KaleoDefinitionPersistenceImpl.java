@@ -3138,10 +3138,12 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(KaleoDefinitionPersistenceImpl.class);
 	private static KaleoDefinition _nullKaleoDefinition = new KaleoDefinitionImpl() {
+			@Override
 			public Object clone() {
 				return this;
 			}
 
+			@Override
 			public CacheModel<KaleoDefinition> toCacheModel() {
 				return _nullKaleoDefinitionCacheModel;
 			}

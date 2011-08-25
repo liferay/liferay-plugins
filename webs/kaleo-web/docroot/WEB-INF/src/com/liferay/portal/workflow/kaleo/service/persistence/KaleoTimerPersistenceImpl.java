@@ -1667,10 +1667,12 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(KaleoTimerPersistenceImpl.class);
 	private static KaleoTimer _nullKaleoTimer = new KaleoTimerImpl() {
+			@Override
 			public Object clone() {
 				return this;
 			}
 
+			@Override
 			public CacheModel<KaleoTimer> toCacheModel() {
 				return _nullKaleoTimerCacheModel;
 			}

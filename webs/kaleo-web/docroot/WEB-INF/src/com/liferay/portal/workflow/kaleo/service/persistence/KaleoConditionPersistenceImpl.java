@@ -1734,10 +1734,12 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(KaleoConditionPersistenceImpl.class);
 	private static KaleoCondition _nullKaleoCondition = new KaleoConditionImpl() {
+			@Override
 			public Object clone() {
 				return this;
 			}
 
+			@Override
 			public CacheModel<KaleoCondition> toCacheModel() {
 				return _nullKaleoConditionCacheModel;
 			}

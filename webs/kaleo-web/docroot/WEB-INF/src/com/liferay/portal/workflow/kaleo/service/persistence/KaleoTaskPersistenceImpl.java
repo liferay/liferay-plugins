@@ -1720,10 +1720,12 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(KaleoTaskPersistenceImpl.class);
 	private static KaleoTask _nullKaleoTask = new KaleoTaskImpl() {
+			@Override
 			public Object clone() {
 				return this;
 			}
 
+			@Override
 			public CacheModel<KaleoTask> toCacheModel() {
 				return _nullKaleoTaskCacheModel;
 			}

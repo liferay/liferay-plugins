@@ -2356,10 +2356,12 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(KaleoNotificationPersistenceImpl.class);
 	private static KaleoNotification _nullKaleoNotification = new KaleoNotificationImpl() {
+			@Override
 			public Object clone() {
 				return this;
 			}
 
+			@Override
 			public CacheModel<KaleoNotification> toCacheModel() {
 				return _nullKaleoNotificationCacheModel;
 			}
