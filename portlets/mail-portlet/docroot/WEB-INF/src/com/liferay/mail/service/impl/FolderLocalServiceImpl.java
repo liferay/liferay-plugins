@@ -96,10 +96,8 @@ public class FolderLocalServiceImpl extends FolderLocalServiceBaseImpl {
 		}
 	}
 
-	public boolean exists(long folderId) throws SystemException {
-		Folder folder = folderPersistence.fetchByPrimaryKey(folderId);
-
-		return folder != null;
+	public Folder fetchFolder(long folderId) throws SystemException {
+		return folderPersistence.fetchByPrimaryKey(folderId);
 	}
 
 	public Folder getFolder(long accountId, String fullName)

@@ -521,14 +521,14 @@ public class IMAPAccessor {
 		IMAPFolder imapFolder = null;
 
 		try {
-			if (!FolderLocalServiceUtil.exists(folderId)) {
+			com.liferay.mail.model.Folder folder =
+				FolderLocalServiceUtil.fetchFolder(folderId);
+
+			if (folder == null) {
 				return;
 			}
 
 			imapFolder = openFolder(folderId);
-
-			com.liferay.mail.model.Folder folder =
-				FolderLocalServiceUtil.getFolder(folderId);
 
 			int messageCount = imapFolder.getMessageCount();
 

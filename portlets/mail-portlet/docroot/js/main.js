@@ -230,16 +230,13 @@ AUI().add(
 			loadFolders: function(accountId) {
 				var instance = this;
 
-				if(accountId <= 0) {
-					return;
+				if (accountId > 0) {
+					instance.controlContainer.show();
+
+					instance.foldersContainer.io.set('data', {accountId: accountId});
+
+					instance.foldersContainer.io.start();
 				}
-				
-				instance.controlContainer.show();
-
-				instance.foldersContainer.io.set('data', {accountId: accountId});
-
-				instance.foldersContainer.io.start();
-				
 			},
 
 			loadManageFolders: function(accountId) {
@@ -385,11 +382,10 @@ AUI().add(
 				instance.messagesContainer.html('');
 
 				instance.controlContainer.hide();
-				
-				clearTimeout(instance.timeOut);
-				
+
 				instance.loadAccounts();
-				
+
+				instance._pollStopMessages();
 			},
 
 			setStatus: function(type, message, indefinite) {
@@ -686,7 +682,7 @@ AUI().add(
 					'.select-none'
 				);
 
-				instance.timeOut = setTimeout('Liferay.Mail._pollCheckMessages()', instance._pollInterval);
+				instance.timeoutMessages = setTimeout('Liferay.Mail._pollCheckMessages()', instance._pollInterval);
 			},
 
 			_displayContainer: function(container) {
@@ -723,7 +719,13 @@ AUI().add(
 
 				instance.checkMessages(instance.inboxFolderId);
 
-				instance.timeOut = setTimeout('Liferay.Mail._pollCheckMessages()', instance._pollInterval);
+				instance.timeoutMessages = setTimeout('Liferay.Mail._pollCheckMessages()', instance._pollInterval);
+			},
+
+			_pollStopMessages: function() {
+				var instance = this;
+
+				clearTimeout(instance.timeoutMessages);
 			},
 
 			accountId: null,
