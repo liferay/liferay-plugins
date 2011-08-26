@@ -19,12 +19,12 @@
 <div class="filter-container asset-tag-filter">
 
 	<%
-	List<AssetTagStats> assetTagStatses = AssetTagStatsLocalServiceUtil.getTagStats(PortalUtil.getClassNameId(TasksEntry.class), QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+	List<AssetTagStats> assetTagStatsList = AssetTagStatsLocalServiceUtil.getTagStats(PortalUtil.getClassNameId(TasksEntry.class), QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
-	List<AssetTag> assetTags = new ArrayList<AssetTag>(assetTagStatses.size());
+	List<AssetTag> assetTags = new ArrayList<AssetTag>(assetTagStatsList.size());
 
 	if (group.isRegularSite()) {
-		for (AssetTagStats assetTagStats : assetTagStatses) {
+		for (AssetTagStats assetTagStats : assetTagStatsList) {
 			if (assetTagStats.getAssetCount() > 0) {
 				try {
 					AssetTag assetTag = AssetTagLocalServiceUtil.getTag(assetTagStats.getTagId());
@@ -40,7 +40,7 @@
 		}
 	}
 	else {
-		for (AssetTagStats assetTagStats : assetTagStatses) {
+		for (AssetTagStats assetTagStats : assetTagStatsList) {
 			if (assetTagStats.getAssetCount() > 0) {
 				try {
 					AssetTag assetTag = AssetTagLocalServiceUtil.getTag(assetTagStats.getTagId());
