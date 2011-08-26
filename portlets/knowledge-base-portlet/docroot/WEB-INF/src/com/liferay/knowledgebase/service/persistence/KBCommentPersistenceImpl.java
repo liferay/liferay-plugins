@@ -2987,10 +2987,12 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(KBCommentPersistenceImpl.class);
 	private static KBComment _nullKBComment = new KBCommentImpl() {
+			@Override
 			public Object clone() {
 				return this;
 			}
 
+			@Override
 			public CacheModel<KBComment> toCacheModel() {
 				return _nullKBCommentCacheModel;
 			}

@@ -1357,10 +1357,12 @@ public class HRBranchPersistenceImpl extends BasePersistenceImpl<HRBranch>
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(HRBranchPersistenceImpl.class);
 	private static HRBranch _nullHRBranch = new HRBranchImpl() {
+			@Override
 			public Object clone() {
 				return this;
 			}
 
+			@Override
 			public CacheModel<HRBranch> toCacheModel() {
 				return _nullHRBranchCacheModel;
 			}

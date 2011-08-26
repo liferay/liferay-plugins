@@ -678,10 +678,12 @@ public class HRUserTaskPersistenceImpl extends BasePersistenceImpl<HRUserTask>
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(HRUserTaskPersistenceImpl.class);
 	private static HRUserTask _nullHRUserTask = new HRUserTaskImpl() {
+			@Override
 			public Object clone() {
 				return this;
 			}
 
+			@Override
 			public CacheModel<HRUserTask> toCacheModel() {
 				return _nullHRUserTaskCacheModel;
 			}

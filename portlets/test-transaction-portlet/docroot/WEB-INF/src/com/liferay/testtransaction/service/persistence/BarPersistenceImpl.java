@@ -1045,10 +1045,12 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(BarPersistenceImpl.class);
 	private static Bar _nullBar = new BarImpl() {
+			@Override
 			public Object clone() {
 				return this;
 			}
 
+			@Override
 			public CacheModel<Bar> toCacheModel() {
 				return _nullBarCacheModel;
 			}

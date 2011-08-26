@@ -1505,10 +1505,12 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(WSRPConsumerPersistenceImpl.class);
 	private static WSRPConsumer _nullWSRPConsumer = new WSRPConsumerImpl() {
+			@Override
 			public Object clone() {
 				return this;
 			}
 
+			@Override
 			public CacheModel<WSRPConsumer> toCacheModel() {
 				return _nullWSRPConsumerCacheModel;
 			}

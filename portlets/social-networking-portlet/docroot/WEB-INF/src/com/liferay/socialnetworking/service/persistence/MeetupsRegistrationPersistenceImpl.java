@@ -1775,10 +1775,12 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(MeetupsRegistrationPersistenceImpl.class);
 	private static MeetupsRegistration _nullMeetupsRegistration = new MeetupsRegistrationImpl() {
+			@Override
 			public Object clone() {
 				return this;
 			}
 
+			@Override
 			public CacheModel<MeetupsRegistration> toCacheModel() {
 				return _nullMeetupsRegistrationCacheModel;
 			}

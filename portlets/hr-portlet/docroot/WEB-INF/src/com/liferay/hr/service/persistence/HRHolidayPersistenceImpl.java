@@ -1359,10 +1359,12 @@ public class HRHolidayPersistenceImpl extends BasePersistenceImpl<HRHoliday>
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(HRHolidayPersistenceImpl.class);
 	private static HRHoliday _nullHRHoliday = new HRHolidayImpl() {
+			@Override
 			public Object clone() {
 				return this;
 			}
 
+			@Override
 			public CacheModel<HRHoliday> toCacheModel() {
 				return _nullHRHolidayCacheModel;
 			}

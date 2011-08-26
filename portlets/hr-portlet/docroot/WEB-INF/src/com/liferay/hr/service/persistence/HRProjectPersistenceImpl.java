@@ -692,10 +692,12 @@ public class HRProjectPersistenceImpl extends BasePersistenceImpl<HRProject>
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(HRProjectPersistenceImpl.class);
 	private static HRProject _nullHRProject = new HRProjectImpl() {
+			@Override
 			public Object clone() {
 				return this;
 			}
 
+			@Override
 			public CacheModel<HRProject> toCacheModel() {
 				return _nullHRProjectCacheModel;
 			}

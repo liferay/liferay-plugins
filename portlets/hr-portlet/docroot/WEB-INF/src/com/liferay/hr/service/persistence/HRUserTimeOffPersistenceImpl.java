@@ -689,10 +689,12 @@ public class HRUserTimeOffPersistenceImpl extends BasePersistenceImpl<HRUserTime
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(HRUserTimeOffPersistenceImpl.class);
 	private static HRUserTimeOff _nullHRUserTimeOff = new HRUserTimeOffImpl() {
+			@Override
 			public Object clone() {
 				return this;
 			}
 
+			@Override
 			public CacheModel<HRUserTimeOff> toCacheModel() {
 				return _nullHRUserTimeOffCacheModel;
 			}

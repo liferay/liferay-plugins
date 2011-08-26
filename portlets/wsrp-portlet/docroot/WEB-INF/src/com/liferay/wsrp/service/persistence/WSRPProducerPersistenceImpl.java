@@ -1804,10 +1804,12 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(WSRPProducerPersistenceImpl.class);
 	private static WSRPProducer _nullWSRPProducer = new WSRPProducerImpl() {
+			@Override
 			public Object clone() {
 				return this;
 			}
 
+			@Override
 			public CacheModel<WSRPProducer> toCacheModel() {
 				return _nullWSRPProducerCacheModel;
 			}

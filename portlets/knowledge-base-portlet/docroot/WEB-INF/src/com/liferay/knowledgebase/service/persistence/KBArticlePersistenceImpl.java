@@ -24425,6 +24425,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		return sql;
 	}
 
+	private static final String _FILTER_ENTITY_TABLE_FILTER_PK_COLUMN = "kbArticle.rootResourcePrimKey";
 	private static final String _FILTER_SQL_SELECT_KBARTICLE_WHERE = "SELECT DISTINCT {kbArticle.*} FROM KBArticle kbArticle WHERE ";
 	private static final String _FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_1 =
 		"SELECT {KBArticle.*} FROM (SELECT DISTINCT kbArticle.kbArticleId FROM KBArticle kbArticle WHERE ";
@@ -24433,7 +24434,6 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	private static final String _FILTER_SQL_COUNT_KBARTICLE_WHERE = "SELECT COUNT(DISTINCT kbArticle.kbArticleId) AS COUNT_VALUE FROM KBArticle kbArticle WHERE ";
 	private static final String _FILTER_ENTITY_ALIAS = "kbArticle";
 	private static final String _FILTER_ENTITY_TABLE = "KBArticle";
-	private static final String _FILTER_ENTITY_TABLE_FILTER_PK_COLUMN = "kbArticle.rootResourcePrimKey";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "kbArticle.";
 	private static final String _ORDER_BY_ENTITY_TABLE = "KBArticle.";
 	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No KBArticle exists with the primary key ";
@@ -24442,10 +24442,12 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(KBArticlePersistenceImpl.class);
 	private static KBArticle _nullKBArticle = new KBArticleImpl() {
+			@Override
 			public Object clone() {
 				return this;
 			}
 
+			@Override
 			public CacheModel<KBArticle> toCacheModel() {
 				return _nullKBArticleCacheModel;
 			}

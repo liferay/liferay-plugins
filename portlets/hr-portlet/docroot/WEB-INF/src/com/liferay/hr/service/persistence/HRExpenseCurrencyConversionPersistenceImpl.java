@@ -1093,10 +1093,12 @@ public class HRExpenseCurrencyConversionPersistenceImpl
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(HRExpenseCurrencyConversionPersistenceImpl.class);
 	private static HRExpenseCurrencyConversion _nullHRExpenseCurrencyConversion = new HRExpenseCurrencyConversionImpl() {
+			@Override
 			public Object clone() {
 				return this;
 			}
 
+			@Override
 			public CacheModel<HRExpenseCurrencyConversion> toCacheModel() {
 				return _nullHRExpenseCurrencyConversionCacheModel;
 			}

@@ -684,10 +684,12 @@ public class HRAssetVendorPersistenceImpl extends BasePersistenceImpl<HRAssetVen
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(HRAssetVendorPersistenceImpl.class);
 	private static HRAssetVendor _nullHRAssetVendor = new HRAssetVendorImpl() {
+			@Override
 			public Object clone() {
 				return this;
 			}
 
+			@Override
 			public CacheModel<HRAssetVendor> toCacheModel() {
 				return _nullHRAssetVendorCacheModel;
 			}

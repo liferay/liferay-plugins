@@ -607,10 +607,12 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(CheckoutPersistenceImpl.class);
 	private static Checkout _nullCheckout = new CheckoutImpl() {
+			@Override
 			public Object clone() {
 				return this;
 			}
 
+			@Override
 			public CacheModel<Checkout> toCacheModel() {
 				return _nullCheckoutCacheModel;
 			}

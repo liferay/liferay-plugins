@@ -1000,10 +1000,12 @@ public class HRTimeOffFrequencyTypePersistenceImpl extends BasePersistenceImpl<H
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(HRTimeOffFrequencyTypePersistenceImpl.class);
 	private static HRTimeOffFrequencyType _nullHRTimeOffFrequencyType = new HRTimeOffFrequencyTypeImpl() {
+			@Override
 			public Object clone() {
 				return this;
 			}
 
+			@Override
 			public CacheModel<HRTimeOffFrequencyType> toCacheModel() {
 				return _nullHRTimeOffFrequencyTypeCacheModel;
 			}

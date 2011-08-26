@@ -1162,10 +1162,12 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(FeedPersistenceImpl.class);
 	private static Feed _nullFeed = new FeedImpl() {
+			@Override
 			public Object clone() {
 				return this;
 			}
 
+			@Override
 			public CacheModel<Feed> toCacheModel() {
 				return _nullFeedCacheModel;
 			}

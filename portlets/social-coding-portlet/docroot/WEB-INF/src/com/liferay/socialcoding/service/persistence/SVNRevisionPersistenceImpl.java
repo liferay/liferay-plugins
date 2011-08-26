@@ -1988,10 +1988,12 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(SVNRevisionPersistenceImpl.class);
 	private static SVNRevision _nullSVNRevision = new SVNRevisionImpl() {
+			@Override
 			public Object clone() {
 				return this;
 			}
 
+			@Override
 			public CacheModel<SVNRevision> toCacheModel() {
 				return _nullSVNRevisionCacheModel;
 			}

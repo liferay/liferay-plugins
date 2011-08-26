@@ -692,10 +692,12 @@ public class HRUserHistoryPersistenceImpl extends BasePersistenceImpl<HRUserHist
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(HRUserHistoryPersistenceImpl.class);
 	private static HRUserHistory _nullHRUserHistory = new HRUserHistoryImpl() {
+			@Override
 			public Object clone() {
 				return this;
 			}
 
+			@Override
 			public CacheModel<HRUserHistory> toCacheModel() {
 				return _nullHRUserHistoryCacheModel;
 			}

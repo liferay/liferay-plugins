@@ -1042,10 +1042,12 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(JIRAChangeItemPersistenceImpl.class);
 	private static JIRAChangeItem _nullJIRAChangeItem = new JIRAChangeItemImpl() {
+			@Override
 			public Object clone() {
 				return this;
 			}
 
+			@Override
 			public CacheModel<JIRAChangeItem> toCacheModel() {
 				return _nullJIRAChangeItemCacheModel;
 			}

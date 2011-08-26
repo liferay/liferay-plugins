@@ -687,10 +687,12 @@ public class HRAssetCheckoutPersistenceImpl extends BasePersistenceImpl<HRAssetC
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(HRAssetCheckoutPersistenceImpl.class);
 	private static HRAssetCheckout _nullHRAssetCheckout = new HRAssetCheckoutImpl() {
+			@Override
 			public Object clone() {
 				return this;
 			}
 
+			@Override
 			public CacheModel<HRAssetCheckout> toCacheModel() {
 				return _nullHRAssetCheckoutCacheModel;
 			}
