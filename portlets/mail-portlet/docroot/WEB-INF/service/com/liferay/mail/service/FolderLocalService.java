@@ -238,7 +238,8 @@ public interface FolderLocalService extends PersistedModelLocalService {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
-	public boolean exists(long folderId)
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.mail.model.Folder fetchFolder(long folderId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)

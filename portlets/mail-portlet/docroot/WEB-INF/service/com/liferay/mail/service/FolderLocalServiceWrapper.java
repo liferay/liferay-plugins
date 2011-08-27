@@ -257,9 +257,9 @@ public class FolderLocalServiceWrapper implements FolderLocalService {
 		_folderLocalService.deleteFolders(accountId);
 	}
 
-	public boolean exists(long folderId)
+	public com.liferay.mail.model.Folder fetchFolder(long folderId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return _folderLocalService.exists(folderId);
+		return _folderLocalService.fetchFolder(folderId);
 	}
 
 	public com.liferay.mail.model.Folder getFolder(long accountId,

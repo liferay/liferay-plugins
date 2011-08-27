@@ -88,8 +88,8 @@ public class FolderLocalServiceClp implements FolderLocalService {
 		_deleteFoldersMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
 				"deleteFolders", long.class);
 
-		_existsMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
-				"exists", long.class);
+		_fetchFolderMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
+				"fetchFolder", long.class);
 
 		_getFolderMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getFolder", long.class, java.lang.String.class);
@@ -611,11 +611,11 @@ public class FolderLocalServiceClp implements FolderLocalService {
 		}
 	}
 
-	public boolean exists(long folderId)
+	public com.liferay.mail.model.Folder fetchFolder(long folderId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_existsMethodKey18,
+		MethodHandler methodHandler = new MethodHandler(_fetchFolderMethodKey18,
 				folderId);
 
 		try {
@@ -635,7 +635,7 @@ public class FolderLocalServiceClp implements FolderLocalService {
 			}
 		}
 
-		return ((Boolean)returnObj).booleanValue();
+		return (com.liferay.mail.model.Folder)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public com.liferay.mail.model.Folder getFolder(long accountId,
@@ -848,7 +848,7 @@ public class FolderLocalServiceClp implements FolderLocalService {
 	private MethodKey _setBeanIdentifierMethodKey15;
 	private MethodKey _addFolderMethodKey16;
 	private MethodKey _deleteFoldersMethodKey17;
-	private MethodKey _existsMethodKey18;
+	private MethodKey _fetchFolderMethodKey18;
 	private MethodKey _getFolderMethodKey19;
 	private MethodKey _getFoldersMethodKey20;
 	private MethodKey _getLocalPageCountMethodKey21;
