@@ -21,20 +21,47 @@
 	<%
 	List<AssetTagStats> assetTagStatses = AssetTagStatsLocalServiceUtil.getTagStats(PortalUtil.getClassNameId(TasksEntry.class), QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
-	if (!assetTagStatses.isEmpty()) {
+	List<AssetTag> assetTags = new ArrayList<AssetTag>(assetTagStatses.size());
+
+	if (group.isRegularSite()) {
 		for (AssetTagStats assetTagStats : assetTagStatses) {
 			if (assetTagStats.getAssetCount() > 0) {
-				AssetTag assetTag = AssetTagLocalServiceUtil.getTag(assetTagStats.getTagId());
+				try {
+					AssetTag assetTag = AssetTagLocalServiceUtil.getTag(assetTagStats.getTagId());
+
+					if (assetTag.getGroupId() == group.getGroupId()) {
+						assetTags.add(assetTag);
+					}
+				}
+				catch (NoSuchTagException nste) {
+				}
+
+			}
+		}
+	}
+	else {
+		for (AssetTagStats assetTagStats : assetTagStatses) {
+			if (assetTagStats.getAssetCount() > 0) {
+				try {
+					AssetTag assetTag = AssetTagLocalServiceUtil.getTag(assetTagStats.getTagId());
+
+					assetTags.add(assetTag);
+				}
+				catch (NoSuchTagException nste) {
+				}
+			}
+		}
+	}
+
+	if (!assetTags.isEmpty()) {
+		for (AssetTag assetTag : assetTags) {
 	%>
 
-				<c:if test="<%= (group.isRegularSite() && assetTag.getGroupId() == group.getGroupId()) || group.isUser() %>">
-					<span class="asset-tag" data-assetTagId="<%= assetTag.getTagId() %>">
-						<a href="javascript:;"><%= assetTag.getName() %></a>
-					</span>
-				</c:if>
+			<span class="asset-tag" data-assetTagId="<%= assetTag.getTagId() %>">
+				<a href="javascript:;"><%= assetTag.getName() %></a>
+			</span>
 
 	<%
-			}
 		}
 	}
 	else {

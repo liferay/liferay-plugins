@@ -52,6 +52,7 @@
 <%@ page import="com.liferay.portal.service.UserLocalServiceUtil" %>
 <%@ page import="com.liferay.portal.util.PortalUtil" %>
 <%@ page import="com.liferay.portal.util.comparator.ContactFirstNameComparator" %>
+<%@ page import="com.liferay.portlet.asset.NoSuchTagException" %>
 <%@ page import="com.liferay.portlet.asset.model.AssetTag" %>
 <%@ page import="com.liferay.portlet.asset.model.AssetTagStats" %>
 <%@ page import="com.liferay.portlet.asset.service.AssetTagLocalServiceUtil" %>
@@ -72,6 +73,7 @@
 
 <%@ page import="java.text.Format" %>
 
+<%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.Calendar" %>
 <%@ page import="java.util.Iterator" %>
 <%@ page import="java.util.LinkedHashMap" %>
