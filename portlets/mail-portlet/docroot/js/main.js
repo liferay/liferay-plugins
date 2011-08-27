@@ -230,11 +230,16 @@ AUI().add(
 			loadFolders: function(accountId) {
 				var instance = this;
 
+				if(accountId <= 0) {
+					return;
+				}
+				
 				instance.controlContainer.show();
 
 				instance.foldersContainer.io.set('data', {accountId: accountId});
 
 				instance.foldersContainer.io.start();
+				
 			},
 
 			loadManageFolders: function(accountId) {
@@ -380,8 +385,11 @@ AUI().add(
 				instance.messagesContainer.html('');
 
 				instance.controlContainer.hide();
-
+				
+				clearTimeout(instance.timeOut);
+				
 				instance.loadAccounts();
+				
 			},
 
 			setStatus: function(type, message, indefinite) {
@@ -678,7 +686,7 @@ AUI().add(
 					'.select-none'
 				);
 
-				setTimeout('Liferay.Mail._pollCheckMessages()', instance._pollInterval);
+				instance.timeOut = setTimeout('Liferay.Mail._pollCheckMessages()', instance._pollInterval);
 			},
 
 			_displayContainer: function(container) {
@@ -715,7 +723,7 @@ AUI().add(
 
 				instance.checkMessages(instance.inboxFolderId);
 
-				setTimeout('Liferay.Mail._pollCheckMessages()', instance._pollInterval);
+				instance.timeOut = setTimeout('Liferay.Mail._pollCheckMessages()', instance._pollInterval);
 			},
 
 			accountId: null,
