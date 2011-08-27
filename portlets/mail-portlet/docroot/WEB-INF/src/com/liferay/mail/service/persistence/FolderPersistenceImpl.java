@@ -1331,10 +1331,12 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(FolderPersistenceImpl.class);
 	private static Folder _nullFolder = new FolderImpl() {
+			@Override
 			public Object clone() {
 				return this;
 			}
 
+			@Override
 			public CacheModel<Folder> toCacheModel() {
 				return _nullFolderCacheModel;
 			}
