@@ -685,10 +685,12 @@ public class HRTimeOffPersistenceImpl extends BasePersistenceImpl<HRTimeOff>
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(HRTimeOffPersistenceImpl.class);
 	private static HRTimeOff _nullHRTimeOff = new HRTimeOffImpl() {
+			@Override
 			public Object clone() {
 				return this;
 			}
 
+			@Override
 			public CacheModel<HRTimeOff> toCacheModel() {
 				return _nullHRTimeOffCacheModel;
 			}

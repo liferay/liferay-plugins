@@ -1037,10 +1037,12 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(ProjectsEntryPersistenceImpl.class);
 	private static ProjectsEntry _nullProjectsEntry = new ProjectsEntryImpl() {
+			@Override
 			public Object clone() {
 				return this;
 			}
 
+			@Override
 			public CacheModel<ProjectsEntry> toCacheModel() {
 				return _nullProjectsEntryCacheModel;
 			}

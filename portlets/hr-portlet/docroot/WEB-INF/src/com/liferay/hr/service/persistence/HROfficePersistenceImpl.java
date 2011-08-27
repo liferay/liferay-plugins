@@ -1356,10 +1356,12 @@ public class HROfficePersistenceImpl extends BasePersistenceImpl<HROffice>
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(HROfficePersistenceImpl.class);
 	private static HROffice _nullHROffice = new HROfficeImpl() {
+			@Override
 			public Object clone() {
 				return this;
 			}
 
+			@Override
 			public CacheModel<HROffice> toCacheModel() {
 				return _nullHROfficeCacheModel;
 			}

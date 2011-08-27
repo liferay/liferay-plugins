@@ -4683,10 +4683,12 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(MicroblogsEntryPersistenceImpl.class);
 	private static MicroblogsEntry _nullMicroblogsEntry = new MicroblogsEntryImpl() {
+			@Override
 			public Object clone() {
 				return this;
 			}
 
+			@Override
 			public CacheModel<MicroblogsEntry> toCacheModel() {
 				return _nullMicroblogsEntryCacheModel;
 			}

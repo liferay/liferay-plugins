@@ -2643,10 +2643,12 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(UserThreadPersistenceImpl.class);
 	private static UserThread _nullUserThread = new UserThreadImpl() {
+			@Override
 			public Object clone() {
 				return this;
 			}
 
+			@Override
 			public CacheModel<UserThread> toCacheModel() {
 				return _nullUserThreadCacheModel;
 			}

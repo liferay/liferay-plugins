@@ -2061,10 +2061,12 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(MemberRequestPersistenceImpl.class);
 	private static MemberRequest _nullMemberRequest = new MemberRequestImpl() {
+			@Override
 			public Object clone() {
 				return this;
 			}
 
+			@Override
 			public CacheModel<MemberRequest> toCacheModel() {
 				return _nullMemberRequestCacheModel;
 			}

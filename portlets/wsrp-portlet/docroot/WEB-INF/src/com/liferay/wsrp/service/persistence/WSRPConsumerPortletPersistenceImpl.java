@@ -1828,10 +1828,12 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(WSRPConsumerPortletPersistenceImpl.class);
 	private static WSRPConsumerPortlet _nullWSRPConsumerPortlet = new WSRPConsumerPortletImpl() {
+			@Override
 			public Object clone() {
 				return this;
 			}
 
+			@Override
 			public CacheModel<WSRPConsumerPortlet> toCacheModel() {
 				return _nullWSRPConsumerPortletCacheModel;
 			}

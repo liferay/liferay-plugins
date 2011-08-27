@@ -1502,10 +1502,12 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(JIRAChangeGroupPersistenceImpl.class);
 	private static JIRAChangeGroup _nullJIRAChangeGroup = new JIRAChangeGroupImpl() {
+			@Override
 			public Object clone() {
 				return this;
 			}
 
+			@Override
 			public CacheModel<JIRAChangeGroup> toCacheModel() {
 				return _nullJIRAChangeGroupCacheModel;
 			}

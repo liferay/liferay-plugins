@@ -605,10 +605,12 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(AssetPersistenceImpl.class);
 	private static Asset _nullAsset = new AssetImpl() {
+			@Override
 			public Object clone() {
 				return this;
 			}
 
+			@Override
 			public CacheModel<Asset> toCacheModel() {
 				return _nullAssetCacheModel;
 			}

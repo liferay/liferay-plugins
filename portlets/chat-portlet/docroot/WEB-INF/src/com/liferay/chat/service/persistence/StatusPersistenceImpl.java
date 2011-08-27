@@ -2093,10 +2093,12 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(StatusPersistenceImpl.class);
 	private static Status _nullStatus = new StatusImpl() {
+			@Override
 			public Object clone() {
 				return this;
 			}
 
+			@Override
 			public CacheModel<Status> toCacheModel() {
 				return _nullStatusCacheModel;
 			}

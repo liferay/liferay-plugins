@@ -982,10 +982,12 @@ public class HRWageTypePersistenceImpl extends BasePersistenceImpl<HRWageType>
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(HRWageTypePersistenceImpl.class);
 	private static HRWageType _nullHRWageType = new HRWageTypeImpl() {
+			@Override
 			public Object clone() {
 				return this;
 			}
 
+			@Override
 			public CacheModel<HRWageType> toCacheModel() {
 				return _nullHRWageTypeCacheModel;
 			}

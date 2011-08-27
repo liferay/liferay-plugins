@@ -678,10 +678,12 @@ public class HRAssetTypePersistenceImpl extends BasePersistenceImpl<HRAssetType>
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(HRAssetTypePersistenceImpl.class);
 	private static HRAssetType _nullHRAssetType = new HRAssetTypeImpl() {
+			@Override
 			public Object clone() {
 				return this;
 			}
 
+			@Override
 			public CacheModel<HRAssetType> toCacheModel() {
 				return _nullHRAssetTypeCacheModel;
 			}

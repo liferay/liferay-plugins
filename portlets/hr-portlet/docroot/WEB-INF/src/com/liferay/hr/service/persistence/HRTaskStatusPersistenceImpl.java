@@ -987,10 +987,12 @@ public class HRTaskStatusPersistenceImpl extends BasePersistenceImpl<HRTaskStatu
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(HRTaskStatusPersistenceImpl.class);
 	private static HRTaskStatus _nullHRTaskStatus = new HRTaskStatusImpl() {
+			@Override
 			public Object clone() {
 				return this;
 			}
 
+			@Override
 			public CacheModel<HRTaskStatus> toCacheModel() {
 				return _nullHRTaskStatusCacheModel;
 			}

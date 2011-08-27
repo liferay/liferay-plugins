@@ -1772,10 +1772,12 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(FooPersistenceImpl.class);
 	private static Foo _nullFoo = new FooImpl() {
+			@Override
 			public Object clone() {
 				return this;
 			}
 
+			@Override
 			public CacheModel<Foo> toCacheModel() {
 				return _nullFooCacheModel;
 			}

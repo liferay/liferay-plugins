@@ -687,10 +687,12 @@ public class HRUserProjectPersistenceImpl extends BasePersistenceImpl<HRUserProj
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(HRUserProjectPersistenceImpl.class);
 	private static HRUserProject _nullHRUserProject = new HRUserProjectImpl() {
+			@Override
 			public Object clone() {
 				return this;
 			}
 
+			@Override
 			public CacheModel<HRUserProject> toCacheModel() {
 				return _nullHRUserProjectCacheModel;
 			}

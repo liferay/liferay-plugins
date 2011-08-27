@@ -1356,10 +1356,12 @@ public class HRJobTitlePersistenceImpl extends BasePersistenceImpl<HRJobTitle>
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(HRJobTitlePersistenceImpl.class);
 	private static HRJobTitle _nullHRJobTitle = new HRJobTitleImpl() {
+			@Override
 			public Object clone() {
 				return this;
 			}
 
+			@Override
 			public CacheModel<HRJobTitle> toCacheModel() {
 				return _nullHRJobTitleCacheModel;
 			}

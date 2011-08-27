@@ -880,10 +880,12 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(SVNRepositoryPersistenceImpl.class);
 	private static SVNRepository _nullSVNRepository = new SVNRepositoryImpl() {
+			@Override
 			public Object clone() {
 				return this;
 			}
 
+			@Override
 			public CacheModel<SVNRepository> toCacheModel() {
 				return _nullSVNRepositoryCacheModel;
 			}

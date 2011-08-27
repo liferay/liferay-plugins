@@ -994,10 +994,12 @@ public class HRTerminationTypePersistenceImpl extends BasePersistenceImpl<HRTerm
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(HRTerminationTypePersistenceImpl.class);
 	private static HRTerminationType _nullHRTerminationType = new HRTerminationTypeImpl() {
+			@Override
 			public Object clone() {
 				return this;
 			}
 
+			@Override
 			public CacheModel<HRTerminationType> toCacheModel() {
 				return _nullHRTerminationTypeCacheModel;
 			}

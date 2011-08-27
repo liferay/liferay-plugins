@@ -595,10 +595,12 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(TypePersistenceImpl.class);
 	private static Type _nullType = new TypeImpl() {
+			@Override
 			public Object clone() {
 				return this;
 			}
 
+			@Override
 			public CacheModel<Type> toCacheModel() {
 				return _nullTypeCacheModel;
 			}

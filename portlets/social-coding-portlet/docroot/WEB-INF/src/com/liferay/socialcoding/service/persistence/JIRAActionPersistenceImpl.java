@@ -1950,10 +1950,12 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(JIRAActionPersistenceImpl.class);
 	private static JIRAAction _nullJIRAAction = new JIRAActionImpl() {
+			@Override
 			public Object clone() {
 				return this;
 			}
 
+			@Override
 			public CacheModel<JIRAAction> toCacheModel() {
 				return _nullJIRAActionCacheModel;
 			}

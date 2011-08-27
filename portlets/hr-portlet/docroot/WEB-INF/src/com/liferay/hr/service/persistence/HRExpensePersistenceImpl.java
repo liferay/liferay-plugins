@@ -686,10 +686,12 @@ public class HRExpensePersistenceImpl extends BasePersistenceImpl<HRExpense>
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(HRExpensePersistenceImpl.class);
 	private static HRExpense _nullHRExpense = new HRExpenseImpl() {
+			@Override
 			public Object clone() {
 				return this;
 			}
 
+			@Override
 			public CacheModel<HRExpense> toCacheModel() {
 				return _nullHRExpenseCacheModel;
 			}

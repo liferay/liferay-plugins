@@ -692,10 +692,12 @@ public class HRTimeSheetHoursPerDayPersistenceImpl extends BasePersistenceImpl<H
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(HRTimeSheetHoursPerDayPersistenceImpl.class);
 	private static HRTimeSheetHoursPerDay _nullHRTimeSheetHoursPerDay = new HRTimeSheetHoursPerDayImpl() {
+			@Override
 			public Object clone() {
 				return this;
 			}
 
+			@Override
 			public CacheModel<HRTimeSheetHoursPerDay> toCacheModel() {
 				return _nullHRTimeSheetHoursPerDayCacheModel;
 			}

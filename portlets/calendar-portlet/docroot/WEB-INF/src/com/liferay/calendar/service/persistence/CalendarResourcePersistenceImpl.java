@@ -4974,6 +4974,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 		return sql;
 	}
 
+	private static final String _FILTER_ENTITY_TABLE_FILTER_PK_COLUMN = "calendarResource.calendarResourceId";
 	private static final String _FILTER_SQL_SELECT_CALENDARRESOURCE_WHERE = "SELECT DISTINCT {calendarResource.*} FROM CalendarResource calendarResource WHERE ";
 	private static final String _FILTER_SQL_SELECT_CALENDARRESOURCE_NO_INLINE_DISTINCT_WHERE_1 =
 		"SELECT {CalendarResource.*} FROM (SELECT DISTINCT calendarResource.calendarResourceId FROM CalendarResource calendarResource WHERE ";
@@ -4982,7 +4983,6 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 	private static final String _FILTER_SQL_COUNT_CALENDARRESOURCE_WHERE = "SELECT COUNT(DISTINCT calendarResource.calendarResourceId) AS COUNT_VALUE FROM CalendarResource calendarResource WHERE ";
 	private static final String _FILTER_ENTITY_ALIAS = "calendarResource";
 	private static final String _FILTER_ENTITY_TABLE = "CalendarResource";
-	private static final String _FILTER_ENTITY_TABLE_FILTER_PK_COLUMN = "calendarResource.calendarResourceId";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "calendarResource.";
 	private static final String _ORDER_BY_ENTITY_TABLE = "CalendarResource.";
 	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No CalendarResource exists with the primary key ";
@@ -4991,10 +4991,12 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(CalendarResourcePersistenceImpl.class);
 	private static CalendarResource _nullCalendarResource = new CalendarResourceImpl() {
+			@Override
 			public Object clone() {
 				return this;
 			}
 
+			@Override
 			public CacheModel<CalendarResource> toCacheModel() {
 				return _nullCalendarResourceCacheModel;
 			}

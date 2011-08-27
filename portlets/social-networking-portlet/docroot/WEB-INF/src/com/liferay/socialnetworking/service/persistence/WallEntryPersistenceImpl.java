@@ -1894,10 +1894,12 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(WallEntryPersistenceImpl.class);
 	private static WallEntry _nullWallEntry = new WallEntryImpl() {
+			@Override
 			public Object clone() {
 				return this;
 			}
 
+			@Override
 			public CacheModel<WallEntry> toCacheModel() {
 				return _nullWallEntryCacheModel;
 			}

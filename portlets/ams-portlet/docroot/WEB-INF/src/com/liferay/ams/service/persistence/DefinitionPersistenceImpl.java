@@ -612,10 +612,12 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(DefinitionPersistenceImpl.class);
 	private static Definition _nullDefinition = new DefinitionImpl() {
+			@Override
 			public Object clone() {
 				return this;
 			}
 
+			@Override
 			public CacheModel<Definition> toCacheModel() {
 				return _nullDefinitionCacheModel;
 			}

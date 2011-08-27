@@ -1400,10 +1400,12 @@ public class CalendarEventPersistenceImpl extends BasePersistenceImpl<CalendarEv
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(CalendarEventPersistenceImpl.class);
 	private static CalendarEvent _nullCalendarEvent = new CalendarEventImpl() {
+			@Override
 			public Object clone() {
 				return this;
 			}
 
+			@Override
 			public CacheModel<CalendarEvent> toCacheModel() {
 				return _nullCalendarEventCacheModel;
 			}

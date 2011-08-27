@@ -2709,10 +2709,12 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(CalendarBookingPersistenceImpl.class);
 	private static CalendarBooking _nullCalendarBooking = new CalendarBookingImpl() {
+			@Override
 			public Object clone() {
 				return this;
 			}
 
+			@Override
 			public CacheModel<CalendarBooking> toCacheModel() {
 				return _nullCalendarBookingCacheModel;
 			}

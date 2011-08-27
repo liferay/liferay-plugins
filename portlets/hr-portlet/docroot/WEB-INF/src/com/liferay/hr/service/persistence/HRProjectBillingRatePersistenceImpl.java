@@ -687,10 +687,12 @@ public class HRProjectBillingRatePersistenceImpl extends BasePersistenceImpl<HRP
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(HRProjectBillingRatePersistenceImpl.class);
 	private static HRProjectBillingRate _nullHRProjectBillingRate = new HRProjectBillingRateImpl() {
+			@Override
 			public Object clone() {
 				return this;
 			}
 
+			@Override
 			public CacheModel<HRProjectBillingRate> toCacheModel() {
 				return _nullHRProjectBillingRateCacheModel;
 			}
