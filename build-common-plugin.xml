@@ -120,8 +120,9 @@
 			<jvmarg value="-Dfile.encoding=UTF-8" />
 			<jvmarg value="-Duser.country=US" />
 			<jvmarg value="-Duser.language=en" />
-			<arg value="${lang.dir}" />
-			<arg value="${lang.file}" />
+			<arg value="lang.dir=${lang.dir}" />
+			<arg value="lang.file=${lang.file}" />
+			<arg value="lang.plugin=true" />
 		</java>
 
 		<copy file="${lang.dir}/${lang.file}.properties" tofile="${lang.dir}/${lang.file}_en.properties" />
