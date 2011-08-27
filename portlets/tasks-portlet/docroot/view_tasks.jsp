@@ -46,7 +46,7 @@ taskListURL.setParameter("tabs2", tabs2);
 >
 
 	<%
-	if (group.isCommunity()) {
+	if (group.isRegularSite()) {
 		groupId = group.getGroupId();
 	}
 
@@ -135,7 +135,7 @@ taskListURL.setParameter("tabs2", tabs2);
 					}
 					%>
 
-					<c:if test="<%= (curGroup != null) && curGroup.isCommunity() %>">
+					<c:if test="<%= (curGroup != null) && curGroup.isRegularSite() %>">
 						<span><liferay-ui:message key="community" />: <%= HtmlUtil.escape(curGroup.getDescriptiveName()) %></span>
 					</c:if>
 				</c:if>

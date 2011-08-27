@@ -92,7 +92,7 @@ Group group = themeDisplay.getScopeGroup();
 
 String tabs1Default = "assigned-to-me";
 
-if (group.isCommunity()) {
+if (group.isRegularSite()) {
 	tabs1Default = "all-tasks";
 }
 
