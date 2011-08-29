@@ -131,7 +131,7 @@ portletURL.setParameter("socialRelationType", String.valueOf(socialRelationType)
 				</div>
 			</c:when>
 			<c:otherwise>
-				<liferay-ui:panel-container extended="<%= false %>" persistState="<%= true %>">
+				<liferay-ui:panel-container extended="<%= false %>" id="contactsCenterContactsPanelContainer" persistState="<%= true %>">
 
 					<%
 					int requestCount = SocialRequestLocalServiceUtil.getReceiverUserRequestsCount(themeDisplay.getUserId(), SocialRequestConstants.STATUS_PENDING);
@@ -162,7 +162,7 @@ portletURL.setParameter("socialRelationType", String.valueOf(socialRelationType)
 					%>
 
 					<c:if test="<%= friendUsersCount > 0 %>">
-						<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" persistState="<%= true %>" title="friends">
+						<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id="contactsCenterFriendsPanel" persistState="<%= true %>" title="friends">
 
 							<%
 							List<User> friendUsers = UserLocalServiceUtil.getSocialUsers(themeDisplay.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND, 0, usersPerSection, new UserLoginDateComparator());
@@ -187,7 +187,7 @@ portletURL.setParameter("socialRelationType", String.valueOf(socialRelationType)
 					%>
 
 					<c:if test="<%= coworkerUsersCount > 0 %>">
-						<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" persistState="<%= true %>" title="coworkers">
+						<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id="contactsCenterCoworkersPanel" persistState="<%= true %>" title="coworkers">
 
 							<%
 							List<User> coworkerUsers = UserLocalServiceUtil.getSocialUsers(themeDisplay.getUserId(), SocialRelationConstants.TYPE_BI_COWORKER, 0, usersPerSection, new UserLoginDateComparator());
@@ -212,7 +212,7 @@ portletURL.setParameter("socialRelationType", String.valueOf(socialRelationType)
 					%>
 
 					<c:if test="<%= followingUsersCount > 0 %>">
-						<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" persistState="<%= true %>" title="following">
+						<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>"  id="contactsCenterContactsFollowingPanel" persistState="<%= true %>" title="following">
 
 							<%
 							List<User> followingUsers = UserLocalServiceUtil.getSocialUsers(themeDisplay.getUserId(), SocialRelationConstants.TYPE_UNI_FOLLOWER, 0, usersPerSection, new UserLoginDateComparator());
