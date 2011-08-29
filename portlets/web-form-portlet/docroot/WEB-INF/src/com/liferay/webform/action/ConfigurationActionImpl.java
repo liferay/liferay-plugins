@@ -25,13 +25,17 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portlet.PortletPreferencesFactoryUtil;
+import com.liferay.portlet.expando.DuplicateColumnNameException;
 import com.liferay.webform.util.WebFormUtil;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -276,6 +280,64 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 				SessionErrors.add(actionRequest, "fileNameInvalid");
 			}
 		}
+
+		//check field names
+		
+		if (!validateFieldNames(actionRequest)) {
+			SessionErrors.add(actionRequest,
+				DuplicateColumnNameException.class.getName());
+		}
+
+	}
+
+	protected boolean validateFieldNames(ActionRequest actionRequest)
+	{
+		int i = 0;
+		Locale defaultLocale = LocaleUtil.getDefault();
+
+		int[] formFieldsIndexes = StringUtil.split(
+			ParamUtil.getString(actionRequest, "formFieldsIndexes"), 0);
+
+		HashMap<String, Set<String>> localizedUniqueFieldNames =
+			new HashMap<String, Set<String>>();
+
+		for (int formFieldsIndex : formFieldsIndexes) {
+			Map<Locale, String> fieldLabelMap =
+				LocalizationUtil.getLocalizationMap(
+					actionRequest, "fieldLabel" + formFieldsIndex);
+
+			if (Validator.isNull(fieldLabelMap.get(defaultLocale))) {
+				continue;
+			}
+
+			for (Locale locale : fieldLabelMap.keySet()) {
+				String languageId = LocaleUtil.toLanguageId(locale);
+				String fieldLabelValue = fieldLabelMap.get(locale);
+
+				Set<String> localizedFieldNamesSet =
+					localizedUniqueFieldNames.get(languageId);
+
+				if (localizedFieldNamesSet == null) {
+					localizedFieldNamesSet = new HashSet<String>();
+				}
+
+				localizedUniqueFieldNames.put(
+					languageId, localizedFieldNamesSet);
+
+				if (Validator.isNotNull(fieldLabelValue)) {
+					if (localizedFieldNamesSet.contains(fieldLabelValue)) {
+						return false;
+					}
+					else {
+						localizedFieldNamesSet.add(fieldLabelValue);
+					}
+				}
+			}
+
+			i++;
+		}
+
+		return true;
 	}
 
 }
