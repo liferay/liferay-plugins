@@ -290,9 +290,7 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 
 	}
 
-	protected boolean validateFieldNames(ActionRequest actionRequest)
-	{
-		int i = 0;
+	protected boolean validateFieldNames(ActionRequest actionRequest) {
 		Locale defaultLocale = LocaleUtil.getDefault();
 
 		int[] formFieldsIndexes = StringUtil.split(
@@ -311,8 +309,8 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 			}
 
 			for (Locale locale : fieldLabelMap.keySet()) {
-				String languageId = LocaleUtil.toLanguageId(locale);
 				String fieldLabelValue = fieldLabelMap.get(locale);
+				String languageId = LocaleUtil.toLanguageId(locale);
 
 				Set<String> localizedFieldNamesSet =
 					localizedUniqueFieldNames.get(languageId);
@@ -333,8 +331,6 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 					}
 				}
 			}
-
-			i++;
 		}
 
 		return true;
