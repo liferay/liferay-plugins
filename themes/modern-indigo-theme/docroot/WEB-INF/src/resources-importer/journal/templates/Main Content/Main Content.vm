@@ -1,0 +1,55 @@
+#set($colCount=0)
+
+#if($col-one.data!='')
+	#set($colCount = $colCount + 1)
+#end
+
+#if($col-two.data!='')
+	#set($colCount = $colCount + 1)
+#end
+
+#if($col-three.data!='')
+	#set($colCount = $colCount + 1)
+#end
+
+<div class="page-content">
+	#if($title.data != '' )
+		<h1 class="innovation-title">
+			$title.data
+		</h1>
+
+		<div class="divider"></div>
+	#end
+
+	<div class="content-text aui-layout-content">
+		#if($colCount==1 && $col-one.data != '' && $col-one.data !='')
+			<div class="aui-column aui-w100">
+				<div class="aui-column-content">$col-one.data</div>
+			</div>
+		#end
+
+		#if($colCount==2 && $col-one.data != '' && $col-two.data !='')
+			<div class="aui-column aui-w50 aui-column-first">
+				<div class="aui-column-content">$col-one.data</div>
+			</div>
+
+			<div class="aui-column aui-w50 aui-column-last">
+				<div class="aui-column-content">$col-two.data</div>
+			</div>
+		#end
+
+		#if($colCount==3 && $col-one.data != '' && $col-two.data !='' && $col-three.data !='')
+			<div class="aui-column aui-w33 aui-column-first">
+				<div class="aui-column-content">$col-one.data</div>
+			</div>
+
+			<div class="aui-column aui-w33 center">
+				<div class="aui-column-content">$col-two.data</div>
+			</div>
+
+			<div class="aui-column aui-w33 aui-column-last">
+				<div class="aui-column-content">$col-three.data</div>
+			</div>
+		#end
+	</div>
+</div>

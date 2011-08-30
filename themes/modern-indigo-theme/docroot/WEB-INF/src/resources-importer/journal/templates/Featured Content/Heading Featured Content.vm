@@ -1,0 +1,5 @@
+<div class="featured-text">
+	<h3>$!title.data</h3>
+
+	<div class="featured-content">$!content.data</div>
+</div>
