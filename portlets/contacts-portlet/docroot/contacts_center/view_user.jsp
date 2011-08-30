@@ -95,9 +95,9 @@ request.setAttribute("view_user.jsp-viewUser", Boolean.TRUE.toString());
 			</div>
 		</c:if>
 
-		<liferay-ui:panel-container extended="<%= false %>" persistState="<%= true %>">
+		<liferay-ui:panel-container extended="<%= false %>" id="contactsCenterUserPanelContainer" persistState="<%= true %>">
 			<c:if test="<%= showUsersInformation && UserPermissionUtil.contains(permissionChecker, user2.getUserId(), ActionKeys.VIEW) %>">
-				<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" persistState="<%= true %>" title="information">
+				<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id="contactsCenterUserInformationPanel" persistState="<%= true %>" title="information">
 					<div class="lfr-user-info-container">
 						<liferay-util:include page="/contacts_center/view_user_information.jsp" portletId="<%= portletDisplay.getId() %>" />
 					</div>
@@ -120,7 +120,7 @@ request.setAttribute("view_user.jsp-viewUser", Boolean.TRUE.toString());
 					String cssClass = "lfr-" + title + "-container";
 				%>
 
-					<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" persistState="<%= true %>" title="<%= title %>">
+					<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id='<%= "contactsCenter" + title + "Panel" %>' persistState="<%= true %>" title="<%= title %>">
 						<div class="<%= cssClass %>">
 							<liferay-util:include page="<%= extensionPath %>" servletContext="<%= extensionServletContext %>" />
 						</div>
@@ -133,7 +133,7 @@ request.setAttribute("view_user.jsp-viewUser", Boolean.TRUE.toString());
 			</c:if>
 
 			<c:if test="<%= showUsersRecentActivity %>">
-				<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" persistState="<%= true %>" title="recent-activity">
+				<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id="contactsCenterUserRecentActivityPanel" persistState="<%= true %>" title="recent-activity">
 					<liferay-ui:social-activities
 						activities="<%= SocialActivityLocalServiceUtil.getUserActivities(user2.getUserId(), 0, 10) %>"
 						feedEnabled="<%= false %>"
