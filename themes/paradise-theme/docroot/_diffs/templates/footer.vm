@@ -1,0 +1,9 @@
+<footer id="footer" role="contentinfo">
+	#if ($has_navigation || $is_signed_in)
+		#parse ("$full_templates_path/navigation.vm")
+	#end
+
+	<div class="clearer"></div>
+
+	$social-footer
+</footer>

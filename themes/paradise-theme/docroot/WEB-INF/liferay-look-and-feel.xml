@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE look-and-feel PUBLIC "-//Liferay//DTD Look and Feel 6.1.0//EN" "http://www.liferay.com/dtd/liferay-look-and-feel_6_1_0.dtd">
+
+<look-and-feel>
+	<compatibility>
+		<version>6.1.0+</version>
+	</compatibility>
+	<theme id="paradise" name="Paradise Theme">
+		<settings>
+				<setting configurable="true" key="portlet-setup-show-borders-default" type="checkbox" value="true"/>
+				<setting configurable="true" key="show-breadcrumbs" type="checkbox" value="false"/>
+				<setting configurable="false" key="show-site-name-default" value="false" />
+		</settings>
+		<layout-templates>
+			<custom>
+				<layout-template id="3-3-3-columns" name="3-3-3 Columns Layout">
+					<template-path>/layouttpl/custom/3-3-3-columns-layouttpl/3_3_3_columns.tpl</template-path>
+					<wap-template-path>/layouttpl/custom/3-3-3-columns-layouttpl/3_3_3_columns.tpl</wap-template-path>
+					<thumbnail-path>/layouttpl/custom/3-3-3-columns-layouttpl/3_3_3_columns.png</thumbnail-path>
+				</layout-template>
+			</custom>
+		</layout-templates>
+	</theme>
+</look-and-feel>

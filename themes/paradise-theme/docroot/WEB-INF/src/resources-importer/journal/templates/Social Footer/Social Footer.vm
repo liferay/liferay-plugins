@@ -1,0 +1,24 @@
+<style>
+	.tint img {
+		filter: url(../images/custom/filters.svg#grayscale);
+		filter: gray;
+		-webkit-filter: grayscale(1);
+	}
+	
+	.tint:hover img {
+		filter: none;
+		-webkit-filter: grayscale(0);
+	}
+</style>
+
+<div id="social">
+	<ul>
+		#foreach($social in $socials.siblings)
+			<li>
+				<a class="tint ${social.data.toLowerCase()}" href="${social.link.data}" target="_blank">
+					<img src="${social.icon.data}" alt="${social.data}" title="${social.data}" width="27px" height="30px"/>
+				</a>
+			</li>
+		#end
+	</ul>
+</div>

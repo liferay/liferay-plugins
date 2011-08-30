@@ -1,0 +1,14 @@
+#if ($browserSniffer.getMajorVersion($request) < 7)
+	#set($logo_css_class = $logo_css_class + " png")
+#end
+
+#foreach ($nav_item in $nav_items)
+	#if ($velocityCount == 1)
+		#if ($nav_item.isSelected())
+			#set($css_class = $css_class + " home-page")
+		#end
+	#end
+#end
+
+#set($show_breadcrumbs = $getterUtil.getBoolean($!theme_display.getThemeSetting('show-breadcrumbs')))
+#set($social-footer = $journalContentUtil.getContent($group_id,'SOCIAL-FOOTER',null,"$locale",$theme_display))

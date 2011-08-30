@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element instance-id="7YC53vDS" name="socials" type="text" index-type="">
+		<dynamic-element instance-id="tcwXHEw5" name="icon" type="document_library" index-type="">
+			<dynamic-content><![CDATA[[$FILE=facebook.png$]]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element instance-id="JlFvE2C5" name="link" type="text" index-type="">
+			<dynamic-content><![CDATA[//facebook.com/liferay]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-content><![CDATA[Facebook]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element instance-id="UlSUkIm6" name="socials" type="text" index-type="">
+		<dynamic-element instance-id="spxQoU4J" name="icon" type="document_library" index-type="">
+			<dynamic-content><![CDATA[[$FILE=twitter.png$]]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element instance-id="D5fLnmc9" name="link" type="text" index-type="">
+			<dynamic-content><![CDATA[//twitter.com/liferay]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-content><![CDATA[Twitter]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element instance-id="5uD8mQOz" name="socials" type="text" index-type="">
+		<dynamic-element instance-id="lUSul1BE" name="icon" type="document_library" index-type="">
+			<dynamic-content><![CDATA[[$FILE=trip_advisor.png$]]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element instance-id="0MqGOSkX" name="link" type="text" index-type="">
+			<dynamic-content><![CDATA[//www.tripadvisor.com/Tourism-g32655-Los_Angeles_California-Vacations.html]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-content><![CDATA[Trip Advisor]]></dynamic-content>
+	</dynamic-element>
+</root>
