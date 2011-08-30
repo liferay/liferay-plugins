@@ -299,6 +299,17 @@ public class KaleoInstanceLocalServiceUtil {
 	}
 
 	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoInstance> getKaleoInstances(
+		java.lang.Long userId, java.lang.String[] assetClassNames,
+		java.lang.Boolean completed, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .getKaleoInstances(userId, assetClassNames, completed,
+			start, end, orderByComparator, serviceContext);
+	}
+
+	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoInstance> getKaleoInstances(
 		java.lang.String kaleoDefinitionName, int kaleoDefinitionVersion,
 		boolean completed, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator,
@@ -324,6 +335,15 @@ public class KaleoInstanceLocalServiceUtil {
 		return getService()
 				   .getKaleoInstancesCount(userId, assetClassName,
 			assetClassPK, completed, serviceContext);
+	}
+
+	public static int getKaleoInstancesCount(java.lang.Long userId,
+		java.lang.String[] assetClassNames, java.lang.Boolean completed,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .getKaleoInstancesCount(userId, assetClassNames, completed,
+			serviceContext);
 	}
 
 	public static int getKaleoInstancesCount(
