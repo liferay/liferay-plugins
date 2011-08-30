@@ -107,25 +107,37 @@ public class KaleoInstanceLocalServiceClp implements KaleoInstanceLocalService {
 				com.liferay.portal.service.ServiceContext.class);
 
 		_getKaleoInstancesMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getKaleoInstances", java.lang.Long.class,
+				java.lang.String[].class, java.lang.Boolean.class, int.class,
+				int.class,
+				com.liferay.portal.kernel.util.OrderByComparator.class,
+				com.liferay.portal.service.ServiceContext.class);
+
+		_getKaleoInstancesMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getKaleoInstances", java.lang.String.class, int.class,
 				boolean.class, int.class, int.class,
 				com.liferay.portal.kernel.util.OrderByComparator.class,
 				com.liferay.portal.service.ServiceContext.class);
 
-		_getKaleoInstancesCountMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getKaleoInstancesCountMethodKey23 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getKaleoInstancesCount", long.class, boolean.class);
 
-		_getKaleoInstancesCountMethodKey23 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getKaleoInstancesCountMethodKey24 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getKaleoInstancesCount", java.lang.Long.class,
 				java.lang.String.class, java.lang.Long.class,
 				java.lang.Boolean.class,
 				com.liferay.portal.service.ServiceContext.class);
 
-		_getKaleoInstancesCountMethodKey24 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getKaleoInstancesCountMethodKey25 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getKaleoInstancesCount", java.lang.Long.class,
+				java.lang.String[].class, java.lang.Boolean.class,
+				com.liferay.portal.service.ServiceContext.class);
+
+		_getKaleoInstancesCountMethodKey26 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getKaleoInstancesCount", java.lang.String.class, int.class,
 				boolean.class, com.liferay.portal.service.ServiceContext.class);
 
-		_updateKaleoInstanceMethodKey25 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateKaleoInstanceMethodKey27 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateKaleoInstance", long.class, java.util.Map.class,
 				com.liferay.portal.service.ServiceContext.class);
 	}
@@ -724,6 +736,41 @@ public class KaleoInstanceLocalServiceClp implements KaleoInstanceLocalService {
 	}
 
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoInstance> getKaleoInstances(
+		java.lang.Long userId, java.lang.String[] assetClassNames,
+		java.lang.Boolean completed, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_getKaleoInstancesMethodKey21,
+				ClpSerializer.translateInput(userId),
+				ClpSerializer.translateInput(assetClassNames),
+				ClpSerializer.translateInput(completed), start, end,
+				ClpSerializer.translateInput(orderByComparator),
+				ClpSerializer.translateInput(serviceContext));
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoInstance>)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoInstance> getKaleoInstances(
 		java.lang.String kaleoDefinitionName, int kaleoDefinitionVersion,
 		boolean completed, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator,
@@ -731,7 +778,7 @@ public class KaleoInstanceLocalServiceClp implements KaleoInstanceLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getKaleoInstancesMethodKey21,
+		MethodHandler methodHandler = new MethodHandler(_getKaleoInstancesMethodKey22,
 				ClpSerializer.translateInput(kaleoDefinitionName),
 				kaleoDefinitionVersion, completed, start, end,
 				ClpSerializer.translateInput(orderByComparator),
@@ -761,7 +808,7 @@ public class KaleoInstanceLocalServiceClp implements KaleoInstanceLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getKaleoInstancesCountMethodKey22,
+		MethodHandler methodHandler = new MethodHandler(_getKaleoInstancesCountMethodKey23,
 				kaleoDefinitionId, completed);
 
 		try {
@@ -791,10 +838,42 @@ public class KaleoInstanceLocalServiceClp implements KaleoInstanceLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getKaleoInstancesCountMethodKey23,
+		MethodHandler methodHandler = new MethodHandler(_getKaleoInstancesCountMethodKey24,
 				ClpSerializer.translateInput(userId),
 				ClpSerializer.translateInput(assetClassName),
 				ClpSerializer.translateInput(assetClassPK),
+				ClpSerializer.translateInput(completed),
+				ClpSerializer.translateInput(serviceContext));
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return ((Integer)returnObj).intValue();
+	}
+
+	public int getKaleoInstancesCount(java.lang.Long userId,
+		java.lang.String[] assetClassNames, java.lang.Boolean completed,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_getKaleoInstancesCountMethodKey25,
+				ClpSerializer.translateInput(userId),
+				ClpSerializer.translateInput(assetClassNames),
 				ClpSerializer.translateInput(completed),
 				ClpSerializer.translateInput(serviceContext));
 
@@ -824,7 +903,7 @@ public class KaleoInstanceLocalServiceClp implements KaleoInstanceLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getKaleoInstancesCountMethodKey24,
+		MethodHandler methodHandler = new MethodHandler(_getKaleoInstancesCountMethodKey26,
 				ClpSerializer.translateInput(kaleoDefinitionName),
 				kaleoDefinitionVersion, completed,
 				ClpSerializer.translateInput(serviceContext));
@@ -857,7 +936,7 @@ public class KaleoInstanceLocalServiceClp implements KaleoInstanceLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateKaleoInstanceMethodKey25,
+		MethodHandler methodHandler = new MethodHandler(_updateKaleoInstanceMethodKey27,
 				kaleoInstanceId, ClpSerializer.translateInput(workflowContext),
 				ClpSerializer.translateInput(serviceContext));
 
@@ -912,8 +991,10 @@ public class KaleoInstanceLocalServiceClp implements KaleoInstanceLocalService {
 	private MethodKey _deleteKaleoDefinitionKaleoInstancesMethodKey19;
 	private MethodKey _getKaleoInstancesMethodKey20;
 	private MethodKey _getKaleoInstancesMethodKey21;
-	private MethodKey _getKaleoInstancesCountMethodKey22;
+	private MethodKey _getKaleoInstancesMethodKey22;
 	private MethodKey _getKaleoInstancesCountMethodKey23;
 	private MethodKey _getKaleoInstancesCountMethodKey24;
-	private MethodKey _updateKaleoInstanceMethodKey25;
+	private MethodKey _getKaleoInstancesCountMethodKey25;
+	private MethodKey _getKaleoInstancesCountMethodKey26;
+	private MethodKey _updateKaleoInstanceMethodKey27;
 }
