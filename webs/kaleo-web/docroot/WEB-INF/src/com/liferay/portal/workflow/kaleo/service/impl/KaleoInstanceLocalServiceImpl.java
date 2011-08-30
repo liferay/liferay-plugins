@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.dao.orm.Criterion;
 import com.liferay.portal.kernel.dao.orm.Disjunction;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.Property;
 import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -311,31 +312,36 @@ public class KaleoInstanceLocalServiceImpl
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
 			KaleoInstance.class, getClass().getClassLoader());
 
-		dynamicQuery.add(
-			PropertyFactoryUtil.forName("companyId").eq(
-				serviceContext.getCompanyId()));
+		Property companyIdProperty = PropertyFactoryUtil.forName("companyId");
+
+		dynamicQuery.add(companyIdProperty.eq(serviceContext.getCompanyId()));
 
 		if (userId != null) {
-			dynamicQuery.add(
-				PropertyFactoryUtil.forName("userId").eq(userId));
+			Property userIdProperty = PropertyFactoryUtil.forName("userId");
+
+			dynamicQuery.add(userIdProperty.eq(userId));
 		}
 
-		if (Validator.isNotNull(assetClassNames)) {
+		if ((assetClassNames != null) && (assetClassNames.length > 0)) {
 			dynamicQuery.add(getAssetClassNames(assetClassNames));
 		}
 
-		if (Validator.isNotNull(assetClassPKs)) {
+		if ((assetClassPKs != null) && (assetClassPKs.length > 0)) {
 			dynamicQuery.add(getAssetClassPKs(assetClassPKs));
 		}
 
 		if (completed != null) {
 			if (completed) {
-				dynamicQuery.add(
-					PropertyFactoryUtil.forName("completionDate").isNotNull());
+				Property completionDateProperty = PropertyFactoryUtil.forName(
+					"completionDate");
+
+				dynamicQuery.add(completionDateProperty.isNotNull());
 			}
 			else {
-				dynamicQuery.add(
-					PropertyFactoryUtil.forName("completionDate").isNull());
+				Property completionDateProperty = PropertyFactoryUtil.forName(
+					"completionDate");
+
+				dynamicQuery.add(completionDateProperty.isNull());
 			}
 		}
 
@@ -349,23 +355,32 @@ public class KaleoInstanceLocalServiceImpl
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
 			KaleoInstance.class, getClass().getClassLoader());
 
+		Property companyIdProperty = PropertyFactoryUtil.forName("companyId");
+
+		dynamicQuery.add(companyIdProperty.eq(serviceContext.getCompanyId()));
+
+		Property kaleoDefinitionNameProperty = PropertyFactoryUtil.forName(
+			"kaleoDefinitionName");
+
+		dynamicQuery.add(kaleoDefinitionNameProperty.eq(kaleoDefinitionName));
+
+		Property kaleoDefinitionVersionProperty = PropertyFactoryUtil.forName(
+			"kaleoDefinitionVersion");
+
 		dynamicQuery.add(
-			PropertyFactoryUtil.forName("companyId").eq(
-				serviceContext.getCompanyId()));
-		dynamicQuery.add(
-			PropertyFactoryUtil.forName("kaleoDefinitionName").eq(
-				kaleoDefinitionName));
-		dynamicQuery.add(
-			PropertyFactoryUtil.forName("kaleoDefinitionVersion").eq(
-				kaleoDefinitionVersion));
+			kaleoDefinitionVersionProperty.eq(kaleoDefinitionVersion));
 
 		if (completed) {
-			dynamicQuery.add(
-				PropertyFactoryUtil.forName("completionDate").isNotNull());
+			Property completionDateProperty = PropertyFactoryUtil.forName(
+				"completionDate");
+
+			dynamicQuery.add(completionDateProperty.isNotNull());
 		}
 		else {
-			dynamicQuery.add(
-				PropertyFactoryUtil.forName("completionDate").isNull());
+			Property completionDateProperty = PropertyFactoryUtil.forName(
+				"completionDate");
+
+			dynamicQuery.add(completionDateProperty.isNull());
 		}
 
 		return dynamicQuery;
@@ -375,8 +390,10 @@ public class KaleoInstanceLocalServiceImpl
 		Disjunction disjunction = RestrictionsFactoryUtil.disjunction();
 
 		for (String assetClassName : assetClassNames) {
-			disjunction.add(
-				PropertyFactoryUtil.forName("className").like(assetClassName));
+			Property classNameProperty = PropertyFactoryUtil.forName(
+				"className");
+
+			disjunction.add(classNameProperty.like(assetClassName));
 		}
 
 		return disjunction;
@@ -386,8 +403,9 @@ public class KaleoInstanceLocalServiceImpl
 		Disjunction disjunction = RestrictionsFactoryUtil.disjunction();
 
 		for (Long assetClassPK : assetClassPKs) {
-			disjunction.add(
-				PropertyFactoryUtil.forName("classPK").eq(assetClassPK));
+			Property classPKProperty = PropertyFactoryUtil.forName("classPK");
+
+			disjunction.add(classPKProperty.eq(assetClassPK));
 		}
 
 		return disjunction;
