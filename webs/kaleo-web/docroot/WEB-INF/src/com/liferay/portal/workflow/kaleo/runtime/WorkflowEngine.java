@@ -28,6 +28,7 @@ import java.util.Map;
 
 /**
  * @author Michael C. Han
+ * @author Marcellus Tavares
  */
 public interface WorkflowEngine {
 
@@ -63,6 +64,11 @@ public interface WorkflowEngine {
 		throws WorkflowException;
 
 	public int getWorkflowInstanceCount(
+			Long userId, String[] assetClassNames, Boolean completed,
+			ServiceContext serviceContext)
+		throws WorkflowException;
+
+	public int getWorkflowInstanceCount(
 			String workflowDefinitionName, int workflowDefinitionVersion,
 			boolean completed, ServiceContext serviceContext)
 		throws WorkflowException;
@@ -71,6 +77,12 @@ public interface WorkflowEngine {
 			Long userId, String assetClassName, Long assetClassPK,
 			Boolean completed, int start, int end,
 			OrderByComparator orderByComparator, ServiceContext serviceContext)
+		throws WorkflowException;
+
+	public List<WorkflowInstance> getWorkflowInstances(
+			Long userId, String[] assetClassNames, Boolean completed, int start,
+			int end, OrderByComparator orderByComparator,
+			ServiceContext serviceContext)
 		throws WorkflowException;
 
 	public List<WorkflowInstance> getWorkflowInstances(

@@ -202,6 +202,20 @@ public class DefaultWorkflowEngineImpl
 	}
 
 	public int getWorkflowInstanceCount(
+			Long userId, String[] assetClassNames, Boolean completed,
+			ServiceContext serviceContext)
+		throws WorkflowException {
+
+		try {
+			return kaleoInstanceLocalService.getKaleoInstancesCount(
+				userId, assetClassNames, completed, serviceContext);
+		}
+		catch (Exception e) {
+			throw new WorkflowException(e);
+		}
+	}
+
+	public int getWorkflowInstanceCount(
 			String workflowDefinitionName, int workflowDefinitionVersion,
 			boolean completed, ServiceContext serviceContext)
 		throws WorkflowException {
@@ -226,6 +240,25 @@ public class DefaultWorkflowEngineImpl
 			List<KaleoInstance> kaleoInstances =
 				kaleoInstanceLocalService.getKaleoInstances(
 					userId, assetClassName, assetClassPK, completed, start, end,
+					orderByComparator, serviceContext);
+
+			return toWorkflowInstances(kaleoInstances, serviceContext);
+		}
+		catch (Exception e) {
+			throw new WorkflowException(e);
+		}
+	}
+
+	public List<WorkflowInstance> getWorkflowInstances(
+			Long userId, String[] assetClassNames, Boolean completed, int start,
+			int end, OrderByComparator orderByComparator,
+			ServiceContext serviceContext)
+		throws WorkflowException {
+
+		try {
+			List<KaleoInstance> kaleoInstances =
+				kaleoInstanceLocalService.getKaleoInstances(
+					userId, assetClassNames, completed, start, end,
 					orderByComparator, serviceContext);
 
 			return toWorkflowInstances(kaleoInstances, serviceContext);
