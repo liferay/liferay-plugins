@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
-import com.liferay.portlet.expando.NoSuchColumnException;
 import com.liferay.portlet.expando.NoSuchTableException;
 import com.liferay.portlet.expando.model.ExpandoColumn;
 import com.liferay.portlet.expando.model.ExpandoColumnConstants;
@@ -246,13 +245,10 @@ public class LiferayAppDataService implements AppDataService {
 			_log.error(nste, nste);
 		}
 
-		ExpandoColumn expandoColumn = null;
+		ExpandoColumn expandoColumn = ExpandoColumnLocalServiceUtil.getColumn(
+			expandoTable.getTableId(), columnName);
 
-		try {
-			expandoColumn = ExpandoColumnLocalServiceUtil.getColumn(
-				expandoTable.getTableId(), columnName);
-		}
-		catch (NoSuchColumnException nsce) {
+		if (expandoColumn == null) {
 			expandoColumn = ExpandoColumnLocalServiceUtil.addColumn(
 				expandoTable.getTableId(), columnName,
 				ExpandoColumnConstants.STRING);
