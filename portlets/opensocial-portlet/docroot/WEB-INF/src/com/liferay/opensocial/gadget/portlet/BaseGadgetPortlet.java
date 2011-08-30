@@ -29,7 +29,6 @@ import com.liferay.portal.service.ResourcePermissionLocalServiceUtil;
 import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.theme.PortletDisplay;
 import com.liferay.portal.theme.ThemeDisplay;
-import com.liferay.portlet.expando.NoSuchColumnException;
 import com.liferay.portlet.expando.model.ExpandoColumn;
 import com.liferay.portlet.expando.model.ExpandoColumnConstants;
 import com.liferay.portlet.expando.model.ExpandoTable;
@@ -89,15 +88,13 @@ public abstract class BaseGadgetPortlet extends MVCPortlet {
 
 		String columnName = ShindigUtil.getColumnUserPrefs(namespace);
 
-		try {
-			ExpandoColumnLocalServiceUtil.getColumn(
-				expandoTable.getTableId(), columnName);
-		}
-		catch (NoSuchColumnException nsce) {
-			ExpandoColumn expandoColumn =
-				ExpandoColumnLocalServiceUtil.addColumn(
-					expandoTable.getTableId(), columnName,
-					ExpandoColumnConstants.STRING);
+		ExpandoColumn expandoColumn = ExpandoColumnLocalServiceUtil.getColumn(
+			expandoTable.getTableId(), columnName);
+
+		if (expandoColumn == null) {
+			expandoColumn = ExpandoColumnLocalServiceUtil.addColumn(
+				expandoTable.getTableId(), columnName,
+				ExpandoColumnConstants.STRING);
 
 			Role role = RoleLocalServiceUtil.getRole(
 				expandoColumn.getCompanyId(), RoleConstants.USER);
