@@ -31,7 +31,6 @@ import com.liferay.webform.util.WebFormUtil;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Locale;
 import java.util.Map;
@@ -281,23 +280,19 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 			}
 		}
 
-		//check field names
-		
-		if (!validateFieldNames(actionRequest)) {
-			SessionErrors.add(actionRequest,
-				DuplicateColumnNameException.class.getName());
+		if (!validateUniqueFieldNames(actionRequest)) {
+			SessionErrors.add(
+				actionRequest, DuplicateColumnNameException.class.getName());
 		}
-
 	}
 
-	protected boolean validateFieldNames(ActionRequest actionRequest) {
+	protected boolean validateUniqueFieldNames(ActionRequest actionRequest) {
 		Locale defaultLocale = LocaleUtil.getDefault();
+
+		Set<String> localizedUniqueFieldNames = new HashSet<String>();
 
 		int[] formFieldsIndexes = StringUtil.split(
 			ParamUtil.getString(actionRequest, "formFieldsIndexes"), 0);
-
-		HashMap<String, Set<String>> localizedUniqueFieldNames =
-			new HashMap<String, Set<String>>();
 
 		for (int formFieldsIndex : formFieldsIndexes) {
 			Map<Locale, String> fieldLabelMap =
@@ -310,25 +305,17 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 
 			for (Locale locale : fieldLabelMap.keySet()) {
 				String fieldLabelValue = fieldLabelMap.get(locale);
-				String languageId = LocaleUtil.toLanguageId(locale);
 
-				Set<String> localizedFieldNamesSet =
-					localizedUniqueFieldNames.get(languageId);
-
-				if (localizedFieldNamesSet == null) {
-					localizedFieldNamesSet = new HashSet<String>();
+				if (Validator.isNull(fieldLabelValue)) {
+					continue;
 				}
 
-				localizedUniqueFieldNames.put(
-					languageId, localizedFieldNamesSet);
+				String languageId = LocaleUtil.toLanguageId(locale);
 
-				if (Validator.isNotNull(fieldLabelValue)) {
-					if (localizedFieldNamesSet.contains(fieldLabelValue)) {
-						return false;
-					}
-					else {
-						localizedFieldNamesSet.add(fieldLabelValue);
-					}
+				if (localizedUniqueFieldNames.add(
+						languageId + "_" + fieldLabelValue)) {
+
+					return false;
 				}
 			}
 		}
