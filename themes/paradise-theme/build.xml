@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<!DOCTYPE project>
+
+<project name="paradise-theme" basedir="." default="deploy">
+	<import file="../build-common-theme.xml" />
+
+	<property name="theme.parent" value="_styled" />
+</project>

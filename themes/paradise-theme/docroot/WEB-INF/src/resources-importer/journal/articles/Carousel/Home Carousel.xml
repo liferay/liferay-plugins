@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element instance-id="E6KvgQoU" name="width" type="text" index-type="">
+		<dynamic-content><![CDATA[640]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element instance-id="d8phHqbq" name="height" type="text" index-type="">
+		<dynamic-content><![CDATA[290]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element instance-id="qTEG2sA3" name="duration" type="list" index-type="">
+		<dynamic-content><![CDATA[5]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element instance-id="49S8pbOe" name="controls" type="boolean" index-type="">
+		<dynamic-content><![CDATA[true]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element instance-id="UKn7s3fJ" name="items" type="text" index-type="">
+		<dynamic-element instance-id="XFs8LMU1" name="image" type="document_library" index-type="">
+			<dynamic-content><![CDATA[[$FILE=carousel_1.jpg$]]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element instance-id="4KukClgG" name="url-link" type="text" index-type="">
+			<dynamic-content><![CDATA[./reservations]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-content><![CDATA[Reservations]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element instance-id="RvXooI0X" name="items" type="text" index-type="">
+		<dynamic-element instance-id="BpFhB3fU" name="image" type="document_library" index-type="">
+			<dynamic-content><![CDATA[[$FILE=carousel_2.jpg$]]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element instance-id="tbUtGhA9" name="url-link" type="text" index-type="">
+			<dynamic-content><![CDATA[./about-us]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-content><![CDATA[About Us]]></dynamic-content>
+	</dynamic-element>
+</root>

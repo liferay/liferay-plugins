@@ -1,0 +1,63 @@
+#set($contentId = $reserved-article-id.data)
+#set($contentClass = "multiple-items-" + $contentId + "-carousel")
+
+<style type="text/css">
+    #$contentClass {
+    	height: ${height.data}px;
+		position: relative;
+		width: ${width.data}px;
+	}
+
+	#${contentClass} .carousel-item {
+		height: ${height.data}()px;
+		overflow: hidden;
+		position: absolute;
+		top: 0;
+		width: ${width.data}px;
+	}
+
+	#if ($controls.data == "")
+		#${contentClass} menu {
+			display: none;
+		}
+	#end
+</style>
+
+<div id="${contentClass}">
+	#foreach ($item in $items.siblings)
+		<div class="carousel-item">
+			#set($alt_class = "")
+
+			#if($item.data != "")
+				#set($alt_class = "title='$item.data' alt='$item.data'")
+			#end
+
+			#if($item.url-link.data != "")
+				<a href="${item.url-link.data}" ${alt_class}>
+			#end
+			
+				<img src="${item.image.data}"/>
+
+			#if($item.url-link.data != "")
+				</a>
+			#end
+		</div>
+	#end
+</div>
+
+<script type="text/javascript">
+	AUI().ready(
+	'aui-carousel',
+		function(A) {
+			var component = new A.Carousel(
+				{
+					activeIndex: 'rand',
+					contentBox: '#${contentClass}',
+					height: ${height.data},
+					intervalTime: ${duration.data},
+					width: ${width.data}
+				}
+			).render();
+		}
+	);
+</script>
