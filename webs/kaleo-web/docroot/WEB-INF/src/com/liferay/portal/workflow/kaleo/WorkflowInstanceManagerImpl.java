@@ -77,20 +77,6 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 	}
 
 	public int getWorkflowInstanceCount(
-			long companyId, String workflowDefinitionName,
-			Integer workflowDefinitionVersion, Boolean completed)
-		throws WorkflowException {
-
-		ServiceContext serviceContext = new ServiceContext();
-
-		serviceContext.setCompanyId(companyId);
-
-		return _workflowEngine.getWorkflowInstanceCount(
-			workflowDefinitionName, workflowDefinitionVersion, completed,
-			serviceContext);
-	}
-
-	public int getWorkflowInstanceCount(
 			long companyId, Long userId, String assetClassName,
 			Long assetClassPK, Boolean completed)
 		throws WorkflowException {
@@ -117,19 +103,18 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 			userId, assetClassNames, completed, serviceContext);
 	}
 
-	public List<WorkflowInstance> getWorkflowInstances(
+	public int getWorkflowInstanceCount(
 			long companyId, String workflowDefinitionName,
-			Integer workflowDefinitionVersion, Boolean completed, int start,
-			int end, OrderByComparator orderByComparator)
+			Integer workflowDefinitionVersion, Boolean completed)
 		throws WorkflowException {
 
 		ServiceContext serviceContext = new ServiceContext();
 
 		serviceContext.setCompanyId(companyId);
 
-		return _workflowEngine.getWorkflowInstances(
-			workflowDefinitionName, workflowDefinitionVersion, completed, start,
-			end, orderByComparator, serviceContext);
+		return _workflowEngine.getWorkflowInstanceCount(
+			workflowDefinitionName, workflowDefinitionVersion, completed,
+			serviceContext);
 	}
 
 	public List<WorkflowInstance> getWorkflowInstances(
@@ -160,6 +145,21 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 		return _workflowEngine.getWorkflowInstances(
 			userId, assetClassNames, completed, start, end, orderByComparator,
 			serviceContext);
+	}
+
+	public List<WorkflowInstance> getWorkflowInstances(
+			long companyId, String workflowDefinitionName,
+			Integer workflowDefinitionVersion, Boolean completed, int start,
+			int end, OrderByComparator orderByComparator)
+		throws WorkflowException {
+
+		ServiceContext serviceContext = new ServiceContext();
+
+		serviceContext.setCompanyId(companyId);
+
+		return _workflowEngine.getWorkflowInstances(
+			workflowDefinitionName, workflowDefinitionVersion, completed, start,
+			end, orderByComparator, serviceContext);
 	}
 
 	public void setKaleoSignaler(KaleoSignaler kaleoSignaler) {
