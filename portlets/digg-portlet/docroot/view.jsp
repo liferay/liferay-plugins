@@ -14,7 +14,7 @@
  */
 --%>
 
-<%@ include file="init.jsp" %>
+<%@ include file="/init.jsp" %>
 
 <div id="twitter_widget<portlet:namespace />node"></div>
 
