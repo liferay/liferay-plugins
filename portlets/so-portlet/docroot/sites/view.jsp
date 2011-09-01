@@ -25,7 +25,7 @@ String tabs1 = ParamUtil.getString(request, "tabs1", "my-sites");
 String name = ParamUtil.getString(request, "name");
 String searchName = DAOParamUtil.getLike(request, "name");
 
-List<Group> groups = SitesUtil.getStarredSites(preferences);
+List<Group> groups = SitesUtil.getStarredSites(themeDisplay.getUserId());
 int groupsCount = groups.size();
 
 if (groups.isEmpty()) {
@@ -77,7 +77,7 @@ pageContext.setAttribute("portletURL", portletURL);
 				<%
 				boolean alternate = false;
 
-				String starredGroupIds = preferences.getValue("starredGroupIds", StringPool.BLANK);
+				List<Group> starredGroups = SitesUtil.getStarredSites(themeDisplay.getUserId());
 
 				for (Group group : groups) {
 					String className = StringPool.BLANK;
@@ -99,7 +99,7 @@ pageContext.setAttribute("portletURL", portletURL);
 
 					<li class="<%= className %>">
 						<c:choose>
-							<c:when test="<%= !StringUtil.contains(starredGroupIds, String.valueOf(group.getGroupId())) %>">
+							<c:when test="<%= !starredGroups.contains(group) %>">
 								<span class="action star">
 									<liferay-portlet:actionURL name="updateStars" var="starURL">
 										<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.ADD %>" />
@@ -211,7 +211,7 @@ pageContext.setAttribute("portletURL", portletURL);
 					},
 				</c:if>
 				{
-					label: '<liferay-ui:message key="directory" />',
+					label: '<liferay-ui:message key="more-sites" />',
 					on: {
 						click: function(event) {
 							<liferay-portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>" var="viewSitesURL">

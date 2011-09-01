@@ -107,10 +107,12 @@
 	}
 }
 
-.so-portlet-sites-dialog {
-	.directory-list {
+.so-portlet-sites-dialog,
+.so-sites-directory {
+	ul.directory-list {
 		border: 1px solid #CCC;
 		font-size: 12px;
+		list-style: none;
 		margin: 1em 0;
 
 		li {
