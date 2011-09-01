@@ -33,12 +33,9 @@
 <%@ page import="com.liferay.portal.kernel.util.Constants" %>
 <%@ page import="com.liferay.portal.kernel.util.GetterUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.HtmlUtil" %>
-<%@ page import="com.liferay.portal.kernel.util.MethodInvoker" %>
-<%@ page import="com.liferay.portal.kernel.util.MethodWrapper" %>
 <%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.PortalClassInvoker" %>
 <%@ page import="com.liferay.portal.kernel.util.PropsUtil" %>
-<%@ page import="com.liferay.portal.kernel.util.StringPool" %>
 <%@ page import="com.liferay.portal.security.auth.AuthException" %>
 
 <%@ page import="javax.portlet.WindowState" %>

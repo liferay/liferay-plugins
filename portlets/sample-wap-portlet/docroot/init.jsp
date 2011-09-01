@@ -18,7 +18,6 @@
 
 <%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
 
-<%@ page import="javax.portlet.PortletSession" %>
 <%@ page import="javax.portlet.WindowState" %>
 
 <portlet:defineObjects />

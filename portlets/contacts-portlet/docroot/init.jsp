@@ -27,7 +27,6 @@
 <%@ page import="com.liferay.contacts.util.ContactsExtensionsUtil" %>
 <%@ page import="com.liferay.contacts.util.PortletKeys" %>
 <%@ page import="com.liferay.contacts.util.WebKeys" %>
-<%@ page import="com.liferay.portal.kernel.dao.search.DisplayTerms" %>
 <%@ page import="com.liferay.portal.kernel.dao.search.ResultRow" %>
 <%@ page import="com.liferay.portal.kernel.dao.search.SearchContainer" %>
 <%@ page import="com.liferay.portal.kernel.language.LanguageUtil" %>

@@ -64,8 +64,8 @@
 <%@ page import="com.liferay.portal.util.PortalUtil" %>
 <%@ page import="com.liferay.portal.util.PortletLister" %>
 <%@ page import="com.liferay.portal.util.PortletListerFactoryUtil" %>
-<%@ page import="com.liferay.portlet.expando.service.ExpandoValueServiceUtil" %>
 <%@ page import="com.liferay.portlet.PortletPreferencesFactoryUtil" %>
+<%@ page import="com.liferay.portlet.expando.service.ExpandoValueServiceUtil" %>
 
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>
