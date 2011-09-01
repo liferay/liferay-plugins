@@ -23,24 +23,24 @@ import com.liferay.util.portlet.PortletProps;
 public class PortletPropsValues {
 
 	public static final int BIND_PORT = GetterUtil.getInteger(
-		PortletProps.get("bind.port"));
+		PortletProps.get(PortletPropsKeys.BIND_PORT));
 
 	public static final String BIND_SASL_HOSTNAME = GetterUtil.getString(
-		PortletProps.get("bind.sasl.hostname"));
+		PortletProps.get(PortletPropsKeys.BIND_SASL_HOSTNAME));
 
 	public static final int SEARCH_MAX_SIZE = GetterUtil.getInteger(
-		PortletProps.get("search.max.size"));
+		PortletProps.get(PortletPropsKeys.SEARCH_MAX_SIZE));
 
 	public static final int SEARCH_MAX_TIME = GetterUtil.getInteger(
-		PortletProps.get("search.max.time"));
+		PortletProps.get(PortletPropsKeys.SEARCH_MAX_TIME));
 
 	public static final String SSL_KEYSTORE_FILE_NAME = GetterUtil.getString(
-		PortletProps.get("ssl.keystore.file.name"));
+		PortletProps.get(PortletPropsKeys.SSL_KEYSTORE_FILE_NAME));
 
 	public static final char[] SSL_KEYSTORE_PASSWORD = GetterUtil.getString(
-		PortletProps.get("ssl.keystore.password")).toCharArray();
+		PortletProps.get(PortletPropsKeys.SSL_KEYSTORE_PASSWORD)).toCharArray();
 
 	public static final String SSL_PROTOCOL = GetterUtil.getString(
-		PortletProps.get("ssl.protocol"));
+		PortletProps.get(PortletPropsKeys.SSL_PROTOCOL));
 
 }
