@@ -40,7 +40,6 @@ public class UpgradeWSRPProducer extends UpgradeProcess {
 		for (WSRPProducer wsrpProducer : wsrpProducers) {
 			WSRPProducerLocalServiceUtil.updateWSRPProducer(wsrpProducer);
 		}
-
 	}
 
 }
