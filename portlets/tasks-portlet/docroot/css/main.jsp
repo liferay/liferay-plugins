@@ -213,6 +213,10 @@
 	z-index: 10;
 }
 
+.tasks-portlet .past-due {
+	color: red;
+}
+
 .tasks-portlet .progress-indicator {
 	left: 0;
 	position: absolute;

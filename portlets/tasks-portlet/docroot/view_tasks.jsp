@@ -185,13 +185,19 @@ taskListURL.setParameter("tabs2", tabs2);
 				buffer.append("\">");
 				buffer.append("<!-- -->");
 				buffer.append("</div>");
-				buffer.append("<div class=\"due-date\">");
 
 				if (tasksEntry.getDueDate() != null) {
+					if (DateUtil.compareTo(new Date(), tasksEntry.getDueDate(), true) >= 0) {
+						buffer.append("<div class=\"due-date past-due\">");
+					}
+					else {
+						buffer.append("<div class=\"due-date\">");
+					}
+
 					buffer.append(dateFormatDateTime.format(tasksEntry.getDueDate()));
+					buffer.append("</div>");
 				}
 
-				buffer.append("</div>");
 				buffer.append("</div>");
 				buffer.append("<div class=\"progress-picker aui-helper-hidden\">");
 				buffer.append("<div class=\"new-progress\"><!-- --></div>");
