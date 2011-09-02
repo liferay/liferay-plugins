@@ -131,7 +131,7 @@ String tabs1Names = "my-sites,my-favorites,all-sites";
 										<portlet:param name="starredGroupId" value="<%= String.valueOf(group.getGroupId()) %>" />
 									</liferay-portlet:actionURL>
 
-									<a id="star-site"href="<%= starURL %>"><liferay-ui:message key="star" /></a>
+									<a href="<%= starURL %>"><liferay-ui:message key="star" /></a>
 								</span>
 							</c:when>
 							<c:otherwise>
@@ -142,7 +142,7 @@ String tabs1Names = "my-sites,my-favorites,all-sites";
 										<portlet:param name="starredGroupId" value="<%= String.valueOf(group.getGroupId()) %>" />
 									</liferay-portlet:actionURL>
 
-									<a id="unstar-site" href="<%= unstarURL %>"><liferay-ui:message key="unstar" /></a>
+									<a href="<%= unstarURL %>"><liferay-ui:message key="unstar" /></a>
 								</span>
 							</c:otherwise>
 						</c:choose>

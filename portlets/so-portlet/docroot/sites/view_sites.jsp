@@ -103,7 +103,7 @@ int groupsCount = GroupLocalServiceUtil.searchCount(themeDisplay.getCompanyId(),
 								<portlet:param name="starredGroupId" value="<%= String.valueOf(group.getGroupId()) %>" />
 							</liferay-portlet:actionURL>
 
-							<a href="<%= starURL %>"><liferay-ui:message key="star" /></a>
+							<a class="star-site"href="<%= starURL %>"><liferay-ui:message key="star" /></a>
 						</span>
 					</c:when>
 					<c:otherwise>
@@ -115,7 +115,7 @@ int groupsCount = GroupLocalServiceUtil.searchCount(themeDisplay.getCompanyId(),
 								<portlet:param name="starredGroupId" value="<%= String.valueOf(group.getGroupId()) %>" />
 							</liferay-portlet:actionURL>
 
-							<a id="unstar-site" href="<%= unstarURL %>"><liferay-ui:message key="unstar" /></a>
+							<a class="unstar-site" href="<%= unstarURL %>"><liferay-ui:message key="unstar" /></a>
 						</span>
 					</c:otherwise>
 				</c:choose>
@@ -144,7 +144,7 @@ int groupsCount = GroupLocalServiceUtil.searchCount(themeDisplay.getCompanyId(),
 							<portlet:param name="removeUserIds" value="<%= String.valueOf(user.getUserId()) %>" />
 						</liferay-portlet:actionURL>
 
-						<a id="leave-site"href="<%= leaveURL %>"><liferay-ui:message key="leave" /></a>
+						<a class="leave-site"href="<%= leaveURL %>"><liferay-ui:message key="leave" /></a>
 					</span>
 				</c:if>
 
@@ -158,7 +158,7 @@ int groupsCount = GroupLocalServiceUtil.searchCount(themeDisplay.getCompanyId(),
 								<portlet:param name="groupId" value="<%= String.valueOf(group.getGroupId()) %>" />
 							</liferay-portlet:actionURL>
 
-							<a id="delete-site" href="<%= deleteURL %>"><liferay-ui:message key="delete" /></a>
+							<a class="delete-site" href="<%= deleteURL %>"><liferay-ui:message key="delete" /></a>
 						</span>
 					</c:when>
 					<c:otherwise>
@@ -293,10 +293,10 @@ int groupsCount = GroupLocalServiceUtil.searchCount(themeDisplay.getCompanyId(),
 							siteTemplate,
 							{
 								classNames: classNames.join(' '),
-								starHtml: (result.starURL ? '<span class="action star"><a href="' + result.starURL + '" id="star-site"><liferay-ui:message key="star" /></a></span>' : '<span class="action unstar"><a href="' + result.unstarURL + '" id="unstar-site"><liferay-ui:message key="unstar" /></a></span>'),
-								joinHtml: (result.joinUrl ? '<span class="action join"><a href="' + result.joinUrl + '" id="join-site"><liferay-ui:message key="join" /></a></span>' : ''),
-								leaveHtml: (result.leaveUrl ? '<span class="action leave"><a href="' + result.leaveUrl + '" id="leave-site"><liferay-ui:message key="leave" /></a></span>' : ''),
-								deleteHtml: (result.deleteURL ? '<span class="action delete"><a href="' + result.deleteURL + '" id="delete-site"><liferay-ui:message key="delete" /></a></span>' : '<span class="action-not-allowed"></span>'),
+								starHtml: (result.starURL ? '<span class="action star"><a class="star-site" href="' + result.starURL + '"><liferay-ui:message key="star" /></a></span>' : '<span class="action unstar"><a class="unstar-site" href="' + result.unstarURL + '"><liferay-ui:message key="unstar" /></a></span>'),
+								joinHtml: (result.joinUrl ? '<span class="action join"><a class="join-site" href="' + result.joinUrl + '"><liferay-ui:message key="join" /></a></span>' : ''),
+								leaveHtml: (result.leaveUrl ? '<span class="action leave"><a class="leave-site" href="' + result.leaveUrl + '"><liferay-ui:message key="leave" /></a></span>' : ''),
+								deleteHtml: (result.deleteURL ? '<span class="action delete"><a class="delete-site" href="' + result.deleteURL + '"><liferay-ui:message key="delete" /></a></span>' : '<span class="action-not-allowed"></span>'),
 								siteName: name,
 								siteDescription: result.description
 							}
@@ -389,9 +389,9 @@ int groupsCount = GroupLocalServiceUtil.searchCount(themeDisplay.getCompanyId(),
 		function(event) {
 			event.preventDefault();
 
-			var currentTargetId = event.currentTarget.get('id');
+			var currentTargetClass = event.currentTarget.getAttribute('class');
 
-			if(currentTargetId == 'delete-site' || currentTargetId == "leave-site" || currentTargetId == "join-site") {
+			if(currentTargetClass == 'delete-site' || currentTargetClass == "leave-site" || currentTargetClass == "join-site") {
 				var confirmMessage = '';
 
 				var siteAction = '';
@@ -400,11 +400,11 @@ int groupsCount = GroupLocalServiceUtil.searchCount(themeDisplay.getCompanyId(),
 
 				var siteName = siteNode.one('.name a');
 
-				if (event.currentTarget.get('id') == "leave-site") {
+				if (currentTargetClass == "leave-site") {
 					confirmMessage = 'Are you sure you want to leave '+ siteName.getContent() + '?';
 					siteAction = 'left ';
 				}
-				else if (event.currentTarget.get('id') == "join-site") {
+				else if (currentTargetClass == "join-site") {
 					confirmMessage = 'Are you sure you want to join ' + siteName.getContent() + '?';
 					siteAction = 'joined ';
 				}
