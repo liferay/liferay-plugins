@@ -78,6 +78,10 @@ public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 
 		tasksEntryPersistence.update(tasksEntry, false);
 
+		// Resource
+
+		addTasksEntryResources(tasksEntry);
+
 		// Asset
 
 		updateAsset(
@@ -91,6 +95,15 @@ public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 			TasksActivityKeys.ADD_ENTRY, StringPool.BLANK, assigneeUserId);
 
 		return tasksEntry;
+	}
+
+	public void addTasksEntryResources(TasksEntry tasksEntry)
+		throws PortalException, SystemException {
+
+		resourceLocalService.addResources(
+			tasksEntry.getCompanyId(), tasksEntry.getGroupId(),
+			tasksEntry.getUserId(), TasksEntry.class.getName(),
+			tasksEntry.getTasksEntryId(), false, true, true);
 	}
 
 	@Override
