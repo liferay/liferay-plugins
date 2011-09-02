@@ -14,7 +14,7 @@
  */
 --%>
 
-<%@ include file="init.jsp" %>
+<%@ include file="/init.jsp" %>
 
 <c:choose>
 	<c:when test="<%= Validator.isNotNull(url) %>">
