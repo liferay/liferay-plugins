@@ -281,26 +281,6 @@ public class KBTemplateLocalServiceUtil {
 		return getService().addKBTemplate(userId, title, content, serviceContext);
 	}
 
-	public static void addKBTemplateResources(
-		com.liferay.knowledgebase.model.KBTemplate kbTemplate,
-		boolean addGroupPermissions, boolean addGuestPermissions)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		getService()
-			.addKBTemplateResources(kbTemplate, addGroupPermissions,
-			addGuestPermissions);
-	}
-
-	public static void addKBTemplateResources(
-		com.liferay.knowledgebase.model.KBTemplate kbTemplate,
-		java.lang.String[] groupPermissions, java.lang.String[] guestPermissions)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		getService()
-			.addKBTemplateResources(kbTemplate, groupPermissions,
-			guestPermissions);
-	}
-
 	public static void deleteGroupKBTemplates(long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {

@@ -262,13 +262,6 @@ public class MicroblogsEntryLocalServiceWrapper
 			socialRelationType, serviceContext);
 	}
 
-	public void addMicroblogsEntryResources(
-		com.liferay.microblogs.model.MicroblogsEntry microblogsEntry)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		_microblogsEntryLocalService.addMicroblogsEntryResources(microblogsEntry);
-	}
-
 	public void deleteUserMicroblogsEntries(long userId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {

@@ -77,7 +77,7 @@ public class MicroblogsEntryLocalServiceImpl
 
 		// Resources
 
-		addMicroblogsEntryResources(microblogsEntry);
+		resourceLocalService.addModelResources(microblogsEntry, serviceContext);
 
 		// Asset
 
@@ -101,15 +101,6 @@ public class MicroblogsEntryLocalServiceImpl
 			actitivtyKey, StringPool.BLANK, receiverUserId);
 
 		return microblogsEntry;
-	}
-
-	public void addMicroblogsEntryResources(MicroblogsEntry microblogsEntry)
-		throws PortalException, SystemException {
-
-		resourceLocalService.addResources(
-			microblogsEntry.getCompanyId(), 0, microblogsEntry.getUserId(),
-			MicroblogsEntry.class.getName(),
-			microblogsEntry.getMicroblogsEntryId(), false, true, true);
 	}
 
 	@Override
