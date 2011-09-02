@@ -37,7 +37,6 @@ public class UpgradeWSRPConsumer extends UpgradeProcess {
 		for (WSRPConsumer wsrpConsumer : wsrpConsumers) {
 			WSRPConsumerLocalServiceUtil.updateWSRPConsumer(wsrpConsumer);
 		}
-
 	}
 
 }

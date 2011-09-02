@@ -28,8 +28,8 @@ public class UpgradeWSRPConsumerPortlet extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		runSQL("alter table WSRP_WSRPConsumerPortlet add uuid_ VARCHAR(75) " +
-			"null");
+		runSQL(
+			"alter table WSRP_WSRPConsumerPortlet add uuid_ VARCHAR(75) null");
 
 		List<WSRPConsumerPortlet> wsrpConsumerPortlets =
 			WSRPConsumerPortletLocalServiceUtil.getWSRPConsumerPortlets(

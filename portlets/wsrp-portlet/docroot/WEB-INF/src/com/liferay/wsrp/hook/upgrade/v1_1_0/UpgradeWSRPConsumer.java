@@ -23,8 +23,9 @@ public class UpgradeWSRPConsumer extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		runSQL("alter table WSRP_WSRPConsumer add forwardCookies VARCHAR(75) " +
-			"null");
+		runSQL(
+			"alter table WSRP_WSRPConsumer add forwardCookies VARCHAR(75) " +
+				"null");
 	}
 
 }

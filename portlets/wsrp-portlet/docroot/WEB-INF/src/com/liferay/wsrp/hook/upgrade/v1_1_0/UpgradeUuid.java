@@ -64,6 +64,27 @@ public class UpgradeUuid extends UpgradeProcess {
 		}
 	}
 
+	protected void updateLayout(long plid, String typeSettings)
+		throws Exception {
+
+		Connection con = null;
+		PreparedStatement ps = null;
+
+		try {
+			con = DataAccess.getConnection();
+
+			ps = con.prepareStatement(
+				"update Layout set typeSettings = ? where plid = " + plid);
+
+			ps.setString(1, typeSettings);
+
+			ps.executeUpdate();
+		}
+		finally {
+			DataAccess.cleanUp(con, ps);
+		}
+	}
+
 	protected void updateLayout(String oldPortletId, String newPortletId)
 		throws Exception {
 
@@ -76,12 +97,11 @@ public class UpgradeUuid extends UpgradeProcess {
 
 			ps = con.prepareStatement(
 				"select plid, typeSettings from Layout where typeSettings " +
-				"like ?");
+					"like ?");
 
-			String oldPortletIdParam = StringPool.PERCENT.concat(
-				oldPortletId).concat(StringPool.PERCENT);
-
-			ps.setString(1, oldPortletIdParam);
+			ps.setString(
+				1,
+				StringPool.PERCENT + oldPortletId + StringPool.PERCENT);
 
 			rs = ps.executeQuery();
 
@@ -92,36 +112,11 @@ public class UpgradeUuid extends UpgradeProcess {
 				typeSettings = StringUtil.replace(
 					typeSettings, oldPortletId, newPortletId);
 
-				updateTypeSettings(plid, typeSettings);
+				updateLayout(plid, typeSettings);
 			}
 		}
 		finally {
 			DataAccess.cleanUp(con, ps, rs);
-		}
-	}
-
-	protected void updateNameAndPrimKey(
-			long resourcePermissionId, String name, String primKey)
-		throws Exception {
-
-		Connection con = null;
-		PreparedStatement ps = null;
-
-		try {
-			con = DataAccess.getConnection();
-
-			ps = con.prepareStatement(
-				"update ResourcePermission set name = ?, primKey = ? where " +
-				"resourcePermissionId = ?");
-
-			ps.setString(1, name);
-			ps.setString(2, primKey);
-			ps.setLong(3, resourcePermissionId);
-
-			ps.executeUpdate();
-		}
-		finally {
-			DataAccess.cleanUp(con, ps);
 		}
 	}
 
@@ -149,6 +144,31 @@ public class UpgradeUuid extends UpgradeProcess {
 	}
 
 	protected void updateResourcePermission(
+			long resourcePermissionId, String name, String primKey)
+		throws Exception {
+
+		Connection con = null;
+		PreparedStatement ps = null;
+
+		try {
+			con = DataAccess.getConnection();
+
+			ps = con.prepareStatement(
+				"update ResourcePermission set name = ?, primKey = ? where " +
+					"resourcePermissionId = ?");
+
+			ps.setString(1, name);
+			ps.setString(2, primKey);
+			ps.setLong(3, resourcePermissionId);
+
+			ps.executeUpdate();
+		}
+		finally {
+			DataAccess.cleanUp(con, ps);
+		}
+	}
+
+	protected void updateResourcePermission(
 			String oldPortletId, String newPortletId)
 		throws Exception {
 
@@ -161,7 +181,7 @@ public class UpgradeUuid extends UpgradeProcess {
 
 			ps = con.prepareStatement(
 				"select resoucePermissionId, primKey from ResourcePermission " +
-				"where name = ?");
+					"where name = ?");
 
 			ps.setString(1, oldPortletId);
 
@@ -174,33 +194,12 @@ public class UpgradeUuid extends UpgradeProcess {
 				primKey = StringUtil.replace(
 					primKey, oldPortletId, newPortletId);
 
-				updateNameAndPrimKey(
+				updateResourcePermission(
 					resourcePermissionId, newPortletId, primKey);
 			}
 		}
 		finally {
 			DataAccess.cleanUp(con, ps, rs);
-		}
-	}
-
-	protected void updateTypeSettings(long plid, String typeSettings)
-		throws Exception {
-
-		Connection con = null;
-		PreparedStatement ps = null;
-
-		try {
-			con = DataAccess.getConnection();
-
-			ps = con.prepareStatement(
-				"update Layout set typeSettings = ? where plid = " + plid);
-
-			ps.setString(1, typeSettings);
-
-			ps.executeUpdate();
-		}
-		finally {
-			DataAccess.cleanUp(con, ps);
 		}
 	}
 
