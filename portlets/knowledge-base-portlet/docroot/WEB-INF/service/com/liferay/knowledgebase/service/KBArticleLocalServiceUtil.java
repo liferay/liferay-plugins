@@ -293,25 +293,6 @@ public class KBArticleLocalServiceUtil {
 			description, sections, dirName, serviceContext);
 	}
 
-	public static void addKBArticleResources(
-		com.liferay.knowledgebase.model.KBArticle kbArticle,
-		boolean addGroupPermissions, boolean addGuestPermissions)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		getService()
-			.addKBArticleResources(kbArticle, addGroupPermissions,
-			addGuestPermissions);
-	}
-
-	public static void addKBArticleResources(
-		com.liferay.knowledgebase.model.KBArticle kbArticle,
-		java.lang.String[] groupPermissions, java.lang.String[] guestPermissions)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		getService()
-			.addKBArticleResources(kbArticle, groupPermissions, guestPermissions);
-	}
-
 	public static void checkAttachments()
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {

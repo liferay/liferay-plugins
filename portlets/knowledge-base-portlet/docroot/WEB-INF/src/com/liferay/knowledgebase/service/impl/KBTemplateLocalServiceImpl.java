@@ -82,18 +82,7 @@ public class KBTemplateLocalServiceImpl extends KBTemplateLocalServiceBaseImpl {
 
 		// Resources
 
-		if (serviceContext.getAddGroupPermissions() ||
-			serviceContext.getAddGuestPermissions()) {
-
-			addKBTemplateResources(
-				kbTemplate, serviceContext.getAddGroupPermissions(),
-				serviceContext.getAddGuestPermissions());
-		}
-		else {
-			addKBTemplateResources(
-				kbTemplate, serviceContext.getGroupPermissions(),
-				serviceContext.getGuestPermissions());
-		}
+		resourceLocalService.addModelResources(kbTemplate, serviceContext);
 
 		// Social
 
@@ -102,29 +91,6 @@ public class KBTemplateLocalServiceImpl extends KBTemplateLocalServiceBaseImpl {
 			AdminActivityKeys.ADD_KB_TEMPLATE, StringPool.BLANK, 0);
 
 		return kbTemplate;
-	}
-
-	public void addKBTemplateResources(
-			KBTemplate kbTemplate, boolean addGroupPermissions,
-			boolean addGuestPermissions)
-		throws PortalException, SystemException {
-
-		resourceLocalService.addResources(
-			kbTemplate.getCompanyId(), kbTemplate.getGroupId(),
-			kbTemplate.getUserId(), KBTemplate.class.getName(),
-			kbTemplate.getKbTemplateId(), false, addGroupPermissions,
-			addGuestPermissions);
-	}
-
-	public void addKBTemplateResources(
-			KBTemplate kbTemplate, String[] groupPermissions,
-			String[] guestPermissions)
-		throws PortalException, SystemException {
-
-		resourceLocalService.addModelResources(
-			kbTemplate.getCompanyId(), kbTemplate.getGroupId(),
-			kbTemplate.getUserId(), KBTemplate.class.getName(),
-			kbTemplate.getKbTemplateId(), groupPermissions, guestPermissions);
 	}
 
 	public void deleteGroupKBTemplates(long groupId)

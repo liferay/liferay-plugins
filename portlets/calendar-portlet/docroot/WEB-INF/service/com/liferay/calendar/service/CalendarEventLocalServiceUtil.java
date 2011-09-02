@@ -295,27 +295,6 @@ public class CalendarEventLocalServiceUtil {
 			secondReminder, serviceContext);
 	}
 
-	public static void addCalendarEventResources(
-		com.liferay.calendar.model.CalendarEvent calendarEvent,
-		boolean addCommunityPermissions, boolean addGuestPermissions)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		getService()
-			.addCalendarEventResources(calendarEvent, addCommunityPermissions,
-			addGuestPermissions);
-	}
-
-	public static void addCalendarEventResources(
-		com.liferay.calendar.model.CalendarEvent calendarEvent,
-		java.lang.String[] communityPermissions,
-		java.lang.String[] guestPermissions)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		getService()
-			.addCalendarEventResources(calendarEvent, communityPermissions,
-			guestPermissions);
-	}
-
 	public static com.liferay.calendar.model.CalendarEvent updateCalendarEvent(
 		long calendarEventId,
 		java.util.Map<java.util.Locale, java.lang.String> titleMap,

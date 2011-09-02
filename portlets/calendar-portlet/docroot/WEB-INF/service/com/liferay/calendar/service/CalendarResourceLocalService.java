@@ -256,19 +256,6 @@ public interface CalendarResourceLocalService extends PersistedModelLocalService
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
-	public void addCalendarResourceResources(
-		com.liferay.calendar.model.CalendarResource calendarResource,
-		boolean addCommunityPermissions, boolean addGuestPermissions)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
-
-	public void addCalendarResourceResources(
-		com.liferay.calendar.model.CalendarResource calendarResource,
-		java.lang.String[] communityPermissions,
-		java.lang.String[] guestPermissions)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
-
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.calendar.model.CalendarResource getCalendarResource(
 		java.lang.String className, long classPK)

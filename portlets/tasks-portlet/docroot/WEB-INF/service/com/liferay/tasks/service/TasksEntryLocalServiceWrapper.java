@@ -257,13 +257,6 @@ public class TasksEntryLocalServiceWrapper implements TasksEntryLocalService {
 			dueDateMinute, neverDue, serviceContext);
 	}
 
-	public void addTasksEntryResources(
-		com.liferay.tasks.model.TasksEntry tasksEntry)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		_tasksEntryLocalService.addTasksEntryResources(tasksEntry);
-	}
-
 	public java.util.List<com.liferay.tasks.model.TasksEntry> getAssigneeTasksEntries(
 		long userId, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {

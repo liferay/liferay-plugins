@@ -147,18 +147,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		// Resources
 
-		if (serviceContext.getAddGroupPermissions() ||
-			serviceContext.getAddGuestPermissions()) {
-
-			addKBArticleResources(
-				kbArticle, serviceContext.getAddGroupPermissions(),
-				serviceContext.getAddGuestPermissions());
-		}
-		else {
-			addKBArticleResources(
-				kbArticle, serviceContext.getGroupPermissions(),
-				serviceContext.getGuestPermissions());
-		}
+		resourceLocalService.addModelResources(kbArticle, serviceContext);
 
 		// Asset
 
@@ -177,29 +166,6 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			resourcePrimKey, kbArticle, serviceContext);
 
 		return kbArticle;
-	}
-
-	public void addKBArticleResources(
-			KBArticle kbArticle, boolean addGroupPermissions,
-			boolean addGuestPermissions)
-		throws PortalException, SystemException {
-
-		resourceLocalService.addResources(
-			kbArticle.getCompanyId(), kbArticle.getGroupId(),
-			kbArticle.getUserId(), KBArticle.class.getName(),
-			kbArticle.getResourcePrimKey(), false, addGroupPermissions,
-			addGuestPermissions);
-	}
-
-	public void addKBArticleResources(
-			KBArticle kbArticle, String[] groupPermissions,
-			String[] guestPermissions)
-		throws PortalException, SystemException {
-
-		resourceLocalService.addModelResources(
-			kbArticle.getCompanyId(), kbArticle.getGroupId(),
-			kbArticle.getUserId(), KBArticle.class.getName(),
-			kbArticle.getResourcePrimKey(), groupPermissions, guestPermissions);
 	}
 
 	public void checkAttachments() throws PortalException, SystemException {

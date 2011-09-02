@@ -270,13 +270,6 @@ public class TasksEntryLocalServiceUtil {
 			neverDue, serviceContext);
 	}
 
-	public static void addTasksEntryResources(
-		com.liferay.tasks.model.TasksEntry tasksEntry)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		getService().addTasksEntryResources(tasksEntry);
-	}
-
 	public static java.util.List<com.liferay.tasks.model.TasksEntry> getAssigneeTasksEntries(
 		long userId, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {

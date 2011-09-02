@@ -111,44 +111,10 @@ public class CalendarResourceLocalServiceImpl
 
 		// Resources
 
-		if (serviceContext.getAddCommunityPermissions() ||
-			serviceContext.getAddGuestPermissions()) {
-
-			addCalendarResourceResources(
-				calendarResource, serviceContext.getAddCommunityPermissions(),
-				serviceContext.getAddGuestPermissions());
-		}
-		else {
-			addCalendarResourceResources(
-				calendarResource, serviceContext.getCommunityPermissions(),
-				serviceContext.getGuestPermissions());
-		}
+		resourceLocalService.addModelResources(
+			calendarResource, serviceContext);
 
 		return calendarResource;
-	}
-
-	public void addCalendarResourceResources(
-			CalendarResource calendarResource, boolean addCommunityPermissions,
-			boolean addGuestPermissions)
-		throws PortalException, SystemException {
-
-		resourceLocalService.addResources(
-			calendarResource.getCompanyId(), calendarResource.getGroupId(),
-			calendarResource.getUserId(), CalendarResource.class.getName(),
-			calendarResource.getCalendarResourceId(), false,
-			addCommunityPermissions, addGuestPermissions);
-	}
-
-	public void addCalendarResourceResources(
-			CalendarResource calendarResource, String[] communityPermissions,
-			String[] guestPermissions)
-		throws PortalException, SystemException {
-
-		resourceLocalService.addModelResources(
-			calendarResource.getCompanyId(), calendarResource.getGroupId(),
-			calendarResource.getUserId(), CalendarResource.class.getName(),
-			calendarResource.getCalendarResourceId(), communityPermissions,
-			guestPermissions);
 	}
 
 	@Override
