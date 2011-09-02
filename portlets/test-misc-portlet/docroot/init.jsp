@@ -24,6 +24,5 @@
 <%@ page import="com.liferay.testmisc.scheduler.TestSchedulerUtil" %>
 
 <%@ page import="javax.portlet.ActionRequest" %>
-<%@ page import="javax.portlet.PortletSession" %>
 
 <portlet:defineObjects />

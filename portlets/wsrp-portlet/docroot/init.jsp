@@ -57,9 +57,9 @@
 <%@ page import="com.liferay.wsrp.service.WSRPProducerLocalServiceUtil" %>
 <%@ page import="com.liferay.wsrp.util.Constants" %>
 <%@ page import="com.liferay.wsrp.util.LocalizedStringUtil" %>
-<%@ page import="com.liferay.wsrp.util.WebKeys" %>
 <%@ page import="com.liferay.wsrp.util.WSRPConsumerManager" %>
 <%@ page import="com.liferay.wsrp.util.WSRPConsumerManagerFactory" %>
+<%@ page import="com.liferay.wsrp.util.WebKeys" %>
 
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.Arrays" %>

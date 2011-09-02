@@ -19,7 +19,6 @@
 <%@ page import="com.liferay.ams.model.Asset" %>
 <%@ page import="com.liferay.ams.model.impl.AssetImpl" %>
 <%@ page import="com.liferay.ams.service.AssetLocalServiceUtil" %>
-
 <%@ page import="com.liferay.counter.service.CounterLocalServiceUtil" %>
 <%@ page import="com.liferay.portal.kernel.bean.BeanPropertiesUtil" %>
 

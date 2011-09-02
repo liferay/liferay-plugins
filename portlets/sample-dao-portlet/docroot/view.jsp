@@ -23,7 +23,6 @@
 <%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
 <%@ page import="com.liferay.sampledao.model.FoodItem" %>
 <%@ page import="com.liferay.sampledao.model.FoodItemDAO" %>
-<%@ page import="com.liferay.sampledao.util.ConnectionPool" %>
 
 <%@ page import="java.util.List" %>
 
