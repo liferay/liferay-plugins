@@ -162,6 +162,7 @@ loader.
 	</target>
 
 	<target name="compile-with-global-class-loader">
+		<mkdir dir="docroot/WEB-INF/ext-lib/global" />
 		<mkdir dir="docroot/WEB-INF/ext-${module.name}/classes" />
 
 		<path id="plugin-lib.classpath">
@@ -178,7 +179,10 @@ loader.
 	</target>
 
 	<target name="compile-with-portal-class-loader">
+		<mkdir dir="docroot/WEB-INF/ext-lib/global" />
+		<mkdir dir="docroot/WEB-INF/ext-lib/portal" />
 		<mkdir dir="docroot/WEB-INF/ext-${module.name}/classes" />
+		<mkdir dir="docroot/WEB-INF/ext-${module.name}/src" />
 
 		<path id="plugin-lib.classpath">
 			<fileset dir="docroot/WEB-INF/ext-lib/global" includes="*.jar" />
