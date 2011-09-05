@@ -691,7 +691,7 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 
 			SyndContent syndContent = new SyndContentImpl();
 
-			syndContent.setType(RSSUtil.DEFAULT_ENTRY_TYPE);
+			syndContent.setType(RSSUtil.ENTRY_TYPE_DEFAULT);
 			syndContent.setValue(value);
 
 			SyndEntry syndEntry = new SyndEntryImpl();
