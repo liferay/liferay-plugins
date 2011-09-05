@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<!DOCTYPE project>
+
+<project name="com.liferay.test.blueprint.spring-hook" basedir="." default="deploy">
+	<import file="../build-common-hook.xml" />
+
+	<script classpathref="portal.classpath" language="beanshell">
+		<![CDATA[
+			String pluginName = project.getProperty("plugin.name");
+
+			int hook = pluginName.indexOf("-hook");
+
+			String pluginNameShort = pluginName.substring(0, hook);
+
+			project.setProperty("plugin.name.short", pluginNameShort);
+
+			project.setProperty(
+				"plugin.file",
+				project.getProperty("project.dir") + "/dist/" +
+					pluginNameShort + "-" + project.getProperty("lp.version") +
+						"." + project.getProperty("plugin.version") + ".jar");
+		]]>
+	</script>
+
+	<target name="deploy">
+		<copy file="${project.dir}/lib/gemini-blueprint-io-1.0.0.RELEASE.jar" todir="${auto.deploy.dir}" />
+
+		<sleep milliseconds="1000"/>
+
+		<copy file="${project.dir}/lib/gemini-blueprint-core-1.0.0.RELEASE.jar" todir="${auto.deploy.dir}" />
+
+		<sleep milliseconds="1000"/>
+
+		<copy file="${project.dir}/lib/gemini-blueprint-extender-1.0.0.RELEASE.jar" todir="${auto.deploy.dir}" />
+
+		<sleep milliseconds="1000"/>
+
+		<antcall target="build-common-plugin.deploy" />
+	</target>
+
+	<target name="jar" depends="compile">
+		<delete file="${project.dir}/dist/${plugin.name.short}.jar" />
+
+		<taskdef resource="aQute/bnd/ant/taskdef.properties" classpathref="lib.classpath" />
+
+		<bnd
+			classpath="docroot/WEB-INF/classes"
+			eclipse="false"
+			exceptions="true"
+			failok="false"
+			files="docroot/WEB-INF/bnd.bnd"
+			output="${project.dir}/dist"
+			sourcepath="docroot/WEB-INF/src"
+		/>
+
+		<move file="${project.dir}/dist/${plugin.name.short}.jar" tofile="${plugin.file}" />
+	</target>
+
+	<target name="war">
+		<antcall target="jar" />
+	</target>
+</project>
