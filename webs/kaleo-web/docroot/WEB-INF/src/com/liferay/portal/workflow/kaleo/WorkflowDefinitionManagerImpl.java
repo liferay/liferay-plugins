@@ -30,6 +30,7 @@ import java.util.List;
 
 /**
  * @author Michael C. Han
+ * @author Eduardo Lundgren
  */
 public class WorkflowDefinitionManagerImpl
 	implements WorkflowDefinitionManager {
@@ -115,6 +116,26 @@ public class WorkflowDefinitionManagerImpl
 					name, true, start, end, orderByComparator, serviceContext);
 
 			return toWorkflowDefinitions(kaleoDefinitions);
+		}
+		catch (Exception e) {
+			throw new WorkflowException(e);
+		}
+	}
+
+	public WorkflowDefinition getLatestKaleoDefinition(
+			long companyId, String name)
+		throws WorkflowException {
+
+		try {
+			ServiceContext serviceContext = new ServiceContext();
+
+			serviceContext.setCompanyId(companyId);
+
+			KaleoDefinition kaleoDefinition =
+				KaleoDefinitionLocalServiceUtil.getLatestKaleoDefinition(
+					name, serviceContext);
+
+			return new WorkflowDefinitionAdapter(kaleoDefinition);
 		}
 		catch (Exception e) {
 			throw new WorkflowException(e);
