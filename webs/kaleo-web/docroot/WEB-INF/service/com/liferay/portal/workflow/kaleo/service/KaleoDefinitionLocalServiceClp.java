@@ -157,12 +157,16 @@ public class KaleoDefinitionLocalServiceClp
 				"getKaleoDefinitionsCount", java.lang.String.class,
 				com.liferay.portal.service.ServiceContext.class);
 
-		_incrementKaleoDefinitionMethodKey32 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getLatestKaleoDefinitionMethodKey32 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getLatestKaleoDefinition", java.lang.String.class,
+				com.liferay.portal.service.ServiceContext.class);
+
+		_incrementKaleoDefinitionMethodKey33 = new MethodKey(_classLoaderProxy.getClassName(),
 				"incrementKaleoDefinition", java.lang.String.class,
 				java.lang.String.class,
 				com.liferay.portal.service.ServiceContext.class);
 
-		_updateTitleMethodKey33 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateTitleMethodKey34 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateTitle", java.lang.String.class, int.class,
 				java.lang.String.class,
 				com.liferay.portal.service.ServiceContext.class);
@@ -1093,6 +1097,41 @@ public class KaleoDefinitionLocalServiceClp
 		return ((Integer)returnObj).intValue();
 	}
 
+	public com.liferay.portal.workflow.kaleo.model.KaleoDefinition getLatestKaleoDefinition(
+		java.lang.String name,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_getLatestKaleoDefinitionMethodKey32,
+				ClpSerializer.translateInput(name),
+				ClpSerializer.translateInput(serviceContext));
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.portal.workflow.kaleo.model.KaleoDefinition)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public com.liferay.portal.workflow.kaleo.model.KaleoDefinition incrementKaleoDefinition(
 		java.lang.String name, java.lang.String title,
 		com.liferay.portal.service.ServiceContext serviceContext)
@@ -1100,7 +1139,7 @@ public class KaleoDefinitionLocalServiceClp
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_incrementKaleoDefinitionMethodKey32,
+		MethodHandler methodHandler = new MethodHandler(_incrementKaleoDefinitionMethodKey33,
 				ClpSerializer.translateInput(name),
 				ClpSerializer.translateInput(title),
 				ClpSerializer.translateInput(serviceContext));
@@ -1136,7 +1175,7 @@ public class KaleoDefinitionLocalServiceClp
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateTitleMethodKey33,
+		MethodHandler methodHandler = new MethodHandler(_updateTitleMethodKey34,
 				ClpSerializer.translateInput(name), version,
 				ClpSerializer.translateInput(title),
 				ClpSerializer.translateInput(serviceContext));
@@ -1202,6 +1241,7 @@ public class KaleoDefinitionLocalServiceClp
 	private MethodKey _getKaleoDefinitionsCountMethodKey29;
 	private MethodKey _getKaleoDefinitionsCountMethodKey30;
 	private MethodKey _getKaleoDefinitionsCountMethodKey31;
-	private MethodKey _incrementKaleoDefinitionMethodKey32;
-	private MethodKey _updateTitleMethodKey33;
+	private MethodKey _getLatestKaleoDefinitionMethodKey32;
+	private MethodKey _incrementKaleoDefinitionMethodKey33;
+	private MethodKey _updateTitleMethodKey34;
 }

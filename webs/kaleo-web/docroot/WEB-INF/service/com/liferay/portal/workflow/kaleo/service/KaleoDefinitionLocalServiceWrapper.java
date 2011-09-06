@@ -377,6 +377,15 @@ public class KaleoDefinitionLocalServiceWrapper
 			serviceContext);
 	}
 
+	public com.liferay.portal.workflow.kaleo.model.KaleoDefinition getLatestKaleoDefinition(
+		java.lang.String name,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _kaleoDefinitionLocalService.getLatestKaleoDefinition(name,
+			serviceContext);
+	}
+
 	public com.liferay.portal.workflow.kaleo.model.KaleoDefinition incrementKaleoDefinition(
 		java.lang.String name, java.lang.String title,
 		com.liferay.portal.service.ServiceContext serviceContext)
