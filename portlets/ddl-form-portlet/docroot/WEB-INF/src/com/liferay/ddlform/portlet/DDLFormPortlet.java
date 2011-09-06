@@ -29,8 +29,11 @@ import com.liferay.portlet.dynamicdatalists.service.DDLRecordServiceUtil;
 import com.liferay.portlet.dynamicdatalists.service.DDLRecordSetLocalServiceUtil;
 import com.liferay.portlet.dynamicdatamapping.model.DDMStructure;
 import com.liferay.portlet.dynamicdatamapping.storage.Field;
+import com.liferay.portlet.dynamicdatamapping.storage.FieldConstants;
 import com.liferay.portlet.dynamicdatamapping.storage.Fields;
 import com.liferay.util.bridges.mvc.MVCPortlet;
+
+import java.io.Serializable;
 
 import java.util.Set;
 
@@ -62,9 +65,19 @@ public class DDLFormPortlet extends MVCPortlet {
 
 		Fields fields = new Fields();
 
-		for (String name : fieldNames) {
-			Field field = new Field(
-				name, ParamUtil.getString(actionRequest, name));
+		for (String fieldName : fieldNames) {
+			Field field = new Field();
+
+			field.setName(fieldName);
+
+			String fieldDataType = ddmStructure.getFieldDataType(fieldName);
+
+			String fieldValue = ParamUtil.getString(actionRequest, fieldName);
+
+			Serializable fieldValueSerializable =
+				FieldConstants.getSerializable(fieldDataType, fieldValue);
+
+			field.setValue(fieldValueSerializable);
 
 			fields.put(field);
 		}
