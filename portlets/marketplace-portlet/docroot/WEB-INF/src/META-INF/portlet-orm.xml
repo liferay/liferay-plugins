@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_1_0.xsd">
+	<persistence-unit-metadata>
+		<xml-mapping-metadata-complete/>
+		<persistence-unit-defaults>
+			<access>PROPERTY</access>
+		</persistence-unit-defaults>
+	</persistence-unit-metadata>
+	<mapped-superclass class="com.liferay.marketplace.model.impl.AppModelImpl">
+		<attributes>
+			<id name="appId" />
+			<basic name="uuid">
+				<column name="UUID_" />
+			</basic>
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="userName" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="marketplaceAppId" />
+			<basic name="version" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.liferay.marketplace.model.impl.ModuleModelImpl">
+		<attributes>
+			<id name="moduleId" />
+			<basic name="uuid">
+				<column name="UUID_" />
+			</basic>
+			<basic name="appId" />
+			<basic name="contextName" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<entity class="com.liferay.marketplace.model.impl.AppImpl" name="App">
+		<table name="Marketplace_App" />
+		<attributes />
+	</entity>
+	<entity class="com.liferay.marketplace.model.impl.ModuleImpl" name="Module">
+		<table name="Marketplace_Module" />
+		<attributes />
+	</entity>
+</entity-mappings>
