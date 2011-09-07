@@ -16,11 +16,8 @@ package com.liferay.marketplace.service.impl;
 
 import com.liferay.marketplace.model.Module;
 import com.liferay.marketplace.service.base.ModuleLocalServiceBaseImpl;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.model.User;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -30,11 +27,7 @@ public class ModuleLocalServiceImpl extends ModuleLocalServiceBaseImpl {
 
 	public Module addModule(
 			long userId, long appId, String contextName)
-		throws PortalException, SystemException {
-
-		User user = userPersistence.findByPrimaryKey(userId);
-
-		Date now = new Date();
+		throws SystemException {
 
 		long moduleId = counterLocalService.increment();
 
@@ -50,43 +43,13 @@ public class ModuleLocalServiceImpl extends ModuleLocalServiceBaseImpl {
 	}
 
 	public Module fetchModule(long appId, String contextName)
-		throws PortalException, SystemException {
+		throws SystemException {
 
 		return modulePersistence.fetchByA_C(appId, contextName);
 	}
 
-	public List<Module> getAppModules(long appId)
-		throws PortalException, SystemException {
-
+	public List<Module> getModules(long appId) throws SystemException {
 		return modulePersistence.findByAppId(appId);
-	}
-
-	public List<Module> getAppModules(long appId, int start, int end)
-		throws PortalException, SystemException {
-
-		return modulePersistence.findByAppId(appId, start, end);
-	}
-
-	public int getAppModulesCount(long appId) throws SystemException {
-		return modulePersistence.countByAppId(appId);
-	}
-
-	public Module getModule(long appId, String contextName)
-		throws PortalException, SystemException {
-
-		return modulePersistence.findByA_C(appId, contextName);
-	}
-
-	public List<Module> getModulesByContextName(String contextName)
-		throws PortalException, SystemException {
-
-		return modulePersistence.findByContextName(contextName);
-	}
-
-	public int getModulesByContextNameCount(String contextName)
-		throws SystemException {
-
-		return modulePersistence.countByContextName(contextName);
 	}
 
 }

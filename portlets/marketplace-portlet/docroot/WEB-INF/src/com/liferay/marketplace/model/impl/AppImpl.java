@@ -34,26 +34,8 @@ public class AppImpl extends AppBaseImpl {
 	public AppImpl() {
 	}
 
-	public boolean isInstalled() throws PortalException, SystemException {
-		List<Module> modules = ModuleLocalServiceUtil.getAppModules(getAppId());
-
-		for (Module module : modules) {
-			if (!DeployManagerUtil.isDeployed(module.getContextName())) {
-				return false;
-			}
-		}
-
-		return true;
-	}
-
-	public boolean isDownloaded() throws PortalException, SystemException {
-		return DLStoreUtil.hasFile(
-			getCompanyId(), CompanyConstants.SYSTEM, getFilePath(),
-			Store.VERSION_DEFAULT);
-	}
-
 	public String getFileDir() {
-		return "marketplace";
+		return _DIR_NAME;
 	}
 
 	public String getFileName() {
@@ -64,6 +46,26 @@ public class AppImpl extends AppBaseImpl {
 		return getFileDir() + StringPool.SLASH + getFileName();
 	}
 
-	private final String _EXTENSION = "lpkg";
+	public boolean isDownloaded() throws PortalException, SystemException {
+		return DLStoreUtil.hasFile(
+			getCompanyId(), CompanyConstants.SYSTEM, getFilePath(),
+			Store.VERSION_DEFAULT);
+	}
+
+	public boolean isInstalled() throws SystemException {
+		List<Module> modules = ModuleLocalServiceUtil.getModules(getAppId());
+
+		for (Module module : modules) {
+			if (!DeployManagerUtil.isDeployed(module.getContextName())) {
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	private static final String _DIR_NAME = "marketplace";
+
+	private static final String _EXTENSION = "lpkg";
 
 }

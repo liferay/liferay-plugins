@@ -19,21 +19,21 @@ import com.liferay.portal.kernel.exception.PortalException;
 /**
  * @author Ryan Park
  */
-public class DownloadNotFoundException extends PortalException {
+public class AppVersionException extends PortalException {
 
-	public DownloadNotFoundException() {
+	public AppVersionException() {
 		super();
 	}
 
-	public DownloadNotFoundException(String msg) {
+	public AppVersionException(String msg) {
 		super(msg);
 	}
 
-	public DownloadNotFoundException(String msg, Throwable cause) {
+	public AppVersionException(String msg, Throwable cause) {
 		super(msg, cause);
 	}
 
-	public DownloadNotFoundException(Throwable cause) {
+	public AppVersionException(Throwable cause) {
 		super(cause);
 	}
 
