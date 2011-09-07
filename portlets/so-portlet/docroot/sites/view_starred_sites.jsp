@@ -108,7 +108,6 @@ if (PortalPermissionUtil.contains(permissionChecker, ActionKeys.VIEW_CONTROL_PAN
 							%>
 
 							<%@ include file="/sites/page_site_name.jspf" %>
-
 						</a>
 					</li>
 				</c:when>

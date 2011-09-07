@@ -126,11 +126,11 @@ public class SitesUtil {
 
 	public static List<Group> getVisibleSites(
 		long companyId, long userId, String keywords, int maxResultSize,
-		boolean mySites) {
+		boolean usersSites) {
 
 		try {
 			return doGetVisibleSites(
-				companyId, userId, keywords, maxResultSize, mySites);
+				companyId, userId, keywords, maxResultSize, usersSites);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -140,11 +140,11 @@ public class SitesUtil {
 	}
 
 	public static int getVisibleSitesCount(
-		long companyId, long userId, String keywords, boolean mySites) {
+		long companyId, long userId, String keywords, boolean usersSites) {
 
 		try {
 			return doGetVisibleSitesCount(
-				companyId, userId, keywords, mySites);
+				companyId, userId, keywords, usersSites);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -155,7 +155,7 @@ public class SitesUtil {
 
 	protected static List<Group> doGetVisibleSites(
 			long companyId, long userId, String keywords, int maxResultSize,
-			boolean mySites)
+			boolean usersSites)
 		throws Exception {
 
 		List<Group> groups = new ArrayList<Group>(maxResultSize);
@@ -171,7 +171,7 @@ public class SitesUtil {
 
 		groups.addAll(usersGroups);
 
-		if (mySites || (groups.size() >= maxResultSize)) {
+		if (usersSites || (groups.size() >= maxResultSize)) {
 			return groups;
 		}
 
@@ -202,10 +202,10 @@ public class SitesUtil {
 	}
 
 	protected static int doGetVisibleSitesCount(
-			long comapnyId, long userId, String keywords, boolean mySites)
+			long comapnyId, long userId, String keywords, boolean usersSites)
 		throws Exception {
 
-		if (mySites) {
+		if (usersSites) {
 			LinkedHashMap<String, Object> params =
 				new LinkedHashMap<String, Object>();
 

@@ -183,7 +183,7 @@ String tabs1Names = "my-sites,my-favorites,all-sites";
 							<liferay-ui:message key="you-are-not-a-member-of-any-sites.-search-or-open-the-directory-to-get-started" />
 						</c:when>
 						<c:when test='<%= tabs1.equals("my-favorites") %>'>
-							<liferay-ui:message key="you-dont-have-any-favorite-site" />
+							<liferay-ui:message key="you-do-not-have-any-favorite-site" />
 						</c:when>
 						<c:otherwise>
 							<liferay-ui:message key="there-are-no-results" />

@@ -56,6 +56,9 @@ AUI().use(
 			createDataSource: function(url) {
 				return new A.DataSource.IO(
 					{
+						ioConfig: {
+							method: "post"
+						},
 						on: {
 							request: function(event) {
 								var sitesTabsContainer = A.one('.so-portlet-sites .sites-tabs');
@@ -78,8 +81,7 @@ AUI().use(
 								}
 							}
 						},
-						source: url,
-						ioConfig: {method: "post"}
+						source: url
 					}
 				)
 			},
