@@ -39,12 +39,12 @@ else {
 	params.put("types", types);
 }
 
-List<Group> groups = GroupLocalServiceUtil.search(themeDisplay.getCompanyId(), searchKeywords, null, params, 0, 20, new GroupNameComparator(true));
+List<Group> groups = GroupLocalServiceUtil.search(themeDisplay.getCompanyId(), searchKeywords, null, params, 0, maxResultSize, new GroupNameComparator(true));
 
 int groupsCount = GroupLocalServiceUtil.searchCount(themeDisplay.getCompanyId(), searchKeywords, null, params);
 %>
 
-<div class="directory">
+<div id="<portlet:namespace />directory" class="so-sites-directory">
 	<liferay-ui:header title="directory" />
 
 	<div class="search">
@@ -72,7 +72,7 @@ int groupsCount = GroupLocalServiceUtil.searchCount(themeDisplay.getCompanyId(),
 		<%
 		boolean alternate = false;
 
-		String starredGroupIds = preferences.getValue("starredGroupIds", StringPool.BLANK);
+		List<Group> starredGroups = SitesUtil.getStarredSites(themeDisplay.getUserId());
 
 		for (Group group : groups) {
 			String classNames = StringPool.BLANK;
@@ -94,7 +94,7 @@ int groupsCount = GroupLocalServiceUtil.searchCount(themeDisplay.getCompanyId(),
 
 			<li class="<%= classNames %>">
 				<c:choose>
-					<c:when test="<%= !StringUtil.contains(starredGroupIds, String.valueOf(group.getGroupId())) %>">
+					<c:when test="<%= !starredGroups.contains(group) %>">
 						<span class="action star">
 							<liferay-portlet:actionURL name="updateStars" var="starURL">
 								<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.ADD %>" />
@@ -166,24 +166,18 @@ int groupsCount = GroupLocalServiceUtil.searchCount(themeDisplay.getCompanyId(),
 	<aui:button-row>
 		<div class="directory-navigation buttons-left">
 			<span class="page-indicator">
-				<%= LanguageUtil.format(pageContext, "page-x-of-x", new String[] {"<span class=\"current\">1</span>", "<span class=\"total\">" + String.valueOf((int)Math.ceil(groupsCount / 20.0)) + "</span>"}) %>
+				<%= LanguageUtil.format(pageContext, "page-x-of-x", new String[] {"<span class=\"current\">1</span>", "<span class=\"total\">" + String.valueOf((int)Math.ceil(groupsCount / (float)maxResultSize)) + "</span>"}) %>
 			</span>
-		</div>
-
-		<div class="buttons-right">
-			<aui:button onClick="Liferay.SO.Sites.closePopup()" value="close" />
 		</div>
 	</aui:button-row>
 </div>
 
 <aui:script use="datatype-number,liferay-so-site-list">
-	var directoryContainer = A.one('.so-portlet-sites-dialog');
+	var directoryContainer = A.one('#<portlet:namespace />directory');
 
 	var navigationContainer = directoryContainer.all('.directory-navigation');
-
 	var currentPageNode = directoryContainer.one('.page-indicator .current');
 	var totalPageNode = directoryContainer.one('.page-indicator .total');
-
 	var keywordsInput = directoryContainer.one('#<portlet:namespace />dialogKeywords');
 	var nextButton = directoryContainer.one('.search .next');
 	var previousButton = directoryContainer.one('.search .previous');
@@ -194,15 +188,15 @@ int groupsCount = GroupLocalServiceUtil.searchCount(themeDisplay.getCompanyId(),
 			requestTemplate: function(query) {
 				return {
 					directory: true,
-					end: 20,
+					end: <%= maxResultSize %>,
 					keywords: query,
 					start: 0,
 					userGroups: userGroupsCheckbox.get('checked')
 				}
 			},
 
-			inputNode: '.so-portlet-sites-dialog #<portlet:namespace />dialogKeywords',
-			listNode: '.so-portlet-sites-dialog .directory-list',
+			inputNode: '#<portlet:namespace />directory #<portlet:namespace />dialogKeywords',
+			listNode: '#<portlet:namespace />directory .directory-list',
 			minQueryLength: 0,
 			source: Liferay.SO.Sites.createDataSource('<portlet:resourceURL id="getSites" />')
 		}
@@ -274,8 +268,8 @@ int groupsCount = GroupLocalServiceUtil.searchCount(themeDisplay.getCompanyId(),
 
 		this._listNode.html(buffer.join(''));
 
-		var currentPage = Math.floor(options.start / 20) + 1;
-		var totalPage = Math.ceil(count / 20);
+		var currentPage = Math.floor(options.start/<%= maxResultSize %>) + 1;
+		var totalPage = Math.ceil(count/<%= maxResultSize %>);
 
 		currentPageNode.html(currentPage);
 		totalPageNode.html(totalPage);
@@ -298,8 +292,8 @@ int groupsCount = GroupLocalServiceUtil.searchCount(themeDisplay.getCompanyId(),
 	directoryList.on('results', updateDirectoryList);
 
 	var getRequestTemplate = function(targetPage) {
-		var start = (targetPage - 1) * 20;
-		var end = start + 19;
+		var start = (targetPage - 1) * <%= maxResultSize %>;
+		var end = start + <%= maxResultSize %>;
 
 		return function(query) {
 			return {

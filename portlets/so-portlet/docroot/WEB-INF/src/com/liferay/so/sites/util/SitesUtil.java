@@ -24,8 +24,11 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.GroupConstants;
+import com.liferay.portal.model.User;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.GroupServiceUtil;
+import com.liferay.portal.service.PortletPreferencesLocalServiceUtil;
+import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.util.comparator.GroupNameComparator;
 
 import java.util.ArrayList;
@@ -40,12 +43,24 @@ import javax.portlet.PortletPreferences;
  */
 public class SitesUtil {
 
-	public static List<Group> getStarredSites(
-			PortletPreferences portletPreferences)
+	public static List<Group> getStarredSites(long userId)
 		throws Exception {
 
-		String starredGroupIds = portletPreferences.getValue(
-			"starredGroupIds", StringPool.BLANK);
+		String starredGroupIds = StringPool.BLANK;
+
+		User user = UserLocalServiceUtil.getUser(userId);
+
+		Group userGroup = user.getGroup();
+
+		PortletPreferences preferences =
+			PortletPreferencesLocalServiceUtil.getPreferences(
+				user.getCompanyId(), userGroup.getGroupId(), 2, 0,
+				"5_WAR_soportlet");
+
+		if (preferences != null) {
+			starredGroupIds = preferences.getValue(
+				"starredGroupIds", StringPool.BLANK);
+		}
 
 		long[] groupIds = StringUtil.split(starredGroupIds, 0L);
 
@@ -60,15 +75,23 @@ public class SitesUtil {
 			catch (Exception e) {
 				StringUtil.remove(starredGroupIds, String.valueOf(groupId));
 
-				portletPreferences.setValue("starredGroupIds", starredGroupIds);
+				preferences.setValue("starredGroupIds", starredGroupIds);
 
-				portletPreferences.store();
+				preferences.store();
 			}
 		}
 
 		Collections.sort(groups, new GroupNameComparator(true));
 
 		return groups;
+	}
+
+	public static Group getUserGroups(long userId) throws Exception{
+		User user = UserLocalServiceUtil.getUser(userId);
+
+		Group userGroup = user.getGroup();
+
+		return userGroup;
 	}
 
 	public static List<Group> getVisibleSites(

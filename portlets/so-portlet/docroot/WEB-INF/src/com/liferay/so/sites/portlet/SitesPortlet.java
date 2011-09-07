@@ -35,19 +35,21 @@ import com.liferay.portal.model.Group;
 import com.liferay.portal.model.GroupConstants;
 import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.LayoutSetPrototype;
+import com.liferay.portal.model.User;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.GroupServiceUtil;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.service.LayoutSetPrototypeServiceUtil;
+import com.liferay.portal.service.PortletPreferencesLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
+import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.service.permission.GroupPermissionUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PortletKeys;
 import com.liferay.portal.util.comparator.GroupNameComparator;
-import com.liferay.portlet.PortletPreferencesFactoryUtil;
 import com.liferay.portlet.PortletURLFactoryUtil;
 import com.liferay.so.sites.util.SitesUtil;
 import com.liferay.so.util.WebKeys;
@@ -182,6 +184,7 @@ public class SitesPortlet extends MVCPortlet {
 			resourceRequest, "maxResultSize", 10);
 		int start = ParamUtil.getInteger(resourceRequest, "start");
 		int end = ParamUtil.getInteger(resourceRequest, "end");
+		String tabs1 = ParamUtil.getString(resourceRequest, "tabs1");
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
@@ -199,12 +202,8 @@ public class SitesPortlet extends MVCPortlet {
 		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		List<Group> groups = null;
+		List<Group> groups = new ArrayList<Group>();
 		int groupsCount = 0;
-
-		PortletPreferences portletPreferences =
-			PortletPreferencesFactoryUtil.getPortletSetup(
-				resourceRequest, "5_WAR_soportlet");
 
 		if (directory) {
 			LinkedHashMap<String, Object> params =
@@ -229,13 +228,14 @@ public class SitesPortlet extends MVCPortlet {
 				themeDisplay.getCompanyId(), keywords, null, params);
 		}
 		else {
-			groups = SitesUtil.getStarredSites(portletPreferences);
+			groups = SitesUtil.getStarredSites(themeDisplay.getUserId());
 			groupsCount = groups.size();
 
 			if (groups.isEmpty() || Validator.isNotNull(keywords)) {
 				groups = SitesUtil.getVisibleSites(
 					themeDisplay.getCompanyId(), themeDisplay.getUserId(),
 					keywords, maxResultSize);
+
 				groupsCount = SitesUtil.getVisibleSitesCount(
 					themeDisplay.getCompanyId(), themeDisplay.getUserId(),
 					keywords);
@@ -246,14 +246,11 @@ public class SitesPortlet extends MVCPortlet {
 
 		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
-		String starredGroupIds = portletPreferences.getValue(
-			"starredGroupIds", StringPool.BLANK);
-
 		for (Group group : groups) {
 			JSONObject groupJSONObject = JSONFactoryUtil.createJSONObject();
 
-			groupJSONObject.put("description", group.getDescription());
 			groupJSONObject.put("name", group.getDescriptiveName());
+			groupJSONObject.put("description", group.getDescription());
 
 			if (group.hasPrivateLayouts() || group.hasPublicLayouts()) {
 				PortletURL portletURL = PortletURLFactoryUtil.create(
@@ -314,6 +311,18 @@ public class SitesPortlet extends MVCPortlet {
 			starPortletURL.setParameter(
 				"starredGroupId", String.valueOf(group.getGroupId()));
 
+			User user = UserLocalServiceUtil.getUser(themeDisplay.getUserId());
+
+			Group userGroup = user.getGroup();
+
+			PortletPreferences portletPreferences =
+				PortletPreferencesLocalServiceUtil.getPreferences(
+					user.getCompanyId(), userGroup.getGroupId(), 2, 0,
+					"5_WAR_soportlet");
+
+			String starredGroupIds = portletPreferences.getValue(
+				"starredGroupIds", StringPool.BLANK);
+
 			if (!StringUtil.contains(
 					starredGroupIds, String.valueOf(group.getGroupId()))) {
 
@@ -339,9 +348,17 @@ public class SitesPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		User user = UserLocalServiceUtil.getUser(themeDisplay.getUserId());
+
+			Group userGroup = user.getGroup();
+
 		PortletPreferences portletPreferences =
-			PortletPreferencesFactoryUtil.getPortletSetup(
-				actionRequest, "5_WAR_soportlet");
+			PortletPreferencesLocalServiceUtil.getPreferences(
+				user.getCompanyId(), userGroup.getGroupId(), 2, 0,
+				"5_WAR_soportlet");
 
 		portletPreferences.setValue("hide-notice", Boolean.TRUE.toString());
 
@@ -394,9 +411,17 @@ public class SitesPortlet extends MVCPortlet {
 			return;
 		}
 
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		User user = UserLocalServiceUtil.getUser(themeDisplay.getUserId());
+
+		Group userGroup = user.getGroup();
+
 		PortletPreferences portletPreferences =
-			PortletPreferencesFactoryUtil.getPortletSetup(
-				actionRequest, "5_WAR_soportlet");
+			PortletPreferencesLocalServiceUtil.getPreferences(
+				user.getCompanyId(), userGroup.getGroupId(), 2, 0,
+				"5_WAR_soportlet");
 
 		String starredGroupIds = portletPreferences.getValue(
 			"starredGroupIds", StringPool.BLANK);

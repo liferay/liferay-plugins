@@ -129,7 +129,9 @@ AUI().use(
 			updateSites: function() {
 				var instance = this;
 
-				instance._siteList.sendRequest();
+				if (instance._siteList) {
+					instance._siteList.sendRequest();
+				}
 			},
 
 			_assignEvents: function() {
