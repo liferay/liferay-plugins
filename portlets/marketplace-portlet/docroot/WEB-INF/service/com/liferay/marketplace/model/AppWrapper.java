@@ -201,21 +201,21 @@ public class AppWrapper implements App {
 	}
 
 	/**
-	* Returns the marketplace app ID of this app.
+	* Returns the remote app ID of this app.
 	*
-	* @return the marketplace app ID of this app
+	* @return the remote app ID of this app
 	*/
-	public long getMarketplaceAppId() {
-		return _app.getMarketplaceAppId();
+	public long getRemoteAppId() {
+		return _app.getRemoteAppId();
 	}
 
 	/**
-	* Sets the marketplace app ID of this app.
+	* Sets the remote app ID of this app.
 	*
-	* @param marketplaceAppId the marketplace app ID of this app
+	* @param remoteAppId the remote app ID of this app
 	*/
-	public void setMarketplaceAppId(long marketplaceAppId) {
-		_app.setMarketplaceAppId(marketplaceAppId);
+	public void setRemoteAppId(long remoteAppId) {
+		_app.setRemoteAppId(remoteAppId);
 	}
 
 	/**
@@ -313,18 +313,6 @@ public class AppWrapper implements App {
 		_app.persist();
 	}
 
-	public boolean isInstalled()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return _app.isInstalled();
-	}
-
-	public boolean isDownloaded()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return _app.isDownloaded();
-	}
-
 	public java.lang.String getFileDir() {
 		return _app.getFileDir();
 	}
@@ -335,6 +323,17 @@ public class AppWrapper implements App {
 
 	public java.lang.String getFilePath() {
 		return _app.getFilePath();
+	}
+
+	public boolean isDownloaded()
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _app.isDownloaded();
+	}
+
+	public boolean isInstalled()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _app.isInstalled();
 	}
 
 	public App getWrappedApp() {

@@ -188,10 +188,10 @@ public class ClpSerializer {
 
 				method6.invoke(newModel, value6);
 
-				Method method7 = newModelClass.getMethod("setMarketplaceAppId",
+				Method method7 = newModelClass.getMethod("setRemoteAppId",
 						new Class[] { Long.TYPE });
 
-				Long value7 = new Long(oldCplModel.getMarketplaceAppId());
+				Long value7 = new Long(oldCplModel.getRemoteAppId());
 
 				method7.invoke(newModel, value7);
 
@@ -381,11 +381,11 @@ public class ClpSerializer {
 
 				newModel.setModifiedDate(value6);
 
-				Method method7 = oldModelClass.getMethod("getMarketplaceAppId");
+				Method method7 = oldModelClass.getMethod("getRemoteAppId");
 
 				Long value7 = (Long)method7.invoke(oldModel, (Object[])null);
 
-				newModel.setMarketplaceAppId(value7);
+				newModel.setRemoteAppId(value7);
 
 				Method method8 = oldModelClass.getMethod("getVersion");
 

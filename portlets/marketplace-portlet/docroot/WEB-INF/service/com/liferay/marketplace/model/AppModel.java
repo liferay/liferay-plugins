@@ -177,18 +177,18 @@ public interface AppModel extends AuditedModel, BaseModel<App> {
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Returns the marketplace app ID of this app.
+	 * Returns the remote app ID of this app.
 	 *
-	 * @return the marketplace app ID of this app
+	 * @return the remote app ID of this app
 	 */
-	public long getMarketplaceAppId();
+	public long getRemoteAppId();
 
 	/**
-	 * Sets the marketplace app ID of this app.
+	 * Sets the remote app ID of this app.
 	 *
-	 * @param marketplaceAppId the marketplace app ID of this app
+	 * @param remoteAppId the remote app ID of this app
 	 */
-	public void setMarketplaceAppId(long marketplaceAppId);
+	public void setRemoteAppId(long remoteAppId);
 
 	/**
 	 * Returns the version of this app.

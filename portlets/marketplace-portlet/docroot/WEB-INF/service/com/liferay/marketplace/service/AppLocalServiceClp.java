@@ -85,28 +85,16 @@ public class AppLocalServiceClp implements AppLocalService {
 				"addApp", long.class, long.class, java.lang.String.class,
 				java.io.InputStream.class);
 
-		_deleteAppByMarketplaceAppIdMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
-				"deleteAppByMarketplaceAppId", long.class);
+		_fetchRemoteAppMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
+				"fetchRemoteApp", long.class);
 
-		_fetchAppMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
-				"fetchApp", long.class);
-
-		_getAppsMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
-				"getApps", long.class, int.class, int.class);
-
-		_getAppsCountMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
-				"getAppsCount", long.class);
-
-		_hasAppMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
-				"hasApp", long.class);
-
-		_installAppMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
+		_installAppMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
 				"installApp", long.class);
 
-		_uninstallAppMethodKey23 = new MethodKey(_classLoaderProxy.getClassName(),
+		_uninstallAppMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
 				"uninstallApp", long.class);
 
-		_updateAppMethodKey24 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateAppMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateApp", long.class, java.lang.String.class,
 				java.io.InputStream.class);
 	}
@@ -190,8 +178,7 @@ public class AppLocalServiceClp implements AppLocalService {
 	}
 
 	public void deleteApp(com.liferay.marketplace.model.App app)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_deleteAppMethodKey3,
 				ClpSerializer.translateInput(app));
 
@@ -199,10 +186,6 @@ public class AppLocalServiceClp implements AppLocalService {
 			_classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
 				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
@@ -549,15 +532,15 @@ public class AppLocalServiceClp implements AppLocalService {
 	}
 
 	public com.liferay.marketplace.model.App addApp(long userId,
-		long marketplaceAppId, java.lang.String version, java.io.InputStream is)
+		long remoteAppId, java.lang.String version,
+		java.io.InputStream inputStream)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addAppMethodKey16,
-				userId, marketplaceAppId,
-				ClpSerializer.translateInput(version),
-				ClpSerializer.translateInput(is));
+				userId, remoteAppId, ClpSerializer.translateInput(version),
+				ClpSerializer.translateInput(inputStream));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -583,40 +566,12 @@ public class AppLocalServiceClp implements AppLocalService {
 		return (com.liferay.marketplace.model.App)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void deleteAppByMarketplaceAppId(long marketplaceAppId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_deleteAppByMarketplaceAppIdMethodKey17,
-				marketplaceAppId);
-
-		try {
-			_classLoaderProxy.invoke(methodHandler);
-		}
-		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-	}
-
-	public com.liferay.marketplace.model.App fetchApp(long marketplaceAppId)
+	public com.liferay.marketplace.model.App fetchRemoteApp(long remoteAppId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_fetchAppMethodKey18,
-				marketplaceAppId);
+		MethodHandler methodHandler = new MethodHandler(_fetchRemoteAppMethodKey17,
+				remoteAppId);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -638,93 +593,11 @@ public class AppLocalServiceClp implements AppLocalService {
 		return (com.liferay.marketplace.model.App)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public java.util.List<com.liferay.marketplace.model.App> getApps(
-		long companyId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		Object returnObj = null;
-
-		MethodHandler methodHandler = new MethodHandler(_getAppsMethodKey19,
-				companyId, start, end);
-
-		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
-		}
-		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (java.util.List<com.liferay.marketplace.model.App>)ClpSerializer.translateOutput(returnObj);
-	}
-
-	public int getAppsCount(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		Object returnObj = null;
-
-		MethodHandler methodHandler = new MethodHandler(_getAppsCountMethodKey20,
-				companyId);
-
-		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
-		}
-		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return ((Integer)returnObj).intValue();
-	}
-
-	public boolean hasApp(long marketplaceAppId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		Object returnObj = null;
-
-		MethodHandler methodHandler = new MethodHandler(_hasAppMethodKey21,
-				marketplaceAppId);
-
-		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
-		}
-		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return ((Boolean)returnObj).booleanValue();
-	}
-
-	public void installApp(long marketplaceAppId)
+	public void installApp(long remoteAppId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_installAppMethodKey22,
-				marketplaceAppId);
+		MethodHandler methodHandler = new MethodHandler(_installAppMethodKey18,
+				remoteAppId);
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -748,11 +621,11 @@ public class AppLocalServiceClp implements AppLocalService {
 		}
 	}
 
-	public void uninstallApp(long marketplaceAppId)
+	public void uninstallApp(long remoteAppId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_uninstallAppMethodKey23,
-				marketplaceAppId);
+		MethodHandler methodHandler = new MethodHandler(_uninstallAppMethodKey19,
+				remoteAppId);
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -777,14 +650,14 @@ public class AppLocalServiceClp implements AppLocalService {
 	}
 
 	public com.liferay.marketplace.model.App updateApp(long appId,
-		java.lang.String version, java.io.InputStream is)
+		java.lang.String version, java.io.InputStream inputStream)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateAppMethodKey24,
+		MethodHandler methodHandler = new MethodHandler(_updateAppMethodKey20,
 				appId, ClpSerializer.translateInput(version),
-				ClpSerializer.translateInput(is));
+				ClpSerializer.translateInput(inputStream));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -832,12 +705,8 @@ public class AppLocalServiceClp implements AppLocalService {
 	private MethodKey _getBeanIdentifierMethodKey14;
 	private MethodKey _setBeanIdentifierMethodKey15;
 	private MethodKey _addAppMethodKey16;
-	private MethodKey _deleteAppByMarketplaceAppIdMethodKey17;
-	private MethodKey _fetchAppMethodKey18;
-	private MethodKey _getAppsMethodKey19;
-	private MethodKey _getAppsCountMethodKey20;
-	private MethodKey _hasAppMethodKey21;
-	private MethodKey _installAppMethodKey22;
-	private MethodKey _uninstallAppMethodKey23;
-	private MethodKey _updateAppMethodKey24;
+	private MethodKey _fetchRemoteAppMethodKey17;
+	private MethodKey _installAppMethodKey18;
+	private MethodKey _uninstallAppMethodKey19;
+	private MethodKey _updateAppMethodKey20;
 }

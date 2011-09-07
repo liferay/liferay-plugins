@@ -123,12 +123,12 @@ public class AppClp extends BaseModelImpl<App> implements App {
 		_modifiedDate = modifiedDate;
 	}
 
-	public long getMarketplaceAppId() {
-		return _marketplaceAppId;
+	public long getRemoteAppId() {
+		return _remoteAppId;
 	}
 
-	public void setMarketplaceAppId(long marketplaceAppId) {
-		_marketplaceAppId = marketplaceAppId;
+	public void setRemoteAppId(long remoteAppId) {
+		_remoteAppId = remoteAppId;
 	}
 
 	public String getVersion() {
@@ -137,14 +137,6 @@ public class AppClp extends BaseModelImpl<App> implements App {
 
 	public void setVersion(String version) {
 		_version = version;
-	}
-
-	public boolean isInstalled() {
-		throw new UnsupportedOperationException();
-	}
-
-	public boolean isDownloaded() {
-		throw new UnsupportedOperationException();
 	}
 
 	public java.lang.String getFileDir() {
@@ -156,6 +148,14 @@ public class AppClp extends BaseModelImpl<App> implements App {
 	}
 
 	public java.lang.String getFilePath() {
+		throw new UnsupportedOperationException();
+	}
+
+	public boolean isDownloaded() {
+		throw new UnsupportedOperationException();
+	}
+
+	public boolean isInstalled() {
 		throw new UnsupportedOperationException();
 	}
 
@@ -185,7 +185,7 @@ public class AppClp extends BaseModelImpl<App> implements App {
 		clone.setUserName(getUserName());
 		clone.setCreateDate(getCreateDate());
 		clone.setModifiedDate(getModifiedDate());
-		clone.setMarketplaceAppId(getMarketplaceAppId());
+		clone.setRemoteAppId(getRemoteAppId());
 		clone.setVersion(getVersion());
 
 		return clone;
@@ -253,8 +253,8 @@ public class AppClp extends BaseModelImpl<App> implements App {
 		sb.append(getCreateDate());
 		sb.append(", modifiedDate=");
 		sb.append(getModifiedDate());
-		sb.append(", marketplaceAppId=");
-		sb.append(getMarketplaceAppId());
+		sb.append(", remoteAppId=");
+		sb.append(getRemoteAppId());
 		sb.append(", version=");
 		sb.append(getVersion());
 		sb.append("}");
@@ -298,8 +298,8 @@ public class AppClp extends BaseModelImpl<App> implements App {
 		sb.append(getModifiedDate());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>marketplaceAppId</column-name><column-value><![CDATA[");
-		sb.append(getMarketplaceAppId());
+			"<column><column-name>remoteAppId</column-name><column-value><![CDATA[");
+		sb.append(getRemoteAppId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>version</column-name><column-value><![CDATA[");
@@ -319,6 +319,6 @@ public class AppClp extends BaseModelImpl<App> implements App {
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
-	private long _marketplaceAppId;
+	private long _remoteAppId;
 	private String _version;
 }

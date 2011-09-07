@@ -6,7 +6,7 @@ create table Marketplace_App (
 	userName VARCHAR(75) null,
 	createDate DATE null,
 	modifiedDate DATE null,
-	marketplaceAppId LONG,
+	remoteAppId LONG,
 	version VARCHAR(75) null
 );
 

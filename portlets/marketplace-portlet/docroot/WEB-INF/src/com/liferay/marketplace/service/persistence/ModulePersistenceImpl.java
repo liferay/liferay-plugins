@@ -547,12 +547,7 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 	 */
 	public List<Module> findByUuid(String uuid, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				uuid,
-				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+		Object[] finderArgs = new Object[] { uuid, start, end, orderByComparator };
 
 		List<Module> list = (List<Module>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_UUID,
 				finderArgs, this);
@@ -898,12 +893,7 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 	 */
 	public List<Module> findByAppId(long appId, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				appId,
-				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+		Object[] finderArgs = new Object[] { appId, start, end, orderByComparator };
 
 		List<Module> list = (List<Module>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_APPID,
 				finderArgs, this);
@@ -1231,8 +1221,7 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 		Object[] finderArgs = new Object[] {
 				contextName,
 				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
+				start, end, orderByComparator
 			};
 
 		List<Module> list = (List<Module>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_CONTEXTNAME,
@@ -1730,10 +1719,7 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 	 */
 	public List<Module> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+		Object[] finderArgs = new Object[] { start, end, orderByComparator };
 
 		List<Module> list = (List<Module>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
 				finderArgs, this);
@@ -2214,10 +2200,12 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(ModulePersistenceImpl.class);
 	private static Module _nullModule = new ModuleImpl() {
+			@Override
 			public Object clone() {
 				return this;
 			}
 
+			@Override
 			public CacheModel<Module> toCacheModel() {
 				return _nullModuleCacheModel;
 			}

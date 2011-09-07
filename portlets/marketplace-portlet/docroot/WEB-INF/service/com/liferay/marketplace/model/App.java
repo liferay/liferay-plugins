@@ -31,17 +31,16 @@ public interface App extends AppModel, PersistedModel {
 	 *
 	 * Never modify this interface directly. Add methods to {@link com.liferay.marketplace.model.impl.AppImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
-	public boolean isInstalled()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
-
-	public boolean isDownloaded()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
-
 	public java.lang.String getFileDir();
 
 	public java.lang.String getFileName();
 
 	public java.lang.String getFilePath();
+
+	public boolean isDownloaded()
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	public boolean isInstalled()
+		throws com.liferay.portal.kernel.exception.SystemException;
 }

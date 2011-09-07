@@ -22,7 +22,7 @@
 			<basic name="modifiedDate">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
-			<basic name="marketplaceAppId" />
+			<basic name="remoteAppId" />
 			<basic name="version" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
