@@ -73,6 +73,7 @@
 <%@ page import="com.liferay.portal.util.comparator.GroupNameComparator" %>
 <%@ page import="com.liferay.portal.util.comparator.RoleNameComparator" %>
 <%@ page import="com.liferay.portlet.PortletPreferencesFactoryUtil" %>
+<%@ page import="com.liferay.portlet.expando.model.ExpandoBridge" %>
 <%@ page import="com.liferay.portlet.social.model.SocialActivity" %>
 <%@ page import="com.liferay.portlet.social.model.SocialActivityFeedEntry" %>
 <%@ page import="com.liferay.portlet.social.model.SocialRelationConstants" %>

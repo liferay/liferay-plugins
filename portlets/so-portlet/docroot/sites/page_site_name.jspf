@@ -17,12 +17,15 @@
  */
 --%>
 
-<%
-boolean socialOfficeEnabled = GetterUtil.getBoolean(starredSite.getExpandoBridge().getAttribute("socialOfficeEnabled"));
-%>
-
 <span class="site-name">
-	<c:if test="<%= regularSite && !starredSite.isControlPanel() %>">
+	<c:if test="<%= starredSite.isRegularSite() && !starredSite.isControlPanel() %>">
+
+		<%
+		ExpandoBridge expandoBridge = starredSite.getExpandoBridge();
+
+		boolean socialOfficeEnabled = GetterUtil.getBoolean(expandoBridge.getAttribute("socialOfficeEnabled"));
+		%>
+
 		<c:choose>
 			<c:when test="<%= socialOfficeEnabled %>">
 				<liferay-ui:icon message="<%= starredSite.getDescriptiveName() %>" src='<%= themeDisplay.getPathContext() + "/html/icons/social_office.png" %>' />

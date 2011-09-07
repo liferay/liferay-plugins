@@ -43,26 +43,9 @@ if (PortalPermissionUtil.contains(permissionChecker, ActionKeys.VIEW_CONTROL_PAN
 
 	for (Group starredSite : starredSites) {
 		starredSite = starredSite.toEscapedModel();
-
-		boolean regularSite = starredSite.isRegularSite();
-		boolean userSite = starredSite.isUser();
-		int publicLayoutsPageCount = starredSite.getPublicLayoutsPageCount();
-		int privateLayoutsPageCount = starredSite.getPrivateLayoutsPageCount();
-
-		boolean showPublicSite = true;
-
-		if (publicLayoutsPageCount == 0) {
-			showPublicSite = false;
-		}
-
-		boolean showPrivateSite = true;
-
-		if (privateLayoutsPageCount == 0) {
-			showPrivateSite = false;
-		}
 	%>
 
-		<c:if test="<%= showPublicSite || showPrivateSite %>">
+		<c:if test="<%= (starredSite.getPublicLayoutsPageCount() > 0) || (starredSite.getPrivateLayoutsPageCount() > 0) %>">
 
 			<%
 			portletURL.setParameter("groupId", String.valueOf(starredSite.getGroupId()));
@@ -117,14 +100,14 @@ if (PortalPermissionUtil.contains(permissionChecker, ActionKeys.VIEW_CONTROL_PAN
 					portletURL.setParameter("privateLayout", Boolean.FALSE.toString());
 					%>
 
-					<c:if test="<%= showPublicSite && publicLayoutsPageCount > 0 %>">
+					<c:if test="<%= starredSite.getPublicLayoutsPageCount() > 0 %>">
 						<li class="<%= (selectedSite && layout.isPublicLayout()) ? "current-site" : "public-site" %> <%= cssClass %>">
 							<a href="<%= HtmlUtil.escape(portletURL.toString()) %>" onclick="Liferay.Util.forcePost(this); return false;">
 
 								<%
 								String siteName = StringPool.BLANK;
 
-								if (userSite) {
+								if (starredSite.isUser()) {
 									siteName = LanguageUtil.get(pageContext, "my-public-pages");
 								}
 								else if (starredSite.getName().equals(GroupConstants.GUEST)) {
@@ -137,7 +120,7 @@ if (PortalPermissionUtil.contains(permissionChecker, ActionKeys.VIEW_CONTROL_PAN
 
 								<%@ include file="/sites/page_site_name.jspf" %>
 
-								<c:if test="<%= privateLayoutsPageCount > 0 %>">
+								<c:if test="<%= starredSite.getPrivateLayoutsPageCount() > 0 %>">
 									<span class="site-type"><liferay-ui:message key="public" /></span>
 								</c:if>
 							</a>
@@ -148,14 +131,14 @@ if (PortalPermissionUtil.contains(permissionChecker, ActionKeys.VIEW_CONTROL_PAN
 					portletURL.setParameter("privateLayout", Boolean.TRUE.toString());
 					%>
 
-					<c:if test="<%= showPrivateSite && privateLayoutsPageCount > 0 %>">
+					<c:if test="<%= starredSite.getPrivateLayoutsPageCount() > 0 %>">
 						<li class="<%= (selectedSite && layout.isPrivateLayout()) ? "current-site" : "private-site" %> <%= cssClass %>">
 							<a href="<%= HtmlUtil.escape(portletURL.toString()) %>" onclick="Liferay.Util.forcePost(this); return false;">
 
 								<%
 								String siteName = StringPool.BLANK;
 
-								if (userSite) {
+								if (starredSite.isUser()) {
 									siteName = LanguageUtil.get(pageContext, "my-private-pages");
 								}
 								else if (starredSite.getName().equals(GroupConstants.GUEST)) {
@@ -168,7 +151,7 @@ if (PortalPermissionUtil.contains(permissionChecker, ActionKeys.VIEW_CONTROL_PAN
 
 								<%@ include file="/sites/page_site_name.jspf" %>
 
-								<c:if test="<%= publicLayoutsPageCount > 0 %>">
+								<c:if test="<%= starredSite.getPublicLayoutsPageCount() > 0 %>">
 									<span class="site-type"><liferay-ui:message key="private" /></span>
 								</c:if>
 							</a>

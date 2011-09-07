@@ -22,18 +22,12 @@
 <ul class="taglib-my-places">
 	<liferay-util:include page="/sites/view_starred_sites.jsp" portletId="5_WAR_soportlet" />
 
-	<liferay-portlet:renderURL portletName="5_WAR_soportlet" windowState="<%= LiferayWindowState.POP_UP.toString() %>" varImpl="viewSitesURL">
+	<liferay-portlet:renderURL portletName="5_WAR_soportlet" varImpl="viewSitesURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
 		<portlet:param name="jspPage" value="/sites/view_sites.jsp" />
 	</liferay-portlet:renderURL>
 
 	<li>
-
-		<%
-		String popupDisplayTitle = LanguageUtil.get(locale, "more-sites");
-		%>
-
-		<a class="open-sites-directory" href="javascript:;" onClick="<portlet:namespace />displayDirectoryPopup('<%= viewSitesURL %>', '<%= popupDisplayTitle %>');">
-
+		<a class="open-sites-directory" href="javascript:;" onClick="<portlet:namespace />displayDirectoryPopup('<%= viewSitesURL %>', '<liferay-ui:message key="more-sites" />');">
 			<span class="site-name">
 				<liferay-ui:icon
 					message="more-sites"
@@ -45,7 +39,6 @@
 		</a>
 	</li>
 </ul>
-
 
 <aui:script>
 	Liferay.provide(

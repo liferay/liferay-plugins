@@ -1,4 +1,4 @@
- /**
+/**
  * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
  *
  * This file is part of Liferay Social Office. Liferay Social Office is free
@@ -45,75 +45,21 @@ import javax.portlet.PortletPreferences;
  */
 public class SitesUtil {
 
-	public static List<Group> getStarredSites(long userId, String name)
-		throws Exception {
-
-		String starredGroupIds = StringPool.BLANK;
-
-		User user = UserLocalServiceUtil.getUser(userId);
-
-		Group userGroup = user.getGroup();
-
-		PortletPreferences preferences =
-			PortletPreferencesLocalServiceUtil.getPreferences(
-				user.getCompanyId(), userGroup.getGroupId(),
-				PortletKeys.PREFS_OWNER_TYPE_GROUP, 0, "5_WAR_soportlet");
-
-		if (preferences != null) {
-			starredGroupIds = preferences.getValue(
-				"starredGroupIds", StringPool.BLANK);
-		}
-
-		long[] groupIds = StringUtil.split(starredGroupIds, 0L);
-
-		List<Group> groups = new ArrayList<Group>(groupIds.length);
-
-		for (long groupId : groupIds) {
-			try {
-				Group group = GroupServiceUtil.getGroup(groupId);
-
-				if (Validator.isNull(name)) {
-					groups.add(group);
-				}
-				else {
-					String groupDescriptiveName =
-						group.getDescriptiveName().toLowerCase();
-
-					if (groupDescriptiveName.contains(name.toLowerCase())) {
-
-						groups.add(group);
-					}
-				}
-			}
-			catch (Exception e) {
-				StringUtil.remove(starredGroupIds, String.valueOf(groupId));
-
-				preferences.setValue("starredGroupIds", starredGroupIds);
-
-				preferences.store();
-			}
-		}
-
-		Collections.sort(groups, new GroupNameComparator(true));
-
-		return groups;
-	}
-
 	public static String getStarredGroupIds(long userId) {
 		String starredGroupIds = StringPool.BLANK;
 
 		try {
 			User user = UserLocalServiceUtil.getUser(userId);
 
-			Group userGroup = user.getGroup();
+			Group group = user.getGroup();
 
-			PortletPreferences preferences =
+			PortletPreferences portletPreferences =
 				PortletPreferencesLocalServiceUtil.getPreferences(
-					user.getCompanyId(), userGroup.getGroupId(),
+					user.getCompanyId(), group.getGroupId(),
 					PortletKeys.PREFS_OWNER_TYPE_GROUP, 0, "5_WAR_soportlet");
 
-			if (preferences != null) {
-				starredGroupIds = preferences.getValue(
+			if (portletPreferences != null) {
+				starredGroupIds = portletPreferences.getValue(
 					"starredGroupIds", StringPool.BLANK);
 			}
 		}
@@ -124,13 +70,67 @@ public class SitesUtil {
 		return starredGroupIds;
 	}
 
+	public static List<Group> getStarredSites(long userId, String name)
+		throws Exception {
+
+		String starredGroupIds = StringPool.BLANK;
+
+		User user = UserLocalServiceUtil.getUser(userId);
+
+		Group group = user.getGroup();
+
+		PortletPreferences portletPreferences =
+			PortletPreferencesLocalServiceUtil.getPreferences(
+				user.getCompanyId(), group.getGroupId(),
+				PortletKeys.PREFS_OWNER_TYPE_GROUP, 0, "5_WAR_soportlet");
+
+		if (portletPreferences != null) {
+			starredGroupIds = portletPreferences.getValue(
+				"starredGroupIds", StringPool.BLANK);
+		}
+
+		long[] groupIds = StringUtil.split(starredGroupIds, 0L);
+
+		List<Group> groups = new ArrayList<Group>(groupIds.length);
+
+		for (long groupId : groupIds) {
+			try {
+				Group curGroup = GroupServiceUtil.getGroup(groupId);
+
+				if (Validator.isNull(name)) {
+					groups.add(curGroup);
+				}
+				else {
+					String groupDescriptiveName = curGroup.getDescriptiveName();
+
+					groupDescriptiveName = groupDescriptiveName.toLowerCase();
+
+					if (groupDescriptiveName.contains(name.toLowerCase())) {
+						groups.add(curGroup);
+					}
+				}
+			}
+			catch (Exception e) {
+				StringUtil.remove(starredGroupIds, String.valueOf(groupId));
+
+				portletPreferences.setValue("starredGroupIds", starredGroupIds);
+
+				portletPreferences.store();
+			}
+		}
+
+		Collections.sort(groups, new GroupNameComparator(true));
+
+		return groups;
+	}
+
 	public static List<Group> getVisibleSites(
-		long companyId, long userId, String keywords, int maxResultSize,
-		boolean usersSites) {
+		long companyId, long userId, String keywords, boolean usersSites,
+		int maxResultSize) {
 
 		try {
 			return doGetVisibleSites(
-				companyId, userId, keywords, maxResultSize, usersSites);
+				companyId, userId, keywords, usersSites, maxResultSize);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -154,8 +154,8 @@ public class SitesUtil {
 	}
 
 	protected static List<Group> doGetVisibleSites(
-			long companyId, long userId, String keywords, int maxResultSize,
-			boolean usersSites)
+			long companyId, long userId, String keywords, boolean usersSites,
+			int maxResultSize)
 		throws Exception {
 
 		List<Group> groups = new ArrayList<Group>(maxResultSize);

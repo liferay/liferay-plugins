@@ -64,7 +64,7 @@
 						List<User> inviteUsers = new ArrayList<User>();
 
 						for (User curUser : users) {
-							if(!UserLocalServiceUtil.hasGroupUser(layout.getGroupId(), curUser.getUserId()) && !curUser.equals(defaultUser)) {
+							if (!UserLocalServiceUtil.hasGroupUser(layout.getGroupId(), curUser.getUserId()) && !curUser.equals(defaultUser)) {
 								inviteUsers.add(curUser);
 							}
 						}

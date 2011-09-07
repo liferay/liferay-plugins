@@ -75,8 +75,8 @@ AUI().use(
 									directory: data.directory || false,
 									end: data.end || 0,
 									keywords: data.keywords || '',
-									start: data.start || 0,
 									searchTab: data.searchTab || tabs1,
+									start: data.start || 0,
 									userGroups: data.userGroups || false
 								}
 							}
