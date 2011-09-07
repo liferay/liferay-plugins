@@ -9,7 +9,7 @@
 		<field name="userName" type="String" />
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
-		<field name="marketplaceAppId" type="long" />
+		<field name="remoteAppId" type="long" />
 		<field name="version" type="String" />
 	</model>
 	<model name="com.liferay.marketplace.model.Module">

@@ -66,10 +66,10 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 			{ "userName", Types.VARCHAR },
 			{ "createDate", Types.TIMESTAMP },
 			{ "modifiedDate", Types.TIMESTAMP },
-			{ "marketplaceAppId", Types.BIGINT },
+			{ "remoteAppId", Types.BIGINT },
 			{ "version", Types.VARCHAR }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Marketplace_App (uuid_ VARCHAR(75) null,appId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,marketplaceAppId LONG,version VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table Marketplace_App (uuid_ VARCHAR(75) null,appId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,remoteAppId LONG,version VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table Marketplace_App";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
@@ -185,22 +185,22 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 		_modifiedDate = modifiedDate;
 	}
 
-	public long getMarketplaceAppId() {
-		return _marketplaceAppId;
+	public long getRemoteAppId() {
+		return _remoteAppId;
 	}
 
-	public void setMarketplaceAppId(long marketplaceAppId) {
-		if (!_setOriginalMarketplaceAppId) {
-			_setOriginalMarketplaceAppId = true;
+	public void setRemoteAppId(long remoteAppId) {
+		if (!_setOriginalRemoteAppId) {
+			_setOriginalRemoteAppId = true;
 
-			_originalMarketplaceAppId = _marketplaceAppId;
+			_originalRemoteAppId = _remoteAppId;
 		}
 
-		_marketplaceAppId = marketplaceAppId;
+		_remoteAppId = remoteAppId;
 	}
 
-	public long getOriginalMarketplaceAppId() {
-		return _originalMarketplaceAppId;
+	public long getOriginalRemoteAppId() {
+		return _originalRemoteAppId;
 	}
 
 	public String getVersion() {
@@ -258,7 +258,7 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 		appImpl.setUserName(getUserName());
 		appImpl.setCreateDate(getCreateDate());
 		appImpl.setModifiedDate(getModifiedDate());
-		appImpl.setMarketplaceAppId(getMarketplaceAppId());
+		appImpl.setRemoteAppId(getRemoteAppId());
 		appImpl.setVersion(getVersion());
 
 		appImpl.resetOriginalValues();
@@ -314,9 +314,9 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 	public void resetOriginalValues() {
 		AppModelImpl appModelImpl = this;
 
-		appModelImpl._originalMarketplaceAppId = appModelImpl._marketplaceAppId;
+		appModelImpl._originalRemoteAppId = appModelImpl._remoteAppId;
 
-		appModelImpl._setOriginalMarketplaceAppId = false;
+		appModelImpl._setOriginalRemoteAppId = false;
 	}
 
 	@Override
@@ -363,7 +363,7 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 			appCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
-		appCacheModel.marketplaceAppId = getMarketplaceAppId();
+		appCacheModel.remoteAppId = getRemoteAppId();
 
 		appCacheModel.version = getVersion();
 
@@ -394,8 +394,8 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 		sb.append(getCreateDate());
 		sb.append(", modifiedDate=");
 		sb.append(getModifiedDate());
-		sb.append(", marketplaceAppId=");
-		sb.append(getMarketplaceAppId());
+		sb.append(", remoteAppId=");
+		sb.append(getRemoteAppId());
 		sb.append(", version=");
 		sb.append(getVersion());
 		sb.append("}");
@@ -439,8 +439,8 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 		sb.append(getModifiedDate());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>marketplaceAppId</column-name><column-value><![CDATA[");
-		sb.append(getMarketplaceAppId());
+			"<column><column-name>remoteAppId</column-name><column-value><![CDATA[");
+		sb.append(getRemoteAppId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>version</column-name><column-value><![CDATA[");
@@ -464,9 +464,9 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
-	private long _marketplaceAppId;
-	private long _originalMarketplaceAppId;
-	private boolean _setOriginalMarketplaceAppId;
+	private long _remoteAppId;
+	private long _originalRemoteAppId;
+	private boolean _setOriginalRemoteAppId;
 	private String _version;
 	private transient ExpandoBridge _expandoBridge;
 	private App _escapedModelProxy;

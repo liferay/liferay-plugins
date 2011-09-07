@@ -77,12 +77,10 @@ public interface AppLocalService extends PersistedModelLocalService {
 	* Deletes the app from the database. Also notifies the appropriate model listeners.
 	*
 	* @param app the app
-	* @throws PortalException
 	* @throws SystemException if a system exception occurred
 	*/
 	public void deleteApp(com.liferay.marketplace.model.App app)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
@@ -230,41 +228,25 @@ public interface AppLocalService extends PersistedModelLocalService {
 	public void setBeanIdentifier(java.lang.String beanIdentifier);
 
 	public com.liferay.marketplace.model.App addApp(long userId,
-		long marketplaceAppId, java.lang.String version, java.io.InputStream is)
+		long remoteAppId, java.lang.String version,
+		java.io.InputStream inputStream)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
-	public void deleteAppByMarketplaceAppId(long marketplaceAppId)
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.marketplace.model.App fetchRemoteApp(long remoteAppId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public void installApp(long remoteAppId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.marketplace.model.App fetchApp(long marketplaceAppId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.marketplace.model.App> getApps(
-		long companyId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getAppsCount(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public boolean hasApp(long marketplaceAppId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	public void installApp(long marketplaceAppId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
-
-	public void uninstallApp(long marketplaceAppId)
+	public void uninstallApp(long remoteAppId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.marketplace.model.App updateApp(long appId,
-		java.lang.String version, java.io.InputStream is)
+		java.lang.String version, java.io.InputStream inputStream)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 }

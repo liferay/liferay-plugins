@@ -87,23 +87,8 @@ public class ModuleLocalServiceClp implements ModuleLocalService {
 		_fetchModuleMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
 				"fetchModule", long.class, java.lang.String.class);
 
-		_getAppModulesMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
-				"getAppModules", long.class);
-
-		_getAppModulesMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
-				"getAppModules", long.class, int.class, int.class);
-
-		_getAppModulesCountMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
-				"getAppModulesCount", long.class);
-
-		_getModuleMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
-				"getModule", long.class, java.lang.String.class);
-
-		_getModulesByContextNameMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
-				"getModulesByContextName", java.lang.String.class);
-
-		_getModulesByContextNameCountMethodKey23 = new MethodKey(_classLoaderProxy.getClassName(),
-				"getModulesByContextNameCount", java.lang.String.class);
+		_getModulesMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getModules", long.class);
 	}
 
 	public com.liferay.marketplace.model.Module addModule(
@@ -541,8 +526,7 @@ public class ModuleLocalServiceClp implements ModuleLocalService {
 
 	public com.liferay.marketplace.model.Module addModule(long userId,
 		long appId, java.lang.String contextName)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addModuleMethodKey16,
@@ -552,10 +536,6 @@ public class ModuleLocalServiceClp implements ModuleLocalService {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
 				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
@@ -574,8 +554,7 @@ public class ModuleLocalServiceClp implements ModuleLocalService {
 
 	public com.liferay.marketplace.model.Module fetchModule(long appId,
 		java.lang.String contextName)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_fetchModuleMethodKey17,
@@ -585,10 +564,6 @@ public class ModuleLocalServiceClp implements ModuleLocalService {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
 				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
@@ -605,77 +580,11 @@ public class ModuleLocalServiceClp implements ModuleLocalService {
 		return (com.liferay.marketplace.model.Module)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public java.util.List<com.liferay.marketplace.model.Module> getAppModules(
-		long appId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+	public java.util.List<com.liferay.marketplace.model.Module> getModules(
+		long appId) throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getAppModulesMethodKey18,
-				appId);
-
-		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
-		}
-		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (java.util.List<com.liferay.marketplace.model.Module>)ClpSerializer.translateOutput(returnObj);
-	}
-
-	public java.util.List<com.liferay.marketplace.model.Module> getAppModules(
-		long appId, int start, int end)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		Object returnObj = null;
-
-		MethodHandler methodHandler = new MethodHandler(_getAppModulesMethodKey19,
-				appId, start, end);
-
-		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
-		}
-		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (java.util.List<com.liferay.marketplace.model.Module>)ClpSerializer.translateOutput(returnObj);
-	}
-
-	public int getAppModulesCount(long appId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		Object returnObj = null;
-
-		MethodHandler methodHandler = new MethodHandler(_getAppModulesCountMethodKey20,
+		MethodHandler methodHandler = new MethodHandler(_getModulesMethodKey18,
 				appId);
 
 		try {
@@ -695,100 +604,7 @@ public class ModuleLocalServiceClp implements ModuleLocalService {
 			}
 		}
 
-		return ((Integer)returnObj).intValue();
-	}
-
-	public com.liferay.marketplace.model.Module getModule(long appId,
-		java.lang.String contextName)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		Object returnObj = null;
-
-		MethodHandler methodHandler = new MethodHandler(_getModuleMethodKey21,
-				appId, ClpSerializer.translateInput(contextName));
-
-		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
-		}
-		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (com.liferay.marketplace.model.Module)ClpSerializer.translateOutput(returnObj);
-	}
-
-	public java.util.List<com.liferay.marketplace.model.Module> getModulesByContextName(
-		java.lang.String contextName)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		Object returnObj = null;
-
-		MethodHandler methodHandler = new MethodHandler(_getModulesByContextNameMethodKey22,
-				ClpSerializer.translateInput(contextName));
-
-		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
-		}
-		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
 		return (java.util.List<com.liferay.marketplace.model.Module>)ClpSerializer.translateOutput(returnObj);
-	}
-
-	public int getModulesByContextNameCount(java.lang.String contextName)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		Object returnObj = null;
-
-		MethodHandler methodHandler = new MethodHandler(_getModulesByContextNameCountMethodKey23,
-				ClpSerializer.translateInput(contextName));
-
-		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
-		}
-		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return ((Integer)returnObj).intValue();
 	}
 
 	public ClassLoaderProxy getClassLoaderProxy() {
@@ -814,10 +630,5 @@ public class ModuleLocalServiceClp implements ModuleLocalService {
 	private MethodKey _setBeanIdentifierMethodKey15;
 	private MethodKey _addModuleMethodKey16;
 	private MethodKey _fetchModuleMethodKey17;
-	private MethodKey _getAppModulesMethodKey18;
-	private MethodKey _getAppModulesMethodKey19;
-	private MethodKey _getAppModulesCountMethodKey20;
-	private MethodKey _getModuleMethodKey21;
-	private MethodKey _getModulesByContextNameMethodKey22;
-	private MethodKey _getModulesByContextNameCountMethodKey23;
+	private MethodKey _getModulesMethodKey18;
 }

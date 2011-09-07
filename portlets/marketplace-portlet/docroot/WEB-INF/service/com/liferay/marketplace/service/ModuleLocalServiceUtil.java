@@ -255,54 +255,19 @@ public class ModuleLocalServiceUtil {
 
 	public static com.liferay.marketplace.model.Module addModule(long userId,
 		long appId, java.lang.String contextName)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().addModule(userId, appId, contextName);
 	}
 
 	public static com.liferay.marketplace.model.Module fetchModule(long appId,
 		java.lang.String contextName)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().fetchModule(appId, contextName);
 	}
 
-	public static java.util.List<com.liferay.marketplace.model.Module> getAppModules(
-		long appId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getService().getAppModules(appId);
-	}
-
-	public static java.util.List<com.liferay.marketplace.model.Module> getAppModules(
-		long appId, int start, int end)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getService().getAppModules(appId, start, end);
-	}
-
-	public static int getAppModulesCount(long appId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().getAppModulesCount(appId);
-	}
-
-	public static com.liferay.marketplace.model.Module getModule(long appId,
-		java.lang.String contextName)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getService().getModule(appId, contextName);
-	}
-
-	public static java.util.List<com.liferay.marketplace.model.Module> getModulesByContextName(
-		java.lang.String contextName)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getService().getModulesByContextName(contextName);
-	}
-
-	public static int getModulesByContextNameCount(java.lang.String contextName)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().getModulesByContextNameCount(contextName);
+	public static java.util.List<com.liferay.marketplace.model.Module> getModules(
+		long appId) throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getModules(appId);
 	}
 
 	public static void clearService() {

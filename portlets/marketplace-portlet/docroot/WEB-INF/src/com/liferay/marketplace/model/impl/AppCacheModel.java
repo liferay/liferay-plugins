@@ -48,8 +48,8 @@ public class AppCacheModel implements CacheModel<App> {
 		sb.append(createDate);
 		sb.append(", modifiedDate=");
 		sb.append(modifiedDate);
-		sb.append(", marketplaceAppId=");
-		sb.append(marketplaceAppId);
+		sb.append(", remoteAppId=");
+		sb.append(remoteAppId);
 		sb.append(", version=");
 		sb.append(version);
 		sb.append("}");
@@ -92,7 +92,7 @@ public class AppCacheModel implements CacheModel<App> {
 			appImpl.setModifiedDate(new Date(modifiedDate));
 		}
 
-		appImpl.setMarketplaceAppId(marketplaceAppId);
+		appImpl.setRemoteAppId(remoteAppId);
 
 		if (version == null) {
 			appImpl.setVersion(StringPool.BLANK);
@@ -113,6 +113,6 @@ public class AppCacheModel implements CacheModel<App> {
 	public String userName;
 	public long createDate;
 	public long modifiedDate;
-	public long marketplaceAppId;
+	public long remoteAppId;
 	public String version;
 }

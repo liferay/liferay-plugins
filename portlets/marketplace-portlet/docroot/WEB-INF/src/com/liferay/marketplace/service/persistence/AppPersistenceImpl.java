@@ -103,13 +103,13 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 			AppModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST, "countByCompanyId",
 			new String[] { Long.class.getName() });
-	public static final FinderPath FINDER_PATH_FETCH_BY_MARKETPLACEAPPID = new FinderPath(AppModelImpl.ENTITY_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_FETCH_BY_REMOTEAPPID = new FinderPath(AppModelImpl.ENTITY_CACHE_ENABLED,
 			AppModelImpl.FINDER_CACHE_ENABLED, AppImpl.class,
-			FINDER_CLASS_NAME_ENTITY, "fetchByMarketplaceAppId",
+			FINDER_CLASS_NAME_ENTITY, "fetchByRemoteAppId",
 			new String[] { Long.class.getName() });
-	public static final FinderPath FINDER_PATH_COUNT_BY_MARKETPLACEAPPID = new FinderPath(AppModelImpl.ENTITY_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_COUNT_BY_REMOTEAPPID = new FinderPath(AppModelImpl.ENTITY_CACHE_ENABLED,
 			AppModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST, "countByMarketplaceAppId",
+			FINDER_CLASS_NAME_LIST, "countByRemoteAppId",
 			new String[] { Long.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(AppModelImpl.ENTITY_CACHE_ENABLED,
 			AppModelImpl.FINDER_CACHE_ENABLED, AppImpl.class,
@@ -127,8 +127,8 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 		EntityCacheUtil.putResult(AppModelImpl.ENTITY_CACHE_ENABLED,
 			AppImpl.class, app.getPrimaryKey(), app);
 
-		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_MARKETPLACEAPPID,
-			new Object[] { Long.valueOf(app.getMarketplaceAppId()) }, app);
+		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_REMOTEAPPID,
+			new Object[] { Long.valueOf(app.getRemoteAppId()) }, app);
 
 		app.resetOriginalValues();
 	}
@@ -177,8 +177,8 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 		EntityCacheUtil.removeResult(AppModelImpl.ENTITY_CACHE_ENABLED,
 			AppImpl.class, app.getPrimaryKey());
 
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_MARKETPLACEAPPID,
-			new Object[] { Long.valueOf(app.getMarketplaceAppId()) });
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_REMOTEAPPID,
+			new Object[] { Long.valueOf(app.getRemoteAppId()) });
 	}
 
 	/**
@@ -286,8 +286,8 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 
 		AppModelImpl appModelImpl = (AppModelImpl)app;
 
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_MARKETPLACEAPPID,
-			new Object[] { Long.valueOf(appModelImpl.getMarketplaceAppId()) });
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_REMOTEAPPID,
+			new Object[] { Long.valueOf(appModelImpl.getRemoteAppId()) });
 
 		EntityCacheUtil.removeResult(AppModelImpl.ENTITY_CACHE_ENABLED,
 			AppImpl.class, app.getPrimaryKey());
@@ -332,17 +332,16 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 			AppImpl.class, app.getPrimaryKey(), app);
 
 		if (!isNew &&
-				(app.getMarketplaceAppId() != appModelImpl.getOriginalMarketplaceAppId())) {
-			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_MARKETPLACEAPPID,
-				new Object[] {
-					Long.valueOf(appModelImpl.getOriginalMarketplaceAppId())
-				});
+				(app.getRemoteAppId() != appModelImpl.getOriginalRemoteAppId())) {
+			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_REMOTEAPPID,
+				new Object[] { Long.valueOf(
+						appModelImpl.getOriginalRemoteAppId()) });
 		}
 
 		if (isNew ||
-				(app.getMarketplaceAppId() != appModelImpl.getOriginalMarketplaceAppId())) {
-			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_MARKETPLACEAPPID,
-				new Object[] { Long.valueOf(app.getMarketplaceAppId()) }, app);
+				(app.getRemoteAppId() != appModelImpl.getOriginalRemoteAppId())) {
+			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_REMOTEAPPID,
+				new Object[] { Long.valueOf(app.getRemoteAppId()) }, app);
 		}
 
 		return app;
@@ -365,7 +364,7 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 		appImpl.setUserName(app.getUserName());
 		appImpl.setCreateDate(app.getCreateDate());
 		appImpl.setModifiedDate(app.getModifiedDate());
-		appImpl.setMarketplaceAppId(app.getMarketplaceAppId());
+		appImpl.setRemoteAppId(app.getRemoteAppId());
 		appImpl.setVersion(app.getVersion());
 
 		return appImpl;
@@ -513,12 +512,7 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 	 */
 	public List<App> findByUuid(String uuid, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				uuid,
-				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+		Object[] finderArgs = new Object[] { uuid, start, end, orderByComparator };
 
 		List<App> list = (List<App>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_UUID,
 				finderArgs, this);
@@ -866,8 +860,7 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 		Object[] finderArgs = new Object[] {
 				companyId,
 				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
+				start, end, orderByComparator
 			};
 
 		List<App> list = (List<App>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_COMPANYID,
@@ -1147,24 +1140,24 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 	}
 
 	/**
-	 * Returns the app where marketplaceAppId = &#63; or throws a {@link com.liferay.marketplace.NoSuchAppException} if it could not be found.
+	 * Returns the app where remoteAppId = &#63; or throws a {@link com.liferay.marketplace.NoSuchAppException} if it could not be found.
 	 *
-	 * @param marketplaceAppId the marketplace app ID
+	 * @param remoteAppId the remote app ID
 	 * @return the matching app
 	 * @throws com.liferay.marketplace.NoSuchAppException if a matching app could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public App findByMarketplaceAppId(long marketplaceAppId)
+	public App findByRemoteAppId(long remoteAppId)
 		throws NoSuchAppException, SystemException {
-		App app = fetchByMarketplaceAppId(marketplaceAppId);
+		App app = fetchByRemoteAppId(remoteAppId);
 
 		if (app == null) {
 			StringBundler msg = new StringBundler(4);
 
 			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("marketplaceAppId=");
-			msg.append(marketplaceAppId);
+			msg.append("remoteAppId=");
+			msg.append(remoteAppId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -1179,33 +1172,32 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 	}
 
 	/**
-	 * Returns the app where marketplaceAppId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the app where remoteAppId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @param marketplaceAppId the marketplace app ID
+	 * @param remoteAppId the remote app ID
 	 * @return the matching app, or <code>null</code> if a matching app could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public App fetchByMarketplaceAppId(long marketplaceAppId)
-		throws SystemException {
-		return fetchByMarketplaceAppId(marketplaceAppId, true);
+	public App fetchByRemoteAppId(long remoteAppId) throws SystemException {
+		return fetchByRemoteAppId(remoteAppId, true);
 	}
 
 	/**
-	 * Returns the app where marketplaceAppId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the app where remoteAppId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
-	 * @param marketplaceAppId the marketplace app ID
+	 * @param remoteAppId the remote app ID
 	 * @param retrieveFromCache whether to use the finder cache
 	 * @return the matching app, or <code>null</code> if a matching app could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public App fetchByMarketplaceAppId(long marketplaceAppId,
-		boolean retrieveFromCache) throws SystemException {
-		Object[] finderArgs = new Object[] { marketplaceAppId };
+	public App fetchByRemoteAppId(long remoteAppId, boolean retrieveFromCache)
+		throws SystemException {
+		Object[] finderArgs = new Object[] { remoteAppId };
 
 		Object result = null;
 
 		if (retrieveFromCache) {
-			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_MARKETPLACEAPPID,
+			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_REMOTEAPPID,
 					finderArgs, this);
 		}
 
@@ -1214,7 +1206,7 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 
 			query.append(_SQL_SELECT_APP_WHERE);
 
-			query.append(_FINDER_COLUMN_MARKETPLACEAPPID_MARKETPLACEAPPID_2);
+			query.append(_FINDER_COLUMN_REMOTEAPPID_REMOTEAPPID_2);
 
 			String sql = query.toString();
 
@@ -1227,7 +1219,7 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				qPos.add(marketplaceAppId);
+				qPos.add(remoteAppId);
 
 				List<App> list = q.list();
 
@@ -1236,7 +1228,7 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 				App app = null;
 
 				if (list.isEmpty()) {
-					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_MARKETPLACEAPPID,
+					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_REMOTEAPPID,
 						finderArgs, list);
 				}
 				else {
@@ -1244,8 +1236,8 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 
 					cacheResult(app);
 
-					if ((app.getMarketplaceAppId() != marketplaceAppId)) {
-						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_MARKETPLACEAPPID,
+					if ((app.getRemoteAppId() != remoteAppId)) {
+						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_REMOTEAPPID,
 							finderArgs, app);
 					}
 				}
@@ -1257,7 +1249,7 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 			}
 			finally {
 				if (result == null) {
-					FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_MARKETPLACEAPPID,
+					FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_REMOTEAPPID,
 						finderArgs);
 				}
 
@@ -1315,10 +1307,7 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 	 */
 	public List<App> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+		Object[] finderArgs = new Object[] { start, end, orderByComparator };
 
 		List<App> list = (List<App>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
 				finderArgs, this);
@@ -1406,14 +1395,14 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 	}
 
 	/**
-	 * Removes the app where marketplaceAppId = &#63; from the database.
+	 * Removes the app where remoteAppId = &#63; from the database.
 	 *
-	 * @param marketplaceAppId the marketplace app ID
+	 * @param remoteAppId the remote app ID
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void removeByMarketplaceAppId(long marketplaceAppId)
+	public void removeByRemoteAppId(long remoteAppId)
 		throws NoSuchAppException, SystemException {
-		App app = findByMarketplaceAppId(marketplaceAppId);
+		App app = findByRemoteAppId(remoteAppId);
 
 		appPersistence.remove(app);
 	}
@@ -1548,17 +1537,16 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 	}
 
 	/**
-	 * Returns the number of apps where marketplaceAppId = &#63;.
+	 * Returns the number of apps where remoteAppId = &#63;.
 	 *
-	 * @param marketplaceAppId the marketplace app ID
+	 * @param remoteAppId the remote app ID
 	 * @return the number of matching apps
 	 * @throws SystemException if a system exception occurred
 	 */
-	public int countByMarketplaceAppId(long marketplaceAppId)
-		throws SystemException {
-		Object[] finderArgs = new Object[] { marketplaceAppId };
+	public int countByRemoteAppId(long remoteAppId) throws SystemException {
+		Object[] finderArgs = new Object[] { remoteAppId };
 
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_MARKETPLACEAPPID,
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_REMOTEAPPID,
 				finderArgs, this);
 
 		if (count == null) {
@@ -1566,7 +1554,7 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 
 			query.append(_SQL_COUNT_APP_WHERE);
 
-			query.append(_FINDER_COLUMN_MARKETPLACEAPPID_MARKETPLACEAPPID_2);
+			query.append(_FINDER_COLUMN_REMOTEAPPID_REMOTEAPPID_2);
 
 			String sql = query.toString();
 
@@ -1579,7 +1567,7 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				qPos.add(marketplaceAppId);
+				qPos.add(remoteAppId);
 
 				count = (Long)q.uniqueResult();
 			}
@@ -1591,7 +1579,7 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 					count = Long.valueOf(0);
 				}
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_MARKETPLACEAPPID,
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_REMOTEAPPID,
 					finderArgs, count);
 
 				closeSession(session);
@@ -1688,8 +1676,7 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 	private static final String _FINDER_COLUMN_UUID_UUID_2 = "app.uuid = ?";
 	private static final String _FINDER_COLUMN_UUID_UUID_3 = "(app.uuid IS NULL OR app.uuid = ?)";
 	private static final String _FINDER_COLUMN_COMPANYID_COMPANYID_2 = "app.companyId = ?";
-	private static final String _FINDER_COLUMN_MARKETPLACEAPPID_MARKETPLACEAPPID_2 =
-		"app.marketplaceAppId = ?";
+	private static final String _FINDER_COLUMN_REMOTEAPPID_REMOTEAPPID_2 = "app.remoteAppId = ?";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "app.";
 	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No App exists with the primary key ";
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No App exists with the key {";
@@ -1697,10 +1684,12 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(AppPersistenceImpl.class);
 	private static App _nullApp = new AppImpl() {
+			@Override
 			public Object clone() {
 				return this;
 			}
 
+			@Override
 			public CacheModel<App> toCacheModel() {
 				return _nullAppCacheModel;
 			}

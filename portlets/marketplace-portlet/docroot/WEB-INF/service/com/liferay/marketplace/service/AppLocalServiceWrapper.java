@@ -68,12 +68,10 @@ public class AppLocalServiceWrapper implements AppLocalService {
 	* Deletes the app from the database. Also notifies the appropriate model listeners.
 	*
 	* @param app the app
-	* @throws PortalException
 	* @throws SystemException if a system exception occurred
 	*/
 	public void deleteApp(com.liferay.marketplace.model.App app)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		_appLocalService.deleteApp(app);
 	}
 
@@ -244,56 +242,35 @@ public class AppLocalServiceWrapper implements AppLocalService {
 	}
 
 	public com.liferay.marketplace.model.App addApp(long userId,
-		long marketplaceAppId, java.lang.String version, java.io.InputStream is)
+		long remoteAppId, java.lang.String version,
+		java.io.InputStream inputStream)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _appLocalService.addApp(userId, marketplaceAppId, version, is);
+		return _appLocalService.addApp(userId, remoteAppId, version, inputStream);
 	}
 
-	public void deleteAppByMarketplaceAppId(long marketplaceAppId)
+	public com.liferay.marketplace.model.App fetchRemoteApp(long remoteAppId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _appLocalService.fetchRemoteApp(remoteAppId);
+	}
+
+	public void installApp(long remoteAppId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_appLocalService.deleteAppByMarketplaceAppId(marketplaceAppId);
+		_appLocalService.installApp(remoteAppId);
 	}
 
-	public com.liferay.marketplace.model.App fetchApp(long marketplaceAppId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return _appLocalService.fetchApp(marketplaceAppId);
-	}
-
-	public java.util.List<com.liferay.marketplace.model.App> getApps(
-		long companyId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return _appLocalService.getApps(companyId, start, end);
-	}
-
-	public int getAppsCount(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return _appLocalService.getAppsCount(companyId);
-	}
-
-	public boolean hasApp(long marketplaceAppId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return _appLocalService.hasApp(marketplaceAppId);
-	}
-
-	public void installApp(long marketplaceAppId)
+	public void uninstallApp(long remoteAppId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_appLocalService.installApp(marketplaceAppId);
-	}
-
-	public void uninstallApp(long marketplaceAppId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		_appLocalService.uninstallApp(marketplaceAppId);
+		_appLocalService.uninstallApp(remoteAppId);
 	}
 
 	public com.liferay.marketplace.model.App updateApp(long appId,
-		java.lang.String version, java.io.InputStream is)
+		java.lang.String version, java.io.InputStream inputStream)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _appLocalService.updateApp(appId, version, is);
+		return _appLocalService.updateApp(appId, version, inputStream);
 	}
 
 	public AppLocalService getWrappedAppLocalService() {

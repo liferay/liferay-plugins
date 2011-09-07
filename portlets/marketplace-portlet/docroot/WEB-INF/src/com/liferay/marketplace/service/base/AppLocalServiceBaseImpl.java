@@ -136,10 +136,9 @@ public abstract class AppLocalServiceBaseImpl implements AppLocalService,
 	 * Deletes the app from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param app the app
-	 * @throws PortalException
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void deleteApp(App app) throws PortalException, SystemException {
+	public void deleteApp(App app) throws SystemException {
 		appPersistence.remove(app);
 
 		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());

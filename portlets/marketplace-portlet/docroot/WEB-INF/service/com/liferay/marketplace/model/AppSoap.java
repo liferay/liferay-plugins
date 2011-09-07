@@ -37,7 +37,7 @@ public class AppSoap implements Serializable {
 		soapModel.setUserName(model.getUserName());
 		soapModel.setCreateDate(model.getCreateDate());
 		soapModel.setModifiedDate(model.getModifiedDate());
-		soapModel.setMarketplaceAppId(model.getMarketplaceAppId());
+		soapModel.setRemoteAppId(model.getRemoteAppId());
 		soapModel.setVersion(model.getVersion());
 
 		return soapModel;
@@ -147,12 +147,12 @@ public class AppSoap implements Serializable {
 		_modifiedDate = modifiedDate;
 	}
 
-	public long getMarketplaceAppId() {
-		return _marketplaceAppId;
+	public long getRemoteAppId() {
+		return _remoteAppId;
 	}
 
-	public void setMarketplaceAppId(long marketplaceAppId) {
-		_marketplaceAppId = marketplaceAppId;
+	public void setRemoteAppId(long remoteAppId) {
+		_remoteAppId = remoteAppId;
 	}
 
 	public String getVersion() {
@@ -170,6 +170,6 @@ public class AppSoap implements Serializable {
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
-	private long _marketplaceAppId;
+	private long _remoteAppId;
 	private String _version;
 }

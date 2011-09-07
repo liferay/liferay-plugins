@@ -431,46 +431,46 @@ public class AppUtil {
 	}
 
 	/**
-	* Returns the app where marketplaceAppId = &#63; or throws a {@link com.liferay.marketplace.NoSuchAppException} if it could not be found.
+	* Returns the app where remoteAppId = &#63; or throws a {@link com.liferay.marketplace.NoSuchAppException} if it could not be found.
 	*
-	* @param marketplaceAppId the marketplace app ID
+	* @param remoteAppId the remote app ID
 	* @return the matching app
 	* @throws com.liferay.marketplace.NoSuchAppException if a matching app could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static com.liferay.marketplace.model.App findByMarketplaceAppId(
-		long marketplaceAppId)
+	public static com.liferay.marketplace.model.App findByRemoteAppId(
+		long remoteAppId)
 		throws com.liferay.marketplace.NoSuchAppException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().findByMarketplaceAppId(marketplaceAppId);
+		return getPersistence().findByRemoteAppId(remoteAppId);
 	}
 
 	/**
-	* Returns the app where marketplaceAppId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	* Returns the app where remoteAppId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	*
-	* @param marketplaceAppId the marketplace app ID
+	* @param remoteAppId the remote app ID
 	* @return the matching app, or <code>null</code> if a matching app could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static com.liferay.marketplace.model.App fetchByMarketplaceAppId(
-		long marketplaceAppId)
+	public static com.liferay.marketplace.model.App fetchByRemoteAppId(
+		long remoteAppId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().fetchByMarketplaceAppId(marketplaceAppId);
+		return getPersistence().fetchByRemoteAppId(remoteAppId);
 	}
 
 	/**
-	* Returns the app where marketplaceAppId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	* Returns the app where remoteAppId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	*
-	* @param marketplaceAppId the marketplace app ID
+	* @param remoteAppId the remote app ID
 	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching app, or <code>null</code> if a matching app could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static com.liferay.marketplace.model.App fetchByMarketplaceAppId(
-		long marketplaceAppId, boolean retrieveFromCache)
+	public static com.liferay.marketplace.model.App fetchByRemoteAppId(
+		long remoteAppId, boolean retrieveFromCache)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence()
-				   .fetchByMarketplaceAppId(marketplaceAppId, retrieveFromCache);
+				   .fetchByRemoteAppId(remoteAppId, retrieveFromCache);
 	}
 
 	/**
@@ -545,15 +545,15 @@ public class AppUtil {
 	}
 
 	/**
-	* Removes the app where marketplaceAppId = &#63; from the database.
+	* Removes the app where remoteAppId = &#63; from the database.
 	*
-	* @param marketplaceAppId the marketplace app ID
+	* @param remoteAppId the remote app ID
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByMarketplaceAppId(long marketplaceAppId)
+	public static void removeByRemoteAppId(long remoteAppId)
 		throws com.liferay.marketplace.NoSuchAppException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByMarketplaceAppId(marketplaceAppId);
+		getPersistence().removeByRemoteAppId(remoteAppId);
 	}
 
 	/**
@@ -591,15 +591,15 @@ public class AppUtil {
 	}
 
 	/**
-	* Returns the number of apps where marketplaceAppId = &#63;.
+	* Returns the number of apps where remoteAppId = &#63;.
 	*
-	* @param marketplaceAppId the marketplace app ID
+	* @param remoteAppId the remote app ID
 	* @return the number of matching apps
 	* @throws SystemException if a system exception occurred
 	*/
-	public static int countByMarketplaceAppId(long marketplaceAppId)
+	public static int countByRemoteAppId(long remoteAppId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByMarketplaceAppId(marketplaceAppId);
+		return getPersistence().countByRemoteAppId(remoteAppId);
 	}
 
 	/**

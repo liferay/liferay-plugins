@@ -15,7 +15,7 @@
 		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="createDate" type="org.hibernate.type.TimestampType" />
 		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
-		<property name="marketplaceAppId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="remoteAppId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="version" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
 	<class name="com.liferay.marketplace.model.impl.ModuleImpl" table="Marketplace_Module">
