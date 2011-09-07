@@ -23,6 +23,7 @@
 
 	var processResponse = function(event) {
 		var response = event.responseData;
+
 		var cmd = response.cmd;
 
 		if (cmd) {
