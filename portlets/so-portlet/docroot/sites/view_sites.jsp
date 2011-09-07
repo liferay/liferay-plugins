@@ -103,7 +103,7 @@ int groupsCount = GroupLocalServiceUtil.searchCount(themeDisplay.getCompanyId(),
 								<portlet:param name="starredGroupId" value="<%= String.valueOf(group.getGroupId()) %>" />
 							</liferay-portlet:actionURL>
 
-							<a class="star-site"href="<%= starURL %>"><liferay-ui:message key="star" /></a>
+							<a class="star-site" href="<%= starURL %>"><liferay-ui:message key="star" /></a>
 						</span>
 					</c:when>
 					<c:otherwise>
@@ -401,16 +401,16 @@ int groupsCount = GroupLocalServiceUtil.searchCount(themeDisplay.getCompanyId(),
 				var siteName = siteNode.one('.name a');
 
 				if (currentTargetClass == "leave-site") {
-					confirmMessage = '<%= LanguageUtil.format(pageContext, "are-you-sure-you-want-to-leave-x", new String[] {"' + siteName.getContent() + '"}) %>';
-					siteAction = '<%= LanguageUtil.format(pageContext, "you-have-left-x", new String[] {"' + siteName.getContent() + '"}) %>';
+					confirmMessage = '<liferay-ui:message key="are-you-sure-you-want-to-leave-x" arguments='<%= siteName.getContent() %>' />';
+					siteAction = '<liferay-ui:message key="you-have-left-x" arguments='<%= siteName.getContent() %>' />';
 				}
 				else if (currentTargetClass == "join-site") {
-					confirmMessage = '<%= LanguageUtil.format(pageContext, "are-you-sure-you-want-to-join-x", new String[] {"' + siteName.getContent() + '"}) %>';
-					siteAction = '<%= LanguageUtil.format(pageContext, "you-have-joined-x", new String[] {"' + siteName.getContent() + '"}) %>';
+					confirmMessage = '<liferay-ui:message key="are-you-sure-you-want-to-join-x" arguments='<%= siteName.getContent() %>' />';
+					siteAction = '<liferay-ui:message key="you-have-joined-x" arguments='<%= siteName.getContent() %>' />';
 				}
 				else {
-					confirmMessage = '<%= LanguageUtil.format(pageContext, "are-you-sure-you-want-to-delete-x", new String[] {"' + siteName.getContent() + '"}) %>';
-					siteAction = '<%= LanguageUtil.format(pageContext, "you-have-deleted-x", new String[] {"' + siteName.getContent() + '"}) %>';
+					confirmMessage = '<liferay-ui:message key="are-you-sure-you-want-to-delete-x" arguments='<%= siteName.getContent() %>' />';
+					siteAction = '<liferay-ui:message key="you-have-deleted-x" arguments='<%= siteName.getContent() %>' />';
 				}
 
 				if (confirm(confirmMessage)) {

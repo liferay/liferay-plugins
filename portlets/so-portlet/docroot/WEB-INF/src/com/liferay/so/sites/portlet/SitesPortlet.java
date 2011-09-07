@@ -183,9 +183,9 @@ public class SitesPortlet extends MVCPortlet {
 			resourceRequest, "userGroups");
 		int maxResultSize = ParamUtil.getInteger(
 			resourceRequest, "maxResultSize", 10);
+		String tabs1 = ParamUtil.getString(resourceRequest, "searchTab");
 		int start = ParamUtil.getInteger(resourceRequest, "start");
 		int end = ParamUtil.getInteger(resourceRequest, "end");
-		String tabs1 = ParamUtil.getString(resourceRequest, "searchTab");
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
@@ -230,8 +230,8 @@ public class SitesPortlet extends MVCPortlet {
 		}
 		else {
 			if (tabs1.equals("my-favorites")) {
-				groups = SitesUtil.getStarredSites(themeDisplay.getUserId(),
-					name);
+				groups = SitesUtil.getStarredSites(
+					themeDisplay.getUserId(), name);
 				groupsCount = groups.size();
 			}
 			else if (tabs1.equals("my-sites")) {
@@ -285,38 +285,40 @@ public class SitesPortlet extends MVCPortlet {
 
 			groupJSONObject.put("socialOfficeEnabled", socialOfficeEnabled);
 
-			PortletURL membershipPortletURL = PortletURLFactoryUtil.create(
+			PortletURL siteAssignmentsPortletURL = PortletURLFactoryUtil.create(
 					PortalUtil.getHttpServletRequest(resourceRequest),
 					PortletKeys.SITES_ADMIN, themeDisplay.getLayout().getPlid(),
 					PortletRequest.ACTION_PHASE);
 
-			membershipPortletURL.setWindowState(WindowState.NORMAL);
+			siteAssignmentsPortletURL.setWindowState(WindowState.NORMAL);
 
-			membershipPortletURL.setParameter(
+			siteAssignmentsPortletURL.setParameter(
 				"struts_action", "/sites_admin/edit_site_assignments");
-			membershipPortletURL.setParameter(Constants.CMD, "group_users");
-			membershipPortletURL.setParameter(
+			siteAssignmentsPortletURL.setParameter(
+				Constants.CMD, "group_users");
+			siteAssignmentsPortletURL.setParameter(
 				"redirect", themeDisplay.getURLCurrent());
-			membershipPortletURL.setParameter(
+			siteAssignmentsPortletURL.setParameter(
 				"groupId", String.valueOf(group.getGroupId()));
 
 			if (!GroupLocalServiceUtil.hasUserGroup(
 					themeDisplay.getUserId(), group.getGroupId()) &&
 				(group.getType() == GroupConstants.TYPE_SITE_OPEN)) {
 
-				membershipPortletURL.setParameter(
+				siteAssignmentsPortletURL.setParameter(
 					"addUserIds", String.valueOf(themeDisplay.getUserId()));
 
-				groupJSONObject.put("joinUrl", membershipPortletURL.toString());
+				groupJSONObject.put(
+					"joinUrl", siteAssignmentsPortletURL.toString());
 			}
 			else if (GroupLocalServiceUtil.hasUserGroup(
-					themeDisplay.getUserId(), group.getGroupId())) {
+						themeDisplay.getUserId(), group.getGroupId())) {
 
-				membershipPortletURL.setParameter(
+				siteAssignmentsPortletURL.setParameter(
 					"removeUserIds", String.valueOf(themeDisplay.getUserId()));
 
 				groupJSONObject.put(
-					"leaveUrl", membershipPortletURL.toString());
+					"leaveUrl", siteAssignmentsPortletURL.toString());
 			}
 
 			if (GroupPermissionUtil.contains(
