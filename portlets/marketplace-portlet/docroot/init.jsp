@@ -14,8 +14,23 @@
  */
 --%>
 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
+
+<%@ taglib uri="http://liferay.com/tld/aui" prefix="aui" %>
+
+<%@ page import="com.liferay.marketplace.util.MarketplaceConstants" %>
+<%@ page import="com.liferay.marketplace.util.PortletKeys" %>
 
 <portlet:defineObjects />
 
-This is the <b>Marketplace</b> portlet.
+<liferay-theme:defineObjects />
+
+<%
+String iFrameURL = MarketplaceConstants.MARKETPLACE_URL_HOME;
+
+if (portletName.equals(PortletKeys.MY_MARKETPLACE)) {
+	iFrameURL = MarketplaceConstants.MARKETPLACE_URL_MANAGE_APPS;
+}
+%>
