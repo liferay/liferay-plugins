@@ -20,7 +20,7 @@
 
 		<!-- Other fields -->
 
-		<column name="marketplaceAppId" type="long" />
+		<column name="remoteAppId" type="long" />
 		<column name="version" type="String" />
 
 		<!-- Finder methods -->
@@ -28,8 +28,8 @@
 		<finder name="CompanyId" return-type="Collection">
 			<finder-column name="companyId" />
 		</finder>
-		<finder name="MarketplaceAppId" return-type="App">
-			<finder-column name="marketplaceAppId" />
+		<finder name="RemoteAppId" return-type="App">
+			<finder-column name="remoteAppId" />
 		</finder>
 	</entity>
 	<entity name="Module" uuid="true" local-service="true" remote-service="false">
@@ -57,8 +57,7 @@
 		</finder>
 	</entity>
 	<exceptions>
-		<exception>DownloadNotFound</exception>
 		<exception>DuplicateApp</exception>
-		<exception>Version</exception>
+		<exception>AppVersion</exception>
 	</exceptions>
 </service-builder>

@@ -14,9 +14,8 @@
 
 package com.liferay.marketplace.service.impl;
 
-import com.liferay.marketplace.DownloadNotFoundException;
+import com.liferay.marketplace.AppVersionException;
 import com.liferay.marketplace.DuplicateAppException;
-import com.liferay.marketplace.VersionException;
 import com.liferay.marketplace.model.App;
 import com.liferay.marketplace.model.Module;
 import com.liferay.marketplace.service.base.AppLocalServiceBaseImpl;
@@ -26,13 +25,13 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.FileUtil;
-import com.liferay.portal.kernel.util.ServerDetector;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.SystemProperties;
 import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.model.User;
+import com.liferay.portlet.documentlibrary.NoSuchFileException;
 import com.liferay.portlet.documentlibrary.store.DLStoreUtil;
 
 import java.io.File;
@@ -40,9 +39,7 @@ import java.io.InputStream;
 
 import java.util.Date;
 import java.util.Enumeration;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
@@ -52,28 +49,27 @@ import java.util.zip.ZipFile;
 public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 
 	public App addApp(
-			long userId, long marketplaceAppId, String version, InputStream is)
+			long userId, long remoteAppId, String version,
+			InputStream inputStream)
 		throws PortalException, SystemException {
 
 		// App
 
 		User user = userPersistence.findByPrimaryKey(userId);
-
-		validate(version, marketplaceAppId);
-
 		Date now = new Date();
+
+		validate(remoteAppId, version);
 
 		long appId = counterLocalService.increment();
 
 		App app = appPersistence.create(appId);
 
-		app.setAppId(appId);
 		app.setCompanyId(user.getCompanyId());
 		app.setUserId(user.getUserId());
 		app.setUserName(user.getFullName());
 		app.setCreateDate(now);
 		app.setModifiedDate(now);
-		app.setMarketplaceAppId(marketplaceAppId);
+		app.setRemoteAppId(remoteAppId);
 		app.setVersion(version);
 
 		appPersistence.update(app, false);
@@ -82,18 +78,13 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 
 		DLStoreUtil.addFile(
 			app.getCompanyId(), CompanyConstants.SYSTEM, app.getFilePath(),
-			false, is);
+			false, inputStream);
 
 		return app;
 	}
 
-	public void deleteApp(long appId) throws PortalException, SystemException {
-		App app = appPersistence.findByPrimaryKey(appId);
-
-		deleteApp(app);
-	}
-
-	public void deleteApp(App app) throws PortalException, SystemException {
+	@Override
+	public void deleteApp(App app) throws SystemException {
 
 		// App
 
@@ -101,7 +92,7 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 
 		// Module
 
-		List<Module> modules = moduleLocalService.getAppModules(app.getAppId());
+		List<Module> modules = modulePersistence.findByAppId(app.getAppId());
 
 		for (Module module : modules) {
 			moduleLocalService.deleteModule(module);
@@ -120,54 +111,29 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 		}
 	}
 
-	public void deleteAppByMarketplaceAppId(long marketplaceAppId)
-		throws PortalException, SystemException {
-
-		App app = appPersistence.findByMarketplaceAppId(marketplaceAppId);
+	@Override
+	public void deleteApp(long appId) throws PortalException, SystemException {
+		App app = appPersistence.findByPrimaryKey(appId);
 
 		deleteApp(app);
 	}
 
-	public App fetchApp(long marketplaceAppId) throws SystemException {
-		return appPersistence.fetchByMarketplaceAppId(marketplaceAppId);
-	}
-
-	public App getApp(long marketplaceAppId)
-		throws PortalException, SystemException {
-
-		return appPersistence.findByMarketplaceAppId(marketplaceAppId);
-	}
-
-	public List<App> getApps(long companyId, int start, int end)
+	public App fetchRemoteApp(long remoteAppId)
 		throws SystemException {
 
-		return appPersistence.findByCompanyId(companyId, start, end);
+		return appPersistence.fetchByRemoteAppId(remoteAppId);
 	}
 
-	public int getAppsCount(long companyId) throws SystemException {
-		return appPersistence.countByCompanyId(companyId);
-	}
-
-	public boolean hasApp(long marketplaceAppId) throws SystemException {
-		App app = appPersistence.fetchByMarketplaceAppId(marketplaceAppId);
-
-		if (app == null) {
-			return false;
-		}
-
-		return true;
-	}
-
-	public void installApp(long marketplaceAppId)
+	public void installApp(long remoteAppId)
 		throws PortalException, SystemException {
 
-		App app = appPersistence.findByMarketplaceAppId(marketplaceAppId);
+		App app = appPersistence.findByRemoteAppId(remoteAppId);
 
 		if (!DLStoreUtil.hasFile(
 				app.getCompanyId(), CompanyConstants.SYSTEM,
 				app.getFilePath())) {
 
-			throw new DownloadNotFoundException();
+			throw new NoSuchFileException();
 		}
 
 		String tmpDir =
@@ -175,37 +141,38 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 				Time.getTimestamp();
 
 		try {
-			File liferayPackage = DLStoreUtil.getFile(
+			File liferayPackageFile = DLStoreUtil.getFile(
 				app.getCompanyId(), CompanyConstants.SYSTEM, app.getFilePath());
 
-			ZipFile zipFile = new ZipFile(liferayPackage);
+			ZipFile zipFile = new ZipFile(liferayPackageFile);
 
-			Enumeration enu = zipFile.entries();
+			Enumeration<ZipEntry> enu =
+				(Enumeration<ZipEntry>)zipFile.entries();
 
 			while (enu.hasMoreElements()) {
-				ZipEntry entry = (ZipEntry)enu.nextElement();
+				ZipEntry zipEntry = enu.nextElement();
 
-				String fileName = entry.getName();
+				String fileName = zipEntry.getName();
 
 				if (_log.isInfoEnabled()) {
 					_log.info(
-						"Extracting " + fileName + " from appId " +
+						"Extracting " + fileName + " from app " +
 							app.getAppId());
 				}
 
-				InputStream is = zipFile.getInputStream(entry);
+				InputStream inputStream = zipFile.getInputStream(zipEntry);
 
-				File tempPluginPackage = new File(
+				File pluginPackageFile = new File(
 					tmpDir + StringPool.SLASH + fileName);
 
-				FileUtil.write(tempPluginPackage, is);
+				FileUtil.write(pluginPackageFile, inputStream);
 
-				String context = getContext(fileName);
+				String contextName = getContextName(fileName);
 
-				DeployManagerUtil.deploy(tempPluginPackage, context);
+				DeployManagerUtil.deploy(pluginPackageFile, contextName);
 
 				moduleLocalService.addModule(
-					app.getUserId(), app.getAppId(), context);
+					app.getUserId(), app.getAppId(), contextName);
 			}
 		}
 		catch (Exception e) {
@@ -216,27 +183,22 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 		}
 	}
 
-	public void uninstallApp(long marketplaceAppId)
+	public void uninstallApp(long remoteAppId)
 		throws PortalException, SystemException {
 
-		App app = appPersistence.findByMarketplaceAppId(marketplaceAppId);
+		App app = appPersistence.findByRemoteAppId(remoteAppId);
 
-		List<Module> modules = moduleLocalService.getAppModules(app.getAppId());
-
-		String appServerType = ServerDetector.getServerId();
-
-		boolean jbossAppServer = appServerType.startsWith(
-			ServerDetector.JBOSS_ID);
+		List<Module> modules = modulePersistence.findByAppId(app.getAppId());
 
 		for (Module module : modules) {
-			String context = module.getContextName();
+			String contextName = module.getContextName();
 
 			if (hasDependentApp(module)) {
 				continue;
 			}
 
 			try {
-				DeployManagerUtil.undeploy(context);
+				DeployManagerUtil.undeploy(contextName);
 			}
 			catch (Exception e) {
 				_log.error(e, e);
@@ -247,21 +209,23 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 		}
 	}
 
-	public App updateApp(long appId, String version, InputStream is)
+	public App updateApp(long appId, String version, InputStream inputStream)
 		throws PortalException, SystemException {
 
 		// App
 
-		validate(version, 0);
+		validate(0, version);
 
 		App app = appPersistence.findByPrimaryKey(appId);
 
 		app.setModifiedDate(new Date());
 		app.setVersion(version);
 
+		appPersistence.update(app, false);
+
 		// File
 
-		if (is != null) {
+		if (inputStream != null) {
 			try {
 				DLStoreUtil.deleteFile(
 					app.getCompanyId(), CompanyConstants.SYSTEM,
@@ -272,13 +236,13 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 
 			DLStoreUtil.addFile(
 				app.getCompanyId(), CompanyConstants.SYSTEM, app.getFilePath(),
-				false, is);
+				false, inputStream);
 		}
 
 		return app;
 	}
 
-	protected String getContext(String fileName) {
+	protected String getContextName(String fileName) {
 		String context = fileName;
 
 		while (context.contains(StringPool.DASH)) {
@@ -303,26 +267,10 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 		return fileName;
 	}
 
-	protected void validate(String version, long marketplaceAppId)
+	protected boolean hasDependentApp(Module module)
 		throws PortalException, SystemException {
 
-		if (Validator.isNull(version)) {
-			throw new VersionException();
-		}
-
-		if (marketplaceAppId > 0) {
-			App app = fetchApp(marketplaceAppId);
-
-			if (app != null) {
-				throw new DuplicateAppException();
-			}
-		}
-	}
-
-	private boolean hasDependentApp(Module module)
-		throws PortalException, SystemException {
-
-		List<Module> modules = moduleLocalService.getModulesByContextName(
+		List<Module> modules = modulePersistence.findByContextName(
 			module.getContextName());
 
 		for (Module curModule : modules) {
@@ -338,6 +286,22 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 		}
 
 		return false;
+	}
+
+	protected void validate(long remoteAppId, String version)
+		throws PortalException, SystemException {
+
+		if (Validator.isNull(version)) {
+			throw new AppVersionException();
+		}
+
+		if (remoteAppId > 0) {
+			App app = appPersistence.fetchByRemoteAppId(remoteAppId);
+
+			if (app != null) {
+				throw new DuplicateAppException();
+			}
+		}
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(AppLocalServiceImpl.class);
