@@ -130,7 +130,7 @@ int groupsCount = GroupLocalServiceUtil.searchCount(themeDisplay.getCompanyId(),
 							<portlet:param name="addUserIds" value="<%= String.valueOf(user.getUserId()) %>" />
 						</liferay-portlet:actionURL>
 
-						<a  id="join-site"href="<%= joinURL %>"><liferay-ui:message key="join" /></a>
+						<a class="join-site" href="<%= joinURL %>"><liferay-ui:message key="join" /></a>
 					</span>
 				</c:if>
 
@@ -144,7 +144,7 @@ int groupsCount = GroupLocalServiceUtil.searchCount(themeDisplay.getCompanyId(),
 							<portlet:param name="removeUserIds" value="<%= String.valueOf(user.getUserId()) %>" />
 						</liferay-portlet:actionURL>
 
-						<a class="leave-site"href="<%= leaveURL %>"><liferay-ui:message key="leave" /></a>
+						<a class="leave-site" href="<%= leaveURL %>"><liferay-ui:message key="leave" /></a>
 					</span>
 				</c:if>
 
@@ -391,7 +391,7 @@ int groupsCount = GroupLocalServiceUtil.searchCount(themeDisplay.getCompanyId(),
 
 			var currentTargetClass = event.currentTarget.getAttribute('class');
 
-			if(currentTargetClass == 'delete-site' || currentTargetClass == "leave-site" || currentTargetClass == "join-site") {
+			if((currentTargetClass == 'delete-site') || (currentTargetClass == "leave-site") || (currentTargetClass == "join-site")) {
 				var confirmMessage = '';
 
 				var siteAction = '';
@@ -401,16 +401,16 @@ int groupsCount = GroupLocalServiceUtil.searchCount(themeDisplay.getCompanyId(),
 				var siteName = siteNode.one('.name a');
 
 				if (currentTargetClass == "leave-site") {
-					confirmMessage = 'Are you sure you want to leave '+ siteName.getContent() + '?';
-					siteAction = 'left ';
+					confirmMessage = '<%= LanguageUtil.format(pageContext, "are-you-sure-you-want-to-leave-x", new String[] {"' + siteName.getContent() + '"}) %>';
+					siteAction = '<%= LanguageUtil.format(pageContext, "you-have-left-x", new String[] {"' + siteName.getContent() + '"}) %>';
 				}
 				else if (currentTargetClass == "join-site") {
-					confirmMessage = 'Are you sure you want to join ' + siteName.getContent() + '?';
-					siteAction = 'joined ';
+					confirmMessage = '<%= LanguageUtil.format(pageContext, "are-you-sure-you-want-to-join-x", new String[] {"' + siteName.getContent() + '"}) %>';
+					siteAction = '<%= LanguageUtil.format(pageContext, "you-have-joined-x", new String[] {"' + siteName.getContent() + '"}) %>';
 				}
 				else {
-					confirmMessage = 'Are you sure you want to delete ' + siteName.getContent() + '?';
-					siteAction = 'deleted ';
+					confirmMessage = '<%= LanguageUtil.format(pageContext, "are-you-sure-you-want-to-delete-x", new String[] {"' + siteName.getContent() + '"}) %>';
+					siteAction = '<%= LanguageUtil.format(pageContext, "you-have-deleted-x", new String[] {"' + siteName.getContent() + '"}) %>';
 				}
 
 				if (confirm(confirmMessage)) {
@@ -419,7 +419,7 @@ int groupsCount = GroupLocalServiceUtil.searchCount(themeDisplay.getCompanyId(),
 						{
 							after: {
 								success: function(event, id, obj) {
-									siteName.insert('You have ' +  siteAction + ' ' + siteName.getContent(), 'replace');
+									siteName.insert(siteAction, 'replace');
 
 									setTimeout("Liferay.SO.Sites.updateSites();", 2000);
 								}
