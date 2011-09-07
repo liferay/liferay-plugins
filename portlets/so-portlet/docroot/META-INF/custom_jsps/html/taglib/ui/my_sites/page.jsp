@@ -27,7 +27,12 @@
 	</liferay-portlet:renderURL>
 
 	<li>
-		<a class="open-sites-directory" href="javascript:;" onClick="<portlet:namespace />displayDirectoryPopup('<%= viewSitesURL %>', 'Sites Directory');">
+
+		<%
+		String popupDisplayTitle = LanguageUtil.get(locale, "more-sites");
+		%>
+
+		<a class="open-sites-directory" href="javascript:;" onClick="<portlet:namespace />displayDirectoryPopup('<%= viewSitesURL %>', '<%= popupDisplayTitle %>');">
 
 			<span class="site-name">
 				<liferay-ui:icon
@@ -47,6 +52,8 @@
 		window,
 		'<portlet:namespace />displayDirectoryPopup',
 		function(url, title) {
+			var A = AUI();
+
 			var dialog = new A.Dialog(
 				{
 					align: {

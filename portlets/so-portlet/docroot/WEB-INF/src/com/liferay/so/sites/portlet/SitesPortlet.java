@@ -302,7 +302,7 @@ public class SitesPortlet extends MVCPortlet {
 
 			if (!GroupLocalServiceUtil.hasUserGroup(
 					themeDisplay.getUserId(), group.getGroupId()) &&
-					group.getType() == GroupConstants.TYPE_SITE_OPEN) {
+				(group.getType() == GroupConstants.TYPE_SITE_OPEN)) {
 
 				membershipPortletURL.setParameter(
 					"addUserIds", String.valueOf(themeDisplay.getUserId()));

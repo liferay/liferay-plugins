@@ -64,7 +64,6 @@
 <%@ page import="com.liferay.portal.service.GroupLocalServiceUtil" %>
 <%@ page import="com.liferay.portal.service.LayoutLocalServiceUtil" %>
 <%@ page import="com.liferay.portal.service.LayoutSetPrototypeServiceUtil" %>
-<%@ page import="com.liferay.portal.service.OrganizationLocalServiceUtil" %>
 <%@ page import="com.liferay.portal.service.PortletLocalServiceUtil" %>
 <%@ page import="com.liferay.portal.service.RoleLocalServiceUtil" %>
 <%@ page import="com.liferay.portal.service.TeamLocalServiceUtil" %>

@@ -61,7 +61,7 @@ String tabs1Names = "my-sites,my-favorites,all-sites";
 <liferay-portlet:renderURLParams varImpl="portletURL" />
 
 <div class="sites-tabs">
-	<aui:select id="" label="" name="tabs1">
+	<aui:select label="" name="tabs1">
 		<aui:option label="all-sites" selected='<%= tabs1.equals("all-sites") %>' value="all-sites" />
 		<aui:option label="my-sites" selected='<%= tabs1.equals("my-sites") %>' value="my-sites" />
 		<aui:option label="my-favorites" selected='<%= tabs1.equals("my-favorites") %>' value="my-favorites" />
