@@ -406,16 +406,16 @@ int groupsCount = GroupLocalServiceUtil.searchCount(themeDisplay.getCompanyId(),
 				var siteName = siteNode.one('.name a');
 
 				if (currentTargetClass == "leave-site") {
-					confirmMessage = '<liferay-ui:message arguments="<%= siteName.getContent() %>" key="are-you-sure-you-want-to-leave-x" />';
-					siteAction = '<liferay-ui:message arguments="<%= siteName.getContent() %>" key="you-left-x" />';
+					confirmMessage = '<%= LanguageUtil.format(pageContext, "are-you-sure-you-want-to-leave-x", new String[] {"' + siteName.getContent() + '"}) %>';
+					siteAction = '<%= LanguageUtil.format(pageContext, "you-left-x", new String[] {"' + siteName.getContent() + '"}) %>';
 				}
 				else if (currentTargetClass == "join-site") {
-					confirmMessage = '<liferay-ui:message arguments="<%= siteName.getContent() %>" key="are-you-sure-you-want-to-join-x" />';
-					siteAction = '<liferay-ui:message arguments="<%= siteName.getContent() %>" key="you-joined-x" />';
+					confirmMessage = '<%= LanguageUtil.format(pageContext, "are-you-sure-you-want-to-join-x", new String[] {"' + siteName.getContent() + '"}) %>';
+					siteAction = '<%= LanguageUtil.format(pageContext, "you-joined-x", new String[] {"' + siteName.getContent() + '"}) %>';
 				}
 				else {
-					confirmMessage = '<liferay-ui:message arguments="<%= siteName.getContent() %>" key="are-you-sure-you-want-to-delete-x" />';
-					siteAction = '<liferay-ui:message arguments="<%= siteName.getContent() %>" key="you-deleted-x" />';
+					confirmMessage = '<%= LanguageUtil.format(pageContext, "are-you-sure-you-want-to-delete-x", new String[] {"' + siteName.getContent() + '"}) %>';
+					siteAction = '<%= LanguageUtil.format(pageContext, "you-deleted-x", new String[] {"' + siteName.getContent() + '"}) %>';
 				}
 
 				if (confirm(confirmMessage)) {
