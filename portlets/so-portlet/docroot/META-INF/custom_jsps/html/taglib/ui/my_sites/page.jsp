@@ -20,27 +20,29 @@
 <%@ include file="/html/taglib/init.jsp" %>
 
 <ul class="taglib-my-places">
-	<liferay-util:include page="/sites/view-starred-sites.jsp" portletId="5_WAR_soportlet" />
+	<liferay-util:include page="/sites/view_starred_sites.jsp" portletId="5_WAR_soportlet" />
 
 	<liferay-portlet:renderURL portletName="5_WAR_soportlet" windowState="<%= LiferayWindowState.POP_UP.toString() %>" varImpl="viewSitesURL">
 		<portlet:param name="jspPage" value="/sites/view_sites.jsp" />
 	</liferay-portlet:renderURL>
 
 	<li>
-		<a class="open-sites-directory" style="text-align: left;" href="javascript:;" onClick="<portlet:namespace />displayDirectoryPopup('<%= viewSitesURL %>', 'Sites Directory');">
+		<a class="open-sites-directory" href="javascript:;" onClick="<portlet:namespace />displayDirectoryPopup('<%= viewSitesURL %>', 'Sites Directory');">
 
-			<liferay-ui:icon
-				message="more-sites"
-				src='<%= themeDisplay.getPathContext() + "/html/icons/more_sites.png" %>'
-			/>
+			<span class="site-name">
+				<liferay-ui:icon
+					message="more-sites"
+					src='<%= themeDisplay.getPathContext() + "/html/icons/more_sites.png" %>'
+				/>
 
-			<span><liferay-ui:message key="more-sites" /></span>
+				<liferay-ui:message key="more-sites" />
+			</span>
 		</a>
 	</li>
 </ul>
 
 
-<aui:script use="aui-base">
+<aui:script>
 	Liferay.provide(
 		window,
 		'<portlet:namespace />displayDirectoryPopup',
@@ -64,6 +66,6 @@
 				}
 			).render();
 		},
-		['aui-dialog', 'aui-io']
+		['aui-base', 'aui-dialog', 'aui-io']
 	);
 </aui:script>

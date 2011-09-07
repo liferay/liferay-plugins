@@ -36,26 +36,29 @@
 				display: block;
 			}
 
-			.star a {
-				background: url(<%= request.getContextPath() %>/sites/images/star-empty.png) no-repeat 0 50%;
+			.action-not-allowed {
+				float: right;
+				height: 16px;
+				margin: 0 5px;
+				width: 16px;
+			}
+
+			.action a {
 				float: right;
 				font-size: 0px;
 				height: 16px;
+				margin: 0 5px;
 				width: 16px;
+			}
+
+			.star a {
+				background: url(<%= request.getContextPath() %>/sites/images/star-empty.png) no-repeat 0 50%;
+				float: right;
 			}
 
 			.unstar a {
 				background: url(<%= request.getContextPath() %>/sites/images/star.png) no-repeat 0 50%;
 				float: right;
-				font-size: 0px;
-				height: 16px;
-				width: 16px;
-			}
-
-			.join {
-				background: url(<%= themeImagesPath %>/common/join.png) no-repeat 0 50%;
-				float: right;
-				padding: 0 20px;
 			}
 
 			.name {
@@ -69,7 +72,7 @@
 		}
 
 		li.empty {
-			background: url(<%= themeImagesPath %>/messages/alert.png) no-repeat 0 3px;
+			background-image: url(<%= themeImagesPath %>/messages/alert.png);
 			padding-left: 25px;
 		}
 
@@ -98,8 +101,25 @@
 		border-radius: 4px;
 	}
 
+	.site-list-container {
+		clear: both;
+	}
+
+	.sites-tabs {
+		float: left;
+
+		select {
+			padding: 5px 1px;
+		}
+	}
 	.search {
-		margin: 10px 0;
+		float: right;
+		margin-bottom:10px;
+
+		.search-input {
+			vertical-align: top;
+			width: 150px;
+		}
 	}
 
 	.hide-notice {
@@ -111,6 +131,7 @@
 .so-sites-directory {
 	ul.directory-list {
 		border: 1px solid #CCC;
+		clear: both;
 		font-size: 12px;
 		list-style: none;
 		margin: 1em 0;
@@ -119,32 +140,48 @@
 			background: url(<%= PortalUtil.getPathContext() %>/html/icons/sites_admin.png) no-repeat 5px 5px;
 			padding: 5px 10px 5px 25px;
 
-			.star a {
-				background: url(<%= request.getContextPath() %>/sites/images/star-empty.png) no-repeat 0 50%;
+			.action-not-allowed {
+				float: right;
+				height: 16px;
+				margin: 0 5px;
+				width: 16px;
+			}
+
+			.action a {
 				float: right;
 				font-size: 0px;
 				height: 16px;
+				margin: 0 5px;
 				width: 16px;
+			}
+
+			.star a {
+				background: url(<%= request.getContextPath() %>/sites/images/star-empty.png) no-repeat 0 50%;
+				float: right;
 			}
 
 			.unstar a {
 				background: url(<%= request.getContextPath() %>/sites/images/star.png) no-repeat 0 50%;
 				float: right;
-				font-size: 0px;
-				height: 16px;
-				width: 16px;
 			}
 
-			.join {
+			.join a {
 				background: url(<%= themeImagesPath %>/common/join.png) no-repeat 0 50%;
-				float: right;
-				padding: 0 20px;
+			}
+
+			.leave a {
+				background: url(<%= themeImagesPath %>/common/leave.png) no-repeat 0 50%;
+			}
+
+			.delete a {
+				background: url(<%= themeImagesPath %>/common/delete.png) no-repeat 0 50%;
 			}
 
 			.description {
 				color: #777;
 				display: block;
 				font-size: 11px;
+				padding-right: 75px;
 			}
 		}
 
@@ -173,5 +210,9 @@
 		display: block;
 		font-weight: bold;
 		padding: .5em;
+	}
+
+	.search {
+		float: none;
 	}
 }
