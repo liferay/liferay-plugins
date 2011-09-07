@@ -50,6 +50,7 @@ import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PortletKeys;
 import com.liferay.portal.util.comparator.GroupNameComparator;
 import com.liferay.portlet.PortletURLFactoryUtil;
+import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.so.sites.util.SitesUtil;
 import com.liferay.so.util.WebKeys;
 import com.liferay.util.bridges.mvc.MVCPortlet;
@@ -177,26 +178,26 @@ public class SitesPortlet extends MVCPortlet {
 		throws Exception {
 
 		boolean directory = ParamUtil.getBoolean(resourceRequest, "directory");
+		int end = ParamUtil.getInteger(resourceRequest, "end");
 		String keywords = DAOParamUtil.getLike(resourceRequest, "keywords");
-		String name = ParamUtil.getString(resourceRequest, "keywords");
-		boolean userGroups = ParamUtil.getBoolean(
-			resourceRequest, "userGroups");
 		int maxResultSize = ParamUtil.getInteger(
 			resourceRequest, "maxResultSize", 10);
-		String tabs1 = ParamUtil.getString(resourceRequest, "searchTab");
+		String name = ParamUtil.getString(resourceRequest, "keywords");
+		String searchTab = ParamUtil.getString(resourceRequest, "searchTab");
 		int start = ParamUtil.getInteger(resourceRequest, "start");
-		int end = ParamUtil.getInteger(resourceRequest, "end");
+		boolean userGroups = ParamUtil.getBoolean(
+			resourceRequest, "userGroups");
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 		JSONObject optionsJSONObject = JSONFactoryUtil.createJSONObject();
 
 		optionsJSONObject.put("directory", directory);
+		optionsJSONObject.put("end", end);
 		optionsJSONObject.put("keywords", keywords);
-		optionsJSONObject.put("userGroups", userGroups);
 		optionsJSONObject.put("maxResultSize", maxResultSize);
 		optionsJSONObject.put("start", start);
-		optionsJSONObject.put("end", end);
+		optionsJSONObject.put("userGroups", userGroups);
 
 		jsonObject.put("options", optionsJSONObject);
 
@@ -229,15 +230,15 @@ public class SitesPortlet extends MVCPortlet {
 				themeDisplay.getCompanyId(), keywords, null, params);
 		}
 		else {
-			if (tabs1.equals("my-favorites")) {
+			if (searchTab.equals("my-favorites")) {
 				groups = SitesUtil.getStarredSites(
 					themeDisplay.getUserId(), name);
 				groupsCount = groups.size();
 			}
-			else if (tabs1.equals("my-sites")) {
+			else if (searchTab.equals("my-sites")) {
 				groups = SitesUtil.getVisibleSites(
 					themeDisplay.getCompanyId(), themeDisplay.getUserId(),
-					keywords, maxResultSize, true);
+					keywords, true, maxResultSize);
 				groupsCount = SitesUtil.getVisibleSitesCount(
 					themeDisplay.getCompanyId(), themeDisplay.getUserId(),
 					keywords, true);
@@ -245,7 +246,7 @@ public class SitesPortlet extends MVCPortlet {
 			else {
 				groups = SitesUtil.getVisibleSites(
 					themeDisplay.getCompanyId(), themeDisplay.getUserId(),
-					keywords, maxResultSize, false);
+					keywords, false, maxResultSize);
 				groupsCount = SitesUtil.getVisibleSitesCount(
 					themeDisplay.getCompanyId(), themeDisplay.getUserId(),
 					keywords, false);
@@ -259,14 +260,15 @@ public class SitesPortlet extends MVCPortlet {
 		for (Group group : groups) {
 			JSONObject groupJSONObject = JSONFactoryUtil.createJSONObject();
 
-			groupJSONObject.put("name", group.getDescriptiveName());
 			groupJSONObject.put("description", group.getDescription());
 			groupJSONObject.put("name", group.getDescriptiveName());
 
 			if (group.hasPrivateLayouts() || group.hasPublicLayouts()) {
+				Layout layout = themeDisplay.getLayout();
+
 				PortletURL portletURL = PortletURLFactoryUtil.create(
 					PortalUtil.getHttpServletRequest(resourceRequest),
-					PortletKeys.MY_SITES, themeDisplay.getLayout().getPlid(),
+					PortletKeys.MY_SITES, layout.getPlid(),
 					PortletRequest.ACTION_PHASE);
 
 				portletURL.setWindowState(WindowState.NORMAL);
@@ -280,15 +282,19 @@ public class SitesPortlet extends MVCPortlet {
 				groupJSONObject.put("url", portletURL.toString());
 			}
 
+			ExpandoBridge expandoBridge = group.getExpandoBridge();
+
 			boolean socialOfficeEnabled = GetterUtil.getBoolean(
-				group.getExpandoBridge().getAttribute("socialOfficeEnabled"));
+				expandoBridge.getAttribute("socialOfficeEnabled"));
 
 			groupJSONObject.put("socialOfficeEnabled", socialOfficeEnabled);
 
+			Layout layout = themeDisplay.getLayout();
+
 			PortletURL siteAssignmentsPortletURL = PortletURLFactoryUtil.create(
-					PortalUtil.getHttpServletRequest(resourceRequest),
-					PortletKeys.SITES_ADMIN, themeDisplay.getLayout().getPlid(),
-					PortletRequest.ACTION_PHASE);
+				PortalUtil.getHttpServletRequest(resourceRequest),
+				PortletKeys.SITES_ADMIN, layout.getPlid(),
+				PortletRequest.ACTION_PHASE);
 
 			siteAssignmentsPortletURL.setWindowState(WindowState.NORMAL);
 
@@ -388,16 +394,16 @@ public class SitesPortlet extends MVCPortlet {
 
 		User user = themeDisplay.getUser();
 
-		Group userGroup = user.getGroup();
+		Group group = user.getGroup();
 
-		PortletPreferences preferences =
+		PortletPreferences portletPreferences =
 			PortletPreferencesLocalServiceUtil.getPreferences(
-				user.getCompanyId(), userGroup.getGroupId(),
+				user.getCompanyId(), group.getGroupId(),
 				PortletKeys.PREFS_OWNER_TYPE_GROUP, 0, "5_WAR_soportlet");
 
-		preferences.setValue("hide-notice", Boolean.TRUE.toString());
+		portletPreferences.setValue("hide-notice", Boolean.TRUE.toString());
 
-		preferences.store();
+		portletPreferences.store();
 	}
 
 	@Override
@@ -451,14 +457,14 @@ public class SitesPortlet extends MVCPortlet {
 
 		User user = themeDisplay.getUser();
 
-		Group userGroup = user.getGroup();
+		Group group = user.getGroup();
 
-		PortletPreferences preferences =
+		PortletPreferences portletPreferences =
 			PortletPreferencesLocalServiceUtil.getPreferences(
-				user.getCompanyId(), userGroup.getGroupId(),
+				user.getCompanyId(), group.getGroupId(),
 				PortletKeys.PREFS_OWNER_TYPE_GROUP, 0, "5_WAR_soportlet");
 
-		String starredGroupIds = preferences.getValue(
+		String starredGroupIds = portletPreferences.getValue(
 			"starredGroupIds", StringPool.BLANK);
 
 		if (cmd.equals(Constants.ADD)) {
@@ -470,9 +476,9 @@ public class SitesPortlet extends MVCPortlet {
 				starredGroupIds, String.valueOf(starredGroupId));
 		}
 
-		preferences.setValue("starredGroupIds", starredGroupIds);
+		portletPreferences.setValue("starredGroupIds", starredGroupIds);
 
-		preferences.store();
+		portletPreferences.store();
 
 		jsonObject.put("result", "success");
 

@@ -33,19 +33,19 @@ if (tabs1.equals("my-favorites")) {
 	groupsCount = groups.size();
 }
 else if (tabs1.equals("my-sites")) {
-	groups = SitesUtil.getVisibleSites(themeDisplay.getCompanyId(), themeDisplay.getUserId(), searchName, maxResultSize, true);
-	groupsCount = SitesUtil.getVisibleSitesCount(themeDisplay.getCompanyId(), themeDisplay.getUserId(), searchName, true);
+	groups = SitesUtil.getVisibleSites(themeDisplay.getCompanyId(), themeDisplay.getUserId(), searchName, true, maxResultSize);
+	groupsCount = SitesUtil.getVisibleSitesCount(themeDisplay.getCompanyId(), themeDisplay.getUserId(), true, searchName);
 
 	if (groupsCount == 0) {
-		groups = SitesUtil.getVisibleSites(themeDisplay.getCompanyId(), themeDisplay.getUserId(), searchName, maxResultSize, false);
-		groupsCount = SitesUtil.getVisibleSitesCount(themeDisplay.getCompanyId(), themeDisplay.getUserId(), searchName, false);
-
 		tabs1 = "all-sites";
+
+		groups = SitesUtil.getVisibleSites(themeDisplay.getCompanyId(), themeDisplay.getUserId(), searchName, false, maxResultSize);
+		groupsCount = SitesUtil.getVisibleSitesCount(themeDisplay.getCompanyId(), themeDisplay.getUserId(), false, searchName);
 	}
 }
 else {
-	groups = SitesUtil.getVisibleSites(themeDisplay.getCompanyId(), themeDisplay.getUserId(), searchName, maxResultSize, false);
-	groupsCount = SitesUtil.getVisibleSitesCount(themeDisplay.getCompanyId(), themeDisplay.getUserId(), searchName, false);
+	groups = SitesUtil.getVisibleSites(themeDisplay.getCompanyId(), themeDisplay.getUserId(), searchName, false, maxResultSize);
+	groupsCount = SitesUtil.getVisibleSitesCount(themeDisplay.getCompanyId(), themeDisplay.getUserId(), false, searchName);
 }
 
 PortletURL portletURL = renderResponse.createRenderURL();
@@ -53,8 +53,6 @@ PortletURL portletURL = renderResponse.createRenderURL();
 portletURL.setWindowState(WindowState.NORMAL);
 
 pageContext.setAttribute("portletURL", portletURL);
-
-String tabs1Names = "my-sites,my-favorites,all-sites";
 %>
 
 <form action="<%= portletURL.toString() %>" method="get" name="<portlet:namespace />fm">
@@ -106,7 +104,11 @@ String tabs1Names = "my-sites,my-favorites,all-sites";
 				for (Group group : groups) {
 					String className = StringPool.BLANK;
 
-					if (GetterUtil.getBoolean(group.getExpandoBridge().getAttribute("socialOfficeEnabled"))) {
+					ExpandoBridge expandoBridge = group.getExpandoBridge();
+
+					boolean socialOfficeEnabled = GetterUtil.getBoolean(expandoBridge.getAttribute("socialOfficeEnabled"));
+
+					if (socialOfficeEnabled) {
 						className += "social-office-enabled ";
 					}
 
@@ -183,7 +185,7 @@ String tabs1Names = "my-sites,my-favorites,all-sites";
 							<liferay-ui:message key="you-are-not-a-member-of-any-sites.-search-or-open-the-directory-to-get-started" />
 						</c:when>
 						<c:when test='<%= tabs1.equals("my-favorites") %>'>
-							<liferay-ui:message key="you-do-not-have-any-favorite-site" />
+							<liferay-ui:message key="you-do-not-have-a-favorite-site" />
 						</c:when>
 						<c:otherwise>
 							<liferay-ui:message key="there-are-no-results" />
