@@ -33,6 +33,11 @@ public class MailFile {
 		_size = size;
 	}
 
+	public void cleanup() {
+		if ((_file != null) && _file.exists()) {
+			_file.delete();
+		}
+	}
 	public String getContentPath() {
 		return _contentPath;
 	}
