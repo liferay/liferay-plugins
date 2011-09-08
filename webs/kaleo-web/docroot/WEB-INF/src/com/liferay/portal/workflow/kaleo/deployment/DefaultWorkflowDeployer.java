@@ -46,7 +46,8 @@ import java.util.Map;
 public class DefaultWorkflowDeployer implements WorkflowDeployer {
 
 	public WorkflowDefinition deploy(
-			String title, Definition definition, ServiceContext serviceContext)
+			String title, Definition definition, long scope,
+			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		KaleoDefinition kaleoDefinition = null;
@@ -60,7 +61,7 @@ public class DefaultWorkflowDeployer implements WorkflowDeployer {
 			kaleoDefinition =
 				KaleoDefinitionLocalServiceUtil.addKaleoDefinition(
 					definition.getName(), title, definition.getDescription(),
-					definition.getContent(), definition.getVersion(),
+					definition.getContent(), definition.getVersion(), scope,
 					serviceContext);
 		}
 

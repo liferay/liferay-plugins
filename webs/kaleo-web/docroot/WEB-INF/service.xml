@@ -123,6 +123,7 @@
 		<column name="content" type="String" />
 		<column name="version" type="int" />
 		<column name="active" type="boolean" />
+		<column name="scope" type="long" />
 		<column name="startKaleoNodeId" type="long" />
 
 		<!-- Relationships -->
