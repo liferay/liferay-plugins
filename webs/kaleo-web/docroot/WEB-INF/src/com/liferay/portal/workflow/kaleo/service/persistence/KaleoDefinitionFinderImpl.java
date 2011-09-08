@@ -44,8 +44,7 @@ public class KaleoDefinitionFinderImpl
 	public static String FIND_BY_C_N_A_S =
 		KaleoDefinitionFinder.class.getName() + ".findByC_N_A_S";
 
-	public int countKaleoDefinitions(
-			KaleoDefinitionQuery kaleoDefinitionQuery)
+	public int countKaleoDefinitions(KaleoDefinitionQuery kaleoDefinitionQuery)
 		throws SystemException {
 
 		Session session = null;

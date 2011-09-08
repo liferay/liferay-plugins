@@ -25,6 +25,7 @@ public class KaleoDefinitionQuery {
 
 	public KaleoDefinitionQuery(ServiceContext serviceContext) {
 		_serviceContext = serviceContext;
+
 		_companyId = serviceContext.getCompanyId();
 		_userId = serviceContext.getUserId();
 	}

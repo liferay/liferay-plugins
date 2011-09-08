@@ -326,8 +326,8 @@ public class KaleoDefinitionLocalServiceImpl
 		KaleoDefinitionQuery kaleoDefinitionQuery = new KaleoDefinitionQuery(
 			serviceContext);
 
-		kaleoDefinitionQuery.setName(name);
 		kaleoDefinitionQuery.setActive(active);
+		kaleoDefinitionQuery.setName(name);
 		kaleoDefinitionQuery.setScope(scope);
 
 		return kaleoDefinitionFinder.findKaleoDefinitions(kaleoDefinitionQuery);
@@ -341,8 +341,8 @@ public class KaleoDefinitionLocalServiceImpl
 		KaleoDefinitionQuery kaleoDefinitionQuery = new KaleoDefinitionQuery(
 			serviceContext);
 
-		kaleoDefinitionQuery.setName(name);
 		kaleoDefinitionQuery.setActive(active);
+		kaleoDefinitionQuery.setName(name);
 		kaleoDefinitionQuery.setScope(scope);
 
 		return kaleoDefinitionFinder.countKaleoDefinitions(
