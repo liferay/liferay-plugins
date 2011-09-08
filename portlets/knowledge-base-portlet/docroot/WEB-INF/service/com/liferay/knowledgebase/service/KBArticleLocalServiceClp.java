@@ -89,7 +89,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 
 		_addAttachmentMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
 				"addAttachment", java.lang.String.class,
-				java.lang.String.class, byte[].class,
+				java.lang.String.class, java.io.InputStream.class,
 				com.liferay.portal.service.ServiceContext.class);
 
 		_addKBArticleMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
@@ -694,14 +694,14 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 	}
 
 	public void addAttachment(java.lang.String dirName,
-		java.lang.String shortFileName, byte[] bytes,
+		java.lang.String shortFileName, java.io.InputStream inputStream,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_addAttachmentMethodKey17,
 				ClpSerializer.translateInput(dirName),
 				ClpSerializer.translateInput(shortFileName),
-				ClpSerializer.translateInput(bytes),
+				ClpSerializer.translateInput(inputStream),
 				ClpSerializer.translateInput(serviceContext));
 
 		try {

@@ -40,13 +40,13 @@ public class KBArticleServiceUtil {
 	 */
 	public static void addAttachment(java.lang.String portletId,
 		long resourcePrimKey, java.lang.String dirName,
-		java.lang.String shortFileName, byte[] bytes,
+		java.lang.String shortFileName, java.io.InputStream inputStream,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		getService()
 			.addAttachment(portletId, resourcePrimKey, dirName, shortFileName,
-			bytes, serviceContext);
+			inputStream, serviceContext);
 	}
 
 	public static com.liferay.knowledgebase.model.KBArticle addKBArticle(

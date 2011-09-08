@@ -248,7 +248,7 @@ public interface KBArticleLocalService extends PersistedModelLocalService {
 	public void setBeanIdentifier(java.lang.String beanIdentifier);
 
 	public void addAttachment(java.lang.String dirName,
-		java.lang.String shortFileName, byte[] bytes,
+		java.lang.String shortFileName, java.io.InputStream inputStream,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;

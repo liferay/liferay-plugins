@@ -264,12 +264,12 @@ public class KBArticleLocalServiceWrapper implements KBArticleLocalService {
 	}
 
 	public void addAttachment(java.lang.String dirName,
-		java.lang.String shortFileName, byte[] bytes,
+		java.lang.String shortFileName, java.io.InputStream inputStream,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_kbArticleLocalService.addAttachment(dirName, shortFileName, bytes,
-			serviceContext);
+		_kbArticleLocalService.addAttachment(dirName, shortFileName,
+			inputStream, serviceContext);
 	}
 
 	public com.liferay.knowledgebase.model.KBArticle addKBArticle(long userId,

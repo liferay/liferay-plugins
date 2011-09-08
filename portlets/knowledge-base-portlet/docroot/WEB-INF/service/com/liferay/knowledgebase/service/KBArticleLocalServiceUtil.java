@@ -274,11 +274,12 @@ public class KBArticleLocalServiceUtil {
 	}
 
 	public static void addAttachment(java.lang.String dirName,
-		java.lang.String shortFileName, byte[] bytes,
+		java.lang.String shortFileName, java.io.InputStream inputStream,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().addAttachment(dirName, shortFileName, bytes, serviceContext);
+		getService()
+			.addAttachment(dirName, shortFileName, inputStream, serviceContext);
 	}
 
 	public static com.liferay.knowledgebase.model.KBArticle addKBArticle(
