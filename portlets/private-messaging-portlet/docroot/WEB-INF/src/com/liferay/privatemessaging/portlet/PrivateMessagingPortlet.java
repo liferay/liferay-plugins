@@ -157,24 +157,26 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 		String to = ParamUtil.getString(uploadPortletRequest, "to");
 		String subject = ParamUtil.getString(uploadPortletRequest, "subject");
 		String body = ParamUtil.getString(uploadPortletRequest, "body");
-		List<ObjectValuePair<String, InputStream>> attachments =
+		List<ObjectValuePair<String, InputStream>> inputStreamOVPs =
 			new ArrayList<ObjectValuePair<String, InputStream>>();
 
 		try {
 			for (int i = 1; i <= 3; i++) {
-				InputStream inputStream = uploadPortletRequest.getFileAsStream(
-					"msgFile" + i);
 				String fileName = uploadPortletRequest.getFileName(
 					"msgFile" + i);
+				InputStream inputStream = uploadPortletRequest.getFileAsStream(
+					"msgFile" + i);
+
+				if (inputStream == null) {
+					continue;
+				}
 
 				try {
-					if (inputStream != null) {
-						ObjectValuePair<String, InputStream> ovp =
-							new ObjectValuePair<String, InputStream>(
-								fileName, inputStream);
+					ObjectValuePair<String, InputStream> inputStreamOVP =
+						new ObjectValuePair<String, InputStream>(
+							fileName, inputStream);
 
-						attachments.add(ovp);
-					}
+					inputStreamOVPs.add(inputStreamOVP);
 				}
 				catch (Exception e) {
 					_log.error("unable to attach file " + fileName, e);
@@ -183,16 +185,16 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 
 			UserThreadLocalServiceUtil.addPrivateMessage(
 				userId, mbThreadId, to, subject, body,
-				attachments, themeDisplay);
+				inputStreamOVPs, themeDisplay);
 		}
-		catch (IOException ie) {
-			throw new PortalException("Unable to process attachment", ie);
+		catch (IOException ioe) {
+			throw new PortalException("Unable to process attachment", ioe);
 		}
 		finally {
-			for (ObjectValuePair<String, InputStream> attachment :
-					attachments) {
+			for (ObjectValuePair<String, InputStream> inputStreamOVP :
+					inputStreamOVPs) {
 
-				InputStream inputStream = attachment.getValue();
+				InputStream inputStream = inputStreamOVP.getValue();
 
 				StreamUtil.cleanUp(inputStream);
 			}

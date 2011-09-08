@@ -88,19 +88,19 @@ public class ArticlePortlet extends MVCPortlet {
 			uploadPortletRequest, "resourcePrimKey");
 
 		String dirName = ParamUtil.getString(uploadPortletRequest, "dirName");
+		String fileName = uploadPortletRequest.getFileName("file");
 
 		InputStream inputStream = null;
 
 		try {
 			inputStream = uploadPortletRequest.getFileAsStream("file");
-			String fileName = uploadPortletRequest.getFileName("file");
 
 			ServiceContext serviceContext = ServiceContextFactory.getInstance(
 				KBArticle.class.getName(), actionRequest);
 
 			KBArticleServiceUtil.addAttachment(
-				portletId, resourcePrimKey, dirName, fileName,
-				inputStream, serviceContext);
+				portletId, resourcePrimKey, dirName, fileName, inputStream,
+				serviceContext);
 		}
 		finally {
 			StreamUtil.cleanUp(inputStream);

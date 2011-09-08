@@ -32,7 +32,6 @@ import com.liferay.portal.util.PortalUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 
 import java.io.File;
-import java.io.InputStream;
 import java.io.IOException;
 
 import java.util.ArrayList;
@@ -78,14 +77,17 @@ public class MailPortlet extends MVCPortlet {
 			for (int i = 1; i <= attachmentCount; i++) {
 				File file = uploadPortletRequest.getFile(
 					"attachment" + i, true);
-				long size = uploadPortletRequest.getSize
-					("attachment" + i);
-				String filename = uploadPortletRequest.getFileName(
+				String fileName = uploadPortletRequest.getFileName(
 					"attachment" + i);
+				long size = uploadPortletRequest.getSize("attachment" + i);
 
-				if (file != null) {
-					mailFiles.add(new MailFile(file, filename, size));
+				if (file == null) {
+					continue;
 				}
+
+				MailFile mailFile = new MailFile(file, fileName, size);
+
+				mailFiles.add(mailFile);
 			}
 
 			HttpServletRequest request = PortalUtil.getHttpServletRequest(
@@ -93,16 +95,19 @@ public class MailPortlet extends MVCPortlet {
 
 			MailManager mailManager = MailManager.getInstance(request);
 
-			JSONObject responseData = mailManager.sendMessage(
+			JSONObject responseDataJSONObject = mailManager.sendMessage(
 				accountId, messageId, to, cc, bcc, subject, body, mailFiles);
 
-			actionResponse.sendRedirect(
+			String redirect =
 				PortalUtil.getLayoutURL(themeDisplay) +
-					"/-/mail/send_message?responseData=" + responseData);
+					"/-/mail/send_message?responseData=" +
+						responseDataJSONObject;
+
+			actionResponse.sendRedirect(redirect);
 		}
 		finally {
 			for (MailFile mailFile : mailFiles) {
-				mailFile.cleanup();
+				mailFile.cleanUp();
 			}
 		}
 	}
