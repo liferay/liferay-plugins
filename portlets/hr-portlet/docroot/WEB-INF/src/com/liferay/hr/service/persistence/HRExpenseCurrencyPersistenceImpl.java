@@ -104,7 +104,7 @@ public class HRExpenseCurrencyPersistenceImpl extends BasePersistenceImpl<HRExpe
 			if (EntityCacheUtil.getResult(
 						HRExpenseCurrencyModelImpl.ENTITY_CACHE_ENABLED,
 						HRExpenseCurrencyImpl.class,
-						hrExpenseCurrency.getPrimaryKey(), this) == null) {
+						hrExpenseCurrency.getPrimaryKey()) == null) {
 				cacheResult(hrExpenseCurrency);
 			}
 		}
@@ -369,7 +369,7 @@ public class HRExpenseCurrencyPersistenceImpl extends BasePersistenceImpl<HRExpe
 	public HRExpenseCurrency fetchByPrimaryKey(long hrExpenseCurrencyId)
 		throws SystemException {
 		HRExpenseCurrency hrExpenseCurrency = (HRExpenseCurrency)EntityCacheUtil.getResult(HRExpenseCurrencyModelImpl.ENTITY_CACHE_ENABLED,
-				HRExpenseCurrencyImpl.class, hrExpenseCurrencyId, this);
+				HRExpenseCurrencyImpl.class, hrExpenseCurrencyId);
 
 		if (hrExpenseCurrency == _nullHRExpenseCurrency) {
 			return null;
@@ -450,10 +450,7 @@ public class HRExpenseCurrencyPersistenceImpl extends BasePersistenceImpl<HRExpe
 	 */
 	public List<HRExpenseCurrency> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+		Object[] finderArgs = new Object[] { start, end, orderByComparator };
 
 		List<HRExpenseCurrency> list = (List<HRExpenseCurrency>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
 				finderArgs, this);

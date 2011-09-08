@@ -179,7 +179,7 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 			if (EntityCacheUtil.getResult(
 						KaleoTransitionModelImpl.ENTITY_CACHE_ENABLED,
 						KaleoTransitionImpl.class,
-						kaleoTransition.getPrimaryKey(), this) == null) {
+						kaleoTransition.getPrimaryKey()) == null) {
 				cacheResult(kaleoTransition);
 			}
 		}
@@ -527,7 +527,7 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 	public KaleoTransition fetchByPrimaryKey(long kaleoTransitionId)
 		throws SystemException {
 		KaleoTransition kaleoTransition = (KaleoTransition)EntityCacheUtil.getResult(KaleoTransitionModelImpl.ENTITY_CACHE_ENABLED,
-				KaleoTransitionImpl.class, kaleoTransitionId, this);
+				KaleoTransitionImpl.class, kaleoTransitionId);
 
 		if (kaleoTransition == _nullKaleoTransition) {
 			return null;

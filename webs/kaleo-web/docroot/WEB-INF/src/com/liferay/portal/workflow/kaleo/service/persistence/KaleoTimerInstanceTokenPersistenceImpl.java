@@ -167,7 +167,7 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 			if (EntityCacheUtil.getResult(
 						KaleoTimerInstanceTokenModelImpl.ENTITY_CACHE_ENABLED,
 						KaleoTimerInstanceTokenImpl.class,
-						kaleoTimerInstanceToken.getPrimaryKey(), this) == null) {
+						kaleoTimerInstanceToken.getPrimaryKey()) == null) {
 				cacheResult(kaleoTimerInstanceToken);
 			}
 		}
@@ -489,8 +489,7 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 	public KaleoTimerInstanceToken fetchByPrimaryKey(
 		long kaleoTimerInstanceTokenId) throws SystemException {
 		KaleoTimerInstanceToken kaleoTimerInstanceToken = (KaleoTimerInstanceToken)EntityCacheUtil.getResult(KaleoTimerInstanceTokenModelImpl.ENTITY_CACHE_ENABLED,
-				KaleoTimerInstanceTokenImpl.class, kaleoTimerInstanceTokenId,
-				this);
+				KaleoTimerInstanceTokenImpl.class, kaleoTimerInstanceTokenId);
 
 		if (kaleoTimerInstanceToken == _nullKaleoTimerInstanceToken) {
 			return null;

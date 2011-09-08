@@ -152,7 +152,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 			if (EntityCacheUtil.getResult(
 						KaleoNotificationRecipientModelImpl.ENTITY_CACHE_ENABLED,
 						KaleoNotificationRecipientImpl.class,
-						kaleoNotificationRecipient.getPrimaryKey(), this) == null) {
+						kaleoNotificationRecipient.getPrimaryKey()) == null) {
 				cacheResult(kaleoNotificationRecipient);
 			}
 		}
@@ -428,7 +428,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 		long kaleoNotificationRecipientId) throws SystemException {
 		KaleoNotificationRecipient kaleoNotificationRecipient = (KaleoNotificationRecipient)EntityCacheUtil.getResult(KaleoNotificationRecipientModelImpl.ENTITY_CACHE_ENABLED,
 				KaleoNotificationRecipientImpl.class,
-				kaleoNotificationRecipientId, this);
+				kaleoNotificationRecipientId);
 
 		if (kaleoNotificationRecipient == _nullKaleoNotificationRecipient) {
 			return null;

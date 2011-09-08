@@ -119,8 +119,7 @@ public class HRTaskStatusPersistenceImpl extends BasePersistenceImpl<HRTaskStatu
 		for (HRTaskStatus hrTaskStatus : hrTaskStatuses) {
 			if (EntityCacheUtil.getResult(
 						HRTaskStatusModelImpl.ENTITY_CACHE_ENABLED,
-						HRTaskStatusImpl.class, hrTaskStatus.getPrimaryKey(),
-						this) == null) {
+						HRTaskStatusImpl.class, hrTaskStatus.getPrimaryKey()) == null) {
 				cacheResult(hrTaskStatus);
 			}
 		}
@@ -426,7 +425,7 @@ public class HRTaskStatusPersistenceImpl extends BasePersistenceImpl<HRTaskStatu
 	public HRTaskStatus fetchByPrimaryKey(long hrTaskStatusId)
 		throws SystemException {
 		HRTaskStatus hrTaskStatus = (HRTaskStatus)EntityCacheUtil.getResult(HRTaskStatusModelImpl.ENTITY_CACHE_ENABLED,
-				HRTaskStatusImpl.class, hrTaskStatusId, this);
+				HRTaskStatusImpl.class, hrTaskStatusId);
 
 		if (hrTaskStatus == _nullHRTaskStatus) {
 			return null;
@@ -659,10 +658,7 @@ public class HRTaskStatusPersistenceImpl extends BasePersistenceImpl<HRTaskStatu
 	 */
 	public List<HRTaskStatus> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+		Object[] finderArgs = new Object[] { start, end, orderByComparator };
 
 		List<HRTaskStatus> list = (List<HRTaskStatus>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
 				finderArgs, this);

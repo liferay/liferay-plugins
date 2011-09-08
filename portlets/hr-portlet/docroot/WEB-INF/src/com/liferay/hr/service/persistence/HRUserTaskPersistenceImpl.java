@@ -101,7 +101,7 @@ public class HRUserTaskPersistenceImpl extends BasePersistenceImpl<HRUserTask>
 		for (HRUserTask hrUserTask : hrUserTasks) {
 			if (EntityCacheUtil.getResult(
 						HRUserTaskModelImpl.ENTITY_CACHE_ENABLED,
-						HRUserTaskImpl.class, hrUserTask.getPrimaryKey(), this) == null) {
+						HRUserTaskImpl.class, hrUserTask.getPrimaryKey()) == null) {
 				cacheResult(hrUserTask);
 			}
 		}
@@ -361,7 +361,7 @@ public class HRUserTaskPersistenceImpl extends BasePersistenceImpl<HRUserTask>
 	public HRUserTask fetchByPrimaryKey(long hrUserTaskId)
 		throws SystemException {
 		HRUserTask hrUserTask = (HRUserTask)EntityCacheUtil.getResult(HRUserTaskModelImpl.ENTITY_CACHE_ENABLED,
-				HRUserTaskImpl.class, hrUserTaskId, this);
+				HRUserTaskImpl.class, hrUserTaskId);
 
 		if (hrUserTask == _nullHRUserTask) {
 			return null;
@@ -441,10 +441,7 @@ public class HRUserTaskPersistenceImpl extends BasePersistenceImpl<HRUserTask>
 	 */
 	public List<HRUserTask> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+		Object[] finderArgs = new Object[] { start, end, orderByComparator };
 
 		List<HRUserTask> list = (List<HRUserTask>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
 				finderArgs, this);

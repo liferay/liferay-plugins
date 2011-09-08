@@ -101,7 +101,7 @@ public class HRProjectPersistenceImpl extends BasePersistenceImpl<HRProject>
 		for (HRProject hrProject : hrProjects) {
 			if (EntityCacheUtil.getResult(
 						HRProjectModelImpl.ENTITY_CACHE_ENABLED,
-						HRProjectImpl.class, hrProject.getPrimaryKey(), this) == null) {
+						HRProjectImpl.class, hrProject.getPrimaryKey()) == null) {
 				cacheResult(hrProject);
 			}
 		}
@@ -375,7 +375,7 @@ public class HRProjectPersistenceImpl extends BasePersistenceImpl<HRProject>
 	public HRProject fetchByPrimaryKey(long hrProjectId)
 		throws SystemException {
 		HRProject hrProject = (HRProject)EntityCacheUtil.getResult(HRProjectModelImpl.ENTITY_CACHE_ENABLED,
-				HRProjectImpl.class, hrProjectId, this);
+				HRProjectImpl.class, hrProjectId);
 
 		if (hrProject == _nullHRProject) {
 			return null;
@@ -455,10 +455,7 @@ public class HRProjectPersistenceImpl extends BasePersistenceImpl<HRProject>
 	 */
 	public List<HRProject> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+		Object[] finderArgs = new Object[] { start, end, orderByComparator };
 
 		List<HRProject> list = (List<HRProject>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
 				finderArgs, this);

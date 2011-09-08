@@ -134,7 +134,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 			if (EntityCacheUtil.getResult(
 						JIRAChangeGroupModelImpl.ENTITY_CACHE_ENABLED,
 						JIRAChangeGroupImpl.class,
-						jiraChangeGroup.getPrimaryKey(), this) == null) {
+						jiraChangeGroup.getPrimaryKey()) == null) {
 				cacheResult(jiraChangeGroup);
 			}
 		}
@@ -391,7 +391,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 	public JIRAChangeGroup fetchByPrimaryKey(long jiraChangeGroupId)
 		throws SystemException {
 		JIRAChangeGroup jiraChangeGroup = (JIRAChangeGroup)EntityCacheUtil.getResult(JIRAChangeGroupModelImpl.ENTITY_CACHE_ENABLED,
-				JIRAChangeGroupImpl.class, jiraChangeGroupId, this);
+				JIRAChangeGroupImpl.class, jiraChangeGroupId);
 
 		if (jiraChangeGroup == _nullJIRAChangeGroup) {
 			return null;
@@ -480,8 +480,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 		Object[] finderArgs = new Object[] {
 				jiraUserId,
 				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
+				start, end, orderByComparator
 			};
 
 		List<JIRAChangeGroup> list = (List<JIRAChangeGroup>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_JIRAUSERID,
@@ -846,8 +845,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 		Object[] finderArgs = new Object[] {
 				jiraIssueId,
 				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
+				start, end, orderByComparator
 			};
 
 		List<JIRAChangeGroup> list = (List<JIRAChangeGroup>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_JIRAISSUEID,
@@ -1180,10 +1178,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 	 */
 	public List<JIRAChangeGroup> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+		Object[] finderArgs = new Object[] { start, end, orderByComparator };
 
 		List<JIRAChangeGroup> list = (List<JIRAChangeGroup>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
 				finderArgs, this);

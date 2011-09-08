@@ -492,7 +492,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		for (KBArticle kbArticle : kbArticles) {
 			if (EntityCacheUtil.getResult(
 						KBArticleModelImpl.ENTITY_CACHE_ENABLED,
-						KBArticleImpl.class, kbArticle.getPrimaryKey(), this) == null) {
+						KBArticleImpl.class, kbArticle.getPrimaryKey()) == null) {
 				cacheResult(kbArticle);
 			}
 		}
@@ -847,7 +847,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	public KBArticle fetchByPrimaryKey(long kbArticleId)
 		throws SystemException {
 		KBArticle kbArticle = (KBArticle)EntityCacheUtil.getResult(KBArticleModelImpl.ENTITY_CACHE_ENABLED,
-				KBArticleImpl.class, kbArticleId, this);
+				KBArticleImpl.class, kbArticleId);
 
 		if (kbArticle == _nullKBArticle) {
 			return null;

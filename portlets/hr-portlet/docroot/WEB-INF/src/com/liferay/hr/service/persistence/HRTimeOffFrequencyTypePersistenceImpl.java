@@ -124,7 +124,7 @@ public class HRTimeOffFrequencyTypePersistenceImpl extends BasePersistenceImpl<H
 			if (EntityCacheUtil.getResult(
 						HRTimeOffFrequencyTypeModelImpl.ENTITY_CACHE_ENABLED,
 						HRTimeOffFrequencyTypeImpl.class,
-						hrTimeOffFrequencyType.getPrimaryKey(), this) == null) {
+						hrTimeOffFrequencyType.getPrimaryKey()) == null) {
 				cacheResult(hrTimeOffFrequencyType);
 			}
 		}
@@ -439,7 +439,7 @@ public class HRTimeOffFrequencyTypePersistenceImpl extends BasePersistenceImpl<H
 	public HRTimeOffFrequencyType fetchByPrimaryKey(
 		long hrTimeOffFrequencyTypeId) throws SystemException {
 		HRTimeOffFrequencyType hrTimeOffFrequencyType = (HRTimeOffFrequencyType)EntityCacheUtil.getResult(HRTimeOffFrequencyTypeModelImpl.ENTITY_CACHE_ENABLED,
-				HRTimeOffFrequencyTypeImpl.class, hrTimeOffFrequencyTypeId, this);
+				HRTimeOffFrequencyTypeImpl.class, hrTimeOffFrequencyTypeId);
 
 		if (hrTimeOffFrequencyType == _nullHRTimeOffFrequencyType) {
 			return null;
@@ -672,10 +672,7 @@ public class HRTimeOffFrequencyTypePersistenceImpl extends BasePersistenceImpl<H
 	 */
 	public List<HRTimeOffFrequencyType> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+		Object[] finderArgs = new Object[] { start, end, orderByComparator };
 
 		List<HRTimeOffFrequencyType> list = (List<HRTimeOffFrequencyType>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
 				finderArgs, this);

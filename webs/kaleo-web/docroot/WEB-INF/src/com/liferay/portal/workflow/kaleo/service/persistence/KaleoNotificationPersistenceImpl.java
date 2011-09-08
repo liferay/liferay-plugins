@@ -155,7 +155,7 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 			if (EntityCacheUtil.getResult(
 						KaleoNotificationModelImpl.ENTITY_CACHE_ENABLED,
 						KaleoNotificationImpl.class,
-						kaleoNotification.getPrimaryKey(), this) == null) {
+						kaleoNotification.getPrimaryKey()) == null) {
 				cacheResult(kaleoNotification);
 			}
 		}
@@ -427,7 +427,7 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 	public KaleoNotification fetchByPrimaryKey(long kaleoNotificationId)
 		throws SystemException {
 		KaleoNotification kaleoNotification = (KaleoNotification)EntityCacheUtil.getResult(KaleoNotificationModelImpl.ENTITY_CACHE_ENABLED,
-				KaleoNotificationImpl.class, kaleoNotificationId, this);
+				KaleoNotificationImpl.class, kaleoNotificationId);
 
 		if (kaleoNotification == _nullKaleoNotification) {
 			return null;

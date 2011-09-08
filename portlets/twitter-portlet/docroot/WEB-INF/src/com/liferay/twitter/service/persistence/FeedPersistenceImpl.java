@@ -132,7 +132,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	public void cacheResult(List<Feed> feeds) {
 		for (Feed feed : feeds) {
 			if (EntityCacheUtil.getResult(FeedModelImpl.ENTITY_CACHE_ENABLED,
-						FeedImpl.class, feed.getPrimaryKey(), this) == null) {
+						FeedImpl.class, feed.getPrimaryKey()) == null) {
 				cacheResult(feed);
 			}
 		}
@@ -462,7 +462,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	 */
 	public Feed fetchByPrimaryKey(long feedId) throws SystemException {
 		Feed feed = (Feed)EntityCacheUtil.getResult(FeedModelImpl.ENTITY_CACHE_ENABLED,
-				FeedImpl.class, feedId, this);
+				FeedImpl.class, feedId);
 
 		if (feed == _nullFeed) {
 			return null;
@@ -832,10 +832,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	 */
 	public List<Feed> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+		Object[] finderArgs = new Object[] { start, end, orderByComparator };
 
 		List<Feed> list = (List<Feed>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
 				finderArgs, this);

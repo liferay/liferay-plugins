@@ -145,8 +145,7 @@ public class KaleoTaskFormPersistenceImpl extends BasePersistenceImpl<KaleoTaskF
 		for (KaleoTaskForm kaleoTaskForm : kaleoTaskForms) {
 			if (EntityCacheUtil.getResult(
 						KaleoTaskFormModelImpl.ENTITY_CACHE_ENABLED,
-						KaleoTaskFormImpl.class, kaleoTaskForm.getPrimaryKey(),
-						this) == null) {
+						KaleoTaskFormImpl.class, kaleoTaskForm.getPrimaryKey()) == null) {
 				cacheResult(kaleoTaskForm);
 			}
 		}
@@ -410,7 +409,7 @@ public class KaleoTaskFormPersistenceImpl extends BasePersistenceImpl<KaleoTaskF
 	public KaleoTaskForm fetchByPrimaryKey(long kaleoTaskFormId)
 		throws SystemException {
 		KaleoTaskForm kaleoTaskForm = (KaleoTaskForm)EntityCacheUtil.getResult(KaleoTaskFormModelImpl.ENTITY_CACHE_ENABLED,
-				KaleoTaskFormImpl.class, kaleoTaskFormId, this);
+				KaleoTaskFormImpl.class, kaleoTaskFormId);
 
 		if (kaleoTaskForm == _nullKaleoTaskForm) {
 			return null;

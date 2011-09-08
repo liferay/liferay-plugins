@@ -119,7 +119,7 @@ public class HRWageTypePersistenceImpl extends BasePersistenceImpl<HRWageType>
 		for (HRWageType hrWageType : hrWageTypes) {
 			if (EntityCacheUtil.getResult(
 						HRWageTypeModelImpl.ENTITY_CACHE_ENABLED,
-						HRWageTypeImpl.class, hrWageType.getPrimaryKey(), this) == null) {
+						HRWageTypeImpl.class, hrWageType.getPrimaryKey()) == null) {
 				cacheResult(hrWageType);
 			}
 		}
@@ -422,7 +422,7 @@ public class HRWageTypePersistenceImpl extends BasePersistenceImpl<HRWageType>
 	public HRWageType fetchByPrimaryKey(long hrWageTypeId)
 		throws SystemException {
 		HRWageType hrWageType = (HRWageType)EntityCacheUtil.getResult(HRWageTypeModelImpl.ENTITY_CACHE_ENABLED,
-				HRWageTypeImpl.class, hrWageTypeId, this);
+				HRWageTypeImpl.class, hrWageTypeId);
 
 		if (hrWageType == _nullHRWageType) {
 			return null;
@@ -654,10 +654,7 @@ public class HRWageTypePersistenceImpl extends BasePersistenceImpl<HRWageType>
 	 */
 	public List<HRWageType> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+		Object[] finderArgs = new Object[] { start, end, orderByComparator };
 
 		List<HRWageType> list = (List<HRWageType>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
 				finderArgs, this);

@@ -110,7 +110,7 @@ public class HRBranchPersistenceImpl extends BasePersistenceImpl<HRBranch>
 		for (HRBranch hrBranch : hrBranchs) {
 			if (EntityCacheUtil.getResult(
 						HRBranchModelImpl.ENTITY_CACHE_ENABLED,
-						HRBranchImpl.class, hrBranch.getPrimaryKey(), this) == null) {
+						HRBranchImpl.class, hrBranch.getPrimaryKey()) == null) {
 				cacheResult(hrBranch);
 			}
 		}
@@ -376,7 +376,7 @@ public class HRBranchPersistenceImpl extends BasePersistenceImpl<HRBranch>
 	public HRBranch fetchByPrimaryKey(long hrBranchId)
 		throws SystemException {
 		HRBranch hrBranch = (HRBranch)EntityCacheUtil.getResult(HRBranchModelImpl.ENTITY_CACHE_ENABLED,
-				HRBranchImpl.class, hrBranchId, this);
+				HRBranchImpl.class, hrBranchId);
 
 		if (hrBranch == _nullHRBranch) {
 			return null;
@@ -455,10 +455,7 @@ public class HRBranchPersistenceImpl extends BasePersistenceImpl<HRBranch>
 	 */
 	public List<HRBranch> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+		Object[] finderArgs = new Object[] { start, end, orderByComparator };
 
 		List<HRBranch> list = (List<HRBranch>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
 				finderArgs, this);
@@ -630,10 +627,7 @@ public class HRBranchPersistenceImpl extends BasePersistenceImpl<HRBranch>
 	public List<com.liferay.hr.model.HRJobTitle> getHRJobTitles(long pk,
 		int start, int end, OrderByComparator orderByComparator)
 		throws SystemException {
-		Object[] finderArgs = new Object[] {
-				pk, String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+		Object[] finderArgs = new Object[] { pk, start, end, orderByComparator };
 
 		List<com.liferay.hr.model.HRJobTitle> list = (List<com.liferay.hr.model.HRJobTitle>)FinderCacheUtil.getResult(FINDER_PATH_GET_HRJOBTITLES,
 				finderArgs, this);

@@ -101,7 +101,7 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 		for (Checkout checkout : checkouts) {
 			if (EntityCacheUtil.getResult(
 						CheckoutModelImpl.ENTITY_CACHE_ENABLED,
-						CheckoutImpl.class, checkout.getPrimaryKey(), this) == null) {
+						CheckoutImpl.class, checkout.getPrimaryKey()) == null) {
 				cacheResult(checkout);
 			}
 		}
@@ -359,7 +359,7 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 	public Checkout fetchByPrimaryKey(long checkoutId)
 		throws SystemException {
 		Checkout checkout = (Checkout)EntityCacheUtil.getResult(CheckoutModelImpl.ENTITY_CACHE_ENABLED,
-				CheckoutImpl.class, checkoutId, this);
+				CheckoutImpl.class, checkoutId);
 
 		if (checkout == _nullCheckout) {
 			return null;
@@ -438,10 +438,7 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 	 */
 	public List<Checkout> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+		Object[] finderArgs = new Object[] { start, end, orderByComparator };
 
 		List<Checkout> list = (List<Checkout>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
 				finderArgs, this);

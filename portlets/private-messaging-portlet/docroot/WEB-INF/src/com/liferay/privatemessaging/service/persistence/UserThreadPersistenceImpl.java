@@ -173,7 +173,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 		for (UserThread userThread : userThreads) {
 			if (EntityCacheUtil.getResult(
 						UserThreadModelImpl.ENTITY_CACHE_ENABLED,
-						UserThreadImpl.class, userThread.getPrimaryKey(), this) == null) {
+						UserThreadImpl.class, userThread.getPrimaryKey()) == null) {
 				cacheResult(userThread);
 			}
 		}
@@ -470,7 +470,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	public UserThread fetchByPrimaryKey(long userThreadId)
 		throws SystemException {
 		UserThread userThread = (UserThread)EntityCacheUtil.getResult(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
-				UserThreadImpl.class, userThreadId, this);
+				UserThreadImpl.class, userThreadId);
 
 		if (userThread == _nullUserThread) {
 			return null;

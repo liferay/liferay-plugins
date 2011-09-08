@@ -159,7 +159,7 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 		for (Module module : modules) {
 			if (EntityCacheUtil.getResult(
 						ModuleModelImpl.ENTITY_CACHE_ENABLED, ModuleImpl.class,
-						module.getPrimaryKey(), this) == null) {
+						module.getPrimaryKey()) == null) {
 				cacheResult(module);
 			}
 		}
@@ -464,7 +464,7 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 	 */
 	public Module fetchByPrimaryKey(long moduleId) throws SystemException {
 		Module module = (Module)EntityCacheUtil.getResult(ModuleModelImpl.ENTITY_CACHE_ENABLED,
-				ModuleImpl.class, moduleId, this);
+				ModuleImpl.class, moduleId);
 
 		if (module == _nullModule) {
 			return null;

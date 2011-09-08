@@ -101,7 +101,7 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 		for (Definition definition : definitions) {
 			if (EntityCacheUtil.getResult(
 						DefinitionModelImpl.ENTITY_CACHE_ENABLED,
-						DefinitionImpl.class, definition.getPrimaryKey(), this) == null) {
+						DefinitionImpl.class, definition.getPrimaryKey()) == null) {
 				cacheResult(definition);
 			}
 		}
@@ -363,7 +363,7 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	public Definition fetchByPrimaryKey(long definitionId)
 		throws SystemException {
 		Definition definition = (Definition)EntityCacheUtil.getResult(DefinitionModelImpl.ENTITY_CACHE_ENABLED,
-				DefinitionImpl.class, definitionId, this);
+				DefinitionImpl.class, definitionId);
 
 		if (definition == _nullDefinition) {
 			return null;
@@ -443,10 +443,7 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 */
 	public List<Definition> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+		Object[] finderArgs = new Object[] { start, end, orderByComparator };
 
 		List<Definition> list = (List<Definition>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
 				finderArgs, this);

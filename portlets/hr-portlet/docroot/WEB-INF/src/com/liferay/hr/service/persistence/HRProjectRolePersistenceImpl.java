@@ -103,8 +103,7 @@ public class HRProjectRolePersistenceImpl extends BasePersistenceImpl<HRProjectR
 		for (HRProjectRole hrProjectRole : hrProjectRoles) {
 			if (EntityCacheUtil.getResult(
 						HRProjectRoleModelImpl.ENTITY_CACHE_ENABLED,
-						HRProjectRoleImpl.class, hrProjectRole.getPrimaryKey(),
-						this) == null) {
+						HRProjectRoleImpl.class, hrProjectRole.getPrimaryKey()) == null) {
 				cacheResult(hrProjectRole);
 			}
 		}
@@ -366,7 +365,7 @@ public class HRProjectRolePersistenceImpl extends BasePersistenceImpl<HRProjectR
 	public HRProjectRole fetchByPrimaryKey(long hrProjectRoleId)
 		throws SystemException {
 		HRProjectRole hrProjectRole = (HRProjectRole)EntityCacheUtil.getResult(HRProjectRoleModelImpl.ENTITY_CACHE_ENABLED,
-				HRProjectRoleImpl.class, hrProjectRoleId, this);
+				HRProjectRoleImpl.class, hrProjectRoleId);
 
 		if (hrProjectRole == _nullHRProjectRole) {
 			return null;
@@ -447,10 +446,7 @@ public class HRProjectRolePersistenceImpl extends BasePersistenceImpl<HRProjectR
 	 */
 	public List<HRProjectRole> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+		Object[] finderArgs = new Object[] { start, end, orderByComparator };
 
 		List<HRProjectRole> list = (List<HRProjectRole>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
 				finderArgs, this);

@@ -141,7 +141,7 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 	public void cacheResult(List<App> apps) {
 		for (App app : apps) {
 			if (EntityCacheUtil.getResult(AppModelImpl.ENTITY_CACHE_ENABLED,
-						AppImpl.class, app.getPrimaryKey(), this) == null) {
+						AppImpl.class, app.getPrimaryKey()) == null) {
 				cacheResult(app);
 			}
 		}
@@ -430,7 +430,7 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 	 */
 	public App fetchByPrimaryKey(long appId) throws SystemException {
 		App app = (App)EntityCacheUtil.getResult(AppModelImpl.ENTITY_CACHE_ENABLED,
-				AppImpl.class, appId, this);
+				AppImpl.class, appId);
 
 		if (app == _nullApp) {
 			return null;

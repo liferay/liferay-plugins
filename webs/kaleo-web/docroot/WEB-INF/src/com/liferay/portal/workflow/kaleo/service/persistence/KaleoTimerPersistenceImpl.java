@@ -132,7 +132,7 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 		for (KaleoTimer kaleoTimer : kaleoTimers) {
 			if (EntityCacheUtil.getResult(
 						KaleoTimerModelImpl.ENTITY_CACHE_ENABLED,
-						KaleoTimerImpl.class, kaleoTimer.getPrimaryKey(), this) == null) {
+						KaleoTimerImpl.class, kaleoTimer.getPrimaryKey()) == null) {
 				cacheResult(kaleoTimer);
 			}
 		}
@@ -399,7 +399,7 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 	public KaleoTimer fetchByPrimaryKey(long kaleoTimerId)
 		throws SystemException {
 		KaleoTimer kaleoTimer = (KaleoTimer)EntityCacheUtil.getResult(KaleoTimerModelImpl.ENTITY_CACHE_ENABLED,
-				KaleoTimerImpl.class, kaleoTimerId, this);
+				KaleoTimerImpl.class, kaleoTimerId);
 
 		if (kaleoTimer == _nullKaleoTimer) {
 			return null;

@@ -110,7 +110,7 @@ public class HROfficePersistenceImpl extends BasePersistenceImpl<HROffice>
 		for (HROffice hrOffice : hrOffices) {
 			if (EntityCacheUtil.getResult(
 						HROfficeModelImpl.ENTITY_CACHE_ENABLED,
-						HROfficeImpl.class, hrOffice.getPrimaryKey(), this) == null) {
+						HROfficeImpl.class, hrOffice.getPrimaryKey()) == null) {
 				cacheResult(hrOffice);
 			}
 		}
@@ -376,7 +376,7 @@ public class HROfficePersistenceImpl extends BasePersistenceImpl<HROffice>
 	public HROffice fetchByPrimaryKey(long hrOfficeId)
 		throws SystemException {
 		HROffice hrOffice = (HROffice)EntityCacheUtil.getResult(HROfficeModelImpl.ENTITY_CACHE_ENABLED,
-				HROfficeImpl.class, hrOfficeId, this);
+				HROfficeImpl.class, hrOfficeId);
 
 		if (hrOffice == _nullHROffice) {
 			return null;
@@ -455,10 +455,7 @@ public class HROfficePersistenceImpl extends BasePersistenceImpl<HROffice>
 	 */
 	public List<HROffice> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+		Object[] finderArgs = new Object[] { start, end, orderByComparator };
 
 		List<HROffice> list = (List<HROffice>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
 				finderArgs, this);
@@ -630,10 +627,7 @@ public class HROfficePersistenceImpl extends BasePersistenceImpl<HROffice>
 	public List<com.liferay.hr.model.HRHoliday> getHRHolidaies(long pk,
 		int start, int end, OrderByComparator orderByComparator)
 		throws SystemException {
-		Object[] finderArgs = new Object[] {
-				pk, String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+		Object[] finderArgs = new Object[] { pk, start, end, orderByComparator };
 
 		List<com.liferay.hr.model.HRHoliday> list = (List<com.liferay.hr.model.HRHoliday>)FinderCacheUtil.getResult(FINDER_PATH_GET_HRHOLIDAIES,
 				finderArgs, this);

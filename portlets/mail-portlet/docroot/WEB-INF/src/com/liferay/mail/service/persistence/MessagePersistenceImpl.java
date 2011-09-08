@@ -143,7 +143,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 		for (Message message : messages) {
 			if (EntityCacheUtil.getResult(
 						MessageModelImpl.ENTITY_CACHE_ENABLED,
-						MessageImpl.class, message.getPrimaryKey(), this) == null) {
+						MessageImpl.class, message.getPrimaryKey()) == null) {
 				cacheResult(message);
 			}
 		}
@@ -447,7 +447,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	 */
 	public Message fetchByPrimaryKey(long messageId) throws SystemException {
 		Message message = (Message)EntityCacheUtil.getResult(MessageModelImpl.ENTITY_CACHE_ENABLED,
-				MessageImpl.class, messageId, this);
+				MessageImpl.class, messageId);
 
 		if (message == _nullMessage) {
 			return null;

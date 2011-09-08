@@ -104,7 +104,7 @@ public class HRProjectBillingRatePersistenceImpl extends BasePersistenceImpl<HRP
 			if (EntityCacheUtil.getResult(
 						HRProjectBillingRateModelImpl.ENTITY_CACHE_ENABLED,
 						HRProjectBillingRateImpl.class,
-						hrProjectBillingRate.getPrimaryKey(), this) == null) {
+						hrProjectBillingRate.getPrimaryKey()) == null) {
 				cacheResult(hrProjectBillingRate);
 			}
 		}
@@ -369,7 +369,7 @@ public class HRProjectBillingRatePersistenceImpl extends BasePersistenceImpl<HRP
 	public HRProjectBillingRate fetchByPrimaryKey(long hrProjectBillingRateId)
 		throws SystemException {
 		HRProjectBillingRate hrProjectBillingRate = (HRProjectBillingRate)EntityCacheUtil.getResult(HRProjectBillingRateModelImpl.ENTITY_CACHE_ENABLED,
-				HRProjectBillingRateImpl.class, hrProjectBillingRateId, this);
+				HRProjectBillingRateImpl.class, hrProjectBillingRateId);
 
 		if (hrProjectBillingRate == _nullHRProjectBillingRate) {
 			return null;
@@ -450,10 +450,7 @@ public class HRProjectBillingRatePersistenceImpl extends BasePersistenceImpl<HRP
 	 */
 	public List<HRProjectBillingRate> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+		Object[] finderArgs = new Object[] { start, end, orderByComparator };
 
 		List<HRProjectBillingRate> list = (List<HRProjectBillingRate>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
 				finderArgs, this);

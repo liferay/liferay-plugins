@@ -145,7 +145,7 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 		for (KaleoNode kaleoNode : kaleoNodes) {
 			if (EntityCacheUtil.getResult(
 						KaleoNodeModelImpl.ENTITY_CACHE_ENABLED,
-						KaleoNodeImpl.class, kaleoNode.getPrimaryKey(), this) == null) {
+						KaleoNodeImpl.class, kaleoNode.getPrimaryKey()) == null) {
 				cacheResult(kaleoNode);
 			}
 		}
@@ -409,7 +409,7 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	public KaleoNode fetchByPrimaryKey(long kaleoNodeId)
 		throws SystemException {
 		KaleoNode kaleoNode = (KaleoNode)EntityCacheUtil.getResult(KaleoNodeModelImpl.ENTITY_CACHE_ENABLED,
-				KaleoNodeImpl.class, kaleoNodeId, this);
+				KaleoNodeImpl.class, kaleoNodeId);
 
 		if (kaleoNode == _nullKaleoNode) {
 			return null;

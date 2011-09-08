@@ -191,7 +191,7 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 		for (KBComment kbComment : kbComments) {
 			if (EntityCacheUtil.getResult(
 						KBCommentModelImpl.ENTITY_CACHE_ENABLED,
-						KBCommentImpl.class, kbComment.getPrimaryKey(), this) == null) {
+						KBCommentImpl.class, kbComment.getPrimaryKey()) == null) {
 				cacheResult(kbComment);
 			}
 		}
@@ -539,7 +539,7 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	public KBComment fetchByPrimaryKey(long kbCommentId)
 		throws SystemException {
 		KBComment kbComment = (KBComment)EntityCacheUtil.getResult(KBCommentModelImpl.ENTITY_CACHE_ENABLED,
-				KBCommentImpl.class, kbCommentId, this);
+				KBCommentImpl.class, kbCommentId);
 
 		if (kbComment == _nullKBComment) {
 			return null;

@@ -100,7 +100,7 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 	public void cacheResult(List<Type> types) {
 		for (Type type : types) {
 			if (EntityCacheUtil.getResult(TypeModelImpl.ENTITY_CACHE_ENABLED,
-						TypeImpl.class, type.getPrimaryKey(), this) == null) {
+						TypeImpl.class, type.getPrimaryKey()) == null) {
 				cacheResult(type);
 			}
 		}
@@ -348,7 +348,7 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 	 */
 	public Type fetchByPrimaryKey(long typeId) throws SystemException {
 		Type type = (Type)EntityCacheUtil.getResult(TypeModelImpl.ENTITY_CACHE_ENABLED,
-				TypeImpl.class, typeId, this);
+				TypeImpl.class, typeId);
 
 		if (type == _nullType) {
 			return null;
@@ -426,10 +426,7 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 	 */
 	public List<Type> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+		Object[] finderArgs = new Object[] { start, end, orderByComparator };
 
 		List<Type> list = (List<Type>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
 				finderArgs, this);

@@ -179,7 +179,7 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 			if (EntityCacheUtil.getResult(
 						KaleoInstanceTokenModelImpl.ENTITY_CACHE_ENABLED,
 						KaleoInstanceTokenImpl.class,
-						kaleoInstanceToken.getPrimaryKey(), this) == null) {
+						kaleoInstanceToken.getPrimaryKey()) == null) {
 				cacheResult(kaleoInstanceToken);
 			}
 		}
@@ -450,7 +450,7 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 	public KaleoInstanceToken fetchByPrimaryKey(long kaleoInstanceTokenId)
 		throws SystemException {
 		KaleoInstanceToken kaleoInstanceToken = (KaleoInstanceToken)EntityCacheUtil.getResult(KaleoInstanceTokenModelImpl.ENTITY_CACHE_ENABLED,
-				KaleoInstanceTokenImpl.class, kaleoInstanceTokenId, this);
+				KaleoInstanceTokenImpl.class, kaleoInstanceTokenId);
 
 		if (kaleoInstanceToken == _nullKaleoInstanceToken) {
 			return null;

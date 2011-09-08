@@ -153,7 +153,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		for (Status status : statuses) {
 			if (EntityCacheUtil.getResult(
 						StatusModelImpl.ENTITY_CACHE_ENABLED, StatusImpl.class,
-						status.getPrimaryKey(), this) == null) {
+						status.getPrimaryKey()) == null) {
 				cacheResult(status);
 			}
 		}
@@ -432,7 +432,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	 */
 	public Status fetchByPrimaryKey(long statusId) throws SystemException {
 		Status status = (Status)EntityCacheUtil.getResult(StatusModelImpl.ENTITY_CACHE_ENABLED,
-				StatusImpl.class, statusId, this);
+				StatusImpl.class, statusId);
 
 		if (status == _nullStatus) {
 			return null;
@@ -647,8 +647,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		Object[] finderArgs = new Object[] {
 				modifiedDate,
 				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
+				start, end, orderByComparator
 			};
 
 		List<Status> list = (List<Status>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_MODIFIEDDATE,
@@ -974,12 +973,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	 */
 	public List<Status> findByOnline(boolean online, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				online,
-				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+		Object[] finderArgs = new Object[] { online, start, end, orderByComparator };
 
 		List<Status> list = (List<Status>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_ONLINE,
 				finderArgs, this);
@@ -1310,8 +1304,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		Object[] finderArgs = new Object[] {
 				modifiedDate, online,
 				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
+				start, end, orderByComparator
 			};
 
 		List<Status> list = (List<Status>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_M_O,
@@ -1650,10 +1643,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	 */
 	public List<Status> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+		Object[] finderArgs = new Object[] { start, end, orderByComparator };
 
 		List<Status> list = (List<Status>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
 				finderArgs, this);
