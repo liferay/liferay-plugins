@@ -849,10 +849,17 @@ public class ConsumerPortlet extends GenericPortlet {
 		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		return baseKey + StringPool.UNDERLINE +
-			themeDisplay.getScopeGroupId() + StringPool.UNDERLINE +
-			wsrpConsumer.getWsrpConsumerId() + StringPool.UNDERLINE +
-			wsrpConsumer.getUrl();
+		StringBundler sb = new StringBundler();
+
+		sb.append(baseKey);
+		sb.append(StringPool.UNDERLINE);
+		sb.append(themeDisplay.getScopeGroupId());
+		sb.append(StringPool.UNDERLINE);
+		sb.append(wsrpConsumer.getWsrpConsumerId());
+		sb.append(StringPool.UNDERLINE);
+		sb.append(wsrpConsumer.getUrl());
+
+		return sb.toString();
 	}
 
 	protected Telecom getTelecom(User user, String listTypeName)
