@@ -262,7 +262,7 @@ public class WorkflowDefinitionManagerImpl
 
 	public int searchCount(
 			long companyId, String name, Boolean active, Long scope)
-			throws WorkflowException {
+		throws WorkflowException {
 
 		try {
 			ServiceContext serviceContext = new ServiceContext();
