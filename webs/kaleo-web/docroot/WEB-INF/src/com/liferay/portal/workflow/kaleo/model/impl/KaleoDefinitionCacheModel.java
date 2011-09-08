@@ -31,7 +31,7 @@ import java.util.Date;
 public class KaleoDefinitionCacheModel implements CacheModel<KaleoDefinition> {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(29);
+		StringBundler sb = new StringBundler(31);
 
 		sb.append("{kaleoDefinitionId=");
 		sb.append(kaleoDefinitionId);
@@ -59,6 +59,8 @@ public class KaleoDefinitionCacheModel implements CacheModel<KaleoDefinition> {
 		sb.append(version);
 		sb.append(", active=");
 		sb.append(active);
+		sb.append(", scope=");
+		sb.append(scope);
 		sb.append(", startKaleoNodeId=");
 		sb.append(startKaleoNodeId);
 		sb.append("}");
@@ -125,6 +127,7 @@ public class KaleoDefinitionCacheModel implements CacheModel<KaleoDefinition> {
 
 		kaleoDefinitionImpl.setVersion(version);
 		kaleoDefinitionImpl.setActive(active);
+		kaleoDefinitionImpl.setScope(scope);
 		kaleoDefinitionImpl.setStartKaleoNodeId(startKaleoNodeId);
 
 		kaleoDefinitionImpl.resetOriginalValues();
@@ -145,5 +148,6 @@ public class KaleoDefinitionCacheModel implements CacheModel<KaleoDefinition> {
 	public String content;
 	public int version;
 	public boolean active;
+	public long scope;
 	public long startKaleoNodeId;
 }

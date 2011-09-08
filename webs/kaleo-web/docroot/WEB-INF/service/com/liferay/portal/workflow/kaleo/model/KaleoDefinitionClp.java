@@ -275,6 +275,14 @@ public class KaleoDefinitionClp extends BaseModelImpl<KaleoDefinition>
 		_active = active;
 	}
 
+	public long getScope() {
+		return _scope;
+	}
+
+	public void setScope(long scope) {
+		_scope = scope;
+	}
+
 	public long getStartKaleoNodeId() {
 		return _startKaleoNodeId;
 	}
@@ -324,6 +332,7 @@ public class KaleoDefinitionClp extends BaseModelImpl<KaleoDefinition>
 		clone.setContent(getContent());
 		clone.setVersion(getVersion());
 		clone.setActive(getActive());
+		clone.setScope(getScope());
 		clone.setStartKaleoNodeId(getStartKaleoNodeId());
 
 		return clone;
@@ -383,7 +392,7 @@ public class KaleoDefinitionClp extends BaseModelImpl<KaleoDefinition>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(29);
+		StringBundler sb = new StringBundler(31);
 
 		sb.append("{kaleoDefinitionId=");
 		sb.append(getKaleoDefinitionId());
@@ -411,6 +420,8 @@ public class KaleoDefinitionClp extends BaseModelImpl<KaleoDefinition>
 		sb.append(getVersion());
 		sb.append(", active=");
 		sb.append(getActive());
+		sb.append(", scope=");
+		sb.append(getScope());
 		sb.append(", startKaleoNodeId=");
 		sb.append(getStartKaleoNodeId());
 		sb.append("}");
@@ -419,7 +430,7 @@ public class KaleoDefinitionClp extends BaseModelImpl<KaleoDefinition>
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(46);
+		StringBundler sb = new StringBundler(49);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.portal.workflow.kaleo.model.KaleoDefinition");
@@ -478,6 +489,10 @@ public class KaleoDefinitionClp extends BaseModelImpl<KaleoDefinition>
 		sb.append(getActive());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>scope</column-name><column-value><![CDATA[");
+		sb.append(getScope());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>startKaleoNodeId</column-name><column-value><![CDATA[");
 		sb.append(getStartKaleoNodeId());
 		sb.append("]]></column-value></column>");
@@ -501,5 +516,6 @@ public class KaleoDefinitionClp extends BaseModelImpl<KaleoDefinition>
 	private String _content;
 	private int _version;
 	private boolean _active;
+	private long _scope;
 	private long _startKaleoNodeId;
 }
