@@ -55,16 +55,7 @@ catch (NoSuchConsumerException nsce) {
 		<liferay-ui:message key="url" />
 	</td>
 	<td>
-		<c:choose>
-			<c:when test="<%= wsrpConsumer == null %>">
-				<liferay-ui:input-field model="<%= WSRPConsumer.class %>" bean="<%= wsrpConsumer %>" field="url" />
-			</c:when>
-			<c:otherwise>
-				<a href="<%= wsrpConsumer.getUrl() %>" target="_blank"><%= wsrpConsumer.getUrl() %></a>
-
-				<input name="<portlet:namespace />url" type="hidden" value="<%= wsrpConsumer.getUrl() %>" />
-			</c:otherwise>
-		</c:choose>
+		<liferay-ui:input-field model="<%= WSRPConsumer.class %>" bean="<%= wsrpConsumer %>" field="url" />
 	</td>
 </tr>
 <tr>

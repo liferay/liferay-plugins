@@ -851,7 +851,8 @@ public class ConsumerPortlet extends GenericPortlet {
 
 		return baseKey + StringPool.UNDERLINE +
 			themeDisplay.getScopeGroupId() + StringPool.UNDERLINE +
-			wsrpConsumer.getWsrpConsumerId();
+			wsrpConsumer.getWsrpConsumerId() + StringPool.UNDERLINE +
+			wsrpConsumer.getUrl();
 	}
 
 	protected Telecom getTelecom(User user, String listTypeName)
