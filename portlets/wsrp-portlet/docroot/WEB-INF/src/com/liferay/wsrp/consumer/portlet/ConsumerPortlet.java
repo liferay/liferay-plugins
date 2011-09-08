@@ -29,6 +29,7 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.StreamUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.TransientValue;
@@ -63,7 +64,7 @@ import com.liferay.wsrp.util.WSRPConsumerManager;
 import com.liferay.wsrp.util.WSRPConsumerManagerFactory;
 import com.liferay.wsrp.util.WebKeys;
 
-import java.io.File;
+import java.io.InputStream;
 import java.io.IOException;
 
 import java.util.ArrayList;
@@ -1537,15 +1538,22 @@ public class ConsumerPortlet extends GenericPortlet {
 				uploadContext.setMimeAttributes(
 					new NamedString[] {mimeAttribute});
 
-				File file = uploadPortletRequest.getFile(name);
+				InputStream inputStream = null;
 
-				byte[] bytes = FileUtil.getBytes(file);
+				try {
+					inputStream = uploadPortletRequest.getFileAsStream(name);
 
-				if (bytes == null) {
-					continue;
+					byte[] bytes = FileUtil.getBytes(inputStream);
+
+					if (bytes == null) {
+						continue;
+					}
+
+					uploadContext.setUploadData(bytes);
 				}
-
-				uploadContext.setUploadData(bytes);
+				finally {
+					StreamUtil.cleanUp(inputStream);
+				}
 
 				uploadContexts.add(uploadContext);
 			}
