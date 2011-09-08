@@ -57,6 +57,7 @@ import com.liferay.portal.workflow.kaleo.service.KaleoTimerLocalService;
 import com.liferay.portal.workflow.kaleo.service.KaleoTransitionLocalService;
 import com.liferay.portal.workflow.kaleo.service.persistence.KaleoActionPersistence;
 import com.liferay.portal.workflow.kaleo.service.persistence.KaleoConditionPersistence;
+import com.liferay.portal.workflow.kaleo.service.persistence.KaleoDefinitionFinder;
 import com.liferay.portal.workflow.kaleo.service.persistence.KaleoDefinitionPersistence;
 import com.liferay.portal.workflow.kaleo.service.persistence.KaleoInstancePersistence;
 import com.liferay.portal.workflow.kaleo.service.persistence.KaleoInstanceTokenPersistence;
@@ -457,6 +458,25 @@ public abstract class KaleoInstanceTokenLocalServiceBaseImpl
 	public void setKaleoDefinitionPersistence(
 		KaleoDefinitionPersistence kaleoDefinitionPersistence) {
 		this.kaleoDefinitionPersistence = kaleoDefinitionPersistence;
+	}
+
+	/**
+	 * Returns the kaleo definition finder.
+	 *
+	 * @return the kaleo definition finder
+	 */
+	public KaleoDefinitionFinder getKaleoDefinitionFinder() {
+		return kaleoDefinitionFinder;
+	}
+
+	/**
+	 * Sets the kaleo definition finder.
+	 *
+	 * @param kaleoDefinitionFinder the kaleo definition finder
+	 */
+	public void setKaleoDefinitionFinder(
+		KaleoDefinitionFinder kaleoDefinitionFinder) {
+		this.kaleoDefinitionFinder = kaleoDefinitionFinder;
 	}
 
 	/**
@@ -1203,6 +1223,8 @@ public abstract class KaleoInstanceTokenLocalServiceBaseImpl
 	protected KaleoDefinitionLocalService kaleoDefinitionLocalService;
 	@BeanReference(type = KaleoDefinitionPersistence.class)
 	protected KaleoDefinitionPersistence kaleoDefinitionPersistence;
+	@BeanReference(type = KaleoDefinitionFinder.class)
+	protected KaleoDefinitionFinder kaleoDefinitionFinder;
 	@BeanReference(type = KaleoInstanceLocalService.class)
 	protected KaleoInstanceLocalService kaleoInstanceLocalService;
 	@BeanReference(type = KaleoInstancePersistence.class)

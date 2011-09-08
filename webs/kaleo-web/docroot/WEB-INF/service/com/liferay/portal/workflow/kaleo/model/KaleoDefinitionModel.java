@@ -346,6 +346,20 @@ public interface KaleoDefinitionModel extends BaseModel<KaleoDefinition>,
 	public void setActive(boolean active);
 
 	/**
+	 * Returns the scope of this kaleo definition.
+	 *
+	 * @return the scope of this kaleo definition
+	 */
+	public long getScope();
+
+	/**
+	 * Sets the scope of this kaleo definition.
+	 *
+	 * @param scope the scope of this kaleo definition
+	 */
+	public void setScope(long scope);
+
+	/**
 	 * Returns the start kaleo node ID of this kaleo definition.
 	 *
 	 * @return the start kaleo node ID of this kaleo definition
