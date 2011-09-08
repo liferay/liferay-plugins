@@ -39,6 +39,7 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.StreamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.CompanyConstants;
@@ -55,7 +56,6 @@ import com.liferay.portlet.documentlibrary.NoSuchFileException;
 import com.liferay.portlet.documentlibrary.store.DLStoreUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -86,15 +86,22 @@ public class SearchPortlet extends MVCPortlet {
 			uploadPortletRequest, "resourcePrimKey");
 
 		String dirName = ParamUtil.getString(uploadPortletRequest, "dirName");
-		File file = uploadPortletRequest.getFile("file");
-		String fileName = uploadPortletRequest.getFileName("file");
+		InputStream inputStream = null;
 
-		ServiceContext serviceContext = ServiceContextFactory.getInstance(
-			KBArticle.class.getName(), actionRequest);
+		try {
+			inputStream = uploadPortletRequest.getFileAsStream("file");
+			String fileName = uploadPortletRequest.getFileName("file");
 
-		KBArticleServiceUtil.addAttachment(
-			portletId, resourcePrimKey, dirName, fileName,
-			FileUtil.getBytes(file), serviceContext);
+			ServiceContext serviceContext = ServiceContextFactory.getInstance(
+				KBArticle.class.getName(), actionRequest);
+
+			KBArticleServiceUtil.addAttachment(
+				portletId, resourcePrimKey, dirName, fileName,
+				inputStream, serviceContext);
+		}
+		finally {
+			StreamUtil.cleanUp(inputStream);
+		}
 	}
 
 	public void deleteAttachment(

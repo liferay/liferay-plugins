@@ -51,6 +51,7 @@ import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.StreamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.UnmodifiableList;
@@ -72,6 +73,8 @@ import com.liferay.portlet.documentlibrary.DuplicateFileException;
 import com.liferay.portlet.documentlibrary.NoSuchDirectoryException;
 import com.liferay.portlet.documentlibrary.store.DLStoreUtil;
 
+import java.io.InputStream;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -88,13 +91,13 @@ import javax.portlet.PortletPreferences;
 public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 	public void addAttachment(
-			String dirName, String shortFileName, byte[] bytes,
+			String dirName, String shortFileName, InputStream inputStream,
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		DLStoreUtil.addFile(
 			serviceContext.getCompanyId(), CompanyConstants.SYSTEM,
-			dirName + StringPool.SLASH + shortFileName, bytes);
+			dirName + StringPool.SLASH + shortFileName, inputStream);
 	}
 
 	public KBArticle addKBArticle(
@@ -671,10 +674,18 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		for (String fileName : kbArticle.getAttachmentsFileNames()) {
 			String shortFileName = FileUtil.getShortFileName(fileName);
 
-			byte[] bytes = DLStoreUtil.getFileAsBytes(
-				kbArticle.getCompanyId(), CompanyConstants.SYSTEM, fileName);
+			InputStream inputStream = null;
+			try {
+				inputStream = DLStoreUtil.getFileAsStream(
+					kbArticle.getCompanyId(), CompanyConstants.SYSTEM,
+					fileName);
 
-			addAttachment(dirName, shortFileName, bytes, serviceContext);
+				addAttachment(
+					dirName, shortFileName, inputStream, serviceContext);
+			}
+			finally {
+				StreamUtil.cleanUp(inputStream);
+			}
 		}
 
 		return dirName;
@@ -788,11 +799,13 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			long userId, KBArticle kbArticle, long[] assetCategoryIds,
 			String[] assetTagNames)
 		throws PortalException, SystemException {
+		//TBD
+		long classTypeId = 0;
 
 		assetEntryLocalService.updateEntry(
 			userId, kbArticle.getGroupId(), KBArticle.class.getName(),
-			kbArticle.getClassPK(), kbArticle.getUuid(), assetCategoryIds,
-			assetTagNames, false, null, null, null, null,
+			kbArticle.getClassPK(), kbArticle.getUuid(), classTypeId,
+			assetCategoryIds, assetTagNames, false, null, null, null, null,
 			ContentTypes.TEXT_HTML, kbArticle.getTitle(),
 			kbArticle.getDescription(), null, null, null, 0, 0, null, false);
 	}
@@ -978,17 +991,22 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			serviceContext.getCompanyId(), CompanyConstants.SYSTEM, dirName);
 
 		for (String fileName : fileNames) {
-			byte[] bytes = DLStoreUtil.getFileAsBytes(
-				serviceContext.getCompanyId(), CompanyConstants.SYSTEM,
-				fileName);
-
+			InputStream inputStream = null;
 			try {
+				inputStream = DLStoreUtil.getFileAsStream(
+					serviceContext.getCompanyId(), CompanyConstants.SYSTEM,
+					fileName);
+
 				addAttachment(
 					kbArticle.getAttachmentsDirName(),
-					FileUtil.getShortFileName(fileName), bytes, serviceContext);
+					FileUtil.getShortFileName(fileName), inputStream,
+					serviceContext);
 			}
 			catch (DuplicateFileException dfe) {
 				_log.error("File already exists for " + dfe.getMessage());
+			}
+			finally {
+				StreamUtil.cleanUp(inputStream);
 			}
 		}
 	}
