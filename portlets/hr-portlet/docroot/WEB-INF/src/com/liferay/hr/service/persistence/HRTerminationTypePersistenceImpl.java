@@ -123,7 +123,7 @@ public class HRTerminationTypePersistenceImpl extends BasePersistenceImpl<HRTerm
 			if (EntityCacheUtil.getResult(
 						HRTerminationTypeModelImpl.ENTITY_CACHE_ENABLED,
 						HRTerminationTypeImpl.class,
-						hrTerminationType.getPrimaryKey(), this) == null) {
+						hrTerminationType.getPrimaryKey()) == null) {
 				cacheResult(hrTerminationType);
 			}
 		}
@@ -433,7 +433,7 @@ public class HRTerminationTypePersistenceImpl extends BasePersistenceImpl<HRTerm
 	public HRTerminationType fetchByPrimaryKey(long hrTerminationTypeId)
 		throws SystemException {
 		HRTerminationType hrTerminationType = (HRTerminationType)EntityCacheUtil.getResult(HRTerminationTypeModelImpl.ENTITY_CACHE_ENABLED,
-				HRTerminationTypeImpl.class, hrTerminationTypeId, this);
+				HRTerminationTypeImpl.class, hrTerminationTypeId);
 
 		if (hrTerminationType == _nullHRTerminationType) {
 			return null;
@@ -666,10 +666,7 @@ public class HRTerminationTypePersistenceImpl extends BasePersistenceImpl<HRTerm
 	 */
 	public List<HRTerminationType> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+		Object[] finderArgs = new Object[] { start, end, orderByComparator };
 
 		List<HRTerminationType> list = (List<HRTerminationType>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
 				finderArgs, this);

@@ -190,7 +190,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 			if (EntityCacheUtil.getResult(
 						KaleoDefinitionModelImpl.ENTITY_CACHE_ENABLED,
 						KaleoDefinitionImpl.class,
-						kaleoDefinition.getPrimaryKey(), this) == null) {
+						kaleoDefinition.getPrimaryKey()) == null) {
 				cacheResult(kaleoDefinition);
 			}
 		}
@@ -510,7 +510,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	public KaleoDefinition fetchByPrimaryKey(long kaleoDefinitionId)
 		throws SystemException {
 		KaleoDefinition kaleoDefinition = (KaleoDefinition)EntityCacheUtil.getResult(KaleoDefinitionModelImpl.ENTITY_CACHE_ENABLED,
-				KaleoDefinitionImpl.class, kaleoDefinitionId, this);
+				KaleoDefinitionImpl.class, kaleoDefinitionId);
 
 		if (kaleoDefinition == _nullKaleoDefinition) {
 			return null;

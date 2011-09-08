@@ -167,7 +167,7 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 			if (EntityCacheUtil.getResult(
 						KaleoTaskAssignmentInstanceModelImpl.ENTITY_CACHE_ENABLED,
 						KaleoTaskAssignmentInstanceImpl.class,
-						kaleoTaskAssignmentInstance.getPrimaryKey(), this) == null) {
+						kaleoTaskAssignmentInstance.getPrimaryKey()) == null) {
 				cacheResult(kaleoTaskAssignmentInstance);
 			}
 		}
@@ -449,7 +449,7 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 		long kaleoTaskAssignmentInstanceId) throws SystemException {
 		KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance = (KaleoTaskAssignmentInstance)EntityCacheUtil.getResult(KaleoTaskAssignmentInstanceModelImpl.ENTITY_CACHE_ENABLED,
 				KaleoTaskAssignmentInstanceImpl.class,
-				kaleoTaskAssignmentInstanceId, this);
+				kaleoTaskAssignmentInstanceId);
 
 		if (kaleoTaskAssignmentInstance == _nullKaleoTaskAssignmentInstance) {
 			return null;

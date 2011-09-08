@@ -101,7 +101,7 @@ public class HRExpensePersistenceImpl extends BasePersistenceImpl<HRExpense>
 		for (HRExpense hrExpense : hrExpenses) {
 			if (EntityCacheUtil.getResult(
 						HRExpenseModelImpl.ENTITY_CACHE_ENABLED,
-						HRExpenseImpl.class, hrExpense.getPrimaryKey(), this) == null) {
+						HRExpenseImpl.class, hrExpense.getPrimaryKey()) == null) {
 				cacheResult(hrExpense);
 			}
 		}
@@ -369,7 +369,7 @@ public class HRExpensePersistenceImpl extends BasePersistenceImpl<HRExpense>
 	public HRExpense fetchByPrimaryKey(long hrExpenseId)
 		throws SystemException {
 		HRExpense hrExpense = (HRExpense)EntityCacheUtil.getResult(HRExpenseModelImpl.ENTITY_CACHE_ENABLED,
-				HRExpenseImpl.class, hrExpenseId, this);
+				HRExpenseImpl.class, hrExpenseId);
 
 		if (hrExpense == _nullHRExpense) {
 			return null;
@@ -449,10 +449,7 @@ public class HRExpensePersistenceImpl extends BasePersistenceImpl<HRExpense>
 	 */
 	public List<HRExpense> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+		Object[] finderArgs = new Object[] { start, end, orderByComparator };
 
 		List<HRExpense> list = (List<HRExpense>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
 				finderArgs, this);

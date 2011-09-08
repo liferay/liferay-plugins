@@ -185,7 +185,7 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 		for (KaleoLog kaleoLog : kaleoLogs) {
 			if (EntityCacheUtil.getResult(
 						KaleoLogModelImpl.ENTITY_CACHE_ENABLED,
-						KaleoLogImpl.class, kaleoLog.getPrimaryKey(), this) == null) {
+						KaleoLogImpl.class, kaleoLog.getPrimaryKey()) == null) {
 				cacheResult(kaleoLog);
 			}
 		}
@@ -464,7 +464,7 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 	public KaleoLog fetchByPrimaryKey(long kaleoLogId)
 		throws SystemException {
 		KaleoLog kaleoLog = (KaleoLog)EntityCacheUtil.getResult(KaleoLogModelImpl.ENTITY_CACHE_ENABLED,
-				KaleoLogImpl.class, kaleoLogId, this);
+				KaleoLogImpl.class, kaleoLogId);
 
 		if (kaleoLog == _nullKaleoLog) {
 			return null;

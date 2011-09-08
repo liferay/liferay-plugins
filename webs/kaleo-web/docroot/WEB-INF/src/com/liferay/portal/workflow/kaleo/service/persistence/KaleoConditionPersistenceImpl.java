@@ -144,8 +144,7 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 		for (KaleoCondition kaleoCondition : kaleoConditions) {
 			if (EntityCacheUtil.getResult(
 						KaleoConditionModelImpl.ENTITY_CACHE_ENABLED,
-						KaleoConditionImpl.class,
-						kaleoCondition.getPrimaryKey(), this) == null) {
+						KaleoConditionImpl.class, kaleoCondition.getPrimaryKey()) == null) {
 				cacheResult(kaleoCondition);
 			}
 		}
@@ -438,7 +437,7 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	public KaleoCondition fetchByPrimaryKey(long kaleoConditionId)
 		throws SystemException {
 		KaleoCondition kaleoCondition = (KaleoCondition)EntityCacheUtil.getResult(KaleoConditionModelImpl.ENTITY_CACHE_ENABLED,
-				KaleoConditionImpl.class, kaleoConditionId, this);
+				KaleoConditionImpl.class, kaleoConditionId);
 
 		if (kaleoCondition == _nullKaleoCondition) {
 			return null;

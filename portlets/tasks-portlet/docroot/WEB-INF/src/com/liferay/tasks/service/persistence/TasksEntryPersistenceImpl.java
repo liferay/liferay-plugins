@@ -196,7 +196,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 		for (TasksEntry tasksEntry : tasksEntries) {
 			if (EntityCacheUtil.getResult(
 						TasksEntryModelImpl.ENTITY_CACHE_ENABLED,
-						TasksEntryImpl.class, tasksEntry.getPrimaryKey(), this) == null) {
+						TasksEntryImpl.class, tasksEntry.getPrimaryKey()) == null) {
 				cacheResult(tasksEntry);
 			}
 		}
@@ -460,7 +460,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	public TasksEntry fetchByPrimaryKey(long tasksEntryId)
 		throws SystemException {
 		TasksEntry tasksEntry = (TasksEntry)EntityCacheUtil.getResult(TasksEntryModelImpl.ENTITY_CACHE_ENABLED,
-				TasksEntryImpl.class, tasksEntryId, this);
+				TasksEntryImpl.class, tasksEntryId);
 
 		if (tasksEntry == _nullTasksEntry) {
 			return null;
@@ -547,8 +547,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 		Object[] finderArgs = new Object[] {
 				groupId,
 				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
+				start, end, orderByComparator
 			};
 
 		List<TasksEntry> list = (List<TasksEntry>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_GROUPID,
@@ -1192,12 +1191,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	public List<TasksEntry> findByUserId(long userId, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				userId,
-				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+		Object[] finderArgs = new Object[] { userId, start, end, orderByComparator };
 
 		List<TasksEntry> list = (List<TasksEntry>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_USERID,
 				finderArgs, this);
@@ -1536,8 +1530,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 		Object[] finderArgs = new Object[] {
 				assigneeUserId,
 				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
+				start, end, orderByComparator
 			};
 
 		List<TasksEntry> list = (List<TasksEntry>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_ASSIGNEEUSERID,
@@ -1878,8 +1871,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 		Object[] finderArgs = new Object[] {
 				resolverUserId,
 				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
+				start, end, orderByComparator
 			};
 
 		List<TasksEntry> list = (List<TasksEntry>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_RESOLVERUSERID,
@@ -2222,8 +2214,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 		Object[] finderArgs = new Object[] {
 				groupId, userId,
 				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
+				start, end, orderByComparator
 			};
 
 		List<TasksEntry> list = (List<TasksEntry>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_G_U,
@@ -2907,8 +2898,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 		Object[] finderArgs = new Object[] {
 				groupId, assigneeUserId,
 				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
+				start, end, orderByComparator
 			};
 
 		List<TasksEntry> list = (List<TasksEntry>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_G_A,
@@ -3593,8 +3583,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 		Object[] finderArgs = new Object[] {
 				groupId, resolverUserId,
 				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
+				start, end, orderByComparator
 			};
 
 		List<TasksEntry> list = (List<TasksEntry>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_G_R,
@@ -4267,10 +4256,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	public List<TasksEntry> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+		Object[] finderArgs = new Object[] { start, end, orderByComparator };
 
 		List<TasksEntry> list = (List<TasksEntry>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
 				finderArgs, this);

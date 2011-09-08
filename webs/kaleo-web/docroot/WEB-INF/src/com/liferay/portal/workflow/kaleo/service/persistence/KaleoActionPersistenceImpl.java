@@ -145,7 +145,7 @@ public class KaleoActionPersistenceImpl extends BasePersistenceImpl<KaleoAction>
 		for (KaleoAction kaleoAction : kaleoActions) {
 			if (EntityCacheUtil.getResult(
 						KaleoActionModelImpl.ENTITY_CACHE_ENABLED,
-						KaleoActionImpl.class, kaleoAction.getPrimaryKey(), this) == null) {
+						KaleoActionImpl.class, kaleoAction.getPrimaryKey()) == null) {
 				cacheResult(kaleoAction);
 			}
 		}
@@ -413,7 +413,7 @@ public class KaleoActionPersistenceImpl extends BasePersistenceImpl<KaleoAction>
 	public KaleoAction fetchByPrimaryKey(long kaleoActionId)
 		throws SystemException {
 		KaleoAction kaleoAction = (KaleoAction)EntityCacheUtil.getResult(KaleoActionModelImpl.ENTITY_CACHE_ENABLED,
-				KaleoActionImpl.class, kaleoActionId, this);
+				KaleoActionImpl.class, kaleoActionId);
 
 		if (kaleoAction == _nullKaleoAction) {
 			return null;

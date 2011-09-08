@@ -105,7 +105,7 @@ public class HRTimeSheetHoursPerDayPersistenceImpl extends BasePersistenceImpl<H
 			if (EntityCacheUtil.getResult(
 						HRTimeSheetHoursPerDayModelImpl.ENTITY_CACHE_ENABLED,
 						HRTimeSheetHoursPerDayImpl.class,
-						hrTimeSheetHoursPerDay.getPrimaryKey(), this) == null) {
+						hrTimeSheetHoursPerDay.getPrimaryKey()) == null) {
 				cacheResult(hrTimeSheetHoursPerDay);
 			}
 		}
@@ -374,7 +374,7 @@ public class HRTimeSheetHoursPerDayPersistenceImpl extends BasePersistenceImpl<H
 	public HRTimeSheetHoursPerDay fetchByPrimaryKey(
 		long hrTimeSheetHoursPerDayId) throws SystemException {
 		HRTimeSheetHoursPerDay hrTimeSheetHoursPerDay = (HRTimeSheetHoursPerDay)EntityCacheUtil.getResult(HRTimeSheetHoursPerDayModelImpl.ENTITY_CACHE_ENABLED,
-				HRTimeSheetHoursPerDayImpl.class, hrTimeSheetHoursPerDayId, this);
+				HRTimeSheetHoursPerDayImpl.class, hrTimeSheetHoursPerDayId);
 
 		if (hrTimeSheetHoursPerDay == _nullHRTimeSheetHoursPerDay) {
 			return null;
@@ -455,10 +455,7 @@ public class HRTimeSheetHoursPerDayPersistenceImpl extends BasePersistenceImpl<H
 	 */
 	public List<HRTimeSheetHoursPerDay> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+		Object[] finderArgs = new Object[] { start, end, orderByComparator };
 
 		List<HRTimeSheetHoursPerDay> list = (List<HRTimeSheetHoursPerDay>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
 				finderArgs, this);

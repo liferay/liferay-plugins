@@ -103,8 +103,7 @@ public class HRAssetVendorPersistenceImpl extends BasePersistenceImpl<HRAssetVen
 		for (HRAssetVendor hrAssetVendor : hrAssetVendors) {
 			if (EntityCacheUtil.getResult(
 						HRAssetVendorModelImpl.ENTITY_CACHE_ENABLED,
-						HRAssetVendorImpl.class, hrAssetVendor.getPrimaryKey(),
-						this) == null) {
+						HRAssetVendorImpl.class, hrAssetVendor.getPrimaryKey()) == null) {
 				cacheResult(hrAssetVendor);
 			}
 		}
@@ -366,7 +365,7 @@ public class HRAssetVendorPersistenceImpl extends BasePersistenceImpl<HRAssetVen
 	public HRAssetVendor fetchByPrimaryKey(long hrAssetVendorId)
 		throws SystemException {
 		HRAssetVendor hrAssetVendor = (HRAssetVendor)EntityCacheUtil.getResult(HRAssetVendorModelImpl.ENTITY_CACHE_ENABLED,
-				HRAssetVendorImpl.class, hrAssetVendorId, this);
+				HRAssetVendorImpl.class, hrAssetVendorId);
 
 		if (hrAssetVendor == _nullHRAssetVendor) {
 			return null;
@@ -447,10 +446,7 @@ public class HRAssetVendorPersistenceImpl extends BasePersistenceImpl<HRAssetVen
 	 */
 	public List<HRAssetVendor> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+		Object[] finderArgs = new Object[] { start, end, orderByComparator };
 
 		List<HRAssetVendor> list = (List<HRAssetVendor>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
 				finderArgs, this);

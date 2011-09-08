@@ -101,7 +101,7 @@ public class HRAssetTypePersistenceImpl extends BasePersistenceImpl<HRAssetType>
 		for (HRAssetType hrAssetType : hrAssetTypes) {
 			if (EntityCacheUtil.getResult(
 						HRAssetTypeModelImpl.ENTITY_CACHE_ENABLED,
-						HRAssetTypeImpl.class, hrAssetType.getPrimaryKey(), this) == null) {
+						HRAssetTypeImpl.class, hrAssetType.getPrimaryKey()) == null) {
 				cacheResult(hrAssetType);
 			}
 		}
@@ -361,7 +361,7 @@ public class HRAssetTypePersistenceImpl extends BasePersistenceImpl<HRAssetType>
 	public HRAssetType fetchByPrimaryKey(long hrAssetTypeId)
 		throws SystemException {
 		HRAssetType hrAssetType = (HRAssetType)EntityCacheUtil.getResult(HRAssetTypeModelImpl.ENTITY_CACHE_ENABLED,
-				HRAssetTypeImpl.class, hrAssetTypeId, this);
+				HRAssetTypeImpl.class, hrAssetTypeId);
 
 		if (hrAssetType == _nullHRAssetType) {
 			return null;
@@ -441,10 +441,7 @@ public class HRAssetTypePersistenceImpl extends BasePersistenceImpl<HRAssetType>
 	 */
 	public List<HRAssetType> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+		Object[] finderArgs = new Object[] { start, end, orderByComparator };
 
 		List<HRAssetType> list = (List<HRAssetType>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
 				finderArgs, this);

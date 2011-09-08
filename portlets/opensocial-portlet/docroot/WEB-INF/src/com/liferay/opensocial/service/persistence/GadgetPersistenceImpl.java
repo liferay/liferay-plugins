@@ -145,7 +145,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 		for (Gadget gadget : gadgets) {
 			if (EntityCacheUtil.getResult(
 						GadgetModelImpl.ENTITY_CACHE_ENABLED, GadgetImpl.class,
-						gadget.getPrimaryKey(), this) == null) {
+						gadget.getPrimaryKey()) == null) {
 				cacheResult(gadget);
 			}
 		}
@@ -450,7 +450,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 */
 	public Gadget fetchByPrimaryKey(long gadgetId) throws SystemException {
 		Gadget gadget = (Gadget)EntityCacheUtil.getResult(GadgetModelImpl.ENTITY_CACHE_ENABLED,
-				GadgetImpl.class, gadgetId, this);
+				GadgetImpl.class, gadgetId);
 
 		if (gadget == _nullGadget) {
 			return null;
@@ -533,12 +533,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 */
 	public List<Gadget> findByUuid(String uuid, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				uuid,
-				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+		Object[] finderArgs = new Object[] { uuid, start, end, orderByComparator };
 
 		List<Gadget> list = (List<Gadget>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_UUID,
 				finderArgs, this);
@@ -1226,8 +1221,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 		Object[] finderArgs = new Object[] {
 				companyId,
 				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
+				start, end, orderByComparator
 			};
 
 		List<Gadget> list = (List<Gadget>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_COMPANYID,
@@ -2017,10 +2011,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 */
 	public List<Gadget> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+		Object[] finderArgs = new Object[] { start, end, orderByComparator };
 
 		List<Gadget> list = (List<Gadget>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
 				finderArgs, this);

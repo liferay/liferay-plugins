@@ -116,7 +116,7 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 	public void cacheResult(List<Bar> bars) {
 		for (Bar bar : bars) {
 			if (EntityCacheUtil.getResult(BarModelImpl.ENTITY_CACHE_ENABLED,
-						BarImpl.class, bar.getPrimaryKey(), this) == null) {
+						BarImpl.class, bar.getPrimaryKey()) == null) {
 				cacheResult(bar);
 			}
 		}
@@ -363,7 +363,7 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 	 */
 	public Bar fetchByPrimaryKey(long barId) throws SystemException {
 		Bar bar = (Bar)EntityCacheUtil.getResult(BarModelImpl.ENTITY_CACHE_ENABLED,
-				BarImpl.class, barId, this);
+				BarImpl.class, barId);
 
 		if (bar == _nullBar) {
 			return null;
@@ -445,12 +445,7 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 	 */
 	public List<Bar> findByText(String text, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				text,
-				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+		Object[] finderArgs = new Object[] { text, start, end, orderByComparator };
 
 		List<Bar> list = (List<Bar>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_TEXT,
 				finderArgs, this);
@@ -798,10 +793,7 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 	 */
 	public List<Bar> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+		Object[] finderArgs = new Object[] { start, end, orderByComparator };
 
 		List<Bar> list = (List<Bar>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
 				finderArgs, this);

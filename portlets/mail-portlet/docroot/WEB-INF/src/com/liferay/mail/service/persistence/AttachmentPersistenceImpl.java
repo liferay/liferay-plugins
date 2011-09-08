@@ -116,7 +116,7 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 		for (Attachment attachment : attachments) {
 			if (EntityCacheUtil.getResult(
 						AttachmentModelImpl.ENTITY_CACHE_ENABLED,
-						AttachmentImpl.class, attachment.getPrimaryKey(), this) == null) {
+						AttachmentImpl.class, attachment.getPrimaryKey()) == null) {
 				cacheResult(attachment);
 			}
 		}
@@ -374,7 +374,7 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 	public Attachment fetchByPrimaryKey(long attachmentId)
 		throws SystemException {
 		Attachment attachment = (Attachment)EntityCacheUtil.getResult(AttachmentModelImpl.ENTITY_CACHE_ENABLED,
-				AttachmentImpl.class, attachmentId, this);
+				AttachmentImpl.class, attachmentId);
 
 		if (attachment == _nullAttachment) {
 			return null;

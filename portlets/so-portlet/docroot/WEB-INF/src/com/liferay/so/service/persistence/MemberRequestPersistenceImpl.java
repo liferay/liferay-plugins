@@ -168,8 +168,7 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 		for (MemberRequest memberRequest : memberRequests) {
 			if (EntityCacheUtil.getResult(
 						MemberRequestModelImpl.ENTITY_CACHE_ENABLED,
-						MemberRequestImpl.class, memberRequest.getPrimaryKey(),
-						this) == null) {
+						MemberRequestImpl.class, memberRequest.getPrimaryKey()) == null) {
 				cacheResult(memberRequest);
 			}
 		}
@@ -499,7 +498,7 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	public MemberRequest fetchByPrimaryKey(long memberRequestId)
 		throws SystemException {
 		MemberRequest memberRequest = (MemberRequest)EntityCacheUtil.getResult(MemberRequestModelImpl.ENTITY_CACHE_ENABLED,
-				MemberRequestImpl.class, memberRequestId, this);
+				MemberRequestImpl.class, memberRequestId);
 
 		if (memberRequest == _nullMemberRequest) {
 			return null;
@@ -731,8 +730,7 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 		Object[] finderArgs = new Object[] {
 				receiverUserId,
 				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
+				start, end, orderByComparator
 			};
 
 		List<MemberRequest> list = (List<MemberRequest>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_RECEIVERUSERID,
@@ -1077,8 +1075,7 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 		Object[] finderArgs = new Object[] {
 				receiverUserId, status,
 				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
+				start, end, orderByComparator
 			};
 
 		List<MemberRequest> list = (List<MemberRequest>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_R_S,
@@ -1580,10 +1577,7 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	 */
 	public List<MemberRequest> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+		Object[] finderArgs = new Object[] { start, end, orderByComparator };
 
 		List<MemberRequest> list = (List<MemberRequest>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
 				finderArgs, this);

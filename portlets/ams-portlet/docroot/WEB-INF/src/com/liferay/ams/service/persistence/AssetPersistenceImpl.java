@@ -100,7 +100,7 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 	public void cacheResult(List<Asset> assets) {
 		for (Asset asset : assets) {
 			if (EntityCacheUtil.getResult(AssetModelImpl.ENTITY_CACHE_ENABLED,
-						AssetImpl.class, asset.getPrimaryKey(), this) == null) {
+						AssetImpl.class, asset.getPrimaryKey()) == null) {
 				cacheResult(asset);
 			}
 		}
@@ -357,7 +357,7 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 	 */
 	public Asset fetchByPrimaryKey(long assetId) throws SystemException {
 		Asset asset = (Asset)EntityCacheUtil.getResult(AssetModelImpl.ENTITY_CACHE_ENABLED,
-				AssetImpl.class, assetId, this);
+				AssetImpl.class, assetId);
 
 		if (asset == _nullAsset) {
 			return null;
@@ -436,10 +436,7 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 	 */
 	public List<Asset> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+		Object[] finderArgs = new Object[] { start, end, orderByComparator };
 
 		List<Asset> list = (List<Asset>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
 				finderArgs, this);

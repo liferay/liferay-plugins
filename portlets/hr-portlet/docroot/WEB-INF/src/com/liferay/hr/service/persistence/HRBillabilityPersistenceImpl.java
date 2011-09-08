@@ -121,8 +121,7 @@ public class HRBillabilityPersistenceImpl extends BasePersistenceImpl<HRBillabil
 		for (HRBillability hrBillability : hrBillabilities) {
 			if (EntityCacheUtil.getResult(
 						HRBillabilityModelImpl.ENTITY_CACHE_ENABLED,
-						HRBillabilityImpl.class, hrBillability.getPrimaryKey(),
-						this) == null) {
+						HRBillabilityImpl.class, hrBillability.getPrimaryKey()) == null) {
 				cacheResult(hrBillability);
 			}
 		}
@@ -429,7 +428,7 @@ public class HRBillabilityPersistenceImpl extends BasePersistenceImpl<HRBillabil
 	public HRBillability fetchByPrimaryKey(long hrBillabilityId)
 		throws SystemException {
 		HRBillability hrBillability = (HRBillability)EntityCacheUtil.getResult(HRBillabilityModelImpl.ENTITY_CACHE_ENABLED,
-				HRBillabilityImpl.class, hrBillabilityId, this);
+				HRBillabilityImpl.class, hrBillabilityId);
 
 		if (hrBillability == _nullHRBillability) {
 			return null;
@@ -662,10 +661,7 @@ public class HRBillabilityPersistenceImpl extends BasePersistenceImpl<HRBillabil
 	 */
 	public List<HRBillability> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+		Object[] finderArgs = new Object[] { start, end, orderByComparator };
 
 		List<HRBillability> list = (List<HRBillability>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
 				finderArgs, this);

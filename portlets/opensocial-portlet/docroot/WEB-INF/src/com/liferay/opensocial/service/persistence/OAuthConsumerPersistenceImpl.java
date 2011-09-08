@@ -134,8 +134,7 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 		for (OAuthConsumer oAuthConsumer : oAuthConsumers) {
 			if (EntityCacheUtil.getResult(
 						OAuthConsumerModelImpl.ENTITY_CACHE_ENABLED,
-						OAuthConsumerImpl.class, oAuthConsumer.getPrimaryKey(),
-						this) == null) {
+						OAuthConsumerImpl.class, oAuthConsumer.getPrimaryKey()) == null) {
 				cacheResult(oAuthConsumer);
 			}
 		}
@@ -443,7 +442,7 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 	public OAuthConsumer fetchByPrimaryKey(long oAuthConsumerId)
 		throws SystemException {
 		OAuthConsumer oAuthConsumer = (OAuthConsumer)EntityCacheUtil.getResult(OAuthConsumerModelImpl.ENTITY_CACHE_ENABLED,
-				OAuthConsumerImpl.class, oAuthConsumerId, this);
+				OAuthConsumerImpl.class, oAuthConsumerId);
 
 		if (oAuthConsumer == _nullOAuthConsumer) {
 			return null;
@@ -532,8 +531,7 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 		Object[] finderArgs = new Object[] {
 				gadgetKey,
 				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
+				start, end, orderByComparator
 			};
 
 		List<OAuthConsumer> list = (List<OAuthConsumer>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_GADGETKEY,
@@ -1056,10 +1054,7 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 	 */
 	public List<OAuthConsumer> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+		Object[] finderArgs = new Object[] { start, end, orderByComparator };
 
 		List<OAuthConsumer> list = (List<OAuthConsumer>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
 				finderArgs, this);

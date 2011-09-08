@@ -117,8 +117,7 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 		for (SVNRepository svnRepository : svnRepositories) {
 			if (EntityCacheUtil.getResult(
 						SVNRepositoryModelImpl.ENTITY_CACHE_ENABLED,
-						SVNRepositoryImpl.class, svnRepository.getPrimaryKey(),
-						this) == null) {
+						SVNRepositoryImpl.class, svnRepository.getPrimaryKey()) == null) {
 				cacheResult(svnRepository);
 			}
 		}
@@ -400,7 +399,7 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 	public SVNRepository fetchByPrimaryKey(long svnRepositoryId)
 		throws SystemException {
 		SVNRepository svnRepository = (SVNRepository)EntityCacheUtil.getResult(SVNRepositoryModelImpl.ENTITY_CACHE_ENABLED,
-				SVNRepositoryImpl.class, svnRepositoryId, this);
+				SVNRepositoryImpl.class, svnRepositoryId);
 
 		if (svnRepository == _nullSVNRepository) {
 			return null;
@@ -623,10 +622,7 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 	 */
 	public List<SVNRepository> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+		Object[] finderArgs = new Object[] { start, end, orderByComparator };
 
 		List<SVNRepository> list = (List<SVNRepository>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
 				finderArgs, this);

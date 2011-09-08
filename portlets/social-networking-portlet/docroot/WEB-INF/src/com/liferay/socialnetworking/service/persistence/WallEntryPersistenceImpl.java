@@ -142,7 +142,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 		for (WallEntry wallEntry : wallEntries) {
 			if (EntityCacheUtil.getResult(
 						WallEntryModelImpl.ENTITY_CACHE_ENABLED,
-						WallEntryImpl.class, wallEntry.getPrimaryKey(), this) == null) {
+						WallEntryImpl.class, wallEntry.getPrimaryKey()) == null) {
 				cacheResult(wallEntry);
 			}
 		}
@@ -400,7 +400,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	public WallEntry fetchByPrimaryKey(long wallEntryId)
 		throws SystemException {
 		WallEntry wallEntry = (WallEntry)EntityCacheUtil.getResult(WallEntryModelImpl.ENTITY_CACHE_ENABLED,
-				WallEntryImpl.class, wallEntryId, this);
+				WallEntryImpl.class, wallEntryId);
 
 		if (wallEntry == _nullWallEntry) {
 			return null;
@@ -487,8 +487,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 		Object[] finderArgs = new Object[] {
 				groupId,
 				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
+				start, end, orderByComparator
 			};
 
 		List<WallEntry> list = (List<WallEntry>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_GROUPID,
@@ -822,12 +821,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 */
 	public List<WallEntry> findByUserId(long userId, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				userId,
-				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+		Object[] finderArgs = new Object[] { userId, start, end, orderByComparator };
 
 		List<WallEntry> list = (List<WallEntry>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_USERID,
 				finderArgs, this);
@@ -1168,8 +1162,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 		Object[] finderArgs = new Object[] {
 				groupId, userId,
 				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
+				start, end, orderByComparator
 			};
 
 		List<WallEntry> list = (List<WallEntry>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_G_U,
@@ -1518,10 +1511,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 */
 	public List<WallEntry> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+		Object[] finderArgs = new Object[] { start, end, orderByComparator };
 
 		List<WallEntry> list = (List<WallEntry>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
 				finderArgs, this);

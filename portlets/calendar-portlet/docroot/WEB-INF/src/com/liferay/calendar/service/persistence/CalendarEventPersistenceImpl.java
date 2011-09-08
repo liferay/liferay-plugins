@@ -136,8 +136,7 @@ public class CalendarEventPersistenceImpl extends BasePersistenceImpl<CalendarEv
 		for (CalendarEvent calendarEvent : calendarEvents) {
 			if (EntityCacheUtil.getResult(
 						CalendarEventModelImpl.ENTITY_CACHE_ENABLED,
-						CalendarEventImpl.class, calendarEvent.getPrimaryKey(),
-						this) == null) {
+						CalendarEventImpl.class, calendarEvent.getPrimaryKey()) == null) {
 				cacheResult(calendarEvent);
 			}
 		}
@@ -461,7 +460,7 @@ public class CalendarEventPersistenceImpl extends BasePersistenceImpl<CalendarEv
 	public CalendarEvent fetchByPrimaryKey(long calendarEventId)
 		throws SystemException {
 		CalendarEvent calendarEvent = (CalendarEvent)EntityCacheUtil.getResult(CalendarEventModelImpl.ENTITY_CACHE_ENABLED,
-				CalendarEventImpl.class, calendarEventId, this);
+				CalendarEventImpl.class, calendarEventId);
 
 		if (calendarEvent == _nullCalendarEvent) {
 			return null;
@@ -546,12 +545,7 @@ public class CalendarEventPersistenceImpl extends BasePersistenceImpl<CalendarEv
 	 */
 	public List<CalendarEvent> findByUuid(String uuid, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				uuid,
-				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+		Object[] finderArgs = new Object[] { uuid, start, end, orderByComparator };
 
 		List<CalendarEvent> list = (List<CalendarEvent>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_UUID,
 				finderArgs, this);
@@ -1059,10 +1053,7 @@ public class CalendarEventPersistenceImpl extends BasePersistenceImpl<CalendarEv
 	 */
 	public List<CalendarEvent> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+		Object[] finderArgs = new Object[] { start, end, orderByComparator };
 
 		List<CalendarEvent> list = (List<CalendarEvent>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
 				finderArgs, this);

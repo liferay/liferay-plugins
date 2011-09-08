@@ -139,7 +139,7 @@ public class HRExpenseCurrencyConversionPersistenceImpl
 			if (EntityCacheUtil.getResult(
 						HRExpenseCurrencyConversionModelImpl.ENTITY_CACHE_ENABLED,
 						HRExpenseCurrencyConversionImpl.class,
-						hrExpenseCurrencyConversion.getPrimaryKey(), this) == null) {
+						hrExpenseCurrencyConversion.getPrimaryKey()) == null) {
 				cacheResult(hrExpenseCurrencyConversion);
 			}
 		}
@@ -484,7 +484,7 @@ public class HRExpenseCurrencyConversionPersistenceImpl
 		long hrExpenseCurrencyConversionId) throws SystemException {
 		HRExpenseCurrencyConversion hrExpenseCurrencyConversion = (HRExpenseCurrencyConversion)EntityCacheUtil.getResult(HRExpenseCurrencyConversionModelImpl.ENTITY_CACHE_ENABLED,
 				HRExpenseCurrencyConversionImpl.class,
-				hrExpenseCurrencyConversionId, this);
+				hrExpenseCurrencyConversionId);
 
 		if (hrExpenseCurrencyConversion == _nullHRExpenseCurrencyConversion) {
 			return null;
@@ -749,10 +749,7 @@ public class HRExpenseCurrencyConversionPersistenceImpl
 	 */
 	public List<HRExpenseCurrencyConversion> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+		Object[] finderArgs = new Object[] { start, end, orderByComparator };
 
 		List<HRExpenseCurrencyConversion> list = (List<HRExpenseCurrencyConversion>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
 				finderArgs, this);

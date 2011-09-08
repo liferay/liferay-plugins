@@ -149,7 +149,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 			if (EntityCacheUtil.getResult(
 						MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
 						MeetupsRegistrationImpl.class,
-						meetupsRegistration.getPrimaryKey(), this) == null) {
+						meetupsRegistration.getPrimaryKey()) == null) {
 				cacheResult(meetupsRegistration);
 			}
 		}
@@ -453,7 +453,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	public MeetupsRegistration fetchByPrimaryKey(long meetupsRegistrationId)
 		throws SystemException {
 		MeetupsRegistration meetupsRegistration = (MeetupsRegistration)EntityCacheUtil.getResult(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
-				MeetupsRegistrationImpl.class, meetupsRegistrationId, this);
+				MeetupsRegistrationImpl.class, meetupsRegistrationId);
 
 		if (meetupsRegistration == _nullMeetupsRegistration) {
 			return null;
@@ -543,8 +543,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 		Object[] finderArgs = new Object[] {
 				meetupsEntryId,
 				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
+				start, end, orderByComparator
 			};
 
 		List<MeetupsRegistration> list = (List<MeetupsRegistration>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_MEETUPSENTRYID,
@@ -1033,8 +1032,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 		Object[] finderArgs = new Object[] {
 				meetupsEntryId, status,
 				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
+				start, end, orderByComparator
 			};
 
 		List<MeetupsRegistration> list = (List<MeetupsRegistration>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_ME_S,
@@ -1384,10 +1382,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	 */
 	public List<MeetupsRegistration> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+		Object[] finderArgs = new Object[] { start, end, orderByComparator };
 
 		List<MeetupsRegistration> list = (List<MeetupsRegistration>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
 				finderArgs, this);

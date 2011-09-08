@@ -144,7 +144,7 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 		for (OAuthToken oAuthToken : oAuthTokens) {
 			if (EntityCacheUtil.getResult(
 						OAuthTokenModelImpl.ENTITY_CACHE_ENABLED,
-						OAuthTokenImpl.class, oAuthToken.getPrimaryKey(), this) == null) {
+						OAuthTokenImpl.class, oAuthToken.getPrimaryKey()) == null) {
 				cacheResult(oAuthToken);
 			}
 		}
@@ -481,7 +481,7 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	public OAuthToken fetchByPrimaryKey(long oAuthTokenId)
 		throws SystemException {
 		OAuthToken oAuthToken = (OAuthToken)EntityCacheUtil.getResult(OAuthTokenModelImpl.ENTITY_CACHE_ENABLED,
-				OAuthTokenImpl.class, oAuthTokenId, this);
+				OAuthTokenImpl.class, oAuthTokenId);
 
 		if (oAuthToken == _nullOAuthToken) {
 			return null;
@@ -573,8 +573,7 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 		Object[] finderArgs = new Object[] {
 				gadgetKey, serviceName,
 				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
+				start, end, orderByComparator
 			};
 
 		List<OAuthToken> list = (List<OAuthToken>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_G_S,
@@ -1182,10 +1181,7 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	 */
 	public List<OAuthToken> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+		Object[] finderArgs = new Object[] { start, end, orderByComparator };
 
 		List<OAuthToken> list = (List<OAuthToken>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
 				finderArgs, this);

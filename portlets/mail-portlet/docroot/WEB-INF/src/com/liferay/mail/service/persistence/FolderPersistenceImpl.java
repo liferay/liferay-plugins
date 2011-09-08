@@ -132,7 +132,7 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 		for (Folder folder : folders) {
 			if (EntityCacheUtil.getResult(
 						FolderModelImpl.ENTITY_CACHE_ENABLED, FolderImpl.class,
-						folder.getPrimaryKey(), this) == null) {
+						folder.getPrimaryKey()) == null) {
 				cacheResult(folder);
 			}
 		}
@@ -433,7 +433,7 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 	 */
 	public Folder fetchByPrimaryKey(long folderId) throws SystemException {
 		Folder folder = (Folder)EntityCacheUtil.getResult(FolderModelImpl.ENTITY_CACHE_ENABLED,
-				FolderImpl.class, folderId, this);
+				FolderImpl.class, folderId);
 
 		if (folder == _nullFolder) {
 			return null;

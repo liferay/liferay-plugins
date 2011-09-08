@@ -103,8 +103,7 @@ public class HRUserProjectPersistenceImpl extends BasePersistenceImpl<HRUserProj
 		for (HRUserProject hrUserProject : hrUserProjects) {
 			if (EntityCacheUtil.getResult(
 						HRUserProjectModelImpl.ENTITY_CACHE_ENABLED,
-						HRUserProjectImpl.class, hrUserProject.getPrimaryKey(),
-						this) == null) {
+						HRUserProjectImpl.class, hrUserProject.getPrimaryKey()) == null) {
 				cacheResult(hrUserProject);
 			}
 		}
@@ -369,7 +368,7 @@ public class HRUserProjectPersistenceImpl extends BasePersistenceImpl<HRUserProj
 	public HRUserProject fetchByPrimaryKey(long hrUserProjectId)
 		throws SystemException {
 		HRUserProject hrUserProject = (HRUserProject)EntityCacheUtil.getResult(HRUserProjectModelImpl.ENTITY_CACHE_ENABLED,
-				HRUserProjectImpl.class, hrUserProjectId, this);
+				HRUserProjectImpl.class, hrUserProjectId);
 
 		if (hrUserProject == _nullHRUserProject) {
 			return null;
@@ -450,10 +449,7 @@ public class HRUserProjectPersistenceImpl extends BasePersistenceImpl<HRUserProj
 	 */
 	public List<HRUserProject> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+		Object[] finderArgs = new Object[] { start, end, orderByComparator };
 
 		List<HRUserProject> list = (List<HRUserProject>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
 				finderArgs, this);

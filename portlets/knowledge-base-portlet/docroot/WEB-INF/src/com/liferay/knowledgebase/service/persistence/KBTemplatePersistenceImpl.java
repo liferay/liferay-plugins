@@ -148,7 +148,7 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 		for (KBTemplate kbTemplate : kbTemplates) {
 			if (EntityCacheUtil.getResult(
 						KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
-						KBTemplateImpl.class, kbTemplate.getPrimaryKey(), this) == null) {
+						KBTemplateImpl.class, kbTemplate.getPrimaryKey()) == null) {
 				cacheResult(kbTemplate);
 			}
 		}
@@ -456,7 +456,7 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	public KBTemplate fetchByPrimaryKey(long kbTemplateId)
 		throws SystemException {
 		KBTemplate kbTemplate = (KBTemplate)EntityCacheUtil.getResult(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
-				KBTemplateImpl.class, kbTemplateId, this);
+				KBTemplateImpl.class, kbTemplateId);
 
 		if (kbTemplate == _nullKBTemplate) {
 			return null;

@@ -144,7 +144,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 	public void cacheResult(List<Foo> foos) {
 		for (Foo foo : foos) {
 			if (EntityCacheUtil.getResult(FooModelImpl.ENTITY_CACHE_ENABLED,
-						FooImpl.class, foo.getPrimaryKey(), this) == null) {
+						FooImpl.class, foo.getPrimaryKey()) == null) {
 				cacheResult(foo);
 			}
 		}
@@ -444,7 +444,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 	 */
 	public Foo fetchByPrimaryKey(long fooId) throws SystemException {
 		Foo foo = (Foo)EntityCacheUtil.getResult(FooModelImpl.ENTITY_CACHE_ENABLED,
-				FooImpl.class, fooId, this);
+				FooImpl.class, fooId);
 
 		if (foo == _nullFoo) {
 			return null;
@@ -526,12 +526,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 	 */
 	public List<Foo> findByUuid(String uuid, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				uuid,
-				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+		Object[] finderArgs = new Object[] { uuid, start, end, orderByComparator };
 
 		List<Foo> list = (List<Foo>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_UUID,
 				finderArgs, this);
@@ -1036,12 +1031,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 	 */
 	public List<Foo> findByField2(boolean field2, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				field2,
-				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+		Object[] finderArgs = new Object[] { field2, start, end, orderByComparator };
 
 		List<Foo> list = (List<Foo>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_FIELD2,
 				finderArgs, this);
@@ -1368,10 +1358,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 	 */
 	public List<Foo> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+		Object[] finderArgs = new Object[] { start, end, orderByComparator };
 
 		List<Foo> list = (List<Foo>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
 				finderArgs, this);

@@ -166,7 +166,7 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 			if (EntityCacheUtil.getResult(
 						KaleoTaskAssignmentModelImpl.ENTITY_CACHE_ENABLED,
 						KaleoTaskAssignmentImpl.class,
-						kaleoTaskAssignment.getPrimaryKey(), this) == null) {
+						kaleoTaskAssignment.getPrimaryKey()) == null) {
 				cacheResult(kaleoTaskAssignment);
 			}
 		}
@@ -437,7 +437,7 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 	public KaleoTaskAssignment fetchByPrimaryKey(long kaleoTaskAssignmentId)
 		throws SystemException {
 		KaleoTaskAssignment kaleoTaskAssignment = (KaleoTaskAssignment)EntityCacheUtil.getResult(KaleoTaskAssignmentModelImpl.ENTITY_CACHE_ENABLED,
-				KaleoTaskAssignmentImpl.class, kaleoTaskAssignmentId, this);
+				KaleoTaskAssignmentImpl.class, kaleoTaskAssignmentId);
 
 		if (kaleoTaskAssignment == _nullKaleoTaskAssignment) {
 			return null;

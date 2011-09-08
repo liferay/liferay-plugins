@@ -142,7 +142,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 		for (JIRAAction jiraAction : jiraActions) {
 			if (EntityCacheUtil.getResult(
 						JIRAActionModelImpl.ENTITY_CACHE_ENABLED,
-						JIRAActionImpl.class, jiraAction.getPrimaryKey(), this) == null) {
+						JIRAActionImpl.class, jiraAction.getPrimaryKey()) == null) {
 				cacheResult(jiraAction);
 			}
 		}
@@ -400,7 +400,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	public JIRAAction fetchByPrimaryKey(long jiraActionId)
 		throws SystemException {
 		JIRAAction jiraAction = (JIRAAction)EntityCacheUtil.getResult(JIRAActionModelImpl.ENTITY_CACHE_ENABLED,
-				JIRAActionImpl.class, jiraActionId, this);
+				JIRAActionImpl.class, jiraActionId);
 
 		if (jiraAction == _nullJIRAAction) {
 			return null;
@@ -488,8 +488,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 		Object[] finderArgs = new Object[] {
 				jiraUserId,
 				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
+				start, end, orderByComparator
 			};
 
 		List<JIRAAction> list = (List<JIRAAction>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_JIRAUSERID,
@@ -853,8 +852,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 		Object[] finderArgs = new Object[] {
 				jiraIssueId,
 				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
+				start, end, orderByComparator
 			};
 
 		List<JIRAAction> list = (List<JIRAAction>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_JIRAISSUEID,
@@ -1189,12 +1187,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	 */
 	public List<JIRAAction> findByType(String type, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				type,
-				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+		Object[] finderArgs = new Object[] { type, start, end, orderByComparator };
 
 		List<JIRAAction> list = (List<JIRAAction>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_TYPE,
 				finderArgs, this);
@@ -1548,10 +1541,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	 */
 	public List<JIRAAction> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+		Object[] finderArgs = new Object[] { start, end, orderByComparator };
 
 		List<JIRAAction> list = (List<JIRAAction>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
 				finderArgs, this);

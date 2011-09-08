@@ -103,8 +103,7 @@ public class HRUserTimeOffPersistenceImpl extends BasePersistenceImpl<HRUserTime
 		for (HRUserTimeOff hrUserTimeOff : hrUserTimeOffs) {
 			if (EntityCacheUtil.getResult(
 						HRUserTimeOffModelImpl.ENTITY_CACHE_ENABLED,
-						HRUserTimeOffImpl.class, hrUserTimeOff.getPrimaryKey(),
-						this) == null) {
+						HRUserTimeOffImpl.class, hrUserTimeOff.getPrimaryKey()) == null) {
 				cacheResult(hrUserTimeOff);
 			}
 		}
@@ -371,7 +370,7 @@ public class HRUserTimeOffPersistenceImpl extends BasePersistenceImpl<HRUserTime
 	public HRUserTimeOff fetchByPrimaryKey(long hrUserTimeOffId)
 		throws SystemException {
 		HRUserTimeOff hrUserTimeOff = (HRUserTimeOff)EntityCacheUtil.getResult(HRUserTimeOffModelImpl.ENTITY_CACHE_ENABLED,
-				HRUserTimeOffImpl.class, hrUserTimeOffId, this);
+				HRUserTimeOffImpl.class, hrUserTimeOffId);
 
 		if (hrUserTimeOff == _nullHRUserTimeOff) {
 			return null;
@@ -452,10 +451,7 @@ public class HRUserTimeOffPersistenceImpl extends BasePersistenceImpl<HRUserTime
 	 */
 	public List<HRUserTimeOff> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+		Object[] finderArgs = new Object[] { start, end, orderByComparator };
 
 		List<HRUserTimeOff> list = (List<HRUserTimeOff>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
 				finderArgs, this);
