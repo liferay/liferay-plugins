@@ -87,7 +87,7 @@ public class DefaultWorkflowEngineImpl
 	}
 
 	public WorkflowDefinition deployWorkflowDefinition(
-			String title, InputStream inputStream,
+			String title, InputStream inputStream, long scope,
 			ServiceContext serviceContext)
 		throws WorkflowException {
 
@@ -99,7 +99,7 @@ public class DefaultWorkflowEngineImpl
 			}
 
 			WorkflowDefinition workflowDefinition = _workflowDeployer.deploy(
-				title, definition, serviceContext);
+				title, definition, scope, serviceContext);
 
 			return workflowDefinition;
 		}

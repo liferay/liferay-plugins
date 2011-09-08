@@ -23,12 +23,14 @@ import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.workflow.kaleo.NoSuchDefinitionException;
 import com.liferay.portal.workflow.kaleo.model.KaleoDefinition;
 import com.liferay.portal.workflow.kaleo.service.base.KaleoDefinitionLocalServiceBaseImpl;
+import com.liferay.portal.workflow.kaleo.service.persistence.KaleoDefinitionQuery;
 
 import java.util.Date;
 import java.util.List;
 
 /**
  * @author Brian Wing Shun Chan
+ * @author Marcellus Tavares
  */
 public class KaleoDefinitionLocalServiceImpl
 	extends KaleoDefinitionLocalServiceBaseImpl {
@@ -89,7 +91,7 @@ public class KaleoDefinitionLocalServiceImpl
 
 	public KaleoDefinition addKaleoDefinition(
 			String name, String title, String description, String content,
-			int version, ServiceContext serviceContext)
+			int version, long scope, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		User user = userPersistence.findByPrimaryKey(
@@ -111,6 +113,7 @@ public class KaleoDefinitionLocalServiceImpl
 		kaleoDefinition.setDescription(description);
 		kaleoDefinition.setContent(content);
 		kaleoDefinition.setVersion(version);
+		kaleoDefinition.setScope(scope);
 		kaleoDefinition.setActive(false);
 
 		kaleoDefinitionPersistence.update(kaleoDefinition, false);
@@ -311,7 +314,39 @@ public class KaleoDefinitionLocalServiceImpl
 		return addKaleoDefinition(
 			kaleoDefinition.getName(), title, kaleoDefinition.getDescription(),
 			kaleoDefinition.getContent(), kaleoDefinition.getVersion() + 1,
+			kaleoDefinition.getScope(), serviceContext);
+	}
+
+	public List<KaleoDefinition> search(
+			String name, Boolean active, Long scope, int start,
+			int end, OrderByComparator orderByComparator,
+			ServiceContext serviceContext)
+		throws SystemException {
+
+		KaleoDefinitionQuery kaleoDefinitionQuery = new KaleoDefinitionQuery(
 			serviceContext);
+
+		kaleoDefinitionQuery.setName(name);
+		kaleoDefinitionQuery.setActive(active);
+		kaleoDefinitionQuery.setScope(scope);
+
+		return kaleoDefinitionFinder.findKaleoDefinitions(kaleoDefinitionQuery);
+	}
+
+	public int searchCount(
+			String name, Boolean active, Long scope,
+			ServiceContext serviceContext)
+		throws SystemException {
+
+		KaleoDefinitionQuery kaleoDefinitionQuery = new KaleoDefinitionQuery(
+			serviceContext);
+
+		kaleoDefinitionQuery.setName(name);
+		kaleoDefinitionQuery.setActive(active);
+		kaleoDefinitionQuery.setScope(scope);
+
+		return kaleoDefinitionFinder.countKaleoDefinitions(
+			kaleoDefinitionQuery);
 	}
 
 	public KaleoDefinition updateTitle(

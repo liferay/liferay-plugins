@@ -41,7 +41,7 @@ public interface WorkflowEngine {
 		throws WorkflowException;
 
 	public WorkflowDefinition deployWorkflowDefinition(
-			String title, InputStream inputStream,
+			String title, InputStream inputStream, long scope,
 			ServiceContext serviceContext)
 		throws WorkflowException;
 
