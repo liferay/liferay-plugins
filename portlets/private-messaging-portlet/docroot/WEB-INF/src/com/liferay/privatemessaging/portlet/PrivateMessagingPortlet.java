@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.ObjectValuePair;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.StreamUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.security.auth.PrincipalException;
@@ -35,7 +36,7 @@ import com.liferay.privatemessaging.service.UserThreadLocalServiceUtil;
 import com.liferay.privatemessaging.util.PrivateMessagingUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 
-import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 
 import java.util.ArrayList;
@@ -156,28 +157,46 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 		String to = ParamUtil.getString(uploadPortletRequest, "to");
 		String subject = ParamUtil.getString(uploadPortletRequest, "subject");
 		String body = ParamUtil.getString(uploadPortletRequest, "body");
-		List<ObjectValuePair<String, File>> files =
-			new ArrayList<ObjectValuePair<String, File>>();
+		List<ObjectValuePair<String, InputStream>> attachments =
+			new ArrayList<ObjectValuePair<String, InputStream>>();
 
-		for (int i = 1; i <= 3; i++) {
-			File file = uploadPortletRequest.getFile("msgFile" + i);
-			String fileName = uploadPortletRequest.getFileName("msgFile" + i);
+		try {
+			for (int i = 1; i <= 3; i++) {
+				InputStream inputStream = uploadPortletRequest.getFileAsStream(
+					"msgFile" + i);
+				String fileName = uploadPortletRequest.getFileName(
+					"msgFile" + i);
 
-			try {
-				if ((file != null) && (file.length() > 0)) {
-					ObjectValuePair<String, File> ovp =
-						new ObjectValuePair<String, File>(fileName, file);
+				try {
+					if (inputStream != null) {
+						ObjectValuePair<String, InputStream> ovp =
+							new ObjectValuePair<String, InputStream>(
+								fileName, inputStream);
 
-					files.add(ovp);
+						attachments.add(ovp);
+					}
+				}
+				catch (Exception e) {
+					_log.error("unable to attach file " + fileName, e);
 				}
 			}
-			catch (Exception e) {
-				_log.error("unable to attach file " + fileName, e);
+
+			UserThreadLocalServiceUtil.addPrivateMessage(
+				userId, mbThreadId, to, subject, body,
+				attachments, themeDisplay);
+		}
+		catch (IOException ie) {
+			throw new PortalException("Unable to process attachment", ie);
+		}
+		finally {
+			for (ObjectValuePair<String, InputStream> attachment :
+					attachments) {
+
+				InputStream inputStream = attachment.getValue();
+
+				StreamUtil.cleanUp(inputStream);
 			}
 		}
-
-		UserThreadLocalServiceUtil.addPrivateMessage(
-			userId, mbThreadId, to, subject, body, files, themeDisplay);
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(
