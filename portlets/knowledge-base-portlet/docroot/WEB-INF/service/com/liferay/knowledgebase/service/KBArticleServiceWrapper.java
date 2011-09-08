@@ -29,12 +29,13 @@ public class KBArticleServiceWrapper implements KBArticleService {
 	}
 
 	public void addAttachment(java.lang.String portletId, long resourcePrimKey,
-		java.lang.String dirName, java.lang.String shortFileName, byte[] bytes,
+		java.lang.String dirName, java.lang.String shortFileName,
+		java.io.InputStream inputStream,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		_kbArticleService.addAttachment(portletId, resourcePrimKey, dirName,
-			shortFileName, bytes, serviceContext);
+			shortFileName, inputStream, serviceContext);
 	}
 
 	public com.liferay.knowledgebase.model.KBArticle addKBArticle(

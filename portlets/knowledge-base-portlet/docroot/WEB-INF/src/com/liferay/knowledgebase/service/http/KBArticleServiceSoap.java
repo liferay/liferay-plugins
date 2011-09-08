@@ -65,22 +65,6 @@ import java.rmi.RemoteException;
  * @generated
  */
 public class KBArticleServiceSoap {
-	public static void addAttachment(java.lang.String portletId,
-		long resourcePrimKey, java.lang.String dirName,
-		java.lang.String shortFileName, byte[] bytes,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws RemoteException {
-		try {
-			KBArticleServiceUtil.addAttachment(portletId, resourcePrimKey,
-				dirName, shortFileName, bytes, serviceContext);
-		}
-		catch (Exception e) {
-			_log.error(e, e);
-
-			throw new RemoteException(e.getMessage());
-		}
-	}
-
 	public static com.liferay.knowledgebase.model.KBArticleSoap addKBArticle(
 		java.lang.String portletId, long parentResourcePrimKey,
 		java.lang.String title, java.lang.String content,
