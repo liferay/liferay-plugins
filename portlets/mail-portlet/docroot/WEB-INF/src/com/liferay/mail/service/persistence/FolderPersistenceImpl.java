@@ -521,8 +521,7 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 		Object[] finderArgs = new Object[] {
 				accountId,
 				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
+				start, end, orderByComparator
 			};
 
 		List<Folder> list = (List<Folder>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_ACCOUNTID,
@@ -1004,10 +1003,7 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 	 */
 	public List<Folder> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+		Object[] finderArgs = new Object[] { start, end, orderByComparator };
 
 		List<Folder> list = (List<Folder>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
 				finderArgs, this);
