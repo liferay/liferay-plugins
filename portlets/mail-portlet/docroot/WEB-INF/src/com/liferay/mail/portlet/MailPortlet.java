@@ -24,7 +24,6 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.PortletResponseUtil;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
-import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.WebKeys;
@@ -33,6 +32,7 @@ import com.liferay.portal.util.PortalUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 
 import java.io.File;
+import java.io.InputStream;
 import java.io.IOException;
 
 import java.util.ArrayList;
@@ -74,27 +74,37 @@ public class MailPortlet extends MVCPortlet {
 
 		List<MailFile> mailFiles = new ArrayList<MailFile>();
 
-		for (int i = 1; i <= attachmentCount; i++) {
-			File file = uploadPortletRequest.getFile("attachment" + i);
-			String filename = uploadPortletRequest.getFileName(
-				"attachment" + i);
+		try {
+			for (int i = 1; i <= attachmentCount; i++) {
+				File file = uploadPortletRequest.getFile(
+					"attachment" + i, true);
+				long size = uploadPortletRequest.getSize
+					("attachment" + i);
+				String filename = uploadPortletRequest.getFileName(
+					"attachment" + i);
 
-			if (FileUtil.getBytes(file) != null) {
-				mailFiles.add(new MailFile(file, filename, file.length()));
+				if (file != null) {
+					mailFiles.add(new MailFile(file, filename, size));
+				}
+			}
+
+			HttpServletRequest request = PortalUtil.getHttpServletRequest(
+				actionRequest);
+
+			MailManager mailManager = MailManager.getInstance(request);
+
+			JSONObject responseData = mailManager.sendMessage(
+				accountId, messageId, to, cc, bcc, subject, body, mailFiles);
+
+			actionResponse.sendRedirect(
+				PortalUtil.getLayoutURL(themeDisplay) +
+					"/-/mail/send_message?responseData=" + responseData);
+		}
+		finally {
+			for (MailFile mailFile : mailFiles) {
+				mailFile.cleanup();
 			}
 		}
-
-		HttpServletRequest request = PortalUtil.getHttpServletRequest(
-			actionRequest);
-
-		MailManager mailManager = MailManager.getInstance(request);
-
-		JSONObject responseData = mailManager.sendMessage(
-			accountId, messageId, to, cc, bcc, subject, body, mailFiles);
-
-		actionResponse.sendRedirect(
-			PortalUtil.getLayoutURL(themeDisplay) +
-				"/-/mail/send_message?responseData=" + responseData);
 	}
 
 	@Override
