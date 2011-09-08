@@ -64,8 +64,8 @@ import com.liferay.wsrp.util.WSRPConsumerManager;
 import com.liferay.wsrp.util.WSRPConsumerManagerFactory;
 import com.liferay.wsrp.util.WebKeys;
 
-import java.io.InputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -1543,11 +1543,11 @@ public class ConsumerPortlet extends GenericPortlet {
 				try {
 					inputStream = uploadPortletRequest.getFileAsStream(name);
 
-					byte[] bytes = null;
-
-					if (inputStream != null) {
-						bytes = FileUtil.getBytes(inputStream);
+					if (inputStream == null) {
+						continue;
 					}
+
+					byte[] bytes = FileUtil.getBytes(inputStream);
 
 					if (bytes == null) {
 						continue;

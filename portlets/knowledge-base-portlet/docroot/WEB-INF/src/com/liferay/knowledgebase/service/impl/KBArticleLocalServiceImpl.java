@@ -675,6 +675,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			String shortFileName = FileUtil.getShortFileName(fileName);
 
 			InputStream inputStream = null;
+
 			try {
 				inputStream = DLStoreUtil.getFileAsStream(
 					kbArticle.getCompanyId(), CompanyConstants.SYSTEM,
@@ -992,6 +993,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		for (String fileName : fileNames) {
 			InputStream inputStream = null;
+
 			try {
 				inputStream = DLStoreUtil.getFileAsStream(
 					serviceContext.getCompanyId(), CompanyConstants.SYSTEM,

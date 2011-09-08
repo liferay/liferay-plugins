@@ -575,7 +575,7 @@ public class UserThreadLocalServiceClp implements UserThreadLocalService {
 	public com.liferay.portlet.messageboards.model.MBMessage addPrivateMessage(
 		long userId, long mbThreadId, java.lang.String to,
 		java.lang.String subject, java.lang.String body,
-		java.util.List<com.liferay.portal.kernel.util.ObjectValuePair<java.lang.String, java.io.InputStream>> attachments,
+		java.util.List<com.liferay.portal.kernel.util.ObjectValuePair<java.lang.String, java.io.InputStream>> inputStreamOVPs,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -585,7 +585,7 @@ public class UserThreadLocalServiceClp implements UserThreadLocalService {
 				userId, mbThreadId, ClpSerializer.translateInput(to),
 				ClpSerializer.translateInput(subject),
 				ClpSerializer.translateInput(body),
-				ClpSerializer.translateInput(attachments),
+				ClpSerializer.translateInput(inputStreamOVPs),
 				ClpSerializer.translateInput(themeDisplay));
 
 		try {
@@ -614,7 +614,7 @@ public class UserThreadLocalServiceClp implements UserThreadLocalService {
 
 	public com.liferay.portlet.messageboards.model.MBMessage addPrivateMessageBranch(
 		long userId, long parentMBMessageId, java.lang.String body,
-		java.util.List<com.liferay.portal.kernel.util.ObjectValuePair<java.lang.String, java.io.InputStream>> attachments,
+		java.util.List<com.liferay.portal.kernel.util.ObjectValuePair<java.lang.String, java.io.InputStream>> inputStreamOVPs,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -622,7 +622,7 @@ public class UserThreadLocalServiceClp implements UserThreadLocalService {
 
 		MethodHandler methodHandler = new MethodHandler(_addPrivateMessageBranchMethodKey17,
 				userId, parentMBMessageId, ClpSerializer.translateInput(body),
-				ClpSerializer.translateInput(attachments),
+				ClpSerializer.translateInput(inputStreamOVPs),
 				ClpSerializer.translateInput(themeDisplay));
 
 		try {

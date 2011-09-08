@@ -45,7 +45,6 @@
 <%@ page import="com.liferay.portal.util.PortletKeys" %>
 <%@ page import="com.liferay.portlet.documentlibrary.store.DLStoreUtil" %>
 <%@ page import="com.liferay.portlet.messageboards.model.MBMessage" %>
-<%@ page import="com.liferay.portlet.messageboards.model.MBThread" %>
 <%@ page import="com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil" %>
 <%@ page import="com.liferay.privatemessaging.model.UserThread" %>
 <%@ page import="com.liferay.privatemessaging.service.UserThreadLocalServiceUtil" %>
