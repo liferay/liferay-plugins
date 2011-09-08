@@ -1543,7 +1543,11 @@ public class ConsumerPortlet extends GenericPortlet {
 				try {
 					inputStream = uploadPortletRequest.getFileAsStream(name);
 
-					byte[] bytes = FileUtil.getBytes(inputStream);
+					byte[] bytes = null;
+
+					if (inputStream != null) {
+						bytes = FileUtil.getBytes(inputStream);
+					}
 
 					if (bytes == null) {
 						continue;
