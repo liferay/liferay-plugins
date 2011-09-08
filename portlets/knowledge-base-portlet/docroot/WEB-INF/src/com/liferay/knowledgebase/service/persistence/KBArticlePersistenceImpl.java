@@ -930,12 +930,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	public List<KBArticle> findByUuid(String uuid, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				uuid,
-				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+		Object[] finderArgs = new Object[] { uuid, start, end, orderByComparator };
 
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_UUID,
 				finderArgs, this);
@@ -1452,8 +1447,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		Object[] finderArgs = new Object[] {
 				resourcePrimKey,
 				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
+				start, end, orderByComparator
 			};
 
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_RESOURCEPRIMKEY,
@@ -1797,8 +1791,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		Object[] finderArgs = new Object[] {
 				resourcePrimKey, groupId,
 				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
+				start, end, orderByComparator
 			};
 
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_R_G,
@@ -2624,8 +2617,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		Object[] finderArgs = new Object[] {
 				resourcePrimKey, latest,
 				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
+				start, end, orderByComparator
 			};
 
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_R_L,
@@ -2991,8 +2983,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		Object[] finderArgs = new Object[] {
 				StringUtil.merge(resourcePrimKeies), latest,
 				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
+				start, end, orderByComparator
 			};
 
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_R_L,
@@ -3138,8 +3129,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		Object[] finderArgs = new Object[] {
 				resourcePrimKey, main,
 				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
+				start, end, orderByComparator
 			};
 
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_R_M,
@@ -3504,8 +3494,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		Object[] finderArgs = new Object[] {
 				StringUtil.merge(resourcePrimKeies), main,
 				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
+				start, end, orderByComparator
 			};
 
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_R_M,
@@ -3651,8 +3640,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		Object[] finderArgs = new Object[] {
 				resourcePrimKey, status,
 				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
+				start, end, orderByComparator
 			};
 
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_R_S,
@@ -4017,8 +4005,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		Object[] finderArgs = new Object[] {
 				StringUtil.merge(resourcePrimKeies), status,
 				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
+				start, end, orderByComparator
 			};
 
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_R_S,
@@ -4163,8 +4150,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		Object[] finderArgs = new Object[] {
 				groupId, latest,
 				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
+				start, end, orderByComparator
 			};
 
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_G_L,
@@ -4847,8 +4833,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		Object[] finderArgs = new Object[] {
 				groupId, main,
 				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
+				start, end, orderByComparator
 			};
 
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_G_M,
@@ -5530,8 +5515,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		Object[] finderArgs = new Object[] {
 				groupId, status,
 				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
+				start, end, orderByComparator
 			};
 
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_G_S,
@@ -6213,8 +6197,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		Object[] finderArgs = new Object[] {
 				companyId, latest,
 				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
+				start, end, orderByComparator
 			};
 
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_C_L,
@@ -6574,8 +6557,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		Object[] finderArgs = new Object[] {
 				companyId, main,
 				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
+				start, end, orderByComparator
 			};
 
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_C_M,
@@ -6935,8 +6917,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		Object[] finderArgs = new Object[] {
 				companyId, status,
 				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
+				start, end, orderByComparator
 			};
 
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_C_S,
@@ -7297,8 +7278,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		Object[] finderArgs = new Object[] {
 				parentResourcePrimKey, latest,
 				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
+				start, end, orderByComparator
 			};
 
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_P_L,
@@ -7664,8 +7644,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		Object[] finderArgs = new Object[] {
 				StringUtil.merge(parentResourcePrimKeies), latest,
 				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
+				start, end, orderByComparator
 			};
 
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_P_L,
@@ -7812,8 +7791,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		Object[] finderArgs = new Object[] {
 				parentResourcePrimKey, main,
 				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
+				start, end, orderByComparator
 			};
 
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_P_M,
@@ -8179,8 +8157,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		Object[] finderArgs = new Object[] {
 				StringUtil.merge(parentResourcePrimKeies), main,
 				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
+				start, end, orderByComparator
 			};
 
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_P_M,
@@ -8327,8 +8304,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		Object[] finderArgs = new Object[] {
 				parentResourcePrimKey, status,
 				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
+				start, end, orderByComparator
 			};
 
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_P_S,
@@ -8694,8 +8670,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		Object[] finderArgs = new Object[] {
 				StringUtil.merge(parentResourcePrimKeies), status,
 				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
+				start, end, orderByComparator
 			};
 
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_P_S,
@@ -8845,8 +8820,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		Object[] finderArgs = new Object[] {
 				resourcePrimKey, groupId, latest,
 				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
+				start, end, orderByComparator
 			};
 
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_R_G_L,
@@ -9232,8 +9206,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		Object[] finderArgs = new Object[] {
 				StringUtil.merge(resourcePrimKeies), groupId, latest,
 				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
+				start, end, orderByComparator
 			};
 
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_R_G_L,
@@ -9901,8 +9874,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		Object[] finderArgs = new Object[] {
 				resourcePrimKey, groupId, main,
 				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
+				start, end, orderByComparator
 			};
 
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_R_G_M,
@@ -10288,8 +10260,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		Object[] finderArgs = new Object[] {
 				StringUtil.merge(resourcePrimKeies), groupId, main,
 				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
+				start, end, orderByComparator
 			};
 
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_R_G_M,
@@ -10957,8 +10928,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		Object[] finderArgs = new Object[] {
 				resourcePrimKey, groupId, status,
 				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
+				start, end, orderByComparator
 			};
 
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_R_G_S,
@@ -11344,8 +11314,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		Object[] finderArgs = new Object[] {
 				StringUtil.merge(resourcePrimKeies), groupId, status,
 				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
+				start, end, orderByComparator
 			};
 
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_R_G_S,
@@ -12013,8 +11982,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		Object[] finderArgs = new Object[] {
 				groupId, parentResourcePrimKey, latest,
 				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
+				start, end, orderByComparator
 			};
 
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_G_P_L,
@@ -12404,8 +12372,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		Object[] finderArgs = new Object[] {
 				groupId, StringUtil.merge(parentResourcePrimKeies), latest,
 				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
+				start, end, orderByComparator
 			};
 
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_G_P_L,
@@ -13080,8 +13047,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		Object[] finderArgs = new Object[] {
 				groupId, parentResourcePrimKey, main,
 				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
+				start, end, orderByComparator
 			};
 
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_G_P_M,
@@ -13470,8 +13436,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		Object[] finderArgs = new Object[] {
 				groupId, StringUtil.merge(parentResourcePrimKeies), main,
 				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
+				start, end, orderByComparator
 			};
 
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_G_P_M,
@@ -14145,8 +14110,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		Object[] finderArgs = new Object[] {
 				groupId, parentResourcePrimKey, status,
 				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
+				start, end, orderByComparator
 			};
 
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_G_P_S,
@@ -14535,8 +14499,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		Object[] finderArgs = new Object[] {
 				groupId, StringUtil.merge(parentResourcePrimKeies), status,
 				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
+				start, end, orderByComparator
 			};
 
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_G_P_S,
@@ -15214,8 +15177,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		Object[] finderArgs = new Object[] {
 				groupId, parentResourcePrimKey, sections, latest,
 				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
+				start, end, orderByComparator
 			};
 
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_G_P_S_L,
@@ -15656,8 +15618,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 				groupId, parentResourcePrimKey, StringUtil.merge(sectionses),
 				latest,
 				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
+				start, end, orderByComparator
 			};
 
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_G_P_S_L,
@@ -16420,8 +16381,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		Object[] finderArgs = new Object[] {
 				groupId, parentResourcePrimKey, sections, main,
 				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
+				start, end, orderByComparator
 			};
 
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_G_P_S_M,
@@ -16862,8 +16822,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 				groupId, parentResourcePrimKey, StringUtil.merge(sectionses),
 				main,
 				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
+				start, end, orderByComparator
 			};
 
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_G_P_S_M,
@@ -17626,8 +17585,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		Object[] finderArgs = new Object[] {
 				groupId, parentResourcePrimKey, sections, status,
 				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
+				start, end, orderByComparator
 			};
 
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_G_P_S_S,
@@ -18067,8 +18025,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 				groupId, parentResourcePrimKey, StringUtil.merge(sectionses),
 				status,
 				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
+				start, end, orderByComparator
 			};
 
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_G_P_S_S,
@@ -18809,10 +18766,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	public List<KBArticle> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+		Object[] finderArgs = new Object[] { start, end, orderByComparator };
 
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
 				finderArgs, this);

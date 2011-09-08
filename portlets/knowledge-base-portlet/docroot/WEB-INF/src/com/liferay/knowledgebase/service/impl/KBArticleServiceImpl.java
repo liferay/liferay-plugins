@@ -53,6 +53,8 @@ import com.sun.syndication.feed.synd.SyndFeed;
 import com.sun.syndication.feed.synd.SyndFeedImpl;
 import com.sun.syndication.io.FeedException;
 
+import java.io.InputStream;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -66,7 +68,8 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 
 	public void addAttachment(
 			String portletId, long resourcePrimKey, String dirName,
-			String shortFileName, byte[] bytes, ServiceContext serviceContext)
+			String shortFileName, InputStream inputStream,
+			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		if ((resourcePrimKey <= 0) &&
@@ -89,7 +92,7 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 		}
 
 		kbArticleLocalService.addAttachment(
-			dirName, shortFileName, bytes, serviceContext);
+			dirName, shortFileName, inputStream, serviceContext);
 	}
 
 	public KBArticle addKBArticle(
