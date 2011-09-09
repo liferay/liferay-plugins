@@ -37,12 +37,6 @@ $theme.include($top_messages_include)
 		<div id="page-search">
 			$theme.journalContentSearch()
 		</div>
-
-		#if ($update_available_url)
-			<div class="popup-alert-notice">
-				<a class="update-available" href="$update_available_url">#language ("updates-are-available-for-liferay")</a>
-			</div>
-		#end
 	</header>
 
 	#if ($has_navigation)

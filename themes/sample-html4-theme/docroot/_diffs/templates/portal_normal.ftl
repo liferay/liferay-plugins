@@ -42,12 +42,6 @@
 			<a href="${sign_in_url}" id="sign-in" rel="nofollow">${sign_in_text}</a>
 		</#if>
 
-		<#if update_available_url??>
-			<div class="popup-alert-notice">
-				<a class="update-available" href="${update_available_url}"><@liferay.language key="updates-are-available-for-liferay" /></a>
-			</div>
-		</#if>
-
 		<#if has_navigation>
 			<#include "${full_templates_path}/navigation.ftl" />
 		</#if>

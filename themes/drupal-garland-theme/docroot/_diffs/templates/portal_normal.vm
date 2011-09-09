@@ -43,12 +43,6 @@
 				<a href="$sign_in_url" id="sign-in" rel="nofollow">$sign_in_text</a>
 			#end
 
-			#if ($update_available_url)
-				<div class="popup-alert-notice">
-					<a class="update-available" href="$update_available_url">#language("updates-are-available-for-liferay")</a>
-				</div>
-			#end
-
 			#if ($has_navigation)
 				#parse ("$full_templates_path/navigation.vm")
 			#end
