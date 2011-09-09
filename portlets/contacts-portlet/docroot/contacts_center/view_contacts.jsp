@@ -170,7 +170,7 @@ portletURL.setParameter("socialRelationType", String.valueOf(socialRelationType)
 							request.setAttribute(WebKeys.CONTACTS_USERS, friendUsers);
 							%>
 
-							<liferay-util:include page="/contacts_center/view_users.jsp" portletId="<%= portletDisplay.getId() %>" />
+							<liferay-util:include page="/contacts_center/view_users.jsp" servletContext="<%= application %>" />
 
 							<portlet:renderURL var="viewURL">
 								<portlet:param name="jspPage" value="/contacts_center/view.jsp" />
@@ -195,7 +195,7 @@ portletURL.setParameter("socialRelationType", String.valueOf(socialRelationType)
 							request.setAttribute(WebKeys.CONTACTS_USERS, coworkerUsers);
 							%>
 
-							<liferay-util:include page="/contacts_center/view_users.jsp" portletId="<%= portletDisplay.getId() %>" />
+							<liferay-util:include page="/contacts_center/view_users.jsp" servletContext="<%= application %>" />
 
 							<portlet:renderURL var="viewURL">
 								<portlet:param name="jspPage" value="/contacts_center/view.jsp" />
@@ -220,7 +220,7 @@ portletURL.setParameter("socialRelationType", String.valueOf(socialRelationType)
 							request.setAttribute(WebKeys.CONTACTS_USERS, followingUsers);
 							%>
 
-							<liferay-util:include page="/contacts_center/view_users.jsp" portletId="<%= portletDisplay.getId() %>" />
+							<liferay-util:include page="/contacts_center/view_users.jsp" servletContext="<%= application %>" />
 
 							<portlet:renderURL var="viewURL">
 								<portlet:param name="jspPage" value="/contacts_center/view.jsp" />

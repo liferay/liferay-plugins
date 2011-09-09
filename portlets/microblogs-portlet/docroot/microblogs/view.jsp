@@ -54,7 +54,7 @@ portletURL.setParameter("tabs1", tabs1);
 </c:if>
 
 <c:if test="<%= MicroblogsPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_ENTRY) %>">
-	<liferay-util:include page="/microblogs/edit_microblogs_entry.jsp" portletId="<%= portletDisplay.getId() %>" />
+	<liferay-util:include page="/microblogs/edit_microblogs_entry.jsp" servletContext="<%= application %>" />
 </c:if>
 
 <liferay-ui:tabs
@@ -158,7 +158,7 @@ portletURL.setParameter("tabs1", tabs1);
 	request.setAttribute(WebKeys.MICROBLOGS_ENTRIES_URL, portletURL);
 	%>
 
-	<liferay-util:include page="/microblogs/view_microblogs_entries.jsp" portletId="<%= portletDisplay.getId() %>" />
+	<liferay-util:include page="/microblogs/view_microblogs_entries.jsp" servletContext="<%= application %>" />
 
 	<liferay-ui:search-paginator searchContainer="<%= searchContainer %>" type="article" />
 </div>

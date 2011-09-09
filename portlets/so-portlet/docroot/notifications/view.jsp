@@ -19,6 +19,6 @@
 
 <%@ include file="/init.jsp" %>
 
-<liferay-util:include page="/notifications/view_social_requests.jsp" portletId="<%= portletDisplay.getId() %>" />
+<liferay-util:include page="/notifications/view_social_requests.jsp" servletContext="<%= application %>" />
 
-<liferay-util:include page="/notifications/view_member_requests.jsp" portletId="<%= portletDisplay.getId() %>" />
+<liferay-util:include page="/notifications/view_member_requests.jsp" servletContext="<%= application %>" />

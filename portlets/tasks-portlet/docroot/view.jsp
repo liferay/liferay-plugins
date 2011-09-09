@@ -56,7 +56,7 @@ portletURL.setParameter("tabs2", tabs2);
 </div>
 
 <div class="list-wrapper">
-	<liferay-util:include page="/view_tasks.jsp" portletId="<%= portletDisplay.getId() %>" />
+	<liferay-util:include page="/view_tasks.jsp" servletContext="<%= application %>" />
 </div>
 
 <div class="tasks-options">

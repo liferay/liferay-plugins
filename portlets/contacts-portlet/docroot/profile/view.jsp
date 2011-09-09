@@ -29,7 +29,7 @@ Group group = themeDisplay.getScopeGroup();
 		request.setAttribute(WebKeys.CONTACTS_USER, user2);
 		%>
 
-		<liferay-util:include page="/contacts_center/view_user.jsp" portletId="<%= portletDisplay.getId() %>" />
+		<liferay-util:include page="/contacts_center/view_user.jsp" servletContext="<%= application %>" />
 	</c:when>
 	<c:otherwise>
 		<div class="lfr-message-info">

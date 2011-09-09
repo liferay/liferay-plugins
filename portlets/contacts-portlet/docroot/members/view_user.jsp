@@ -50,7 +50,7 @@ List<User> users = UserLocalServiceUtil.getSocialUsers(userId, 0, 30, new UserLo
 				%>
 
 				<div class="group-user-container">
-					<liferay-util:include page="/contacts_center/view_users.jsp" portletId="<%= portletDisplay.getId() %>" />
+					<liferay-util:include page="/contacts_center/view_users.jsp" servletContext="<%= application %>" />
 				</div>
 			</c:otherwise>
 		</c:choose>
@@ -62,7 +62,7 @@ List<User> users = UserLocalServiceUtil.getSocialUsers(userId, 0, 30, new UserLo
 		request.setAttribute(WebKeys.CONTACTS_USER, user2);
 		%>
 
-		<liferay-util:include page="/contacts_center/view_user.jsp" portletId="<%= portletDisplay.getId() %>" />
+		<liferay-util:include page="/contacts_center/view_user.jsp" servletContext="<%= application %>" />
 	</aui:column>
 </aui:layout>
 

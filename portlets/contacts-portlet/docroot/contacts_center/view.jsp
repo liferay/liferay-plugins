@@ -20,16 +20,16 @@
 String topLink = ParamUtil.getString(request, "topLink", "contacts-home");
 %>
 
-<liferay-util:include page="/contacts_center/top_links.jsp" portletId="<%= portletDisplay.getId() %>" />
+<liferay-util:include page="/contacts_center/top_links.jsp" servletContext="<%= application %>" />
 
 <c:choose>
 	<c:when test='<%= topLink.equals("contacts-home") %>'>
-		<liferay-util:include page="/contacts_center/view_contacts.jsp" portletId="<%= portletDisplay.getId() %>" />
+		<liferay-util:include page="/contacts_center/view_contacts.jsp" servletContext="<%= application %>" />
 	</c:when>
 	<c:when test='<%= topLink.equals("requests") %>'>
-		<liferay-util:include page="/contacts_center/view_requests.jsp" portletId="<%= portletDisplay.getId() %>" />
+		<liferay-util:include page="/contacts_center/view_requests.jsp" servletContext="<%= application %>" />
 	</c:when>
 	<c:when test='<%= topLink.equals("find-people") %>'>
-		<liferay-util:include page="/contacts_center/view_find_people.jsp" portletId="<%= portletDisplay.getId() %>" />
+		<liferay-util:include page="/contacts_center/view_find_people.jsp" servletContext="<%= application %>" />
 	</c:when>
 </c:choose>
