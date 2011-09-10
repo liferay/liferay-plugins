@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.dao.search.DAOParamUtil;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.MethodKey;
@@ -46,10 +47,8 @@ import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.service.permission.GroupPermissionUtil;
 import com.liferay.portal.theme.ThemeDisplay;
-import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PortletKeys;
 import com.liferay.portal.util.comparator.GroupNameComparator;
-import com.liferay.portlet.PortletURLFactoryUtil;
 import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.so.sites.util.SitesUtil;
 import com.liferay.so.util.WebKeys;
@@ -255,6 +254,9 @@ public class SitesPortlet extends MVCPortlet {
 
 		jsonObject.put("count", groupsCount);
 
+		LiferayPortletResponse liferayPortletResponse =
+			(LiferayPortletResponse)resourceResponse;
+
 		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
 		for (Group group : groups) {
@@ -266,10 +268,8 @@ public class SitesPortlet extends MVCPortlet {
 			if (group.hasPrivateLayouts() || group.hasPublicLayouts()) {
 				Layout layout = themeDisplay.getLayout();
 
-				PortletURL portletURL = PortletURLFactoryUtil.create(
-					PortalUtil.getHttpServletRequest(resourceRequest),
-					PortletKeys.MY_SITES, layout.getPlid(),
-					PortletRequest.ACTION_PHASE);
+				PortletURL portletURL = liferayPortletResponse.createActionURL(
+					PortletKeys.MY_SITES);
 
 				portletURL.setWindowState(WindowState.NORMAL);
 
@@ -291,10 +291,8 @@ public class SitesPortlet extends MVCPortlet {
 
 			Layout layout = themeDisplay.getLayout();
 
-			PortletURL siteAssignmentsPortletURL = PortletURLFactoryUtil.create(
-				PortalUtil.getHttpServletRequest(resourceRequest),
-				PortletKeys.SITES_ADMIN, layout.getPlid(),
-				PortletRequest.ACTION_PHASE);
+			PortletURL siteAssignmentsPortletURL =
+				liferayPortletResponse.createActionURL(PortletKeys.SITES_ADMIN);
 
 			siteAssignmentsPortletURL.setWindowState(WindowState.NORMAL);
 
@@ -331,10 +329,9 @@ public class SitesPortlet extends MVCPortlet {
 					themeDisplay.getPermissionChecker(), group.getGroupId(),
 					ActionKeys.DELETE)) {
 
-				PortletURL deletePortletURL = PortletURLFactoryUtil.create(
-					PortalUtil.getHttpServletRequest(resourceRequest),
-					PortletKeys.SITES_ADMIN, themeDisplay.getLayout().getPlid(),
-					PortletRequest.ACTION_PHASE);
+				PortletURL deletePortletURL =
+					liferayPortletResponse.createActionURL(
+						PortletKeys.SITES_ADMIN);
 
 				deletePortletURL.setWindowState(WindowState.NORMAL);
 
