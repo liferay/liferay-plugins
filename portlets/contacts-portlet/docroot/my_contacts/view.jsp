@@ -54,7 +54,7 @@ Group group = themeDisplay.getScopeGroup();
 					%>
 
 					<div class="group-user-container">
-						<liferay-util:include page="/contacts_center/view_users.jsp" portletId="<%= portletDisplay.getId() %>" />
+						<liferay-util:include page="/contacts_center/view_users.jsp" servletContext="<%= application %>" />
 					</div>
 				</div>
 			</c:when>
@@ -71,7 +71,7 @@ Group group = themeDisplay.getScopeGroup();
 						%>
 
 						<div class="group-user-container">
-							<liferay-util:include page="/contacts_center/view_users.jsp" portletId="<%= portletDisplay.getId() %>" />
+							<liferay-util:include page="/contacts_center/view_users.jsp" servletContext="<%= application %>" />
 						</div>
 					</aui:column>
 
@@ -92,7 +92,7 @@ Group group = themeDisplay.getScopeGroup();
 						request.setAttribute(WebKeys.CONTACTS_USER, user2);
 						%>
 
-						<liferay-util:include page="/contacts_center/view_user.jsp" portletId="<%= portletDisplay.getId() %>" />
+						<liferay-util:include page="/contacts_center/view_user.jsp" servletContext="<%= application %>" />
 					</aui:column>
 				</aui:layout>
 

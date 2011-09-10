@@ -38,7 +38,7 @@ request.setAttribute("view_user.jsp-viewUser", Boolean.TRUE.toString());
 %>
 
 <c:if test="<%= portletName.equals(PortletKeys.CONTACTS_CENTER) %>">
-	<liferay-util:include page="/contacts_center/top_links.jsp" portletId="<%= portletDisplay.getId() %>" />
+	<liferay-util:include page="/contacts_center/top_links.jsp" servletContext="<%= application %>" />
 </c:if>
 
 <liferay-ui:header
@@ -99,7 +99,7 @@ request.setAttribute("view_user.jsp-viewUser", Boolean.TRUE.toString());
 			<c:if test="<%= showUsersInformation && UserPermissionUtil.contains(permissionChecker, user2.getUserId(), ActionKeys.VIEW) %>">
 				<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id="contactsCenterUserInformationPanel" persistState="<%= true %>" title="information">
 					<div class="lfr-user-info-container">
-						<liferay-util:include page="/contacts_center/view_user_information.jsp" portletId="<%= portletDisplay.getId() %>" />
+						<liferay-util:include page="/contacts_center/view_user_information.jsp" servletContext="<%= application %>" />
 					</div>
 				</liferay-ui:panel>
 
@@ -156,6 +156,6 @@ request.setAttribute("view_user.jsp-viewUser", Boolean.TRUE.toString());
 		request.removeAttribute(WebKeys.SEARCH_CONTAINER_RESULT_ROW);
 		%>
 
-		<liferay-util:include page="/contacts_center/user_action.jsp" portletId="<%= portletDisplay.getId() %>" />
+		<liferay-util:include page="/contacts_center/user_action.jsp" servletContext="<%= application %>" />
 	</aui:column>
 </aui:layout>

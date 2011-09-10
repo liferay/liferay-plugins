@@ -132,7 +132,7 @@ MailManager mailManager = MailManager.getInstance(request);
 
 	<div id="messageContentContainer">
 		<c:if test="<%= Validator.isNotNull(message.getBody()) %>">
-			<liferay-util:include page="/view_message_content.jsp" portletId="<%= portletDisplay.getId() %>" />
+			<liferay-util:include page="/view_message_content.jsp" servletContext="<%= application %>" />
 		</c:if>
 	</div>
 
