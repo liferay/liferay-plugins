@@ -156,9 +156,7 @@ PortletURL portletURL = (PortletURL)request.getAttribute("view.jsp-portletURL");
 
 		message = message.toEscapedModel();
 
-		boolean readThread = MBMessageFlagLocalServiceUtil.hasReadFlag(themeDisplay.getUserId(), thread);
-
-		row.setBold(!readThread);
+		row.setBold(!MBThreadFlagLocalServiceUtil.hasThreadFlag(themeDisplay.getUserId(), thread));
 		row.setObject(new Object[] {message, threadSubscriptionClassPKs});
 		row.setRestricted(!MBMessagePermission.contains(permissionChecker, message, ActionKeys.VIEW));
 		%>
@@ -251,12 +249,12 @@ PortletURL portletURL = (PortletURL)request.getAttribute("view.jsp-portletURL");
 			</div>
 
 			<c:choose>
-				<c:when test="<%= MBMessageFlagLocalServiceUtil.hasQuestionFlag(message.getMessageId()) %>">
+				<c:when test="<%= thread.isQuestion() %>">
 					<div class="result-data">
 						<liferay-ui:message key="waiting-for-an-answer" />
 					</div>
 				</c:when>
-				<c:when test="<%= MBMessageFlagLocalServiceUtil.hasAnswerFlag(message.getMessageId()) %>">
+				<c:when test="<%= MBThreadLocalServiceUtil.hasAnswerMessage(thread.getThreadId()) %>">
 					<div class="result-data">
 						<liferay-ui:message key="resolved" />
 					</div>
