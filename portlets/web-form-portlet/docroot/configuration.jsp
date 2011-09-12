@@ -96,16 +96,11 @@ if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0
 
 		<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id="webFormFields" persistState="<%= true %>" title="form-fields">
 			<aui:fieldset cssClass="rows-container webFields">
-			
-
-					
-
-			
 				<c:if test="<%= fieldsEditingDisabled %>">
 					<div class="portlet-msg-alert">
 						<liferay-ui:message key="there-is-existing-form-data-please-export-and-delete-it-before-making-changes-to-the-fields" />
 					</div>
-					
+
 					<liferay-portlet:resourceURL var="exportURL" portletName="<%= portletResource %>">
 						<portlet:param name="<%= Constants.CMD %>" value="export" />
 					</liferay-portlet:resourceURL>
@@ -167,8 +162,8 @@ if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0
 					request.setAttribute("configuration.jsp-formFieldsindex", String.valueOf(formFieldsIndex));
 					request.setAttribute("configuration.jsp-fieldsEditingDisabled", String.valueOf(fieldsEditingDisabled));
 					
-					if(wrongFieldIndexes != null){
-						if(wrongFieldIndexes.contains(new Integer(formFieldsIndex))){
+					if (wrongFieldIndexes != null) {
+						if (wrongFieldIndexes.contains(new Integer(formFieldsIndex))) {
 							request.setAttribute("configuration.jsp-wrongSizeFieldIndex", String.valueOf(formFieldsIndex));
 						}
 					}

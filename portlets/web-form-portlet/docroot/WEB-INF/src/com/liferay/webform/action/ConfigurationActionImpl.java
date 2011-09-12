@@ -50,7 +50,7 @@ import javax.portlet.RenderResponse;
  * @author Brian Wing Shun Chan
  */
 public class ConfigurationActionImpl extends DefaultConfigurationAction {
-	
+
 	@Override
 	public void processAction(
 			PortletConfig portletConfig, ActionRequest actionRequest,
@@ -251,12 +251,11 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 
 			if (Validator.isNull(emailAdresses)) {
 				SessionErrors.add(actionRequest, "emailAddressRequired");
-				
 			}
 			
 			for (String emailAdress : emailAdresses) {
 				emailAdress = emailAdress.trim();
-					
+
 				if (!Validator.isEmailAddress(emailAdress)) {
 					SessionErrors.add(actionRequest, "emailAddressInvalid");
 				}
@@ -281,31 +280,28 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 				SessionErrors.add(actionRequest, "fileNameInvalid");
 			}
 		}
-		
+
 		if (saveToDatabase) {
 			int i = 1;
 			Set<Integer> wrongSizeFieldIndexes = new HashSet<Integer>();
 			
 			String locale = actionRequest.getLocale().toString();
-
 			String fieldLabelKey = "fieldLabel" + i + "_" + locale;
-			
 			String fieldLabel = ParamUtil.getString(actionRequest, 
 				fieldLabelKey);
 		
 			while ((i == 1) || (Validator.isNotNull(fieldLabel))) {
-				if(fieldLabel.length() > MAX_LENGTH ){
+				if (fieldLabel.length() > MAX_LENGTH ) {
 					wrongSizeFieldIndexes.add(i);
 				}
 
 				i++;
 				
 				fieldLabelKey = "fieldLabel" + i + "_" + locale;
-
 				fieldLabel = ParamUtil.getString(actionRequest, fieldLabelKey);
 			}
 			
-			if(wrongSizeFieldIndexes.size() > 0){
+			if (wrongSizeFieldIndexes.size() > 0) {
 				SessionErrors.add(actionRequest, "sizeLimitExceeded");
 			
 				actionRequest.setAttribute("wrongSizeFieldIndexes", 
@@ -356,8 +352,7 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 		return true;
 			
 	}
-	
-	public static final int MAX_LENGTH = 75;
 
+	public static final int MAX_LENGTH = 75;
 
 }

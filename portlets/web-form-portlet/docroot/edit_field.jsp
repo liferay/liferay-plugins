@@ -20,6 +20,7 @@
 int index = ParamUtil.getInteger(renderRequest, "index", GetterUtil.getInteger((String)request.getAttribute("configuration.jsp-index")));
 int formFieldsIndex = GetterUtil.getInteger((String)request.getAttribute("configuration.jsp-formFieldsindex"));
 boolean fieldsEditingDisabled = GetterUtil.getBoolean((String)request.getAttribute("configuration.jsp-fieldsEditingDisabled"));
+int wrongFieldIndex = GetterUtil.getInteger((String)request.getAttribute("configuration.jsp-wrongSizeFieldIndex"));
 
 String fieldLabelXml = LocalizationUtil.getLocalizationXmlFromPreferences(preferences, renderRequest, "fieldLabel" + formFieldsIndex);
 String fieldLabel = LocalizationUtil.getLocalization(fieldLabelXml, themeDisplay.getLanguageId());
@@ -29,7 +30,6 @@ String fieldOptionsXml = LocalizationUtil.getLocalizationXmlFromPreferences(pref
 String fieldOptions = LocalizationUtil.getLocalization(fieldOptionsXml, themeDisplay.getLanguageId());
 String fieldValidationScript = StringPool.BLANK;
 String fieldValidationErrorMessage = StringPool.BLANK;
-int wrongFieldIndex = GetterUtil.getInteger((String)request.getAttribute("configuration.jsp-wrongSizeFieldIndex"));
 
 if (WebFormUtil.VALIDATION_SCRIPT_ENABLED) {
 	fieldValidationScript = PrefsParamUtil.getString(preferences, request, "fieldValidationScript" + formFieldsIndex);
@@ -37,9 +37,11 @@ if (WebFormUtil.VALIDATION_SCRIPT_ENABLED) {
 }
 
 %>
-<c:if test="<%= wrongFieldIndex>0 && index==wrongFieldIndex %>">
+
+<c:if test="<%= wrongFieldIndex > 0 && index == wrongFieldIndex %>">
 	<liferay-ui:error key="sizeLimitExceeded" message="please-enter-no-more-than-75-characters" />
 </c:if>
+
 <div class="aui-field-row field-row">
 	<div class="field-title">
 		<c:choose>
