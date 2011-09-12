@@ -423,16 +423,12 @@ a:active {
 
 /* Sidebar */
 
-.portlet-blogs .portlet-body,
-.portlet-calendar .portlet-body,
-.portlet-message-boards .portlet-body,
-.portlet-wiki .portlet-body {
+.portlet-blogs .portlet-content .portlet-body,
+.portlet-calendar .portlet-content .portlet-body,
+.portlet-message-boards .portlet-content .portlet-body,
+.portlet-wiki .portlet-content .portlet-body {
 	margin-left: 250px;
 	position: relative;
-}
-
-.portlet-calendar .portlet-body {
-	margin-left: 225px;
 }
 
 .sidebar {
@@ -698,7 +694,7 @@ a:active {
 }
 
 .portlet-calendar .mini-calendar {
-	left: -225px;
+	left: -250px;
 	position: absolute;
 }
 
