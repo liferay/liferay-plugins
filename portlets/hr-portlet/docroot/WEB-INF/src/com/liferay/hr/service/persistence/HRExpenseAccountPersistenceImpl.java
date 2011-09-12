@@ -158,6 +158,8 @@ public class HRExpenseAccountPersistenceImpl extends BasePersistenceImpl<HRExpen
 		EntityCacheUtil.removeResult(HRExpenseAccountModelImpl.ENTITY_CACHE_ENABLED,
 			HRExpenseAccountImpl.class, hrExpenseAccount.getPrimaryKey());
 
+		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
+
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_G_N,
 			new Object[] {
 				Long.valueOf(hrExpenseAccount.getGroupId()),
@@ -270,6 +272,8 @@ public class HRExpenseAccountPersistenceImpl extends BasePersistenceImpl<HRExpen
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
+		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
+
 		HRExpenseAccountModelImpl hrExpenseAccountModelImpl = (HRExpenseAccountModelImpl)hrExpenseAccount;
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_G_N,
@@ -321,6 +325,8 @@ public class HRExpenseAccountPersistenceImpl extends BasePersistenceImpl<HRExpen
 				((hrExpenseAccount.getGroupId() != hrExpenseAccountModelImpl.getOriginalGroupId()) ||
 				!Validator.equals(hrExpenseAccount.getName(),
 					hrExpenseAccountModelImpl.getOriginalName()))) {
+			FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
+
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_G_N,
 				new Object[] {
 					Long.valueOf(hrExpenseAccountModelImpl.getOriginalGroupId()),
@@ -829,10 +835,8 @@ public class HRExpenseAccountPersistenceImpl extends BasePersistenceImpl<HRExpen
 	 * @throws SystemException if a system exception occurred
 	 */
 	public int countAll() throws SystemException {
-		Object[] finderArgs = new Object[0];
-
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_ALL,
-				finderArgs, this);
+				FINDER_ARGS_EMPTY, this);
 
 		if (count == null) {
 			Session session = null;
@@ -852,8 +856,8 @@ public class HRExpenseAccountPersistenceImpl extends BasePersistenceImpl<HRExpen
 					count = Long.valueOf(0);
 				}
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_ALL, finderArgs,
-					count);
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_ALL,
+					FINDER_ARGS_EMPTY, count);
 
 				closeSession(session);
 			}

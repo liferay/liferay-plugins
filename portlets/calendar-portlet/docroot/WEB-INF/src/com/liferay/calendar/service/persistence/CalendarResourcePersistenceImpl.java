@@ -250,6 +250,8 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 		EntityCacheUtil.removeResult(CalendarResourceModelImpl.ENTITY_CACHE_ENABLED,
 			CalendarResourceImpl.class, calendarResource.getPrimaryKey());
 
+		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
+
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
 			new Object[] {
 				calendarResource.getUuid(),
@@ -371,6 +373,8 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
+		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
+
 		CalendarResourceModelImpl calendarResourceModelImpl = (CalendarResourceModelImpl)calendarResource;
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
@@ -433,6 +437,8 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 				(!Validator.equals(calendarResource.getUuid(),
 					calendarResourceModelImpl.getOriginalUuid()) ||
 				(calendarResource.getGroupId() != calendarResourceModelImpl.getOriginalGroupId()))) {
+			FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
+
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
 				new Object[] {
 					calendarResourceModelImpl.getOriginalUuid(),
@@ -454,6 +460,8 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 		if (!isNew &&
 				((calendarResource.getClassNameId() != calendarResourceModelImpl.getOriginalClassNameId()) ||
 				(calendarResource.getClassPK() != calendarResourceModelImpl.getOriginalClassPK()))) {
+			FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
+
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_C,
 				new Object[] {
 					Long.valueOf(
@@ -4834,10 +4842,8 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 	 * @throws SystemException if a system exception occurred
 	 */
 	public int countAll() throws SystemException {
-		Object[] finderArgs = new Object[0];
-
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_ALL,
-				finderArgs, this);
+				FINDER_ARGS_EMPTY, this);
 
 		if (count == null) {
 			Session session = null;
@@ -4857,8 +4863,8 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 					count = Long.valueOf(0);
 				}
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_ALL, finderArgs,
-					count);
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_ALL,
+					FINDER_ARGS_EMPTY, count);
 
 				closeSession(session);
 			}

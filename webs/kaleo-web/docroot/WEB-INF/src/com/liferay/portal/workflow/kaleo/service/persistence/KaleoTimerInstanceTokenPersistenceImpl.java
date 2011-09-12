@@ -204,6 +204,8 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 			KaleoTimerInstanceTokenImpl.class,
 			kaleoTimerInstanceToken.getPrimaryKey());
 
+		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
+
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KITI_KTI,
 			new Object[] {
 				Long.valueOf(kaleoTimerInstanceToken.getKaleoInstanceTokenId()),
@@ -317,6 +319,8 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
+		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
+
 		KaleoTimerInstanceTokenModelImpl kaleoTimerInstanceTokenModelImpl = (KaleoTimerInstanceTokenModelImpl)kaleoTimerInstanceToken;
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KITI_KTI,
@@ -368,6 +372,8 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 		if (!isNew &&
 				((kaleoTimerInstanceToken.getKaleoInstanceTokenId() != kaleoTimerInstanceTokenModelImpl.getOriginalKaleoInstanceTokenId()) ||
 				(kaleoTimerInstanceToken.getKaleoTimerId() != kaleoTimerInstanceTokenModelImpl.getOriginalKaleoTimerId()))) {
+			FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
+
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KITI_KTI,
 				new Object[] {
 					Long.valueOf(
@@ -2197,10 +2203,8 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 	 * @throws SystemException if a system exception occurred
 	 */
 	public int countAll() throws SystemException {
-		Object[] finderArgs = new Object[0];
-
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_ALL,
-				finderArgs, this);
+				FINDER_ARGS_EMPTY, this);
 
 		if (count == null) {
 			Session session = null;
@@ -2220,8 +2224,8 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 					count = Long.valueOf(0);
 				}
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_ALL, finderArgs,
-					count);
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_ALL,
+					FINDER_ARGS_EMPTY, count);
 
 				closeSession(session);
 			}

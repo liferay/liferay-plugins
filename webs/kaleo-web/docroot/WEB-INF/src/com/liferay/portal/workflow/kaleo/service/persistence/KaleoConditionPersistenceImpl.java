@@ -180,6 +180,8 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 		EntityCacheUtil.removeResult(KaleoConditionModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoConditionImpl.class, kaleoCondition.getPrimaryKey());
 
+		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
+
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KALEONODEID,
 			new Object[] { Long.valueOf(kaleoCondition.getKaleoNodeId()) });
 	}
@@ -288,6 +290,8 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
+		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
+
 		KaleoConditionModelImpl kaleoConditionModelImpl = (KaleoConditionModelImpl)kaleoCondition;
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KALEONODEID,
@@ -334,6 +338,8 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 
 		if (!isNew &&
 				(kaleoCondition.getKaleoNodeId() != kaleoConditionModelImpl.getOriginalKaleoNodeId())) {
+			FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
+
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KALEONODEID,
 				new Object[] {
 					Long.valueOf(
@@ -1611,10 +1617,8 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	 * @throws SystemException if a system exception occurred
 	 */
 	public int countAll() throws SystemException {
-		Object[] finderArgs = new Object[0];
-
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_ALL,
-				finderArgs, this);
+				FINDER_ARGS_EMPTY, this);
 
 		if (count == null) {
 			Session session = null;
@@ -1634,8 +1638,8 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 					count = Long.valueOf(0);
 				}
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_ALL, finderArgs,
-					count);
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_ALL,
+					FINDER_ARGS_EMPTY, count);
 
 				closeSession(session);
 			}

@@ -167,6 +167,8 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 	public void clearCache(KaleoTimer kaleoTimer) {
 		EntityCacheUtil.removeResult(KaleoTimerModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoTimerImpl.class, kaleoTimer.getPrimaryKey());
+
+		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
 	}
 
 	/**
@@ -270,6 +272,8 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 		}
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
+
+		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
 
 		EntityCacheUtil.removeResult(KaleoTimerModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoTimerImpl.class, kaleoTimer.getPrimaryKey());
@@ -1537,10 +1541,8 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 	 * @throws SystemException if a system exception occurred
 	 */
 	public int countAll() throws SystemException {
-		Object[] finderArgs = new Object[0];
-
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_ALL,
-				finderArgs, this);
+				FINDER_ARGS_EMPTY, this);
 
 		if (count == null) {
 			Session session = null;
@@ -1560,8 +1562,8 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 					count = Long.valueOf(0);
 				}
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_ALL, finderArgs,
-					count);
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_ALL,
+					FINDER_ARGS_EMPTY, count);
 
 				closeSession(session);
 			}

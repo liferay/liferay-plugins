@@ -227,6 +227,8 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 		EntityCacheUtil.removeResult(KBCommentModelImpl.ENTITY_CACHE_ENABLED,
 			KBCommentImpl.class, kbComment.getPrimaryKey());
 
+		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
+
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
 			new Object[] {
 				kbComment.getUuid(), Long.valueOf(kbComment.getGroupId())
@@ -346,6 +348,8 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
+		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
+
 		KBCommentModelImpl kbCommentModelImpl = (KBCommentModelImpl)kbComment;
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
@@ -408,6 +412,8 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 				(!Validator.equals(kbComment.getUuid(),
 					kbCommentModelImpl.getOriginalUuid()) ||
 				(kbComment.getGroupId() != kbCommentModelImpl.getOriginalGroupId()))) {
+			FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
+
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
 				new Object[] {
 					kbCommentModelImpl.getOriginalUuid(),
@@ -429,6 +435,8 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 				((kbComment.getUserId() != kbCommentModelImpl.getOriginalUserId()) ||
 				(kbComment.getClassNameId() != kbCommentModelImpl.getOriginalClassNameId()) ||
 				(kbComment.getClassPK() != kbCommentModelImpl.getOriginalClassPK()))) {
+			FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
+
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_C_C,
 				new Object[] {
 					Long.valueOf(kbCommentModelImpl.getOriginalUserId()),
@@ -2874,10 +2882,8 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	 * @throws SystemException if a system exception occurred
 	 */
 	public int countAll() throws SystemException {
-		Object[] finderArgs = new Object[0];
-
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_ALL,
-				finderArgs, this);
+				FINDER_ARGS_EMPTY, this);
 
 		if (count == null) {
 			Session session = null;
@@ -2897,8 +2903,8 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 					count = Long.valueOf(0);
 				}
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_ALL, finderArgs,
-					count);
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_ALL,
+					FINDER_ARGS_EMPTY, count);
 
 				closeSession(session);
 			}

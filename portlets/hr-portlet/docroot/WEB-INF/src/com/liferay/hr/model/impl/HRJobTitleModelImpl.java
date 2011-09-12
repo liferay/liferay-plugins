@@ -90,8 +90,15 @@ public class HRJobTitleModelImpl extends BaseModelImpl<HRJobTitle>
 		return HRJobTitle.class.getName();
 	}
 
-	public static final String MAPPING_TABLE_HRBRANCHES_HRJOBTITLES_NAME = com.liferay.hr.model.impl.HRBranchModelImpl.MAPPING_TABLE_HRBRANCHES_HRJOBTITLES_NAME;
-	public static final boolean FINDER_CACHE_ENABLED_HRBRANCHES_HRJOBTITLES = com.liferay.hr.model.impl.HRBranchModelImpl.FINDER_CACHE_ENABLED_HRBRANCHES_HRJOBTITLES;
+	public static final String MAPPING_TABLE_HRBRANCHES_HRJOBTITLES_NAME = "HRBranches_HRJobTitles";
+	public static final Object[][] MAPPING_TABLE_HRBRANCHES_HRJOBTITLES_COLUMNS = {
+			{ "hrBranchId", Types.BIGINT },
+			{ "hrJobTitleId", Types.BIGINT }
+		};
+	public static final String MAPPING_TABLE_HRBRANCHES_HRJOBTITLES_SQL_CREATE = "create table HRBranches_HRJobTitles (hrBranchId LONG not null,hrJobTitleId LONG not null,primary key (hrBranchId, hrJobTitleId))";
+	public static final boolean FINDER_CACHE_ENABLED_HRBRANCHES_HRJOBTITLES = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.finder.cache.enabled.HRBranches_HRJobTitles"),
+			true);
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.hr.model.HRJobTitle"));
 

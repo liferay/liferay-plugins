@@ -153,6 +153,8 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 		EntityCacheUtil.removeResult(SVNRepositoryModelImpl.ENTITY_CACHE_ENABLED,
 			SVNRepositoryImpl.class, svnRepository.getPrimaryKey());
 
+		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
+
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_URL,
 			new Object[] { svnRepository.getUrl() });
 	}
@@ -261,6 +263,8 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
+		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
+
 		SVNRepositoryModelImpl svnRepositoryModelImpl = (SVNRepositoryModelImpl)svnRepository;
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_URL,
@@ -307,6 +311,8 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 		if (!isNew &&
 				(!Validator.equals(svnRepository.getUrl(),
 					svnRepositoryModelImpl.getOriginalUrl()))) {
+			FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
+
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_URL,
 				new Object[] { svnRepositoryModelImpl.getOriginalUrl() });
 		}
@@ -782,10 +788,8 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 	 * @throws SystemException if a system exception occurred
 	 */
 	public int countAll() throws SystemException {
-		Object[] finderArgs = new Object[0];
-
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_ALL,
-				finderArgs, this);
+				FINDER_ARGS_EMPTY, this);
 
 		if (count == null) {
 			Session session = null;
@@ -805,8 +809,8 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 					count = Long.valueOf(0);
 				}
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_ALL, finderArgs,
-					count);
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_ALL,
+					FINDER_ARGS_EMPTY, count);
 
 				closeSession(session);
 			}

@@ -177,6 +177,8 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 		EntityCacheUtil.removeResult(AppModelImpl.ENTITY_CACHE_ENABLED,
 			AppImpl.class, app.getPrimaryKey());
 
+		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
+
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_REMOTEAPPID,
 			new Object[] { Long.valueOf(app.getRemoteAppId()) });
 	}
@@ -284,6 +286,8 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
+		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
+
 		AppModelImpl appModelImpl = (AppModelImpl)app;
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_REMOTEAPPID,
@@ -333,6 +337,8 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 
 		if (!isNew &&
 				(app.getRemoteAppId() != appModelImpl.getOriginalRemoteAppId())) {
+			FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
+
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_REMOTEAPPID,
 				new Object[] { Long.valueOf(
 						appModelImpl.getOriginalRemoteAppId()) });
@@ -1596,10 +1602,8 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 	 * @throws SystemException if a system exception occurred
 	 */
 	public int countAll() throws SystemException {
-		Object[] finderArgs = new Object[0];
-
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_ALL,
-				finderArgs, this);
+				FINDER_ARGS_EMPTY, this);
 
 		if (count == null) {
 			Session session = null;
@@ -1619,8 +1623,8 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 					count = Long.valueOf(0);
 				}
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_ALL, finderArgs,
-					count);
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_ALL,
+					FINDER_ARGS_EMPTY, count);
 
 				closeSession(session);
 			}

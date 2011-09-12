@@ -204,6 +204,8 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 			KaleoTaskInstanceTokenImpl.class,
 			kaleoTaskInstanceToken.getPrimaryKey());
 
+		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
+
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KII_KTI,
 			new Object[] {
 				Long.valueOf(kaleoTaskInstanceToken.getKaleoInstanceId()),
@@ -317,6 +319,8 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
+		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
+
 		KaleoTaskInstanceTokenModelImpl kaleoTaskInstanceTokenModelImpl = (KaleoTaskInstanceTokenModelImpl)kaleoTaskInstanceToken;
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KII_KTI,
@@ -368,6 +372,8 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 		if (!isNew &&
 				((kaleoTaskInstanceToken.getKaleoInstanceId() != kaleoTaskInstanceTokenModelImpl.getOriginalKaleoInstanceId()) ||
 				(kaleoTaskInstanceToken.getKaleoTaskId() != kaleoTaskInstanceTokenModelImpl.getOriginalKaleoTaskId()))) {
+			FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
+
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KII_KTI,
 				new Object[] {
 					Long.valueOf(
@@ -2101,10 +2107,8 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 	 * @throws SystemException if a system exception occurred
 	 */
 	public int countAll() throws SystemException {
-		Object[] finderArgs = new Object[0];
-
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_ALL,
-				finderArgs, this);
+				FINDER_ARGS_EMPTY, this);
 
 		if (count == null) {
 			Session session = null;
@@ -2124,8 +2128,8 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 					count = Long.valueOf(0);
 				}
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_ALL, finderArgs,
-					count);
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_ALL,
+					FINDER_ARGS_EMPTY, count);
 
 				closeSession(session);
 			}

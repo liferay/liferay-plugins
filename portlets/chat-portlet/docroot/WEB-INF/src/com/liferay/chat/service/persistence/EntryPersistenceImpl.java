@@ -234,6 +234,8 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	public void clearCache(Entry entry) {
 		EntityCacheUtil.removeResult(EntryModelImpl.ENTITY_CACHE_ENABLED,
 			EntryImpl.class, entry.getPrimaryKey());
+
+		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
 	}
 
 	/**
@@ -336,6 +338,8 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 		}
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
+
+		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
 
 		EntityCacheUtil.removeResult(EntryModelImpl.ENTITY_CACHE_ENABLED,
 			EntryImpl.class, entry.getPrimaryKey());
@@ -3635,10 +3639,8 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 * @throws SystemException if a system exception occurred
 	 */
 	public int countAll() throws SystemException {
-		Object[] finderArgs = new Object[0];
-
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_ALL,
-				finderArgs, this);
+				FINDER_ARGS_EMPTY, this);
 
 		if (count == null) {
 			Session session = null;
@@ -3658,8 +3660,8 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 					count = Long.valueOf(0);
 				}
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_ALL, finderArgs,
-					count);
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_ALL,
+					FINDER_ARGS_EMPTY, count);
 
 				closeSession(session);
 			}

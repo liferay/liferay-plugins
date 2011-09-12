@@ -175,6 +175,8 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 		EntityCacheUtil.removeResult(KaleoTaskModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoTaskImpl.class, kaleoTask.getPrimaryKey());
 
+		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
+
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KALEONODEID,
 			new Object[] { Long.valueOf(kaleoTask.getKaleoNodeId()) });
 	}
@@ -281,6 +283,8 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
+		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
+
 		KaleoTaskModelImpl kaleoTaskModelImpl = (KaleoTaskModelImpl)kaleoTask;
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KALEONODEID,
@@ -325,6 +329,8 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 
 		if (!isNew &&
 				(kaleoTask.getKaleoNodeId() != kaleoTaskModelImpl.getOriginalKaleoNodeId())) {
+			FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
+
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KALEONODEID,
 				new Object[] {
 					Long.valueOf(kaleoTaskModelImpl.getOriginalKaleoNodeId())
@@ -1598,10 +1604,8 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	 * @throws SystemException if a system exception occurred
 	 */
 	public int countAll() throws SystemException {
-		Object[] finderArgs = new Object[0];
-
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_ALL,
-				finderArgs, this);
+				FINDER_ARGS_EMPTY, this);
 
 		if (count == null) {
 			Session session = null;
@@ -1621,8 +1625,8 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 					count = Long.valueOf(0);
 				}
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_ALL, finderArgs,
-					count);
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_ALL,
+					FINDER_ARGS_EMPTY, count);
 
 				closeSession(session);
 			}
