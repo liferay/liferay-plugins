@@ -67,7 +67,7 @@ AUI().add(
 						value: 1
 					},
 					parentUrl: {
-						value: 'http://' + document.location.host,
+						value: document.location.protocol + '://' + document.location.host,
 						setter: '_setParentUrl'
 					},
 					portletId:{},
