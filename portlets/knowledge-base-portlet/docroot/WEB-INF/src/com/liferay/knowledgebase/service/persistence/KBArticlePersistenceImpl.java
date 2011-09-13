@@ -528,6 +528,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		EntityCacheUtil.removeResult(KBArticleModelImpl.ENTITY_CACHE_ENABLED,
 			KBArticleImpl.class, kbArticle.getPrimaryKey());
 
+		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
+
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
 			new Object[] {
 				kbArticle.getUuid(), Long.valueOf(kbArticle.getGroupId())
@@ -646,6 +648,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
+		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
+
 		KBArticleModelImpl kbArticleModelImpl = (KBArticleModelImpl)kbArticle;
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
@@ -707,6 +711,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 				(!Validator.equals(kbArticle.getUuid(),
 					kbArticleModelImpl.getOriginalUuid()) ||
 				(kbArticle.getGroupId() != kbArticleModelImpl.getOriginalGroupId()))) {
+			FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
+
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
 				new Object[] {
 					kbArticleModelImpl.getOriginalUuid(),
@@ -727,6 +733,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		if (!isNew &&
 				((kbArticle.getResourcePrimKey() != kbArticleModelImpl.getOriginalResourcePrimKey()) ||
 				(kbArticle.getVersion() != kbArticleModelImpl.getOriginalVersion()))) {
+			FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
+
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_R_V,
 				new Object[] {
 					Long.valueOf(
@@ -24100,10 +24108,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 * @throws SystemException if a system exception occurred
 	 */
 	public int countAll() throws SystemException {
-		Object[] finderArgs = new Object[0];
-
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_ALL,
-				finderArgs, this);
+				FINDER_ARGS_EMPTY, this);
 
 		if (count == null) {
 			Session session = null;
@@ -24123,8 +24129,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 					count = Long.valueOf(0);
 				}
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_ALL, finderArgs,
-					count);
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_ALL,
+					FINDER_ARGS_EMPTY, count);
 
 				closeSession(session);
 			}

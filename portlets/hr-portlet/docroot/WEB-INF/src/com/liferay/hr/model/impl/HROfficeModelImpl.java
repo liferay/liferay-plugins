@@ -89,8 +89,14 @@ public class HROfficeModelImpl extends BaseModelImpl<HROffice>
 		return HROffice.class.getName();
 	}
 
-	public static final String MAPPING_TABLE_HRHOLIDAYS_HROFFICES_NAME = com.liferay.hr.model.impl.HRHolidayModelImpl.MAPPING_TABLE_HRHOLIDAYS_HROFFICES_NAME;
-	public static final boolean FINDER_CACHE_ENABLED_HRHOLIDAYS_HROFFICES = com.liferay.hr.model.impl.HRHolidayModelImpl.FINDER_CACHE_ENABLED_HRHOLIDAYS_HROFFICES;
+	public static final String MAPPING_TABLE_HRHOLIDAYS_HROFFICES_NAME = "HRHolidays_HROffices";
+	public static final Object[][] MAPPING_TABLE_HRHOLIDAYS_HROFFICES_COLUMNS = {
+			{ "hrHolidayId", Types.BIGINT },
+			{ "hrOfficeId", Types.BIGINT }
+		};
+	public static final String MAPPING_TABLE_HRHOLIDAYS_HROFFICES_SQL_CREATE = "create table HRHolidays_HROffices (hrHolidayId LONG not null,hrOfficeId LONG not null,primary key (hrHolidayId, hrOfficeId))";
+	public static final boolean FINDER_CACHE_ENABLED_HRHOLIDAYS_HROFFICES = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.finder.cache.enabled.HRHolidays_HROffices"), true);
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.hr.model.HROffice"));
 

@@ -209,6 +209,8 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 		EntityCacheUtil.removeResult(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
 			UserThreadImpl.class, userThread.getPrimaryKey());
 
+		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
+
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_M,
 			new Object[] {
 				Long.valueOf(userThread.getUserId()),
@@ -318,6 +320,8 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
+		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
+
 		UserThreadModelImpl userThreadModelImpl = (UserThreadModelImpl)userThread;
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_M,
@@ -366,6 +370,8 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 		if (!isNew &&
 				((userThread.getUserId() != userThreadModelImpl.getOriginalUserId()) ||
 				(userThread.getMbThreadId() != userThreadModelImpl.getOriginalMbThreadId()))) {
+			FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
+
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_M,
 				new Object[] {
 					Long.valueOf(userThreadModelImpl.getOriginalUserId()),
@@ -2542,10 +2548,8 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 * @throws SystemException if a system exception occurred
 	 */
 	public int countAll() throws SystemException {
-		Object[] finderArgs = new Object[0];
-
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_ALL,
-				finderArgs, this);
+				FINDER_ARGS_EMPTY, this);
 
 		if (count == null) {
 			Session session = null;
@@ -2565,8 +2569,8 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 					count = Long.valueOf(0);
 				}
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_ALL, finderArgs,
-					count);
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_ALL,
+					FINDER_ARGS_EMPTY, count);
 
 				closeSession(session);
 			}

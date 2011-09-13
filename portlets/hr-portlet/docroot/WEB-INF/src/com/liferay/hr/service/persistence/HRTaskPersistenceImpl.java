@@ -136,6 +136,8 @@ public class HRTaskPersistenceImpl extends BasePersistenceImpl<HRTask>
 	public void clearCache(HRTask hrTask) {
 		EntityCacheUtil.removeResult(HRTaskModelImpl.ENTITY_CACHE_ENABLED,
 			HRTaskImpl.class, hrTask.getPrimaryKey());
+
+		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
 	}
 
 	/**
@@ -238,6 +240,8 @@ public class HRTaskPersistenceImpl extends BasePersistenceImpl<HRTask>
 		}
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
+
+		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
 
 		EntityCacheUtil.removeResult(HRTaskModelImpl.ENTITY_CACHE_ENABLED,
 			HRTaskImpl.class, hrTask.getPrimaryKey());
@@ -536,10 +540,8 @@ public class HRTaskPersistenceImpl extends BasePersistenceImpl<HRTask>
 	 * @throws SystemException if a system exception occurred
 	 */
 	public int countAll() throws SystemException {
-		Object[] finderArgs = new Object[0];
-
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_ALL,
-				finderArgs, this);
+				FINDER_ARGS_EMPTY, this);
 
 		if (count == null) {
 			Session session = null;
@@ -559,8 +561,8 @@ public class HRTaskPersistenceImpl extends BasePersistenceImpl<HRTask>
 					count = Long.valueOf(0);
 				}
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_ALL, finderArgs,
-					count);
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_ALL,
+					FINDER_ARGS_EMPTY, count);
 
 				closeSession(session);
 			}

@@ -59,9 +59,9 @@ public class ClpSerializer {
 				}
 			}
 			catch (Throwable t) {
-				if (_log.isWarnEnabled()) {
-					_log.warn("Unable to locate deployment context from portlet properties",
-						t);
+				if (_log.isInfoEnabled()) {
+					_log.info(
+						"Unable to locate deployment context from portlet properties");
 				}
 			}
 
@@ -75,9 +75,9 @@ public class ClpSerializer {
 					}
 				}
 				catch (Throwable t) {
-					if (_log.isWarnEnabled()) {
-						_log.warn("Unable to locate deployment context from portal properties",
-							t);
+					if (_log.isInfoEnabled()) {
+						_log.info(
+							"Unable to locate deployment context from portal properties");
 					}
 				}
 			}

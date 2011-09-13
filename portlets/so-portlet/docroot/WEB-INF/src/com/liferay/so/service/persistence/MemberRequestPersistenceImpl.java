@@ -204,6 +204,8 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 		EntityCacheUtil.removeResult(MemberRequestModelImpl.ENTITY_CACHE_ENABLED,
 			MemberRequestImpl.class, memberRequest.getPrimaryKey());
 
+		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
+
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KEY,
 			new Object[] { memberRequest.getKey() });
 
@@ -319,6 +321,8 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
+		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
+
 		MemberRequestModelImpl memberRequestModelImpl = (MemberRequestModelImpl)memberRequest;
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KEY,
@@ -372,6 +376,8 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 		if (!isNew &&
 				(!Validator.equals(memberRequest.getKey(),
 					memberRequestModelImpl.getOriginalKey()))) {
+			FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
+
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KEY,
 				new Object[] { memberRequestModelImpl.getOriginalKey() });
 		}
@@ -387,6 +393,8 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 				((memberRequest.getGroupId() != memberRequestModelImpl.getOriginalGroupId()) ||
 				(memberRequest.getReceiverUserId() != memberRequestModelImpl.getOriginalReceiverUserId()) ||
 				(memberRequest.getStatus() != memberRequestModelImpl.getOriginalStatus()))) {
+			FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
+
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_G_R_S,
 				new Object[] {
 					Long.valueOf(memberRequestModelImpl.getOriginalGroupId()),
@@ -1957,10 +1965,8 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	 * @throws SystemException if a system exception occurred
 	 */
 	public int countAll() throws SystemException {
-		Object[] finderArgs = new Object[0];
-
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_ALL,
-				finderArgs, this);
+				FINDER_ARGS_EMPTY, this);
 
 		if (count == null) {
 			Session session = null;
@@ -1980,8 +1986,8 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 					count = Long.valueOf(0);
 				}
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_ALL, finderArgs,
-					count);
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_ALL,
+					FINDER_ARGS_EMPTY, count);
 
 				closeSession(session);
 			}
