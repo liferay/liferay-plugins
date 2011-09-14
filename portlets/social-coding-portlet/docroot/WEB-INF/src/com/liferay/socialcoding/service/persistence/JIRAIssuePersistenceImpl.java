@@ -407,8 +407,6 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
-		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 		JIRAIssueModelImpl jiraIssueModelImpl = (JIRAIssueModelImpl)jiraIssue;
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KEY,
@@ -454,8 +452,6 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		if (!isNew &&
 				(!Validator.equals(jiraIssue.getKey(),
 					jiraIssueModelImpl.getOriginalKey()))) {
-			FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KEY,
 				new Object[] { jiraIssueModelImpl.getOriginalKey() });
 		}

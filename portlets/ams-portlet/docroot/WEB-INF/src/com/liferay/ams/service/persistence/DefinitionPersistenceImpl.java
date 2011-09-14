@@ -242,8 +242,6 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
-		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 		EntityCacheUtil.removeResult(DefinitionModelImpl.ENTITY_CACHE_ENABLED,
 			DefinitionImpl.class, definition.getPrimaryKey());
 

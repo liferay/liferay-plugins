@@ -296,8 +296,6 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
-		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 		OAuthTokenModelImpl oAuthTokenModelImpl = (OAuthTokenModelImpl)oAuthToken;
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_G_S_M_T,
@@ -358,8 +356,6 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 				(oAuthToken.getModuleId() != oAuthTokenModelImpl.getOriginalModuleId()) ||
 				!Validator.equals(oAuthToken.getTokenName(),
 					oAuthTokenModelImpl.getOriginalTokenName()))) {
-			FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_G_S_M_T,
 				new Object[] {
 					Long.valueOf(oAuthTokenModelImpl.getOriginalUserId()),

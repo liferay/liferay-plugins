@@ -283,8 +283,6 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
-		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 		FeedModelImpl feedModelImpl = (FeedModelImpl)feed;
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_TWUI,
@@ -339,8 +337,6 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 		if (!isNew &&
 				((feed.getCompanyId() != feedModelImpl.getOriginalCompanyId()) ||
 				(feed.getTwitterUserId() != feedModelImpl.getOriginalTwitterUserId()))) {
-			FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_TWUI,
 				new Object[] {
 					Long.valueOf(feedModelImpl.getOriginalCompanyId()),
@@ -362,8 +358,6 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 				((feed.getCompanyId() != feedModelImpl.getOriginalCompanyId()) ||
 				!Validator.equals(feed.getTwitterScreenName(),
 					feedModelImpl.getOriginalTwitterScreenName()))) {
-			FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_TSN,
 				new Object[] {
 					Long.valueOf(feedModelImpl.getOriginalCompanyId()),

@@ -273,8 +273,6 @@ public class HRTerminationTypePersistenceImpl extends BasePersistenceImpl<HRTerm
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
-		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 		HRTerminationTypeModelImpl hrTerminationTypeModelImpl = (HRTerminationTypeModelImpl)hrTerminationType;
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_G_C,
@@ -326,8 +324,6 @@ public class HRTerminationTypePersistenceImpl extends BasePersistenceImpl<HRTerm
 				((hrTerminationType.getGroupId() != hrTerminationTypeModelImpl.getOriginalGroupId()) ||
 				!Validator.equals(hrTerminationType.getCode(),
 					hrTerminationTypeModelImpl.getOriginalCode()))) {
-			FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_G_C,
 				new Object[] {
 					Long.valueOf(

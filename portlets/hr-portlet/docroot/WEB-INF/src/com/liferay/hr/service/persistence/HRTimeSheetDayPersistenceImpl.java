@@ -246,8 +246,6 @@ public class HRTimeSheetDayPersistenceImpl extends BasePersistenceImpl<HRTimeShe
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
-		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 		EntityCacheUtil.removeResult(HRTimeSheetDayModelImpl.ENTITY_CACHE_ENABLED,
 			HRTimeSheetDayImpl.class, hrTimeSheetDay.getPrimaryKey());
 

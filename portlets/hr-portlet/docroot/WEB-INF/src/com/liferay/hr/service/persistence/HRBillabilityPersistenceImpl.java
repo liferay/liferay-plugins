@@ -271,8 +271,6 @@ public class HRBillabilityPersistenceImpl extends BasePersistenceImpl<HRBillabil
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
-		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 		HRBillabilityModelImpl hrBillabilityModelImpl = (HRBillabilityModelImpl)hrBillability;
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_G_C,
@@ -324,8 +322,6 @@ public class HRBillabilityPersistenceImpl extends BasePersistenceImpl<HRBillabil
 				((hrBillability.getGroupId() != hrBillabilityModelImpl.getOriginalGroupId()) ||
 				!Validator.equals(hrBillability.getCode(),
 					hrBillabilityModelImpl.getOriginalCode()))) {
-			FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_G_C,
 				new Object[] {
 					Long.valueOf(hrBillabilityModelImpl.getOriginalGroupId()),

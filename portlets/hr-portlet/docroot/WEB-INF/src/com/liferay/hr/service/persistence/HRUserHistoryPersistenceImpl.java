@@ -246,8 +246,6 @@ public class HRUserHistoryPersistenceImpl extends BasePersistenceImpl<HRUserHist
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
-		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 		EntityCacheUtil.removeResult(HRUserHistoryModelImpl.ENTITY_CACHE_ENABLED,
 			HRUserHistoryImpl.class, hrUserHistory.getPrimaryKey());
 

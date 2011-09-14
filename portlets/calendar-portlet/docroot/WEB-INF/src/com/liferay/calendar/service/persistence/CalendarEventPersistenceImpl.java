@@ -289,8 +289,6 @@ public class CalendarEventPersistenceImpl extends BasePersistenceImpl<CalendarEv
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
-		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 		CalendarEventModelImpl calendarEventModelImpl = (CalendarEventModelImpl)calendarEvent;
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
@@ -347,8 +345,6 @@ public class CalendarEventPersistenceImpl extends BasePersistenceImpl<CalendarEv
 				(!Validator.equals(calendarEvent.getUuid(),
 					calendarEventModelImpl.getOriginalUuid()) ||
 				(calendarEvent.getGroupId() != calendarEventModelImpl.getOriginalGroupId()))) {
-			FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
 				new Object[] {
 					calendarEventModelImpl.getOriginalUuid(),

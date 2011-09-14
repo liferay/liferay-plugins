@@ -271,8 +271,6 @@ public class HRExpenseTypePersistenceImpl extends BasePersistenceImpl<HRExpenseT
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
-		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 		HRExpenseTypeModelImpl hrExpenseTypeModelImpl = (HRExpenseTypeModelImpl)hrExpenseType;
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_G_N,
@@ -324,8 +322,6 @@ public class HRExpenseTypePersistenceImpl extends BasePersistenceImpl<HRExpenseT
 				((hrExpenseType.getGroupId() != hrExpenseTypeModelImpl.getOriginalGroupId()) ||
 				!Validator.equals(hrExpenseType.getName(),
 					hrExpenseTypeModelImpl.getOriginalName()))) {
-			FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_G_N,
 				new Object[] {
 					Long.valueOf(hrExpenseTypeModelImpl.getOriginalGroupId()),

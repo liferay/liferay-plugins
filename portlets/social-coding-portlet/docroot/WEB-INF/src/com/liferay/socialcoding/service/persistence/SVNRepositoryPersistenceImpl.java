@@ -263,8 +263,6 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
-		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 		SVNRepositoryModelImpl svnRepositoryModelImpl = (SVNRepositoryModelImpl)svnRepository;
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_URL,
@@ -311,8 +309,6 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 		if (!isNew &&
 				(!Validator.equals(svnRepository.getUrl(),
 					svnRepositoryModelImpl.getOriginalUrl()))) {
-			FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_URL,
 				new Object[] { svnRepositoryModelImpl.getOriginalUrl() });
 		}

@@ -257,8 +257,6 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
-		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 		EntityCacheUtil.removeResult(AttachmentModelImpl.ENTITY_CACHE_ENABLED,
 			AttachmentImpl.class, attachment.getPrimaryKey());
 

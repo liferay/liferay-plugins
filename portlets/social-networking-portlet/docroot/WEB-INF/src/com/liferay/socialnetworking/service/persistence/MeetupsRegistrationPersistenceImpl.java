@@ -298,8 +298,6 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
-		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 		MeetupsRegistrationModelImpl meetupsRegistrationModelImpl = (MeetupsRegistrationModelImpl)meetupsRegistration;
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_ME,
@@ -349,8 +347,6 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 		if (!isNew &&
 				((meetupsRegistration.getUserId() != meetupsRegistrationModelImpl.getOriginalUserId()) ||
 				(meetupsRegistration.getMeetupsEntryId() != meetupsRegistrationModelImpl.getOriginalMeetupsEntryId()))) {
-			FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_ME,
 				new Object[] {
 					Long.valueOf(

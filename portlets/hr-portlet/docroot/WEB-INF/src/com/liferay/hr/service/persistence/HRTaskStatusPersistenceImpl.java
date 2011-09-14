@@ -269,8 +269,6 @@ public class HRTaskStatusPersistenceImpl extends BasePersistenceImpl<HRTaskStatu
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
-		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 		HRTaskStatusModelImpl hrTaskStatusModelImpl = (HRTaskStatusModelImpl)hrTaskStatus;
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_G_C,
@@ -321,8 +319,6 @@ public class HRTaskStatusPersistenceImpl extends BasePersistenceImpl<HRTaskStatu
 				((hrTaskStatus.getGroupId() != hrTaskStatusModelImpl.getOriginalGroupId()) ||
 				!Validator.equals(hrTaskStatus.getCode(),
 					hrTaskStatusModelImpl.getOriginalCode()))) {
-			FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_G_C,
 				new Object[] {
 					Long.valueOf(hrTaskStatusModelImpl.getOriginalGroupId()),

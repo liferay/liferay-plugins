@@ -241,8 +241,6 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
-		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 		EntityCacheUtil.removeResult(CheckoutModelImpl.ENTITY_CACHE_ENABLED,
 			CheckoutImpl.class, checkout.getPrimaryKey());
 

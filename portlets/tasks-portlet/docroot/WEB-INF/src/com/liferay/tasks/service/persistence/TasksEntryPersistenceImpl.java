@@ -337,8 +337,6 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
-		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 		EntityCacheUtil.removeResult(TasksEntryModelImpl.ENTITY_CACHE_ENABLED,
 			TasksEntryImpl.class, tasksEntry.getPrimaryKey());
 

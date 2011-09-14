@@ -321,8 +321,6 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
-		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 		MemberRequestModelImpl memberRequestModelImpl = (MemberRequestModelImpl)memberRequest;
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KEY,
@@ -376,8 +374,6 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 		if (!isNew &&
 				(!Validator.equals(memberRequest.getKey(),
 					memberRequestModelImpl.getOriginalKey()))) {
-			FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KEY,
 				new Object[] { memberRequestModelImpl.getOriginalKey() });
 		}
@@ -393,8 +389,6 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 				((memberRequest.getGroupId() != memberRequestModelImpl.getOriginalGroupId()) ||
 				(memberRequest.getReceiverUserId() != memberRequestModelImpl.getOriginalReceiverUserId()) ||
 				(memberRequest.getStatus() != memberRequestModelImpl.getOriginalStatus()))) {
-			FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_G_R_S,
 				new Object[] {
 					Long.valueOf(memberRequestModelImpl.getOriginalGroupId()),

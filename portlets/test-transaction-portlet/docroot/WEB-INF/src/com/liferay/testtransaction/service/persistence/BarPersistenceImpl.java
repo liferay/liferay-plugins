@@ -254,8 +254,6 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
-		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 		EntityCacheUtil.removeResult(BarModelImpl.ENTITY_CACHE_ENABLED,
 			BarImpl.class, bar.getPrimaryKey());
 

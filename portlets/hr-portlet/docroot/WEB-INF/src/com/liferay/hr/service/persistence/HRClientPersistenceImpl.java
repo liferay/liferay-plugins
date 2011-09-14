@@ -241,8 +241,6 @@ public class HRClientPersistenceImpl extends BasePersistenceImpl<HRClient>
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
-		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 		EntityCacheUtil.removeResult(HRClientModelImpl.ENTITY_CACHE_ENABLED,
 			HRClientImpl.class, hrClient.getPrimaryKey());
 

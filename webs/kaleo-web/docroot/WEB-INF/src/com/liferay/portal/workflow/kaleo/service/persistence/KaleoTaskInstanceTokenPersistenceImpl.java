@@ -319,8 +319,6 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
-		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 		KaleoTaskInstanceTokenModelImpl kaleoTaskInstanceTokenModelImpl = (KaleoTaskInstanceTokenModelImpl)kaleoTaskInstanceToken;
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KII_KTI,
@@ -372,8 +370,6 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 		if (!isNew &&
 				((kaleoTaskInstanceToken.getKaleoInstanceId() != kaleoTaskInstanceTokenModelImpl.getOriginalKaleoInstanceId()) ||
 				(kaleoTaskInstanceToken.getKaleoTaskId() != kaleoTaskInstanceTokenModelImpl.getOriginalKaleoTaskId()))) {
-			FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KII_KTI,
 				new Object[] {
 					Long.valueOf(

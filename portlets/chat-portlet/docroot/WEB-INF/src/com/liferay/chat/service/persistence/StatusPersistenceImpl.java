@@ -296,8 +296,6 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
-		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 		StatusModelImpl statusModelImpl = (StatusModelImpl)status;
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_USERID,
@@ -341,8 +339,6 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 
 		if (!isNew &&
 				(status.getUserId() != statusModelImpl.getOriginalUserId())) {
-			FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_USERID,
 				new Object[] { Long.valueOf(statusModelImpl.getOriginalUserId()) });
 		}

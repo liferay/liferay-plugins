@@ -284,8 +284,6 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
-		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 		OAuthConsumerModelImpl oAuthConsumerModelImpl = (OAuthConsumerModelImpl)oAuthConsumer;
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_G_S,
@@ -338,8 +336,6 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 					oAuthConsumerModelImpl.getOriginalGadgetKey()) ||
 				!Validator.equals(oAuthConsumer.getServiceName(),
 					oAuthConsumerModelImpl.getOriginalServiceName()))) {
-			FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_G_S,
 				new Object[] {
 					oAuthConsumerModelImpl.getOriginalGadgetKey(),

@@ -277,8 +277,6 @@ public class HRTimeOffFrequencyTypePersistenceImpl extends BasePersistenceImpl<H
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
-		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 		HRTimeOffFrequencyTypeModelImpl hrTimeOffFrequencyTypeModelImpl = (HRTimeOffFrequencyTypeModelImpl)hrTimeOffFrequencyType;
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_G_C,
@@ -331,8 +329,6 @@ public class HRTimeOffFrequencyTypePersistenceImpl extends BasePersistenceImpl<H
 				((hrTimeOffFrequencyType.getGroupId() != hrTimeOffFrequencyTypeModelImpl.getOriginalGroupId()) ||
 				!Validator.equals(hrTimeOffFrequencyType.getCode(),
 					hrTimeOffFrequencyTypeModelImpl.getOriginalCode()))) {
-			FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_G_C,
 				new Object[] {
 					Long.valueOf(

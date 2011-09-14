@@ -241,8 +241,6 @@ public class HRAssetPersistenceImpl extends BasePersistenceImpl<HRAsset>
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
-		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 		EntityCacheUtil.removeResult(HRAssetModelImpl.ENTITY_CACHE_ENABLED,
 			HRAssetImpl.class, hrAsset.getPrimaryKey());
 

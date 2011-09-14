@@ -290,8 +290,6 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
-		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 		KaleoConditionModelImpl kaleoConditionModelImpl = (KaleoConditionModelImpl)kaleoCondition;
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KALEONODEID,
@@ -338,8 +336,6 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 
 		if (!isNew &&
 				(kaleoCondition.getKaleoNodeId() != kaleoConditionModelImpl.getOriginalKaleoNodeId())) {
-			FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KALEONODEID,
 				new Object[] {
 					Long.valueOf(
