@@ -107,7 +107,7 @@ public class FooLocalServiceImpl extends FooLocalServiceBaseImpl {
 
 		assetEntryLocalService.updateEntry(
 			userId, foo.getGroupId(), Foo.class.getName(), foo.getFooId(),
-			foo.getUuid(), assetCategoryIds, assetTagNames, true, null, null,
+			foo.getUuid(), 0, assetCategoryIds, assetTagNames, true, null, null,
 			null, null, ContentTypes.TEXT_PLAIN_UTF8, foo.getField1(), null,
 			foo.getField1(), null, null, 0, 0, null, false);
 	}

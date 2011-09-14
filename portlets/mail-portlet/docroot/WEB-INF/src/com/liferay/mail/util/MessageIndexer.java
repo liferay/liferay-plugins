@@ -167,6 +167,10 @@ public class MessageIndexer extends BaseIndexer {
 		reindexMessages(companyId);
 	}
 
+	public String getPortletId() {
+		return PORTLET_ID;
+	}
+
 	@Override
 	protected String getPortletId(SearchContext searchContext) {
 		return PORTLET_ID;
