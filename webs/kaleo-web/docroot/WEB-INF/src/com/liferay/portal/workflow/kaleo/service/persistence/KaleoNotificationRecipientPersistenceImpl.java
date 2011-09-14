@@ -299,8 +299,6 @@ public class KaleoNotificationRecipientPersistenceImpl
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
-		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 		EntityCacheUtil.removeResult(KaleoNotificationRecipientModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoNotificationRecipientImpl.class,
 			kaleoNotificationRecipient.getPrimaryKey());

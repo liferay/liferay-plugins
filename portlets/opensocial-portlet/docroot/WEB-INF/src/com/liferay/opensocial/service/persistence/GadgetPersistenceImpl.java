@@ -292,8 +292,6 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
-		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 		GadgetModelImpl gadgetModelImpl = (GadgetModelImpl)gadget;
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_U,
@@ -349,8 +347,6 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 				((gadget.getCompanyId() != gadgetModelImpl.getOriginalCompanyId()) ||
 				!Validator.equals(gadget.getUrl(),
 					gadgetModelImpl.getOriginalUrl()))) {
-			FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_U,
 				new Object[] {
 					Long.valueOf(gadgetModelImpl.getOriginalCompanyId()),

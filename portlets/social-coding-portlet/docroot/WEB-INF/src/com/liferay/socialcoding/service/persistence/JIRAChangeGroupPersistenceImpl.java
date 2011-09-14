@@ -277,8 +277,6 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
-		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 		EntityCacheUtil.removeResult(JIRAChangeGroupModelImpl.ENTITY_CACHE_ENABLED,
 			JIRAChangeGroupImpl.class, jiraChangeGroup.getPrimaryKey());
 

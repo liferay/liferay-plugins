@@ -648,8 +648,6 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
-		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 		KBArticleModelImpl kbArticleModelImpl = (KBArticleModelImpl)kbArticle;
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
@@ -711,8 +709,6 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 				(!Validator.equals(kbArticle.getUuid(),
 					kbArticleModelImpl.getOriginalUuid()) ||
 				(kbArticle.getGroupId() != kbArticleModelImpl.getOriginalGroupId()))) {
-			FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
 				new Object[] {
 					kbArticleModelImpl.getOriginalUuid(),
@@ -733,8 +729,6 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		if (!isNew &&
 				((kbArticle.getResourcePrimKey() != kbArticleModelImpl.getOriginalResourcePrimKey()) ||
 				(kbArticle.getVersion() != kbArticleModelImpl.getOriginalVersion()))) {
-			FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_R_V,
 				new Object[] {
 					Long.valueOf(

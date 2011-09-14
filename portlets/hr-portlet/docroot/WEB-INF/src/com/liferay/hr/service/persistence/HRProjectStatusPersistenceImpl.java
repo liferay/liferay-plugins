@@ -272,8 +272,6 @@ public class HRProjectStatusPersistenceImpl extends BasePersistenceImpl<HRProjec
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
-		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 		HRProjectStatusModelImpl hrProjectStatusModelImpl = (HRProjectStatusModelImpl)hrProjectStatus;
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_G_C,
@@ -325,8 +323,6 @@ public class HRProjectStatusPersistenceImpl extends BasePersistenceImpl<HRProjec
 				((hrProjectStatus.getGroupId() != hrProjectStatusModelImpl.getOriginalGroupId()) ||
 				!Validator.equals(hrProjectStatus.getCode(),
 					hrProjectStatusModelImpl.getOriginalCode()))) {
-			FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_G_C,
 				new Object[] {
 					Long.valueOf(hrProjectStatusModelImpl.getOriginalGroupId()),

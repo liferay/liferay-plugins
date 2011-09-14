@@ -283,8 +283,6 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
-		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 		EntityCacheUtil.removeResult(JIRAActionModelImpl.ENTITY_CACHE_ENABLED,
 			JIRAActionImpl.class, jiraAction.getPrimaryKey());
 

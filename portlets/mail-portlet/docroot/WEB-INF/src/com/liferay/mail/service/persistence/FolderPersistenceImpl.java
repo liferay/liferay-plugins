@@ -279,8 +279,6 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
-		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 		FolderModelImpl folderModelImpl = (FolderModelImpl)folder;
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_A_F,
@@ -330,8 +328,6 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 				((folder.getAccountId() != folderModelImpl.getOriginalAccountId()) ||
 				!Validator.equals(folder.getFullName(),
 					folderModelImpl.getOriginalFullName()))) {
-			FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_A_F,
 				new Object[] {
 					Long.valueOf(folderModelImpl.getOriginalAccountId()),

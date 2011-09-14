@@ -286,8 +286,6 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
-		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 		AppModelImpl appModelImpl = (AppModelImpl)app;
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_REMOTEAPPID,
@@ -337,8 +335,6 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 
 		if (!isNew &&
 				(app.getRemoteAppId() != appModelImpl.getOriginalRemoteAppId())) {
-			FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_REMOTEAPPID,
 				new Object[] { Long.valueOf(
 						appModelImpl.getOriginalRemoteAppId()) });

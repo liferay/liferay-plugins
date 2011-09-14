@@ -289,8 +289,6 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
-		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 		MessageModelImpl messageModelImpl = (MessageModelImpl)message;
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_F_R,
@@ -338,8 +336,6 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 		if (!isNew &&
 				((message.getFolderId() != messageModelImpl.getOriginalFolderId()) ||
 				(message.getRemoteMessageId() != messageModelImpl.getOriginalRemoteMessageId()))) {
-			FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_F_R,
 				new Object[] {
 					Long.valueOf(messageModelImpl.getOriginalFolderId()),

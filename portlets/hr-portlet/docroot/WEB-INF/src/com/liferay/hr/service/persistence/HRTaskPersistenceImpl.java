@@ -241,8 +241,6 @@ public class HRTaskPersistenceImpl extends BasePersistenceImpl<HRTask>
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
-		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 		EntityCacheUtil.removeResult(HRTaskModelImpl.ENTITY_CACHE_ENABLED,
 			HRTaskImpl.class, hrTask.getPrimaryKey());
 

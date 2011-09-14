@@ -284,8 +284,6 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
-		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 		EntityCacheUtil.removeResult(SVNRevisionModelImpl.ENTITY_CACHE_ENABLED,
 			SVNRevisionImpl.class, svnRevision.getPrimaryKey());
 

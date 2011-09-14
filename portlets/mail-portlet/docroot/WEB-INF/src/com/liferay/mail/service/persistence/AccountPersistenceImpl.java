@@ -272,8 +272,6 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
-		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 		AccountModelImpl accountModelImpl = (AccountModelImpl)account;
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_A,
@@ -323,8 +321,6 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 				((account.getUserId() != accountModelImpl.getOriginalUserId()) ||
 				!Validator.equals(account.getAddress(),
 					accountModelImpl.getOriginalAddress()))) {
-			FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_A,
 				new Object[] {
 					Long.valueOf(accountModelImpl.getOriginalUserId()),

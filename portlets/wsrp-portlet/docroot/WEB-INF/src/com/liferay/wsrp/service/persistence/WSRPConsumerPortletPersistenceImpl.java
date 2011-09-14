@@ -306,8 +306,6 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
-		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 		WSRPConsumerPortletModelImpl wsrpConsumerPortletModelImpl = (WSRPConsumerPortletModelImpl)wsrpConsumerPortlet;
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_W_P,
@@ -365,8 +363,6 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 				((wsrpConsumerPortlet.getWsrpConsumerId() != wsrpConsumerPortletModelImpl.getOriginalWsrpConsumerId()) ||
 				!Validator.equals(wsrpConsumerPortlet.getPortletHandle(),
 					wsrpConsumerPortletModelImpl.getOriginalPortletHandle()))) {
-			FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_W_P,
 				new Object[] {
 					Long.valueOf(

@@ -246,8 +246,6 @@ public class HRUserProjectPersistenceImpl extends BasePersistenceImpl<HRUserProj
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
-		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 		EntityCacheUtil.removeResult(HRUserProjectModelImpl.ENTITY_CACHE_ENABLED,
 			HRUserProjectImpl.class, hrUserProject.getPrimaryKey());
 

@@ -298,8 +298,6 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
-		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 		WSRPProducerModelImpl wsrpProducerModelImpl = (WSRPProducerModelImpl)wsrpProducer;
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
@@ -355,8 +353,6 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 				(!Validator.equals(wsrpProducer.getUuid(),
 					wsrpProducerModelImpl.getOriginalUuid()) ||
 				(wsrpProducer.getGroupId() != wsrpProducerModelImpl.getOriginalGroupId()))) {
-			FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
 				new Object[] {
 					wsrpProducerModelImpl.getOriginalUuid(),

@@ -373,8 +373,6 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
-		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 		CalendarResourceModelImpl calendarResourceModelImpl = (CalendarResourceModelImpl)calendarResource;
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
@@ -437,8 +435,6 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 				(!Validator.equals(calendarResource.getUuid(),
 					calendarResourceModelImpl.getOriginalUuid()) ||
 				(calendarResource.getGroupId() != calendarResourceModelImpl.getOriginalGroupId()))) {
-			FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
 				new Object[] {
 					calendarResourceModelImpl.getOriginalUuid(),
@@ -460,8 +456,6 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 		if (!isNew &&
 				((calendarResource.getClassNameId() != calendarResourceModelImpl.getOriginalClassNameId()) ||
 				(calendarResource.getClassPK() != calendarResourceModelImpl.getOriginalClassPK()))) {
-			FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_C,
 				new Object[] {
 					Long.valueOf(

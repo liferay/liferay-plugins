@@ -289,8 +289,6 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
-		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 		FooModelImpl fooModelImpl = (FooModelImpl)foo;
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
@@ -343,8 +341,6 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 		if (!isNew &&
 				(!Validator.equals(foo.getUuid(), fooModelImpl.getOriginalUuid()) ||
 				(foo.getGroupId() != fooModelImpl.getOriginalGroupId()))) {
-			FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
 				new Object[] {
 					fooModelImpl.getOriginalUuid(),

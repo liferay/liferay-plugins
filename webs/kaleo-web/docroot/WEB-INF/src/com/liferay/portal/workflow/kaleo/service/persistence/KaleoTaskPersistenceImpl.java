@@ -283,8 +283,6 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
-		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 		KaleoTaskModelImpl kaleoTaskModelImpl = (KaleoTaskModelImpl)kaleoTask;
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KALEONODEID,
@@ -329,8 +327,6 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 
 		if (!isNew &&
 				(kaleoTask.getKaleoNodeId() != kaleoTaskModelImpl.getOriginalKaleoNodeId())) {
-			FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KALEONODEID,
 				new Object[] {
 					Long.valueOf(kaleoTaskModelImpl.getOriginalKaleoNodeId())

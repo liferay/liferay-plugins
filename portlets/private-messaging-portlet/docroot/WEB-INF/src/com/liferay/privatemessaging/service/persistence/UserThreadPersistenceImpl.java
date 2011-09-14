@@ -320,8 +320,6 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
-		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 		UserThreadModelImpl userThreadModelImpl = (UserThreadModelImpl)userThread;
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_M,
@@ -370,8 +368,6 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 		if (!isNew &&
 				((userThread.getUserId() != userThreadModelImpl.getOriginalUserId()) ||
 				(userThread.getMbThreadId() != userThreadModelImpl.getOriginalMbThreadId()))) {
-			FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_M,
 				new Object[] {
 					Long.valueOf(userThreadModelImpl.getOriginalUserId()),

@@ -335,8 +335,6 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
-		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 		KaleoTransitionModelImpl kaleoTransitionModelImpl = (KaleoTransitionModelImpl)kaleoTransition;
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KNI_N,
@@ -394,8 +392,6 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 				((kaleoTransition.getKaleoNodeId() != kaleoTransitionModelImpl.getOriginalKaleoNodeId()) ||
 				!Validator.equals(kaleoTransition.getName(),
 					kaleoTransitionModelImpl.getOriginalName()))) {
-			FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KNI_N,
 				new Object[] {
 					Long.valueOf(
@@ -420,8 +416,6 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 		if (!isNew &&
 				((kaleoTransition.getKaleoNodeId() != kaleoTransitionModelImpl.getOriginalKaleoNodeId()) ||
 				(kaleoTransition.getDefaultTransition() != kaleoTransitionModelImpl.getOriginalDefaultTransition()))) {
-			FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KNI_DT,
 				new Object[] {
 					Long.valueOf(

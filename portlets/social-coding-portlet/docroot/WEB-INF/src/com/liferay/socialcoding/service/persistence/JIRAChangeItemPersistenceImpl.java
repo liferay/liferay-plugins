@@ -262,8 +262,6 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
-		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 		EntityCacheUtil.removeResult(JIRAChangeItemModelImpl.ENTITY_CACHE_ENABLED,
 			JIRAChangeItemImpl.class, jiraChangeItem.getPrimaryKey());
 

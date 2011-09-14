@@ -272,8 +272,6 @@ public class HREmploymentTypePersistenceImpl extends BasePersistenceImpl<HREmplo
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
-		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 		HREmploymentTypeModelImpl hrEmploymentTypeModelImpl = (HREmploymentTypeModelImpl)hrEmploymentType;
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_G_C,
@@ -325,8 +323,6 @@ public class HREmploymentTypePersistenceImpl extends BasePersistenceImpl<HREmplo
 				((hrEmploymentType.getGroupId() != hrEmploymentTypeModelImpl.getOriginalGroupId()) ||
 				!Validator.equals(hrEmploymentType.getCode(),
 					hrEmploymentTypeModelImpl.getOriginalCode()))) {
-			FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_G_C,
 				new Object[] {
 					Long.valueOf(hrEmploymentTypeModelImpl.getOriginalGroupId()),

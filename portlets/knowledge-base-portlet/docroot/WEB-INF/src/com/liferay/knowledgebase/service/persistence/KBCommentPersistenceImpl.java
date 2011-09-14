@@ -348,8 +348,6 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
-		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 		KBCommentModelImpl kbCommentModelImpl = (KBCommentModelImpl)kbComment;
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
@@ -412,8 +410,6 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 				(!Validator.equals(kbComment.getUuid(),
 					kbCommentModelImpl.getOriginalUuid()) ||
 				(kbComment.getGroupId() != kbCommentModelImpl.getOriginalGroupId()))) {
-			FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
 				new Object[] {
 					kbCommentModelImpl.getOriginalUuid(),
@@ -435,8 +431,6 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 				((kbComment.getUserId() != kbCommentModelImpl.getOriginalUserId()) ||
 				(kbComment.getClassNameId() != kbCommentModelImpl.getOriginalClassNameId()) ||
 				(kbComment.getClassPK() != kbCommentModelImpl.getOriginalClassPK()))) {
-			FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_C_C,
 				new Object[] {
 					Long.valueOf(kbCommentModelImpl.getOriginalUserId()),

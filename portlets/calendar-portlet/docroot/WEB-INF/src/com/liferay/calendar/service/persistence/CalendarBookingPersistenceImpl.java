@@ -330,8 +330,6 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
-		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 		CalendarBookingModelImpl calendarBookingModelImpl = (CalendarBookingModelImpl)calendarBooking;
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
@@ -388,8 +386,6 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 				(!Validator.equals(calendarBooking.getUuid(),
 					calendarBookingModelImpl.getOriginalUuid()) ||
 				(calendarBooking.getGroupId() != calendarBookingModelImpl.getOriginalGroupId()))) {
-			FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
 				new Object[] {
 					calendarBookingModelImpl.getOriginalUuid(),

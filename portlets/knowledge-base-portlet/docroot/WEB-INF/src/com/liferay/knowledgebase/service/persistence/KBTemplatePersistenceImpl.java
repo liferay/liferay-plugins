@@ -298,8 +298,6 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
-		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 		KBTemplateModelImpl kbTemplateModelImpl = (KBTemplateModelImpl)kbTemplate;
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
@@ -355,8 +353,6 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 				(!Validator.equals(kbTemplate.getUuid(),
 					kbTemplateModelImpl.getOriginalUuid()) ||
 				(kbTemplate.getGroupId() != kbTemplateModelImpl.getOriginalGroupId()))) {
-			FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
 				new Object[] {
 					kbTemplateModelImpl.getOriginalUuid(),

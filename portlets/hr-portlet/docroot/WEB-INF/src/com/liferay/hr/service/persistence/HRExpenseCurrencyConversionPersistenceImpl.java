@@ -299,8 +299,6 @@ public class HRExpenseCurrencyConversionPersistenceImpl
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
-		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 		HRExpenseCurrencyConversionModelImpl hrExpenseCurrencyConversionModelImpl =
 			(HRExpenseCurrencyConversionModelImpl)hrExpenseCurrencyConversion;
 
@@ -363,8 +361,6 @@ public class HRExpenseCurrencyConversionPersistenceImpl
 				!Validator.equals(
 					hrExpenseCurrencyConversion.getConversionDate(),
 					hrExpenseCurrencyConversionModelImpl.getOriginalConversionDate()))) {
-			FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_G_F_T_C,
 				new Object[] {
 					Long.valueOf(

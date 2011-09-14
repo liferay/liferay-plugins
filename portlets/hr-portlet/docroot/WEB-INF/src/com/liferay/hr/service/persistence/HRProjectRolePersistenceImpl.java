@@ -246,8 +246,6 @@ public class HRProjectRolePersistenceImpl extends BasePersistenceImpl<HRProjectR
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
-		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 		EntityCacheUtil.removeResult(HRProjectRoleModelImpl.ENTITY_CACHE_ENABLED,
 			HRProjectRoleImpl.class, hrProjectRole.getPrimaryKey());
 

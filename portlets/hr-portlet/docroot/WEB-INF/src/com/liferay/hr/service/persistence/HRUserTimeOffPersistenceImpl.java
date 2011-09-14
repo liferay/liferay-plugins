@@ -246,8 +246,6 @@ public class HRUserTimeOffPersistenceImpl extends BasePersistenceImpl<HRUserTime
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
-		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 		EntityCacheUtil.removeResult(HRUserTimeOffModelImpl.ENTITY_CACHE_ENABLED,
 			HRUserTimeOffImpl.class, hrUserTimeOff.getPrimaryKey());
 

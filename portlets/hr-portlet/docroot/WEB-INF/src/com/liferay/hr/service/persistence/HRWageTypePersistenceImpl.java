@@ -267,8 +267,6 @@ public class HRWageTypePersistenceImpl extends BasePersistenceImpl<HRWageType>
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
-		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 		HRWageTypeModelImpl hrWageTypeModelImpl = (HRWageTypeModelImpl)hrWageType;
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_G_C,
@@ -318,8 +316,6 @@ public class HRWageTypePersistenceImpl extends BasePersistenceImpl<HRWageType>
 				((hrWageType.getGroupId() != hrWageTypeModelImpl.getOriginalGroupId()) ||
 				!Validator.equals(hrWageType.getCode(),
 					hrWageTypeModelImpl.getOriginalCode()))) {
-			FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
-
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_G_C,
 				new Object[] {
 					Long.valueOf(hrWageTypeModelImpl.getOriginalGroupId()),
