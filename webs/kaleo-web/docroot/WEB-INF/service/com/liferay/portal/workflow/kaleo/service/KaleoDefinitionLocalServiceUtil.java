@@ -283,12 +283,12 @@ public class KaleoDefinitionLocalServiceUtil {
 	public static com.liferay.portal.workflow.kaleo.model.KaleoDefinition addKaleoDefinition(
 		java.lang.String name, java.lang.String title,
 		java.lang.String description, java.lang.String content, int version,
-		long scope, com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .addKaleoDefinition(name, title, description, content,
-			version, scope, serviceContext);
+			version, serviceContext);
 	}
 
 	public static void deactivateKaleoDefinition(java.lang.String name,
@@ -397,24 +397,6 @@ public class KaleoDefinitionLocalServiceUtil {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService().incrementKaleoDefinition(name, title, serviceContext);
-	}
-
-	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> search(
-		java.lang.String name, java.lang.Boolean active, java.lang.Long scope,
-		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService()
-				   .search(name, active, scope, start, end, orderByComparator,
-			serviceContext);
-	}
-
-	public static int searchCount(java.lang.String name,
-		java.lang.Boolean active, java.lang.Long scope,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().searchCount(name, active, scope, serviceContext);
 	}
 
 	public static com.liferay.portal.workflow.kaleo.model.KaleoDefinition updateTitle(

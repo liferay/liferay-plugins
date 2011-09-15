@@ -560,19 +560,12 @@ public class ClpSerializer {
 
 				method12.invoke(newModel, value12);
 
-				Method method13 = newModelClass.getMethod("setScope",
+				Method method13 = newModelClass.getMethod("setStartKaleoNodeId",
 						new Class[] { Long.TYPE });
 
-				Long value13 = new Long(oldCplModel.getScope());
+				Long value13 = new Long(oldCplModel.getStartKaleoNodeId());
 
 				method13.invoke(newModel, value13);
-
-				Method method14 = newModelClass.getMethod("setStartKaleoNodeId",
-						new Class[] { Long.TYPE });
-
-				Long value14 = new Long(oldCplModel.getStartKaleoNodeId());
-
-				method14.invoke(newModel, value14);
 
 				return newModel;
 			}
@@ -3080,17 +3073,11 @@ public class ClpSerializer {
 
 				newModel.setActive(value12);
 
-				Method method13 = oldModelClass.getMethod("getScope");
+				Method method13 = oldModelClass.getMethod("getStartKaleoNodeId");
 
 				Long value13 = (Long)method13.invoke(oldModel, (Object[])null);
 
-				newModel.setScope(value13);
-
-				Method method14 = oldModelClass.getMethod("getStartKaleoNodeId");
-
-				Long value14 = (Long)method14.invoke(oldModel, (Object[])null);
-
-				newModel.setStartKaleoNodeId(value14);
+				newModel.setStartKaleoNodeId(value13);
 
 				return newModel;
 			}

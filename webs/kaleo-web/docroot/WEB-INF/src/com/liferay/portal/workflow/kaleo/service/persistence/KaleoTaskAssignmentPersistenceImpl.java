@@ -528,7 +528,8 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 		Object[] finderArgs = new Object[] {
 				companyId,
 				
-				start, end, orderByComparator
+				String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator)
 			};
 
 		List<KaleoTaskAssignment> list = (List<KaleoTaskAssignment>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_COMPANYID,
@@ -870,7 +871,8 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 		Object[] finderArgs = new Object[] {
 				kaleoDefinitionId,
 				
-				start, end, orderByComparator
+				String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator)
 			};
 
 		List<KaleoTaskAssignment> list = (List<KaleoTaskAssignment>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_KALEODEFINITIONID,
@@ -1218,7 +1220,8 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 		Object[] finderArgs = new Object[] {
 				kaleoClassName, kaleoClassPK,
 				
-				start, end, orderByComparator
+				String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator)
 			};
 
 		List<KaleoTaskAssignment> list = (List<KaleoTaskAssignment>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_KCN_KCPK,
@@ -1609,7 +1612,8 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 		Object[] finderArgs = new Object[] {
 				kaleoClassName, kaleoClassPK, assigneeClassName,
 				
-				start, end, orderByComparator
+				String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator)
 			};
 
 		List<KaleoTaskAssignment> list = (List<KaleoTaskAssignment>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_KCN_KCPK_ACN,
@@ -2031,7 +2035,10 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 	 */
 	public List<KaleoTaskAssignment> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] { start, end, orderByComparator };
+		Object[] finderArgs = new Object[] {
+				String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator)
+			};
 
 		List<KaleoTaskAssignment> list = (List<KaleoTaskAssignment>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
 				finderArgs, this);
