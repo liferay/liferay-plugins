@@ -32,8 +32,8 @@
 		<property name="nextMethodInterceptor" ref="transactionAdvice" />
 	</bean>
 	<bean id="transactionAdvice" class="com.liferay.portal.spring.transaction.TransactionInterceptor">
+		<property name="platformTransactionManager" ref="liferayTransactionManager" />
 		<property name="transactionAttributeSource" ref="transactionAttributeSource" />
-		<property name="transactionManager" ref="liferayTransactionManager" />
 	</bean>
 	<bean id="transactionAttributeSource" class="com.liferay.portal.spring.transaction.AnnotationTransactionAttributeSource" />
 </beans>

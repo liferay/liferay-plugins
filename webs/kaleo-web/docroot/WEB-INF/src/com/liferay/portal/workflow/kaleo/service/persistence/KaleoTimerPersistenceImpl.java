@@ -493,8 +493,7 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 		Object[] finderArgs = new Object[] {
 				kaleoClassName, kaleoClassPK,
 				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
+				start, end, orderByComparator
 			};
 
 		List<KaleoTimer> list = (List<KaleoTimer>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_KCN_KCPK,
@@ -885,8 +884,7 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 		Object[] finderArgs = new Object[] {
 				kaleoClassName, kaleoClassPK, blocking,
 				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
+				start, end, orderByComparator
 			};
 
 		List<KaleoTimer> list = (List<KaleoTimer>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_KCN_KCPK_BLOCKING,
@@ -1280,10 +1278,7 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 	 */
 	public List<KaleoTimer> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+		Object[] finderArgs = new Object[] { start, end, orderByComparator };
 
 		List<KaleoTimer> list = (List<KaleoTimer>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
 				finderArgs, this);
