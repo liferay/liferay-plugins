@@ -156,7 +156,9 @@ PortletURL portletURL = (PortletURL)request.getAttribute("view.jsp-portletURL");
 
 		message = message.toEscapedModel();
 
-		row.setBold(!MBThreadFlagLocalServiceUtil.hasThreadFlag(themeDisplay.getUserId(), thread));
+		boolean readThread = MBThreadFlagLocalServiceUtil.hasThreadFlag(themeDisplay.getUserId(), thread);
+
+		row.setBold(!readThread);
 		row.setObject(new Object[] {message, threadSubscriptionClassPKs});
 		row.setRestricted(!MBMessagePermission.contains(permissionChecker, message, ActionKeys.VIEW));
 		%>
