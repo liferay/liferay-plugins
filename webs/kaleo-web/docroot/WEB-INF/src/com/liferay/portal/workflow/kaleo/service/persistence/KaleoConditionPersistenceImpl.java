@@ -528,8 +528,7 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 		Object[] finderArgs = new Object[] {
 				companyId,
 				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
+				start, end, orderByComparator
 			};
 
 		List<KaleoCondition> list = (List<KaleoCondition>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_COMPANYID,
@@ -870,8 +869,7 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 		Object[] finderArgs = new Object[] {
 				kaleoDefinitionId,
 				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
+				start, end, orderByComparator
 			};
 
 		List<KaleoCondition> list = (List<KaleoCondition>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_KALEODEFINITIONID,
@@ -1334,10 +1332,7 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	 */
 	public List<KaleoCondition> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+		Object[] finderArgs = new Object[] { start, end, orderByComparator };
 
 		List<KaleoCondition> list = (List<KaleoCondition>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
 				finderArgs, this);
