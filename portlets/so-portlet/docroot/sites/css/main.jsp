@@ -156,7 +156,7 @@
 			}
 
 			.star a {
-				background: url(<%= request.getContextPath() %>/sites/images/star-empty.png) no-repeat 0 50%;
+				background: url(<%= request.getContextPath() %>/sites/images/star_empty.png) no-repeat 0 50%;
 				float: right;
 			}
 
