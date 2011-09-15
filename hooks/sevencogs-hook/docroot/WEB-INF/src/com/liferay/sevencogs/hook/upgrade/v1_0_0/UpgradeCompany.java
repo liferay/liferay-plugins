@@ -236,20 +236,18 @@ public class UpgradeCompany extends UpgradeProcess {
 			long userId, long groupId, String fileName)
 		throws Exception {
 
-		Map<Locale, String> structureNameMap = new HashMap<Locale, String>();
-
-		structureNameMap.put(Locale.US, "Single Image");
-
-		Map<Locale, String> structureDescMap = new HashMap<Locale, String>();
-
-		structureDescMap.put(Locale.US, "A single image, optional link");
-
 		String xsd = getString(fileName);
 
 		ServiceContext serviceContext = new ServiceContext();
 
 		serviceContext.setAddCommunityPermissions(true);
 		serviceContext.setAddGuestPermissions(true);
+
+		Map<Locale, String> structureDescMap = new HashMap<Locale, String>();
+		Map<Locale, String> structureNameMap = new HashMap<Locale, String>();
+
+		structureDescMap.put(Locale.US, "A single image, optional link");
+		structureNameMap.put(Locale.US, "Single Image");
 
 		return JournalStructureLocalServiceUtil.addStructure(
 			userId, groupId, "SINGLE-IMAGE", false, StringPool.BLANK,
@@ -260,20 +258,18 @@ public class UpgradeCompany extends UpgradeProcess {
 			long userId, long groupId, String fileName)
 		throws Exception {
 
-		Map<Locale, String> templateNameMap = new HashMap<Locale, String>();
-
-		templateNameMap.put(Locale.US, "Single Image");
-
-		Map<Locale, String> templateDescMap = new HashMap<Locale, String>();
-
-		templateDescMap.put(Locale.US, "A single image, optional URL");
-
 		String xsl = getString(fileName);
 
 		ServiceContext serviceContext = new ServiceContext();
 
 		serviceContext.setAddCommunityPermissions(true);
 		serviceContext.setAddGuestPermissions(true);
+
+		Map<Locale, String> templateDescMap = new HashMap<Locale, String>();
+		Map<Locale, String> templateNameMap = new HashMap<Locale, String>();
+
+		templateDescMap.put(Locale.US, "A single image, optional URL");
+		templateNameMap.put(Locale.US, "Single Image");
 
 		return JournalTemplateLocalServiceUtil.addTemplate(
 			userId, groupId, "SINGLE-IMAGE", false, "SINGLE-IMAGE",
@@ -324,13 +320,13 @@ public class UpgradeCompany extends UpgradeProcess {
 
 		String body = getString(fileName);
 
-		List<ObjectValuePair<String, InputStream>> inputStreamOVPs =
-			new ArrayList<ObjectValuePair<String, InputStream>>();
-
 		InputStream is = getInputStream(fileName);
 
 		ObjectValuePair<String, InputStream> inputStreamOVP =
-				new ObjectValuePair<String, InputStream>(fileName, is);
+			new ObjectValuePair<String, InputStream>(fileName, is);
+
+		List<ObjectValuePair<String, InputStream>> inputStreamOVPs =
+			new ArrayList<ObjectValuePair<String, InputStream>>();
 
 		inputStreamOVPs.add(inputStreamOVP);
 
