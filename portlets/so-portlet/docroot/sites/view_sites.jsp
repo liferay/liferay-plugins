@@ -61,7 +61,7 @@ int groupsCount = GroupLocalServiceUtil.searchCount(themeDisplay.getCompanyId(),
 		<div class="buttons-right">
 			<aui:button cssClass="previous" disabled="<%= true %>" value="previous" />
 
-			<aui:button cssClass="next" disabled="<%= groupsCount < 20 %>" value="next" />
+			<aui:button cssClass="next" disabled="<%= groupsCount < maxResultSize %>" value="next" />
 		</div>
 
 		<div style="clear: both;"><!-- --></div>
