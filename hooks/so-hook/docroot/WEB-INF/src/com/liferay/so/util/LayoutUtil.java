@@ -152,7 +152,7 @@ public class LayoutUtil {
 			PortletPreferencesFactoryUtil.getLayoutPortletSetup(
 				layout, "101_INSTANCE_abcd");
 
-		portletSetup.setValue("displayStyle", "titleList");
+		portletSetup.setValue("displayStyle", "title-list");
 		portletSetup.setValue("assetLinkBehaviour", "viewInPortlet");
 
 		portletSetup.store();
