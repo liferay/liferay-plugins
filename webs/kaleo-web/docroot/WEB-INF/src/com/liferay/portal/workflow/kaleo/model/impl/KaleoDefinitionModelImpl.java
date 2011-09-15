@@ -79,10 +79,9 @@ public class KaleoDefinitionModelImpl extends BaseModelImpl<KaleoDefinition>
 			{ "content", Types.VARCHAR },
 			{ "version", Types.INTEGER },
 			{ "active_", Types.BOOLEAN },
-			{ "scope", Types.BIGINT },
 			{ "startKaleoNodeId", Types.BIGINT }
 		};
-	public static final String TABLE_SQL_CREATE = "create table KaleoDefinition (kaleoDefinitionId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,name VARCHAR(200) null,title STRING null,description STRING null,content STRING null,version INTEGER,active_ BOOLEAN,scope LONG,startKaleoNodeId LONG)";
+	public static final String TABLE_SQL_CREATE = "create table KaleoDefinition (kaleoDefinitionId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,name VARCHAR(200) null,title STRING null,description STRING null,content STRING null,version INTEGER,active_ BOOLEAN,startKaleoNodeId LONG)";
 	public static final String TABLE_SQL_DROP = "drop table KaleoDefinition";
 	public static final String ORDER_BY_JPQL = " ORDER BY kaleoDefinition.version DESC";
 	public static final String ORDER_BY_SQL = " ORDER BY KaleoDefinition.version DESC";
@@ -370,14 +369,6 @@ public class KaleoDefinitionModelImpl extends BaseModelImpl<KaleoDefinition>
 		_active = active;
 	}
 
-	public long getScope() {
-		return _scope;
-	}
-
-	public void setScope(long scope) {
-		_scope = scope;
-	}
-
 	public long getStartKaleoNodeId() {
 		return _startKaleoNodeId;
 	}
@@ -434,7 +425,6 @@ public class KaleoDefinitionModelImpl extends BaseModelImpl<KaleoDefinition>
 		kaleoDefinitionImpl.setContent(getContent());
 		kaleoDefinitionImpl.setVersion(getVersion());
 		kaleoDefinitionImpl.setActive(getActive());
-		kaleoDefinitionImpl.setScope(getScope());
 		kaleoDefinitionImpl.setStartKaleoNodeId(getStartKaleoNodeId());
 
 		kaleoDefinitionImpl.resetOriginalValues();
@@ -583,8 +573,6 @@ public class KaleoDefinitionModelImpl extends BaseModelImpl<KaleoDefinition>
 
 		kaleoDefinitionCacheModel.active = getActive();
 
-		kaleoDefinitionCacheModel.scope = getScope();
-
 		kaleoDefinitionCacheModel.startKaleoNodeId = getStartKaleoNodeId();
 
 		return kaleoDefinitionCacheModel;
@@ -592,7 +580,7 @@ public class KaleoDefinitionModelImpl extends BaseModelImpl<KaleoDefinition>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(31);
+		StringBundler sb = new StringBundler(29);
 
 		sb.append("{kaleoDefinitionId=");
 		sb.append(getKaleoDefinitionId());
@@ -620,8 +608,6 @@ public class KaleoDefinitionModelImpl extends BaseModelImpl<KaleoDefinition>
 		sb.append(getVersion());
 		sb.append(", active=");
 		sb.append(getActive());
-		sb.append(", scope=");
-		sb.append(getScope());
 		sb.append(", startKaleoNodeId=");
 		sb.append(getStartKaleoNodeId());
 		sb.append("}");
@@ -630,7 +616,7 @@ public class KaleoDefinitionModelImpl extends BaseModelImpl<KaleoDefinition>
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(49);
+		StringBundler sb = new StringBundler(46);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.portal.workflow.kaleo.model.KaleoDefinition");
@@ -689,10 +675,6 @@ public class KaleoDefinitionModelImpl extends BaseModelImpl<KaleoDefinition>
 		sb.append(getActive());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>scope</column-name><column-value><![CDATA[");
-		sb.append(getScope());
-		sb.append("]]></column-value></column>");
-		sb.append(
 			"<column><column-name>startKaleoNodeId</column-name><column-value><![CDATA[");
 		sb.append(getStartKaleoNodeId());
 		sb.append("]]></column-value></column>");
@@ -725,7 +707,6 @@ public class KaleoDefinitionModelImpl extends BaseModelImpl<KaleoDefinition>
 	private int _originalVersion;
 	private boolean _setOriginalVersion;
 	private boolean _active;
-	private long _scope;
 	private long _startKaleoNodeId;
 	private transient ExpandoBridge _expandoBridge;
 	private KaleoDefinition _escapedModelProxy;

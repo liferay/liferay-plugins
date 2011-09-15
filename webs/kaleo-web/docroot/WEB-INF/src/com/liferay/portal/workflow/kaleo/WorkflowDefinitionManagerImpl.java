@@ -31,14 +31,12 @@ import java.util.List;
 /**
  * @author Michael C. Han
  * @author Eduardo Lundgren
- * @author Marcellus Tavares
  */
 public class WorkflowDefinitionManagerImpl
 	implements WorkflowDefinitionManager {
 
 	public WorkflowDefinition deployWorkflowDefinition(
-			long companyId, long userId, String title, InputStream inputStream,
-			long scope)
+			long companyId, long userId, String title, InputStream inputStream)
 		throws WorkflowException {
 
 		ServiceContext serviceContext = new ServiceContext();
@@ -47,7 +45,7 @@ public class WorkflowDefinitionManagerImpl
 		serviceContext.setUserId(userId);
 
 		return _workflowEngine.deployWorkflowDefinition(
-			title, inputStream, scope, serviceContext);
+			title, inputStream, serviceContext);
 	}
 
 	public int getActiveWorkflowDefinitionCount(long companyId)
@@ -232,45 +230,6 @@ public class WorkflowDefinitionManagerImpl
 					name, start, end, orderByComparator, serviceContext);
 
 			return toWorkflowDefinitions(kaleoDefinitions);
-		}
-		catch (Exception e) {
-			throw new WorkflowException(e);
-		}
-	}
-
-	public List<WorkflowDefinition> search(
-			long companyId, String name, Boolean active, Long scope, int start,
-			int end, OrderByComparator orderByComparator)
-		throws WorkflowException {
-
-		try {
-			ServiceContext serviceContext = new ServiceContext();
-
-			serviceContext.setCompanyId(companyId);
-
-			List<KaleoDefinition> kaleoDefinitions =
-				KaleoDefinitionLocalServiceUtil.search(
-					name, active, scope, start, end, orderByComparator,
-					serviceContext);
-
-			return toWorkflowDefinitions(kaleoDefinitions);
-		}
-		catch (Exception e) {
-			throw new WorkflowException(e);
-		}
-	}
-
-	public int searchCount(
-			long companyId, String name, Boolean active, Long scope)
-		throws WorkflowException {
-
-		try {
-			ServiceContext serviceContext = new ServiceContext();
-
-			serviceContext.setCompanyId(companyId);
-
-			return KaleoDefinitionLocalServiceUtil.searchCount(
-				name, active, scope, serviceContext);
 		}
 		catch (Exception e) {
 			throw new WorkflowException(e);

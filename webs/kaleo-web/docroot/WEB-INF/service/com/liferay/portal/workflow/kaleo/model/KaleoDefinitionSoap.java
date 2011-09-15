@@ -43,7 +43,6 @@ public class KaleoDefinitionSoap implements Serializable {
 		soapModel.setContent(model.getContent());
 		soapModel.setVersion(model.getVersion());
 		soapModel.setActive(model.getActive());
-		soapModel.setScope(model.getScope());
 		soapModel.setStartKaleoNodeId(model.getStartKaleoNodeId());
 
 		return soapModel;
@@ -207,14 +206,6 @@ public class KaleoDefinitionSoap implements Serializable {
 		_active = active;
 	}
 
-	public long getScope() {
-		return _scope;
-	}
-
-	public void setScope(long scope) {
-		_scope = scope;
-	}
-
 	public long getStartKaleoNodeId() {
 		return _startKaleoNodeId;
 	}
@@ -236,6 +227,5 @@ public class KaleoDefinitionSoap implements Serializable {
 	private String _content;
 	private int _version;
 	private boolean _active;
-	private long _scope;
 	private long _startKaleoNodeId;
 }

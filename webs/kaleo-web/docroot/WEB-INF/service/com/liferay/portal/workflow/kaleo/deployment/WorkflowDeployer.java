@@ -26,8 +26,7 @@ import com.liferay.portal.workflow.kaleo.definition.Definition;
 public interface WorkflowDeployer {
 
 	public WorkflowDefinition deploy(
-			String title, Definition definition, long scope,
-			ServiceContext serviceContext)
+			String title, Definition definition, ServiceContext serviceContext)
 		throws PortalException, SystemException;
 
 }

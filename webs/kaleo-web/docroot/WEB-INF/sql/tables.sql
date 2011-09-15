@@ -46,7 +46,6 @@ create table KaleoDefinition (
 	content STRING null,
 	version INTEGER,
 	active_ BOOLEAN,
-	scope LONG,
 	startKaleoNodeId LONG
 );
 

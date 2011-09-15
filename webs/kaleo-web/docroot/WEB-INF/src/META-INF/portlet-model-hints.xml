@@ -75,7 +75,6 @@
 		</field>
 		<field name="version" type="int" />
 		<field name="active" type="boolean" />
-		<field name="scope" type="long" />
 		<field name="startKaleoNodeId" type="long" />
 	</model>
 	<model name="com.liferay.portal.workflow.kaleo.model.KaleoInstance">
