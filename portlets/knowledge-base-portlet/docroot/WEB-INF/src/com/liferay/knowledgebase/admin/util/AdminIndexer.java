@@ -161,6 +161,10 @@ public class AdminIndexer extends BaseIndexer {
 		reindexKBArticles(companyId);
 	}
 
+	public String getPortletId() {
+		return PORTLET_ID;
+	}
+
 	@Override
 	protected String getPortletId(SearchContext searchContext) {
 		return PORTLET_ID;
