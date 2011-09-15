@@ -58,6 +58,10 @@ public class AdminIndexer extends BaseIndexer {
 		return CLASS_NAMES;
 	}
 
+	public String getPortletId() {
+		return PORTLET_ID;
+	}
+
 	@Override
 	public void postProcessSearchQuery(
 			BooleanQuery searchQuery, SearchContext searchContext)
@@ -159,10 +163,6 @@ public class AdminIndexer extends BaseIndexer {
 		long companyId = GetterUtil.getLong(ids[0]);
 
 		reindexKBArticles(companyId);
-	}
-
-	public String getPortletId() {
-		return PORTLET_ID;
 	}
 
 	@Override
