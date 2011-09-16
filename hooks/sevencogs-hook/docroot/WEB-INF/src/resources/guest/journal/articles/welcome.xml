@@ -57,7 +57,7 @@
 					Welcome to Liferay
 				</h2>
 
-				<img alt="Shared Workspaces" class="right" src="/image/image_gallery?uuid=[$SHARED_WORKSPACES_IG_IMAGE_UUID$]&groupId=[$GROUP_ID$]" />
+				<img alt="Shared Workspaces" class="right" src="/image/[$GROUP_ID$]/[$SHARED_WORKSPACES_IG_IMAGE_UUID$]" />
 
 				<p class="intro">
 					Liferay is a complete, all-in-one open source enterprise portal solution and web application platform.
@@ -85,7 +85,7 @@
 
 				<h4>Social Communities and Networks</h4>
 
-				<img alt="Liferay Community Image" class="right" src="/image/image_gallery?uuid=[$SOCIAL_NETWORKING_IG_IMAGE_UUID$]&groupId=[$GROUP_ID$]" />
+				<img alt="Liferay Community Image" class="right" src="/image/[$GROUP_ID$]/[$SOCIAL_NETWORKING_IG_IMAGE_UUID$]" />
 
 				<p>
 					Remember Eddie, Olivia, and Johnny from accounting? What about Tom, Ryan, Jenn, and Steve from professional services? How do they communicate? E-mail can only go so far and instant messages can get lost or deleted. Now you're probably wondering, is there a better way?
@@ -101,7 +101,7 @@
 
 				<h4>Content Management System</h4>
 
-				<img alt="Liferay CMS Image" class="right" src="/image/image_gallery?uuid=[$WEB_PUBLISHING_IG_IMAGE_UUID$]&groupId=[$GROUP_ID$]" />
+				<img alt="Liferay CMS Image" class="right" src="/image/[$GROUP_ID$]/[$WEB_PUBLISHING_IG_IMAGE_UUID$]" />
 
 				<p>
 					Liferay isn't just an internal portal, as an external and facing portal, you'll have the tools you need to create beautiful, dynamic websites. Create content through an editorial workflow then use and re-use that content ubiquitously through your portal.
@@ -113,7 +113,7 @@
 
 				<h3>As a Platform</h3>
 
-				<img alt="Platform Image" class="right" src="/image/image_gallery?uuid=[$PORTAL_MASHUPS_IG_IMAGE_UUID$]&groupId=[$GROUP_ID$]" />
+				<img alt="Platform Image" class="right" src="/image/[$GROUP_ID$]/[$PORTAL_MASHUPS_IG_IMAGE_UUID$]" />
 
 				<p>
 					Liferay is a robust web application platform.It's open source so developers can see how things work.
