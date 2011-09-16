@@ -602,7 +602,7 @@ public class UpgradeCompany extends UpgradeProcess {
 			companyId, null, null, null, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
 		for (Group group : groups) {
-			DLAppLocalServiceUtil.deleteFolder(group.getGroupId());
+			DLAppLocalServiceUtil.deleteAll(group.getGroupId());
 
 			JournalArticleLocalServiceUtil.deleteArticles(group.getGroupId());
 			JournalTemplateLocalServiceUtil.deleteTemplates(group.getGroupId());
