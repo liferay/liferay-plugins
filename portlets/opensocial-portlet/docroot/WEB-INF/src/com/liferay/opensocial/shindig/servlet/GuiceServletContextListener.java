@@ -43,7 +43,8 @@ public class GuiceServletContextListener extends BasePortalLifecycle
 
 	@Override
 	protected void doPortalInit() throws Exception {
-		ClassLoader portletClassLoader = PortletClassLoaderUtil.getClassLoader();
+		ClassLoader portletClassLoader =
+			PortletClassLoaderUtil.getClassLoader();
 
 		Thread currentThread = Thread.currentThread();
 
