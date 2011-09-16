@@ -18,7 +18,7 @@
 			</h3>
 
 			<p>
-				<img alt="" src="/image/image_gallery?uuid=[$IG_IMAGE_1_UUID$]&amp;groupId=[$GROUP_ID$]" /><br/>
+				<img alt="" src="/image/[$GROUP_ID$]/[$IG_IMAGE_1_UUID$]" /><br/>
 				UiB-612 ipsum dolor sit amet, consectetur adipiscing elit. Aliquam viverra pellentesque ante ut tristique. Etiam non elit nibh, id laoreet felis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla sit amet quam risus, eleifend porta massa. Nam suscipit lectus blandit arcu rutrum vitae semper dui porttitor. Curabitur rutrum ultricies mi, at aliquet nisi auctor sit amet. Fusce sed iaculis sapien.
 			</p>
 
@@ -27,7 +27,7 @@
 			</h3>
 
 			<p>
-				<img alt="" src="/image/image_gallery?uuid=[$IG_IMAGE_2_UUID$]&amp;groupId=[$GROUP_ID$]" /><br/>
+				<img alt="" src="/image/[$GROUP_ID$]/[$IG_IMAGE_2_UUID$]" /><br/>
 				ZiB-550 ipsum dolor sit amet, consectetur adipiscing elit. Aliquam viverra pellentesque ante ut tristique. Etiam non elit nibh, id laoreet felis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla sit amet quam risus, eleifend porta massa. Nam suscipit lectus blandit arcu rutrum vitae semper dui porttitor. Curabitur rutrum ultricies mi, at aliquet nisi auctor sit amet. Fusce sed iaculis sapien.
 			</p>
 		]]>

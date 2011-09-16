@@ -9,7 +9,7 @@
 				</h1>
 				<div class="callout">
 					<div class="callout-extraborder">
-						<div class="callout-content" style="background: url(/image/image_gallery?uuid=[$COG_BLUE_IG_IMAGE_UUID$]&amp;groupId=[$GROUP_ID$]) no-repeat 23px 27px; padding: 14px 24px 0;">
+						<div class="callout-content" style="background: url(/image/[$GROUP_ID$]/[$COG_BLUE_IG_IMAGE_UUID$]) no-repeat 23px 27px; padding: 14px 24px 0;">
 							<article class="small-after-icon-callout">
 								<h1>
 									Titanium Series
@@ -28,7 +28,7 @@
 								</ul>
 							</article>
 						</div>
-						<div class="callout-content" style="background: url(/image/image_gallery?uuid=[$COG_ORANGE_IG_IMAGE_UUID$]&amp;groupId=[$GROUP_ID$]) no-repeat 23px 27px; padding: 14px 24px 0;">
+						<div class="callout-content" style="background: url(/image/[$GROUP_ID$]/[$COG_ORANGE_IG_IMAGE_UUID$]) no-repeat 23px 27px; padding: 14px 24px 0;">
 							<article class="small-after-icon-callout">
 								<h1>
 									Adamantium Series
@@ -47,7 +47,7 @@
 								</ul>
 							</article>
 						</div>
-						<div class="callout-content" style="background: url(/image/image_gallery?uuid=[$COG_LIGHT_BLUE_IG_IMAGE_UUID$]&amp;groupId=[$GROUP_ID$]) no-repeat 23px 27px; padding: 14px 24px 0;">
+						<div class="callout-content" style="background: url(/image/[$GROUP_ID$]/[$COG_LIGHT_BLUE_IG_IMAGE_UUID$]) no-repeat 23px 27px; padding: 14px 24px 0;">
 							<article class="small-after-icon-callout" style="border-bottom: 0;">
 								<h1>
 									Vibranium Series
