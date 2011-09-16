@@ -498,7 +498,7 @@ public class EditorPortlet extends AdminPortlet {
 
 		DLAppServiceUtil.updateFileEntry(
 			fileEntryId, fileEntryTitle, resourceRequest.getContentType(),
-			fileEntryTitle, fileEntry.getDescription(), StringPool.BLANK, 
+			fileEntryTitle, fileEntry.getDescription(), StringPool.BLANK,
 			false, bytes, serviceContext);
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
