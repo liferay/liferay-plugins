@@ -22,14 +22,18 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.plugin.PluginPackage;
 import com.liferay.portal.kernel.util.FileUtil;
+import com.liferay.portal.kernel.util.ServerDetector;
 import com.liferay.servermanager.util.FileUploadUtil;
 import com.liferay.servermanager.util.JSONKeys;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FilenameFilter;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Queue;
 
@@ -149,16 +153,18 @@ public class PluginExecutor extends BaseExecutor {
 
 		String context = arguments.poll();
 
-		File contextDirectory = getDeployDirectory(context);
+		File[] deployDirectories = getDeployDirectories(context);
 
-		if (!contextDirectory.exists()) {
-			responseJSONObject.put(
-				JSONKeys.ERROR,
-				"Context directory " + contextDirectory.getAbsolutePath() +
-					" does not exist");
-			responseJSONObject.put(JSONKeys.STATUS, 1);
+		for (File deployDirectory : deployDirectories) {
+			if (!deployDirectory.exists()) {
+				responseJSONObject.put(
+						JSONKeys.ERROR,
+						"Context directory " + deployDirectory.getAbsolutePath() +
+							" does not exist");
+					responseJSONObject.put(JSONKeys.STATUS, 1);
 
-			return;
+					return;
+			}
 		}
 
 		File tempFile = getTempFile(request, responseJSONObject);
@@ -167,10 +173,12 @@ public class PluginExecutor extends BaseExecutor {
 			return;
 		}
 
-		FileUtil.unzip(tempFile, contextDirectory);
+		for (File deployDirectory : deployDirectories) {
+			FileUtil.unzip(tempFile, deployDirectory);
+		}
 
 		File partialAppDeletePropsFile = new File(
-			contextDirectory, "META-INF/liferay-partialapp-delete.props");
+			deployDirectories[0], "META-INF/liferay-partialapp-delete.props");
 
 		if (!partialAppDeletePropsFile.exists()) {
 			return;
@@ -182,43 +190,75 @@ public class PluginExecutor extends BaseExecutor {
 		String line = null;
 
 		while ((line = bufferedReader.readLine()) != null) {
-			File staleFile = new File(contextDirectory, line.trim());
+			for (File deployDirectory : deployDirectories) {
+				File staleFile = new File(deployDirectory, line.trim());
 
-			if (!staleFile.exists()) {
-				continue;
-			}
+				if (!staleFile.exists()) {
+					continue;
+				}
 
-			boolean success = FileUtils.deleteQuietly(staleFile);
+				boolean success = FileUtils.deleteQuietly(staleFile);
 
-			if (!success) {
-				String message =
-					"Could not delete file " + staleFile.getAbsolutePath();
+				if (!success) {
+					String message =
+						"Could not delete file " + staleFile.getAbsolutePath();
 
-				_log.error(message);
+					_log.error(message);
 
-				responseJSONObject.put(JSONKeys.ERROR, message);
+					responseJSONObject.put(JSONKeys.ERROR, message);
+				}
 			}
 		}
 
 		FileUtils.deleteQuietly(partialAppDeletePropsFile);
 	}
 
-	protected File getDeployDirectory(String context) throws Exception {
+	protected File[] getDeployDirectories(final String context) throws Exception {
+		List<File> deployDirectories = new ArrayList<File>();
+
 		String deployDirName = DeployManagerUtil.getDeployDir();
 
 		File deployDir = new File(deployDirName, context);
 
 		if (deployDir.exists()) {
-			return deployDir;
+			deployDirectories.add(deployDir);
+		}
+		else {
+			File deployWarDir = new File(deployDirName, context + ".war");
+			deployDirectories.add(deployWarDir);
 		}
 
-		File deployWarDir = new File(deployDirName, context + ".war");
+		if (ServerDetector.isTomcat()) {
+			File tmpDir = new File(System.getProperty("java.io.tmpdir"));
 
-		if (deployWarDir.exists()) {
-			return deployWarDir;
+			if (tmpDir.exists()) {
+				File[] tempContexts = tmpDir.listFiles(new FilenameFilter() {
+
+					public boolean accept(File dir, String name) {
+						if (name.endsWith("-" + context)) {
+							return true;
+						}
+
+						return false;
+					}
+				});
+
+				if (tempContexts != null && tempContexts.length > 0)
+
+				Arrays.sort(tempContexts, new Comparator<File>() {
+
+					public int compare(File arg0, File arg1) {
+						return arg0.getName().compareTo(arg1.getName());
+					}
+				});
+
+				File tempDeployDir = tempContexts[tempContexts.length - 1];
+
+				deployDirectories.add(tempDeployDir);
+			}
 		}
 
-		return deployDir;
+		return deployDirectories.toArray(new File[deployDirectories.size()]);
 	}
 
 	protected File getTempFile(
