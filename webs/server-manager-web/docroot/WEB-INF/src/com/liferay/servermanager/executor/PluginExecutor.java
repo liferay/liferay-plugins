@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.plugin.PluginPackage;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.ServerDetector;
+import com.liferay.portal.kernel.util.SystemProperties;
 import com.liferay.servermanager.util.FileUploadUtil;
 import com.liferay.servermanager.util.JSONKeys;
 
@@ -70,7 +71,7 @@ public class PluginExecutor extends BaseExecutor {
 		}
 
 		String message =
-			"Could not remove temp directory " + tempFile.getParentFile();
+			"Unable to remove temp directory " + tempFile.getParentFile();
 
 		_log.error(message);
 
@@ -82,7 +83,7 @@ public class PluginExecutor extends BaseExecutor {
 			return;
 		}
 
-		message = "Could not remove temp file " + tempFile;
+		message = "Unable to remove temp file " + tempFile;
 
 		_log.error(message);
 
@@ -153,17 +154,17 @@ public class PluginExecutor extends BaseExecutor {
 
 		String context = arguments.poll();
 
-		File[] deployDirectories = getDeployDirectories(context);
+		List<File> deployDirs = getDeployDirectories(context);
 
-		for (File deployDirectory : deployDirectories) {
-			if (!deployDirectory.exists()) {
+		for (File deployDir : deployDirs) {
+			if (!deployDir.exists()) {
 				responseJSONObject.put(
-						JSONKeys.ERROR,
-						"Context directory " + deployDirectory.getAbsolutePath() +
-							" does not exist");
-					responseJSONObject.put(JSONKeys.STATUS, 1);
+					JSONKeys.ERROR,
+					"Context directory " + deployDir.getAbsolutePath() +
+						" does not exist");
+				responseJSONObject.put(JSONKeys.STATUS, 1);
 
-					return;
+				return;
 			}
 		}
 
@@ -173,12 +174,12 @@ public class PluginExecutor extends BaseExecutor {
 			return;
 		}
 
-		for (File deployDirectory : deployDirectories) {
+		for (File deployDirectory : deployDirs) {
 			FileUtil.unzip(tempFile, deployDirectory);
 		}
 
 		File partialAppDeletePropsFile = new File(
-			deployDirectories[0], "META-INF/liferay-partialapp-delete.props");
+			deployDirs.get(0), "META-INF/liferay-partialapp-delete.props");
 
 		if (!partialAppDeletePropsFile.exists()) {
 			return;
@@ -190,7 +191,7 @@ public class PluginExecutor extends BaseExecutor {
 		String line = null;
 
 		while ((line = bufferedReader.readLine()) != null) {
-			for (File deployDirectory : deployDirectories) {
+			for (File deployDirectory : deployDirs) {
 				File staleFile = new File(deployDirectory, line.trim());
 
 				if (!staleFile.exists()) {
@@ -199,42 +200,50 @@ public class PluginExecutor extends BaseExecutor {
 
 				boolean success = FileUtils.deleteQuietly(staleFile);
 
-				if (!success) {
-					String message =
-						"Could not delete file " + staleFile.getAbsolutePath();
-
-					_log.error(message);
-
-					responseJSONObject.put(JSONKeys.ERROR, message);
+				if (success) {
+					continue;
 				}
+
+				String message =
+					"Unable to delete file " + staleFile.getAbsolutePath();
+
+				_log.error(message);
+
+				responseJSONObject.put(JSONKeys.ERROR, message);
 			}
 		}
 
 		FileUtils.deleteQuietly(partialAppDeletePropsFile);
 
-		_log.info("Update of " + context + " context successful.");
+		if (_log.isInfoEnabled()) {
+			_log.info("Successfully updated " + context);
+		}
 	}
 
-	protected File[] getDeployDirectories(final String context) throws Exception {
-		List<File> deployDirectories = new ArrayList<File>();
+	protected List<File> getDeployDirectories(final String context)
+		throws Exception {
+
+		List<File> deployDirs = new ArrayList<File>();
 
 		String deployDirName = DeployManagerUtil.getDeployDir();
 
 		File deployDir = new File(deployDirName, context);
 
 		if (deployDir.exists()) {
-			deployDirectories.add(deployDir);
+			deployDirs.add(deployDir);
 		}
 		else {
 			File deployWarDir = new File(deployDirName, context + ".war");
-			deployDirectories.add(deployWarDir);
+
+			deployDirs.add(deployWarDir);
 		}
 
 		if (ServerDetector.isTomcat()) {
-			File tmpDir = new File(System.getProperty("java.io.tmpdir"));
+			File tempDir = new File(
+				SystemProperties.get(SystemProperties.TMP_DIR));
 
-			if (tmpDir.exists()) {
-				File[] tmpContexts = tmpDir.listFiles(new FilenameFilter() {
+			File[] tempContextDirs = tempDir.listFiles(
+				new FilenameFilter() {
 
 					public boolean accept(File dir, String name) {
 						if (name.endsWith("-" + context)) {
@@ -243,25 +252,33 @@ public class PluginExecutor extends BaseExecutor {
 
 						return false;
 					}
-				});
 
-				if (tmpContexts != null && tmpContexts.length > 0) {
-
-					Arrays.sort(tmpContexts, new Comparator<File>() {
-
-						public int compare(File arg0, File arg1) {
-							return arg0.getName().compareTo(arg1.getName());
-						}
-					});
 				}
+			);
 
-				File tempDeployDir = tmpContexts[tmpContexts.length - 1];
+			if ((tempContextDirs != null) && (tempContextDirs.length > 0)) {
+				Arrays.sort(
+					tempContextDirs,
+					new Comparator<File>() {
 
-				deployDirectories.add(tempDeployDir);
+						public int compare(File file1, File file2) {
+							String fileName1 = file1.getName();
+							String fileName2 = file2.getName();
+
+							return fileName1.compareTo(fileName2);
+						}
+
+					}
+				);
+
+				File tempContextDir = tempContextDirs[
+					tempContextDirs.length - 1];
+
+				deployDirs.add(tempContextDir);
 			}
 		}
 
-		return deployDirectories.toArray(new File[deployDirectories.size()]);
+		return deployDirs;
 	}
 
 	protected File getTempFile(
@@ -269,7 +286,7 @@ public class PluginExecutor extends BaseExecutor {
 
 		File tempFile = null;
 
-		String message = "Could not create temp file for uploaded plugin";
+		String message = "Unable to create temp file for uploaded plugin";
 
 		try {
 			tempFile = FileUploadUtil.getFileItemTempFile(request);
