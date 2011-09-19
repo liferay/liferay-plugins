@@ -211,6 +211,8 @@ public class PluginExecutor extends BaseExecutor {
 		}
 
 		FileUtils.deleteQuietly(partialAppDeletePropsFile);
+
+		_log.info("Update of " + context + " context successful.");
 	}
 
 	protected File[] getDeployDirectories(final String context) throws Exception {
@@ -232,7 +234,7 @@ public class PluginExecutor extends BaseExecutor {
 			File tmpDir = new File(System.getProperty("java.io.tmpdir"));
 
 			if (tmpDir.exists()) {
-				File[] tempContexts = tmpDir.listFiles(new FilenameFilter() {
+				File[] tmpContexts = tmpDir.listFiles(new FilenameFilter() {
 
 					public boolean accept(File dir, String name) {
 						if (name.endsWith("-" + context)) {
@@ -243,16 +245,17 @@ public class PluginExecutor extends BaseExecutor {
 					}
 				});
 
-				if (tempContexts != null && tempContexts.length > 0)
+				if (tmpContexts != null && tmpContexts.length > 0) {
 
-				Arrays.sort(tempContexts, new Comparator<File>() {
+					Arrays.sort(tmpContexts, new Comparator<File>() {
 
-					public int compare(File arg0, File arg1) {
-						return arg0.getName().compareTo(arg1.getName());
-					}
-				});
+						public int compare(File arg0, File arg1) {
+							return arg0.getName().compareTo(arg1.getName());
+						}
+					});
+				}
 
-				File tempDeployDir = tempContexts[tempContexts.length - 1];
+				File tempDeployDir = tmpContexts[tmpContexts.length - 1];
 
 				deployDirectories.add(tempDeployDir);
 			}
