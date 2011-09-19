@@ -164,12 +164,12 @@ AUI().add(
 					'.select-none'
 				);
 			},
-			
+
 			_getActionURL: function(name) {
 				var instance = this;
-				
+
 				var windowState = 'NORMAL';
-				
+
 				if (themeDisplay.isStateMaximized()) {
 					windowState = 'MAXIMIZED';
 				}
@@ -200,7 +200,6 @@ AUI().add(
 
 				return mbThreadIds;
 			}
-			
 		};
 	},
 	'',
