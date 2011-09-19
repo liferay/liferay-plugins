@@ -199,7 +199,7 @@ AUI().add(
 				);
 
 				return mbThreadIds;
-			},
+			}
 			
 		};
 	},
