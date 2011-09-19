@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.Contact;
 import com.liferay.portal.model.EmailAddress;
 import com.liferay.portal.model.Group;
@@ -262,6 +263,7 @@ public class LiferayPersonService implements PersonService {
 
 		sb.append(securityToken.getDomain());
 		sb.append(PortalUtil.getPathFriendlyURLPublic());
+		sb.append(StringPool.SLASH);
 		sb.append(user.getScreenName());
 
 		person.setProfileUrl(sb.toString());
