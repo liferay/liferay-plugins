@@ -328,7 +328,7 @@ public class KaleoTaskInstanceTokenFinderImpl
 		}
 
 		for (int i = 0; i < assetTypes.length; i++) {
-			sb.append("(KaleoTaskInstanceToken.className LIKE ?)");
+			sb.append("(lower(KaleoTaskInstanceToken.className) LIKE ?)");
 
 			if ((i + 1) < assetTypes.length) {
 				sb.append(" OR ");
