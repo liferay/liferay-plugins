@@ -45,8 +45,8 @@ JSONObject jsonObject = ExpandoValueServiceUtil.getJSONData(themeDisplay.getComp
 			<c:choose>
 				<c:when test="<%= dataType == UserPref.DataType.BOOL %>">
 					<aui:select label="<%= displayName %>" name="<%= name %>">
-						<aui:option label='<%= LanguageUtil.get(pageContext, "yes") %>' selected="<%= GetterUtil.getBoolean(value) %>" />
-						<aui:option label='<%= LanguageUtil.get(pageContext, "no") %>' selected="<%= !GetterUtil.getBoolean(value) %>" />
+						<aui:option label='<%= LanguageUtil.get(pageContext, "yes") %>' selected="<%= GetterUtil.getBoolean(value) %>" value="true" />
+						<aui:option label='<%= LanguageUtil.get(pageContext, "no") %>' selected="<%= !GetterUtil.getBoolean(value) %>" value="false" />
 					</aui:select>
 				</c:when>
 				<c:when test="<%= dataType == UserPref.DataType.ENUM %>">
