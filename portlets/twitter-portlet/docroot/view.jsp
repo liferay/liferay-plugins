@@ -15,12 +15,11 @@
 --%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
 <%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
-
 <%@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
 
 <%@ page import="com.liferay.portal.kernel.util.Validator" %>
+<%@ page import="com.liferay.portal.util.PortletKeys" %>
 
 <portlet:defineObjects />
 
@@ -35,6 +34,6 @@ String twitterSn = contact.getTwitterSn();
 		Your Twitter screen name is <a href="http://twitter.com/<%= twitterSn %>" target="_blank"><%= twitterSn %></a>. Your tweets will appear as activities.
 	</c:when>
 	<c:otherwise>
-		<a href="<%= themeDisplay.getURLMyAccount() %>&tabs4=social-network-ids">Please configure your Twitter screen name.</a>
+		<a href="<%= themeDisplay.getURLMyAccount() %>#_<%= PortletKeys.MY_ACCOUNT %>_socialNetwork">Please configure your Twitter screen name.</a>
 	</c:otherwise>
 </c:choose>
