@@ -16,6 +16,7 @@ package com.liferay.socialcoding.model.impl;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
@@ -29,8 +30,6 @@ import com.liferay.socialcoding.model.SVNRevision;
 import com.liferay.socialcoding.model.SVNRevisionModel;
 
 import java.io.Serializable;
-
-import java.lang.reflect.Proxy;
 
 import java.sql.Types;
 
@@ -174,7 +173,7 @@ public class SVNRevisionModelImpl extends BaseModelImpl<SVNRevision>
 		}
 		else {
 			if (_escapedModelProxy == null) {
-				_escapedModelProxy = (SVNRevision)Proxy.newProxyInstance(_classLoader,
+				_escapedModelProxy = (SVNRevision)ProxyUtil.newProxyInstance(_classLoader,
 						_escapedModelProxyInterfaces,
 						new AutoEscapeBeanHandler(this));
 			}

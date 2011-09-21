@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
@@ -31,8 +32,6 @@ import com.liferay.privatemessaging.model.UserThread;
 import com.liferay.privatemessaging.model.UserThreadModel;
 
 import java.io.Serializable;
-
-import java.lang.reflect.Proxy;
 
 import java.sql.Types;
 
@@ -229,7 +228,7 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 		}
 		else {
 			if (_escapedModelProxy == null) {
-				_escapedModelProxy = (UserThread)Proxy.newProxyInstance(_classLoader,
+				_escapedModelProxy = (UserThread)ProxyUtil.newProxyInstance(_classLoader,
 						_escapedModelProxyInterfaces,
 						new AutoEscapeBeanHandler(this));
 			}

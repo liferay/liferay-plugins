@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
@@ -32,8 +33,6 @@ import com.liferay.so.model.ProjectsEntry;
 import com.liferay.so.model.ProjectsEntryModel;
 
 import java.io.Serializable;
-
-import java.lang.reflect.Proxy;
 
 import java.sql.Types;
 
@@ -240,7 +239,7 @@ public class ProjectsEntryModelImpl extends BaseModelImpl<ProjectsEntry>
 		}
 		else {
 			if (_escapedModelProxy == null) {
-				_escapedModelProxy = (ProjectsEntry)Proxy.newProxyInstance(_classLoader,
+				_escapedModelProxy = (ProjectsEntry)ProxyUtil.newProxyInstance(_classLoader,
 						_escapedModelProxyInterfaces,
 						new AutoEscapeBeanHandler(this));
 			}

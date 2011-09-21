@@ -16,6 +16,7 @@ package com.liferay.testtransaction.model.impl;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
@@ -29,8 +30,6 @@ import com.liferay.testtransaction.model.Bar;
 import com.liferay.testtransaction.model.BarModel;
 
 import java.io.Serializable;
-
-import java.lang.reflect.Proxy;
 
 import java.sql.Types;
 
@@ -130,7 +129,7 @@ public class BarModelImpl extends BaseModelImpl<Bar> implements BarModel {
 		}
 		else {
 			if (_escapedModelProxy == null) {
-				_escapedModelProxy = (Bar)Proxy.newProxyInstance(_classLoader,
+				_escapedModelProxy = (Bar)ProxyUtil.newProxyInstance(_classLoader,
 						_escapedModelProxyInterfaces,
 						new AutoEscapeBeanHandler(this));
 			}
