@@ -23,9 +23,9 @@ import com.liferay.sampleservicebuilder.model.Foo;
  */
 public class FooField4Comparator extends OrderByComparator {
 
-	public static String ORDER_BY_ASC = "field4 ASC";
+	public static final String ORDER_BY_ASC = "field4 ASC";
 
-	public static String ORDER_BY_DESC = "field4 DESC";
+	public static final String ORDER_BY_DESC = "field4 DESC";
 
 	public FooField4Comparator() {
 		this(false);

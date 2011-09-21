@@ -22,11 +22,11 @@ import com.liferay.portal.kernel.workflow.comparator.BaseWorkflowTaskUserIdCompa
 public class WorkflowTaskUserIdComparator
 	extends BaseWorkflowTaskUserIdComparator {
 
-	public static String ORDER_BY_ASC = "userId ASC, kaleoTaskId ASC";
+	public static final String ORDER_BY_ASC = "userId ASC, kaleoTaskId ASC";
 
-	public static String ORDER_BY_DESC = "userId DESC, kaleoTaskId DESC";
+	public static final String ORDER_BY_DESC = "userId DESC, kaleoTaskId DESC";
 
-	public static String[] ORDER_BY_FIELDS = {"userId", "kaleoTaskId"};
+	public static final String[] ORDER_BY_FIELDS = {"userId", "kaleoTaskId"};
 
 	public WorkflowTaskUserIdComparator() {
 		super();

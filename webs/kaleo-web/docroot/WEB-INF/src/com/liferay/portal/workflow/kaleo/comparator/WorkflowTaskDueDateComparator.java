@@ -22,11 +22,11 @@ import com.liferay.portal.kernel.workflow.comparator.BaseWorkflowTaskDueDateComp
 public class WorkflowTaskDueDateComparator
 	extends BaseWorkflowTaskDueDateComparator {
 
-	public static String ORDER_BY_ASC = "dueDate ASC, kaleoTaskId ASC";
+	public static final String ORDER_BY_ASC = "dueDate ASC, kaleoTaskId ASC";
 
-	public static String ORDER_BY_DESC = "dueDate DESC, kaleoTaskId DESC";
+	public static final String ORDER_BY_DESC = "dueDate DESC, kaleoTaskId DESC";
 
-	public static String[] ORDER_BY_FIELDS = {"dueDate", "kaleoTaskId"};
+	public static final String[] ORDER_BY_FIELDS = {"dueDate", "kaleoTaskId"};
 
 	public WorkflowTaskDueDateComparator() {
 		super();

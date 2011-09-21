@@ -22,11 +22,11 @@ import com.liferay.portal.kernel.workflow.comparator.BaseWorkflowInstanceStateCo
 public class WorkflowInstanceStateComparator
 	extends BaseWorkflowInstanceStateComparator {
 
-	public static String ORDER_BY_ASC = "state ASC, kaleoInstanceId ASC";
+	public static final String ORDER_BY_ASC = "state ASC, kaleoInstanceId ASC";
 
-	public static String ORDER_BY_DESC = "state DESC, kaleoInstanceId DESC";
+	public static final String ORDER_BY_DESC = "state DESC, kaleoInstanceId DESC";
 
-	public static String[] ORDER_BY_FIELDS = {"state", "kaleoInstanceId"};
+	public static final String[] ORDER_BY_FIELDS = {"state", "kaleoInstanceId"};
 
 	public WorkflowInstanceStateComparator() {
 		super();

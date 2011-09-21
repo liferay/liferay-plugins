@@ -22,12 +22,12 @@ import com.liferay.portal.kernel.workflow.comparator.BaseWorkflowTaskCompletionD
 public class WorkflowTaskCompletionDateComparator
 	extends BaseWorkflowTaskCompletionDateComparator {
 
-	public static String ORDER_BY_ASC = "completionDate ASC, kaleoTaskId ASC";
+	public static final String ORDER_BY_ASC = "completionDate ASC, kaleoTaskId ASC";
 
-	public static String ORDER_BY_DESC =
+	public static final String ORDER_BY_DESC =
 		"completionDate DESC, kaleoTaskId DESC";
 
-	public static String[] ORDER_BY_FIELDS = {"completionDate", "kaleoTaskId"};
+	public static final String[] ORDER_BY_FIELDS = {"completionDate", "kaleoTaskId"};
 
 	public WorkflowTaskCompletionDateComparator() {
 		super();

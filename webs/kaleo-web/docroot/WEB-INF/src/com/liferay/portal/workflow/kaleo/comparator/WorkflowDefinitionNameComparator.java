@@ -22,11 +22,11 @@ import com.liferay.portal.kernel.workflow.comparator.BaseWorkflowDefinitionNameC
 public class WorkflowDefinitionNameComparator
 	extends BaseWorkflowDefinitionNameComparator {
 
-	public static String ORDER_BY_ASC = "name ASC, version ASC";
+	public static final String ORDER_BY_ASC = "name ASC, version ASC";
 
-	public static String ORDER_BY_DESC = "name DESC, version DESC";
+	public static final String ORDER_BY_DESC = "name DESC, version DESC";
 
-	public static String[] ORDER_BY_FIELDS = {"name", "version"};
+	public static final String[] ORDER_BY_FIELDS = {"name", "version"};
 
 	public WorkflowDefinitionNameComparator() {
 		super();

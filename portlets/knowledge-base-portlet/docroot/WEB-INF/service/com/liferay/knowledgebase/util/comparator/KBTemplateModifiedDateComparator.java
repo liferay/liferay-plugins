@@ -24,11 +24,11 @@ import com.liferay.portal.kernel.util.OrderByComparator;
  */
 public class KBTemplateModifiedDateComparator extends OrderByComparator {
 
-	public static String ORDER_BY_ASC = "KBTemplate.modifiedDate ASC";
+	public static final String ORDER_BY_ASC = "KBTemplate.modifiedDate ASC";
 
-	public static String ORDER_BY_DESC = "KBTemplate.modifiedDate DESC";
+	public static final String ORDER_BY_DESC = "KBTemplate.modifiedDate DESC";
 
-	public static String[] ORDER_BY_FIELDS = {"modifiedDate"};
+	public static final String[] ORDER_BY_FIELDS = {"modifiedDate"};
 
 	public KBTemplateModifiedDateComparator() {
 		this(false);
