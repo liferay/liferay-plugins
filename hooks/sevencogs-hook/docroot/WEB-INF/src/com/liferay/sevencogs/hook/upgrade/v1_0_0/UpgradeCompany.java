@@ -311,7 +311,7 @@ public class UpgradeCompany extends UpgradeProcess {
 		throws Exception {
 
 		return MBCategoryLocalServiceUtil.addCategory(
-			userId, 0, name, description, StringPool.BLANK, StringPool.BLANK,
+			userId, 0, name, description, "default", StringPool.BLANK,
 			StringPool.BLANK, StringPool.BLANK, 0, false, StringPool.BLANK,
 			StringPool.BLANK, 1, StringPool.BLANK, false, StringPool.BLANK, 0,
 			false, StringPool.BLANK, StringPool.BLANK, false, false,
