@@ -22,11 +22,11 @@ import com.liferay.portal.kernel.workflow.comparator.BaseWorkflowInstanceStartDa
 public class WorkflowInstanceStartDateComparator
 	extends BaseWorkflowInstanceStartDateComparator {
 
-	public static String ORDER_BY_ASC = "startDate ASC, kaleoInstanceId ASC";
+	public static final String ORDER_BY_ASC = "startDate ASC, kaleoInstanceId ASC";
 
-	public static String ORDER_BY_DESC = "startDate DESC, kaleoInstanceId DESC";
+	public static final String ORDER_BY_DESC = "startDate DESC, kaleoInstanceId DESC";
 
-	public static String[] ORDER_BY_FIELDS = {
+	public static final String[] ORDER_BY_FIELDS = {
 		"startDate", "kaleoInstanceId"
 	};
 

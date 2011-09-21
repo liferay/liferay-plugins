@@ -23,11 +23,11 @@ import com.liferay.portal.kernel.util.OrderByComparator;
  */
 public class KBArticleVersionComparator extends OrderByComparator {
 
-	public static String ORDER_BY_ASC = "KBArticle.version ASC";
+	public static final String ORDER_BY_ASC = "KBArticle.version ASC";
 
-	public static String ORDER_BY_DESC = "KBArticle.version DESC";
+	public static final String ORDER_BY_DESC = "KBArticle.version DESC";
 
-	public static String[] ORDER_BY_FIELDS = {"version"};
+	public static final String[] ORDER_BY_FIELDS = {"version"};
 
 	public KBArticleVersionComparator() {
 		this(false);
