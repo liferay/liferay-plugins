@@ -208,8 +208,7 @@ public class LayoutUtil {
 		portletSetup.setValue("showFeedImage", "false");
 		portletSetup.setValue("showFeedItemAuthor", "false");
 		portletSetup.setValue(
-			"urls",
-			"http://partners.userland.com/nytRss/technology.xml");
+			"urls", "http://partners.userland.com/nytRss/technology.xml");
 
 		portletSetup.store();
 	}
