@@ -126,9 +126,6 @@ public class LayoutUtil {
 				removePortletBorder(layout, portletId);
 				configureNavigation(layout, portletId);
 			}
-			else if (portletId.equals(PortletKeys.ALERTS)) {
-				updatePortletTitle(layout, portletId, "Announcements");
-			}
 		}
 	}
 
