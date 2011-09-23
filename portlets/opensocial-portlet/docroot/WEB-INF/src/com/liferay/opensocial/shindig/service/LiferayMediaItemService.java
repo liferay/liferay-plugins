@@ -301,7 +301,7 @@ public class LiferayMediaItemService implements MediaItemService {
 
 			for (FileEntry fileEntry : fileEntries) {
 				MediaItem.Type mediaItemType = toMediaItemType(
-					fileEntry.getExtension());
+					fileEntry.getNameWithExtension());
 
 				if (mediaItemType == null) {
 					continue;
@@ -341,7 +341,7 @@ public class LiferayMediaItemService implements MediaItemService {
 
 		for (FileEntry fileEntry : fileEntries) {
 			MediaItem.Type mediaItemType = toMediaItemType(
-				fileEntry.getExtension());
+				fileEntry.getNameWithExtension());
 
 			if (mediaItemType == null) {
 				continue;
@@ -380,7 +380,7 @@ public class LiferayMediaItemService implements MediaItemService {
 
 		for (FileEntry fileEntry : fileEntries) {
 			MediaItem.Type mediaItemType = toMediaItemType(
-				fileEntry.getExtension());
+				fileEntry.getNameWithExtension());
 
 			if (mediaItemType == null) {
 				continue;
@@ -490,10 +490,10 @@ public class LiferayMediaItemService implements MediaItemService {
 		mediaItem.setId(String.valueOf(fileEntry.getFileEntryId()));
 		mediaItem.setLastUpdated(String.valueOf(fileEntry.getModifiedDate()));
 		mediaItem.setMimeType(
-			MimeTypesUtil.getContentType(fileEntry.getExtension()));
+			MimeTypesUtil.getContentType(fileEntry.getNameWithExtension()));
 		mediaItem.setNumViews(String.valueOf(fileEntry.getReadCount()));
 		mediaItem.setTitle(fileEntry.getTitle());
-		mediaItem.setType(toMediaItemType(fileEntry.getExtension()));
+		mediaItem.setType(toMediaItemType(fileEntry.getNameWithExtension()));
 
 		String fileEntryURL = ShindigUtil.getFileEntryURL(
 			securityToken.getDomain(), fileEntry.getFileEntryId());
@@ -508,8 +508,8 @@ public class LiferayMediaItemService implements MediaItemService {
 		return mediaItem;
 	}
 
-	protected MediaItem.Type toMediaItemType(String extension) {
-		String contentType = MimeTypesUtil.getContentType(extension);
+	protected MediaItem.Type toMediaItemType(String fileName) {
+		String contentType = MimeTypesUtil.getContentType(fileName);
 
 		if (contentType.startsWith("audio")) {
 			return Type.AUDIO;
