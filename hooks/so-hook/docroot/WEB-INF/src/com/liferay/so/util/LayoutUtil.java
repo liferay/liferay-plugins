@@ -197,6 +197,8 @@ public class LayoutUtil {
 			PortletPreferencesFactoryUtil.getLayoutPortletSetup(
 				layout, "39_INSTANCE_abcd");
 
+		portletSetup.setValue(
+			"urls", "http://partners.userland.com/nytRss/technology.xml");
 		portletSetup.setValue("expandedEntriesPerFeed", "0");
 		portletSetup.setValue("entriesPerFeed", "3");
 		portletSetup.setValue("showFeedTitle", "false");
@@ -204,8 +206,6 @@ public class LayoutUtil {
 		portletSetup.setValue("showFeedDescription", "false");
 		portletSetup.setValue("showFeedImage", "false");
 		portletSetup.setValue("showFeedItemAuthor", "false");
-		portletSetup.setValue(
-			"urls", "http://partners.userland.com/nytRss/technology.xml");
 
 		portletSetup.store();
 	}
