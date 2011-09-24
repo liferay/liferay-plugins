@@ -21,7 +21,7 @@ AUI().add(
 
 		var STR_EMPTY = '';
 
-		var TPL_IFRAME = '<iframe id="{iframeId}" name="{iframeId}" class="' + CSS_CLASS_GADGET + '" src="about:blank" frameborder="no" scrolling="{scrolling}" {height} {width}></iframe>';
+		var TPL_IFRAME = '<iframe id="{iframeId}" name="{iframeId}" class="' + CSS_CLASS_GADGET + '" src="{src}" frameborder="no" scrolling="{scrolling}" {height} {width}></iframe>';
 
 		var Gadget = A.Component.create(
 			{
@@ -30,9 +30,7 @@ AUI().add(
 				NAME: 'liferaygadget',
 
 				ATTRS: {
-					additionalParams: {
-						value: STR_EMPTY
-					},
+					additionalParams: {},
 					appId: {},
 					content: {},
 					country: {
@@ -115,13 +113,17 @@ AUI().add(
 					}
 				},
 
-				UI_ATTRS: ['iframeUrl'],
-
 				prototype: {
 					initializer: function() {
 						var instance = this;
 
 						Gadget.register(instance);
+
+						gadgets.pubsub2router.init(
+							{
+								hub: managedHub
+							}
+						);
 					},
 
 					renderUI: function() {
@@ -129,21 +131,20 @@ AUI().add(
 
 						var height = instance.get('height');
 						var iframeId = instance.get('iframeId');
-						var requiresPubsub = instance.get('requiresPubsub');
 						var scrolling = instance.get('scrolling');
 						var secureToken = instance.get('secureToken');
 						var width = instance.get('width');
 
-						if (requiresPubsub) {
-						    var iframeAttrs = {
+						if (instance.get('requiresPubsub')) {
+							var iframeAttrs = {
 								className: CSS_CLASS_GADGET,
 								frameborder: 'no',
 								scrolling: scrolling
-						    };
+							};
 
-						    if (height) {
+							if (height) {
 								iframeAttrs.height = height;
-						    }
+							}
 
 							if (width) {
 								iframeAttrs.width = width;
@@ -183,6 +184,7 @@ AUI().add(
 									height: (height ? 'height="' + height + '"' : STR_EMPTY),
 									iframeId: iframeId,
 									scrolling: scrolling,
+									src: instance.get('iframeUrl'),
 									width: (width ? 'width="' + width + '"' : STR_EMPTY)
 								}
 							);
@@ -191,38 +193,30 @@ AUI().add(
 
 							instance.get('contentBox').appendChild(iframeNode);
 
-							instance._iframe = iframeNode;
+							instance._iframe = iframeNode.getDOM();
 
 							gadgets.rpc.setRelayUrl(iframeId, instance.get('serverBase') + instance.get('rpcRelay'));
 							gadgets.rpc.setAuthToken(iframeId, instance.get('rpcToken'));
-					    }
+						}
 					},
 
 					bindUI: function() {
 						var instance = this;
 
-						instance.after('userPrefsChange', instance._afterUserPrefsChange);
-
+						instance.after('additionalParamsChange', instance._afterAdditionalParamsChange);
+						instance.after('debugChange', instance._afterDebugChange);
+						instance.after('countryChange', instance._afterCountryChange);
 						instance.after('heightChange', instance._afterIframeHeightChange);
+						instance.after('languageChange', instance._afterLanguageChange);
+						instance.after('nocacheChange', instance._afterNocacheChange);
+						instance.after('parentUrlChange', instance._afterParentUrlChange);
+						instance.after('scrollingChange', instance._afterIframeScrollingChange);
+						instance.after('secureTokenChange', instance._afterSecureTokenChange);
+						instance.after('specUrlChange', instance._afterSpecUrlChange);
+						instance.after('viewChange', instance._afterViewChange);
+						instance.after('viewParamsChange', instance._afterViewParamsChange);
+						instance.after('userPrefsChange', instance._afterUserPrefsChange);
 						instance.after('widthChange', instance._afterIframeWidthChange);
-
-						var refreshIframe = instance.refresh;
-
-						instance.after(
-							{
-								nocacheChange: refreshIframe,
-								countryChange: refreshIframe,
-								languageChange: refreshIframe,
-								secureTokenChange: refreshIframe,
-								viewChange: refreshIframe,
-								parentUrlChange: refreshIframe,
-								debugChange: refreshIframe,
-								additionalParamsChange: refreshIframe,
-								viewParams: refreshIframe,
-								specUrlChange: refreshIframe,
-								serverBaseChange: refreshIframe
-							}
-						);
 					},
 
 					syncUI: function() {
@@ -244,10 +238,42 @@ AUI().add(
 						return buffer.join(STR_EMPTY);
 					},
 
-					refresh: function() {
+					_afterAdditionalParamsChange: function(event) {
 						var instance = this;
 
-						instance._uiSetIframeUrl(instance.get('iframeUrl'));
+						var src = instance._iframe.src;
+
+						var prevAdditionalParams = event.prevVal;
+
+						for (var i in prevAdditionalParams) {
+							src = instance._setSrcParameter(encodeURIComponent(i), '', src);
+						}
+
+						var newAdditionalParams = event.newVal;
+
+						for (var i in newAdditionalParams) {
+							src = instance._setSrcParameter(encodeURIComponent(i), encodeURIComponent(newAdditionalParams[i]), src);
+						}
+
+						instance._iframe.src = src;
+					},
+
+					_afterCountryChange: function(event) {
+						var instance = this;
+
+						instance._refreshSrcParameter('country', event.newVal);
+					},
+
+					_afterDebugChange: function(event) {
+						var instance = this;
+
+						var debug = 0;
+
+						if (instance.get('debug')) {
+							debug = 1;
+						}
+
+						instance._refreshSrcParameter('debug', debug);
 					},
 
 					_afterIframeHeightChange: function(event) {
@@ -256,10 +282,54 @@ AUI().add(
 						instance._uiSetIframeHeight(event.newVal);
 					},
 
+					_afterIframeScrollingChange: function(event) {
+						var instance = this;
+
+						instance._uiSetIframeScrolling(event.newVal);
+					},
+
 					_afterIframeWidthChange: function(event) {
 						var instance = this;
 
 						instance._uiSetIframeWidth(event.newVal);
+					},
+
+					_afterLanguageChange: function(event) {
+						var instance = this;
+
+						instance._refreshSrcParameter('lang', event.newVal);
+					},
+
+					_afterNocacheChange: function(event) {
+						var instance = this;
+
+						instance._refreshSrcParameter('nocache', event.newVal);
+					},
+
+					_afterParentUrlChange: function(event) {
+						var instance = this;
+
+						var parentUrl = event.newVal;
+
+						if (parentUrl) {
+							instance._refreshSrcParameter('parent', parentUrl);
+						}
+					},
+
+					_afterSecureTokenChange: function(event) {
+						var instance = this;
+
+						var secureToken = event.newVal;
+
+						if (secureToken) {
+							instance._refreshSrcParameter('st', secureToken);
+						}
+					},
+
+					_afterSpecUrlChange: function(event) {
+						var instance = this;
+
+						instance._refreshSrcParameter('url', event.newVal);
 					},
 
 					_afterUserPrefsChange: function(event) {
@@ -267,6 +337,22 @@ AUI().add(
 
 						if (!event.SYNC) {
 							instance.get('store').savePrefs(instance);
+						}
+					},
+
+					_afterViewChange: function(event) {
+						var instance = this;
+
+						instance._refreshSrcParameter('view', event.newVal);
+					},
+
+					_afterViewParamsChange: function(event) {
+						var instance = this;
+
+						var viewParams = event.newVal;
+
+						if (parentUrl) {
+							instance._refreshSrcParameter('view-params', encodeURIComponent(A.JSON.stringify(viewParams)));
 						}
 					},
 
@@ -320,7 +406,9 @@ AUI().add(
 							url += '&st=' + secureToken;
 						}
 
-						url += '#rpctoken=' + instance.get('rpcToken');
+						if (!instance.get('requiresPubsub')) {
+							url += '#rpctoken=' + instance.get('rpcToken');
+						}
 
 						var viewParams = instance.get('viewParams');
 
@@ -331,6 +419,30 @@ AUI().add(
 						return url;
 					},
 
+					_refreshSrcParameter: function(key, value) {
+						var instance = this;
+
+						var src = instance._iframe.src;
+
+						src = instance._setSrcParameter(key, value, src);
+
+						instance._iframe.src = src;
+					},
+
+					_refreshUserPrefs: function() {
+						var instance = this;
+
+						var src = instance._iframe.src;
+
+						var userPrefs = instance.get('userPrefs');
+
+						for (var i in userPrefs) {
+							src = instance._setSrcParameter('&up_' + encodeURIComponent(i), encodeURIComponent(userPrefs[i]), src);
+						}
+
+						instance._iframe.src = src;
+					},
+
 					_setParentUrl: function(value) {
 						var instance = this;
 
@@ -339,6 +451,36 @@ AUI().add(
 						}
 
 						return value;
+					},
+
+					_setSrcParameter: function(key, value, src) {
+						var instance = this;
+
+						var parameters = src.split('&');
+
+						var parameterFound = false;
+
+						for (var i = 0; i < parameters.length; i++) {
+							var parameter = parameters[i].split('=');
+
+							if (parameter[0] == key) {
+								parameter[1] = value;
+
+								parameters[i] = parameter.join('=');
+
+								parameterFound = true;
+
+								break;
+							}
+						}
+
+						if (!parameterFound) {
+							var newParameter = key + '=' + value;
+
+							parameters[parameters.length] = newParameter
+						}
+
+						return parameters.join('&');
 					},
 
 					_syncPrefs: function(prefs) {
@@ -352,7 +494,7 @@ AUI().add(
 							}
 						);
 
-						instance.refresh();
+						instance._refreshUserPrefs();
 					},
 
 					_uiSetIframeHeight: function(value) {
@@ -361,12 +503,10 @@ AUI().add(
 						instance._iframe.setAttribute('height', value);
 					},
 
-					_uiSetIframeUrl: function(value) {
+					_uiSetIframeScrolling: function(value) {
 						var instance = this;
 
-						if (instance._iframe && instance._iframe.set) {
-							instance._iframe.set('src', value);
-						}
+						instance._iframe.setAttribute('scrolling', value);
 					},
 
 					_uiSetIframeWidth: function(value) {
@@ -686,12 +826,6 @@ AUI().add(
 				InlineHubClient: {
 					container: inlineContainer
 				}
-			}
-		);
-
-		gadgets.pubsub2router.init(
-			{
-				hub: managedHub
 			}
 		);
 
