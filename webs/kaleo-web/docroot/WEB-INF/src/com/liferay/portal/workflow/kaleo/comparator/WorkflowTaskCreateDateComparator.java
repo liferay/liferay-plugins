@@ -28,9 +28,8 @@ public class WorkflowTaskCreateDateComparator
 	public static final String ORDER_BY_DESC =
 		"createDate DESC, kaleoTaskInstanceId DESC";
 
-	public static final String[] ORDER_BY_FIELDS = {
-		"createDate", "kaleoTaskInstanceId"
-	};
+	public static final String[] ORDER_BY_FIELDS =
+		{"createDate", "kaleoTaskInstanceId"};
 
 	public WorkflowTaskCreateDateComparator() {
 		super();
