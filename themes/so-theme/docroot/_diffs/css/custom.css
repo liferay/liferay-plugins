@@ -1151,25 +1151,25 @@ table.calendar {
 	margin-bottom: 1em;
 }
 
-.portlet-navigation .portlet-body ul {
+.portlet-navigation .nav-menu ul {
 	margin: 0;
 	padding: 0;
 }
 
-.portlet-navigation .portlet-body li {
+.portlet-navigation .nav-menu li {
 	font-weight: bold;
 	list-style: none;
 	margin: 4px;
 }
 
-.portlet-navigation .portlet-body a {
+.portlet-navigation .nav-menu a {
 	border: 1px solid #E8EFF4;
 	display: block;
 	padding: 3px 10px;
 }
 
-.portlet-navigation .portlet-body a:hover,
-.portlet-navigation .portlet-body a.selected {
+.portlet-navigation .nav-menu a:hover,
+.portlet-navigation .nav-menu a.selected {
 	background: #FFF;
 	border: 1px solid #C8C9CA;
 }
@@ -1182,9 +1182,9 @@ table.calendar {
 	margin-left: 10px;
 }
 
-.portlet-navigation .portlet-body .nav-menu,
-.portlet-navigation .portlet-body a:hover,
-.portlet-navigation .portlet-body a.selected {
+.portlet-navigation .nav-menu,
+.portlet-navigation a:hover,
+.portlet-navigation a.selected {
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
 	border-radius: 4px;

@@ -185,7 +185,7 @@ public class UpgradeGroup extends UpgradeProcess {
 				layout, "1_WAR_soportlet");
 
 		portletSetup.setValue(
-			"portlet-setup-show-borders", String.valueOf(Boolean.TRUE));
+			"portletSetupShowBorders", String.valueOf(Boolean.TRUE));
 
 		portletSetup.store();
 	}
