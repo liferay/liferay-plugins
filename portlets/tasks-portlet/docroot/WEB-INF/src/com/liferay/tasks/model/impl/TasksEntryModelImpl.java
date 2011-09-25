@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSON;
 import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
@@ -34,8 +35,6 @@ import com.liferay.tasks.model.TasksEntryModel;
 import com.liferay.tasks.model.TasksEntrySoap;
 
 import java.io.Serializable;
-
-import java.lang.reflect.Proxy;
 
 import java.sql.Types;
 
@@ -337,7 +336,7 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 		}
 		else {
 			if (_escapedModelProxy == null) {
-				_escapedModelProxy = (TasksEntry)Proxy.newProxyInstance(_classLoader,
+				_escapedModelProxy = (TasksEntry)ProxyUtil.newProxyInstance(_classLoader,
 						_escapedModelProxyInterfaces,
 						new AutoEscapeBeanHandler(this));
 			}

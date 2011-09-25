@@ -16,6 +16,7 @@ package com.liferay.wsrp.model.impl;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
@@ -29,8 +30,6 @@ import com.liferay.wsrp.model.WSRPProducer;
 import com.liferay.wsrp.model.WSRPProducerModel;
 
 import java.io.Serializable;
-
-import java.lang.reflect.Proxy;
 
 import java.sql.Types;
 
@@ -229,7 +228,7 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer>
 		}
 		else {
 			if (_escapedModelProxy == null) {
-				_escapedModelProxy = (WSRPProducer)Proxy.newProxyInstance(_classLoader,
+				_escapedModelProxy = (WSRPProducer)ProxyUtil.newProxyInstance(_classLoader,
 						_escapedModelProxyInterfaces,
 						new AutoEscapeBeanHandler(this));
 			}

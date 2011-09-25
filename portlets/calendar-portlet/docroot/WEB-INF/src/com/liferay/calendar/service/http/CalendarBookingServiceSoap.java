@@ -111,7 +111,7 @@ public class CalendarBookingServiceSoap {
 		}
 	}
 
-	public static com.liferay.calendar.model.CalendarBookingSoap[] getCalendarBookings(
+	public static com.liferay.calendar.model.CalendarBooking[] getCalendarBookings(
 		java.lang.String className, long classPK, long calendarResourceId,
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
@@ -121,7 +121,7 @@ public class CalendarBookingServiceSoap {
 				CalendarBookingServiceUtil.getCalendarBookings(className,
 					classPK, calendarResourceId, start, end, orderByComparator);
 
-			return com.liferay.calendar.model.CalendarBookingSoap.toSoapModels(returnValue);
+			return returnValue.toArray(new com.liferay.calendar.model.CalendarBooking[returnValue.size()]);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -145,7 +145,7 @@ public class CalendarBookingServiceSoap {
 		}
 	}
 
-	public static com.liferay.calendar.model.CalendarBookingSoap[] getCalendarEventCalendarBookings(
+	public static com.liferay.calendar.model.CalendarBooking[] getCalendarEventCalendarBookings(
 		long calendarEventId, long calendarResourceId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws RemoteException {
@@ -154,7 +154,7 @@ public class CalendarBookingServiceSoap {
 				CalendarBookingServiceUtil.getCalendarEventCalendarBookings(calendarEventId,
 					calendarResourceId, start, end, orderByComparator);
 
-			return com.liferay.calendar.model.CalendarBookingSoap.toSoapModels(returnValue);
+			return returnValue.toArray(new com.liferay.calendar.model.CalendarBooking[returnValue.size()]);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -179,7 +179,7 @@ public class CalendarBookingServiceSoap {
 		}
 	}
 
-	public static com.liferay.calendar.model.CalendarBookingSoap[] getCalendarResourceCalendarBookings(
+	public static com.liferay.calendar.model.CalendarBooking[] getCalendarResourceCalendarBookings(
 		long calendarResourceId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws RemoteException {
@@ -188,7 +188,7 @@ public class CalendarBookingServiceSoap {
 				CalendarBookingServiceUtil.getCalendarResourceCalendarBookings(calendarResourceId,
 					start, end, orderByComparator);
 
-			return com.liferay.calendar.model.CalendarBookingSoap.toSoapModels(returnValue);
+			return returnValue.toArray(new com.liferay.calendar.model.CalendarBooking[returnValue.size()]);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -211,7 +211,7 @@ public class CalendarBookingServiceSoap {
 		}
 	}
 
-	public static com.liferay.calendar.model.CalendarBookingSoap[] search(
+	public static com.liferay.calendar.model.CalendarBooking[] search(
 		long calendarResourceId, java.lang.String title,
 		java.lang.String description, java.lang.String type,
 		boolean andOperator, int start, int end,
@@ -223,7 +223,7 @@ public class CalendarBookingServiceSoap {
 					description, type, andOperator, start, end,
 					orderByComparator);
 
-			return com.liferay.calendar.model.CalendarBookingSoap.toSoapModels(returnValue);
+			return returnValue.toArray(new com.liferay.calendar.model.CalendarBooking[returnValue.size()]);
 		}
 		catch (Exception e) {
 			_log.error(e, e);

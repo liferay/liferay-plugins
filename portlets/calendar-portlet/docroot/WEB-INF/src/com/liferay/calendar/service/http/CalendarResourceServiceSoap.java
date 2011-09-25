@@ -106,7 +106,7 @@ public class CalendarResourceServiceSoap {
 		}
 	}
 
-	public static com.liferay.calendar.model.CalendarResourceSoap[] getGroupCalendarResources(
+	public static com.liferay.calendar.model.CalendarResource[] getGroupCalendarResources(
 		long groupId, boolean active, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws RemoteException {
@@ -115,7 +115,7 @@ public class CalendarResourceServiceSoap {
 				CalendarResourceServiceUtil.getGroupCalendarResources(groupId,
 					active, start, end, orderByComparator);
 
-			return com.liferay.calendar.model.CalendarResourceSoap.toSoapModels(returnValue);
+			return returnValue.toArray(new com.liferay.calendar.model.CalendarResource[returnValue.size()]);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -124,7 +124,7 @@ public class CalendarResourceServiceSoap {
 		}
 	}
 
-	public static com.liferay.calendar.model.CalendarResourceSoap[] getGroupCalendarResources(
+	public static com.liferay.calendar.model.CalendarResource[] getGroupCalendarResources(
 		long groupId, java.lang.String name, boolean active, int start,
 		int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
@@ -134,7 +134,7 @@ public class CalendarResourceServiceSoap {
 				CalendarResourceServiceUtil.getGroupCalendarResources(groupId,
 					name, active, start, end, orderByComparator);
 
-			return com.liferay.calendar.model.CalendarResourceSoap.toSoapModels(returnValue);
+			return returnValue.toArray(new com.liferay.calendar.model.CalendarResource[returnValue.size()]);
 		}
 		catch (Exception e) {
 			_log.error(e, e);

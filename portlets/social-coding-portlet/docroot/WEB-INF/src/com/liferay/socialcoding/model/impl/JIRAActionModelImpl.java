@@ -17,6 +17,7 @@ package com.liferay.socialcoding.model.impl;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
@@ -30,8 +31,6 @@ import com.liferay.socialcoding.model.JIRAAction;
 import com.liferay.socialcoding.model.JIRAActionModel;
 
 import java.io.Serializable;
-
-import java.lang.reflect.Proxy;
 
 import java.sql.Types;
 
@@ -203,7 +202,7 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction>
 		}
 		else {
 			if (_escapedModelProxy == null) {
-				_escapedModelProxy = (JIRAAction)Proxy.newProxyInstance(_classLoader,
+				_escapedModelProxy = (JIRAAction)ProxyUtil.newProxyInstance(_classLoader,
 						_escapedModelProxyInterfaces,
 						new AutoEscapeBeanHandler(this));
 			}
