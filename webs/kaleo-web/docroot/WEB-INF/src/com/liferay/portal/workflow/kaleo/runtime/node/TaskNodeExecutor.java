@@ -17,7 +17,13 @@ package com.liferay.portal.workflow.kaleo.runtime.node;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.model.Organization;
+import com.liferay.portal.model.Role;
+import com.liferay.portal.model.RoleConstants;
+import com.liferay.portal.model.User;
+import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.workflow.kaleo.definition.DelayDuration;
 import com.liferay.portal.workflow.kaleo.definition.DurationScale;
 import com.liferay.portal.workflow.kaleo.definition.ExecutionType;
@@ -28,6 +34,7 @@ import com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken;
 import com.liferay.portal.workflow.kaleo.model.KaleoTimer;
 import com.liferay.portal.workflow.kaleo.model.KaleoTransition;
+import com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskAssignmentImpl;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
 import com.liferay.portal.workflow.kaleo.runtime.action.ActionExecutorUtil;
 import com.liferay.portal.workflow.kaleo.runtime.assignment.TaskAssignerUtil;
@@ -41,6 +48,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeSet;
@@ -107,6 +115,14 @@ public class TaskNodeExecutor extends BaseNodeExecutor {
 					configuredKaleoTaskAssignment, executionContext);
 
 			kaleoTaskAssignments.addAll(calculatedKaleoTaskAssignments);
+		}
+
+		if (kaleoTaskAssignments.isEmpty()) {
+			Collection<KaleoTaskAssignment> organizationKaleoTaskAssignments =
+				getOrganizationKaleoTaskAssignments(
+					configuredKaleoTaskAssignments, executionContext);
+
+			kaleoTaskAssignments.addAll(organizationKaleoTaskAssignments);
 		}
 
 		return kaleoTaskInstanceTokenLocalService.addKaleoTaskInstanceToken(
@@ -204,6 +220,58 @@ public class TaskNodeExecutor extends BaseNodeExecutor {
 			null, kaleoTransition.getTargetKaleoNode(), newExecutionContext);
 
 		remainingPathElements.add(pathElement);
+	}
+
+	protected Collection<KaleoTaskAssignment>
+			getOrganizationKaleoTaskAssignments(
+				Collection<KaleoTaskAssignment> kaleoTaskAssignments,
+				ExecutionContext executionContext)
+		throws SystemException, PortalException {
+
+		long userId = executionContext.getKaleoInstanceToken().getUserId();
+
+		User user = UserLocalServiceUtil.getUser(userId);
+
+		List<Organization> organizations = user.getOrganizations();
+
+		Collection<KaleoTaskAssignment> organizationKaleoTaskAssignments =
+			new HashSet<KaleoTaskAssignment>();
+
+		for (KaleoTaskAssignment kaleoTaskAssignment : kaleoTaskAssignments) {
+			String assigneeClassName =
+				kaleoTaskAssignment.getAssigneeClassName();
+
+			if (!assigneeClassName.equals(Role.class.getName())) {
+				continue;
+			}
+
+			long roleId = kaleoTaskAssignment.getAssigneeClassPK();
+
+			Role role = RoleLocalServiceUtil.getRole(roleId);
+
+			if (role.getType() != RoleConstants.TYPE_ORGANIZATION) {
+				continue;
+			}
+
+			for (Organization organization : organizations) {
+				KaleoTaskAssignment organizationKaleoTaskAssignment =
+					new KaleoTaskAssignmentImpl();
+
+				organizationKaleoTaskAssignment.setGroupId(
+					organization.getGroup().getGroupId());
+				organizationKaleoTaskAssignment.setCompanyId(
+					kaleoTaskAssignment.getCompanyId());
+				organizationKaleoTaskAssignment.setAssigneeClassName(
+					kaleoTaskAssignment.getAssigneeClassName());
+				organizationKaleoTaskAssignment.setAssigneeClassPK(
+					kaleoTaskAssignment.getAssigneeClassPK());
+
+				organizationKaleoTaskAssignments.add(
+					organizationKaleoTaskAssignment);
+			}
+		}
+
+		return organizationKaleoTaskAssignments;
 	}
 
 	private DueDateCalculator _dueDateCalculator;
