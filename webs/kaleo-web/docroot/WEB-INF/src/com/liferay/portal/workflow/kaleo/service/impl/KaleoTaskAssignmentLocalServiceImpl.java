@@ -43,7 +43,7 @@ public class KaleoTaskAssignmentLocalServiceImpl
 	extends KaleoTaskAssignmentLocalServiceBaseImpl {
 
 	public KaleoTaskAssignment addKaleoTaskAssignment(
-		String kaleoClassName, long kaleoClassPK, long kaleoDefinitionId,
+			String kaleoClassName, long kaleoClassPK, long kaleoDefinitionId,
 			Assignment assignment, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 

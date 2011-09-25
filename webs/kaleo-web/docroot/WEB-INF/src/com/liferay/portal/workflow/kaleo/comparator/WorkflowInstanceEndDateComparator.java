@@ -22,11 +22,14 @@ import com.liferay.portal.kernel.workflow.comparator.BaseWorkflowInstanceEndDate
 public class WorkflowInstanceEndDateComparator
 	extends BaseWorkflowInstanceEndDateComparator {
 
-	public static final String ORDER_BY_ASC = "endDate ASC, kaleoInstanceId ASC";
+	public static final String ORDER_BY_ASC =
+		"endDate ASC, kaleoInstanceId ASC";
 
-	public static final String ORDER_BY_DESC = "endDate DESC, kaleoInstanceId DESC";
+	public static final String ORDER_BY_DESC =
+		"endDate DESC, kaleoInstanceId DESC";
 
-	public static final String[] ORDER_BY_FIELDS = {"endDate", "kaleoInstanceId"};
+	public static final String[] ORDER_BY_FIELDS =
+		{"endDate", "kaleoInstanceId"};
 
 	public WorkflowInstanceEndDateComparator() {
 		super();

@@ -24,7 +24,8 @@ public class WorkflowInstanceStateComparator
 
 	public static final String ORDER_BY_ASC = "state ASC, kaleoInstanceId ASC";
 
-	public static final String ORDER_BY_DESC = "state DESC, kaleoInstanceId DESC";
+	public static final String ORDER_BY_DESC =
+		"state DESC, kaleoInstanceId DESC";
 
 	public static final String[] ORDER_BY_FIELDS = {"state", "kaleoInstanceId"};
 
