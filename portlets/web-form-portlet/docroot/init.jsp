@@ -47,6 +47,7 @@
 
 <%@ page import="javax.portlet.ActionRequest" %>
 <%@ page import="javax.portlet.PortletPreferences" %>
+<%@ page import="java.util.Set" %>
 
 <portlet:defineObjects />
 
