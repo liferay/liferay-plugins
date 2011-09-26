@@ -36,7 +36,7 @@ if (WebFormUtil.VALIDATION_SCRIPT_ENABLED) {
 }
 %>
 
-<liferay-ui:error key='<%= fieldSizeInvalid + formFieldsIndex %>' message="please-enter-no-more-than-75-characters" />
+<liferay-ui:error key='<%= "fieldSizeInvalid" + formFieldsIndex %>' message="please-enter-no-more-than-75-characters" />
 
 <div class="aui-field-row field-row">
 	<div class="field-title">
