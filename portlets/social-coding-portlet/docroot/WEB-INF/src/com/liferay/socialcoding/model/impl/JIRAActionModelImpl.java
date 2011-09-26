@@ -129,7 +129,15 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction>
 	}
 
 	public void setJiraUserId(String jiraUserId) {
+		if (_originalJiraUserId == null) {
+			_originalJiraUserId = _jiraUserId;
+		}
+
 		_jiraUserId = jiraUserId;
+	}
+
+	public String getOriginalJiraUserId() {
+		return GetterUtil.getString(_originalJiraUserId);
 	}
 
 	public Date getCreateDate() {
@@ -153,7 +161,17 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction>
 	}
 
 	public void setJiraIssueId(long jiraIssueId) {
+		if (!_setOriginalJiraIssueId) {
+			_setOriginalJiraIssueId = true;
+
+			_originalJiraIssueId = _jiraIssueId;
+		}
+
 		_jiraIssueId = jiraIssueId;
+	}
+
+	public long getOriginalJiraIssueId() {
+		return _originalJiraIssueId;
 	}
 
 	public String getType() {
@@ -166,7 +184,15 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction>
 	}
 
 	public void setType(String type) {
+		if (_originalType == null) {
+			_originalType = _type;
+		}
+
 		_type = type;
+	}
+
+	public String getOriginalType() {
+		return GetterUtil.getString(_originalType);
 	}
 
 	public String getBody() {
@@ -291,6 +317,15 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction>
 
 	@Override
 	public void resetOriginalValues() {
+		JIRAActionModelImpl jiraActionModelImpl = this;
+
+		jiraActionModelImpl._originalJiraUserId = jiraActionModelImpl._jiraUserId;
+
+		jiraActionModelImpl._originalJiraIssueId = jiraActionModelImpl._jiraIssueId;
+
+		jiraActionModelImpl._setOriginalJiraIssueId = false;
+
+		jiraActionModelImpl._originalType = jiraActionModelImpl._type;
 	}
 
 	@Override
@@ -430,10 +465,14 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction>
 		};
 	private long _jiraActionId;
 	private String _jiraUserId;
+	private String _originalJiraUserId;
 	private Date _createDate;
 	private Date _modifiedDate;
 	private long _jiraIssueId;
+	private long _originalJiraIssueId;
+	private boolean _setOriginalJiraIssueId;
 	private String _type;
+	private String _originalType;
 	private String _body;
 	private String _jiraGroupName;
 	private transient ExpandoBridge _expandoBridge;

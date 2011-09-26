@@ -135,7 +135,17 @@ public class KaleoTaskFormModelImpl extends BaseModelImpl<KaleoTaskForm>
 	}
 
 	public void setCompanyId(long companyId) {
+		if (!_setOriginalCompanyId) {
+			_setOriginalCompanyId = true;
+
+			_originalCompanyId = _companyId;
+		}
+
 		_companyId = companyId;
+	}
+
+	public long getOriginalCompanyId() {
+		return _originalCompanyId;
 	}
 
 	public long getUserId() {
@@ -188,7 +198,17 @@ public class KaleoTaskFormModelImpl extends BaseModelImpl<KaleoTaskForm>
 	}
 
 	public void setKaleoDefinitionId(long kaleoDefinitionId) {
+		if (!_setOriginalKaleoDefinitionId) {
+			_setOriginalKaleoDefinitionId = true;
+
+			_originalKaleoDefinitionId = _kaleoDefinitionId;
+		}
+
 		_kaleoDefinitionId = kaleoDefinitionId;
+	}
+
+	public long getOriginalKaleoDefinitionId() {
+		return _originalKaleoDefinitionId;
 	}
 
 	public long getKaleoTaskId() {
@@ -196,7 +216,17 @@ public class KaleoTaskFormModelImpl extends BaseModelImpl<KaleoTaskForm>
 	}
 
 	public void setKaleoTaskId(long kaleoTaskId) {
+		if (!_setOriginalKaleoTaskId) {
+			_setOriginalKaleoTaskId = true;
+
+			_originalKaleoTaskId = _kaleoTaskId;
+		}
+
 		_kaleoTaskId = kaleoTaskId;
+	}
+
+	public long getOriginalKaleoTaskId() {
+		return _originalKaleoTaskId;
 	}
 
 	public String getDescription() {
@@ -324,6 +354,19 @@ public class KaleoTaskFormModelImpl extends BaseModelImpl<KaleoTaskForm>
 
 	@Override
 	public void resetOriginalValues() {
+		KaleoTaskFormModelImpl kaleoTaskFormModelImpl = this;
+
+		kaleoTaskFormModelImpl._originalCompanyId = kaleoTaskFormModelImpl._companyId;
+
+		kaleoTaskFormModelImpl._setOriginalCompanyId = false;
+
+		kaleoTaskFormModelImpl._originalKaleoDefinitionId = kaleoTaskFormModelImpl._kaleoDefinitionId;
+
+		kaleoTaskFormModelImpl._setOriginalKaleoDefinitionId = false;
+
+		kaleoTaskFormModelImpl._originalKaleoTaskId = kaleoTaskFormModelImpl._kaleoTaskId;
+
+		kaleoTaskFormModelImpl._setOriginalKaleoTaskId = false;
 	}
 
 	@Override
@@ -476,13 +519,19 @@ public class KaleoTaskFormModelImpl extends BaseModelImpl<KaleoTaskForm>
 	private long _kaleoTaskFormId;
 	private long _groupId;
 	private long _companyId;
+	private long _originalCompanyId;
+	private boolean _setOriginalCompanyId;
 	private long _userId;
 	private String _userUuid;
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
 	private long _kaleoDefinitionId;
+	private long _originalKaleoDefinitionId;
+	private boolean _setOriginalKaleoDefinitionId;
 	private long _kaleoTaskId;
+	private long _originalKaleoTaskId;
+	private boolean _setOriginalKaleoTaskId;
 	private String _description;
 	private long _formTemplateId;
 	private transient ExpandoBridge _expandoBridge;

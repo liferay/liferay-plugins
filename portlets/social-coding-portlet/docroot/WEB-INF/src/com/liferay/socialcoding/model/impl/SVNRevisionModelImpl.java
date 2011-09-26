@@ -126,7 +126,15 @@ public class SVNRevisionModelImpl extends BaseModelImpl<SVNRevision>
 	}
 
 	public void setSvnUserId(String svnUserId) {
+		if (_originalSvnUserId == null) {
+			_originalSvnUserId = _svnUserId;
+		}
+
 		_svnUserId = svnUserId;
+	}
+
+	public String getOriginalSvnUserId() {
+		return GetterUtil.getString(_originalSvnUserId);
 	}
 
 	public Date getCreateDate() {
@@ -142,7 +150,17 @@ public class SVNRevisionModelImpl extends BaseModelImpl<SVNRevision>
 	}
 
 	public void setSvnRepositoryId(long svnRepositoryId) {
+		if (!_setOriginalSvnRepositoryId) {
+			_setOriginalSvnRepositoryId = true;
+
+			_originalSvnRepositoryId = _svnRepositoryId;
+		}
+
 		_svnRepositoryId = svnRepositoryId;
+	}
+
+	public long getOriginalSvnRepositoryId() {
+		return _originalSvnRepositoryId;
 	}
 
 	public long getRevisionNumber() {
@@ -267,6 +285,13 @@ public class SVNRevisionModelImpl extends BaseModelImpl<SVNRevision>
 
 	@Override
 	public void resetOriginalValues() {
+		SVNRevisionModelImpl svnRevisionModelImpl = this;
+
+		svnRevisionModelImpl._originalSvnUserId = svnRevisionModelImpl._svnUserId;
+
+		svnRevisionModelImpl._originalSvnRepositoryId = svnRevisionModelImpl._svnRepositoryId;
+
+		svnRevisionModelImpl._setOriginalSvnRepositoryId = false;
 	}
 
 	@Override
@@ -371,8 +396,11 @@ public class SVNRevisionModelImpl extends BaseModelImpl<SVNRevision>
 		};
 	private long _svnRevisionId;
 	private String _svnUserId;
+	private String _originalSvnUserId;
 	private Date _createDate;
 	private long _svnRepositoryId;
+	private long _originalSvnRepositoryId;
+	private boolean _setOriginalSvnRepositoryId;
 	private long _revisionNumber;
 	private String _comments;
 	private transient ExpandoBridge _expandoBridge;

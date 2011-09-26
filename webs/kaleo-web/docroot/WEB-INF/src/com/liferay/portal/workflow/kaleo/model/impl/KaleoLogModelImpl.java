@@ -154,7 +154,17 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 	}
 
 	public void setCompanyId(long companyId) {
+		if (!_setOriginalCompanyId) {
+			_setOriginalCompanyId = true;
+
+			_originalCompanyId = _companyId;
+		}
+
 		_companyId = companyId;
+	}
+
+	public long getOriginalCompanyId() {
+		return _originalCompanyId;
 	}
 
 	public long getUserId() {
@@ -212,7 +222,15 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 	}
 
 	public void setKaleoClassName(String kaleoClassName) {
+		if (_originalKaleoClassName == null) {
+			_originalKaleoClassName = _kaleoClassName;
+		}
+
 		_kaleoClassName = kaleoClassName;
+	}
+
+	public String getOriginalKaleoClassName() {
+		return GetterUtil.getString(_originalKaleoClassName);
 	}
 
 	public long getKaleoClassPK() {
@@ -220,7 +238,17 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 	}
 
 	public void setKaleoClassPK(long kaleoClassPK) {
+		if (!_setOriginalKaleoClassPK) {
+			_setOriginalKaleoClassPK = true;
+
+			_originalKaleoClassPK = _kaleoClassPK;
+		}
+
 		_kaleoClassPK = kaleoClassPK;
+	}
+
+	public long getOriginalKaleoClassPK() {
+		return _originalKaleoClassPK;
 	}
 
 	public long getKaleoDefinitionId() {
@@ -228,7 +256,17 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 	}
 
 	public void setKaleoDefinitionId(long kaleoDefinitionId) {
+		if (!_setOriginalKaleoDefinitionId) {
+			_setOriginalKaleoDefinitionId = true;
+
+			_originalKaleoDefinitionId = _kaleoDefinitionId;
+		}
+
 		_kaleoDefinitionId = kaleoDefinitionId;
+	}
+
+	public long getOriginalKaleoDefinitionId() {
+		return _originalKaleoDefinitionId;
 	}
 
 	public long getKaleoInstanceId() {
@@ -236,7 +274,17 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 	}
 
 	public void setKaleoInstanceId(long kaleoInstanceId) {
+		if (!_setOriginalKaleoInstanceId) {
+			_setOriginalKaleoInstanceId = true;
+
+			_originalKaleoInstanceId = _kaleoInstanceId;
+		}
+
 		_kaleoInstanceId = kaleoInstanceId;
+	}
+
+	public long getOriginalKaleoInstanceId() {
+		return _originalKaleoInstanceId;
 	}
 
 	public long getKaleoInstanceTokenId() {
@@ -244,7 +292,17 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 	}
 
 	public void setKaleoInstanceTokenId(long kaleoInstanceTokenId) {
+		if (!_setOriginalKaleoInstanceTokenId) {
+			_setOriginalKaleoInstanceTokenId = true;
+
+			_originalKaleoInstanceTokenId = _kaleoInstanceTokenId;
+		}
+
 		_kaleoInstanceTokenId = kaleoInstanceTokenId;
+	}
+
+	public long getOriginalKaleoInstanceTokenId() {
+		return _originalKaleoInstanceTokenId;
 	}
 
 	public long getKaleoTaskInstanceTokenId() {
@@ -252,7 +310,17 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 	}
 
 	public void setKaleoTaskInstanceTokenId(long kaleoTaskInstanceTokenId) {
+		if (!_setOriginalKaleoTaskInstanceTokenId) {
+			_setOriginalKaleoTaskInstanceTokenId = true;
+
+			_originalKaleoTaskInstanceTokenId = _kaleoTaskInstanceTokenId;
+		}
+
 		_kaleoTaskInstanceTokenId = kaleoTaskInstanceTokenId;
+	}
+
+	public long getOriginalKaleoTaskInstanceTokenId() {
+		return _originalKaleoTaskInstanceTokenId;
 	}
 
 	public String getKaleoNodeName() {
@@ -387,7 +455,15 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 	}
 
 	public void setType(String type) {
+		if (_originalType == null) {
+			_originalType = _type;
+		}
+
 		_type = type;
+	}
+
+	public String getOriginalType() {
+		return GetterUtil.getString(_originalType);
 	}
 
 	public String getComment() {
@@ -563,6 +639,35 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 
 	@Override
 	public void resetOriginalValues() {
+		KaleoLogModelImpl kaleoLogModelImpl = this;
+
+		kaleoLogModelImpl._originalCompanyId = kaleoLogModelImpl._companyId;
+
+		kaleoLogModelImpl._setOriginalCompanyId = false;
+
+		kaleoLogModelImpl._originalKaleoClassName = kaleoLogModelImpl._kaleoClassName;
+
+		kaleoLogModelImpl._originalKaleoClassPK = kaleoLogModelImpl._kaleoClassPK;
+
+		kaleoLogModelImpl._setOriginalKaleoClassPK = false;
+
+		kaleoLogModelImpl._originalKaleoDefinitionId = kaleoLogModelImpl._kaleoDefinitionId;
+
+		kaleoLogModelImpl._setOriginalKaleoDefinitionId = false;
+
+		kaleoLogModelImpl._originalKaleoInstanceId = kaleoLogModelImpl._kaleoInstanceId;
+
+		kaleoLogModelImpl._setOriginalKaleoInstanceId = false;
+
+		kaleoLogModelImpl._originalKaleoInstanceTokenId = kaleoLogModelImpl._kaleoInstanceTokenId;
+
+		kaleoLogModelImpl._setOriginalKaleoInstanceTokenId = false;
+
+		kaleoLogModelImpl._originalKaleoTaskInstanceTokenId = kaleoLogModelImpl._kaleoTaskInstanceTokenId;
+
+		kaleoLogModelImpl._setOriginalKaleoTaskInstanceTokenId = false;
+
+		kaleoLogModelImpl._originalType = kaleoLogModelImpl._type;
 	}
 
 	@Override
@@ -939,17 +1044,30 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 	private long _kaleoLogId;
 	private long _groupId;
 	private long _companyId;
+	private long _originalCompanyId;
+	private boolean _setOriginalCompanyId;
 	private long _userId;
 	private String _userUuid;
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
 	private String _kaleoClassName;
+	private String _originalKaleoClassName;
 	private long _kaleoClassPK;
+	private long _originalKaleoClassPK;
+	private boolean _setOriginalKaleoClassPK;
 	private long _kaleoDefinitionId;
+	private long _originalKaleoDefinitionId;
+	private boolean _setOriginalKaleoDefinitionId;
 	private long _kaleoInstanceId;
+	private long _originalKaleoInstanceId;
+	private boolean _setOriginalKaleoInstanceId;
 	private long _kaleoInstanceTokenId;
+	private long _originalKaleoInstanceTokenId;
+	private boolean _setOriginalKaleoInstanceTokenId;
 	private long _kaleoTaskInstanceTokenId;
+	private long _originalKaleoTaskInstanceTokenId;
+	private boolean _setOriginalKaleoTaskInstanceTokenId;
 	private String _kaleoNodeName;
 	private boolean _terminalKaleoNode;
 	private long _kaleoActionId;
@@ -962,6 +1080,7 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 	private String _currentAssigneeClassName;
 	private long _currentAssigneeClassPK;
 	private String _type;
+	private String _originalType;
 	private String _comment;
 	private Date _startDate;
 	private Date _endDate;

@@ -137,7 +137,17 @@ public class MessageModelImpl extends BaseModelImpl<Message>
 	}
 
 	public void setCompanyId(long companyId) {
+		if (!_setOriginalCompanyId) {
+			_setOriginalCompanyId = true;
+
+			_originalCompanyId = _companyId;
+		}
+
 		_companyId = companyId;
+	}
+
+	public long getOriginalCompanyId() {
+		return _originalCompanyId;
 	}
 
 	public long getUserId() {
@@ -455,6 +465,10 @@ public class MessageModelImpl extends BaseModelImpl<Message>
 	public void resetOriginalValues() {
 		MessageModelImpl messageModelImpl = this;
 
+		messageModelImpl._originalCompanyId = messageModelImpl._companyId;
+
+		messageModelImpl._setOriginalCompanyId = false;
+
 		messageModelImpl._originalFolderId = messageModelImpl._folderId;
 
 		messageModelImpl._setOriginalFolderId = false;
@@ -726,6 +740,8 @@ public class MessageModelImpl extends BaseModelImpl<Message>
 		};
 	private long _messageId;
 	private long _companyId;
+	private long _originalCompanyId;
+	private boolean _setOriginalCompanyId;
 	private long _userId;
 	private String _userUuid;
 	private String _userName;

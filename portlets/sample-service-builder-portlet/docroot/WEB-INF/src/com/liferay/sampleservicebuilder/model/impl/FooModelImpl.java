@@ -295,7 +295,17 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 	}
 
 	public void setField2(boolean field2) {
+		if (!_setOriginalField2) {
+			_setOriginalField2 = true;
+
+			_originalField2 = _field2;
+		}
+
 		_field2 = field2;
+	}
+
+	public boolean getOriginalField2() {
+		return _originalField2;
 	}
 
 	@JSON
@@ -435,6 +445,10 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 		fooModelImpl._originalGroupId = fooModelImpl._groupId;
 
 		fooModelImpl._setOriginalGroupId = false;
+
+		fooModelImpl._originalField2 = fooModelImpl._field2;
+
+		fooModelImpl._setOriginalField2 = false;
 	}
 
 	@Override
@@ -633,6 +647,8 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 	private Date _modifiedDate;
 	private String _field1;
 	private boolean _field2;
+	private boolean _originalField2;
+	private boolean _setOriginalField2;
 	private int _field3;
 	private Date _field4;
 	private String _field5;

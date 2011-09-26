@@ -177,7 +177,17 @@ public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 	}
 
 	public void setCompanyId(long companyId) {
+		if (!_setOriginalCompanyId) {
+			_setOriginalCompanyId = true;
+
+			_originalCompanyId = _companyId;
+		}
+
 		_companyId = companyId;
+	}
+
+	public long getOriginalCompanyId() {
+		return _originalCompanyId;
 	}
 
 	@JSON
@@ -186,6 +196,12 @@ public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 	}
 
 	public void setUserId(long userId) {
+		if (!_setOriginalUserId) {
+			_setOriginalUserId = true;
+
+			_originalUserId = _userId;
+		}
+
 		_userId = userId;
 	}
 
@@ -195,6 +211,10 @@ public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 
 	public void setUserUuid(String userUuid) {
 		_userUuid = userUuid;
+	}
+
+	public long getOriginalUserId() {
+		return _originalUserId;
 	}
 
 	@JSON
@@ -249,7 +269,17 @@ public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 	}
 
 	public void setType(int type) {
+		if (!_setOriginalType) {
+			_setOriginalType = true;
+
+			_originalType = _type;
+		}
+
 		_type = type;
+	}
+
+	public int getOriginalType() {
+		return _originalType;
 	}
 
 	@JSON
@@ -258,6 +288,12 @@ public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 	}
 
 	public void setReceiverUserId(long receiverUserId) {
+		if (!_setOriginalReceiverUserId) {
+			_setOriginalReceiverUserId = true;
+
+			_originalReceiverUserId = _receiverUserId;
+		}
+
 		_receiverUserId = receiverUserId;
 	}
 
@@ -270,13 +306,27 @@ public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 		_receiverUserUuid = receiverUserUuid;
 	}
 
+	public long getOriginalReceiverUserId() {
+		return _originalReceiverUserId;
+	}
+
 	@JSON
 	public long getReceiverMicroblogsEntryId() {
 		return _receiverMicroblogsEntryId;
 	}
 
 	public void setReceiverMicroblogsEntryId(long receiverMicroblogsEntryId) {
+		if (!_setOriginalReceiverMicroblogsEntryId) {
+			_setOriginalReceiverMicroblogsEntryId = true;
+
+			_originalReceiverMicroblogsEntryId = _receiverMicroblogsEntryId;
+		}
+
 		_receiverMicroblogsEntryId = receiverMicroblogsEntryId;
+	}
+
+	public long getOriginalReceiverMicroblogsEntryId() {
+		return _originalReceiverMicroblogsEntryId;
 	}
 
 	@JSON
@@ -387,6 +437,27 @@ public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 
 	@Override
 	public void resetOriginalValues() {
+		MicroblogsEntryModelImpl microblogsEntryModelImpl = this;
+
+		microblogsEntryModelImpl._originalCompanyId = microblogsEntryModelImpl._companyId;
+
+		microblogsEntryModelImpl._setOriginalCompanyId = false;
+
+		microblogsEntryModelImpl._originalUserId = microblogsEntryModelImpl._userId;
+
+		microblogsEntryModelImpl._setOriginalUserId = false;
+
+		microblogsEntryModelImpl._originalType = microblogsEntryModelImpl._type;
+
+		microblogsEntryModelImpl._setOriginalType = false;
+
+		microblogsEntryModelImpl._originalReceiverUserId = microblogsEntryModelImpl._receiverUserId;
+
+		microblogsEntryModelImpl._setOriginalReceiverUserId = false;
+
+		microblogsEntryModelImpl._originalReceiverMicroblogsEntryId = microblogsEntryModelImpl._receiverMicroblogsEntryId;
+
+		microblogsEntryModelImpl._setOriginalReceiverMicroblogsEntryId = false;
 	}
 
 	@Override
@@ -538,16 +609,26 @@ public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 		};
 	private long _microblogsEntryId;
 	private long _companyId;
+	private long _originalCompanyId;
+	private boolean _setOriginalCompanyId;
 	private long _userId;
 	private String _userUuid;
+	private long _originalUserId;
+	private boolean _setOriginalUserId;
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
 	private String _content;
 	private int _type;
+	private int _originalType;
+	private boolean _setOriginalType;
 	private long _receiverUserId;
 	private String _receiverUserUuid;
+	private long _originalReceiverUserId;
+	private boolean _setOriginalReceiverUserId;
 	private long _receiverMicroblogsEntryId;
+	private long _originalReceiverMicroblogsEntryId;
+	private boolean _setOriginalReceiverMicroblogsEntryId;
 	private int _socialRelationType;
 	private transient ExpandoBridge _expandoBridge;
 	private MicroblogsEntry _escapedModelProxy;

@@ -315,7 +315,17 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 	}
 
 	public void setCalendarEventId(long calendarEventId) {
+		if (!_setOriginalCalendarEventId) {
+			_setOriginalCalendarEventId = true;
+
+			_originalCalendarEventId = _calendarEventId;
+		}
+
 		_calendarEventId = calendarEventId;
+	}
+
+	public long getOriginalCalendarEventId() {
+		return _originalCalendarEventId;
 	}
 
 	@JSON
@@ -324,7 +334,17 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 	}
 
 	public void setCalendarResourceId(long calendarResourceId) {
+		if (!_setOriginalCalendarResourceId) {
+			_setOriginalCalendarResourceId = true;
+
+			_originalCalendarResourceId = _calendarResourceId;
+		}
+
 		_calendarResourceId = calendarResourceId;
+	}
+
+	public long getOriginalCalendarResourceId() {
+		return _originalCalendarResourceId;
 	}
 
 	public String getClassName() {
@@ -341,7 +361,17 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 	}
 
 	public void setClassNameId(long classNameId) {
+		if (!_setOriginalClassNameId) {
+			_setOriginalClassNameId = true;
+
+			_originalClassNameId = _classNameId;
+		}
+
 		_classNameId = classNameId;
+	}
+
+	public long getOriginalClassNameId() {
+		return _originalClassNameId;
 	}
 
 	@JSON
@@ -350,7 +380,17 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 	}
 
 	public void setClassPK(long classPK) {
+		if (!_setOriginalClassPK) {
+			_setOriginalClassPK = true;
+
+			_originalClassPK = _classPK;
+		}
+
 		_classPK = classPK;
+	}
+
+	public long getOriginalClassPK() {
+		return _originalClassPK;
 	}
 
 	@JSON
@@ -928,6 +968,22 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		calendarBookingModelImpl._originalGroupId = calendarBookingModelImpl._groupId;
 
 		calendarBookingModelImpl._setOriginalGroupId = false;
+
+		calendarBookingModelImpl._originalCalendarEventId = calendarBookingModelImpl._calendarEventId;
+
+		calendarBookingModelImpl._setOriginalCalendarEventId = false;
+
+		calendarBookingModelImpl._originalCalendarResourceId = calendarBookingModelImpl._calendarResourceId;
+
+		calendarBookingModelImpl._setOriginalCalendarResourceId = false;
+
+		calendarBookingModelImpl._originalClassNameId = calendarBookingModelImpl._classNameId;
+
+		calendarBookingModelImpl._setOriginalClassNameId = false;
+
+		calendarBookingModelImpl._originalClassPK = calendarBookingModelImpl._classPK;
+
+		calendarBookingModelImpl._setOriginalClassPK = false;
 	}
 
 	@Override
@@ -1281,9 +1337,17 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 	private Date _createDate;
 	private Date _modifiedDate;
 	private long _calendarEventId;
+	private long _originalCalendarEventId;
+	private boolean _setOriginalCalendarEventId;
 	private long _calendarResourceId;
+	private long _originalCalendarResourceId;
+	private boolean _setOriginalCalendarResourceId;
 	private long _classNameId;
+	private long _originalClassNameId;
+	private boolean _setOriginalClassNameId;
 	private long _classPK;
+	private long _originalClassPK;
+	private boolean _setOriginalClassPK;
 	private String _title;
 	private String _name;
 	private String _description;

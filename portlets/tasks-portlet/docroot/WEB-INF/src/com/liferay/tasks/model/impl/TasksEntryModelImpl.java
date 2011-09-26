@@ -182,7 +182,17 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 	}
 
 	public void setGroupId(long groupId) {
+		if (!_setOriginalGroupId) {
+			_setOriginalGroupId = true;
+
+			_originalGroupId = _groupId;
+		}
+
 		_groupId = groupId;
+	}
+
+	public long getOriginalGroupId() {
+		return _originalGroupId;
 	}
 
 	@JSON
@@ -200,6 +210,12 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 	}
 
 	public void setUserId(long userId) {
+		if (!_setOriginalUserId) {
+			_setOriginalUserId = true;
+
+			_originalUserId = _userId;
+		}
+
 		_userId = userId;
 	}
 
@@ -209,6 +225,10 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 
 	public void setUserUuid(String userUuid) {
 		_userUuid = userUuid;
+	}
+
+	public long getOriginalUserId() {
+		return _originalUserId;
 	}
 
 	@JSON
@@ -272,6 +292,12 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 	}
 
 	public void setAssigneeUserId(long assigneeUserId) {
+		if (!_setOriginalAssigneeUserId) {
+			_setOriginalAssigneeUserId = true;
+
+			_originalAssigneeUserId = _assigneeUserId;
+		}
+
 		_assigneeUserId = assigneeUserId;
 	}
 
@@ -284,12 +310,22 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 		_assigneeUserUuid = assigneeUserUuid;
 	}
 
+	public long getOriginalAssigneeUserId() {
+		return _originalAssigneeUserId;
+	}
+
 	@JSON
 	public long getResolverUserId() {
 		return _resolverUserId;
 	}
 
 	public void setResolverUserId(long resolverUserId) {
+		if (!_setOriginalResolverUserId) {
+			_setOriginalResolverUserId = true;
+
+			_originalResolverUserId = _resolverUserId;
+		}
+
 		_resolverUserId = resolverUserId;
 	}
 
@@ -300,6 +336,10 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 
 	public void setResolverUserUuid(String resolverUserUuid) {
 		_resolverUserUuid = resolverUserUuid;
+	}
+
+	public long getOriginalResolverUserId() {
+		return _originalResolverUserId;
 	}
 
 	@JSON
@@ -448,6 +488,23 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 
 	@Override
 	public void resetOriginalValues() {
+		TasksEntryModelImpl tasksEntryModelImpl = this;
+
+		tasksEntryModelImpl._originalGroupId = tasksEntryModelImpl._groupId;
+
+		tasksEntryModelImpl._setOriginalGroupId = false;
+
+		tasksEntryModelImpl._originalUserId = tasksEntryModelImpl._userId;
+
+		tasksEntryModelImpl._setOriginalUserId = false;
+
+		tasksEntryModelImpl._originalAssigneeUserId = tasksEntryModelImpl._assigneeUserId;
+
+		tasksEntryModelImpl._setOriginalAssigneeUserId = false;
+
+		tasksEntryModelImpl._originalResolverUserId = tasksEntryModelImpl._resolverUserId;
+
+		tasksEntryModelImpl._setOriginalResolverUserId = false;
 	}
 
 	@Override
@@ -637,9 +694,13 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 		};
 	private long _tasksEntryId;
 	private long _groupId;
+	private long _originalGroupId;
+	private boolean _setOriginalGroupId;
 	private long _companyId;
 	private long _userId;
 	private String _userUuid;
+	private long _originalUserId;
+	private boolean _setOriginalUserId;
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
@@ -647,8 +708,12 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 	private int _priority;
 	private long _assigneeUserId;
 	private String _assigneeUserUuid;
+	private long _originalAssigneeUserId;
+	private boolean _setOriginalAssigneeUserId;
 	private long _resolverUserId;
 	private String _resolverUserUuid;
+	private long _originalResolverUserId;
+	private boolean _setOriginalResolverUserId;
 	private Date _dueDate;
 	private Date _finishDate;
 	private int _status;

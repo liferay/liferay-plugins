@@ -137,6 +137,12 @@ public class ProjectsEntryModelImpl extends BaseModelImpl<ProjectsEntry>
 	}
 
 	public void setUserId(long userId) {
+		if (!_setOriginalUserId) {
+			_setOriginalUserId = true;
+
+			_originalUserId = _userId;
+		}
+
 		_userId = userId;
 	}
 
@@ -146,6 +152,10 @@ public class ProjectsEntryModelImpl extends BaseModelImpl<ProjectsEntry>
 
 	public void setUserUuid(String userUuid) {
 		_userUuid = userUuid;
+	}
+
+	public long getOriginalUserId() {
+		return _originalUserId;
 	}
 
 	public String getUserName() {
@@ -328,6 +338,11 @@ public class ProjectsEntryModelImpl extends BaseModelImpl<ProjectsEntry>
 
 	@Override
 	public void resetOriginalValues() {
+		ProjectsEntryModelImpl projectsEntryModelImpl = this;
+
+		projectsEntryModelImpl._originalUserId = projectsEntryModelImpl._userId;
+
+		projectsEntryModelImpl._setOriginalUserId = false;
 	}
 
 	@Override
@@ -507,6 +522,8 @@ public class ProjectsEntryModelImpl extends BaseModelImpl<ProjectsEntry>
 	private long _companyId;
 	private long _userId;
 	private String _userUuid;
+	private long _originalUserId;
+	private boolean _setOriginalUserId;
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;

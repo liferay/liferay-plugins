@@ -125,7 +125,15 @@ public class JIRAChangeGroupModelImpl extends BaseModelImpl<JIRAChangeGroup>
 	}
 
 	public void setJiraUserId(String jiraUserId) {
+		if (_originalJiraUserId == null) {
+			_originalJiraUserId = _jiraUserId;
+		}
+
 		_jiraUserId = jiraUserId;
+	}
+
+	public String getOriginalJiraUserId() {
+		return GetterUtil.getString(_originalJiraUserId);
 	}
 
 	public Date getCreateDate() {
@@ -141,7 +149,17 @@ public class JIRAChangeGroupModelImpl extends BaseModelImpl<JIRAChangeGroup>
 	}
 
 	public void setJiraIssueId(long jiraIssueId) {
+		if (!_setOriginalJiraIssueId) {
+			_setOriginalJiraIssueId = true;
+
+			_originalJiraIssueId = _jiraIssueId;
+		}
+
 		_jiraIssueId = jiraIssueId;
+	}
+
+	public long getOriginalJiraIssueId() {
+		return _originalJiraIssueId;
 	}
 
 	@Override
@@ -236,6 +254,13 @@ public class JIRAChangeGroupModelImpl extends BaseModelImpl<JIRAChangeGroup>
 
 	@Override
 	public void resetOriginalValues() {
+		JIRAChangeGroupModelImpl jiraChangeGroupModelImpl = this;
+
+		jiraChangeGroupModelImpl._originalJiraUserId = jiraChangeGroupModelImpl._jiraUserId;
+
+		jiraChangeGroupModelImpl._originalJiraIssueId = jiraChangeGroupModelImpl._jiraIssueId;
+
+		jiraChangeGroupModelImpl._setOriginalJiraIssueId = false;
 	}
 
 	@Override
@@ -318,8 +343,11 @@ public class JIRAChangeGroupModelImpl extends BaseModelImpl<JIRAChangeGroup>
 		};
 	private long _jiraChangeGroupId;
 	private String _jiraUserId;
+	private String _originalJiraUserId;
 	private Date _createDate;
 	private long _jiraIssueId;
+	private long _originalJiraIssueId;
+	private boolean _setOriginalJiraIssueId;
 	private transient ExpandoBridge _expandoBridge;
 	private JIRAChangeGroup _escapedModelProxy;
 }

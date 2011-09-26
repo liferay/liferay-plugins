@@ -119,7 +119,15 @@ public class BarModelImpl extends BaseModelImpl<Bar> implements BarModel {
 	}
 
 	public void setText(String text) {
+		if (_originalText == null) {
+			_originalText = _text;
+		}
+
 		_text = text;
+	}
+
+	public String getOriginalText() {
+		return GetterUtil.getString(_originalText);
 	}
 
 	@Override
@@ -209,6 +217,9 @@ public class BarModelImpl extends BaseModelImpl<Bar> implements BarModel {
 
 	@Override
 	public void resetOriginalValues() {
+		BarModelImpl barModelImpl = this;
+
+		barModelImpl._originalText = barModelImpl._text;
 	}
 
 	@Override
@@ -268,6 +279,7 @@ public class BarModelImpl extends BaseModelImpl<Bar> implements BarModel {
 		};
 	private long _barId;
 	private String _text;
+	private String _originalText;
 	private transient ExpandoBridge _expandoBridge;
 	private Bar _escapedModelProxy;
 }

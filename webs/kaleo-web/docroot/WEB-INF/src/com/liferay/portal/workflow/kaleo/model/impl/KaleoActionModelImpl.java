@@ -141,7 +141,17 @@ public class KaleoActionModelImpl extends BaseModelImpl<KaleoAction>
 	}
 
 	public void setCompanyId(long companyId) {
+		if (!_setOriginalCompanyId) {
+			_setOriginalCompanyId = true;
+
+			_originalCompanyId = _companyId;
+		}
+
 		_companyId = companyId;
+	}
+
+	public long getOriginalCompanyId() {
+		return _originalCompanyId;
 	}
 
 	public long getUserId() {
@@ -199,7 +209,15 @@ public class KaleoActionModelImpl extends BaseModelImpl<KaleoAction>
 	}
 
 	public void setKaleoClassName(String kaleoClassName) {
+		if (_originalKaleoClassName == null) {
+			_originalKaleoClassName = _kaleoClassName;
+		}
+
 		_kaleoClassName = kaleoClassName;
+	}
+
+	public String getOriginalKaleoClassName() {
+		return GetterUtil.getString(_originalKaleoClassName);
 	}
 
 	public long getKaleoClassPK() {
@@ -207,7 +225,17 @@ public class KaleoActionModelImpl extends BaseModelImpl<KaleoAction>
 	}
 
 	public void setKaleoClassPK(long kaleoClassPK) {
+		if (!_setOriginalKaleoClassPK) {
+			_setOriginalKaleoClassPK = true;
+
+			_originalKaleoClassPK = _kaleoClassPK;
+		}
+
 		_kaleoClassPK = kaleoClassPK;
+	}
+
+	public long getOriginalKaleoClassPK() {
+		return _originalKaleoClassPK;
 	}
 
 	public long getKaleoDefinitionId() {
@@ -215,7 +243,17 @@ public class KaleoActionModelImpl extends BaseModelImpl<KaleoAction>
 	}
 
 	public void setKaleoDefinitionId(long kaleoDefinitionId) {
+		if (!_setOriginalKaleoDefinitionId) {
+			_setOriginalKaleoDefinitionId = true;
+
+			_originalKaleoDefinitionId = _kaleoDefinitionId;
+		}
+
 		_kaleoDefinitionId = kaleoDefinitionId;
+	}
+
+	public long getOriginalKaleoDefinitionId() {
+		return _originalKaleoDefinitionId;
 	}
 
 	public String getKaleoNodeName() {
@@ -267,7 +305,15 @@ public class KaleoActionModelImpl extends BaseModelImpl<KaleoAction>
 	}
 
 	public void setExecutionType(String executionType) {
+		if (_originalExecutionType == null) {
+			_originalExecutionType = _executionType;
+		}
+
 		_executionType = executionType;
+	}
+
+	public String getOriginalExecutionType() {
+		return GetterUtil.getString(_originalExecutionType);
 	}
 
 	public String getScript() {
@@ -414,6 +460,23 @@ public class KaleoActionModelImpl extends BaseModelImpl<KaleoAction>
 
 	@Override
 	public void resetOriginalValues() {
+		KaleoActionModelImpl kaleoActionModelImpl = this;
+
+		kaleoActionModelImpl._originalCompanyId = kaleoActionModelImpl._companyId;
+
+		kaleoActionModelImpl._setOriginalCompanyId = false;
+
+		kaleoActionModelImpl._originalKaleoClassName = kaleoActionModelImpl._kaleoClassName;
+
+		kaleoActionModelImpl._originalKaleoClassPK = kaleoActionModelImpl._kaleoClassPK;
+
+		kaleoActionModelImpl._setOriginalKaleoClassPK = false;
+
+		kaleoActionModelImpl._originalKaleoDefinitionId = kaleoActionModelImpl._kaleoDefinitionId;
+
+		kaleoActionModelImpl._setOriginalKaleoDefinitionId = false;
+
+		kaleoActionModelImpl._originalExecutionType = kaleoActionModelImpl._executionType;
 	}
 
 	@Override
@@ -650,18 +713,26 @@ public class KaleoActionModelImpl extends BaseModelImpl<KaleoAction>
 	private long _kaleoActionId;
 	private long _groupId;
 	private long _companyId;
+	private long _originalCompanyId;
+	private boolean _setOriginalCompanyId;
 	private long _userId;
 	private String _userUuid;
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
 	private String _kaleoClassName;
+	private String _originalKaleoClassName;
 	private long _kaleoClassPK;
+	private long _originalKaleoClassPK;
+	private boolean _setOriginalKaleoClassPK;
 	private long _kaleoDefinitionId;
+	private long _originalKaleoDefinitionId;
+	private boolean _setOriginalKaleoDefinitionId;
 	private String _kaleoNodeName;
 	private String _name;
 	private String _description;
 	private String _executionType;
+	private String _originalExecutionType;
 	private String _script;
 	private String _scriptLanguage;
 	private int _priority;

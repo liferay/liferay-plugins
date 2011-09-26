@@ -365,7 +365,17 @@ public class KaleoDefinitionModelImpl extends BaseModelImpl<KaleoDefinition>
 	}
 
 	public void setActive(boolean active) {
+		if (!_setOriginalActive) {
+			_setOriginalActive = true;
+
+			_originalActive = _active;
+		}
+
 		_active = active;
+	}
+
+	public boolean getOriginalActive() {
+		return _originalActive;
 	}
 
 	public long getStartKaleoNodeId() {
@@ -496,6 +506,10 @@ public class KaleoDefinitionModelImpl extends BaseModelImpl<KaleoDefinition>
 		kaleoDefinitionModelImpl._originalVersion = kaleoDefinitionModelImpl._version;
 
 		kaleoDefinitionModelImpl._setOriginalVersion = false;
+
+		kaleoDefinitionModelImpl._originalActive = kaleoDefinitionModelImpl._active;
+
+		kaleoDefinitionModelImpl._setOriginalActive = false;
 	}
 
 	@Override
@@ -706,6 +720,8 @@ public class KaleoDefinitionModelImpl extends BaseModelImpl<KaleoDefinition>
 	private int _originalVersion;
 	private boolean _setOriginalVersion;
 	private boolean _active;
+	private boolean _originalActive;
+	private boolean _setOriginalActive;
 	private long _startKaleoNodeId;
 	private transient ExpandoBridge _expandoBridge;
 	private KaleoDefinition _escapedModelProxy;

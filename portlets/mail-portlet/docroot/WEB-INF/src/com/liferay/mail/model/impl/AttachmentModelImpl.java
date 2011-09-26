@@ -162,7 +162,17 @@ public class AttachmentModelImpl extends BaseModelImpl<Attachment>
 	}
 
 	public void setMessageId(long messageId) {
+		if (!_setOriginalMessageId) {
+			_setOriginalMessageId = true;
+
+			_originalMessageId = _messageId;
+		}
+
 		_messageId = messageId;
+	}
+
+	public long getOriginalMessageId() {
+		return _originalMessageId;
 	}
 
 	public String getContentPath() {
@@ -295,6 +305,11 @@ public class AttachmentModelImpl extends BaseModelImpl<Attachment>
 
 	@Override
 	public void resetOriginalValues() {
+		AttachmentModelImpl attachmentModelImpl = this;
+
+		attachmentModelImpl._originalMessageId = attachmentModelImpl._messageId;
+
+		attachmentModelImpl._setOriginalMessageId = false;
 	}
 
 	@Override
@@ -421,6 +436,8 @@ public class AttachmentModelImpl extends BaseModelImpl<Attachment>
 	private long _accountId;
 	private long _folderId;
 	private long _messageId;
+	private long _originalMessageId;
+	private boolean _setOriginalMessageId;
 	private String _contentPath;
 	private String _fileName;
 	private long _size;

@@ -138,7 +138,17 @@ public class KaleoNotificationRecipientModelImpl extends BaseModelImpl<KaleoNoti
 	}
 
 	public void setCompanyId(long companyId) {
+		if (!_setOriginalCompanyId) {
+			_setOriginalCompanyId = true;
+
+			_originalCompanyId = _companyId;
+		}
+
 		_companyId = companyId;
+	}
+
+	public long getOriginalCompanyId() {
+		return _originalCompanyId;
 	}
 
 	public long getUserId() {
@@ -191,7 +201,17 @@ public class KaleoNotificationRecipientModelImpl extends BaseModelImpl<KaleoNoti
 	}
 
 	public void setKaleoDefinitionId(long kaleoDefinitionId) {
+		if (!_setOriginalKaleoDefinitionId) {
+			_setOriginalKaleoDefinitionId = true;
+
+			_originalKaleoDefinitionId = _kaleoDefinitionId;
+		}
+
 		_kaleoDefinitionId = kaleoDefinitionId;
+	}
+
+	public long getOriginalKaleoDefinitionId() {
+		return _originalKaleoDefinitionId;
 	}
 
 	public long getKaleoNotificationId() {
@@ -199,7 +219,17 @@ public class KaleoNotificationRecipientModelImpl extends BaseModelImpl<KaleoNoti
 	}
 
 	public void setKaleoNotificationId(long kaleoNotificationId) {
+		if (!_setOriginalKaleoNotificationId) {
+			_setOriginalKaleoNotificationId = true;
+
+			_originalKaleoNotificationId = _kaleoNotificationId;
+		}
+
 		_kaleoNotificationId = kaleoNotificationId;
+	}
+
+	public long getOriginalKaleoNotificationId() {
+		return _originalKaleoNotificationId;
 	}
 
 	public String getRecipientClassName() {
@@ -350,6 +380,19 @@ public class KaleoNotificationRecipientModelImpl extends BaseModelImpl<KaleoNoti
 
 	@Override
 	public void resetOriginalValues() {
+		KaleoNotificationRecipientModelImpl kaleoNotificationRecipientModelImpl = this;
+
+		kaleoNotificationRecipientModelImpl._originalCompanyId = kaleoNotificationRecipientModelImpl._companyId;
+
+		kaleoNotificationRecipientModelImpl._setOriginalCompanyId = false;
+
+		kaleoNotificationRecipientModelImpl._originalKaleoDefinitionId = kaleoNotificationRecipientModelImpl._kaleoDefinitionId;
+
+		kaleoNotificationRecipientModelImpl._setOriginalKaleoDefinitionId = false;
+
+		kaleoNotificationRecipientModelImpl._originalKaleoNotificationId = kaleoNotificationRecipientModelImpl._kaleoNotificationId;
+
+		kaleoNotificationRecipientModelImpl._setOriginalKaleoNotificationId = false;
 	}
 
 	@Override
@@ -526,13 +569,19 @@ public class KaleoNotificationRecipientModelImpl extends BaseModelImpl<KaleoNoti
 	private long _kaleoNotificationRecipientId;
 	private long _groupId;
 	private long _companyId;
+	private long _originalCompanyId;
+	private boolean _setOriginalCompanyId;
 	private long _userId;
 	private String _userUuid;
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
 	private long _kaleoDefinitionId;
+	private long _originalKaleoDefinitionId;
+	private boolean _setOriginalKaleoDefinitionId;
 	private long _kaleoNotificationId;
+	private long _originalKaleoNotificationId;
+	private boolean _setOriginalKaleoNotificationId;
 	private String _recipientClassName;
 	private long _recipientClassPK;
 	private int _recipientRoleType;

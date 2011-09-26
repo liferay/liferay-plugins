@@ -199,7 +199,15 @@ public class KaleoTimerModelImpl extends BaseModelImpl<KaleoTimer>
 	}
 
 	public void setKaleoClassName(String kaleoClassName) {
+		if (_originalKaleoClassName == null) {
+			_originalKaleoClassName = _kaleoClassName;
+		}
+
 		_kaleoClassName = kaleoClassName;
+	}
+
+	public String getOriginalKaleoClassName() {
+		return GetterUtil.getString(_originalKaleoClassName);
 	}
 
 	public long getKaleoClassPK() {
@@ -207,7 +215,17 @@ public class KaleoTimerModelImpl extends BaseModelImpl<KaleoTimer>
 	}
 
 	public void setKaleoClassPK(long kaleoClassPK) {
+		if (!_setOriginalKaleoClassPK) {
+			_setOriginalKaleoClassPK = true;
+
+			_originalKaleoClassPK = _kaleoClassPK;
+		}
+
 		_kaleoClassPK = kaleoClassPK;
+	}
+
+	public long getOriginalKaleoClassPK() {
+		return _originalKaleoClassPK;
 	}
 
 	public long getKaleoDefinitionId() {
@@ -240,7 +258,17 @@ public class KaleoTimerModelImpl extends BaseModelImpl<KaleoTimer>
 	}
 
 	public void setBlocking(boolean blocking) {
+		if (!_setOriginalBlocking) {
+			_setOriginalBlocking = true;
+
+			_originalBlocking = _blocking;
+		}
+
 		_blocking = blocking;
+	}
+
+	public boolean getOriginalBlocking() {
+		return _originalBlocking;
 	}
 
 	public String getDescription() {
@@ -408,6 +436,17 @@ public class KaleoTimerModelImpl extends BaseModelImpl<KaleoTimer>
 
 	@Override
 	public void resetOriginalValues() {
+		KaleoTimerModelImpl kaleoTimerModelImpl = this;
+
+		kaleoTimerModelImpl._originalKaleoClassName = kaleoTimerModelImpl._kaleoClassName;
+
+		kaleoTimerModelImpl._originalKaleoClassPK = kaleoTimerModelImpl._kaleoClassPK;
+
+		kaleoTimerModelImpl._setOriginalKaleoClassPK = false;
+
+		kaleoTimerModelImpl._originalBlocking = kaleoTimerModelImpl._blocking;
+
+		kaleoTimerModelImpl._setOriginalBlocking = false;
 	}
 
 	@Override
@@ -638,10 +677,15 @@ public class KaleoTimerModelImpl extends BaseModelImpl<KaleoTimer>
 	private Date _createDate;
 	private Date _modifiedDate;
 	private String _kaleoClassName;
+	private String _originalKaleoClassName;
 	private long _kaleoClassPK;
+	private long _originalKaleoClassPK;
+	private boolean _setOriginalKaleoClassPK;
 	private long _kaleoDefinitionId;
 	private String _name;
 	private boolean _blocking;
+	private boolean _originalBlocking;
+	private boolean _setOriginalBlocking;
 	private String _description;
 	private double _duration;
 	private String _scale;

@@ -267,7 +267,17 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 	}
 
 	public void setCompanyId(long companyId) {
+		if (!_setOriginalCompanyId) {
+			_setOriginalCompanyId = true;
+
+			_originalCompanyId = _companyId;
+		}
+
 		_companyId = companyId;
+	}
+
+	public long getOriginalCompanyId() {
+		return _originalCompanyId;
 	}
 
 	@JSON
@@ -334,7 +344,17 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 	}
 
 	public void setParentResourcePrimKey(long parentResourcePrimKey) {
+		if (!_setOriginalParentResourcePrimKey) {
+			_setOriginalParentResourcePrimKey = true;
+
+			_originalParentResourcePrimKey = _parentResourcePrimKey;
+		}
+
 		_parentResourcePrimKey = parentResourcePrimKey;
+	}
+
+	public long getOriginalParentResourcePrimKey() {
+		return _originalParentResourcePrimKey;
 	}
 
 	@JSON
@@ -418,7 +438,15 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 	}
 
 	public void setSections(String sections) {
+		if (_originalSections == null) {
+			_originalSections = _sections;
+		}
+
 		_sections = sections;
+	}
+
+	public String getOriginalSections() {
+		return GetterUtil.getString(_originalSections);
 	}
 
 	@JSON
@@ -440,7 +468,17 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 	}
 
 	public void setLatest(boolean latest) {
+		if (!_setOriginalLatest) {
+			_setOriginalLatest = true;
+
+			_originalLatest = _latest;
+		}
+
 		_latest = latest;
+	}
+
+	public boolean getOriginalLatest() {
+		return _originalLatest;
 	}
 
 	@JSON
@@ -453,7 +491,17 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 	}
 
 	public void setMain(boolean main) {
+		if (!_setOriginalMain) {
+			_setOriginalMain = true;
+
+			_originalMain = _main;
+		}
+
 		_main = main;
+	}
+
+	public boolean getOriginalMain() {
+		return _originalMain;
 	}
 
 	@JSON
@@ -462,7 +510,17 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 	}
 
 	public void setStatus(int status) {
+		if (!_setOriginalStatus) {
+			_setOriginalStatus = true;
+
+			_originalStatus = _status;
+		}
+
 		_status = status;
+	}
+
+	public int getOriginalStatus() {
+		return _originalStatus;
 	}
 
 	@JSON
@@ -673,9 +731,31 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 
 		kbArticleModelImpl._setOriginalGroupId = false;
 
+		kbArticleModelImpl._originalCompanyId = kbArticleModelImpl._companyId;
+
+		kbArticleModelImpl._setOriginalCompanyId = false;
+
+		kbArticleModelImpl._originalParentResourcePrimKey = kbArticleModelImpl._parentResourcePrimKey;
+
+		kbArticleModelImpl._setOriginalParentResourcePrimKey = false;
+
 		kbArticleModelImpl._originalVersion = kbArticleModelImpl._version;
 
 		kbArticleModelImpl._setOriginalVersion = false;
+
+		kbArticleModelImpl._originalSections = kbArticleModelImpl._sections;
+
+		kbArticleModelImpl._originalLatest = kbArticleModelImpl._latest;
+
+		kbArticleModelImpl._setOriginalLatest = false;
+
+		kbArticleModelImpl._originalMain = kbArticleModelImpl._main;
+
+		kbArticleModelImpl._setOriginalMain = false;
+
+		kbArticleModelImpl._originalStatus = kbArticleModelImpl._status;
+
+		kbArticleModelImpl._setOriginalStatus = false;
 	}
 
 	@Override
@@ -976,6 +1056,8 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 	private long _originalGroupId;
 	private boolean _setOriginalGroupId;
 	private long _companyId;
+	private long _originalCompanyId;
+	private boolean _setOriginalCompanyId;
 	private long _userId;
 	private String _userUuid;
 	private String _userName;
@@ -983,6 +1065,8 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 	private Date _modifiedDate;
 	private long _rootResourcePrimKey;
 	private long _parentResourcePrimKey;
+	private long _originalParentResourcePrimKey;
+	private boolean _setOriginalParentResourcePrimKey;
 	private int _version;
 	private int _originalVersion;
 	private boolean _setOriginalVersion;
@@ -991,10 +1075,17 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 	private String _description;
 	private double _priority;
 	private String _sections;
+	private String _originalSections;
 	private int _viewCount;
 	private boolean _latest;
+	private boolean _originalLatest;
+	private boolean _setOriginalLatest;
 	private boolean _main;
+	private boolean _originalMain;
+	private boolean _setOriginalMain;
 	private int _status;
+	private int _originalStatus;
+	private boolean _setOriginalStatus;
 	private long _statusByUserId;
 	private String _statusByUserUuid;
 	private String _statusByUserName;

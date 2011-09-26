@@ -147,7 +147,17 @@ public class StatusModelImpl extends BaseModelImpl<Status>
 	}
 
 	public void setModifiedDate(long modifiedDate) {
+		if (!_setOriginalModifiedDate) {
+			_setOriginalModifiedDate = true;
+
+			_originalModifiedDate = _modifiedDate;
+		}
+
 		_modifiedDate = modifiedDate;
+	}
+
+	public long getOriginalModifiedDate() {
+		return _originalModifiedDate;
 	}
 
 	public boolean getOnline() {
@@ -159,7 +169,17 @@ public class StatusModelImpl extends BaseModelImpl<Status>
 	}
 
 	public void setOnline(boolean online) {
+		if (!_setOriginalOnline) {
+			_setOriginalOnline = true;
+
+			_originalOnline = _online;
+		}
+
 		_online = online;
+	}
+
+	public boolean getOriginalOnline() {
+		return _originalOnline;
 	}
 
 	public boolean getAwake() {
@@ -312,6 +332,14 @@ public class StatusModelImpl extends BaseModelImpl<Status>
 		statusModelImpl._originalUserId = statusModelImpl._userId;
 
 		statusModelImpl._setOriginalUserId = false;
+
+		statusModelImpl._originalModifiedDate = statusModelImpl._modifiedDate;
+
+		statusModelImpl._setOriginalModifiedDate = false;
+
+		statusModelImpl._originalOnline = statusModelImpl._online;
+
+		statusModelImpl._setOriginalOnline = false;
 	}
 
 	@Override
@@ -429,7 +457,11 @@ public class StatusModelImpl extends BaseModelImpl<Status>
 	private long _originalUserId;
 	private boolean _setOriginalUserId;
 	private long _modifiedDate;
+	private long _originalModifiedDate;
+	private boolean _setOriginalModifiedDate;
 	private boolean _online;
+	private boolean _originalOnline;
+	private boolean _setOriginalOnline;
 	private boolean _awake;
 	private String _activePanelId;
 	private String _message;

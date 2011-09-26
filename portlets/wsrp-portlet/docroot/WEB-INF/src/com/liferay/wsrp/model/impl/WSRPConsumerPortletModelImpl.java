@@ -120,7 +120,15 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 	}
 
 	public void setUuid(String uuid) {
+		if (_originalUuid == null) {
+			_originalUuid = _uuid;
+		}
+
 		_uuid = uuid;
+	}
+
+	public String getOriginalUuid() {
+		return GetterUtil.getString(_originalUuid);
 	}
 
 	public long getWsrpConsumerPortletId() {
@@ -302,6 +310,8 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 	public void resetOriginalValues() {
 		WSRPConsumerPortletModelImpl wsrpConsumerPortletModelImpl = this;
 
+		wsrpConsumerPortletModelImpl._originalUuid = wsrpConsumerPortletModelImpl._uuid;
+
 		wsrpConsumerPortletModelImpl._originalWsrpConsumerId = wsrpConsumerPortletModelImpl._wsrpConsumerId;
 
 		wsrpConsumerPortletModelImpl._setOriginalWsrpConsumerId = false;
@@ -439,6 +449,7 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 			WSRPConsumerPortlet.class
 		};
 	private String _uuid;
+	private String _originalUuid;
 	private long _wsrpConsumerPortletId;
 	private long _companyId;
 	private Date _createDate;

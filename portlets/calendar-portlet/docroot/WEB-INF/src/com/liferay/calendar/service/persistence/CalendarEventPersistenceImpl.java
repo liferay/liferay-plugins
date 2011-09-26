@@ -77,20 +77,27 @@ public class CalendarEventPersistenceImpl extends BasePersistenceImpl<CalendarEv
 	 * Never modify or reference this class directly. Always use {@link CalendarEventUtil} to access the calendar event persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.
 	 */
 	public static final String FINDER_CLASS_NAME_ENTITY = CalendarEventImpl.class.getName();
-	public static final String FINDER_CLASS_NAME_LIST = FINDER_CLASS_NAME_ENTITY +
-		".List";
-	public static final FinderPath FINDER_PATH_FIND_BY_UUID = new FinderPath(CalendarEventModelImpl.ENTITY_CACHE_ENABLED,
+	public static final String FINDER_CLASS_NAME_LIST_WITH_PAGINATION = FINDER_CLASS_NAME_ENTITY +
+		".List1";
+	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION = FINDER_CLASS_NAME_ENTITY +
+		".List2";
+	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_UUID = new FinderPath(CalendarEventModelImpl.ENTITY_CACHE_ENABLED,
 			CalendarEventModelImpl.FINDER_CACHE_ENABLED,
-			CalendarEventImpl.class, FINDER_CLASS_NAME_LIST, "findByUuid",
+			CalendarEventImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
+			"findByUuid",
 			new String[] {
 				String.class.getName(),
 				
 			"java.lang.Integer", "java.lang.Integer",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
+	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID = new FinderPath(CalendarEventModelImpl.ENTITY_CACHE_ENABLED,
+			CalendarEventModelImpl.FINDER_CACHE_ENABLED,
+			CalendarEventImpl.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"findByUuid", new String[] { String.class.getName() });
 	public static final FinderPath FINDER_PATH_COUNT_BY_UUID = new FinderPath(CalendarEventModelImpl.ENTITY_CACHE_ENABLED,
 			CalendarEventModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST, "countByUuid",
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUuid",
 			new String[] { String.class.getName() });
 	public static final FinderPath FINDER_PATH_FETCH_BY_UUID_G = new FinderPath(CalendarEventModelImpl.ENTITY_CACHE_ENABLED,
 			CalendarEventModelImpl.FINDER_CACHE_ENABLED,
@@ -98,15 +105,19 @@ public class CalendarEventPersistenceImpl extends BasePersistenceImpl<CalendarEv
 			new String[] { String.class.getName(), Long.class.getName() });
 	public static final FinderPath FINDER_PATH_COUNT_BY_UUID_G = new FinderPath(CalendarEventModelImpl.ENTITY_CACHE_ENABLED,
 			CalendarEventModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST, "countByUUID_G",
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUUID_G",
 			new String[] { String.class.getName(), Long.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(CalendarEventModelImpl.ENTITY_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_ALL = new FinderPath(CalendarEventModelImpl.ENTITY_CACHE_ENABLED,
 			CalendarEventModelImpl.FINDER_CACHE_ENABLED,
-			CalendarEventImpl.class, FINDER_CLASS_NAME_LIST, "findAll",
-			new String[0]);
+			CalendarEventImpl.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"findAll", new String[0]);
+	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_ALL = new FinderPath(CalendarEventModelImpl.ENTITY_CACHE_ENABLED,
+			CalendarEventModelImpl.FINDER_CACHE_ENABLED,
+			CalendarEventImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
+			"findAll", new String[0]);
 	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(CalendarEventModelImpl.ENTITY_CACHE_ENABLED,
 			CalendarEventModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST, "countAll", new String[0]);
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll", new String[0]);
 
 	/**
 	 * Caches the calendar event in the entity cache if it is enabled.
@@ -156,8 +167,10 @@ public class CalendarEventPersistenceImpl extends BasePersistenceImpl<CalendarEv
 		}
 
 		EntityCacheUtil.clearCache(CalendarEventImpl.class.getName());
+
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
 	/**
@@ -172,7 +185,8 @@ public class CalendarEventPersistenceImpl extends BasePersistenceImpl<CalendarEv
 		EntityCacheUtil.removeResult(CalendarEventModelImpl.ENTITY_CACHE_ENABLED,
 			CalendarEventImpl.class, calendarEvent.getPrimaryKey());
 
-		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
 			new Object[] {
@@ -287,7 +301,8 @@ public class CalendarEventPersistenceImpl extends BasePersistenceImpl<CalendarEv
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
 		CalendarEventModelImpl calendarEventModelImpl = (CalendarEventModelImpl)calendarEvent;
 
@@ -335,32 +350,47 @@ public class CalendarEventPersistenceImpl extends BasePersistenceImpl<CalendarEv
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+
+		if (isNew) {
+			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		}
+		else {
+			if (!Validator.equals(calendarEvent.getUuid(),
+						calendarEventModelImpl.getOriginalUuid())) {
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID,
+					new Object[] { calendarEventModelImpl.getOriginalUuid() });
+			}
+		}
 
 		EntityCacheUtil.putResult(CalendarEventModelImpl.ENTITY_CACHE_ENABLED,
 			CalendarEventImpl.class, calendarEvent.getPrimaryKey(),
 			calendarEvent);
 
-		if (!isNew &&
-				(!Validator.equals(calendarEvent.getUuid(),
-					calendarEventModelImpl.getOriginalUuid()) ||
-				(calendarEvent.getGroupId() != calendarEventModelImpl.getOriginalGroupId()))) {
-			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
-				new Object[] {
-					calendarEventModelImpl.getOriginalUuid(),
-					Long.valueOf(calendarEventModelImpl.getOriginalGroupId())
-				});
-		}
-
-		if (isNew ||
-				(!Validator.equals(calendarEvent.getUuid(),
-					calendarEventModelImpl.getOriginalUuid()) ||
-				(calendarEvent.getGroupId() != calendarEventModelImpl.getOriginalGroupId()))) {
+		if (isNew) {
 			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G,
 				new Object[] {
 					calendarEvent.getUuid(),
 					Long.valueOf(calendarEvent.getGroupId())
 				}, calendarEvent);
+		}
+		else {
+			if (!Validator.equals(calendarEvent.getUuid(),
+						calendarEventModelImpl.getOriginalUuid()) ||
+					(calendarEvent.getGroupId() != calendarEventModelImpl.getOriginalGroupId())) {
+				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
+					new Object[] {
+						calendarEventModelImpl.getOriginalUuid(),
+						Long.valueOf(
+							calendarEventModelImpl.getOriginalGroupId())
+					});
+
+				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G,
+					new Object[] {
+						calendarEvent.getUuid(),
+						Long.valueOf(calendarEvent.getGroupId())
+					}, calendarEvent);
+			}
 		}
 
 		return calendarEvent;
@@ -547,9 +577,20 @@ public class CalendarEventPersistenceImpl extends BasePersistenceImpl<CalendarEv
 	 */
 	public List<CalendarEvent> findByUuid(String uuid, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] { uuid, start, end, orderByComparator };
+		FinderPath finderPath = null;
+		Object[] finderArgs = null;
 
-		List<CalendarEvent> list = (List<CalendarEvent>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_UUID,
+		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
+				(orderByComparator == null)) {
+			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID;
+			finderArgs = new Object[] { uuid };
+		}
+		else {
+			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_UUID;
+			finderArgs = new Object[] { uuid, start, end, orderByComparator };
+		}
+
+		List<CalendarEvent> list = (List<CalendarEvent>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
 		if (list == null) {
@@ -609,14 +650,12 @@ public class CalendarEventPersistenceImpl extends BasePersistenceImpl<CalendarEv
 			}
 			finally {
 				if (list == null) {
-					FinderCacheUtil.removeResult(FINDER_PATH_FIND_BY_UUID,
-						finderArgs);
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
 				}
 				else {
 					cacheResult(list);
 
-					FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_UUID,
-						finderArgs, list);
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
 				}
 
 				closeSession(session);
@@ -1057,9 +1096,20 @@ public class CalendarEventPersistenceImpl extends BasePersistenceImpl<CalendarEv
 	 */
 	public List<CalendarEvent> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
+		FinderPath finderPath = null;
 		Object[] finderArgs = new Object[] { start, end, orderByComparator };
 
-		List<CalendarEvent> list = (List<CalendarEvent>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
+		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
+				(orderByComparator == null)) {
+			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_ALL;
+			finderArgs = FINDER_ARGS_EMPTY;
+		}
+		else {
+			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_ALL;
+			finderArgs = new Object[] { start, end, orderByComparator };
+		}
+
+		List<CalendarEvent> list = (List<CalendarEvent>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
 		if (list == null) {
@@ -1104,14 +1154,12 @@ public class CalendarEventPersistenceImpl extends BasePersistenceImpl<CalendarEv
 			}
 			finally {
 				if (list == null) {
-					FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL,
-						finderArgs);
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
 				}
 				else {
 					cacheResult(list);
 
-					FinderCacheUtil.putResult(FINDER_PATH_FIND_ALL, finderArgs,
-						list);
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
 				}
 
 				closeSession(session);
@@ -1360,7 +1408,7 @@ public class CalendarEventPersistenceImpl extends BasePersistenceImpl<CalendarEv
 	public void destroy() {
 		EntityCacheUtil.removeCache(CalendarEventImpl.class.getName());
 		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_ENTITY);
-		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST);
+		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
 	@BeanReference(type = CalendarBookingPersistence.class)

@@ -140,7 +140,17 @@ public class KaleoTaskAssignmentModelImpl extends BaseModelImpl<KaleoTaskAssignm
 	}
 
 	public void setCompanyId(long companyId) {
+		if (!_setOriginalCompanyId) {
+			_setOriginalCompanyId = true;
+
+			_originalCompanyId = _companyId;
+		}
+
 		_companyId = companyId;
+	}
+
+	public long getOriginalCompanyId() {
+		return _originalCompanyId;
 	}
 
 	public long getUserId() {
@@ -198,7 +208,15 @@ public class KaleoTaskAssignmentModelImpl extends BaseModelImpl<KaleoTaskAssignm
 	}
 
 	public void setKaleoClassName(String kaleoClassName) {
+		if (_originalKaleoClassName == null) {
+			_originalKaleoClassName = _kaleoClassName;
+		}
+
 		_kaleoClassName = kaleoClassName;
+	}
+
+	public String getOriginalKaleoClassName() {
+		return GetterUtil.getString(_originalKaleoClassName);
 	}
 
 	public long getKaleoClassPK() {
@@ -206,7 +224,17 @@ public class KaleoTaskAssignmentModelImpl extends BaseModelImpl<KaleoTaskAssignm
 	}
 
 	public void setKaleoClassPK(long kaleoClassPK) {
+		if (!_setOriginalKaleoClassPK) {
+			_setOriginalKaleoClassPK = true;
+
+			_originalKaleoClassPK = _kaleoClassPK;
+		}
+
 		_kaleoClassPK = kaleoClassPK;
+	}
+
+	public long getOriginalKaleoClassPK() {
+		return _originalKaleoClassPK;
 	}
 
 	public long getKaleoDefinitionId() {
@@ -214,7 +242,17 @@ public class KaleoTaskAssignmentModelImpl extends BaseModelImpl<KaleoTaskAssignm
 	}
 
 	public void setKaleoDefinitionId(long kaleoDefinitionId) {
+		if (!_setOriginalKaleoDefinitionId) {
+			_setOriginalKaleoDefinitionId = true;
+
+			_originalKaleoDefinitionId = _kaleoDefinitionId;
+		}
+
 		_kaleoDefinitionId = kaleoDefinitionId;
+	}
+
+	public long getOriginalKaleoDefinitionId() {
+		return _originalKaleoDefinitionId;
 	}
 
 	public long getKaleoNodeId() {
@@ -235,7 +273,15 @@ public class KaleoTaskAssignmentModelImpl extends BaseModelImpl<KaleoTaskAssignm
 	}
 
 	public void setAssigneeClassName(String assigneeClassName) {
+		if (_originalAssigneeClassName == null) {
+			_originalAssigneeClassName = _assigneeClassName;
+		}
+
 		_assigneeClassName = assigneeClassName;
+	}
+
+	public String getOriginalAssigneeClassName() {
+		return GetterUtil.getString(_originalAssigneeClassName);
 	}
 
 	public long getAssigneeClassPK() {
@@ -394,6 +440,23 @@ public class KaleoTaskAssignmentModelImpl extends BaseModelImpl<KaleoTaskAssignm
 
 	@Override
 	public void resetOriginalValues() {
+		KaleoTaskAssignmentModelImpl kaleoTaskAssignmentModelImpl = this;
+
+		kaleoTaskAssignmentModelImpl._originalCompanyId = kaleoTaskAssignmentModelImpl._companyId;
+
+		kaleoTaskAssignmentModelImpl._setOriginalCompanyId = false;
+
+		kaleoTaskAssignmentModelImpl._originalKaleoClassName = kaleoTaskAssignmentModelImpl._kaleoClassName;
+
+		kaleoTaskAssignmentModelImpl._originalKaleoClassPK = kaleoTaskAssignmentModelImpl._kaleoClassPK;
+
+		kaleoTaskAssignmentModelImpl._setOriginalKaleoClassPK = false;
+
+		kaleoTaskAssignmentModelImpl._originalKaleoDefinitionId = kaleoTaskAssignmentModelImpl._kaleoDefinitionId;
+
+		kaleoTaskAssignmentModelImpl._setOriginalKaleoDefinitionId = false;
+
+		kaleoTaskAssignmentModelImpl._originalAssigneeClassName = kaleoTaskAssignmentModelImpl._assigneeClassName;
 	}
 
 	@Override
@@ -611,16 +674,24 @@ public class KaleoTaskAssignmentModelImpl extends BaseModelImpl<KaleoTaskAssignm
 	private long _kaleoTaskAssignmentId;
 	private long _groupId;
 	private long _companyId;
+	private long _originalCompanyId;
+	private boolean _setOriginalCompanyId;
 	private long _userId;
 	private String _userUuid;
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
 	private String _kaleoClassName;
+	private String _originalKaleoClassName;
 	private long _kaleoClassPK;
+	private long _originalKaleoClassPK;
+	private boolean _setOriginalKaleoClassPK;
 	private long _kaleoDefinitionId;
+	private long _originalKaleoDefinitionId;
+	private boolean _setOriginalKaleoDefinitionId;
 	private long _kaleoNodeId;
 	private String _assigneeClassName;
+	private String _originalAssigneeClassName;
 	private long _assigneeClassPK;
 	private String _assigneeActionId;
 	private String _assigneeScript;

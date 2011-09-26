@@ -141,7 +141,17 @@ public class KaleoNotificationModelImpl extends BaseModelImpl<KaleoNotification>
 	}
 
 	public void setCompanyId(long companyId) {
+		if (!_setOriginalCompanyId) {
+			_setOriginalCompanyId = true;
+
+			_originalCompanyId = _companyId;
+		}
+
 		_companyId = companyId;
+	}
+
+	public long getOriginalCompanyId() {
+		return _originalCompanyId;
 	}
 
 	public long getUserId() {
@@ -199,7 +209,15 @@ public class KaleoNotificationModelImpl extends BaseModelImpl<KaleoNotification>
 	}
 
 	public void setKaleoClassName(String kaleoClassName) {
+		if (_originalKaleoClassName == null) {
+			_originalKaleoClassName = _kaleoClassName;
+		}
+
 		_kaleoClassName = kaleoClassName;
+	}
+
+	public String getOriginalKaleoClassName() {
+		return GetterUtil.getString(_originalKaleoClassName);
 	}
 
 	public long getKaleoClassPK() {
@@ -207,7 +225,17 @@ public class KaleoNotificationModelImpl extends BaseModelImpl<KaleoNotification>
 	}
 
 	public void setKaleoClassPK(long kaleoClassPK) {
+		if (!_setOriginalKaleoClassPK) {
+			_setOriginalKaleoClassPK = true;
+
+			_originalKaleoClassPK = _kaleoClassPK;
+		}
+
 		_kaleoClassPK = kaleoClassPK;
+	}
+
+	public long getOriginalKaleoClassPK() {
+		return _originalKaleoClassPK;
 	}
 
 	public long getKaleoDefinitionId() {
@@ -215,7 +243,17 @@ public class KaleoNotificationModelImpl extends BaseModelImpl<KaleoNotification>
 	}
 
 	public void setKaleoDefinitionId(long kaleoDefinitionId) {
+		if (!_setOriginalKaleoDefinitionId) {
+			_setOriginalKaleoDefinitionId = true;
+
+			_originalKaleoDefinitionId = _kaleoDefinitionId;
+		}
+
 		_kaleoDefinitionId = kaleoDefinitionId;
+	}
+
+	public long getOriginalKaleoDefinitionId() {
+		return _originalKaleoDefinitionId;
 	}
 
 	public String getKaleoNodeName() {
@@ -267,7 +305,15 @@ public class KaleoNotificationModelImpl extends BaseModelImpl<KaleoNotification>
 	}
 
 	public void setExecutionType(String executionType) {
+		if (_originalExecutionType == null) {
+			_originalExecutionType = _executionType;
+		}
+
 		_executionType = executionType;
+	}
+
+	public String getOriginalExecutionType() {
+		return GetterUtil.getString(_originalExecutionType);
 	}
 
 	public String getTemplate() {
@@ -419,6 +465,23 @@ public class KaleoNotificationModelImpl extends BaseModelImpl<KaleoNotification>
 
 	@Override
 	public void resetOriginalValues() {
+		KaleoNotificationModelImpl kaleoNotificationModelImpl = this;
+
+		kaleoNotificationModelImpl._originalCompanyId = kaleoNotificationModelImpl._companyId;
+
+		kaleoNotificationModelImpl._setOriginalCompanyId = false;
+
+		kaleoNotificationModelImpl._originalKaleoClassName = kaleoNotificationModelImpl._kaleoClassName;
+
+		kaleoNotificationModelImpl._originalKaleoClassPK = kaleoNotificationModelImpl._kaleoClassPK;
+
+		kaleoNotificationModelImpl._setOriginalKaleoClassPK = false;
+
+		kaleoNotificationModelImpl._originalKaleoDefinitionId = kaleoNotificationModelImpl._kaleoDefinitionId;
+
+		kaleoNotificationModelImpl._setOriginalKaleoDefinitionId = false;
+
+		kaleoNotificationModelImpl._originalExecutionType = kaleoNotificationModelImpl._executionType;
 	}
 
 	@Override
@@ -661,18 +724,26 @@ public class KaleoNotificationModelImpl extends BaseModelImpl<KaleoNotification>
 	private long _kaleoNotificationId;
 	private long _groupId;
 	private long _companyId;
+	private long _originalCompanyId;
+	private boolean _setOriginalCompanyId;
 	private long _userId;
 	private String _userUuid;
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
 	private String _kaleoClassName;
+	private String _originalKaleoClassName;
 	private long _kaleoClassPK;
+	private long _originalKaleoClassPK;
+	private boolean _setOriginalKaleoClassPK;
 	private long _kaleoDefinitionId;
+	private long _originalKaleoDefinitionId;
+	private boolean _setOriginalKaleoDefinitionId;
 	private String _kaleoNodeName;
 	private String _name;
 	private String _description;
 	private String _executionType;
+	private String _originalExecutionType;
 	private String _template;
 	private String _templateLanguage;
 	private String _notificationTypes;
