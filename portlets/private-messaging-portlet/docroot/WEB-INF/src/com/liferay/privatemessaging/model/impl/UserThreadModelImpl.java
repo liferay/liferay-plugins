@@ -206,7 +206,17 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 	}
 
 	public void setRead(boolean read) {
+		if (!_setOriginalRead) {
+			_setOriginalRead = true;
+
+			_originalRead = _read;
+		}
+
 		_read = read;
+	}
+
+	public boolean getOriginalRead() {
+		return _originalRead;
 	}
 
 	public boolean getDeleted() {
@@ -218,7 +228,17 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 	}
 
 	public void setDeleted(boolean deleted) {
+		if (!_setOriginalDeleted) {
+			_setOriginalDeleted = true;
+
+			_originalDeleted = _deleted;
+		}
+
 		_deleted = deleted;
+	}
+
+	public boolean getOriginalDeleted() {
+		return _originalDeleted;
 	}
 
 	@Override
@@ -327,6 +347,14 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 		userThreadModelImpl._originalMbThreadId = userThreadModelImpl._mbThreadId;
 
 		userThreadModelImpl._setOriginalMbThreadId = false;
+
+		userThreadModelImpl._originalRead = userThreadModelImpl._read;
+
+		userThreadModelImpl._setOriginalRead = false;
+
+		userThreadModelImpl._originalDeleted = userThreadModelImpl._deleted;
+
+		userThreadModelImpl._setOriginalDeleted = false;
 	}
 
 	@Override
@@ -461,7 +489,11 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 	private boolean _setOriginalMbThreadId;
 	private long _topMBMessageId;
 	private boolean _read;
+	private boolean _originalRead;
+	private boolean _setOriginalRead;
 	private boolean _deleted;
+	private boolean _originalDeleted;
+	private boolean _setOriginalDeleted;
 	private transient ExpandoBridge _expandoBridge;
 	private UserThread _escapedModelProxy;
 }

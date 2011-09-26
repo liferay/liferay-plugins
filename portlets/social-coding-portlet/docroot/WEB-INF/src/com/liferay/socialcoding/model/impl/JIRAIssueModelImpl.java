@@ -135,7 +135,15 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue>
 	}
 
 	public void setModifiedDate(Date modifiedDate) {
+		if (_originalModifiedDate == null) {
+			_originalModifiedDate = _modifiedDate;
+		}
+
 		_modifiedDate = modifiedDate;
+	}
+
+	public Date getOriginalModifiedDate() {
+		return _originalModifiedDate;
 	}
 
 	public long getProjectId() {
@@ -143,7 +151,17 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue>
 	}
 
 	public void setProjectId(long projectId) {
+		if (!_setOriginalProjectId) {
+			_setOriginalProjectId = true;
+
+			_originalProjectId = _projectId;
+		}
+
 		_projectId = projectId;
+	}
+
+	public long getOriginalProjectId() {
+		return _originalProjectId;
 	}
 
 	public String getKey() {
@@ -203,7 +221,15 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue>
 	}
 
 	public void setReporterJiraUserId(String reporterJiraUserId) {
+		if (_originalReporterJiraUserId == null) {
+			_originalReporterJiraUserId = _reporterJiraUserId;
+		}
+
 		_reporterJiraUserId = reporterJiraUserId;
+	}
+
+	public String getOriginalReporterJiraUserId() {
+		return GetterUtil.getString(_originalReporterJiraUserId);
 	}
 
 	public String getAssigneeJiraUserId() {
@@ -216,7 +242,15 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue>
 	}
 
 	public void setAssigneeJiraUserId(String assigneeJiraUserId) {
+		if (_originalAssigneeJiraUserId == null) {
+			_originalAssigneeJiraUserId = _assigneeJiraUserId;
+		}
+
 		_assigneeJiraUserId = assigneeJiraUserId;
+	}
+
+	public String getOriginalAssigneeJiraUserId() {
+		return GetterUtil.getString(_originalAssigneeJiraUserId);
 	}
 
 	public String getResolution() {
@@ -242,7 +276,15 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue>
 	}
 
 	public void setStatus(String status) {
+		if (_originalStatus == null) {
+			_originalStatus = _status;
+		}
+
 		_status = status;
+	}
+
+	public String getOriginalStatus() {
+		return GetterUtil.getString(_originalStatus);
 	}
 
 	@Override
@@ -346,7 +388,19 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue>
 	public void resetOriginalValues() {
 		JIRAIssueModelImpl jiraIssueModelImpl = this;
 
+		jiraIssueModelImpl._originalModifiedDate = jiraIssueModelImpl._modifiedDate;
+
+		jiraIssueModelImpl._originalProjectId = jiraIssueModelImpl._projectId;
+
+		jiraIssueModelImpl._setOriginalProjectId = false;
+
 		jiraIssueModelImpl._originalKey = jiraIssueModelImpl._key;
+
+		jiraIssueModelImpl._originalReporterJiraUserId = jiraIssueModelImpl._reporterJiraUserId;
+
+		jiraIssueModelImpl._originalAssigneeJiraUserId = jiraIssueModelImpl._assigneeJiraUserId;
+
+		jiraIssueModelImpl._originalStatus = jiraIssueModelImpl._status;
 	}
 
 	@Override
@@ -529,15 +583,21 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue>
 	private long _jiraIssueId;
 	private Date _createDate;
 	private Date _modifiedDate;
+	private Date _originalModifiedDate;
 	private long _projectId;
+	private long _originalProjectId;
+	private boolean _setOriginalProjectId;
 	private String _key;
 	private String _originalKey;
 	private String _summary;
 	private String _description;
 	private String _reporterJiraUserId;
+	private String _originalReporterJiraUserId;
 	private String _assigneeJiraUserId;
+	private String _originalAssigneeJiraUserId;
 	private String _resolution;
 	private String _status;
+	private String _originalStatus;
 	private transient ExpandoBridge _expandoBridge;
 	private JIRAIssue _escapedModelProxy;
 }

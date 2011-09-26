@@ -230,7 +230,17 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 	}
 
 	public void setCompanyId(long companyId) {
+		if (!_setOriginalCompanyId) {
+			_setOriginalCompanyId = true;
+
+			_originalCompanyId = _companyId;
+		}
+
 		_companyId = companyId;
+	}
+
+	public long getOriginalCompanyId() {
+		return _originalCompanyId;
 	}
 
 	@JSON
@@ -392,6 +402,10 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 	}
 
 	public void setName(String name) {
+		if (_originalName == null) {
+			_originalName = _name;
+		}
+
 		_name = name;
 	}
 
@@ -429,6 +443,10 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 
 			setName(name, locale, defaultLocale);
 		}
+	}
+
+	public String getOriginalName() {
+		return GetterUtil.getString(_originalName);
 	}
 
 	@JSON
@@ -534,7 +552,17 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 	}
 
 	public void setActive(boolean active) {
+		if (!_setOriginalActive) {
+			_setOriginalActive = true;
+
+			_originalActive = _active;
+		}
+
 		_active = active;
+	}
+
+	public boolean getOriginalActive() {
+		return _originalActive;
 	}
 
 	@Override
@@ -645,6 +673,10 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 
 		calendarResourceModelImpl._setOriginalGroupId = false;
 
+		calendarResourceModelImpl._originalCompanyId = calendarResourceModelImpl._companyId;
+
+		calendarResourceModelImpl._setOriginalCompanyId = false;
+
 		calendarResourceModelImpl._originalClassNameId = calendarResourceModelImpl._classNameId;
 
 		calendarResourceModelImpl._setOriginalClassNameId = false;
@@ -652,6 +684,12 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 		calendarResourceModelImpl._originalClassPK = calendarResourceModelImpl._classPK;
 
 		calendarResourceModelImpl._setOriginalClassPK = false;
+
+		calendarResourceModelImpl._originalName = calendarResourceModelImpl._name;
+
+		calendarResourceModelImpl._originalActive = calendarResourceModelImpl._active;
+
+		calendarResourceModelImpl._setOriginalActive = false;
 	}
 
 	@Override
@@ -850,6 +888,8 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 	private long _originalGroupId;
 	private boolean _setOriginalGroupId;
 	private long _companyId;
+	private long _originalCompanyId;
+	private boolean _setOriginalCompanyId;
 	private long _userId;
 	private String _userUuid;
 	private String _userName;
@@ -863,8 +903,11 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 	private boolean _setOriginalClassPK;
 	private String _classUuid;
 	private String _name;
+	private String _originalName;
 	private String _description;
 	private boolean _active;
+	private boolean _originalActive;
+	private boolean _setOriginalActive;
 	private transient ExpandoBridge _expandoBridge;
 	private CalendarResource _escapedModelProxy;
 }

@@ -163,7 +163,15 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 	}
 
 	public void setUuid(String uuid) {
+		if (_originalUuid == null) {
+			_originalUuid = _uuid;
+		}
+
 		_uuid = uuid;
+	}
+
+	public String getOriginalUuid() {
+		return GetterUtil.getString(_originalUuid);
 	}
 
 	@JSON
@@ -357,6 +365,8 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 	public void resetOriginalValues() {
 		GadgetModelImpl gadgetModelImpl = this;
 
+		gadgetModelImpl._originalUuid = gadgetModelImpl._uuid;
+
 		gadgetModelImpl._originalCompanyId = gadgetModelImpl._companyId;
 
 		gadgetModelImpl._setOriginalCompanyId = false;
@@ -501,6 +511,7 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 			Gadget.class
 		};
 	private String _uuid;
+	private String _originalUuid;
 	private long _gadgetId;
 	private long _companyId;
 	private long _originalCompanyId;

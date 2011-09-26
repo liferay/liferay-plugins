@@ -112,7 +112,15 @@ public class ModuleModelImpl extends BaseModelImpl<Module>
 	}
 
 	public void setUuid(String uuid) {
+		if (_originalUuid == null) {
+			_originalUuid = _uuid;
+		}
+
 		_uuid = uuid;
+	}
+
+	public String getOriginalUuid() {
+		return GetterUtil.getString(_originalUuid);
 	}
 
 	public long getModuleId() {
@@ -255,6 +263,8 @@ public class ModuleModelImpl extends BaseModelImpl<Module>
 	public void resetOriginalValues() {
 		ModuleModelImpl moduleModelImpl = this;
 
+		moduleModelImpl._originalUuid = moduleModelImpl._uuid;
+
 		moduleModelImpl._originalAppId = moduleModelImpl._appId;
 
 		moduleModelImpl._setOriginalAppId = false;
@@ -340,6 +350,7 @@ public class ModuleModelImpl extends BaseModelImpl<Module>
 			Module.class
 		};
 	private String _uuid;
+	private String _originalUuid;
 	private long _moduleId;
 	private long _appId;
 	private long _originalAppId;

@@ -132,7 +132,17 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry>
 	}
 
 	public void setCompanyId(long companyId) {
+		if (!_setOriginalCompanyId) {
+			_setOriginalCompanyId = true;
+
+			_originalCompanyId = _companyId;
+		}
+
 		_companyId = companyId;
+	}
+
+	public long getOriginalCompanyId() {
+		return _originalCompanyId;
 	}
 
 	public long getUserId() {
@@ -140,6 +150,12 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry>
 	}
 
 	public void setUserId(long userId) {
+		if (!_setOriginalUserId) {
+			_setOriginalUserId = true;
+
+			_originalUserId = _userId;
+		}
+
 		_userId = userId;
 	}
 
@@ -149,6 +165,10 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry>
 
 	public void setUserUuid(String userUuid) {
 		_userUuid = userUuid;
+	}
+
+	public long getOriginalUserId() {
+		return _originalUserId;
 	}
 
 	public String getUserName() {
@@ -355,6 +375,15 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry>
 
 	@Override
 	public void resetOriginalValues() {
+		MeetupsEntryModelImpl meetupsEntryModelImpl = this;
+
+		meetupsEntryModelImpl._originalCompanyId = meetupsEntryModelImpl._companyId;
+
+		meetupsEntryModelImpl._setOriginalCompanyId = false;
+
+		meetupsEntryModelImpl._originalUserId = meetupsEntryModelImpl._userId;
+
+		meetupsEntryModelImpl._setOriginalUserId = false;
 	}
 
 	@Override
@@ -550,8 +579,12 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry>
 		};
 	private long _meetupsEntryId;
 	private long _companyId;
+	private long _originalCompanyId;
+	private boolean _setOriginalCompanyId;
 	private long _userId;
 	private String _userUuid;
+	private long _originalUserId;
+	private boolean _setOriginalUserId;
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;

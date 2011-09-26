@@ -226,7 +226,17 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 	}
 
 	public void setKaleoInstanceId(long kaleoInstanceId) {
+		if (!_setOriginalKaleoInstanceId) {
+			_setOriginalKaleoInstanceId = true;
+
+			_originalKaleoInstanceId = _kaleoInstanceId;
+		}
+
 		_kaleoInstanceId = kaleoInstanceId;
+	}
+
+	public long getOriginalKaleoInstanceId() {
+		return _originalKaleoInstanceId;
 	}
 
 	public long getKaleoInstanceTokenId() {
@@ -295,7 +305,17 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 	}
 
 	public void setBlocking(boolean blocking) {
+		if (!_setOriginalBlocking) {
+			_setOriginalBlocking = true;
+
+			_originalBlocking = _blocking;
+		}
+
 		_blocking = blocking;
+	}
+
+	public boolean getOriginalBlocking() {
+		return _originalBlocking;
 	}
 
 	public long getCompletionUserId() {
@@ -324,7 +344,17 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 	}
 
 	public void setCompleted(boolean completed) {
+		if (!_setOriginalCompleted) {
+			_setOriginalCompleted = true;
+
+			_originalCompleted = _completed;
+		}
+
 		_completed = completed;
+	}
+
+	public boolean getOriginalCompleted() {
+		return _originalCompleted;
 	}
 
 	public Date getCompletionDate() {
@@ -463,6 +493,10 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 	public void resetOriginalValues() {
 		KaleoTimerInstanceTokenModelImpl kaleoTimerInstanceTokenModelImpl = this;
 
+		kaleoTimerInstanceTokenModelImpl._originalKaleoInstanceId = kaleoTimerInstanceTokenModelImpl._kaleoInstanceId;
+
+		kaleoTimerInstanceTokenModelImpl._setOriginalKaleoInstanceId = false;
+
 		kaleoTimerInstanceTokenModelImpl._originalKaleoInstanceTokenId = kaleoTimerInstanceTokenModelImpl._kaleoInstanceTokenId;
 
 		kaleoTimerInstanceTokenModelImpl._setOriginalKaleoInstanceTokenId = false;
@@ -470,6 +504,14 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 		kaleoTimerInstanceTokenModelImpl._originalKaleoTimerId = kaleoTimerInstanceTokenModelImpl._kaleoTimerId;
 
 		kaleoTimerInstanceTokenModelImpl._setOriginalKaleoTimerId = false;
+
+		kaleoTimerInstanceTokenModelImpl._originalBlocking = kaleoTimerInstanceTokenModelImpl._blocking;
+
+		kaleoTimerInstanceTokenModelImpl._setOriginalBlocking = false;
+
+		kaleoTimerInstanceTokenModelImpl._originalCompleted = kaleoTimerInstanceTokenModelImpl._completed;
+
+		kaleoTimerInstanceTokenModelImpl._setOriginalCompleted = false;
 	}
 
 	@Override
@@ -723,6 +765,8 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 	private long _kaleoClassPK;
 	private long _kaleoDefinitionId;
 	private long _kaleoInstanceId;
+	private long _originalKaleoInstanceId;
+	private boolean _setOriginalKaleoInstanceId;
 	private long _kaleoInstanceTokenId;
 	private long _originalKaleoInstanceTokenId;
 	private boolean _setOriginalKaleoInstanceTokenId;
@@ -732,9 +776,13 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 	private boolean _setOriginalKaleoTimerId;
 	private String _kaleoTimerName;
 	private boolean _blocking;
+	private boolean _originalBlocking;
+	private boolean _setOriginalBlocking;
 	private long _completionUserId;
 	private String _completionUserUuid;
 	private boolean _completed;
+	private boolean _originalCompleted;
+	private boolean _setOriginalCompleted;
 	private Date _completionDate;
 	private String _workflowContext;
 	private transient ExpandoBridge _expandoBridge;

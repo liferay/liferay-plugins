@@ -123,7 +123,15 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 	}
 
 	public void setUuid(String uuid) {
+		if (_originalUuid == null) {
+			_originalUuid = _uuid;
+		}
+
 		_uuid = uuid;
+	}
+
+	public String getOriginalUuid() {
+		return GetterUtil.getString(_originalUuid);
 	}
 
 	public long getWsrpConsumerId() {
@@ -139,7 +147,17 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 	}
 
 	public void setCompanyId(long companyId) {
+		if (!_setOriginalCompanyId) {
+			_setOriginalCompanyId = true;
+
+			_originalCompanyId = _companyId;
+		}
+
 		_companyId = companyId;
+	}
+
+	public long getOriginalCompanyId() {
+		return _originalCompanyId;
 	}
 
 	public Date getCreateDate() {
@@ -333,6 +351,13 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 
 	@Override
 	public void resetOriginalValues() {
+		WSRPConsumerModelImpl wsrpConsumerModelImpl = this;
+
+		wsrpConsumerModelImpl._originalUuid = wsrpConsumerModelImpl._uuid;
+
+		wsrpConsumerModelImpl._originalCompanyId = wsrpConsumerModelImpl._companyId;
+
+		wsrpConsumerModelImpl._setOriginalCompanyId = false;
 	}
 
 	@Override
@@ -515,8 +540,11 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 			WSRPConsumer.class
 		};
 	private String _uuid;
+	private String _originalUuid;
 	private long _wsrpConsumerId;
 	private long _companyId;
+	private long _originalCompanyId;
+	private boolean _setOriginalCompanyId;
 	private Date _createDate;
 	private Date _modifiedDate;
 	private String _name;

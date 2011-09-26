@@ -138,7 +138,17 @@ public class KaleoNodeModelImpl extends BaseModelImpl<KaleoNode>
 	}
 
 	public void setCompanyId(long companyId) {
+		if (!_setOriginalCompanyId) {
+			_setOriginalCompanyId = true;
+
+			_originalCompanyId = _companyId;
+		}
+
 		_companyId = companyId;
+	}
+
+	public long getOriginalCompanyId() {
+		return _originalCompanyId;
 	}
 
 	public long getUserId() {
@@ -191,7 +201,17 @@ public class KaleoNodeModelImpl extends BaseModelImpl<KaleoNode>
 	}
 
 	public void setKaleoDefinitionId(long kaleoDefinitionId) {
+		if (!_setOriginalKaleoDefinitionId) {
+			_setOriginalKaleoDefinitionId = true;
+
+			_originalKaleoDefinitionId = _kaleoDefinitionId;
+		}
+
 		_kaleoDefinitionId = kaleoDefinitionId;
+	}
+
+	public long getOriginalKaleoDefinitionId() {
+		return _originalKaleoDefinitionId;
 	}
 
 	public String getName() {
@@ -377,6 +397,15 @@ public class KaleoNodeModelImpl extends BaseModelImpl<KaleoNode>
 
 	@Override
 	public void resetOriginalValues() {
+		KaleoNodeModelImpl kaleoNodeModelImpl = this;
+
+		kaleoNodeModelImpl._originalCompanyId = kaleoNodeModelImpl._companyId;
+
+		kaleoNodeModelImpl._setOriginalCompanyId = false;
+
+		kaleoNodeModelImpl._originalKaleoDefinitionId = kaleoNodeModelImpl._kaleoDefinitionId;
+
+		kaleoNodeModelImpl._setOriginalKaleoDefinitionId = false;
 	}
 
 	@Override
@@ -571,12 +600,16 @@ public class KaleoNodeModelImpl extends BaseModelImpl<KaleoNode>
 	private long _kaleoNodeId;
 	private long _groupId;
 	private long _companyId;
+	private long _originalCompanyId;
+	private boolean _setOriginalCompanyId;
 	private long _userId;
 	private String _userUuid;
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
 	private long _kaleoDefinitionId;
+	private long _originalKaleoDefinitionId;
+	private boolean _setOriginalKaleoDefinitionId;
 	private String _name;
 	private String _metadata;
 	private String _description;

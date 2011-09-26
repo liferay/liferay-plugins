@@ -140,7 +140,17 @@ public class KaleoInstanceTokenModelImpl extends BaseModelImpl<KaleoInstanceToke
 	}
 
 	public void setCompanyId(long companyId) {
+		if (!_setOriginalCompanyId) {
+			_setOriginalCompanyId = true;
+
+			_originalCompanyId = _companyId;
+		}
+
 		_companyId = companyId;
+	}
+
+	public long getOriginalCompanyId() {
+		return _originalCompanyId;
 	}
 
 	public long getUserId() {
@@ -193,7 +203,17 @@ public class KaleoInstanceTokenModelImpl extends BaseModelImpl<KaleoInstanceToke
 	}
 
 	public void setKaleoDefinitionId(long kaleoDefinitionId) {
+		if (!_setOriginalKaleoDefinitionId) {
+			_setOriginalKaleoDefinitionId = true;
+
+			_originalKaleoDefinitionId = _kaleoDefinitionId;
+		}
+
 		_kaleoDefinitionId = kaleoDefinitionId;
+	}
+
+	public long getOriginalKaleoDefinitionId() {
+		return _originalKaleoDefinitionId;
 	}
 
 	public long getKaleoInstanceId() {
@@ -201,7 +221,17 @@ public class KaleoInstanceTokenModelImpl extends BaseModelImpl<KaleoInstanceToke
 	}
 
 	public void setKaleoInstanceId(long kaleoInstanceId) {
+		if (!_setOriginalKaleoInstanceId) {
+			_setOriginalKaleoInstanceId = true;
+
+			_originalKaleoInstanceId = _kaleoInstanceId;
+		}
+
 		_kaleoInstanceId = kaleoInstanceId;
+	}
+
+	public long getOriginalKaleoInstanceId() {
+		return _originalKaleoInstanceId;
 	}
 
 	public long getParentKaleoInstanceTokenId() {
@@ -209,7 +239,17 @@ public class KaleoInstanceTokenModelImpl extends BaseModelImpl<KaleoInstanceToke
 	}
 
 	public void setParentKaleoInstanceTokenId(long parentKaleoInstanceTokenId) {
+		if (!_setOriginalParentKaleoInstanceTokenId) {
+			_setOriginalParentKaleoInstanceTokenId = true;
+
+			_originalParentKaleoInstanceTokenId = _parentKaleoInstanceTokenId;
+		}
+
 		_parentKaleoInstanceTokenId = parentKaleoInstanceTokenId;
+	}
+
+	public long getOriginalParentKaleoInstanceTokenId() {
+		return _originalParentKaleoInstanceTokenId;
 	}
 
 	public long getCurrentKaleoNodeId() {
@@ -271,7 +311,15 @@ public class KaleoInstanceTokenModelImpl extends BaseModelImpl<KaleoInstanceToke
 	}
 
 	public void setCompletionDate(Date completionDate) {
+		if (_originalCompletionDate == null) {
+			_originalCompletionDate = _completionDate;
+		}
+
 		_completionDate = completionDate;
+	}
+
+	public Date getOriginalCompletionDate() {
+		return _originalCompletionDate;
 	}
 
 	@Override
@@ -383,6 +431,25 @@ public class KaleoInstanceTokenModelImpl extends BaseModelImpl<KaleoInstanceToke
 
 	@Override
 	public void resetOriginalValues() {
+		KaleoInstanceTokenModelImpl kaleoInstanceTokenModelImpl = this;
+
+		kaleoInstanceTokenModelImpl._originalCompanyId = kaleoInstanceTokenModelImpl._companyId;
+
+		kaleoInstanceTokenModelImpl._setOriginalCompanyId = false;
+
+		kaleoInstanceTokenModelImpl._originalKaleoDefinitionId = kaleoInstanceTokenModelImpl._kaleoDefinitionId;
+
+		kaleoInstanceTokenModelImpl._setOriginalKaleoDefinitionId = false;
+
+		kaleoInstanceTokenModelImpl._originalKaleoInstanceId = kaleoInstanceTokenModelImpl._kaleoInstanceId;
+
+		kaleoInstanceTokenModelImpl._setOriginalKaleoInstanceId = false;
+
+		kaleoInstanceTokenModelImpl._originalParentKaleoInstanceTokenId = kaleoInstanceTokenModelImpl._parentKaleoInstanceTokenId;
+
+		kaleoInstanceTokenModelImpl._setOriginalParentKaleoInstanceTokenId = false;
+
+		kaleoInstanceTokenModelImpl._originalCompletionDate = kaleoInstanceTokenModelImpl._completionDate;
 	}
 
 	@Override
@@ -589,20 +656,29 @@ public class KaleoInstanceTokenModelImpl extends BaseModelImpl<KaleoInstanceToke
 	private long _kaleoInstanceTokenId;
 	private long _groupId;
 	private long _companyId;
+	private long _originalCompanyId;
+	private boolean _setOriginalCompanyId;
 	private long _userId;
 	private String _userUuid;
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
 	private long _kaleoDefinitionId;
+	private long _originalKaleoDefinitionId;
+	private boolean _setOriginalKaleoDefinitionId;
 	private long _kaleoInstanceId;
+	private long _originalKaleoInstanceId;
+	private boolean _setOriginalKaleoInstanceId;
 	private long _parentKaleoInstanceTokenId;
+	private long _originalParentKaleoInstanceTokenId;
+	private boolean _setOriginalParentKaleoInstanceTokenId;
 	private long _currentKaleoNodeId;
 	private String _currentKaleoNodeName;
 	private String _className;
 	private long _classPK;
 	private boolean _completed;
 	private Date _completionDate;
+	private Date _originalCompletionDate;
 	private transient ExpandoBridge _expandoBridge;
 	private KaleoInstanceToken _escapedModelProxy;
 }

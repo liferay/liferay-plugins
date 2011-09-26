@@ -75,33 +75,45 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 	 * Never modify or reference this class directly. Always use {@link AppUtil} to access the app persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.
 	 */
 	public static final String FINDER_CLASS_NAME_ENTITY = AppImpl.class.getName();
-	public static final String FINDER_CLASS_NAME_LIST = FINDER_CLASS_NAME_ENTITY +
-		".List";
-	public static final FinderPath FINDER_PATH_FIND_BY_UUID = new FinderPath(AppModelImpl.ENTITY_CACHE_ENABLED,
+	public static final String FINDER_CLASS_NAME_LIST_WITH_PAGINATION = FINDER_CLASS_NAME_ENTITY +
+		".List1";
+	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION = FINDER_CLASS_NAME_ENTITY +
+		".List2";
+	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_UUID = new FinderPath(AppModelImpl.ENTITY_CACHE_ENABLED,
 			AppModelImpl.FINDER_CACHE_ENABLED, AppImpl.class,
-			FINDER_CLASS_NAME_LIST, "findByUuid",
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByUuid",
 			new String[] {
 				String.class.getName(),
 				
 			"java.lang.Integer", "java.lang.Integer",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
+	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID = new FinderPath(AppModelImpl.ENTITY_CACHE_ENABLED,
+			AppModelImpl.FINDER_CACHE_ENABLED, AppImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByUuid",
+			new String[] { String.class.getName() });
 	public static final FinderPath FINDER_PATH_COUNT_BY_UUID = new FinderPath(AppModelImpl.ENTITY_CACHE_ENABLED,
 			AppModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST, "countByUuid",
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUuid",
 			new String[] { String.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_COMPANYID = new FinderPath(AppModelImpl.ENTITY_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_COMPANYID =
+		new FinderPath(AppModelImpl.ENTITY_CACHE_ENABLED,
 			AppModelImpl.FINDER_CACHE_ENABLED, AppImpl.class,
-			FINDER_CLASS_NAME_LIST, "findByCompanyId",
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByCompanyId",
 			new String[] {
 				Long.class.getName(),
 				
 			"java.lang.Integer", "java.lang.Integer",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
+	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_COMPANYID =
+		new FinderPath(AppModelImpl.ENTITY_CACHE_ENABLED,
+			AppModelImpl.FINDER_CACHE_ENABLED, AppImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByCompanyId",
+			new String[] { Long.class.getName() });
 	public static final FinderPath FINDER_PATH_COUNT_BY_COMPANYID = new FinderPath(AppModelImpl.ENTITY_CACHE_ENABLED,
 			AppModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST, "countByCompanyId",
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByCompanyId",
 			new String[] { Long.class.getName() });
 	public static final FinderPath FINDER_PATH_FETCH_BY_REMOTEAPPID = new FinderPath(AppModelImpl.ENTITY_CACHE_ENABLED,
 			AppModelImpl.FINDER_CACHE_ENABLED, AppImpl.class,
@@ -109,14 +121,17 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 			new String[] { Long.class.getName() });
 	public static final FinderPath FINDER_PATH_COUNT_BY_REMOTEAPPID = new FinderPath(AppModelImpl.ENTITY_CACHE_ENABLED,
 			AppModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST, "countByRemoteAppId",
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByRemoteAppId",
 			new String[] { Long.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(AppModelImpl.ENTITY_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_ALL = new FinderPath(AppModelImpl.ENTITY_CACHE_ENABLED,
 			AppModelImpl.FINDER_CACHE_ENABLED, AppImpl.class,
-			FINDER_CLASS_NAME_LIST, "findAll", new String[0]);
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll", new String[0]);
+	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_ALL = new FinderPath(AppModelImpl.ENTITY_CACHE_ENABLED,
+			AppModelImpl.FINDER_CACHE_ENABLED, AppImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
 	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(AppModelImpl.ENTITY_CACHE_ENABLED,
 			AppModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST, "countAll", new String[0]);
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll", new String[0]);
 
 	/**
 	 * Caches the app in the entity cache if it is enabled.
@@ -161,8 +176,10 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 		}
 
 		EntityCacheUtil.clearCache(AppImpl.class.getName());
+
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
 	/**
@@ -177,7 +194,8 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 		EntityCacheUtil.removeResult(AppModelImpl.ENTITY_CACHE_ENABLED,
 			AppImpl.class, app.getPrimaryKey());
 
-		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_REMOTEAPPID,
 			new Object[] { Long.valueOf(app.getRemoteAppId()) });
@@ -284,7 +302,8 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
 		AppModelImpl appModelImpl = (AppModelImpl)app;
 
@@ -328,22 +347,42 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+
+		if (isNew) {
+			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		}
+		else {
+			if (!Validator.equals(app.getUuid(), appModelImpl.getOriginalUuid())) {
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID,
+					new Object[] { appModelImpl.getOriginalUuid() });
+			}
+
+			if (app.getCompanyId() != appModelImpl.getOriginalCompanyId()) {
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_COMPANYID,
+					new Object[] {
+						Long.valueOf(appModelImpl.getOriginalCompanyId())
+					});
+			}
+		}
 
 		EntityCacheUtil.putResult(AppModelImpl.ENTITY_CACHE_ENABLED,
 			AppImpl.class, app.getPrimaryKey(), app);
 
-		if (!isNew &&
-				(app.getRemoteAppId() != appModelImpl.getOriginalRemoteAppId())) {
-			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_REMOTEAPPID,
-				new Object[] { Long.valueOf(
-						appModelImpl.getOriginalRemoteAppId()) });
-		}
-
-		if (isNew ||
-				(app.getRemoteAppId() != appModelImpl.getOriginalRemoteAppId())) {
+		if (isNew) {
 			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_REMOTEAPPID,
 				new Object[] { Long.valueOf(app.getRemoteAppId()) }, app);
+		}
+		else {
+			if (app.getRemoteAppId() != appModelImpl.getOriginalRemoteAppId()) {
+				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_REMOTEAPPID,
+					new Object[] {
+						Long.valueOf(appModelImpl.getOriginalRemoteAppId())
+					});
+
+				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_REMOTEAPPID,
+					new Object[] { Long.valueOf(app.getRemoteAppId()) }, app);
+			}
 		}
 
 		return app;
@@ -514,9 +553,20 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 	 */
 	public List<App> findByUuid(String uuid, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] { uuid, start, end, orderByComparator };
+		FinderPath finderPath = null;
+		Object[] finderArgs = null;
 
-		List<App> list = (List<App>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_UUID,
+		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
+				(orderByComparator == null)) {
+			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID;
+			finderArgs = new Object[] { uuid };
+		}
+		else {
+			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_UUID;
+			finderArgs = new Object[] { uuid, start, end, orderByComparator };
+		}
+
+		List<App> list = (List<App>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
 		if (list == null) {
@@ -571,14 +621,12 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 			}
 			finally {
 				if (list == null) {
-					FinderCacheUtil.removeResult(FINDER_PATH_FIND_BY_UUID,
-						finderArgs);
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
 				}
 				else {
 					cacheResult(list);
 
-					FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_UUID,
-						finderArgs, list);
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
 				}
 
 				closeSession(session);
@@ -861,13 +909,20 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 	 */
 	public List<App> findByCompanyId(long companyId, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				companyId,
-				
-				start, end, orderByComparator
-			};
+		FinderPath finderPath = null;
+		Object[] finderArgs = null;
 
-		List<App> list = (List<App>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_COMPANYID,
+		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
+				(orderByComparator == null)) {
+			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_COMPANYID;
+			finderArgs = new Object[] { companyId };
+		}
+		else {
+			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_COMPANYID;
+			finderArgs = new Object[] { companyId, start, end, orderByComparator };
+		}
+
+		List<App> list = (List<App>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
 		if (list == null) {
@@ -910,14 +965,12 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 			}
 			finally {
 				if (list == null) {
-					FinderCacheUtil.removeResult(FINDER_PATH_FIND_BY_COMPANYID,
-						finderArgs);
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
 				}
 				else {
 					cacheResult(list);
 
-					FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_COMPANYID,
-						finderArgs, list);
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
 				}
 
 				closeSession(session);
@@ -1313,9 +1366,20 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 	 */
 	public List<App> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
+		FinderPath finderPath = null;
 		Object[] finderArgs = new Object[] { start, end, orderByComparator };
 
-		List<App> list = (List<App>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
+		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
+				(orderByComparator == null)) {
+			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_ALL;
+			finderArgs = FINDER_ARGS_EMPTY;
+		}
+		else {
+			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_ALL;
+			finderArgs = new Object[] { start, end, orderByComparator };
+		}
+
+		List<App> list = (List<App>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
 		if (list == null) {
@@ -1359,14 +1423,12 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 			}
 			finally {
 				if (list == null) {
-					FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL,
-						finderArgs);
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
 				}
 				else {
 					cacheResult(list);
 
-					FinderCacheUtil.putResult(FINDER_PATH_FIND_ALL, finderArgs,
-						list);
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
 				}
 
 				closeSession(session);
@@ -1661,7 +1723,7 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 	public void destroy() {
 		EntityCacheUtil.removeCache(AppImpl.class.getName());
 		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_ENTITY);
-		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST);
+		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
 	@BeanReference(type = AppPersistence.class)

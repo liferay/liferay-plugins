@@ -208,7 +208,17 @@ public class MeetupsRegistrationModelImpl extends BaseModelImpl<MeetupsRegistrat
 	}
 
 	public void setStatus(int status) {
+		if (!_setOriginalStatus) {
+			_setOriginalStatus = true;
+
+			_originalStatus = _status;
+		}
+
 		_status = status;
+	}
+
+	public int getOriginalStatus() {
+		return _originalStatus;
 	}
 
 	public String getComments() {
@@ -330,6 +340,10 @@ public class MeetupsRegistrationModelImpl extends BaseModelImpl<MeetupsRegistrat
 		meetupsRegistrationModelImpl._originalMeetupsEntryId = meetupsRegistrationModelImpl._meetupsEntryId;
 
 		meetupsRegistrationModelImpl._setOriginalMeetupsEntryId = false;
+
+		meetupsRegistrationModelImpl._originalStatus = meetupsRegistrationModelImpl._status;
+
+		meetupsRegistrationModelImpl._setOriginalStatus = false;
 	}
 
 	@Override
@@ -476,6 +490,8 @@ public class MeetupsRegistrationModelImpl extends BaseModelImpl<MeetupsRegistrat
 	private long _originalMeetupsEntryId;
 	private boolean _setOriginalMeetupsEntryId;
 	private int _status;
+	private int _originalStatus;
+	private boolean _setOriginalStatus;
 	private String _comments;
 	private transient ExpandoBridge _expandoBridge;
 	private MeetupsRegistration _escapedModelProxy;

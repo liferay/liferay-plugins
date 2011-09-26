@@ -120,7 +120,15 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 	}
 
 	public void setUuid(String uuid) {
+		if (_originalUuid == null) {
+			_originalUuid = _uuid;
+		}
+
 		_uuid = uuid;
+	}
+
+	public String getOriginalUuid() {
+		return GetterUtil.getString(_originalUuid);
 	}
 
 	public long getAppId() {
@@ -136,7 +144,17 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 	}
 
 	public void setCompanyId(long companyId) {
+		if (!_setOriginalCompanyId) {
+			_setOriginalCompanyId = true;
+
+			_originalCompanyId = _companyId;
+		}
+
 		_companyId = companyId;
+	}
+
+	public long getOriginalCompanyId() {
+		return _originalCompanyId;
 	}
 
 	public long getUserId() {
@@ -313,6 +331,12 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 	public void resetOriginalValues() {
 		AppModelImpl appModelImpl = this;
 
+		appModelImpl._originalUuid = appModelImpl._uuid;
+
+		appModelImpl._originalCompanyId = appModelImpl._companyId;
+
+		appModelImpl._setOriginalCompanyId = false;
+
 		appModelImpl._originalRemoteAppId = appModelImpl._remoteAppId;
 
 		appModelImpl._setOriginalRemoteAppId = false;
@@ -456,8 +480,11 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 			App.class
 		};
 	private String _uuid;
+	private String _originalUuid;
 	private long _appId;
 	private long _companyId;
+	private long _originalCompanyId;
+	private boolean _setOriginalCompanyId;
 	private long _userId;
 	private String _userUuid;
 	private String _userName;

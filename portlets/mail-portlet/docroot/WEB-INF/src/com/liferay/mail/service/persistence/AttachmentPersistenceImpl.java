@@ -73,27 +73,38 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 	 * Never modify or reference this class directly. Always use {@link AttachmentUtil} to access the attachment persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.
 	 */
 	public static final String FINDER_CLASS_NAME_ENTITY = AttachmentImpl.class.getName();
-	public static final String FINDER_CLASS_NAME_LIST = FINDER_CLASS_NAME_ENTITY +
-		".List";
-	public static final FinderPath FINDER_PATH_FIND_BY_MESSAGEID = new FinderPath(AttachmentModelImpl.ENTITY_CACHE_ENABLED,
+	public static final String FINDER_CLASS_NAME_LIST_WITH_PAGINATION = FINDER_CLASS_NAME_ENTITY +
+		".List1";
+	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION = FINDER_CLASS_NAME_ENTITY +
+		".List2";
+	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_MESSAGEID =
+		new FinderPath(AttachmentModelImpl.ENTITY_CACHE_ENABLED,
 			AttachmentModelImpl.FINDER_CACHE_ENABLED, AttachmentImpl.class,
-			FINDER_CLASS_NAME_LIST, "findByMessageId",
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByMessageId",
 			new String[] {
 				Long.class.getName(),
 				
 			"java.lang.Integer", "java.lang.Integer",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
+	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_MESSAGEID =
+		new FinderPath(AttachmentModelImpl.ENTITY_CACHE_ENABLED,
+			AttachmentModelImpl.FINDER_CACHE_ENABLED, AttachmentImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByMessageId",
+			new String[] { Long.class.getName() });
 	public static final FinderPath FINDER_PATH_COUNT_BY_MESSAGEID = new FinderPath(AttachmentModelImpl.ENTITY_CACHE_ENABLED,
 			AttachmentModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST, "countByMessageId",
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByMessageId",
 			new String[] { Long.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(AttachmentModelImpl.ENTITY_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_ALL = new FinderPath(AttachmentModelImpl.ENTITY_CACHE_ENABLED,
 			AttachmentModelImpl.FINDER_CACHE_ENABLED, AttachmentImpl.class,
-			FINDER_CLASS_NAME_LIST, "findAll", new String[0]);
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll", new String[0]);
+	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_ALL = new FinderPath(AttachmentModelImpl.ENTITY_CACHE_ENABLED,
+			AttachmentModelImpl.FINDER_CACHE_ENABLED, AttachmentImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
 	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(AttachmentModelImpl.ENTITY_CACHE_ENABLED,
 			AttachmentModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST, "countAll", new String[0]);
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll", new String[0]);
 
 	/**
 	 * Caches the attachment in the entity cache if it is enabled.
@@ -136,8 +147,10 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 		}
 
 		EntityCacheUtil.clearCache(AttachmentImpl.class.getName());
+
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
 	/**
@@ -152,7 +165,8 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 		EntityCacheUtil.removeResult(AttachmentModelImpl.ENTITY_CACHE_ENABLED,
 			AttachmentImpl.class, attachment.getPrimaryKey());
 
-		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
 	/**
@@ -255,7 +269,8 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
 		EntityCacheUtil.removeResult(AttachmentModelImpl.ENTITY_CACHE_ENABLED,
 			AttachmentImpl.class, attachment.getPrimaryKey());
@@ -267,6 +282,10 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 	public Attachment updateImpl(com.liferay.mail.model.Attachment attachment,
 		boolean merge) throws SystemException {
 		attachment = toUnwrappedModel(attachment);
+
+		boolean isNew = attachment.isNew();
+
+		AttachmentModelImpl attachmentModelImpl = (AttachmentModelImpl)attachment;
 
 		Session session = null;
 
@@ -284,7 +303,19 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+
+		if (isNew) {
+			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		}
+		else {
+			if (attachment.getMessageId() != attachmentModelImpl.getOriginalMessageId()) {
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_MESSAGEID,
+					new Object[] {
+						Long.valueOf(attachmentModelImpl.getOriginalMessageId())
+					});
+			}
+		}
 
 		EntityCacheUtil.putResult(AttachmentModelImpl.ENTITY_CACHE_ENABLED,
 			AttachmentImpl.class, attachment.getPrimaryKey(), attachment);
@@ -461,13 +492,20 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 	 */
 	public List<Attachment> findByMessageId(long messageId, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				messageId,
-				
-				start, end, orderByComparator
-			};
+		FinderPath finderPath = null;
+		Object[] finderArgs = null;
 
-		List<Attachment> list = (List<Attachment>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_MESSAGEID,
+		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
+				(orderByComparator == null)) {
+			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_MESSAGEID;
+			finderArgs = new Object[] { messageId };
+		}
+		else {
+			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_MESSAGEID;
+			finderArgs = new Object[] { messageId, start, end, orderByComparator };
+		}
+
+		List<Attachment> list = (List<Attachment>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
 		if (list == null) {
@@ -511,14 +549,12 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 			}
 			finally {
 				if (list == null) {
-					FinderCacheUtil.removeResult(FINDER_PATH_FIND_BY_MESSAGEID,
-						finderArgs);
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
 				}
 				else {
 					cacheResult(list);
 
-					FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_MESSAGEID,
-						finderArgs, list);
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
 				}
 
 				closeSession(session);
@@ -790,9 +826,20 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 	 */
 	public List<Attachment> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
+		FinderPath finderPath = null;
 		Object[] finderArgs = new Object[] { start, end, orderByComparator };
 
-		List<Attachment> list = (List<Attachment>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
+		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
+				(orderByComparator == null)) {
+			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_ALL;
+			finderArgs = FINDER_ARGS_EMPTY;
+		}
+		else {
+			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_ALL;
+			finderArgs = new Object[] { start, end, orderByComparator };
+		}
+
+		List<Attachment> list = (List<Attachment>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
 		if (list == null) {
@@ -837,14 +884,12 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 			}
 			finally {
 				if (list == null) {
-					FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL,
-						finderArgs);
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
 				}
 				else {
 					cacheResult(list);
 
-					FinderCacheUtil.putResult(FINDER_PATH_FIND_ALL, finderArgs,
-						list);
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
 				}
 
 				closeSession(session);
@@ -996,7 +1041,7 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 	public void destroy() {
 		EntityCacheUtil.removeCache(AttachmentImpl.class.getName());
 		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_ENTITY);
-		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST);
+		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
 	@BeanReference(type = AccountPersistence.class)

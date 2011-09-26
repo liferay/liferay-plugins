@@ -74,20 +74,26 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	 * Never modify or reference this class directly. Always use {@link OAuthTokenUtil} to access the o auth token persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.
 	 */
 	public static final String FINDER_CLASS_NAME_ENTITY = OAuthTokenImpl.class.getName();
-	public static final String FINDER_CLASS_NAME_LIST = FINDER_CLASS_NAME_ENTITY +
-		".List";
-	public static final FinderPath FINDER_PATH_FIND_BY_G_S = new FinderPath(OAuthTokenModelImpl.ENTITY_CACHE_ENABLED,
+	public static final String FINDER_CLASS_NAME_LIST_WITH_PAGINATION = FINDER_CLASS_NAME_ENTITY +
+		".List1";
+	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION = FINDER_CLASS_NAME_ENTITY +
+		".List2";
+	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_G_S = new FinderPath(OAuthTokenModelImpl.ENTITY_CACHE_ENABLED,
 			OAuthTokenModelImpl.FINDER_CACHE_ENABLED, OAuthTokenImpl.class,
-			FINDER_CLASS_NAME_LIST, "findByG_S",
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByG_S",
 			new String[] {
 				String.class.getName(), String.class.getName(),
 				
 			"java.lang.Integer", "java.lang.Integer",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
+	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_S = new FinderPath(OAuthTokenModelImpl.ENTITY_CACHE_ENABLED,
+			OAuthTokenModelImpl.FINDER_CACHE_ENABLED, OAuthTokenImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByG_S",
+			new String[] { String.class.getName(), String.class.getName() });
 	public static final FinderPath FINDER_PATH_COUNT_BY_G_S = new FinderPath(OAuthTokenModelImpl.ENTITY_CACHE_ENABLED,
 			OAuthTokenModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST, "countByG_S",
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_S",
 			new String[] { String.class.getName(), String.class.getName() });
 	public static final FinderPath FINDER_PATH_FETCH_BY_U_G_S_M_T = new FinderPath(OAuthTokenModelImpl.ENTITY_CACHE_ENABLED,
 			OAuthTokenModelImpl.FINDER_CACHE_ENABLED, OAuthTokenImpl.class,
@@ -99,18 +105,21 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 			});
 	public static final FinderPath FINDER_PATH_COUNT_BY_U_G_S_M_T = new FinderPath(OAuthTokenModelImpl.ENTITY_CACHE_ENABLED,
 			OAuthTokenModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST, "countByU_G_S_M_T",
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByU_G_S_M_T",
 			new String[] {
 				Long.class.getName(), String.class.getName(),
 				String.class.getName(), Long.class.getName(),
 				String.class.getName()
 			});
-	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(OAuthTokenModelImpl.ENTITY_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_ALL = new FinderPath(OAuthTokenModelImpl.ENTITY_CACHE_ENABLED,
 			OAuthTokenModelImpl.FINDER_CACHE_ENABLED, OAuthTokenImpl.class,
-			FINDER_CLASS_NAME_LIST, "findAll", new String[0]);
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll", new String[0]);
+	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_ALL = new FinderPath(OAuthTokenModelImpl.ENTITY_CACHE_ENABLED,
+			OAuthTokenModelImpl.FINDER_CACHE_ENABLED, OAuthTokenImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
 	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(OAuthTokenModelImpl.ENTITY_CACHE_ENABLED,
 			OAuthTokenModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST, "countAll", new String[0]);
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll", new String[0]);
 
 	/**
 	 * Caches the o auth token in the entity cache if it is enabled.
@@ -164,8 +173,10 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 		}
 
 		EntityCacheUtil.clearCache(OAuthTokenImpl.class.getName());
+
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
 	/**
@@ -180,7 +191,8 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 		EntityCacheUtil.removeResult(OAuthTokenModelImpl.ENTITY_CACHE_ENABLED,
 			OAuthTokenImpl.class, oAuthToken.getPrimaryKey());
 
-		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_G_S_M_T,
 			new Object[] {
@@ -294,7 +306,8 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
 		OAuthTokenModelImpl oAuthTokenModelImpl = (OAuthTokenModelImpl)oAuthToken;
 
@@ -342,42 +355,29 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+
+		if (isNew) {
+			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		}
+		else {
+			if (!Validator.equals(oAuthToken.getGadgetKey(),
+						oAuthTokenModelImpl.getOriginalGadgetKey()) ||
+					!Validator.equals(oAuthToken.getServiceName(),
+						oAuthTokenModelImpl.getOriginalServiceName())) {
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_S,
+					new Object[] {
+						oAuthTokenModelImpl.getOriginalGadgetKey(),
+						
+					oAuthTokenModelImpl.getOriginalServiceName()
+					});
+			}
+		}
 
 		EntityCacheUtil.putResult(OAuthTokenModelImpl.ENTITY_CACHE_ENABLED,
 			OAuthTokenImpl.class, oAuthToken.getPrimaryKey(), oAuthToken);
 
-		if (!isNew &&
-				((oAuthToken.getUserId() != oAuthTokenModelImpl.getOriginalUserId()) ||
-				!Validator.equals(oAuthToken.getGadgetKey(),
-					oAuthTokenModelImpl.getOriginalGadgetKey()) ||
-				!Validator.equals(oAuthToken.getServiceName(),
-					oAuthTokenModelImpl.getOriginalServiceName()) ||
-				(oAuthToken.getModuleId() != oAuthTokenModelImpl.getOriginalModuleId()) ||
-				!Validator.equals(oAuthToken.getTokenName(),
-					oAuthTokenModelImpl.getOriginalTokenName()))) {
-			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_G_S_M_T,
-				new Object[] {
-					Long.valueOf(oAuthTokenModelImpl.getOriginalUserId()),
-					
-				oAuthTokenModelImpl.getOriginalGadgetKey(),
-					
-				oAuthTokenModelImpl.getOriginalServiceName(),
-					Long.valueOf(oAuthTokenModelImpl.getOriginalModuleId()),
-					
-				oAuthTokenModelImpl.getOriginalTokenName()
-				});
-		}
-
-		if (isNew ||
-				((oAuthToken.getUserId() != oAuthTokenModelImpl.getOriginalUserId()) ||
-				!Validator.equals(oAuthToken.getGadgetKey(),
-					oAuthTokenModelImpl.getOriginalGadgetKey()) ||
-				!Validator.equals(oAuthToken.getServiceName(),
-					oAuthTokenModelImpl.getOriginalServiceName()) ||
-				(oAuthToken.getModuleId() != oAuthTokenModelImpl.getOriginalModuleId()) ||
-				!Validator.equals(oAuthToken.getTokenName(),
-					oAuthTokenModelImpl.getOriginalTokenName()))) {
+		if (isNew) {
 			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_G_S_M_T,
 				new Object[] {
 					Long.valueOf(oAuthToken.getUserId()),
@@ -389,6 +389,40 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 					
 				oAuthToken.getTokenName()
 				}, oAuthToken);
+		}
+		else {
+			if ((oAuthToken.getUserId() != oAuthTokenModelImpl.getOriginalUserId()) ||
+					!Validator.equals(oAuthToken.getGadgetKey(),
+						oAuthTokenModelImpl.getOriginalGadgetKey()) ||
+					!Validator.equals(oAuthToken.getServiceName(),
+						oAuthTokenModelImpl.getOriginalServiceName()) ||
+					(oAuthToken.getModuleId() != oAuthTokenModelImpl.getOriginalModuleId()) ||
+					!Validator.equals(oAuthToken.getTokenName(),
+						oAuthTokenModelImpl.getOriginalTokenName())) {
+				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_G_S_M_T,
+					new Object[] {
+						Long.valueOf(oAuthTokenModelImpl.getOriginalUserId()),
+						
+					oAuthTokenModelImpl.getOriginalGadgetKey(),
+						
+					oAuthTokenModelImpl.getOriginalServiceName(),
+						Long.valueOf(oAuthTokenModelImpl.getOriginalModuleId()),
+						
+					oAuthTokenModelImpl.getOriginalTokenName()
+					});
+
+				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_G_S_M_T,
+					new Object[] {
+						Long.valueOf(oAuthToken.getUserId()),
+						
+					oAuthToken.getGadgetKey(),
+						
+					oAuthToken.getServiceName(),
+						Long.valueOf(oAuthToken.getModuleId()),
+						
+					oAuthToken.getTokenName()
+					}, oAuthToken);
+			}
 		}
 
 		return oAuthToken;
@@ -572,13 +606,24 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	public List<OAuthToken> findByG_S(String gadgetKey, String serviceName,
 		int start, int end, OrderByComparator orderByComparator)
 		throws SystemException {
-		Object[] finderArgs = new Object[] {
-				gadgetKey, serviceName,
-				
-				start, end, orderByComparator
-			};
+		FinderPath finderPath = null;
+		Object[] finderArgs = null;
 
-		List<OAuthToken> list = (List<OAuthToken>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_G_S,
+		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
+				(orderByComparator == null)) {
+			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_S;
+			finderArgs = new Object[] { gadgetKey, serviceName };
+		}
+		else {
+			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_G_S;
+			finderArgs = new Object[] {
+					gadgetKey, serviceName,
+					
+					start, end, orderByComparator
+				};
+		}
+
+		List<OAuthToken> list = (List<OAuthToken>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
 		if (list == null) {
@@ -650,14 +695,12 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 			}
 			finally {
 				if (list == null) {
-					FinderCacheUtil.removeResult(FINDER_PATH_FIND_BY_G_S,
-						finderArgs);
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
 				}
 				else {
 					cacheResult(list);
 
-					FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_G_S,
-						finderArgs, list);
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
 				}
 
 				closeSession(session);
@@ -1185,9 +1228,20 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	 */
 	public List<OAuthToken> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
+		FinderPath finderPath = null;
 		Object[] finderArgs = new Object[] { start, end, orderByComparator };
 
-		List<OAuthToken> list = (List<OAuthToken>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
+		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
+				(orderByComparator == null)) {
+			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_ALL;
+			finderArgs = FINDER_ARGS_EMPTY;
+		}
+		else {
+			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_ALL;
+			finderArgs = new Object[] { start, end, orderByComparator };
+		}
+
+		List<OAuthToken> list = (List<OAuthToken>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
 		if (list == null) {
@@ -1232,14 +1286,12 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 			}
 			finally {
 				if (list == null) {
-					FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL,
-						finderArgs);
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
 				}
 				else {
 					cacheResult(list);
 
-					FinderCacheUtil.putResult(FINDER_PATH_FIND_ALL, finderArgs,
-						list);
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
 				}
 
 				closeSession(session);
@@ -1555,7 +1607,7 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	public void destroy() {
 		EntityCacheUtil.removeCache(OAuthTokenImpl.class.getName());
 		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_ENTITY);
-		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST);
+		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
 	@BeanReference(type = GadgetPersistence.class)

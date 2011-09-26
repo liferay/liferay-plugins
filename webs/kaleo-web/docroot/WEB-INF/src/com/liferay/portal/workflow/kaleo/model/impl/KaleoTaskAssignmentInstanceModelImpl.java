@@ -142,7 +142,17 @@ public class KaleoTaskAssignmentInstanceModelImpl extends BaseModelImpl<KaleoTas
 	}
 
 	public void setCompanyId(long companyId) {
+		if (!_setOriginalCompanyId) {
+			_setOriginalCompanyId = true;
+
+			_originalCompanyId = _companyId;
+		}
+
 		_companyId = companyId;
+	}
+
+	public long getOriginalCompanyId() {
+		return _originalCompanyId;
 	}
 
 	public long getUserId() {
@@ -195,7 +205,17 @@ public class KaleoTaskAssignmentInstanceModelImpl extends BaseModelImpl<KaleoTas
 	}
 
 	public void setKaleoDefinitionId(long kaleoDefinitionId) {
+		if (!_setOriginalKaleoDefinitionId) {
+			_setOriginalKaleoDefinitionId = true;
+
+			_originalKaleoDefinitionId = _kaleoDefinitionId;
+		}
+
 		_kaleoDefinitionId = kaleoDefinitionId;
+	}
+
+	public long getOriginalKaleoDefinitionId() {
+		return _originalKaleoDefinitionId;
 	}
 
 	public long getKaleoInstanceId() {
@@ -203,7 +223,17 @@ public class KaleoTaskAssignmentInstanceModelImpl extends BaseModelImpl<KaleoTas
 	}
 
 	public void setKaleoInstanceId(long kaleoInstanceId) {
+		if (!_setOriginalKaleoInstanceId) {
+			_setOriginalKaleoInstanceId = true;
+
+			_originalKaleoInstanceId = _kaleoInstanceId;
+		}
+
 		_kaleoInstanceId = kaleoInstanceId;
+	}
+
+	public long getOriginalKaleoInstanceId() {
+		return _originalKaleoInstanceId;
 	}
 
 	public long getKaleoInstanceTokenId() {
@@ -219,7 +249,17 @@ public class KaleoTaskAssignmentInstanceModelImpl extends BaseModelImpl<KaleoTas
 	}
 
 	public void setKaleoTaskInstanceTokenId(long kaleoTaskInstanceTokenId) {
+		if (!_setOriginalKaleoTaskInstanceTokenId) {
+			_setOriginalKaleoTaskInstanceTokenId = true;
+
+			_originalKaleoTaskInstanceTokenId = _kaleoTaskInstanceTokenId;
+		}
+
 		_kaleoTaskInstanceTokenId = kaleoTaskInstanceTokenId;
+	}
+
+	public long getOriginalKaleoTaskInstanceTokenId() {
+		return _originalKaleoTaskInstanceTokenId;
 	}
 
 	public long getKaleoTaskId() {
@@ -395,6 +435,24 @@ public class KaleoTaskAssignmentInstanceModelImpl extends BaseModelImpl<KaleoTas
 
 	@Override
 	public void resetOriginalValues() {
+		KaleoTaskAssignmentInstanceModelImpl kaleoTaskAssignmentInstanceModelImpl =
+			this;
+
+		kaleoTaskAssignmentInstanceModelImpl._originalCompanyId = kaleoTaskAssignmentInstanceModelImpl._companyId;
+
+		kaleoTaskAssignmentInstanceModelImpl._setOriginalCompanyId = false;
+
+		kaleoTaskAssignmentInstanceModelImpl._originalKaleoDefinitionId = kaleoTaskAssignmentInstanceModelImpl._kaleoDefinitionId;
+
+		kaleoTaskAssignmentInstanceModelImpl._setOriginalKaleoDefinitionId = false;
+
+		kaleoTaskAssignmentInstanceModelImpl._originalKaleoInstanceId = kaleoTaskAssignmentInstanceModelImpl._kaleoInstanceId;
+
+		kaleoTaskAssignmentInstanceModelImpl._setOriginalKaleoInstanceId = false;
+
+		kaleoTaskAssignmentInstanceModelImpl._originalKaleoTaskInstanceTokenId = kaleoTaskAssignmentInstanceModelImpl._kaleoTaskInstanceTokenId;
+
+		kaleoTaskAssignmentInstanceModelImpl._setOriginalKaleoTaskInstanceTokenId = false;
 	}
 
 	@Override
@@ -610,15 +668,23 @@ public class KaleoTaskAssignmentInstanceModelImpl extends BaseModelImpl<KaleoTas
 	private long _kaleoTaskAssignmentInstanceId;
 	private long _groupId;
 	private long _companyId;
+	private long _originalCompanyId;
+	private boolean _setOriginalCompanyId;
 	private long _userId;
 	private String _userUuid;
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
 	private long _kaleoDefinitionId;
+	private long _originalKaleoDefinitionId;
+	private boolean _setOriginalKaleoDefinitionId;
 	private long _kaleoInstanceId;
+	private long _originalKaleoInstanceId;
+	private boolean _setOriginalKaleoInstanceId;
 	private long _kaleoInstanceTokenId;
 	private long _kaleoTaskInstanceTokenId;
+	private long _originalKaleoTaskInstanceTokenId;
+	private boolean _setOriginalKaleoTaskInstanceTokenId;
 	private long _kaleoTaskId;
 	private String _kaleoTaskName;
 	private String _assigneeClassName;

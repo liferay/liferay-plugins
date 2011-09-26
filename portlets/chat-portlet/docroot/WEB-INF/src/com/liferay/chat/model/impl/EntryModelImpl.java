@@ -119,7 +119,17 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 	}
 
 	public void setCreateDate(long createDate) {
+		if (!_setOriginalCreateDate) {
+			_setOriginalCreateDate = true;
+
+			_originalCreateDate = _createDate;
+		}
+
 		_createDate = createDate;
+	}
+
+	public long getOriginalCreateDate() {
+		return _originalCreateDate;
 	}
 
 	public long getFromUserId() {
@@ -127,6 +137,12 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 	}
 
 	public void setFromUserId(long fromUserId) {
+		if (!_setOriginalFromUserId) {
+			_setOriginalFromUserId = true;
+
+			_originalFromUserId = _fromUserId;
+		}
+
 		_fromUserId = fromUserId;
 	}
 
@@ -138,11 +154,21 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 		_fromUserUuid = fromUserUuid;
 	}
 
+	public long getOriginalFromUserId() {
+		return _originalFromUserId;
+	}
+
 	public long getToUserId() {
 		return _toUserId;
 	}
 
 	public void setToUserId(long toUserId) {
+		if (!_setOriginalToUserId) {
+			_setOriginalToUserId = true;
+
+			_originalToUserId = _toUserId;
+		}
+
 		_toUserId = toUserId;
 	}
 
@@ -152,6 +178,10 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 
 	public void setToUserUuid(String toUserUuid) {
 		_toUserUuid = toUserUuid;
+	}
+
+	public long getOriginalToUserId() {
+		return _originalToUserId;
 	}
 
 	public String getContent() {
@@ -164,7 +194,15 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 	}
 
 	public void setContent(String content) {
+		if (_originalContent == null) {
+			_originalContent = _content;
+		}
+
 		_content = content;
+	}
+
+	public String getOriginalContent() {
+		return GetterUtil.getString(_originalContent);
 	}
 
 	@Override
@@ -267,6 +305,21 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 
 	@Override
 	public void resetOriginalValues() {
+		EntryModelImpl entryModelImpl = this;
+
+		entryModelImpl._originalCreateDate = entryModelImpl._createDate;
+
+		entryModelImpl._setOriginalCreateDate = false;
+
+		entryModelImpl._originalFromUserId = entryModelImpl._fromUserId;
+
+		entryModelImpl._setOriginalFromUserId = false;
+
+		entryModelImpl._originalToUserId = entryModelImpl._toUserId;
+
+		entryModelImpl._setOriginalToUserId = false;
+
+		entryModelImpl._originalContent = entryModelImpl._content;
 	}
 
 	@Override
@@ -350,11 +403,18 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 		};
 	private long _entryId;
 	private long _createDate;
+	private long _originalCreateDate;
+	private boolean _setOriginalCreateDate;
 	private long _fromUserId;
 	private String _fromUserUuid;
+	private long _originalFromUserId;
+	private boolean _setOriginalFromUserId;
 	private long _toUserId;
 	private String _toUserUuid;
+	private long _originalToUserId;
+	private boolean _setOriginalToUserId;
 	private String _content;
+	private String _originalContent;
 	private transient ExpandoBridge _expandoBridge;
 	private Entry _escapedModelProxy;
 }

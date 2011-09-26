@@ -140,7 +140,17 @@ public class KaleoTransitionModelImpl extends BaseModelImpl<KaleoTransition>
 	}
 
 	public void setCompanyId(long companyId) {
+		if (!_setOriginalCompanyId) {
+			_setOriginalCompanyId = true;
+
+			_originalCompanyId = _companyId;
+		}
+
 		_companyId = companyId;
+	}
+
+	public long getOriginalCompanyId() {
+		return _originalCompanyId;
 	}
 
 	public long getUserId() {
@@ -193,7 +203,17 @@ public class KaleoTransitionModelImpl extends BaseModelImpl<KaleoTransition>
 	}
 
 	public void setKaleoDefinitionId(long kaleoDefinitionId) {
+		if (!_setOriginalKaleoDefinitionId) {
+			_setOriginalKaleoDefinitionId = true;
+
+			_originalKaleoDefinitionId = _kaleoDefinitionId;
+		}
+
 		_kaleoDefinitionId = kaleoDefinitionId;
+	}
+
+	public long getOriginalKaleoDefinitionId() {
+		return _originalKaleoDefinitionId;
 	}
 
 	public long getKaleoNodeId() {
@@ -423,6 +443,14 @@ public class KaleoTransitionModelImpl extends BaseModelImpl<KaleoTransition>
 	public void resetOriginalValues() {
 		KaleoTransitionModelImpl kaleoTransitionModelImpl = this;
 
+		kaleoTransitionModelImpl._originalCompanyId = kaleoTransitionModelImpl._companyId;
+
+		kaleoTransitionModelImpl._setOriginalCompanyId = false;
+
+		kaleoTransitionModelImpl._originalKaleoDefinitionId = kaleoTransitionModelImpl._kaleoDefinitionId;
+
+		kaleoTransitionModelImpl._setOriginalKaleoDefinitionId = false;
+
 		kaleoTransitionModelImpl._originalKaleoNodeId = kaleoTransitionModelImpl._kaleoNodeId;
 
 		kaleoTransitionModelImpl._setOriginalKaleoNodeId = false;
@@ -644,12 +672,16 @@ public class KaleoTransitionModelImpl extends BaseModelImpl<KaleoTransition>
 	private long _kaleoTransitionId;
 	private long _groupId;
 	private long _companyId;
+	private long _originalCompanyId;
+	private boolean _setOriginalCompanyId;
 	private long _userId;
 	private String _userUuid;
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
 	private long _kaleoDefinitionId;
+	private long _originalKaleoDefinitionId;
+	private boolean _setOriginalKaleoDefinitionId;
 	private long _kaleoNodeId;
 	private long _originalKaleoNodeId;
 	private boolean _setOriginalKaleoNodeId;

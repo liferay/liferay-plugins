@@ -163,7 +163,17 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer>
 	}
 
 	public void setCompanyId(long companyId) {
+		if (!_setOriginalCompanyId) {
+			_setOriginalCompanyId = true;
+
+			_originalCompanyId = _companyId;
+		}
+
 		_companyId = companyId;
+	}
+
+	public long getOriginalCompanyId() {
+		return _originalCompanyId;
 	}
 
 	public Date getCreateDate() {
@@ -322,6 +332,10 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer>
 		wsrpProducerModelImpl._originalGroupId = wsrpProducerModelImpl._groupId;
 
 		wsrpProducerModelImpl._setOriginalGroupId = false;
+
+		wsrpProducerModelImpl._originalCompanyId = wsrpProducerModelImpl._companyId;
+
+		wsrpProducerModelImpl._setOriginalCompanyId = false;
 	}
 
 	@Override
@@ -474,6 +488,8 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer>
 	private long _originalGroupId;
 	private boolean _setOriginalGroupId;
 	private long _companyId;
+	private long _originalCompanyId;
+	private boolean _setOriginalCompanyId;
 	private Date _createDate;
 	private Date _modifiedDate;
 	private String _name;

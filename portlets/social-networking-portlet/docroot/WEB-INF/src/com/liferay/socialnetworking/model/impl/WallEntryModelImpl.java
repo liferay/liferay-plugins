@@ -126,7 +126,17 @@ public class WallEntryModelImpl extends BaseModelImpl<WallEntry>
 	}
 
 	public void setGroupId(long groupId) {
+		if (!_setOriginalGroupId) {
+			_setOriginalGroupId = true;
+
+			_originalGroupId = _groupId;
+		}
+
 		_groupId = groupId;
+	}
+
+	public long getOriginalGroupId() {
+		return _originalGroupId;
 	}
 
 	public long getCompanyId() {
@@ -142,6 +152,12 @@ public class WallEntryModelImpl extends BaseModelImpl<WallEntry>
 	}
 
 	public void setUserId(long userId) {
+		if (!_setOriginalUserId) {
+			_setOriginalUserId = true;
+
+			_originalUserId = _userId;
+		}
+
 		_userId = userId;
 	}
 
@@ -151,6 +167,10 @@ public class WallEntryModelImpl extends BaseModelImpl<WallEntry>
 
 	public void setUserUuid(String userUuid) {
 		_userUuid = userUuid;
+	}
+
+	public long getOriginalUserId() {
+		return _originalUserId;
 	}
 
 	public String getUserName() {
@@ -290,6 +310,15 @@ public class WallEntryModelImpl extends BaseModelImpl<WallEntry>
 
 	@Override
 	public void resetOriginalValues() {
+		WallEntryModelImpl wallEntryModelImpl = this;
+
+		wallEntryModelImpl._originalGroupId = wallEntryModelImpl._groupId;
+
+		wallEntryModelImpl._setOriginalGroupId = false;
+
+		wallEntryModelImpl._originalUserId = wallEntryModelImpl._userId;
+
+		wallEntryModelImpl._setOriginalUserId = false;
 	}
 
 	@Override
@@ -417,9 +446,13 @@ public class WallEntryModelImpl extends BaseModelImpl<WallEntry>
 		};
 	private long _wallEntryId;
 	private long _groupId;
+	private long _originalGroupId;
+	private boolean _setOriginalGroupId;
 	private long _companyId;
 	private long _userId;
 	private String _userUuid;
+	private long _originalUserId;
+	private boolean _setOriginalUserId;
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;

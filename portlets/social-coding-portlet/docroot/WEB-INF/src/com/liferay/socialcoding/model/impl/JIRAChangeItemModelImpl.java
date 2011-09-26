@@ -118,7 +118,17 @@ public class JIRAChangeItemModelImpl extends BaseModelImpl<JIRAChangeItem>
 	}
 
 	public void setJiraChangeGroupId(long jiraChangeGroupId) {
+		if (!_setOriginalJiraChangeGroupId) {
+			_setOriginalJiraChangeGroupId = true;
+
+			_originalJiraChangeGroupId = _jiraChangeGroupId;
+		}
+
 		_jiraChangeGroupId = jiraChangeGroupId;
+	}
+
+	public long getOriginalJiraChangeGroupId() {
+		return _originalJiraChangeGroupId;
 	}
 
 	public String getField() {
@@ -280,6 +290,11 @@ public class JIRAChangeItemModelImpl extends BaseModelImpl<JIRAChangeItem>
 
 	@Override
 	public void resetOriginalValues() {
+		JIRAChangeItemModelImpl jiraChangeItemModelImpl = this;
+
+		jiraChangeItemModelImpl._originalJiraChangeGroupId = jiraChangeItemModelImpl._jiraChangeGroupId;
+
+		jiraChangeItemModelImpl._setOriginalJiraChangeGroupId = false;
 	}
 
 	@Override
@@ -403,6 +418,8 @@ public class JIRAChangeItemModelImpl extends BaseModelImpl<JIRAChangeItem>
 		};
 	private long _jiraChangeItemId;
 	private long _jiraChangeGroupId;
+	private long _originalJiraChangeGroupId;
+	private boolean _setOriginalJiraChangeGroupId;
 	private String _field;
 	private String _oldValue;
 	private String _oldString;

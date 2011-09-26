@@ -73,11 +73,14 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 	 * Never modify or reference this class directly. Always use {@link KaleoTransitionUtil} to access the kaleo transition persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.
 	 */
 	public static final String FINDER_CLASS_NAME_ENTITY = KaleoTransitionImpl.class.getName();
-	public static final String FINDER_CLASS_NAME_LIST = FINDER_CLASS_NAME_ENTITY +
-		".List";
-	public static final FinderPath FINDER_PATH_FIND_BY_COMPANYID = new FinderPath(KaleoTransitionModelImpl.ENTITY_CACHE_ENABLED,
+	public static final String FINDER_CLASS_NAME_LIST_WITH_PAGINATION = FINDER_CLASS_NAME_ENTITY +
+		".List1";
+	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION = FINDER_CLASS_NAME_ENTITY +
+		".List2";
+	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_COMPANYID =
+		new FinderPath(KaleoTransitionModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoTransitionModelImpl.FINDER_CACHE_ENABLED,
-			KaleoTransitionImpl.class, FINDER_CLASS_NAME_LIST,
+			KaleoTransitionImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
 			"findByCompanyId",
 			new String[] {
 				Long.class.getName(),
@@ -85,13 +88,20 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 			"java.lang.Integer", "java.lang.Integer",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
+	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_COMPANYID =
+		new FinderPath(KaleoTransitionModelImpl.ENTITY_CACHE_ENABLED,
+			KaleoTransitionModelImpl.FINDER_CACHE_ENABLED,
+			KaleoTransitionImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByCompanyId",
+			new String[] { Long.class.getName() });
 	public static final FinderPath FINDER_PATH_COUNT_BY_COMPANYID = new FinderPath(KaleoTransitionModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoTransitionModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST, "countByCompanyId",
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByCompanyId",
 			new String[] { Long.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_KALEODEFINITIONID = new FinderPath(KaleoTransitionModelImpl.ENTITY_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_KALEODEFINITIONID =
+		new FinderPath(KaleoTransitionModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoTransitionModelImpl.FINDER_CACHE_ENABLED,
-			KaleoTransitionImpl.class, FINDER_CLASS_NAME_LIST,
+			KaleoTransitionImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
 			"findByKaleoDefinitionId",
 			new String[] {
 				Long.class.getName(),
@@ -99,13 +109,20 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 			"java.lang.Integer", "java.lang.Integer",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
+	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_KALEODEFINITIONID =
+		new FinderPath(KaleoTransitionModelImpl.ENTITY_CACHE_ENABLED,
+			KaleoTransitionModelImpl.FINDER_CACHE_ENABLED,
+			KaleoTransitionImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"findByKaleoDefinitionId", new String[] { Long.class.getName() });
 	public static final FinderPath FINDER_PATH_COUNT_BY_KALEODEFINITIONID = new FinderPath(KaleoTransitionModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoTransitionModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST, "countByKaleoDefinitionId",
-			new String[] { Long.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_KALEONODEID = new FinderPath(KaleoTransitionModelImpl.ENTITY_CACHE_ENABLED,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"countByKaleoDefinitionId", new String[] { Long.class.getName() });
+	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_KALEONODEID =
+		new FinderPath(KaleoTransitionModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoTransitionModelImpl.FINDER_CACHE_ENABLED,
-			KaleoTransitionImpl.class, FINDER_CLASS_NAME_LIST,
+			KaleoTransitionImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
 			"findByKaleoNodeId",
 			new String[] {
 				Long.class.getName(),
@@ -113,9 +130,15 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 			"java.lang.Integer", "java.lang.Integer",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
+	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_KALEONODEID =
+		new FinderPath(KaleoTransitionModelImpl.ENTITY_CACHE_ENABLED,
+			KaleoTransitionModelImpl.FINDER_CACHE_ENABLED,
+			KaleoTransitionImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByKaleoNodeId",
+			new String[] { Long.class.getName() });
 	public static final FinderPath FINDER_PATH_COUNT_BY_KALEONODEID = new FinderPath(KaleoTransitionModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoTransitionModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST, "countByKaleoNodeId",
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByKaleoNodeId",
 			new String[] { Long.class.getName() });
 	public static final FinderPath FINDER_PATH_FETCH_BY_KNI_N = new FinderPath(KaleoTransitionModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoTransitionModelImpl.FINDER_CACHE_ENABLED,
@@ -124,7 +147,7 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 			new String[] { Long.class.getName(), String.class.getName() });
 	public static final FinderPath FINDER_PATH_COUNT_BY_KNI_N = new FinderPath(KaleoTransitionModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoTransitionModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST, "countByKNI_N",
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByKNI_N",
 			new String[] { Long.class.getName(), String.class.getName() });
 	public static final FinderPath FINDER_PATH_FETCH_BY_KNI_DT = new FinderPath(KaleoTransitionModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoTransitionModelImpl.FINDER_CACHE_ENABLED,
@@ -133,15 +156,19 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 			new String[] { Long.class.getName(), Boolean.class.getName() });
 	public static final FinderPath FINDER_PATH_COUNT_BY_KNI_DT = new FinderPath(KaleoTransitionModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoTransitionModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST, "countByKNI_DT",
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByKNI_DT",
 			new String[] { Long.class.getName(), Boolean.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(KaleoTransitionModelImpl.ENTITY_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_ALL = new FinderPath(KaleoTransitionModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoTransitionModelImpl.FINDER_CACHE_ENABLED,
-			KaleoTransitionImpl.class, FINDER_CLASS_NAME_LIST, "findAll",
-			new String[0]);
+			KaleoTransitionImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll", new String[0]);
+	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_ALL = new FinderPath(KaleoTransitionModelImpl.ENTITY_CACHE_ENABLED,
+			KaleoTransitionModelImpl.FINDER_CACHE_ENABLED,
+			KaleoTransitionImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
+			"findAll", new String[0]);
 	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(KaleoTransitionModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoTransitionModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST, "countAll", new String[0]);
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll", new String[0]);
 
 	/**
 	 * Caches the kaleo transition in the entity cache if it is enabled.
@@ -199,8 +226,10 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 		}
 
 		EntityCacheUtil.clearCache(KaleoTransitionImpl.class.getName());
+
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
 	/**
@@ -215,7 +244,8 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 		EntityCacheUtil.removeResult(KaleoTransitionModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoTransitionImpl.class, kaleoTransition.getPrimaryKey());
 
-		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KNI_N,
 			new Object[] {
@@ -333,7 +363,8 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
 		KaleoTransitionModelImpl kaleoTransitionModelImpl = (KaleoTransitionModelImpl)kaleoTransition;
 
@@ -382,57 +413,91 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+
+		if (isNew) {
+			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		}
+		else {
+			if (kaleoTransition.getCompanyId() != kaleoTransitionModelImpl.getOriginalCompanyId()) {
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_COMPANYID,
+					new Object[] {
+						Long.valueOf(
+							kaleoTransitionModelImpl.getOriginalCompanyId())
+					});
+			}
+
+			if (kaleoTransition.getKaleoDefinitionId() != kaleoTransitionModelImpl.getOriginalKaleoDefinitionId()) {
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_KALEODEFINITIONID,
+					new Object[] {
+						Long.valueOf(
+							kaleoTransitionModelImpl.getOriginalKaleoDefinitionId())
+					});
+			}
+
+			if (kaleoTransition.getKaleoNodeId() != kaleoTransitionModelImpl.getOriginalKaleoNodeId()) {
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_KALEONODEID,
+					new Object[] {
+						Long.valueOf(
+							kaleoTransitionModelImpl.getOriginalKaleoNodeId())
+					});
+			}
+		}
 
 		EntityCacheUtil.putResult(KaleoTransitionModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoTransitionImpl.class, kaleoTransition.getPrimaryKey(),
 			kaleoTransition);
 
-		if (!isNew &&
-				((kaleoTransition.getKaleoNodeId() != kaleoTransitionModelImpl.getOriginalKaleoNodeId()) ||
-				!Validator.equals(kaleoTransition.getName(),
-					kaleoTransitionModelImpl.getOriginalName()))) {
-			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KNI_N,
-				new Object[] {
-					Long.valueOf(
-						kaleoTransitionModelImpl.getOriginalKaleoNodeId()),
-					
-				kaleoTransitionModelImpl.getOriginalName()
-				});
-		}
-
-		if (isNew ||
-				((kaleoTransition.getKaleoNodeId() != kaleoTransitionModelImpl.getOriginalKaleoNodeId()) ||
-				!Validator.equals(kaleoTransition.getName(),
-					kaleoTransitionModelImpl.getOriginalName()))) {
+		if (isNew) {
 			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_KNI_N,
 				new Object[] {
 					Long.valueOf(kaleoTransition.getKaleoNodeId()),
 					
 				kaleoTransition.getName()
 				}, kaleoTransition);
-		}
 
-		if (!isNew &&
-				((kaleoTransition.getKaleoNodeId() != kaleoTransitionModelImpl.getOriginalKaleoNodeId()) ||
-				(kaleoTransition.getDefaultTransition() != kaleoTransitionModelImpl.getOriginalDefaultTransition()))) {
-			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KNI_DT,
-				new Object[] {
-					Long.valueOf(
-						kaleoTransitionModelImpl.getOriginalKaleoNodeId()),
-					Boolean.valueOf(
-						kaleoTransitionModelImpl.getOriginalDefaultTransition())
-				});
-		}
-
-		if (isNew ||
-				((kaleoTransition.getKaleoNodeId() != kaleoTransitionModelImpl.getOriginalKaleoNodeId()) ||
-				(kaleoTransition.getDefaultTransition() != kaleoTransitionModelImpl.getOriginalDefaultTransition()))) {
 			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_KNI_DT,
 				new Object[] {
 					Long.valueOf(kaleoTransition.getKaleoNodeId()),
 					Boolean.valueOf(kaleoTransition.getDefaultTransition())
 				}, kaleoTransition);
+		}
+		else {
+			if ((kaleoTransition.getKaleoNodeId() != kaleoTransitionModelImpl.getOriginalKaleoNodeId()) ||
+					!Validator.equals(kaleoTransition.getName(),
+						kaleoTransitionModelImpl.getOriginalName())) {
+				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KNI_N,
+					new Object[] {
+						Long.valueOf(
+							kaleoTransitionModelImpl.getOriginalKaleoNodeId()),
+						
+					kaleoTransitionModelImpl.getOriginalName()
+					});
+
+				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_KNI_N,
+					new Object[] {
+						Long.valueOf(kaleoTransition.getKaleoNodeId()),
+						
+					kaleoTransition.getName()
+					}, kaleoTransition);
+			}
+
+			if ((kaleoTransition.getKaleoNodeId() != kaleoTransitionModelImpl.getOriginalKaleoNodeId()) ||
+					(kaleoTransition.getDefaultTransition() != kaleoTransitionModelImpl.getOriginalDefaultTransition())) {
+				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KNI_DT,
+					new Object[] {
+						Long.valueOf(
+							kaleoTransitionModelImpl.getOriginalKaleoNodeId()),
+						Boolean.valueOf(
+							kaleoTransitionModelImpl.getOriginalDefaultTransition())
+					});
+
+				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_KNI_DT,
+					new Object[] {
+						Long.valueOf(kaleoTransition.getKaleoNodeId()),
+						Boolean.valueOf(kaleoTransition.getDefaultTransition())
+					}, kaleoTransition);
+			}
 		}
 
 		return kaleoTransition;
@@ -615,13 +680,20 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 	 */
 	public List<KaleoTransition> findByCompanyId(long companyId, int start,
 		int end, OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				companyId,
-				
-				start, end, orderByComparator
-			};
+		FinderPath finderPath = null;
+		Object[] finderArgs = null;
 
-		List<KaleoTransition> list = (List<KaleoTransition>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_COMPANYID,
+		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
+				(orderByComparator == null)) {
+			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_COMPANYID;
+			finderArgs = new Object[] { companyId };
+		}
+		else {
+			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_COMPANYID;
+			finderArgs = new Object[] { companyId, start, end, orderByComparator };
+		}
+
+		List<KaleoTransition> list = (List<KaleoTransition>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
 		if (list == null) {
@@ -669,14 +741,12 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 			}
 			finally {
 				if (list == null) {
-					FinderCacheUtil.removeResult(FINDER_PATH_FIND_BY_COMPANYID,
-						finderArgs);
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
 				}
 				else {
 					cacheResult(list);
 
-					FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_COMPANYID,
-						finderArgs, list);
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
 				}
 
 				closeSession(session);
@@ -959,13 +1029,24 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 	public List<KaleoTransition> findByKaleoDefinitionId(
 		long kaleoDefinitionId, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				kaleoDefinitionId,
-				
-				start, end, orderByComparator
-			};
+		FinderPath finderPath = null;
+		Object[] finderArgs = null;
 
-		List<KaleoTransition> list = (List<KaleoTransition>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_KALEODEFINITIONID,
+		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
+				(orderByComparator == null)) {
+			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_KALEODEFINITIONID;
+			finderArgs = new Object[] { kaleoDefinitionId };
+		}
+		else {
+			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_KALEODEFINITIONID;
+			finderArgs = new Object[] {
+					kaleoDefinitionId,
+					
+					start, end, orderByComparator
+				};
+		}
+
+		List<KaleoTransition> list = (List<KaleoTransition>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
 		if (list == null) {
@@ -1013,14 +1094,12 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 			}
 			finally {
 				if (list == null) {
-					FinderCacheUtil.removeResult(FINDER_PATH_FIND_BY_KALEODEFINITIONID,
-						finderArgs);
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
 				}
 				else {
 					cacheResult(list);
 
-					FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_KALEODEFINITIONID,
-						finderArgs, list);
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
 				}
 
 				closeSession(session);
@@ -1303,13 +1382,20 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 	 */
 	public List<KaleoTransition> findByKaleoNodeId(long kaleoNodeId, int start,
 		int end, OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				kaleoNodeId,
-				
-				start, end, orderByComparator
-			};
+		FinderPath finderPath = null;
+		Object[] finderArgs = null;
 
-		List<KaleoTransition> list = (List<KaleoTransition>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_KALEONODEID,
+		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
+				(orderByComparator == null)) {
+			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_KALEONODEID;
+			finderArgs = new Object[] { kaleoNodeId };
+		}
+		else {
+			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_KALEONODEID;
+			finderArgs = new Object[] { kaleoNodeId, start, end, orderByComparator };
+		}
+
+		List<KaleoTransition> list = (List<KaleoTransition>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
 		if (list == null) {
@@ -1357,14 +1443,12 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 			}
 			finally {
 				if (list == null) {
-					FinderCacheUtil.removeResult(FINDER_PATH_FIND_BY_KALEONODEID,
-						finderArgs);
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
 				}
 				else {
 					cacheResult(list);
 
-					FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_KALEONODEID,
-						finderArgs, list);
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
 				}
 
 				closeSession(session);
@@ -1939,9 +2023,20 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 	 */
 	public List<KaleoTransition> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
+		FinderPath finderPath = null;
 		Object[] finderArgs = new Object[] { start, end, orderByComparator };
 
-		List<KaleoTransition> list = (List<KaleoTransition>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
+		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
+				(orderByComparator == null)) {
+			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_ALL;
+			finderArgs = FINDER_ARGS_EMPTY;
+		}
+		else {
+			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_ALL;
+			finderArgs = new Object[] { start, end, orderByComparator };
+		}
+
+		List<KaleoTransition> list = (List<KaleoTransition>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
 		if (list == null) {
@@ -1986,14 +2081,12 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 			}
 			finally {
 				if (list == null) {
-					FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL,
-						finderArgs);
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
 				}
 				else {
 					cacheResult(list);
 
-					FinderCacheUtil.putResult(FINDER_PATH_FIND_ALL, finderArgs,
-						list);
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
 				}
 
 				closeSession(session);
@@ -2437,7 +2530,7 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 	public void destroy() {
 		EntityCacheUtil.removeCache(KaleoTransitionImpl.class.getName());
 		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_ENTITY);
-		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST);
+		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
 	@BeanReference(type = KaleoActionPersistence.class)

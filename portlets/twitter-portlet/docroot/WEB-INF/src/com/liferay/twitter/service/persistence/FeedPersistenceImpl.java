@@ -74,15 +74,17 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	 * Never modify or reference this class directly. Always use {@link FeedUtil} to access the feed persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.
 	 */
 	public static final String FINDER_CLASS_NAME_ENTITY = FeedImpl.class.getName();
-	public static final String FINDER_CLASS_NAME_LIST = FINDER_CLASS_NAME_ENTITY +
-		".List";
+	public static final String FINDER_CLASS_NAME_LIST_WITH_PAGINATION = FINDER_CLASS_NAME_ENTITY +
+		".List1";
+	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION = FINDER_CLASS_NAME_ENTITY +
+		".List2";
 	public static final FinderPath FINDER_PATH_FETCH_BY_C_TWUI = new FinderPath(FeedModelImpl.ENTITY_CACHE_ENABLED,
 			FeedModelImpl.FINDER_CACHE_ENABLED, FeedImpl.class,
 			FINDER_CLASS_NAME_ENTITY, "fetchByC_TWUI",
 			new String[] { Long.class.getName(), Long.class.getName() });
 	public static final FinderPath FINDER_PATH_COUNT_BY_C_TWUI = new FinderPath(FeedModelImpl.ENTITY_CACHE_ENABLED,
 			FeedModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST, "countByC_TWUI",
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByC_TWUI",
 			new String[] { Long.class.getName(), Long.class.getName() });
 	public static final FinderPath FINDER_PATH_FETCH_BY_C_TSN = new FinderPath(FeedModelImpl.ENTITY_CACHE_ENABLED,
 			FeedModelImpl.FINDER_CACHE_ENABLED, FeedImpl.class,
@@ -90,14 +92,17 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 			new String[] { Long.class.getName(), String.class.getName() });
 	public static final FinderPath FINDER_PATH_COUNT_BY_C_TSN = new FinderPath(FeedModelImpl.ENTITY_CACHE_ENABLED,
 			FeedModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST, "countByC_TSN",
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByC_TSN",
 			new String[] { Long.class.getName(), String.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(FeedModelImpl.ENTITY_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_ALL = new FinderPath(FeedModelImpl.ENTITY_CACHE_ENABLED,
 			FeedModelImpl.FINDER_CACHE_ENABLED, FeedImpl.class,
-			FINDER_CLASS_NAME_LIST, "findAll", new String[0]);
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll", new String[0]);
+	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_ALL = new FinderPath(FeedModelImpl.ENTITY_CACHE_ENABLED,
+			FeedModelImpl.FINDER_CACHE_ENABLED, FeedImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
 	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(FeedModelImpl.ENTITY_CACHE_ENABLED,
 			FeedModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST, "countAll", new String[0]);
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll", new String[0]);
 
 	/**
 	 * Caches the feed in the entity cache if it is enabled.
@@ -152,8 +157,10 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 		}
 
 		EntityCacheUtil.clearCache(FeedImpl.class.getName());
+
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
 	/**
@@ -168,7 +175,8 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 		EntityCacheUtil.removeResult(FeedModelImpl.ENTITY_CACHE_ENABLED,
 			FeedImpl.class, feed.getPrimaryKey());
 
-		FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL, FINDER_ARGS_EMPTY);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_TWUI,
 			new Object[] {
@@ -281,7 +289,8 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
 		FeedModelImpl feedModelImpl = (FeedModelImpl)feed;
 
@@ -329,53 +338,58 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 
 		EntityCacheUtil.putResult(FeedModelImpl.ENTITY_CACHE_ENABLED,
 			FeedImpl.class, feed.getPrimaryKey(), feed);
 
-		if (!isNew &&
-				((feed.getCompanyId() != feedModelImpl.getOriginalCompanyId()) ||
-				(feed.getTwitterUserId() != feedModelImpl.getOriginalTwitterUserId()))) {
-			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_TWUI,
-				new Object[] {
-					Long.valueOf(feedModelImpl.getOriginalCompanyId()),
-					Long.valueOf(feedModelImpl.getOriginalTwitterUserId())
-				});
-		}
-
-		if (isNew ||
-				((feed.getCompanyId() != feedModelImpl.getOriginalCompanyId()) ||
-				(feed.getTwitterUserId() != feedModelImpl.getOriginalTwitterUserId()))) {
+		if (isNew) {
 			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_TWUI,
 				new Object[] {
 					Long.valueOf(feed.getCompanyId()),
 					Long.valueOf(feed.getTwitterUserId())
 				}, feed);
-		}
 
-		if (!isNew &&
-				((feed.getCompanyId() != feedModelImpl.getOriginalCompanyId()) ||
-				!Validator.equals(feed.getTwitterScreenName(),
-					feedModelImpl.getOriginalTwitterScreenName()))) {
-			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_TSN,
-				new Object[] {
-					Long.valueOf(feedModelImpl.getOriginalCompanyId()),
-					
-				feedModelImpl.getOriginalTwitterScreenName()
-				});
-		}
-
-		if (isNew ||
-				((feed.getCompanyId() != feedModelImpl.getOriginalCompanyId()) ||
-				!Validator.equals(feed.getTwitterScreenName(),
-					feedModelImpl.getOriginalTwitterScreenName()))) {
 			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_TSN,
 				new Object[] {
 					Long.valueOf(feed.getCompanyId()),
 					
 				feed.getTwitterScreenName()
 				}, feed);
+		}
+		else {
+			if ((feed.getCompanyId() != feedModelImpl.getOriginalCompanyId()) ||
+					(feed.getTwitterUserId() != feedModelImpl.getOriginalTwitterUserId())) {
+				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_TWUI,
+					new Object[] {
+						Long.valueOf(feedModelImpl.getOriginalCompanyId()),
+						Long.valueOf(feedModelImpl.getOriginalTwitterUserId())
+					});
+
+				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_TWUI,
+					new Object[] {
+						Long.valueOf(feed.getCompanyId()),
+						Long.valueOf(feed.getTwitterUserId())
+					}, feed);
+			}
+
+			if ((feed.getCompanyId() != feedModelImpl.getOriginalCompanyId()) ||
+					!Validator.equals(feed.getTwitterScreenName(),
+						feedModelImpl.getOriginalTwitterScreenName())) {
+				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_TSN,
+					new Object[] {
+						Long.valueOf(feedModelImpl.getOriginalCompanyId()),
+						
+					feedModelImpl.getOriginalTwitterScreenName()
+					});
+
+				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_TSN,
+					new Object[] {
+						Long.valueOf(feed.getCompanyId()),
+						
+					feed.getTwitterScreenName()
+					}, feed);
+			}
 		}
 
 		return feed;
@@ -834,9 +848,20 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	 */
 	public List<Feed> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
+		FinderPath finderPath = null;
 		Object[] finderArgs = new Object[] { start, end, orderByComparator };
 
-		List<Feed> list = (List<Feed>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
+		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
+				(orderByComparator == null)) {
+			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_ALL;
+			finderArgs = FINDER_ARGS_EMPTY;
+		}
+		else {
+			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_ALL;
+			finderArgs = new Object[] { start, end, orderByComparator };
+		}
+
+		List<Feed> list = (List<Feed>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
 		if (list == null) {
@@ -881,14 +906,12 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 			}
 			finally {
 				if (list == null) {
-					FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL,
-						finderArgs);
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
 				}
 				else {
 					cacheResult(list);
 
-					FinderCacheUtil.putResult(FINDER_PATH_FIND_ALL, finderArgs,
-						list);
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
 				}
 
 				closeSession(session);
@@ -1133,7 +1156,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	public void destroy() {
 		EntityCacheUtil.removeCache(FeedImpl.class.getName());
 		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_ENTITY);
-		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST);
+		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
 	@BeanReference(type = FeedPersistence.class)

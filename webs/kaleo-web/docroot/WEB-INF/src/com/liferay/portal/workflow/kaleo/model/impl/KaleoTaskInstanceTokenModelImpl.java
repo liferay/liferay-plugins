@@ -143,7 +143,17 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 	}
 
 	public void setCompanyId(long companyId) {
+		if (!_setOriginalCompanyId) {
+			_setOriginalCompanyId = true;
+
+			_originalCompanyId = _companyId;
+		}
+
 		_companyId = companyId;
+	}
+
+	public long getOriginalCompanyId() {
+		return _originalCompanyId;
 	}
 
 	public long getUserId() {
@@ -196,7 +206,17 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 	}
 
 	public void setKaleoDefinitionId(long kaleoDefinitionId) {
+		if (!_setOriginalKaleoDefinitionId) {
+			_setOriginalKaleoDefinitionId = true;
+
+			_originalKaleoDefinitionId = _kaleoDefinitionId;
+		}
+
 		_kaleoDefinitionId = kaleoDefinitionId;
+	}
+
+	public long getOriginalKaleoDefinitionId() {
+		return _originalKaleoDefinitionId;
 	}
 
 	public long getKaleoInstanceId() {
@@ -449,6 +469,14 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 	public void resetOriginalValues() {
 		KaleoTaskInstanceTokenModelImpl kaleoTaskInstanceTokenModelImpl = this;
 
+		kaleoTaskInstanceTokenModelImpl._originalCompanyId = kaleoTaskInstanceTokenModelImpl._companyId;
+
+		kaleoTaskInstanceTokenModelImpl._setOriginalCompanyId = false;
+
+		kaleoTaskInstanceTokenModelImpl._originalKaleoDefinitionId = kaleoTaskInstanceTokenModelImpl._kaleoDefinitionId;
+
+		kaleoTaskInstanceTokenModelImpl._setOriginalKaleoDefinitionId = false;
+
 		kaleoTaskInstanceTokenModelImpl._originalKaleoInstanceId = kaleoTaskInstanceTokenModelImpl._kaleoInstanceId;
 
 		kaleoTaskInstanceTokenModelImpl._setOriginalKaleoInstanceId = false;
@@ -699,12 +727,16 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 	private long _kaleoTaskInstanceTokenId;
 	private long _groupId;
 	private long _companyId;
+	private long _originalCompanyId;
+	private boolean _setOriginalCompanyId;
 	private long _userId;
 	private String _userUuid;
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
 	private long _kaleoDefinitionId;
+	private long _originalKaleoDefinitionId;
+	private boolean _setOriginalKaleoDefinitionId;
 	private long _kaleoInstanceId;
 	private long _originalKaleoInstanceId;
 	private boolean _setOriginalKaleoInstanceId;
