@@ -245,14 +245,14 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 			if (Validator.isNull(subject)) {
 				SessionErrors.add(actionRequest, "subjectRequired");
 			}
-			
+
 			String[] emailAdresses = WebFormUtil.split(
 				getParameter(actionRequest, "emailAddress"));
 
-			if (Validator.isNull(emailAdresses)) {
+			if (emailAdresses.length == 0) {
 				SessionErrors.add(actionRequest, "emailAddressRequired");
 			}
-			
+
 			for (String emailAdress : emailAdresses) {
 				emailAdress = emailAdress.trim();
 
@@ -283,32 +283,25 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 
 		if (saveToDatabase) {
 			int i = 1;
-			Set<Integer> wrongSizeFieldIndexes = new HashSet<Integer>();
-			
-			String locale = actionRequest.getLocale().toString();
-			String fieldLabelKey = "fieldLabel" + i + "_" + locale;
-			String fieldLabel = ParamUtil.getString(actionRequest, 
-				fieldLabelKey);
-		
+
+			String languageId = LocaleUtil.toLanguageId(
+				actionRequest.getLocale());
+
+			String fieldLabel = ParamUtil.getString(
+				actionRequest, "fieldLabel" + i + "_" + languageId);
+
 			while ((i == 1) || (Validator.isNotNull(fieldLabel))) {
-				if (fieldLabel.length() > MAX_LENGTH ) {
-					wrongSizeFieldIndexes.add(i);
+				if (fieldLabel.length() > 75 ) {
+					SessionErrors.add(actionRequest, "fieldSizeInvalid" + i);
 				}
 
 				i++;
-				
-				fieldLabelKey = "fieldLabel" + i + "_" + locale;
-				fieldLabel = ParamUtil.getString(actionRequest, fieldLabelKey);
-			}
-			
-			if (wrongSizeFieldIndexes.size() > 0) {
-				SessionErrors.add(actionRequest, "sizeLimitExceeded");
-			
-				actionRequest.setAttribute("wrongSizeFieldIndexes", 
-					wrongSizeFieldIndexes);
+
+				fieldLabel = ParamUtil.getString(
+					actionRequest, "fieldLabel" + i + "_" + languageId);
 			}
 		}
-		
+
 		if (!validateUniqueFieldNames(actionRequest)) {
 			SessionErrors.add(
 				actionRequest, DuplicateColumnNameException.class.getName());
@@ -350,9 +343,6 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 		}
 
 		return true;
-			
 	}
-
-	public static final int MAX_LENGTH = 75;
 
 }

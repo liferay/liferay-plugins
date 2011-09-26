@@ -74,7 +74,7 @@ if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0
 				<liferay-ui:error key="handlingRequired" message="please-select-an-action-for-the-handling-of-form-data" />
 				<liferay-ui:error key="emailAddressInvalid" message="please-enter-a-valid-email-address" />
 				<liferay-ui:error key="emailAddressRequired" message="please-enter-an-email-address" />
-				<liferay-ui:error key="fileNameInvalid" message="please-enter-a-valid-path-and-filename" />
+				<liferay-ui:error key="fileNameInvalid" message="please-enter-a-valid-path-and-file-name" />
 
 				<aui:input label="send-as-email" name="preferences--sendAsEmail--" type="checkbox" value="<%= sendAsEmail %>" />
 
@@ -153,20 +153,12 @@ if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0
 					}
 				}
 
-				Set<Integer> wrongFieldIndexes = (Set<Integer>)renderRequest.getAttribute("wrongSizeFieldIndexes");
-				
 				int index = 1;
-				
+
 				for (int formFieldsIndex : formFieldsIndexes) {
 					request.setAttribute("configuration.jsp-index", String.valueOf(index));
-					request.setAttribute("configuration.jsp-formFieldsindex", String.valueOf(formFieldsIndex));
+					request.setAttribute("configuration.jsp-formFieldsIndex", String.valueOf(formFieldsIndex));
 					request.setAttribute("configuration.jsp-fieldsEditingDisabled", String.valueOf(fieldsEditingDisabled));
-					
-					if (wrongFieldIndexes != null) {
-						if (wrongFieldIndexes.contains(new Integer(formFieldsIndex))) {
-							request.setAttribute("configuration.jsp-wrongSizeFieldIndex", String.valueOf(formFieldsIndex));
-						}
-					}
 				%>
 
 					<div class="lfr-form-row" id="<portlet:namespace/>fieldset<%= formFieldsIndex %>">

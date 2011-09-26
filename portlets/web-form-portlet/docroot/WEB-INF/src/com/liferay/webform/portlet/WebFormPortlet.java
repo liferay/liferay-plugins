@@ -300,7 +300,7 @@ public class WebFormPortlet extends MVCPortlet {
 		String contentType = ContentTypes.APPLICATION_TEXT;
 
 		PortletResponseUtil.sendFile(
-			resourceResponse, fileName, bytes, contentType);
+			resourceRequest, resourceResponse, fileName, bytes, contentType);
 	}
 
 	protected String getMailBody(Map<String,String> fieldsMap) {
