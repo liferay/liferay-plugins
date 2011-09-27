@@ -259,7 +259,7 @@ public class LiferayPersonService implements PersonService {
 		Person person = new PersonImpl(
 			String.valueOf(user.getUserId()), user.getScreenName(), name);
 
-		StringBundler sb = new StringBundler();
+		StringBundler sb = new StringBundler(4);
 
 		sb.append(securityToken.getDomain());
 		sb.append(PortalUtil.getPathFriendlyURLPublic());
