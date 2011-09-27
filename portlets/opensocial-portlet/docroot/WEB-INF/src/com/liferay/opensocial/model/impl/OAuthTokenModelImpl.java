@@ -85,15 +85,14 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.opensocial.model.OAuthToken"),
 			true);
-
-	public Class<?> getModelClass() {
-		return OAuthToken.class;
-	}
-
-	public String getModelClassName() {
-		return OAuthToken.class.getName();
-	}
-
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.column.bitmask.enabled.com.liferay.opensocial.model.OAuthToken"),
+			true);
+	public static long TOKENNAME_COLUMN_BITMASK = 1L;
+	public static long USERID_COLUMN_BITMASK = 2L;
+	public static long MODULEID_COLUMN_BITMASK = 4L;
+	public static long SERVICENAME_COLUMN_BITMASK = 8L;
+	public static long GADGETKEY_COLUMN_BITMASK = 16L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.opensocial.model.OAuthToken"));
 
@@ -114,6 +113,14 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
+	}
+
+	public Class<?> getModelClass() {
+		return OAuthToken.class;
+	}
+
+	public String getModelClassName() {
+		return OAuthToken.class.getName();
 	}
 
 	public long getOAuthTokenId() {
@@ -137,6 +144,8 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 	}
 
 	public void setUserId(long userId) {
+		_columnBitmask |= USERID_COLUMN_BITMASK;
+
 		if (!_setOriginalUserId) {
 			_setOriginalUserId = true;
 
@@ -197,6 +206,8 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 	}
 
 	public void setGadgetKey(String gadgetKey) {
+		_columnBitmask |= GADGETKEY_COLUMN_BITMASK;
+
 		if (_originalGadgetKey == null) {
 			_originalGadgetKey = _gadgetKey;
 		}
@@ -218,6 +229,8 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 	}
 
 	public void setServiceName(String serviceName) {
+		_columnBitmask |= SERVICENAME_COLUMN_BITMASK;
+
 		if (_originalServiceName == null) {
 			_originalServiceName = _serviceName;
 		}
@@ -234,6 +247,8 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 	}
 
 	public void setModuleId(long moduleId) {
+		_columnBitmask |= MODULEID_COLUMN_BITMASK;
+
 		if (!_setOriginalModuleId) {
 			_setOriginalModuleId = true;
 
@@ -270,6 +285,8 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 	}
 
 	public void setTokenName(String tokenName) {
+		_columnBitmask |= TOKENNAME_COLUMN_BITMASK;
+
 		if (_originalTokenName == null) {
 			_originalTokenName = _tokenName;
 		}
@@ -313,6 +330,10 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 
 	public void setExpiration(long expiration) {
 		_expiration = expiration;
+	}
+
+	public long getColumnBitmask() {
+		return _columnBitmask;
 	}
 
 	@Override
@@ -431,6 +452,8 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 		oAuthTokenModelImpl._setOriginalModuleId = false;
 
 		oAuthTokenModelImpl._originalTokenName = oAuthTokenModelImpl._tokenName;
+
+		_columnBitmask = 0;
 	}
 
 	@Override
@@ -657,5 +680,6 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 	private String _sessionHandle;
 	private long _expiration;
 	private transient ExpandoBridge _expandoBridge;
+	private long _columnBitmask;
 	private OAuthToken _escapedModelProxy;
 }

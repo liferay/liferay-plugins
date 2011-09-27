@@ -99,15 +99,11 @@ public class AccountModelImpl extends BaseModelImpl<Account>
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.mail.model.Account"),
 			true);
-
-	public Class<?> getModelClass() {
-		return Account.class;
-	}
-
-	public String getModelClassName() {
-		return Account.class.getName();
-	}
-
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.column.bitmask.enabled.com.liferay.mail.model.Account"),
+			true);
+	public static long USERID_COLUMN_BITMASK = 1L;
+	public static long ADDRESS_COLUMN_BITMASK = 2L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.mail.model.Account"));
 
@@ -128,6 +124,14 @@ public class AccountModelImpl extends BaseModelImpl<Account>
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
+	}
+
+	public Class<?> getModelClass() {
+		return Account.class;
+	}
+
+	public String getModelClassName() {
+		return Account.class.getName();
 	}
 
 	public long getAccountId() {
@@ -151,6 +155,8 @@ public class AccountModelImpl extends BaseModelImpl<Account>
 	}
 
 	public void setUserId(long userId) {
+		_columnBitmask |= USERID_COLUMN_BITMASK;
+
 		if (!_setOriginalUserId) {
 			_setOriginalUserId = true;
 
@@ -211,6 +217,8 @@ public class AccountModelImpl extends BaseModelImpl<Account>
 	}
 
 	public void setAddress(String address) {
+		_columnBitmask |= ADDRESS_COLUMN_BITMASK;
+
 		if (_originalAddress == null) {
 			_originalAddress = _address;
 		}
@@ -434,6 +442,10 @@ public class AccountModelImpl extends BaseModelImpl<Account>
 		_defaultSender = defaultSender;
 	}
 
+	public long getColumnBitmask() {
+		return _columnBitmask;
+	}
+
 	@Override
 	public Account toEscapedModel() {
 		if (isEscapedModel()) {
@@ -552,6 +564,8 @@ public class AccountModelImpl extends BaseModelImpl<Account>
 		accountModelImpl._setOriginalUserId = false;
 
 		accountModelImpl._originalAddress = accountModelImpl._address;
+
+		_columnBitmask = 0;
 	}
 
 	@Override
@@ -900,5 +914,6 @@ public class AccountModelImpl extends BaseModelImpl<Account>
 	private long _trashFolderId;
 	private boolean _defaultSender;
 	private transient ExpandoBridge _expandoBridge;
+	private long _columnBitmask;
 	private Account _escapedModelProxy;
 }

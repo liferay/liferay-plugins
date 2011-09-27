@@ -93,7 +93,8 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 			JIRAChangeItemModelImpl.FINDER_CACHE_ENABLED,
 			JIRAChangeItemImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
-			"findByJiraChangeGroupId", new String[] { Long.class.getName() });
+			"findByJiraChangeGroupId", new String[] { Long.class.getName() },
+			JIRAChangeItemModelImpl.JIRACHANGEGROUPID_COLUMN_BITMASK);
 	public static final FinderPath FINDER_PATH_COUNT_BY_JIRACHANGEGROUPID = new FinderPath(JIRAChangeItemModelImpl.ENTITY_CACHE_ENABLED,
 			JIRAChangeItemModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
@@ -313,16 +314,21 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 
-		if (isNew) {
+		if (isNew || !JIRAChangeItemModelImpl.COLUMN_BITMASK_ENABLED) {
 			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 		}
+
 		else {
-			if (jiraChangeItem.getJiraChangeGroupId() != jiraChangeItemModelImpl.getOriginalJiraChangeGroupId()) {
+			if ((jiraChangeItemModelImpl.getColumnBitmask() &
+					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_JIRACHANGEGROUPID.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						Long.valueOf(jiraChangeItemModelImpl.getOriginalJiraChangeGroupId())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_JIRACHANGEGROUPID,
+					args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_JIRACHANGEGROUPID,
-					new Object[] {
-						Long.valueOf(
-							jiraChangeItemModelImpl.getOriginalJiraChangeGroupId())
-					});
+					args);
 			}
 		}
 

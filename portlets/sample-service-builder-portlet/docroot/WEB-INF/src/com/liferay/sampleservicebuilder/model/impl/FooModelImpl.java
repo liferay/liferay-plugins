@@ -90,6 +90,12 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.sampleservicebuilder.model.Foo"),
 			true);
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.column.bitmask.enabled.com.liferay.sampleservicebuilder.model.Foo"),
+			true);
+	public static long GROUPID_COLUMN_BITMASK = 1L;
+	public static long UUID_COLUMN_BITMASK = 2L;
+	public static long FIELD2_COLUMN_BITMASK = 4L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.
@@ -133,14 +139,6 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 		return models;
 	}
 
-	public Class<?> getModelClass() {
-		return Foo.class;
-	}
-
-	public String getModelClassName() {
-		return Foo.class.getName();
-	}
-
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.sampleservicebuilder.model.Foo"));
 
@@ -161,6 +159,14 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
+	}
+
+	public Class<?> getModelClass() {
+		return Foo.class;
+	}
+
+	public String getModelClassName() {
+		return Foo.class.getName();
 	}
 
 	@JSON
@@ -200,6 +206,8 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 	}
 
 	public void setGroupId(long groupId) {
+		_columnBitmask |= GROUPID_COLUMN_BITMASK;
+
 		if (!_setOriginalGroupId) {
 			_setOriginalGroupId = true;
 
@@ -295,6 +303,8 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 	}
 
 	public void setField2(boolean field2) {
+		_columnBitmask |= FIELD2_COLUMN_BITMASK;
+
 		if (!_setOriginalField2) {
 			_setOriginalField2 = true;
 
@@ -338,6 +348,10 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 
 	public void setField5(String field5) {
 		_field5 = field5;
+	}
+
+	public long getColumnBitmask() {
+		return _columnBitmask;
 	}
 
 	@Override
@@ -449,6 +463,8 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 		fooModelImpl._originalField2 = fooModelImpl._field2;
 
 		fooModelImpl._setOriginalField2 = false;
+
+		_columnBitmask = 0;
 	}
 
 	@Override
@@ -653,5 +669,6 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 	private Date _field4;
 	private String _field5;
 	private transient ExpandoBridge _expandoBridge;
+	private long _columnBitmask;
 	private Foo _escapedModelProxy;
 }

@@ -80,15 +80,12 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction>
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.socialcoding.model.JIRAAction"),
 			true);
-
-	public Class<?> getModelClass() {
-		return JIRAAction.class;
-	}
-
-	public String getModelClassName() {
-		return JIRAAction.class.getName();
-	}
-
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.column.bitmask.enabled.com.liferay.socialcoding.model.JIRAAction"),
+			true);
+	public static long TYPE_COLUMN_BITMASK = 1L;
+	public static long JIRAUSERID_COLUMN_BITMASK = 2L;
+	public static long JIRAISSUEID_COLUMN_BITMASK = 4L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.socialcoding.model.JIRAAction"));
 
@@ -111,6 +108,14 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction>
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
+	public Class<?> getModelClass() {
+		return JIRAAction.class;
+	}
+
+	public String getModelClassName() {
+		return JIRAAction.class.getName();
+	}
+
 	public long getJiraActionId() {
 		return _jiraActionId;
 	}
@@ -129,6 +134,8 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction>
 	}
 
 	public void setJiraUserId(String jiraUserId) {
+		_columnBitmask |= JIRAUSERID_COLUMN_BITMASK;
+
 		if (_originalJiraUserId == null) {
 			_originalJiraUserId = _jiraUserId;
 		}
@@ -161,6 +168,8 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction>
 	}
 
 	public void setJiraIssueId(long jiraIssueId) {
+		_columnBitmask |= JIRAISSUEID_COLUMN_BITMASK;
+
 		if (!_setOriginalJiraIssueId) {
 			_setOriginalJiraIssueId = true;
 
@@ -184,6 +193,8 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction>
 	}
 
 	public void setType(String type) {
+		_columnBitmask |= TYPE_COLUMN_BITMASK;
+
 		if (_originalType == null) {
 			_originalType = _type;
 		}
@@ -219,6 +230,10 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction>
 
 	public void setJiraGroupName(String jiraGroupName) {
 		_jiraGroupName = jiraGroupName;
+	}
+
+	public long getColumnBitmask() {
+		return _columnBitmask;
 	}
 
 	@Override
@@ -326,6 +341,8 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction>
 		jiraActionModelImpl._setOriginalJiraIssueId = false;
 
 		jiraActionModelImpl._originalType = jiraActionModelImpl._type;
+
+		_columnBitmask = 0;
 	}
 
 	@Override
@@ -476,5 +493,6 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction>
 	private String _body;
 	private String _jiraGroupName;
 	private transient ExpandoBridge _expandoBridge;
+	private long _columnBitmask;
 	private JIRAAction _escapedModelProxy;
 }

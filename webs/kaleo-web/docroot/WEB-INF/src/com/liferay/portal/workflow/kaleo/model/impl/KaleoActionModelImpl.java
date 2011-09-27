@@ -89,15 +89,14 @@ public class KaleoActionModelImpl extends BaseModelImpl<KaleoAction>
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.portal.workflow.kaleo.model.KaleoAction"),
 			true);
-
-	public Class<?> getModelClass() {
-		return KaleoAction.class;
-	}
-
-	public String getModelClassName() {
-		return KaleoAction.class.getName();
-	}
-
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.column.bitmask.enabled.com.liferay.portal.workflow.kaleo.model.KaleoAction"),
+			true);
+	public static long COMPANYID_COLUMN_BITMASK = 1L;
+	public static long EXECUTIONTYPE_COLUMN_BITMASK = 2L;
+	public static long KALEOCLASSNAME_COLUMN_BITMASK = 4L;
+	public static long KALEOCLASSPK_COLUMN_BITMASK = 8L;
+	public static long KALEODEFINITIONID_COLUMN_BITMASK = 16L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.portal.workflow.kaleo.model.KaleoAction"));
 
@@ -118,6 +117,14 @@ public class KaleoActionModelImpl extends BaseModelImpl<KaleoAction>
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
+	}
+
+	public Class<?> getModelClass() {
+		return KaleoAction.class;
+	}
+
+	public String getModelClassName() {
+		return KaleoAction.class.getName();
 	}
 
 	public long getKaleoActionId() {
@@ -141,6 +148,8 @@ public class KaleoActionModelImpl extends BaseModelImpl<KaleoAction>
 	}
 
 	public void setCompanyId(long companyId) {
+		_columnBitmask |= COMPANYID_COLUMN_BITMASK;
+
 		if (!_setOriginalCompanyId) {
 			_setOriginalCompanyId = true;
 
@@ -209,6 +218,8 @@ public class KaleoActionModelImpl extends BaseModelImpl<KaleoAction>
 	}
 
 	public void setKaleoClassName(String kaleoClassName) {
+		_columnBitmask |= KALEOCLASSNAME_COLUMN_BITMASK;
+
 		if (_originalKaleoClassName == null) {
 			_originalKaleoClassName = _kaleoClassName;
 		}
@@ -225,6 +236,8 @@ public class KaleoActionModelImpl extends BaseModelImpl<KaleoAction>
 	}
 
 	public void setKaleoClassPK(long kaleoClassPK) {
+		_columnBitmask |= KALEOCLASSPK_COLUMN_BITMASK;
+
 		if (!_setOriginalKaleoClassPK) {
 			_setOriginalKaleoClassPK = true;
 
@@ -243,6 +256,8 @@ public class KaleoActionModelImpl extends BaseModelImpl<KaleoAction>
 	}
 
 	public void setKaleoDefinitionId(long kaleoDefinitionId) {
+		_columnBitmask |= KALEODEFINITIONID_COLUMN_BITMASK;
+
 		if (!_setOriginalKaleoDefinitionId) {
 			_setOriginalKaleoDefinitionId = true;
 
@@ -305,6 +320,8 @@ public class KaleoActionModelImpl extends BaseModelImpl<KaleoAction>
 	}
 
 	public void setExecutionType(String executionType) {
+		_columnBitmask |= EXECUTIONTYPE_COLUMN_BITMASK;
+
 		if (_originalExecutionType == null) {
 			_originalExecutionType = _executionType;
 		}
@@ -348,6 +365,10 @@ public class KaleoActionModelImpl extends BaseModelImpl<KaleoAction>
 
 	public void setPriority(int priority) {
 		_priority = priority;
+	}
+
+	public long getColumnBitmask() {
+		return _columnBitmask;
 	}
 
 	@Override
@@ -477,6 +498,8 @@ public class KaleoActionModelImpl extends BaseModelImpl<KaleoAction>
 		kaleoActionModelImpl._setOriginalKaleoDefinitionId = false;
 
 		kaleoActionModelImpl._originalExecutionType = kaleoActionModelImpl._executionType;
+
+		_columnBitmask = 0;
 	}
 
 	@Override
@@ -737,5 +760,6 @@ public class KaleoActionModelImpl extends BaseModelImpl<KaleoAction>
 	private String _scriptLanguage;
 	private int _priority;
 	private transient ExpandoBridge _expandoBridge;
+	private long _columnBitmask;
 	private KaleoAction _escapedModelProxy;
 }

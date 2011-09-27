@@ -83,15 +83,15 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue>
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.socialcoding.model.JIRAIssue"),
 			false);
-
-	public Class<?> getModelClass() {
-		return JIRAIssue.class;
-	}
-
-	public String getModelClassName() {
-		return JIRAIssue.class.getName();
-	}
-
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.column.bitmask.enabled.com.liferay.socialcoding.model.JIRAIssue"),
+			true);
+	public static long KEY_COLUMN_BITMASK = 1L;
+	public static long PROJECTID_COLUMN_BITMASK = 2L;
+	public static long MODIFIEDDATE_COLUMN_BITMASK = 4L;
+	public static long REPORTERJIRAUSERID_COLUMN_BITMASK = 8L;
+	public static long STATUS_COLUMN_BITMASK = 16L;
+	public static long ASSIGNEEJIRAUSERID_COLUMN_BITMASK = 32L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.socialcoding.model.JIRAIssue"));
 
@@ -112,6 +112,14 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue>
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
+	}
+
+	public Class<?> getModelClass() {
+		return JIRAIssue.class;
+	}
+
+	public String getModelClassName() {
+		return JIRAIssue.class.getName();
 	}
 
 	public long getJiraIssueId() {
@@ -135,6 +143,8 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue>
 	}
 
 	public void setModifiedDate(Date modifiedDate) {
+		_columnBitmask |= MODIFIEDDATE_COLUMN_BITMASK;
+
 		if (_originalModifiedDate == null) {
 			_originalModifiedDate = _modifiedDate;
 		}
@@ -151,6 +161,8 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue>
 	}
 
 	public void setProjectId(long projectId) {
+		_columnBitmask |= PROJECTID_COLUMN_BITMASK;
+
 		if (!_setOriginalProjectId) {
 			_setOriginalProjectId = true;
 
@@ -174,6 +186,8 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue>
 	}
 
 	public void setKey(String key) {
+		_columnBitmask |= KEY_COLUMN_BITMASK;
+
 		if (_originalKey == null) {
 			_originalKey = _key;
 		}
@@ -221,6 +235,8 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue>
 	}
 
 	public void setReporterJiraUserId(String reporterJiraUserId) {
+		_columnBitmask |= REPORTERJIRAUSERID_COLUMN_BITMASK;
+
 		if (_originalReporterJiraUserId == null) {
 			_originalReporterJiraUserId = _reporterJiraUserId;
 		}
@@ -242,6 +258,8 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue>
 	}
 
 	public void setAssigneeJiraUserId(String assigneeJiraUserId) {
+		_columnBitmask |= ASSIGNEEJIRAUSERID_COLUMN_BITMASK;
+
 		if (_originalAssigneeJiraUserId == null) {
 			_originalAssigneeJiraUserId = _assigneeJiraUserId;
 		}
@@ -276,6 +294,8 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue>
 	}
 
 	public void setStatus(String status) {
+		_columnBitmask |= STATUS_COLUMN_BITMASK;
+
 		if (_originalStatus == null) {
 			_originalStatus = _status;
 		}
@@ -285,6 +305,10 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue>
 
 	public String getOriginalStatus() {
 		return GetterUtil.getString(_originalStatus);
+	}
+
+	public long getColumnBitmask() {
+		return _columnBitmask;
 	}
 
 	@Override
@@ -401,6 +425,8 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue>
 		jiraIssueModelImpl._originalAssigneeJiraUserId = jiraIssueModelImpl._assigneeJiraUserId;
 
 		jiraIssueModelImpl._originalStatus = jiraIssueModelImpl._status;
+
+		_columnBitmask = 0;
 	}
 
 	@Override
@@ -599,5 +625,6 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue>
 	private String _status;
 	private String _originalStatus;
 	private transient ExpandoBridge _expandoBridge;
+	private long _columnBitmask;
 	private JIRAIssue _escapedModelProxy;
 }

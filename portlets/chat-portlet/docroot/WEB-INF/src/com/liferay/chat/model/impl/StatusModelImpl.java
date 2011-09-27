@@ -77,15 +77,12 @@ public class StatusModelImpl extends BaseModelImpl<Status>
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.chat.model.Status"),
 			true);
-
-	public Class<?> getModelClass() {
-		return Status.class;
-	}
-
-	public String getModelClassName() {
-		return Status.class.getName();
-	}
-
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.column.bitmask.enabled.com.liferay.chat.model.Status"),
+			true);
+	public static long USERID_COLUMN_BITMASK = 1L;
+	public static long MODIFIEDDATE_COLUMN_BITMASK = 2L;
+	public static long ONLINE_COLUMN_BITMASK = 4L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.chat.model.Status"));
 
@@ -108,6 +105,14 @@ public class StatusModelImpl extends BaseModelImpl<Status>
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
+	public Class<?> getModelClass() {
+		return Status.class;
+	}
+
+	public String getModelClassName() {
+		return Status.class.getName();
+	}
+
 	public long getStatusId() {
 		return _statusId;
 	}
@@ -121,6 +126,8 @@ public class StatusModelImpl extends BaseModelImpl<Status>
 	}
 
 	public void setUserId(long userId) {
+		_columnBitmask |= USERID_COLUMN_BITMASK;
+
 		if (!_setOriginalUserId) {
 			_setOriginalUserId = true;
 
@@ -147,6 +154,8 @@ public class StatusModelImpl extends BaseModelImpl<Status>
 	}
 
 	public void setModifiedDate(long modifiedDate) {
+		_columnBitmask |= MODIFIEDDATE_COLUMN_BITMASK;
+
 		if (!_setOriginalModifiedDate) {
 			_setOriginalModifiedDate = true;
 
@@ -169,6 +178,8 @@ public class StatusModelImpl extends BaseModelImpl<Status>
 	}
 
 	public void setOnline(boolean online) {
+		_columnBitmask |= ONLINE_COLUMN_BITMASK;
+
 		if (!_setOriginalOnline) {
 			_setOriginalOnline = true;
 
@@ -230,6 +241,10 @@ public class StatusModelImpl extends BaseModelImpl<Status>
 
 	public void setPlaySound(boolean playSound) {
 		_playSound = playSound;
+	}
+
+	public long getColumnBitmask() {
+		return _columnBitmask;
 	}
 
 	@Override
@@ -340,6 +355,8 @@ public class StatusModelImpl extends BaseModelImpl<Status>
 		statusModelImpl._originalOnline = statusModelImpl._online;
 
 		statusModelImpl._setOriginalOnline = false;
+
+		_columnBitmask = 0;
 	}
 
 	@Override
@@ -467,5 +484,6 @@ public class StatusModelImpl extends BaseModelImpl<Status>
 	private String _message;
 	private boolean _playSound;
 	private transient ExpandoBridge _expandoBridge;
+	private long _columnBitmask;
 	private Status _escapedModelProxy;
 }

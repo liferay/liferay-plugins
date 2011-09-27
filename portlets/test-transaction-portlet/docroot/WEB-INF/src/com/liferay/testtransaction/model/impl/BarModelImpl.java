@@ -70,15 +70,10 @@ public class BarModelImpl extends BaseModelImpl<Bar> implements BarModel {
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.testtransaction.model.Bar"),
 			true);
-
-	public Class<?> getModelClass() {
-		return Bar.class;
-	}
-
-	public String getModelClassName() {
-		return Bar.class.getName();
-	}
-
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.column.bitmask.enabled.com.liferay.testtransaction.model.Bar"),
+			true);
+	public static long TEXT_COLUMN_BITMASK = 1L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.testtransaction.model.Bar"));
 
@@ -101,6 +96,14 @@ public class BarModelImpl extends BaseModelImpl<Bar> implements BarModel {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
+	public Class<?> getModelClass() {
+		return Bar.class;
+	}
+
+	public String getModelClassName() {
+		return Bar.class.getName();
+	}
+
 	public long getBarId() {
 		return _barId;
 	}
@@ -119,6 +122,8 @@ public class BarModelImpl extends BaseModelImpl<Bar> implements BarModel {
 	}
 
 	public void setText(String text) {
+		_columnBitmask |= TEXT_COLUMN_BITMASK;
+
 		if (_originalText == null) {
 			_originalText = _text;
 		}
@@ -128,6 +133,10 @@ public class BarModelImpl extends BaseModelImpl<Bar> implements BarModel {
 
 	public String getOriginalText() {
 		return GetterUtil.getString(_originalText);
+	}
+
+	public long getColumnBitmask() {
+		return _columnBitmask;
 	}
 
 	@Override
@@ -220,6 +229,8 @@ public class BarModelImpl extends BaseModelImpl<Bar> implements BarModel {
 		BarModelImpl barModelImpl = this;
 
 		barModelImpl._originalText = barModelImpl._text;
+
+		_columnBitmask = 0;
 	}
 
 	@Override
@@ -281,5 +292,6 @@ public class BarModelImpl extends BaseModelImpl<Bar> implements BarModel {
 	private String _text;
 	private String _originalText;
 	private transient ExpandoBridge _expandoBridge;
+	private long _columnBitmask;
 	private Bar _escapedModelProxy;
 }

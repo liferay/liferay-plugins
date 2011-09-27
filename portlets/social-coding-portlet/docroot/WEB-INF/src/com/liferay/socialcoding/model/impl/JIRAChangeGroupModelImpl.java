@@ -76,15 +76,11 @@ public class JIRAChangeGroupModelImpl extends BaseModelImpl<JIRAChangeGroup>
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.socialcoding.model.JIRAChangeGroup"),
 			true);
-
-	public Class<?> getModelClass() {
-		return JIRAChangeGroup.class;
-	}
-
-	public String getModelClassName() {
-		return JIRAChangeGroup.class.getName();
-	}
-
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.column.bitmask.enabled.com.liferay.socialcoding.model.JIRAChangeGroup"),
+			true);
+	public static long JIRAUSERID_COLUMN_BITMASK = 1L;
+	public static long JIRAISSUEID_COLUMN_BITMASK = 2L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.socialcoding.model.JIRAChangeGroup"));
 
@@ -107,6 +103,14 @@ public class JIRAChangeGroupModelImpl extends BaseModelImpl<JIRAChangeGroup>
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
+	public Class<?> getModelClass() {
+		return JIRAChangeGroup.class;
+	}
+
+	public String getModelClassName() {
+		return JIRAChangeGroup.class.getName();
+	}
+
 	public long getJiraChangeGroupId() {
 		return _jiraChangeGroupId;
 	}
@@ -125,6 +129,8 @@ public class JIRAChangeGroupModelImpl extends BaseModelImpl<JIRAChangeGroup>
 	}
 
 	public void setJiraUserId(String jiraUserId) {
+		_columnBitmask |= JIRAUSERID_COLUMN_BITMASK;
+
 		if (_originalJiraUserId == null) {
 			_originalJiraUserId = _jiraUserId;
 		}
@@ -149,6 +155,8 @@ public class JIRAChangeGroupModelImpl extends BaseModelImpl<JIRAChangeGroup>
 	}
 
 	public void setJiraIssueId(long jiraIssueId) {
+		_columnBitmask |= JIRAISSUEID_COLUMN_BITMASK;
+
 		if (!_setOriginalJiraIssueId) {
 			_setOriginalJiraIssueId = true;
 
@@ -160,6 +168,10 @@ public class JIRAChangeGroupModelImpl extends BaseModelImpl<JIRAChangeGroup>
 
 	public long getOriginalJiraIssueId() {
 		return _originalJiraIssueId;
+	}
+
+	public long getColumnBitmask() {
+		return _columnBitmask;
 	}
 
 	@Override
@@ -261,6 +273,8 @@ public class JIRAChangeGroupModelImpl extends BaseModelImpl<JIRAChangeGroup>
 		jiraChangeGroupModelImpl._originalJiraIssueId = jiraChangeGroupModelImpl._jiraIssueId;
 
 		jiraChangeGroupModelImpl._setOriginalJiraIssueId = false;
+
+		_columnBitmask = 0;
 	}
 
 	@Override
@@ -349,5 +363,6 @@ public class JIRAChangeGroupModelImpl extends BaseModelImpl<JIRAChangeGroup>
 	private long _originalJiraIssueId;
 	private boolean _setOriginalJiraIssueId;
 	private transient ExpandoBridge _expandoBridge;
+	private long _columnBitmask;
 	private JIRAChangeGroup _escapedModelProxy;
 }

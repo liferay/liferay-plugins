@@ -78,15 +78,10 @@ public class AttachmentModelImpl extends BaseModelImpl<Attachment>
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.mail.model.Attachment"),
 			true);
-
-	public Class<?> getModelClass() {
-		return Attachment.class;
-	}
-
-	public String getModelClassName() {
-		return Attachment.class.getName();
-	}
-
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.column.bitmask.enabled.com.liferay.mail.model.Attachment"),
+			true);
+	public static long MESSAGEID_COLUMN_BITMASK = 1L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.mail.model.Attachment"));
 
@@ -107,6 +102,14 @@ public class AttachmentModelImpl extends BaseModelImpl<Attachment>
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
+	}
+
+	public Class<?> getModelClass() {
+		return Attachment.class;
+	}
+
+	public String getModelClassName() {
+		return Attachment.class.getName();
 	}
 
 	public long getAttachmentId() {
@@ -162,6 +165,8 @@ public class AttachmentModelImpl extends BaseModelImpl<Attachment>
 	}
 
 	public void setMessageId(long messageId) {
+		_columnBitmask |= MESSAGEID_COLUMN_BITMASK;
+
 		if (!_setOriginalMessageId) {
 			_setOriginalMessageId = true;
 
@@ -207,6 +212,10 @@ public class AttachmentModelImpl extends BaseModelImpl<Attachment>
 
 	public void setSize(long size) {
 		_size = size;
+	}
+
+	public long getColumnBitmask() {
+		return _columnBitmask;
 	}
 
 	@Override
@@ -310,6 +319,8 @@ public class AttachmentModelImpl extends BaseModelImpl<Attachment>
 		attachmentModelImpl._originalMessageId = attachmentModelImpl._messageId;
 
 		attachmentModelImpl._setOriginalMessageId = false;
+
+		_columnBitmask = 0;
 	}
 
 	@Override
@@ -442,5 +453,6 @@ public class AttachmentModelImpl extends BaseModelImpl<Attachment>
 	private String _fileName;
 	private long _size;
 	private transient ExpandoBridge _expandoBridge;
+	private long _columnBitmask;
 	private Attachment _escapedModelProxy;
 }

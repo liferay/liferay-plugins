@@ -86,15 +86,14 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.knowledgebase.model.KBComment"),
 			true);
-
-	public Class<?> getModelClass() {
-		return KBComment.class;
-	}
-
-	public String getModelClassName() {
-		return KBComment.class.getName();
-	}
-
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.column.bitmask.enabled.com.liferay.knowledgebase.model.KBComment"),
+			true);
+	public static long GROUPID_COLUMN_BITMASK = 1L;
+	public static long CLASSNAMEID_COLUMN_BITMASK = 2L;
+	public static long USERID_COLUMN_BITMASK = 4L;
+	public static long UUID_COLUMN_BITMASK = 8L;
+	public static long CLASSPK_COLUMN_BITMASK = 16L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.knowledgebase.model.KBComment"));
 
@@ -115,6 +114,14 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
+	}
+
+	public Class<?> getModelClass() {
+		return KBComment.class;
+	}
+
+	public String getModelClassName() {
+		return KBComment.class.getName();
 	}
 
 	public String getUuid() {
@@ -151,6 +158,8 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 	}
 
 	public void setGroupId(long groupId) {
+		_columnBitmask |= GROUPID_COLUMN_BITMASK;
+
 		if (!_setOriginalGroupId) {
 			_setOriginalGroupId = true;
 
@@ -177,6 +186,8 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 	}
 
 	public void setUserId(long userId) {
+		_columnBitmask |= USERID_COLUMN_BITMASK;
+
 		if (!_setOriginalUserId) {
 			_setOriginalUserId = true;
 
@@ -240,6 +251,8 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 	}
 
 	public void setClassNameId(long classNameId) {
+		_columnBitmask |= CLASSNAMEID_COLUMN_BITMASK;
+
 		if (!_setOriginalClassNameId) {
 			_setOriginalClassNameId = true;
 
@@ -258,6 +271,8 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 	}
 
 	public void setClassPK(long classPK) {
+		_columnBitmask |= CLASSPK_COLUMN_BITMASK;
+
 		if (!_setOriginalClassPK) {
 			_setOriginalClassPK = true;
 
@@ -294,6 +309,10 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 
 	public void setHelpful(boolean helpful) {
 		_helpful = helpful;
+	}
+
+	public long getColumnBitmask() {
+		return _columnBitmask;
 	}
 
 	@Override
@@ -415,6 +434,8 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 		kbCommentModelImpl._originalClassPK = kbCommentModelImpl._classPK;
 
 		kbCommentModelImpl._setOriginalClassPK = false;
+
+		_columnBitmask = 0;
 	}
 
 	@Override
@@ -601,5 +622,6 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 	private String _content;
 	private boolean _helpful;
 	private transient ExpandoBridge _expandoBridge;
+	private long _columnBitmask;
 	private KBComment _escapedModelProxy;
 }

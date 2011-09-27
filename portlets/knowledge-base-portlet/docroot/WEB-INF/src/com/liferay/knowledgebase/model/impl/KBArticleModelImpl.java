@@ -104,6 +104,19 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.knowledgebase.model.KBArticle"),
 			true);
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.column.bitmask.enabled.com.liferay.knowledgebase.model.KBArticle"),
+			true);
+	public static long COMPANYID_COLUMN_BITMASK = 1L;
+	public static long GROUPID_COLUMN_BITMASK = 2L;
+	public static long MAIN_COLUMN_BITMASK = 4L;
+	public static long RESOURCEPRIMKEY_COLUMN_BITMASK = 8L;
+	public static long LATEST_COLUMN_BITMASK = 16L;
+	public static long UUID_COLUMN_BITMASK = 32L;
+	public static long PARENTRESOURCEPRIMKEY_COLUMN_BITMASK = 64L;
+	public static long STATUS_COLUMN_BITMASK = 128L;
+	public static long SECTIONS_COLUMN_BITMASK = 256L;
+	public static long VERSION_COLUMN_BITMASK = 512L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.
@@ -158,14 +171,6 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		return models;
 	}
 
-	public Class<?> getModelClass() {
-		return KBArticle.class;
-	}
-
-	public String getModelClassName() {
-		return KBArticle.class.getName();
-	}
-
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.knowledgebase.model.KBArticle"));
 
@@ -186,6 +191,14 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
+	}
+
+	public Class<?> getModelClass() {
+		return KBArticle.class;
+	}
+
+	public String getModelClassName() {
+		return KBArticle.class.getName();
 	}
 
 	@JSON
@@ -225,6 +238,8 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 	}
 
 	public void setResourcePrimKey(long resourcePrimKey) {
+		_columnBitmask |= RESOURCEPRIMKEY_COLUMN_BITMASK;
+
 		if (!_setOriginalResourcePrimKey) {
 			_setOriginalResourcePrimKey = true;
 
@@ -248,6 +263,8 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 	}
 
 	public void setGroupId(long groupId) {
+		_columnBitmask |= GROUPID_COLUMN_BITMASK;
+
 		if (!_setOriginalGroupId) {
 			_setOriginalGroupId = true;
 
@@ -267,6 +284,8 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 	}
 
 	public void setCompanyId(long companyId) {
+		_columnBitmask |= COMPANYID_COLUMN_BITMASK;
+
 		if (!_setOriginalCompanyId) {
 			_setOriginalCompanyId = true;
 
@@ -344,6 +363,8 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 	}
 
 	public void setParentResourcePrimKey(long parentResourcePrimKey) {
+		_columnBitmask |= PARENTRESOURCEPRIMKEY_COLUMN_BITMASK;
+
 		if (!_setOriginalParentResourcePrimKey) {
 			_setOriginalParentResourcePrimKey = true;
 
@@ -363,6 +384,8 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 	}
 
 	public void setVersion(int version) {
+		_columnBitmask |= VERSION_COLUMN_BITMASK;
+
 		if (!_setOriginalVersion) {
 			_setOriginalVersion = true;
 
@@ -438,6 +461,8 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 	}
 
 	public void setSections(String sections) {
+		_columnBitmask |= SECTIONS_COLUMN_BITMASK;
+
 		if (_originalSections == null) {
 			_originalSections = _sections;
 		}
@@ -468,6 +493,8 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 	}
 
 	public void setLatest(boolean latest) {
+		_columnBitmask |= LATEST_COLUMN_BITMASK;
+
 		if (!_setOriginalLatest) {
 			_setOriginalLatest = true;
 
@@ -491,6 +518,8 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 	}
 
 	public void setMain(boolean main) {
+		_columnBitmask |= MAIN_COLUMN_BITMASK;
+
 		if (!_setOriginalMain) {
 			_setOriginalMain = true;
 
@@ -510,6 +539,8 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 	}
 
 	public void setStatus(int status) {
+		_columnBitmask |= STATUS_COLUMN_BITMASK;
+
 		if (!_setOriginalStatus) {
 			_setOriginalStatus = true;
 
@@ -605,6 +636,10 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		else {
 			return false;
 		}
+	}
+
+	public long getColumnBitmask() {
+		return _columnBitmask;
 	}
 
 	@Override
@@ -756,6 +791,8 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		kbArticleModelImpl._originalStatus = kbArticleModelImpl._status;
 
 		kbArticleModelImpl._setOriginalStatus = false;
+
+		_columnBitmask = 0;
 	}
 
 	@Override
@@ -1091,5 +1128,6 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 	private String _statusByUserName;
 	private Date _statusDate;
 	private transient ExpandoBridge _expandoBridge;
+	private long _columnBitmask;
 	private KBArticle _escapedModelProxy;
 }

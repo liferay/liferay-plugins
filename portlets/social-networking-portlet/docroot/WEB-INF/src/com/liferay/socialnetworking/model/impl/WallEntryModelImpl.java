@@ -82,15 +82,11 @@ public class WallEntryModelImpl extends BaseModelImpl<WallEntry>
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.socialnetworking.model.WallEntry"),
 			true);
-
-	public Class<?> getModelClass() {
-		return WallEntry.class;
-	}
-
-	public String getModelClassName() {
-		return WallEntry.class.getName();
-	}
-
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.column.bitmask.enabled.com.liferay.socialnetworking.model.WallEntry"),
+			true);
+	public static long GROUPID_COLUMN_BITMASK = 1L;
+	public static long USERID_COLUMN_BITMASK = 2L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.socialnetworking.model.WallEntry"));
 
@@ -113,6 +109,14 @@ public class WallEntryModelImpl extends BaseModelImpl<WallEntry>
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
+	public Class<?> getModelClass() {
+		return WallEntry.class;
+	}
+
+	public String getModelClassName() {
+		return WallEntry.class.getName();
+	}
+
 	public long getWallEntryId() {
 		return _wallEntryId;
 	}
@@ -126,6 +130,8 @@ public class WallEntryModelImpl extends BaseModelImpl<WallEntry>
 	}
 
 	public void setGroupId(long groupId) {
+		_columnBitmask |= GROUPID_COLUMN_BITMASK;
+
 		if (!_setOriginalGroupId) {
 			_setOriginalGroupId = true;
 
@@ -152,6 +158,8 @@ public class WallEntryModelImpl extends BaseModelImpl<WallEntry>
 	}
 
 	public void setUserId(long userId) {
+		_columnBitmask |= USERID_COLUMN_BITMASK;
+
 		if (!_setOriginalUserId) {
 			_setOriginalUserId = true;
 
@@ -213,6 +221,10 @@ public class WallEntryModelImpl extends BaseModelImpl<WallEntry>
 
 	public void setComments(String comments) {
 		_comments = comments;
+	}
+
+	public long getColumnBitmask() {
+		return _columnBitmask;
 	}
 
 	@Override
@@ -319,6 +331,8 @@ public class WallEntryModelImpl extends BaseModelImpl<WallEntry>
 		wallEntryModelImpl._originalUserId = wallEntryModelImpl._userId;
 
 		wallEntryModelImpl._setOriginalUserId = false;
+
+		_columnBitmask = 0;
 	}
 
 	@Override
@@ -458,5 +472,6 @@ public class WallEntryModelImpl extends BaseModelImpl<WallEntry>
 	private Date _modifiedDate;
 	private String _comments;
 	private transient ExpandoBridge _expandoBridge;
+	private long _columnBitmask;
 	private WallEntry _escapedModelProxy;
 }

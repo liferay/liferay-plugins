@@ -93,15 +93,12 @@ public class MessageModelImpl extends BaseModelImpl<Message>
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.mail.model.Message"),
 			true);
-
-	public Class<?> getModelClass() {
-		return Message.class;
-	}
-
-	public String getModelClassName() {
-		return Message.class.getName();
-	}
-
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.column.bitmask.enabled.com.liferay.mail.model.Message"),
+			true);
+	public static long COMPANYID_COLUMN_BITMASK = 1L;
+	public static long REMOTEMESSAGEID_COLUMN_BITMASK = 2L;
+	public static long FOLDERID_COLUMN_BITMASK = 4L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.mail.model.Message"));
 
@@ -124,6 +121,14 @@ public class MessageModelImpl extends BaseModelImpl<Message>
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
+	public Class<?> getModelClass() {
+		return Message.class;
+	}
+
+	public String getModelClassName() {
+		return Message.class.getName();
+	}
+
 	public long getMessageId() {
 		return _messageId;
 	}
@@ -137,6 +142,8 @@ public class MessageModelImpl extends BaseModelImpl<Message>
 	}
 
 	public void setCompanyId(long companyId) {
+		_columnBitmask |= COMPANYID_COLUMN_BITMASK;
+
 		if (!_setOriginalCompanyId) {
 			_setOriginalCompanyId = true;
 
@@ -208,6 +215,8 @@ public class MessageModelImpl extends BaseModelImpl<Message>
 	}
 
 	public void setFolderId(long folderId) {
+		_columnBitmask |= FOLDERID_COLUMN_BITMASK;
+
 		if (!_setOriginalFolderId) {
 			_setOriginalFolderId = true;
 
@@ -346,6 +355,8 @@ public class MessageModelImpl extends BaseModelImpl<Message>
 	}
 
 	public void setRemoteMessageId(long remoteMessageId) {
+		_columnBitmask |= REMOTEMESSAGEID_COLUMN_BITMASK;
+
 		if (!_setOriginalRemoteMessageId) {
 			_setOriginalRemoteMessageId = true;
 
@@ -357,6 +368,10 @@ public class MessageModelImpl extends BaseModelImpl<Message>
 
 	public long getOriginalRemoteMessageId() {
 		return _originalRemoteMessageId;
+	}
+
+	public long getColumnBitmask() {
+		return _columnBitmask;
 	}
 
 	@Override
@@ -476,6 +491,8 @@ public class MessageModelImpl extends BaseModelImpl<Message>
 		messageModelImpl._originalRemoteMessageId = messageModelImpl._remoteMessageId;
 
 		messageModelImpl._setOriginalRemoteMessageId = false;
+
+		_columnBitmask = 0;
 	}
 
 	@Override
@@ -765,5 +782,6 @@ public class MessageModelImpl extends BaseModelImpl<Message>
 	private long _originalRemoteMessageId;
 	private boolean _setOriginalRemoteMessageId;
 	private transient ExpandoBridge _expandoBridge;
+	private long _columnBitmask;
 	private Message _escapedModelProxy;
 }

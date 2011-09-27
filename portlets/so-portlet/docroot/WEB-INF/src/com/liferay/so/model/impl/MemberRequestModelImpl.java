@@ -86,15 +86,13 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.so.model.MemberRequest"),
 			true);
-
-	public Class<?> getModelClass() {
-		return MemberRequest.class;
-	}
-
-	public String getModelClassName() {
-		return MemberRequest.class.getName();
-	}
-
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.column.bitmask.enabled.com.liferay.so.model.MemberRequest"),
+			true);
+	public static long KEY_COLUMN_BITMASK = 1L;
+	public static long GROUPID_COLUMN_BITMASK = 2L;
+	public static long STATUS_COLUMN_BITMASK = 4L;
+	public static long RECEIVERUSERID_COLUMN_BITMASK = 8L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.so.model.MemberRequest"));
 
@@ -117,6 +115,14 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
+	public Class<?> getModelClass() {
+		return MemberRequest.class;
+	}
+
+	public String getModelClassName() {
+		return MemberRequest.class.getName();
+	}
+
 	public long getMemberRequestId() {
 		return _memberRequestId;
 	}
@@ -130,6 +136,8 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
 	}
 
 	public void setGroupId(long groupId) {
+		_columnBitmask |= GROUPID_COLUMN_BITMASK;
+
 		if (!_setOriginalGroupId) {
 			_setOriginalGroupId = true;
 
@@ -206,6 +214,8 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
 	}
 
 	public void setKey(String key) {
+		_columnBitmask |= KEY_COLUMN_BITMASK;
+
 		if (_originalKey == null) {
 			_originalKey = _key;
 		}
@@ -222,6 +232,8 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
 	}
 
 	public void setReceiverUserId(long receiverUserId) {
+		_columnBitmask |= RECEIVERUSERID_COLUMN_BITMASK;
+
 		if (!_setOriginalReceiverUserId) {
 			_setOriginalReceiverUserId = true;
 
@@ -265,6 +277,8 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
 	}
 
 	public void setStatus(int status) {
+		_columnBitmask |= STATUS_COLUMN_BITMASK;
+
 		if (!_setOriginalStatus) {
 			_setOriginalStatus = true;
 
@@ -276,6 +290,10 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
 
 	public int getOriginalStatus() {
 		return _originalStatus;
+	}
+
+	public long getColumnBitmask() {
+		return _columnBitmask;
 	}
 
 	@Override
@@ -393,6 +411,8 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
 		memberRequestModelImpl._originalStatus = memberRequestModelImpl._status;
 
 		memberRequestModelImpl._setOriginalStatus = false;
+
+		_columnBitmask = 0;
 	}
 
 	@Override
@@ -572,5 +592,6 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
 	private int _originalStatus;
 	private boolean _setOriginalStatus;
 	private transient ExpandoBridge _expandoBridge;
+	private long _columnBitmask;
 	private MemberRequest _escapedModelProxy;
 }

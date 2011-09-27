@@ -84,6 +84,12 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.opensocial.model.Gadget"),
 			true);
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.column.bitmask.enabled.com.liferay.opensocial.model.Gadget"),
+			true);
+	public static long COMPANYID_COLUMN_BITMASK = 1L;
+	public static long UUID_COLUMN_BITMASK = 2L;
+	public static long URL_COLUMN_BITMASK = 4L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.
@@ -122,14 +128,6 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 		return models;
 	}
 
-	public Class<?> getModelClass() {
-		return Gadget.class;
-	}
-
-	public String getModelClassName() {
-		return Gadget.class.getName();
-	}
-
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.opensocial.model.Gadget"));
 
@@ -150,6 +148,14 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
+	}
+
+	public Class<?> getModelClass() {
+		return Gadget.class;
+	}
+
+	public String getModelClassName() {
+		return Gadget.class.getName();
 	}
 
 	@JSON
@@ -189,6 +195,8 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 	}
 
 	public void setCompanyId(long companyId) {
+		_columnBitmask |= COMPANYID_COLUMN_BITMASK;
+
 		if (!_setOriginalCompanyId) {
 			_setOriginalCompanyId = true;
 
@@ -245,6 +253,8 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 	}
 
 	public void setUrl(String url) {
+		_columnBitmask |= URL_COLUMN_BITMASK;
+
 		if (_originalUrl == null) {
 			_originalUrl = _url;
 		}
@@ -268,6 +278,10 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 
 	public void setPortletCategoryNames(String portletCategoryNames) {
 		_portletCategoryNames = portletCategoryNames;
+	}
+
+	public long getColumnBitmask() {
+		return _columnBitmask;
 	}
 
 	@Override
@@ -372,6 +386,8 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 		gadgetModelImpl._setOriginalCompanyId = false;
 
 		gadgetModelImpl._originalUrl = gadgetModelImpl._url;
+
+		_columnBitmask = 0;
 	}
 
 	@Override
@@ -523,5 +539,6 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 	private String _originalUrl;
 	private String _portletCategoryNames;
 	private transient ExpandoBridge _expandoBridge;
+	private long _columnBitmask;
 	private Gadget _escapedModelProxy;
 }

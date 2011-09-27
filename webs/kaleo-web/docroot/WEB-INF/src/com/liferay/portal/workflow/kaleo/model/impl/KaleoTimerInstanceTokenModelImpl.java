@@ -92,15 +92,14 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken"),
 			true);
-
-	public Class<?> getModelClass() {
-		return KaleoTimerInstanceToken.class;
-	}
-
-	public String getModelClassName() {
-		return KaleoTimerInstanceToken.class.getName();
-	}
-
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.column.bitmask.enabled.com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken"),
+			true);
+	public static long KALEOINSTANCEID_COLUMN_BITMASK = 1L;
+	public static long KALEOINSTANCETOKENID_COLUMN_BITMASK = 2L;
+	public static long BLOCKING_COLUMN_BITMASK = 4L;
+	public static long KALEOTIMERID_COLUMN_BITMASK = 8L;
+	public static long COMPLETED_COLUMN_BITMASK = 16L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken"));
 
@@ -121,6 +120,14 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
+	}
+
+	public Class<?> getModelClass() {
+		return KaleoTimerInstanceToken.class;
+	}
+
+	public String getModelClassName() {
+		return KaleoTimerInstanceToken.class.getName();
 	}
 
 	public long getKaleoTimerInstanceTokenId() {
@@ -226,6 +233,8 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 	}
 
 	public void setKaleoInstanceId(long kaleoInstanceId) {
+		_columnBitmask |= KALEOINSTANCEID_COLUMN_BITMASK;
+
 		if (!_setOriginalKaleoInstanceId) {
 			_setOriginalKaleoInstanceId = true;
 
@@ -244,6 +253,8 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 	}
 
 	public void setKaleoInstanceTokenId(long kaleoInstanceTokenId) {
+		_columnBitmask |= KALEOINSTANCETOKENID_COLUMN_BITMASK;
+
 		if (!_setOriginalKaleoInstanceTokenId) {
 			_setOriginalKaleoInstanceTokenId = true;
 
@@ -270,6 +281,8 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 	}
 
 	public void setKaleoTimerId(long kaleoTimerId) {
+		_columnBitmask |= KALEOTIMERID_COLUMN_BITMASK;
+
 		if (!_setOriginalKaleoTimerId) {
 			_setOriginalKaleoTimerId = true;
 
@@ -305,6 +318,8 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 	}
 
 	public void setBlocking(boolean blocking) {
+		_columnBitmask |= BLOCKING_COLUMN_BITMASK;
+
 		if (!_setOriginalBlocking) {
 			_setOriginalBlocking = true;
 
@@ -344,6 +359,8 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 	}
 
 	public void setCompleted(boolean completed) {
+		_columnBitmask |= COMPLETED_COLUMN_BITMASK;
+
 		if (!_setOriginalCompleted) {
 			_setOriginalCompleted = true;
 
@@ -376,6 +393,10 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 
 	public void setWorkflowContext(String workflowContext) {
 		_workflowContext = workflowContext;
+	}
+
+	public long getColumnBitmask() {
+		return _columnBitmask;
 	}
 
 	@Override
@@ -512,6 +533,8 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 		kaleoTimerInstanceTokenModelImpl._originalCompleted = kaleoTimerInstanceTokenModelImpl._completed;
 
 		kaleoTimerInstanceTokenModelImpl._setOriginalCompleted = false;
+
+		_columnBitmask = 0;
 	}
 
 	@Override
@@ -786,5 +809,6 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 	private Date _completionDate;
 	private String _workflowContext;
 	private transient ExpandoBridge _expandoBridge;
+	private long _columnBitmask;
 	private KaleoTimerInstanceToken _escapedModelProxy;
 }

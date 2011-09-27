@@ -102,15 +102,17 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.portal.workflow.kaleo.model.KaleoLog"),
 			true);
-
-	public Class<?> getModelClass() {
-		return KaleoLog.class;
-	}
-
-	public String getModelClassName() {
-		return KaleoLog.class.getName();
-	}
-
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.column.bitmask.enabled.com.liferay.portal.workflow.kaleo.model.KaleoLog"),
+			true);
+	public static long COMPANYID_COLUMN_BITMASK = 1L;
+	public static long KALEOINSTANCEID_COLUMN_BITMASK = 2L;
+	public static long KALEOINSTANCETOKENID_COLUMN_BITMASK = 4L;
+	public static long TYPE_COLUMN_BITMASK = 8L;
+	public static long KALEOTASKINSTANCETOKENID_COLUMN_BITMASK = 16L;
+	public static long KALEOCLASSNAME_COLUMN_BITMASK = 32L;
+	public static long KALEOCLASSPK_COLUMN_BITMASK = 64L;
+	public static long KALEODEFINITIONID_COLUMN_BITMASK = 128L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.portal.workflow.kaleo.model.KaleoLog"));
 
@@ -131,6 +133,14 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
+	}
+
+	public Class<?> getModelClass() {
+		return KaleoLog.class;
+	}
+
+	public String getModelClassName() {
+		return KaleoLog.class.getName();
 	}
 
 	public long getKaleoLogId() {
@@ -154,6 +164,8 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 	}
 
 	public void setCompanyId(long companyId) {
+		_columnBitmask |= COMPANYID_COLUMN_BITMASK;
+
 		if (!_setOriginalCompanyId) {
 			_setOriginalCompanyId = true;
 
@@ -222,6 +234,8 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 	}
 
 	public void setKaleoClassName(String kaleoClassName) {
+		_columnBitmask |= KALEOCLASSNAME_COLUMN_BITMASK;
+
 		if (_originalKaleoClassName == null) {
 			_originalKaleoClassName = _kaleoClassName;
 		}
@@ -238,6 +252,8 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 	}
 
 	public void setKaleoClassPK(long kaleoClassPK) {
+		_columnBitmask |= KALEOCLASSPK_COLUMN_BITMASK;
+
 		if (!_setOriginalKaleoClassPK) {
 			_setOriginalKaleoClassPK = true;
 
@@ -256,6 +272,8 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 	}
 
 	public void setKaleoDefinitionId(long kaleoDefinitionId) {
+		_columnBitmask |= KALEODEFINITIONID_COLUMN_BITMASK;
+
 		if (!_setOriginalKaleoDefinitionId) {
 			_setOriginalKaleoDefinitionId = true;
 
@@ -274,6 +292,8 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 	}
 
 	public void setKaleoInstanceId(long kaleoInstanceId) {
+		_columnBitmask |= KALEOINSTANCEID_COLUMN_BITMASK;
+
 		if (!_setOriginalKaleoInstanceId) {
 			_setOriginalKaleoInstanceId = true;
 
@@ -292,6 +312,8 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 	}
 
 	public void setKaleoInstanceTokenId(long kaleoInstanceTokenId) {
+		_columnBitmask |= KALEOINSTANCETOKENID_COLUMN_BITMASK;
+
 		if (!_setOriginalKaleoInstanceTokenId) {
 			_setOriginalKaleoInstanceTokenId = true;
 
@@ -310,6 +332,8 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 	}
 
 	public void setKaleoTaskInstanceTokenId(long kaleoTaskInstanceTokenId) {
+		_columnBitmask |= KALEOTASKINSTANCETOKENID_COLUMN_BITMASK;
+
 		if (!_setOriginalKaleoTaskInstanceTokenId) {
 			_setOriginalKaleoTaskInstanceTokenId = true;
 
@@ -455,6 +479,8 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 	}
 
 	public void setType(String type) {
+		_columnBitmask |= TYPE_COLUMN_BITMASK;
+
 		if (_originalType == null) {
 			_originalType = _type;
 		}
@@ -514,6 +540,10 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 
 	public void setWorkflowContext(String workflowContext) {
 		_workflowContext = workflowContext;
+	}
+
+	public long getColumnBitmask() {
+		return _columnBitmask;
 	}
 
 	@Override
@@ -668,6 +698,8 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 		kaleoLogModelImpl._setOriginalKaleoTaskInstanceTokenId = false;
 
 		kaleoLogModelImpl._originalType = kaleoLogModelImpl._type;
+
+		_columnBitmask = 0;
 	}
 
 	@Override
@@ -1087,5 +1119,6 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 	private long _duration;
 	private String _workflowContext;
 	private transient ExpandoBridge _expandoBridge;
+	private long _columnBitmask;
 	private KaleoLog _escapedModelProxy;
 }

@@ -35,7 +35,6 @@ import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
@@ -91,7 +90,8 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_TEXT = new FinderPath(BarModelImpl.ENTITY_CACHE_ENABLED,
 			BarModelImpl.FINDER_CACHE_ENABLED, BarImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByText",
-			new String[] { String.class.getName() });
+			new String[] { String.class.getName() },
+			BarModelImpl.TEXT_COLUMN_BITMASK);
 	public static final FinderPath FINDER_PATH_COUNT_BY_TEXT = new FinderPath(BarModelImpl.ENTITY_CACHE_ENABLED,
 			BarModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByText",
@@ -301,13 +301,18 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 
-		if (isNew) {
+		if (isNew || !BarModelImpl.COLUMN_BITMASK_ENABLED) {
 			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 		}
+
 		else {
-			if (!Validator.equals(bar.getText(), barModelImpl.getOriginalText())) {
+			if ((barModelImpl.getColumnBitmask() &
+					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_TEXT.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] { barModelImpl.getOriginalText() };
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_TEXT, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_TEXT,
-					new Object[] { barModelImpl.getOriginalText() });
+					args);
 			}
 		}
 

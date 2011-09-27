@@ -95,7 +95,8 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 			MicroblogsEntryModelImpl.FINDER_CACHE_ENABLED,
 			MicroblogsEntryImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByCompanyId",
-			new String[] { Long.class.getName() });
+			new String[] { Long.class.getName() },
+			MicroblogsEntryModelImpl.COMPANYID_COLUMN_BITMASK);
 	public static final FinderPath FINDER_PATH_COUNT_BY_COMPANYID = new FinderPath(MicroblogsEntryModelImpl.ENTITY_CACHE_ENABLED,
 			MicroblogsEntryModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByCompanyId",
@@ -115,7 +116,8 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 			MicroblogsEntryModelImpl.FINDER_CACHE_ENABLED,
 			MicroblogsEntryImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByUserId",
-			new String[] { Long.class.getName() });
+			new String[] { Long.class.getName() },
+			MicroblogsEntryModelImpl.USERID_COLUMN_BITMASK);
 	public static final FinderPath FINDER_PATH_COUNT_BY_USERID = new FinderPath(MicroblogsEntryModelImpl.ENTITY_CACHE_ENABLED,
 			MicroblogsEntryModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUserId",
@@ -134,7 +136,9 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 			MicroblogsEntryModelImpl.FINDER_CACHE_ENABLED,
 			MicroblogsEntryImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByU_T",
-			new String[] { Long.class.getName(), Integer.class.getName() });
+			new String[] { Long.class.getName(), Integer.class.getName() },
+			MicroblogsEntryModelImpl.USERID_COLUMN_BITMASK |
+			MicroblogsEntryModelImpl.TYPE_COLUMN_BITMASK);
 	public static final FinderPath FINDER_PATH_COUNT_BY_U_T = new FinderPath(MicroblogsEntryModelImpl.ENTITY_CACHE_ENABLED,
 			MicroblogsEntryModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByU_T",
@@ -153,7 +157,9 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 			MicroblogsEntryModelImpl.FINDER_CACHE_ENABLED,
 			MicroblogsEntryImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByT_R",
-			new String[] { Integer.class.getName(), Long.class.getName() });
+			new String[] { Integer.class.getName(), Long.class.getName() },
+			MicroblogsEntryModelImpl.TYPE_COLUMN_BITMASK |
+			MicroblogsEntryModelImpl.RECEIVERUSERID_COLUMN_BITMASK);
 	public static final FinderPath FINDER_PATH_COUNT_BY_T_R = new FinderPath(MicroblogsEntryModelImpl.ENTITY_CACHE_ENABLED,
 			MicroblogsEntryModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByT_R",
@@ -173,7 +179,9 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 			MicroblogsEntryModelImpl.FINDER_CACHE_ENABLED,
 			MicroblogsEntryImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByT_RMEI",
-			new String[] { Integer.class.getName(), Long.class.getName() });
+			new String[] { Integer.class.getName(), Long.class.getName() },
+			MicroblogsEntryModelImpl.TYPE_COLUMN_BITMASK |
+			MicroblogsEntryModelImpl.RECEIVERMICROBLOGSENTRYID_COLUMN_BITMASK);
 	public static final FinderPath FINDER_PATH_COUNT_BY_T_RMEI = new FinderPath(MicroblogsEntryModelImpl.ENTITY_CACHE_ENABLED,
 			MicroblogsEntryModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByT_RMEI",
@@ -394,57 +402,68 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 
-		if (isNew) {
+		if (isNew || !MicroblogsEntryModelImpl.COLUMN_BITMASK_ENABLED) {
 			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 		}
+
 		else {
-			if (microblogsEntry.getCompanyId() != microblogsEntryModelImpl.getOriginalCompanyId()) {
+			if ((microblogsEntryModelImpl.getColumnBitmask() &
+					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_COMPANYID.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						Long.valueOf(microblogsEntryModelImpl.getOriginalCompanyId())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_COMPANYID,
+					args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_COMPANYID,
-					new Object[] {
-						Long.valueOf(
-							microblogsEntryModelImpl.getOriginalCompanyId())
-					});
+					args);
 			}
 
-			if (microblogsEntry.getUserId() != microblogsEntryModelImpl.getOriginalUserId()) {
+			if ((microblogsEntryModelImpl.getColumnBitmask() &
+					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						Long.valueOf(microblogsEntryModelImpl.getOriginalUserId())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_USERID, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID,
-					new Object[] {
-						Long.valueOf(
-							microblogsEntryModelImpl.getOriginalUserId())
-					});
+					args);
 			}
 
-			if ((microblogsEntry.getUserId() != microblogsEntryModelImpl.getOriginalUserId()) ||
-					(microblogsEntry.getType() != microblogsEntryModelImpl.getOriginalType())) {
+			if ((microblogsEntryModelImpl.getColumnBitmask() &
+					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_T.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						Long.valueOf(microblogsEntryModelImpl.getOriginalUserId()),
+						Integer.valueOf(microblogsEntryModelImpl.getOriginalType())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_T, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_T,
-					new Object[] {
-						Long.valueOf(
-							microblogsEntryModelImpl.getOriginalUserId()),
-						Integer.valueOf(
-							microblogsEntryModelImpl.getOriginalType())
-					});
+					args);
 			}
 
-			if ((microblogsEntry.getType() != microblogsEntryModelImpl.getOriginalType()) ||
-					(microblogsEntry.getReceiverUserId() != microblogsEntryModelImpl.getOriginalReceiverUserId())) {
+			if ((microblogsEntryModelImpl.getColumnBitmask() &
+					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_T_R.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						Integer.valueOf(microblogsEntryModelImpl.getOriginalType()),
+						Long.valueOf(microblogsEntryModelImpl.getOriginalReceiverUserId())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_T_R, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_T_R,
-					new Object[] {
-						Integer.valueOf(
-							microblogsEntryModelImpl.getOriginalType()),
-						Long.valueOf(
-							microblogsEntryModelImpl.getOriginalReceiverUserId())
-					});
+					args);
 			}
 
-			if ((microblogsEntry.getType() != microblogsEntryModelImpl.getOriginalType()) ||
-					(microblogsEntry.getReceiverMicroblogsEntryId() != microblogsEntryModelImpl.getOriginalReceiverMicroblogsEntryId())) {
+			if ((microblogsEntryModelImpl.getColumnBitmask() &
+					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_T_RMEI.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						Integer.valueOf(microblogsEntryModelImpl.getOriginalType()),
+						Long.valueOf(microblogsEntryModelImpl.getOriginalReceiverMicroblogsEntryId())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_T_RMEI, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_T_RMEI,
-					new Object[] {
-						Integer.valueOf(
-							microblogsEntryModelImpl.getOriginalType()),
-						Long.valueOf(
-							microblogsEntryModelImpl.getOriginalReceiverMicroblogsEntryId())
-					});
+					args);
 			}
 		}
 

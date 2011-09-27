@@ -107,6 +107,11 @@ public class CalendarEventModelImpl extends BaseModelImpl<CalendarEvent>
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.calendar.model.CalendarEvent"),
 			true);
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.column.bitmask.enabled.com.liferay.calendar.model.CalendarEvent"),
+			true);
+	public static long GROUPID_COLUMN_BITMASK = 1L;
+	public static long UUID_COLUMN_BITMASK = 2L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.
@@ -158,14 +163,6 @@ public class CalendarEventModelImpl extends BaseModelImpl<CalendarEvent>
 		return models;
 	}
 
-	public Class<?> getModelClass() {
-		return CalendarEvent.class;
-	}
-
-	public String getModelClassName() {
-		return CalendarEvent.class.getName();
-	}
-
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.calendar.model.CalendarEvent"));
 
@@ -186,6 +183,14 @@ public class CalendarEventModelImpl extends BaseModelImpl<CalendarEvent>
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
+	}
+
+	public Class<?> getModelClass() {
+		return CalendarEvent.class;
+	}
+
+	public String getModelClassName() {
+		return CalendarEvent.class.getName();
 	}
 
 	@JSON
@@ -225,6 +230,8 @@ public class CalendarEventModelImpl extends BaseModelImpl<CalendarEvent>
 	}
 
 	public void setGroupId(long groupId) {
+		_columnBitmask |= GROUPID_COLUMN_BITMASK;
+
 		if (!_setOriginalGroupId) {
 			_setOriginalGroupId = true;
 
@@ -596,6 +603,10 @@ public class CalendarEventModelImpl extends BaseModelImpl<CalendarEvent>
 		_secondReminder = secondReminder;
 	}
 
+	public long getColumnBitmask() {
+		return _columnBitmask;
+	}
+
 	@Override
 	public CalendarEvent toEscapedModel() {
 		if (isEscapedModel()) {
@@ -716,6 +727,8 @@ public class CalendarEventModelImpl extends BaseModelImpl<CalendarEvent>
 		calendarEventModelImpl._originalGroupId = calendarEventModelImpl._groupId;
 
 		calendarEventModelImpl._setOriginalGroupId = false;
+
+		_columnBitmask = 0;
 	}
 
 	@Override
@@ -1015,5 +1028,6 @@ public class CalendarEventModelImpl extends BaseModelImpl<CalendarEvent>
 	private int _firstReminder;
 	private int _secondReminder;
 	private transient ExpandoBridge _expandoBridge;
+	private long _columnBitmask;
 	private CalendarEvent _escapedModelProxy;
 }

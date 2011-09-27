@@ -36,7 +36,6 @@ import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
@@ -94,7 +93,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		new FinderPath(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
 			JIRAIssueModelImpl.FINDER_CACHE_ENABLED, JIRAIssueImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByProjectId",
-			new String[] { Long.class.getName() });
+			new String[] { Long.class.getName() },
+			JIRAIssueModelImpl.PROJECTID_COLUMN_BITMASK);
 	public static final FinderPath FINDER_PATH_COUNT_BY_PROJECTID = new FinderPath(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
 			JIRAIssueModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByProjectId",
@@ -102,7 +102,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	public static final FinderPath FINDER_PATH_FETCH_BY_KEY = new FinderPath(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
 			JIRAIssueModelImpl.FINDER_CACHE_ENABLED, JIRAIssueImpl.class,
 			FINDER_CLASS_NAME_ENTITY, "fetchByKey",
-			new String[] { String.class.getName() });
+			new String[] { String.class.getName() },
+			JIRAIssueModelImpl.KEY_COLUMN_BITMASK);
 	public static final FinderPath FINDER_PATH_COUNT_BY_KEY = new FinderPath(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
 			JIRAIssueModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByKey",
@@ -121,7 +122,9 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		new FinderPath(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
 			JIRAIssueModelImpl.FINDER_CACHE_ENABLED, JIRAIssueImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
-			"findByReporterJiraUserId", new String[] { String.class.getName() });
+			"findByReporterJiraUserId",
+			new String[] { String.class.getName() },
+			JIRAIssueModelImpl.REPORTERJIRAUSERID_COLUMN_BITMASK);
 	public static final FinderPath FINDER_PATH_COUNT_BY_REPORTERJIRAUSERID = new FinderPath(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
 			JIRAIssueModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
@@ -140,7 +143,9 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		new FinderPath(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
 			JIRAIssueModelImpl.FINDER_CACHE_ENABLED, JIRAIssueImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
-			"findByAssigneeJiraUserId", new String[] { String.class.getName() });
+			"findByAssigneeJiraUserId",
+			new String[] { String.class.getName() },
+			JIRAIssueModelImpl.ASSIGNEEJIRAUSERID_COLUMN_BITMASK);
 	public static final FinderPath FINDER_PATH_COUNT_BY_ASSIGNEEJIRAUSERID = new FinderPath(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
 			JIRAIssueModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
@@ -157,7 +162,9 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_MD_P = new FinderPath(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
 			JIRAIssueModelImpl.FINDER_CACHE_ENABLED, JIRAIssueImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByMD_P",
-			new String[] { Date.class.getName(), Long.class.getName() });
+			new String[] { Date.class.getName(), Long.class.getName() },
+			JIRAIssueModelImpl.MODIFIEDDATE_COLUMN_BITMASK |
+			JIRAIssueModelImpl.PROJECTID_COLUMN_BITMASK);
 	public static final FinderPath FINDER_PATH_COUNT_BY_MD_P = new FinderPath(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
 			JIRAIssueModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByMD_P",
@@ -175,7 +182,9 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		new FinderPath(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
 			JIRAIssueModelImpl.FINDER_CACHE_ENABLED, JIRAIssueImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByP_RJUI",
-			new String[] { Long.class.getName(), String.class.getName() });
+			new String[] { Long.class.getName(), String.class.getName() },
+			JIRAIssueModelImpl.PROJECTID_COLUMN_BITMASK |
+			JIRAIssueModelImpl.REPORTERJIRAUSERID_COLUMN_BITMASK);
 	public static final FinderPath FINDER_PATH_COUNT_BY_P_RJUI = new FinderPath(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
 			JIRAIssueModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByP_RJUI",
@@ -193,7 +202,9 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		new FinderPath(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
 			JIRAIssueModelImpl.FINDER_CACHE_ENABLED, JIRAIssueImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByP_AJUI",
-			new String[] { Long.class.getName(), String.class.getName() });
+			new String[] { Long.class.getName(), String.class.getName() },
+			JIRAIssueModelImpl.PROJECTID_COLUMN_BITMASK |
+			JIRAIssueModelImpl.ASSIGNEEJIRAUSERID_COLUMN_BITMASK);
 	public static final FinderPath FINDER_PATH_COUNT_BY_P_AJUI = new FinderPath(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
 			JIRAIssueModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByP_AJUI",
@@ -216,7 +227,10 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 			new String[] {
 				Date.class.getName(), Long.class.getName(),
 				String.class.getName()
-			});
+			},
+			JIRAIssueModelImpl.MODIFIEDDATE_COLUMN_BITMASK |
+			JIRAIssueModelImpl.PROJECTID_COLUMN_BITMASK |
+			JIRAIssueModelImpl.REPORTERJIRAUSERID_COLUMN_BITMASK);
 	public static final FinderPath FINDER_PATH_COUNT_BY_MD_P_RJUI = new FinderPath(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
 			JIRAIssueModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByMD_P_RJUI",
@@ -242,7 +256,10 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 			new String[] {
 				Date.class.getName(), Long.class.getName(),
 				String.class.getName()
-			});
+			},
+			JIRAIssueModelImpl.MODIFIEDDATE_COLUMN_BITMASK |
+			JIRAIssueModelImpl.PROJECTID_COLUMN_BITMASK |
+			JIRAIssueModelImpl.ASSIGNEEJIRAUSERID_COLUMN_BITMASK);
 	public static final FinderPath FINDER_PATH_COUNT_BY_MD_P_AJUI = new FinderPath(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
 			JIRAIssueModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByMD_P_AJUI",
@@ -267,7 +284,10 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 			new String[] {
 				Long.class.getName(), String.class.getName(),
 				String.class.getName()
-			});
+			},
+			JIRAIssueModelImpl.PROJECTID_COLUMN_BITMASK |
+			JIRAIssueModelImpl.REPORTERJIRAUSERID_COLUMN_BITMASK |
+			JIRAIssueModelImpl.STATUS_COLUMN_BITMASK);
 	public static final FinderPath FINDER_PATH_COUNT_BY_P_RJUI_S = new FinderPath(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
 			JIRAIssueModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByP_RJUI_S",
@@ -292,7 +312,10 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 			new String[] {
 				Long.class.getName(), String.class.getName(),
 				String.class.getName()
-			});
+			},
+			JIRAIssueModelImpl.PROJECTID_COLUMN_BITMASK |
+			JIRAIssueModelImpl.ASSIGNEEJIRAUSERID_COLUMN_BITMASK |
+			JIRAIssueModelImpl.STATUS_COLUMN_BITMASK);
 	public static final FinderPath FINDER_PATH_COUNT_BY_P_AJUI_S = new FinderPath(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
 			JIRAIssueModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByP_AJUI_S",
@@ -521,121 +544,143 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 
-		if (isNew) {
+		if (isNew || !JIRAIssueModelImpl.COLUMN_BITMASK_ENABLED) {
 			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 		}
+
 		else {
-			if (jiraIssue.getProjectId() != jiraIssueModelImpl.getOriginalProjectId()) {
+			if ((jiraIssueModelImpl.getColumnBitmask() &
+					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_PROJECTID.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						Long.valueOf(jiraIssueModelImpl.getOriginalProjectId())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_PROJECTID,
+					args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_PROJECTID,
-					new Object[] {
-						Long.valueOf(jiraIssueModelImpl.getOriginalProjectId())
-					});
+					args);
 			}
 
-			if (!Validator.equals(jiraIssue.getReporterJiraUserId(),
-						jiraIssueModelImpl.getOriginalReporterJiraUserId())) {
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_REPORTERJIRAUSERID,
-					new Object[] {
+			if ((jiraIssueModelImpl.getColumnBitmask() &
+					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_REPORTERJIRAUSERID.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
 						jiraIssueModelImpl.getOriginalReporterJiraUserId()
-					});
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_REPORTERJIRAUSERID,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_REPORTERJIRAUSERID,
+					args);
 			}
 
-			if (!Validator.equals(jiraIssue.getAssigneeJiraUserId(),
-						jiraIssueModelImpl.getOriginalAssigneeJiraUserId())) {
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_ASSIGNEEJIRAUSERID,
-					new Object[] {
+			if ((jiraIssueModelImpl.getColumnBitmask() &
+					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_ASSIGNEEJIRAUSERID.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
 						jiraIssueModelImpl.getOriginalAssigneeJiraUserId()
-					});
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_ASSIGNEEJIRAUSERID,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_ASSIGNEEJIRAUSERID,
+					args);
 			}
 
-			if (!Validator.equals(jiraIssue.getModifiedDate(),
-						jiraIssueModelImpl.getOriginalModifiedDate()) ||
-					(jiraIssue.getProjectId() != jiraIssueModelImpl.getOriginalProjectId())) {
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_MD_P,
-					new Object[] {
+			if ((jiraIssueModelImpl.getColumnBitmask() &
+					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_MD_P.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
 						jiraIssueModelImpl.getOriginalModifiedDate(),
 						Long.valueOf(jiraIssueModelImpl.getOriginalProjectId())
-					});
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_MD_P, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_MD_P,
+					args);
 			}
 
-			if ((jiraIssue.getProjectId() != jiraIssueModelImpl.getOriginalProjectId()) ||
-					!Validator.equals(jiraIssue.getReporterJiraUserId(),
-						jiraIssueModelImpl.getOriginalReporterJiraUserId())) {
+			if ((jiraIssueModelImpl.getColumnBitmask() &
+					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_P_RJUI.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						Long.valueOf(jiraIssueModelImpl.getOriginalProjectId()),
+						
+						jiraIssueModelImpl.getOriginalReporterJiraUserId()
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_P_RJUI, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_P_RJUI,
-					new Object[] {
-						Long.valueOf(jiraIssueModelImpl.getOriginalProjectId()),
-						
-					jiraIssueModelImpl.getOriginalReporterJiraUserId()
-					});
+					args);
 			}
 
-			if ((jiraIssue.getProjectId() != jiraIssueModelImpl.getOriginalProjectId()) ||
-					!Validator.equals(jiraIssue.getAssigneeJiraUserId(),
-						jiraIssueModelImpl.getOriginalAssigneeJiraUserId())) {
+			if ((jiraIssueModelImpl.getColumnBitmask() &
+					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_P_AJUI.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						Long.valueOf(jiraIssueModelImpl.getOriginalProjectId()),
+						
+						jiraIssueModelImpl.getOriginalAssigneeJiraUserId()
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_P_AJUI, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_P_AJUI,
-					new Object[] {
-						Long.valueOf(jiraIssueModelImpl.getOriginalProjectId()),
-						
-					jiraIssueModelImpl.getOriginalAssigneeJiraUserId()
-					});
+					args);
 			}
 
-			if (!Validator.equals(jiraIssue.getModifiedDate(),
-						jiraIssueModelImpl.getOriginalModifiedDate()) ||
-					(jiraIssue.getProjectId() != jiraIssueModelImpl.getOriginalProjectId()) ||
-					!Validator.equals(jiraIssue.getReporterJiraUserId(),
-						jiraIssueModelImpl.getOriginalReporterJiraUserId())) {
+			if ((jiraIssueModelImpl.getColumnBitmask() &
+					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_MD_P_RJUI.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						jiraIssueModelImpl.getOriginalModifiedDate(),
+						Long.valueOf(jiraIssueModelImpl.getOriginalProjectId()),
+						
+						jiraIssueModelImpl.getOriginalReporterJiraUserId()
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_MD_P_RJUI,
+					args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_MD_P_RJUI,
-					new Object[] {
+					args);
+			}
+
+			if ((jiraIssueModelImpl.getColumnBitmask() &
+					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_MD_P_AJUI.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
 						jiraIssueModelImpl.getOriginalModifiedDate(),
 						Long.valueOf(jiraIssueModelImpl.getOriginalProjectId()),
 						
-					jiraIssueModelImpl.getOriginalReporterJiraUserId()
-					});
-			}
+						jiraIssueModelImpl.getOriginalAssigneeJiraUserId()
+					};
 
-			if (!Validator.equals(jiraIssue.getModifiedDate(),
-						jiraIssueModelImpl.getOriginalModifiedDate()) ||
-					(jiraIssue.getProjectId() != jiraIssueModelImpl.getOriginalProjectId()) ||
-					!Validator.equals(jiraIssue.getAssigneeJiraUserId(),
-						jiraIssueModelImpl.getOriginalAssigneeJiraUserId())) {
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_MD_P_AJUI,
+					args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_MD_P_AJUI,
-					new Object[] {
-						jiraIssueModelImpl.getOriginalModifiedDate(),
-						Long.valueOf(jiraIssueModelImpl.getOriginalProjectId()),
-						
-					jiraIssueModelImpl.getOriginalAssigneeJiraUserId()
-					});
+					args);
 			}
 
-			if ((jiraIssue.getProjectId() != jiraIssueModelImpl.getOriginalProjectId()) ||
-					!Validator.equals(jiraIssue.getReporterJiraUserId(),
-						jiraIssueModelImpl.getOriginalReporterJiraUserId()) ||
-					!Validator.equals(jiraIssue.getStatus(),
-						jiraIssueModelImpl.getOriginalStatus())) {
+			if ((jiraIssueModelImpl.getColumnBitmask() &
+					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_P_RJUI_S.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						Long.valueOf(jiraIssueModelImpl.getOriginalProjectId()),
+						
+						jiraIssueModelImpl.getOriginalReporterJiraUserId(),
+						
+						jiraIssueModelImpl.getOriginalStatus()
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_P_RJUI_S, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_P_RJUI_S,
-					new Object[] {
-						Long.valueOf(jiraIssueModelImpl.getOriginalProjectId()),
-						
-					jiraIssueModelImpl.getOriginalReporterJiraUserId(),
-						
-					jiraIssueModelImpl.getOriginalStatus()
-					});
+					args);
 			}
 
-			if ((jiraIssue.getProjectId() != jiraIssueModelImpl.getOriginalProjectId()) ||
-					!Validator.equals(jiraIssue.getAssigneeJiraUserId(),
-						jiraIssueModelImpl.getOriginalAssigneeJiraUserId()) ||
-					!Validator.equals(jiraIssue.getStatus(),
-						jiraIssueModelImpl.getOriginalStatus())) {
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_P_AJUI_S,
-					new Object[] {
+			if ((jiraIssueModelImpl.getColumnBitmask() &
+					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_P_AJUI_S.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
 						Long.valueOf(jiraIssueModelImpl.getOriginalProjectId()),
 						
-					jiraIssueModelImpl.getOriginalAssigneeJiraUserId(),
+						jiraIssueModelImpl.getOriginalAssigneeJiraUserId(),
 						
-					jiraIssueModelImpl.getOriginalStatus()
-					});
+						jiraIssueModelImpl.getOriginalStatus()
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_P_AJUI_S, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_P_AJUI_S,
+					args);
 			}
 		}
 
@@ -647,8 +692,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				new Object[] { jiraIssue.getKey() }, jiraIssue);
 		}
 		else {
-			if (!Validator.equals(jiraIssue.getKey(),
-						jiraIssueModelImpl.getOriginalKey())) {
+			if ((jiraIssueModelImpl.getColumnBitmask() &
+					FINDER_PATH_FETCH_BY_KEY.getColumnBitmask()) != 0) {
 				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KEY,
 					new Object[] { jiraIssueModelImpl.getOriginalKey() });
 

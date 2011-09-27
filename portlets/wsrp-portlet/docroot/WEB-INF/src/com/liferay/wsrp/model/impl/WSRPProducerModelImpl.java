@@ -80,15 +80,12 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer>
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.wsrp.model.WSRPProducer"),
 			true);
-
-	public Class<?> getModelClass() {
-		return WSRPProducer.class;
-	}
-
-	public String getModelClassName() {
-		return WSRPProducer.class.getName();
-	}
-
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.column.bitmask.enabled.com.liferay.wsrp.model.WSRPProducer"),
+			true);
+	public static long COMPANYID_COLUMN_BITMASK = 1L;
+	public static long GROUPID_COLUMN_BITMASK = 2L;
+	public static long UUID_COLUMN_BITMASK = 4L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.wsrp.model.WSRPProducer"));
 
@@ -109,6 +106,14 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer>
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
+	}
+
+	public Class<?> getModelClass() {
+		return WSRPProducer.class;
+	}
+
+	public String getModelClassName() {
+		return WSRPProducer.class.getName();
 	}
 
 	public String getUuid() {
@@ -145,6 +150,8 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer>
 	}
 
 	public void setGroupId(long groupId) {
+		_columnBitmask |= GROUPID_COLUMN_BITMASK;
+
 		if (!_setOriginalGroupId) {
 			_setOriginalGroupId = true;
 
@@ -163,6 +170,8 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer>
 	}
 
 	public void setCompanyId(long companyId) {
+		_columnBitmask |= COMPANYID_COLUMN_BITMASK;
+
 		if (!_setOriginalCompanyId) {
 			_setOriginalCompanyId = true;
 
@@ -229,6 +238,10 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer>
 
 	public void setPortletIds(String portletIds) {
 		_portletIds = portletIds;
+	}
+
+	public long getColumnBitmask() {
+		return _columnBitmask;
 	}
 
 	@Override
@@ -336,6 +349,8 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer>
 		wsrpProducerModelImpl._originalCompanyId = wsrpProducerModelImpl._companyId;
 
 		wsrpProducerModelImpl._setOriginalCompanyId = false;
+
+		_columnBitmask = 0;
 	}
 
 	@Override
@@ -496,5 +511,6 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer>
 	private String _version;
 	private String _portletIds;
 	private transient ExpandoBridge _expandoBridge;
+	private long _columnBitmask;
 	private WSRPProducer _escapedModelProxy;
 }
