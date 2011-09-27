@@ -1965,22 +1965,26 @@ AUI().add(
 						var args = arguments;
 
 						var buttons = [
-							{
-								handler: function(event) {
-									if (callback) {
-										callback.apply(instance, A.Array(args, 2, true));
-									}
+							new A.ButtonItem(
+								{
+									handler: function(event) {
+										if (callback) {
+											callback.apply(instance, A.Array(args, 2, true));
+										}
 
-									instance._confirmationDialog.close();
-								},
-								text: 'Yes'
-							},
-							{
-								handler: function(event) {
-									instance._confirmationDialog.close();
-								},
-								text: 'No'
-							}
+										instance._confirmationDialog.close();
+									},
+									label: 'Yes'
+								}
+							),
+							new A.ButtonItem(
+								{
+									handler: function(event) {
+										instance._confirmationDialog.close();
+									},
+									label: 'No'
+								}
+							)
 						];
 
 						var confirmationDialog = instance._createDialog('Confirm', message, true, false, buttons).render();
@@ -2042,34 +2046,40 @@ AUI().add(
 						form.add(replaceField, true);
 
 						var buttons = [
-							{
-								handler: function(event) {
-									var tab = instance._tabViewEditor.get(ACTIVE_TAB);
+							new A.ButtonItem(
+								{
+									handler: function(event) {
+										var tab = instance._tabViewEditor.get(ACTIVE_TAB);
 
-									var searchText = searchField.get(VALUE);
+										var searchText = searchField.get(VALUE);
 
-									tab.searchEditorText(searchText, false);
-								},
-								text: 'Search'
-							},
-							{
-								handler: function(event) {
-									var tab = instance._tabViewEditor.get(ACTIVE_TAB);
+										tab.searchEditorText(searchText, false);
+									},
+									label: 'Search'
+								}
+							),
+							new A.ButtonItem(
+								{
+									handler: function(event) {
+										var tab = instance._tabViewEditor.get(ACTIVE_TAB);
 
-									var searchText = searchField.get(VALUE);
+										var searchText = searchField.get(VALUE);
 
-									var replaceText = replaceField.get(VALUE);
+										var replaceText = replaceField.get(VALUE);
 
-									tab.searchEditorText(searchText, false, replaceText, true);
-								},
-								text: 'Replace'
-							},
-							{
-								handler: function(event) {
-									instance._closeSearchDialog();
-								},
-								text: 'Close'
-							}
+										tab.searchEditorText(searchText, false, replaceText, true);
+									},
+									label: 'Replace'
+								}
+							),
+							new A.ButtonItem(
+								{
+									handler: function(event) {
+										instance._closeSearchDialog();
+									},
+									label: 'Close'
+								}
+							)
 						];
 
 						instance._searchDialog = instance._createDialog('Search', form.get(BOUNDING_BOX), false, false, buttons).render();
