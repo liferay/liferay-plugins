@@ -157,15 +157,19 @@ String assetTagName = ParamUtil.getString(request, "tag");
 					<%
 					AssetCategory assetCategory = AssetCategoryLocalServiceUtil.getAssetCategory(assetCategoryId);
 
+					assetCategory = assetCategory.toEscapedModel();
+					
 					AssetVocabulary assetVocabulary = AssetVocabularyLocalServiceUtil.getAssetVocabulary(assetCategory.getVocabularyId());
+					
+					assetVocabulary = assetVocabulary.toEscapedModel();
 					%>
 
 					<c:choose>
 						<c:when test="<%= Validator.isNotNull(assetTagName) %>">
-							<%= LanguageUtil.format(pageContext, "view-articles-with-x-x-and-tag-x", new String[] {assetVocabulary.getName(), assetCategory.getName(), assetTagName}, false) %>
+							<%= LanguageUtil.format(pageContext, "view-articles-with-x-x-and-tag-x", new String[] {assetVocabulary.getTitle(locale), assetCategory.getTitle(locale), assetTagName}, false) %>
 						</c:when>
 						<c:otherwise>
-							<%= LanguageUtil.format(pageContext, "view-articles-with-x-x", new String[] {assetVocabulary.getName(), assetCategory.getName()}, false) %>
+							<%= LanguageUtil.format(pageContext, "view-articles-with-x-x", new String[] {assetVocabulary.getTitle(locale), assetCategory.getTitle(locale)}, false) %>
 						</c:otherwise>
 					</c:choose>
 				</c:when>
