@@ -82,15 +82,13 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.privatemessaging.model.UserThread"),
 			true);
-
-	public Class<?> getModelClass() {
-		return UserThread.class;
-	}
-
-	public String getModelClassName() {
-		return UserThread.class.getName();
-	}
-
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.column.bitmask.enabled.com.liferay.privatemessaging.model.UserThread"),
+			true);
+	public static long DELETED_COLUMN_BITMASK = 1L;
+	public static long MBTHREADID_COLUMN_BITMASK = 2L;
+	public static long USERID_COLUMN_BITMASK = 4L;
+	public static long READ_COLUMN_BITMASK = 8L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.privatemessaging.model.UserThread"));
 
@@ -111,6 +109,14 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
+	}
+
+	public Class<?> getModelClass() {
+		return UserThread.class;
+	}
+
+	public String getModelClassName() {
+		return UserThread.class.getName();
 	}
 
 	public long getUserThreadId() {
@@ -134,6 +140,8 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 	}
 
 	public void setUserId(long userId) {
+		_columnBitmask |= USERID_COLUMN_BITMASK;
+
 		if (!_setOriginalUserId) {
 			_setOriginalUserId = true;
 
@@ -176,6 +184,8 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 	}
 
 	public void setMbThreadId(long mbThreadId) {
+		_columnBitmask |= MBTHREADID_COLUMN_BITMASK;
+
 		if (!_setOriginalMbThreadId) {
 			_setOriginalMbThreadId = true;
 
@@ -206,6 +216,8 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 	}
 
 	public void setRead(boolean read) {
+		_columnBitmask |= READ_COLUMN_BITMASK;
+
 		if (!_setOriginalRead) {
 			_setOriginalRead = true;
 
@@ -228,6 +240,8 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 	}
 
 	public void setDeleted(boolean deleted) {
+		_columnBitmask |= DELETED_COLUMN_BITMASK;
+
 		if (!_setOriginalDeleted) {
 			_setOriginalDeleted = true;
 
@@ -239,6 +253,10 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 
 	public boolean getOriginalDeleted() {
 		return _originalDeleted;
+	}
+
+	public long getColumnBitmask() {
+		return _columnBitmask;
 	}
 
 	@Override
@@ -355,6 +373,8 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 		userThreadModelImpl._originalDeleted = userThreadModelImpl._deleted;
 
 		userThreadModelImpl._setOriginalDeleted = false;
+
+		_columnBitmask = 0;
 	}
 
 	@Override
@@ -495,5 +515,6 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 	private boolean _originalDeleted;
 	private boolean _setOriginalDeleted;
 	private transient ExpandoBridge _expandoBridge;
+	private long _columnBitmask;
 	private UserThread _escapedModelProxy;
 }

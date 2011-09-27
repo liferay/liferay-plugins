@@ -99,6 +99,16 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.calendar.model.CalendarResource"),
 			true);
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.column.bitmask.enabled.com.liferay.calendar.model.CalendarResource"),
+			true);
+	public static long ACTIVE_COLUMN_BITMASK = 1L;
+	public static long COMPANYID_COLUMN_BITMASK = 2L;
+	public static long GROUPID_COLUMN_BITMASK = 4L;
+	public static long CLASSNAMEID_COLUMN_BITMASK = 8L;
+	public static long UUID_COLUMN_BITMASK = 16L;
+	public static long CLASSPK_COLUMN_BITMASK = 32L;
+	public static long NAME_COLUMN_BITMASK = 64L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.
@@ -144,14 +154,6 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 		return models;
 	}
 
-	public Class<?> getModelClass() {
-		return CalendarResource.class;
-	}
-
-	public String getModelClassName() {
-		return CalendarResource.class.getName();
-	}
-
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.calendar.model.CalendarResource"));
 
@@ -172,6 +174,14 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
+	}
+
+	public Class<?> getModelClass() {
+		return CalendarResource.class;
+	}
+
+	public String getModelClassName() {
+		return CalendarResource.class.getName();
 	}
 
 	@JSON
@@ -211,6 +221,8 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 	}
 
 	public void setGroupId(long groupId) {
+		_columnBitmask |= GROUPID_COLUMN_BITMASK;
+
 		if (!_setOriginalGroupId) {
 			_setOriginalGroupId = true;
 
@@ -230,6 +242,8 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 	}
 
 	public void setCompanyId(long companyId) {
+		_columnBitmask |= COMPANYID_COLUMN_BITMASK;
+
 		if (!_setOriginalCompanyId) {
 			_setOriginalCompanyId = true;
 
@@ -306,6 +320,8 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 	}
 
 	public void setClassNameId(long classNameId) {
+		_columnBitmask |= CLASSNAMEID_COLUMN_BITMASK;
+
 		if (!_setOriginalClassNameId) {
 			_setOriginalClassNameId = true;
 
@@ -325,6 +341,8 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 	}
 
 	public void setClassPK(long classPK) {
+		_columnBitmask |= CLASSPK_COLUMN_BITMASK;
+
 		if (!_setOriginalClassPK) {
 			_setOriginalClassPK = true;
 
@@ -402,6 +420,8 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 	}
 
 	public void setName(String name) {
+		_columnBitmask |= NAME_COLUMN_BITMASK;
+
 		if (_originalName == null) {
 			_originalName = _name;
 		}
@@ -552,6 +572,8 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 	}
 
 	public void setActive(boolean active) {
+		_columnBitmask |= ACTIVE_COLUMN_BITMASK;
+
 		if (!_setOriginalActive) {
 			_setOriginalActive = true;
 
@@ -563,6 +585,10 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 
 	public boolean getOriginalActive() {
 		return _originalActive;
+	}
+
+	public long getColumnBitmask() {
+		return _columnBitmask;
 	}
 
 	@Override
@@ -690,6 +716,8 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 		calendarResourceModelImpl._originalActive = calendarResourceModelImpl._active;
 
 		calendarResourceModelImpl._setOriginalActive = false;
+
+		_columnBitmask = 0;
 	}
 
 	@Override
@@ -909,5 +937,6 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 	private boolean _originalActive;
 	private boolean _setOriginalActive;
 	private transient ExpandoBridge _expandoBridge;
+	private long _columnBitmask;
 	private CalendarResource _escapedModelProxy;
 }

@@ -82,15 +82,11 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.wsrp.model.WSRPConsumer"),
 			true);
-
-	public Class<?> getModelClass() {
-		return WSRPConsumer.class;
-	}
-
-	public String getModelClassName() {
-		return WSRPConsumer.class.getName();
-	}
-
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.column.bitmask.enabled.com.liferay.wsrp.model.WSRPConsumer"),
+			true);
+	public static long COMPANYID_COLUMN_BITMASK = 1L;
+	public static long UUID_COLUMN_BITMASK = 2L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.wsrp.model.WSRPConsumer"));
 
@@ -111,6 +107,14 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
+	}
+
+	public Class<?> getModelClass() {
+		return WSRPConsumer.class;
+	}
+
+	public String getModelClassName() {
+		return WSRPConsumer.class.getName();
 	}
 
 	public String getUuid() {
@@ -147,6 +151,8 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 	}
 
 	public void setCompanyId(long companyId) {
+		_columnBitmask |= COMPANYID_COLUMN_BITMASK;
+
 		if (!_setOriginalCompanyId) {
 			_setOriginalCompanyId = true;
 
@@ -255,6 +261,10 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 		_forwardCookies = forwardCookies;
 	}
 
+	public long getColumnBitmask() {
+		return _columnBitmask;
+	}
+
 	@Override
 	public WSRPConsumer toEscapedModel() {
 		if (isEscapedModel()) {
@@ -358,6 +368,8 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 		wsrpConsumerModelImpl._originalCompanyId = wsrpConsumerModelImpl._companyId;
 
 		wsrpConsumerModelImpl._setOriginalCompanyId = false;
+
+		_columnBitmask = 0;
 	}
 
 	@Override
@@ -554,5 +566,6 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 	private String _registrationPropertiesString;
 	private String _forwardCookies;
 	private transient ExpandoBridge _expandoBridge;
+	private long _columnBitmask;
 	private WSRPConsumer _escapedModelProxy;
 }

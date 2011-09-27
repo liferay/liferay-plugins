@@ -40,7 +40,6 @@ import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
@@ -90,7 +89,9 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_S = new FinderPath(OAuthTokenModelImpl.ENTITY_CACHE_ENABLED,
 			OAuthTokenModelImpl.FINDER_CACHE_ENABLED, OAuthTokenImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByG_S",
-			new String[] { String.class.getName(), String.class.getName() });
+			new String[] { String.class.getName(), String.class.getName() },
+			OAuthTokenModelImpl.GADGETKEY_COLUMN_BITMASK |
+			OAuthTokenModelImpl.SERVICENAME_COLUMN_BITMASK);
 	public static final FinderPath FINDER_PATH_COUNT_BY_G_S = new FinderPath(OAuthTokenModelImpl.ENTITY_CACHE_ENABLED,
 			OAuthTokenModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_S",
@@ -102,7 +103,12 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 				Long.class.getName(), String.class.getName(),
 				String.class.getName(), Long.class.getName(),
 				String.class.getName()
-			});
+			},
+			OAuthTokenModelImpl.USERID_COLUMN_BITMASK |
+			OAuthTokenModelImpl.GADGETKEY_COLUMN_BITMASK |
+			OAuthTokenModelImpl.SERVICENAME_COLUMN_BITMASK |
+			OAuthTokenModelImpl.MODULEID_COLUMN_BITMASK |
+			OAuthTokenModelImpl.TOKENNAME_COLUMN_BITMASK);
 	public static final FinderPath FINDER_PATH_COUNT_BY_U_G_S_M_T = new FinderPath(OAuthTokenModelImpl.ENTITY_CACHE_ENABLED,
 			OAuthTokenModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByU_G_S_M_T",
@@ -357,20 +363,22 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 
-		if (isNew) {
+		if (isNew || !OAuthTokenModelImpl.COLUMN_BITMASK_ENABLED) {
 			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 		}
+
 		else {
-			if (!Validator.equals(oAuthToken.getGadgetKey(),
-						oAuthTokenModelImpl.getOriginalGadgetKey()) ||
-					!Validator.equals(oAuthToken.getServiceName(),
-						oAuthTokenModelImpl.getOriginalServiceName())) {
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_S,
-					new Object[] {
+			if ((oAuthTokenModelImpl.getColumnBitmask() &
+					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_S.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
 						oAuthTokenModelImpl.getOriginalGadgetKey(),
 						
-					oAuthTokenModelImpl.getOriginalServiceName()
-					});
+						oAuthTokenModelImpl.getOriginalServiceName()
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_G_S, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_S,
+					args);
 			}
 		}
 
@@ -391,14 +399,8 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 				}, oAuthToken);
 		}
 		else {
-			if ((oAuthToken.getUserId() != oAuthTokenModelImpl.getOriginalUserId()) ||
-					!Validator.equals(oAuthToken.getGadgetKey(),
-						oAuthTokenModelImpl.getOriginalGadgetKey()) ||
-					!Validator.equals(oAuthToken.getServiceName(),
-						oAuthTokenModelImpl.getOriginalServiceName()) ||
-					(oAuthToken.getModuleId() != oAuthTokenModelImpl.getOriginalModuleId()) ||
-					!Validator.equals(oAuthToken.getTokenName(),
-						oAuthTokenModelImpl.getOriginalTokenName())) {
+			if ((oAuthTokenModelImpl.getColumnBitmask() &
+					FINDER_PATH_FETCH_BY_U_G_S_M_T.getColumnBitmask()) != 0) {
 				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_G_S_M_T,
 					new Object[] {
 						Long.valueOf(oAuthTokenModelImpl.getOriginalUserId()),

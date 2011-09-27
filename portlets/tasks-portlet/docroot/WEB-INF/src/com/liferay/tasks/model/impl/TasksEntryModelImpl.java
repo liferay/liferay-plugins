@@ -93,6 +93,13 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.tasks.model.TasksEntry"),
 			true);
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.column.bitmask.enabled.com.liferay.tasks.model.TasksEntry"),
+			true);
+	public static long ASSIGNEEUSERID_COLUMN_BITMASK = 1L;
+	public static long GROUPID_COLUMN_BITMASK = 2L;
+	public static long USERID_COLUMN_BITMASK = 4L;
+	public static long RESOLVERUSERID_COLUMN_BITMASK = 8L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.
@@ -137,14 +144,6 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 		return models;
 	}
 
-	public Class<?> getModelClass() {
-		return TasksEntry.class;
-	}
-
-	public String getModelClassName() {
-		return TasksEntry.class.getName();
-	}
-
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.tasks.model.TasksEntry"));
 
@@ -167,6 +166,14 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
+	public Class<?> getModelClass() {
+		return TasksEntry.class;
+	}
+
+	public String getModelClassName() {
+		return TasksEntry.class.getName();
+	}
+
 	@JSON
 	public long getTasksEntryId() {
 		return _tasksEntryId;
@@ -182,6 +189,8 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 	}
 
 	public void setGroupId(long groupId) {
+		_columnBitmask |= GROUPID_COLUMN_BITMASK;
+
 		if (!_setOriginalGroupId) {
 			_setOriginalGroupId = true;
 
@@ -210,6 +219,8 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 	}
 
 	public void setUserId(long userId) {
+		_columnBitmask |= USERID_COLUMN_BITMASK;
+
 		if (!_setOriginalUserId) {
 			_setOriginalUserId = true;
 
@@ -292,6 +303,8 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 	}
 
 	public void setAssigneeUserId(long assigneeUserId) {
+		_columnBitmask |= ASSIGNEEUSERID_COLUMN_BITMASK;
+
 		if (!_setOriginalAssigneeUserId) {
 			_setOriginalAssigneeUserId = true;
 
@@ -320,6 +333,8 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 	}
 
 	public void setResolverUserId(long resolverUserId) {
+		_columnBitmask |= RESOLVERUSERID_COLUMN_BITMASK;
+
 		if (!_setOriginalResolverUserId) {
 			_setOriginalResolverUserId = true;
 
@@ -367,6 +382,10 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 
 	public void setStatus(int status) {
 		_status = status;
+	}
+
+	public long getColumnBitmask() {
+		return _columnBitmask;
 	}
 
 	@Override
@@ -505,6 +524,8 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 		tasksEntryModelImpl._originalResolverUserId = tasksEntryModelImpl._resolverUserId;
 
 		tasksEntryModelImpl._setOriginalResolverUserId = false;
+
+		_columnBitmask = 0;
 	}
 
 	@Override
@@ -718,5 +739,6 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 	private Date _finishDate;
 	private int _status;
 	private transient ExpandoBridge _expandoBridge;
+	private long _columnBitmask;
 	private TasksEntry _escapedModelProxy;
 }

@@ -40,7 +40,6 @@ import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
@@ -92,7 +91,8 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 		new FinderPath(FolderModelImpl.ENTITY_CACHE_ENABLED,
 			FolderModelImpl.FINDER_CACHE_ENABLED, FolderImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByAccountId",
-			new String[] { Long.class.getName() });
+			new String[] { Long.class.getName() },
+			FolderModelImpl.ACCOUNTID_COLUMN_BITMASK);
 	public static final FinderPath FINDER_PATH_COUNT_BY_ACCOUNTID = new FinderPath(FolderModelImpl.ENTITY_CACHE_ENABLED,
 			FolderModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByAccountId",
@@ -100,7 +100,9 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 	public static final FinderPath FINDER_PATH_FETCH_BY_A_F = new FinderPath(FolderModelImpl.ENTITY_CACHE_ENABLED,
 			FolderModelImpl.FINDER_CACHE_ENABLED, FolderImpl.class,
 			FINDER_CLASS_NAME_ENTITY, "fetchByA_F",
-			new String[] { Long.class.getName(), String.class.getName() });
+			new String[] { Long.class.getName(), String.class.getName() },
+			FolderModelImpl.ACCOUNTID_COLUMN_BITMASK |
+			FolderModelImpl.FULLNAME_COLUMN_BITMASK);
 	public static final FinderPath FINDER_PATH_COUNT_BY_A_F = new FinderPath(FolderModelImpl.ENTITY_CACHE_ENABLED,
 			FolderModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByA_F",
@@ -336,15 +338,21 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 
-		if (isNew) {
+		if (isNew || !FolderModelImpl.COLUMN_BITMASK_ENABLED) {
 			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 		}
+
 		else {
-			if (folder.getAccountId() != folderModelImpl.getOriginalAccountId()) {
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_ACCOUNTID,
-					new Object[] {
+			if ((folderModelImpl.getColumnBitmask() &
+					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_ACCOUNTID.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
 						Long.valueOf(folderModelImpl.getOriginalAccountId())
-					});
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_ACCOUNTID,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_ACCOUNTID,
+					args);
 			}
 		}
 
@@ -360,9 +368,8 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 				}, folder);
 		}
 		else {
-			if ((folder.getAccountId() != folderModelImpl.getOriginalAccountId()) ||
-					!Validator.equals(folder.getFullName(),
-						folderModelImpl.getOriginalFullName())) {
+			if ((folderModelImpl.getColumnBitmask() &
+					FINDER_PATH_FETCH_BY_A_F.getColumnBitmask()) != 0) {
 				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_A_F,
 					new Object[] {
 						Long.valueOf(folderModelImpl.getOriginalAccountId()),

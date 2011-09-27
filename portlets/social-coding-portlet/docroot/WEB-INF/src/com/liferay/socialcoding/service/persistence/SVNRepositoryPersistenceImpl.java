@@ -35,7 +35,6 @@ import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
@@ -81,7 +80,8 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 	public static final FinderPath FINDER_PATH_FETCH_BY_URL = new FinderPath(SVNRepositoryModelImpl.ENTITY_CACHE_ENABLED,
 			SVNRepositoryModelImpl.FINDER_CACHE_ENABLED,
 			SVNRepositoryImpl.class, FINDER_CLASS_NAME_ENTITY, "fetchByUrl",
-			new String[] { String.class.getName() });
+			new String[] { String.class.getName() },
+			SVNRepositoryModelImpl.URL_COLUMN_BITMASK);
 	public static final FinderPath FINDER_PATH_COUNT_BY_URL = new FinderPath(SVNRepositoryModelImpl.ENTITY_CACHE_ENABLED,
 			SVNRepositoryModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUrl",
@@ -312,6 +312,10 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 
+		if (isNew || !SVNRepositoryModelImpl.COLUMN_BITMASK_ENABLED) {
+			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		}
+
 		EntityCacheUtil.putResult(SVNRepositoryModelImpl.ENTITY_CACHE_ENABLED,
 			SVNRepositoryImpl.class, svnRepository.getPrimaryKey(),
 			svnRepository);
@@ -321,8 +325,8 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 				new Object[] { svnRepository.getUrl() }, svnRepository);
 		}
 		else {
-			if (!Validator.equals(svnRepository.getUrl(),
-						svnRepositoryModelImpl.getOriginalUrl())) {
+			if ((svnRepositoryModelImpl.getColumnBitmask() &
+					FINDER_PATH_FETCH_BY_URL.getColumnBitmask()) != 0) {
 				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_URL,
 					new Object[] { svnRepositoryModelImpl.getOriginalUrl() });
 

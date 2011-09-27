@@ -89,15 +89,12 @@ public class KaleoTimerModelImpl extends BaseModelImpl<KaleoTimer>
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.portal.workflow.kaleo.model.KaleoTimer"),
 			true);
-
-	public Class<?> getModelClass() {
-		return KaleoTimer.class;
-	}
-
-	public String getModelClassName() {
-		return KaleoTimer.class.getName();
-	}
-
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.column.bitmask.enabled.com.liferay.portal.workflow.kaleo.model.KaleoTimer"),
+			true);
+	public static long BLOCKING_COLUMN_BITMASK = 1L;
+	public static long KALEOCLASSNAME_COLUMN_BITMASK = 2L;
+	public static long KALEOCLASSPK_COLUMN_BITMASK = 4L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.portal.workflow.kaleo.model.KaleoTimer"));
 
@@ -118,6 +115,14 @@ public class KaleoTimerModelImpl extends BaseModelImpl<KaleoTimer>
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
+	}
+
+	public Class<?> getModelClass() {
+		return KaleoTimer.class;
+	}
+
+	public String getModelClassName() {
+		return KaleoTimer.class.getName();
 	}
 
 	public long getKaleoTimerId() {
@@ -199,6 +204,8 @@ public class KaleoTimerModelImpl extends BaseModelImpl<KaleoTimer>
 	}
 
 	public void setKaleoClassName(String kaleoClassName) {
+		_columnBitmask |= KALEOCLASSNAME_COLUMN_BITMASK;
+
 		if (_originalKaleoClassName == null) {
 			_originalKaleoClassName = _kaleoClassName;
 		}
@@ -215,6 +222,8 @@ public class KaleoTimerModelImpl extends BaseModelImpl<KaleoTimer>
 	}
 
 	public void setKaleoClassPK(long kaleoClassPK) {
+		_columnBitmask |= KALEOCLASSPK_COLUMN_BITMASK;
+
 		if (!_setOriginalKaleoClassPK) {
 			_setOriginalKaleoClassPK = true;
 
@@ -258,6 +267,8 @@ public class KaleoTimerModelImpl extends BaseModelImpl<KaleoTimer>
 	}
 
 	public void setBlocking(boolean blocking) {
+		_columnBitmask |= BLOCKING_COLUMN_BITMASK;
+
 		if (!_setOriginalBlocking) {
 			_setOriginalBlocking = true;
 
@@ -324,6 +335,10 @@ public class KaleoTimerModelImpl extends BaseModelImpl<KaleoTimer>
 
 	public void setRecurrenceScale(String recurrenceScale) {
 		_recurrenceScale = recurrenceScale;
+	}
+
+	public long getColumnBitmask() {
+		return _columnBitmask;
 	}
 
 	@Override
@@ -447,6 +462,8 @@ public class KaleoTimerModelImpl extends BaseModelImpl<KaleoTimer>
 		kaleoTimerModelImpl._originalBlocking = kaleoTimerModelImpl._blocking;
 
 		kaleoTimerModelImpl._setOriginalBlocking = false;
+
+		_columnBitmask = 0;
 	}
 
 	@Override
@@ -692,5 +709,6 @@ public class KaleoTimerModelImpl extends BaseModelImpl<KaleoTimer>
 	private double _recurrenceDuration;
 	private String _recurrenceScale;
 	private transient ExpandoBridge _expandoBridge;
+	private long _columnBitmask;
 	private KaleoTimer _escapedModelProxy;
 }

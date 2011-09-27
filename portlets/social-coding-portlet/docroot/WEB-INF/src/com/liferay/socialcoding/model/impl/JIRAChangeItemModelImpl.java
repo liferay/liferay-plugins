@@ -74,15 +74,10 @@ public class JIRAChangeItemModelImpl extends BaseModelImpl<JIRAChangeItem>
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.socialcoding.model.JIRAChangeItem"),
 			true);
-
-	public Class<?> getModelClass() {
-		return JIRAChangeItem.class;
-	}
-
-	public String getModelClassName() {
-		return JIRAChangeItem.class.getName();
-	}
-
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.column.bitmask.enabled.com.liferay.socialcoding.model.JIRAChangeItem"),
+			true);
+	public static long JIRACHANGEGROUPID_COLUMN_BITMASK = 1L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.socialcoding.model.JIRAChangeItem"));
 
@@ -105,6 +100,14 @@ public class JIRAChangeItemModelImpl extends BaseModelImpl<JIRAChangeItem>
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
+	public Class<?> getModelClass() {
+		return JIRAChangeItem.class;
+	}
+
+	public String getModelClassName() {
+		return JIRAChangeItem.class.getName();
+	}
+
 	public long getJiraChangeItemId() {
 		return _jiraChangeItemId;
 	}
@@ -118,6 +121,8 @@ public class JIRAChangeItemModelImpl extends BaseModelImpl<JIRAChangeItem>
 	}
 
 	public void setJiraChangeGroupId(long jiraChangeGroupId) {
+		_columnBitmask |= JIRACHANGEGROUPID_COLUMN_BITMASK;
+
 		if (!_setOriginalJiraChangeGroupId) {
 			_setOriginalJiraChangeGroupId = true;
 
@@ -194,6 +199,10 @@ public class JIRAChangeItemModelImpl extends BaseModelImpl<JIRAChangeItem>
 
 	public void setNewString(String newString) {
 		_newString = newString;
+	}
+
+	public long getColumnBitmask() {
+		return _columnBitmask;
 	}
 
 	@Override
@@ -295,6 +304,8 @@ public class JIRAChangeItemModelImpl extends BaseModelImpl<JIRAChangeItem>
 		jiraChangeItemModelImpl._originalJiraChangeGroupId = jiraChangeItemModelImpl._jiraChangeGroupId;
 
 		jiraChangeItemModelImpl._setOriginalJiraChangeGroupId = false;
+
+		_columnBitmask = 0;
 	}
 
 	@Override
@@ -426,5 +437,6 @@ public class JIRAChangeItemModelImpl extends BaseModelImpl<JIRAChangeItem>
 	private String _newValue;
 	private String _newString;
 	private transient ExpandoBridge _expandoBridge;
+	private long _columnBitmask;
 	private JIRAChangeItem _escapedModelProxy;
 }

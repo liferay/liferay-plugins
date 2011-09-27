@@ -89,6 +89,11 @@ public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.knowledgebase.model.KBTemplate"),
 			true);
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.column.bitmask.enabled.com.liferay.knowledgebase.model.KBTemplate"),
+			true);
+	public static long GROUPID_COLUMN_BITMASK = 1L;
+	public static long UUID_COLUMN_BITMASK = 2L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.
@@ -129,14 +134,6 @@ public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 		return models;
 	}
 
-	public Class<?> getModelClass() {
-		return KBTemplate.class;
-	}
-
-	public String getModelClassName() {
-		return KBTemplate.class.getName();
-	}
-
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.knowledgebase.model.KBTemplate"));
 
@@ -157,6 +154,14 @@ public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
+	}
+
+	public Class<?> getModelClass() {
+		return KBTemplate.class;
+	}
+
+	public String getModelClassName() {
+		return KBTemplate.class.getName();
 	}
 
 	@JSON
@@ -196,6 +201,8 @@ public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 	}
 
 	public void setGroupId(long groupId) {
+		_columnBitmask |= GROUPID_COLUMN_BITMASK;
+
 		if (!_setOriginalGroupId) {
 			_setOriginalGroupId = true;
 
@@ -293,6 +300,10 @@ public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 
 	public void setContent(String content) {
 		_content = content;
+	}
+
+	public long getColumnBitmask() {
+		return _columnBitmask;
 	}
 
 	@Override
@@ -400,6 +411,8 @@ public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 		kbTemplateModelImpl._originalGroupId = kbTemplateModelImpl._groupId;
 
 		kbTemplateModelImpl._setOriginalGroupId = false;
+
+		_columnBitmask = 0;
 	}
 
 	@Override
@@ -568,5 +581,6 @@ public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 	private String _title;
 	private String _content;
 	private transient ExpandoBridge _expandoBridge;
+	private long _columnBitmask;
 	private KBTemplate _escapedModelProxy;
 }

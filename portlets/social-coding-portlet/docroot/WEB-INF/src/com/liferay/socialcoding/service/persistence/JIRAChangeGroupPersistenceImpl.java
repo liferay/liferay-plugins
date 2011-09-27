@@ -35,7 +35,6 @@ import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
@@ -94,7 +93,8 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 			JIRAChangeGroupModelImpl.FINDER_CACHE_ENABLED,
 			JIRAChangeGroupImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByJiraUserId",
-			new String[] { String.class.getName() });
+			new String[] { String.class.getName() },
+			JIRAChangeGroupModelImpl.JIRAUSERID_COLUMN_BITMASK);
 	public static final FinderPath FINDER_PATH_COUNT_BY_JIRAUSERID = new FinderPath(JIRAChangeGroupModelImpl.ENTITY_CACHE_ENABLED,
 			JIRAChangeGroupModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByJiraUserId",
@@ -115,7 +115,8 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 			JIRAChangeGroupModelImpl.FINDER_CACHE_ENABLED,
 			JIRAChangeGroupImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByJiraIssueId",
-			new String[] { Long.class.getName() });
+			new String[] { Long.class.getName() },
+			JIRAChangeGroupModelImpl.JIRAISSUEID_COLUMN_BITMASK);
 	public static final FinderPath FINDER_PATH_COUNT_BY_JIRAISSUEID = new FinderPath(JIRAChangeGroupModelImpl.ENTITY_CACHE_ENABLED,
 			JIRAChangeGroupModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByJiraIssueId",
@@ -336,24 +337,33 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 
-		if (isNew) {
+		if (isNew || !JIRAChangeGroupModelImpl.COLUMN_BITMASK_ENABLED) {
 			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 		}
+
 		else {
-			if (!Validator.equals(jiraChangeGroup.getJiraUserId(),
-						jiraChangeGroupModelImpl.getOriginalJiraUserId())) {
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_JIRAUSERID,
-					new Object[] {
+			if ((jiraChangeGroupModelImpl.getColumnBitmask() &
+					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_JIRAUSERID.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
 						jiraChangeGroupModelImpl.getOriginalJiraUserId()
-					});
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_JIRAUSERID,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_JIRAUSERID,
+					args);
 			}
 
-			if (jiraChangeGroup.getJiraIssueId() != jiraChangeGroupModelImpl.getOriginalJiraIssueId()) {
+			if ((jiraChangeGroupModelImpl.getColumnBitmask() &
+					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_JIRAISSUEID.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						Long.valueOf(jiraChangeGroupModelImpl.getOriginalJiraIssueId())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_JIRAISSUEID,
+					args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_JIRAISSUEID,
-					new Object[] {
-						Long.valueOf(
-							jiraChangeGroupModelImpl.getOriginalJiraIssueId())
-					});
+					args);
 			}
 		}
 

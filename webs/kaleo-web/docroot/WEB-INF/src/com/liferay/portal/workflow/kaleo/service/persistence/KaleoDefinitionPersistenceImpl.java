@@ -39,7 +39,6 @@ import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
@@ -97,7 +96,8 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 			KaleoDefinitionModelImpl.FINDER_CACHE_ENABLED,
 			KaleoDefinitionImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByCompanyId",
-			new String[] { Long.class.getName() });
+			new String[] { Long.class.getName() },
+			KaleoDefinitionModelImpl.COMPANYID_COLUMN_BITMASK);
 	public static final FinderPath FINDER_PATH_COUNT_BY_COMPANYID = new FinderPath(KaleoDefinitionModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoDefinitionModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByCompanyId",
@@ -116,7 +116,9 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 			KaleoDefinitionModelImpl.FINDER_CACHE_ENABLED,
 			KaleoDefinitionImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByC_N",
-			new String[] { Long.class.getName(), String.class.getName() });
+			new String[] { Long.class.getName(), String.class.getName() },
+			KaleoDefinitionModelImpl.COMPANYID_COLUMN_BITMASK |
+			KaleoDefinitionModelImpl.NAME_COLUMN_BITMASK);
 	public static final FinderPath FINDER_PATH_COUNT_BY_C_N = new FinderPath(KaleoDefinitionModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoDefinitionModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByC_N",
@@ -135,7 +137,9 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 			KaleoDefinitionModelImpl.FINDER_CACHE_ENABLED,
 			KaleoDefinitionImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByC_A",
-			new String[] { Long.class.getName(), Boolean.class.getName() });
+			new String[] { Long.class.getName(), Boolean.class.getName() },
+			KaleoDefinitionModelImpl.COMPANYID_COLUMN_BITMASK |
+			KaleoDefinitionModelImpl.ACTIVE_COLUMN_BITMASK);
 	public static final FinderPath FINDER_PATH_COUNT_BY_C_A = new FinderPath(KaleoDefinitionModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoDefinitionModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByC_A",
@@ -147,7 +151,10 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 			new String[] {
 				Long.class.getName(), String.class.getName(),
 				Integer.class.getName()
-			});
+			},
+			KaleoDefinitionModelImpl.COMPANYID_COLUMN_BITMASK |
+			KaleoDefinitionModelImpl.NAME_COLUMN_BITMASK |
+			KaleoDefinitionModelImpl.VERSION_COLUMN_BITMASK);
 	public static final FinderPath FINDER_PATH_COUNT_BY_C_N_V = new FinderPath(KaleoDefinitionModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoDefinitionModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByC_N_V",
@@ -173,7 +180,10 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 			new String[] {
 				Long.class.getName(), String.class.getName(),
 				Boolean.class.getName()
-			});
+			},
+			KaleoDefinitionModelImpl.COMPANYID_COLUMN_BITMASK |
+			KaleoDefinitionModelImpl.NAME_COLUMN_BITMASK |
+			KaleoDefinitionModelImpl.ACTIVE_COLUMN_BITMASK);
 	public static final FinderPath FINDER_PATH_COUNT_BY_C_N_A = new FinderPath(KaleoDefinitionModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoDefinitionModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByC_N_A",
@@ -423,54 +433,60 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 
-		if (isNew) {
+		if (isNew || !KaleoDefinitionModelImpl.COLUMN_BITMASK_ENABLED) {
 			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 		}
+
 		else {
-			if (kaleoDefinition.getCompanyId() != kaleoDefinitionModelImpl.getOriginalCompanyId()) {
+			if ((kaleoDefinitionModelImpl.getColumnBitmask() &
+					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_COMPANYID.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						Long.valueOf(kaleoDefinitionModelImpl.getOriginalCompanyId())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_COMPANYID,
+					args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_COMPANYID,
-					new Object[] {
-						Long.valueOf(
-							kaleoDefinitionModelImpl.getOriginalCompanyId())
-					});
+					args);
 			}
 
-			if ((kaleoDefinition.getCompanyId() != kaleoDefinitionModelImpl.getOriginalCompanyId()) ||
-					!Validator.equals(kaleoDefinition.getName(),
-						kaleoDefinitionModelImpl.getOriginalName())) {
+			if ((kaleoDefinitionModelImpl.getColumnBitmask() &
+					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_N.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						Long.valueOf(kaleoDefinitionModelImpl.getOriginalCompanyId()),
+						
+						kaleoDefinitionModelImpl.getOriginalName()
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_N, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_N,
-					new Object[] {
-						Long.valueOf(
-							kaleoDefinitionModelImpl.getOriginalCompanyId()),
-						
-					kaleoDefinitionModelImpl.getOriginalName()
-					});
+					args);
 			}
 
-			if ((kaleoDefinition.getCompanyId() != kaleoDefinitionModelImpl.getOriginalCompanyId()) ||
-					(kaleoDefinition.getActive() != kaleoDefinitionModelImpl.getOriginalActive())) {
+			if ((kaleoDefinitionModelImpl.getColumnBitmask() &
+					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_A.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						Long.valueOf(kaleoDefinitionModelImpl.getOriginalCompanyId()),
+						Boolean.valueOf(kaleoDefinitionModelImpl.getOriginalActive())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_A, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_A,
-					new Object[] {
-						Long.valueOf(
-							kaleoDefinitionModelImpl.getOriginalCompanyId()),
-						Boolean.valueOf(
-							kaleoDefinitionModelImpl.getOriginalActive())
-					});
+					args);
 			}
 
-			if ((kaleoDefinition.getCompanyId() != kaleoDefinitionModelImpl.getOriginalCompanyId()) ||
-					!Validator.equals(kaleoDefinition.getName(),
-						kaleoDefinitionModelImpl.getOriginalName()) ||
-					(kaleoDefinition.getActive() != kaleoDefinitionModelImpl.getOriginalActive())) {
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_N_A,
-					new Object[] {
-						Long.valueOf(
-							kaleoDefinitionModelImpl.getOriginalCompanyId()),
+			if ((kaleoDefinitionModelImpl.getColumnBitmask() &
+					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_N_A.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						Long.valueOf(kaleoDefinitionModelImpl.getOriginalCompanyId()),
 						
-					kaleoDefinitionModelImpl.getOriginalName(),
-						Boolean.valueOf(
-							kaleoDefinitionModelImpl.getOriginalActive())
-					});
+						kaleoDefinitionModelImpl.getOriginalName(),
+						Boolean.valueOf(kaleoDefinitionModelImpl.getOriginalActive())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_N_A, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_N_A,
+					args);
 			}
 		}
 
@@ -488,10 +504,8 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 				}, kaleoDefinition);
 		}
 		else {
-			if ((kaleoDefinition.getCompanyId() != kaleoDefinitionModelImpl.getOriginalCompanyId()) ||
-					!Validator.equals(kaleoDefinition.getName(),
-						kaleoDefinitionModelImpl.getOriginalName()) ||
-					(kaleoDefinition.getVersion() != kaleoDefinitionModelImpl.getOriginalVersion())) {
+			if ((kaleoDefinitionModelImpl.getColumnBitmask() &
+					FINDER_PATH_FETCH_BY_C_N_V.getColumnBitmask()) != 0) {
 				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_N_V,
 					new Object[] {
 						Long.valueOf(

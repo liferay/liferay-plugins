@@ -88,15 +88,14 @@ public class KaleoInstanceTokenModelImpl extends BaseModelImpl<KaleoInstanceToke
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken"),
 			true);
-
-	public Class<?> getModelClass() {
-		return KaleoInstanceToken.class;
-	}
-
-	public String getModelClassName() {
-		return KaleoInstanceToken.class.getName();
-	}
-
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.column.bitmask.enabled.com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken"),
+			true);
+	public static long COMPANYID_COLUMN_BITMASK = 1L;
+	public static long PARENTKALEOINSTANCETOKENID_COLUMN_BITMASK = 2L;
+	public static long KALEOINSTANCEID_COLUMN_BITMASK = 4L;
+	public static long COMPLETIONDATE_COLUMN_BITMASK = 8L;
+	public static long KALEODEFINITIONID_COLUMN_BITMASK = 16L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken"));
 
@@ -117,6 +116,14 @@ public class KaleoInstanceTokenModelImpl extends BaseModelImpl<KaleoInstanceToke
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
+	}
+
+	public Class<?> getModelClass() {
+		return KaleoInstanceToken.class;
+	}
+
+	public String getModelClassName() {
+		return KaleoInstanceToken.class.getName();
 	}
 
 	public long getKaleoInstanceTokenId() {
@@ -140,6 +147,8 @@ public class KaleoInstanceTokenModelImpl extends BaseModelImpl<KaleoInstanceToke
 	}
 
 	public void setCompanyId(long companyId) {
+		_columnBitmask |= COMPANYID_COLUMN_BITMASK;
+
 		if (!_setOriginalCompanyId) {
 			_setOriginalCompanyId = true;
 
@@ -203,6 +212,8 @@ public class KaleoInstanceTokenModelImpl extends BaseModelImpl<KaleoInstanceToke
 	}
 
 	public void setKaleoDefinitionId(long kaleoDefinitionId) {
+		_columnBitmask |= KALEODEFINITIONID_COLUMN_BITMASK;
+
 		if (!_setOriginalKaleoDefinitionId) {
 			_setOriginalKaleoDefinitionId = true;
 
@@ -221,6 +232,8 @@ public class KaleoInstanceTokenModelImpl extends BaseModelImpl<KaleoInstanceToke
 	}
 
 	public void setKaleoInstanceId(long kaleoInstanceId) {
+		_columnBitmask |= KALEOINSTANCEID_COLUMN_BITMASK;
+
 		if (!_setOriginalKaleoInstanceId) {
 			_setOriginalKaleoInstanceId = true;
 
@@ -239,6 +252,8 @@ public class KaleoInstanceTokenModelImpl extends BaseModelImpl<KaleoInstanceToke
 	}
 
 	public void setParentKaleoInstanceTokenId(long parentKaleoInstanceTokenId) {
+		_columnBitmask |= PARENTKALEOINSTANCETOKENID_COLUMN_BITMASK;
+
 		if (!_setOriginalParentKaleoInstanceTokenId) {
 			_setOriginalParentKaleoInstanceTokenId = true;
 
@@ -311,6 +326,8 @@ public class KaleoInstanceTokenModelImpl extends BaseModelImpl<KaleoInstanceToke
 	}
 
 	public void setCompletionDate(Date completionDate) {
+		_columnBitmask |= COMPLETIONDATE_COLUMN_BITMASK;
+
 		if (_originalCompletionDate == null) {
 			_originalCompletionDate = _completionDate;
 		}
@@ -320,6 +337,10 @@ public class KaleoInstanceTokenModelImpl extends BaseModelImpl<KaleoInstanceToke
 
 	public Date getOriginalCompletionDate() {
 		return _originalCompletionDate;
+	}
+
+	public long getColumnBitmask() {
+		return _columnBitmask;
 	}
 
 	@Override
@@ -450,6 +471,8 @@ public class KaleoInstanceTokenModelImpl extends BaseModelImpl<KaleoInstanceToke
 		kaleoInstanceTokenModelImpl._setOriginalParentKaleoInstanceTokenId = false;
 
 		kaleoInstanceTokenModelImpl._originalCompletionDate = kaleoInstanceTokenModelImpl._completionDate;
+
+		_columnBitmask = 0;
 	}
 
 	@Override
@@ -680,5 +703,6 @@ public class KaleoInstanceTokenModelImpl extends BaseModelImpl<KaleoInstanceToke
 	private Date _completionDate;
 	private Date _originalCompletionDate;
 	private transient ExpandoBridge _expandoBridge;
+	private long _columnBitmask;
 	private KaleoInstanceToken _escapedModelProxy;
 }

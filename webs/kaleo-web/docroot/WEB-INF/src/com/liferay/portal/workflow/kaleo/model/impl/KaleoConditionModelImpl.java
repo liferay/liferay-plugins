@@ -83,15 +83,12 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.portal.workflow.kaleo.model.KaleoCondition"),
 			true);
-
-	public Class<?> getModelClass() {
-		return KaleoCondition.class;
-	}
-
-	public String getModelClassName() {
-		return KaleoCondition.class.getName();
-	}
-
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.column.bitmask.enabled.com.liferay.portal.workflow.kaleo.model.KaleoCondition"),
+			true);
+	public static long COMPANYID_COLUMN_BITMASK = 1L;
+	public static long KALEONODEID_COLUMN_BITMASK = 2L;
+	public static long KALEODEFINITIONID_COLUMN_BITMASK = 4L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.portal.workflow.kaleo.model.KaleoCondition"));
 
@@ -112,6 +109,14 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
+	}
+
+	public Class<?> getModelClass() {
+		return KaleoCondition.class;
+	}
+
+	public String getModelClassName() {
+		return KaleoCondition.class.getName();
 	}
 
 	public long getKaleoConditionId() {
@@ -135,6 +140,8 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 	}
 
 	public void setCompanyId(long companyId) {
+		_columnBitmask |= COMPANYID_COLUMN_BITMASK;
+
 		if (!_setOriginalCompanyId) {
 			_setOriginalCompanyId = true;
 
@@ -198,6 +205,8 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 	}
 
 	public void setKaleoDefinitionId(long kaleoDefinitionId) {
+		_columnBitmask |= KALEODEFINITIONID_COLUMN_BITMASK;
+
 		if (!_setOriginalKaleoDefinitionId) {
 			_setOriginalKaleoDefinitionId = true;
 
@@ -216,6 +225,8 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 	}
 
 	public void setKaleoNodeId(long kaleoNodeId) {
+		_columnBitmask |= KALEONODEID_COLUMN_BITMASK;
+
 		if (!_setOriginalKaleoNodeId) {
 			_setOriginalKaleoNodeId = true;
 
@@ -253,6 +264,10 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 
 	public void setScriptLanguage(String scriptLanguage) {
 		_scriptLanguage = scriptLanguage;
+	}
+
+	public long getColumnBitmask() {
+		return _columnBitmask;
 	}
 
 	@Override
@@ -372,6 +387,8 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 		kaleoConditionModelImpl._originalKaleoNodeId = kaleoConditionModelImpl._kaleoNodeId;
 
 		kaleoConditionModelImpl._setOriginalKaleoNodeId = false;
+
+		_columnBitmask = 0;
 	}
 
 	@Override
@@ -546,5 +563,6 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 	private String _script;
 	private String _scriptLanguage;
 	private transient ExpandoBridge _expandoBridge;
+	private long _columnBitmask;
 	private KaleoCondition _escapedModelProxy;
 }

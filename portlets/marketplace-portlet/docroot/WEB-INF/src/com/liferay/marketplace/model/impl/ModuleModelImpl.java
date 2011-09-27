@@ -71,15 +71,12 @@ public class ModuleModelImpl extends BaseModelImpl<Module>
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.marketplace.model.Module"),
 			true);
-
-	public Class<?> getModelClass() {
-		return Module.class;
-	}
-
-	public String getModelClassName() {
-		return Module.class.getName();
-	}
-
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.column.bitmask.enabled.com.liferay.marketplace.model.Module"),
+			true);
+	public static long APPID_COLUMN_BITMASK = 1L;
+	public static long UUID_COLUMN_BITMASK = 2L;
+	public static long CONTEXTNAME_COLUMN_BITMASK = 4L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.marketplace.model.Module"));
 
@@ -100,6 +97,14 @@ public class ModuleModelImpl extends BaseModelImpl<Module>
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
+	}
+
+	public Class<?> getModelClass() {
+		return Module.class;
+	}
+
+	public String getModelClassName() {
+		return Module.class.getName();
 	}
 
 	public String getUuid() {
@@ -136,6 +141,8 @@ public class ModuleModelImpl extends BaseModelImpl<Module>
 	}
 
 	public void setAppId(long appId) {
+		_columnBitmask |= APPID_COLUMN_BITMASK;
+
 		if (!_setOriginalAppId) {
 			_setOriginalAppId = true;
 
@@ -159,6 +166,8 @@ public class ModuleModelImpl extends BaseModelImpl<Module>
 	}
 
 	public void setContextName(String contextName) {
+		_columnBitmask |= CONTEXTNAME_COLUMN_BITMASK;
+
 		if (_originalContextName == null) {
 			_originalContextName = _contextName;
 		}
@@ -168,6 +177,10 @@ public class ModuleModelImpl extends BaseModelImpl<Module>
 
 	public String getOriginalContextName() {
 		return GetterUtil.getString(_originalContextName);
+	}
+
+	public long getColumnBitmask() {
+		return _columnBitmask;
 	}
 
 	@Override
@@ -270,6 +283,8 @@ public class ModuleModelImpl extends BaseModelImpl<Module>
 		moduleModelImpl._setOriginalAppId = false;
 
 		moduleModelImpl._originalContextName = moduleModelImpl._contextName;
+
+		_columnBitmask = 0;
 	}
 
 	@Override
@@ -358,5 +373,6 @@ public class ModuleModelImpl extends BaseModelImpl<Module>
 	private String _contextName;
 	private String _originalContextName;
 	private transient ExpandoBridge _expandoBridge;
+	private long _columnBitmask;
 	private Module _escapedModelProxy;
 }

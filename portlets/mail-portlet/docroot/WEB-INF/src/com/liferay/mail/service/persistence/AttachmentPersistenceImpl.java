@@ -91,7 +91,8 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 		new FinderPath(AttachmentModelImpl.ENTITY_CACHE_ENABLED,
 			AttachmentModelImpl.FINDER_CACHE_ENABLED, AttachmentImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByMessageId",
-			new String[] { Long.class.getName() });
+			new String[] { Long.class.getName() },
+			AttachmentModelImpl.MESSAGEID_COLUMN_BITMASK);
 	public static final FinderPath FINDER_PATH_COUNT_BY_MESSAGEID = new FinderPath(AttachmentModelImpl.ENTITY_CACHE_ENABLED,
 			AttachmentModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByMessageId",
@@ -305,15 +306,21 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 
-		if (isNew) {
+		if (isNew || !AttachmentModelImpl.COLUMN_BITMASK_ENABLED) {
 			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 		}
+
 		else {
-			if (attachment.getMessageId() != attachmentModelImpl.getOriginalMessageId()) {
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_MESSAGEID,
-					new Object[] {
+			if ((attachmentModelImpl.getColumnBitmask() &
+					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_MESSAGEID.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
 						Long.valueOf(attachmentModelImpl.getOriginalMessageId())
-					});
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_MESSAGEID,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_MESSAGEID,
+					args);
 			}
 		}
 

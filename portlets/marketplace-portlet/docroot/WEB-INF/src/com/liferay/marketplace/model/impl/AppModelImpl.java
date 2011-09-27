@@ -79,15 +79,12 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.marketplace.model.App"),
 			true);
-
-	public Class<?> getModelClass() {
-		return App.class;
-	}
-
-	public String getModelClassName() {
-		return App.class.getName();
-	}
-
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.column.bitmask.enabled.com.liferay.marketplace.model.App"),
+			true);
+	public static long COMPANYID_COLUMN_BITMASK = 1L;
+	public static long REMOTEAPPID_COLUMN_BITMASK = 2L;
+	public static long UUID_COLUMN_BITMASK = 4L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.marketplace.model.App"));
 
@@ -108,6 +105,14 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
+	}
+
+	public Class<?> getModelClass() {
+		return App.class;
+	}
+
+	public String getModelClassName() {
+		return App.class.getName();
 	}
 
 	public String getUuid() {
@@ -144,6 +149,8 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 	}
 
 	public void setCompanyId(long companyId) {
+		_columnBitmask |= COMPANYID_COLUMN_BITMASK;
+
 		if (!_setOriginalCompanyId) {
 			_setOriginalCompanyId = true;
 
@@ -207,6 +214,8 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 	}
 
 	public void setRemoteAppId(long remoteAppId) {
+		_columnBitmask |= REMOTEAPPID_COLUMN_BITMASK;
+
 		if (!_setOriginalRemoteAppId) {
 			_setOriginalRemoteAppId = true;
 
@@ -231,6 +240,10 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 
 	public void setVersion(String version) {
 		_version = version;
+	}
+
+	public long getColumnBitmask() {
+		return _columnBitmask;
 	}
 
 	@Override
@@ -340,6 +353,8 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 		appModelImpl._originalRemoteAppId = appModelImpl._remoteAppId;
 
 		appModelImpl._setOriginalRemoteAppId = false;
+
+		_columnBitmask = 0;
 	}
 
 	@Override
@@ -495,5 +510,6 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 	private boolean _setOriginalRemoteAppId;
 	private String _version;
 	private transient ExpandoBridge _expandoBridge;
+	private long _columnBitmask;
 	private App _escapedModelProxy;
 }

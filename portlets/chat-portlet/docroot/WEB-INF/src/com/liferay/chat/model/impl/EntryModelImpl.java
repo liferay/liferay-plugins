@@ -75,15 +75,13 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.chat.model.Entry"),
 			true);
-
-	public Class<?> getModelClass() {
-		return Entry.class;
-	}
-
-	public String getModelClassName() {
-		return Entry.class.getName();
-	}
-
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.column.bitmask.enabled.com.liferay.chat.model.Entry"),
+			true);
+	public static long CONTENT_COLUMN_BITMASK = 1L;
+	public static long TOUSERID_COLUMN_BITMASK = 2L;
+	public static long CREATEDATE_COLUMN_BITMASK = 4L;
+	public static long FROMUSERID_COLUMN_BITMASK = 8L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.chat.model.Entry"));
 
@@ -106,6 +104,14 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
+	public Class<?> getModelClass() {
+		return Entry.class;
+	}
+
+	public String getModelClassName() {
+		return Entry.class.getName();
+	}
+
 	public long getEntryId() {
 		return _entryId;
 	}
@@ -119,6 +125,8 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 	}
 
 	public void setCreateDate(long createDate) {
+		_columnBitmask |= CREATEDATE_COLUMN_BITMASK;
+
 		if (!_setOriginalCreateDate) {
 			_setOriginalCreateDate = true;
 
@@ -137,6 +145,8 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 	}
 
 	public void setFromUserId(long fromUserId) {
+		_columnBitmask |= FROMUSERID_COLUMN_BITMASK;
+
 		if (!_setOriginalFromUserId) {
 			_setOriginalFromUserId = true;
 
@@ -163,6 +173,8 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 	}
 
 	public void setToUserId(long toUserId) {
+		_columnBitmask |= TOUSERID_COLUMN_BITMASK;
+
 		if (!_setOriginalToUserId) {
 			_setOriginalToUserId = true;
 
@@ -194,6 +206,8 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 	}
 
 	public void setContent(String content) {
+		_columnBitmask |= CONTENT_COLUMN_BITMASK;
+
 		if (_originalContent == null) {
 			_originalContent = _content;
 		}
@@ -203,6 +217,10 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 
 	public String getOriginalContent() {
 		return GetterUtil.getString(_originalContent);
+	}
+
+	public long getColumnBitmask() {
+		return _columnBitmask;
 	}
 
 	@Override
@@ -320,6 +338,8 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 		entryModelImpl._setOriginalToUserId = false;
 
 		entryModelImpl._originalContent = entryModelImpl._content;
+
+		_columnBitmask = 0;
 	}
 
 	@Override
@@ -416,5 +436,6 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 	private String _content;
 	private String _originalContent;
 	private transient ExpandoBridge _expandoBridge;
+	private long _columnBitmask;
 	private Entry _escapedModelProxy;
 }

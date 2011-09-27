@@ -35,7 +35,6 @@ import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
@@ -81,7 +80,9 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	public static final FinderPath FINDER_PATH_FETCH_BY_C_TWUI = new FinderPath(FeedModelImpl.ENTITY_CACHE_ENABLED,
 			FeedModelImpl.FINDER_CACHE_ENABLED, FeedImpl.class,
 			FINDER_CLASS_NAME_ENTITY, "fetchByC_TWUI",
-			new String[] { Long.class.getName(), Long.class.getName() });
+			new String[] { Long.class.getName(), Long.class.getName() },
+			FeedModelImpl.COMPANYID_COLUMN_BITMASK |
+			FeedModelImpl.TWITTERUSERID_COLUMN_BITMASK);
 	public static final FinderPath FINDER_PATH_COUNT_BY_C_TWUI = new FinderPath(FeedModelImpl.ENTITY_CACHE_ENABLED,
 			FeedModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByC_TWUI",
@@ -89,7 +90,9 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	public static final FinderPath FINDER_PATH_FETCH_BY_C_TSN = new FinderPath(FeedModelImpl.ENTITY_CACHE_ENABLED,
 			FeedModelImpl.FINDER_CACHE_ENABLED, FeedImpl.class,
 			FINDER_CLASS_NAME_ENTITY, "fetchByC_TSN",
-			new String[] { Long.class.getName(), String.class.getName() });
+			new String[] { Long.class.getName(), String.class.getName() },
+			FeedModelImpl.COMPANYID_COLUMN_BITMASK |
+			FeedModelImpl.TWITTERSCREENNAME_COLUMN_BITMASK);
 	public static final FinderPath FINDER_PATH_COUNT_BY_C_TSN = new FinderPath(FeedModelImpl.ENTITY_CACHE_ENABLED,
 			FeedModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByC_TSN",
@@ -340,6 +343,10 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 
+		if (isNew || !FeedModelImpl.COLUMN_BITMASK_ENABLED) {
+			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		}
+
 		EntityCacheUtil.putResult(FeedModelImpl.ENTITY_CACHE_ENABLED,
 			FeedImpl.class, feed.getPrimaryKey(), feed);
 
@@ -358,8 +365,8 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 				}, feed);
 		}
 		else {
-			if ((feed.getCompanyId() != feedModelImpl.getOriginalCompanyId()) ||
-					(feed.getTwitterUserId() != feedModelImpl.getOriginalTwitterUserId())) {
+			if ((feedModelImpl.getColumnBitmask() &
+					FINDER_PATH_FETCH_BY_C_TWUI.getColumnBitmask()) != 0) {
 				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_TWUI,
 					new Object[] {
 						Long.valueOf(feedModelImpl.getOriginalCompanyId()),
@@ -373,9 +380,8 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 					}, feed);
 			}
 
-			if ((feed.getCompanyId() != feedModelImpl.getOriginalCompanyId()) ||
-					!Validator.equals(feed.getTwitterScreenName(),
-						feedModelImpl.getOriginalTwitterScreenName())) {
+			if ((feedModelImpl.getColumnBitmask() &
+					FINDER_PATH_FETCH_BY_C_TSN.getColumnBitmask()) != 0) {
 				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_TSN,
 					new Object[] {
 						Long.valueOf(feedModelImpl.getOriginalCompanyId()),
