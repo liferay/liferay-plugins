@@ -109,13 +109,13 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 			true);
 	public static long COMPANYID_COLUMN_BITMASK = 1L;
 	public static long GROUPID_COLUMN_BITMASK = 2L;
-	public static long MAIN_COLUMN_BITMASK = 4L;
-	public static long RESOURCEPRIMKEY_COLUMN_BITMASK = 8L;
-	public static long LATEST_COLUMN_BITMASK = 16L;
-	public static long UUID_COLUMN_BITMASK = 32L;
-	public static long PARENTRESOURCEPRIMKEY_COLUMN_BITMASK = 64L;
+	public static long LATEST_COLUMN_BITMASK = 4L;
+	public static long MAIN_COLUMN_BITMASK = 8L;
+	public static long PARENTRESOURCEPRIMKEY_COLUMN_BITMASK = 16L;
+	public static long RESOURCEPRIMKEY_COLUMN_BITMASK = 32L;
+	public static long SECTIONS_COLUMN_BITMASK = 64L;
 	public static long STATUS_COLUMN_BITMASK = 128L;
-	public static long SECTIONS_COLUMN_BITMASK = 256L;
+	public static long UUID_COLUMN_BITMASK = 256L;
 	public static long VERSION_COLUMN_BITMASK = 512L;
 
 	/**

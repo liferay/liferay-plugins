@@ -88,11 +88,11 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.column.bitmask.enabled.com.liferay.opensocial.model.OAuthToken"),
 			true);
-	public static long TOKENNAME_COLUMN_BITMASK = 1L;
-	public static long USERID_COLUMN_BITMASK = 2L;
-	public static long MODULEID_COLUMN_BITMASK = 4L;
-	public static long SERVICENAME_COLUMN_BITMASK = 8L;
-	public static long GADGETKEY_COLUMN_BITMASK = 16L;
+	public static long GADGETKEY_COLUMN_BITMASK = 1L;
+	public static long MODULEID_COLUMN_BITMASK = 2L;
+	public static long SERVICENAME_COLUMN_BITMASK = 4L;
+	public static long TOKENNAME_COLUMN_BITMASK = 8L;
+	public static long USERID_COLUMN_BITMASK = 16L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.opensocial.model.OAuthToken"));
 

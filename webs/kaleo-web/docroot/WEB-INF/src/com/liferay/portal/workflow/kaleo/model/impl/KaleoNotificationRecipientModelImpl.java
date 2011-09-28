@@ -89,8 +89,8 @@ public class KaleoNotificationRecipientModelImpl extends BaseModelImpl<KaleoNoti
 				"value.object.column.bitmask.enabled.com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient"),
 			true);
 	public static long COMPANYID_COLUMN_BITMASK = 1L;
-	public static long KALEONOTIFICATIONID_COLUMN_BITMASK = 2L;
-	public static long KALEODEFINITIONID_COLUMN_BITMASK = 4L;
+	public static long KALEODEFINITIONID_COLUMN_BITMASK = 2L;
+	public static long KALEONOTIFICATIONID_COLUMN_BITMASK = 4L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient"));
 

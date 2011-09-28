@@ -79,9 +79,9 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 				"value.object.column.bitmask.enabled.com.liferay.chat.model.Entry"),
 			true);
 	public static long CONTENT_COLUMN_BITMASK = 1L;
-	public static long TOUSERID_COLUMN_BITMASK = 2L;
-	public static long CREATEDATE_COLUMN_BITMASK = 4L;
-	public static long FROMUSERID_COLUMN_BITMASK = 8L;
+	public static long CREATEDATE_COLUMN_BITMASK = 2L;
+	public static long FROMUSERID_COLUMN_BITMASK = 4L;
+	public static long TOUSERID_COLUMN_BITMASK = 8L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.chat.model.Entry"));
 

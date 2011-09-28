@@ -88,8 +88,8 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 				"value.object.column.bitmask.enabled.com.liferay.opensocial.model.Gadget"),
 			true);
 	public static long COMPANYID_COLUMN_BITMASK = 1L;
-	public static long UUID_COLUMN_BITMASK = 2L;
-	public static long URL_COLUMN_BITMASK = 4L;
+	public static long URL_COLUMN_BITMASK = 2L;
+	public static long UUID_COLUMN_BITMASK = 4L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.
