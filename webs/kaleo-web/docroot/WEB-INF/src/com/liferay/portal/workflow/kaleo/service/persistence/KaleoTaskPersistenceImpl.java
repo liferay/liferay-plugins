@@ -387,11 +387,14 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 		else {
 			if ((kaleoTaskModelImpl.getColumnBitmask() &
 					FINDER_PATH_FETCH_BY_KALEONODEID.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						Long.valueOf(kaleoTaskModelImpl.getOriginalKaleoNodeId())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KALEONODEID,
+					args);
 				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KALEONODEID,
-					new Object[] {
-						Long.valueOf(
-							kaleoTaskModelImpl.getOriginalKaleoNodeId())
-					});
+					args);
 
 				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_KALEONODEID,
 					new Object[] { Long.valueOf(kaleoTask.getKaleoNodeId()) },

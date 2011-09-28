@@ -411,13 +411,13 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 		else {
 			if ((meetupsRegistrationModelImpl.getColumnBitmask() &
 					FINDER_PATH_FETCH_BY_U_ME.getColumnBitmask()) != 0) {
-				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_ME,
-					new Object[] {
-						Long.valueOf(
-							meetupsRegistrationModelImpl.getOriginalUserId()),
-						Long.valueOf(
-							meetupsRegistrationModelImpl.getOriginalMeetupsEntryId())
-					});
+				Object[] args = new Object[] {
+						Long.valueOf(meetupsRegistrationModelImpl.getOriginalUserId()),
+						Long.valueOf(meetupsRegistrationModelImpl.getOriginalMeetupsEntryId())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_ME, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_ME, args);
 
 				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_ME,
 					new Object[] {

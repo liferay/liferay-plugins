@@ -401,17 +401,21 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 		else {
 			if ((oAuthTokenModelImpl.getColumnBitmask() &
 					FINDER_PATH_FETCH_BY_U_G_S_M_T.getColumnBitmask()) != 0) {
-				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_G_S_M_T,
-					new Object[] {
+				Object[] args = new Object[] {
 						Long.valueOf(oAuthTokenModelImpl.getOriginalUserId()),
 						
-					oAuthTokenModelImpl.getOriginalGadgetKey(),
+						oAuthTokenModelImpl.getOriginalGadgetKey(),
 						
-					oAuthTokenModelImpl.getOriginalServiceName(),
+						oAuthTokenModelImpl.getOriginalServiceName(),
 						Long.valueOf(oAuthTokenModelImpl.getOriginalModuleId()),
 						
-					oAuthTokenModelImpl.getOriginalTokenName()
-					});
+						oAuthTokenModelImpl.getOriginalTokenName()
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_G_S_M_T,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_G_S_M_T,
+					args);
 
 				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_G_S_M_T,
 					new Object[] {

@@ -694,8 +694,10 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		else {
 			if ((jiraIssueModelImpl.getColumnBitmask() &
 					FINDER_PATH_FETCH_BY_KEY.getColumnBitmask()) != 0) {
-				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KEY,
-					new Object[] { jiraIssueModelImpl.getOriginalKey() });
+				Object[] args = new Object[] { jiraIssueModelImpl.getOriginalKey() };
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KEY, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KEY, args);
 
 				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_KEY,
 					new Object[] { jiraIssue.getKey() }, jiraIssue);

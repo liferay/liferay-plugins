@@ -370,12 +370,14 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 		else {
 			if ((folderModelImpl.getColumnBitmask() &
 					FINDER_PATH_FETCH_BY_A_F.getColumnBitmask()) != 0) {
-				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_A_F,
-					new Object[] {
+				Object[] args = new Object[] {
 						Long.valueOf(folderModelImpl.getOriginalAccountId()),
 						
-					folderModelImpl.getOriginalFullName()
-					});
+						folderModelImpl.getOriginalFullName()
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_A_F, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_A_F, args);
 
 				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_A_F,
 					new Object[] {

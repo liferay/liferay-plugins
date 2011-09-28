@@ -469,12 +469,13 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 		else {
 			if ((userThreadModelImpl.getColumnBitmask() &
 					FINDER_PATH_FETCH_BY_U_M.getColumnBitmask()) != 0) {
-				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_M,
-					new Object[] {
+				Object[] args = new Object[] {
 						Long.valueOf(userThreadModelImpl.getOriginalUserId()),
-						Long.valueOf(
-							userThreadModelImpl.getOriginalMbThreadId())
-					});
+						Long.valueOf(userThreadModelImpl.getOriginalMbThreadId())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_M, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_M, args);
 
 				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_M,
 					new Object[] {

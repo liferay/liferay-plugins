@@ -389,10 +389,14 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 		else {
 			if ((appModelImpl.getColumnBitmask() &
 					FINDER_PATH_FETCH_BY_REMOTEAPPID.getColumnBitmask()) != 0) {
-				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_REMOTEAPPID,
-					new Object[] {
+				Object[] args = new Object[] {
 						Long.valueOf(appModelImpl.getOriginalRemoteAppId())
-					});
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_REMOTEAPPID,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_REMOTEAPPID,
+					args);
 
 				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_REMOTEAPPID,
 					new Object[] { Long.valueOf(app.getRemoteAppId()) }, app);

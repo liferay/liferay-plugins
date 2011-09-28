@@ -404,12 +404,14 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 		else {
 			if ((gadgetModelImpl.getColumnBitmask() &
 					FINDER_PATH_FETCH_BY_C_U.getColumnBitmask()) != 0) {
-				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_U,
-					new Object[] {
+				Object[] args = new Object[] {
 						Long.valueOf(gadgetModelImpl.getOriginalCompanyId()),
 						
-					gadgetModelImpl.getOriginalUrl()
-					});
+						gadgetModelImpl.getOriginalUrl()
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_U, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_U, args);
 
 				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_U,
 					new Object[] {

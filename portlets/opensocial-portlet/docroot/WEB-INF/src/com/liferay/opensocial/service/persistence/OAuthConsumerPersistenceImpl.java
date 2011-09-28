@@ -379,12 +379,14 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 		else {
 			if ((oAuthConsumerModelImpl.getColumnBitmask() &
 					FINDER_PATH_FETCH_BY_G_S.getColumnBitmask()) != 0) {
-				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_G_S,
-					new Object[] {
+				Object[] args = new Object[] {
 						oAuthConsumerModelImpl.getOriginalGadgetKey(),
 						
-					oAuthConsumerModelImpl.getOriginalServiceName()
-					});
+						oAuthConsumerModelImpl.getOriginalServiceName()
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_G_S, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_G_S, args);
 
 				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_G_S,
 					new Object[] {

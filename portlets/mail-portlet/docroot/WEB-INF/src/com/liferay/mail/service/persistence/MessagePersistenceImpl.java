@@ -396,12 +396,13 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 		else {
 			if ((messageModelImpl.getColumnBitmask() &
 					FINDER_PATH_FETCH_BY_F_R.getColumnBitmask()) != 0) {
-				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_F_R,
-					new Object[] {
+				Object[] args = new Object[] {
 						Long.valueOf(messageModelImpl.getOriginalFolderId()),
-						Long.valueOf(
-							messageModelImpl.getOriginalRemoteMessageId())
-					});
+						Long.valueOf(messageModelImpl.getOriginalRemoteMessageId())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_F_R, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_F_R, args);
 
 				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_F_R,
 					new Object[] {

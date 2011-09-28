@@ -506,15 +506,15 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 		else {
 			if ((kaleoDefinitionModelImpl.getColumnBitmask() &
 					FINDER_PATH_FETCH_BY_C_N_V.getColumnBitmask()) != 0) {
-				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_N_V,
-					new Object[] {
-						Long.valueOf(
-							kaleoDefinitionModelImpl.getOriginalCompanyId()),
+				Object[] args = new Object[] {
+						Long.valueOf(kaleoDefinitionModelImpl.getOriginalCompanyId()),
 						
-					kaleoDefinitionModelImpl.getOriginalName(),
-						Integer.valueOf(
-							kaleoDefinitionModelImpl.getOriginalVersion())
-					});
+						kaleoDefinitionModelImpl.getOriginalName(),
+						Integer.valueOf(kaleoDefinitionModelImpl.getOriginalVersion())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_N_V, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_N_V, args);
 
 				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_N_V,
 					new Object[] {
