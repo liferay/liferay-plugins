@@ -22,54 +22,7 @@
 <%@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
-<%@ page import="com.liferay.portal.kernel.bean.BeanParamUtil" %>
-<%@ page import="com.liferay.portal.kernel.dao.search.ResultRow" %>
-<%@ page import="com.liferay.portal.kernel.dao.search.SearchContainer" %>
-<%@ page import="com.liferay.portal.kernel.language.LanguageUtil" %>
-<%@ page import="com.liferay.portal.kernel.servlet.ServletContextPool" %>
-<%@ page import="com.liferay.portal.kernel.util.GetterUtil" %>
-<%@ page import="com.liferay.portal.kernel.util.HtmlUtil" %>
-<%@ page import="com.liferay.portal.kernel.util.KeyValuePair" %>
-<%@ page import="com.liferay.portal.kernel.util.KeyValuePairComparator" %>
-<%@ page import="com.liferay.portal.kernel.util.ListUtil" %>
-<%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
-<%@ page import="com.liferay.portal.kernel.util.StringPool" %>
-<%@ page import="com.liferay.portal.kernel.util.StringUtil" %>
-<%@ page import="com.liferay.portal.kernel.util.UnicodeProperties" %>
-<%@ page import="com.liferay.portal.model.Portlet" %>
-<%@ page import="com.liferay.portal.model.PortletConstants" %>
-<%@ page import="com.liferay.portal.service.PortletLocalServiceUtil" %>
-<%@ page import="com.liferay.portal.util.PortalUtil" %>
-<%@ page import="com.liferay.wsrp.NoSuchConsumerException" %>
-<%@ page import="com.liferay.wsrp.NoSuchConsumerPortletException" %>
-<%@ page import="com.liferay.wsrp.NoSuchProducerException" %>
-<%@ page import="com.liferay.wsrp.WSRPConsumerNameException" %>
-<%@ page import="com.liferay.wsrp.WSRPConsumerPortletHandleException" %>
-<%@ page import="com.liferay.wsrp.WSRPConsumerPortletNameException" %>
-<%@ page import="com.liferay.wsrp.WSRPConsumerWSDLException" %>
-<%@ page import="com.liferay.wsrp.WSRPProducerNameException" %>
-<%@ page import="com.liferay.wsrp.model.WSRPConsumer" %>
-<%@ page import="com.liferay.wsrp.model.WSRPConsumerPortlet" %>
-<%@ page import="com.liferay.wsrp.model.WSRPProducer" %>
-<%@ page import="com.liferay.wsrp.service.WSRPConsumerLocalServiceUtil" %>
-<%@ page import="com.liferay.wsrp.service.WSRPConsumerPortletLocalServiceUtil" %>
-<%@ page import="com.liferay.wsrp.service.WSRPProducerLocalServiceUtil" %>
-<%@ page import="com.liferay.wsrp.util.Constants" %>
-<%@ page import="com.liferay.wsrp.util.LocalizedStringUtil" %>
-<%@ page import="com.liferay.wsrp.util.WSRPConsumerManager" %>
-<%@ page import="com.liferay.wsrp.util.WSRPConsumerManagerFactory" %>
-<%@ page import="com.liferay.wsrp.util.WebKeys" %>
-
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="java.util.Arrays" %>
-<%@ page import="java.util.Iterator" %>
-<%@ page import="java.util.List" %>
-
-<%@ page import="javax.portlet.PortletURL" %>
-
-<%@ page import="oasis.names.tc.wsrp.v2.types.PortletDescription" %>
-<%@ page import="oasis.names.tc.wsrp.v2.types.PropertyDescription" %>
-<%@ page import="oasis.names.tc.wsrp.v2.types.ServiceDescription" %>
+<%@ page import="com.liferay.portal.kernel.bean.BeanParamUtil" %><%@ page import="com.liferay.portal.kernel.dao.search.ResultRow" %><%@ page import="com.liferay.portal.kernel.dao.search.SearchContainer" %><%@ page import="com.liferay.portal.kernel.language.LanguageUtil" %><%@ page import="com.liferay.portal.kernel.servlet.ServletContextPool" %><%@ page import="com.liferay.portal.kernel.util.GetterUtil" %><%@ page import="com.liferay.portal.kernel.util.HtmlUtil" %><%@ page import="com.liferay.portal.kernel.util.KeyValuePair" %><%@ page import="com.liferay.portal.kernel.util.KeyValuePairComparator" %><%@ page import="com.liferay.portal.kernel.util.ListUtil" %><%@ page import="com.liferay.portal.kernel.util.ParamUtil" %><%@ page import="com.liferay.portal.kernel.util.StringPool" %><%@ page import="com.liferay.portal.kernel.util.StringUtil" %><%@ page import="com.liferay.portal.kernel.util.UnicodeProperties" %><%@ page import="com.liferay.portal.model.Portlet" %><%@ page import="com.liferay.portal.model.PortletConstants" %><%@ page import="com.liferay.portal.service.PortletLocalServiceUtil" %><%@ page import="com.liferay.portal.util.PortalUtil" %><%@ page import="com.liferay.wsrp.NoSuchConsumerException" %><%@ page import="com.liferay.wsrp.NoSuchConsumerPortletException" %><%@ page import="com.liferay.wsrp.NoSuchProducerException" %><%@ page import="com.liferay.wsrp.WSRPConsumerNameException" %><%@ page import="com.liferay.wsrp.WSRPConsumerPortletHandleException" %><%@ page import="com.liferay.wsrp.WSRPConsumerPortletNameException" %><%@ page import="com.liferay.wsrp.WSRPConsumerWSDLException" %><%@ page import="com.liferay.wsrp.WSRPProducerNameException" %><%@ page import="com.liferay.wsrp.model.WSRPConsumer" %><%@ page import="com.liferay.wsrp.model.WSRPConsumerPortlet" %><%@ page import="com.liferay.wsrp.model.WSRPProducer" %><%@ page import="com.liferay.wsrp.service.WSRPConsumerLocalServiceUtil" %><%@ page import="com.liferay.wsrp.service.WSRPConsumerPortletLocalServiceUtil" %><%@ page import="com.liferay.wsrp.service.WSRPProducerLocalServiceUtil" %><%@ page import="com.liferay.wsrp.util.Constants" %><%@ page import="com.liferay.wsrp.util.LocalizedStringUtil" %><%@ page import="com.liferay.wsrp.util.WSRPConsumerManager" %><%@ page import="com.liferay.wsrp.util.WSRPConsumerManagerFactory" %><%@ page import="com.liferay.wsrp.util.WebKeys" %><%@ page import="java.util.ArrayList" %><%@ page import="java.util.Arrays" %><%@ page import="java.util.Iterator" %><%@ page import="java.util.List" %><%@ page import="javax.portlet.PortletURL" %><%@ page import="oasis.names.tc.wsrp.v2.types.PortletDescription" %><%@ page import="oasis.names.tc.wsrp.v2.types.PropertyDescription" %><%@ page import="oasis.names.tc.wsrp.v2.types.ServiceDescription" %>
 
 <portlet:defineObjects />
 
