@@ -86,12 +86,12 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue>
 	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.column.bitmask.enabled.com.liferay.socialcoding.model.JIRAIssue"),
 			true);
-	public static long KEY_COLUMN_BITMASK = 1L;
-	public static long PROJECTID_COLUMN_BITMASK = 2L;
+	public static long ASSIGNEEJIRAUSERID_COLUMN_BITMASK = 1L;
+	public static long KEY_COLUMN_BITMASK = 2L;
 	public static long MODIFIEDDATE_COLUMN_BITMASK = 4L;
-	public static long REPORTERJIRAUSERID_COLUMN_BITMASK = 8L;
-	public static long STATUS_COLUMN_BITMASK = 16L;
-	public static long ASSIGNEEJIRAUSERID_COLUMN_BITMASK = 32L;
+	public static long PROJECTID_COLUMN_BITMASK = 8L;
+	public static long REPORTERJIRAUSERID_COLUMN_BITMASK = 16L;
+	public static long STATUS_COLUMN_BITMASK = 32L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.socialcoding.model.JIRAIssue"));
 

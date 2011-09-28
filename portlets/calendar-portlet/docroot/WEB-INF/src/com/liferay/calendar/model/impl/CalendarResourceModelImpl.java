@@ -103,12 +103,12 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 				"value.object.column.bitmask.enabled.com.liferay.calendar.model.CalendarResource"),
 			true);
 	public static long ACTIVE_COLUMN_BITMASK = 1L;
-	public static long COMPANYID_COLUMN_BITMASK = 2L;
-	public static long GROUPID_COLUMN_BITMASK = 4L;
-	public static long CLASSNAMEID_COLUMN_BITMASK = 8L;
-	public static long UUID_COLUMN_BITMASK = 16L;
-	public static long CLASSPK_COLUMN_BITMASK = 32L;
-	public static long NAME_COLUMN_BITMASK = 64L;
+	public static long CLASSNAMEID_COLUMN_BITMASK = 2L;
+	public static long CLASSPK_COLUMN_BITMASK = 4L;
+	public static long COMPANYID_COLUMN_BITMASK = 8L;
+	public static long GROUPID_COLUMN_BITMASK = 16L;
+	public static long NAME_COLUMN_BITMASK = 32L;
+	public static long UUID_COLUMN_BITMASK = 64L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.

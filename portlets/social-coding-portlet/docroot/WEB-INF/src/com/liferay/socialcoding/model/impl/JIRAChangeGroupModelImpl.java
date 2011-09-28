@@ -79,8 +79,8 @@ public class JIRAChangeGroupModelImpl extends BaseModelImpl<JIRAChangeGroup>
 	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.column.bitmask.enabled.com.liferay.socialcoding.model.JIRAChangeGroup"),
 			true);
-	public static long JIRAUSERID_COLUMN_BITMASK = 1L;
-	public static long JIRAISSUEID_COLUMN_BITMASK = 2L;
+	public static long JIRAISSUEID_COLUMN_BITMASK = 1L;
+	public static long JIRAUSERID_COLUMN_BITMASK = 2L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.socialcoding.model.JIRAChangeGroup"));
 

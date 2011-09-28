@@ -116,12 +116,12 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.column.bitmask.enabled.com.liferay.calendar.model.CalendarBooking"),
 			true);
-	public static long GROUPID_COLUMN_BITMASK = 1L;
-	public static long CLASSNAMEID_COLUMN_BITMASK = 2L;
-	public static long CALENDAREVENTID_COLUMN_BITMASK = 4L;
-	public static long CALENDARRESOURCEID_COLUMN_BITMASK = 8L;
-	public static long UUID_COLUMN_BITMASK = 16L;
-	public static long CLASSPK_COLUMN_BITMASK = 32L;
+	public static long CALENDAREVENTID_COLUMN_BITMASK = 1L;
+	public static long CALENDARRESOURCEID_COLUMN_BITMASK = 2L;
+	public static long CLASSNAMEID_COLUMN_BITMASK = 4L;
+	public static long CLASSPK_COLUMN_BITMASK = 8L;
+	public static long GROUPID_COLUMN_BITMASK = 16L;
+	public static long UUID_COLUMN_BITMASK = 32L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.

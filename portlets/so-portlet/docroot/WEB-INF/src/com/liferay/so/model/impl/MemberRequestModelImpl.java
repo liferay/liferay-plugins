@@ -89,10 +89,10 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
 	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.column.bitmask.enabled.com.liferay.so.model.MemberRequest"),
 			true);
-	public static long KEY_COLUMN_BITMASK = 1L;
-	public static long GROUPID_COLUMN_BITMASK = 2L;
-	public static long STATUS_COLUMN_BITMASK = 4L;
-	public static long RECEIVERUSERID_COLUMN_BITMASK = 8L;
+	public static long GROUPID_COLUMN_BITMASK = 1L;
+	public static long KEY_COLUMN_BITMASK = 2L;
+	public static long RECEIVERUSERID_COLUMN_BITMASK = 4L;
+	public static long STATUS_COLUMN_BITMASK = 8L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.so.model.MemberRequest"));
 

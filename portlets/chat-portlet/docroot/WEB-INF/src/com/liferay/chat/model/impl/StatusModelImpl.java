@@ -80,9 +80,9 @@ public class StatusModelImpl extends BaseModelImpl<Status>
 	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.column.bitmask.enabled.com.liferay.chat.model.Status"),
 			true);
-	public static long USERID_COLUMN_BITMASK = 1L;
-	public static long MODIFIEDDATE_COLUMN_BITMASK = 2L;
-	public static long ONLINE_COLUMN_BITMASK = 4L;
+	public static long MODIFIEDDATE_COLUMN_BITMASK = 1L;
+	public static long ONLINE_COLUMN_BITMASK = 2L;
+	public static long USERID_COLUMN_BITMASK = 4L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.chat.model.Status"));
 

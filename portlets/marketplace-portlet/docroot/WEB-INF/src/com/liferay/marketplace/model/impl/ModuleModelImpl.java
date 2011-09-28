@@ -75,8 +75,8 @@ public class ModuleModelImpl extends BaseModelImpl<Module>
 				"value.object.column.bitmask.enabled.com.liferay.marketplace.model.Module"),
 			true);
 	public static long APPID_COLUMN_BITMASK = 1L;
-	public static long UUID_COLUMN_BITMASK = 2L;
-	public static long CONTEXTNAME_COLUMN_BITMASK = 4L;
+	public static long CONTEXTNAME_COLUMN_BITMASK = 2L;
+	public static long UUID_COLUMN_BITMASK = 4L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.marketplace.model.Module"));
 
