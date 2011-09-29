@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.StreamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
@@ -129,26 +130,30 @@ public class StorePortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
 		long remoteAppId = ParamUtil.getLong(actionRequest, "appId");
 		String version = ParamUtil.getString(actionRequest, "version");
 		String url = ParamUtil.getString(actionRequest, "url");
 
 		URL urlObj = new URL(url);
 
-		InputStream inputStream = urlObj.openStream();
+		InputStream inputStream = null;
 
-		App app = AppLocalServiceUtil.fetchRemoteApp(remoteAppId);
+		try {
+			inputStream = urlObj.openStream();
 
-		AppLocalServiceUtil.updateApp(app.getAppId(), version, inputStream);
+			App app = AppLocalServiceUtil.fetchRemoteApp(remoteAppId);
 
-		AppLocalServiceUtil.installApp(remoteAppId);
+			AppLocalServiceUtil.updateApp(app.getAppId(), version, inputStream);
 
-		JSONObject jsonObject = getAppJSONObject(remoteAppId);
+			AppLocalServiceUtil.installApp(remoteAppId);
 
-		writeJSON(actionRequest, actionResponse, jsonObject);
+			JSONObject jsonObject = getAppJSONObject(remoteAppId);
+
+			writeJSON(actionRequest, actionResponse, jsonObject);
+		}
+		finally {
+			StreamUtil.cleanUp(inputStream);
+		}
 	}
 
 	public void uninstallApp(
@@ -205,9 +210,9 @@ public class StorePortlet extends MVCPortlet {
 	}
 
 	protected JSONObject getAppJSONObject(long remoteAppId) throws Exception {
-		App app = AppLocalServiceUtil.fetchRemoteApp(remoteAppId);
-
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
+		App app = AppLocalServiceUtil.fetchRemoteApp(remoteAppId);
 
 		if (app != null) {
 			jsonObject.put("appId", app.getRemoteAppId());
