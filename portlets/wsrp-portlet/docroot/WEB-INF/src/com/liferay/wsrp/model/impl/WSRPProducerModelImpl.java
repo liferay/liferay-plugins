@@ -350,7 +350,7 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer>
 
 		wsrpProducerModelImpl._setOriginalCompanyId = false;
 
-		_columnBitmask = 0;
+		wsrpProducerModelImpl._columnBitmask = 0;
 	}
 
 	@Override

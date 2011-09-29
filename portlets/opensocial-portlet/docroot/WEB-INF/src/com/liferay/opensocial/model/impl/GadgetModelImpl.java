@@ -387,7 +387,7 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 
 		gadgetModelImpl._originalUrl = gadgetModelImpl._url;
 
-		_columnBitmask = 0;
+		gadgetModelImpl._columnBitmask = 0;
 	}
 
 	@Override

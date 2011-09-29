@@ -481,7 +481,7 @@ public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 
 		microblogsEntryModelImpl._setOriginalReceiverMicroblogsEntryId = false;
 
-		_columnBitmask = 0;
+		microblogsEntryModelImpl._columnBitmask = 0;
 	}
 
 	@Override

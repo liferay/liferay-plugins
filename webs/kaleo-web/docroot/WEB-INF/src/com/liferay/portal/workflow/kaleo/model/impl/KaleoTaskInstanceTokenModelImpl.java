@@ -503,7 +503,7 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 
 		kaleoTaskInstanceTokenModelImpl._setOriginalKaleoTaskId = false;
 
-		_columnBitmask = 0;
+		kaleoTaskInstanceTokenModelImpl._columnBitmask = 0;
 	}
 
 	@Override

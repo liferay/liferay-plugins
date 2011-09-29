@@ -1008,7 +1008,7 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 
 		calendarBookingModelImpl._setOriginalClassPK = false;
 
-		_columnBitmask = 0;
+		calendarBookingModelImpl._columnBitmask = 0;
 	}
 
 	@Override

@@ -472,7 +472,7 @@ public class KaleoInstanceTokenModelImpl extends BaseModelImpl<KaleoInstanceToke
 
 		kaleoInstanceTokenModelImpl._originalCompletionDate = kaleoInstanceTokenModelImpl._completionDate;
 
-		_columnBitmask = 0;
+		kaleoInstanceTokenModelImpl._columnBitmask = 0;
 	}
 
 	@Override

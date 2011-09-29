@@ -360,7 +360,7 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 
 		feedModelImpl._originalTwitterScreenName = feedModelImpl._twitterScreenName;
 
-		_columnBitmask = 0;
+		feedModelImpl._columnBitmask = 0;
 	}
 
 	@Override

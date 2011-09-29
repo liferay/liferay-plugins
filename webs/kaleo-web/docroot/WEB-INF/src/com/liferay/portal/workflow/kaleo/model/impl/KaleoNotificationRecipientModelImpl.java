@@ -409,7 +409,7 @@ public class KaleoNotificationRecipientModelImpl extends BaseModelImpl<KaleoNoti
 
 		kaleoNotificationRecipientModelImpl._setOriginalKaleoNotificationId = false;
 
-		_columnBitmask = 0;
+		kaleoNotificationRecipientModelImpl._columnBitmask = 0;
 	}
 
 	@Override

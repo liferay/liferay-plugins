@@ -388,7 +388,7 @@ public class KaleoTaskModelImpl extends BaseModelImpl<KaleoTask>
 
 		kaleoTaskModelImpl._setOriginalKaleoNodeId = false;
 
-		_columnBitmask = 0;
+		kaleoTaskModelImpl._columnBitmask = 0;
 	}
 
 	@Override

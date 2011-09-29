@@ -305,7 +305,7 @@ public class SVNRevisionModelImpl extends BaseModelImpl<SVNRevision>
 
 		svnRevisionModelImpl._setOriginalSvnRepositoryId = false;
 
-		_columnBitmask = 0;
+		svnRevisionModelImpl._columnBitmask = 0;
 	}
 
 	@Override

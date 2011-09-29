@@ -332,7 +332,7 @@ public class WallEntryModelImpl extends BaseModelImpl<WallEntry>
 
 		wallEntryModelImpl._setOriginalUserId = false;
 
-		_columnBitmask = 0;
+		wallEntryModelImpl._columnBitmask = 0;
 	}
 
 	@Override

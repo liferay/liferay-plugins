@@ -331,7 +331,7 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 
 		wsrpConsumerPortletModelImpl._originalPortletHandle = wsrpConsumerPortletModelImpl._portletHandle;
 
-		_columnBitmask = 0;
+		wsrpConsumerPortletModelImpl._columnBitmask = 0;
 	}
 
 	@Override

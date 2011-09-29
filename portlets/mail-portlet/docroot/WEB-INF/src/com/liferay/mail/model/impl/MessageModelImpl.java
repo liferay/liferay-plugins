@@ -492,7 +492,7 @@ public class MessageModelImpl extends BaseModelImpl<Message>
 
 		messageModelImpl._setOriginalRemoteMessageId = false;
 
-		_columnBitmask = 0;
+		messageModelImpl._columnBitmask = 0;
 	}
 
 	@Override

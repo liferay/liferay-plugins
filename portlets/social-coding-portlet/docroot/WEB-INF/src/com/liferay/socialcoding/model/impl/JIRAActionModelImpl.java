@@ -342,7 +342,7 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction>
 
 		jiraActionModelImpl._originalType = jiraActionModelImpl._type;
 
-		_columnBitmask = 0;
+		jiraActionModelImpl._columnBitmask = 0;
 	}
 
 	@Override

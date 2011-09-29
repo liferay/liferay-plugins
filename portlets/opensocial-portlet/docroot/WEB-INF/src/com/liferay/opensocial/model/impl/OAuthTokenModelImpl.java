@@ -453,7 +453,7 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 
 		oAuthTokenModelImpl._originalTokenName = oAuthTokenModelImpl._tokenName;
 
-		_columnBitmask = 0;
+		oAuthTokenModelImpl._columnBitmask = 0;
 	}
 
 	@Override

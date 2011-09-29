@@ -412,7 +412,7 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
 
 		memberRequestModelImpl._setOriginalStatus = false;
 
-		_columnBitmask = 0;
+		memberRequestModelImpl._columnBitmask = 0;
 	}
 
 	@Override

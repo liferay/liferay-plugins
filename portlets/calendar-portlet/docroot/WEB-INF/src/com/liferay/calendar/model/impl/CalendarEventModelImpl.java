@@ -728,7 +728,7 @@ public class CalendarEventModelImpl extends BaseModelImpl<CalendarEvent>
 
 		calendarEventModelImpl._setOriginalGroupId = false;
 
-		_columnBitmask = 0;
+		calendarEventModelImpl._columnBitmask = 0;
 	}
 
 	@Override

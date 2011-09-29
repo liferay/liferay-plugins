@@ -336,7 +336,7 @@ public class OAuthConsumerModelImpl extends BaseModelImpl<OAuthConsumer>
 
 		oAuthConsumerModelImpl._originalServiceName = oAuthConsumerModelImpl._serviceName;
 
-		_columnBitmask = 0;
+		oAuthConsumerModelImpl._columnBitmask = 0;
 	}
 
 	@Override

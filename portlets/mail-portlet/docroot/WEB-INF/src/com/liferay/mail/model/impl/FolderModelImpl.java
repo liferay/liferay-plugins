@@ -350,7 +350,7 @@ public class FolderModelImpl extends BaseModelImpl<Folder>
 
 		folderModelImpl._originalFullName = folderModelImpl._fullName;
 
-		_columnBitmask = 0;
+		folderModelImpl._columnBitmask = 0;
 	}
 
 	@Override

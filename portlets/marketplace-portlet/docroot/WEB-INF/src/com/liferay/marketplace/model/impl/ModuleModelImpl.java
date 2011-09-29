@@ -284,7 +284,7 @@ public class ModuleModelImpl extends BaseModelImpl<Module>
 
 		moduleModelImpl._originalContextName = moduleModelImpl._contextName;
 
-		_columnBitmask = 0;
+		moduleModelImpl._columnBitmask = 0;
 	}
 
 	@Override

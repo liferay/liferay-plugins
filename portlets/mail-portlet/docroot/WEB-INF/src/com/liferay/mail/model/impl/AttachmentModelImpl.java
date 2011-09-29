@@ -320,7 +320,7 @@ public class AttachmentModelImpl extends BaseModelImpl<Attachment>
 
 		attachmentModelImpl._setOriginalMessageId = false;
 
-		_columnBitmask = 0;
+		attachmentModelImpl._columnBitmask = 0;
 	}
 
 	@Override

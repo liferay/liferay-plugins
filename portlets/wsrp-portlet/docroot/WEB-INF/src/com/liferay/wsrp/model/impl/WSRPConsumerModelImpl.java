@@ -369,7 +369,7 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 
 		wsrpConsumerModelImpl._setOriginalCompanyId = false;
 
-		_columnBitmask = 0;
+		wsrpConsumerModelImpl._columnBitmask = 0;
 	}
 
 	@Override

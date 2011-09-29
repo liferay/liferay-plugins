@@ -360,7 +360,7 @@ public class MeetupsRegistrationModelImpl extends BaseModelImpl<MeetupsRegistrat
 
 		meetupsRegistrationModelImpl._setOriginalStatus = false;
 
-		_columnBitmask = 0;
+		meetupsRegistrationModelImpl._columnBitmask = 0;
 	}
 
 	@Override

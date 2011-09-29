@@ -230,7 +230,7 @@ public class BarModelImpl extends BaseModelImpl<Bar> implements BarModel {
 
 		barModelImpl._originalText = barModelImpl._text;
 
-		_columnBitmask = 0;
+		barModelImpl._columnBitmask = 0;
 	}
 
 	@Override

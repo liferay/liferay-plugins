@@ -463,7 +463,7 @@ public class KaleoTimerModelImpl extends BaseModelImpl<KaleoTimer>
 
 		kaleoTimerModelImpl._setOriginalBlocking = false;
 
-		_columnBitmask = 0;
+		kaleoTimerModelImpl._columnBitmask = 0;
 	}
 
 	@Override

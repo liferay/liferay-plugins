@@ -356,7 +356,7 @@ public class StatusModelImpl extends BaseModelImpl<Status>
 
 		statusModelImpl._setOriginalOnline = false;
 
-		_columnBitmask = 0;
+		statusModelImpl._columnBitmask = 0;
 	}
 
 	@Override

@@ -472,7 +472,7 @@ public class KaleoTaskAssignmentInstanceModelImpl extends BaseModelImpl<KaleoTas
 
 		kaleoTaskAssignmentInstanceModelImpl._setOriginalKaleoTaskInstanceTokenId = false;
 
-		_columnBitmask = 0;
+		kaleoTaskAssignmentInstanceModelImpl._columnBitmask = 0;
 	}
 
 	@Override

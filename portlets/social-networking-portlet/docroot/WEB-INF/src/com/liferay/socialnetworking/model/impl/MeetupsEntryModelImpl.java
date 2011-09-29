@@ -397,7 +397,7 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry>
 
 		meetupsEntryModelImpl._setOriginalUserId = false;
 
-		_columnBitmask = 0;
+		meetupsEntryModelImpl._columnBitmask = 0;
 	}
 
 	@Override

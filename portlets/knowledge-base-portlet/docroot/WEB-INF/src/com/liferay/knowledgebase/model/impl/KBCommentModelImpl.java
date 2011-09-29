@@ -435,7 +435,7 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 
 		kbCommentModelImpl._setOriginalClassPK = false;
 
-		_columnBitmask = 0;
+		kbCommentModelImpl._columnBitmask = 0;
 	}
 
 	@Override
