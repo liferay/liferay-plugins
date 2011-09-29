@@ -55,6 +55,10 @@ public class AppImpl extends AppBaseImpl {
 	public boolean isInstalled() throws SystemException {
 		List<Module> modules = ModuleLocalServiceUtil.getModules(getAppId());
 
+		if (modules.isEmpty()) {
+			return false;
+		}
+
 		for (Module module : modules) {
 			if (!DeployManagerUtil.isDeployed(module.getContextName())) {
 				return false;

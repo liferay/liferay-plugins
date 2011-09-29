@@ -19,8 +19,6 @@ package com.liferay.marketplace.util;
  */
 public class MarketplaceConstants {
 
-	public static final String MARKETPLACE_DOMAIN = "";
-
 	public static final String MARKETPLACE_URL_HOME = "";
 
 	public static final String MARKETPLACE_URL_MANAGE_APPS = "";

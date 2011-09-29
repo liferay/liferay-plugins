@@ -67,7 +67,7 @@ public class StorePortlet extends MVCPortlet {
 				app.getAppId(), version, inputStream);
 		}
 
-		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+		JSONObject jsonObject = getAppJSONObject(app.getRemoteAppId());
 
 		jsonObject.put("message", "success");
 
@@ -80,22 +80,9 @@ public class StorePortlet extends MVCPortlet {
 
 		long remoteAppId = ParamUtil.getLong(actionRequest, "appId");
 
-		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+		JSONObject jsonObject = getAppJSONObject(remoteAppId);
 
-		App app = AppLocalServiceUtil.fetchRemoteApp(remoteAppId);
-
-		if (app != null) {
-			jsonObject.put("appId", app.getRemoteAppId());
-			jsonObject.put("downloaded", app.isDownloaded());
-			jsonObject.put("installed", app.isInstalled());
-			jsonObject.put("version", app.getVersion());
-		}
-		else {
-			jsonObject.put("appId", remoteAppId);
-			jsonObject.put("downloaded", false);
-			jsonObject.put("installed", false);
-			jsonObject.put("version", StringPool.BLANK);
-		}
+		jsonObject.put("message", "success");
 
 		writeJSON(actionRequest, actionResponse, jsonObject);
 	}
@@ -108,7 +95,7 @@ public class StorePortlet extends MVCPortlet {
 
 		AppLocalServiceUtil.installApp(remoteAppId);
 
-		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+		JSONObject jsonObject = getAppJSONObject(remoteAppId);
 
 		jsonObject.put("message", "success");
 
@@ -138,6 +125,32 @@ public class StorePortlet extends MVCPortlet {
 		}
 	}
 
+	public void updateApp(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		long remoteAppId = ParamUtil.getLong(actionRequest, "appId");
+		String version = ParamUtil.getString(actionRequest, "version");
+		String url = ParamUtil.getString(actionRequest, "url");
+
+		URL urlObj = new URL(url);
+
+		InputStream inputStream = urlObj.openStream();
+
+		App app = AppLocalServiceUtil.fetchRemoteApp(remoteAppId);
+
+		AppLocalServiceUtil.updateApp(app.getAppId(), version, inputStream);
+
+		AppLocalServiceUtil.installApp(remoteAppId);
+
+		JSONObject jsonObject = getAppJSONObject(remoteAppId);
+
+		writeJSON(actionRequest, actionResponse, jsonObject);
+	}
+
 	public void uninstallApp(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
@@ -146,7 +159,7 @@ public class StorePortlet extends MVCPortlet {
 
 		AppLocalServiceUtil.uninstallApp(remoteAppId);
 
-		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+		JSONObject jsonObject = getAppJSONObject(remoteAppId);
 
 		jsonObject.put("message", "success");
 
@@ -174,6 +187,9 @@ public class StorePortlet extends MVCPortlet {
 			else if (cmd.equals("install")) {
 				installApp(actionRequest, actionResponse);
 			}
+			else if (cmd.equals("update")) {
+				updateApp(actionRequest, actionResponse);
+			}
 			else if (cmd.equals("uninstall")) {
 				uninstallApp(actionRequest, actionResponse);
 			}
@@ -186,6 +202,27 @@ public class StorePortlet extends MVCPortlet {
 		}
 
 		return true;
+	}
+
+	protected JSONObject getAppJSONObject(long remoteAppId) throws Exception {
+		App app = AppLocalServiceUtil.fetchRemoteApp(remoteAppId);
+
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
+		if (app != null) {
+			jsonObject.put("appId", app.getRemoteAppId());
+			jsonObject.put("downloaded", app.isDownloaded());
+			jsonObject.put("installed", app.isInstalled());
+			jsonObject.put("version", app.getVersion());
+		}
+		else {
+			jsonObject.put("appId", remoteAppId);
+			jsonObject.put("downloaded", false);
+			jsonObject.put("installed", false);
+			jsonObject.put("version", StringPool.BLANK);
+		}
+
+		return jsonObject;
 	}
 
 }
