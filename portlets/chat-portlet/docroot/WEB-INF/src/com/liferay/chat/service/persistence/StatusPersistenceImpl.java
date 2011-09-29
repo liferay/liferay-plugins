@@ -414,10 +414,12 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		else {
 			if ((statusModelImpl.getColumnBitmask() &
 					FINDER_PATH_FETCH_BY_USERID.getColumnBitmask()) != 0) {
-				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_USERID,
-					new Object[] {
+				Object[] args = new Object[] {
 						Long.valueOf(statusModelImpl.getOriginalUserId())
-					});
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_USERID, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_USERID, args);
 
 				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_USERID,
 					new Object[] { Long.valueOf(status.getUserId()) }, status);

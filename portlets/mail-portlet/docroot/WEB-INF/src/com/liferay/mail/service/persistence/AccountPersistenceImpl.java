@@ -361,12 +361,14 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 		else {
 			if ((accountModelImpl.getColumnBitmask() &
 					FINDER_PATH_FETCH_BY_U_A.getColumnBitmask()) != 0) {
-				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_A,
-					new Object[] {
+				Object[] args = new Object[] {
 						Long.valueOf(accountModelImpl.getOriginalUserId()),
 						
-					accountModelImpl.getOriginalAddress()
-					});
+						accountModelImpl.getOriginalAddress()
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_A, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_A, args);
 
 				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_A,
 					new Object[] {

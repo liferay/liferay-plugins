@@ -461,13 +461,13 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 		else {
 			if ((kaleoTimerInstanceTokenModelImpl.getColumnBitmask() &
 					FINDER_PATH_FETCH_BY_KITI_KTI.getColumnBitmask()) != 0) {
-				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KITI_KTI,
-					new Object[] {
-						Long.valueOf(
-							kaleoTimerInstanceTokenModelImpl.getOriginalKaleoInstanceTokenId()),
-						Long.valueOf(
-							kaleoTimerInstanceTokenModelImpl.getOriginalKaleoTimerId())
-					});
+				Object[] args = new Object[] {
+						Long.valueOf(kaleoTimerInstanceTokenModelImpl.getOriginalKaleoInstanceTokenId()),
+						Long.valueOf(kaleoTimerInstanceTokenModelImpl.getOriginalKaleoTimerId())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KITI_KTI, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KITI_KTI, args);
 
 				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_KITI_KTI,
 					new Object[] {

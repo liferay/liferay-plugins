@@ -327,8 +327,12 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 		else {
 			if ((svnRepositoryModelImpl.getColumnBitmask() &
 					FINDER_PATH_FETCH_BY_URL.getColumnBitmask()) != 0) {
-				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_URL,
-					new Object[] { svnRepositoryModelImpl.getOriginalUrl() });
+				Object[] args = new Object[] {
+						svnRepositoryModelImpl.getOriginalUrl()
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_URL, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_URL, args);
 
 				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_URL,
 					new Object[] { svnRepository.getUrl() }, svnRepository);

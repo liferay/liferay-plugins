@@ -438,12 +438,14 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 		else {
 			if ((moduleModelImpl.getColumnBitmask() &
 					FINDER_PATH_FETCH_BY_A_C.getColumnBitmask()) != 0) {
-				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_A_C,
-					new Object[] {
+				Object[] args = new Object[] {
 						Long.valueOf(moduleModelImpl.getOriginalAppId()),
 						
-					moduleModelImpl.getOriginalContextName()
-					});
+						moduleModelImpl.getOriginalContextName()
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_A_C, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_A_C, args);
 
 				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_A_C,
 					new Object[] {

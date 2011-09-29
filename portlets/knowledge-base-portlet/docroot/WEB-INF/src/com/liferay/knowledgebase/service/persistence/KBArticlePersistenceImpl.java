@@ -1227,11 +1227,13 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		else {
 			if ((kbArticleModelImpl.getColumnBitmask() &
 					FINDER_PATH_FETCH_BY_UUID_G.getColumnBitmask()) != 0) {
-				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
-					new Object[] {
+				Object[] args = new Object[] {
 						kbArticleModelImpl.getOriginalUuid(),
 						Long.valueOf(kbArticleModelImpl.getOriginalGroupId())
-					});
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_G, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G, args);
 
 				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G,
 					new Object[] {
@@ -1242,12 +1244,13 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 			if ((kbArticleModelImpl.getColumnBitmask() &
 					FINDER_PATH_FETCH_BY_R_V.getColumnBitmask()) != 0) {
-				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_R_V,
-					new Object[] {
-						Long.valueOf(
-							kbArticleModelImpl.getOriginalResourcePrimKey()),
+				Object[] args = new Object[] {
+						Long.valueOf(kbArticleModelImpl.getOriginalResourcePrimKey()),
 						Integer.valueOf(kbArticleModelImpl.getOriginalVersion())
-					});
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_R_V, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_R_V, args);
 
 				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_R_V,
 					new Object[] {

@@ -488,12 +488,13 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 		else {
 			if ((calendarBookingModelImpl.getColumnBitmask() &
 					FINDER_PATH_FETCH_BY_UUID_G.getColumnBitmask()) != 0) {
-				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
-					new Object[] {
+				Object[] args = new Object[] {
 						calendarBookingModelImpl.getOriginalUuid(),
-						Long.valueOf(
-							calendarBookingModelImpl.getOriginalGroupId())
-					});
+						Long.valueOf(calendarBookingModelImpl.getOriginalGroupId())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_G, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G, args);
 
 				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G,
 					new Object[] {

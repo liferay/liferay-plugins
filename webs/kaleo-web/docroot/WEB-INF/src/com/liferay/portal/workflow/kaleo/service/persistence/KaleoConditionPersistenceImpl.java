@@ -399,11 +399,14 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 		else {
 			if ((kaleoConditionModelImpl.getColumnBitmask() &
 					FINDER_PATH_FETCH_BY_KALEONODEID.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						Long.valueOf(kaleoConditionModelImpl.getOriginalKaleoNodeId())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KALEONODEID,
+					args);
 				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KALEONODEID,
-					new Object[] {
-						Long.valueOf(
-							kaleoConditionModelImpl.getOriginalKaleoNodeId())
-					});
+					args);
 
 				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_KALEONODEID,
 					new Object[] { Long.valueOf(kaleoCondition.getKaleoNodeId()) },

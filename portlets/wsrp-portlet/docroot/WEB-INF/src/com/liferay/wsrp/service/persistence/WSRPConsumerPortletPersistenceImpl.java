@@ -425,13 +425,14 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 		else {
 			if ((wsrpConsumerPortletModelImpl.getColumnBitmask() &
 					FINDER_PATH_FETCH_BY_W_P.getColumnBitmask()) != 0) {
-				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_W_P,
-					new Object[] {
-						Long.valueOf(
-							wsrpConsumerPortletModelImpl.getOriginalWsrpConsumerId()),
+				Object[] args = new Object[] {
+						Long.valueOf(wsrpConsumerPortletModelImpl.getOriginalWsrpConsumerId()),
 						
-					wsrpConsumerPortletModelImpl.getOriginalPortletHandle()
-					});
+						wsrpConsumerPortletModelImpl.getOriginalPortletHandle()
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_W_P, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_W_P, args);
 
 				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_W_P,
 					new Object[] {
