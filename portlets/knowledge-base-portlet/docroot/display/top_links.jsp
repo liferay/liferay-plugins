@@ -158,9 +158,9 @@ String assetTagName = ParamUtil.getString(request, "tag");
 					AssetCategory assetCategory = AssetCategoryLocalServiceUtil.getAssetCategory(assetCategoryId);
 
 					assetCategory = assetCategory.toEscapedModel();
-					
+
 					AssetVocabulary assetVocabulary = AssetVocabularyLocalServiceUtil.getAssetVocabulary(assetCategory.getVocabularyId());
-					
+
 					assetVocabulary = assetVocabulary.toEscapedModel();
 					%>
 
