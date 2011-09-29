@@ -14,11 +14,14 @@
 
 package com.liferay.samplestrutsliferay.servlet;
 
+import com.liferay.portal.kernel.util.ContentTypes;
+
 import java.io.IOException;
 
 import java.util.Enumeration;
 
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -67,10 +70,13 @@ public class TestSessionServlet extends HttpServlet {
 			sb.append("<br />");
 		}
 
-		response.setContentType("text/html");
+		response.setContentType(ContentTypes.TEXT_HTML);
 
-		response.getOutputStream().print(sb.toString());
-		response.getOutputStream().flush();
+		ServletOutputStream servletOutputStream = response.getOutputStream();
+
+		servletOutputStream.print(sb.toString());
+
+		servletOutputStream.flush();
 	}
 
 }
