@@ -127,9 +127,9 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 					AssetCategory assetCategory = AssetCategoryLocalServiceUtil.getAssetCategory(assetCategoryId);
 
 					assetCategory = assetCategory.toEscapedModel();
-					
+
 					AssetVocabulary assetVocabulary = AssetVocabularyLocalServiceUtil.getAssetVocabulary(assetCategory.getVocabularyId());
-					
+
 					assetVocabulary = assetVocabulary.toEscapedModel();
 					%>
 
