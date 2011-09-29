@@ -412,7 +412,7 @@ public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 
 		kbTemplateModelImpl._setOriginalGroupId = false;
 
-		_columnBitmask = 0;
+		kbTemplateModelImpl._columnBitmask = 0;
 	}
 
 	@Override

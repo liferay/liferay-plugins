@@ -339,7 +339,7 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 
 		entryModelImpl._originalContent = entryModelImpl._content;
 
-		_columnBitmask = 0;
+		entryModelImpl._columnBitmask = 0;
 	}
 
 	@Override

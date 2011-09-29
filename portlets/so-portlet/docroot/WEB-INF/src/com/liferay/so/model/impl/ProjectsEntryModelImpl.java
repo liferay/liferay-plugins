@@ -353,7 +353,7 @@ public class ProjectsEntryModelImpl extends BaseModelImpl<ProjectsEntry>
 
 		projectsEntryModelImpl._setOriginalUserId = false;
 
-		_columnBitmask = 0;
+		projectsEntryModelImpl._columnBitmask = 0;
 	}
 
 	@Override

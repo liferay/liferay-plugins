@@ -499,7 +499,7 @@ public class KaleoActionModelImpl extends BaseModelImpl<KaleoAction>
 
 		kaleoActionModelImpl._originalExecutionType = kaleoActionModelImpl._executionType;
 
-		_columnBitmask = 0;
+		kaleoActionModelImpl._columnBitmask = 0;
 	}
 
 	@Override

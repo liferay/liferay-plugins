@@ -388,7 +388,7 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 
 		kaleoConditionModelImpl._setOriginalKaleoNodeId = false;
 
-		_columnBitmask = 0;
+		kaleoConditionModelImpl._columnBitmask = 0;
 	}
 
 	@Override

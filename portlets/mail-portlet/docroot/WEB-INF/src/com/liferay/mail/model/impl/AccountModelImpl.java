@@ -565,7 +565,7 @@ public class AccountModelImpl extends BaseModelImpl<Account>
 
 		accountModelImpl._originalAddress = accountModelImpl._address;
 
-		_columnBitmask = 0;
+		accountModelImpl._columnBitmask = 0;
 	}
 
 	@Override

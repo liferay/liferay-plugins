@@ -426,7 +426,7 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue>
 
 		jiraIssueModelImpl._originalStatus = jiraIssueModelImpl._status;
 
-		_columnBitmask = 0;
+		jiraIssueModelImpl._columnBitmask = 0;
 	}
 
 	@Override

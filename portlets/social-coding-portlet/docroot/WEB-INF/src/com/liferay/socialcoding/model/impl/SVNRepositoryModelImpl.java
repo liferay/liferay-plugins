@@ -241,7 +241,7 @@ public class SVNRepositoryModelImpl extends BaseModelImpl<SVNRepository>
 
 		svnRepositoryModelImpl._originalUrl = svnRepositoryModelImpl._url;
 
-		_columnBitmask = 0;
+		svnRepositoryModelImpl._columnBitmask = 0;
 	}
 
 	@Override

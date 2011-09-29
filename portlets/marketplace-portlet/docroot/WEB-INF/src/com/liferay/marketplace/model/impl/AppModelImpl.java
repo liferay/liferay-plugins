@@ -354,7 +354,7 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 
 		appModelImpl._setOriginalRemoteAppId = false;
 
-		_columnBitmask = 0;
+		appModelImpl._columnBitmask = 0;
 	}
 
 	@Override

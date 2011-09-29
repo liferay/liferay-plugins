@@ -383,7 +383,7 @@ public class KaleoTaskFormModelImpl extends BaseModelImpl<KaleoTaskForm>
 
 		kaleoTaskFormModelImpl._setOriginalKaleoTaskId = false;
 
-		_columnBitmask = 0;
+		kaleoTaskFormModelImpl._columnBitmask = 0;
 	}
 
 	@Override

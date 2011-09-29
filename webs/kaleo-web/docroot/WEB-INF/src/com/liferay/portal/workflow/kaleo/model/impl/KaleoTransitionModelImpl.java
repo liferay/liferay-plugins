@@ -482,7 +482,7 @@ public class KaleoTransitionModelImpl extends BaseModelImpl<KaleoTransition>
 
 		kaleoTransitionModelImpl._setOriginalDefaultTransition = false;
 
-		_columnBitmask = 0;
+		kaleoTransitionModelImpl._columnBitmask = 0;
 	}
 
 	@Override

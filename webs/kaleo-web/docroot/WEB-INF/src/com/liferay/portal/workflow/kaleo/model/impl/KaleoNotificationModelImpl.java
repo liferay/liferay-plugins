@@ -504,7 +504,7 @@ public class KaleoNotificationModelImpl extends BaseModelImpl<KaleoNotification>
 
 		kaleoNotificationModelImpl._originalExecutionType = kaleoNotificationModelImpl._executionType;
 
-		_columnBitmask = 0;
+		kaleoNotificationModelImpl._columnBitmask = 0;
 	}
 
 	@Override

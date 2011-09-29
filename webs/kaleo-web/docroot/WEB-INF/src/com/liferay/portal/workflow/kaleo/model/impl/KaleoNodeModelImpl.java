@@ -419,7 +419,7 @@ public class KaleoNodeModelImpl extends BaseModelImpl<KaleoNode>
 
 		kaleoNodeModelImpl._setOriginalKaleoDefinitionId = false;
 
-		_columnBitmask = 0;
+		kaleoNodeModelImpl._columnBitmask = 0;
 	}
 
 	@Override

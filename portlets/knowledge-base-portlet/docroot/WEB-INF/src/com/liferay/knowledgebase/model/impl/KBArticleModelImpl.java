@@ -792,7 +792,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 
 		kbArticleModelImpl._setOriginalStatus = false;
 
-		_columnBitmask = 0;
+		kbArticleModelImpl._columnBitmask = 0;
 	}
 
 	@Override

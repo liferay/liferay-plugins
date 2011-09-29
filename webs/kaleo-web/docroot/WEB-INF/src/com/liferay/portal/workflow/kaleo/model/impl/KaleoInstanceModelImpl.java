@@ -490,7 +490,7 @@ public class KaleoInstanceModelImpl extends BaseModelImpl<KaleoInstance>
 
 		kaleoInstanceModelImpl._originalCompletionDate = kaleoInstanceModelImpl._completionDate;
 
-		_columnBitmask = 0;
+		kaleoInstanceModelImpl._columnBitmask = 0;
 	}
 
 	@Override

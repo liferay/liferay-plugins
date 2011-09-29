@@ -534,7 +534,7 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 
 		kaleoTimerInstanceTokenModelImpl._setOriginalCompleted = false;
 
-		_columnBitmask = 0;
+		kaleoTimerInstanceTokenModelImpl._columnBitmask = 0;
 	}
 
 	@Override

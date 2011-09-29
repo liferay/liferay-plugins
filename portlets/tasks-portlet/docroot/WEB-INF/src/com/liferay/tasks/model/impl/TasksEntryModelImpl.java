@@ -525,7 +525,7 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 
 		tasksEntryModelImpl._setOriginalResolverUserId = false;
 
-		_columnBitmask = 0;
+		tasksEntryModelImpl._columnBitmask = 0;
 	}
 
 	@Override

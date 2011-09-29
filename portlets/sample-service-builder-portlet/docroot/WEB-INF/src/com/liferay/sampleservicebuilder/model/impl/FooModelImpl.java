@@ -464,7 +464,7 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 
 		fooModelImpl._setOriginalField2 = false;
 
-		_columnBitmask = 0;
+		fooModelImpl._columnBitmask = 0;
 	}
 
 	@Override

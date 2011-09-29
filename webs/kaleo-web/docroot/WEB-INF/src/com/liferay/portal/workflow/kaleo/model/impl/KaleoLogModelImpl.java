@@ -699,7 +699,7 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 
 		kaleoLogModelImpl._originalType = kaleoLogModelImpl._type;
 
-		_columnBitmask = 0;
+		kaleoLogModelImpl._columnBitmask = 0;
 	}
 
 	@Override

@@ -529,7 +529,7 @@ public class KaleoDefinitionModelImpl extends BaseModelImpl<KaleoDefinition>
 
 		kaleoDefinitionModelImpl._setOriginalActive = false;
 
-		_columnBitmask = 0;
+		kaleoDefinitionModelImpl._columnBitmask = 0;
 	}
 
 	@Override

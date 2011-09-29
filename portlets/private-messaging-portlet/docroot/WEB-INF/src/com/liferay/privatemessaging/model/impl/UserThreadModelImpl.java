@@ -374,7 +374,7 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 
 		userThreadModelImpl._setOriginalDeleted = false;
 
-		_columnBitmask = 0;
+		userThreadModelImpl._columnBitmask = 0;
 	}
 
 	@Override

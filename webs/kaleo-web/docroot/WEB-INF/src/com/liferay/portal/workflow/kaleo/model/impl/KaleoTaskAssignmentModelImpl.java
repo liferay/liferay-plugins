@@ -479,7 +479,7 @@ public class KaleoTaskAssignmentModelImpl extends BaseModelImpl<KaleoTaskAssignm
 
 		kaleoTaskAssignmentModelImpl._originalAssigneeClassName = kaleoTaskAssignmentModelImpl._assigneeClassName;
 
-		_columnBitmask = 0;
+		kaleoTaskAssignmentModelImpl._columnBitmask = 0;
 	}
 
 	@Override

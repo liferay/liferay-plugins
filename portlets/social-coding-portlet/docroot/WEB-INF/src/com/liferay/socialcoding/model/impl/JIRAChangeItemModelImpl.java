@@ -305,7 +305,7 @@ public class JIRAChangeItemModelImpl extends BaseModelImpl<JIRAChangeItem>
 
 		jiraChangeItemModelImpl._setOriginalJiraChangeGroupId = false;
 
-		_columnBitmask = 0;
+		jiraChangeItemModelImpl._columnBitmask = 0;
 	}
 
 	@Override

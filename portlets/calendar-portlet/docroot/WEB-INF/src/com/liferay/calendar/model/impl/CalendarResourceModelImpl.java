@@ -717,7 +717,7 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 
 		calendarResourceModelImpl._setOriginalActive = false;
 
-		_columnBitmask = 0;
+		calendarResourceModelImpl._columnBitmask = 0;
 	}
 
 	@Override
