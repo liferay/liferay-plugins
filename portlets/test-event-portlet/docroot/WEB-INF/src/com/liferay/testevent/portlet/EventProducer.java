@@ -12,22 +12,21 @@
  * details.
  */
 
-package com.liferay.testevent;
+package com.liferay.testevent.portlet;
 
 import com.liferay.portal.kernel.util.ContentTypes;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+
 import java.util.HashMap;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.GenericPortlet;
-import javax.portlet.PortletException;
-import javax.portlet.PortletPreferences;
-import javax.portlet.PortletURL;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
+
 import javax.xml.namespace.QName;
 
 /**
@@ -35,40 +34,34 @@ import javax.xml.namespace.QName;
  */
 public class EventProducer extends GenericPortlet {
 
-	public static final QName EVENT_QNAME = new QName(
-		"http://www.liferay.com", "lps18191");
-
-	public static final String KEY = "ABC";
-
 	@Override
-	public void processAction(ActionRequest request, ActionResponse response)
-		throws PortletException, IOException {
+	public void doView(
+			RenderRequest renderRequest, RenderResponse renderResponse)
+		throws IOException {
 
-		PortletPreferences prefs = request.getPreferences();
+		renderResponse.setContentType(ContentTypes.TEXT_HTML);
 
-		prefs.setValue(EventProducer.KEY, "DEF");
-		prefs.store();
+		PrintWriter printWriter = renderResponse.getWriter();
 
-		response.setEvent(EVENT_QNAME, new HashMap());
+		printWriter.write("<a href=\"");
+		printWriter.write(String.valueOf(renderResponse.createActionURL()));
+		printWriter.write("\">Send Event</a>");
+
+		printWriter.close();
 	}
 
 	@Override
-	public void doView(RenderRequest request,RenderResponse response) 
-		throws PortletException, IOException {
+	public void processAction(
+		ActionRequest actionRequest, ActionResponse actionResponse) {
 
-		response.setContentType(ContentTypes.TEXT_HTML);
+		QName qName = new QName(
+			"http://www.liferay.com", "LPS-18191");
 
-		PrintWriter writer = response.getWriter();
+		HashMap<String, String> hashMap = new HashMap<String, String>();
 
-		try {
-			PortletURL actionURL = response.createActionURL();
+		hashMap.put("hello", "world");
 
-			writer.write("<a href=\"" + actionURL.toString() +
-				"\">Produce Event</a>");
-		}
-		finally {
-			writer.close();
-		}
+		actionResponse.setEvent(qName, hashMap);
 	}
 
 }

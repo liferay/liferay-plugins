@@ -12,19 +12,19 @@
  * details.
  */
 
-package com.liferay.testevent;
+package com.liferay.testevent.portlet;
 
-import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import java.util.HashMap;
+
+import javax.portlet.Event;
 import javax.portlet.EventRequest;
 import javax.portlet.EventResponse;
 import javax.portlet.GenericPortlet;
-import javax.portlet.PortletException;
-import javax.portlet.PortletPreferences;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 
@@ -34,47 +34,44 @@ import javax.portlet.RenderResponse;
 public class EventConsumer extends GenericPortlet {
 
 	@Override
-	public void processEvent(EventRequest request, EventResponse response)
-		throws PortletException, IOException {
+	public void processEvent(
+		EventRequest eventRequest, EventResponse eventResponse) {
 
-		String value = request.getPreferences().getValue(
-			EventProducer.KEY, StringPool.BLANK);
+		Event event = eventRequest.getEvent();
 
-		if (Validator.isNull(value)) {
-			_passedTest = true;
+		HashMap<String, String> hashMap =
+			(HashMap<String, String>)event.getValue();
+
+		String value = hashMap.get("hello");
+
+		if (Validator.equals(value, "world")) {
+			_result = true;
 		}
-
-		_runTest = false;
+		else {
+			_result = false;
+		}
 	}
 
 	@Override
 	public void doView(RenderRequest request, RenderResponse response)
-		throws PortletException, IOException {
+		throws IOException {
 
-		PrintWriter writer = response.getWriter();
-
-		try {
-			if (_runTest) {
-				writer.write("Click 'Process Event' to run test");
-
-				return;
-			}
-
-			if (_passedTest) {
-				writer.write("PASSED");
-			}
-			else {
-				writer.write("FAILED");
-			}
+		if (_result == null) {
+			return;
 		}
-		finally {
-			writer.close();
 
-			_runTest = true;
+		PrintWriter printWriter = response.getWriter();
+
+		if (_result) {
+			printWriter.write("PASSED");
 		}
+		else {
+			printWriter.write("FAILED");
+		}
+
+		printWriter.close();
 	}
 
-	private boolean _passedTest;
-	private boolean _runTest;
+	private Boolean _result;
 
 }
