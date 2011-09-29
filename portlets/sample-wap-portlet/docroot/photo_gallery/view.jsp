@@ -26,7 +26,7 @@ if (windowState.equals(WindowState.MAXIMIZED)) {
 	<img alt="large" src="<%= request.getContextPath() %>/photo_gallery/photo_<%= cur %>_large.jpg" /><br />
 
 	<%
-	if (cur.equals("1")) {
+	if (cur == 1) {
 	%>
 
 		<a href="<portlet:renderURL><portlet:param name="cur" value="2" /></portlet:renderURL>">Next</a><br />
