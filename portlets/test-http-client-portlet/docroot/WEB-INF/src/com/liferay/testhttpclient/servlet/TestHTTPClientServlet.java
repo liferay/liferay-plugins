@@ -87,11 +87,11 @@ public class TestHTTPClientServlet extends HttpServlet {
 			return false;
 		}
 
-		String file1 = ParamUtil.getString(request, "file1");
+		/*String file1 = ParamUtil.getString(request, "file1");
 
 		if (!file1.equals("file1")) {
 			return false;
-		}
+		}*/
 
 		return true;
 	}
