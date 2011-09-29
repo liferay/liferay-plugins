@@ -126,27 +126,31 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 					<%
 					AssetCategory assetCategory = AssetCategoryLocalServiceUtil.getAssetCategory(assetCategoryId);
 
+					assetCategory = assetCategory.toEscapedModel();
+					
 					AssetVocabulary assetVocabulary = AssetVocabularyLocalServiceUtil.getAssetVocabulary(assetCategory.getVocabularyId());
+					
+					assetVocabulary = assetVocabulary.toEscapedModel();
 					%>
 
 					<c:choose>
 						<c:when test="<%= Validator.isNotNull(assetTagName) %>">
 							<c:choose>
 								<c:when test="<%= total > 0 %>">
-									<%= LanguageUtil.format(pageContext, "articles-with-x-x-and-tag-x", new String[] {assetVocabulary.getName(), assetCategory.getName(), assetTagName}, false) %>
+									<%= LanguageUtil.format(pageContext, "articles-with-x-x-and-tag-x", new String[] {assetVocabulary.getTitle(locale), assetCategory.getTitle(locale), assetTagName}, false) %>
 								</c:when>
 								<c:otherwise>
-									<%= LanguageUtil.format(pageContext, "there-are-no-articles-with-x-x-and-tag-x", new String[] {assetVocabulary.getName(), assetCategory.getName(), assetTagName}, false) %>
+									<%= LanguageUtil.format(pageContext, "there-are-no-articles-with-x-x-and-tag-x", new String[] {assetVocabulary.getTitle(locale), assetCategory.getTitle(locale), assetTagName}, false) %>
 								</c:otherwise>
 							</c:choose>
 						</c:when>
 						<c:otherwise>
 							<c:choose>
 								<c:when test="<%= total > 0 %>">
-									<%= LanguageUtil.format(pageContext, "articles-with-x-x", new String[] {assetVocabulary.getName(), assetCategory.getName()}, false) %>
+									<%= LanguageUtil.format(pageContext, "articles-with-x-x", new String[] {assetVocabulary.getTitle(locale), assetCategory.getTitle(locale)}, false) %>
 								</c:when>
 								<c:otherwise>
-									<%= LanguageUtil.format(pageContext, "there-are-no-articles-with-x-x", new String[] {assetVocabulary.getName(), assetCategory.getName()}, false) %>
+									<%= LanguageUtil.format(pageContext, "there-are-no-articles-with-x-x", new String[] {assetVocabulary.getTitle(locale), assetCategory.getTitle(locale)}, false) %>
 								</c:otherwise>
 							</c:choose>
 						</c:otherwise>
