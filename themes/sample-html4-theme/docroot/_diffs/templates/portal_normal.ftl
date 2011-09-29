@@ -22,7 +22,7 @@
 	<div id="banner" role="banner">
 		<div id="heading">
 			<h1 class="company-title">
-				<a class="logo" href="${company_url}" title="<@liferay.language key="go-to" /> ${company_name}">
+				<a class="${logo_css_class}" href="${company_url}" title="<@liferay.language key="go-to" /> ${company_name}">
 					<span>${company_name}</span>
 				</a>
 			</h1>
