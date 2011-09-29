@@ -16,12 +16,28 @@
 
 <%@ include file="/init.jsp" %>
 
-<iframe id="<portlet:namespace />frame" scrolling="no" src="<%= iFrameURL %>"></iframe>
+<div class="loading-animation">
+	<iframe class="aui-helper-hidden-accessible" id="<portlet:namespace />frame" scrolling="no" src="javascript:;"></iframe>
+</div>
+
+<div class="aui-helper-hidden time-out-message portlet-msg-error">
+	<liferay-ui:message key="could-not-connect-to-liferay-marketplace" />
+</div>
 
 <aui:script use="aui-base,aui-io,aui-messaging">
 	var frame = A.one('#<portlet:namespace />frame');
 
+	var timeout = setTimeout(
+		function() {
+			frame.ancestor().removeClass('loading-animation');
+			A.one('.time-out-message').show();
+		},
+		30000
+	);
+
 	var processResponse = function(event) {
+		clearTimeout(timeout);
+
 		var response = event.responseData;
 
 		var cmd = response.cmd;
@@ -47,9 +63,14 @@
 		var height = response.height;
 
 		if (height) {
+			frame.removeClass('aui-helper-hidden-accessible');
+			frame.ancestor().removeClass('loading-animation');
+
 			frame.height(height + 50);
 		}
 	}
 
-	A.receiveMessage(processResponse, '<%= MarketplaceConstants.MARKETPLACE_DOMAIN %>');
+	A.receiveMessage(processResponse, A.Lang.emptyFnTrue);
+
+	frame.attr('src', '<%= iFrameURL %>');
 </aui:script>

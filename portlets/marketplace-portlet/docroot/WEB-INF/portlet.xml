@@ -18,6 +18,7 @@
 		<supports>
 			<mime-type>text/html</mime-type>
 		</supports>
+		<resource-bundle>content.Language</resource-bundle>
 		<portlet-info>
 			<title>Store</title>
 			<short-title>Store</short-title>
@@ -48,6 +49,7 @@
 		<supports>
 			<mime-type>text/html</mime-type>
 		</supports>
+		<resource-bundle>content.Language</resource-bundle>
 		<portlet-info>
 			<title>My Marketplace</title>
 			<short-title>My Marketplace</short-title>
