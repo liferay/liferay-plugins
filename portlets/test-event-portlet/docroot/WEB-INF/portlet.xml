@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+
+<portlet-app
+	version="2.0"
+	xmlns="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd"
+>
+	<portlet>
+		<portlet-name>1</portlet-name>
+		<display-name>Event Producer</display-name>
+		<portlet-class>com.liferay.testevent.EventProducer</portlet-class>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Event Producer</title>
+			<short-title>Event Producer</short-title>
+		</portlet-info>
+		<supported-publishing-event xmlns:event='http://www.liferay.com'>
+			<qname>event:lps18191</qname>
+		</supported-publishing-event>
+	</portlet>
+	<portlet>
+		<portlet-name>2</portlet-name>
+		<display-name>Event Consumer</display-name>
+		<portlet-class>com.liferay.testevent.EventConsumer</portlet-class>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Event Consumer</title>
+			<short-title>Event Consumer</short-title>
+		</portlet-info>
+		<supported-processing-event xmlns:event='http://www.liferay.com'>
+			<qname>event:lps18191</qname>
+		</supported-processing-event>
+	</portlet>
+	<event-definition xmlns:event='http://www.liferay.com'>
+		<qname>event:lps18191</qname>
+		<value-type>java.util.HashMap</value-type>
+	</event-definition>
+</portlet-app>
