@@ -34,8 +34,8 @@ import javax.xml.namespace.QName;
 public class EventProducer extends GenericPortlet {
 
 	public static final String KEY = "ABC";
-	public static final QName EVENT_QNAME =
-		new QName("http://www.liferay.com", "lps18191");
+	public static final QName EVENT_QNAME = new QName(
+		"http://www.liferay.com", "lps18191");
 
 	@Override
 	public void processAction(ActionRequest request, ActionResponse response)
@@ -54,16 +54,18 @@ public class EventProducer extends GenericPortlet {
 		throws PortletException, IOException {
 
 		response.setContentType("text/html");
+
 		PrintWriter writer = response.getWriter();
 
 		try {
 			PortletURL actionURL = response.createActionURL();
 
-			writer.write("<a href=\"" + actionURL.toString()
-				+ "\">Produce Event</a>");
+			writer.write("<a href=\"" + actionURL.toString() +
+				"\">Produce Event</a>");
 		}
 		finally {
 			writer.close();
 		}
 	}
+
 }
