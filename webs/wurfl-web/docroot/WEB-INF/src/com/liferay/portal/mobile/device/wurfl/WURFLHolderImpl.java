@@ -38,7 +38,7 @@ import net.sourceforge.wurfl.core.WURFLHolder;
 import net.sourceforge.wurfl.core.WURFLManager;
 import net.sourceforge.wurfl.core.WURFLService;
 import net.sourceforge.wurfl.core.WURFLUtils;
-import net.sourceforge.wurfl.core.handlers.matchers.MatcherManager;
+import net.sourceforge.wurfl.core.matchers.MatcherManager;
 import net.sourceforge.wurfl.core.resource.DefaultWURFLModel;
 import net.sourceforge.wurfl.core.resource.WURFLModel;
 import net.sourceforge.wurfl.core.resource.WURFLResources;
