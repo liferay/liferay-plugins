@@ -21,7 +21,7 @@
 </div>
 
 <div class="aui-helper-hidden time-out-message portlet-msg-error">
-	<liferay-ui:message key="could-not-connect-to-liferay-marketplace" />
+	<liferay-ui:message key="could-not-connect-to-the-liferay-marketplace" />
 </div>
 
 <aui:script use="aui-base,aui-io,aui-messaging">
