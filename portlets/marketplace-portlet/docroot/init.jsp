@@ -20,8 +20,7 @@
 
 <%@ taglib uri="http://liferay.com/tld/aui" prefix="aui" %>
 
-<%@ page import="com.liferay.marketplace.util.MarketplaceConstants" %>
-<%@ page import="com.liferay.marketplace.util.PortletKeys" %>
+<%@ page import="com.liferay.marketplace.util.MarketplaceConstants" %><%@ page import="com.liferay.marketplace.util.PortletKeys" %>
 
 <portlet:defineObjects />
 

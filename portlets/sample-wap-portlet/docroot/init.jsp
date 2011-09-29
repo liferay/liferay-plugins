@@ -16,8 +16,6 @@
 
 <%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
 
-<%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
-
-<%@ page import="javax.portlet.WindowState" %>
+<%@ page import="com.liferay.portal.kernel.util.ParamUtil" %><%@ page import="javax.portlet.WindowState" %>
 
 <portlet:defineObjects />

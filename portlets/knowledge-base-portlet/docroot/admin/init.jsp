@@ -16,14 +16,7 @@
 
 <%@ include file="/init.jsp" %>
 
-<%@ page import="com.liferay.knowledgebase.admin.search.KBArticleDisplayTerms" %>
-<%@ page import="com.liferay.knowledgebase.admin.search.KBArticleSearch" %>
-<%@ page import="com.liferay.knowledgebase.admin.search.KBArticleSearchTerms" %>
-<%@ page import="com.liferay.knowledgebase.admin.search.KBTemplateDisplayTerms" %>
-<%@ page import="com.liferay.knowledgebase.admin.search.KBTemplateSearch" %>
-<%@ page import="com.liferay.knowledgebase.admin.search.KBTemplateSearchTerms" %>
-<%@ page import="com.liferay.knowledgebase.admin.util.AdminUtil" %>
-<%@ page import="com.liferay.knowledgebase.admin.util.KBArticleAssetEntriesUtil" %>
+<%@ page import="com.liferay.knowledgebase.admin.search.KBArticleDisplayTerms" %><%@ page import="com.liferay.knowledgebase.admin.search.KBArticleSearch" %><%@ page import="com.liferay.knowledgebase.admin.search.KBArticleSearchTerms" %><%@ page import="com.liferay.knowledgebase.admin.search.KBTemplateDisplayTerms" %><%@ page import="com.liferay.knowledgebase.admin.search.KBTemplateSearch" %><%@ page import="com.liferay.knowledgebase.admin.search.KBTemplateSearchTerms" %><%@ page import="com.liferay.knowledgebase.admin.util.AdminUtil" %><%@ page import="com.liferay.knowledgebase.admin.util.KBArticleAssetEntriesUtil" %>
 
 <%
 PortletPreferences preferences = renderRequest.getPreferences();
