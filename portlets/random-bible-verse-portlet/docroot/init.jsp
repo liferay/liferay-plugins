@@ -22,7 +22,17 @@
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 <%@ taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 
-<%@ page import="com.liferay.portal.kernel.language.LanguageUtil" %><%@ page import="com.liferay.portal.kernel.util.Constants" %><%@ page import="com.liferay.portal.kernel.util.StringPool" %><%@ page import="com.liferay.randombibleverse.model.Bible" %><%@ page import="com.liferay.randombibleverse.model.Verse" %><%@ page import="com.liferay.randombibleverse.util.RBVUtil" %><%@ page import="java.util.Iterator" %><%@ page import="java.util.Map" %><%@ page import="javax.portlet.PortletPreferences" %>
+<%@ page import="com.liferay.portal.kernel.language.LanguageUtil" %>
+<%@ page import="com.liferay.portal.kernel.util.Constants" %>
+<%@ page import="com.liferay.portal.kernel.util.StringPool" %>
+<%@ page import="com.liferay.randombibleverse.model.Bible" %>
+<%@ page import="com.liferay.randombibleverse.model.Verse" %>
+<%@ page import="com.liferay.randombibleverse.util.RBVUtil" %>
+
+<%@ page import="java.util.Iterator" %>
+<%@ page import="java.util.Map" %>
+
+<%@ page import="javax.portlet.PortletPreferences" %>
 
 <portlet:defineObjects />
 

@@ -25,7 +25,34 @@
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 <%@ taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 
-<%@ page import="com.liferay.mail.model.Account" %><%@ page import="com.liferay.mail.model.Attachment" %><%@ page import="com.liferay.mail.model.Folder" %><%@ page import="com.liferay.mail.model.Message" %><%@ page import="com.liferay.mail.model.MessageDisplay" %><%@ page import="com.liferay.mail.model.MessagesDisplay" %><%@ page import="com.liferay.mail.service.AccountLocalServiceUtil" %><%@ page import="com.liferay.mail.service.AttachmentLocalServiceUtil" %><%@ page import="com.liferay.mail.service.FolderLocalServiceUtil" %><%@ page import="com.liferay.mail.service.MessageLocalServiceUtil" %><%@ page import="com.liferay.mail.util.MailConstants" %><%@ page import="com.liferay.mail.util.MailManager" %><%@ page import="com.liferay.mail.util.PortletPropsValues" %><%@ page import="com.liferay.portal.kernel.json.JSONArray" %><%@ page import="com.liferay.portal.kernel.json.JSONFactoryUtil" %><%@ page import="com.liferay.portal.kernel.json.JSONObject" %><%@ page import="com.liferay.portal.kernel.language.LanguageUtil" %><%@ page import="com.liferay.portal.kernel.util.FastDateFormatFactoryUtil" %><%@ page import="com.liferay.portal.kernel.util.HtmlUtil" %><%@ page import="com.liferay.portal.kernel.util.ParamUtil" %><%@ page import="com.liferay.portal.kernel.util.StringBundler" %><%@ page import="com.liferay.portal.kernel.util.StringPool" %><%@ page import="com.liferay.portal.kernel.util.UnicodeFormatter" %><%@ page import="com.liferay.portal.kernel.util.Validator" %><%@ page import="java.text.Format" %><%@ page import="java.util.List" %>
+<%@ page import="com.liferay.mail.model.Account" %>
+<%@ page import="com.liferay.mail.model.Attachment" %>
+<%@ page import="com.liferay.mail.model.Folder" %>
+<%@ page import="com.liferay.mail.model.Message" %>
+<%@ page import="com.liferay.mail.model.MessageDisplay" %>
+<%@ page import="com.liferay.mail.model.MessagesDisplay" %>
+<%@ page import="com.liferay.mail.service.AccountLocalServiceUtil" %>
+<%@ page import="com.liferay.mail.service.AttachmentLocalServiceUtil" %>
+<%@ page import="com.liferay.mail.service.FolderLocalServiceUtil" %>
+<%@ page import="com.liferay.mail.service.MessageLocalServiceUtil" %>
+<%@ page import="com.liferay.mail.util.MailConstants" %>
+<%@ page import="com.liferay.mail.util.MailManager" %>
+<%@ page import="com.liferay.mail.util.PortletPropsValues" %>
+<%@ page import="com.liferay.portal.kernel.json.JSONArray" %>
+<%@ page import="com.liferay.portal.kernel.json.JSONFactoryUtil" %>
+<%@ page import="com.liferay.portal.kernel.json.JSONObject" %>
+<%@ page import="com.liferay.portal.kernel.language.LanguageUtil" %>
+<%@ page import="com.liferay.portal.kernel.util.FastDateFormatFactoryUtil" %>
+<%@ page import="com.liferay.portal.kernel.util.HtmlUtil" %>
+<%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
+<%@ page import="com.liferay.portal.kernel.util.StringBundler" %>
+<%@ page import="com.liferay.portal.kernel.util.StringPool" %>
+<%@ page import="com.liferay.portal.kernel.util.UnicodeFormatter" %>
+<%@ page import="com.liferay.portal.kernel.util.Validator" %>
+
+<%@ page import="java.text.Format" %>
+
+<%@ page import="java.util.List" %>
 
 <portlet:defineObjects />
 
