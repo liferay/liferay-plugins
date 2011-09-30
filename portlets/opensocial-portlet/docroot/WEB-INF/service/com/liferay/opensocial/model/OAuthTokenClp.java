@@ -186,14 +186,8 @@ public class OAuthTokenClp extends BaseModelImpl<OAuthToken>
 
 	@Override
 	public OAuthToken toEscapedModel() {
-		if (isEscapedModel()) {
-			return this;
-		}
-		else {
-			return (OAuthToken)Proxy.newProxyInstance(OAuthToken.class.getClassLoader(),
-				new Class[] { OAuthToken.class },
-				new AutoEscapeBeanHandler(this));
-		}
+		return (OAuthToken)Proxy.newProxyInstance(OAuthToken.class.getClassLoader(),
+			new Class[] { OAuthToken.class }, new AutoEscapeBeanHandler(this));
 	}
 
 	@Override

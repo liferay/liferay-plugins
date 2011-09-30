@@ -141,14 +141,8 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 
 	@Override
 	public WSRPProducer toEscapedModel() {
-		if (isEscapedModel()) {
-			return this;
-		}
-		else {
-			return (WSRPProducer)Proxy.newProxyInstance(WSRPProducer.class.getClassLoader(),
-				new Class[] { WSRPProducer.class },
-				new AutoEscapeBeanHandler(this));
-		}
+		return (WSRPProducer)Proxy.newProxyInstance(WSRPProducer.class.getClassLoader(),
+			new Class[] { WSRPProducer.class }, new AutoEscapeBeanHandler(this));
 	}
 
 	@Override

@@ -292,10 +292,6 @@ public class KaleoTaskFormWrapper implements KaleoTaskForm {
 		return _kaleoTaskForm.isEscapedModel();
 	}
 
-	public void setEscapedModel(boolean escapedModel) {
-		_kaleoTaskForm.setEscapedModel(escapedModel);
-	}
-
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _kaleoTaskForm.getPrimaryKeyObj();
 	}

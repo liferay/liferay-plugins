@@ -400,10 +400,6 @@ public class KaleoNotificationWrapper implements KaleoNotification {
 		return _kaleoNotification.isEscapedModel();
 	}
 
-	public void setEscapedModel(boolean escapedModel) {
-		_kaleoNotification.setEscapedModel(escapedModel);
-	}
-
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _kaleoNotification.getPrimaryKeyObj();
 	}

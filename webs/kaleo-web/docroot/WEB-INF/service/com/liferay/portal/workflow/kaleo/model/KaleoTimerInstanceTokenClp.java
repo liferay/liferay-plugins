@@ -262,14 +262,9 @@ public class KaleoTimerInstanceTokenClp extends BaseModelImpl<KaleoTimerInstance
 
 	@Override
 	public KaleoTimerInstanceToken toEscapedModel() {
-		if (isEscapedModel()) {
-			return this;
-		}
-		else {
-			return (KaleoTimerInstanceToken)Proxy.newProxyInstance(KaleoTimerInstanceToken.class.getClassLoader(),
-				new Class[] { KaleoTimerInstanceToken.class },
-				new AutoEscapeBeanHandler(this));
-		}
+		return (KaleoTimerInstanceToken)Proxy.newProxyInstance(KaleoTimerInstanceToken.class.getClassLoader(),
+			new Class[] { KaleoTimerInstanceToken.class },
+			new AutoEscapeBeanHandler(this));
 	}
 
 	@Override

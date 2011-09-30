@@ -155,14 +155,8 @@ public class KBTemplateClp extends BaseModelImpl<KBTemplate>
 
 	@Override
 	public KBTemplate toEscapedModel() {
-		if (isEscapedModel()) {
-			return this;
-		}
-		else {
-			return (KBTemplate)Proxy.newProxyInstance(KBTemplate.class.getClassLoader(),
-				new Class[] { KBTemplate.class },
-				new AutoEscapeBeanHandler(this));
-		}
+		return (KBTemplate)Proxy.newProxyInstance(KBTemplate.class.getClassLoader(),
+			new Class[] { KBTemplate.class }, new AutoEscapeBeanHandler(this));
 	}
 
 	@Override

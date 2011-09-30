@@ -200,10 +200,6 @@ public class JIRAChangeItemWrapper implements JIRAChangeItem {
 		return _jiraChangeItem.isEscapedModel();
 	}
 
-	public void setEscapedModel(boolean escapedModel) {
-		_jiraChangeItem.setEscapedModel(escapedModel);
-	}
-
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _jiraChangeItem.getPrimaryKeyObj();
 	}

@@ -333,6 +333,14 @@ public class CalendarResourceWrapper implements CalendarResource {
 		return _calendarResource.getName(languageId, useDefault);
 	}
 
+	public java.lang.String getNameCurrentLanguageId() {
+		return _calendarResource.getNameCurrentLanguageId();
+	}
+
+	public java.lang.String getNameCurrentValue() {
+		return _calendarResource.getNameCurrentValue();
+	}
+
 	/**
 	* Returns a map of the locales and localized names of this calendar resource.
 	*
@@ -371,6 +379,10 @@ public class CalendarResourceWrapper implements CalendarResource {
 	public void setName(java.lang.String name, java.util.Locale locale,
 		java.util.Locale defaultLocale) {
 		_calendarResource.setName(name, locale, defaultLocale);
+	}
+
+	public void setNameCurrentLanguageId(java.lang.String languageId) {
+		_calendarResource.setNameCurrentLanguageId(languageId);
 	}
 
 	/**
@@ -448,6 +460,14 @@ public class CalendarResourceWrapper implements CalendarResource {
 		return _calendarResource.getDescription(languageId, useDefault);
 	}
 
+	public java.lang.String getDescriptionCurrentLanguageId() {
+		return _calendarResource.getDescriptionCurrentLanguageId();
+	}
+
+	public java.lang.String getDescriptionCurrentValue() {
+		return _calendarResource.getDescriptionCurrentValue();
+	}
+
 	/**
 	* Returns a map of the locales and localized descriptions of this calendar resource.
 	*
@@ -487,6 +507,10 @@ public class CalendarResourceWrapper implements CalendarResource {
 	public void setDescription(java.lang.String description,
 		java.util.Locale locale, java.util.Locale defaultLocale) {
 		_calendarResource.setDescription(description, locale, defaultLocale);
+	}
+
+	public void setDescriptionCurrentLanguageId(java.lang.String languageId) {
+		_calendarResource.setDescriptionCurrentLanguageId(languageId);
 	}
 
 	/**
@@ -556,10 +580,6 @@ public class CalendarResourceWrapper implements CalendarResource {
 
 	public boolean isEscapedModel() {
 		return _calendarResource.isEscapedModel();
-	}
-
-	public void setEscapedModel(boolean escapedModel) {
-		_calendarResource.setEscapedModel(escapedModel);
 	}
 
 	public java.io.Serializable getPrimaryKeyObj() {

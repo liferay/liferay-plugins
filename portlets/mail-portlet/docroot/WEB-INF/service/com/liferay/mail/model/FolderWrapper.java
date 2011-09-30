@@ -274,10 +274,6 @@ public class FolderWrapper implements Folder {
 		return _folder.isEscapedModel();
 	}
 
-	public void setEscapedModel(boolean escapedModel) {
-		_folder.setEscapedModel(escapedModel);
-	}
-
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _folder.getPrimaryKeyObj();
 	}

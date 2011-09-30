@@ -238,18 +238,13 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction>
 
 	@Override
 	public JIRAAction toEscapedModel() {
-		if (isEscapedModel()) {
-			return (JIRAAction)this;
+		if (_escapedModelProxy == null) {
+			_escapedModelProxy = (JIRAAction)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelProxyInterfaces,
+					new AutoEscapeBeanHandler(this));
 		}
-		else {
-			if (_escapedModelProxy == null) {
-				_escapedModelProxy = (JIRAAction)ProxyUtil.newProxyInstance(_classLoader,
-						_escapedModelProxyInterfaces,
-						new AutoEscapeBeanHandler(this));
-			}
 
-			return _escapedModelProxy;
-		}
+		return _escapedModelProxy;
 	}
 
 	@Override

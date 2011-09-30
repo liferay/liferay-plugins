@@ -316,13 +316,8 @@ public class KaleoLogClp extends BaseModelImpl<KaleoLog> implements KaleoLog {
 
 	@Override
 	public KaleoLog toEscapedModel() {
-		if (isEscapedModel()) {
-			return this;
-		}
-		else {
-			return (KaleoLog)Proxy.newProxyInstance(KaleoLog.class.getClassLoader(),
-				new Class[] { KaleoLog.class }, new AutoEscapeBeanHandler(this));
-		}
+		return (KaleoLog)Proxy.newProxyInstance(KaleoLog.class.getClassLoader(),
+			new Class[] { KaleoLog.class }, new AutoEscapeBeanHandler(this));
 	}
 
 	@Override

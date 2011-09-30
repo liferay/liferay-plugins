@@ -178,14 +178,8 @@ public class DefinitionClp extends BaseModelImpl<Definition>
 
 	@Override
 	public Definition toEscapedModel() {
-		if (isEscapedModel()) {
-			return this;
-		}
-		else {
-			return (Definition)Proxy.newProxyInstance(Definition.class.getClassLoader(),
-				new Class[] { Definition.class },
-				new AutoEscapeBeanHandler(this));
-		}
+		return (Definition)Proxy.newProxyInstance(Definition.class.getClassLoader(),
+			new Class[] { Definition.class }, new AutoEscapeBeanHandler(this));
 	}
 
 	@Override

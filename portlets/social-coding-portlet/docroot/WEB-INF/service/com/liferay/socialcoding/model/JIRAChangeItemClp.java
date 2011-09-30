@@ -119,14 +119,9 @@ public class JIRAChangeItemClp extends BaseModelImpl<JIRAChangeItem>
 
 	@Override
 	public JIRAChangeItem toEscapedModel() {
-		if (isEscapedModel()) {
-			return this;
-		}
-		else {
-			return (JIRAChangeItem)Proxy.newProxyInstance(JIRAChangeItem.class.getClassLoader(),
-				new Class[] { JIRAChangeItem.class },
-				new AutoEscapeBeanHandler(this));
-		}
+		return (JIRAChangeItem)Proxy.newProxyInstance(JIRAChangeItem.class.getClassLoader(),
+			new Class[] { JIRAChangeItem.class },
+			new AutoEscapeBeanHandler(this));
 	}
 
 	@Override

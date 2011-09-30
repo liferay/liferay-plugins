@@ -206,6 +206,7 @@ public interface KaleoDefinitionModel extends BaseModel<KaleoDefinition>,
 	 * @param locale the locale of the language
 	 * @return the localized title of this kaleo definition
 	 */
+	@AutoEscape
 	public String getTitle(Locale locale);
 
 	/**
@@ -215,6 +216,7 @@ public interface KaleoDefinitionModel extends BaseModel<KaleoDefinition>,
 	 * @param useDefault whether to use the default language if no localization exists for the requested language
 	 * @return the localized title of this kaleo definition. If <code>useDefault</code> is <code>false</code> and no localization exists for the requested language, an empty string will be returned.
 	 */
+	@AutoEscape
 	public String getTitle(Locale locale, boolean useDefault);
 
 	/**
@@ -223,6 +225,7 @@ public interface KaleoDefinitionModel extends BaseModel<KaleoDefinition>,
 	 * @param languageId the ID of the language
 	 * @return the localized title of this kaleo definition
 	 */
+	@AutoEscape
 	public String getTitle(String languageId);
 
 	/**
@@ -232,7 +235,14 @@ public interface KaleoDefinitionModel extends BaseModel<KaleoDefinition>,
 	 * @param useDefault whether to use the default language if no localization exists for the requested language
 	 * @return the localized title of this kaleo definition
 	 */
+	@AutoEscape
 	public String getTitle(String languageId, boolean useDefault);
+
+	@AutoEscape
+	public String getTitleCurrentLanguageId();
+
+	@AutoEscape
+	public String getTitleCurrentValue();
 
 	/**
 	 * Returns a map of the locales and localized titles of this kaleo definition.
@@ -264,6 +274,8 @@ public interface KaleoDefinitionModel extends BaseModel<KaleoDefinition>,
 	 * @param defaultLocale the default locale
 	 */
 	public void setTitle(String title, Locale locale, Locale defaultLocale);
+
+	public void setTitleCurrentLanguageId(String languageId);
 
 	/**
 	 * Sets the localized titles of this kaleo definition from the map of locales and localized titles.
@@ -368,8 +380,6 @@ public interface KaleoDefinitionModel extends BaseModel<KaleoDefinition>,
 	public void setCachedModel(boolean cachedModel);
 
 	public boolean isEscapedModel();
-
-	public void setEscapedModel(boolean escapedModel);
 
 	public Serializable getPrimaryKeyObj();
 

@@ -361,8 +361,6 @@ public interface MessageModel extends AuditedModel, BaseModel<Message> {
 
 	public boolean isEscapedModel();
 
-	public void setEscapedModel(boolean escapedModel);
-
 	public Serializable getPrimaryKeyObj();
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj);

@@ -436,10 +436,6 @@ public class MessageWrapper implements Message {
 		return _message.isEscapedModel();
 	}
 
-	public void setEscapedModel(boolean escapedModel) {
-		_message.setEscapedModel(escapedModel);
-	}
-
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _message.getPrimaryKeyObj();
 	}

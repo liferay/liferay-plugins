@@ -187,14 +187,8 @@ public class MeetupsEntryClp extends BaseModelImpl<MeetupsEntry>
 
 	@Override
 	public MeetupsEntry toEscapedModel() {
-		if (isEscapedModel()) {
-			return this;
-		}
-		else {
-			return (MeetupsEntry)Proxy.newProxyInstance(MeetupsEntry.class.getClassLoader(),
-				new Class[] { MeetupsEntry.class },
-				new AutoEscapeBeanHandler(this));
-		}
+		return (MeetupsEntry)Proxy.newProxyInstance(MeetupsEntry.class.getClassLoader(),
+			new Class[] { MeetupsEntry.class }, new AutoEscapeBeanHandler(this));
 	}
 
 	@Override

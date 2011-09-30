@@ -611,10 +611,6 @@ public class KBArticleWrapper implements KBArticle {
 		return _kbArticle.isEscapedModel();
 	}
 
-	public void setEscapedModel(boolean escapedModel) {
-		_kbArticle.setEscapedModel(escapedModel);
-	}
-
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _kbArticle.getPrimaryKeyObj();
 	}

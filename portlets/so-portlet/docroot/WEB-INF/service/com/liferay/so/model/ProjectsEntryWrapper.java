@@ -292,10 +292,6 @@ public class ProjectsEntryWrapper implements ProjectsEntry {
 		return _projectsEntry.isEscapedModel();
 	}
 
-	public void setEscapedModel(boolean escapedModel) {
-		_projectsEntry.setEscapedModel(escapedModel);
-	}
-
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _projectsEntry.getPrimaryKeyObj();
 	}

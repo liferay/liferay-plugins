@@ -400,10 +400,6 @@ public class KaleoActionWrapper implements KaleoAction {
 		return _kaleoAction.isEscapedModel();
 	}
 
-	public void setEscapedModel(boolean escapedModel) {
-		_kaleoAction.setEscapedModel(escapedModel);
-	}
-
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _kaleoAction.getPrimaryKeyObj();
 	}

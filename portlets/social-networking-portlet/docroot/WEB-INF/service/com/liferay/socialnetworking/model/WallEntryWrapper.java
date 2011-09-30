@@ -238,10 +238,6 @@ public class WallEntryWrapper implements WallEntry {
 		return _wallEntry.isEscapedModel();
 	}
 
-	public void setEscapedModel(boolean escapedModel) {
-		_wallEntry.setEscapedModel(escapedModel);
-	}
-
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _wallEntry.getPrimaryKeyObj();
 	}

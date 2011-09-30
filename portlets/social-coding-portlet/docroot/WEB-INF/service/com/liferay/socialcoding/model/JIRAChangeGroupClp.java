@@ -98,14 +98,9 @@ public class JIRAChangeGroupClp extends BaseModelImpl<JIRAChangeGroup>
 
 	@Override
 	public JIRAChangeGroup toEscapedModel() {
-		if (isEscapedModel()) {
-			return this;
-		}
-		else {
-			return (JIRAChangeGroup)Proxy.newProxyInstance(JIRAChangeGroup.class.getClassLoader(),
-				new Class[] { JIRAChangeGroup.class },
-				new AutoEscapeBeanHandler(this));
-		}
+		return (JIRAChangeGroup)Proxy.newProxyInstance(JIRAChangeGroup.class.getClassLoader(),
+			new Class[] { JIRAChangeGroup.class },
+			new AutoEscapeBeanHandler(this));
 	}
 
 	@Override

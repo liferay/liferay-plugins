@@ -401,18 +401,13 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 
 	@Override
 	public KaleoTimerInstanceToken toEscapedModel() {
-		if (isEscapedModel()) {
-			return (KaleoTimerInstanceToken)this;
+		if (_escapedModelProxy == null) {
+			_escapedModelProxy = (KaleoTimerInstanceToken)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelProxyInterfaces,
+					new AutoEscapeBeanHandler(this));
 		}
-		else {
-			if (_escapedModelProxy == null) {
-				_escapedModelProxy = (KaleoTimerInstanceToken)ProxyUtil.newProxyInstance(_classLoader,
-						_escapedModelProxyInterfaces,
-						new AutoEscapeBeanHandler(this));
-			}
 
-			return _escapedModelProxy;
-		}
+		return _escapedModelProxy;
 	}
 
 	@Override

@@ -17,7 +17,6 @@ package com.liferay.portal.workflow.kaleo.model;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.language.LanguageUtil;
-import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.LocalizationUtil;
 import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
@@ -156,26 +155,22 @@ public class KaleoDefinitionClp extends BaseModelImpl<KaleoDefinition>
 	}
 
 	public String getTitle(String languageId) {
-		String value = LocalizationUtil.getLocalization(getTitle(), languageId);
-
-		if (isEscapedModel()) {
-			return HtmlUtil.escape(value);
-		}
-		else {
-			return value;
-		}
+		return LocalizationUtil.getLocalization(getTitle(), languageId);
 	}
 
 	public String getTitle(String languageId, boolean useDefault) {
-		String value = LocalizationUtil.getLocalization(getTitle(), languageId,
-				useDefault);
+		return LocalizationUtil.getLocalization(getTitle(), languageId,
+			useDefault);
+	}
 
-		if (isEscapedModel()) {
-			return HtmlUtil.escape(value);
-		}
-		else {
-			return value;
-		}
+	public String getTitleCurrentLanguageId() {
+		return _titleCurrentLanguageId;
+	}
+
+	public String getTitleCurrentValue() {
+		Locale locale = getLocale(_titleCurrentLanguageId);
+
+		return getTitle(locale);
 	}
 
 	public Map<Locale, String> getTitleMap() {
@@ -202,6 +197,10 @@ public class KaleoDefinitionClp extends BaseModelImpl<KaleoDefinition>
 			setTitle(LocalizationUtil.removeLocalization(getTitle(), "Title",
 					languageId));
 		}
+	}
+
+	public void setTitleCurrentLanguageId(String languageId) {
+		_titleCurrentLanguageId = languageId;
 	}
 
 	public void setTitleMap(Map<Locale, String> titleMap) {
@@ -297,14 +296,9 @@ public class KaleoDefinitionClp extends BaseModelImpl<KaleoDefinition>
 
 	@Override
 	public KaleoDefinition toEscapedModel() {
-		if (isEscapedModel()) {
-			return this;
-		}
-		else {
-			return (KaleoDefinition)Proxy.newProxyInstance(KaleoDefinition.class.getClassLoader(),
-				new Class[] { KaleoDefinition.class },
-				new AutoEscapeBeanHandler(this));
-		}
+		return (KaleoDefinition)Proxy.newProxyInstance(KaleoDefinition.class.getClassLoader(),
+			new Class[] { KaleoDefinition.class },
+			new AutoEscapeBeanHandler(this));
 	}
 
 	@Override
@@ -497,6 +491,7 @@ public class KaleoDefinitionClp extends BaseModelImpl<KaleoDefinition>
 	private Date _modifiedDate;
 	private String _name;
 	private String _title;
+	private String _titleCurrentLanguageId;
 	private String _description;
 	private String _content;
 	private int _version;

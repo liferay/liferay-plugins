@@ -172,14 +172,8 @@ public class WSRPConsumerClp extends BaseModelImpl<WSRPConsumer>
 
 	@Override
 	public WSRPConsumer toEscapedModel() {
-		if (isEscapedModel()) {
-			return this;
-		}
-		else {
-			return (WSRPConsumer)Proxy.newProxyInstance(WSRPConsumer.class.getClassLoader(),
-				new Class[] { WSRPConsumer.class },
-				new AutoEscapeBeanHandler(this));
-		}
+		return (WSRPConsumer)Proxy.newProxyInstance(WSRPConsumer.class.getClassLoader(),
+			new Class[] { WSRPConsumer.class }, new AutoEscapeBeanHandler(this));
 	}
 
 	@Override

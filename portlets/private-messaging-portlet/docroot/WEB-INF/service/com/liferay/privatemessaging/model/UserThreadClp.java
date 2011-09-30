@@ -155,14 +155,8 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 
 	@Override
 	public UserThread toEscapedModel() {
-		if (isEscapedModel()) {
-			return this;
-		}
-		else {
-			return (UserThread)Proxy.newProxyInstance(UserThread.class.getClassLoader(),
-				new Class[] { UserThread.class },
-				new AutoEscapeBeanHandler(this));
-		}
+		return (UserThread)Proxy.newProxyInstance(UserThread.class.getClassLoader(),
+			new Class[] { UserThread.class }, new AutoEscapeBeanHandler(this));
 	}
 
 	@Override

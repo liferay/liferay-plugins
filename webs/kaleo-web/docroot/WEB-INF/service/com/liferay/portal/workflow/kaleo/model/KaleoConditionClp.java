@@ -161,14 +161,9 @@ public class KaleoConditionClp extends BaseModelImpl<KaleoCondition>
 
 	@Override
 	public KaleoCondition toEscapedModel() {
-		if (isEscapedModel()) {
-			return this;
-		}
-		else {
-			return (KaleoCondition)Proxy.newProxyInstance(KaleoCondition.class.getClassLoader(),
-				new Class[] { KaleoCondition.class },
-				new AutoEscapeBeanHandler(this));
-		}
+		return (KaleoCondition)Proxy.newProxyInstance(KaleoCondition.class.getClassLoader(),
+			new Class[] { KaleoCondition.class },
+			new AutoEscapeBeanHandler(this));
 	}
 
 	@Override

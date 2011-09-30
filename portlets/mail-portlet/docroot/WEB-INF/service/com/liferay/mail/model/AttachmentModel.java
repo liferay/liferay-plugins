@@ -211,8 +211,6 @@ public interface AttachmentModel extends BaseModel<Attachment> {
 
 	public boolean isEscapedModel();
 
-	public void setEscapedModel(boolean escapedModel);
-
 	public Serializable getPrimaryKeyObj();
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj);

@@ -180,14 +180,8 @@ public class MemberRequestClp extends BaseModelImpl<MemberRequest>
 
 	@Override
 	public MemberRequest toEscapedModel() {
-		if (isEscapedModel()) {
-			return this;
-		}
-		else {
-			return (MemberRequest)Proxy.newProxyInstance(MemberRequest.class.getClassLoader(),
-				new Class[] { MemberRequest.class },
-				new AutoEscapeBeanHandler(this));
-		}
+		return (MemberRequest)Proxy.newProxyInstance(MemberRequest.class.getClassLoader(),
+			new Class[] { MemberRequest.class }, new AutoEscapeBeanHandler(this));
 	}
 
 	@Override

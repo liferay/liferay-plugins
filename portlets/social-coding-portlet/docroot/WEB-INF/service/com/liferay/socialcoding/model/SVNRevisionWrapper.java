@@ -182,10 +182,6 @@ public class SVNRevisionWrapper implements SVNRevision {
 		return _svnRevision.isEscapedModel();
 	}
 
-	public void setEscapedModel(boolean escapedModel) {
-		_svnRevision.setEscapedModel(escapedModel);
-	}
-
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _svnRevision.getPrimaryKeyObj();
 	}

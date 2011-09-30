@@ -128,13 +128,8 @@ public class GadgetClp extends BaseModelImpl<Gadget> implements Gadget {
 
 	@Override
 	public Gadget toEscapedModel() {
-		if (isEscapedModel()) {
-			return this;
-		}
-		else {
-			return (Gadget)Proxy.newProxyInstance(Gadget.class.getClassLoader(),
-				new Class[] { Gadget.class }, new AutoEscapeBeanHandler(this));
-		}
+		return (Gadget)Proxy.newProxyInstance(Gadget.class.getClassLoader(),
+			new Class[] { Gadget.class }, new AutoEscapeBeanHandler(this));
 	}
 
 	@Override

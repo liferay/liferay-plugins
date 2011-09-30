@@ -221,14 +221,8 @@ public class KaleoTimerClp extends BaseModelImpl<KaleoTimer>
 
 	@Override
 	public KaleoTimer toEscapedModel() {
-		if (isEscapedModel()) {
-			return this;
-		}
-		else {
-			return (KaleoTimer)Proxy.newProxyInstance(KaleoTimer.class.getClassLoader(),
-				new Class[] { KaleoTimer.class },
-				new AutoEscapeBeanHandler(this));
-		}
+		return (KaleoTimer)Proxy.newProxyInstance(KaleoTimer.class.getClassLoader(),
+			new Class[] { KaleoTimer.class }, new AutoEscapeBeanHandler(this));
 	}
 
 	@Override

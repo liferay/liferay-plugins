@@ -328,10 +328,6 @@ public class KBCommentWrapper implements KBComment {
 		return _kbComment.isEscapedModel();
 	}
 
-	public void setEscapedModel(boolean escapedModel) {
-		_kbComment.setEscapedModel(escapedModel);
-	}
-
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _kbComment.getPrimaryKeyObj();
 	}

@@ -274,10 +274,6 @@ public class CheckoutWrapper implements Checkout {
 		return _checkout.isEscapedModel();
 	}
 
-	public void setEscapedModel(boolean escapedModel) {
-		_checkout.setEscapedModel(escapedModel);
-	}
-
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _checkout.getPrimaryKeyObj();
 	}

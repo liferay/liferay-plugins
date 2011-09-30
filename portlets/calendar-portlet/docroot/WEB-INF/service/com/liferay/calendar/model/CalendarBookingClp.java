@@ -19,7 +19,6 @@ import com.liferay.calendar.service.CalendarBookingLocalServiceUtil;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.language.LanguageUtil;
-import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.LocalizationUtil;
 import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
@@ -199,26 +198,22 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 	}
 
 	public String getTitle(String languageId) {
-		String value = LocalizationUtil.getLocalization(getTitle(), languageId);
-
-		if (isEscapedModel()) {
-			return HtmlUtil.escape(value);
-		}
-		else {
-			return value;
-		}
+		return LocalizationUtil.getLocalization(getTitle(), languageId);
 	}
 
 	public String getTitle(String languageId, boolean useDefault) {
-		String value = LocalizationUtil.getLocalization(getTitle(), languageId,
-				useDefault);
+		return LocalizationUtil.getLocalization(getTitle(), languageId,
+			useDefault);
+	}
 
-		if (isEscapedModel()) {
-			return HtmlUtil.escape(value);
-		}
-		else {
-			return value;
-		}
+	public String getTitleCurrentLanguageId() {
+		return _titleCurrentLanguageId;
+	}
+
+	public String getTitleCurrentValue() {
+		Locale locale = getLocale(_titleCurrentLanguageId);
+
+		return getTitle(locale);
 	}
 
 	public Map<Locale, String> getTitleMap() {
@@ -245,6 +240,10 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 			setTitle(LocalizationUtil.removeLocalization(getTitle(), "Title",
 					languageId));
 		}
+	}
+
+	public void setTitleCurrentLanguageId(String languageId) {
+		_titleCurrentLanguageId = languageId;
 	}
 
 	public void setTitleMap(Map<Locale, String> titleMap) {
@@ -299,26 +298,22 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 	}
 
 	public String getName(String languageId) {
-		String value = LocalizationUtil.getLocalization(getName(), languageId);
-
-		if (isEscapedModel()) {
-			return HtmlUtil.escape(value);
-		}
-		else {
-			return value;
-		}
+		return LocalizationUtil.getLocalization(getName(), languageId);
 	}
 
 	public String getName(String languageId, boolean useDefault) {
-		String value = LocalizationUtil.getLocalization(getName(), languageId,
-				useDefault);
+		return LocalizationUtil.getLocalization(getName(), languageId,
+			useDefault);
+	}
 
-		if (isEscapedModel()) {
-			return HtmlUtil.escape(value);
-		}
-		else {
-			return value;
-		}
+	public String getNameCurrentLanguageId() {
+		return _nameCurrentLanguageId;
+	}
+
+	public String getNameCurrentValue() {
+		Locale locale = getLocale(_nameCurrentLanguageId);
+
+		return getName(locale);
 	}
 
 	public Map<Locale, String> getNameMap() {
@@ -345,6 +340,10 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 			setName(LocalizationUtil.removeLocalization(getName(), "Name",
 					languageId));
 		}
+	}
+
+	public void setNameCurrentLanguageId(String languageId) {
+		_nameCurrentLanguageId = languageId;
 	}
 
 	public void setNameMap(Map<Locale, String> nameMap) {
@@ -399,27 +398,22 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 	}
 
 	public String getDescription(String languageId) {
-		String value = LocalizationUtil.getLocalization(getDescription(),
-				languageId);
-
-		if (isEscapedModel()) {
-			return HtmlUtil.escape(value);
-		}
-		else {
-			return value;
-		}
+		return LocalizationUtil.getLocalization(getDescription(), languageId);
 	}
 
 	public String getDescription(String languageId, boolean useDefault) {
-		String value = LocalizationUtil.getLocalization(getDescription(),
-				languageId, useDefault);
+		return LocalizationUtil.getLocalization(getDescription(), languageId,
+			useDefault);
+	}
 
-		if (isEscapedModel()) {
-			return HtmlUtil.escape(value);
-		}
-		else {
-			return value;
-		}
+	public String getDescriptionCurrentLanguageId() {
+		return _descriptionCurrentLanguageId;
+	}
+
+	public String getDescriptionCurrentValue() {
+		Locale locale = getLocale(_descriptionCurrentLanguageId);
+
+		return getDescription(locale);
 	}
 
 	public Map<Locale, String> getDescriptionMap() {
@@ -448,6 +442,10 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 			setDescription(LocalizationUtil.removeLocalization(
 					getDescription(), "Description", languageId));
 		}
+	}
+
+	public void setDescriptionCurrentLanguageId(String languageId) {
+		_descriptionCurrentLanguageId = languageId;
 	}
 
 	public void setDescriptionMap(Map<Locale, String> descriptionMap) {
@@ -652,14 +650,9 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 
 	@Override
 	public CalendarBooking toEscapedModel() {
-		if (isEscapedModel()) {
-			return this;
-		}
-		else {
-			return (CalendarBooking)Proxy.newProxyInstance(CalendarBooking.class.getClassLoader(),
-				new Class[] { CalendarBooking.class },
-				new AutoEscapeBeanHandler(this));
-		}
+		return (CalendarBooking)Proxy.newProxyInstance(CalendarBooking.class.getClassLoader(),
+			new Class[] { CalendarBooking.class },
+			new AutoEscapeBeanHandler(this));
 	}
 
 	@Override
@@ -938,8 +931,11 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 	private long _classNameId;
 	private long _classPK;
 	private String _title;
+	private String _titleCurrentLanguageId;
 	private String _name;
+	private String _nameCurrentLanguageId;
 	private String _description;
+	private String _descriptionCurrentLanguageId;
 	private String _location;
 	private Date _startDate;
 	private Date _endDate;

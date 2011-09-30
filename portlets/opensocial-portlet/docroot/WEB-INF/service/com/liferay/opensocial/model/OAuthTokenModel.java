@@ -289,8 +289,6 @@ public interface OAuthTokenModel extends AuditedModel, BaseModel<OAuthToken> {
 
 	public boolean isEscapedModel();
 
-	public void setEscapedModel(boolean escapedModel);
-
 	public Serializable getPrimaryKeyObj();
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj);

@@ -276,10 +276,6 @@ public class FeedWrapper implements Feed {
 		return _feed.isEscapedModel();
 	}
 
-	public void setEscapedModel(boolean escapedModel) {
-		_feed.setEscapedModel(escapedModel);
-	}
-
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _feed.getPrimaryKeyObj();
 	}

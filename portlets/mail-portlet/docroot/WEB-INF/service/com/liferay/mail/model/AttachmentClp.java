@@ -144,14 +144,8 @@ public class AttachmentClp extends BaseModelImpl<Attachment>
 
 	@Override
 	public Attachment toEscapedModel() {
-		if (isEscapedModel()) {
-			return this;
-		}
-		else {
-			return (Attachment)Proxy.newProxyInstance(Attachment.class.getClassLoader(),
-				new Class[] { Attachment.class },
-				new AutoEscapeBeanHandler(this));
-		}
+		return (Attachment)Proxy.newProxyInstance(Attachment.class.getClassLoader(),
+			new Class[] { Attachment.class }, new AutoEscapeBeanHandler(this));
 	}
 
 	@Override

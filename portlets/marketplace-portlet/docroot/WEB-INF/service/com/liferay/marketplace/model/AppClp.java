@@ -165,13 +165,8 @@ public class AppClp extends BaseModelImpl<App> implements App {
 
 	@Override
 	public App toEscapedModel() {
-		if (isEscapedModel()) {
-			return this;
-		}
-		else {
-			return (App)Proxy.newProxyInstance(App.class.getClassLoader(),
-				new Class[] { App.class }, new AutoEscapeBeanHandler(this));
-		}
+		return (App)Proxy.newProxyInstance(App.class.getClassLoader(),
+			new Class[] { App.class }, new AutoEscapeBeanHandler(this));
 	}
 
 	@Override

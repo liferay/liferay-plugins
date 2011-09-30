@@ -201,14 +201,9 @@ public class KaleoTaskAssignmentClp extends BaseModelImpl<KaleoTaskAssignment>
 
 	@Override
 	public KaleoTaskAssignment toEscapedModel() {
-		if (isEscapedModel()) {
-			return this;
-		}
-		else {
-			return (KaleoTaskAssignment)Proxy.newProxyInstance(KaleoTaskAssignment.class.getClassLoader(),
-				new Class[] { KaleoTaskAssignment.class },
-				new AutoEscapeBeanHandler(this));
-		}
+		return (KaleoTaskAssignment)Proxy.newProxyInstance(KaleoTaskAssignment.class.getClassLoader(),
+			new Class[] { KaleoTaskAssignment.class },
+			new AutoEscapeBeanHandler(this));
 	}
 
 	@Override

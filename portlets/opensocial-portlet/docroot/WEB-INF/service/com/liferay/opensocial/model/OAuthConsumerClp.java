@@ -145,14 +145,8 @@ public class OAuthConsumerClp extends BaseModelImpl<OAuthConsumer>
 
 	@Override
 	public OAuthConsumer toEscapedModel() {
-		if (isEscapedModel()) {
-			return this;
-		}
-		else {
-			return (OAuthConsumer)Proxy.newProxyInstance(OAuthConsumer.class.getClassLoader(),
-				new Class[] { OAuthConsumer.class },
-				new AutoEscapeBeanHandler(this));
-		}
+		return (OAuthConsumer)Proxy.newProxyInstance(OAuthConsumer.class.getClassLoader(),
+			new Class[] { OAuthConsumer.class }, new AutoEscapeBeanHandler(this));
 	}
 
 	@Override

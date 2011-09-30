@@ -110,10 +110,6 @@ public class BarWrapper implements Bar {
 		return _bar.isEscapedModel();
 	}
 
-	public void setEscapedModel(boolean escapedModel) {
-		_bar.setEscapedModel(escapedModel);
-	}
-
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _bar.getPrimaryKeyObj();
 	}

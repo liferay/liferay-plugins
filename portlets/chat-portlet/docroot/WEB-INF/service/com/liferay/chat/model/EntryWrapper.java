@@ -204,10 +204,6 @@ public class EntryWrapper implements Entry {
 		return _entry.isEscapedModel();
 	}
 
-	public void setEscapedModel(boolean escapedModel) {
-		_entry.setEscapedModel(escapedModel);
-	}
-
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _entry.getPrimaryKeyObj();
 	}

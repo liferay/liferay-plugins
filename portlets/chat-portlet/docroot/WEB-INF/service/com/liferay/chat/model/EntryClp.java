@@ -119,13 +119,8 @@ public class EntryClp extends BaseModelImpl<Entry> implements Entry {
 
 	@Override
 	public Entry toEscapedModel() {
-		if (isEscapedModel()) {
-			return this;
-		}
-		else {
-			return (Entry)Proxy.newProxyInstance(Entry.class.getClassLoader(),
-				new Class[] { Entry.class }, new AutoEscapeBeanHandler(this));
-		}
+		return (Entry)Proxy.newProxyInstance(Entry.class.getClassLoader(),
+			new Class[] { Entry.class }, new AutoEscapeBeanHandler(this));
 	}
 
 	@Override

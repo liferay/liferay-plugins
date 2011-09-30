@@ -346,10 +346,6 @@ public class OAuthTokenWrapper implements OAuthToken {
 		return _oAuthToken.isEscapedModel();
 	}
 
-	public void setEscapedModel(boolean escapedModel) {
-		_oAuthToken.setEscapedModel(escapedModel);
-	}
-
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _oAuthToken.getPrimaryKeyObj();
 	}

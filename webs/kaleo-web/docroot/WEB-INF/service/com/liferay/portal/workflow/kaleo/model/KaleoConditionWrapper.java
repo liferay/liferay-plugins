@@ -292,10 +292,6 @@ public class KaleoConditionWrapper implements KaleoCondition {
 		return _kaleoCondition.isEscapedModel();
 	}
 
-	public void setEscapedModel(boolean escapedModel) {
-		_kaleoCondition.setEscapedModel(escapedModel);
-	}
-
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _kaleoCondition.getPrimaryKeyObj();
 	}

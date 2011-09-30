@@ -351,6 +351,14 @@ public class CalendarBookingWrapper implements CalendarBooking {
 		return _calendarBooking.getTitle(languageId, useDefault);
 	}
 
+	public java.lang.String getTitleCurrentLanguageId() {
+		return _calendarBooking.getTitleCurrentLanguageId();
+	}
+
+	public java.lang.String getTitleCurrentValue() {
+		return _calendarBooking.getTitleCurrentValue();
+	}
+
 	/**
 	* Returns a map of the locales and localized titles of this calendar booking.
 	*
@@ -389,6 +397,10 @@ public class CalendarBookingWrapper implements CalendarBooking {
 	public void setTitle(java.lang.String title, java.util.Locale locale,
 		java.util.Locale defaultLocale) {
 		_calendarBooking.setTitle(title, locale, defaultLocale);
+	}
+
+	public void setTitleCurrentLanguageId(java.lang.String languageId) {
+		_calendarBooking.setTitleCurrentLanguageId(languageId);
 	}
 
 	/**
@@ -465,6 +477,14 @@ public class CalendarBookingWrapper implements CalendarBooking {
 		return _calendarBooking.getName(languageId, useDefault);
 	}
 
+	public java.lang.String getNameCurrentLanguageId() {
+		return _calendarBooking.getNameCurrentLanguageId();
+	}
+
+	public java.lang.String getNameCurrentValue() {
+		return _calendarBooking.getNameCurrentValue();
+	}
+
 	/**
 	* Returns a map of the locales and localized names of this calendar booking.
 	*
@@ -503,6 +523,10 @@ public class CalendarBookingWrapper implements CalendarBooking {
 	public void setName(java.lang.String name, java.util.Locale locale,
 		java.util.Locale defaultLocale) {
 		_calendarBooking.setName(name, locale, defaultLocale);
+	}
+
+	public void setNameCurrentLanguageId(java.lang.String languageId) {
+		_calendarBooking.setNameCurrentLanguageId(languageId);
 	}
 
 	/**
@@ -580,6 +604,14 @@ public class CalendarBookingWrapper implements CalendarBooking {
 		return _calendarBooking.getDescription(languageId, useDefault);
 	}
 
+	public java.lang.String getDescriptionCurrentLanguageId() {
+		return _calendarBooking.getDescriptionCurrentLanguageId();
+	}
+
+	public java.lang.String getDescriptionCurrentValue() {
+		return _calendarBooking.getDescriptionCurrentValue();
+	}
+
 	/**
 	* Returns a map of the locales and localized descriptions of this calendar booking.
 	*
@@ -619,6 +651,10 @@ public class CalendarBookingWrapper implements CalendarBooking {
 	public void setDescription(java.lang.String description,
 		java.util.Locale locale, java.util.Locale defaultLocale) {
 		_calendarBooking.setDescription(description, locale, defaultLocale);
+	}
+
+	public void setDescriptionCurrentLanguageId(java.lang.String languageId) {
+		_calendarBooking.setDescriptionCurrentLanguageId(languageId);
 	}
 
 	/**
@@ -949,10 +985,6 @@ public class CalendarBookingWrapper implements CalendarBooking {
 
 	public boolean isEscapedModel() {
 		return _calendarBooking.isEscapedModel();
-	}
-
-	public void setEscapedModel(boolean escapedModel) {
-		_calendarBooking.setEscapedModel(escapedModel);
 	}
 
 	public java.io.Serializable getPrimaryKeyObj() {

@@ -161,14 +161,8 @@ public class KaleoTaskFormClp extends BaseModelImpl<KaleoTaskForm>
 
 	@Override
 	public KaleoTaskForm toEscapedModel() {
-		if (isEscapedModel()) {
-			return this;
-		}
-		else {
-			return (KaleoTaskForm)Proxy.newProxyInstance(KaleoTaskForm.class.getClassLoader(),
-				new Class[] { KaleoTaskForm.class },
-				new AutoEscapeBeanHandler(this));
-		}
+		return (KaleoTaskForm)Proxy.newProxyInstance(KaleoTaskForm.class.getClassLoader(),
+			new Class[] { KaleoTaskForm.class }, new AutoEscapeBeanHandler(this));
 	}
 
 	@Override

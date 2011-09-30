@@ -153,13 +153,8 @@ public class CheckoutClp extends BaseModelImpl<Checkout> implements Checkout {
 
 	@Override
 	public Checkout toEscapedModel() {
-		if (isEscapedModel()) {
-			return this;
-		}
-		else {
-			return (Checkout)Proxy.newProxyInstance(Checkout.class.getClassLoader(),
-				new Class[] { Checkout.class }, new AutoEscapeBeanHandler(this));
-		}
+		return (Checkout)Proxy.newProxyInstance(Checkout.class.getClassLoader(),
+			new Class[] { Checkout.class }, new AutoEscapeBeanHandler(this));
 	}
 
 	@Override

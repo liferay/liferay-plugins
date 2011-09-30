@@ -271,8 +271,6 @@ public interface DefinitionModel extends BaseModel<Definition>, GroupedModel {
 
 	public boolean isEscapedModel();
 
-	public void setEscapedModel(boolean escapedModel);
-
 	public Serializable getPrimaryKeyObj();
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj);

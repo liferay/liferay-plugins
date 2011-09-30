@@ -391,10 +391,6 @@ public class KaleoTransitionWrapper implements KaleoTransition {
 		return _kaleoTransition.isEscapedModel();
 	}
 
-	public void setEscapedModel(boolean escapedModel) {
-		_kaleoTransition.setEscapedModel(escapedModel);
-	}
-
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _kaleoTransition.getPrimaryKeyObj();
 	}

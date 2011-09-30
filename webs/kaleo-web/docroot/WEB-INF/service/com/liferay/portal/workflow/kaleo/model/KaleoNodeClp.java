@@ -209,13 +209,8 @@ public class KaleoNodeClp extends BaseModelImpl<KaleoNode> implements KaleoNode 
 
 	@Override
 	public KaleoNode toEscapedModel() {
-		if (isEscapedModel()) {
-			return this;
-		}
-		else {
-			return (KaleoNode)Proxy.newProxyInstance(KaleoNode.class.getClassLoader(),
-				new Class[] { KaleoNode.class }, new AutoEscapeBeanHandler(this));
-		}
+		return (KaleoNode)Proxy.newProxyInstance(KaleoNode.class.getClassLoader(),
+			new Class[] { KaleoNode.class }, new AutoEscapeBeanHandler(this));
 	}
 
 	@Override

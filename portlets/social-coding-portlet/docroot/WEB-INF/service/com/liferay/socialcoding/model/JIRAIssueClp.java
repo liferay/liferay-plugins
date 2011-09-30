@@ -153,13 +153,8 @@ public class JIRAIssueClp extends BaseModelImpl<JIRAIssue> implements JIRAIssue 
 
 	@Override
 	public JIRAIssue toEscapedModel() {
-		if (isEscapedModel()) {
-			return this;
-		}
-		else {
-			return (JIRAIssue)Proxy.newProxyInstance(JIRAIssue.class.getClassLoader(),
-				new Class[] { JIRAIssue.class }, new AutoEscapeBeanHandler(this));
-		}
+		return (JIRAIssue)Proxy.newProxyInstance(JIRAIssue.class.getClassLoader(),
+			new Class[] { JIRAIssue.class }, new AutoEscapeBeanHandler(this));
 	}
 
 	@Override

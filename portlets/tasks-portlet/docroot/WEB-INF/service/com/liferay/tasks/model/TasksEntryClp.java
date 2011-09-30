@@ -221,14 +221,8 @@ public class TasksEntryClp extends BaseModelImpl<TasksEntry>
 
 	@Override
 	public TasksEntry toEscapedModel() {
-		if (isEscapedModel()) {
-			return this;
-		}
-		else {
-			return (TasksEntry)Proxy.newProxyInstance(TasksEntry.class.getClassLoader(),
-				new Class[] { TasksEntry.class },
-				new AutoEscapeBeanHandler(this));
-		}
+		return (TasksEntry)Proxy.newProxyInstance(TasksEntry.class.getClassLoader(),
+			new Class[] { TasksEntry.class }, new AutoEscapeBeanHandler(this));
 	}
 
 	@Override

@@ -125,14 +125,8 @@ public class SVNRevisionClp extends BaseModelImpl<SVNRevision>
 
 	@Override
 	public SVNRevision toEscapedModel() {
-		if (isEscapedModel()) {
-			return this;
-		}
-		else {
-			return (SVNRevision)Proxy.newProxyInstance(SVNRevision.class.getClassLoader(),
-				new Class[] { SVNRevision.class },
-				new AutoEscapeBeanHandler(this));
-		}
+		return (SVNRevision)Proxy.newProxyInstance(SVNRevision.class.getClassLoader(),
+			new Class[] { SVNRevision.class }, new AutoEscapeBeanHandler(this));
 	}
 
 	@Override

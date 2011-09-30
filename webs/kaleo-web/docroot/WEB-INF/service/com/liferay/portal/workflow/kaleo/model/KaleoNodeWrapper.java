@@ -364,10 +364,6 @@ public class KaleoNodeWrapper implements KaleoNode {
 		return _kaleoNode.isEscapedModel();
 	}
 
-	public void setEscapedModel(boolean escapedModel) {
-		_kaleoNode.setEscapedModel(escapedModel);
-	}
-
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _kaleoNode.getPrimaryKeyObj();
 	}

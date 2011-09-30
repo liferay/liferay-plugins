@@ -128,10 +128,6 @@ public class SVNRepositoryWrapper implements SVNRepository {
 		return _svnRepository.isEscapedModel();
 	}
 
-	public void setEscapedModel(boolean escapedModel) {
-		_svnRepository.setEscapedModel(escapedModel);
-	}
-
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _svnRepository.getPrimaryKeyObj();
 	}

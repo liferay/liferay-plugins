@@ -274,10 +274,6 @@ public class UserThreadWrapper implements UserThread {
 		return _userThread.isEscapedModel();
 	}
 
-	public void setEscapedModel(boolean escapedModel) {
-		_userThread.setEscapedModel(escapedModel);
-	}
-
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _userThread.getPrimaryKeyObj();
 	}

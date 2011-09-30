@@ -236,10 +236,6 @@ public class OAuthConsumerWrapper implements OAuthConsumer {
 		return _oAuthConsumer.isEscapedModel();
 	}
 
-	public void setEscapedModel(boolean escapedModel) {
-		_oAuthConsumer.setEscapedModel(escapedModel);
-	}
-
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _oAuthConsumer.getPrimaryKeyObj();
 	}
