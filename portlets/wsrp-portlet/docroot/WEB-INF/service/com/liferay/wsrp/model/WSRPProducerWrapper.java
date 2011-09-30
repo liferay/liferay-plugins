@@ -236,10 +236,6 @@ public class WSRPProducerWrapper implements WSRPProducer {
 		return _wsrpProducer.isEscapedModel();
 	}
 
-	public void setEscapedModel(boolean escapedModel) {
-		_wsrpProducer.setEscapedModel(escapedModel);
-	}
-
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _wsrpProducer.getPrimaryKeyObj();
 	}
