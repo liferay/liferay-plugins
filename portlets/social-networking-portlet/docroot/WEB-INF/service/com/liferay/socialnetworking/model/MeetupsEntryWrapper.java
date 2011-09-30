@@ -346,10 +346,6 @@ public class MeetupsEntryWrapper implements MeetupsEntry {
 		return _meetupsEntry.isEscapedModel();
 	}
 
-	public void setEscapedModel(boolean escapedModel) {
-		_meetupsEntry.setEscapedModel(escapedModel);
-	}
-
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _meetupsEntry.getPrimaryKeyObj();
 	}

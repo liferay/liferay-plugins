@@ -312,10 +312,6 @@ public class MicroblogsEntryWrapper implements MicroblogsEntry {
 		return _microblogsEntry.isEscapedModel();
 	}
 
-	public void setEscapedModel(boolean escapedModel) {
-		_microblogsEntry.setEscapedModel(escapedModel);
-	}
-
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _microblogsEntry.getPrimaryKeyObj();
 	}

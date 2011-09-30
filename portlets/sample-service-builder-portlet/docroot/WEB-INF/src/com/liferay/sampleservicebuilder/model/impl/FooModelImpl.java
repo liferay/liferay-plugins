@@ -356,18 +356,13 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 
 	@Override
 	public Foo toEscapedModel() {
-		if (isEscapedModel()) {
-			return (Foo)this;
+		if (_escapedModelProxy == null) {
+			_escapedModelProxy = (Foo)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelProxyInterfaces,
+					new AutoEscapeBeanHandler(this));
 		}
-		else {
-			if (_escapedModelProxy == null) {
-				_escapedModelProxy = (Foo)ProxyUtil.newProxyInstance(_classLoader,
-						_escapedModelProxyInterfaces,
-						new AutoEscapeBeanHandler(this));
-			}
 
-			return _escapedModelProxy;
-		}
+		return _escapedModelProxy;
 	}
 
 	@Override

@@ -256,10 +256,6 @@ public class AppWrapper implements App {
 		return _app.isEscapedModel();
 	}
 
-	public void setEscapedModel(boolean escapedModel) {
-		_app.setEscapedModel(escapedModel);
-	}
-
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _app.getPrimaryKeyObj();
 	}

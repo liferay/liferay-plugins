@@ -147,14 +147,9 @@ public class MeetupsRegistrationClp extends BaseModelImpl<MeetupsRegistration>
 
 	@Override
 	public MeetupsRegistration toEscapedModel() {
-		if (isEscapedModel()) {
-			return this;
-		}
-		else {
-			return (MeetupsRegistration)Proxy.newProxyInstance(MeetupsRegistration.class.getClassLoader(),
-				new Class[] { MeetupsRegistration.class },
-				new AutoEscapeBeanHandler(this));
-		}
+		return (MeetupsRegistration)Proxy.newProxyInstance(MeetupsRegistration.class.getClassLoader(),
+			new Class[] { MeetupsRegistration.class },
+			new AutoEscapeBeanHandler(this));
 	}
 
 	@Override

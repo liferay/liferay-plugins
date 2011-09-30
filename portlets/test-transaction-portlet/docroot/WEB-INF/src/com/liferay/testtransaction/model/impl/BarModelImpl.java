@@ -141,18 +141,13 @@ public class BarModelImpl extends BaseModelImpl<Bar> implements BarModel {
 
 	@Override
 	public Bar toEscapedModel() {
-		if (isEscapedModel()) {
-			return (Bar)this;
+		if (_escapedModelProxy == null) {
+			_escapedModelProxy = (Bar)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelProxyInterfaces,
+					new AutoEscapeBeanHandler(this));
 		}
-		else {
-			if (_escapedModelProxy == null) {
-				_escapedModelProxy = (Bar)ProxyUtil.newProxyInstance(_classLoader,
-						_escapedModelProxyInterfaces,
-						new AutoEscapeBeanHandler(this));
-			}
 
-			return _escapedModelProxy;
-		}
+		return _escapedModelProxy;
 	}
 
 	@Override

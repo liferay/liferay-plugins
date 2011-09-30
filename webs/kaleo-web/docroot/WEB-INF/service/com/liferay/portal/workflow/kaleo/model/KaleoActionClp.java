@@ -209,14 +209,8 @@ public class KaleoActionClp extends BaseModelImpl<KaleoAction>
 
 	@Override
 	public KaleoAction toEscapedModel() {
-		if (isEscapedModel()) {
-			return this;
-		}
-		else {
-			return (KaleoAction)Proxy.newProxyInstance(KaleoAction.class.getClassLoader(),
-				new Class[] { KaleoAction.class },
-				new AutoEscapeBeanHandler(this));
-		}
+		return (KaleoAction)Proxy.newProxyInstance(KaleoAction.class.getClassLoader(),
+			new Class[] { KaleoAction.class }, new AutoEscapeBeanHandler(this));
 	}
 
 	@Override

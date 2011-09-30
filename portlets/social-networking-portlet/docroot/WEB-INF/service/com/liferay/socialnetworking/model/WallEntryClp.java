@@ -138,13 +138,8 @@ public class WallEntryClp extends BaseModelImpl<WallEntry> implements WallEntry 
 
 	@Override
 	public WallEntry toEscapedModel() {
-		if (isEscapedModel()) {
-			return this;
-		}
-		else {
-			return (WallEntry)Proxy.newProxyInstance(WallEntry.class.getClassLoader(),
-				new Class[] { WallEntry.class }, new AutoEscapeBeanHandler(this));
-		}
+		return (WallEntry)Proxy.newProxyInstance(WallEntry.class.getClassLoader(),
+			new Class[] { WallEntry.class }, new AutoEscapeBeanHandler(this));
 	}
 
 	@Override

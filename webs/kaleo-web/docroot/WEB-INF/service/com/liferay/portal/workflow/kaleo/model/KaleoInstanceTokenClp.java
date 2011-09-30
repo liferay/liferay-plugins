@@ -234,14 +234,9 @@ public class KaleoInstanceTokenClp extends BaseModelImpl<KaleoInstanceToken>
 
 	@Override
 	public KaleoInstanceToken toEscapedModel() {
-		if (isEscapedModel()) {
-			return this;
-		}
-		else {
-			return (KaleoInstanceToken)Proxy.newProxyInstance(KaleoInstanceToken.class.getClassLoader(),
-				new Class[] { KaleoInstanceToken.class },
-				new AutoEscapeBeanHandler(this));
-		}
+		return (KaleoInstanceToken)Proxy.newProxyInstance(KaleoInstanceToken.class.getClassLoader(),
+			new Class[] { KaleoInstanceToken.class },
+			new AutoEscapeBeanHandler(this));
 	}
 
 	@Override

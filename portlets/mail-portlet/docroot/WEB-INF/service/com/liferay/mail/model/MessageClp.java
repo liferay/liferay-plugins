@@ -234,13 +234,8 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 
 	@Override
 	public Message toEscapedModel() {
-		if (isEscapedModel()) {
-			return this;
-		}
-		else {
-			return (Message)Proxy.newProxyInstance(Message.class.getClassLoader(),
-				new Class[] { Message.class }, new AutoEscapeBeanHandler(this));
-		}
+		return (Message)Proxy.newProxyInstance(Message.class.getClassLoader(),
+			new Class[] { Message.class }, new AutoEscapeBeanHandler(this));
 	}
 
 	@Override

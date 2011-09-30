@@ -355,13 +355,8 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 
 	@Override
 	public KBArticle toEscapedModel() {
-		if (isEscapedModel()) {
-			return this;
-		}
-		else {
-			return (KBArticle)Proxy.newProxyInstance(KBArticle.class.getClassLoader(),
-				new Class[] { KBArticle.class }, new AutoEscapeBeanHandler(this));
-		}
+		return (KBArticle)Proxy.newProxyInstance(KBArticle.class.getClassLoader(),
+			new Class[] { KBArticle.class }, new AutoEscapeBeanHandler(this));
 	}
 
 	@Override

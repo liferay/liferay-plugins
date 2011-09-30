@@ -251,18 +251,13 @@ public class MeetupsRegistrationModelImpl extends BaseModelImpl<MeetupsRegistrat
 
 	@Override
 	public MeetupsRegistration toEscapedModel() {
-		if (isEscapedModel()) {
-			return (MeetupsRegistration)this;
+		if (_escapedModelProxy == null) {
+			_escapedModelProxy = (MeetupsRegistration)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelProxyInterfaces,
+					new AutoEscapeBeanHandler(this));
 		}
-		else {
-			if (_escapedModelProxy == null) {
-				_escapedModelProxy = (MeetupsRegistration)ProxyUtil.newProxyInstance(_classLoader,
-						_escapedModelProxyInterfaces,
-						new AutoEscapeBeanHandler(this));
-			}
 
-			return _escapedModelProxy;
-		}
+		return _escapedModelProxy;
 	}
 
 	@Override

@@ -218,10 +218,6 @@ public class GadgetWrapper implements Gadget {
 		return _gadget.isEscapedModel();
 	}
 
-	public void setEscapedModel(boolean escapedModel) {
-		_gadget.setEscapedModel(escapedModel);
-	}
-
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _gadget.getPrimaryKeyObj();
 	}

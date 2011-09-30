@@ -181,13 +181,8 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 
 	@Override
 	public Foo toEscapedModel() {
-		if (isEscapedModel()) {
-			return this;
-		}
-		else {
-			return (Foo)Proxy.newProxyInstance(Foo.class.getClassLoader(),
-				new Class[] { Foo.class }, new AutoEscapeBeanHandler(this));
-		}
+		return (Foo)Proxy.newProxyInstance(Foo.class.getClassLoader(),
+			new Class[] { Foo.class }, new AutoEscapeBeanHandler(this));
 	}
 
 	@Override

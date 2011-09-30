@@ -265,10 +265,6 @@ public class StatusWrapper implements Status {
 		return _status.isEscapedModel();
 	}
 
-	public void setEscapedModel(boolean escapedModel) {
-		_status.setEscapedModel(escapedModel);
-	}
-
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _status.getPrimaryKeyObj();
 	}

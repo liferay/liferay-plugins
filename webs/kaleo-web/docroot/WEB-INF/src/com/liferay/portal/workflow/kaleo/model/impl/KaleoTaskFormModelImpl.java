@@ -267,18 +267,13 @@ public class KaleoTaskFormModelImpl extends BaseModelImpl<KaleoTaskForm>
 
 	@Override
 	public KaleoTaskForm toEscapedModel() {
-		if (isEscapedModel()) {
-			return (KaleoTaskForm)this;
+		if (_escapedModelProxy == null) {
+			_escapedModelProxy = (KaleoTaskForm)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelProxyInterfaces,
+					new AutoEscapeBeanHandler(this));
 		}
-		else {
-			if (_escapedModelProxy == null) {
-				_escapedModelProxy = (KaleoTaskForm)ProxyUtil.newProxyInstance(_classLoader,
-						_escapedModelProxyInterfaces,
-						new AutoEscapeBeanHandler(this));
-			}
 
-			return _escapedModelProxy;
-		}
+		return _escapedModelProxy;
 	}
 
 	@Override

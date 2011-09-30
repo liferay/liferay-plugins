@@ -292,10 +292,6 @@ public class KaleoTaskWrapper implements KaleoTask {
 		return _kaleoTask.isEscapedModel();
 	}
 
-	public void setEscapedModel(boolean escapedModel) {
-		_kaleoTask.setEscapedModel(escapedModel);
-	}
-
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _kaleoTask.getPrimaryKeyObj();
 	}

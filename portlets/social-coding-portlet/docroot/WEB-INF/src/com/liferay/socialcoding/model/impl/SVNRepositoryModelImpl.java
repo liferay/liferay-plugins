@@ -151,18 +151,13 @@ public class SVNRepositoryModelImpl extends BaseModelImpl<SVNRepository>
 
 	@Override
 	public SVNRepository toEscapedModel() {
-		if (isEscapedModel()) {
-			return (SVNRepository)this;
+		if (_escapedModelProxy == null) {
+			_escapedModelProxy = (SVNRepository)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelProxyInterfaces,
+					new AutoEscapeBeanHandler(this));
 		}
-		else {
-			if (_escapedModelProxy == null) {
-				_escapedModelProxy = (SVNRepository)ProxyUtil.newProxyInstance(_classLoader,
-						_escapedModelProxyInterfaces,
-						new AutoEscapeBeanHandler(this));
-			}
 
-			return _escapedModelProxy;
-		}
+		return _escapedModelProxy;
 	}
 
 	@Override

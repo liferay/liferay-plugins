@@ -157,13 +157,8 @@ public class AssetClp extends BaseModelImpl<Asset> implements Asset {
 
 	@Override
 	public Asset toEscapedModel() {
-		if (isEscapedModel()) {
-			return this;
-		}
-		else {
-			return (Asset)Proxy.newProxyInstance(Asset.class.getClassLoader(),
-				new Class[] { Asset.class }, new AutoEscapeBeanHandler(this));
-		}
+		return (Asset)Proxy.newProxyInstance(Asset.class.getClassLoader(),
+			new Class[] { Asset.class }, new AutoEscapeBeanHandler(this));
 	}
 
 	@Override

@@ -244,18 +244,13 @@ public class DefinitionModelImpl extends BaseModelImpl<Definition>
 
 	@Override
 	public Definition toEscapedModel() {
-		if (isEscapedModel()) {
-			return (Definition)this;
+		if (_escapedModelProxy == null) {
+			_escapedModelProxy = (Definition)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelProxyInterfaces,
+					new AutoEscapeBeanHandler(this));
 		}
-		else {
-			if (_escapedModelProxy == null) {
-				_escapedModelProxy = (Definition)ProxyUtil.newProxyInstance(_classLoader,
-						_escapedModelProxyInterfaces,
-						new AutoEscapeBeanHandler(this));
-			}
 
-			return _escapedModelProxy;
-		}
+		return _escapedModelProxy;
 	}
 
 	@Override

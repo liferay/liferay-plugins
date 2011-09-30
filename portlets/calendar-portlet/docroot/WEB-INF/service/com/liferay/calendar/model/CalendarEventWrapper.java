@@ -270,6 +270,14 @@ public class CalendarEventWrapper implements CalendarEvent {
 		return _calendarEvent.getTitle(languageId, useDefault);
 	}
 
+	public java.lang.String getTitleCurrentLanguageId() {
+		return _calendarEvent.getTitleCurrentLanguageId();
+	}
+
+	public java.lang.String getTitleCurrentValue() {
+		return _calendarEvent.getTitleCurrentValue();
+	}
+
 	/**
 	* Returns a map of the locales and localized titles of this calendar event.
 	*
@@ -308,6 +316,10 @@ public class CalendarEventWrapper implements CalendarEvent {
 	public void setTitle(java.lang.String title, java.util.Locale locale,
 		java.util.Locale defaultLocale) {
 		_calendarEvent.setTitle(title, locale, defaultLocale);
+	}
+
+	public void setTitleCurrentLanguageId(java.lang.String languageId) {
+		_calendarEvent.setTitleCurrentLanguageId(languageId);
 	}
 
 	/**
@@ -385,6 +397,14 @@ public class CalendarEventWrapper implements CalendarEvent {
 		return _calendarEvent.getDescription(languageId, useDefault);
 	}
 
+	public java.lang.String getDescriptionCurrentLanguageId() {
+		return _calendarEvent.getDescriptionCurrentLanguageId();
+	}
+
+	public java.lang.String getDescriptionCurrentValue() {
+		return _calendarEvent.getDescriptionCurrentValue();
+	}
+
 	/**
 	* Returns a map of the locales and localized descriptions of this calendar event.
 	*
@@ -424,6 +444,10 @@ public class CalendarEventWrapper implements CalendarEvent {
 	public void setDescription(java.lang.String description,
 		java.util.Locale locale, java.util.Locale defaultLocale) {
 		_calendarEvent.setDescription(description, locale, defaultLocale);
+	}
+
+	public void setDescriptionCurrentLanguageId(java.lang.String languageId) {
+		_calendarEvent.setDescriptionCurrentLanguageId(languageId);
 	}
 
 	/**
@@ -673,10 +697,6 @@ public class CalendarEventWrapper implements CalendarEvent {
 
 	public boolean isEscapedModel() {
 		return _calendarEvent.isEscapedModel();
-	}
-
-	public void setEscapedModel(boolean escapedModel) {
-		_calendarEvent.setEscapedModel(escapedModel);
 	}
 
 	public java.io.Serializable getPrimaryKeyObj() {

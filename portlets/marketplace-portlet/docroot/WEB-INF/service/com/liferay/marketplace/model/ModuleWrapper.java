@@ -146,10 +146,6 @@ public class ModuleWrapper implements Module {
 		return _module.isEscapedModel();
 	}
 
-	public void setEscapedModel(boolean escapedModel) {
-		_module.setEscapedModel(escapedModel);
-	}
-
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _module.getPrimaryKeyObj();
 	}

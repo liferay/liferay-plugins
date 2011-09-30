@@ -213,14 +213,9 @@ public class KaleoTransitionClp extends BaseModelImpl<KaleoTransition>
 
 	@Override
 	public KaleoTransition toEscapedModel() {
-		if (isEscapedModel()) {
-			return this;
-		}
-		else {
-			return (KaleoTransition)Proxy.newProxyInstance(KaleoTransition.class.getClassLoader(),
-				new Class[] { KaleoTransition.class },
-				new AutoEscapeBeanHandler(this));
-		}
+		return (KaleoTransition)Proxy.newProxyInstance(KaleoTransition.class.getClassLoader(),
+			new Class[] { KaleoTransition.class },
+			new AutoEscapeBeanHandler(this));
 	}
 
 	@Override

@@ -386,10 +386,6 @@ public class TasksEntryWrapper implements TasksEntry {
 		return _tasksEntry.isEscapedModel();
 	}
 
-	public void setEscapedModel(boolean escapedModel) {
-		_tasksEntry.setEscapedModel(escapedModel);
-	}
-
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _tasksEntry.getPrimaryKeyObj();
 	}

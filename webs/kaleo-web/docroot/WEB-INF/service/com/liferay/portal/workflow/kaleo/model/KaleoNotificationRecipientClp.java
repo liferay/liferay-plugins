@@ -178,14 +178,9 @@ public class KaleoNotificationRecipientClp extends BaseModelImpl<KaleoNotificati
 
 	@Override
 	public KaleoNotificationRecipient toEscapedModel() {
-		if (isEscapedModel()) {
-			return this;
-		}
-		else {
-			return (KaleoNotificationRecipient)Proxy.newProxyInstance(KaleoNotificationRecipient.class.getClassLoader(),
-				new Class[] { KaleoNotificationRecipient.class },
-				new AutoEscapeBeanHandler(this));
-		}
+		return (KaleoNotificationRecipient)Proxy.newProxyInstance(KaleoNotificationRecipient.class.getClassLoader(),
+			new Class[] { KaleoNotificationRecipient.class },
+			new AutoEscapeBeanHandler(this));
 	}
 
 	@Override

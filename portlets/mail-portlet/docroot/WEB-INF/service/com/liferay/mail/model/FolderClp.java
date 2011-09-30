@@ -153,13 +153,8 @@ public class FolderClp extends BaseModelImpl<Folder> implements Folder {
 
 	@Override
 	public Folder toEscapedModel() {
-		if (isEscapedModel()) {
-			return this;
-		}
-		else {
-			return (Folder)Proxy.newProxyInstance(Folder.class.getClassLoader(),
-				new Class[] { Folder.class }, new AutoEscapeBeanHandler(this));
-		}
+		return (Folder)Proxy.newProxyInstance(Folder.class.getClassLoader(),
+			new Class[] { Folder.class }, new AutoEscapeBeanHandler(this));
 	}
 
 	@Override

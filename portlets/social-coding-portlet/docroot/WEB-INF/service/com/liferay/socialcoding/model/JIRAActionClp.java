@@ -130,14 +130,8 @@ public class JIRAActionClp extends BaseModelImpl<JIRAAction>
 
 	@Override
 	public JIRAAction toEscapedModel() {
-		if (isEscapedModel()) {
-			return this;
-		}
-		else {
-			return (JIRAAction)Proxy.newProxyInstance(JIRAAction.class.getClassLoader(),
-				new Class[] { JIRAAction.class },
-				new AutoEscapeBeanHandler(this));
-		}
+		return (JIRAAction)Proxy.newProxyInstance(JIRAAction.class.getClassLoader(),
+			new Class[] { JIRAAction.class }, new AutoEscapeBeanHandler(this));
 	}
 
 	@Override

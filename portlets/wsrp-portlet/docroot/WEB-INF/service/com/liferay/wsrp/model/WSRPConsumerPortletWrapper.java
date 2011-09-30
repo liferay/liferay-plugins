@@ -218,10 +218,6 @@ public class WSRPConsumerPortletWrapper implements WSRPConsumerPortlet {
 		return _wsrpConsumerPortlet.isEscapedModel();
 	}
 
-	public void setEscapedModel(boolean escapedModel) {
-		_wsrpConsumerPortlet.setEscapedModel(escapedModel);
-	}
-
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _wsrpConsumerPortlet.getPrimaryKeyObj();
 	}

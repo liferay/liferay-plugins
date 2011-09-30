@@ -801,6 +801,14 @@ public class ClpSerializer {
 
 				newModel.setTitle(value12);
 
+				Method method12CurrentLanguageId = oldModelClass.getMethod(
+						"getTitleCurrentLanguageId");
+
+				String value12CurrentLanguageId = (String)method12.invoke(oldModel,
+						(Object[])null);
+
+				newModel.setTitleCurrentLanguageId(value12CurrentLanguageId);
+
 				Method method13 = oldModelClass.getMethod("getName");
 
 				String value13 = (String)method13.invoke(oldModel,
@@ -808,12 +816,28 @@ public class ClpSerializer {
 
 				newModel.setName(value13);
 
+				Method method13CurrentLanguageId = oldModelClass.getMethod(
+						"getNameCurrentLanguageId");
+
+				String value13CurrentLanguageId = (String)method13.invoke(oldModel,
+						(Object[])null);
+
+				newModel.setNameCurrentLanguageId(value13CurrentLanguageId);
+
 				Method method14 = oldModelClass.getMethod("getDescription");
 
 				String value14 = (String)method14.invoke(oldModel,
 						(Object[])null);
 
 				newModel.setDescription(value14);
+
+				Method method14CurrentLanguageId = oldModelClass.getMethod(
+						"getDescriptionCurrentLanguageId");
+
+				String value14CurrentLanguageId = (String)method14.invoke(oldModel,
+						(Object[])null);
+
+				newModel.setDescriptionCurrentLanguageId(value14CurrentLanguageId);
 
 				Method method15 = oldModelClass.getMethod("getLocation");
 
@@ -975,11 +999,27 @@ public class ClpSerializer {
 
 				newModel.setTitle(value8);
 
+				Method method8CurrentLanguageId = oldModelClass.getMethod(
+						"getTitleCurrentLanguageId");
+
+				String value8CurrentLanguageId = (String)method8.invoke(oldModel,
+						(Object[])null);
+
+				newModel.setTitleCurrentLanguageId(value8CurrentLanguageId);
+
 				Method method9 = oldModelClass.getMethod("getDescription");
 
 				String value9 = (String)method9.invoke(oldModel, (Object[])null);
 
 				newModel.setDescription(value9);
+
+				Method method9CurrentLanguageId = oldModelClass.getMethod(
+						"getDescriptionCurrentLanguageId");
+
+				String value9CurrentLanguageId = (String)method9.invoke(oldModel,
+						(Object[])null);
+
+				newModel.setDescriptionCurrentLanguageId(value9CurrentLanguageId);
 
 				Method method10 = oldModelClass.getMethod("getLocation");
 
@@ -1157,12 +1197,28 @@ public class ClpSerializer {
 
 				newModel.setName(value11);
 
+				Method method11CurrentLanguageId = oldModelClass.getMethod(
+						"getNameCurrentLanguageId");
+
+				String value11CurrentLanguageId = (String)method11.invoke(oldModel,
+						(Object[])null);
+
+				newModel.setNameCurrentLanguageId(value11CurrentLanguageId);
+
 				Method method12 = oldModelClass.getMethod("getDescription");
 
 				String value12 = (String)method12.invoke(oldModel,
 						(Object[])null);
 
 				newModel.setDescription(value12);
+
+				Method method12CurrentLanguageId = oldModelClass.getMethod(
+						"getDescriptionCurrentLanguageId");
+
+				String value12CurrentLanguageId = (String)method12.invoke(oldModel,
+						(Object[])null);
+
+				newModel.setDescriptionCurrentLanguageId(value12CurrentLanguageId);
 
 				Method method13 = oldModelClass.getMethod("getActive");
 

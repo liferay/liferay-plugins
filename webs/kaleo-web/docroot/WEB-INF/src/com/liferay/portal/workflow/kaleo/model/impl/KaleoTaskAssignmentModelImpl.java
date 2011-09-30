@@ -354,18 +354,13 @@ public class KaleoTaskAssignmentModelImpl extends BaseModelImpl<KaleoTaskAssignm
 
 	@Override
 	public KaleoTaskAssignment toEscapedModel() {
-		if (isEscapedModel()) {
-			return (KaleoTaskAssignment)this;
+		if (_escapedModelProxy == null) {
+			_escapedModelProxy = (KaleoTaskAssignment)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelProxyInterfaces,
+					new AutoEscapeBeanHandler(this));
 		}
-		else {
-			if (_escapedModelProxy == null) {
-				_escapedModelProxy = (KaleoTaskAssignment)ProxyUtil.newProxyInstance(_classLoader,
-						_escapedModelProxyInterfaces,
-						new AutoEscapeBeanHandler(this));
-			}
 
-			return _escapedModelProxy;
-		}
+		return _escapedModelProxy;
 	}
 
 	@Override

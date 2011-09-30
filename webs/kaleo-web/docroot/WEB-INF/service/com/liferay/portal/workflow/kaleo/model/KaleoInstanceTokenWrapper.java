@@ -391,10 +391,6 @@ public class KaleoInstanceTokenWrapper implements KaleoInstanceToken {
 		return _kaleoInstanceToken.isEscapedModel();
 	}
 
-	public void setEscapedModel(boolean escapedModel) {
-		_kaleoInstanceToken.setEscapedModel(escapedModel);
-	}
-
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _kaleoInstanceToken.getPrimaryKeyObj();
 	}

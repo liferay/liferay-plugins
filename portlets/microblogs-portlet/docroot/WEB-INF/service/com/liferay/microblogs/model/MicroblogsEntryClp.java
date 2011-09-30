@@ -172,14 +172,9 @@ public class MicroblogsEntryClp extends BaseModelImpl<MicroblogsEntry>
 
 	@Override
 	public MicroblogsEntry toEscapedModel() {
-		if (isEscapedModel()) {
-			return this;
-		}
-		else {
-			return (MicroblogsEntry)Proxy.newProxyInstance(MicroblogsEntry.class.getClassLoader(),
-				new Class[] { MicroblogsEntry.class },
-				new AutoEscapeBeanHandler(this));
-		}
+		return (MicroblogsEntry)Proxy.newProxyInstance(MicroblogsEntry.class.getClassLoader(),
+			new Class[] { MicroblogsEntry.class },
+			new AutoEscapeBeanHandler(this));
 	}
 
 	@Override

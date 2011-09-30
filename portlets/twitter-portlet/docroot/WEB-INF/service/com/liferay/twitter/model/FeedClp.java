@@ -154,13 +154,8 @@ public class FeedClp extends BaseModelImpl<Feed> implements Feed {
 
 	@Override
 	public Feed toEscapedModel() {
-		if (isEscapedModel()) {
-			return this;
-		}
-		else {
-			return (Feed)Proxy.newProxyInstance(Feed.class.getClassLoader(),
-				new Class[] { Feed.class }, new AutoEscapeBeanHandler(this));
-		}
+		return (Feed)Proxy.newProxyInstance(Feed.class.getClassLoader(),
+			new Class[] { Feed.class }, new AutoEscapeBeanHandler(this));
 	}
 
 	@Override

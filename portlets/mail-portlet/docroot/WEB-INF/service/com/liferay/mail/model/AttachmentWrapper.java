@@ -256,10 +256,6 @@ public class AttachmentWrapper implements Attachment {
 		return _attachment.isEscapedModel();
 	}
 
-	public void setEscapedModel(boolean escapedModel) {
-		_attachment.setEscapedModel(escapedModel);
-	}
-
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _attachment.getPrimaryKeyObj();
 	}

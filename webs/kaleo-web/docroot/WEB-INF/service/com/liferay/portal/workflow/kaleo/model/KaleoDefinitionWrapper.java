@@ -270,6 +270,14 @@ public class KaleoDefinitionWrapper implements KaleoDefinition {
 		return _kaleoDefinition.getTitle(languageId, useDefault);
 	}
 
+	public java.lang.String getTitleCurrentLanguageId() {
+		return _kaleoDefinition.getTitleCurrentLanguageId();
+	}
+
+	public java.lang.String getTitleCurrentValue() {
+		return _kaleoDefinition.getTitleCurrentValue();
+	}
+
 	/**
 	* Returns a map of the locales and localized titles of this kaleo definition.
 	*
@@ -308,6 +316,10 @@ public class KaleoDefinitionWrapper implements KaleoDefinition {
 	public void setTitle(java.lang.String title, java.util.Locale locale,
 		java.util.Locale defaultLocale) {
 		_kaleoDefinition.setTitle(title, locale, defaultLocale);
+	}
+
+	public void setTitleCurrentLanguageId(java.lang.String languageId) {
+		_kaleoDefinition.setTitleCurrentLanguageId(languageId);
 	}
 
 	/**
@@ -449,10 +461,6 @@ public class KaleoDefinitionWrapper implements KaleoDefinition {
 
 	public boolean isEscapedModel() {
 		return _kaleoDefinition.isEscapedModel();
-	}
-
-	public void setEscapedModel(boolean escapedModel) {
-		_kaleoDefinition.setEscapedModel(escapedModel);
 	}
 
 	public java.io.Serializable getPrimaryKeyObj() {

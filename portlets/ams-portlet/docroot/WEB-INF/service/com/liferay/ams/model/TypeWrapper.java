@@ -128,10 +128,6 @@ public class TypeWrapper implements Type {
 		return _type.isEscapedModel();
 	}
 
-	public void setEscapedModel(boolean escapedModel) {
-		_type.setEscapedModel(escapedModel);
-	}
-
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _type.getPrimaryKeyObj();
 	}

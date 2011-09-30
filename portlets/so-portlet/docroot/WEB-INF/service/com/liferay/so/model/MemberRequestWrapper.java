@@ -330,10 +330,6 @@ public class MemberRequestWrapper implements MemberRequest {
 		return _memberRequest.isEscapedModel();
 	}
 
-	public void setEscapedModel(boolean escapedModel) {
-		_memberRequest.setEscapedModel(escapedModel);
-	}
-
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _memberRequest.getPrimaryKeyObj();
 	}

@@ -271,6 +271,7 @@ public interface CalendarBookingModel extends AttachedModel,
 	 * @param locale the locale of the language
 	 * @return the localized title of this calendar booking
 	 */
+	@AutoEscape
 	public String getTitle(Locale locale);
 
 	/**
@@ -280,6 +281,7 @@ public interface CalendarBookingModel extends AttachedModel,
 	 * @param useDefault whether to use the default language if no localization exists for the requested language
 	 * @return the localized title of this calendar booking. If <code>useDefault</code> is <code>false</code> and no localization exists for the requested language, an empty string will be returned.
 	 */
+	@AutoEscape
 	public String getTitle(Locale locale, boolean useDefault);
 
 	/**
@@ -288,6 +290,7 @@ public interface CalendarBookingModel extends AttachedModel,
 	 * @param languageId the ID of the language
 	 * @return the localized title of this calendar booking
 	 */
+	@AutoEscape
 	public String getTitle(String languageId);
 
 	/**
@@ -297,7 +300,14 @@ public interface CalendarBookingModel extends AttachedModel,
 	 * @param useDefault whether to use the default language if no localization exists for the requested language
 	 * @return the localized title of this calendar booking
 	 */
+	@AutoEscape
 	public String getTitle(String languageId, boolean useDefault);
+
+	@AutoEscape
+	public String getTitleCurrentLanguageId();
+
+	@AutoEscape
+	public String getTitleCurrentValue();
 
 	/**
 	 * Returns a map of the locales and localized titles of this calendar booking.
@@ -330,6 +340,8 @@ public interface CalendarBookingModel extends AttachedModel,
 	 */
 	public void setTitle(String title, Locale locale, Locale defaultLocale);
 
+	public void setTitleCurrentLanguageId(String languageId);
+
 	/**
 	 * Sets the localized titles of this calendar booking from the map of locales and localized titles.
 	 *
@@ -358,6 +370,7 @@ public interface CalendarBookingModel extends AttachedModel,
 	 * @param locale the locale of the language
 	 * @return the localized name of this calendar booking
 	 */
+	@AutoEscape
 	public String getName(Locale locale);
 
 	/**
@@ -367,6 +380,7 @@ public interface CalendarBookingModel extends AttachedModel,
 	 * @param useDefault whether to use the default language if no localization exists for the requested language
 	 * @return the localized name of this calendar booking. If <code>useDefault</code> is <code>false</code> and no localization exists for the requested language, an empty string will be returned.
 	 */
+	@AutoEscape
 	public String getName(Locale locale, boolean useDefault);
 
 	/**
@@ -375,6 +389,7 @@ public interface CalendarBookingModel extends AttachedModel,
 	 * @param languageId the ID of the language
 	 * @return the localized name of this calendar booking
 	 */
+	@AutoEscape
 	public String getName(String languageId);
 
 	/**
@@ -384,7 +399,14 @@ public interface CalendarBookingModel extends AttachedModel,
 	 * @param useDefault whether to use the default language if no localization exists for the requested language
 	 * @return the localized name of this calendar booking
 	 */
+	@AutoEscape
 	public String getName(String languageId, boolean useDefault);
+
+	@AutoEscape
+	public String getNameCurrentLanguageId();
+
+	@AutoEscape
+	public String getNameCurrentValue();
 
 	/**
 	 * Returns a map of the locales and localized names of this calendar booking.
@@ -417,6 +439,8 @@ public interface CalendarBookingModel extends AttachedModel,
 	 */
 	public void setName(String name, Locale locale, Locale defaultLocale);
 
+	public void setNameCurrentLanguageId(String languageId);
+
 	/**
 	 * Sets the localized names of this calendar booking from the map of locales and localized names.
 	 *
@@ -445,6 +469,7 @@ public interface CalendarBookingModel extends AttachedModel,
 	 * @param locale the locale of the language
 	 * @return the localized description of this calendar booking
 	 */
+	@AutoEscape
 	public String getDescription(Locale locale);
 
 	/**
@@ -454,6 +479,7 @@ public interface CalendarBookingModel extends AttachedModel,
 	 * @param useDefault whether to use the default language if no localization exists for the requested language
 	 * @return the localized description of this calendar booking. If <code>useDefault</code> is <code>false</code> and no localization exists for the requested language, an empty string will be returned.
 	 */
+	@AutoEscape
 	public String getDescription(Locale locale, boolean useDefault);
 
 	/**
@@ -462,6 +488,7 @@ public interface CalendarBookingModel extends AttachedModel,
 	 * @param languageId the ID of the language
 	 * @return the localized description of this calendar booking
 	 */
+	@AutoEscape
 	public String getDescription(String languageId);
 
 	/**
@@ -471,7 +498,14 @@ public interface CalendarBookingModel extends AttachedModel,
 	 * @param useDefault whether to use the default language if no localization exists for the requested language
 	 * @return the localized description of this calendar booking
 	 */
+	@AutoEscape
 	public String getDescription(String languageId, boolean useDefault);
+
+	@AutoEscape
+	public String getDescriptionCurrentLanguageId();
+
+	@AutoEscape
+	public String getDescriptionCurrentValue();
 
 	/**
 	 * Returns a map of the locales and localized descriptions of this calendar booking.
@@ -504,6 +538,8 @@ public interface CalendarBookingModel extends AttachedModel,
 	 */
 	public void setDescription(String description, Locale locale,
 		Locale defaultLocale);
+
+	public void setDescriptionCurrentLanguageId(String languageId);
 
 	/**
 	 * Sets the localized descriptions of this calendar booking from the map of locales and localized descriptions.
@@ -757,8 +793,6 @@ public interface CalendarBookingModel extends AttachedModel,
 	public void setCachedModel(boolean cachedModel);
 
 	public boolean isEscapedModel();
-
-	public void setEscapedModel(boolean escapedModel);
 
 	public Serializable getPrimaryKeyObj();
 

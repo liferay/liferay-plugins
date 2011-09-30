@@ -331,10 +331,6 @@ public class KaleoNotificationRecipientWrapper
 		return _kaleoNotificationRecipient.isEscapedModel();
 	}
 
-	public void setEscapedModel(boolean escapedModel) {
-		_kaleoNotificationRecipient.setEscapedModel(escapedModel);
-	}
-
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _kaleoNotificationRecipient.getPrimaryKeyObj();
 	}

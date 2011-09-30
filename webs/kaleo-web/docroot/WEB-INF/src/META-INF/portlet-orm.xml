@@ -81,6 +81,7 @@
 			<basic name="startKaleoNodeId" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
+			<transient name="titleCurrentLanguageId" />
 			<transient name="titleMap" />
 			<transient name="userUuid" />
 		</attributes>

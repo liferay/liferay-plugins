@@ -147,13 +147,8 @@ public class StatusClp extends BaseModelImpl<Status> implements Status {
 
 	@Override
 	public Status toEscapedModel() {
-		if (isEscapedModel()) {
-			return this;
-		}
-		else {
-			return (Status)Proxy.newProxyInstance(Status.class.getClassLoader(),
-				new Class[] { Status.class }, new AutoEscapeBeanHandler(this));
-		}
+		return (Status)Proxy.newProxyInstance(Status.class.getClassLoader(),
+			new Class[] { Status.class }, new AutoEscapeBeanHandler(this));
 	}
 
 	@Override

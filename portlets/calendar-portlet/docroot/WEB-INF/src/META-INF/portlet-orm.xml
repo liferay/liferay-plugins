@@ -50,11 +50,14 @@
 			<basic name="statusDate">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
+			<transient name="descriptionCurrentLanguageId" />
 			<transient name="descriptionMap" />
+			<transient name="nameCurrentLanguageId" />
 			<transient name="nameMap" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
 			<transient name="statusByUserUuid" />
+			<transient name="titleCurrentLanguageId" />
 			<transient name="titleMap" />
 			<transient name="userUuid" />
 		</attributes>
@@ -94,9 +97,11 @@
 			<basic name="remindBy" />
 			<basic name="firstReminder" />
 			<basic name="secondReminder" />
+			<transient name="descriptionCurrentLanguageId" />
 			<transient name="descriptionMap" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
+			<transient name="titleCurrentLanguageId" />
 			<transient name="titleMap" />
 			<transient name="userUuid" />
 		</attributes>
@@ -125,7 +130,9 @@
 			<basic name="active">
 				<column name="ACTIVE_" />
 			</basic>
+			<transient name="descriptionCurrentLanguageId" />
 			<transient name="descriptionMap" />
+			<transient name="nameCurrentLanguageId" />
 			<transient name="nameMap" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />

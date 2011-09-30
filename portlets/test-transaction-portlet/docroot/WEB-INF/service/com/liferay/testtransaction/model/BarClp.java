@@ -78,13 +78,8 @@ public class BarClp extends BaseModelImpl<Bar> implements Bar {
 
 	@Override
 	public Bar toEscapedModel() {
-		if (isEscapedModel()) {
-			return this;
-		}
-		else {
-			return (Bar)Proxy.newProxyInstance(Bar.class.getClassLoader(),
-				new Class[] { Bar.class }, new AutoEscapeBeanHandler(this));
-		}
+		return (Bar)Proxy.newProxyInstance(Bar.class.getClassLoader(),
+			new Class[] { Bar.class }, new AutoEscapeBeanHandler(this));
 	}
 
 	@Override

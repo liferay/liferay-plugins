@@ -95,14 +95,8 @@ public class SVNRepositoryClp extends BaseModelImpl<SVNRepository>
 
 	@Override
 	public SVNRepository toEscapedModel() {
-		if (isEscapedModel()) {
-			return this;
-		}
-		else {
-			return (SVNRepository)Proxy.newProxyInstance(SVNRepository.class.getClassLoader(),
-				new Class[] { SVNRepository.class },
-				new AutoEscapeBeanHandler(this));
-		}
+		return (SVNRepository)Proxy.newProxyInstance(SVNRepository.class.getClassLoader(),
+			new Class[] { SVNRepository.class }, new AutoEscapeBeanHandler(this));
 	}
 
 	@Override

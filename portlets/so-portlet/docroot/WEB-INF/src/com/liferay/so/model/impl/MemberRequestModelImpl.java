@@ -298,18 +298,13 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
 
 	@Override
 	public MemberRequest toEscapedModel() {
-		if (isEscapedModel()) {
-			return (MemberRequest)this;
+		if (_escapedModelProxy == null) {
+			_escapedModelProxy = (MemberRequest)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelProxyInterfaces,
+					new AutoEscapeBeanHandler(this));
 		}
-		else {
-			if (_escapedModelProxy == null) {
-				_escapedModelProxy = (MemberRequest)ProxyUtil.newProxyInstance(_classLoader,
-						_escapedModelProxyInterfaces,
-						new AutoEscapeBeanHandler(this));
-			}
 
-			return _escapedModelProxy;
-		}
+		return _escapedModelProxy;
 	}
 
 	@Override

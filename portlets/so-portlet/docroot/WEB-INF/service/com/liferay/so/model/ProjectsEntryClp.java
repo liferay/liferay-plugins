@@ -163,14 +163,8 @@ public class ProjectsEntryClp extends BaseModelImpl<ProjectsEntry>
 
 	@Override
 	public ProjectsEntry toEscapedModel() {
-		if (isEscapedModel()) {
-			return this;
-		}
-		else {
-			return (ProjectsEntry)Proxy.newProxyInstance(ProjectsEntry.class.getClassLoader(),
-				new Class[] { ProjectsEntry.class },
-				new AutoEscapeBeanHandler(this));
-		}
+		return (ProjectsEntry)Proxy.newProxyInstance(ProjectsEntry.class.getClassLoader(),
+			new Class[] { ProjectsEntry.class }, new AutoEscapeBeanHandler(this));
 	}
 
 	@Override

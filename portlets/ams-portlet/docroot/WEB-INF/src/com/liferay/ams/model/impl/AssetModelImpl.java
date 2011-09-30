@@ -215,18 +215,13 @@ public class AssetModelImpl extends BaseModelImpl<Asset> implements AssetModel {
 
 	@Override
 	public Asset toEscapedModel() {
-		if (isEscapedModel()) {
-			return (Asset)this;
+		if (_escapedModelProxy == null) {
+			_escapedModelProxy = (Asset)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelProxyInterfaces,
+					new AutoEscapeBeanHandler(this));
 		}
-		else {
-			if (_escapedModelProxy == null) {
-				_escapedModelProxy = (Asset)ProxyUtil.newProxyInstance(_classLoader,
-						_escapedModelProxyInterfaces,
-						new AutoEscapeBeanHandler(this));
-			}
 
-			return _escapedModelProxy;
-		}
+		return _escapedModelProxy;
 	}
 
 	@Override

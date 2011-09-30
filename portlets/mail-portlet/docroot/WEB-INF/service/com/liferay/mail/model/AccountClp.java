@@ -309,13 +309,8 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 
 	@Override
 	public Account toEscapedModel() {
-		if (isEscapedModel()) {
-			return this;
-		}
-		else {
-			return (Account)Proxy.newProxyInstance(Account.class.getClassLoader(),
-				new Class[] { Account.class }, new AutoEscapeBeanHandler(this));
-		}
+		return (Account)Proxy.newProxyInstance(Account.class.getClassLoader(),
+			new Class[] { Account.class }, new AutoEscapeBeanHandler(this));
 	}
 
 	@Override

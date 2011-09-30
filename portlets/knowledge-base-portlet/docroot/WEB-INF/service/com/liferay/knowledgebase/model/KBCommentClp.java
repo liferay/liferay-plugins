@@ -183,13 +183,8 @@ public class KBCommentClp extends BaseModelImpl<KBComment> implements KBComment 
 
 	@Override
 	public KBComment toEscapedModel() {
-		if (isEscapedModel()) {
-			return this;
-		}
-		else {
-			return (KBComment)Proxy.newProxyInstance(KBComment.class.getClassLoader(),
-				new Class[] { KBComment.class }, new AutoEscapeBeanHandler(this));
-		}
+		return (KBComment)Proxy.newProxyInstance(KBComment.class.getClassLoader(),
+			new Class[] { KBComment.class }, new AutoEscapeBeanHandler(this));
 	}
 
 	@Override

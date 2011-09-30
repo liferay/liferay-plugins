@@ -274,10 +274,6 @@ public class WSRPConsumerWrapper implements WSRPConsumer {
 		return _wsrpConsumer.isEscapedModel();
 	}
 
-	public void setEscapedModel(boolean escapedModel) {
-		_wsrpConsumer.setEscapedModel(escapedModel);
-	}
-
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _wsrpConsumer.getPrimaryKeyObj();
 	}

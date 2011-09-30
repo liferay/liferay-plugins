@@ -355,18 +355,13 @@ public class KaleoTransitionModelImpl extends BaseModelImpl<KaleoTransition>
 
 	@Override
 	public KaleoTransition toEscapedModel() {
-		if (isEscapedModel()) {
-			return (KaleoTransition)this;
+		if (_escapedModelProxy == null) {
+			_escapedModelProxy = (KaleoTransition)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelProxyInterfaces,
+					new AutoEscapeBeanHandler(this));
 		}
-		else {
-			if (_escapedModelProxy == null) {
-				_escapedModelProxy = (KaleoTransition)ProxyUtil.newProxyInstance(_classLoader,
-						_escapedModelProxyInterfaces,
-						new AutoEscapeBeanHandler(this));
-			}
 
-			return _escapedModelProxy;
-		}
+		return _escapedModelProxy;
 	}
 
 	@Override

@@ -283,10 +283,6 @@ public class AssetWrapper implements Asset {
 		return _asset.isEscapedModel();
 	}
 
-	public void setEscapedModel(boolean escapedModel) {
-		_asset.setEscapedModel(escapedModel);
-	}
-
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _asset.getPrimaryKeyObj();
 	}

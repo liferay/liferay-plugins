@@ -328,10 +328,6 @@ public class DefinitionWrapper implements Definition {
 		return _definition.isEscapedModel();
 	}
 
-	public void setEscapedModel(boolean escapedModel) {
-		_definition.setEscapedModel(escapedModel);
-	}
-
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _definition.getPrimaryKeyObj();
 	}

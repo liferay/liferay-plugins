@@ -94,13 +94,8 @@ public class ModuleClp extends BaseModelImpl<Module> implements Module {
 
 	@Override
 	public Module toEscapedModel() {
-		if (isEscapedModel()) {
-			return this;
-		}
-		else {
-			return (Module)Proxy.newProxyInstance(Module.class.getClassLoader(),
-				new Class[] { Module.class }, new AutoEscapeBeanHandler(this));
-		}
+		return (Module)Proxy.newProxyInstance(Module.class.getClassLoader(),
+			new Class[] { Module.class }, new AutoEscapeBeanHandler(this));
 	}
 
 	@Override

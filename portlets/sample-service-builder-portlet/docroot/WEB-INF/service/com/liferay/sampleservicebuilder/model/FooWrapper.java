@@ -337,10 +337,6 @@ public class FooWrapper implements Foo {
 		return _foo.isEscapedModel();
 	}
 
-	public void setEscapedModel(boolean escapedModel) {
-		_foo.setEscapedModel(escapedModel);
-	}
-
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _foo.getPrimaryKeyObj();
 	}

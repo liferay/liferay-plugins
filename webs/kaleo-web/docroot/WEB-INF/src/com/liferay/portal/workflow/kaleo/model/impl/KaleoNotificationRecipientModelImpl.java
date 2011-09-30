@@ -291,18 +291,13 @@ public class KaleoNotificationRecipientModelImpl extends BaseModelImpl<KaleoNoti
 
 	@Override
 	public KaleoNotificationRecipient toEscapedModel() {
-		if (isEscapedModel()) {
-			return (KaleoNotificationRecipient)this;
+		if (_escapedModelProxy == null) {
+			_escapedModelProxy = (KaleoNotificationRecipient)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelProxyInterfaces,
+					new AutoEscapeBeanHandler(this));
 		}
-		else {
-			if (_escapedModelProxy == null) {
-				_escapedModelProxy = (KaleoNotificationRecipient)ProxyUtil.newProxyInstance(_classLoader,
-						_escapedModelProxyInterfaces,
-						new AutoEscapeBeanHandler(this));
-			}
 
-			return _escapedModelProxy;
-		}
+		return _escapedModelProxy;
 	}
 
 	@Override

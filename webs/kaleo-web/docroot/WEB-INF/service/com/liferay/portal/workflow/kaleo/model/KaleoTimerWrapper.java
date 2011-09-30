@@ -409,10 +409,6 @@ public class KaleoTimerWrapper implements KaleoTimer {
 		return _kaleoTimer.isEscapedModel();
 	}
 
-	public void setEscapedModel(boolean escapedModel) {
-		_kaleoTimer.setEscapedModel(escapedModel);
-	}
-
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _kaleoTimer.getPrimaryKeyObj();
 	}

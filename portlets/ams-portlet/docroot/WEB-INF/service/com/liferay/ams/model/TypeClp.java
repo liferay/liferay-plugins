@@ -86,13 +86,8 @@ public class TypeClp extends BaseModelImpl<Type> implements Type {
 
 	@Override
 	public Type toEscapedModel() {
-		if (isEscapedModel()) {
-			return this;
-		}
-		else {
-			return (Type)Proxy.newProxyInstance(Type.class.getClassLoader(),
-				new Class[] { Type.class }, new AutoEscapeBeanHandler(this));
-		}
+		return (Type)Proxy.newProxyInstance(Type.class.getClassLoader(),
+			new Class[] { Type.class }, new AutoEscapeBeanHandler(this));
 	}
 
 	@Override

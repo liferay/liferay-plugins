@@ -646,10 +646,6 @@ public class KaleoLogWrapper implements KaleoLog {
 		return _kaleoLog.isEscapedModel();
 	}
 
-	public void setEscapedModel(boolean escapedModel) {
-		_kaleoLog.setEscapedModel(escapedModel);
-	}
-
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _kaleoLog.getPrimaryKeyObj();
 	}

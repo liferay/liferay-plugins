@@ -272,10 +272,6 @@ public class JIRAIssueWrapper implements JIRAIssue {
 		return _jiraIssue.isEscapedModel();
 	}
 
-	public void setEscapedModel(boolean escapedModel) {
-		_jiraIssue.setEscapedModel(escapedModel);
-	}
-
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _jiraIssue.getPrimaryKeyObj();
 	}
