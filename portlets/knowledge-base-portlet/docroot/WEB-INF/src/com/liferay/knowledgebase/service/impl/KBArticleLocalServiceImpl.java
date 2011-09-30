@@ -1266,8 +1266,10 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			return;
 		}
 
-		String fromName = AdminUtil.getEmailFromName(preferences);
-		String fromAddress = AdminUtil.getEmailFromAddress(preferences);
+		String fromName = AdminUtil.getEmailFromName(
+			preferences, kbArticle.getCompanyId());
+		String fromAddress = AdminUtil.getEmailFromAddress(
+			preferences, kbArticle.getCompanyId());
 
 		String kbArticleContent = StringUtil.replace(
 			kbArticle.getContent(),

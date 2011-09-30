@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.mail.MailMessage;
 import com.liferay.portal.kernel.util.PrefsPropsUtil;
+import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -270,9 +271,9 @@ public class MemberRequestLocalServiceImpl
 		}
 
 		String fromName = PrefsPropsUtil.getString(
-			companyId, "admin.email.from.name");
+			companyId, PropsKeys.ADMIN_EMAIL_FROM_NAME);
 		String fromAddress = PrefsPropsUtil.getString(
-			companyId, "admin.email.from.address");
+			companyId, PropsKeys.ADMIN_EMAIL_FROM_ADDRESS);
 
 		String toName = StringPool.BLANK;
 		String toAddress = emailAddress;
