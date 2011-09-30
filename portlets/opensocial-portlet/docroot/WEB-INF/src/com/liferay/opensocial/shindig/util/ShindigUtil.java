@@ -44,6 +44,7 @@ import com.liferay.portlet.documentlibrary.service.DLAppServiceUtil;
 
 import java.io.File;
 
+import java.util.HashSet;
 import java.util.Map;
 
 import javax.portlet.ActionRequest;
@@ -58,6 +59,7 @@ import org.apache.shindig.common.crypto.BasicBlobCrypter;
 import org.apache.shindig.common.crypto.BlobCrypter;
 import org.apache.shindig.config.ContainerConfig;
 import org.apache.shindig.gadgets.Gadget;
+import org.apache.shindig.gadgets.process.ProcessingException;
 import org.apache.shindig.gadgets.process.Processor;
 import org.apache.shindig.gadgets.servlet.JsonRpcGadgetContext;
 import org.apache.shindig.gadgets.spec.GadgetSpec;
@@ -232,6 +234,11 @@ public class ShindigUtil {
 		JSONObject gadgetContextJSONObject = new JSONObject();
 
 		gadgetContextJSONObject.put("debug", debug);
+
+		if (!ignoreCache && _gadgetSpecErrorCache.contains(url)) {
+			ignoreCache = true;
+		}
+
 		gadgetContextJSONObject.put("ignoreCache", ignoreCache);
 
 		JSONObject gadgetRequestJSONObject = new JSONObject();
@@ -241,7 +248,18 @@ public class ShindigUtil {
 		JsonRpcGadgetContext jsonRpcGadgetContext = new JsonRpcGadgetContext(
 			gadgetContextJSONObject, gadgetRequestJSONObject);
 
-		Gadget gadget = _processor.process(jsonRpcGadgetContext);
+		Gadget gadget = null;
+
+		try {
+			gadget = _processor.process(jsonRpcGadgetContext);
+
+			_gadgetSpecErrorCache.remove(url);
+		}
+		catch (ProcessingException pe) {
+			_gadgetSpecErrorCache.add(url);
+
+			throw pe;
+		}
 
 		return gadget.getSpec();
 	}
@@ -405,6 +423,9 @@ public class ShindigUtil {
 
 	@Inject
 	private static ContainerConfig _containerConfig;
+
+	private static HashSet<String> _gadgetSpecErrorCache =
+		new HashSet<String>();
 
 	private static AutoResetThreadLocal<String> _host =
 		new AutoResetThreadLocal<String>(
