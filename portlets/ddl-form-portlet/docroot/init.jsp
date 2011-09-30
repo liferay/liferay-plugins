@@ -24,7 +24,46 @@
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 <%@ taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 
-<%@ page import="com.liferay.ddlform.DuplicateSubmissionException" %><%@ page import="com.liferay.ddlform.util.DDLFormUtil" %><%@ page import="com.liferay.portal.kernel.dao.search.SearchContainer" %><%@ page import="com.liferay.portal.kernel.language.LanguageUtil" %><%@ page import="com.liferay.portal.kernel.util.Constants" %><%@ page import="com.liferay.portal.kernel.util.FastDateFormatFactoryUtil" %><%@ page import="com.liferay.portal.kernel.util.GetterUtil" %><%@ page import="com.liferay.portal.kernel.util.HtmlUtil" %><%@ page import="com.liferay.portal.kernel.util.ParamUtil" %><%@ page import="com.liferay.portal.kernel.util.StringBundler" %><%@ page import="com.liferay.portal.kernel.util.StringPool" %><%@ page import="com.liferay.portal.kernel.util.StringUtil" %><%@ page import="com.liferay.portal.kernel.util.Validator" %><%@ page import="com.liferay.portal.kernel.util.WebKeys" %><%@ page import="com.liferay.portal.kernel.workflow.WorkflowConstants" %><%@ page import="com.liferay.portal.security.permission.ActionKeys" %><%@ page import="com.liferay.portal.service.WorkflowDefinitionLinkLocalServiceUtil" %><%@ page import="com.liferay.portal.service.permission.PortletPermissionUtil" %><%@ page import="com.liferay.portal.util.PortalUtil" %><%@ page import="com.liferay.portal.util.PortletKeys" %><%@ page import="com.liferay.portlet.PortletPreferencesFactoryUtil" %><%@ page import="com.liferay.portlet.dynamicdatalists.NoSuchRecordSetException" %><%@ page import="com.liferay.portlet.dynamicdatalists.model.DDLRecordSet" %><%@ page import="com.liferay.portlet.dynamicdatalists.model.DDLRecordSetConstants" %><%@ page import="com.liferay.portlet.dynamicdatalists.service.DDLRecordSetLocalServiceUtil" %><%@ page import="com.liferay.portlet.dynamicdatamapping.NoSuchTemplateException" %><%@ page import="com.liferay.portlet.dynamicdatamapping.StorageFieldRequiredException" %><%@ page import="com.liferay.portlet.dynamicdatamapping.model.DDMStructure" %><%@ page import="com.liferay.portlet.dynamicdatamapping.model.DDMTemplate" %><%@ page import="com.liferay.portlet.dynamicdatamapping.model.DDMTemplateConstants" %><%@ page import="com.liferay.portlet.dynamicdatamapping.service.DDMTemplateLocalServiceUtil" %><%@ page import="com.liferay.portlet.dynamicdatamapping.util.DDMXSDUtil" %><%@ page import="java.text.Format" %><%@ page import="java.util.List" %><%@ page import="javax.portlet.ActionRequest" %><%@ page import="javax.portlet.PortletPreferences" %><%@ page import="javax.portlet.WindowState" %>
+<%@ page import="com.liferay.ddlform.DuplicateSubmissionException" %>
+<%@ page import="com.liferay.ddlform.util.DDLFormUtil" %>
+<%@ page import="com.liferay.portal.kernel.dao.search.SearchContainer" %>
+<%@ page import="com.liferay.portal.kernel.language.LanguageUtil" %>
+<%@ page import="com.liferay.portal.kernel.util.Constants" %>
+<%@ page import="com.liferay.portal.kernel.util.FastDateFormatFactoryUtil" %>
+<%@ page import="com.liferay.portal.kernel.util.GetterUtil" %>
+<%@ page import="com.liferay.portal.kernel.util.HtmlUtil" %>
+<%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
+<%@ page import="com.liferay.portal.kernel.util.StringBundler" %>
+<%@ page import="com.liferay.portal.kernel.util.StringPool" %>
+<%@ page import="com.liferay.portal.kernel.util.StringUtil" %>
+<%@ page import="com.liferay.portal.kernel.util.Validator" %>
+<%@ page import="com.liferay.portal.kernel.util.WebKeys" %>
+<%@ page import="com.liferay.portal.kernel.workflow.WorkflowConstants" %>
+<%@ page import="com.liferay.portal.security.permission.ActionKeys" %>
+<%@ page import="com.liferay.portal.service.WorkflowDefinitionLinkLocalServiceUtil" %>
+<%@ page import="com.liferay.portal.service.permission.PortletPermissionUtil" %>
+<%@ page import="com.liferay.portal.util.PortalUtil" %>
+<%@ page import="com.liferay.portal.util.PortletKeys" %>
+<%@ page import="com.liferay.portlet.PortletPreferencesFactoryUtil" %>
+<%@ page import="com.liferay.portlet.dynamicdatalists.NoSuchRecordSetException" %>
+<%@ page import="com.liferay.portlet.dynamicdatalists.model.DDLRecordSet" %>
+<%@ page import="com.liferay.portlet.dynamicdatalists.model.DDLRecordSetConstants" %>
+<%@ page import="com.liferay.portlet.dynamicdatalists.service.DDLRecordSetLocalServiceUtil" %>
+<%@ page import="com.liferay.portlet.dynamicdatamapping.NoSuchTemplateException" %>
+<%@ page import="com.liferay.portlet.dynamicdatamapping.StorageFieldRequiredException" %>
+<%@ page import="com.liferay.portlet.dynamicdatamapping.model.DDMStructure" %>
+<%@ page import="com.liferay.portlet.dynamicdatamapping.model.DDMTemplate" %>
+<%@ page import="com.liferay.portlet.dynamicdatamapping.model.DDMTemplateConstants" %>
+<%@ page import="com.liferay.portlet.dynamicdatamapping.service.DDMTemplateLocalServiceUtil" %>
+<%@ page import="com.liferay.portlet.dynamicdatamapping.util.DDMXSDUtil" %>
+
+<%@ page import="java.text.Format" %>
+
+<%@ page import="java.util.List" %>
+
+<%@ page import="javax.portlet.ActionRequest" %>
+<%@ page import="javax.portlet.PortletPreferences" %>
+<%@ page import="javax.portlet.WindowState" %>
 
 <portlet:defineObjects />
 
