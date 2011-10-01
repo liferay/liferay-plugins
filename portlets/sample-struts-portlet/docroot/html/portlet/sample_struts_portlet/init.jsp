@@ -23,9 +23,9 @@
 <%@ taglib uri="http://struts.apache.org/tags-nested" prefix="nested" %>
 <%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles" %>
 
-<%@ page import="java.util.HashMap" %>
-<%@ page import="java.util.Locale" %>
-<%@ page import="java.util.Map" %>
-<%@ page import="java.util.ResourceBundle" %>
+<%@ page import="java.util.HashMap" %><%@
+page import="java.util.Locale" %><%@
+page import="java.util.Map" %><%@
+page import="java.util.ResourceBundle" %>
 
 <portlet:defineObjects />

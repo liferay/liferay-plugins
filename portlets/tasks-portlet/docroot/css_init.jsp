@@ -16,12 +16,12 @@
 
 <%@ taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 
-<%@ page import="com.liferay.portal.kernel.servlet.HttpHeaders" %>
-<%@ page import="com.liferay.portal.kernel.util.ContentTypes" %>
-<%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
-<%@ page import="com.liferay.portal.model.Theme" %>
-<%@ page import="com.liferay.portal.service.ThemeLocalServiceUtil" %>
-<%@ page import="com.liferay.portal.util.PortalUtil" %>
+<%@ page import="com.liferay.portal.kernel.servlet.HttpHeaders" %><%@
+page import="com.liferay.portal.kernel.util.ContentTypes" %><%@
+page import="com.liferay.portal.kernel.util.ParamUtil" %><%@
+page import="com.liferay.portal.model.Theme" %><%@
+page import="com.liferay.portal.service.ThemeLocalServiceUtil" %><%@
+page import="com.liferay.portal.util.PortalUtil" %>
 
 <%
 long companyId = PortalUtil.getCompanyId(request);
