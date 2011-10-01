@@ -35,42 +35,53 @@
 		30000
 	);
 
-	var processResponse = function(event) {
-		clearTimeout(timeout);
+	A.receiveMessage(
+		function(event) {
+			var response = event.responseData;
 
-		var response = event.responseData;
+			if (response.height) {
+				clearTimeout(timeout);
 
-		var cmd = response.cmd;
+				frame.removeClass('aui-helper-hidden-accessible');
+				frame.ancestor().removeClass('loading-animation');
 
-		if (cmd) {
-			A.io.request(
-				'<portlet:actionURL />',
-				{
-					data: response,
-					dataType: 'JSON',
-					method: 'POST',
-					on: {
-						success: function(event, id, obj) {
-							var response = this.get('responseData');
+				frame.height(response.height + 50);
+			}
 
-							A.postMessage(response, '<%= iFrameURL %>', frame);
+			if (response.cmd) {
+				A.io.request(
+					'<portlet:actionURL />',
+					{
+						data: response,
+						dataType: 'JSON',
+						method: 'POST',
+						on: {
+							success: function(event, id, obj) {
+								var response = this.get('responseData');
+
+								A.postMessage(response, '<%= iFrameURL %>', frame);
+							}
 						}
 					}
-				}
+				);
+			}
+		},
+		A.Lang.emptyFnTrue
+	);
+
+	frame.on(
+		'load',
+		function() {
+			A.postMessage(
+				{
+					message: 'success',
+					clientURL: '<%= themeDisplay.getURLPortal() %>'
+				},
+				'<%= iFrameURL %>',
+				frame
 			);
 		}
-
-		var height = response.height;
-
-		if (height) {
-			frame.removeClass('aui-helper-hidden-accessible');
-			frame.ancestor().removeClass('loading-animation');
-
-			frame.height(height + 50);
-		}
-	}
-
-	A.receiveMessage(processResponse, A.Lang.emptyFnTrue);
+	);
 
 	frame.attr('src', '<%= iFrameURL %>');
 </aui:script>
