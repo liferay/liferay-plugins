@@ -25,47 +25,47 @@
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 <%@ taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 
-<%@ page import="com.liferay.microblogs.NoSuchEntryException" %>
-<%@ page import="com.liferay.microblogs.model.MicroblogsEntry" %>
-<%@ page import="com.liferay.microblogs.model.MicroblogsEntryConstants" %>
-<%@ page import="com.liferay.microblogs.service.MicroblogsEntryLocalServiceUtil" %>
-<%@ page import="com.liferay.microblogs.service.MicroblogsEntryServiceUtil" %>
-<%@ page import="com.liferay.microblogs.service.permission.MicroblogsEntryPermission" %>
-<%@ page import="com.liferay.microblogs.service.permission.MicroblogsPermission" %>
-<%@ page import="com.liferay.microblogs.util.WebKeys" %>
-<%@ page import="com.liferay.microblogs.util.comparator.EntryCreateDateComparator" %>
-<%@ page import="com.liferay.portal.NoSuchUserException" %>
-<%@ page import="com.liferay.portal.kernel.dao.orm.QueryUtil" %>
-<%@ page import="com.liferay.portal.kernel.dao.search.SearchContainer" %>
-<%@ page import="com.liferay.portal.kernel.language.LanguageUtil" %>
-<%@ page import="com.liferay.portal.kernel.portlet.LiferayWindowState" %>
-<%@ page import="com.liferay.portal.kernel.util.DateUtil" %>
-<%@ page import="com.liferay.portal.kernel.util.FastDateFormatFactoryUtil" %>
-<%@ page import="com.liferay.portal.kernel.util.HtmlUtil" %>
-<%@ page import="com.liferay.portal.kernel.util.ListUtil" %>
-<%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
-<%@ page import="com.liferay.portal.kernel.util.StringPool" %>
-<%@ page import="com.liferay.portal.kernel.util.StringUtil" %>
-<%@ page import="com.liferay.portal.kernel.util.Validator" %>
-<%@ page import="com.liferay.portal.model.Group" %>
-<%@ page import="com.liferay.portal.model.User" %>
-<%@ page import="com.liferay.portal.security.permission.ActionKeys" %>
-<%@ page import="com.liferay.portal.service.UserLocalServiceUtil" %>
-<%@ page import="com.liferay.portal.util.PortalUtil" %>
-<%@ page import="com.liferay.portal.util.comparator.UserLoginDateComparator" %>
-<%@ page import="com.liferay.portlet.social.model.SocialRelationConstants" %>
-<%@ page import="com.liferay.portlet.social.service.SocialRelationLocalServiceUtil" %>
+<%@ page import="com.liferay.microblogs.NoSuchEntryException" %><%@
+page import="com.liferay.microblogs.model.MicroblogsEntry" %><%@
+page import="com.liferay.microblogs.model.MicroblogsEntryConstants" %><%@
+page import="com.liferay.microblogs.service.MicroblogsEntryLocalServiceUtil" %><%@
+page import="com.liferay.microblogs.service.MicroblogsEntryServiceUtil" %><%@
+page import="com.liferay.microblogs.service.permission.MicroblogsEntryPermission" %><%@
+page import="com.liferay.microblogs.service.permission.MicroblogsPermission" %><%@
+page import="com.liferay.microblogs.util.WebKeys" %><%@
+page import="com.liferay.microblogs.util.comparator.EntryCreateDateComparator" %><%@
+page import="com.liferay.portal.NoSuchUserException" %><%@
+page import="com.liferay.portal.kernel.dao.orm.QueryUtil" %><%@
+page import="com.liferay.portal.kernel.dao.search.SearchContainer" %><%@
+page import="com.liferay.portal.kernel.language.LanguageUtil" %><%@
+page import="com.liferay.portal.kernel.portlet.LiferayWindowState" %><%@
+page import="com.liferay.portal.kernel.util.DateUtil" %><%@
+page import="com.liferay.portal.kernel.util.FastDateFormatFactoryUtil" %><%@
+page import="com.liferay.portal.kernel.util.HtmlUtil" %><%@
+page import="com.liferay.portal.kernel.util.ListUtil" %><%@
+page import="com.liferay.portal.kernel.util.ParamUtil" %><%@
+page import="com.liferay.portal.kernel.util.StringPool" %><%@
+page import="com.liferay.portal.kernel.util.StringUtil" %><%@
+page import="com.liferay.portal.kernel.util.Validator" %><%@
+page import="com.liferay.portal.model.Group" %><%@
+page import="com.liferay.portal.model.User" %><%@
+page import="com.liferay.portal.security.permission.ActionKeys" %><%@
+page import="com.liferay.portal.service.UserLocalServiceUtil" %><%@
+page import="com.liferay.portal.util.PortalUtil" %><%@
+page import="com.liferay.portal.util.comparator.UserLoginDateComparator" %><%@
+page import="com.liferay.portlet.social.model.SocialRelationConstants" %><%@
+page import="com.liferay.portlet.social.service.SocialRelationLocalServiceUtil" %>
 
 <%@ page import="java.text.Format" %>
 
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="java.util.List" %>
-<%@ page import="java.util.regex.Matcher" %>
-<%@ page import="java.util.regex.Pattern" %>
+<%@ page import="java.util.ArrayList" %><%@
+page import="java.util.List" %><%@
+page import="java.util.regex.Matcher" %><%@
+page import="java.util.regex.Pattern" %>
 
-<%@ page import="javax.portlet.ActionRequest" %>
-<%@ page import="javax.portlet.PortletURL" %>
-<%@ page import="javax.portlet.WindowState" %>
+<%@ page import="javax.portlet.ActionRequest" %><%@
+page import="javax.portlet.PortletURL" %><%@
+page import="javax.portlet.WindowState" %>
 
 <portlet:defineObjects />
 
