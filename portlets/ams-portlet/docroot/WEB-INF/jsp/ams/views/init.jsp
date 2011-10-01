@@ -28,9 +28,9 @@
 
 <%@ page import="com.liferay.portlet.PortletURLUtil" %>
 
-<%@ page import="javax.portlet.PortletMode" %>
-<%@ page import="javax.portlet.PortletURL" %>
-<%@ page import="javax.portlet.WindowState" %>
+<%@ page import="javax.portlet.PortletMode" %><%@
+page import="javax.portlet.PortletURL" %><%@
+page import="javax.portlet.WindowState" %>
 
 <portlet:defineObjects />
 

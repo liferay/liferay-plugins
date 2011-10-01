@@ -18,10 +18,10 @@
 
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
-<%@ page import="com.liferay.portal.kernel.portlet.LiferayWindowState" %>
-<%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
-<%@ page import="com.liferay.testmisc.messaging.TestSchedulerMessageListener" %>
-<%@ page import="com.liferay.testmisc.scheduler.TestSchedulerUtil" %>
+<%@ page import="com.liferay.portal.kernel.portlet.LiferayWindowState" %><%@
+page import="com.liferay.portal.kernel.util.ParamUtil" %><%@
+page import="com.liferay.testmisc.messaging.TestSchedulerMessageListener" %><%@
+page import="com.liferay.testmisc.scheduler.TestSchedulerUtil" %>
 
 <%@ page import="javax.portlet.ActionRequest" %>
 
