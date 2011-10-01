@@ -297,7 +297,7 @@ AUI().add(
 								function() {
 									var entryLabel = instance._getNextNewEntryName(isLeaf, parentFolderNode);
 
-									instance._treeViewEditor.addNodeToFolder(entryLabel, isLeaf, parentFolderId);
+									instance._treeViewEditor.addNewNodeToFolder(entryLabel, isLeaf, parentFolderId);
 								},
 								0
 							);
@@ -416,7 +416,18 @@ AUI().add(
 
 						var node = instance._getNodeFromDataSet(entryId);
 
-						if (node && !node.isSelected()) {
+						if (activeTab.get(IS_NEW)) {
+							var lastSelected = instance._treeViewEditor.get(LAST_SELECTED);
+
+							if (lastSelected && lastSelected.isLeaf()) {
+								lastSelected.unselect();
+
+								var folderNode = lastSelected.get(PARENT_NODE);
+
+								folderNode.select();
+							}							
+						}
+						else if (node && !node.isSelected()) {
 							var lastSelected = instance._treeViewEditor.get(LAST_SELECTED);
 
 							if (lastSelected) {
@@ -1631,10 +1642,6 @@ AUI().add(
 					_renderTreeViewEditor: function() {
 						var instance = this;
 
-						var callback = A.bind(instance._appendEditorChildren, instance);
-
-						instance._requestGetFolderChildren(instance.get(ROOT_FOLDER_ID), instance.get(REPOSITORY_ID), true, callback);
-
 						var treeViewEditor = new A.TreeViewEditor(
 							{
 								boundingBox: '#treeViewEditor',
@@ -1659,9 +1666,12 @@ AUI().add(
 									url: instance._getResourceURL(GET_FOLDER_CHILDREN)
 								},
 								publishGadgetPermission: instance.get('publishGadgetPermission'),
-								rootFolderId: instance.get(ROOT_FOLDER_ID)
 							}
 						).render();
+
+						var node = treeViewEditor.addRootNode('OpenSocial Gadgets', instance.get(ROOT_FOLDER_ID));
+
+						node.expand();
 
 						treeViewEditor.addTarget(instance);
 
@@ -1736,22 +1746,6 @@ AUI().add(
 							'getFileEntryContent',
 							{
 								fileEntryId: fileEntryId
-							},
-							callback
-						);
-					},
-
-					_requestGetFolderChildren: function(folderId, repositoryId, getFileEntries, callback) {
-						var instance = this;
-
-						instance._loadingMask.show();
-
-						instance._sendIORequest(
-							GET_FOLDER_CHILDREN,
-							{
-								folderId: folderId,
-								getFileEntries: getFileEntries,
-								repositoryId: repositoryId
 							},
 							callback
 						);
