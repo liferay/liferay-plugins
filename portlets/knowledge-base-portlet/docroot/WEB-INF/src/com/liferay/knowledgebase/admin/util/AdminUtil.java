@@ -63,21 +63,20 @@ public class AdminUtil {
 	}
 
 	public static String getEmailFromAddress(
-		PortletPreferences preferences, long companyId) throws SystemException {
-
-		String defaultValue = PortletPropsValues.ADMIN_EMAIL_FROM_ADDRESS;
+			PortletPreferences preferences, long companyId)
+		throws SystemException {
 
 		return PortalUtil.getEmailFromAddress(
-			preferences, companyId, "", defaultValue);
+			preferences, companyId,
+			PortletPropsValues.ADMIN_EMAIL_FROM_ADDRESS);
 	}
 
 	public static String getEmailFromName(
-		PortletPreferences preferences, long companyId) throws SystemException {
-
-		String defaultValue = PortletPropsValues.ADMIN_EMAIL_FROM_NAME;
+			PortletPreferences preferences, long companyId)
+		throws SystemException {
 
 		return PortalUtil.getEmailFromName(
-			preferences, companyId, "", defaultValue);
+			preferences, companyId, PortletPropsValues.ADMIN_EMAIL_FROM_NAME);
 	}
 
 	public static String getEmailKBArticleAddedBody(
