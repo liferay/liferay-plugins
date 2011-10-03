@@ -19,6 +19,7 @@ import com.liferay.knowledgebase.model.KBArticleConstants;
 import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
 import com.liferay.knowledgebase.util.PortletPropsValues;
 import com.liferay.portal.kernel.bean.BeanPropertiesUtil;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.DiffHtmlUtil;
@@ -27,6 +28,7 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.util.PortalUtil;
 import com.liferay.util.ContentUtil;
 
 import java.util.Map;
@@ -60,14 +62,22 @@ public class AdminUtil {
 		return sections;
 	}
 
-	public static String getEmailFromAddress(PortletPreferences preferences) {
-		return preferences.getValue(
-			"emailFromAddress", PortletPropsValues.ADMIN_EMAIL_FROM_ADDRESS);
+	public static String getEmailFromAddress(
+		PortletPreferences preferences, long companyId) throws SystemException {
+
+		String defaultValue = PortletPropsValues.ADMIN_EMAIL_FROM_ADDRESS;
+
+		return PortalUtil.getEmailFromAddress(
+			preferences, companyId, "", defaultValue);
 	}
 
-	public static String getEmailFromName(PortletPreferences preferences) {
-		return preferences.getValue(
-			"emailFromName", PortletPropsValues.ADMIN_EMAIL_FROM_NAME);
+	public static String getEmailFromName(
+		PortletPreferences preferences, long companyId) throws SystemException {
+
+		String defaultValue = PortletPropsValues.ADMIN_EMAIL_FROM_NAME;
+
+		return PortalUtil.getEmailFromName(
+			preferences, companyId, "", defaultValue);
 	}
 
 	public static String getEmailKBArticleAddedBody(
