@@ -112,17 +112,21 @@ public class WebFormUtil {
 	public static String getEmailFromAddress(
 			PortletPreferences preferences, long companyId)
 		throws SystemException {
-		return PortalUtil.getEmailFromAddress(
-			preferences, companyId,"webform.email.from.address");
 
+		String defaultValue = PortletProps.get("webform.email.from.address");
+
+		return PortalUtil.getEmailFromAddress(
+			preferences, companyId, defaultValue);
 	}
 
 	public static String getEmailFromName(
 			PortletPreferences preferences, long companyId)
 		throws SystemException {
-		return PortalUtil.getEmailFromName(
-			preferences, companyId,"webform.email.from.name");
 
+		String defaultValue = PortletProps.get("webform.email.from.name");
+
+		return PortalUtil.getEmailFromName(
+			preferences, companyId, defaultValue);
 	}
 
 	public static String getNewDatabaseTableName(String portletId)
