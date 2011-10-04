@@ -77,6 +77,11 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 	}
 
 	@Override
+	public boolean isAlwaysExportable() {
+		return _ALWAYS_EXPORTABLE;
+	}
+
+	@Override
 	protected PortletPreferences doDeleteData(
 			PortletDataContext portletDataContext, String portletId,
 			PortletPreferences portletPreferences)
@@ -683,6 +688,8 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 	}
 
 	private static final String _NAMESPACE = "knowledge_base";
+
+	private static final boolean _ALWAYS_EXPORTABLE = true;
 
 	private static PortletDataHandlerBoolean _categories =
 		new PortletDataHandlerBoolean(_NAMESPACE, "categories");
