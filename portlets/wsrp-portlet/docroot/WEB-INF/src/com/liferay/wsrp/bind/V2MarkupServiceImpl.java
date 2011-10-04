@@ -318,6 +318,18 @@ public class V2MarkupServiceImpl
 
 		List<NamedString> clientAttributes = new ArrayList<NamedString>();
 
+		String contentDisposition = response.getHeader(
+			HttpHeaders.CONTENT_DISPOSITION);
+
+		if (Validator.isNotNull(contentDisposition)) {
+			NamedString clientAttribute = new NamedString();
+
+			clientAttribute.setName(HttpHeaders.CONTENT_DISPOSITION);
+			clientAttribute.setValue(contentDisposition);
+
+			clientAttributes.add(clientAttribute);
+		}
+
 		if (Validator.isNotNull(contentType)) {
 			resourceContext.setMimeType(contentType);
 
