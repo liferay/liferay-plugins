@@ -12,7 +12,7 @@
 			src="${original.war.file}"
 		>
 			<patternset
-				includes="apache-solr-1.4.1/dist/apache-solr-core-*.jar,apache-solr-1.4.1/dist/apache-solr-solrj-*.jar"
+				includes="apache-solr-1.4.1/dist/apache-solr-core-*.jar,apache-solr-1.4.1/dist/apache-solr-solrj-*.jar,apache-solr-1.4.1/dist/slf4j-*.jar"
 			/>
 			<mapper type="flatten" />
 		</unzip>
