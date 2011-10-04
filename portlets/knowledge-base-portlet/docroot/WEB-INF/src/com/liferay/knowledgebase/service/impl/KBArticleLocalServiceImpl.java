@@ -87,6 +87,7 @@ import javax.portlet.PortletPreferences;
 /**
  * @author Peter Shin
  * @author Brian Wing Shun Chan
+ * @author Edward Han
  */
 public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
@@ -94,6 +95,15 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			String dirName, String shortFileName, InputStream inputStream,
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
+
+		boolean dirExists = DLStoreUtil.hasDirectory(
+			serviceContext.getCompanyId(), CompanyConstants.SYSTEM, dirName);
+
+		if (!dirExists) {
+			DLStoreUtil.addDirectory(
+				serviceContext.getCompanyId(), CompanyConstants.SYSTEM,
+				dirName);
+		}
 
 		DLStoreUtil.addFile(
 			serviceContext.getCompanyId(), CompanyConstants.SYSTEM,
@@ -985,6 +995,13 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		}
 
 		if (Validator.isNull(dirName)) {
+			return;
+		}
+
+		boolean dirExists = DLStoreUtil.hasDirectory(
+			serviceContext.getCompanyId(), CompanyConstants.SYSTEM, dirName);
+
+		if (!dirExists) {
 			return;
 		}
 
