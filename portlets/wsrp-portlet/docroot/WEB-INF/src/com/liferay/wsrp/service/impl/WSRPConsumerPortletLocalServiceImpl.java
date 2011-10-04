@@ -22,6 +22,8 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.PortletBag;
 import com.liferay.portal.kernel.portlet.PortletBagPool;
+import com.liferay.portal.kernel.transaction.Propagation;
+import com.liferay.portal.kernel.transaction.Transactional;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -250,6 +252,7 @@ public class WSRPConsumerPortletLocalServiceImpl
 	}
 
 	@Clusterable
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public void initFailedWSRPConsumerPortlets() {
 		for (Map.Entry<Long, Tuple> entry :
 				_failedWSRPConsumerPortlets.entrySet()) {
@@ -281,6 +284,7 @@ public class WSRPConsumerPortletLocalServiceImpl
 	}
 
 	@Clusterable
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public void initWSRPConsumerPortlet(
 			long companyId, long wsrpConsumerId, long wsrpConsumerPortletId,
 			String wsrpConsumerPortletUuid, String name, String portletHandle,
@@ -327,6 +331,7 @@ public class WSRPConsumerPortletLocalServiceImpl
 		}
 	}
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public void initWSRPConsumerPortlets() throws SystemException {
 		for (WSRPConsumerPortlet wsrpConsumerPortlet :
 				wsrpConsumerPortletPersistence.findAll()) {
