@@ -16,11 +16,9 @@ package com.liferay.wsrp.servlet;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.portlet.PortletClassLoaderUtil;
 import com.liferay.portal.kernel.util.BasePortalLifecycle;
 import com.liferay.wsrp.service.WSRPConsumerPortletLocalServiceUtil;
 
-import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
@@ -53,7 +51,7 @@ public class WSRPServletContextListener
 		}
 	}
 
-	private static Log _log = 
-		LogFactoryUtil.getLog(WSRPServletContextListener.class);
+	private static Log _log =  LogFactoryUtil.getLog(
+		WSRPServletContextListener.class);
 
 }
