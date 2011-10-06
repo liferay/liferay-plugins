@@ -14,6 +14,8 @@
 
 package com.liferay.wsrp.servlet;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.PortletClassLoaderUtil;
 import com.liferay.portal.kernel.util.BasePortalLifecycle;
 import com.liferay.wsrp.service.WSRPConsumerPortletLocalServiceUtil;
@@ -33,9 +35,6 @@ public class WSRPServletContextListener
 	}
 
 	public void contextInitialized(ServletContextEvent servletContextEvent) {
-		_servletContext = servletContextEvent.getServletContext();
-		_classLoader = PortletClassLoaderUtil.getClassLoader();
-
 		registerPortalLifecycle();
 	}
 
@@ -46,15 +45,15 @@ public class WSRPServletContextListener
 
 	@Override
 	protected void doPortalInit() {
-		PortalInitThread portalInitThread = new PortalInitThread();
-
-		portalInitThread.setContextClassLoader(_classLoader);
-		portalInitThread.setServletContext(_servletContext);
-
-		portalInitThread.start();
+		try {
+			WSRPConsumerPortletLocalServiceUtil.initWSRPConsumerPortlets();
+		}
+		catch (Exception e) {
+			_log.error("Unable to initialize WSRP consumer portlets", e);
+		}
 	}
 
-	private ClassLoader _classLoader;
-	private ServletContext _servletContext;
+	private static Log _log = 
+		LogFactoryUtil.getLog(WSRPServletContextListener.class);
 
 }
