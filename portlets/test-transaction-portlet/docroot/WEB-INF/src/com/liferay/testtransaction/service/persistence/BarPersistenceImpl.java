@@ -129,6 +129,9 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 						BarImpl.class, bar.getPrimaryKey()) == null) {
 				cacheResult(bar);
 			}
+			else {
+				bar.resetOriginalValues();
+			}
 		}
 	}
 
@@ -309,6 +312,12 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 			if ((barModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_TEXT.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] { barModelImpl.getOriginalText() };
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_TEXT, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_TEXT,
+					args);
+
+				args = new Object[] { barModelImpl.getText() };
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_TEXT, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_TEXT,

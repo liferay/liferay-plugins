@@ -167,6 +167,9 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 						gadget.getPrimaryKey()) == null) {
 				cacheResult(gadget);
 			}
+			else {
+				gadget.resetOriginalValues();
+			}
 		}
 	}
 
@@ -375,6 +378,12 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID,
 					args);
+
+				args = new Object[] { gadgetModelImpl.getUuid() };
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID,
+					args);
 			}
 
 			if ((gadgetModelImpl.getColumnBitmask() &
@@ -382,6 +391,13 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 				Object[] args = new Object[] {
 						Long.valueOf(gadgetModelImpl.getOriginalCompanyId())
 					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_COMPANYID,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_COMPANYID,
+					args);
+
+				args = new Object[] { Long.valueOf(gadgetModelImpl.getCompanyId()) };
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_COMPANYID,
 					args);

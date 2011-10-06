@@ -206,6 +206,9 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 						kaleoTimerInstanceToken.getPrimaryKey()) == null) {
 				cacheResult(kaleoTimerInstanceToken);
 			}
+			else {
+				kaleoTimerInstanceToken.resetOriginalValues();
+			}
 		}
 	}
 
@@ -418,6 +421,15 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 					args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_KALEOINSTANCEID,
 					args);
+
+				args = new Object[] {
+						Long.valueOf(kaleoTimerInstanceTokenModelImpl.getKaleoInstanceId())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KALEOINSTANCEID,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_KALEOINSTANCEID,
+					args);
 			}
 
 			if ((kaleoTimerInstanceTokenModelImpl.getColumnBitmask() &
@@ -425,6 +437,15 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 				Object[] args = new Object[] {
 						Long.valueOf(kaleoTimerInstanceTokenModelImpl.getOriginalKaleoInstanceTokenId()),
 						Boolean.valueOf(kaleoTimerInstanceTokenModelImpl.getOriginalCompleted())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KITI_C, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_KITI_C,
+					args);
+
+				args = new Object[] {
+						Long.valueOf(kaleoTimerInstanceTokenModelImpl.getKaleoInstanceTokenId()),
+						Boolean.valueOf(kaleoTimerInstanceTokenModelImpl.getCompleted())
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KITI_C, args);
@@ -438,6 +459,16 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 						Long.valueOf(kaleoTimerInstanceTokenModelImpl.getOriginalKaleoInstanceTokenId()),
 						Boolean.valueOf(kaleoTimerInstanceTokenModelImpl.getOriginalCompleted()),
 						Boolean.valueOf(kaleoTimerInstanceTokenModelImpl.getOriginalBlocking())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KITI_C_B, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_KITI_C_B,
+					args);
+
+				args = new Object[] {
+						Long.valueOf(kaleoTimerInstanceTokenModelImpl.getKaleoInstanceTokenId()),
+						Boolean.valueOf(kaleoTimerInstanceTokenModelImpl.getCompleted()),
+						Boolean.valueOf(kaleoTimerInstanceTokenModelImpl.getBlocking())
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KITI_C_B, args);

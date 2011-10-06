@@ -108,6 +108,9 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 						AssetImpl.class, asset.getPrimaryKey()) == null) {
 				cacheResult(asset);
 			}
+			else {
+				asset.resetOriginalValues();
+			}
 		}
 	}
 

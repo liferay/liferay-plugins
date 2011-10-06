@@ -148,6 +148,9 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 						folder.getPrimaryKey()) == null) {
 				cacheResult(folder);
 			}
+			else {
+				folder.resetOriginalValues();
+			}
 		}
 	}
 
@@ -348,6 +351,13 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 				Object[] args = new Object[] {
 						Long.valueOf(folderModelImpl.getOriginalAccountId())
 					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_ACCOUNTID,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_ACCOUNTID,
+					args);
+
+				args = new Object[] { Long.valueOf(folderModelImpl.getAccountId()) };
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_ACCOUNTID,
 					args);

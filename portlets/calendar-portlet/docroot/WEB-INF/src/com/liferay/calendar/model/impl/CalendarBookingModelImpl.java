@@ -446,6 +446,7 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		return _titleCurrentLanguageId;
 	}
 
+	@JSON
 	public String getTitleCurrentValue() {
 		Locale locale = getLocale(_titleCurrentLanguageId);
 
@@ -535,6 +536,7 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		return _nameCurrentLanguageId;
 	}
 
+	@JSON
 	public String getNameCurrentValue() {
 		Locale locale = getLocale(_nameCurrentLanguageId);
 
@@ -624,6 +626,7 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		return _descriptionCurrentLanguageId;
 	}
 
+	@JSON
 	public String getDescriptionCurrentValue() {
 		Locale locale = getLocale(_descriptionCurrentLanguageId);
 

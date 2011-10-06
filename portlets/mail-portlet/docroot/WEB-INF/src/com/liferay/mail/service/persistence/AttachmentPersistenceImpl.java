@@ -131,6 +131,9 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 						AttachmentImpl.class, attachment.getPrimaryKey()) == null) {
 				cacheResult(attachment);
 			}
+			else {
+				attachment.resetOriginalValues();
+			}
 		}
 	}
 
@@ -315,6 +318,15 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_MESSAGEID.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						Long.valueOf(attachmentModelImpl.getOriginalMessageId())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_MESSAGEID,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_MESSAGEID,
+					args);
+
+				args = new Object[] {
+						Long.valueOf(attachmentModelImpl.getMessageId())
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_MESSAGEID,

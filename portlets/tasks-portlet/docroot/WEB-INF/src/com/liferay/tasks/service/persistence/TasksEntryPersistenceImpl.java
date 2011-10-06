@@ -248,6 +248,9 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 						TasksEntryImpl.class, tasksEntry.getPrimaryKey()) == null) {
 				cacheResult(tasksEntry);
 			}
+			else {
+				tasksEntry.resetOriginalValues();
+			}
 		}
 	}
 
@@ -438,6 +441,14 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_GROUPID, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_GROUPID,
 					args);
+
+				args = new Object[] {
+						Long.valueOf(tasksEntryModelImpl.getGroupId())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_GROUPID, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_GROUPID,
+					args);
 			}
 
 			if ((tasksEntryModelImpl.getColumnBitmask() &
@@ -449,12 +460,29 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_USERID, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID,
 					args);
+
+				args = new Object[] {
+						Long.valueOf(tasksEntryModelImpl.getUserId())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_USERID, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID,
+					args);
 			}
 
 			if ((tasksEntryModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_ASSIGNEEUSERID.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						Long.valueOf(tasksEntryModelImpl.getOriginalAssigneeUserId())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_ASSIGNEEUSERID,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_ASSIGNEEUSERID,
+					args);
+
+				args = new Object[] {
+						Long.valueOf(tasksEntryModelImpl.getAssigneeUserId())
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_ASSIGNEEUSERID,
@@ -473,6 +501,15 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 					args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_RESOLVERUSERID,
 					args);
+
+				args = new Object[] {
+						Long.valueOf(tasksEntryModelImpl.getResolverUserId())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_RESOLVERUSERID,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_RESOLVERUSERID,
+					args);
 			}
 
 			if ((tasksEntryModelImpl.getColumnBitmask() &
@@ -480,6 +517,15 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 				Object[] args = new Object[] {
 						Long.valueOf(tasksEntryModelImpl.getOriginalGroupId()),
 						Long.valueOf(tasksEntryModelImpl.getOriginalUserId())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_G_U, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_U,
+					args);
+
+				args = new Object[] {
+						Long.valueOf(tasksEntryModelImpl.getGroupId()),
+						Long.valueOf(tasksEntryModelImpl.getUserId())
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_G_U, args);
@@ -497,6 +543,15 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_G_A, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_A,
 					args);
+
+				args = new Object[] {
+						Long.valueOf(tasksEntryModelImpl.getGroupId()),
+						Long.valueOf(tasksEntryModelImpl.getAssigneeUserId())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_G_A, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_A,
+					args);
 			}
 
 			if ((tasksEntryModelImpl.getColumnBitmask() &
@@ -504,6 +559,15 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 				Object[] args = new Object[] {
 						Long.valueOf(tasksEntryModelImpl.getOriginalGroupId()),
 						Long.valueOf(tasksEntryModelImpl.getOriginalResolverUserId())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_G_R, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_R,
+					args);
+
+				args = new Object[] {
+						Long.valueOf(tasksEntryModelImpl.getGroupId()),
+						Long.valueOf(tasksEntryModelImpl.getResolverUserId())
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_G_R, args);

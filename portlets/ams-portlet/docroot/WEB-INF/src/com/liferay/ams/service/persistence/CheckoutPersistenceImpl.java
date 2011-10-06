@@ -109,6 +109,9 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 						CheckoutImpl.class, checkout.getPrimaryKey()) == null) {
 				cacheResult(checkout);
 			}
+			else {
+				checkout.resetOriginalValues();
+			}
 		}
 	}
 

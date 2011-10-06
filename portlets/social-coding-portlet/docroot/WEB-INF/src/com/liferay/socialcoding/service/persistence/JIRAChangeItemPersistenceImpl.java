@@ -136,6 +136,9 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 						JIRAChangeItemImpl.class, jiraChangeItem.getPrimaryKey()) == null) {
 				cacheResult(jiraChangeItem);
 			}
+			else {
+				jiraChangeItem.resetOriginalValues();
+			}
 		}
 	}
 
@@ -323,6 +326,15 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_JIRACHANGEGROUPID.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						Long.valueOf(jiraChangeItemModelImpl.getOriginalJiraChangeGroupId())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_JIRACHANGEGROUPID,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_JIRACHANGEGROUPID,
+					args);
+
+				args = new Object[] {
+						Long.valueOf(jiraChangeItemModelImpl.getJiraChangeGroupId())
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_JIRACHANGEGROUPID,

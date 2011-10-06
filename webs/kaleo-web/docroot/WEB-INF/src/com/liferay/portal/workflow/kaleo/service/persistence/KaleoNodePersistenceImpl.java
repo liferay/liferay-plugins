@@ -173,6 +173,9 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 						KaleoNodeImpl.class, kaleoNode.getPrimaryKey()) == null) {
 				cacheResult(kaleoNode);
 			}
+			else {
+				kaleoNode.resetOriginalValues();
+			}
 		}
 	}
 
@@ -364,12 +367,30 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 					args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_COMPANYID,
 					args);
+
+				args = new Object[] {
+						Long.valueOf(kaleoNodeModelImpl.getCompanyId())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_COMPANYID,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_COMPANYID,
+					args);
 			}
 
 			if ((kaleoNodeModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_KALEODEFINITIONID.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						Long.valueOf(kaleoNodeModelImpl.getOriginalKaleoDefinitionId())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KALEODEFINITIONID,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_KALEODEFINITIONID,
+					args);
+
+				args = new Object[] {
+						Long.valueOf(kaleoNodeModelImpl.getKaleoDefinitionId())
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KALEODEFINITIONID,
@@ -383,6 +404,15 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 				Object[] args = new Object[] {
 						Long.valueOf(kaleoNodeModelImpl.getOriginalCompanyId()),
 						Long.valueOf(kaleoNodeModelImpl.getOriginalKaleoDefinitionId())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_KDI, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_KDI,
+					args);
+
+				args = new Object[] {
+						Long.valueOf(kaleoNodeModelImpl.getCompanyId()),
+						Long.valueOf(kaleoNodeModelImpl.getKaleoDefinitionId())
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_KDI, args);

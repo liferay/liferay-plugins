@@ -360,6 +360,9 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 						JIRAIssueImpl.class, jiraIssue.getPrimaryKey()) == null) {
 				cacheResult(jiraIssue);
 			}
+			else {
+				jiraIssue.resetOriginalValues();
+			}
 		}
 	}
 
@@ -559,6 +562,15 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 					args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_PROJECTID,
 					args);
+
+				args = new Object[] {
+						Long.valueOf(jiraIssueModelImpl.getProjectId())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_PROJECTID,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_PROJECTID,
+					args);
 			}
 
 			if ((jiraIssueModelImpl.getColumnBitmask() &
@@ -566,6 +578,13 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				Object[] args = new Object[] {
 						jiraIssueModelImpl.getOriginalReporterJiraUserId()
 					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_REPORTERJIRAUSERID,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_REPORTERJIRAUSERID,
+					args);
+
+				args = new Object[] { jiraIssueModelImpl.getReporterJiraUserId() };
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_REPORTERJIRAUSERID,
 					args);
@@ -583,6 +602,13 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 					args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_ASSIGNEEJIRAUSERID,
 					args);
+
+				args = new Object[] { jiraIssueModelImpl.getAssigneeJiraUserId() };
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_ASSIGNEEJIRAUSERID,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_ASSIGNEEJIRAUSERID,
+					args);
 			}
 
 			if ((jiraIssueModelImpl.getColumnBitmask() &
@@ -590,6 +616,15 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				Object[] args = new Object[] {
 						jiraIssueModelImpl.getOriginalModifiedDate(),
 						Long.valueOf(jiraIssueModelImpl.getOriginalProjectId())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_MD_P, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_MD_P,
+					args);
+
+				args = new Object[] {
+						jiraIssueModelImpl.getModifiedDate(),
+						Long.valueOf(jiraIssueModelImpl.getProjectId())
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_MD_P, args);
@@ -608,6 +643,16 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_P_RJUI, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_P_RJUI,
 					args);
+
+				args = new Object[] {
+						Long.valueOf(jiraIssueModelImpl.getProjectId()),
+						
+						jiraIssueModelImpl.getReporterJiraUserId()
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_P_RJUI, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_P_RJUI,
+					args);
 			}
 
 			if ((jiraIssueModelImpl.getColumnBitmask() &
@@ -616,6 +661,16 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 						Long.valueOf(jiraIssueModelImpl.getOriginalProjectId()),
 						
 						jiraIssueModelImpl.getOriginalAssigneeJiraUserId()
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_P_AJUI, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_P_AJUI,
+					args);
+
+				args = new Object[] {
+						Long.valueOf(jiraIssueModelImpl.getProjectId()),
+						
+						jiraIssueModelImpl.getAssigneeJiraUserId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_P_AJUI, args);
@@ -630,6 +685,18 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 						Long.valueOf(jiraIssueModelImpl.getOriginalProjectId()),
 						
 						jiraIssueModelImpl.getOriginalReporterJiraUserId()
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_MD_P_RJUI,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_MD_P_RJUI,
+					args);
+
+				args = new Object[] {
+						jiraIssueModelImpl.getModifiedDate(),
+						Long.valueOf(jiraIssueModelImpl.getProjectId()),
+						
+						jiraIssueModelImpl.getReporterJiraUserId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_MD_P_RJUI,
@@ -651,6 +718,18 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 					args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_MD_P_AJUI,
 					args);
+
+				args = new Object[] {
+						jiraIssueModelImpl.getModifiedDate(),
+						Long.valueOf(jiraIssueModelImpl.getProjectId()),
+						
+						jiraIssueModelImpl.getAssigneeJiraUserId()
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_MD_P_AJUI,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_MD_P_AJUI,
+					args);
 			}
 
 			if ((jiraIssueModelImpl.getColumnBitmask() &
@@ -666,6 +745,18 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_P_RJUI_S, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_P_RJUI_S,
 					args);
+
+				args = new Object[] {
+						Long.valueOf(jiraIssueModelImpl.getProjectId()),
+						
+						jiraIssueModelImpl.getReporterJiraUserId(),
+						
+						jiraIssueModelImpl.getStatus()
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_P_RJUI_S, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_P_RJUI_S,
+					args);
 			}
 
 			if ((jiraIssueModelImpl.getColumnBitmask() &
@@ -676,6 +767,18 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 						jiraIssueModelImpl.getOriginalAssigneeJiraUserId(),
 						
 						jiraIssueModelImpl.getOriginalStatus()
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_P_AJUI_S, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_P_AJUI_S,
+					args);
+
+				args = new Object[] {
+						Long.valueOf(jiraIssueModelImpl.getProjectId()),
+						
+						jiraIssueModelImpl.getAssigneeJiraUserId(),
+						
+						jiraIssueModelImpl.getStatus()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_P_AJUI_S, args);

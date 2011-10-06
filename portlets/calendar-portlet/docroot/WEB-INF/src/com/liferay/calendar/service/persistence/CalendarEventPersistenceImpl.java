@@ -153,6 +153,9 @@ public class CalendarEventPersistenceImpl extends BasePersistenceImpl<CalendarEv
 						CalendarEventImpl.class, calendarEvent.getPrimaryKey()) == null) {
 				cacheResult(calendarEvent);
 			}
+			else {
+				calendarEvent.resetOriginalValues();
+			}
 		}
 	}
 
@@ -365,6 +368,12 @@ public class CalendarEventPersistenceImpl extends BasePersistenceImpl<CalendarEv
 				Object[] args = new Object[] {
 						calendarEventModelImpl.getOriginalUuid()
 					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID,
+					args);
+
+				args = new Object[] { calendarEventModelImpl.getUuid() };
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID,

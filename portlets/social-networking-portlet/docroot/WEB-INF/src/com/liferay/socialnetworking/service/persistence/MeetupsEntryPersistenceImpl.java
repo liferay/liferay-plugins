@@ -150,6 +150,9 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 						MeetupsEntryImpl.class, meetupsEntry.getPrimaryKey()) == null) {
 				cacheResult(meetupsEntry);
 			}
+			else {
+				meetupsEntry.resetOriginalValues();
+			}
 		}
 	}
 
@@ -343,12 +346,29 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 					args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_COMPANYID,
 					args);
+
+				args = new Object[] {
+						Long.valueOf(meetupsEntryModelImpl.getCompanyId())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_COMPANYID,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_COMPANYID,
+					args);
 			}
 
 			if ((meetupsEntryModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						Long.valueOf(meetupsEntryModelImpl.getOriginalUserId())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_USERID, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID,
+					args);
+
+				args = new Object[] {
+						Long.valueOf(meetupsEntryModelImpl.getUserId())
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_USERID, args);

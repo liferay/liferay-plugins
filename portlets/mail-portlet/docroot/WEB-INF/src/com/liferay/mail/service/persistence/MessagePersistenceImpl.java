@@ -166,6 +166,9 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 						MessageImpl.class, message.getPrimaryKey()) == null) {
 				cacheResult(message);
 			}
+			else {
+				message.resetOriginalValues();
+			}
 		}
 	}
 
@@ -369,6 +372,15 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 					args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_COMPANYID,
 					args);
+
+				args = new Object[] {
+						Long.valueOf(messageModelImpl.getCompanyId())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_COMPANYID,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_COMPANYID,
+					args);
 			}
 
 			if ((messageModelImpl.getColumnBitmask() &
@@ -376,6 +388,12 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 				Object[] args = new Object[] {
 						Long.valueOf(messageModelImpl.getOriginalFolderId())
 					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_FOLDERID, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_FOLDERID,
+					args);
+
+				args = new Object[] { Long.valueOf(messageModelImpl.getFolderId()) };
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_FOLDERID, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_FOLDERID,

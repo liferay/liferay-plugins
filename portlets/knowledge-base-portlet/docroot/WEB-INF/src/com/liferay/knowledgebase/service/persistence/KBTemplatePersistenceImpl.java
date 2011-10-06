@@ -169,6 +169,9 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 						KBTemplateImpl.class, kbTemplate.getPrimaryKey()) == null) {
 				cacheResult(kbTemplate);
 			}
+			else {
+				kbTemplate.resetOriginalValues();
+			}
 		}
 	}
 
@@ -382,12 +385,26 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID,
 					args);
+
+				args = new Object[] { kbTemplateModelImpl.getUuid() };
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID,
+					args);
 			}
 
 			if ((kbTemplateModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_GROUPID.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						Long.valueOf(kbTemplateModelImpl.getOriginalGroupId())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_GROUPID, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_GROUPID,
+					args);
+
+				args = new Object[] {
+						Long.valueOf(kbTemplateModelImpl.getGroupId())
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_GROUPID, args);

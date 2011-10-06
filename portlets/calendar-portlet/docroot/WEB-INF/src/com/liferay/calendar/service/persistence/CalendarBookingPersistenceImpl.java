@@ -219,6 +219,9 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 						calendarBooking.getPrimaryKey()) == null) {
 				cacheResult(calendarBooking);
 			}
+			else {
+				calendarBooking.resetOriginalValues();
+			}
 		}
 	}
 
@@ -435,12 +438,27 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID,
 					args);
+
+				args = new Object[] { calendarBookingModelImpl.getUuid() };
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID,
+					args);
 			}
 
 			if ((calendarBookingModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_CALENDAREVENTID.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						Long.valueOf(calendarBookingModelImpl.getOriginalCalendarEventId())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_CALENDAREVENTID,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_CALENDAREVENTID,
+					args);
+
+				args = new Object[] {
+						Long.valueOf(calendarBookingModelImpl.getCalendarEventId())
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_CALENDAREVENTID,
@@ -459,6 +477,15 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 					args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_CALENDARRESOURCEID,
 					args);
+
+				args = new Object[] {
+						Long.valueOf(calendarBookingModelImpl.getCalendarResourceId())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_CALENDARRESOURCEID,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_CALENDARRESOURCEID,
+					args);
 			}
 
 			if ((calendarBookingModelImpl.getColumnBitmask() &
@@ -466,6 +493,15 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 				Object[] args = new Object[] {
 						Long.valueOf(calendarBookingModelImpl.getOriginalClassNameId()),
 						Long.valueOf(calendarBookingModelImpl.getOriginalClassPK())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_C, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_C,
+					args);
+
+				args = new Object[] {
+						Long.valueOf(calendarBookingModelImpl.getClassNameId()),
+						Long.valueOf(calendarBookingModelImpl.getClassPK())
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_C, args);

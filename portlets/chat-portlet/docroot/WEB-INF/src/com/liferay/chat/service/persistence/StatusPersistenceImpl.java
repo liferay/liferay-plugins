@@ -181,6 +181,9 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 						status.getPrimaryKey()) == null) {
 				cacheResult(status);
 			}
+			else {
+				status.resetOriginalValues();
+			}
 		}
 	}
 
@@ -378,6 +381,15 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 					args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_MODIFIEDDATE,
 					args);
+
+				args = new Object[] {
+						Long.valueOf(statusModelImpl.getModifiedDate())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_MODIFIEDDATE,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_MODIFIEDDATE,
+					args);
 			}
 
 			if ((statusModelImpl.getColumnBitmask() &
@@ -389,6 +401,12 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_ONLINE, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_ONLINE,
 					args);
+
+				args = new Object[] { Boolean.valueOf(statusModelImpl.getOnline()) };
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_ONLINE, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_ONLINE,
+					args);
 			}
 
 			if ((statusModelImpl.getColumnBitmask() &
@@ -396,6 +414,15 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 				Object[] args = new Object[] {
 						Long.valueOf(statusModelImpl.getOriginalModifiedDate()),
 						Boolean.valueOf(statusModelImpl.getOriginalOnline())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_M_O, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_M_O,
+					args);
+
+				args = new Object[] {
+						Long.valueOf(statusModelImpl.getModifiedDate()),
+						Boolean.valueOf(statusModelImpl.getOnline())
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_M_O, args);

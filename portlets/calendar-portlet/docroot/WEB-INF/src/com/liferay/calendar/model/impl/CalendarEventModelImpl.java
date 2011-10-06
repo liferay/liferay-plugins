@@ -337,6 +337,7 @@ public class CalendarEventModelImpl extends BaseModelImpl<CalendarEvent>
 		return _titleCurrentLanguageId;
 	}
 
+	@JSON
 	public String getTitleCurrentValue() {
 		Locale locale = getLocale(_titleCurrentLanguageId);
 
@@ -426,6 +427,7 @@ public class CalendarEventModelImpl extends BaseModelImpl<CalendarEvent>
 		return _descriptionCurrentLanguageId;
 	}
 
+	@JSON
 	public String getDescriptionCurrentValue() {
 		Locale locale = getLocale(_descriptionCurrentLanguageId);
 

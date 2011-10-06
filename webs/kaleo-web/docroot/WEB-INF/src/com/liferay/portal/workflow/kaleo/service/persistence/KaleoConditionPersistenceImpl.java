@@ -170,6 +170,9 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 						KaleoConditionImpl.class, kaleoCondition.getPrimaryKey()) == null) {
 				cacheResult(kaleoCondition);
 			}
+			else {
+				kaleoCondition.resetOriginalValues();
+			}
 		}
 	}
 
@@ -372,12 +375,30 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 					args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_COMPANYID,
 					args);
+
+				args = new Object[] {
+						Long.valueOf(kaleoConditionModelImpl.getCompanyId())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_COMPANYID,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_COMPANYID,
+					args);
 			}
 
 			if ((kaleoConditionModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_KALEODEFINITIONID.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						Long.valueOf(kaleoConditionModelImpl.getOriginalKaleoDefinitionId())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KALEODEFINITIONID,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_KALEODEFINITIONID,
+					args);
+
+				args = new Object[] {
+						Long.valueOf(kaleoConditionModelImpl.getKaleoDefinitionId())
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KALEODEFINITIONID,

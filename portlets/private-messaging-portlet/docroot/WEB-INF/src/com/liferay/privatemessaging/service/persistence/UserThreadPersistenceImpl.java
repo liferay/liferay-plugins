@@ -212,6 +212,9 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 						UserThreadImpl.class, userThread.getPrimaryKey()) == null) {
 				cacheResult(userThread);
 			}
+			else {
+				userThread.resetOriginalValues();
+			}
 		}
 	}
 
@@ -417,12 +420,29 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 					args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_MBTHREADID,
 					args);
+
+				args = new Object[] {
+						Long.valueOf(userThreadModelImpl.getMbThreadId())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_MBTHREADID,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_MBTHREADID,
+					args);
 			}
 
 			if ((userThreadModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						Long.valueOf(userThreadModelImpl.getOriginalUserId())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_USERID, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID,
+					args);
+
+				args = new Object[] {
+						Long.valueOf(userThreadModelImpl.getUserId())
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_USERID, args);
@@ -440,6 +460,15 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_D, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_D,
 					args);
+
+				args = new Object[] {
+						Long.valueOf(userThreadModelImpl.getUserId()),
+						Boolean.valueOf(userThreadModelImpl.getDeleted())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_D, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_D,
+					args);
 			}
 
 			if ((userThreadModelImpl.getColumnBitmask() &
@@ -448,6 +477,16 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 						Long.valueOf(userThreadModelImpl.getOriginalUserId()),
 						Boolean.valueOf(userThreadModelImpl.getOriginalRead()),
 						Boolean.valueOf(userThreadModelImpl.getOriginalDeleted())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_R_D, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_R_D,
+					args);
+
+				args = new Object[] {
+						Long.valueOf(userThreadModelImpl.getUserId()),
+						Boolean.valueOf(userThreadModelImpl.getRead()),
+						Boolean.valueOf(userThreadModelImpl.getDeleted())
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_R_D, args);

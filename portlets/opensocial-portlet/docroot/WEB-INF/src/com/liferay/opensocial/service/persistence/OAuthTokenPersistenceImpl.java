@@ -162,6 +162,9 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 						OAuthTokenImpl.class, oAuthToken.getPrimaryKey()) == null) {
 				cacheResult(oAuthToken);
 			}
+			else {
+				oAuthToken.resetOriginalValues();
+			}
 		}
 	}
 
@@ -374,6 +377,16 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 						oAuthTokenModelImpl.getOriginalGadgetKey(),
 						
 						oAuthTokenModelImpl.getOriginalServiceName()
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_G_S, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_S,
+					args);
+
+				args = new Object[] {
+						oAuthTokenModelImpl.getGadgetKey(),
+						
+						oAuthTokenModelImpl.getServiceName()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_G_S, args);

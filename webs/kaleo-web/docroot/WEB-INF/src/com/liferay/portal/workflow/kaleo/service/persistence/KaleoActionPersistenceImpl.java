@@ -179,6 +179,9 @@ public class KaleoActionPersistenceImpl extends BasePersistenceImpl<KaleoAction>
 						KaleoActionImpl.class, kaleoAction.getPrimaryKey()) == null) {
 				cacheResult(kaleoAction);
 			}
+			else {
+				kaleoAction.resetOriginalValues();
+			}
 		}
 	}
 
@@ -371,12 +374,30 @@ public class KaleoActionPersistenceImpl extends BasePersistenceImpl<KaleoAction>
 					args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_COMPANYID,
 					args);
+
+				args = new Object[] {
+						Long.valueOf(kaleoActionModelImpl.getCompanyId())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_COMPANYID,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_COMPANYID,
+					args);
 			}
 
 			if ((kaleoActionModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_KALEODEFINITIONID.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						Long.valueOf(kaleoActionModelImpl.getOriginalKaleoDefinitionId())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KALEODEFINITIONID,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_KALEODEFINITIONID,
+					args);
+
+				args = new Object[] {
+						Long.valueOf(kaleoActionModelImpl.getKaleoDefinitionId())
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KALEODEFINITIONID,
@@ -392,6 +413,18 @@ public class KaleoActionPersistenceImpl extends BasePersistenceImpl<KaleoAction>
 						Long.valueOf(kaleoActionModelImpl.getOriginalKaleoClassPK()),
 						
 						kaleoActionModelImpl.getOriginalExecutionType()
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KCN_KCPK_ET,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_KCN_KCPK_ET,
+					args);
+
+				args = new Object[] {
+						kaleoActionModelImpl.getKaleoClassName(),
+						Long.valueOf(kaleoActionModelImpl.getKaleoClassPK()),
+						
+						kaleoActionModelImpl.getExecutionType()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KCN_KCPK_ET,

@@ -108,6 +108,9 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 						TypeImpl.class, type.getPrimaryKey()) == null) {
 				cacheResult(type);
 			}
+			else {
+				type.resetOriginalValues();
+			}
 		}
 	}
 
