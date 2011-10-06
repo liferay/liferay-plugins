@@ -126,6 +126,9 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 						SVNRepositoryImpl.class, svnRepository.getPrimaryKey()) == null) {
 				cacheResult(svnRepository);
 			}
+			else {
+				svnRepository.resetOriginalValues();
+			}
 		}
 	}
 

@@ -193,6 +193,9 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 						kaleoNotification.getPrimaryKey()) == null) {
 				cacheResult(kaleoNotification);
 			}
+			else {
+				kaleoNotification.resetOriginalValues();
+			}
 		}
 	}
 
@@ -386,12 +389,30 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 					args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_COMPANYID,
 					args);
+
+				args = new Object[] {
+						Long.valueOf(kaleoNotificationModelImpl.getCompanyId())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_COMPANYID,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_COMPANYID,
+					args);
 			}
 
 			if ((kaleoNotificationModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_KALEODEFINITIONID.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						Long.valueOf(kaleoNotificationModelImpl.getOriginalKaleoDefinitionId())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KALEODEFINITIONID,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_KALEODEFINITIONID,
+					args);
+
+				args = new Object[] {
+						Long.valueOf(kaleoNotificationModelImpl.getKaleoDefinitionId())
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KALEODEFINITIONID,
@@ -407,6 +428,18 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 						Long.valueOf(kaleoNotificationModelImpl.getOriginalKaleoClassPK()),
 						
 						kaleoNotificationModelImpl.getOriginalExecutionType()
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KCN_KCPK_ET,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_KCN_KCPK_ET,
+					args);
+
+				args = new Object[] {
+						kaleoNotificationModelImpl.getKaleoClassName(),
+						Long.valueOf(kaleoNotificationModelImpl.getKaleoClassPK()),
+						
+						kaleoNotificationModelImpl.getExecutionType()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KCN_KCPK_ET,

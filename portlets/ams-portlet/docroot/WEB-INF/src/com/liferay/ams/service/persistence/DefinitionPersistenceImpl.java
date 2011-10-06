@@ -109,6 +109,9 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 						DefinitionImpl.class, definition.getPrimaryKey()) == null) {
 				cacheResult(definition);
 			}
+			else {
+				definition.resetOriginalValues();
+			}
 		}
 	}
 

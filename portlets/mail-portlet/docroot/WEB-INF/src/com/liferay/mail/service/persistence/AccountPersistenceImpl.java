@@ -144,6 +144,9 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 						AccountImpl.class, account.getPrimaryKey()) == null) {
 				cacheResult(account);
 			}
+			else {
+				account.resetOriginalValues();
+			}
 		}
 	}
 
@@ -340,6 +343,12 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 				Object[] args = new Object[] {
 						Long.valueOf(accountModelImpl.getOriginalUserId())
 					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_USERID, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID,
+					args);
+
+				args = new Object[] { Long.valueOf(accountModelImpl.getUserId()) };
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_USERID, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID,

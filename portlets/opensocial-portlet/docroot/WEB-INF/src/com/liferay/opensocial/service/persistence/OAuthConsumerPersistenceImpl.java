@@ -152,6 +152,9 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 						OAuthConsumerImpl.class, oAuthConsumer.getPrimaryKey()) == null) {
 				cacheResult(oAuthConsumer);
 			}
+			else {
+				oAuthConsumer.resetOriginalValues();
+			}
 		}
 	}
 
@@ -356,6 +359,13 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 				Object[] args = new Object[] {
 						oAuthConsumerModelImpl.getOriginalGadgetKey()
 					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_GADGETKEY,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_GADGETKEY,
+					args);
+
+				args = new Object[] { oAuthConsumerModelImpl.getGadgetKey() };
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_GADGETKEY,
 					args);

@@ -169,6 +169,9 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 						JIRAActionImpl.class, jiraAction.getPrimaryKey()) == null) {
 				cacheResult(jiraAction);
 			}
+			else {
+				jiraAction.resetOriginalValues();
+			}
 		}
 	}
 
@@ -360,12 +363,28 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 					args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_JIRAUSERID,
 					args);
+
+				args = new Object[] { jiraActionModelImpl.getJiraUserId() };
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_JIRAUSERID,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_JIRAUSERID,
+					args);
 			}
 
 			if ((jiraActionModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_JIRAISSUEID.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						Long.valueOf(jiraActionModelImpl.getOriginalJiraIssueId())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_JIRAISSUEID,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_JIRAISSUEID,
+					args);
+
+				args = new Object[] {
+						Long.valueOf(jiraActionModelImpl.getJiraIssueId())
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_JIRAISSUEID,
@@ -379,6 +398,12 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 				Object[] args = new Object[] {
 						jiraActionModelImpl.getOriginalType()
 					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_TYPE, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_TYPE,
+					args);
+
+				args = new Object[] { jiraActionModelImpl.getType() };
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_TYPE, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_TYPE,

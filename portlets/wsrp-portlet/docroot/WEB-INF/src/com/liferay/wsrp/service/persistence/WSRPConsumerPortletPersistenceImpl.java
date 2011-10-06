@@ -177,6 +177,9 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 						wsrpConsumerPortlet.getPrimaryKey()) == null) {
 				cacheResult(wsrpConsumerPortlet);
 			}
+			else {
+				wsrpConsumerPortlet.resetOriginalValues();
+			}
 		}
 	}
 
@@ -395,12 +398,27 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID,
 					args);
+
+				args = new Object[] { wsrpConsumerPortletModelImpl.getUuid() };
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID,
+					args);
 			}
 
 			if ((wsrpConsumerPortletModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_WSRPCONSUMERID.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						Long.valueOf(wsrpConsumerPortletModelImpl.getOriginalWsrpConsumerId())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_WSRPCONSUMERID,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_WSRPCONSUMERID,
+					args);
+
+				args = new Object[] {
+						Long.valueOf(wsrpConsumerPortletModelImpl.getWsrpConsumerId())
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_WSRPCONSUMERID,

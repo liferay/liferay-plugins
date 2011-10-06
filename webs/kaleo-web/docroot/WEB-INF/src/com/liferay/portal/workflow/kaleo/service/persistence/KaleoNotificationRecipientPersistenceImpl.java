@@ -187,6 +187,9 @@ public class KaleoNotificationRecipientPersistenceImpl
 						kaleoNotificationRecipient.getPrimaryKey()) == null) {
 				cacheResult(kaleoNotificationRecipient);
 			}
+			else {
+				kaleoNotificationRecipient.resetOriginalValues();
+			}
 		}
 	}
 
@@ -386,6 +389,15 @@ public class KaleoNotificationRecipientPersistenceImpl
 					args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_COMPANYID,
 					args);
+
+				args = new Object[] {
+						Long.valueOf(kaleoNotificationRecipientModelImpl.getCompanyId())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_COMPANYID,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_COMPANYID,
+					args);
 			}
 
 			if ((kaleoNotificationRecipientModelImpl.getColumnBitmask() &
@@ -398,12 +410,30 @@ public class KaleoNotificationRecipientPersistenceImpl
 					args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_KALEODEFINITIONID,
 					args);
+
+				args = new Object[] {
+						Long.valueOf(kaleoNotificationRecipientModelImpl.getKaleoDefinitionId())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KALEODEFINITIONID,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_KALEODEFINITIONID,
+					args);
 			}
 
 			if ((kaleoNotificationRecipientModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_KALEONOTIFICATIONID.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						Long.valueOf(kaleoNotificationRecipientModelImpl.getOriginalKaleoNotificationId())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KALEONOTIFICATIONID,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_KALEONOTIFICATIONID,
+					args);
+
+				args = new Object[] {
+						Long.valueOf(kaleoNotificationRecipientModelImpl.getKaleoNotificationId())
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KALEONOTIFICATIONID,

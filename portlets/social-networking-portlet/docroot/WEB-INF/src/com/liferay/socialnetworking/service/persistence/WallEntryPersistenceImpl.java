@@ -168,6 +168,9 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 						WallEntryImpl.class, wallEntry.getPrimaryKey()) == null) {
 				cacheResult(wallEntry);
 			}
+			else {
+				wallEntry.resetOriginalValues();
+			}
 		}
 	}
 
@@ -358,6 +361,14 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_GROUPID, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_GROUPID,
 					args);
+
+				args = new Object[] {
+						Long.valueOf(wallEntryModelImpl.getGroupId())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_GROUPID, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_GROUPID,
+					args);
 			}
 
 			if ((wallEntryModelImpl.getColumnBitmask() &
@@ -369,6 +380,12 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_USERID, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID,
 					args);
+
+				args = new Object[] { Long.valueOf(wallEntryModelImpl.getUserId()) };
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_USERID, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID,
+					args);
 			}
 
 			if ((wallEntryModelImpl.getColumnBitmask() &
@@ -376,6 +393,15 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 				Object[] args = new Object[] {
 						Long.valueOf(wallEntryModelImpl.getOriginalGroupId()),
 						Long.valueOf(wallEntryModelImpl.getOriginalUserId())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_G_U, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_U,
+					args);
+
+				args = new Object[] {
+						Long.valueOf(wallEntryModelImpl.getGroupId()),
+						Long.valueOf(wallEntryModelImpl.getUserId())
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_G_U, args);

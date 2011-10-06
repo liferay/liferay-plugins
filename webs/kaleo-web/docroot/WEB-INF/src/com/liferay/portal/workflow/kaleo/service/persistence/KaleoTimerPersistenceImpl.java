@@ -161,6 +161,9 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 						KaleoTimerImpl.class, kaleoTimer.getPrimaryKey()) == null) {
 				cacheResult(kaleoTimer);
 			}
+			else {
+				kaleoTimer.resetOriginalValues();
+			}
 		}
 	}
 
@@ -352,6 +355,15 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KCN_KCPK, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_KCN_KCPK,
 					args);
+
+				args = new Object[] {
+						kaleoTimerModelImpl.getKaleoClassName(),
+						Long.valueOf(kaleoTimerModelImpl.getKaleoClassPK())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KCN_KCPK, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_KCN_KCPK,
+					args);
 			}
 
 			if ((kaleoTimerModelImpl.getColumnBitmask() &
@@ -360,6 +372,17 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 						kaleoTimerModelImpl.getOriginalKaleoClassName(),
 						Long.valueOf(kaleoTimerModelImpl.getOriginalKaleoClassPK()),
 						Boolean.valueOf(kaleoTimerModelImpl.getOriginalBlocking())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KCN_KCPK_BLOCKING,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_KCN_KCPK_BLOCKING,
+					args);
+
+				args = new Object[] {
+						kaleoTimerModelImpl.getKaleoClassName(),
+						Long.valueOf(kaleoTimerModelImpl.getKaleoClassPK()),
+						Boolean.valueOf(kaleoTimerModelImpl.getBlocking())
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KCN_KCPK_BLOCKING,

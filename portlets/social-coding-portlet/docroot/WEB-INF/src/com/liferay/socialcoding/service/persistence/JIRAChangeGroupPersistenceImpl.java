@@ -159,6 +159,9 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 						jiraChangeGroup.getPrimaryKey()) == null) {
 				cacheResult(jiraChangeGroup);
 			}
+			else {
+				jiraChangeGroup.resetOriginalValues();
+			}
 		}
 	}
 
@@ -352,12 +355,28 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 					args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_JIRAUSERID,
 					args);
+
+				args = new Object[] { jiraChangeGroupModelImpl.getJiraUserId() };
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_JIRAUSERID,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_JIRAUSERID,
+					args);
 			}
 
 			if ((jiraChangeGroupModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_JIRAISSUEID.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						Long.valueOf(jiraChangeGroupModelImpl.getOriginalJiraIssueId())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_JIRAISSUEID,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_JIRAISSUEID,
+					args);
+
+				args = new Object[] {
+						Long.valueOf(jiraChangeGroupModelImpl.getJiraIssueId())
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_JIRAISSUEID,

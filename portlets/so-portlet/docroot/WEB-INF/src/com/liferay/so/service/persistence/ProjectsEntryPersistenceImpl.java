@@ -134,6 +134,9 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 						ProjectsEntryImpl.class, projectsEntry.getPrimaryKey()) == null) {
 				cacheResult(projectsEntry);
 			}
+			else {
+				projectsEntry.resetOriginalValues();
+			}
 		}
 	}
 
@@ -321,6 +324,14 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						Long.valueOf(projectsEntryModelImpl.getOriginalUserId())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_USERID, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID,
+					args);
+
+				args = new Object[] {
+						Long.valueOf(projectsEntryModelImpl.getUserId())
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_USERID, args);

@@ -175,6 +175,9 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 						meetupsRegistration.getPrimaryKey()) == null) {
 				cacheResult(meetupsRegistration);
 			}
+			else {
+				meetupsRegistration.resetOriginalValues();
+			}
 		}
 	}
 
@@ -382,6 +385,15 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 					args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_MEETUPSENTRYID,
 					args);
+
+				args = new Object[] {
+						Long.valueOf(meetupsRegistrationModelImpl.getMeetupsEntryId())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_MEETUPSENTRYID,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_MEETUPSENTRYID,
+					args);
 			}
 
 			if ((meetupsRegistrationModelImpl.getColumnBitmask() &
@@ -389,6 +401,15 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 				Object[] args = new Object[] {
 						Long.valueOf(meetupsRegistrationModelImpl.getOriginalMeetupsEntryId()),
 						Integer.valueOf(meetupsRegistrationModelImpl.getOriginalStatus())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_ME_S, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_ME_S,
+					args);
+
+				args = new Object[] {
+						Long.valueOf(meetupsRegistrationModelImpl.getMeetupsEntryId()),
+						Integer.valueOf(meetupsRegistrationModelImpl.getStatus())
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_ME_S, args);

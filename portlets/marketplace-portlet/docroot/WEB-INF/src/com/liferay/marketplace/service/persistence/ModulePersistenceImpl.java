@@ -186,6 +186,9 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 						module.getPrimaryKey()) == null) {
 				cacheResult(module);
 			}
+			else {
+				module.resetOriginalValues();
+			}
 		}
 	}
 
@@ -398,6 +401,12 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID,
 					args);
+
+				args = new Object[] { moduleModelImpl.getUuid() };
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID,
+					args);
 			}
 
 			if ((moduleModelImpl.getColumnBitmask() &
@@ -409,6 +418,12 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_APPID, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_APPID,
 					args);
+
+				args = new Object[] { Long.valueOf(moduleModelImpl.getAppId()) };
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_APPID, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_APPID,
+					args);
 			}
 
 			if ((moduleModelImpl.getColumnBitmask() &
@@ -416,6 +431,13 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 				Object[] args = new Object[] {
 						moduleModelImpl.getOriginalContextName()
 					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_CONTEXTNAME,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_CONTEXTNAME,
+					args);
+
+				args = new Object[] { moduleModelImpl.getContextName() };
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_CONTEXTNAME,
 					args);

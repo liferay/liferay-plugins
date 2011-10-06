@@ -258,6 +258,9 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 						EntryImpl.class, entry.getPrimaryKey()) == null) {
 				cacheResult(entry);
 			}
+			else {
+				entry.resetOriginalValues();
+			}
 		}
 	}
 
@@ -447,6 +450,13 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 					args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_CREATEDATE,
 					args);
+
+				args = new Object[] { Long.valueOf(entryModelImpl.getCreateDate()) };
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_CREATEDATE,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_CREATEDATE,
+					args);
 			}
 
 			if ((entryModelImpl.getColumnBitmask() &
@@ -454,6 +464,13 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 				Object[] args = new Object[] {
 						Long.valueOf(entryModelImpl.getOriginalFromUserId())
 					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_FROMUSERID,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_FROMUSERID,
+					args);
+
+				args = new Object[] { Long.valueOf(entryModelImpl.getFromUserId()) };
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_FROMUSERID,
 					args);
@@ -470,6 +487,12 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_TOUSERID, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_TOUSERID,
 					args);
+
+				args = new Object[] { Long.valueOf(entryModelImpl.getToUserId()) };
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_TOUSERID, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_TOUSERID,
+					args);
 			}
 
 			if ((entryModelImpl.getColumnBitmask() &
@@ -482,6 +505,15 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_F, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_F,
 					args);
+
+				args = new Object[] {
+						Long.valueOf(entryModelImpl.getCreateDate()),
+						Long.valueOf(entryModelImpl.getFromUserId())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_F, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_F,
+					args);
 			}
 
 			if ((entryModelImpl.getColumnBitmask() &
@@ -489,6 +521,15 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 				Object[] args = new Object[] {
 						Long.valueOf(entryModelImpl.getOriginalCreateDate()),
 						Long.valueOf(entryModelImpl.getOriginalToUserId())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_T, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_T,
+					args);
+
+				args = new Object[] {
+						Long.valueOf(entryModelImpl.getCreateDate()),
+						Long.valueOf(entryModelImpl.getToUserId())
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_T, args);
@@ -507,6 +548,16 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_F_T, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_F_T,
 					args);
+
+				args = new Object[] {
+						Long.valueOf(entryModelImpl.getCreateDate()),
+						Long.valueOf(entryModelImpl.getFromUserId()),
+						Long.valueOf(entryModelImpl.getToUserId())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_F_T, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_F_T,
+					args);
 			}
 
 			if ((entryModelImpl.getColumnBitmask() &
@@ -516,6 +567,17 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 						Long.valueOf(entryModelImpl.getOriginalToUserId()),
 						
 						entryModelImpl.getOriginalContent()
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_F_T_C, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_F_T_C,
+					args);
+
+				args = new Object[] {
+						Long.valueOf(entryModelImpl.getFromUserId()),
+						Long.valueOf(entryModelImpl.getToUserId()),
+						
+						entryModelImpl.getContent()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_F_T_C, args);

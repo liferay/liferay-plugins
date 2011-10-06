@@ -172,6 +172,9 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 						SVNRevisionImpl.class, svnRevision.getPrimaryKey()) == null) {
 				cacheResult(svnRevision);
 			}
+			else {
+				svnRevision.resetOriginalValues();
+			}
 		}
 	}
 
@@ -364,12 +367,28 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 					args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_SVNUSERID,
 					args);
+
+				args = new Object[] { svnRevisionModelImpl.getSvnUserId() };
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_SVNUSERID,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_SVNUSERID,
+					args);
 			}
 
 			if ((svnRevisionModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_SVNREPOSITORYID.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						Long.valueOf(svnRevisionModelImpl.getOriginalSvnRepositoryId())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_SVNREPOSITORYID,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_SVNREPOSITORYID,
+					args);
+
+				args = new Object[] {
+						Long.valueOf(svnRevisionModelImpl.getSvnRepositoryId())
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_SVNREPOSITORYID,
@@ -383,6 +402,16 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 				Object[] args = new Object[] {
 						svnRevisionModelImpl.getOriginalSvnUserId(),
 						Long.valueOf(svnRevisionModelImpl.getOriginalSvnRepositoryId())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_SVNU_SVNR,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_SVNU_SVNR,
+					args);
+
+				args = new Object[] {
+						svnRevisionModelImpl.getSvnUserId(),
+						Long.valueOf(svnRevisionModelImpl.getSvnRepositoryId())
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_SVNU_SVNR,

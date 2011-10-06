@@ -143,6 +143,9 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 						FeedImpl.class, feed.getPrimaryKey()) == null) {
 				cacheResult(feed);
 			}
+			else {
+				feed.resetOriginalValues();
+			}
 		}
 	}
 
