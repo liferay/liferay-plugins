@@ -27,13 +27,8 @@ String fieldType = PrefsParamUtil.getString(preferences, renderRequest, "fieldTy
 boolean fieldOptional = PrefsParamUtil.getBoolean(preferences, renderRequest, "fieldOptional" + formFieldsIndex);
 String fieldOptionsXml = LocalizationUtil.getLocalizationXmlFromPreferences(preferences, renderRequest, "fieldOptions" + formFieldsIndex);
 String fieldOptions = LocalizationUtil.getLocalization(fieldOptionsXml, themeDisplay.getLanguageId());
-String fieldValidationScript = StringPool.BLANK;
-String fieldValidationErrorMessage = StringPool.BLANK;
-
-if (PortletPropsValues.VALIDATION_SCRIPT_ENABLED) {
-	fieldValidationScript = PrefsParamUtil.getString(preferences, request, "fieldValidationScript" + formFieldsIndex);
-	fieldValidationErrorMessage = PrefsParamUtil.getString(preferences, request, "fieldValidationErrorMessage" + formFieldsIndex);
-}
+fieldValidationScript = PrefsParamUtil.getString(preferences, request, "fieldValidationScript" + formFieldsIndex);
+fieldValidationErrorMessage = PrefsParamUtil.getString(preferences, request, "fieldValidationErrorMessage" + formFieldsIndex);
 %>
 
 <liferay-ui:error key='<%= "fieldSizeInvalid" + formFieldsIndex %>' message="please-enter-no-more-than-75-characters" />
