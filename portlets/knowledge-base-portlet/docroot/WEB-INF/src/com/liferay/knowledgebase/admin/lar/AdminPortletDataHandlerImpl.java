@@ -687,9 +687,9 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		}
 	}
 
-	private static final String _NAMESPACE = "knowledge_base";
-
 	private static final boolean _ALWAYS_EXPORTABLE = true;
+
+	private static final String _NAMESPACE = "knowledge_base";
 
 	private static PortletDataHandlerBoolean _categories =
 		new PortletDataHandlerBoolean(_NAMESPACE, "categories");
