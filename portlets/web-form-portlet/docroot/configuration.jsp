@@ -25,11 +25,10 @@ boolean requireCaptcha = GetterUtil.getBoolean(preferences.getValue("requireCapt
 String successURL = preferences.getValue("successURL", StringPool.BLANK);
 
 boolean sendAsEmail = GetterUtil.getBoolean(preferences.getValue("sendAsEmail", StringPool.BLANK));
-String subject = preferences.getValue("subject", StringPool.BLANK);
-String emailAddress = preferences.getValue("emailAddress", StringPool.BLANK);
-
 String emailFromName = WebFormUtil.getEmailFromName(preferences, company.getCompanyId());
 String emailFromAddress = WebFormUtil.getEmailFromAddress(preferences, company.getCompanyId());
+String emailAddress = preferences.getValue("emailAddress", StringPool.BLANK);
+String subject = preferences.getValue("subject", StringPool.BLANK);
 
 boolean saveToDatabase = GetterUtil.getBoolean(preferences.getValue("saveToDatabase", StringPool.BLANK));
 String databaseTableName = preferences.getValue("databaseTableName", StringPool.BLANK);
@@ -73,11 +72,11 @@ if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0
 
 		<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id="webFormData" persistState="<%= true %>" title="handling-of-form-data">
 			<aui:fieldset cssClass="handle-data" label="email">
-				<liferay-ui:error key="subjectRequired" message="please-enter-a-subject" />
-				<liferay-ui:error key="handlingRequired" message="please-select-an-action-for-the-handling-of-form-data" />
 				<liferay-ui:error key="emailAddressInvalid" message="please-enter-a-valid-email-address" />
 				<liferay-ui:error key="emailAddressRequired" message="please-enter-an-email-address" />
 				<liferay-ui:error key="fileNameInvalid" message="please-enter-a-valid-path-and-file-name" />
+				<liferay-ui:error key="handlingRequired" message="please-select-an-action-for-the-handling-of-form-data" />
+				<liferay-ui:error key="subjectRequired" message="please-enter-a-subject" />
 
 				<aui:input label="send-as-email" name="preferences--sendAsEmail--" type="checkbox" value="<%= sendAsEmail %>" />
 
