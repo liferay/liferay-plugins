@@ -25,10 +25,11 @@ boolean requireCaptcha = GetterUtil.getBoolean(preferences.getValue("requireCapt
 String successURL = preferences.getValue("successURL", StringPool.BLANK);
 
 boolean sendAsEmail = GetterUtil.getBoolean(preferences.getValue("sendAsEmail", StringPool.BLANK));
-String emailFromName = WebFormUtil.getEmailFromName(preferences, company.getCompanyId());
-String emailFromAddress = WebFormUtil.getEmailFromAddress(preferences, company.getCompanyId());
 String subject = preferences.getValue("subject", StringPool.BLANK);
 String emailAddress = preferences.getValue("emailAddress", StringPool.BLANK);
+
+String emailFromName = WebFormUtil.getEmailFromName(preferences, company.getCompanyId());
+String emailFromAddress = WebFormUtil.getEmailFromAddress(preferences, company.getCompanyId());
 
 boolean saveToDatabase = GetterUtil.getBoolean(preferences.getValue("saveToDatabase", StringPool.BLANK));
 String databaseTableName = preferences.getValue("databaseTableName", StringPool.BLANK);
