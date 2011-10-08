@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -33,7 +32,6 @@ import com.liferay.portlet.expando.model.ExpandoTable;
 import com.liferay.portlet.expando.service.ExpandoColumnLocalServiceUtil;
 import com.liferay.portlet.expando.service.ExpandoRowLocalServiceUtil;
 import com.liferay.portlet.expando.service.ExpandoTableLocalServiceUtil;
-import com.liferay.util.portlet.PortletProps;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -53,9 +51,6 @@ import javax.portlet.PortletPreferences;
  * @author Brian Wing Shun Chan
  */
 public class WebFormUtil {
-
-	public static final boolean VALIDATION_SCRIPT_ENABLED =
-		GetterUtil.getBoolean(PortletProps.get("validation.script.enabled"));
 
 	public static ExpandoTable addTable(long companyId, String tableName)
 		throws PortalException, SystemException {
@@ -113,20 +108,16 @@ public class WebFormUtil {
 			PortletPreferences preferences, long companyId)
 		throws SystemException {
 
-		String defaultValue = PortletProps.get("webform.email.from.address");
-
 		return PortalUtil.getEmailFromAddress(
-			preferences, companyId, defaultValue);
+			preferences, companyId, PortletPropsValues.EMAIL_FROM_ADDRESS);
 	}
 
 	public static String getEmailFromName(
 			PortletPreferences preferences, long companyId)
 		throws SystemException {
 
-		String defaultValue = PortletProps.get("webform.email.from.name");
-
 		return PortalUtil.getEmailFromName(
-			preferences, companyId, defaultValue);
+			preferences, companyId, PortletPropsValues.EMAIL_FROM_NAME);
 	}
 
 	public static String getNewDatabaseTableName(String portletId)

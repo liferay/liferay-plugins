@@ -392,22 +392,17 @@ public class WebFormPortlet extends MVCPortlet {
 				return false;
 			}
 
+			InternetAddress fromAddress = new InternetAddress(
+				WebFormUtil.getEmailFromAddress(preferences, companyId),
+				WebFormUtil.getEmailFromName(preferences, companyId));
 			String subject = preferences.getValue("subject", StringPool.BLANK);
 			String body = getMailBody(fieldsMap);
 
-			String fromNamePref = WebFormUtil.getEmailFromName(
-				preferences, companyId);
-			String fromAddressPref = WebFormUtil.getEmailFromAddress(
-				preferences, companyId);
-
-			InternetAddress fromAddress = new InternetAddress(
-				fromAddressPref, fromNamePref);
+			MailMessage mailMessage = new MailMessage(
+				fromAddress, subject, body, false);
 
 			InternetAddress[] toAddresses = InternetAddress.parse(
 				emailAddresses);
-
-			MailMessage mailMessage = new MailMessage(
-				fromAddress, subject, body, false);
 
 			mailMessage.setTo(toAddresses);
 

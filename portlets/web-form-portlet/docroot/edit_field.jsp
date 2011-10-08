@@ -30,7 +30,7 @@ String fieldOptions = LocalizationUtil.getLocalization(fieldOptionsXml, themeDis
 String fieldValidationScript = StringPool.BLANK;
 String fieldValidationErrorMessage = StringPool.BLANK;
 
-if (WebFormUtil.VALIDATION_SCRIPT_ENABLED) {
+if (PortletPropsValues.VALIDATION_SCRIPT_ENABLED) {
 	fieldValidationScript = PrefsParamUtil.getString(preferences, request, "fieldValidationScript" + formFieldsIndex);
 	fieldValidationErrorMessage = PrefsParamUtil.getString(preferences, request, "fieldValidationErrorMessage" + formFieldsIndex);
 }
