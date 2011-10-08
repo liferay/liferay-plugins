@@ -54,6 +54,11 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 	}
 
 	@Override
+	public boolean isAlwaysExportable() {
+		return _ALWAYS_EXPORTABLE;
+	}
+
+	@Override
 	public boolean isPublishToLiveByDefault() {
 		return _PUBLISH_TO_LIVE_BY_DEFAULT;
 	}
@@ -156,22 +161,26 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			Element wsrpProducersElement = rootElement.element(
 				"wsrp-producers");
 
-			for (Element wsrpProducerElement :
-					wsrpProducersElement.elements("wsrp-producer")) {
+			if (wsrpProducersElement != null) {
+				for (Element wsrpProducerElement :
+						wsrpProducersElement.elements("wsrp-producer")) {
 
-				String wsrpProducerPath = wsrpProducerElement.attributeValue(
-					"path");
+					String wsrpProducerPath =
+						wsrpProducerElement.attributeValue("path");
 
-				if (!portletDataContext.isPathNotProcessed(wsrpProducerPath)) {
-					continue;
+					if (!portletDataContext.isPathNotProcessed(
+							wsrpProducerPath)) {
+
+						continue;
+					}
+
+					WSRPProducer wsrpProducer =
+						(WSRPProducer)portletDataContext.getZipEntryAsObject(
+							wsrpProducerPath);
+
+					importWSRPProducer(
+						portletDataContext, wsrpProducerElement, wsrpProducer);
 				}
-
-				WSRPProducer wsrpProducer =
-					(WSRPProducer)portletDataContext.getZipEntryAsObject(
-						wsrpProducerPath);
-
-				importWSRPProducer(
-					portletDataContext, wsrpProducerElement, wsrpProducer);
 			}
 		}
 
@@ -181,49 +190,59 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			Element wsrpConsumersElement = rootElement.element(
 				"wsrp-consumers");
 
-			for (Element wsrpConsumerElement :
-					wsrpConsumersElement.elements("wsrp-consumer")) {
+			if (wsrpConsumersElement != null) {
+				for (Element wsrpConsumerElement :
+						wsrpConsumersElement.elements("wsrp-consumer")) {
 
-				String wsrpConsumerPath = wsrpConsumerElement.attributeValue(
-					"path");
+					String wsrpConsumerPath =
+						wsrpConsumerElement.attributeValue("path");
 
-				if (!portletDataContext.isPathNotProcessed(wsrpConsumerPath)) {
-					continue;
-				}
+					if (!portletDataContext.isPathNotProcessed(
+							wsrpConsumerPath)) {
 
-				WSRPConsumer wsrpConsumer =
-					(WSRPConsumer)portletDataContext.getZipEntryAsObject(
-						wsrpConsumerPath);
+						continue;
+					}
 
-				WSRPConsumer returnedWSRPConsumer = importWSRPConsumer(
-					portletDataContext, wsrpConsumerElement, wsrpConsumer);
+					WSRPConsumer wsrpConsumer =
+						(WSRPConsumer)portletDataContext.getZipEntryAsObject(
+							wsrpConsumerPath);
 
-				if (portletDataContext.getBooleanParameter(
-						_NAMESPACE, "wsrp-consumer-portlets")) {
+					WSRPConsumer returnedWSRPConsumer = importWSRPConsumer(
+						portletDataContext, wsrpConsumerElement, wsrpConsumer);
 
-					Element wsrpConsumerPortletsElement =
-						wsrpConsumerElement.element("wsrp-consumer-portlets");
+					if (portletDataContext.getBooleanParameter(
+							_NAMESPACE, "wsrp-consumer-portlets")) {
 
-					for (Element wsrpConsumerPortletElement :
-							wsrpConsumerPortletsElement.elements(
-								"wsrp-consumer-portlet")) {
+						Element wsrpConsumerPortletsElement =
+							wsrpConsumerElement.element(
+								"wsrp-consumer-portlets");
 
-						String wsrpConsumerPortletPath =
-							wsrpConsumerPortletElement.attributeValue("path");
+						if (wsrpConsumerPortletsElement != null) {
+							for (Element wsrpConsumerPortletElement :
+									wsrpConsumerPortletsElement.elements(
+										"wsrp-consumer-portlet")) {
 
-						if (!portletDataContext.isPathNotProcessed(
-								wsrpConsumerPortletPath)) {
+								String wsrpConsumerPortletPath =
+									wsrpConsumerPortletElement.attributeValue(
+										"path");
 
-							continue;
+								if (!portletDataContext.isPathNotProcessed(
+										wsrpConsumerPortletPath)) {
+
+									continue;
+								}
+
+								WSRPConsumerPortlet wsrpConsumerPortlet =
+									(WSRPConsumerPortlet)portletDataContext.
+										getZipEntryAsObject(
+											wsrpConsumerPortletPath);
+
+								importWSRPConsumerPortlet(
+									portletDataContext, returnedWSRPConsumer,
+									wsrpConsumerPortletElement,
+									wsrpConsumerPortlet);
+							}
 						}
-
-						WSRPConsumerPortlet wsrpConsumerPortlet =
-							(WSRPConsumerPortlet)portletDataContext.
-								getZipEntryAsObject(wsrpConsumerPortletPath);
-
-						importWSRPConsumerPortlet(
-							portletDataContext, returnedWSRPConsumer,
-							wsrpConsumerPortletElement, wsrpConsumerPortlet);
 					}
 				}
 			}
@@ -449,6 +468,8 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		}
 	}
 
+	private static final boolean _ALWAYS_EXPORTABLE = true;
+
 	private static final String _NAMESPACE = "wsrp";
 
 	private static final String _PORTLET_KEY = "1_WAR_wsrpportlet";
@@ -459,7 +480,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		new PortletDataHandlerBoolean(_NAMESPACE, "wsrp-consumer-portlets");
 
 	private static PortletDataHandlerBoolean _wsrpProducers =
-		new PortletDataHandlerBoolean(_NAMESPACE, "wsrp-producers");
+		new PortletDataHandlerBoolean(_NAMESPACE, "wsrp-producers", false);
 
 	private static PortletDataHandlerBoolean _wsrpConsumers =
 		new PortletDataHandlerBoolean(
