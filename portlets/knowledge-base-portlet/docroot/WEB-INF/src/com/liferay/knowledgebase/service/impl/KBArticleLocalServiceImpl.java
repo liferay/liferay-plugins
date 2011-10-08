@@ -96,10 +96,10 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
-		boolean dirExists = DLStoreUtil.hasDirectory(
-			serviceContext.getCompanyId(), CompanyConstants.SYSTEM, dirName);
+		if (!DLStoreUtil.hasDirectory(
+				serviceContext.getCompanyId(), CompanyConstants.SYSTEM,
+				dirName)) {
 
-		if (!dirExists) {
 			DLStoreUtil.addDirectory(
 				serviceContext.getCompanyId(), CompanyConstants.SYSTEM,
 				dirName);
@@ -994,14 +994,11 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			_log.error("Directory already exists for " + dde.getMessage());
 		}
 
-		if (Validator.isNull(dirName)) {
-			return;
-		}
+		if (Validator.isNull(dirName) ||
+			!DLStoreUtil.hasDirectory(
+				serviceContext.getCompanyId(), CompanyConstants.SYSTEM,
+				dirName)) {
 
-		boolean dirExists = DLStoreUtil.hasDirectory(
-			serviceContext.getCompanyId(), CompanyConstants.SYSTEM, dirName);
-
-		if (!dirExists) {
 			return;
 		}
 

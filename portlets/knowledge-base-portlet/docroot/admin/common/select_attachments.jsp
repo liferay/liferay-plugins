@@ -23,15 +23,10 @@ long resourcePrimKey = BeanParamUtil.getLong(kbArticle, request, "resourcePrimKe
 
 String dirName = ParamUtil.getString(request, "dirName");
 
-String[] fileNames;
+String[] fileNames = new String[0];
 
-boolean dirExists = DLStoreUtil.hasDirectory(company.getCompanyId(), CompanyConstants.SYSTEM, dirName);
-
-if (dirExists) {
+if (DLStoreUtil.hasDirectory(company.getCompanyId(), CompanyConstants.SYSTEM, dirName)) {
 	fileNames = DLStoreUtil.getFileNames(company.getCompanyId(), CompanyConstants.SYSTEM, dirName);
-}
-else {
-	fileNames = new String[0];
 }
 %>
 
