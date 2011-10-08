@@ -23,7 +23,16 @@ long resourcePrimKey = BeanParamUtil.getLong(kbArticle, request, "resourcePrimKe
 
 String dirName = ParamUtil.getString(request, "dirName");
 
-String[] fileNames = DLStoreUtil.getFileNames(company.getCompanyId(), CompanyConstants.SYSTEM, dirName);
+String[] fileNames;
+
+boolean dirExists = DLStoreUtil.hasDirectory(company.getCompanyId(), CompanyConstants.SYSTEM, dirName);
+
+if (dirExists) {
+	fileNames = DLStoreUtil.getFileNames(company.getCompanyId(), CompanyConstants.SYSTEM, dirName);
+}
+else {
+	fileNames = new String[0];
+}
 %>
 
 <liferay-ui:header

@@ -26,7 +26,11 @@ String dirName = ParamUtil.getString(request, "dirName");
 String[] fileNames = new String[0];
 
 if (Validator.isNotNull(dirName)) {
-	fileNames = DLStoreUtil.getFileNames(company.getCompanyId(), CompanyConstants.SYSTEM, dirName);
+	boolean dirExists = DLStoreUtil.hasDirectory(company.getCompanyId(), CompanyConstants.SYSTEM, dirName);
+
+	if (dirExists) {
+		fileNames = DLStoreUtil.getFileNames(company.getCompanyId(), CompanyConstants.SYSTEM, dirName);
+	}
 }
 %>
 
