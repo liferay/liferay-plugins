@@ -151,8 +151,8 @@
 			<not>
 				<isset property="service.input.file" />
 			</not>
-		    	<then>
-		    		<property name="service.input.file" value="${basedir}/docroot/WEB-INF/service.xml" />
+			<then>
+				<property name="service.input.file" value="${basedir}/docroot/WEB-INF/service.xml" />
 			</then>
 		</if>
 
@@ -372,6 +372,7 @@
 					<else>
 						<path id="plugin-lib.classpath">
 							<fileset dir="docroot/WEB-INF/lib" includes="*.jar" />
+							<fileset dir="${project.dir}/lib" includes="*.jar" />
 							<pathelement location="docroot/WEB-INF/classes" />
 						</path>
 					</else>

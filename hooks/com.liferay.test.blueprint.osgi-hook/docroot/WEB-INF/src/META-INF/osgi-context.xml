@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0">
+
+	<bean
+		id="com.liferay.test.blueprint.osgi.CustomUserLocalService"
+		class="com.liferay.test.blueprint.osgi.CustomUserLocalService"
+	/>
+
+	<service
+		id="customUserLocalService"
+		ref="com.liferay.test.blueprint.osgi.CustomUserLocalService"
+		interface="com.liferay.portal.service.UserLocalService"
+	>
+		<service-properties>
+			<entry key="portal.service">
+				<value type="java.lang.Boolean">true</value>
+			</entry>
+			<entry key="portal.service.wrapper">
+				<value type="java.lang.Boolean">true</value>
+			</entry>
+			<entry
+				key="portal.service.type"
+				value="com.liferay.portal.service.UserLocalService"
+			/>
+		</service-properties>
+	</service>
+</blueprint>
