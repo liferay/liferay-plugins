@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.expando.NoSuchTableException;
 import com.liferay.portlet.expando.model.ExpandoColumnConstants;
 import com.liferay.portlet.expando.model.ExpandoTable;
@@ -106,6 +107,22 @@ public class WebFormUtil {
 		}
 
 		return expandoTable;
+	}
+
+	public static String getEmailFromAddress(
+			PortletPreferences preferences, long companyId)
+		throws SystemException {
+		return PortalUtil.getEmailFromAddress(
+			preferences, companyId,"webform.email.from.address");
+
+	}
+
+	public static String getEmailFromName(
+			PortletPreferences preferences, long companyId)
+		throws SystemException {
+		return PortalUtil.getEmailFromName(
+			preferences, companyId,"webform.email.from.name");
+
 	}
 
 	public static String getNewDatabaseTableName(String portletId)

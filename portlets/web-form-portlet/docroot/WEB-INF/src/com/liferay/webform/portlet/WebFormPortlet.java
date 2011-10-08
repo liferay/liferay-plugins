@@ -31,8 +31,6 @@ import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.LocalizationUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.kernel.util.PropsKeys;
-import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -170,7 +168,8 @@ public class WebFormPortlet extends MVCPortlet {
 			boolean fileSuccess = true;
 
 			if (sendAsEmail) {
-				emailSuccess = sendEmail(fieldsMap, preferences);
+				emailSuccess = sendEmail(
+					themeDisplay.getCompanyId(), fieldsMap, preferences);
 			}
 
 			if (saveToDatabase) {
@@ -378,7 +377,8 @@ public class WebFormPortlet extends MVCPortlet {
 	}
 
 	protected boolean sendEmail(
-		Map<String,String> fieldsMap, PortletPreferences preferences) {
+		long companyId, Map<String,String> fieldsMap,
+		PortletPreferences preferences) {
 
 		try {
 			String emailAddresses = preferences.getValue(
@@ -395,26 +395,16 @@ public class WebFormPortlet extends MVCPortlet {
 			String subject = preferences.getValue("subject", StringPool.BLANK);
 			String body = getMailBody(fieldsMap);
 
-			InternetAddress fromAddress = null;
+			String fromNamePref = WebFormUtil.getEmailFromName(
+				preferences, companyId);
+			String fromAddressPref = WebFormUtil.getEmailFromAddress(
+				preferences, companyId);
 
-			try {
-				String smtpUser = PropsUtil.get(
-					PropsKeys.MAIL_SESSION_MAIL_SMTP_USER);
-
-				if (Validator.isNotNull(smtpUser)) {
-					fromAddress = new InternetAddress(smtpUser);
-				}
-			}
-			catch (Exception e) {
-				_log.error(e, e);
-			}
+			InternetAddress fromAddress = new InternetAddress(
+				fromAddressPref, fromNamePref);
 
 			InternetAddress[] toAddresses = InternetAddress.parse(
 				emailAddresses);
-
-			if (fromAddress == null) {
-				fromAddress = toAddresses[0];
-			}
 
 			MailMessage mailMessage = new MailMessage(
 				fromAddress, subject, body, false);
