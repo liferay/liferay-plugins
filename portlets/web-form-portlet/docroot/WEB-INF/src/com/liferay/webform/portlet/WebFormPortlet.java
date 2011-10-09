@@ -453,19 +453,21 @@ public class WebFormPortlet extends MVCPortlet {
 				continue;
 			}
 
-			if (WebFormUtil.VALIDATION_SCRIPT_ENABLED) {
-				String validationScript = GetterUtil.getString(
-					preferences.getValue(
-						"fieldValidationScript" + (i + 1), StringPool.BLANK));
+			if (!WebFormUtil.VALIDATION_SCRIPT_ENABLED) {
+				continue;
+			}
 
-				if (Validator.isNotNull(validationScript) &&
-					!WebFormUtil.validate(
-						fieldValue, fieldsMap, validationScript)) {
+			String validationScript = GetterUtil.getString(
+				preferences.getValue(
+					"fieldValidationScript" + (i + 1), StringPool.BLANK));
 
-					validationErrors.add(fieldLabel);
+			if (Validator.isNotNull(validationScript) &&
+				!WebFormUtil.validate(
+					fieldValue, fieldsMap, validationScript)) {
 
-					continue;
-				}
+				validationErrors.add(fieldLabel);
+
+				continue;
 			}
 		}
 
