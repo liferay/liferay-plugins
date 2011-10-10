@@ -19,20 +19,31 @@
 <%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
 
 <%@ taglib uri="http://liferay.com/tld/aui" prefix="aui" %>
+<%@ taglib uri="http://liferay.com/tld/portlet" prefix="liferay-portlet" %>
 <%@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
 <%@ page import="com.liferay.marketplace.util.MarketplaceConstants" %><%@
-page import="com.liferay.marketplace.util.PortletKeys" %>
+page import="com.liferay.marketplace.util.PortletKeys" %><%@
+page import="com.liferay.portal.kernel.util.ParamUtil" %>
+
+<%@ page import="javax.portlet.WindowState" %>
 
 <portlet:defineObjects />
 
 <liferay-theme:defineObjects />
 
 <%
+long appId = ParamUtil.getLong(request, "appId");
+
+Strign portletId = portletDisplay.getId();
+
 String iFrameURL = MarketplaceConstants.MARKETPLACE_URL_HOME;
 
-if (portletName.equals(PortletKeys.MY_MARKETPLACE)) {
+if (portletId.equals(PortletKeys.MY_MARKETPLACE)) {
 	iFrameURL = MarketplaceConstants.MARKETPLACE_URL_MANAGE_APPS;
+}
+else if (portletId.equals(PortletKeys.STORE) && (appId > 0)) {
+	iFrameURL = iFrameURL + "/application/" + appId;
 }
 %>
