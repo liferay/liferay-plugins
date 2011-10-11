@@ -123,9 +123,6 @@ public class FindKBArticleAction extends BaseStrutsAction {
 
 		PortletURL portletURL = getKBArticleURL(plid, portletId, request);
 
-		portletURL.setWindowState(LiferayWindowState.MAXIMIZED);
-		portletURL.setPortletMode(PortletMode.VIEW);
-
 		if (status != WorkflowConstants.STATUS_APPROVED) {
 			portletURL.setParameter("status", String.valueOf(status));
 		}
@@ -135,6 +132,9 @@ public class FindKBArticleAction extends BaseStrutsAction {
 
 			portletURL.setParameter("p_p_auth", token);
 		}
+
+		portletURL.setPortletMode(PortletMode.VIEW);
+		portletURL.setWindowState(LiferayWindowState.MAXIMIZED);
 
 		return portletURL;
 	}
@@ -187,12 +187,13 @@ public class FindKBArticleAction extends BaseStrutsAction {
 		PortletURL portletURL = PortletURLFactoryUtil.create(
 			request, portletId, plid, PortletRequest.RENDER_PHASE);
 
-		portletURL.setWindowState(LiferayWindowState.NORMAL);
-		portletURL.setPortletMode(PortletMode.VIEW);
-
 		portletURL.setParameter("jspPage", jspPage);
 		portletURL.setParameter(
 			"resourcePrimKey", String.valueOf(resourcePrimKey));
+
+		portletURL.setPortletMode(PortletMode.VIEW);
+
+		portletURL.setWindowState(LiferayWindowState.NORMAL);
 
 		if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_SECTION)) {
 			portletURL.setWindowState(LiferayWindowState.MAXIMIZED);
