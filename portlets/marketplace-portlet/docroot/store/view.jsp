@@ -48,6 +48,16 @@
 				frame.height(response.height + 50);
 			}
 
+			if (response.panel) {
+				var url = '<liferay-portlet:renderURL doAsGroupId="<%= themeDisplay.getScopeGroupId() %>" portletName="<%= portletId.equals(PortletKeys.STORE) ? PortletKeys.MY_MARKETPLACE : PortletKeys.STORE %>" windowState="<%= WindowState.MAXIMIZED.toString() %>" />';
+
+				if (response.appId) {
+					url = Liferay.Util.addParams('appId=' + response.appId, url);
+				}
+
+				window.location = url;
+			}
+
 			if (response.cmd) {
 				A.io.request(
 					'<portlet:actionURL />',
