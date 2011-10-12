@@ -453,7 +453,7 @@ public class WebFormPortlet extends MVCPortlet {
 				continue;
 			}
 
-			if (!WebFormUtil.VALIDATION_SCRIPT_ENABLED) {
+			if (!PortletPropsValues.VALIDATION_SCRIPT_ENABLED) {
 				continue;
 			}
 
