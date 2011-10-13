@@ -78,11 +78,13 @@ public interface WallEntryLocalService extends PersistedModelLocalService {
 	* Deletes the wall entry from the database. Also notifies the appropriate model listeners.
 	*
 	* @param wallEntry the wall entry
+	* @throws PortalException
 	* @throws SystemException if a system exception occurred
 	*/
 	public void deleteWallEntry(
 		com.liferay.socialnetworking.model.WallEntry wallEntry)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
@@ -237,7 +239,8 @@ public interface WallEntryLocalService extends PersistedModelLocalService {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	public void deleteWallEntries(long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.socialnetworking.model.WallEntry> getWallEntries(
