@@ -91,6 +91,7 @@ public class WallEntryLocalServiceImpl extends WallEntryLocalServiceBaseImpl {
 
 	public void deleteWallEntries(long groupId)
 		throws PortalException, SystemException {
+
 		List<WallEntry> wallEntries = wallEntryPersistence.findByGroupId(
 			groupId);
 
@@ -113,12 +114,10 @@ public class WallEntryLocalServiceImpl extends WallEntryLocalServiceBaseImpl {
 	public void deleteWallEntry(WallEntry wallEntry)
 		throws PortalException, SystemException {
 
-		// Asset
+		// Social
 
 		AssetEntry assetEntry = assetEntryLocalService.getEntry(
 			WallEntry.class.getName(), wallEntry.getWallEntryId());
-
-		// Social
 
 		SocialActivityLocalServiceUtil.deleteActivities(assetEntry);
 
