@@ -544,7 +544,7 @@ public class UpgradeCompany extends UpgradeProcess {
 
 		addPortletId(layout, PortletKeys.RECENT_DOCUMENTS, "column-1");
 		addPortletId(layout, PortletKeys.DOCUMENT_LIBRARY, "column-1");
-		addPortletId(layout, PortletKeys.IMAGE_GALLERY_DISPLAY, "column-1");
+		addPortletId(layout, PortletKeys.MEDIA_GALLERY_DISPLAY, "column-1");
 
 		portletId = addPortletId(
 			layout, PortletKeys.JOURNAL_CONTENT, "column-2");
@@ -1628,7 +1628,7 @@ public class UpgradeCompany extends UpgradeProcess {
 			group, "Documents", true, "/documents", "2_columns_iii");
 
 		addPortletId(layout, PortletKeys.DOCUMENT_LIBRARY, "column-1");
-		addPortletId(layout, PortletKeys.IMAGE_GALLERY_DISPLAY, "column-1");
+		addPortletId(layout, PortletKeys.MEDIA_GALLERY_DISPLAY, "column-1");
 
 		portletId = addPortletId(
 			layout, PortletKeys.JOURNAL_CONTENT, "column-2");
