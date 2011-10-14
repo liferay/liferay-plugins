@@ -39,6 +39,7 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
+import com.liferay.portlet.asset.model.AssetEntry;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -125,8 +126,10 @@ public class KBTemplateLocalServiceImpl extends KBTemplateLocalServiceBaseImpl {
 
 		// Social
 
-		socialActivityLocalService.deleteActivities(
+		AssetEntry assetEntry = assetEntryLocalService.getEntry(
 			KBTemplate.class.getName(), kbTemplate.getKbTemplateId());
+
+		socialActivityLocalService.deleteActivities(assetEntry);
 	}
 
 	@Override
