@@ -15,10 +15,9 @@ $myAccountURL = PortletURLFactoryUtil::create(
 	$request, PortletKeys::MY_ACCOUNT, $themeDisplay->getPlid(),
 	PortletRequest::RENDER_PHASE);
 
-$myAccountURL->setWindowState(WindowState::MAXIMIZED);
-$myAccountURL->setPortletMode(PortletMode::VIEW);
-
 $myAccountURL->setParameter("struts_action", "/my_account/edit_user");
+$myAccountURL->setPortletMode(PortletMode::VIEW);
+$myAccountURL->setWindowState(WindowState::MAXIMIZED);
 ?>
 
 <a href="<?php echo $myAccountURL->toString(); ?>">My Account</a>
