@@ -768,6 +768,6 @@ AUI().add(
 	},
 	'',
 	{
-		requires: ['aui-base', 'aui-io', 'cookie', 'json', 'liferay-portlet-url', 'liferay-service', 'querystring', 'substitute']
+		requires: ['aui-base', 'aui-io', 'cookie', 'json', 'liferay-portlet-url', 'liferay-service', 'querystring']
 	}
 );
