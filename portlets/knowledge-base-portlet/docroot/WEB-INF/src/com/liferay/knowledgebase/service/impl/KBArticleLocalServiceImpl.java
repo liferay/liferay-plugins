@@ -261,6 +261,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			KBArticle.class.getName(), kbArticle.getResourcePrimKey());
 
 		// Social
+
 		AssetEntry assetEntry = assetEntryLocalService.getEntry(
 			KBArticle.class.getName(), kbArticle.getResourcePrimKey());
 
