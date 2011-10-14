@@ -203,20 +203,24 @@ AUI().add(
 					bindUI: function() {
 						var instance = this;
 
-						instance.after('additionalParamsChange', instance._afterAdditionalParamsChange);
-						instance.after('debugChange', instance._afterDebugChange);
-						instance.after('countryChange', instance._afterCountryChange);
-						instance.after('heightChange', instance._afterIframeHeightChange);
-						instance.after('languageChange', instance._afterLanguageChange);
-						instance.after('nocacheChange', instance._afterNocacheChange);
-						instance.after('parentUrlChange', instance._afterParentUrlChange);
-						instance.after('scrollingChange', instance._afterIframeScrollingChange);
-						instance.after('secureTokenChange', instance._afterSecureTokenChange);
-						instance.after('specUrlChange', instance._afterSpecUrlChange);
-						instance.after('viewChange', instance._afterViewChange);
-						instance.after('viewParamsChange', instance._afterViewParamsChange);
-						instance.after('userPrefsChange', instance._afterUserPrefsChange);
-						instance.after('widthChange', instance._afterIframeWidthChange);
+						instance.after(
+							{
+								additionalParamsChange: instance._afterAdditionalParamsChange,
+								countryChange: instance._afterCountryChange,
+								debugChange: instance._afterDebugChange,
+								heightChange: instance._afterIframeHeightChange,
+								languageChange: instance._afterLanguageChange,
+								nocacheChange: instance._afterNocacheChange,
+								parentUrlChange: instance._afterParentUrlChange,
+								scrollingChange: instance._afterIframeScrollingChange,
+								secureTokenChange: instance._afterSecureTokenChange,
+								specUrlChange: instance._afterSpecUrlChange,
+								userPrefsChange: instance._afterUserPrefsChange,
+								viewChange: instance._afterViewChange,
+								viewParamsChange: instance._afterViewParamsChange,
+								widthChange: instance._afterIframeWidthChange
+							}
+						);
 					},
 
 					syncUI: function() {
@@ -477,7 +481,7 @@ AUI().add(
 						if (!parameterFound) {
 							var newParameter = key + '=' + value;
 
-							parameters[parameters.length] = newParameter
+							parameters[parameters.length] = newParameter;
 						}
 
 						return parameters.join('&');
