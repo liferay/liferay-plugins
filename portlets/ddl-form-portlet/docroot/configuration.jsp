@@ -58,7 +58,7 @@ catch (NoSuchRecordSetException nsrse) {
 				<%
 				long ddmStructureId = recordSet.getDDMStructureId();
 
-				List<DDMTemplate> ddmTemplates = DDMTemplateLocalServiceUtil.getTemplates(ddmStructureId, DDMTemplateConstants.TEMPLATE_TYPE_DETAIL);
+				List<DDMTemplate> ddmTemplates = DDMTemplateLocalServiceUtil.getTemplates(ddmStructureId, DDMTemplateConstants.TEMPLATE_TYPE_DETAIL, DDMTemplateConstants.TEMPLATE_MODE_CREATE);
 
 				for (DDMTemplate ddmTemplate : ddmTemplates) {
 					boolean selected = false;
