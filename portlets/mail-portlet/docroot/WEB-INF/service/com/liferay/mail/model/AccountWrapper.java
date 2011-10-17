@@ -14,6 +14,8 @@
 
 package com.liferay.mail.model;
 
+import com.liferay.portal.model.ModelWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link Account}.
@@ -23,7 +25,7 @@ package com.liferay.mail.model;
  * @see       Account
  * @generated
  */
-public class AccountWrapper implements Account {
+public class AccountWrapper implements Account, ModelWrapper<Account> {
 	public AccountWrapper(Account account) {
 		_account = account;
 	}
@@ -668,7 +670,14 @@ public class AccountWrapper implements Account {
 		_account.setPasswordDecrypted(unencryptedPassword);
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedModel}
+	 */
 	public Account getWrappedAccount() {
+		return _account;
+	}
+
+	public Account getWrappedModel() {
 		return _account;
 	}
 

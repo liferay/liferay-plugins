@@ -14,6 +14,8 @@
 
 package com.liferay.socialcoding.model;
 
+import com.liferay.portal.model.ModelWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link JIRAAction}.
@@ -23,7 +25,7 @@ package com.liferay.socialcoding.model;
  * @see       JIRAAction
  * @generated
  */
-public class JIRAActionWrapper implements JIRAAction {
+public class JIRAActionWrapper implements JIRAAction, ModelWrapper<JIRAAction> {
 	public JIRAActionWrapper(JIRAAction jiraAction) {
 		_jiraAction = jiraAction;
 	}
@@ -271,7 +273,14 @@ public class JIRAActionWrapper implements JIRAAction {
 		_jiraAction.persist();
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedModel}
+	 */
 	public JIRAAction getWrappedJIRAAction() {
+		return _jiraAction;
+	}
+
+	public JIRAAction getWrappedModel() {
 		return _jiraAction;
 	}
 

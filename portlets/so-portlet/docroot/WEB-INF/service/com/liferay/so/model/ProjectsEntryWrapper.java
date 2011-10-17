@@ -14,6 +14,8 @@
 
 package com.liferay.so.model;
 
+import com.liferay.portal.model.ModelWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link ProjectsEntry}.
@@ -23,7 +25,8 @@ package com.liferay.so.model;
  * @see       ProjectsEntry
  * @generated
  */
-public class ProjectsEntryWrapper implements ProjectsEntry {
+public class ProjectsEntryWrapper implements ProjectsEntry,
+	ModelWrapper<ProjectsEntry> {
 	public ProjectsEntryWrapper(ProjectsEntry projectsEntry) {
 		_projectsEntry = projectsEntry;
 	}
@@ -345,7 +348,14 @@ public class ProjectsEntryWrapper implements ProjectsEntry {
 		_projectsEntry.persist();
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedModel}
+	 */
 	public ProjectsEntry getWrappedProjectsEntry() {
+		return _projectsEntry;
+	}
+
+	public ProjectsEntry getWrappedModel() {
 		return _projectsEntry;
 	}
 

@@ -14,6 +14,8 @@
 
 package com.liferay.mail.service;
 
+import com.liferay.portal.service.ServiceWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link MessageLocalService}.
@@ -23,7 +25,8 @@ package com.liferay.mail.service;
  * @see       MessageLocalService
  * @generated
  */
-public class MessageLocalServiceWrapper implements MessageLocalService {
+public class MessageLocalServiceWrapper implements MessageLocalService,
+	ServiceWrapper<MessageLocalService> {
 	public MessageLocalServiceWrapper(MessageLocalService messageLocalService) {
 		_messageLocalService = messageLocalService;
 	}
@@ -340,12 +343,26 @@ public class MessageLocalServiceWrapper implements MessageLocalService {
 			to, cc, bcc, sentDate, subject, body, flags, remoteMessageId);
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedService}
+	 */
 	public MessageLocalService getWrappedMessageLocalService() {
 		return _messageLocalService;
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #setWrappedService}
+	 */
 	public void setWrappedMessageLocalService(
 		MessageLocalService messageLocalService) {
+		_messageLocalService = messageLocalService;
+	}
+
+	public MessageLocalService getWrappedService() {
+		return _messageLocalService;
+	}
+
+	public void setWrappedService(MessageLocalService messageLocalService) {
 		_messageLocalService = messageLocalService;
 	}
 

@@ -14,6 +14,8 @@
 
 package com.liferay.mail.service;
 
+import com.liferay.portal.service.ServiceWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link FolderLocalService}.
@@ -23,7 +25,8 @@ package com.liferay.mail.service;
  * @see       FolderLocalService
  * @generated
  */
-public class FolderLocalServiceWrapper implements FolderLocalService {
+public class FolderLocalServiceWrapper implements FolderLocalService,
+	ServiceWrapper<FolderLocalService> {
 	public FolderLocalServiceWrapper(FolderLocalService folderLocalService) {
 		_folderLocalService = folderLocalService;
 	}
@@ -301,12 +304,26 @@ public class FolderLocalServiceWrapper implements FolderLocalService {
 			displayName, remoteMessageCount);
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedService}
+	 */
 	public FolderLocalService getWrappedFolderLocalService() {
 		return _folderLocalService;
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #setWrappedService}
+	 */
 	public void setWrappedFolderLocalService(
 		FolderLocalService folderLocalService) {
+		_folderLocalService = folderLocalService;
+	}
+
+	public FolderLocalService getWrappedService() {
+		return _folderLocalService;
+	}
+
+	public void setWrappedService(FolderLocalService folderLocalService) {
 		_folderLocalService = folderLocalService;
 	}
 

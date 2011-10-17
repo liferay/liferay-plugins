@@ -14,6 +14,8 @@
 
 package com.liferay.mail.model;
 
+import com.liferay.portal.model.ModelWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link Message}.
@@ -23,7 +25,7 @@ package com.liferay.mail.model;
  * @see       Message
  * @generated
  */
-public class MessageWrapper implements Message {
+public class MessageWrapper implements Message, ModelWrapper<Message> {
 	public MessageWrapper(Message message) {
 		_message = message;
 	}
@@ -499,7 +501,14 @@ public class MessageWrapper implements Message {
 		return _message.hasFlag(flag);
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedModel}
+	 */
 	public Message getWrappedMessage() {
+		return _message;
+	}
+
+	public Message getWrappedModel() {
 		return _message;
 	}
 

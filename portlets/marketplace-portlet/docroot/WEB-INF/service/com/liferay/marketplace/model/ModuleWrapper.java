@@ -14,6 +14,8 @@
 
 package com.liferay.marketplace.model;
 
+import com.liferay.portal.model.ModelWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link Module}.
@@ -23,7 +25,7 @@ package com.liferay.marketplace.model;
  * @see       Module
  * @generated
  */
-public class ModuleWrapper implements Module {
+public class ModuleWrapper implements Module, ModelWrapper<Module> {
 	public ModuleWrapper(Module module) {
 		_module = module;
 	}
@@ -199,7 +201,14 @@ public class ModuleWrapper implements Module {
 		_module.persist();
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedModel}
+	 */
 	public Module getWrappedModule() {
+		return _module;
+	}
+
+	public Module getWrappedModel() {
 		return _module;
 	}
 

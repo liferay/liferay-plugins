@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.model;
 
+import com.liferay.portal.model.ModelWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link KaleoTimer}.
@@ -23,7 +25,7 @@ package com.liferay.portal.workflow.kaleo.model;
  * @see       KaleoTimer
  * @generated
  */
-public class KaleoTimerWrapper implements KaleoTimer {
+public class KaleoTimerWrapper implements KaleoTimer, ModelWrapper<KaleoTimer> {
 	public KaleoTimerWrapper(KaleoTimer kaleoTimer) {
 		_kaleoTimer = kaleoTimer;
 	}
@@ -472,7 +474,14 @@ public class KaleoTimerWrapper implements KaleoTimer {
 		return _kaleoTimer.isRecurring();
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedModel}
+	 */
 	public KaleoTimer getWrappedKaleoTimer() {
+		return _kaleoTimer;
+	}
+
+	public KaleoTimer getWrappedModel() {
 		return _kaleoTimer;
 	}
 

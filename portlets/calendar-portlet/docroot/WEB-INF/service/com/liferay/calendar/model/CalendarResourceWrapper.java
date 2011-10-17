@@ -14,6 +14,8 @@
 
 package com.liferay.calendar.model;
 
+import com.liferay.portal.model.ModelWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link CalendarResource}.
@@ -23,7 +25,8 @@ package com.liferay.calendar.model;
  * @see       CalendarResource
  * @generated
  */
-public class CalendarResourceWrapper implements CalendarResource {
+public class CalendarResourceWrapper implements CalendarResource,
+	ModelWrapper<CalendarResource> {
 	public CalendarResourceWrapper(CalendarResource calendarResource) {
 		_calendarResource = calendarResource;
 	}
@@ -636,7 +639,14 @@ public class CalendarResourceWrapper implements CalendarResource {
 		_calendarResource.persist();
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedModel}
+	 */
 	public CalendarResource getWrappedCalendarResource() {
+		return _calendarResource;
+	}
+
+	public CalendarResource getWrappedModel() {
 		return _calendarResource;
 	}
 

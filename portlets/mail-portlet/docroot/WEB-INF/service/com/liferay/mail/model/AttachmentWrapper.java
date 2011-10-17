@@ -14,6 +14,8 @@
 
 package com.liferay.mail.model;
 
+import com.liferay.portal.model.ModelWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link Attachment}.
@@ -23,7 +25,7 @@ package com.liferay.mail.model;
  * @see       Attachment
  * @generated
  */
-public class AttachmentWrapper implements Attachment {
+public class AttachmentWrapper implements Attachment, ModelWrapper<Attachment> {
 	public AttachmentWrapper(Attachment attachment) {
 		_attachment = attachment;
 	}
@@ -309,7 +311,14 @@ public class AttachmentWrapper implements Attachment {
 		_attachment.persist();
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedModel}
+	 */
 	public Attachment getWrappedAttachment() {
+		return _attachment;
+	}
+
+	public Attachment getWrappedModel() {
 		return _attachment;
 	}
 

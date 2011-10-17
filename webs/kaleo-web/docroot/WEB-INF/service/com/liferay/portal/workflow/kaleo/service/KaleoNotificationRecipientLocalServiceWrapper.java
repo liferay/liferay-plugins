@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.service;
 
+import com.liferay.portal.service.ServiceWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link KaleoNotificationRecipientLocalService}.
@@ -24,7 +26,8 @@ package com.liferay.portal.workflow.kaleo.service;
  * @generated
  */
 public class KaleoNotificationRecipientLocalServiceWrapper
-	implements KaleoNotificationRecipientLocalService {
+	implements KaleoNotificationRecipientLocalService,
+		ServiceWrapper<KaleoNotificationRecipientLocalService> {
 	public KaleoNotificationRecipientLocalServiceWrapper(
 		KaleoNotificationRecipientLocalService kaleoNotificationRecipientLocalService) {
 		_kaleoNotificationRecipientLocalService = kaleoNotificationRecipientLocalService;
@@ -278,11 +281,26 @@ public class KaleoNotificationRecipientLocalServiceWrapper
 		return _kaleoNotificationRecipientLocalService.getKaleoNotificationRecipients(kaleoNotificationId);
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedService}
+	 */
 	public KaleoNotificationRecipientLocalService getWrappedKaleoNotificationRecipientLocalService() {
 		return _kaleoNotificationRecipientLocalService;
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #setWrappedService}
+	 */
 	public void setWrappedKaleoNotificationRecipientLocalService(
+		KaleoNotificationRecipientLocalService kaleoNotificationRecipientLocalService) {
+		_kaleoNotificationRecipientLocalService = kaleoNotificationRecipientLocalService;
+	}
+
+	public KaleoNotificationRecipientLocalService getWrappedService() {
+		return _kaleoNotificationRecipientLocalService;
+	}
+
+	public void setWrappedService(
 		KaleoNotificationRecipientLocalService kaleoNotificationRecipientLocalService) {
 		_kaleoNotificationRecipientLocalService = kaleoNotificationRecipientLocalService;
 	}

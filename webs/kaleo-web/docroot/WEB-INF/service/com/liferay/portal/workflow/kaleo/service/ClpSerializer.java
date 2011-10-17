@@ -3049,7 +3049,7 @@ public class ClpSerializer {
 				Method method8CurrentLanguageId = oldModelClass.getMethod(
 						"getTitleCurrentLanguageId");
 
-				String value8CurrentLanguageId = (String)method8.invoke(oldModel,
+				String value8CurrentLanguageId = (String)method8CurrentLanguageId.invoke(oldModel,
 						(Object[])null);
 
 				newModel.setTitleCurrentLanguageId(value8CurrentLanguageId);

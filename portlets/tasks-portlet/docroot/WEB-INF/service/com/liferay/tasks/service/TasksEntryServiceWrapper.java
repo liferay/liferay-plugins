@@ -14,6 +14,8 @@
 
 package com.liferay.tasks.service;
 
+import com.liferay.portal.service.ServiceWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link TasksEntryService}.
@@ -23,7 +25,8 @@ package com.liferay.tasks.service;
  * @see       TasksEntryService
  * @generated
  */
-public class TasksEntryServiceWrapper implements TasksEntryService {
+public class TasksEntryServiceWrapper implements TasksEntryService,
+	ServiceWrapper<TasksEntryService> {
 	public TasksEntryServiceWrapper(TasksEntryService tasksEntryService) {
 		_tasksEntryService = tasksEntryService;
 	}
@@ -60,11 +63,25 @@ public class TasksEntryServiceWrapper implements TasksEntryService {
 			serviceContext);
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedService}
+	 */
 	public TasksEntryService getWrappedTasksEntryService() {
 		return _tasksEntryService;
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #setWrappedService}
+	 */
 	public void setWrappedTasksEntryService(TasksEntryService tasksEntryService) {
+		_tasksEntryService = tasksEntryService;
+	}
+
+	public TasksEntryService getWrappedService() {
+		return _tasksEntryService;
+	}
+
+	public void setWrappedService(TasksEntryService tasksEntryService) {
 		_tasksEntryService = tasksEntryService;
 	}
 

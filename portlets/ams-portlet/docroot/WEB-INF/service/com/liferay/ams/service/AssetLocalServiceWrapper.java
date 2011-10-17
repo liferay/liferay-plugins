@@ -14,6 +14,8 @@
 
 package com.liferay.ams.service;
 
+import com.liferay.portal.service.ServiceWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link AssetLocalService}.
@@ -23,7 +25,8 @@ package com.liferay.ams.service;
  * @see       AssetLocalService
  * @generated
  */
-public class AssetLocalServiceWrapper implements AssetLocalService {
+public class AssetLocalServiceWrapper implements AssetLocalService,
+	ServiceWrapper<AssetLocalService> {
 	public AssetLocalServiceWrapper(AssetLocalService assetLocalService) {
 		_assetLocalService = assetLocalService;
 	}
@@ -240,11 +243,25 @@ public class AssetLocalServiceWrapper implements AssetLocalService {
 		_assetLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedService}
+	 */
 	public AssetLocalService getWrappedAssetLocalService() {
 		return _assetLocalService;
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #setWrappedService}
+	 */
 	public void setWrappedAssetLocalService(AssetLocalService assetLocalService) {
+		_assetLocalService = assetLocalService;
+	}
+
+	public AssetLocalService getWrappedService() {
+		return _assetLocalService;
+	}
+
+	public void setWrappedService(AssetLocalService assetLocalService) {
 		_assetLocalService = assetLocalService;
 	}
 

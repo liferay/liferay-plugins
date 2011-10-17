@@ -14,6 +14,8 @@
 
 package com.liferay.socialcoding.service;
 
+import com.liferay.portal.service.ServiceWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link JIRAActionLocalService}.
@@ -23,7 +25,8 @@ package com.liferay.socialcoding.service;
  * @see       JIRAActionLocalService
  * @generated
  */
-public class JIRAActionLocalServiceWrapper implements JIRAActionLocalService {
+public class JIRAActionLocalServiceWrapper implements JIRAActionLocalService,
+	ServiceWrapper<JIRAActionLocalService> {
 	public JIRAActionLocalServiceWrapper(
 		JIRAActionLocalService jiraActionLocalService) {
 		_jiraActionLocalService = jiraActionLocalService;
@@ -245,12 +248,26 @@ public class JIRAActionLocalServiceWrapper implements JIRAActionLocalService {
 		_jiraActionLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedService}
+	 */
 	public JIRAActionLocalService getWrappedJIRAActionLocalService() {
 		return _jiraActionLocalService;
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #setWrappedService}
+	 */
 	public void setWrappedJIRAActionLocalService(
 		JIRAActionLocalService jiraActionLocalService) {
+		_jiraActionLocalService = jiraActionLocalService;
+	}
+
+	public JIRAActionLocalService getWrappedService() {
+		return _jiraActionLocalService;
+	}
+
+	public void setWrappedService(JIRAActionLocalService jiraActionLocalService) {
 		_jiraActionLocalService = jiraActionLocalService;
 	}
 

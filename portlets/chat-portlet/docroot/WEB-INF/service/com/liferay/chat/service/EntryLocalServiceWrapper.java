@@ -14,6 +14,8 @@
 
 package com.liferay.chat.service;
 
+import com.liferay.portal.service.ServiceWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link EntryLocalService}.
@@ -23,7 +25,8 @@ package com.liferay.chat.service;
  * @see       EntryLocalService
  * @generated
  */
-public class EntryLocalServiceWrapper implements EntryLocalService {
+public class EntryLocalServiceWrapper implements EntryLocalService,
+	ServiceWrapper<EntryLocalService> {
 	public EntryLocalServiceWrapper(EntryLocalService entryLocalService) {
 		_entryLocalService = entryLocalService;
 	}
@@ -270,11 +273,25 @@ public class EntryLocalServiceWrapper implements EntryLocalService {
 		return _entryLocalService.getOldEntries(createDate, start, end);
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedService}
+	 */
 	public EntryLocalService getWrappedEntryLocalService() {
 		return _entryLocalService;
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #setWrappedService}
+	 */
 	public void setWrappedEntryLocalService(EntryLocalService entryLocalService) {
+		_entryLocalService = entryLocalService;
+	}
+
+	public EntryLocalService getWrappedService() {
+		return _entryLocalService;
+	}
+
+	public void setWrappedService(EntryLocalService entryLocalService) {
 		_entryLocalService = entryLocalService;
 	}
 

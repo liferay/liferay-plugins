@@ -14,6 +14,8 @@
 
 package com.liferay.socialnetworking.service;
 
+import com.liferay.portal.service.ServiceWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link WallEntryLocalService}.
@@ -23,7 +25,8 @@ package com.liferay.socialnetworking.service;
  * @see       WallEntryLocalService
  * @generated
  */
-public class WallEntryLocalServiceWrapper implements WallEntryLocalService {
+public class WallEntryLocalServiceWrapper implements WallEntryLocalService,
+	ServiceWrapper<WallEntryLocalService> {
 	public WallEntryLocalServiceWrapper(
 		WallEntryLocalService wallEntryLocalService) {
 		_wallEntryLocalService = wallEntryLocalService;
@@ -294,12 +297,26 @@ public class WallEntryLocalServiceWrapper implements WallEntryLocalService {
 		return _wallEntryLocalService.updateWallEntry(wallEntryId, comments);
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedService}
+	 */
 	public WallEntryLocalService getWrappedWallEntryLocalService() {
 		return _wallEntryLocalService;
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #setWrappedService}
+	 */
 	public void setWrappedWallEntryLocalService(
 		WallEntryLocalService wallEntryLocalService) {
+		_wallEntryLocalService = wallEntryLocalService;
+	}
+
+	public WallEntryLocalService getWrappedService() {
+		return _wallEntryLocalService;
+	}
+
+	public void setWrappedService(WallEntryLocalService wallEntryLocalService) {
 		_wallEntryLocalService = wallEntryLocalService;
 	}
 

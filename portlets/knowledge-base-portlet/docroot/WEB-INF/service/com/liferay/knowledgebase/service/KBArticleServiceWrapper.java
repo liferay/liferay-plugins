@@ -14,6 +14,8 @@
 
 package com.liferay.knowledgebase.service;
 
+import com.liferay.portal.service.ServiceWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link KBArticleService}.
@@ -23,7 +25,8 @@ package com.liferay.knowledgebase.service;
  * @see       KBArticleService
  * @generated
  */
-public class KBArticleServiceWrapper implements KBArticleService {
+public class KBArticleServiceWrapper implements KBArticleService,
+	ServiceWrapper<KBArticleService> {
 	public KBArticleServiceWrapper(KBArticleService kbArticleService) {
 		_kbArticleService = kbArticleService;
 	}
@@ -253,11 +256,25 @@ public class KBArticleServiceWrapper implements KBArticleService {
 			resourcePrimKeyToPriorityMap);
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedService}
+	 */
 	public KBArticleService getWrappedKBArticleService() {
 		return _kbArticleService;
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #setWrappedService}
+	 */
 	public void setWrappedKBArticleService(KBArticleService kbArticleService) {
+		_kbArticleService = kbArticleService;
+	}
+
+	public KBArticleService getWrappedService() {
+		return _kbArticleService;
+	}
+
+	public void setWrappedService(KBArticleService kbArticleService) {
 		_kbArticleService = kbArticleService;
 	}
 

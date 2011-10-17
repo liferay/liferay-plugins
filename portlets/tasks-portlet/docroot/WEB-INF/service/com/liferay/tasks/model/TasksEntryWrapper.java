@@ -14,6 +14,8 @@
 
 package com.liferay.tasks.model;
 
+import com.liferay.portal.model.ModelWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link TasksEntry}.
@@ -23,7 +25,7 @@ package com.liferay.tasks.model;
  * @see       TasksEntry
  * @generated
  */
-public class TasksEntryWrapper implements TasksEntry {
+public class TasksEntryWrapper implements TasksEntry, ModelWrapper<TasksEntry> {
 	public TasksEntryWrapper(TasksEntry tasksEntry) {
 		_tasksEntry = tasksEntry;
 	}
@@ -455,7 +457,14 @@ public class TasksEntryWrapper implements TasksEntry {
 		return _tasksEntry.getStatusLabel();
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedModel}
+	 */
 	public TasksEntry getWrappedTasksEntry() {
+		return _tasksEntry;
+	}
+
+	public TasksEntry getWrappedModel() {
 		return _tasksEntry;
 	}
 

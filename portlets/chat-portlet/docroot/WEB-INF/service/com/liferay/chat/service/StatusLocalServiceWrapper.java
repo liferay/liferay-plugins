@@ -14,6 +14,8 @@
 
 package com.liferay.chat.service;
 
+import com.liferay.portal.service.ServiceWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link StatusLocalService}.
@@ -23,7 +25,8 @@ package com.liferay.chat.service;
  * @see       StatusLocalService
  * @generated
  */
-public class StatusLocalServiceWrapper implements StatusLocalService {
+public class StatusLocalServiceWrapper implements StatusLocalService,
+	ServiceWrapper<StatusLocalService> {
 	public StatusLocalServiceWrapper(StatusLocalService statusLocalService) {
 		_statusLocalService = statusLocalService;
 	}
@@ -281,12 +284,26 @@ public class StatusLocalServiceWrapper implements StatusLocalService {
 			awake, activePanelId, message, playSound);
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedService}
+	 */
 	public StatusLocalService getWrappedStatusLocalService() {
 		return _statusLocalService;
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #setWrappedService}
+	 */
 	public void setWrappedStatusLocalService(
 		StatusLocalService statusLocalService) {
+		_statusLocalService = statusLocalService;
+	}
+
+	public StatusLocalService getWrappedService() {
+		return _statusLocalService;
+	}
+
+	public void setWrappedService(StatusLocalService statusLocalService) {
 		_statusLocalService = statusLocalService;
 	}
 

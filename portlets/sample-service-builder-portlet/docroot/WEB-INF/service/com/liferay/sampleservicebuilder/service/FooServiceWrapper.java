@@ -14,6 +14,8 @@
 
 package com.liferay.sampleservicebuilder.service;
 
+import com.liferay.portal.service.ServiceWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link FooService}.
@@ -23,16 +25,31 @@ package com.liferay.sampleservicebuilder.service;
  * @see       FooService
  * @generated
  */
-public class FooServiceWrapper implements FooService {
+public class FooServiceWrapper implements FooService,
+	ServiceWrapper<FooService> {
 	public FooServiceWrapper(FooService fooService) {
 		_fooService = fooService;
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedService}
+	 */
 	public FooService getWrappedFooService() {
 		return _fooService;
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #setWrappedService}
+	 */
 	public void setWrappedFooService(FooService fooService) {
+		_fooService = fooService;
+	}
+
+	public FooService getWrappedService() {
+		return _fooService;
+	}
+
+	public void setWrappedService(FooService fooService) {
 		_fooService = fooService;
 	}
 

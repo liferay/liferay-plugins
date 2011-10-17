@@ -14,6 +14,8 @@
 
 package com.liferay.mail.service;
 
+import com.liferay.portal.service.ServiceWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link AttachmentLocalService}.
@@ -23,7 +25,8 @@ package com.liferay.mail.service;
  * @see       AttachmentLocalService
  * @generated
  */
-public class AttachmentLocalServiceWrapper implements AttachmentLocalService {
+public class AttachmentLocalServiceWrapper implements AttachmentLocalService,
+	ServiceWrapper<AttachmentLocalService> {
 	public AttachmentLocalServiceWrapper(
 		AttachmentLocalService attachmentLocalService) {
 		_attachmentLocalService = attachmentLocalService;
@@ -275,12 +278,26 @@ public class AttachmentLocalServiceWrapper implements AttachmentLocalService {
 		return _attachmentLocalService.getInputStream(attachmentId);
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedService}
+	 */
 	public AttachmentLocalService getWrappedAttachmentLocalService() {
 		return _attachmentLocalService;
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #setWrappedService}
+	 */
 	public void setWrappedAttachmentLocalService(
 		AttachmentLocalService attachmentLocalService) {
+		_attachmentLocalService = attachmentLocalService;
+	}
+
+	public AttachmentLocalService getWrappedService() {
+		return _attachmentLocalService;
+	}
+
+	public void setWrappedService(AttachmentLocalService attachmentLocalService) {
 		_attachmentLocalService = attachmentLocalService;
 	}
 

@@ -14,6 +14,8 @@
 
 package com.liferay.ams.model;
 
+import com.liferay.portal.model.ModelWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link Type}.
@@ -23,7 +25,7 @@ package com.liferay.ams.model;
  * @see       Type
  * @generated
  */
-public class TypeWrapper implements Type {
+public class TypeWrapper implements Type, ModelWrapper<Type> {
 	public TypeWrapper(Type type) {
 		_type = type;
 	}
@@ -181,7 +183,14 @@ public class TypeWrapper implements Type {
 		_type.persist();
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedModel}
+	 */
 	public Type getWrappedType() {
+		return _type;
+	}
+
+	public Type getWrappedModel() {
 		return _type;
 	}
 

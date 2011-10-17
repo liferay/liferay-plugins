@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.service;
 
+import com.liferay.portal.service.ServiceWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link KaleoLogLocalService}.
@@ -23,7 +25,8 @@ package com.liferay.portal.workflow.kaleo.service;
  * @see       KaleoLogLocalService
  * @generated
  */
-public class KaleoLogLocalServiceWrapper implements KaleoLogLocalService {
+public class KaleoLogLocalServiceWrapper implements KaleoLogLocalService,
+	ServiceWrapper<KaleoLogLocalService> {
 	public KaleoLogLocalServiceWrapper(
 		KaleoLogLocalService kaleoLogLocalService) {
 		_kaleoLogLocalService = kaleoLogLocalService;
@@ -377,12 +380,26 @@ public class KaleoLogLocalServiceWrapper implements KaleoLogLocalService {
 			logTypes);
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedService}
+	 */
 	public KaleoLogLocalService getWrappedKaleoLogLocalService() {
 		return _kaleoLogLocalService;
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #setWrappedService}
+	 */
 	public void setWrappedKaleoLogLocalService(
 		KaleoLogLocalService kaleoLogLocalService) {
+		_kaleoLogLocalService = kaleoLogLocalService;
+	}
+
+	public KaleoLogLocalService getWrappedService() {
+		return _kaleoLogLocalService;
+	}
+
+	public void setWrappedService(KaleoLogLocalService kaleoLogLocalService) {
 		_kaleoLogLocalService = kaleoLogLocalService;
 	}
 

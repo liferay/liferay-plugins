@@ -14,6 +14,8 @@
 
 package com.liferay.ams.model;
 
+import com.liferay.portal.model.ModelWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link Checkout}.
@@ -23,7 +25,7 @@ package com.liferay.ams.model;
  * @see       Checkout
  * @generated
  */
-public class CheckoutWrapper implements Checkout {
+public class CheckoutWrapper implements Checkout, ModelWrapper<Checkout> {
 	public CheckoutWrapper(Checkout checkout) {
 		_checkout = checkout;
 	}
@@ -327,7 +329,14 @@ public class CheckoutWrapper implements Checkout {
 		_checkout.persist();
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedModel}
+	 */
 	public Checkout getWrappedCheckout() {
+		return _checkout;
+	}
+
+	public Checkout getWrappedModel() {
 		return _checkout;
 	}
 

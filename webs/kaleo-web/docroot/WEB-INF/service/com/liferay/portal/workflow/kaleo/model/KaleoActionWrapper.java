@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.model;
 
+import com.liferay.portal.model.ModelWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link KaleoAction}.
@@ -23,7 +25,8 @@ package com.liferay.portal.workflow.kaleo.model;
  * @see       KaleoAction
  * @generated
  */
-public class KaleoActionWrapper implements KaleoAction {
+public class KaleoActionWrapper implements KaleoAction,
+	ModelWrapper<KaleoAction> {
 	public KaleoActionWrapper(KaleoAction kaleoAction) {
 		_kaleoAction = kaleoAction;
 	}
@@ -454,7 +457,14 @@ public class KaleoActionWrapper implements KaleoAction {
 		_kaleoAction.persist();
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedModel}
+	 */
 	public KaleoAction getWrappedKaleoAction() {
+		return _kaleoAction;
+	}
+
+	public KaleoAction getWrappedModel() {
 		return _kaleoAction;
 	}
 

@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.service;
 
+import com.liferay.portal.service.ServiceWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link KaleoTransitionLocalService}.
@@ -24,7 +26,8 @@ package com.liferay.portal.workflow.kaleo.service;
  * @generated
  */
 public class KaleoTransitionLocalServiceWrapper
-	implements KaleoTransitionLocalService {
+	implements KaleoTransitionLocalService,
+		ServiceWrapper<KaleoTransitionLocalService> {
 	public KaleoTransitionLocalServiceWrapper(
 		KaleoTransitionLocalService kaleoTransitionLocalService) {
 		_kaleoTransitionLocalService = kaleoTransitionLocalService;
@@ -297,11 +300,26 @@ public class KaleoTransitionLocalServiceWrapper
 		return _kaleoTransitionLocalService.getKaleoTransitionsCount(kaleoNodeId);
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedService}
+	 */
 	public KaleoTransitionLocalService getWrappedKaleoTransitionLocalService() {
 		return _kaleoTransitionLocalService;
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #setWrappedService}
+	 */
 	public void setWrappedKaleoTransitionLocalService(
+		KaleoTransitionLocalService kaleoTransitionLocalService) {
+		_kaleoTransitionLocalService = kaleoTransitionLocalService;
+	}
+
+	public KaleoTransitionLocalService getWrappedService() {
+		return _kaleoTransitionLocalService;
+	}
+
+	public void setWrappedService(
 		KaleoTransitionLocalService kaleoTransitionLocalService) {
 		_kaleoTransitionLocalService = kaleoTransitionLocalService;
 	}

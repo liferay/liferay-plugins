@@ -14,6 +14,8 @@
 
 package com.liferay.tasks.service;
 
+import com.liferay.portal.service.ServiceWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link TasksEntryLocalService}.
@@ -23,7 +25,8 @@ package com.liferay.tasks.service;
  * @see       TasksEntryLocalService
  * @generated
  */
-public class TasksEntryLocalServiceWrapper implements TasksEntryLocalService {
+public class TasksEntryLocalServiceWrapper implements TasksEntryLocalService,
+	ServiceWrapper<TasksEntryLocalService> {
 	public TasksEntryLocalServiceWrapper(
 		TasksEntryLocalService tasksEntryLocalService) {
 		_tasksEntryLocalService = tasksEntryLocalService;
@@ -392,12 +395,26 @@ public class TasksEntryLocalServiceWrapper implements TasksEntryLocalService {
 			resolverUserId, status, serviceContext);
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedService}
+	 */
 	public TasksEntryLocalService getWrappedTasksEntryLocalService() {
 		return _tasksEntryLocalService;
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #setWrappedService}
+	 */
 	public void setWrappedTasksEntryLocalService(
 		TasksEntryLocalService tasksEntryLocalService) {
+		_tasksEntryLocalService = tasksEntryLocalService;
+	}
+
+	public TasksEntryLocalService getWrappedService() {
+		return _tasksEntryLocalService;
+	}
+
+	public void setWrappedService(TasksEntryLocalService tasksEntryLocalService) {
 		_tasksEntryLocalService = tasksEntryLocalService;
 	}
 

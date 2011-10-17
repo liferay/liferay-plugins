@@ -14,6 +14,8 @@
 
 package com.liferay.socialcoding.service;
 
+import com.liferay.portal.service.ServiceWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link SVNRepositoryLocalService}.
@@ -24,7 +26,8 @@ package com.liferay.socialcoding.service;
  * @generated
  */
 public class SVNRepositoryLocalServiceWrapper
-	implements SVNRepositoryLocalService {
+	implements SVNRepositoryLocalService,
+		ServiceWrapper<SVNRepositoryLocalService> {
 	public SVNRepositoryLocalServiceWrapper(
 		SVNRepositoryLocalService svnRepositoryLocalService) {
 		_svnRepositoryLocalService = svnRepositoryLocalService;
@@ -261,11 +264,26 @@ public class SVNRepositoryLocalServiceWrapper
 		_svnRepositoryLocalService.updateSVNRepository(url);
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedService}
+	 */
 	public SVNRepositoryLocalService getWrappedSVNRepositoryLocalService() {
 		return _svnRepositoryLocalService;
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #setWrappedService}
+	 */
 	public void setWrappedSVNRepositoryLocalService(
+		SVNRepositoryLocalService svnRepositoryLocalService) {
+		_svnRepositoryLocalService = svnRepositoryLocalService;
+	}
+
+	public SVNRepositoryLocalService getWrappedService() {
+		return _svnRepositoryLocalService;
+	}
+
+	public void setWrappedService(
 		SVNRepositoryLocalService svnRepositoryLocalService) {
 		_svnRepositoryLocalService = svnRepositoryLocalService;
 	}

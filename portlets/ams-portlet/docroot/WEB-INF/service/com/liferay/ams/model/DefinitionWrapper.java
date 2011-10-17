@@ -14,6 +14,8 @@
 
 package com.liferay.ams.model;
 
+import com.liferay.portal.model.ModelWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link Definition}.
@@ -23,7 +25,7 @@ package com.liferay.ams.model;
  * @see       Definition
  * @generated
  */
-public class DefinitionWrapper implements Definition {
+public class DefinitionWrapper implements Definition, ModelWrapper<Definition> {
 	public DefinitionWrapper(Definition definition) {
 		_definition = definition;
 	}
@@ -381,7 +383,14 @@ public class DefinitionWrapper implements Definition {
 		_definition.persist();
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedModel}
+	 */
 	public Definition getWrappedDefinition() {
+		return _definition;
+	}
+
+	public Definition getWrappedModel() {
 		return _definition;
 	}
 

@@ -14,6 +14,8 @@
 
 package com.liferay.socialnetworking.model;
 
+import com.liferay.portal.model.ModelWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link WallEntry}.
@@ -23,7 +25,7 @@ package com.liferay.socialnetworking.model;
  * @see       WallEntry
  * @generated
  */
-public class WallEntryWrapper implements WallEntry {
+public class WallEntryWrapper implements WallEntry, ModelWrapper<WallEntry> {
 	public WallEntryWrapper(WallEntry wallEntry) {
 		_wallEntry = wallEntry;
 	}
@@ -291,7 +293,14 @@ public class WallEntryWrapper implements WallEntry {
 		_wallEntry.persist();
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedModel}
+	 */
 	public WallEntry getWrappedWallEntry() {
+		return _wallEntry;
+	}
+
+	public WallEntry getWrappedModel() {
 		return _wallEntry;
 	}
 

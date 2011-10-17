@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.model;
 
+import com.liferay.portal.model.ModelWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link KaleoTaskInstanceToken}.
@@ -23,7 +25,8 @@ package com.liferay.portal.workflow.kaleo.model;
  * @see       KaleoTaskInstanceToken
  * @generated
  */
-public class KaleoTaskInstanceTokenWrapper implements KaleoTaskInstanceToken {
+public class KaleoTaskInstanceTokenWrapper implements KaleoTaskInstanceToken,
+	ModelWrapper<KaleoTaskInstanceToken> {
 	public KaleoTaskInstanceTokenWrapper(
 		KaleoTaskInstanceToken kaleoTaskInstanceToken) {
 		_kaleoTaskInstanceToken = kaleoTaskInstanceToken;
@@ -537,7 +540,14 @@ public class KaleoTaskInstanceTokenWrapper implements KaleoTaskInstanceToken {
 		return _kaleoTaskInstanceToken.getKaleoTaskAssignmentInstances();
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedModel}
+	 */
 	public KaleoTaskInstanceToken getWrappedKaleoTaskInstanceToken() {
+		return _kaleoTaskInstanceToken;
+	}
+
+	public KaleoTaskInstanceToken getWrappedModel() {
 		return _kaleoTaskInstanceToken;
 	}
 

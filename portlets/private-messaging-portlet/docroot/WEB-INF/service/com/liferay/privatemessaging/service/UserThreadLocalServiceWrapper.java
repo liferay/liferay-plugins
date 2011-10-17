@@ -14,6 +14,8 @@
 
 package com.liferay.privatemessaging.service;
 
+import com.liferay.portal.service.ServiceWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link UserThreadLocalService}.
@@ -23,7 +25,8 @@ package com.liferay.privatemessaging.service;
  * @see       UserThreadLocalService
  * @generated
  */
-public class UserThreadLocalServiceWrapper implements UserThreadLocalService {
+public class UserThreadLocalServiceWrapper implements UserThreadLocalService,
+	ServiceWrapper<UserThreadLocalService> {
 	public UserThreadLocalServiceWrapper(
 		UserThreadLocalService userThreadLocalService) {
 		_userThreadLocalService = userThreadLocalService;
@@ -341,12 +344,26 @@ public class UserThreadLocalServiceWrapper implements UserThreadLocalService {
 		_userThreadLocalService.markUserThreadAsUnread(userId, mbThreadId);
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedService}
+	 */
 	public UserThreadLocalService getWrappedUserThreadLocalService() {
 		return _userThreadLocalService;
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #setWrappedService}
+	 */
 	public void setWrappedUserThreadLocalService(
 		UserThreadLocalService userThreadLocalService) {
+		_userThreadLocalService = userThreadLocalService;
+	}
+
+	public UserThreadLocalService getWrappedService() {
+		return _userThreadLocalService;
+	}
+
+	public void setWrappedService(UserThreadLocalService userThreadLocalService) {
 		_userThreadLocalService = userThreadLocalService;
 	}
 

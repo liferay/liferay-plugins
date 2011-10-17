@@ -14,6 +14,8 @@
 
 package com.liferay.opensocial.model;
 
+import com.liferay.portal.model.ModelWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link OAuthToken}.
@@ -23,7 +25,7 @@ package com.liferay.opensocial.model;
  * @see       OAuthToken
  * @generated
  */
-public class OAuthTokenWrapper implements OAuthToken {
+public class OAuthTokenWrapper implements OAuthToken, ModelWrapper<OAuthToken> {
 	public OAuthTokenWrapper(OAuthToken oAuthToken) {
 		_oAuthToken = oAuthToken;
 	}
@@ -399,7 +401,14 @@ public class OAuthTokenWrapper implements OAuthToken {
 		_oAuthToken.persist();
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedModel}
+	 */
 	public OAuthToken getWrappedOAuthToken() {
+		return _oAuthToken;
+	}
+
+	public OAuthToken getWrappedModel() {
 		return _oAuthToken;
 	}
 

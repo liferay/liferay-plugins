@@ -14,6 +14,8 @@
 
 package com.liferay.knowledgebase.service;
 
+import com.liferay.portal.service.ServiceWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link KBTemplateService}.
@@ -23,7 +25,8 @@ package com.liferay.knowledgebase.service;
  * @see       KBTemplateService
  * @generated
  */
-public class KBTemplateServiceWrapper implements KBTemplateService {
+public class KBTemplateServiceWrapper implements KBTemplateService,
+	ServiceWrapper<KBTemplateService> {
 	public KBTemplateServiceWrapper(KBTemplateService kbTemplateService) {
 		_kbTemplateService = kbTemplateService;
 	}
@@ -91,11 +94,25 @@ public class KBTemplateServiceWrapper implements KBTemplateService {
 			content, serviceContext);
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedService}
+	 */
 	public KBTemplateService getWrappedKBTemplateService() {
 		return _kbTemplateService;
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #setWrappedService}
+	 */
 	public void setWrappedKBTemplateService(KBTemplateService kbTemplateService) {
+		_kbTemplateService = kbTemplateService;
+	}
+
+	public KBTemplateService getWrappedService() {
+		return _kbTemplateService;
+	}
+
+	public void setWrappedService(KBTemplateService kbTemplateService) {
 		_kbTemplateService = kbTemplateService;
 	}
 

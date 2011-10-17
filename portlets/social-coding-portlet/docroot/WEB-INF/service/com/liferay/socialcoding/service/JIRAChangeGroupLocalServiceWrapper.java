@@ -14,6 +14,8 @@
 
 package com.liferay.socialcoding.service;
 
+import com.liferay.portal.service.ServiceWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link JIRAChangeGroupLocalService}.
@@ -24,7 +26,8 @@ package com.liferay.socialcoding.service;
  * @generated
  */
 public class JIRAChangeGroupLocalServiceWrapper
-	implements JIRAChangeGroupLocalService {
+	implements JIRAChangeGroupLocalService,
+		ServiceWrapper<JIRAChangeGroupLocalService> {
 	public JIRAChangeGroupLocalServiceWrapper(
 		JIRAChangeGroupLocalService jiraChangeGroupLocalService) {
 		_jiraChangeGroupLocalService = jiraChangeGroupLocalService;
@@ -249,11 +252,26 @@ public class JIRAChangeGroupLocalServiceWrapper
 		_jiraChangeGroupLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedService}
+	 */
 	public JIRAChangeGroupLocalService getWrappedJIRAChangeGroupLocalService() {
 		return _jiraChangeGroupLocalService;
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #setWrappedService}
+	 */
 	public void setWrappedJIRAChangeGroupLocalService(
+		JIRAChangeGroupLocalService jiraChangeGroupLocalService) {
+		_jiraChangeGroupLocalService = jiraChangeGroupLocalService;
+	}
+
+	public JIRAChangeGroupLocalService getWrappedService() {
+		return _jiraChangeGroupLocalService;
+	}
+
+	public void setWrappedService(
 		JIRAChangeGroupLocalService jiraChangeGroupLocalService) {
 		_jiraChangeGroupLocalService = jiraChangeGroupLocalService;
 	}

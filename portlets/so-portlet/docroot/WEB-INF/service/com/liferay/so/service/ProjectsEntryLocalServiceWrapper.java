@@ -14,6 +14,8 @@
 
 package com.liferay.so.service;
 
+import com.liferay.portal.service.ServiceWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link ProjectsEntryLocalService}.
@@ -24,7 +26,8 @@ package com.liferay.so.service;
  * @generated
  */
 public class ProjectsEntryLocalServiceWrapper
-	implements ProjectsEntryLocalService {
+	implements ProjectsEntryLocalService,
+		ServiceWrapper<ProjectsEntryLocalService> {
 	public ProjectsEntryLocalServiceWrapper(
 		ProjectsEntryLocalService projectsEntryLocalService) {
 		_projectsEntryLocalService = projectsEntryLocalService;
@@ -281,11 +284,26 @@ public class ProjectsEntryLocalServiceWrapper
 			endDateMonth, endDateDay, endDateYear, current, data);
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedService}
+	 */
 	public ProjectsEntryLocalService getWrappedProjectsEntryLocalService() {
 		return _projectsEntryLocalService;
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #setWrappedService}
+	 */
 	public void setWrappedProjectsEntryLocalService(
+		ProjectsEntryLocalService projectsEntryLocalService) {
+		_projectsEntryLocalService = projectsEntryLocalService;
+	}
+
+	public ProjectsEntryLocalService getWrappedService() {
+		return _projectsEntryLocalService;
+	}
+
+	public void setWrappedService(
 		ProjectsEntryLocalService projectsEntryLocalService) {
 		_projectsEntryLocalService = projectsEntryLocalService;
 	}

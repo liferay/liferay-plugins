@@ -14,6 +14,8 @@
 
 package com.liferay.socialcoding.model;
 
+import com.liferay.portal.model.ModelWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link SVNRepository}.
@@ -23,7 +25,8 @@ package com.liferay.socialcoding.model;
  * @see       SVNRepository
  * @generated
  */
-public class SVNRepositoryWrapper implements SVNRepository {
+public class SVNRepositoryWrapper implements SVNRepository,
+	ModelWrapper<SVNRepository> {
 	public SVNRepositoryWrapper(SVNRepository svnRepository) {
 		_svnRepository = svnRepository;
 	}
@@ -190,7 +193,14 @@ public class SVNRepositoryWrapper implements SVNRepository {
 		return _svnRepository.getShortURL();
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedModel}
+	 */
 	public SVNRepository getWrappedSVNRepository() {
+		return _svnRepository;
+	}
+
+	public SVNRepository getWrappedModel() {
 		return _svnRepository;
 	}
 

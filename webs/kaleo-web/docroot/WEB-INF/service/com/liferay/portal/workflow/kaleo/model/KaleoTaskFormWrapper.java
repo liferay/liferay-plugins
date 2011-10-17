@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.model;
 
+import com.liferay.portal.model.ModelWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link KaleoTaskForm}.
@@ -23,7 +25,8 @@ package com.liferay.portal.workflow.kaleo.model;
  * @see       KaleoTaskForm
  * @generated
  */
-public class KaleoTaskFormWrapper implements KaleoTaskForm {
+public class KaleoTaskFormWrapper implements KaleoTaskForm,
+	ModelWrapper<KaleoTaskForm> {
 	public KaleoTaskFormWrapper(KaleoTaskForm kaleoTaskForm) {
 		_kaleoTaskForm = kaleoTaskForm;
 	}
@@ -346,7 +349,14 @@ public class KaleoTaskFormWrapper implements KaleoTaskForm {
 		_kaleoTaskForm.persist();
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedModel}
+	 */
 	public KaleoTaskForm getWrappedKaleoTaskForm() {
+		return _kaleoTaskForm;
+	}
+
+	public KaleoTaskForm getWrappedModel() {
 		return _kaleoTaskForm;
 	}
 
