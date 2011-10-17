@@ -28,8 +28,6 @@ public class UpgradeWSRPConsumer extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		runSQL("alter table WSRP_WSRPConsumer add uuid_ VARCHAR(75) null");
-
 		List<WSRPConsumer> wsrpConsumers =
 			WSRPConsumerLocalServiceUtil.getWSRPConsumers(
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS);

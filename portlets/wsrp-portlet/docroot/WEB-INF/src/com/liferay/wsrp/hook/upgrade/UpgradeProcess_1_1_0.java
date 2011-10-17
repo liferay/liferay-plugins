@@ -15,7 +15,7 @@
 package com.liferay.wsrp.hook.upgrade;
 
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
-import com.liferay.wsrp.hook.upgrade.v1_1_0.UpgradeWSRPConsumer;
+import com.liferay.wsrp.hook.upgrade.v1_1_0.UpgradeUuid;
 
 /**
  * @author Michael Young
@@ -29,7 +29,7 @@ public class UpgradeProcess_1_1_0 extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		upgrade(UpgradeWSRPConsumer.class);
+		upgrade(UpgradeUuid.class);
 	}
 
 }
