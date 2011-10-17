@@ -14,6 +14,8 @@
 
 package com.liferay.wsrp.model;
 
+import com.liferay.portal.model.ModelWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link WSRPProducer}.
@@ -23,7 +25,8 @@ package com.liferay.wsrp.model;
  * @see       WSRPProducer
  * @generated
  */
-public class WSRPProducerWrapper implements WSRPProducer {
+public class WSRPProducerWrapper implements WSRPProducer,
+	ModelWrapper<WSRPProducer> {
 	public WSRPProducerWrapper(WSRPProducer wsrpProducer) {
 		_wsrpProducer = wsrpProducer;
 	}
@@ -293,7 +296,14 @@ public class WSRPProducerWrapper implements WSRPProducer {
 		return _wsrpProducer.getURL(portalURL);
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedModel}
+	 */
 	public WSRPProducer getWrappedWSRPProducer() {
+		return _wsrpProducer;
+	}
+
+	public WSRPProducer getWrappedModel() {
 		return _wsrpProducer;
 	}
 

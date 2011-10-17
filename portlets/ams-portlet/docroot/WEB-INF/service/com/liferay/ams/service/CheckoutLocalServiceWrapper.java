@@ -14,6 +14,8 @@
 
 package com.liferay.ams.service;
 
+import com.liferay.portal.service.ServiceWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link CheckoutLocalService}.
@@ -23,7 +25,8 @@ package com.liferay.ams.service;
  * @see       CheckoutLocalService
  * @generated
  */
-public class CheckoutLocalServiceWrapper implements CheckoutLocalService {
+public class CheckoutLocalServiceWrapper implements CheckoutLocalService,
+	ServiceWrapper<CheckoutLocalService> {
 	public CheckoutLocalServiceWrapper(
 		CheckoutLocalService checkoutLocalService) {
 		_checkoutLocalService = checkoutLocalService;
@@ -242,12 +245,26 @@ public class CheckoutLocalServiceWrapper implements CheckoutLocalService {
 		_checkoutLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedService}
+	 */
 	public CheckoutLocalService getWrappedCheckoutLocalService() {
 		return _checkoutLocalService;
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #setWrappedService}
+	 */
 	public void setWrappedCheckoutLocalService(
 		CheckoutLocalService checkoutLocalService) {
+		_checkoutLocalService = checkoutLocalService;
+	}
+
+	public CheckoutLocalService getWrappedService() {
+		return _checkoutLocalService;
+	}
+
+	public void setWrappedService(CheckoutLocalService checkoutLocalService) {
 		_checkoutLocalService = checkoutLocalService;
 	}
 

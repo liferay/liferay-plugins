@@ -14,6 +14,8 @@
 
 package com.liferay.calendar.service;
 
+import com.liferay.portal.service.ServiceWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link CalendarResourceLocalService}.
@@ -24,7 +26,8 @@ package com.liferay.calendar.service;
  * @generated
  */
 public class CalendarResourceLocalServiceWrapper
-	implements CalendarResourceLocalService {
+	implements CalendarResourceLocalService,
+		ServiceWrapper<CalendarResourceLocalService> {
 	public CalendarResourceLocalServiceWrapper(
 		CalendarResourceLocalService calendarResourceLocalService) {
 		_calendarResourceLocalService = calendarResourceLocalService;
@@ -387,11 +390,26 @@ public class CalendarResourceLocalServiceWrapper
 			communityPermissions, guestPermissions);
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedService}
+	 */
 	public CalendarResourceLocalService getWrappedCalendarResourceLocalService() {
 		return _calendarResourceLocalService;
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #setWrappedService}
+	 */
 	public void setWrappedCalendarResourceLocalService(
+		CalendarResourceLocalService calendarResourceLocalService) {
+		_calendarResourceLocalService = calendarResourceLocalService;
+	}
+
+	public CalendarResourceLocalService getWrappedService() {
+		return _calendarResourceLocalService;
+	}
+
+	public void setWrappedService(
 		CalendarResourceLocalService calendarResourceLocalService) {
 		_calendarResourceLocalService = calendarResourceLocalService;
 	}

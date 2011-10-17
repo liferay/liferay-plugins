@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.model;
 
+import com.liferay.portal.model.ModelWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link KaleoNotificationRecipient}.
@@ -24,7 +26,8 @@ package com.liferay.portal.workflow.kaleo.model;
  * @generated
  */
 public class KaleoNotificationRecipientWrapper
-	implements KaleoNotificationRecipient {
+	implements KaleoNotificationRecipient,
+		ModelWrapper<KaleoNotificationRecipient> {
 	public KaleoNotificationRecipientWrapper(
 		KaleoNotificationRecipient kaleoNotificationRecipient) {
 		_kaleoNotificationRecipient = kaleoNotificationRecipient;
@@ -385,7 +388,14 @@ public class KaleoNotificationRecipientWrapper
 		_kaleoNotificationRecipient.persist();
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedModel}
+	 */
 	public KaleoNotificationRecipient getWrappedKaleoNotificationRecipient() {
+		return _kaleoNotificationRecipient;
+	}
+
+	public KaleoNotificationRecipient getWrappedModel() {
 		return _kaleoNotificationRecipient;
 	}
 

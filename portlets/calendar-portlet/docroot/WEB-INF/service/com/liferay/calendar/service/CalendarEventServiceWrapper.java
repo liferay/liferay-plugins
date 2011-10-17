@@ -14,6 +14,8 @@
 
 package com.liferay.calendar.service;
 
+import com.liferay.portal.service.ServiceWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link CalendarEventService}.
@@ -23,7 +25,8 @@ package com.liferay.calendar.service;
  * @see       CalendarEventService
  * @generated
  */
-public class CalendarEventServiceWrapper implements CalendarEventService {
+public class CalendarEventServiceWrapper implements CalendarEventService,
+	ServiceWrapper<CalendarEventService> {
 	public CalendarEventServiceWrapper(
 		CalendarEventService calendarEventService) {
 		_calendarEventService = calendarEventService;
@@ -83,12 +86,26 @@ public class CalendarEventServiceWrapper implements CalendarEventService {
 			secondReminder, serviceContext);
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedService}
+	 */
 	public CalendarEventService getWrappedCalendarEventService() {
 		return _calendarEventService;
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #setWrappedService}
+	 */
 	public void setWrappedCalendarEventService(
 		CalendarEventService calendarEventService) {
+		_calendarEventService = calendarEventService;
+	}
+
+	public CalendarEventService getWrappedService() {
+		return _calendarEventService;
+	}
+
+	public void setWrappedService(CalendarEventService calendarEventService) {
 		_calendarEventService = calendarEventService;
 	}
 

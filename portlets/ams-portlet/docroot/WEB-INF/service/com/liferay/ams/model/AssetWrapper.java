@@ -14,6 +14,8 @@
 
 package com.liferay.ams.model;
 
+import com.liferay.portal.model.ModelWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link Asset}.
@@ -23,7 +25,7 @@ package com.liferay.ams.model;
  * @see       Asset
  * @generated
  */
-public class AssetWrapper implements Asset {
+public class AssetWrapper implements Asset, ModelWrapper<Asset> {
 	public AssetWrapper(Asset asset) {
 		_asset = asset;
 	}
@@ -336,7 +338,14 @@ public class AssetWrapper implements Asset {
 		_asset.persist();
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedModel}
+	 */
 	public Asset getWrappedAsset() {
+		return _asset;
+	}
+
+	public Asset getWrappedModel() {
 		return _asset;
 	}
 

@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.model;
 
+import com.liferay.portal.model.ModelWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link KaleoTimerInstanceToken}.
@@ -23,7 +25,8 @@ package com.liferay.portal.workflow.kaleo.model;
  * @see       KaleoTimerInstanceToken
  * @generated
  */
-public class KaleoTimerInstanceTokenWrapper implements KaleoTimerInstanceToken {
+public class KaleoTimerInstanceTokenWrapper implements KaleoTimerInstanceToken,
+	ModelWrapper<KaleoTimerInstanceToken> {
 	public KaleoTimerInstanceTokenWrapper(
 		KaleoTimerInstanceToken kaleoTimerInstanceToken) {
 		_kaleoTimerInstanceToken = kaleoTimerInstanceToken;
@@ -564,7 +567,14 @@ public class KaleoTimerInstanceTokenWrapper implements KaleoTimerInstanceToken {
 		return _kaleoTimerInstanceToken.getKaleoTimer();
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedModel}
+	 */
 	public KaleoTimerInstanceToken getWrappedKaleoTimerInstanceToken() {
+		return _kaleoTimerInstanceToken;
+	}
+
+	public KaleoTimerInstanceToken getWrappedModel() {
 		return _kaleoTimerInstanceToken;
 	}
 

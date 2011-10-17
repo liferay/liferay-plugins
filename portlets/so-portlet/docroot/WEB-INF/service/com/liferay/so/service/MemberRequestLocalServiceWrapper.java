@@ -14,6 +14,8 @@
 
 package com.liferay.so.service;
 
+import com.liferay.portal.service.ServiceWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link MemberRequestLocalService}.
@@ -24,7 +26,8 @@ package com.liferay.so.service;
  * @generated
  */
 public class MemberRequestLocalServiceWrapper
-	implements MemberRequestLocalService {
+	implements MemberRequestLocalService,
+		ServiceWrapper<MemberRequestLocalService> {
 	public MemberRequestLocalServiceWrapper(
 		MemberRequestLocalService memberRequestLocalService) {
 		_memberRequestLocalService = memberRequestLocalService;
@@ -329,11 +332,26 @@ public class MemberRequestLocalServiceWrapper
 			receiverUserId);
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedService}
+	 */
 	public MemberRequestLocalService getWrappedMemberRequestLocalService() {
 		return _memberRequestLocalService;
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #setWrappedService}
+	 */
 	public void setWrappedMemberRequestLocalService(
+		MemberRequestLocalService memberRequestLocalService) {
+		_memberRequestLocalService = memberRequestLocalService;
+	}
+
+	public MemberRequestLocalService getWrappedService() {
+		return _memberRequestLocalService;
+	}
+
+	public void setWrappedService(
 		MemberRequestLocalService memberRequestLocalService) {
 		_memberRequestLocalService = memberRequestLocalService;
 	}

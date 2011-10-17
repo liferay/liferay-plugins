@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.model;
 
+import com.liferay.portal.model.ModelWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link KaleoTaskAssignmentInstance}.
@@ -24,7 +26,8 @@ package com.liferay.portal.workflow.kaleo.model;
  * @generated
  */
 public class KaleoTaskAssignmentInstanceWrapper
-	implements KaleoTaskAssignmentInstance {
+	implements KaleoTaskAssignmentInstance,
+		ModelWrapper<KaleoTaskAssignmentInstance> {
 	public KaleoTaskAssignmentInstanceWrapper(
 		KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance) {
 		_kaleoTaskAssignmentInstance = kaleoTaskAssignmentInstance;
@@ -466,7 +469,14 @@ public class KaleoTaskAssignmentInstanceWrapper
 		_kaleoTaskAssignmentInstance.persist();
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedModel}
+	 */
 	public KaleoTaskAssignmentInstance getWrappedKaleoTaskAssignmentInstance() {
+		return _kaleoTaskAssignmentInstance;
+	}
+
+	public KaleoTaskAssignmentInstance getWrappedModel() {
 		return _kaleoTaskAssignmentInstance;
 	}
 

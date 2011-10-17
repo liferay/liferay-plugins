@@ -14,6 +14,8 @@
 
 package com.liferay.so.model;
 
+import com.liferay.portal.model.ModelWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link MemberRequest}.
@@ -23,7 +25,8 @@ package com.liferay.so.model;
  * @see       MemberRequest
  * @generated
  */
-public class MemberRequestWrapper implements MemberRequest {
+public class MemberRequestWrapper implements MemberRequest,
+	ModelWrapper<MemberRequest> {
 	public MemberRequestWrapper(MemberRequest memberRequest) {
 		_memberRequest = memberRequest;
 	}
@@ -383,7 +386,14 @@ public class MemberRequestWrapper implements MemberRequest {
 		_memberRequest.persist();
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedModel}
+	 */
 	public MemberRequest getWrappedMemberRequest() {
+		return _memberRequest;
+	}
+
+	public MemberRequest getWrappedModel() {
 		return _memberRequest;
 	}
 

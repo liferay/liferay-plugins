@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.model;
 
+import com.liferay.portal.model.ModelWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link KaleoInstanceToken}.
@@ -23,7 +25,8 @@ package com.liferay.portal.workflow.kaleo.model;
  * @see       KaleoInstanceToken
  * @generated
  */
-public class KaleoInstanceTokenWrapper implements KaleoInstanceToken {
+public class KaleoInstanceTokenWrapper implements KaleoInstanceToken,
+	ModelWrapper<KaleoInstanceToken> {
 	public KaleoInstanceTokenWrapper(KaleoInstanceToken kaleoInstanceToken) {
 		_kaleoInstanceToken = kaleoInstanceToken;
 	}
@@ -485,7 +488,14 @@ public class KaleoInstanceTokenWrapper implements KaleoInstanceToken {
 		_kaleoInstanceToken.setCurrentKaleoNode(kaleoNode);
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedModel}
+	 */
 	public KaleoInstanceToken getWrappedKaleoInstanceToken() {
+		return _kaleoInstanceToken;
+	}
+
+	public KaleoInstanceToken getWrappedModel() {
 		return _kaleoInstanceToken;
 	}
 

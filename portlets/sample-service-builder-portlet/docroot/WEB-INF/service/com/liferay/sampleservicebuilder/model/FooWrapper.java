@@ -14,6 +14,8 @@
 
 package com.liferay.sampleservicebuilder.model;
 
+import com.liferay.portal.model.ModelWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link Foo}.
@@ -23,7 +25,7 @@ package com.liferay.sampleservicebuilder.model;
  * @see       Foo
  * @generated
  */
-public class FooWrapper implements Foo {
+public class FooWrapper implements Foo, ModelWrapper<Foo> {
 	public FooWrapper(Foo foo) {
 		_foo = foo;
 	}
@@ -390,7 +392,14 @@ public class FooWrapper implements Foo {
 		_foo.persist();
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedModel}
+	 */
 	public Foo getWrappedFoo() {
+		return _foo;
+	}
+
+	public Foo getWrappedModel() {
 		return _foo;
 	}
 

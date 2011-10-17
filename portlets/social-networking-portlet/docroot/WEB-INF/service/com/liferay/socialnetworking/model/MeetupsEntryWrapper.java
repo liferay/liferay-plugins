@@ -14,6 +14,8 @@
 
 package com.liferay.socialnetworking.model;
 
+import com.liferay.portal.model.ModelWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link MeetupsEntry}.
@@ -23,7 +25,8 @@ package com.liferay.socialnetworking.model;
  * @see       MeetupsEntry
  * @generated
  */
-public class MeetupsEntryWrapper implements MeetupsEntry {
+public class MeetupsEntryWrapper implements MeetupsEntry,
+	ModelWrapper<MeetupsEntry> {
 	public MeetupsEntryWrapper(MeetupsEntry meetupsEntry) {
 		_meetupsEntry = meetupsEntry;
 	}
@@ -400,7 +403,14 @@ public class MeetupsEntryWrapper implements MeetupsEntry {
 		_meetupsEntry.persist();
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedModel}
+	 */
 	public MeetupsEntry getWrappedMeetupsEntry() {
+		return _meetupsEntry;
+	}
+
+	public MeetupsEntry getWrappedModel() {
 		return _meetupsEntry;
 	}
 

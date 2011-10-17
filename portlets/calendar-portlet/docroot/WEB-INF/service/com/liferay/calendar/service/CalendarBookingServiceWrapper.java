@@ -14,6 +14,8 @@
 
 package com.liferay.calendar.service;
 
+import com.liferay.portal.service.ServiceWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link CalendarBookingService}.
@@ -23,7 +25,8 @@ package com.liferay.calendar.service;
  * @see       CalendarBookingService
  * @generated
  */
-public class CalendarBookingServiceWrapper implements CalendarBookingService {
+public class CalendarBookingServiceWrapper implements CalendarBookingService,
+	ServiceWrapper<CalendarBookingService> {
 	public CalendarBookingServiceWrapper(
 		CalendarBookingService calendarBookingService) {
 		_calendarBookingService = calendarBookingService;
@@ -132,12 +135,26 @@ public class CalendarBookingServiceWrapper implements CalendarBookingService {
 			calendarBookingId, status, serviceContext);
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedService}
+	 */
 	public CalendarBookingService getWrappedCalendarBookingService() {
 		return _calendarBookingService;
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #setWrappedService}
+	 */
 	public void setWrappedCalendarBookingService(
 		CalendarBookingService calendarBookingService) {
+		_calendarBookingService = calendarBookingService;
+	}
+
+	public CalendarBookingService getWrappedService() {
+		return _calendarBookingService;
+	}
+
+	public void setWrappedService(CalendarBookingService calendarBookingService) {
 		_calendarBookingService = calendarBookingService;
 	}
 

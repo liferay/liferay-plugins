@@ -14,6 +14,8 @@
 
 package com.liferay.knowledgebase.service;
 
+import com.liferay.portal.service.ServiceWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link KBCommentLocalService}.
@@ -23,7 +25,8 @@ package com.liferay.knowledgebase.service;
  * @see       KBCommentLocalService
  * @generated
  */
-public class KBCommentLocalServiceWrapper implements KBCommentLocalService {
+public class KBCommentLocalServiceWrapper implements KBCommentLocalService,
+	ServiceWrapper<KBCommentLocalService> {
 	public KBCommentLocalServiceWrapper(
 		KBCommentLocalService kbCommentLocalService) {
 		_kbCommentLocalService = kbCommentLocalService;
@@ -309,12 +312,26 @@ public class KBCommentLocalServiceWrapper implements KBCommentLocalService {
 			classPK, content, helpful, serviceContext);
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedService}
+	 */
 	public KBCommentLocalService getWrappedKBCommentLocalService() {
 		return _kbCommentLocalService;
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #setWrappedService}
+	 */
 	public void setWrappedKBCommentLocalService(
 		KBCommentLocalService kbCommentLocalService) {
+		_kbCommentLocalService = kbCommentLocalService;
+	}
+
+	public KBCommentLocalService getWrappedService() {
+		return _kbCommentLocalService;
+	}
+
+	public void setWrappedService(KBCommentLocalService kbCommentLocalService) {
 		_kbCommentLocalService = kbCommentLocalService;
 	}
 

@@ -14,6 +14,8 @@
 
 package com.liferay.chat.model;
 
+import com.liferay.portal.model.ModelWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link Entry}.
@@ -23,7 +25,7 @@ package com.liferay.chat.model;
  * @see       Entry
  * @generated
  */
-public class EntryWrapper implements Entry {
+public class EntryWrapper implements Entry, ModelWrapper<Entry> {
 	public EntryWrapper(Entry entry) {
 		_entry = entry;
 	}
@@ -257,7 +259,14 @@ public class EntryWrapper implements Entry {
 		_entry.persist();
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedModel}
+	 */
 	public Entry getWrappedEntry() {
+		return _entry;
+	}
+
+	public Entry getWrappedModel() {
 		return _entry;
 	}
 

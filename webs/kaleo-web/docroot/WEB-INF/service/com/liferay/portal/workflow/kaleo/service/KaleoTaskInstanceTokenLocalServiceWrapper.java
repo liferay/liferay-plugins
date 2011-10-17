@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.service;
 
+import com.liferay.portal.service.ServiceWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link KaleoTaskInstanceTokenLocalService}.
@@ -24,7 +26,8 @@ package com.liferay.portal.workflow.kaleo.service;
  * @generated
  */
 public class KaleoTaskInstanceTokenLocalServiceWrapper
-	implements KaleoTaskInstanceTokenLocalService {
+	implements KaleoTaskInstanceTokenLocalService,
+		ServiceWrapper<KaleoTaskInstanceTokenLocalService> {
 	public KaleoTaskInstanceTokenLocalServiceWrapper(
 		KaleoTaskInstanceTokenLocalService kaleoTaskInstanceTokenLocalService) {
 		_kaleoTaskInstanceTokenLocalService = kaleoTaskInstanceTokenLocalService;
@@ -516,11 +519,26 @@ public class KaleoTaskInstanceTokenLocalServiceWrapper
 			dueDate, serviceContext);
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedService}
+	 */
 	public KaleoTaskInstanceTokenLocalService getWrappedKaleoTaskInstanceTokenLocalService() {
 		return _kaleoTaskInstanceTokenLocalService;
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #setWrappedService}
+	 */
 	public void setWrappedKaleoTaskInstanceTokenLocalService(
+		KaleoTaskInstanceTokenLocalService kaleoTaskInstanceTokenLocalService) {
+		_kaleoTaskInstanceTokenLocalService = kaleoTaskInstanceTokenLocalService;
+	}
+
+	public KaleoTaskInstanceTokenLocalService getWrappedService() {
+		return _kaleoTaskInstanceTokenLocalService;
+	}
+
+	public void setWrappedService(
 		KaleoTaskInstanceTokenLocalService kaleoTaskInstanceTokenLocalService) {
 		_kaleoTaskInstanceTokenLocalService = kaleoTaskInstanceTokenLocalService;
 	}

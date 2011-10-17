@@ -14,6 +14,8 @@
 
 package com.liferay.mail.model;
 
+import com.liferay.portal.model.ModelWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link Folder}.
@@ -23,7 +25,7 @@ package com.liferay.mail.model;
  * @see       Folder
  * @generated
  */
-public class FolderWrapper implements Folder {
+public class FolderWrapper implements Folder, ModelWrapper<Folder> {
 	public FolderWrapper(Folder folder) {
 		_folder = folder;
 	}
@@ -327,7 +329,14 @@ public class FolderWrapper implements Folder {
 		_folder.persist();
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedModel}
+	 */
 	public Folder getWrappedFolder() {
+		return _folder;
+	}
+
+	public Folder getWrappedModel() {
 		return _folder;
 	}
 

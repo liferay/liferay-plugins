@@ -14,6 +14,8 @@
 
 package com.liferay.microblogs.service;
 
+import com.liferay.portal.service.ServiceWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link MicroblogsEntryService}.
@@ -23,7 +25,8 @@ package com.liferay.microblogs.service;
  * @see       MicroblogsEntryService
  * @generated
  */
-public class MicroblogsEntryServiceWrapper implements MicroblogsEntryService {
+public class MicroblogsEntryServiceWrapper implements MicroblogsEntryService,
+	ServiceWrapper<MicroblogsEntryService> {
 	public MicroblogsEntryServiceWrapper(
 		MicroblogsEntryService microblogsEntryService) {
 		_microblogsEntryService = microblogsEntryService;
@@ -120,12 +123,26 @@ public class MicroblogsEntryServiceWrapper implements MicroblogsEntryService {
 			content, socialRelationType, serviceContext);
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedService}
+	 */
 	public MicroblogsEntryService getWrappedMicroblogsEntryService() {
 		return _microblogsEntryService;
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #setWrappedService}
+	 */
 	public void setWrappedMicroblogsEntryService(
 		MicroblogsEntryService microblogsEntryService) {
+		_microblogsEntryService = microblogsEntryService;
+	}
+
+	public MicroblogsEntryService getWrappedService() {
+		return _microblogsEntryService;
+	}
+
+	public void setWrappedService(MicroblogsEntryService microblogsEntryService) {
 		_microblogsEntryService = microblogsEntryService;
 	}
 

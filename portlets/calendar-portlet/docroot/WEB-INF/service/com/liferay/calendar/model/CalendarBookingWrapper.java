@@ -14,6 +14,8 @@
 
 package com.liferay.calendar.model;
 
+import com.liferay.portal.model.ModelWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link CalendarBooking}.
@@ -23,7 +25,8 @@ package com.liferay.calendar.model;
  * @see       CalendarBooking
  * @generated
  */
-public class CalendarBookingWrapper implements CalendarBooking {
+public class CalendarBookingWrapper implements CalendarBooking,
+	ModelWrapper<CalendarBooking> {
 	public CalendarBookingWrapper(CalendarBooking calendarBooking) {
 		_calendarBooking = calendarBooking;
 	}
@@ -1053,7 +1056,14 @@ public class CalendarBookingWrapper implements CalendarBooking {
 		return _calendarBooking.getCalendarResource();
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedModel}
+	 */
 	public CalendarBooking getWrappedCalendarBooking() {
+		return _calendarBooking;
+	}
+
+	public CalendarBooking getWrappedModel() {
 		return _calendarBooking;
 	}
 

@@ -14,6 +14,8 @@
 
 package com.liferay.twitter.model;
 
+import com.liferay.portal.model.ModelWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link Feed}.
@@ -23,7 +25,7 @@ package com.liferay.twitter.model;
  * @see       Feed
  * @generated
  */
-public class FeedWrapper implements Feed {
+public class FeedWrapper implements Feed, ModelWrapper<Feed> {
 	public FeedWrapper(Feed feed) {
 		_feed = feed;
 	}
@@ -329,7 +331,14 @@ public class FeedWrapper implements Feed {
 		_feed.persist();
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedModel}
+	 */
 	public Feed getWrappedFeed() {
+		return _feed;
+	}
+
+	public Feed getWrappedModel() {
 		return _feed;
 	}
 

@@ -14,6 +14,8 @@
 
 package com.liferay.wsrp.model;
 
+import com.liferay.portal.model.ModelWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link WSRPConsumer}.
@@ -23,7 +25,8 @@ package com.liferay.wsrp.model;
  * @see       WSRPConsumer
  * @generated
  */
-public class WSRPConsumerWrapper implements WSRPConsumer {
+public class WSRPConsumerWrapper implements WSRPConsumer,
+	ModelWrapper<WSRPConsumer> {
 	public WSRPConsumerWrapper(WSRPConsumer wsrpConsumer) {
 		_wsrpConsumer = wsrpConsumer;
 	}
@@ -345,7 +348,14 @@ public class WSRPConsumerWrapper implements WSRPConsumer {
 		_wsrpConsumer.setRegistrationProperties(registrationProperties);
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedModel}
+	 */
 	public WSRPConsumer getWrappedWSRPConsumer() {
+		return _wsrpConsumer;
+	}
+
+	public WSRPConsumer getWrappedModel() {
 		return _wsrpConsumer;
 	}
 

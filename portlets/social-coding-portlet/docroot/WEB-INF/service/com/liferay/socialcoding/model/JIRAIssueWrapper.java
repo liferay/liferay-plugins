@@ -14,6 +14,8 @@
 
 package com.liferay.socialcoding.model;
 
+import com.liferay.portal.model.ModelWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link JIRAIssue}.
@@ -23,7 +25,7 @@ package com.liferay.socialcoding.model;
  * @see       JIRAIssue
  * @generated
  */
-public class JIRAIssueWrapper implements JIRAIssue {
+public class JIRAIssueWrapper implements JIRAIssue, ModelWrapper<JIRAIssue> {
 	public JIRAIssueWrapper(JIRAIssue jiraIssue) {
 		_jiraIssue = jiraIssue;
 	}
@@ -325,7 +327,14 @@ public class JIRAIssueWrapper implements JIRAIssue {
 		_jiraIssue.persist();
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedModel}
+	 */
 	public JIRAIssue getWrappedJIRAIssue() {
+		return _jiraIssue;
+	}
+
+	public JIRAIssue getWrappedModel() {
 		return _jiraIssue;
 	}
 

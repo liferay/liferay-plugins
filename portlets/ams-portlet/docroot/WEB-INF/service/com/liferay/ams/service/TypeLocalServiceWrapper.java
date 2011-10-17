@@ -14,6 +14,8 @@
 
 package com.liferay.ams.service;
 
+import com.liferay.portal.service.ServiceWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link TypeLocalService}.
@@ -23,7 +25,8 @@ package com.liferay.ams.service;
  * @see       TypeLocalService
  * @generated
  */
-public class TypeLocalServiceWrapper implements TypeLocalService {
+public class TypeLocalServiceWrapper implements TypeLocalService,
+	ServiceWrapper<TypeLocalService> {
 	public TypeLocalServiceWrapper(TypeLocalService typeLocalService) {
 		_typeLocalService = typeLocalService;
 	}
@@ -239,11 +242,25 @@ public class TypeLocalServiceWrapper implements TypeLocalService {
 		_typeLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedService}
+	 */
 	public TypeLocalService getWrappedTypeLocalService() {
 		return _typeLocalService;
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #setWrappedService}
+	 */
 	public void setWrappedTypeLocalService(TypeLocalService typeLocalService) {
+		_typeLocalService = typeLocalService;
+	}
+
+	public TypeLocalService getWrappedService() {
+		return _typeLocalService;
+	}
+
+	public void setWrappedService(TypeLocalService typeLocalService) {
 		_typeLocalService = typeLocalService;
 	}
 

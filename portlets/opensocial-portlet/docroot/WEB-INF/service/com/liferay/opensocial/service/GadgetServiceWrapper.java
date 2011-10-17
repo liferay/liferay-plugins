@@ -14,6 +14,8 @@
 
 package com.liferay.opensocial.service;
 
+import com.liferay.portal.service.ServiceWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link GadgetService}.
@@ -23,7 +25,8 @@ package com.liferay.opensocial.service;
  * @see       GadgetService
  * @generated
  */
-public class GadgetServiceWrapper implements GadgetService {
+public class GadgetServiceWrapper implements GadgetService,
+	ServiceWrapper<GadgetService> {
 	public GadgetServiceWrapper(GadgetService gadgetService) {
 		_gadgetService = gadgetService;
 	}
@@ -44,11 +47,25 @@ public class GadgetServiceWrapper implements GadgetService {
 		_gadgetService.deleteGadget(gadgetId, serviceContext);
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedService}
+	 */
 	public GadgetService getWrappedGadgetService() {
 		return _gadgetService;
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #setWrappedService}
+	 */
 	public void setWrappedGadgetService(GadgetService gadgetService) {
+		_gadgetService = gadgetService;
+	}
+
+	public GadgetService getWrappedService() {
+		return _gadgetService;
+	}
+
+	public void setWrappedService(GadgetService gadgetService) {
 		_gadgetService = gadgetService;
 	}
 

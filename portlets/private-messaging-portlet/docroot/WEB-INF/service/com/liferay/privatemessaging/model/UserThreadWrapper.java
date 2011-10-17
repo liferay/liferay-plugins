@@ -14,6 +14,8 @@
 
 package com.liferay.privatemessaging.model;
 
+import com.liferay.portal.model.ModelWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link UserThread}.
@@ -23,7 +25,7 @@ package com.liferay.privatemessaging.model;
  * @see       UserThread
  * @generated
  */
-public class UserThreadWrapper implements UserThread {
+public class UserThreadWrapper implements UserThread, ModelWrapper<UserThread> {
 	public UserThreadWrapper(UserThread userThread) {
 		_userThread = userThread;
 	}
@@ -328,7 +330,14 @@ public class UserThreadWrapper implements UserThread {
 		_userThread.persist();
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedModel}
+	 */
 	public UserThread getWrappedUserThread() {
+		return _userThread;
+	}
+
+	public UserThread getWrappedModel() {
 		return _userThread;
 	}
 

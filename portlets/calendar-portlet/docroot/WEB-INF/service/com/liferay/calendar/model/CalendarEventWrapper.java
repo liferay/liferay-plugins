@@ -14,6 +14,8 @@
 
 package com.liferay.calendar.model;
 
+import com.liferay.portal.model.ModelWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link CalendarEvent}.
@@ -23,7 +25,8 @@ package com.liferay.calendar.model;
  * @see       CalendarEvent
  * @generated
  */
-public class CalendarEventWrapper implements CalendarEvent {
+public class CalendarEventWrapper implements CalendarEvent,
+	ModelWrapper<CalendarEvent> {
 	public CalendarEventWrapper(CalendarEvent calendarEvent) {
 		_calendarEvent = calendarEvent;
 	}
@@ -752,7 +755,14 @@ public class CalendarEventWrapper implements CalendarEvent {
 		_calendarEvent.persist();
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedModel}
+	 */
 	public CalendarEvent getWrappedCalendarEvent() {
+		return _calendarEvent;
+	}
+
+	public CalendarEvent getWrappedModel() {
 		return _calendarEvent;
 	}
 

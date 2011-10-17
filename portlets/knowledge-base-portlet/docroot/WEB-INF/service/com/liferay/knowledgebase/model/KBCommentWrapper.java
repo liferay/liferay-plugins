@@ -14,6 +14,8 @@
 
 package com.liferay.knowledgebase.model;
 
+import com.liferay.portal.model.ModelWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link KBComment}.
@@ -23,7 +25,7 @@ package com.liferay.knowledgebase.model;
  * @see       KBComment
  * @generated
  */
-public class KBCommentWrapper implements KBComment {
+public class KBCommentWrapper implements KBComment, ModelWrapper<KBComment> {
 	public KBCommentWrapper(KBComment kbComment) {
 		_kbComment = kbComment;
 	}
@@ -381,7 +383,14 @@ public class KBCommentWrapper implements KBComment {
 		_kbComment.persist();
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedModel}
+	 */
 	public KBComment getWrappedKBComment() {
+		return _kbComment;
+	}
+
+	public KBComment getWrappedModel() {
 		return _kbComment;
 	}
 

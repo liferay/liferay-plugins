@@ -14,6 +14,8 @@
 
 package com.liferay.ams.service;
 
+import com.liferay.portal.service.ServiceWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link DefinitionLocalService}.
@@ -23,7 +25,8 @@ package com.liferay.ams.service;
  * @see       DefinitionLocalService
  * @generated
  */
-public class DefinitionLocalServiceWrapper implements DefinitionLocalService {
+public class DefinitionLocalServiceWrapper implements DefinitionLocalService,
+	ServiceWrapper<DefinitionLocalService> {
 	public DefinitionLocalServiceWrapper(
 		DefinitionLocalService definitionLocalService) {
 		_definitionLocalService = definitionLocalService;
@@ -242,12 +245,26 @@ public class DefinitionLocalServiceWrapper implements DefinitionLocalService {
 		_definitionLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedService}
+	 */
 	public DefinitionLocalService getWrappedDefinitionLocalService() {
 		return _definitionLocalService;
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #setWrappedService}
+	 */
 	public void setWrappedDefinitionLocalService(
 		DefinitionLocalService definitionLocalService) {
+		_definitionLocalService = definitionLocalService;
+	}
+
+	public DefinitionLocalService getWrappedService() {
+		return _definitionLocalService;
+	}
+
+	public void setWrappedService(DefinitionLocalService definitionLocalService) {
 		_definitionLocalService = definitionLocalService;
 	}
 

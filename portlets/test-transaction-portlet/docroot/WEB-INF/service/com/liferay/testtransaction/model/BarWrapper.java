@@ -14,6 +14,8 @@
 
 package com.liferay.testtransaction.model;
 
+import com.liferay.portal.model.ModelWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link Bar}.
@@ -23,7 +25,7 @@ package com.liferay.testtransaction.model;
  * @see       Bar
  * @generated
  */
-public class BarWrapper implements Bar {
+public class BarWrapper implements Bar, ModelWrapper<Bar> {
 	public BarWrapper(Bar bar) {
 		_bar = bar;
 	}
@@ -163,7 +165,14 @@ public class BarWrapper implements Bar {
 		_bar.persist();
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedModel}
+	 */
 	public Bar getWrappedBar() {
+		return _bar;
+	}
+
+	public Bar getWrappedModel() {
 		return _bar;
 	}
 

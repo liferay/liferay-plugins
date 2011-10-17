@@ -14,6 +14,8 @@
 
 package com.liferay.sampleservicebuilder.service;
 
+import com.liferay.portal.service.ServiceWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link FooLocalService}.
@@ -23,7 +25,8 @@ package com.liferay.sampleservicebuilder.service;
  * @see       FooLocalService
  * @generated
  */
-public class FooLocalServiceWrapper implements FooLocalService {
+public class FooLocalServiceWrapper implements FooLocalService,
+	ServiceWrapper<FooLocalService> {
 	public FooLocalServiceWrapper(FooLocalService fooLocalService) {
 		_fooLocalService = fooLocalService;
 	}
@@ -296,11 +299,25 @@ public class FooLocalServiceWrapper implements FooLocalService {
 			field5, serviceContext);
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedService}
+	 */
 	public FooLocalService getWrappedFooLocalService() {
 		return _fooLocalService;
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #setWrappedService}
+	 */
 	public void setWrappedFooLocalService(FooLocalService fooLocalService) {
+		_fooLocalService = fooLocalService;
+	}
+
+	public FooLocalService getWrappedService() {
+		return _fooLocalService;
+	}
+
+	public void setWrappedService(FooLocalService fooLocalService) {
 		_fooLocalService = fooLocalService;
 	}
 

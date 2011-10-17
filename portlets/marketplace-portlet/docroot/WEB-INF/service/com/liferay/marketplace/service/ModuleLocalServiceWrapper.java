@@ -14,6 +14,8 @@
 
 package com.liferay.marketplace.service;
 
+import com.liferay.portal.service.ServiceWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link ModuleLocalService}.
@@ -23,7 +25,8 @@ package com.liferay.marketplace.service;
  * @see       ModuleLocalService
  * @generated
  */
-public class ModuleLocalServiceWrapper implements ModuleLocalService {
+public class ModuleLocalServiceWrapper implements ModuleLocalService,
+	ServiceWrapper<ModuleLocalService> {
 	public ModuleLocalServiceWrapper(ModuleLocalService moduleLocalService) {
 		_moduleLocalService = moduleLocalService;
 	}
@@ -258,12 +261,26 @@ public class ModuleLocalServiceWrapper implements ModuleLocalService {
 		return _moduleLocalService.getModules(appId);
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedService}
+	 */
 	public ModuleLocalService getWrappedModuleLocalService() {
 		return _moduleLocalService;
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #setWrappedService}
+	 */
 	public void setWrappedModuleLocalService(
 		ModuleLocalService moduleLocalService) {
+		_moduleLocalService = moduleLocalService;
+	}
+
+	public ModuleLocalService getWrappedService() {
+		return _moduleLocalService;
+	}
+
+	public void setWrappedService(ModuleLocalService moduleLocalService) {
 		_moduleLocalService = moduleLocalService;
 	}
 

@@ -14,6 +14,8 @@
 
 package com.liferay.wsrp.service;
 
+import com.liferay.portal.service.ServiceWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link WSRPConsumerPortletLocalService}.
@@ -24,7 +26,8 @@ package com.liferay.wsrp.service;
  * @generated
  */
 public class WSRPConsumerPortletLocalServiceWrapper
-	implements WSRPConsumerPortletLocalService {
+	implements WSRPConsumerPortletLocalService,
+		ServiceWrapper<WSRPConsumerPortletLocalService> {
 	public WSRPConsumerPortletLocalServiceWrapper(
 		WSRPConsumerPortletLocalService wsrpConsumerPortletLocalService) {
 		_wsrpConsumerPortletLocalService = wsrpConsumerPortletLocalService;
@@ -352,11 +355,26 @@ public class WSRPConsumerPortletLocalServiceWrapper
 			name);
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedService}
+	 */
 	public WSRPConsumerPortletLocalService getWrappedWSRPConsumerPortletLocalService() {
 		return _wsrpConsumerPortletLocalService;
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #setWrappedService}
+	 */
 	public void setWrappedWSRPConsumerPortletLocalService(
+		WSRPConsumerPortletLocalService wsrpConsumerPortletLocalService) {
+		_wsrpConsumerPortletLocalService = wsrpConsumerPortletLocalService;
+	}
+
+	public WSRPConsumerPortletLocalService getWrappedService() {
+		return _wsrpConsumerPortletLocalService;
+	}
+
+	public void setWrappedService(
 		WSRPConsumerPortletLocalService wsrpConsumerPortletLocalService) {
 		_wsrpConsumerPortletLocalService = wsrpConsumerPortletLocalService;
 	}

@@ -14,6 +14,8 @@
 
 package com.liferay.socialcoding.model;
 
+import com.liferay.portal.model.ModelWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link SVNRevision}.
@@ -23,7 +25,8 @@ package com.liferay.socialcoding.model;
  * @see       SVNRevision
  * @generated
  */
-public class SVNRevisionWrapper implements SVNRevision {
+public class SVNRevisionWrapper implements SVNRevision,
+	ModelWrapper<SVNRevision> {
 	public SVNRevisionWrapper(SVNRevision svnRevision) {
 		_svnRevision = svnRevision;
 	}
@@ -247,7 +250,14 @@ public class SVNRevisionWrapper implements SVNRevision {
 		return _svnRevision.getJIRAIssueAndComments();
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedModel}
+	 */
 	public SVNRevision getWrappedSVNRevision() {
+		return _svnRevision;
+	}
+
+	public SVNRevision getWrappedModel() {
 		return _svnRevision;
 	}
 

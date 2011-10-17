@@ -14,6 +14,8 @@
 
 package com.liferay.microblogs.model;
 
+import com.liferay.portal.model.ModelWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link MicroblogsEntry}.
@@ -23,7 +25,8 @@ package com.liferay.microblogs.model;
  * @see       MicroblogsEntry
  * @generated
  */
-public class MicroblogsEntryWrapper implements MicroblogsEntry {
+public class MicroblogsEntryWrapper implements MicroblogsEntry,
+	ModelWrapper<MicroblogsEntry> {
 	public MicroblogsEntryWrapper(MicroblogsEntry microblogsEntry) {
 		_microblogsEntry = microblogsEntry;
 	}
@@ -366,7 +369,14 @@ public class MicroblogsEntryWrapper implements MicroblogsEntry {
 		_microblogsEntry.persist();
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedModel}
+	 */
 	public MicroblogsEntry getWrappedMicroblogsEntry() {
+		return _microblogsEntry;
+	}
+
+	public MicroblogsEntry getWrappedModel() {
 		return _microblogsEntry;
 	}
 

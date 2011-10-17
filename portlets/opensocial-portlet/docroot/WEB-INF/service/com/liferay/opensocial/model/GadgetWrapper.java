@@ -14,6 +14,8 @@
 
 package com.liferay.opensocial.model;
 
+import com.liferay.portal.model.ModelWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link Gadget}.
@@ -23,7 +25,7 @@ package com.liferay.opensocial.model;
  * @see       Gadget
  * @generated
  */
-public class GadgetWrapper implements Gadget {
+public class GadgetWrapper implements Gadget, ModelWrapper<Gadget> {
 	public GadgetWrapper(Gadget gadget) {
 		_gadget = gadget;
 	}
@@ -271,7 +273,14 @@ public class GadgetWrapper implements Gadget {
 		_gadget.persist();
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedModel}
+	 */
 	public Gadget getWrappedGadget() {
+		return _gadget;
+	}
+
+	public Gadget getWrappedModel() {
 		return _gadget;
 	}
 

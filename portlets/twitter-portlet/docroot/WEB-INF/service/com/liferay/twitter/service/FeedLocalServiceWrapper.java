@@ -14,6 +14,8 @@
 
 package com.liferay.twitter.service;
 
+import com.liferay.portal.service.ServiceWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link FeedLocalService}.
@@ -23,7 +25,8 @@ package com.liferay.twitter.service;
  * @see       FeedLocalService
  * @generated
  */
-public class FeedLocalServiceWrapper implements FeedLocalService {
+public class FeedLocalServiceWrapper implements FeedLocalService,
+	ServiceWrapper<FeedLocalService> {
 	public FeedLocalServiceWrapper(FeedLocalService feedLocalService) {
 		_feedLocalService = feedLocalService;
 	}
@@ -258,11 +261,25 @@ public class FeedLocalServiceWrapper implements FeedLocalService {
 		_feedLocalService.updateFeeds(companyId);
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedService}
+	 */
 	public FeedLocalService getWrappedFeedLocalService() {
 		return _feedLocalService;
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #setWrappedService}
+	 */
 	public void setWrappedFeedLocalService(FeedLocalService feedLocalService) {
+		_feedLocalService = feedLocalService;
+	}
+
+	public FeedLocalService getWrappedService() {
+		return _feedLocalService;
+	}
+
+	public void setWrappedService(FeedLocalService feedLocalService) {
 		_feedLocalService = feedLocalService;
 	}
 

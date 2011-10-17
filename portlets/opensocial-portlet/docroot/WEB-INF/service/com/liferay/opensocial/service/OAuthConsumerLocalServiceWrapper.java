@@ -14,6 +14,8 @@
 
 package com.liferay.opensocial.service;
 
+import com.liferay.portal.service.ServiceWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link OAuthConsumerLocalService}.
@@ -24,7 +26,8 @@ package com.liferay.opensocial.service;
  * @generated
  */
 public class OAuthConsumerLocalServiceWrapper
-	implements OAuthConsumerLocalService {
+	implements OAuthConsumerLocalService,
+		ServiceWrapper<OAuthConsumerLocalService> {
 	public OAuthConsumerLocalServiceWrapper(
 		OAuthConsumerLocalService oAuthConsumerLocalService) {
 		_oAuthConsumerLocalService = oAuthConsumerLocalService;
@@ -304,11 +307,26 @@ public class OAuthConsumerLocalServiceWrapper
 			consumerKey, consumerSecret, keyType, keyName, callbackURL);
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedService}
+	 */
 	public OAuthConsumerLocalService getWrappedOAuthConsumerLocalService() {
 		return _oAuthConsumerLocalService;
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #setWrappedService}
+	 */
 	public void setWrappedOAuthConsumerLocalService(
+		OAuthConsumerLocalService oAuthConsumerLocalService) {
+		_oAuthConsumerLocalService = oAuthConsumerLocalService;
+	}
+
+	public OAuthConsumerLocalService getWrappedService() {
+		return _oAuthConsumerLocalService;
+	}
+
+	public void setWrappedService(
 		OAuthConsumerLocalService oAuthConsumerLocalService) {
 		_oAuthConsumerLocalService = oAuthConsumerLocalService;
 	}

@@ -14,6 +14,8 @@
 
 package com.liferay.socialcoding.service;
 
+import com.liferay.portal.service.ServiceWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link JIRAIssueLocalService}.
@@ -23,7 +25,8 @@ package com.liferay.socialcoding.service;
  * @see       JIRAIssueLocalService
  * @generated
  */
-public class JIRAIssueLocalServiceWrapper implements JIRAIssueLocalService {
+public class JIRAIssueLocalServiceWrapper implements JIRAIssueLocalService,
+	ServiceWrapper<JIRAIssueLocalService> {
 	public JIRAIssueLocalServiceWrapper(
 		JIRAIssueLocalService jiraIssueLocalService) {
 		_jiraIssueLocalService = jiraIssueLocalService;
@@ -378,12 +381,26 @@ public class JIRAIssueLocalServiceWrapper implements JIRAIssueLocalService {
 		_jiraIssueLocalService.updateJIRAIssues(projectId);
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedService}
+	 */
 	public JIRAIssueLocalService getWrappedJIRAIssueLocalService() {
 		return _jiraIssueLocalService;
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #setWrappedService}
+	 */
 	public void setWrappedJIRAIssueLocalService(
 		JIRAIssueLocalService jiraIssueLocalService) {
+		_jiraIssueLocalService = jiraIssueLocalService;
+	}
+
+	public JIRAIssueLocalService getWrappedService() {
+		return _jiraIssueLocalService;
+	}
+
+	public void setWrappedService(JIRAIssueLocalService jiraIssueLocalService) {
 		_jiraIssueLocalService = jiraIssueLocalService;
 	}
 

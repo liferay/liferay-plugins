@@ -14,6 +14,8 @@
 
 package com.liferay.socialcoding.model;
 
+import com.liferay.portal.model.ModelWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link JIRAChangeGroup}.
@@ -23,7 +25,8 @@ package com.liferay.socialcoding.model;
  * @see       JIRAChangeGroup
  * @generated
  */
-public class JIRAChangeGroupWrapper implements JIRAChangeGroup {
+public class JIRAChangeGroupWrapper implements JIRAChangeGroup,
+	ModelWrapper<JIRAChangeGroup> {
 	public JIRAChangeGroupWrapper(JIRAChangeGroup jiraChangeGroup) {
 		_jiraChangeGroup = jiraChangeGroup;
 	}
@@ -200,7 +203,14 @@ public class JIRAChangeGroupWrapper implements JIRAChangeGroup {
 		_jiraChangeGroup.persist();
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedModel}
+	 */
 	public JIRAChangeGroup getWrappedJIRAChangeGroup() {
+		return _jiraChangeGroup;
+	}
+
+	public JIRAChangeGroup getWrappedModel() {
 		return _jiraChangeGroup;
 	}
 

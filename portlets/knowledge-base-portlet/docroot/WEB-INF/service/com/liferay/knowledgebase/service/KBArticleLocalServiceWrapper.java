@@ -14,6 +14,8 @@
 
 package com.liferay.knowledgebase.service;
 
+import com.liferay.portal.service.ServiceWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link KBArticleLocalService}.
@@ -23,7 +25,8 @@ package com.liferay.knowledgebase.service;
  * @see       KBArticleLocalService
  * @generated
  */
-public class KBArticleLocalServiceWrapper implements KBArticleLocalService {
+public class KBArticleLocalServiceWrapper implements KBArticleLocalService,
+	ServiceWrapper<KBArticleLocalService> {
 	public KBArticleLocalServiceWrapper(
 		KBArticleLocalService kbArticleLocalService) {
 		_kbArticleLocalService = kbArticleLocalService;
@@ -516,12 +519,26 @@ public class KBArticleLocalServiceWrapper implements KBArticleLocalService {
 			viewCount);
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedService}
+	 */
 	public KBArticleLocalService getWrappedKBArticleLocalService() {
 		return _kbArticleLocalService;
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #setWrappedService}
+	 */
 	public void setWrappedKBArticleLocalService(
 		KBArticleLocalService kbArticleLocalService) {
+		_kbArticleLocalService = kbArticleLocalService;
+	}
+
+	public KBArticleLocalService getWrappedService() {
+		return _kbArticleLocalService;
+	}
+
+	public void setWrappedService(KBArticleLocalService kbArticleLocalService) {
 		_kbArticleLocalService = kbArticleLocalService;
 	}
 

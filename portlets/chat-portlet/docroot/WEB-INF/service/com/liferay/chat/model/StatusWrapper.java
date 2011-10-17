@@ -14,6 +14,8 @@
 
 package com.liferay.chat.model;
 
+import com.liferay.portal.model.ModelWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link Status}.
@@ -23,7 +25,7 @@ package com.liferay.chat.model;
  * @see       Status
  * @generated
  */
-public class StatusWrapper implements Status {
+public class StatusWrapper implements Status, ModelWrapper<Status> {
 	public StatusWrapper(Status status) {
 		_status = status;
 	}
@@ -318,7 +320,14 @@ public class StatusWrapper implements Status {
 		_status.persist();
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedModel}
+	 */
 	public Status getWrappedStatus() {
+		return _status;
+	}
+
+	public Status getWrappedModel() {
 		return _status;
 	}
 

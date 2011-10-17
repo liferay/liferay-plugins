@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.service;
 
+import com.liferay.portal.service.ServiceWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link KaleoConditionLocalService}.
@@ -24,7 +26,8 @@ package com.liferay.portal.workflow.kaleo.service;
  * @generated
  */
 public class KaleoConditionLocalServiceWrapper
-	implements KaleoConditionLocalService {
+	implements KaleoConditionLocalService,
+		ServiceWrapper<KaleoConditionLocalService> {
 	public KaleoConditionLocalServiceWrapper(
 		KaleoConditionLocalService kaleoConditionLocalService) {
 		_kaleoConditionLocalService = kaleoConditionLocalService;
@@ -275,11 +278,26 @@ public class KaleoConditionLocalServiceWrapper
 		return _kaleoConditionLocalService.getKaleoNodeKaleoCondition(kaleoNodeId);
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedService}
+	 */
 	public KaleoConditionLocalService getWrappedKaleoConditionLocalService() {
 		return _kaleoConditionLocalService;
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #setWrappedService}
+	 */
 	public void setWrappedKaleoConditionLocalService(
+		KaleoConditionLocalService kaleoConditionLocalService) {
+		_kaleoConditionLocalService = kaleoConditionLocalService;
+	}
+
+	public KaleoConditionLocalService getWrappedService() {
+		return _kaleoConditionLocalService;
+	}
+
+	public void setWrappedService(
 		KaleoConditionLocalService kaleoConditionLocalService) {
 		_kaleoConditionLocalService = kaleoConditionLocalService;
 	}

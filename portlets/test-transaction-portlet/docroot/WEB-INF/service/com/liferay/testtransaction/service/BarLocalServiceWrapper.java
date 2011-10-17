@@ -14,6 +14,8 @@
 
 package com.liferay.testtransaction.service;
 
+import com.liferay.portal.service.ServiceWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link BarLocalService}.
@@ -23,7 +25,8 @@ package com.liferay.testtransaction.service;
  * @see       BarLocalService
  * @generated
  */
-public class BarLocalServiceWrapper implements BarLocalService {
+public class BarLocalServiceWrapper implements BarLocalService,
+	ServiceWrapper<BarLocalService> {
 	public BarLocalServiceWrapper(BarLocalService barLocalService) {
 		_barLocalService = barLocalService;
 	}
@@ -289,11 +292,25 @@ public class BarLocalServiceWrapper implements BarLocalService {
 		_barLocalService.testAddClassNameAndBar_Success(text);
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedService}
+	 */
 	public BarLocalService getWrappedBarLocalService() {
 		return _barLocalService;
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #setWrappedService}
+	 */
 	public void setWrappedBarLocalService(BarLocalService barLocalService) {
+		_barLocalService = barLocalService;
+	}
+
+	public BarLocalService getWrappedService() {
+		return _barLocalService;
+	}
+
+	public void setWrappedService(BarLocalService barLocalService) {
 		_barLocalService = barLocalService;
 	}
 

@@ -14,6 +14,8 @@
 
 package com.liferay.opensocial.service;
 
+import com.liferay.portal.service.ServiceWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link GadgetLocalService}.
@@ -23,7 +25,8 @@ package com.liferay.opensocial.service;
  * @see       GadgetLocalService
  * @generated
  */
-public class GadgetLocalServiceWrapper implements GadgetLocalService {
+public class GadgetLocalServiceWrapper implements GadgetLocalService,
+	ServiceWrapper<GadgetLocalService> {
 	public GadgetLocalServiceWrapper(GadgetLocalService gadgetLocalService) {
 		_gadgetLocalService = gadgetLocalService;
 	}
@@ -322,12 +325,26 @@ public class GadgetLocalServiceWrapper implements GadgetLocalService {
 		return _gadgetLocalService.updateGadget(gadgetId, portletCategoryNames);
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedService}
+	 */
 	public GadgetLocalService getWrappedGadgetLocalService() {
 		return _gadgetLocalService;
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #setWrappedService}
+	 */
 	public void setWrappedGadgetLocalService(
 		GadgetLocalService gadgetLocalService) {
+		_gadgetLocalService = gadgetLocalService;
+	}
+
+	public GadgetLocalService getWrappedService() {
+		return _gadgetLocalService;
+	}
+
+	public void setWrappedService(GadgetLocalService gadgetLocalService) {
 		_gadgetLocalService = gadgetLocalService;
 	}
 

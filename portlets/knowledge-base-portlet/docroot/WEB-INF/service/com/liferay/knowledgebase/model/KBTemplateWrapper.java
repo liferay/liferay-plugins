@@ -14,6 +14,8 @@
 
 package com.liferay.knowledgebase.model;
 
+import com.liferay.portal.model.ModelWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link KBTemplate}.
@@ -23,7 +25,7 @@ package com.liferay.knowledgebase.model;
  * @see       KBTemplate
  * @generated
  */
-public class KBTemplateWrapper implements KBTemplate {
+public class KBTemplateWrapper implements KBTemplate, ModelWrapper<KBTemplate> {
 	public KBTemplateWrapper(KBTemplate kbTemplate) {
 		_kbTemplate = kbTemplate;
 	}
@@ -327,7 +329,14 @@ public class KBTemplateWrapper implements KBTemplate {
 		_kbTemplate.persist();
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedModel}
+	 */
 	public KBTemplate getWrappedKBTemplate() {
+		return _kbTemplate;
+	}
+
+	public KBTemplate getWrappedModel() {
 		return _kbTemplate;
 	}
 

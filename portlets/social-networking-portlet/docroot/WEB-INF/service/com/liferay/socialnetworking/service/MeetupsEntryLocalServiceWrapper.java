@@ -14,6 +14,8 @@
 
 package com.liferay.socialnetworking.service;
 
+import com.liferay.portal.service.ServiceWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link MeetupsEntryLocalService}.
@@ -23,7 +25,8 @@ package com.liferay.socialnetworking.service;
  * @see       MeetupsEntryLocalService
  * @generated
  */
-public class MeetupsEntryLocalServiceWrapper implements MeetupsEntryLocalService {
+public class MeetupsEntryLocalServiceWrapper implements MeetupsEntryLocalService,
+	ServiceWrapper<MeetupsEntryLocalService> {
 	public MeetupsEntryLocalServiceWrapper(
 		MeetupsEntryLocalService meetupsEntryLocalService) {
 		_meetupsEntryLocalService = meetupsEntryLocalService;
@@ -288,11 +291,26 @@ public class MeetupsEntryLocalServiceWrapper implements MeetupsEntryLocalService
 			totalAttendees, maxAttendees, price, thumbnail);
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedService}
+	 */
 	public MeetupsEntryLocalService getWrappedMeetupsEntryLocalService() {
 		return _meetupsEntryLocalService;
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #setWrappedService}
+	 */
 	public void setWrappedMeetupsEntryLocalService(
+		MeetupsEntryLocalService meetupsEntryLocalService) {
+		_meetupsEntryLocalService = meetupsEntryLocalService;
+	}
+
+	public MeetupsEntryLocalService getWrappedService() {
+		return _meetupsEntryLocalService;
+	}
+
+	public void setWrappedService(
 		MeetupsEntryLocalService meetupsEntryLocalService) {
 		_meetupsEntryLocalService = meetupsEntryLocalService;
 	}

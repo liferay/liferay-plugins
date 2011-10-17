@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.model;
 
+import com.liferay.portal.model.ModelWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link KaleoCondition}.
@@ -23,7 +25,8 @@ package com.liferay.portal.workflow.kaleo.model;
  * @see       KaleoCondition
  * @generated
  */
-public class KaleoConditionWrapper implements KaleoCondition {
+public class KaleoConditionWrapper implements KaleoCondition,
+	ModelWrapper<KaleoCondition> {
 	public KaleoConditionWrapper(KaleoCondition kaleoCondition) {
 		_kaleoCondition = kaleoCondition;
 	}
@@ -346,7 +349,14 @@ public class KaleoConditionWrapper implements KaleoCondition {
 		_kaleoCondition.persist();
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedModel}
+	 */
 	public KaleoCondition getWrappedKaleoCondition() {
+		return _kaleoCondition;
+	}
+
+	public KaleoCondition getWrappedModel() {
 		return _kaleoCondition;
 	}
 

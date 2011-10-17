@@ -14,6 +14,8 @@
 
 package com.liferay.opensocial.model;
 
+import com.liferay.portal.model.ModelWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link OAuthConsumer}.
@@ -23,7 +25,8 @@ package com.liferay.opensocial.model;
  * @see       OAuthConsumer
  * @generated
  */
-public class OAuthConsumerWrapper implements OAuthConsumer {
+public class OAuthConsumerWrapper implements OAuthConsumer,
+	ModelWrapper<OAuthConsumer> {
 	public OAuthConsumerWrapper(OAuthConsumer oAuthConsumer) {
 		_oAuthConsumer = oAuthConsumer;
 	}
@@ -298,7 +301,14 @@ public class OAuthConsumerWrapper implements OAuthConsumer {
 		_oAuthConsumer.setKeyName(keyName);
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedModel}
+	 */
 	public OAuthConsumer getWrappedOAuthConsumer() {
+		return _oAuthConsumer;
+	}
+
+	public OAuthConsumer getWrappedModel() {
 		return _oAuthConsumer;
 	}
 

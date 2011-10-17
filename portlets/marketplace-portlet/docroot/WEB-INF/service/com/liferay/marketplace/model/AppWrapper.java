@@ -14,6 +14,8 @@
 
 package com.liferay.marketplace.model;
 
+import com.liferay.portal.model.ModelWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link App}.
@@ -23,7 +25,7 @@ package com.liferay.marketplace.model;
  * @see       App
  * @generated
  */
-public class AppWrapper implements App {
+public class AppWrapper implements App, ModelWrapper<App> {
 	public AppWrapper(App app) {
 		_app = app;
 	}
@@ -332,7 +334,14 @@ public class AppWrapper implements App {
 		return _app.isInstalled();
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedModel}
+	 */
 	public App getWrappedApp() {
+		return _app;
+	}
+
+	public App getWrappedModel() {
 		return _app;
 	}
 

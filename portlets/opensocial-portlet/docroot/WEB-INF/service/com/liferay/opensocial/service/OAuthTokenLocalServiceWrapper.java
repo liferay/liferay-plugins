@@ -14,6 +14,8 @@
 
 package com.liferay.opensocial.service;
 
+import com.liferay.portal.service.ServiceWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link OAuthTokenLocalService}.
@@ -23,7 +25,8 @@ package com.liferay.opensocial.service;
  * @see       OAuthTokenLocalService
  * @generated
  */
-public class OAuthTokenLocalServiceWrapper implements OAuthTokenLocalService {
+public class OAuthTokenLocalServiceWrapper implements OAuthTokenLocalService,
+	ServiceWrapper<OAuthTokenLocalService> {
 	public OAuthTokenLocalServiceWrapper(
 		OAuthTokenLocalService oAuthTokenLocalService) {
 		_oAuthTokenLocalService = oAuthTokenLocalService;
@@ -294,12 +297,26 @@ public class OAuthTokenLocalServiceWrapper implements OAuthTokenLocalService {
 		return _oAuthTokenLocalService.getOAuthTokens(gadgetKey, serviceName);
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedService}
+	 */
 	public OAuthTokenLocalService getWrappedOAuthTokenLocalService() {
 		return _oAuthTokenLocalService;
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #setWrappedService}
+	 */
 	public void setWrappedOAuthTokenLocalService(
 		OAuthTokenLocalService oAuthTokenLocalService) {
+		_oAuthTokenLocalService = oAuthTokenLocalService;
+	}
+
+	public OAuthTokenLocalService getWrappedService() {
+		return _oAuthTokenLocalService;
+	}
+
+	public void setWrappedService(OAuthTokenLocalService oAuthTokenLocalService) {
 		_oAuthTokenLocalService = oAuthTokenLocalService;
 	}
 
