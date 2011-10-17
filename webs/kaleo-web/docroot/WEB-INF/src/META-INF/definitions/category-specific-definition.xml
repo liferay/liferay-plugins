@@ -137,11 +137,11 @@
 		<task-timers>
 			<task-timer>
 				<name></name>
-				<blocking>false</blocking>
 				<delay>
 					<duration>1</duration>
 					<scale>hour</scale>
 				</delay>
+				<blocking>false</blocking>
 				<timer-actions>
 					<timer-notification>
 						<name></name>
