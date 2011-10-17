@@ -1442,7 +1442,7 @@ AUI().add(
 										var parentFolderId = instance._treeViewEditor.getSelectedFolderId();
 
 										if (parentFolderId == 0) {
-											parentFolderId = instance._rootNode.get(ID);
+											parentFolderId = instance._treeViewEditor.getChildren(false)[0].get(ID);
 										}
 
 										instance.fire(
@@ -1672,6 +1672,8 @@ AUI().add(
 						var node = treeViewEditor.addRootNode('OpenSocial Gadgets', instance.get(ROOT_FOLDER_ID));
 
 						node.expand();
+
+						node.select();
 
 						treeViewEditor.addTarget(instance);
 

@@ -133,9 +133,6 @@ AUI().add(
 						if (lastSelected && !lastSelected.isLeaf() && lastSelected.isSelected()) {
 							folderId = lastSelected.get(ID);
 						}
-						else {
-							folderId = instance.get(ID);
-						}
 
 						return folderId;
 					},
