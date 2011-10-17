@@ -28,8 +28,9 @@ public class UpgradeWSRPProducer extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		runSQL("update WSRP_WSRPProducer set version = '2.0' where verion is " +
-			"null");
+		runSQL(
+			"update WSRP_WSRPProducer set version = '2.0' where verion is " +
+				"null");
 
 		List<WSRPProducer> wsrpProducers =
 			WSRPProducerLocalServiceUtil.getWSRPProducers(
