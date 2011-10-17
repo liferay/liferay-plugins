@@ -1,11 +1,14 @@
 <?xml version="1.0"?>
-<!DOCTYPE look-and-feel PUBLIC "-//Liferay//DTD Look and Feel 5.0.0//EN" "http://www.liferay.com/dtd/liferay-look-and-feel_5_0_0.dtd">
+<!DOCTYPE look-and-feel PUBLIC "-//Liferay//DTD Look and Feel 6.1.0//EN" "http://www.liferay.com/dtd/liferay-look-and-feel_6_1_0.dtd">
 
 <look-and-feel>
 	<compatibility>
 		<version>6.1.0+</version>
 	</compatibility>
 	<theme id="sevencogs" name="7Cogs">
+		<settings>
+			<setting configurable="true" key="portlet-setup-show-borders-default" type="checkbox" value="false"></setting>
+		</settings>
 		<layout-templates>
 			<custom>
 				<layout-template id="home" name="Home">
