@@ -177,7 +177,7 @@ AUI().add(
 							instance._iframe = container.getIframe();
 						}
 						else {
-							var iframe = A.substitute(
+							var iframe = Lang.sub(
 								TPL_IFRAME,
 								{
 									height: (height ? 'height="' + height + '"' : STR_EMPTY),
