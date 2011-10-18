@@ -16,6 +16,7 @@ package com.liferay.marketplace.store.portlet;
 
 import com.liferay.marketplace.model.App;
 import com.liferay.marketplace.service.AppLocalServiceUtil;
+import com.liferay.marketplace.util.MarketplaceUtil;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.Constants;
@@ -24,7 +25,9 @@ import com.liferay.portal.kernel.util.StreamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
+import com.liferay.portal.model.User;
 import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 
 import java.io.IOException;
@@ -84,6 +87,30 @@ public class StorePortlet extends MVCPortlet {
 		JSONObject jsonObject = getAppJSONObject(remoteAppId);
 
 		jsonObject.put("message", "success");
+
+		writeJSON(actionRequest, actionResponse, jsonObject);
+	}
+
+	public void getClientId(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		String token = ParamUtil.getString(actionRequest, "token");
+
+		String clientId = ExpandoValueLocalServiceUtil.getData(
+			themeDisplay.getCompanyId(), User.class.getName(), "MP",
+			"client-id", themeDisplay.getUserId(), "default-client-id");
+
+		String encodedClientId = MarketplaceUtil.encodeClientId(
+			clientId, token);
+
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
+		jsonObject.put("clientId", encodedClientId);
+		jsonObject.put("token", token);
 
 		writeJSON(actionRequest, actionResponse, jsonObject);
 	}
@@ -171,6 +198,32 @@ public class StorePortlet extends MVCPortlet {
 		writeJSON(actionRequest, actionResponse, jsonObject);
 	}
 
+	public void updateClientId(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		if (!themeDisplay.isSignedIn()) {
+			return;
+		}
+
+		String clientId = ParamUtil.getString(actionRequest, "clientId");
+		String token = ParamUtil.getString(actionRequest, "token");
+
+		String decodedClientId = MarketplaceUtil.decodeClientId(
+			clientId, token);
+
+		if (Validator.isNull(decodedClientId)) {
+			return;
+		}
+
+		ExpandoValueLocalServiceUtil.addValue(
+			themeDisplay.getCompanyId(), User.class.getName(), "MP",
+			"client-id", themeDisplay.getUserId(), decodedClientId);
+	}
+
 	@Override
 	protected boolean callActionMethod(
 			ActionRequest actionRequest, ActionResponse actionResponse)
@@ -189,11 +242,17 @@ public class StorePortlet extends MVCPortlet {
 			else if (cmd.equals("get")) {
 				getApp(actionRequest, actionResponse);
 			}
+			else if (cmd.equals("getClientId")) {
+				getClientId(actionRequest, actionResponse);
+			}
 			else if (cmd.equals("install")) {
 				installApp(actionRequest, actionResponse);
 			}
 			else if (cmd.equals("update")) {
 				updateApp(actionRequest, actionResponse);
+			}
+			else if (cmd.equals("updateClientId")) {
+				updateClientId(actionRequest, actionResponse);
 			}
 			else if (cmd.equals("uninstall")) {
 				uninstallApp(actionRequest, actionResponse);
