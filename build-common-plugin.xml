@@ -106,6 +106,7 @@
 		<antcall target="build-lang-cmd">
 			<param name="lang.dir" value="docroot/WEB-INF/src/content" />
 			<param name="lang.file" value="Language" />
+			<param name="lang.translate" value="true" />
 		</antcall>
 	</target>
 
@@ -123,6 +124,7 @@
 			<arg value="lang.dir=${lang.dir}" />
 			<arg value="lang.file=${lang.file}" />
 			<arg value="lang.plugin=true" />
+			<arg value="lang.translate=${lang.translate}" />
 		</java>
 
 		<copy file="${lang.dir}/${lang.file}.properties" tofile="${lang.dir}/${lang.file}_en.properties" />
