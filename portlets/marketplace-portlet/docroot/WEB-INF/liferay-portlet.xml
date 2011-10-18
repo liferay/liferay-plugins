@@ -7,6 +7,7 @@
 		<icon>/store/icon.png</icon>
 		<control-panel-entry-category>marketplace</control-panel-entry-category>
 		<control-panel-entry-weight>1.0</control-panel-entry-weight>
+		<control-panel-entry-class>com.liferay.marketplace.store.portlet.StoreControlPanelEntry</control-panel-entry-class>
 		<use-default-template>false</use-default-template>
 		<instanceable>false</instanceable>
 		<private-request-attributes>false</private-request-attributes>
@@ -22,6 +23,7 @@
 		<icon>/my_marketplace/icon.png</icon>
 		<control-panel-entry-category>marketplace</control-panel-entry-category>
 		<control-panel-entry-weight>2.0</control-panel-entry-weight>
+		<control-panel-entry-class>com.liferay.marketplace.store.portlet.StoreControlPanelEntry</control-panel-entry-class>
 		<preferences-owned-by-group>false</preferences-owned-by-group>
 		<use-default-template>false</use-default-template>
 		<instanceable>false</instanceable>
