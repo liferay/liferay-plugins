@@ -29,20 +29,14 @@ page import="com.liferay.client.json.ipgeocoder.util.IPGeocoderUtil" %><%@
 page import="com.liferay.portal.NoSuchUserException" %><%@
 page import="com.liferay.portal.kernel.dao.search.ResultRow" %><%@
 page import="com.liferay.portal.kernel.dao.search.SearchContainer" %><%@
-page import="com.liferay.portal.kernel.dao.search.SearchEntry" %><%@
-page import="com.liferay.portal.kernel.dao.search.TextSearchEntry" %><%@
 page import="com.liferay.portal.kernel.language.LanguageUtil" %><%@
 page import="com.liferay.portal.kernel.messaging.DestinationNames" %><%@
 page import="com.liferay.portal.kernel.messaging.MessageBusUtil" %><%@
 page import="com.liferay.portal.kernel.util.CalendarFactoryUtil" %><%@
-page import="com.liferay.portal.kernel.util.ContentTypes" %><%@
 page import="com.liferay.portal.kernel.util.FastDateFormatFactoryUtil" %><%@
-page import="com.liferay.portal.kernel.util.GetterUtil" %><%@
 page import="com.liferay.portal.kernel.util.HtmlUtil" %><%@
 page import="com.liferay.portal.kernel.util.ParamUtil" %><%@
-page import="com.liferay.portal.kernel.util.PortalClassInvoker" %><%@
 page import="com.liferay.portal.kernel.util.StringPool" %><%@
-page import="com.liferay.portal.kernel.util.StringUtil" %><%@
 page import="com.liferay.portal.kernel.util.Validator" %><%@
 page import="com.liferay.portal.kernel.util.WebKeys" %><%@
 page import="com.liferay.portal.kernel.workflow.WorkflowConstants" %><%@
@@ -86,7 +80,6 @@ page import="com.liferay.socialnetworking.service.MeetupsEntryLocalServiceUtil" 
 page import="com.liferay.socialnetworking.service.MeetupsRegistrationLocalServiceUtil" %><%@
 page import="com.liferay.socialnetworking.service.WallEntryLocalServiceUtil" %><%@
 page import="com.liferay.socialnetworking.util.PortletPropsValues" %><%@
-page import="com.liferay.util.RSSUtil" %><%@
 page import="com.liferay.util.portlet.PortletProps" %>
 
 <%@ page import="java.text.Format" %><%@
@@ -94,7 +87,6 @@ page import="java.text.NumberFormat" %>
 
 <%@ page import="java.util.ArrayList" %><%@
 page import="java.util.Calendar" %><%@
-page import="java.util.Date" %><%@
 page import="java.util.LinkedHashMap" %><%@
 page import="java.util.List" %>
 
