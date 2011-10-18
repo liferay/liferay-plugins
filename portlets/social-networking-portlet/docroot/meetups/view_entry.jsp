@@ -202,7 +202,7 @@ int yesTotal = MeetupsRegistrationLocalServiceUtil.getMeetupsRegistrationsCount(
 	</c:when>
 	<c:otherwise>
 		<div>
-			<liferay-ui:message arguments='<%= new Object[] {themeDisplay.getURLSignIn(), PortalClassInvoker.invoke("com.liferay.portal.login.LoginUtil", "getCreateAccountHREF", request, themeDisplay)} %>' key="you-have-to-be-signed-in-to-register-for-this-meetup" />
+			<liferay-ui:message arguments='<%= new Object[] {themeDisplay.getURLSignIn(), PortalUtil.getCreateAccountURL(request, themeDisplay)} %>' key="you-have-to-be-signed-in-to-register-for-this-meetup" />
 		</div>
 	</c:otherwise>
 </c:choose>
