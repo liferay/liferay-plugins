@@ -413,11 +413,11 @@ a:focus .callout-extraborder {
 		width: 300px !important;
 	}
 	.all-in-one {
-		height: auto;
+		height: auto !important;
 		width: 275px !important;
 	}
 	.callout-extraborder img {
-		height: auto;
+		height: auto !important;
 		padding: 12px !important;
 		width: 280px !important;
 	}
@@ -433,7 +433,7 @@ a:focus .callout-extraborder {
 		width: 430px !important;
 	}
 	.home .callout-extraborder img {
-		height: auto;
+		height: auto !important;
 		padding: 12px !important;
 		width: 440px !important;
 	}
@@ -441,28 +441,94 @@ a:focus .callout-extraborder {
 
 /* -------- Mobile Views Global -------- */
 
+$mobile-width: 360px;
+$mobile-l-width: 600px;
+$margin: 20px;
+
+@function calculated-width($width, $padding) {
+	@return $width - $padding;
+}
+
 .aui-view-4,
 .aui-view-320,
 .aui-view-480 {
-	#navigation,
 	#breadcrumbs {
 		display: none;
 	}
 }
 
-/* -------- Mobile Views 320px -------- */
-
-$footer-width: 320px;
-
-@function calculated-width($padding) {
-	@return $footer-width - $padding;
+.aui-view-4,
+.aui-view-320,
+.aui-view-480 {
+	#navigation:after,
+	#navigation:before {
+		clear: both;
+		content: " ";
+		display: block;
+		height: 0;
+		visibility: "hidden";
+	}
+	#navigation {
+		background: none repeat scroll 0 0 transparent;
+		@include border-radius(5px);
+		box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+		clear: both;
+		color: #444444;
+		display: block;
+		margin: 0 0 40px;
+		padding: 0;
+		position: relative;
+		@include transition-property(color);
+		@include transition-duration(333ms);
+		ul {
+			border: none;
+			display: block;
+			float: none;
+			list-style: none;
+			margin: 0;
+			padding: 0;
+			background: none;
+			li {
+				clear: both;
+				color: #444;
+				float: none;
+				a {
+					border-image: none;
+					border-color: transparent transparent transparent transparent;
+					color: inherit;
+					display: block;
+					background: -moz-linear-gradient(#FDFDFD, #EEEEEE) repeat scroll 0 0 #EEEEEE;
+					border-color: #CCCCCC;
+					border-style: solid;
+					border-width: 1px 1px 0;
+					font-size: 16px;
+					line-height: 27px;
+					padding: 9px 20px 8px;
+				}
+			}
+			li a:hover,
+			li.selected a{
+				@include background-image(linear-gradient(top left, #1D4663, #154661));
+				border-color: #5E87B0;
+				color: #FFFFFF;
+			}
+			li.first a {
+				border-radius: 5px 5px 0 0;
+			}
+			li.last a {
+				border-radius: 0 0 5px 5px;
+			}
+		}
+	}
 }
+
+/* -------- Mobile Views 320px -------- */
 
 .aui-view-4,
 .aui-view-320 {
 	#wrapper {
 		margin: 20px auto 0;
-		width: calculated-width(20) !important;
+		width: calculated-width($mobile-width,$margin) !important;
 	}
 	.portlet-layout {
 		display: inline-block;
@@ -471,77 +537,24 @@ $footer-width: 320px;
 			float: left;
 			clear: both;
 			padding: inherit 0 !important;
-			width: calculated-width(20) !important;
+			width: calculated-width($mobile-width,$margin) !important;
 			.portlet-column-content {
 				padding-left: 0;
 				padding-right: 0;
 			}
 		}
 	}
-	
-	#footer {
-		clear: both;
-		margin: 0 auto;
-		width: calculated-width(20);
-		.footer-wrapper {
-			margin: 0 auto;
-			position: relative;
-			width: calculated-width(20);
-			#navigation {
-				display: block;
-				margin: 18px 0;
-				padding: 0 0 20px;
-				ul {
-					display: inline-block;
-					background-color: transparent;
-					background-image: none !important;
-					width: calculated-width(20);
-					li {
-						display: inline-block;
-						position: relative;
-						text-align: left;
-						a {
-							background: #CCC url(../images/custom/arrow.png) calculated-width(40) 50% no-repeat;
-							display: block;
-							float: left;
-							outline: 0;
-							padding: 10px;
-							text-decoration: none;
-							width: calculated-width(40);
-							span {
-								color: #000;
-							}
-						}
-					}
-					li.first a {
-						@include border-radius(4px 4px 0 0);
-					}
-					li.last a {
-						@include border-radius(0 0 4px 4px);
-					}
-					li.selected a {
-						background: #999;
-						span {
-							color: #FFF;
-						}
-					}
-					list-style: none;
-					margin: 0;
-					padding: 0;
-				}
-			}
-		}	
+	#navigation li {
+		width: calculated-width($mobile-width, $margin) !important;
 	}
 }
 
 /* -------- Mobile Views 480px -------- */
 
-$footer-width: 480px;
-
 .aui-view-480 {
 	#wrapper {
 		margin: 20px auto 0;
-		width: calculated-width(20) !important;
+		width: calculated-width($mobile-l-width, $margin) !important;
 	}
 	.portlet-layout {
 		display: inline-block;
@@ -550,64 +563,14 @@ $footer-width: 480px;
 			clear: both;
 			float: left;
 			padding: inherit 0 !important;
-			width: calculated-width(20) !important;
+			width: calculated-width($mobile-l-width, $margin) !important;
 			.portlet-column-content {
 				padding-left: 0;
 				padding-right: 0;
 			}
 		}
 	}
-	#footer {
-		clear: both;
-		margin: 0 auto;
-		width: calculated-width(40);
-		.footer-wrapper {
-			margin: 0 auto;
-			position: relative;
-			width: calculated-width(40);
-			#navigation {
-				display: block;
-				margin: 18px 0;
-				padding: 0 0 20px;
-				ul {
-					display: inline-block;
-					background-color: transparent;
-					background-image: none !important;
-					width: calculated-width(40);
-					li {
-						display: inline-block;
-						position: relative;
-						text-align: left;
-						a {
-							background: #CCC url(../images/custom/arrow.png) calculated-width(60) 50% no-repeat;
-							display: block;
-							float: left;
-							outline: 0;
-							padding: 10px;
-							text-decoration: none;
-							width: calculated-width(60);
-							span {
-								color: #000;
-							}
-						}
-					}
-					li.first a {
-						@include border-radius(4px 4px 0 0);
-					}
-					li.last a {
-						@include border-radius(0 0 4px 4px);
-					}
-					li.selected a {
-						background: #999;
-						span {
-							color: #FFF;
-						}
-					}
-					list-style: none;
-					margin: 0;
-					padding: 0;
-				}
-			}
-		}	
+	#navigation li {
+		width: calculated-width($mobile-l-width, $margin) !important;
 	}
 }
