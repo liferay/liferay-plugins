@@ -20,6 +20,8 @@ import com.liferay.portal.model.CacheModel;
 
 import com.liferay.socialcoding.model.SVNRevision;
 
+import java.io.Serializable;
+
 import java.util.Date;
 
 /**
@@ -29,7 +31,8 @@ import java.util.Date;
  * @see SVNRevision
  * @generated
  */
-public class SVNRevisionCacheModel implements CacheModel<SVNRevision> {
+public class SVNRevisionCacheModel implements CacheModel<SVNRevision>,
+	Serializable {
 	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(13);

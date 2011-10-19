@@ -20,6 +20,8 @@ import com.liferay.portal.model.CacheModel;
 
 import com.liferay.socialcoding.model.JIRAChangeItem;
 
+import java.io.Serializable;
+
 /**
  * The cache model class for representing JIRAChangeItem in entity cache.
  *
@@ -27,7 +29,8 @@ import com.liferay.socialcoding.model.JIRAChangeItem;
  * @see JIRAChangeItem
  * @generated
  */
-public class JIRAChangeItemCacheModel implements CacheModel<JIRAChangeItem> {
+public class JIRAChangeItemCacheModel implements CacheModel<JIRAChangeItem>,
+	Serializable {
 	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(15);

@@ -20,6 +20,8 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
 
+import java.io.Serializable;
+
 /**
  * The cache model class for representing Status in entity cache.
  *
@@ -27,7 +29,7 @@ import com.liferay.portal.model.CacheModel;
  * @see Status
  * @generated
  */
-public class StatusCacheModel implements CacheModel<Status> {
+public class StatusCacheModel implements CacheModel<Status>, Serializable {
 	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(17);

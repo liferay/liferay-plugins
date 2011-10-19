@@ -20,6 +20,8 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
 
+import java.io.Serializable;
+
 import java.util.Date;
 
 /**
@@ -29,7 +31,8 @@ import java.util.Date;
  * @see CalendarEvent
  * @generated
  */
-public class CalendarEventCacheModel implements CacheModel<CalendarEvent> {
+public class CalendarEventCacheModel implements CacheModel<CalendarEvent>,
+	Serializable {
 	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(43);

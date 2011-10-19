@@ -19,6 +19,8 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken;
 
+import java.io.Serializable;
+
 import java.util.Date;
 
 /**
@@ -28,7 +30,8 @@ import java.util.Date;
  * @see KaleoTaskInstanceToken
  * @generated
  */
-public class KaleoTaskInstanceTokenCacheModel implements CacheModel<KaleoTaskInstanceToken> {
+public class KaleoTaskInstanceTokenCacheModel implements CacheModel<KaleoTaskInstanceToken>,
+	Serializable {
 	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(39);

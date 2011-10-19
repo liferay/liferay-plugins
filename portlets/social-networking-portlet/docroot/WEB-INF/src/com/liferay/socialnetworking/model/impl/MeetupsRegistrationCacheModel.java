@@ -20,6 +20,8 @@ import com.liferay.portal.model.CacheModel;
 
 import com.liferay.socialnetworking.model.MeetupsRegistration;
 
+import java.io.Serializable;
+
 import java.util.Date;
 
 /**
@@ -29,7 +31,8 @@ import java.util.Date;
  * @see MeetupsRegistration
  * @generated
  */
-public class MeetupsRegistrationCacheModel implements CacheModel<MeetupsRegistration> {
+public class MeetupsRegistrationCacheModel implements CacheModel<MeetupsRegistration>,
+	Serializable {
 	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(19);

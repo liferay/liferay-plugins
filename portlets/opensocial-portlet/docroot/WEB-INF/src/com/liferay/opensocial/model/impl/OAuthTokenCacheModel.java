@@ -20,6 +20,8 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
 
+import java.io.Serializable;
+
 import java.util.Date;
 
 /**
@@ -29,7 +31,8 @@ import java.util.Date;
  * @see OAuthToken
  * @generated
  */
-public class OAuthTokenCacheModel implements CacheModel<OAuthToken> {
+public class OAuthTokenCacheModel implements CacheModel<OAuthToken>,
+	Serializable {
 	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(29);
