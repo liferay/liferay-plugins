@@ -301,7 +301,7 @@ public class LiferayMediaItemService implements MediaItemService {
 
 			for (FileEntry fileEntry : fileEntries) {
 				MediaItem.Type mediaItemType = toMediaItemType(
-					fileEntry.getNameWithExtension());
+					"*." + fileEntry.getExtension());
 
 				if (mediaItemType == null) {
 					continue;
@@ -341,7 +341,7 @@ public class LiferayMediaItemService implements MediaItemService {
 
 		for (FileEntry fileEntry : fileEntries) {
 			MediaItem.Type mediaItemType = toMediaItemType(
-				fileEntry.getNameWithExtension());
+				"*." + fileEntry.getExtension());
 
 			if (mediaItemType == null) {
 				continue;
@@ -380,7 +380,7 @@ public class LiferayMediaItemService implements MediaItemService {
 
 		for (FileEntry fileEntry : fileEntries) {
 			MediaItem.Type mediaItemType = toMediaItemType(
-				fileEntry.getNameWithExtension());
+				"*." + fileEntry.getExtension());
 
 			if (mediaItemType == null) {
 				continue;
@@ -490,10 +490,10 @@ public class LiferayMediaItemService implements MediaItemService {
 		mediaItem.setId(String.valueOf(fileEntry.getFileEntryId()));
 		mediaItem.setLastUpdated(String.valueOf(fileEntry.getModifiedDate()));
 		mediaItem.setMimeType(
-			MimeTypesUtil.getContentType(fileEntry.getNameWithExtension()));
+			MimeTypesUtil.getContentType("*." + fileEntry.getExtension()));
 		mediaItem.setNumViews(String.valueOf(fileEntry.getReadCount()));
 		mediaItem.setTitle(fileEntry.getTitle());
-		mediaItem.setType(toMediaItemType(fileEntry.getNameWithExtension()));
+		mediaItem.setType(toMediaItemType("*." + fileEntry.getExtension()));
 
 		String fileEntryURL = ShindigUtil.getFileEntryURL(
 			securityToken.getDomain(), fileEntry.getFileEntryId());
