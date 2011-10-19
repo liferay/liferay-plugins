@@ -494,8 +494,9 @@ public class LiferayMediaItemService implements MediaItemService {
 				StringPool.PERIOD.concat(fileEntry.getExtension())));
 		mediaItem.setNumViews(String.valueOf(fileEntry.getReadCount()));
 		mediaItem.setTitle(fileEntry.getTitle());
-		mediaItem.setType(toMediaItemType(
-			StringPool.PERIOD.concat(fileEntry.getExtension())));
+		mediaItem.setType(
+			toMediaItemType(
+				StringPool.PERIOD.concat(fileEntry.getExtension())));
 
 		String fileEntryURL = ShindigUtil.getFileEntryURL(
 			securityToken.getDomain(), fileEntry.getFileEntryId());
