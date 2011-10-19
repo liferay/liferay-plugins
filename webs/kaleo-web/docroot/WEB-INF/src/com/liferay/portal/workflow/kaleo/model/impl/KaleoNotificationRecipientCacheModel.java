@@ -19,6 +19,8 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient;
 
+import java.io.Serializable;
+
 import java.util.Date;
 
 /**
@@ -28,7 +30,8 @@ import java.util.Date;
  * @see KaleoNotificationRecipient
  * @generated
  */
-public class KaleoNotificationRecipientCacheModel implements CacheModel<KaleoNotificationRecipient> {
+public class KaleoNotificationRecipientCacheModel implements CacheModel<KaleoNotificationRecipient>,
+	Serializable {
 	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(27);

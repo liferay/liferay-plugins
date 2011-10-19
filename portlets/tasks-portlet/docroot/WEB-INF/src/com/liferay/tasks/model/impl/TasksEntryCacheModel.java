@@ -20,6 +20,8 @@ import com.liferay.portal.model.CacheModel;
 
 import com.liferay.tasks.model.TasksEntry;
 
+import java.io.Serializable;
+
 import java.util.Date;
 
 /**
@@ -29,7 +31,8 @@ import java.util.Date;
  * @see TasksEntry
  * @generated
  */
-public class TasksEntryCacheModel implements CacheModel<TasksEntry> {
+public class TasksEntryCacheModel implements CacheModel<TasksEntry>,
+	Serializable {
 	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(29);

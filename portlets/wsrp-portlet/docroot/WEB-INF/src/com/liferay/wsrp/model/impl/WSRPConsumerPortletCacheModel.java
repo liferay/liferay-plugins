@@ -20,6 +20,8 @@ import com.liferay.portal.model.CacheModel;
 
 import com.liferay.wsrp.model.WSRPConsumerPortlet;
 
+import java.io.Serializable;
+
 import java.util.Date;
 
 /**
@@ -29,7 +31,8 @@ import java.util.Date;
  * @see WSRPConsumerPortlet
  * @generated
  */
-public class WSRPConsumerPortletCacheModel implements CacheModel<WSRPConsumerPortlet> {
+public class WSRPConsumerPortletCacheModel implements CacheModel<WSRPConsumerPortlet>,
+	Serializable {
 	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(17);

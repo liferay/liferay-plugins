@@ -20,6 +20,8 @@ import com.liferay.portal.model.CacheModel;
 
 import com.liferay.socialcoding.model.SVNRepository;
 
+import java.io.Serializable;
+
 /**
  * The cache model class for representing SVNRepository in entity cache.
  *
@@ -27,7 +29,8 @@ import com.liferay.socialcoding.model.SVNRepository;
  * @see SVNRepository
  * @generated
  */
-public class SVNRepositoryCacheModel implements CacheModel<SVNRepository> {
+public class SVNRepositoryCacheModel implements CacheModel<SVNRepository>,
+	Serializable {
 	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(7);

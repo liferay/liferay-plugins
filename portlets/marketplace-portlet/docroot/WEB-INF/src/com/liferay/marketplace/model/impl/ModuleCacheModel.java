@@ -20,6 +20,8 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
 
+import java.io.Serializable;
+
 /**
  * The cache model class for representing Module in entity cache.
  *
@@ -27,7 +29,7 @@ import com.liferay.portal.model.CacheModel;
  * @see Module
  * @generated
  */
-public class ModuleCacheModel implements CacheModel<Module> {
+public class ModuleCacheModel implements CacheModel<Module>, Serializable {
 	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(9);

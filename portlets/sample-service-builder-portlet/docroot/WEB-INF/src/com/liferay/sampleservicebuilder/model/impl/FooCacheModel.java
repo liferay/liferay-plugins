@@ -20,6 +20,8 @@ import com.liferay.portal.model.CacheModel;
 
 import com.liferay.sampleservicebuilder.model.Foo;
 
+import java.io.Serializable;
+
 import java.util.Date;
 
 /**
@@ -29,7 +31,7 @@ import java.util.Date;
  * @see Foo
  * @generated
  */
-public class FooCacheModel implements CacheModel<Foo> {
+public class FooCacheModel implements CacheModel<Foo>, Serializable {
 	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(27);

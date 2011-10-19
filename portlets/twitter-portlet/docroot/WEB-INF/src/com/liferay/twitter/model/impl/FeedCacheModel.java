@@ -20,6 +20,8 @@ import com.liferay.portal.model.CacheModel;
 
 import com.liferay.twitter.model.Feed;
 
+import java.io.Serializable;
+
 import java.util.Date;
 
 /**
@@ -29,7 +31,7 @@ import java.util.Date;
  * @see Feed
  * @generated
  */
-public class FeedCacheModel implements CacheModel<Feed> {
+public class FeedCacheModel implements CacheModel<Feed>, Serializable {
 	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(19);

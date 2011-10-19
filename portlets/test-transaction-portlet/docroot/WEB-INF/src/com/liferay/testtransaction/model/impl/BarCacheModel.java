@@ -20,6 +20,8 @@ import com.liferay.portal.model.CacheModel;
 
 import com.liferay.testtransaction.model.Bar;
 
+import java.io.Serializable;
+
 /**
  * The cache model class for representing Bar in entity cache.
  *
@@ -27,7 +29,7 @@ import com.liferay.testtransaction.model.Bar;
  * @see Bar
  * @generated
  */
-public class BarCacheModel implements CacheModel<Bar> {
+public class BarCacheModel implements CacheModel<Bar>, Serializable {
 	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(5);

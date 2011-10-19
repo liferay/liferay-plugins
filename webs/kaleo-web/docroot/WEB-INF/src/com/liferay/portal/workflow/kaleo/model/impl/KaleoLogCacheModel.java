@@ -19,6 +19,8 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.workflow.kaleo.model.KaleoLog;
 
+import java.io.Serializable;
+
 import java.util.Date;
 
 /**
@@ -28,7 +30,7 @@ import java.util.Date;
  * @see KaleoLog
  * @generated
  */
-public class KaleoLogCacheModel implements CacheModel<KaleoLog> {
+public class KaleoLogCacheModel implements CacheModel<KaleoLog>, Serializable {
 	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(61);

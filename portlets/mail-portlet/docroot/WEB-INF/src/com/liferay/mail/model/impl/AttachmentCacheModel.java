@@ -20,6 +20,8 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
 
+import java.io.Serializable;
+
 /**
  * The cache model class for representing Attachment in entity cache.
  *
@@ -27,7 +29,8 @@ import com.liferay.portal.model.CacheModel;
  * @see Attachment
  * @generated
  */
-public class AttachmentCacheModel implements CacheModel<Attachment> {
+public class AttachmentCacheModel implements CacheModel<Attachment>,
+	Serializable {
 	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(19);
