@@ -14,8 +14,11 @@
 
 package com.liferay.marketplace.store.portlet;
 
+import com.liferay.marketplace.util.MarketplaceUtil;
 import com.liferay.portal.model.Portlet;
+import com.liferay.portal.model.User;
 import com.liferay.portal.security.permission.PermissionChecker;
+import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portlet.BaseControlPanelEntry;
 
@@ -35,7 +38,18 @@ public class StoreControlPanelEntry extends BaseControlPanelEntry {
 			PermissionChecker permissionChecker, Portlet portlet)
 		throws Exception {
 
-		if (permissionChecker.isOmniadmin()) {
+		long companyId = permissionChecker.getCompanyId();
+
+		if (!MarketplaceUtil.hasMarketplaceAdmin(companyId) &&
+			permissionChecker.isOmniadmin()) {
+
+			return true;
+		}
+
+		User user = UserLocalServiceUtil.getUserById(
+			permissionChecker.getUserId());
+
+		if (MarketplaceUtil.isMarketplaceAdmin(user)) {
 			return true;
 		}
 
