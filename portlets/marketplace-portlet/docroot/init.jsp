@@ -36,7 +36,7 @@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
 <%
 long appId = ParamUtil.getLong(request, "appId");
 
-Strign portletId = portletDisplay.getId();
+String portletId = portletDisplay.getId();
 
 String iFrameURL = MarketplaceConstants.MARKETPLACE_URL_HOME;
 
