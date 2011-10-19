@@ -102,7 +102,7 @@ public class MicroblogsEntryFinderImpl
 			qPos.add(userId);
 			qPos.add(userId);
 
-			Iterator<Long> itr = q.list().iterator();
+			Iterator<Long> itr = q.iterate();
 
 			if (itr.hasNext()) {
 				Long count = itr.next();
@@ -142,7 +142,7 @@ public class MicroblogsEntryFinderImpl
 			qPos.add(userId);
 			qPos.add(microblogsEntryUserId);
 
-			Iterator<Long> itr = q.list().iterator();
+			Iterator<Long> itr = q.iterate();
 
 			if (itr.hasNext()) {
 				Long count = itr.next();
@@ -184,7 +184,7 @@ public class MicroblogsEntryFinderImpl
 			qPos.add(userId);
 			qPos.add(assetTagName);
 
-			Iterator<Long> itr = q.list().iterator();
+			Iterator<Long> itr = q.iterate();
 
 			if (itr.hasNext()) {
 				Long count = itr.next();
@@ -225,7 +225,7 @@ public class MicroblogsEntryFinderImpl
 			qPos.add(type);
 			qPos.add(microblogsEntryUserId);
 
-			Iterator<Long> itr = q.list().iterator();
+			Iterator<Long> itr = q.iterate();
 
 			if (itr.hasNext()) {
 				Long count = itr.next();
