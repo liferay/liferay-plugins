@@ -66,7 +66,7 @@ public class JIRAChangeGroupFinderImpl
 			qPos.add(projectId);
 			qPos.add(createDate_TS);
 
-			Iterator<Long> itr = q.list().iterator();
+			Iterator<Long> itr = q.iterate();
 
 			if (itr.hasNext()) {
 				Long count = itr.next();
