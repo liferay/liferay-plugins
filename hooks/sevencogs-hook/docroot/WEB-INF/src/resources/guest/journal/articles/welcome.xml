@@ -54,120 +54,179 @@
 
 			<div class="welcome">
 				<h2>
-					Welcome to Liferay
+					Welcome!
 				</h2>
 
 				<img alt="Shared Workspaces" class="right" src="/image/[$GROUP_ID$]/[$SHARED_WORKSPACES_IG_IMAGE_UUID$]" />
 
 				<p class="intro">
-					Liferay is a complete, all-in-one open source enterprise portal solution and web application platform.
+					Thank you for your interest in Liferay Portal, the leading open source web platform for the enterprise.
 				</p>
 
 				<p>
-					It has over one hundred thousand deployments worldwide with sites from small businesses to Fortune 500 companies. We've purposed Liferay for everything from a portal, a <abbr title="Content Management System">CMS</abbr> to a web application platform. We hope you enjoy this preview release of Liferay 6.0. Take a look around, and maybe for starters, click on one of the users on the bottom right hand corner of the screen.
+					Enterprises around the world use Liferay Portal to build solutions that deliver immediate results and long-term value. Application integration, web publishing, social networking, and team collaboration are just a few of the use-cases for Liferay Portal. Learn how Liferay can help your organization by test-driving some of the various features on this site.
 				</p>
 
-				<p>
-					Once you're done taking a look around, and if you haven't decided yet, you might want to ask yourself this question: <em>&quot;what are you going to use Liferay for?&quot;</em>
-				</p>
-
-				<h3>As a Portal</h3>
+				<h4>
+					An All-in-One Package
+				</h4>
 
 				<p>
-					Portals are designed to unify information. Liferay was designed with people in mind. We know how important it is to communicate within companies and here's some of the ways we try to make it easier for you.
-				</p>
-
-				<h4>Shared Workspaces</h4>
-
-				<p>
-					Increase productivity by creating workspaces and workflows for documents, content, and more. Create a central meeting place for everyone related to a project; now then, imagine getting everyone on the same "page," no matter where they are.
-				</p>
-
-				<h4>Social Communities and Networks</h4>
-
-				<img alt="Liferay Community Image" class="right" src="/image/[$GROUP_ID$]/[$SOCIAL_NETWORKING_IG_IMAGE_UUID$]" />
-
-				<p>
-					Remember Eddie, Olivia, and Johnny from accounting? What about Tom, Ryan, Jenn, and Steve from professional services? How do they communicate? E-mail can only go so far and instant messages can get lost or deleted. Now you're probably wondering, is there a better way?
-				</p>
-
-				<blockquote>
-					Communicate, collaborate, and consolidate information...
-				</blockquote>
-
-				<p>
-					By creating communities for different departments or groups within your company, then leveraging blogs, wikis, message boards, and shared calendars and get them organized and talking. With Liferay 6.0 we've improved this with community templates. When creating a new community, just specify the type of community, we'll propagate pages with portlets commonly associated with that community, then just edit and save to your liking.
-				</p>
-
-				<h4>Content Management System</h4>
-
-				<img alt="Liferay CMS Image" class="right" src="/image/[$GROUP_ID$]/[$WEB_PUBLISHING_IG_IMAGE_UUID$]" />
-
-				<p>
-					Liferay isn't just an internal portal, as an external and facing portal, you'll have the tools you need to create beautiful, dynamic websites. Create content through an editorial workflow then use and re-use that content ubiquitously through your portal.
-				</p>
-
-				<p>
-					In this release, we've made many improvements to make finding and publishing your content as global as possible.
-				</p>
-
-				<h3>As a Platform</h3>
-
-				<img alt="Platform Image" class="right" src="/image/[$GROUP_ID$]/[$PORTAL_MASHUPS_IG_IMAGE_UUID$]" />
-
-				<p>
-					Liferay is a robust web application platform.It's open source so developers can see how things work.
-				</p>
-
-				<h4>SOA</h4>
-
-				<p>
-					Speed up development with built-in developer tools, LDAP, web services, and Spring-based architecture. Rapidly produce portlets and applications that cater to your needs.
-				</p>
-
-				<h4>Enterprise Integration</h4>
-
-				<p>
-					We meet industry standards which reduces risk and increases re-usability from within Liferay.
-				</p>
-
-				<h4>Mashups</h4>
-
-				<p>
-					Liferay supports mashup development with support for widgets, Facebook&reg; integration, iGoogle&reg; support, and GoogleMaps&reg;
-				</p>
-
-				<h3>Some Companies That Use Liferay</h3>
-
-				<p>
-					<a href="http://developer.cisco.com" target="_blank">Cisco Developer Network</a>, <a href="http://www.monsterenergy.com" target="_blank">Monster Energy Drink</a>, <a href="http://www.teambeachbody.com" target="_blank">Teambeachbody.com</a>, <a href="http://www.eamobile.com/home/" target="_blank">EA Mobile</a>, <a href="http://www.poken.com/" target="_blank">Poken</a>, <a href="http://reboot.fcc.gov/" target="_blank">FCC Reboot</a>, and many corporate intranet sites... for case studies and more, visit <a href="http://www.liferay.com/products/liferay-portal/stories" target="_blank">Liferay: Stories</a>.
-				</p>
-
-				<hr/>
-
-				<h3>Build With Us</h3>
-
-				<p>
-					What else does Liferay, as a company, do? We provide <a href="http://www.liferay.com/services">services</a>.
+					Liferay Portal is lightweight but also feature-rich, with broad product capabilities (over 70 out-of-the-box portlets) to provide immediate return on investment:
 				</p>
 
 				<ul>
 					<li>
-						We offer <a href="http://www.liferay.com/services/subscription">Enterprise Support</a>, 24 hours a day, seven days a week.
+						<p>
+							Content &amp; Document Management with Microsoft Office integration
+						</p>
 					</li>
 					<li>
-						<a href="http://www.liferay.com/services/training">Training</a> tailored to fit your organization's needs.
+						<p>
+							Flexible Web Publishing and Shared Workspaces
+						</p>
 					</li>
 					<li>
-						Through our <a href="http://www.liferay.com/services/consulting">consulting services</a>, our experts are available to help you at every stage of the application's lifecycle.
+						<p>
+							Enterprise Collaboration
+						</p>
 					</li>
 					<li>
-						If you develop for the Liferay application, why not <a href="http://www.liferay.com/partners/service-partners">partner with us</a> and help us build.
+						<p>
+							Built-in Social Networking and Mashups
+						</p>
+					</li>
+					<li>
+						<p>
+							Enterprise Portal framework and Identity Management
+						</p>
 					</li>
 				</ul>
 
+				<h4>
+					Built for the End-User
+				</h4>
+
 				<p>
-					Visit <a href="http://www.liferay.com">Liferay.com</a>, for <a href="http://www.liferay.com/about-us/news">updates</a>, <a href="http://www.liferay.com/about-us/events/">events</a>, and join our <a href="http://www.liferay.com/community">community</a>.
+					Liferay values the importance of communication and knowledge-sharing between users. For that reason, Liferay Portal was designed with usability in mind. Increase productivity by creating workspaces and workflows for documents, content and more. Create a central hub of data and collaboration for your entire team.
+				</p>
+
+				<p>
+					Test drive how collaboration and knowledge management might work depending on your user role.
+				</p>
+
+				<img alt="Liferay Community Image" class="right" src="/image/[$GROUP_ID$]/[$SOCIAL_NETWORKING_IG_IMAGE_UUID$]" />
+
+				<h4>Open &amp; Flexible for the Developer</h4>
+
+				<ul>
+					<li>
+						<p>
+							SOA - Streamline development with built-in developer tools, LDAP, web services, and Spring-based architecture. Rapidly produce portlets and applications that are customizable to your needs.
+						</p>
+					</li>
+					<li>
+						<p>
+							Enterprise Integration - Liferay Portal meets industry standards to reduce risk and increase reusability within the product.
+						</p>
+					</li>
+					<li>
+						<p>
+							Mashups - Liferay supports mashup development with support for widgets, Facebook&#174; integration, iGoogle&#174; support, and GoogleMaps&#174;.
+						</p>
+					</li>
+				</ul>
+
+				<h4>
+					Ready for the Enterprise
+				</h4>
+
+				<img alt="Platform Image" class="right" src="/image/[$GROUP_ID$]/[$PORTAL_MASHUPS_IG_IMAGE_UUID$]" />
+
+				<ul>
+					<li>
+						Granular management of user roles
+					</li>
+					<li>
+						Highly scalable, supporting millions of users, daily page hits and more
+					</li>
+					<li>
+						Supports both horizontal and vertical scaling methodologies
+					</li>
+					<li>
+						Clusterable configuration for high availability
+					</li>
+					<li>
+						Implements top ten OWASP-recommended security practices
+					</li>
+					<li>
+						Options for Terracotta, Oracle RAC, and other scalability soluti ons
+					</li>
+					<li>
+						Deployable to the Cloud and available as SaaS
+					</li>
+				</ul>
+
+				<h3>
+					About Liferay, Inc
+				</h3>
+
+				<h4>
+					Independent Market Leader
+				</h4>
+
+				<p>
+					As the only major independent portal vendor in the market without a stack agenda, Liferay is committed to making technology decisions based on customer satisfaction, not on maximizing revenue from other product lines.
+				</p>
+
+				<p>
+					Liferay, Inc. offers a full suite of professional services built around our technology:
+				</p>
+
+				<ul>
+					<li>
+						<a href="http://www.liferay.com/services/subscription">Enterprise Support</a>
+					</li>
+					<li>
+						<a href="http://www.liferay.com/services/training">Training</a> customizable to fit your organization's needs.
+					</li>
+					<li>
+						<a href="http://www.liferay.com/services/consulting">Consulting services for</a> every stage of the application lifecycle.
+					</li>
+				</ul>
+
+				<h4>
+					International, Cross-Industry Solution Provider
+				</h4>
+
+				<p>
+					<img alt="Cisco" src="/image/[$GROUP_ID$]/[$CUSTOMER_1$]" />
+					<img alt="Sesame Street" src="/image/[$GROUP_ID$]/[$CUSTOMER_2$]" />
+					<img alt="Société Génerale" src="/image/[$GROUP_ID$]/[$CUSTOMER_3$]" />
+					<img alt="T-Mobile" src="/image/[$GROUP_ID$]/[$CUSTOMER_4$]" />
+					<img alt="BARCLAYS" src="/image/[$GROUP_ID$]/[$CUSTOMER_5$]" />
+					<img alt="AutoZone" src="/image/[$GROUP_ID$]/[$CUSTOMER_6$]" />
+					<img alt="China Mobile" src="/image/[$GROUP_ID$]/[$CUSTOMER_7$]" />
+				</p>
+
+				<p>
+					For other case studies and more, visit&nbsp;<a href="http://www.liferay.com/products/liferay-portal/stories"><u>Liferay: Stories</u></a>.
+
+					<br />
+
+					To learn more about Liferay's products and services, please visit <a href="http://www.liferay.com/"><u>www.liferay.com</u></a>.
+				</p>
+
+				<p>
+					Visit us: <a href="http://www.liferay.com/"><u>Liferay.com</u></a>
+				</p>
+
+				<p>
+					Follow us: <a href="http://twitter.com/liferay" target="_blank">twitter.com/liferay</a>
+				</p>
+
+				<p>
+					Like us: <a href="http://facebook.com/liferay" target="_blank">facebook.com/liferay</a>
 				</p>
 			</div>
 		]]>

@@ -53,8 +53,7 @@
 					<h2>Bruno (Admin)</h2>
 
 					<div>
-						The admin has full control over the entire portal, allowing modification and creation of users, communitities, and roles. <a class="public_pages" href="/web/bruno">View bruno's public page</a> <a class="express_login" href="#" onclick="document.loginadmin.submit();return false;">Login as bruno</a>
-
+						The admin has full control over the entire portal, allowing modification and creation of users, communitities, and roles. <a class="public_pages" href="/web/bruno">View Bruno's public page</a> <a class="express_login" href="#" onclick="document.loginadmin.submit();return false;">Login as bruno</a>
 					</div>
 				</div>
 			</form>
@@ -76,7 +75,7 @@
 					<h2>Richard Publisher</h2>
 
 					<div>
-						Richard has article submission rights for the content management system. <a class="public_pages" href="/web/richard">View richard's public page</a> <a class="express_login" href="#" onclick="document.loginrich.submit();return false;">Login as richard</a>
+						Richard has article submission rights for the content management system. <a class="public_pages" href="/web/richard">View Richard's public page</a> <a class="express_login" href="#" onclick="document.loginrich.submit();return false;">Login as richard</a>
 					</div>
 				</div>
 			</form>
@@ -98,31 +97,31 @@
 					<h2>Michelle Editor</h2>
 
 					<div>
-						Michelle has control over the staging and layout of all articles as well as publishing rights for workflow and the content management system. <a class="public_pages" href="/web/michelle">View michelle's public page</a> <a class="express_login" href="#" onclick="document.loginmichelle.submit();return false;">Login as michelle</a>
+						Michelle has control over the staging and layout of all articles as well as publishing rights for workflow and the content management system. <a class="public_pages" href="/web/michelle">View Michelle's public page</a> <a class="express_login" href="#" onclick="document.loginmichelle.submit();return false;">Login as michelle</a>
 					</div>
 				</div>
 			</form>
 
-			<form action="/web/guest/home" method="post" name="loginjohn">
+			<form action="/web/guest/home" method="post" name="loginbradley">
 				<input name="p_p_id" type="hidden" value="58" />
 				<input name="p_p_lifecycle" type="hidden" value="1" />
 				<input name="p_p_mode" type="hidden" value="view" />
 				<input name="p_p_state" type="hidden" value="maximized" />
 				<input name="_58_struts_action" type="hidden" value="/login/login" />
-				<input name="_58_login" type="hidden" value="john@7cogs.com" />
-				<input name="_58_password" type="hidden" value="john" />
+				<input name="_58_login" type="hidden" value="bradley@7cogs.com" />
+				<input name="_58_password" type="hidden" value="bradley" />
 
-				<div class="loginuser" title="Login: john@7cogs.com, Password: john">
+				<div class="loginuser" title="Login: bradley@7cogs.com, Password: bradley">
 					<div class="user-profile-image" style="float: left; padding-right: 4px;">
-						<img alt="" class="avatar" src="/image/user_portrait?screenName=john&amp;companyId=[$COMPANY_ID$]&amp;t=1228845375887" width="80" />
+						<img alt="" class="avatar" src="/image/user_portrait?screenName=bradley&amp;companyId=[$COMPANY_ID$]&amp;t=1228845375887" width="80" />
 					</div>
 
-					<h2>John Regular User</h2>
+					<h2>Bradley Regular User</h2>
 
 					<div>
-						John is a user with minimum rights within the portal.
+						Bradley is a user with minimum rights within the portal.
 						<div>
-							<a class="public_pages" href="/web/john">View john's public page</a> <a class="express_login" href="#" onclick="document.loginjohn.submit();return false;">Login as john</a>
+							<a class="public_pages" href="/web/bradley">View Bradley's public page</a> <a class="express_login" href="#" onclick="document.loginbradley.submit();return false;">Login as Bradley</a>
 						</div>
 					</div>
 				</div>
