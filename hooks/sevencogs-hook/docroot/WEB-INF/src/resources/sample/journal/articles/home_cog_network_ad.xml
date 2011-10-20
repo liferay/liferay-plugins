@@ -8,7 +8,7 @@
 
 				<div class="callout">
 					<div class="callout-extraborder">
-						<div style="background: url(/image/[$GROUP_ID$]/[$COG_NETWORK_AD_IG_IMAGE_UUID$]) no-repeat center bottom #D1D2D2; height: 207px;"></div>
+						<div style="background: url(/image/[$GROUP_ID$]/[$COG_NETWORK_AD_R_FE_UUID$]) no-repeat center bottom #D1D2D2; height: 207px;"></div>
 					</div>
 				</div>
 			</article>

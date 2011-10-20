@@ -5,7 +5,7 @@
 		<![CDATA[
 			<div class="lfc-single-image">
 				<a href="[$GROUP_URL$]">
-					<img alt="" src="/image/[$GROUP_ID$]/[$IG_IMAGE_UUID$]" />
+					<img alt="" src="/image/[$GROUP_ID$]/[$R_FE_UUID$]" />
 				</a>
 			</div>
 		]]>

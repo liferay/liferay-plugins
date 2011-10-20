@@ -6,7 +6,7 @@
 			<a href="/web/7cogs/blogs" style="display: block; color: inherit; text-decoration: none;">
 				<div class="callout">
 					<div class="callout-extraborder">
-						<div class="callout-content" style="background: url(/image/[$GROUP_ID$]/[$HOME_PAGE_BLOGS_IG_IMAGE_UUID$]) no-repeat 25px 13px;">
+						<div class="callout-content" style="background: url(/image/[$GROUP_ID$]/[$HOME_PAGE_BLOGS_R_FE_UUID$]) no-repeat 25px 13px;">
 							<article class="after-icon-callout">
 								<h1>
 									Visit the Blog!
