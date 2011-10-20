@@ -5,7 +5,7 @@
 		<![CDATA[
 			<div class="callout">
 				<div class="callout-extraborder">
-					<img src="/image/[$GROUP_ID$]/[$HOME_PAGE_BANNER_IG_IMAGE_UUID$]" style="display: block; height: 219px; width: 756px; padding: 23px 0 0 57px;" />
+					<img src="/image/[$GROUP_ID$]/[$HOME_PAGE_BANNER_R_FE_UUID$]" style="display: block; height: 219px; width: 756px; padding: 23px 0 0 57px;" />
 				</div>
 			</div>
 		]]>

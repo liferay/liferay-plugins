@@ -885,19 +885,19 @@ public class UpgradeCompany extends UpgradeProcess {
 		String content = StringUtil.replace(
 			journalArticle.getContent(),
 			new String[] {
-				"[$CELL_BG_IG_IMAGE_UUID$]",
-				"[$CUSTOMER_1_IG_IMAGE_UUID$]",
-				"[$CUSTOMER_2_IG_IMAGE_UUID$]",
-				"[$CUSTOMER_3_IG_IMAGE_UUID$]",
-				"[$CUSTOMER_4_IG_IMAGE_UUID$]",
-				"[$CUSTOMER_5_IG_IMAGE_UUID$]",
-				"[$CUSTOMER_6_IG_IMAGE_UUID$]",
-				"[$CUSTOMER_7_IG_IMAGE_UUID$]",
+				"[$CELL_BG_R_FE_UUID$]",
+				"[$CUSTOMER_1_R_FE_UUID$]",
+				"[$CUSTOMER_2_R_FE_UUID$]",
+				"[$CUSTOMER_3_R_FE_UUID$]",
+				"[$CUSTOMER_4_R_FE_UUID$]",
+				"[$CUSTOMER_5_R_FE_UUID$]",
+				"[$CUSTOMER_6_R_FE_UUID$]",
+				"[$CUSTOMER_7_R_FE_UUID$]",
 				"[$GROUP_ID$]",
-				"[$PORTAL_MASHUPS_IG_IMAGE_UUID$]",
-				"[$SHARED_WORKSPACES_IG_IMAGE_UUID$]",
-				"[$SOCIAL_NETWORKING_IG_IMAGE_UUID$]",
-				"[$WEB_PUBLISHING_IG_IMAGE_UUID$]"
+				"[$PORTAL_MASHUPS_R_FE_UUID$]",
+				"[$SHARED_WORKSPACES_R_FE_UUID$]",
+				"[$SOCIAL_NETWORKING_R_FE_UUID$]",
+				"[$WEB_PUBLISHING_R_FE_UUID$]"
 			},
 			new String[] {
 				String.valueOf(cellBgFileEntry.getUuid()),
@@ -940,7 +940,7 @@ public class UpgradeCompany extends UpgradeProcess {
 			new String[] {
 				"[$GROUP_ID$]",
 				"[$GROUP_URL$]",
-				"[$IG_IMAGE_UUID$]"
+				"[$R_FE_UUID$]"
 			},
 			new String[] {
 				String.valueOf(group.getGroupId()),
@@ -1194,7 +1194,7 @@ public class UpgradeCompany extends UpgradeProcess {
 			journalArticle.getContent(),
 			new String[] {
 				"[$GROUP_ID$]",
-				"[$HOME_PAGE_BANNER_IG_IMAGE_UUID$]"
+				"[$HOME_PAGE_BANNER_R_FE_UUID$]"
 			},
 			new String[] {
 				String.valueOf(group.getGroupId()),
@@ -1224,7 +1224,7 @@ public class UpgradeCompany extends UpgradeProcess {
 			journalArticle.getContent(),
 			new String[] {
 				"[$GROUP_ID$]",
-				"[$HOME_PAGE_PRODUCTS_IG_IMAGE_UUID$]"
+				"[$HOME_PAGE_PRODUCTS_R_FE_UUID$]"
 			},
 			new String[] {
 				String.valueOf(group.getGroupId()),
@@ -1254,7 +1254,7 @@ public class UpgradeCompany extends UpgradeProcess {
 			journalArticle.getContent(),
 			new String[] {
 				"[$GROUP_ID$]",
-				"[$HOME_PAGE_BLOGS_IG_IMAGE_UUID$]"
+				"[$HOME_PAGE_BLOGS_R_FE_UUID$]"
 			},
 			new String[] {
 				String.valueOf(group.getGroupId()),
@@ -1284,7 +1284,7 @@ public class UpgradeCompany extends UpgradeProcess {
 			journalArticle.getContent(),
 			new String[] {
 				"[$GROUP_ID$]",
-				"[$HOME_PAGE_FORUMS_IG_IMAGE_UUID$]"
+				"[$HOME_PAGE_FORUMS_R_FE_UUID$]"
 			},
 			new String[] {
 				String.valueOf(group.getGroupId()),
@@ -1316,7 +1316,7 @@ public class UpgradeCompany extends UpgradeProcess {
 			journalArticle.getContent(),
 			new String[] {
 				"[$GROUP_ID$]",
-				"[$PRODUCT_LANDING_IG_IMAGE_UUID$]"
+				"[$PRODUCT_LANDING_R_FE_UUID$]"
 			},
 			new String[] {
 				String.valueOf(group.getGroupId()),
@@ -1347,7 +1347,7 @@ public class UpgradeCompany extends UpgradeProcess {
 			journalArticle.getContent(),
 			new String[] {
 				"[$GROUP_ID$]",
-				"[$COG_NETWORK_AD_IG_IMAGE_UUID$]"
+				"[$COG_NETWORK_AD_R_FE_UUID$]"
 			},
 			new String[] {
 				String.valueOf(group.getGroupId()),
@@ -1400,7 +1400,7 @@ public class UpgradeCompany extends UpgradeProcess {
 			journalArticle.getContent(),
 			new String[] {
 				"[$GROUP_ID$]",
-				"[$PRODUCT_LANDING_IG_IMAGE_UUID$]"
+				"[$PRODUCT_LANDING_R_FE_UUID$]"
 			},
 			new String[] {
 				String.valueOf(group.getGroupId()),
@@ -1447,9 +1447,9 @@ public class UpgradeCompany extends UpgradeProcess {
 		content = StringUtil.replace(
 			journalArticle.getContent(),
 			new String[] {
-				"[$COG_BLUE_IG_IMAGE_UUID$]",
-				"[$COG_LIGHT_BLUE_IG_IMAGE_UUID$]",
-				"[$COG_ORANGE_IG_IMAGE_UUID$]",
+				"[$COG_BLUE_R_FE_UUID$]",
+				"[$COG_LIGHT_BLUE_R_FE_UUID$]",
+				"[$COG_ORANGE_R_FE_UUID$]",
 				"[$GROUP_ID$]"
 			},
 			new String[] {
@@ -1599,7 +1599,7 @@ public class UpgradeCompany extends UpgradeProcess {
 			journalArticle.getContent(),
 			new String[] {
 				"[$GROUP_ID$]",
-				"[$LIFERAY_LOGO_IG_IMAGE_UUID$]"
+				"[$LIFERAY_LOGO_R_FE_UUID$]"
 			},
 			new String[] {
 				String.valueOf(group.getGroupId()),

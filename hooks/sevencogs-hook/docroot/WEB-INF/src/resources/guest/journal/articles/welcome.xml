@@ -57,7 +57,7 @@
 					Welcome!
 				</h2>
 
-				<img alt="Shared Workspaces" class="right" src="/image/[$GROUP_ID$]/[$SHARED_WORKSPACES_IG_IMAGE_UUID$]" />
+				<img alt="Shared Workspaces" class="right" src="/image/[$GROUP_ID$]/[$SHARED_WORKSPACES_R_FE_UUID$]" />
 
 				<p class="intro">
 					Thank you for your interest in Liferay Portal, the leading open source web platform for the enterprise.
@@ -115,7 +115,7 @@
 					Test drive how collaboration and knowledge management might work depending on your user role.
 				</p>
 
-				<img alt="Liferay Community Image" class="right" src="/image/[$GROUP_ID$]/[$SOCIAL_NETWORKING_IG_IMAGE_UUID$]" />
+				<img alt="Liferay Community Image" class="right" src="/image/[$GROUP_ID$]/[$SOCIAL_NETWORKING_R_FE_UUID$]" />
 
 				<h4>Open &amp; Flexible for the Developer</h4>
 
@@ -141,7 +141,7 @@
 					Ready for the Enterprise
 				</h4>
 
-				<img alt="Platform Image" class="right" src="/image/[$GROUP_ID$]/[$PORTAL_MASHUPS_IG_IMAGE_UUID$]" />
+				<img alt="Platform Image" class="right" src="/image/[$GROUP_ID$]/[$PORTAL_MASHUPS_R_FE_UUID$]" />
 
 				<ul>
 					<li>
@@ -200,13 +200,13 @@
 				</h4>
 
 				<p>
-					<img alt="Cisco" src="/image/[$GROUP_ID$]/[$CUSTOMER_1_IG_IMAGE_UUID$]" />
-					<img alt="Sesame Street" src="/image/[$GROUP_ID$]/[$CUSTOMER_2_IG_IMAGE_UUID$]" />
-					<img alt="Société Génerale" src="/image/[$GROUP_ID$]/[$CUSTOMER_3_IG_IMAGE_UUID$]" />
-					<img alt="T-Mobile" src="/image/[$GROUP_ID$]/[$CUSTOMER_4_IG_IMAGE_UUID$]" />
-					<img alt="BARCLAYS" src="/image/[$GROUP_ID$]/[$CUSTOMER_5_IG_IMAGE_UUID$]" />
-					<img alt="AutoZone" src="/image/[$GROUP_ID$]/[$CUSTOMER_6_IG_IMAGE_UUID$]" />
-					<img alt="China Mobile" src="/image/[$GROUP_ID$]/[$CUSTOMER_7_IG_IMAGE_UUID$]" />
+					<img alt="Cisco" src="/image/[$GROUP_ID$]/[$CUSTOMER_1_R_FE_UUID$]" />
+					<img alt="Sesame Street" src="/image/[$GROUP_ID$]/[$CUSTOMER_2_R_FE_UUID$]" />
+					<img alt="Société Génerale" src="/image/[$GROUP_ID$]/[$CUSTOMER_3_R_FE_UUID$]" />
+					<img alt="T-Mobile" src="/image/[$GROUP_ID$]/[$CUSTOMER_4_R_FE_UUID$]" />
+					<img alt="BARCLAYS" src="/image/[$GROUP_ID$]/[$CUSTOMER_5_R_FE_UUID$]" />
+					<img alt="AutoZone" src="/image/[$GROUP_ID$]/[$CUSTOMER_6_R_FE_UUID$]" />
+					<img alt="China Mobile" src="/image/[$GROUP_ID$]/[$CUSTOMER_7_R_FE_UUID$]" />
 				</p>
 
 				<p>
