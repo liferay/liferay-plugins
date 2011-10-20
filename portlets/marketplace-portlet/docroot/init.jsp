@@ -25,6 +25,7 @@
 
 <%@ page import="com.liferay.marketplace.util.MarketplaceConstants" %><%@
 page import="com.liferay.marketplace.util.PortletKeys" %><%@
+page import="com.liferay.portal.kernel.util.HttpUtil" %><%@
 page import="com.liferay.portal.kernel.util.ParamUtil" %>
 
 <%@ page import="javax.portlet.WindowState" %>
@@ -41,9 +42,9 @@ String portletId = portletDisplay.getId();
 String iFrameURL = MarketplaceConstants.MARKETPLACE_URL_HOME;
 
 if (portletId.equals(PortletKeys.MY_MARKETPLACE)) {
-	iFrameURL = MarketplaceConstants.MARKETPLACE_URL_MANAGE_APPS;
+	iFrameURL = HttpUtil.setParameter(MarketplaceConstants.MARKETPLACE_URL_LOGOUT, "referer", MarketplaceConstants.MARKETPLACE_URL_MANAGE_APPS);
 }
 else if (portletId.equals(PortletKeys.STORE) && (appId > 0)) {
-	iFrameURL = iFrameURL + "/application/" + appId;
+	iFrameURL = HttpUtil.setParameter(MarketplaceConstants.MARKETPLACE_URL_LOGOUT, "referer", iFrameURL + "/application/" + appId);
 }
 %>

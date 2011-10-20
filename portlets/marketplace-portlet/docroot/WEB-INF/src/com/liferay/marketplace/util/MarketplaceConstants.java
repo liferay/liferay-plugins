@@ -21,6 +21,9 @@ public class MarketplaceConstants {
 
 	public static final String MARKETPLACE_URL_HOME = "";
 
+	public static final String MARKETPLACE_URL_LOGOUT =
+		"http://localhost:8080/c/portal/logout";
+
 	public static final String MARKETPLACE_URL_MANAGE_APPS = "";
 
 }
