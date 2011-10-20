@@ -532,7 +532,7 @@ public class UpgradeCompany extends UpgradeProcess {
 
 		preferences.put("portlet-setup-show-borders", Boolean.FALSE.toString());
 
-		if (screenName.equals("bruno") || screenName.equals("bradley")) {
+		if (screenName.equals("bradley") || screenName.equals("bruno")) {
 			preferences.put("src","http://m.digg.com");
 			preferences.put("height-normal","400");
 		}
@@ -717,7 +717,9 @@ public class UpgradeCompany extends UpgradeProcess {
 	}
 
 	protected InputStream getInputStream(String path) throws Exception {
-		ClassLoader classLoader = getClass().getClassLoader();
+		Class<?> clazz = getClass();
+
+		ClassLoader classLoader = clazz.getClassLoader();
 
 		return classLoader.getResourceAsStream("/resources" + path);
 	}
@@ -806,6 +808,34 @@ public class UpgradeCompany extends UpgradeProcess {
 			defaultUserId, folder.getFolderId(), "/guest/images/cell_bg.png",
 			serviceContext);
 
+		FileEntry customer1FileEntry = addDLFileEntry(
+			defaultUserId, folder.getFolderId(), "/guest/images/customer_1.png",
+			serviceContext);
+
+		FileEntry customer2FileEntry = addDLFileEntry(
+			defaultUserId, folder.getFolderId(), "/guest/images/customer_2.png",
+			serviceContext);
+
+		FileEntry customer3FileEntry = addDLFileEntry(
+			defaultUserId, folder.getFolderId(), "/guest/images/customer_3.png",
+			serviceContext);
+
+		FileEntry customer4FileEntry = addDLFileEntry(
+			defaultUserId, folder.getFolderId(), "/guest/images/customer_4.png",
+			serviceContext);
+
+		FileEntry customer5FileEntry = addDLFileEntry(
+			defaultUserId, folder.getFolderId(), "/guest/images/customer_5.png",
+			serviceContext);
+
+		FileEntry customer6FileEntry = addDLFileEntry(
+			defaultUserId, folder.getFolderId(), "/guest/images/customer_6.png",
+			serviceContext);
+
+		FileEntry customer7FileEntry = addDLFileEntry(
+			defaultUserId, folder.getFolderId(), "/guest/images/customer_7.png",
+			serviceContext);
+
 		FileEntry portalMashupFileEntry = addDLFileEntry(
 			defaultUserId, folder.getFolderId(),
 			"/guest/images/portal_mashup.png", serviceContext);
@@ -825,34 +855,6 @@ public class UpgradeCompany extends UpgradeProcess {
 		FileEntry webPublishingFileEntry = addDLFileEntry(
 			defaultUserId, folder.getFolderId(),
 			"/guest/images/web_publishing.png", serviceContext);
-
-		FileEntry customer1FileEntry = addDLFileEntry(
-			defaultUserId, folder.getFolderId(),
-			"/guest/images/image_gallery-1.png", serviceContext);
-
-		FileEntry customer2FileEntry = addDLFileEntry(
-			defaultUserId, folder.getFolderId(),
-			"/guest/images/image_gallery-2.png", serviceContext);
-
-		FileEntry customer3FileEntry = addDLFileEntry(
-			defaultUserId, folder.getFolderId(),
-			"/guest/images/image_gallery-3.png", serviceContext);
-
-		FileEntry customer4FileEntry = addDLFileEntry(
-			defaultUserId, folder.getFolderId(),
-			"/guest/images/image_gallery-4.png", serviceContext);
-
-		FileEntry customer5FileEntry = addDLFileEntry(
-			defaultUserId, folder.getFolderId(),
-			"/guest/images/image_gallery-5.png", serviceContext);
-
-		FileEntry customer6FileEntry = addDLFileEntry(
-			defaultUserId, folder.getFolderId(),
-			"/guest/images/image_gallery-6.png", serviceContext);
-
-		FileEntry customer7FileEntry = addDLFileEntry(
-			defaultUserId, folder.getFolderId(),
-			"/guest/images/image_gallery-7.png", serviceContext);
 
 		// Site Theme Settings
 
@@ -884,33 +886,33 @@ public class UpgradeCompany extends UpgradeProcess {
 			journalArticle.getContent(),
 			new String[] {
 				"[$CELL_BG_IG_IMAGE_UUID$]",
+				"[$CUSTOMER_1_IG_IMAGE_UUID$]",
+				"[$CUSTOMER_2_IG_IMAGE_UUID$]",
+				"[$CUSTOMER_3_IG_IMAGE_UUID$]",
+				"[$CUSTOMER_4_IG_IMAGE_UUID$]",
+				"[$CUSTOMER_5_IG_IMAGE_UUID$]",
+				"[$CUSTOMER_6_IG_IMAGE_UUID$]",
+				"[$CUSTOMER_7_IG_IMAGE_UUID$]",
 				"[$GROUP_ID$]",
 				"[$PORTAL_MASHUPS_IG_IMAGE_UUID$]",
 				"[$SHARED_WORKSPACES_IG_IMAGE_UUID$]",
 				"[$SOCIAL_NETWORKING_IG_IMAGE_UUID$]",
-				"[$WEB_PUBLISHING_IG_IMAGE_UUID$]",
-				"[$CUSTOMER_1$]",
-				"[$CUSTOMER_2$]",
-				"[$CUSTOMER_3$]",
-				"[$CUSTOMER_4$]",
-				"[$CUSTOMER_5$]",
-				"[$CUSTOMER_6$]",
-				"[$CUSTOMER_7$]"
+				"[$WEB_PUBLISHING_IG_IMAGE_UUID$]"
 			},
 			new String[] {
 				String.valueOf(cellBgFileEntry.getUuid()),
-				String.valueOf(group.getGroupId()),
-				String.valueOf(portalMashupFileEntry.getUuid()),
-				String.valueOf(sharedWorkspacesFileEntry.getUuid()),
-				String.valueOf(socialNetworkingFileEntry.getUuid()),
-				String.valueOf(webPublishingFileEntry.getUuid()),
 				String.valueOf(customer1FileEntry.getUuid()),
 				String.valueOf(customer2FileEntry.getUuid()),
 				String.valueOf(customer3FileEntry.getUuid()),
 				String.valueOf(customer4FileEntry.getUuid()),
 				String.valueOf(customer5FileEntry.getUuid()),
 				String.valueOf(customer6FileEntry.getUuid()),
-				String.valueOf(customer7FileEntry.getUuid())
+				String.valueOf(customer7FileEntry.getUuid()),
+				String.valueOf(group.getGroupId()),
+				String.valueOf(portalMashupFileEntry.getUuid()),
+				String.valueOf(sharedWorkspacesFileEntry.getUuid()),
+				String.valueOf(socialNetworkingFileEntry.getUuid()),
+				String.valueOf(webPublishingFileEntry.getUuid())
 			});
 
 		JournalArticleLocalServiceUtil.updateContent(
@@ -1762,18 +1764,16 @@ public class UpgradeCompany extends UpgradeProcess {
 
 		// Users
 
-		long[] roleIds = new long[] {
-			adminRole.getRoleId(), powerUserRole.getRoleId()
-		};
-
-		User brunoUser = addUser(
-			companyId, "bruno", "Bruno", "Admin", true, "Administrator",
-			roleIds);
-
-		roleIds = new long[] {powerUserRole.getRoleId()};
+		long[] roleIds = new long[] {powerUserRole.getRoleId()};
 
 		User bradleyUser = addUser(
 			companyId, "bradley", "Bradley", "Regular", true, "Employee",
+			roleIds);
+
+		roleIds = new long[] {adminRole.getRoleId(), powerUserRole.getRoleId()};
+
+		User brunoUser = addUser(
+			companyId, "bruno", "Bruno", "Admin", true, "Administrator",
 			roleIds);
 
 		roleIds = new long[] {
@@ -1809,7 +1809,7 @@ public class UpgradeCompany extends UpgradeProcess {
 				learningAssetCategory.getCategoryId(),
 				liferayAssetCategory.getCategoryId()
 			});
-		serviceContext.setScopeGroupId(brunoUser.getGroup().getGroupId());
+		serviceContext.setScopeGroupId(brunoUser.getGroupId());
 
 		addBlogsEntry(
 			brunoUser.getUserId(), "New Control Panel!!",
@@ -1837,7 +1837,7 @@ public class UpgradeCompany extends UpgradeProcess {
 			});
 		serviceContext.setAssetTagNames(
 			new String[] {"new", "wiki", "knowledge"});
-		serviceContext.setScopeGroupId(bradleyUser.getGroup().getGroupId());
+		serviceContext.setScopeGroupId(bradleyUser.getGroupId());
 
 		addBlogsEntry(
 			bradleyUser.getUserId(), "Using the wiki", "/users/blogs/wiki.xml",
@@ -1850,7 +1850,7 @@ public class UpgradeCompany extends UpgradeProcess {
 			});
 		serviceContext.setAssetTagNames(
 			new String[] {"new", "chat", "communications", "features"});
-		serviceContext.setScopeGroupId(michelleUser.getGroup().getGroupId());
+		serviceContext.setScopeGroupId(michelleUser.getGroupId());
 
 		addBlogsEntry(
 			michelleUser.getUserId(), "We have an amazing Chat!",
@@ -1859,7 +1859,7 @@ public class UpgradeCompany extends UpgradeProcess {
 		// Document library
 
 		Folder folder = addDLFolder(
-			brunoUser.getUserId(), brunoUser.getGroup().getGroupId(),
+			brunoUser.getUserId(), brunoUser.getGroupId(),
 			"Important Documents", "Documents related with the company");
 
 		serviceContext.setAssetTagNames(
@@ -1872,11 +1872,11 @@ public class UpgradeCompany extends UpgradeProcess {
 			"Budgets for the current year", serviceContext);
 
 		addDLFolder(
-			michelleUser.getUserId(), michelleUser.getGroup().getGroupId(),
-			"My Documents", "Personal docs");
+			michelleUser.getUserId(), michelleUser.getGroupId(), "My Documents",
+			"Personal docs");
 
 		folder = addDLFolder(
-			michelleUser.getUserId(), michelleUser.getGroup().getGroupId(),
+			michelleUser.getUserId(), michelleUser.getGroupId(),
 			"Work Documents", "Works docs");
 
 		serviceContext.setAssetTagNames(
@@ -1889,12 +1889,12 @@ public class UpgradeCompany extends UpgradeProcess {
 			"Notes from the last meeting", "Important notes", serviceContext);
 
 		addDLFolder(
-			richardUser.getUserId(), richardUser.getGroup().getGroupId(),
-			"Documentation", StringPool.BLANK);
+			richardUser.getUserId(), richardUser.getGroupId(), "Documentation",
+			StringPool.BLANK);
 
 		folder = addDLFolder(
-			richardUser.getUserId(),richardUser.getGroup().getGroupId(),
-			"Innovation", "New things");
+			richardUser.getUserId(),richardUser.getGroupId(), "Innovation",
+			"New things");
 
 		serviceContext.setAssetTagNames(
 			new String[] {"new", "features", "2009"});
@@ -1911,8 +1911,7 @@ public class UpgradeCompany extends UpgradeProcess {
 			OrganizationLocalServiceUtil.getOrganization(
 			companyId, "7Cogs, Inc.");
 
-		serviceContext.setScopeGroupId(
-			sevenCogsOrganization.getGroup().getGroupId());
+		serviceContext.setScopeGroupId(sevenCogsOrganization.getGroupId());
 
 		MBCategory mbCategory = addMBCategory(
 			brunoUser.getUserId(), "Using the forum",
@@ -1959,8 +1958,8 @@ public class UpgradeCompany extends UpgradeProcess {
 
 		// Social
 
-		addSocialRequest(michelleUser, brunoUser, true);
 		addSocialRequest(michelleUser, bradleyUser, true);
+		addSocialRequest(michelleUser, brunoUser, true);
 		addSocialRequest(michelleUser, richardUser, true);
 
 		addSocialRequest(bradleyUser, brunoUser, false);
