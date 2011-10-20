@@ -15,37 +15,40 @@
 package com.liferay.marketplace.util;
 
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.UnicodeFormatter;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
 import com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil;
-
-import org.apache.commons.codec.binary.Hex;
 
 /**
  * @author Peter Shin
  */
 public class MarketplaceUtil {
 
-	public static String decodeClientId(String clientId, String token)
+	public static String decodeClientId(String encodedClientId, String token)
 		throws Exception {
 
-		if (Validator.isNull(clientId) || Validator.isNull(token)) {
+		if (Validator.isNull(encodedClientId) || Validator.isNull(token)) {
 			return StringPool.BLANK;
 		}
 
-		byte[] bytes = Hex.decodeHex(clientId.toCharArray());
+		String decodedClientId = UnicodeFormatter.parseString(encodedClientId);
 
-		return new String(xor(bytes, token.getBytes()));
+		byte[] decodedClientIdBytes = xor(
+			decodedClientId.getBytes(), token.getBytes());
+
+		return new String(decodedClientIdBytes);
 	}
 
-	public static String encodeClientId(String clientId, String token) {
-		if (Validator.isNull(clientId) || Validator.isNull(token)) {
+	public static String encodeClientId(String decodedClientId, String token) {
+		if (Validator.isNull(decodedClientId) || Validator.isNull(token)) {
 			return StringPool.BLANK;
 		}
 
-		byte[] data = xor(clientId.getBytes(), token.getBytes());
+		byte[] encodedClientIdBytes = xor(
+			decodedClientId.getBytes(), token.getBytes());
 
-		return new String(Hex.encodeHex(data));
+		return UnicodeFormatter.bytesToHex(encodedClientIdBytes);
 	}
 
 	public static boolean hasMarketplaceAdmin(long companyId) throws Exception {
