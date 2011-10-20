@@ -200,13 +200,13 @@
 				</h4>
 
 				<p>
-					<img alt="Cisco" src="/image/[$GROUP_ID$]/[$CUSTOMER_1$]" />
-					<img alt="Sesame Street" src="/image/[$GROUP_ID$]/[$CUSTOMER_2$]" />
-					<img alt="Société Génerale" src="/image/[$GROUP_ID$]/[$CUSTOMER_3$]" />
-					<img alt="T-Mobile" src="/image/[$GROUP_ID$]/[$CUSTOMER_4$]" />
-					<img alt="BARCLAYS" src="/image/[$GROUP_ID$]/[$CUSTOMER_5$]" />
-					<img alt="AutoZone" src="/image/[$GROUP_ID$]/[$CUSTOMER_6$]" />
-					<img alt="China Mobile" src="/image/[$GROUP_ID$]/[$CUSTOMER_7$]" />
+					<img alt="Cisco" src="/image/[$GROUP_ID$]/[$CUSTOMER_1_IG_IMAGE_UUID$]" />
+					<img alt="Sesame Street" src="/image/[$GROUP_ID$]/[$CUSTOMER_2_IG_IMAGE_UUID$]" />
+					<img alt="Société Génerale" src="/image/[$GROUP_ID$]/[$CUSTOMER_3_IG_IMAGE_UUID$]" />
+					<img alt="T-Mobile" src="/image/[$GROUP_ID$]/[$CUSTOMER_4_IG_IMAGE_UUID$]" />
+					<img alt="BARCLAYS" src="/image/[$GROUP_ID$]/[$CUSTOMER_5_IG_IMAGE_UUID$]" />
+					<img alt="AutoZone" src="/image/[$GROUP_ID$]/[$CUSTOMER_6_IG_IMAGE_UUID$]" />
+					<img alt="China Mobile" src="/image/[$GROUP_ID$]/[$CUSTOMER_7_IG_IMAGE_UUID$]" />
 				</p>
 
 				<p>
