@@ -14,7 +14,6 @@
 	<import class="com.liferay.portal.workflow.kaleo.model.KaleoTask" />
 	<import class="com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment" />
 	<import class="com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance" />
-	<import class="com.liferay.portal.workflow.kaleo.model.KaleoTaskForm" />
 	<import class="com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken" />
 	<import class="com.liferay.portal.workflow.kaleo.model.KaleoTimer" />
 	<import class="com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken" />
@@ -270,22 +269,6 @@
 		<property name="assigneeClassPK" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="completed" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 		<property name="completionDate" type="org.hibernate.type.TimestampType" />
-	</class>
-	<class name="com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskFormImpl" table="KaleoTaskForm">
-		<cache usage="read-write" />
-		<id name="kaleoTaskFormId" type="long">
-			<generator class="assigned" />
-		</id>
-		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="createDate" type="org.hibernate.type.TimestampType" />
-		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
-		<property name="kaleoDefinitionId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="kaleoTaskId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="formTemplateId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 	</class>
 	<class name="com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskInstanceTokenImpl" table="KaleoTaskInstanceToken">
 		<cache usage="read-write" />

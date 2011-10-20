@@ -333,23 +333,6 @@
 		<field name="completed" type="boolean" />
 		<field name="completionDate" type="Date" />
 	</model>
-	<model name="com.liferay.portal.workflow.kaleo.model.KaleoTaskForm">
-		<field name="kaleoTaskFormId" type="long" />
-		<field name="groupId" type="long" />
-		<field name="companyId" type="long" />
-		<field name="userId" type="long" />
-		<field name="userName" type="String">
-			<hint name="max-length">200</hint>
-		</field>
-		<field name="createDate" type="Date" />
-		<field name="modifiedDate" type="Date" />
-		<field name="kaleoDefinitionId" type="long" />
-		<field name="kaleoTaskId" type="long" />
-		<field name="description" type="String">
-			<hint-collection name="TEXTAREA" />
-		</field>
-		<field name="formTemplateId" type="long" />
-	</model>
 	<model name="com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken">
 		<field name="kaleoTaskInstanceTokenId" type="long" />
 		<field name="groupId" type="long" />
