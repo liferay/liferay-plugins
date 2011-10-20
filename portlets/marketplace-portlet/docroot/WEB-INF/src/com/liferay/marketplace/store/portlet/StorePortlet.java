@@ -236,25 +236,25 @@ public class StorePortlet extends MVCPortlet {
 		}
 
 		try {
-			if (cmd.equals("download")) {
+			if (cmd.equals("downloadApp")) {
 				downloadApp(actionRequest, actionResponse);
 			}
-			else if (cmd.equals("get")) {
+			else if (cmd.equals("getApp")) {
 				getApp(actionRequest, actionResponse);
 			}
 			else if (cmd.equals("getClientId")) {
 				getClientId(actionRequest, actionResponse);
 			}
-			else if (cmd.equals("install")) {
+			else if (cmd.equals("installApp")) {
 				installApp(actionRequest, actionResponse);
 			}
-			else if (cmd.equals("update")) {
+			else if (cmd.equals("updateApp")) {
 				updateApp(actionRequest, actionResponse);
 			}
 			else if (cmd.equals("updateClientId")) {
 				updateClientId(actionRequest, actionResponse);
 			}
-			else if (cmd.equals("uninstall")) {
+			else if (cmd.equals("uninstallApp")) {
 				uninstallApp(actionRequest, actionResponse);
 			}
 			else {
