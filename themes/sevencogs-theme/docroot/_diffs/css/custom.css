@@ -224,7 +224,7 @@ a:focus .callout-extraborder {
 
 .small-after-icon-callout {
 	border-bottom: 1px solid #777;
-	padding: 5px 0 16px 85px;
+	padding: 5px 0 5px 85px;
 }
 
 .portlet-journal-content .portlet-body .small-after-icon-callout h1 {
@@ -403,6 +403,12 @@ a:focus .callout-extraborder {
 #footer #navigation {
 	position: absolute;
 	display: none;
+}
+
+/* -------- Custom Seven Cogs Panels ------------ */
+
+.lfr-panel-container {
+	background: transparent;
 }
 
 /* -------- Custom Seven Cogs Web Content-------- */

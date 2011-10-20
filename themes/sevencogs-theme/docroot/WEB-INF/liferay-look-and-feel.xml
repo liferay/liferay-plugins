@@ -6,6 +6,7 @@
 		<version>6.1.0+</version>
 	</compatibility>
 	<theme id="sevencogs" name="7Cogs">
+		<template-extension>ftl</template-extension>
 		<settings>
 			<setting configurable="true" key="portlet-setup-show-borders-default" type="checkbox" value="false"></setting>
 		</settings>

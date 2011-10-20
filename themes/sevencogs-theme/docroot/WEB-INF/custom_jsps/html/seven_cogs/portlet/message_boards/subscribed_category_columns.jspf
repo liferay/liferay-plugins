@@ -1,0 +1,54 @@
+<%--
+/**
+ * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+--%>
+
+<liferay-ui:search-container-column-text
+	buffer="buffer"
+	name="category"
+>
+
+	<%
+	buffer.append("<a href=\"");
+	buffer.append(rowURL);
+	buffer.append("\">");
+	buffer.append("<strong>");
+	buffer.append(curCategory.getName());
+	buffer.append("</strong>");
+
+	if (Validator.isNotNull(curCategory.getDescription())) {
+		buffer.append("<br />");
+		buffer.append(curCategory.getDescription());
+	}
+	%>
+
+</liferay-ui:search-container-column-text>
+
+<liferay-ui:search-container-column-text
+	href="<%= rowURL %>"
+	name="categories"
+	value="<%= String.valueOf(categoryDisplay.getSubcategoriesCount(curCategory)) %>"
+/>
+
+<liferay-ui:search-container-column-text
+	href="<%= rowURL %>"
+	name="threads"
+	value="<%= String.valueOf(categoryDisplay.getSubcategoriesThreadsCount(curCategory)) %>"
+/>
+
+<liferay-ui:search-container-column-text
+	href="<%= rowURL %>"
+	name="posts"
+	value="<%= String.valueOf(categoryDisplay.getSubcategoriesMessagesCount(curCategory)) %>"
+/>
