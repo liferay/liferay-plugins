@@ -226,20 +226,6 @@ create table KaleoTaskAssignmentInstance (
 	completionDate DATE null
 );
 
-create table KaleoTaskForm (
-	kaleoTaskFormId LONG not null primary key,
-	groupId LONG,
-	companyId LONG,
-	userId LONG,
-	userName VARCHAR(200) null,
-	createDate DATE null,
-	modifiedDate DATE null,
-	kaleoDefinitionId LONG,
-	kaleoTaskId LONG,
-	description STRING null,
-	formTemplateId LONG
-);
-
 create table KaleoTaskInstanceToken (
 	kaleoTaskInstanceTokenId LONG not null primary key,
 	groupId LONG,
