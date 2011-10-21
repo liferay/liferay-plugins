@@ -25,8 +25,6 @@
 
 <body class="${css_class}">
 
-<!--<a href="javascript:alert(document.getElementsByTagName('html')[0].getAttribute('class'))">GET HTML</a>-->
-
 ${theme.include(body_top_include)}
 
 <#if is_signed_in>
