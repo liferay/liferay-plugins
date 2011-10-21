@@ -1,0 +1,9 @@
+category_columns.jspf
+subscribed_category_columns.jspf
+thread_columns.jspf
+user_thread_columns.jspf
+view.jsp
+view_message.jsp
+view_message_default.jsp
+view_message_question.jsp
+view_thread_flat.jspf
