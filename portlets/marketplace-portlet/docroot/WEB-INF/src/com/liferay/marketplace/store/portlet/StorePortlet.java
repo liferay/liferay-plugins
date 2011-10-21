@@ -98,19 +98,19 @@ public class StorePortlet extends MVCPortlet {
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		String token = ParamUtil.getString(actionRequest, "token");
+		String mpToken = ParamUtil.getString(actionRequest, "mpToken");
 
 		String clientId = ExpandoValueLocalServiceUtil.getData(
 			themeDisplay.getCompanyId(), User.class.getName(), "MP",
 			"client-id", themeDisplay.getUserId(), "default-client-id");
 
 		String encodedClientId = MarketplaceUtil.encodeClientId(
-			clientId, token);
+			clientId, mpToken);
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 		jsonObject.put("clientId", encodedClientId);
-		jsonObject.put("token", token);
+		jsonObject.put("mpToken", mpToken);
 
 		writeJSON(actionRequest, actionResponse, jsonObject);
 	}
@@ -210,10 +210,10 @@ public class StorePortlet extends MVCPortlet {
 		}
 
 		String clientId = ParamUtil.getString(actionRequest, "clientId");
-		String token = ParamUtil.getString(actionRequest, "token");
+		String mpToken = ParamUtil.getString(actionRequest, "mpToken");
 
 		String decodedClientId = MarketplaceUtil.decodeClientId(
-			clientId, token);
+			clientId, mpToken);
 
 		if (Validator.isNull(decodedClientId)) {
 			return;
