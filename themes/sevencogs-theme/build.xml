@@ -6,4 +6,33 @@
 
 	<property name="theme.parent" value="_styled" />
 	<property name="theme.type" value="ftl" />
+
+	<target name="compile">
+		<antcall target="build-common-theme.compile" />
+
+		<copy todir="docroot/WEB-INF/custom_jsps/html/seven_cogs/portlet/message_boards" overwrite="true">
+			<fileset
+				dir="${app.server.portal.dir}/html/portlet/message_boards"
+				includes="category_columns.jspf,subscribed_category_columns.jspf,thread_columns.jspf,user_thread_columns.jspf,view.jsp,view_message.jsp,view_message_default.jsp,view_message_question.jsp,view_thread_flat.jspf"
+			/>
+		</copy>
+
+		<replace dir="docroot/WEB-INF/custom_jsps/html/seven_cogs/portlet/message_boards">
+			<replacefilter token="/html/portlet/message_boards/category_columns.jspf" value="/html/seven_cogs/portlet/message_boards/category_columns.jspf" />
+			<replacefilter token="/html/portlet/message_boards/category_columns_action.jspf" value="/html/seven_cogs/portlet/message_boards/category_columns_action.jspf" />
+			<replacefilter token="/html/portlet/message_boards/category_subscriptions.jspf" value="/html/seven_cogs/portlet/message_boards/category_subscriptions.jspf" />
+			<replacefilter token="/html/portlet/message_boards/subscribed_category_columns.jspf" value="/html/seven_cogs/portlet/message_boards/subscribed_category_columns.jspf" />
+			<replacefilter token="/html/portlet/message_boards/subscribed_category_columns_action.jspf" value="/html/seven_cogs/portlet/message_boards/subscribed_category_columns_action.jspf" />
+			<replacefilter token="/html/portlet/message_boards/thread_columns.jspf" value="/html/seven_cogs/portlet/message_boards/thread_columns.jspf" />
+			<replacefilter token="/html/portlet/message_boards/thread_columns_action.jspf" value="/html/seven_cogs/portlet/message_boards/thread_columns_action.jspf" />
+			<replacefilter token="/html/portlet/message_boards/thread_columns_last_post.jspf" value="/html/seven_cogs/portlet/message_boards/thread_columns_last_post.jspf" />
+			<replacefilter token="/html/portlet/message_boards/user_thread_columns_action.jspf" value="/html/seven_cogs/portlet/message_boards/user_thread_columns_action.jspf" />
+			<replacefilter token="/html/portlet/message_boards/user_thread_columns_last_post.jspf" value="/html/seven_cogs/portlet/message_boards/user_thread_columns_last_post.jspf" />
+			<replacefilter token="/html/portlet/message_boards/user_thread_columns.jspf" value="/html/seven_cogs/portlet/message_boards/user_thread_columns.jspf" />
+			<replacefilter token="/html/portlet/message_boards/view_category_&quot;" value="/html/seven_cogs/portlet/message_boards/view_category_&quot;" />
+			<replacefilter token="/html/portlet/message_boards/view_message_&quot;" value="/html/seven_cogs/portlet/message_boards/view_message_&quot;" />
+			<replacefilter token="/html/portlet/message_boards/view_message_content.jsp" value="/html/seven_cogs/portlet/message_boards/view_message_content.jsp" />
+			<replacefilter token="/html/portlet/message_boards/view_thread_message.jspf" value="/html/seven_cogs/portlet/message_boards/view_thread_message.jspf" />
+		</replace>
+	</target>
 </project>
