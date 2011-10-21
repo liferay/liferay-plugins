@@ -655,49 +655,6 @@
 			<finder-column name="kaleoTaskInstanceTokenId" />
 		</finder>
 	</entity>
-	<entity name="KaleoTaskForm" local-service="true" remote-service="false">
-
-		<!-- PK fields -->
-
-		<column name="kaleoTaskFormId" type="long" primary="true" />
-
-		<!-- Group instance -->
-
-		<column name="groupId" type="long" />
-
-		<!-- Audit fields -->
-
-		<column name="companyId" type="long" />
-		<column name="userId" type="long" />
-		<column name="userName" type="String" />
-		<column name="createDate" type="Date" />
-		<column name="modifiedDate" type="Date" />
-
-		<!-- Other fields -->
-
-		<column name="kaleoDefinitionId" type="long" />
-		<column name="kaleoTaskId" type="long" />
-		<column name="description" type="String" />
-		<column name="formTemplateId" type="long" />
-
-		<!-- Order -->
-
-		<order by="asc">
-			<order-column name="kaleoTaskFormId" />
-		</order>
-
-		<!-- Finder methods -->
-
-		<finder name="CompanyId" return-type="Collection">
-			<finder-column name="companyId" />
-		</finder>
-		<finder name="KaleoDefinitionId" return-type="Collection">
-			<finder-column name="kaleoDefinitionId" />
-		</finder>
-		<finder name="KaleoTaskId" return-type="Collection">
-			<finder-column name="kaleoTaskId" />
-		</finder>
-	</entity>
 	<entity name="KaleoTaskInstanceToken" local-service="true" remote-service="false">
 
 		<!-- PK fields -->

@@ -18,11 +18,8 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.workflow.DefaultWorkflowTask;
 import com.liferay.portal.kernel.workflow.WorkflowTaskAssignee;
-import com.liferay.portal.kernel.workflow.WorkflowTaskForm;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstance;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
-import com.liferay.portal.workflow.kaleo.model.KaleoTask;
-import com.liferay.portal.workflow.kaleo.model.KaleoTaskForm;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken;
 import com.liferay.portal.workflow.kaleo.util.KaleoTaskAssignmentInstanceUtil;
 import com.liferay.portal.workflow.kaleo.util.WorkflowContextUtil;
@@ -73,18 +70,6 @@ public class WorkflowTaskAdapter extends DefaultWorkflowTask {
 				kaleoTaskInstanceToken);
 
 		setWorkflowTaskAssignees(workflowTaskAssignees);
-
-		KaleoTask kaleoTask = kaleoTaskInstanceToken.getKaleoTask();
-
-		List<KaleoTaskForm> kaleoTaskForms = kaleoTask.getKaleoTaskForms();
-
-		for (KaleoTaskForm kaleoTaskForm : kaleoTaskForms) {
-			WorkflowTaskForm workflowTaskForm = new WorkflowTaskForm(
-				kaleoTaskForm.getKaleoTaskFormId(),
-				kaleoTaskForm.getFormTemplateId());
-
-			addWorkflowTaskForm(workflowTaskForm);
-		}
 
 		setWorkflowTaskId(kaleoTaskInstanceToken.getKaleoTaskInstanceTokenId());
 	}

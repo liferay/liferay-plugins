@@ -19,7 +19,6 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.workflow.kaleo.definition.Assignment;
-import com.liferay.portal.workflow.kaleo.definition.Form;
 import com.liferay.portal.workflow.kaleo.definition.Task;
 import com.liferay.portal.workflow.kaleo.model.KaleoTask;
 import com.liferay.portal.workflow.kaleo.service.base.KaleoTaskLocalServiceBaseImpl;
@@ -68,15 +67,6 @@ public class KaleoTaskLocalServiceImpl extends KaleoTaskLocalServiceBaseImpl {
 				assignment, serviceContext);
 		}
 
-		// Kaleo task forms
-
-		Set<Form> forms = task.getForms();
-
-		for (Form form : forms) {
-			kaleoTaskFormLocalService.addKaleoTaskForm(
-				kaleoDefinitionId, kaleoTaskId, form, serviceContext);
-		}
-
 		return kaleoTask;
 	}
 
@@ -89,11 +79,6 @@ public class KaleoTaskLocalServiceImpl extends KaleoTaskLocalServiceBaseImpl {
 		// Kaleo task assignments
 
 		kaleoTaskAssignmentLocalService.deleteCompanyKaleoTaskAssignments(
-			companyId);
-
-		// Kaleo task forms
-
-		kaleoTaskFormLocalService.deleteCompanyKaleoTaskForms(
 			companyId);
 	}
 
@@ -108,11 +93,6 @@ public class KaleoTaskLocalServiceImpl extends KaleoTaskLocalServiceBaseImpl {
 
 		kaleoTaskAssignmentLocalService.
 			deleteKaleoDefinitionKaleoTaskAssignments(kaleoDefinitionId);
-
-		// Kaleo task forms
-
-		kaleoTaskFormLocalService.deleteKaleoDefinitionKaleoTaskForms(
-			kaleoDefinitionId);
 	}
 
 	public KaleoTask getKaleoNodeKaleoTask(long kaleoNodeId)
