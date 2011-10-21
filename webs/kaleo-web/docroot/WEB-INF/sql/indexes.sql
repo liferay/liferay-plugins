@@ -56,10 +56,6 @@ create index IX_C851011 on KaleoTaskAssignmentInstance (kaleoDefinitionId);
 create index IX_67A9EE93 on KaleoTaskAssignmentInstance (kaleoInstanceId);
 create index IX_D4C2235B on KaleoTaskAssignmentInstance (kaleoTaskInstanceTokenId);
 
-create index IX_EFDA7E59 on KaleoTaskForm (companyId);
-create index IX_60D1964F on KaleoTaskForm (kaleoDefinitionId);
-create index IX_38F034C1 on KaleoTaskForm (kaleoTaskId);
-
 create index IX_997FE723 on KaleoTaskInstanceToken (companyId);
 create index IX_608E9519 on KaleoTaskInstanceToken (kaleoDefinitionId);
 create index IX_2CE1159B on KaleoTaskInstanceToken (kaleoInstanceId);
