@@ -5,4 +5,15 @@
 	<import file="../build-common-theme.xml" />
 
 	<property name="theme.parent" value="_styled" />
+	<property name="theme.type" value="ftl" />
+
+	<target name="compile">
+		<mkdir dir="docroot/WEB-INF/classes"/>
+
+		<copy todir="docroot/WEB-INF/classes">
+			<fileset dir="docroot/WEB-INF/src"  />
+		</copy>
+
+		<antcall target="build-common-theme.compile" />
+	</target>
 </project>
