@@ -162,10 +162,6 @@ public class KaleoTaskClp extends BaseModelImpl<KaleoTask> implements KaleoTask 
 		throw new UnsupportedOperationException();
 	}
 
-	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskForm> getKaleoTaskForms() {
-		throw new UnsupportedOperationException();
-	}
-
 	public void persist() throws SystemException {
 		KaleoTaskLocalServiceUtil.updateKaleoTask(this);
 	}

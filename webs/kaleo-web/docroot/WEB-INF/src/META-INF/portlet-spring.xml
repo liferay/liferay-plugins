@@ -61,11 +61,6 @@
 		<property name="service" ref="com.liferay.portal.workflow.kaleo.service.KaleoTaskAssignmentInstanceLocalService" />
 	</bean>
 	<bean id="com.liferay.portal.workflow.kaleo.service.persistence.KaleoTaskAssignmentInstancePersistence" class="com.liferay.portal.workflow.kaleo.service.persistence.KaleoTaskAssignmentInstancePersistenceImpl" parent="basePersistence" />
-	<bean id="com.liferay.portal.workflow.kaleo.service.KaleoTaskFormLocalService" class="com.liferay.portal.workflow.kaleo.service.impl.KaleoTaskFormLocalServiceImpl" />
-	<bean id="com.liferay.portal.workflow.kaleo.service.KaleoTaskFormLocalServiceUtil" class="com.liferay.portal.workflow.kaleo.service.KaleoTaskFormLocalServiceUtil">
-		<property name="service" ref="com.liferay.portal.workflow.kaleo.service.KaleoTaskFormLocalService" />
-	</bean>
-	<bean id="com.liferay.portal.workflow.kaleo.service.persistence.KaleoTaskFormPersistence" class="com.liferay.portal.workflow.kaleo.service.persistence.KaleoTaskFormPersistenceImpl" parent="basePersistence" />
 	<bean id="com.liferay.portal.workflow.kaleo.service.KaleoTaskInstanceTokenLocalService" class="com.liferay.portal.workflow.kaleo.service.impl.KaleoTaskInstanceTokenLocalServiceImpl" />
 	<bean id="com.liferay.portal.workflow.kaleo.service.KaleoTaskInstanceTokenLocalServiceUtil" class="com.liferay.portal.workflow.kaleo.service.KaleoTaskInstanceTokenLocalServiceUtil">
 		<property name="service" ref="com.liferay.portal.workflow.kaleo.service.KaleoTaskInstanceTokenLocalService" />

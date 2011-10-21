@@ -359,11 +359,6 @@ public class KaleoTaskWrapper implements KaleoTask, ModelWrapper<KaleoTask> {
 		return _kaleoTask.getKaleoTaskAssignments();
 	}
 
-	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskForm> getKaleoTaskForms()
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return _kaleoTask.getKaleoTaskForms();
-	}
-
 	/**
 	 * @deprecated Renamed to {@link #getWrappedModel}
 	 */

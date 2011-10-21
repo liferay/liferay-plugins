@@ -353,28 +353,6 @@
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
-	<mapped-superclass class="com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskFormModelImpl">
-		<attributes>
-			<id name="kaleoTaskFormId" />
-			<basic name="groupId" />
-			<basic name="companyId" />
-			<basic name="userId" />
-			<basic name="userName" />
-			<basic name="createDate">
-				<temporal>TIMESTAMP</temporal>
-			</basic>
-			<basic name="modifiedDate">
-				<temporal>TIMESTAMP</temporal>
-			</basic>
-			<basic name="kaleoDefinitionId" />
-			<basic name="kaleoTaskId" />
-			<basic name="description" />
-			<basic name="formTemplateId" />
-			<transient name="primaryKey" />
-			<transient name="primaryKeyObj" />
-			<transient name="userUuid" />
-		</attributes>
-	</mapped-superclass>
 	<mapped-superclass class="com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskInstanceTokenModelImpl">
 		<attributes>
 			<id name="kaleoTaskInstanceTokenId" />
@@ -547,10 +525,6 @@
 	</entity>
 	<entity class="com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskAssignmentInstanceImpl" name="KaleoTaskAssignmentInstance">
 		<table name="KaleoTaskAssignmentInstance" />
-		<attributes />
-	</entity>
-	<entity class="com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskFormImpl" name="KaleoTaskForm">
-		<table name="KaleoTaskForm" />
 		<attributes />
 	</entity>
 	<entity class="com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskInstanceTokenImpl" name="KaleoTaskInstanceToken">

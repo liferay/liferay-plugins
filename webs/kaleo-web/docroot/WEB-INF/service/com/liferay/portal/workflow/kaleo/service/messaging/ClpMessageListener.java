@@ -28,7 +28,6 @@ import com.liferay.portal.workflow.kaleo.service.KaleoNotificationLocalServiceUt
 import com.liferay.portal.workflow.kaleo.service.KaleoNotificationRecipientLocalServiceUtil;
 import com.liferay.portal.workflow.kaleo.service.KaleoTaskAssignmentInstanceLocalServiceUtil;
 import com.liferay.portal.workflow.kaleo.service.KaleoTaskAssignmentLocalServiceUtil;
-import com.liferay.portal.workflow.kaleo.service.KaleoTaskFormLocalServiceUtil;
 import com.liferay.portal.workflow.kaleo.service.KaleoTaskInstanceTokenLocalServiceUtil;
 import com.liferay.portal.workflow.kaleo.service.KaleoTaskLocalServiceUtil;
 import com.liferay.portal.workflow.kaleo.service.KaleoTimerInstanceTokenLocalServiceUtil;
@@ -73,8 +72,6 @@ public class ClpMessageListener extends BaseMessageListener {
 			KaleoTaskAssignmentLocalServiceUtil.clearService();
 
 			KaleoTaskAssignmentInstanceLocalServiceUtil.clearService();
-
-			KaleoTaskFormLocalServiceUtil.clearService();
 
 			KaleoTaskInstanceTokenLocalServiceUtil.clearService();
 
