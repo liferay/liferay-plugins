@@ -232,6 +232,17 @@
 				</copy>
 			</then>
 		</if>
+
+		<if>
+			<available file="docroot/WEB-INF/src" />
+			<then>
+				<mkdir dir="docroot/WEB-INF/classes"/>
+
+				<copy todir="docroot/WEB-INF/classes">
+					<fileset dir="docroot/WEB-INF/src" excludes="**/*.java" />
+				</copy>
+			</then>
+		</if>
 	</target>
 
 	<target name="war" depends="compile">
