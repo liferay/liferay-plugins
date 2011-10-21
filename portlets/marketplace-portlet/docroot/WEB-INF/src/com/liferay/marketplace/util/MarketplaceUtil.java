@@ -33,11 +33,12 @@ public class MarketplaceUtil {
 			return StringPool.BLANK;
 		}
 
-		String base64ClientId = UnicodeFormatter.parseString(encodedClientId);
+		String base64EncodedClientId = UnicodeFormatter.parseString(
+			encodedClientId);
 
-		byte[] clientIdBytes = Base64.decode(base64ClientId);
+		byte[] encodedClientIdBytes = Base64.decode(base64EncodedClientId);
 
-		return new String(xor(clientIdBytes, mpToken.getBytes()));
+		return new String(xor(encodedClientIdBytes, mpToken.getBytes()));
 	}
 
 	public static String encodeClientId(
