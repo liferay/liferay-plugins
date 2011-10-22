@@ -25,10 +25,8 @@ import com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil;
  */
 public class MarketplaceUtil {
 
-	public static String decodeClientId(
-		String encodedClientId, String mpToken) {
-
-		if (Validator.isNull(encodedClientId) || Validator.isNull(mpToken)) {
+	public static String decodeClientId(String encodedClientId, String token) {
+		if (Validator.isNull(encodedClientId) || Validator.isNull(token)) {
 			return StringPool.BLANK;
 		}
 
@@ -38,18 +36,16 @@ public class MarketplaceUtil {
 			return StringPool.BLANK;
 		}
 
-		return new String(xor(encodedClientIdBytes, mpToken.getBytes()));
+		return new String(xor(encodedClientIdBytes, token.getBytes()));
 	}
 
-	public static String encodeClientId(
-		String decodedClientId, String mpToken) {
-
-		if (Validator.isNull(decodedClientId) || Validator.isNull(mpToken)) {
+	public static String encodeClientId(String decodedClientId, String token) {
+		if (Validator.isNull(decodedClientId) || Validator.isNull(token)) {
 			return StringPool.BLANK;
 		}
 
 		byte[] encodedClientIdBytes = xor(
-			decodedClientId.getBytes(), mpToken.getBytes());
+			decodedClientId.getBytes(), token.getBytes());
 
 		return UnicodeFormatter.bytesToHex(encodedClientIdBytes);
 	}
