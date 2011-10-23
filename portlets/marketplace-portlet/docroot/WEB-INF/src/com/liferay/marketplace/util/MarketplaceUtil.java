@@ -30,7 +30,8 @@ public class MarketplaceUtil {
 			return StringPool.BLANK;
 		}
 
-		byte[] encodedClientIdBytes = hexToBytes(encodedClientId);
+		byte[] encodedClientIdBytes = UnicodeFormatter.hexToBytes(
+			encodedClientId);
 
 		if (encodedClientIdBytes.length == 0) {
 			return StringPool.BLANK;
@@ -71,27 +72,6 @@ public class MarketplaceUtil {
 		}
 
 		return true;
-	}
-
-	protected static byte[] hexToBytes(String hex) {
-		if ((hex.length() % 2) != 0) {
-			return new byte[0];
-		}
-
-		byte[] bytes = new byte[hex.length() / 2];
-
-		for (int i = 0; i < hex.length(); i = i + 2) {
-			String s = hex.substring(i, i + 2);
-
-			try {
-				bytes[i / 2] = (byte)Integer.parseInt(s, 16);
-			}
-			catch (NumberFormatException nfe) {
-				return new byte[0];
-			}
-		}
-
-		return bytes;
 	}
 
 	protected static byte[] xor(byte[] bytes1, byte[] bytes2) {
