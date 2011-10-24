@@ -14,6 +14,7 @@
 
 package com.liferay.portal.search.solr;
 
+import com.liferay.portal.kernel.configuration.Filter;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONObject;
@@ -43,6 +44,9 @@ import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.search.solr.facet.SolrFacetFieldCollector;
 import com.liferay.portal.search.solr.facet.SolrFacetQueryCollector;
+import com.liferay.portal.search.solr.util.PortletPropsKeys;
+import com.liferay.portal.search.solr.util.PortletPropsValues;
+import com.liferay.util.portlet.PortletProps;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -366,6 +370,15 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 				}
 
 				String sortFieldName = sort.getFieldName();
+
+				if (ArrayUtil.contains(
+					PortletPropsValues.SOLR_SORTABLE_TEXT_FIELDS,
+					sortFieldName)) {
+
+					sortFieldName = GetterUtil.getString(
+						PortletProps.get(PortletPropsKeys.SOLR_COPY_FIELDS,
+							new Filter(sortFieldName)));
+				}
 
 				ORDER order = ORDER.asc;
 
