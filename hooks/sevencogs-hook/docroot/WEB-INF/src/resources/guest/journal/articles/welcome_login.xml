@@ -53,7 +53,7 @@
 					<h2>Bruno (Admin)</h2>
 
 					<div>
-						The admin has full control over the entire portal, allowing modification and creation of users, communitities, and roles. <a class="public_pages" href="/web/bruno">View Bruno's public page</a> <a class="express_login" href="#" onclick="document.loginadmin.submit();return false;">Login as Bruno</a>.
+						The admin has full control over the entire portal, allowing modification and creation of users, communitities, and roles. <a class="public_pages" href="/web/bruno">View Bruno's public page.</a> <a class="express_login" href="#" onclick="document.loginadmin.submit();return false;">Login as Bruno.</a>
 					</div>
 				</div>
 			</form>
@@ -75,7 +75,7 @@
 					<h2>Richard Publisher</h2>
 
 					<div>
-						Richard has article submission rights for the content management system. <a class="public_pages" href="/web/richard">View Richard's public page</a> <a class="express_login" href="#" onclick="document.loginrich.submit();return false;">Login as Richard</a>.
+						Richard has article submission rights for the content management system. <a class="public_pages" href="/web/richard">View Richard's public page.</a> <a class="express_login" href="#" onclick="document.loginrich.submit();return false;">Login as Richard.</a>
 					</div>
 				</div>
 			</form>
@@ -97,7 +97,7 @@
 					<h2>Michelle Editor</h2>
 
 					<div>
-						Michelle has control over the staging and layout of all articles as well as publishing rights for workflow and the content management system. <a class="public_pages" href="/web/michelle">View Michelle's public page</a> <a class="express_login" href="#" onclick="document.loginmichelle.submit();return false;">Login as Michelle</a>.
+						Michelle has control over the staging and layout of all articles as well as publishing rights for workflow and the content management system. <a class="public_pages" href="/web/michelle">View Michelle's public page.</a> <a class="express_login" href="#" onclick="document.loginmichelle.submit();return false;">Login as Michelle.</a>
 					</div>
 				</div>
 			</form>
@@ -119,7 +119,7 @@
 					<h2>Kendra Regular User</h2>
 
 					<div>
-						Kendra is a user with minimum rights within the portal. <a class="public_pages" href="/web/kendra">View Kendra's public page</a> <a class="express_login" href="#" onclick="document.loginkendra.submit();return false;">Login as Kendra</a>.
+						Kendra is a user with minimum rights within the portal. <a class="public_pages" href="/web/kendra">View Kendra's public page.</a> <a class="express_login" href="#" onclick="document.loginkendra.submit();return false;">Login as Kendra.</a>
 					</div>
 				</div>
 			</form>
