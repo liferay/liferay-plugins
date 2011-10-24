@@ -532,7 +532,7 @@ public class UpgradeCompany extends UpgradeProcess {
 
 		preferences.put("portlet-setup-show-borders", Boolean.FALSE.toString());
 
-		if (screenName.equals("bradley") || screenName.equals("bruno")) {
+		if (screenName.equals("kendra") || screenName.equals("bruno")) {
 			preferences.put("src","http://m.digg.com");
 			preferences.put("height-normal","400");
 		}
@@ -1764,16 +1764,16 @@ public class UpgradeCompany extends UpgradeProcess {
 
 		// Users
 
-		long[] roleIds = new long[] {powerUserRole.getRoleId()};
-
-		User bradleyUser = addUser(
-			companyId, "bradley", "Bradley", "Regular", true, "Employee",
-			roleIds);
-
-		roleIds = new long[] {adminRole.getRoleId(), powerUserRole.getRoleId()};
+		long[] roleIds = {adminRole.getRoleId(), powerUserRole.getRoleId()};
 
 		User brunoUser = addUser(
 			companyId, "bruno", "Bruno", "Admin", true, "Administrator",
+			roleIds);
+
+		roleIds = new long[] {powerUserRole.getRoleId()};
+
+		User kendraUser = addUser(
+			companyId, "kendra", "Kendra", "Regular", true, "Employee",
 			roleIds);
 
 		roleIds = new long[] {
@@ -1837,10 +1837,10 @@ public class UpgradeCompany extends UpgradeProcess {
 			});
 		serviceContext.setAssetTagNames(
 			new String[] {"new", "wiki", "knowledge"});
-		serviceContext.setScopeGroupId(bradleyUser.getGroupId());
+		serviceContext.setScopeGroupId(kendraUser.getGroupId());
 
 		addBlogsEntry(
-			bradleyUser.getUserId(), "Using the wiki", "/users/blogs/wiki.xml",
+			kendraUser.getUserId(), "Using the wiki", "/users/blogs/wiki.xml",
 			serviceContext);
 
 		serviceContext.setAssetCategoryIds(
@@ -1958,12 +1958,12 @@ public class UpgradeCompany extends UpgradeProcess {
 
 		// Social
 
-		addSocialRequest(michelleUser, bradleyUser, true);
 		addSocialRequest(michelleUser, brunoUser, true);
+		addSocialRequest(michelleUser, kendraUser, true);
 		addSocialRequest(michelleUser, richardUser, true);
 
-		addSocialRequest(bradleyUser, brunoUser, false);
-		addSocialRequest(bradleyUser, richardUser, false);
+		addSocialRequest(kendraUser, brunoUser, false);
+		addSocialRequest(kendraUser, richardUser, false);
 	}
 
 	protected void setupWorkflow(long companyId, long defaultUserId)
