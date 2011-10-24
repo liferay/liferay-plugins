@@ -1790,7 +1790,7 @@ public class UpgradeCompany extends UpgradeProcess {
 		};
 
 		User richardUser = addUser(
-			companyId, "richard", "Richard", "Editor", true, "Publisher",
+			companyId, "richard", "Richard", "Publisher", true, "Publisher",
 			roleIds);
 
 		// Asset
