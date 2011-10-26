@@ -179,7 +179,8 @@ public class WSRPConsumerManager {
 		if (modelDescription != null) {
 			propertyDescriptions = modelDescription.getPropertyDescriptions();
 		}
-		else {
+
+		if (propertyDescriptions == null) {
 			propertyDescriptions = new PropertyDescription[0];
 		}
 
