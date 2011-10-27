@@ -144,6 +144,10 @@ public interface StatusLocalService extends PersistedModelLocalService {
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.chat.model.Status fetchStatus(long statusId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
 	/**
 	* Returns the status with the primary key.
 	*

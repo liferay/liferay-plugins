@@ -159,6 +159,12 @@ public class DefinitionLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
+	public static com.liferay.ams.model.Definition fetchDefinition(
+		long definitionId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().fetchDefinition(definitionId);
+	}
+
 	/**
 	* Returns the definition with the primary key.
 	*

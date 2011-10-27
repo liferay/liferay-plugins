@@ -233,6 +233,11 @@ public abstract class WSRPProducerLocalServiceBaseImpl
 		return wsrpProducerPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	public WSRPProducer fetchWSRPProducer(long wsrpProducerId)
+		throws SystemException {
+		return wsrpProducerPersistence.fetchByPrimaryKey(wsrpProducerId);
+	}
+
 	/**
 	 * Returns the w s r p producer with the primary key.
 	 *

@@ -229,6 +229,11 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 		return meetupsRegistrationPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	public MeetupsRegistration fetchMeetupsRegistration(
+		long meetupsRegistrationId) throws SystemException {
+		return meetupsRegistrationPersistence.fetchByPrimaryKey(meetupsRegistrationId);
+	}
+
 	/**
 	 * Returns the meetups registration with the primary key.
 	 *

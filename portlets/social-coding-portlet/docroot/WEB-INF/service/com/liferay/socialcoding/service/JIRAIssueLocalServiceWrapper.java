@@ -152,6 +152,12 @@ public class JIRAIssueLocalServiceWrapper implements JIRAIssueLocalService,
 		return _jiraIssueLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
+	public com.liferay.socialcoding.model.JIRAIssue fetchJIRAIssue(
+		long jiraIssueId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _jiraIssueLocalService.fetchJIRAIssue(jiraIssueId);
+	}
+
 	/**
 	* Returns the j i r a issue with the primary key.
 	*

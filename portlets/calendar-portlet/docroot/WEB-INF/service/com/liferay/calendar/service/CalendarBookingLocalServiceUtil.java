@@ -159,6 +159,12 @@ public class CalendarBookingLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
+	public static com.liferay.calendar.model.CalendarBooking fetchCalendarBooking(
+		long calendarBookingId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().fetchCalendarBooking(calendarBookingId);
+	}
+
 	/**
 	* Returns the calendar booking with the primary key.
 	*

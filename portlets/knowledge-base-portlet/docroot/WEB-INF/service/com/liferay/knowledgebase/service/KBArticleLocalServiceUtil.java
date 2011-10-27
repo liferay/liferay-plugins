@@ -161,6 +161,12 @@ public class KBArticleLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
+	public static com.liferay.knowledgebase.model.KBArticle fetchKBArticle(
+		long kbArticleId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().fetchKBArticle(kbArticleId);
+	}
+
 	/**
 	* Returns the k b article with the primary key.
 	*

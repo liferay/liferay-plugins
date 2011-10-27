@@ -161,6 +161,12 @@ public class TasksEntryLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
+	public static com.liferay.tasks.model.TasksEntry fetchTasksEntry(
+		long tasksEntryId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().fetchTasksEntry(tasksEntryId);
+	}
+
 	/**
 	* Returns the tasks entry with the primary key.
 	*

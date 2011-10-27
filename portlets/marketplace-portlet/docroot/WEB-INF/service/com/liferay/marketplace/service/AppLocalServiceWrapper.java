@@ -149,6 +149,11 @@ public class AppLocalServiceWrapper implements AppLocalService,
 		return _appLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
+	public com.liferay.marketplace.model.App fetchApp(long appId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _appLocalService.fetchApp(appId);
+	}
+
 	/**
 	* Returns the app with the primary key.
 	*

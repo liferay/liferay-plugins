@@ -220,6 +220,10 @@ public abstract class AppLocalServiceBaseImpl implements AppLocalService,
 		return appPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	public App fetchApp(long appId) throws SystemException {
+		return appPersistence.fetchByPrimaryKey(appId);
+	}
+
 	/**
 	 * Returns the app with the primary key.
 	 *

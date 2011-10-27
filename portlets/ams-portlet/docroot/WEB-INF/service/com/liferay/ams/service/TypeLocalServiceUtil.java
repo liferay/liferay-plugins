@@ -157,6 +157,11 @@ public class TypeLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
+	public static com.liferay.ams.model.Type fetchType(long typeId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().fetchType(typeId);
+	}
+
 	/**
 	* Returns the type with the primary key.
 	*

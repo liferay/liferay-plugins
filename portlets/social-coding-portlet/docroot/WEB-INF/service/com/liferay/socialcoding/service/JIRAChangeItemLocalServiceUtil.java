@@ -159,6 +159,12 @@ public class JIRAChangeItemLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
+	public static com.liferay.socialcoding.model.JIRAChangeItem fetchJIRAChangeItem(
+		long jiraChangeItemId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().fetchJIRAChangeItem(jiraChangeItemId);
+	}
+
 	/**
 	* Returns the j i r a change item with the primary key.
 	*

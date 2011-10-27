@@ -149,6 +149,11 @@ public class AssetLocalServiceWrapper implements AssetLocalService,
 		return _assetLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
+	public com.liferay.ams.model.Asset fetchAsset(long assetId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _assetLocalService.fetchAsset(assetId);
+	}
+
 	/**
 	* Returns the asset with the primary key.
 	*

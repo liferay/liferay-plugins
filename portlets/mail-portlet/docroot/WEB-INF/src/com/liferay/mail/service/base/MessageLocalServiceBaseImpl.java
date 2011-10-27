@@ -227,6 +227,10 @@ public abstract class MessageLocalServiceBaseImpl implements MessageLocalService
 		return messagePersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	public Message fetchMessage(long messageId) throws SystemException {
+		return messagePersistence.fetchByPrimaryKey(messageId);
+	}
+
 	/**
 	 * Returns the message with the primary key.
 	 *

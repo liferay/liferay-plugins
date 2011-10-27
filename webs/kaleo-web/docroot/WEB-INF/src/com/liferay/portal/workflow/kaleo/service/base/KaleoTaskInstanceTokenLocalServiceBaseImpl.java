@@ -256,6 +256,11 @@ public abstract class KaleoTaskInstanceTokenLocalServiceBaseImpl
 		return kaleoTaskInstanceTokenPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	public KaleoTaskInstanceToken fetchKaleoTaskInstanceToken(
+		long kaleoTaskInstanceTokenId) throws SystemException {
+		return kaleoTaskInstanceTokenPersistence.fetchByPrimaryKey(kaleoTaskInstanceTokenId);
+	}
+
 	/**
 	 * Returns the kaleo task instance token with the primary key.
 	 *

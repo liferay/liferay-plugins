@@ -159,6 +159,11 @@ public class MessageLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
+	public static com.liferay.mail.model.Message fetchMessage(long messageId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().fetchMessage(messageId);
+	}
+
 	/**
 	* Returns the message with the primary key.
 	*

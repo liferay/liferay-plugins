@@ -154,6 +154,12 @@ public class KBArticleLocalServiceWrapper implements KBArticleLocalService,
 		return _kbArticleLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
+	public com.liferay.knowledgebase.model.KBArticle fetchKBArticle(
+		long kbArticleId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _kbArticleLocalService.fetchKBArticle(kbArticleId);
+	}
+
 	/**
 	* Returns the k b article with the primary key.
 	*

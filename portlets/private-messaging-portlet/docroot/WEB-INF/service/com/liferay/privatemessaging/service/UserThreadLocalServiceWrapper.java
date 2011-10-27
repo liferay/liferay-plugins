@@ -152,6 +152,12 @@ public class UserThreadLocalServiceWrapper implements UserThreadLocalService,
 		return _userThreadLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
+	public com.liferay.privatemessaging.model.UserThread fetchUserThread(
+		long userThreadId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _userThreadLocalService.fetchUserThread(userThreadId);
+	}
+
 	/**
 	* Returns the user thread with the primary key.
 	*

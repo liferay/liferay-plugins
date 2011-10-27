@@ -252,6 +252,11 @@ public abstract class KaleoTimerLocalServiceBaseImpl
 		return kaleoTimerPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	public KaleoTimer fetchKaleoTimer(long kaleoTimerId)
+		throws SystemException {
+		return kaleoTimerPersistence.fetchByPrimaryKey(kaleoTimerId);
+	}
+
 	/**
 	 * Returns the kaleo timer with the primary key.
 	 *

@@ -159,6 +159,12 @@ public class MeetupsEntryLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
+	public static com.liferay.socialnetworking.model.MeetupsEntry fetchMeetupsEntry(
+		long meetupsEntryId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().fetchMeetupsEntry(meetupsEntryId);
+	}
+
 	/**
 	* Returns the meetups entry with the primary key.
 	*

@@ -152,6 +152,12 @@ public class KaleoTaskLocalServiceWrapper implements KaleoTaskLocalService,
 		return _kaleoTaskLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
+	public com.liferay.portal.workflow.kaleo.model.KaleoTask fetchKaleoTask(
+		long kaleoTaskId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _kaleoTaskLocalService.fetchKaleoTask(kaleoTaskId);
+	}
+
 	/**
 	* Returns the kaleo task with the primary key.
 	*

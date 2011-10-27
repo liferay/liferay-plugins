@@ -146,6 +146,11 @@ public interface ProjectsEntryLocalService extends PersistedModelLocalService {
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.so.model.ProjectsEntry fetchProjectsEntry(
+		long projectsEntryId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
 	/**
 	* Returns the projects entry with the primary key.
 	*

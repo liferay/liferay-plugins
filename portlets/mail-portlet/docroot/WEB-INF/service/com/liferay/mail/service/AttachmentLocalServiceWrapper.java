@@ -150,6 +150,11 @@ public class AttachmentLocalServiceWrapper implements AttachmentLocalService,
 		return _attachmentLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
+	public com.liferay.mail.model.Attachment fetchAttachment(long attachmentId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _attachmentLocalService.fetchAttachment(attachmentId);
+	}
+
 	/**
 	* Returns the attachment with the primary key.
 	*

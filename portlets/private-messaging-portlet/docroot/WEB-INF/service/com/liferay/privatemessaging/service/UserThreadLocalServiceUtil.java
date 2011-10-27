@@ -159,6 +159,12 @@ public class UserThreadLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
+	public static com.liferay.privatemessaging.model.UserThread fetchUserThread(
+		long userThreadId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().fetchUserThread(userThreadId);
+	}
+
 	/**
 	* Returns the user thread with the primary key.
 	*

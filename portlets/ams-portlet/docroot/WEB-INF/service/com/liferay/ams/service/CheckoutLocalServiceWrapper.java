@@ -150,6 +150,11 @@ public class CheckoutLocalServiceWrapper implements CheckoutLocalService,
 		return _checkoutLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
+	public com.liferay.ams.model.Checkout fetchCheckout(long checkoutId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _checkoutLocalService.fetchCheckout(checkoutId);
+	}
+
 	/**
 	* Returns the checkout with the primary key.
 	*

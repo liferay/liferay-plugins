@@ -149,6 +149,11 @@ public class FooLocalServiceWrapper implements FooLocalService,
 		return _fooLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
+	public com.liferay.sampleservicebuilder.model.Foo fetchFoo(long fooId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _fooLocalService.fetchFoo(fooId);
+	}
+
 	/**
 	* Returns the foo with the primary key.
 	*

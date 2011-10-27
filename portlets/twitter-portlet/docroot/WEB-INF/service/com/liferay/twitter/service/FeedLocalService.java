@@ -144,6 +144,10 @@ public interface FeedLocalService extends PersistedModelLocalService {
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.twitter.model.Feed fetchFeed(long feedId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
 	/**
 	* Returns the feed with the primary key.
 	*

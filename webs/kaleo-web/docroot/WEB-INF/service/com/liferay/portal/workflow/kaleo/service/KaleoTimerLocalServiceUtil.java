@@ -159,6 +159,12 @@ public class KaleoTimerLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
+	public static com.liferay.portal.workflow.kaleo.model.KaleoTimer fetchKaleoTimer(
+		long kaleoTimerId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().fetchKaleoTimer(kaleoTimerId);
+	}
+
 	/**
 	* Returns the kaleo timer with the primary key.
 	*

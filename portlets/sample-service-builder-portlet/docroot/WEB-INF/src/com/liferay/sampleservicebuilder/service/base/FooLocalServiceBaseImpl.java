@@ -226,6 +226,10 @@ public abstract class FooLocalServiceBaseImpl implements FooLocalService,
 		return fooPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	public Foo fetchFoo(long fooId) throws SystemException {
+		return fooPersistence.fetchByPrimaryKey(fooId);
+	}
+
 	/**
 	 * Returns the foo with the primary key.
 	 *

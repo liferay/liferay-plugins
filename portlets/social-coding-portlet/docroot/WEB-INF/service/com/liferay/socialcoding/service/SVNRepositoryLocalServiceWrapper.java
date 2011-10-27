@@ -153,6 +153,12 @@ public class SVNRepositoryLocalServiceWrapper
 		return _svnRepositoryLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
+	public com.liferay.socialcoding.model.SVNRepository fetchSVNRepository(
+		long svnRepositoryId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _svnRepositoryLocalService.fetchSVNRepository(svnRepositoryId);
+	}
+
 	/**
 	* Returns the s v n repository with the primary key.
 	*

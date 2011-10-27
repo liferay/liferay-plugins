@@ -153,6 +153,11 @@ public class TasksEntryLocalServiceWrapper implements TasksEntryLocalService,
 		return _tasksEntryLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
+	public com.liferay.tasks.model.TasksEntry fetchTasksEntry(long tasksEntryId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _tasksEntryLocalService.fetchTasksEntry(tasksEntryId);
+	}
+
 	/**
 	* Returns the tasks entry with the primary key.
 	*

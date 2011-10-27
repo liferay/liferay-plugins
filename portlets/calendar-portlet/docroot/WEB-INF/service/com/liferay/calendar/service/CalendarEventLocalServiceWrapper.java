@@ -155,6 +155,12 @@ public class CalendarEventLocalServiceWrapper
 		return _calendarEventLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
+	public com.liferay.calendar.model.CalendarEvent fetchCalendarEvent(
+		long calendarEventId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _calendarEventLocalService.fetchCalendarEvent(calendarEventId);
+	}
+
 	/**
 	* Returns the calendar event with the primary key.
 	*

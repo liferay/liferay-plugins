@@ -57,94 +57,97 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 				"dynamicQueryCount",
 				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
 
-		_getJIRAIssueMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+		_fetchJIRAIssueMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+				"fetchJIRAIssue", long.class);
+
+		_getJIRAIssueMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getJIRAIssue", long.class);
 
-		_getPersistedModelMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getPersistedModelMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getPersistedModel", java.io.Serializable.class);
 
-		_getJIRAIssuesMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getJIRAIssuesMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getJIRAIssues", int.class, int.class);
 
-		_getJIRAIssuesCountMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getJIRAIssuesCountMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getJIRAIssuesCount");
-
-		_updateJIRAIssueMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
-				"updateJIRAIssue",
-				com.liferay.socialcoding.model.JIRAIssue.class);
 
 		_updateJIRAIssueMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateJIRAIssue",
+				com.liferay.socialcoding.model.JIRAIssue.class);
+
+		_updateJIRAIssueMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateJIRAIssue",
 				com.liferay.socialcoding.model.JIRAIssue.class, boolean.class);
 
-		_getBeanIdentifierMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getBeanIdentifierMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getBeanIdentifier");
 
-		_setBeanIdentifierMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+		_setBeanIdentifierMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
 				"setBeanIdentifier", java.lang.String.class);
 
-		_getAssigneeJIRAIssuesMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getAssigneeJIRAIssuesMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getAssigneeJIRAIssues", long.class, java.lang.String.class,
 				int.class, int.class);
 
-		_getAssigneeJIRAIssuesMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getAssigneeJIRAIssuesMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getAssigneeJIRAIssues", java.util.Date.class, long.class,
 				java.lang.String.class, int.class, int.class);
 
-		_getAssigneeJIRAIssuesMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getAssigneeJIRAIssuesMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getAssigneeJIRAIssues", long.class, java.lang.String.class,
 				java.lang.String.class, int.class, int.class);
 
-		_getAssigneeJIRAIssuesCountMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getAssigneeJIRAIssuesCountMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getAssigneeJIRAIssuesCount", long.class, java.lang.String.class);
 
-		_getAssigneeJIRAIssuesCountMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getAssigneeJIRAIssuesCountMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getAssigneeJIRAIssuesCount", java.util.Date.class, long.class,
 				java.lang.String.class);
 
-		_getAssigneeJIRAIssuesCountMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getAssigneeJIRAIssuesCountMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getAssigneeJIRAIssuesCount", long.class,
 				java.lang.String.class, java.lang.String.class);
 
-		_getFirstAssigneeJIRAIssueMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getFirstAssigneeJIRAIssueMethodKey23 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getFirstAssigneeJIRAIssue", long.class, java.lang.String.class);
 
-		_getFirstReporterJIRAIssueMethodKey23 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getFirstReporterJIRAIssueMethodKey24 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getFirstReporterJIRAIssue", long.class, java.lang.String.class);
 
-		_getJIRAIssueMethodKey24 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getJIRAIssueMethodKey25 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getJIRAIssue", java.lang.String.class);
 
-		_getLastAssigneeJIRAIssueMethodKey25 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getLastAssigneeJIRAIssueMethodKey26 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getLastAssigneeJIRAIssue", long.class, java.lang.String.class);
 
-		_getLastreporterJIRAIssueMethodKey26 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getLastreporterJIRAIssueMethodKey27 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getLastreporterJIRAIssue", long.class, java.lang.String.class);
 
-		_getReporterJIRAIssuesMethodKey27 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getReporterJIRAIssuesMethodKey28 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getReporterJIRAIssues", long.class, java.lang.String.class,
 				int.class, int.class);
 
-		_getReporterJIRAIssuesMethodKey28 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getReporterJIRAIssuesMethodKey29 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getReporterJIRAIssues", java.util.Date.class, long.class,
 				java.lang.String.class, int.class, int.class);
 
-		_getReporterJIRAIssuesMethodKey29 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getReporterJIRAIssuesMethodKey30 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getReporterJIRAIssues", long.class, java.lang.String.class,
 				java.lang.String.class, int.class, int.class);
 
-		_getReporterJIRAIssuesCountMethodKey30 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getReporterJIRAIssuesCountMethodKey31 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getReporterJIRAIssuesCount", long.class, java.lang.String.class);
 
-		_getReporterJIRAIssuesCountMethodKey31 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getReporterJIRAIssuesCountMethodKey32 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getReporterJIRAIssuesCount", java.util.Date.class, long.class,
 				java.lang.String.class);
 
-		_getReporterJIRAIssuesCountMethodKey32 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getReporterJIRAIssuesCountMethodKey33 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getReporterJIRAIssuesCount", long.class,
 				java.lang.String.class, java.lang.String.class);
 
-		_updateJIRAIssuesMethodKey33 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateJIRAIssuesMethodKey34 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateJIRAIssues", long.class);
 	}
 
@@ -369,13 +372,41 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 		return ((Long)returnObj).longValue();
 	}
 
+	public com.liferay.socialcoding.model.JIRAIssue fetchJIRAIssue(
+		long jiraIssueId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_fetchJIRAIssueMethodKey8,
+				jiraIssueId);
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.socialcoding.model.JIRAIssue)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public com.liferay.socialcoding.model.JIRAIssue getJIRAIssue(
 		long jiraIssueId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getJIRAIssueMethodKey8,
+		MethodHandler methodHandler = new MethodHandler(_getJIRAIssueMethodKey9,
 				jiraIssueId);
 
 		try {
@@ -408,7 +439,7 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getPersistedModelMethodKey9,
+		MethodHandler methodHandler = new MethodHandler(_getPersistedModelMethodKey10,
 				ClpSerializer.translateInput(primaryKeyObj));
 
 		try {
@@ -440,7 +471,7 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getJIRAIssuesMethodKey10,
+		MethodHandler methodHandler = new MethodHandler(_getJIRAIssuesMethodKey11,
 				start, end);
 
 		try {
@@ -467,7 +498,7 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getJIRAIssuesCountMethodKey11);
+		MethodHandler methodHandler = new MethodHandler(_getJIRAIssuesCountMethodKey12);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -494,7 +525,7 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateJIRAIssueMethodKey12,
+		MethodHandler methodHandler = new MethodHandler(_updateJIRAIssueMethodKey13,
 				ClpSerializer.translateInput(jiraIssue));
 
 		try {
@@ -522,7 +553,7 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateJIRAIssueMethodKey13,
+		MethodHandler methodHandler = new MethodHandler(_updateJIRAIssueMethodKey14,
 				ClpSerializer.translateInput(jiraIssue), merge);
 
 		try {
@@ -548,7 +579,7 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 	public java.lang.String getBeanIdentifier() {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey14);
+		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey15);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -567,7 +598,7 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 	}
 
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey15,
+		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey16,
 				ClpSerializer.translateInput(beanIdentifier));
 
 		try {
@@ -589,7 +620,7 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getAssigneeJIRAIssuesMethodKey16,
+		MethodHandler methodHandler = new MethodHandler(_getAssigneeJIRAIssuesMethodKey17,
 				projectId, ClpSerializer.translateInput(assigneeJiraUserId),
 				start, end);
 
@@ -619,7 +650,7 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getAssigneeJIRAIssuesMethodKey17,
+		MethodHandler methodHandler = new MethodHandler(_getAssigneeJIRAIssuesMethodKey18,
 				ClpSerializer.translateInput(modifiedDate), projectId,
 				ClpSerializer.translateInput(assigneeJiraUserId), start, end);
 
@@ -649,7 +680,7 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getAssigneeJIRAIssuesMethodKey18,
+		MethodHandler methodHandler = new MethodHandler(_getAssigneeJIRAIssuesMethodKey19,
 				projectId, ClpSerializer.translateInput(assigneeJiraUserId),
 				ClpSerializer.translateInput(status), start, end);
 
@@ -678,7 +709,7 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getAssigneeJIRAIssuesCountMethodKey19,
+		MethodHandler methodHandler = new MethodHandler(_getAssigneeJIRAIssuesCountMethodKey20,
 				projectId, ClpSerializer.translateInput(assigneeJiraUserId));
 
 		try {
@@ -706,7 +737,7 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getAssigneeJIRAIssuesCountMethodKey20,
+		MethodHandler methodHandler = new MethodHandler(_getAssigneeJIRAIssuesCountMethodKey21,
 				ClpSerializer.translateInput(modifiedDate), projectId,
 				ClpSerializer.translateInput(assigneeJiraUserId));
 
@@ -735,7 +766,7 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getAssigneeJIRAIssuesCountMethodKey21,
+		MethodHandler methodHandler = new MethodHandler(_getAssigneeJIRAIssuesCountMethodKey22,
 				projectId, ClpSerializer.translateInput(assigneeJiraUserId),
 				ClpSerializer.translateInput(status));
 
@@ -765,7 +796,7 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getFirstAssigneeJIRAIssueMethodKey22,
+		MethodHandler methodHandler = new MethodHandler(_getFirstAssigneeJIRAIssueMethodKey23,
 				projectId, ClpSerializer.translateInput(assigneeJiraUserId));
 
 		try {
@@ -798,7 +829,7 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getFirstReporterJIRAIssueMethodKey23,
+		MethodHandler methodHandler = new MethodHandler(_getFirstReporterJIRAIssueMethodKey24,
 				projectId, ClpSerializer.translateInput(reporterJiraUserId));
 
 		try {
@@ -831,7 +862,7 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getJIRAIssueMethodKey24,
+		MethodHandler methodHandler = new MethodHandler(_getJIRAIssueMethodKey25,
 				ClpSerializer.translateInput(key));
 
 		try {
@@ -864,7 +895,7 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getLastAssigneeJIRAIssueMethodKey25,
+		MethodHandler methodHandler = new MethodHandler(_getLastAssigneeJIRAIssueMethodKey26,
 				projectId, ClpSerializer.translateInput(assigneeJiraUserId));
 
 		try {
@@ -897,7 +928,7 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getLastreporterJIRAIssueMethodKey26,
+		MethodHandler methodHandler = new MethodHandler(_getLastreporterJIRAIssueMethodKey27,
 				projectId, ClpSerializer.translateInput(reporterJiraUserId));
 
 		try {
@@ -929,7 +960,7 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getReporterJIRAIssuesMethodKey27,
+		MethodHandler methodHandler = new MethodHandler(_getReporterJIRAIssuesMethodKey28,
 				projectId, ClpSerializer.translateInput(reporterJiraUserId),
 				start, end);
 
@@ -959,7 +990,7 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getReporterJIRAIssuesMethodKey28,
+		MethodHandler methodHandler = new MethodHandler(_getReporterJIRAIssuesMethodKey29,
 				ClpSerializer.translateInput(modifiedDate), projectId,
 				ClpSerializer.translateInput(reporterJiraUserId), start, end);
 
@@ -989,7 +1020,7 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getReporterJIRAIssuesMethodKey29,
+		MethodHandler methodHandler = new MethodHandler(_getReporterJIRAIssuesMethodKey30,
 				projectId, ClpSerializer.translateInput(reporterJiraUserId),
 				ClpSerializer.translateInput(status), start, end);
 
@@ -1018,7 +1049,7 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getReporterJIRAIssuesCountMethodKey30,
+		MethodHandler methodHandler = new MethodHandler(_getReporterJIRAIssuesCountMethodKey31,
 				projectId, ClpSerializer.translateInput(reporterJiraUserId));
 
 		try {
@@ -1046,7 +1077,7 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getReporterJIRAIssuesCountMethodKey31,
+		MethodHandler methodHandler = new MethodHandler(_getReporterJIRAIssuesCountMethodKey32,
 				ClpSerializer.translateInput(modifiedDate), projectId,
 				ClpSerializer.translateInput(reporterJiraUserId));
 
@@ -1075,7 +1106,7 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getReporterJIRAIssuesCountMethodKey32,
+		MethodHandler methodHandler = new MethodHandler(_getReporterJIRAIssuesCountMethodKey33,
 				projectId, ClpSerializer.translateInput(reporterJiraUserId),
 				ClpSerializer.translateInput(status));
 
@@ -1102,7 +1133,7 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 	public void updateJIRAIssues(long projectId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_updateJIRAIssuesMethodKey33,
+		MethodHandler methodHandler = new MethodHandler(_updateJIRAIssuesMethodKey34,
 				projectId);
 
 		try {
@@ -1140,30 +1171,31 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 	private MethodKey _dynamicQueryMethodKey5;
 	private MethodKey _dynamicQueryMethodKey6;
 	private MethodKey _dynamicQueryCountMethodKey7;
-	private MethodKey _getJIRAIssueMethodKey8;
-	private MethodKey _getPersistedModelMethodKey9;
-	private MethodKey _getJIRAIssuesMethodKey10;
-	private MethodKey _getJIRAIssuesCountMethodKey11;
-	private MethodKey _updateJIRAIssueMethodKey12;
+	private MethodKey _fetchJIRAIssueMethodKey8;
+	private MethodKey _getJIRAIssueMethodKey9;
+	private MethodKey _getPersistedModelMethodKey10;
+	private MethodKey _getJIRAIssuesMethodKey11;
+	private MethodKey _getJIRAIssuesCountMethodKey12;
 	private MethodKey _updateJIRAIssueMethodKey13;
-	private MethodKey _getBeanIdentifierMethodKey14;
-	private MethodKey _setBeanIdentifierMethodKey15;
-	private MethodKey _getAssigneeJIRAIssuesMethodKey16;
+	private MethodKey _updateJIRAIssueMethodKey14;
+	private MethodKey _getBeanIdentifierMethodKey15;
+	private MethodKey _setBeanIdentifierMethodKey16;
 	private MethodKey _getAssigneeJIRAIssuesMethodKey17;
 	private MethodKey _getAssigneeJIRAIssuesMethodKey18;
-	private MethodKey _getAssigneeJIRAIssuesCountMethodKey19;
+	private MethodKey _getAssigneeJIRAIssuesMethodKey19;
 	private MethodKey _getAssigneeJIRAIssuesCountMethodKey20;
 	private MethodKey _getAssigneeJIRAIssuesCountMethodKey21;
-	private MethodKey _getFirstAssigneeJIRAIssueMethodKey22;
-	private MethodKey _getFirstReporterJIRAIssueMethodKey23;
-	private MethodKey _getJIRAIssueMethodKey24;
-	private MethodKey _getLastAssigneeJIRAIssueMethodKey25;
-	private MethodKey _getLastreporterJIRAIssueMethodKey26;
-	private MethodKey _getReporterJIRAIssuesMethodKey27;
+	private MethodKey _getAssigneeJIRAIssuesCountMethodKey22;
+	private MethodKey _getFirstAssigneeJIRAIssueMethodKey23;
+	private MethodKey _getFirstReporterJIRAIssueMethodKey24;
+	private MethodKey _getJIRAIssueMethodKey25;
+	private MethodKey _getLastAssigneeJIRAIssueMethodKey26;
+	private MethodKey _getLastreporterJIRAIssueMethodKey27;
 	private MethodKey _getReporterJIRAIssuesMethodKey28;
 	private MethodKey _getReporterJIRAIssuesMethodKey29;
-	private MethodKey _getReporterJIRAIssuesCountMethodKey30;
+	private MethodKey _getReporterJIRAIssuesMethodKey30;
 	private MethodKey _getReporterJIRAIssuesCountMethodKey31;
 	private MethodKey _getReporterJIRAIssuesCountMethodKey32;
-	private MethodKey _updateJIRAIssuesMethodKey33;
+	private MethodKey _getReporterJIRAIssuesCountMethodKey33;
+	private MethodKey _updateJIRAIssuesMethodKey34;
 }

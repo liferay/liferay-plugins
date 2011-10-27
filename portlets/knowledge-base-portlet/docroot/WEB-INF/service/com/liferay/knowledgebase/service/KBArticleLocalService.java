@@ -148,6 +148,11 @@ public interface KBArticleLocalService extends PersistedModelLocalService {
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.knowledgebase.model.KBArticle fetchKBArticle(
+		long kbArticleId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
 	/**
 	* Returns the k b article with the primary key.
 	*

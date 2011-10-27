@@ -235,6 +235,11 @@ public abstract class SVNRepositoryLocalServiceBaseImpl
 		return svnRepositoryPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	public SVNRepository fetchSVNRepository(long svnRepositoryId)
+		throws SystemException {
+		return svnRepositoryPersistence.fetchByPrimaryKey(svnRepositoryId);
+	}
+
 	/**
 	 * Returns the s v n repository with the primary key.
 	 *

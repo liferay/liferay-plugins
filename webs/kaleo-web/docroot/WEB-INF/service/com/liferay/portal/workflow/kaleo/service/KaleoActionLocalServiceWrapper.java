@@ -152,6 +152,12 @@ public class KaleoActionLocalServiceWrapper implements KaleoActionLocalService,
 		return _kaleoActionLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
+	public com.liferay.portal.workflow.kaleo.model.KaleoAction fetchKaleoAction(
+		long kaleoActionId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _kaleoActionLocalService.fetchKaleoAction(kaleoActionId);
+	}
+
 	/**
 	* Returns the kaleo action with the primary key.
 	*

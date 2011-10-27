@@ -149,6 +149,11 @@ public class BarLocalServiceWrapper implements BarLocalService,
 		return _barLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
+	public com.liferay.testtransaction.model.Bar fetchBar(long barId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _barLocalService.fetchBar(barId);
+	}
+
 	/**
 	* Returns the bar with the primary key.
 	*

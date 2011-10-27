@@ -154,6 +154,12 @@ public class CalendarBookingLocalServiceWrapper
 		return _calendarBookingLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
+	public com.liferay.calendar.model.CalendarBooking fetchCalendarBooking(
+		long calendarBookingId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _calendarBookingLocalService.fetchCalendarBooking(calendarBookingId);
+	}
+
 	/**
 	* Returns the calendar booking with the primary key.
 	*

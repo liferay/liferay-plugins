@@ -152,6 +152,12 @@ public class KaleoLogLocalServiceWrapper implements KaleoLogLocalService,
 		return _kaleoLogLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
+	public com.liferay.portal.workflow.kaleo.model.KaleoLog fetchKaleoLog(
+		long kaleoLogId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _kaleoLogLocalService.fetchKaleoLog(kaleoLogId);
+	}
+
 	/**
 	* Returns the kaleo log with the primary key.
 	*

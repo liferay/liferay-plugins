@@ -151,6 +151,11 @@ public class MessageLocalServiceWrapper implements MessageLocalService,
 		return _messageLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
+	public com.liferay.mail.model.Message fetchMessage(long messageId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _messageLocalService.fetchMessage(messageId);
+	}
+
 	/**
 	* Returns the message with the primary key.
 	*

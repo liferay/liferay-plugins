@@ -159,6 +159,12 @@ public class KaleoTaskAssignmentLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
+	public static com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment fetchKaleoTaskAssignment(
+		long kaleoTaskAssignmentId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().fetchKaleoTaskAssignment(kaleoTaskAssignmentId);
+	}
+
 	/**
 	* Returns the kaleo task assignment with the primary key.
 	*

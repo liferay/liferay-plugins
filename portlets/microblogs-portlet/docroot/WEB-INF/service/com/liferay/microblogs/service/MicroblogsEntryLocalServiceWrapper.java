@@ -156,6 +156,12 @@ public class MicroblogsEntryLocalServiceWrapper
 		return _microblogsEntryLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
+	public com.liferay.microblogs.model.MicroblogsEntry fetchMicroblogsEntry(
+		long microblogsEntryId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _microblogsEntryLocalService.fetchMicroblogsEntry(microblogsEntryId);
+	}
+
 	/**
 	* Returns the microblogs entry with the primary key.
 	*

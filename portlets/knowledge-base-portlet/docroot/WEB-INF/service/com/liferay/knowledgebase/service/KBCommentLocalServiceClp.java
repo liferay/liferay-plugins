@@ -57,56 +57,59 @@ public class KBCommentLocalServiceClp implements KBCommentLocalService {
 				"dynamicQueryCount",
 				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
 
-		_getKBCommentMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+		_fetchKBCommentMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+				"fetchKBComment", long.class);
+
+		_getKBCommentMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getKBComment", long.class);
 
-		_getPersistedModelMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getPersistedModelMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getPersistedModel", java.io.Serializable.class);
 
-		_getKBCommentByUuidAndGroupIdMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getKBCommentByUuidAndGroupIdMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getKBCommentByUuidAndGroupId", java.lang.String.class,
 				long.class);
 
-		_getKBCommentsMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getKBCommentsMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getKBComments", int.class, int.class);
 
-		_getKBCommentsCountMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getKBCommentsCountMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getKBCommentsCount");
-
-		_updateKBCommentMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
-				"updateKBComment",
-				com.liferay.knowledgebase.model.KBComment.class);
 
 		_updateKBCommentMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateKBComment",
+				com.liferay.knowledgebase.model.KBComment.class);
+
+		_updateKBCommentMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateKBComment",
 				com.liferay.knowledgebase.model.KBComment.class, boolean.class);
 
-		_getBeanIdentifierMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getBeanIdentifierMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getBeanIdentifier");
 
-		_setBeanIdentifierMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+		_setBeanIdentifierMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
 				"setBeanIdentifier", java.lang.String.class);
 
-		_addKBCommentMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
+		_addKBCommentMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
 				"addKBComment", long.class, long.class, long.class,
 				java.lang.String.class, boolean.class,
 				com.liferay.portal.service.ServiceContext.class);
 
-		_deleteKBCommentsMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
+		_deleteKBCommentsMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
 				"deleteKBComments", java.lang.String.class, long.class);
 
-		_getKBCommentMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getKBCommentMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getKBComment", long.class, java.lang.String.class, long.class);
 
-		_getKBCommentsMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getKBCommentsMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getKBComments", java.lang.String.class, long.class, int.class,
 				int.class,
 				com.liferay.portal.kernel.util.OrderByComparator.class);
 
-		_getKBCommentsCountMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getKBCommentsCountMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getKBCommentsCount", java.lang.String.class, long.class);
 
-		_updateKBCommentMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateKBCommentMethodKey23 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateKBComment", long.class, long.class, long.class,
 				java.lang.String.class, boolean.class,
 				com.liferay.portal.service.ServiceContext.class);
@@ -338,13 +341,41 @@ public class KBCommentLocalServiceClp implements KBCommentLocalService {
 		return ((Long)returnObj).longValue();
 	}
 
+	public com.liferay.knowledgebase.model.KBComment fetchKBComment(
+		long kbCommentId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_fetchKBCommentMethodKey8,
+				kbCommentId);
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.knowledgebase.model.KBComment)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public com.liferay.knowledgebase.model.KBComment getKBComment(
 		long kbCommentId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getKBCommentMethodKey8,
+		MethodHandler methodHandler = new MethodHandler(_getKBCommentMethodKey9,
 				kbCommentId);
 
 		try {
@@ -377,7 +408,7 @@ public class KBCommentLocalServiceClp implements KBCommentLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getPersistedModelMethodKey9,
+		MethodHandler methodHandler = new MethodHandler(_getPersistedModelMethodKey10,
 				ClpSerializer.translateInput(primaryKeyObj));
 
 		try {
@@ -410,7 +441,7 @@ public class KBCommentLocalServiceClp implements KBCommentLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getKBCommentByUuidAndGroupIdMethodKey10,
+		MethodHandler methodHandler = new MethodHandler(_getKBCommentByUuidAndGroupIdMethodKey11,
 				ClpSerializer.translateInput(uuid), groupId);
 
 		try {
@@ -442,7 +473,7 @@ public class KBCommentLocalServiceClp implements KBCommentLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getKBCommentsMethodKey11,
+		MethodHandler methodHandler = new MethodHandler(_getKBCommentsMethodKey12,
 				start, end);
 
 		try {
@@ -469,7 +500,7 @@ public class KBCommentLocalServiceClp implements KBCommentLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getKBCommentsCountMethodKey12);
+		MethodHandler methodHandler = new MethodHandler(_getKBCommentsCountMethodKey13);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -496,7 +527,7 @@ public class KBCommentLocalServiceClp implements KBCommentLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateKBCommentMethodKey13,
+		MethodHandler methodHandler = new MethodHandler(_updateKBCommentMethodKey14,
 				ClpSerializer.translateInput(kbComment));
 
 		try {
@@ -524,7 +555,7 @@ public class KBCommentLocalServiceClp implements KBCommentLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateKBCommentMethodKey14,
+		MethodHandler methodHandler = new MethodHandler(_updateKBCommentMethodKey15,
 				ClpSerializer.translateInput(kbComment), merge);
 
 		try {
@@ -550,7 +581,7 @@ public class KBCommentLocalServiceClp implements KBCommentLocalService {
 	public java.lang.String getBeanIdentifier() {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey15);
+		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey16);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -569,7 +600,7 @@ public class KBCommentLocalServiceClp implements KBCommentLocalService {
 	}
 
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey16,
+		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey17,
 				ClpSerializer.translateInput(beanIdentifier));
 
 		try {
@@ -594,7 +625,7 @@ public class KBCommentLocalServiceClp implements KBCommentLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_addKBCommentMethodKey17,
+		MethodHandler methodHandler = new MethodHandler(_addKBCommentMethodKey18,
 				userId, classNameId, classPK,
 				ClpSerializer.translateInput(content), helpful,
 				ClpSerializer.translateInput(serviceContext));
@@ -626,7 +657,7 @@ public class KBCommentLocalServiceClp implements KBCommentLocalService {
 	public void deleteKBComments(java.lang.String className, long classPK)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_deleteKBCommentsMethodKey18,
+		MethodHandler methodHandler = new MethodHandler(_deleteKBCommentsMethodKey19,
 				ClpSerializer.translateInput(className), classPK);
 
 		try {
@@ -657,7 +688,7 @@ public class KBCommentLocalServiceClp implements KBCommentLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getKBCommentMethodKey19,
+		MethodHandler methodHandler = new MethodHandler(_getKBCommentMethodKey20,
 				userId, ClpSerializer.translateInput(className), classPK);
 
 		try {
@@ -690,7 +721,7 @@ public class KBCommentLocalServiceClp implements KBCommentLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getKBCommentsMethodKey20,
+		MethodHandler methodHandler = new MethodHandler(_getKBCommentsMethodKey21,
 				ClpSerializer.translateInput(className), classPK, start, end,
 				ClpSerializer.translateInput(orderByComparator));
 
@@ -718,7 +749,7 @@ public class KBCommentLocalServiceClp implements KBCommentLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getKBCommentsCountMethodKey21,
+		MethodHandler methodHandler = new MethodHandler(_getKBCommentsCountMethodKey22,
 				ClpSerializer.translateInput(className), classPK);
 
 		try {
@@ -749,7 +780,7 @@ public class KBCommentLocalServiceClp implements KBCommentLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateKBCommentMethodKey22,
+		MethodHandler methodHandler = new MethodHandler(_updateKBCommentMethodKey23,
 				kbCommentId, classNameId, classPK,
 				ClpSerializer.translateInput(content), helpful,
 				ClpSerializer.translateInput(serviceContext));
@@ -791,19 +822,20 @@ public class KBCommentLocalServiceClp implements KBCommentLocalService {
 	private MethodKey _dynamicQueryMethodKey5;
 	private MethodKey _dynamicQueryMethodKey6;
 	private MethodKey _dynamicQueryCountMethodKey7;
-	private MethodKey _getKBCommentMethodKey8;
-	private MethodKey _getPersistedModelMethodKey9;
-	private MethodKey _getKBCommentByUuidAndGroupIdMethodKey10;
-	private MethodKey _getKBCommentsMethodKey11;
-	private MethodKey _getKBCommentsCountMethodKey12;
-	private MethodKey _updateKBCommentMethodKey13;
+	private MethodKey _fetchKBCommentMethodKey8;
+	private MethodKey _getKBCommentMethodKey9;
+	private MethodKey _getPersistedModelMethodKey10;
+	private MethodKey _getKBCommentByUuidAndGroupIdMethodKey11;
+	private MethodKey _getKBCommentsMethodKey12;
+	private MethodKey _getKBCommentsCountMethodKey13;
 	private MethodKey _updateKBCommentMethodKey14;
-	private MethodKey _getBeanIdentifierMethodKey15;
-	private MethodKey _setBeanIdentifierMethodKey16;
-	private MethodKey _addKBCommentMethodKey17;
-	private MethodKey _deleteKBCommentsMethodKey18;
-	private MethodKey _getKBCommentMethodKey19;
-	private MethodKey _getKBCommentsMethodKey20;
-	private MethodKey _getKBCommentsCountMethodKey21;
-	private MethodKey _updateKBCommentMethodKey22;
+	private MethodKey _updateKBCommentMethodKey15;
+	private MethodKey _getBeanIdentifierMethodKey16;
+	private MethodKey _setBeanIdentifierMethodKey17;
+	private MethodKey _addKBCommentMethodKey18;
+	private MethodKey _deleteKBCommentsMethodKey19;
+	private MethodKey _getKBCommentMethodKey20;
+	private MethodKey _getKBCommentsMethodKey21;
+	private MethodKey _getKBCommentsCountMethodKey22;
+	private MethodKey _updateKBCommentMethodKey23;
 }

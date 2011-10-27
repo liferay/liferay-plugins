@@ -252,6 +252,11 @@ public abstract class KaleoActionLocalServiceBaseImpl
 		return kaleoActionPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	public KaleoAction fetchKaleoAction(long kaleoActionId)
+		throws SystemException {
+		return kaleoActionPersistence.fetchByPrimaryKey(kaleoActionId);
+	}
+
 	/**
 	 * Returns the kaleo action with the primary key.
 	 *

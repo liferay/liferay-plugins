@@ -151,6 +151,11 @@ public class FolderLocalServiceWrapper implements FolderLocalService,
 		return _folderLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
+	public com.liferay.mail.model.Folder fetchFolder(long folderId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _folderLocalService.fetchFolder(folderId);
+	}
+
 	/**
 	* Returns the folder with the primary key.
 	*
@@ -258,11 +263,6 @@ public class FolderLocalServiceWrapper implements FolderLocalService,
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		_folderLocalService.deleteFolders(accountId);
-	}
-
-	public com.liferay.mail.model.Folder fetchFolder(long folderId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return _folderLocalService.fetchFolder(folderId);
 	}
 
 	public com.liferay.mail.model.Folder getFolder(long accountId,

@@ -149,6 +149,11 @@ public class StatusLocalServiceWrapper implements StatusLocalService,
 		return _statusLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
+	public com.liferay.chat.model.Status fetchStatus(long statusId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _statusLocalService.fetchStatus(statusId);
+	}
+
 	/**
 	* Returns the status with the primary key.
 	*

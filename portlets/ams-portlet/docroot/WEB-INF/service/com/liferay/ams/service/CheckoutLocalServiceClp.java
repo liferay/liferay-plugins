@@ -56,29 +56,32 @@ public class CheckoutLocalServiceClp implements CheckoutLocalService {
 				"dynamicQueryCount",
 				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
 
-		_getCheckoutMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+		_fetchCheckoutMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+				"fetchCheckout", long.class);
+
+		_getCheckoutMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getCheckout", long.class);
 
-		_getPersistedModelMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getPersistedModelMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getPersistedModel", java.io.Serializable.class);
 
-		_getCheckoutsMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getCheckoutsMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getCheckouts", int.class, int.class);
 
-		_getCheckoutsCountMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getCheckoutsCountMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getCheckoutsCount");
 
-		_updateCheckoutMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateCheckoutMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateCheckout", com.liferay.ams.model.Checkout.class);
 
-		_updateCheckoutMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateCheckoutMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateCheckout", com.liferay.ams.model.Checkout.class,
 				boolean.class);
 
-		_getBeanIdentifierMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getBeanIdentifierMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getBeanIdentifier");
 
-		_setBeanIdentifierMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+		_setBeanIdentifierMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
 				"setBeanIdentifier", java.lang.String.class);
 	}
 
@@ -301,12 +304,39 @@ public class CheckoutLocalServiceClp implements CheckoutLocalService {
 		return ((Long)returnObj).longValue();
 	}
 
+	public com.liferay.ams.model.Checkout fetchCheckout(long checkoutId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_fetchCheckoutMethodKey8,
+				checkoutId);
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.ams.model.Checkout)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public com.liferay.ams.model.Checkout getCheckout(long checkoutId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getCheckoutMethodKey8,
+		MethodHandler methodHandler = new MethodHandler(_getCheckoutMethodKey9,
 				checkoutId);
 
 		try {
@@ -339,7 +369,7 @@ public class CheckoutLocalServiceClp implements CheckoutLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getPersistedModelMethodKey9,
+		MethodHandler methodHandler = new MethodHandler(_getPersistedModelMethodKey10,
 				ClpSerializer.translateInput(primaryKeyObj));
 
 		try {
@@ -371,7 +401,7 @@ public class CheckoutLocalServiceClp implements CheckoutLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getCheckoutsMethodKey10,
+		MethodHandler methodHandler = new MethodHandler(_getCheckoutsMethodKey11,
 				start, end);
 
 		try {
@@ -398,7 +428,7 @@ public class CheckoutLocalServiceClp implements CheckoutLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getCheckoutsCountMethodKey11);
+		MethodHandler methodHandler = new MethodHandler(_getCheckoutsCountMethodKey12);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -425,7 +455,7 @@ public class CheckoutLocalServiceClp implements CheckoutLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateCheckoutMethodKey12,
+		MethodHandler methodHandler = new MethodHandler(_updateCheckoutMethodKey13,
 				ClpSerializer.translateInput(checkout));
 
 		try {
@@ -453,7 +483,7 @@ public class CheckoutLocalServiceClp implements CheckoutLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateCheckoutMethodKey13,
+		MethodHandler methodHandler = new MethodHandler(_updateCheckoutMethodKey14,
 				ClpSerializer.translateInput(checkout), merge);
 
 		try {
@@ -479,7 +509,7 @@ public class CheckoutLocalServiceClp implements CheckoutLocalService {
 	public java.lang.String getBeanIdentifier() {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey14);
+		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey15);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -498,7 +528,7 @@ public class CheckoutLocalServiceClp implements CheckoutLocalService {
 	}
 
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey15,
+		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey16,
 				ClpSerializer.translateInput(beanIdentifier));
 
 		try {
@@ -528,12 +558,13 @@ public class CheckoutLocalServiceClp implements CheckoutLocalService {
 	private MethodKey _dynamicQueryMethodKey5;
 	private MethodKey _dynamicQueryMethodKey6;
 	private MethodKey _dynamicQueryCountMethodKey7;
-	private MethodKey _getCheckoutMethodKey8;
-	private MethodKey _getPersistedModelMethodKey9;
-	private MethodKey _getCheckoutsMethodKey10;
-	private MethodKey _getCheckoutsCountMethodKey11;
-	private MethodKey _updateCheckoutMethodKey12;
+	private MethodKey _fetchCheckoutMethodKey8;
+	private MethodKey _getCheckoutMethodKey9;
+	private MethodKey _getPersistedModelMethodKey10;
+	private MethodKey _getCheckoutsMethodKey11;
+	private MethodKey _getCheckoutsCountMethodKey12;
 	private MethodKey _updateCheckoutMethodKey13;
-	private MethodKey _getBeanIdentifierMethodKey14;
-	private MethodKey _setBeanIdentifierMethodKey15;
+	private MethodKey _updateCheckoutMethodKey14;
+	private MethodKey _getBeanIdentifierMethodKey15;
+	private MethodKey _setBeanIdentifierMethodKey16;
 }

@@ -157,6 +157,11 @@ public class AssetLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
+	public static com.liferay.ams.model.Asset fetchAsset(long assetId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().fetchAsset(assetId);
+	}
+
 	/**
 	* Returns the asset with the primary key.
 	*

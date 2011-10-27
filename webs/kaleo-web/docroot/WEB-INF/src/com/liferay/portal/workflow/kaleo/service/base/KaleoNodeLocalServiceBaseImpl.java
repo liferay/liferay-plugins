@@ -251,6 +251,10 @@ public abstract class KaleoNodeLocalServiceBaseImpl
 		return kaleoNodePersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	public KaleoNode fetchKaleoNode(long kaleoNodeId) throws SystemException {
+		return kaleoNodePersistence.fetchByPrimaryKey(kaleoNodeId);
+	}
+
 	/**
 	 * Returns the kaleo node with the primary key.
 	 *

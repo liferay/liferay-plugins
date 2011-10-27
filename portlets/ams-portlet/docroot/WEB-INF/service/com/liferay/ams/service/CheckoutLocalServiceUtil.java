@@ -157,6 +157,11 @@ public class CheckoutLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
+	public static com.liferay.ams.model.Checkout fetchCheckout(long checkoutId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().fetchCheckout(checkoutId);
+	}
+
 	/**
 	* Returns the checkout with the primary key.
 	*

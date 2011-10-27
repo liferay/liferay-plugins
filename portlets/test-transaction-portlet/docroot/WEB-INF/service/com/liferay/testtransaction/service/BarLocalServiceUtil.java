@@ -157,6 +157,11 @@ public class BarLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
+	public static com.liferay.testtransaction.model.Bar fetchBar(long barId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().fetchBar(barId);
+	}
+
 	/**
 	* Returns the bar with the primary key.
 	*

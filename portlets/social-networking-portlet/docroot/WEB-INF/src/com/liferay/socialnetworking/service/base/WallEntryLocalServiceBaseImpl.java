@@ -232,6 +232,10 @@ public abstract class WallEntryLocalServiceBaseImpl
 		return wallEntryPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	public WallEntry fetchWallEntry(long wallEntryId) throws SystemException {
+		return wallEntryPersistence.fetchByPrimaryKey(wallEntryId);
+	}
+
 	/**
 	 * Returns the wall entry with the primary key.
 	 *

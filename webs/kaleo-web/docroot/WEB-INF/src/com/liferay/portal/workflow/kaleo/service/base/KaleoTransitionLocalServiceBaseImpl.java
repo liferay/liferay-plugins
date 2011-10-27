@@ -253,6 +253,11 @@ public abstract class KaleoTransitionLocalServiceBaseImpl
 		return kaleoTransitionPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	public KaleoTransition fetchKaleoTransition(long kaleoTransitionId)
+		throws SystemException {
+		return kaleoTransitionPersistence.fetchByPrimaryKey(kaleoTransitionId);
+	}
+
 	/**
 	 * Returns the kaleo transition with the primary key.
 	 *

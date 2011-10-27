@@ -252,6 +252,11 @@ public abstract class KaleoConditionLocalServiceBaseImpl
 		return kaleoConditionPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	public KaleoCondition fetchKaleoCondition(long kaleoConditionId)
+		throws SystemException {
+		return kaleoConditionPersistence.fetchByPrimaryKey(kaleoConditionId);
+	}
+
 	/**
 	 * Returns the kaleo condition with the primary key.
 	 *

@@ -158,6 +158,11 @@ public class FooLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
+	public static com.liferay.sampleservicebuilder.model.Foo fetchFoo(
+		long fooId) throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().fetchFoo(fooId);
+	}
+
 	/**
 	* Returns the foo with the primary key.
 	*

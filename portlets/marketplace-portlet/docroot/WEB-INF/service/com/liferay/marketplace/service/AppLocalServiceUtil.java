@@ -157,6 +157,11 @@ public class AppLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
+	public static com.liferay.marketplace.model.App fetchApp(long appId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().fetchApp(appId);
+	}
+
 	/**
 	* Returns the app with the primary key.
 	*

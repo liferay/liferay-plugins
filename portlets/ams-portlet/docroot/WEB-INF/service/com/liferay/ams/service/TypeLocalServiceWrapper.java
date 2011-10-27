@@ -148,6 +148,11 @@ public class TypeLocalServiceWrapper implements TypeLocalService,
 		return _typeLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
+	public com.liferay.ams.model.Type fetchType(long typeId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _typeLocalService.fetchType(typeId);
+	}
+
 	/**
 	* Returns the type with the primary key.
 	*

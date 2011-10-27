@@ -218,6 +218,10 @@ public abstract class FeedLocalServiceBaseImpl implements FeedLocalService,
 		return feedPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	public Feed fetchFeed(long feedId) throws SystemException {
+		return feedPersistence.fetchByPrimaryKey(feedId);
+	}
+
 	/**
 	 * Returns the feed with the primary key.
 	 *

@@ -161,6 +161,12 @@ public class MicroblogsEntryLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
+	public static com.liferay.microblogs.model.MicroblogsEntry fetchMicroblogsEntry(
+		long microblogsEntryId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().fetchMicroblogsEntry(microblogsEntryId);
+	}
+
 	/**
 	* Returns the microblogs entry with the primary key.
 	*

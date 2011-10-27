@@ -154,6 +154,12 @@ public class WSRPProducerLocalServiceWrapper implements WSRPProducerLocalService
 		return _wsrpProducerLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
+	public com.liferay.wsrp.model.WSRPProducer fetchWSRPProducer(
+		long wsrpProducerId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _wsrpProducerLocalService.fetchWSRPProducer(wsrpProducerId);
+	}
+
 	/**
 	* Returns the w s r p producer with the primary key.
 	*

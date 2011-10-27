@@ -227,6 +227,10 @@ public abstract class FolderLocalServiceBaseImpl implements FolderLocalService,
 		return folderPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	public Folder fetchFolder(long folderId) throws SystemException {
+		return folderPersistence.fetchByPrimaryKey(folderId);
+	}
+
 	/**
 	 * Returns the folder with the primary key.
 	 *

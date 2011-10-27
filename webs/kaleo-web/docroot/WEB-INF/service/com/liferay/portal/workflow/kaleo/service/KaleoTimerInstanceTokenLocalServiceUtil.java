@@ -161,6 +161,13 @@ public class KaleoTimerInstanceTokenLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
+	public static com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken fetchKaleoTimerInstanceToken(
+		long kaleoTimerInstanceTokenId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .fetchKaleoTimerInstanceToken(kaleoTimerInstanceTokenId);
+	}
+
 	/**
 	* Returns the kaleo timer instance token with the primary key.
 	*

@@ -147,6 +147,10 @@ public interface TasksEntryLocalService extends PersistedModelLocalService {
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.tasks.model.TasksEntry fetchTasksEntry(long tasksEntryId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
 	/**
 	* Returns the tasks entry with the primary key.
 	*

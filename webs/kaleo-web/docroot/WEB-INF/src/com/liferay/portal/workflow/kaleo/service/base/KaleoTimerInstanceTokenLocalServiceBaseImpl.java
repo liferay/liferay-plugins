@@ -256,6 +256,11 @@ public abstract class KaleoTimerInstanceTokenLocalServiceBaseImpl
 		return kaleoTimerInstanceTokenPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	public KaleoTimerInstanceToken fetchKaleoTimerInstanceToken(
+		long kaleoTimerInstanceTokenId) throws SystemException {
+		return kaleoTimerInstanceTokenPersistence.fetchByPrimaryKey(kaleoTimerInstanceTokenId);
+	}
+
 	/**
 	 * Returns the kaleo timer instance token with the primary key.
 	 *

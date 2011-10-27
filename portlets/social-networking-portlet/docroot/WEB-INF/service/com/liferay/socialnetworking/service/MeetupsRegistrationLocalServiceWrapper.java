@@ -154,6 +154,12 @@ public class MeetupsRegistrationLocalServiceWrapper
 		return _meetupsRegistrationLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
+	public com.liferay.socialnetworking.model.MeetupsRegistration fetchMeetupsRegistration(
+		long meetupsRegistrationId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _meetupsRegistrationLocalService.fetchMeetupsRegistration(meetupsRegistrationId);
+	}
+
 	/**
 	* Returns the meetups registration with the primary key.
 	*

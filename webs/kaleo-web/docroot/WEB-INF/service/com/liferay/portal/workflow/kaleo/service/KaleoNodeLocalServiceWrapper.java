@@ -152,6 +152,12 @@ public class KaleoNodeLocalServiceWrapper implements KaleoNodeLocalService,
 		return _kaleoNodeLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
+	public com.liferay.portal.workflow.kaleo.model.KaleoNode fetchKaleoNode(
+		long kaleoNodeId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _kaleoNodeLocalService.fetchKaleoNode(kaleoNodeId);
+	}
+
 	/**
 	* Returns the kaleo node with the primary key.
 	*

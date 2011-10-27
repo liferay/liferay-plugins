@@ -148,6 +148,11 @@ public interface KBTemplateLocalService extends PersistedModelLocalService {
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.knowledgebase.model.KBTemplate fetchKBTemplate(
+		long kbTemplateId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
 	/**
 	* Returns the k b template with the primary key.
 	*

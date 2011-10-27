@@ -153,6 +153,12 @@ public class ProjectsEntryLocalServiceWrapper
 		return _projectsEntryLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
+	public com.liferay.so.model.ProjectsEntry fetchProjectsEntry(
+		long projectsEntryId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _projectsEntryLocalService.fetchProjectsEntry(projectsEntryId);
+	}
+
 	/**
 	* Returns the projects entry with the primary key.
 	*

@@ -249,6 +249,10 @@ public abstract class KaleoLogLocalServiceBaseImpl
 		return kaleoLogPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	public KaleoLog fetchKaleoLog(long kaleoLogId) throws SystemException {
+		return kaleoLogPersistence.fetchByPrimaryKey(kaleoLogId);
+	}
+
 	/**
 	 * Returns the kaleo log with the primary key.
 	 *

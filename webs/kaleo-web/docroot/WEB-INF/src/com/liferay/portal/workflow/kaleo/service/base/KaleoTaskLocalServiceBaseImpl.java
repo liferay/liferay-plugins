@@ -251,6 +251,10 @@ public abstract class KaleoTaskLocalServiceBaseImpl
 		return kaleoTaskPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	public KaleoTask fetchKaleoTask(long kaleoTaskId) throws SystemException {
+		return kaleoTaskPersistence.fetchByPrimaryKey(kaleoTaskId);
+	}
+
 	/**
 	 * Returns the kaleo task with the primary key.
 	 *

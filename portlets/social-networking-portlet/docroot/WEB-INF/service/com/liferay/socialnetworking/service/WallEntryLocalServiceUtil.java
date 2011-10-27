@@ -161,6 +161,12 @@ public class WallEntryLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
+	public static com.liferay.socialnetworking.model.WallEntry fetchWallEntry(
+		long wallEntryId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().fetchWallEntry(wallEntryId);
+	}
+
 	/**
 	* Returns the wall entry with the primary key.
 	*

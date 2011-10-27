@@ -227,6 +227,11 @@ public abstract class MeetupsEntryLocalServiceBaseImpl
 		return meetupsEntryPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	public MeetupsEntry fetchMeetupsEntry(long meetupsEntryId)
+		throws SystemException {
+		return meetupsEntryPersistence.fetchByPrimaryKey(meetupsEntryId);
+	}
+
 	/**
 	 * Returns the meetups entry with the primary key.
 	 *

@@ -159,6 +159,12 @@ public class MemberRequestLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
+	public static com.liferay.so.model.MemberRequest fetchMemberRequest(
+		long memberRequestId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().fetchMemberRequest(memberRequestId);
+	}
+
 	/**
 	* Returns the member request with the primary key.
 	*

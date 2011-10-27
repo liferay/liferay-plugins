@@ -150,6 +150,11 @@ public class DefinitionLocalServiceWrapper implements DefinitionLocalService,
 		return _definitionLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
+	public com.liferay.ams.model.Definition fetchDefinition(long definitionId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _definitionLocalService.fetchDefinition(definitionId);
+	}
+
 	/**
 	* Returns the definition with the primary key.
 	*

@@ -149,6 +149,11 @@ public class EntryLocalServiceWrapper implements EntryLocalService,
 		return _entryLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
+	public com.liferay.chat.model.Entry fetchEntry(long entryId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _entryLocalService.fetchEntry(entryId);
+	}
+
 	/**
 	* Returns the entry with the primary key.
 	*

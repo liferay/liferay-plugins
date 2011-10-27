@@ -161,6 +161,12 @@ public class WSRPConsumerLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
+	public static com.liferay.wsrp.model.WSRPConsumer fetchWSRPConsumer(
+		long wsrpConsumerId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().fetchWSRPConsumer(wsrpConsumerId);
+	}
+
 	/**
 	* Returns the w s r p consumer with the primary key.
 	*

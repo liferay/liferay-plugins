@@ -154,6 +154,12 @@ public class KaleoTransitionLocalServiceWrapper
 		return _kaleoTransitionLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
+	public com.liferay.portal.workflow.kaleo.model.KaleoTransition fetchKaleoTransition(
+		long kaleoTransitionId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _kaleoTransitionLocalService.fetchKaleoTransition(kaleoTransitionId);
+	}
+
 	/**
 	* Returns the kaleo transition with the primary key.
 	*

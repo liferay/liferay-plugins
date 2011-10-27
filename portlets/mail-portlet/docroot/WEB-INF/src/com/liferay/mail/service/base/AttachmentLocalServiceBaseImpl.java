@@ -228,6 +228,11 @@ public abstract class AttachmentLocalServiceBaseImpl
 		return attachmentPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	public Attachment fetchAttachment(long attachmentId)
+		throws SystemException {
+		return attachmentPersistence.fetchByPrimaryKey(attachmentId);
+	}
+
 	/**
 	 * Returns the attachment with the primary key.
 	 *

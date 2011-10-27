@@ -149,6 +149,11 @@ public class FeedLocalServiceWrapper implements FeedLocalService,
 		return _feedLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
+	public com.liferay.twitter.model.Feed fetchFeed(long feedId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _feedLocalService.fetchFeed(feedId);
+	}
+
 	/**
 	* Returns the feed with the primary key.
 	*

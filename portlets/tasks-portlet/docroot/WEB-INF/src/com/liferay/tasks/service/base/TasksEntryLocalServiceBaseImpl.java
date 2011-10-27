@@ -225,6 +225,11 @@ public abstract class TasksEntryLocalServiceBaseImpl
 		return tasksEntryPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	public TasksEntry fetchTasksEntry(long tasksEntryId)
+		throws SystemException {
+		return tasksEntryPersistence.fetchByPrimaryKey(tasksEntryId);
+	}
+
 	/**
 	 * Returns the tasks entry with the primary key.
 	 *

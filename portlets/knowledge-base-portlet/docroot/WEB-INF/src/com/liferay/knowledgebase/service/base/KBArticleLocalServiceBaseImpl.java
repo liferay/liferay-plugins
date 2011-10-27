@@ -253,6 +253,10 @@ public abstract class KBArticleLocalServiceBaseImpl
 		return kbArticlePersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	public KBArticle fetchKBArticle(long kbArticleId) throws SystemException {
+		return kbArticlePersistence.fetchByPrimaryKey(kbArticleId);
+	}
+
 	/**
 	 * Returns the k b article with the primary key.
 	 *

@@ -156,6 +156,12 @@ public class CalendarResourceLocalServiceWrapper
 		return _calendarResourceLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
+	public com.liferay.calendar.model.CalendarResource fetchCalendarResource(
+		long calendarResourceId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _calendarResourceLocalService.fetchCalendarResource(calendarResourceId);
+	}
+
 	/**
 	* Returns the calendar resource with the primary key.
 	*

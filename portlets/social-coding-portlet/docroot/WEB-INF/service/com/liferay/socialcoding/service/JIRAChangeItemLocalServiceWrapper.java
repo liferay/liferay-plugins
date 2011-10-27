@@ -153,6 +153,12 @@ public class JIRAChangeItemLocalServiceWrapper
 		return _jiraChangeItemLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
+	public com.liferay.socialcoding.model.JIRAChangeItem fetchJIRAChangeItem(
+		long jiraChangeItemId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _jiraChangeItemLocalService.fetchJIRAChangeItem(jiraChangeItemId);
+	}
+
 	/**
 	* Returns the j i r a change item with the primary key.
 	*

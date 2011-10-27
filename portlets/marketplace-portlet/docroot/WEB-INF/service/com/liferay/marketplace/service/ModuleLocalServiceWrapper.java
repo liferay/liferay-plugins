@@ -149,6 +149,11 @@ public class ModuleLocalServiceWrapper implements ModuleLocalService,
 		return _moduleLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
+	public com.liferay.marketplace.model.Module fetchModule(long moduleId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _moduleLocalService.fetchModule(moduleId);
+	}
+
 	/**
 	* Returns the module with the primary key.
 	*

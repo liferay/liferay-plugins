@@ -159,6 +159,12 @@ public class KaleoLogLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
+	public static com.liferay.portal.workflow.kaleo.model.KaleoLog fetchKaleoLog(
+		long kaleoLogId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().fetchKaleoLog(kaleoLogId);
+	}
+
 	/**
 	* Returns the kaleo log with the primary key.
 	*

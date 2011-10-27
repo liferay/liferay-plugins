@@ -159,6 +159,12 @@ public class JIRAActionLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
+	public static com.liferay.socialcoding.model.JIRAAction fetchJIRAAction(
+		long jiraActionId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().fetchJIRAAction(jiraActionId);
+	}
+
 	/**
 	* Returns the j i r a action with the primary key.
 	*

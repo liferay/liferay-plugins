@@ -234,6 +234,11 @@ public abstract class CalendarEventLocalServiceBaseImpl
 		return calendarEventPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	public CalendarEvent fetchCalendarEvent(long calendarEventId)
+		throws SystemException {
+		return calendarEventPersistence.fetchByPrimaryKey(calendarEventId);
+	}
+
 	/**
 	 * Returns the calendar event with the primary key.
 	 *

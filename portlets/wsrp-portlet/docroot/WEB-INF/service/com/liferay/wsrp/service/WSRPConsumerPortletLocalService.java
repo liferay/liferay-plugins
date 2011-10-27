@@ -149,6 +149,11 @@ public interface WSRPConsumerPortletLocalService
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.wsrp.model.WSRPConsumerPortlet fetchWSRPConsumerPortlet(
+		long wsrpConsumerPortletId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
 	/**
 	* Returns the w s r p consumer portlet with the primary key.
 	*

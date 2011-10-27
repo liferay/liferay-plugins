@@ -152,6 +152,12 @@ public class SVNRevisionLocalServiceWrapper implements SVNRevisionLocalService,
 		return _svnRevisionLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
+	public com.liferay.socialcoding.model.SVNRevision fetchSVNRevision(
+		long svnRevisionId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _svnRevisionLocalService.fetchSVNRevision(svnRevisionId);
+	}
+
 	/**
 	* Returns the s v n revision with the primary key.
 	*
