@@ -56,46 +56,49 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 				"dynamicQueryCount",
 				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
 
-		_getAttachmentMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+		_fetchAttachmentMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+				"fetchAttachment", long.class);
+
+		_getAttachmentMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getAttachment", long.class);
 
-		_getPersistedModelMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getPersistedModelMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getPersistedModel", java.io.Serializable.class);
 
-		_getAttachmentsMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getAttachmentsMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getAttachments", int.class, int.class);
 
-		_getAttachmentsCountMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getAttachmentsCountMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getAttachmentsCount");
 
-		_updateAttachmentMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateAttachmentMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateAttachment", com.liferay.mail.model.Attachment.class);
 
-		_updateAttachmentMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateAttachmentMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateAttachment", com.liferay.mail.model.Attachment.class,
 				boolean.class);
 
-		_getBeanIdentifierMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getBeanIdentifierMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getBeanIdentifier");
 
-		_setBeanIdentifierMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+		_setBeanIdentifierMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
 				"setBeanIdentifier", java.lang.String.class);
 
-		_addAttachmentMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+		_addAttachmentMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
 				"addAttachment", long.class, long.class,
 				java.lang.String.class, java.lang.String.class, long.class,
 				java.io.File.class);
 
-		_deleteAttachmentsMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
+		_deleteAttachmentsMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
 				"deleteAttachments", long.class, long.class);
 
-		_getAttachmentsMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getAttachmentsMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getAttachments", long.class);
 
-		_getFileMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getFileMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getFile", long.class);
 
-		_getInputStreamMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getInputStreamMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getInputStream", long.class);
 	}
 
@@ -318,12 +321,39 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 		return ((Long)returnObj).longValue();
 	}
 
+	public com.liferay.mail.model.Attachment fetchAttachment(long attachmentId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_fetchAttachmentMethodKey8,
+				attachmentId);
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.mail.model.Attachment)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public com.liferay.mail.model.Attachment getAttachment(long attachmentId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getAttachmentMethodKey8,
+		MethodHandler methodHandler = new MethodHandler(_getAttachmentMethodKey9,
 				attachmentId);
 
 		try {
@@ -356,7 +386,7 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getPersistedModelMethodKey9,
+		MethodHandler methodHandler = new MethodHandler(_getPersistedModelMethodKey10,
 				ClpSerializer.translateInput(primaryKeyObj));
 
 		try {
@@ -388,7 +418,7 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getAttachmentsMethodKey10,
+		MethodHandler methodHandler = new MethodHandler(_getAttachmentsMethodKey11,
 				start, end);
 
 		try {
@@ -415,7 +445,7 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getAttachmentsCountMethodKey11);
+		MethodHandler methodHandler = new MethodHandler(_getAttachmentsCountMethodKey12);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -442,7 +472,7 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateAttachmentMethodKey12,
+		MethodHandler methodHandler = new MethodHandler(_updateAttachmentMethodKey13,
 				ClpSerializer.translateInput(attachment));
 
 		try {
@@ -470,7 +500,7 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateAttachmentMethodKey13,
+		MethodHandler methodHandler = new MethodHandler(_updateAttachmentMethodKey14,
 				ClpSerializer.translateInput(attachment), merge);
 
 		try {
@@ -496,7 +526,7 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 	public java.lang.String getBeanIdentifier() {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey14);
+		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey15);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -515,7 +545,7 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 	}
 
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey15,
+		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey16,
 				ClpSerializer.translateInput(beanIdentifier));
 
 		try {
@@ -539,7 +569,7 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_addAttachmentMethodKey16,
+		MethodHandler methodHandler = new MethodHandler(_addAttachmentMethodKey17,
 				userId, messageId, ClpSerializer.translateInput(contentPath),
 				ClpSerializer.translateInput(fileName), size,
 				ClpSerializer.translateInput(file));
@@ -571,7 +601,7 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 	public void deleteAttachments(long companyId, long messageId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_deleteAttachmentsMethodKey17,
+		MethodHandler methodHandler = new MethodHandler(_deleteAttachmentsMethodKey18,
 				companyId, messageId);
 
 		try {
@@ -601,7 +631,7 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getAttachmentsMethodKey18,
+		MethodHandler methodHandler = new MethodHandler(_getAttachmentsMethodKey19,
 				messageId);
 
 		try {
@@ -629,7 +659,7 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getFileMethodKey19,
+		MethodHandler methodHandler = new MethodHandler(_getFileMethodKey20,
 				attachmentId);
 
 		try {
@@ -661,7 +691,7 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getInputStreamMethodKey20,
+		MethodHandler methodHandler = new MethodHandler(_getInputStreamMethodKey21,
 				attachmentId);
 
 		try {
@@ -701,17 +731,18 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 	private MethodKey _dynamicQueryMethodKey5;
 	private MethodKey _dynamicQueryMethodKey6;
 	private MethodKey _dynamicQueryCountMethodKey7;
-	private MethodKey _getAttachmentMethodKey8;
-	private MethodKey _getPersistedModelMethodKey9;
-	private MethodKey _getAttachmentsMethodKey10;
-	private MethodKey _getAttachmentsCountMethodKey11;
-	private MethodKey _updateAttachmentMethodKey12;
+	private MethodKey _fetchAttachmentMethodKey8;
+	private MethodKey _getAttachmentMethodKey9;
+	private MethodKey _getPersistedModelMethodKey10;
+	private MethodKey _getAttachmentsMethodKey11;
+	private MethodKey _getAttachmentsCountMethodKey12;
 	private MethodKey _updateAttachmentMethodKey13;
-	private MethodKey _getBeanIdentifierMethodKey14;
-	private MethodKey _setBeanIdentifierMethodKey15;
-	private MethodKey _addAttachmentMethodKey16;
-	private MethodKey _deleteAttachmentsMethodKey17;
-	private MethodKey _getAttachmentsMethodKey18;
-	private MethodKey _getFileMethodKey19;
-	private MethodKey _getInputStreamMethodKey20;
+	private MethodKey _updateAttachmentMethodKey14;
+	private MethodKey _getBeanIdentifierMethodKey15;
+	private MethodKey _setBeanIdentifierMethodKey16;
+	private MethodKey _addAttachmentMethodKey17;
+	private MethodKey _deleteAttachmentsMethodKey18;
+	private MethodKey _getAttachmentsMethodKey19;
+	private MethodKey _getFileMethodKey20;
+	private MethodKey _getInputStreamMethodKey21;
 }

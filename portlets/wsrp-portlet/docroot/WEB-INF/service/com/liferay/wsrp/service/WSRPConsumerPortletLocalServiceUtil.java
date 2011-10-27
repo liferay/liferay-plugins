@@ -161,6 +161,12 @@ public class WSRPConsumerPortletLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
+	public static com.liferay.wsrp.model.WSRPConsumerPortlet fetchWSRPConsumerPortlet(
+		long wsrpConsumerPortletId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().fetchWSRPConsumerPortlet(wsrpConsumerPortletId);
+	}
+
 	/**
 	* Returns the w s r p consumer portlet with the primary key.
 	*

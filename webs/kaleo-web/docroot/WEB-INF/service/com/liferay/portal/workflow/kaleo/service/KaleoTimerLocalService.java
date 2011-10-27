@@ -146,6 +146,11 @@ public interface KaleoTimerLocalService extends PersistedModelLocalService {
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.portal.workflow.kaleo.model.KaleoTimer fetchKaleoTimer(
+		long kaleoTimerId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
 	/**
 	* Returns the kaleo timer with the primary key.
 	*

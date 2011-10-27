@@ -159,6 +159,12 @@ public class KaleoNodeLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
+	public static com.liferay.portal.workflow.kaleo.model.KaleoNode fetchKaleoNode(
+		long kaleoNodeId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().fetchKaleoNode(kaleoNodeId);
+	}
+
 	/**
 	* Returns the kaleo node with the primary key.
 	*

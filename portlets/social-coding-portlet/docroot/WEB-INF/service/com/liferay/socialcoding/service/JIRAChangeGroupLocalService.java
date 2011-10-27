@@ -146,6 +146,11 @@ public interface JIRAChangeGroupLocalService extends PersistedModelLocalService 
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.socialcoding.model.JIRAChangeGroup fetchJIRAChangeGroup(
+		long jiraChangeGroupId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
 	/**
 	* Returns the j i r a change group with the primary key.
 	*

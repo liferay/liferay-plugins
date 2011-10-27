@@ -146,6 +146,11 @@ public interface KaleoTaskLocalService extends PersistedModelLocalService {
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.portal.workflow.kaleo.model.KaleoTask fetchKaleoTask(
+		long kaleoTaskId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
 	/**
 	* Returns the kaleo task with the primary key.
 	*

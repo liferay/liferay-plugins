@@ -161,6 +161,12 @@ public class KBTemplateLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
+	public static com.liferay.knowledgebase.model.KBTemplate fetchKBTemplate(
+		long kbTemplateId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().fetchKBTemplate(kbTemplateId);
+	}
+
 	/**
 	* Returns the k b template with the primary key.
 	*

@@ -148,6 +148,11 @@ public interface KBCommentLocalService extends PersistedModelLocalService {
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.knowledgebase.model.KBComment fetchKBComment(
+		long kbCommentId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
 	/**
 	* Returns the k b comment with the primary key.
 	*

@@ -257,6 +257,11 @@ public abstract class KaleoTaskAssignmentInstanceLocalServiceBaseImpl
 		return kaleoTaskAssignmentInstancePersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	public KaleoTaskAssignmentInstance fetchKaleoTaskAssignmentInstance(
+		long kaleoTaskAssignmentInstanceId) throws SystemException {
+		return kaleoTaskAssignmentInstancePersistence.fetchByPrimaryKey(kaleoTaskAssignmentInstanceId);
+	}
+
 	/**
 	 * Returns the kaleo task assignment instance with the primary key.
 	 *

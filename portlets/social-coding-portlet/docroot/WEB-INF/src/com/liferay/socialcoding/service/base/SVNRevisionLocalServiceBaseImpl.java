@@ -235,6 +235,11 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 		return svnRevisionPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	public SVNRevision fetchSVNRevision(long svnRevisionId)
+		throws SystemException {
+		return svnRevisionPersistence.fetchByPrimaryKey(svnRevisionId);
+	}
+
 	/**
 	 * Returns the s v n revision with the primary key.
 	 *

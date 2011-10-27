@@ -159,6 +159,12 @@ public class AttachmentLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
+	public static com.liferay.mail.model.Attachment fetchAttachment(
+		long attachmentId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().fetchAttachment(attachmentId);
+	}
+
 	/**
 	* Returns the attachment with the primary key.
 	*

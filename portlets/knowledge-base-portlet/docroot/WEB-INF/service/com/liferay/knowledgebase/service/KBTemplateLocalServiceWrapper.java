@@ -154,6 +154,12 @@ public class KBTemplateLocalServiceWrapper implements KBTemplateLocalService,
 		return _kbTemplateLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
+	public com.liferay.knowledgebase.model.KBTemplate fetchKBTemplate(
+		long kbTemplateId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _kbTemplateLocalService.fetchKBTemplate(kbTemplateId);
+	}
+
 	/**
 	* Returns the k b template with the primary key.
 	*

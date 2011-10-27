@@ -227,6 +227,11 @@ public abstract class OAuthTokenLocalServiceBaseImpl
 		return oAuthTokenPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	public OAuthToken fetchOAuthToken(long oAuthTokenId)
+		throws SystemException {
+		return oAuthTokenPersistence.fetchByPrimaryKey(oAuthTokenId);
+	}
+
 	/**
 	 * Returns the o auth token with the primary key.
 	 *

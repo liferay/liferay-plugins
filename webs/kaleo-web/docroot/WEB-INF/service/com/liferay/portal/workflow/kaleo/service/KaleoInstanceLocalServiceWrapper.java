@@ -153,6 +153,12 @@ public class KaleoInstanceLocalServiceWrapper
 		return _kaleoInstanceLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
+	public com.liferay.portal.workflow.kaleo.model.KaleoInstance fetchKaleoInstance(
+		long kaleoInstanceId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _kaleoInstanceLocalService.fetchKaleoInstance(kaleoInstanceId);
+	}
+
 	/**
 	* Returns the kaleo instance with the primary key.
 	*

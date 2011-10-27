@@ -157,6 +157,11 @@ public class FeedLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
+	public static com.liferay.twitter.model.Feed fetchFeed(long feedId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().fetchFeed(feedId);
+	}
+
 	/**
 	* Returns the feed with the primary key.
 	*

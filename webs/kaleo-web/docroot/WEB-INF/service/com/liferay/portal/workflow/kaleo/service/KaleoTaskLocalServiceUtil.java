@@ -159,6 +159,12 @@ public class KaleoTaskLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
+	public static com.liferay.portal.workflow.kaleo.model.KaleoTask fetchKaleoTask(
+		long kaleoTaskId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().fetchKaleoTask(kaleoTaskId);
+	}
+
 	/**
 	* Returns the kaleo task with the primary key.
 	*

@@ -225,6 +225,10 @@ public abstract class CheckoutLocalServiceBaseImpl
 		return checkoutPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	public Checkout fetchCheckout(long checkoutId) throws SystemException {
+		return checkoutPersistence.fetchByPrimaryKey(checkoutId);
+	}
+
 	/**
 	 * Returns the checkout with the primary key.
 	 *

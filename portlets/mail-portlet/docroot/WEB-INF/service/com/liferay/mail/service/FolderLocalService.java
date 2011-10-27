@@ -146,6 +146,10 @@ public interface FolderLocalService extends PersistedModelLocalService {
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.mail.model.Folder fetchFolder(long folderId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
 	/**
 	* Returns the folder with the primary key.
 	*
@@ -237,10 +241,6 @@ public interface FolderLocalService extends PersistedModelLocalService {
 	public void deleteFolders(long accountId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.mail.model.Folder fetchFolder(long folderId)
-		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.mail.model.Folder getFolder(long accountId,

@@ -152,6 +152,12 @@ public class MeetupsEntryLocalServiceWrapper implements MeetupsEntryLocalService
 		return _meetupsEntryLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
+	public com.liferay.socialnetworking.model.MeetupsEntry fetchMeetupsEntry(
+		long meetupsEntryId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _meetupsEntryLocalService.fetchMeetupsEntry(meetupsEntryId);
+	}
+
 	/**
 	* Returns the meetups entry with the primary key.
 	*

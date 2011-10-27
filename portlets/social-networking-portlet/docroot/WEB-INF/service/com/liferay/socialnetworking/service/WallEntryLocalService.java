@@ -148,6 +148,11 @@ public interface WallEntryLocalService extends PersistedModelLocalService {
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.socialnetworking.model.WallEntry fetchWallEntry(
+		long wallEntryId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
 	/**
 	* Returns the wall entry with the primary key.
 	*

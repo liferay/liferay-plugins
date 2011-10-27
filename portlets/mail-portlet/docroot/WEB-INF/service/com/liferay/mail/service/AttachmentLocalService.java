@@ -144,6 +144,10 @@ public interface AttachmentLocalService extends PersistedModelLocalService {
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.mail.model.Attachment fetchAttachment(long attachmentId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
 	/**
 	* Returns the attachment with the primary key.
 	*

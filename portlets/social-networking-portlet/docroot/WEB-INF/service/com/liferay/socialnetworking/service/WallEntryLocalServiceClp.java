@@ -58,55 +58,58 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 				"dynamicQueryCount",
 				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
 
-		_getWallEntryMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+		_fetchWallEntryMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+				"fetchWallEntry", long.class);
+
+		_getWallEntryMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getWallEntry", long.class);
 
-		_getPersistedModelMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getPersistedModelMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getPersistedModel", java.io.Serializable.class);
 
-		_getWallEntriesMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getWallEntriesMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getWallEntries", int.class, int.class);
 
-		_getWallEntriesCountMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getWallEntriesCountMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getWallEntriesCount");
 
-		_updateWallEntryMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateWallEntryMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateWallEntry",
 				com.liferay.socialnetworking.model.WallEntry.class);
 
-		_updateWallEntryMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateWallEntryMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateWallEntry",
 				com.liferay.socialnetworking.model.WallEntry.class,
 				boolean.class);
 
-		_getBeanIdentifierMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getBeanIdentifierMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getBeanIdentifier");
 
-		_setBeanIdentifierMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+		_setBeanIdentifierMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
 				"setBeanIdentifier", java.lang.String.class);
 
-		_addWallEntryMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+		_addWallEntryMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
 				"addWallEntry", long.class, long.class, java.lang.String.class,
 				com.liferay.portal.theme.ThemeDisplay.class);
 
-		_deleteWallEntriesMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
+		_deleteWallEntriesMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
 				"deleteWallEntries", long.class);
 
-		_getWallEntriesMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getWallEntriesMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getWallEntries", long.class, int.class, int.class);
 
-		_getWallEntriesCountMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getWallEntriesCountMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getWallEntriesCount", long.class);
 
-		_getWallToWallEntriesMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getWallToWallEntriesMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getWallToWallEntries", long.class, long.class, long.class,
 				long.class, int.class, int.class);
 
-		_getWallToWallEntriesCountMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getWallToWallEntriesCountMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getWallToWallEntriesCount", long.class, long.class,
 				long.class, long.class);
 
-		_updateWallEntryMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateWallEntryMethodKey23 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateWallEntry", long.class, java.lang.String.class);
 	}
 
@@ -336,13 +339,41 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 		return ((Long)returnObj).longValue();
 	}
 
+	public com.liferay.socialnetworking.model.WallEntry fetchWallEntry(
+		long wallEntryId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_fetchWallEntryMethodKey8,
+				wallEntryId);
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.socialnetworking.model.WallEntry)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public com.liferay.socialnetworking.model.WallEntry getWallEntry(
 		long wallEntryId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getWallEntryMethodKey8,
+		MethodHandler methodHandler = new MethodHandler(_getWallEntryMethodKey9,
 				wallEntryId);
 
 		try {
@@ -375,7 +406,7 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getPersistedModelMethodKey9,
+		MethodHandler methodHandler = new MethodHandler(_getPersistedModelMethodKey10,
 				ClpSerializer.translateInput(primaryKeyObj));
 
 		try {
@@ -407,7 +438,7 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getWallEntriesMethodKey10,
+		MethodHandler methodHandler = new MethodHandler(_getWallEntriesMethodKey11,
 				start, end);
 
 		try {
@@ -434,7 +465,7 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getWallEntriesCountMethodKey11);
+		MethodHandler methodHandler = new MethodHandler(_getWallEntriesCountMethodKey12);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -461,7 +492,7 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateWallEntryMethodKey12,
+		MethodHandler methodHandler = new MethodHandler(_updateWallEntryMethodKey13,
 				ClpSerializer.translateInput(wallEntry));
 
 		try {
@@ -489,7 +520,7 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateWallEntryMethodKey13,
+		MethodHandler methodHandler = new MethodHandler(_updateWallEntryMethodKey14,
 				ClpSerializer.translateInput(wallEntry), merge);
 
 		try {
@@ -515,7 +546,7 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 	public java.lang.String getBeanIdentifier() {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey14);
+		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey15);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -534,7 +565,7 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 	}
 
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey15,
+		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey16,
 				ClpSerializer.translateInput(beanIdentifier));
 
 		try {
@@ -558,7 +589,7 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_addWallEntryMethodKey16,
+		MethodHandler methodHandler = new MethodHandler(_addWallEntryMethodKey17,
 				groupId, userId, ClpSerializer.translateInput(comments),
 				ClpSerializer.translateInput(themeDisplay));
 
@@ -589,7 +620,7 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 	public void deleteWallEntries(long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_deleteWallEntriesMethodKey17,
+		MethodHandler methodHandler = new MethodHandler(_deleteWallEntriesMethodKey18,
 				groupId);
 
 		try {
@@ -619,7 +650,7 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getWallEntriesMethodKey18,
+		MethodHandler methodHandler = new MethodHandler(_getWallEntriesMethodKey19,
 				groupId, start, end);
 
 		try {
@@ -646,7 +677,7 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getWallEntriesCountMethodKey19,
+		MethodHandler methodHandler = new MethodHandler(_getWallEntriesCountMethodKey20,
 				groupId);
 
 		try {
@@ -674,7 +705,7 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 		int end) throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getWallToWallEntriesMethodKey20,
+		MethodHandler methodHandler = new MethodHandler(_getWallToWallEntriesMethodKey21,
 				groupId1, groupId2, userId1, userId2, start, end);
 
 		try {
@@ -702,7 +733,7 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getWallToWallEntriesCountMethodKey21,
+		MethodHandler methodHandler = new MethodHandler(_getWallToWallEntriesCountMethodKey22,
 				groupId1, groupId2, userId1, userId2);
 
 		try {
@@ -731,7 +762,7 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateWallEntryMethodKey22,
+		MethodHandler methodHandler = new MethodHandler(_updateWallEntryMethodKey23,
 				wallEntryId, ClpSerializer.translateInput(comments));
 
 		try {
@@ -771,19 +802,20 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 	private MethodKey _dynamicQueryMethodKey5;
 	private MethodKey _dynamicQueryMethodKey6;
 	private MethodKey _dynamicQueryCountMethodKey7;
-	private MethodKey _getWallEntryMethodKey8;
-	private MethodKey _getPersistedModelMethodKey9;
-	private MethodKey _getWallEntriesMethodKey10;
-	private MethodKey _getWallEntriesCountMethodKey11;
-	private MethodKey _updateWallEntryMethodKey12;
+	private MethodKey _fetchWallEntryMethodKey8;
+	private MethodKey _getWallEntryMethodKey9;
+	private MethodKey _getPersistedModelMethodKey10;
+	private MethodKey _getWallEntriesMethodKey11;
+	private MethodKey _getWallEntriesCountMethodKey12;
 	private MethodKey _updateWallEntryMethodKey13;
-	private MethodKey _getBeanIdentifierMethodKey14;
-	private MethodKey _setBeanIdentifierMethodKey15;
-	private MethodKey _addWallEntryMethodKey16;
-	private MethodKey _deleteWallEntriesMethodKey17;
-	private MethodKey _getWallEntriesMethodKey18;
-	private MethodKey _getWallEntriesCountMethodKey19;
-	private MethodKey _getWallToWallEntriesMethodKey20;
-	private MethodKey _getWallToWallEntriesCountMethodKey21;
-	private MethodKey _updateWallEntryMethodKey22;
+	private MethodKey _updateWallEntryMethodKey14;
+	private MethodKey _getBeanIdentifierMethodKey15;
+	private MethodKey _setBeanIdentifierMethodKey16;
+	private MethodKey _addWallEntryMethodKey17;
+	private MethodKey _deleteWallEntriesMethodKey18;
+	private MethodKey _getWallEntriesMethodKey19;
+	private MethodKey _getWallEntriesCountMethodKey20;
+	private MethodKey _getWallToWallEntriesMethodKey21;
+	private MethodKey _getWallToWallEntriesCountMethodKey22;
+	private MethodKey _updateWallEntryMethodKey23;
 }

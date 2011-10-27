@@ -224,6 +224,10 @@ public abstract class TypeLocalServiceBaseImpl implements TypeLocalService,
 		return typePersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	public Type fetchType(long typeId) throws SystemException {
+		return typePersistence.fetchByPrimaryKey(typeId);
+	}
+
 	/**
 	 * Returns the type with the primary key.
 	 *

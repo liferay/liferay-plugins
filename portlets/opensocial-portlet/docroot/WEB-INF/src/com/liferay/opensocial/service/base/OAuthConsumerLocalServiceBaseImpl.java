@@ -227,6 +227,11 @@ public abstract class OAuthConsumerLocalServiceBaseImpl
 		return oAuthConsumerPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	public OAuthConsumer fetchOAuthConsumer(long oAuthConsumerId)
+		throws SystemException {
+		return oAuthConsumerPersistence.fetchByPrimaryKey(oAuthConsumerId);
+	}
+
 	/**
 	 * Returns the o auth consumer with the primary key.
 	 *

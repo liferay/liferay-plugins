@@ -233,6 +233,11 @@ public abstract class MemberRequestLocalServiceBaseImpl
 		return memberRequestPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	public MemberRequest fetchMemberRequest(long memberRequestId)
+		throws SystemException {
+		return memberRequestPersistence.fetchByPrimaryKey(memberRequestId);
+	}
+
 	/**
 	 * Returns the member request with the primary key.
 	 *

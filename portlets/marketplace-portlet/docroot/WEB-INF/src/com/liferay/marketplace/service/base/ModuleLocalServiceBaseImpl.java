@@ -221,6 +221,10 @@ public abstract class ModuleLocalServiceBaseImpl implements ModuleLocalService,
 		return modulePersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	public Module fetchModule(long moduleId) throws SystemException {
+		return modulePersistence.fetchByPrimaryKey(moduleId);
+	}
+
 	/**
 	 * Returns the module with the primary key.
 	 *

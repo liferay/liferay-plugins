@@ -235,6 +235,11 @@ public abstract class KBTemplateLocalServiceBaseImpl
 		return kbTemplatePersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	public KBTemplate fetchKBTemplate(long kbTemplateId)
+		throws SystemException {
+		return kbTemplatePersistence.fetchByPrimaryKey(kbTemplateId);
+	}
+
 	/**
 	 * Returns the k b template with the primary key.
 	 *

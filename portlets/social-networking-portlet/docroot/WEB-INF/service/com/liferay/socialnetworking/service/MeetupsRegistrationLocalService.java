@@ -147,6 +147,11 @@ public interface MeetupsRegistrationLocalService
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.socialnetworking.model.MeetupsRegistration fetchMeetupsRegistration(
+		long meetupsRegistrationId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
 	/**
 	* Returns the meetups registration with the primary key.
 	*

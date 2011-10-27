@@ -144,6 +144,10 @@ public interface CheckoutLocalService extends PersistedModelLocalService {
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.ams.model.Checkout fetchCheckout(long checkoutId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
 	/**
 	* Returns the checkout with the primary key.
 	*

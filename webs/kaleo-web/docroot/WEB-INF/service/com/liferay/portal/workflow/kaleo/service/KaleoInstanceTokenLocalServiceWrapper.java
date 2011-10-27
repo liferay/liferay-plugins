@@ -154,6 +154,12 @@ public class KaleoInstanceTokenLocalServiceWrapper
 		return _kaleoInstanceTokenLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
+	public com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken fetchKaleoInstanceToken(
+		long kaleoInstanceTokenId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _kaleoInstanceTokenLocalService.fetchKaleoInstanceToken(kaleoInstanceTokenId);
+	}
+
 	/**
 	* Returns the kaleo instance token with the primary key.
 	*

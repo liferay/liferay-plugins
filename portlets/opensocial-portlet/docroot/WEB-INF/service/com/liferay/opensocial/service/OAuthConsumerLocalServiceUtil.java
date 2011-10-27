@@ -159,6 +159,12 @@ public class OAuthConsumerLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
+	public static com.liferay.opensocial.model.OAuthConsumer fetchOAuthConsumer(
+		long oAuthConsumerId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().fetchOAuthConsumer(oAuthConsumerId);
+	}
+
 	/**
 	* Returns the o auth consumer with the primary key.
 	*

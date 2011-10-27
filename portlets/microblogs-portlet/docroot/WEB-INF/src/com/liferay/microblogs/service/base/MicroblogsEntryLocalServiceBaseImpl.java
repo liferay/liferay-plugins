@@ -226,6 +226,11 @@ public abstract class MicroblogsEntryLocalServiceBaseImpl
 		return microblogsEntryPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	public MicroblogsEntry fetchMicroblogsEntry(long microblogsEntryId)
+		throws SystemException {
+		return microblogsEntryPersistence.fetchByPrimaryKey(microblogsEntryId);
+	}
+
 	/**
 	 * Returns the microblogs entry with the primary key.
 	 *

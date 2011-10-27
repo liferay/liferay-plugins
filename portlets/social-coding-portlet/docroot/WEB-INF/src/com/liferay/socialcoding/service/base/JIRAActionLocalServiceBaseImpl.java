@@ -235,6 +235,11 @@ public abstract class JIRAActionLocalServiceBaseImpl
 		return jiraActionPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	public JIRAAction fetchJIRAAction(long jiraActionId)
+		throws SystemException {
+		return jiraActionPersistence.fetchByPrimaryKey(jiraActionId);
+	}
+
 	/**
 	 * Returns the j i r a action with the primary key.
 	 *

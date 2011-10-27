@@ -154,6 +154,12 @@ public class WallEntryLocalServiceWrapper implements WallEntryLocalService,
 		return _wallEntryLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
+	public com.liferay.socialnetworking.model.WallEntry fetchWallEntry(
+		long wallEntryId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _wallEntryLocalService.fetchWallEntry(wallEntryId);
+	}
+
 	/**
 	* Returns the wall entry with the primary key.
 	*

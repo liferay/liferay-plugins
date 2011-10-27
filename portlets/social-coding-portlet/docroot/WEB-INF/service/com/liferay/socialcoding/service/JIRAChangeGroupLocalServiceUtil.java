@@ -159,6 +159,12 @@ public class JIRAChangeGroupLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
+	public static com.liferay.socialcoding.model.JIRAChangeGroup fetchJIRAChangeGroup(
+		long jiraChangeGroupId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().fetchJIRAChangeGroup(jiraChangeGroupId);
+	}
+
 	/**
 	* Returns the j i r a change group with the primary key.
 	*

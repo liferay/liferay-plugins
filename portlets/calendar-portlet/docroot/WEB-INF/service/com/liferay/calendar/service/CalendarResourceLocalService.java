@@ -148,6 +148,11 @@ public interface CalendarResourceLocalService extends PersistedModelLocalService
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.calendar.model.CalendarResource fetchCalendarResource(
+		long calendarResourceId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
 	/**
 	* Returns the calendar resource with the primary key.
 	*

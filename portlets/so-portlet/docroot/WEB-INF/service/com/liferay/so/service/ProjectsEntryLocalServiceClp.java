@@ -56,44 +56,47 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 				"dynamicQueryCount",
 				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
 
-		_getProjectsEntryMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+		_fetchProjectsEntryMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+				"fetchProjectsEntry", long.class);
+
+		_getProjectsEntryMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getProjectsEntry", long.class);
 
-		_getPersistedModelMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getPersistedModelMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getPersistedModel", java.io.Serializable.class);
 
-		_getProjectsEntriesMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getProjectsEntriesMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getProjectsEntries", int.class, int.class);
 
-		_getProjectsEntriesCountMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getProjectsEntriesCountMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getProjectsEntriesCount");
 
-		_updateProjectsEntryMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateProjectsEntryMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateProjectsEntry", com.liferay.so.model.ProjectsEntry.class);
 
-		_updateProjectsEntryMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateProjectsEntryMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateProjectsEntry",
 				com.liferay.so.model.ProjectsEntry.class, boolean.class);
 
-		_getBeanIdentifierMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getBeanIdentifierMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getBeanIdentifier");
 
-		_setBeanIdentifierMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+		_setBeanIdentifierMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
 				"setBeanIdentifier", java.lang.String.class);
 
-		_addProjectsEntryMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+		_addProjectsEntryMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
 				"addProjectsEntry", long.class, java.lang.String.class,
 				java.lang.String.class, int.class, int.class, int.class,
 				int.class, int.class, int.class, boolean.class,
 				java.lang.String.class);
 
-		_getUserProjectsEntriesMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getUserProjectsEntriesMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getUserProjectsEntries", long.class);
 
-		_getUserProjectsEntriesCountMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getUserProjectsEntriesCountMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getUserProjectsEntriesCount", long.class);
 
-		_updateProjectsEntryMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateProjectsEntryMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateProjectsEntry", long.class, java.lang.String.class,
 				java.lang.String.class, int.class, int.class, int.class,
 				int.class, int.class, int.class, boolean.class,
@@ -321,13 +324,41 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 		return ((Long)returnObj).longValue();
 	}
 
+	public com.liferay.so.model.ProjectsEntry fetchProjectsEntry(
+		long projectsEntryId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_fetchProjectsEntryMethodKey8,
+				projectsEntryId);
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.so.model.ProjectsEntry)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public com.liferay.so.model.ProjectsEntry getProjectsEntry(
 		long projectsEntryId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getProjectsEntryMethodKey8,
+		MethodHandler methodHandler = new MethodHandler(_getProjectsEntryMethodKey9,
 				projectsEntryId);
 
 		try {
@@ -360,7 +391,7 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getPersistedModelMethodKey9,
+		MethodHandler methodHandler = new MethodHandler(_getPersistedModelMethodKey10,
 				ClpSerializer.translateInput(primaryKeyObj));
 
 		try {
@@ -392,7 +423,7 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getProjectsEntriesMethodKey10,
+		MethodHandler methodHandler = new MethodHandler(_getProjectsEntriesMethodKey11,
 				start, end);
 
 		try {
@@ -419,7 +450,7 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getProjectsEntriesCountMethodKey11);
+		MethodHandler methodHandler = new MethodHandler(_getProjectsEntriesCountMethodKey12);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -446,7 +477,7 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateProjectsEntryMethodKey12,
+		MethodHandler methodHandler = new MethodHandler(_updateProjectsEntryMethodKey13,
 				ClpSerializer.translateInput(projectsEntry));
 
 		try {
@@ -474,7 +505,7 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateProjectsEntryMethodKey13,
+		MethodHandler methodHandler = new MethodHandler(_updateProjectsEntryMethodKey14,
 				ClpSerializer.translateInput(projectsEntry), merge);
 
 		try {
@@ -500,7 +531,7 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 	public java.lang.String getBeanIdentifier() {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey14);
+		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey15);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -519,7 +550,7 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 	}
 
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey15,
+		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey16,
 				ClpSerializer.translateInput(beanIdentifier));
 
 		try {
@@ -545,7 +576,7 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_addProjectsEntryMethodKey16,
+		MethodHandler methodHandler = new MethodHandler(_addProjectsEntryMethodKey17,
 				userId, ClpSerializer.translateInput(title),
 				ClpSerializer.translateInput(description), startDateMonth,
 				startDateDay, startDateYear, endDateMonth, endDateDay,
@@ -579,7 +610,7 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 		long userId) throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getUserProjectsEntriesMethodKey17,
+		MethodHandler methodHandler = new MethodHandler(_getUserProjectsEntriesMethodKey18,
 				userId);
 
 		try {
@@ -606,7 +637,7 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getUserProjectsEntriesCountMethodKey18,
+		MethodHandler methodHandler = new MethodHandler(_getUserProjectsEntriesCountMethodKey19,
 				userId);
 
 		try {
@@ -638,7 +669,7 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateProjectsEntryMethodKey19,
+		MethodHandler methodHandler = new MethodHandler(_updateProjectsEntryMethodKey20,
 				projectsEntryId, ClpSerializer.translateInput(title),
 				ClpSerializer.translateInput(description), startDateMonth,
 				startDateDay, startDateYear, endDateMonth, endDateDay,
@@ -681,16 +712,17 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 	private MethodKey _dynamicQueryMethodKey5;
 	private MethodKey _dynamicQueryMethodKey6;
 	private MethodKey _dynamicQueryCountMethodKey7;
-	private MethodKey _getProjectsEntryMethodKey8;
-	private MethodKey _getPersistedModelMethodKey9;
-	private MethodKey _getProjectsEntriesMethodKey10;
-	private MethodKey _getProjectsEntriesCountMethodKey11;
-	private MethodKey _updateProjectsEntryMethodKey12;
+	private MethodKey _fetchProjectsEntryMethodKey8;
+	private MethodKey _getProjectsEntryMethodKey9;
+	private MethodKey _getPersistedModelMethodKey10;
+	private MethodKey _getProjectsEntriesMethodKey11;
+	private MethodKey _getProjectsEntriesCountMethodKey12;
 	private MethodKey _updateProjectsEntryMethodKey13;
-	private MethodKey _getBeanIdentifierMethodKey14;
-	private MethodKey _setBeanIdentifierMethodKey15;
-	private MethodKey _addProjectsEntryMethodKey16;
-	private MethodKey _getUserProjectsEntriesMethodKey17;
-	private MethodKey _getUserProjectsEntriesCountMethodKey18;
-	private MethodKey _updateProjectsEntryMethodKey19;
+	private MethodKey _updateProjectsEntryMethodKey14;
+	private MethodKey _getBeanIdentifierMethodKey15;
+	private MethodKey _setBeanIdentifierMethodKey16;
+	private MethodKey _addProjectsEntryMethodKey17;
+	private MethodKey _getUserProjectsEntriesMethodKey18;
+	private MethodKey _getUserProjectsEntriesCountMethodKey19;
+	private MethodKey _updateProjectsEntryMethodKey20;
 }

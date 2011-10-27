@@ -221,6 +221,10 @@ public abstract class BarLocalServiceBaseImpl implements BarLocalService,
 		return barPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	public Bar fetchBar(long barId) throws SystemException {
+		return barPersistence.fetchByPrimaryKey(barId);
+	}
+
 	/**
 	 * Returns the bar with the primary key.
 	 *

@@ -148,6 +148,11 @@ public interface WSRPProducerLocalService extends PersistedModelLocalService {
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.wsrp.model.WSRPProducer fetchWSRPProducer(
+		long wsrpProducerId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
 	/**
 	* Returns the w s r p producer with the primary key.
 	*

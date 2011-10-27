@@ -158,6 +158,12 @@ public class ModuleLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
+	public static com.liferay.marketplace.model.Module fetchModule(
+		long moduleId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().fetchModule(moduleId);
+	}
+
 	/**
 	* Returns the module with the primary key.
 	*

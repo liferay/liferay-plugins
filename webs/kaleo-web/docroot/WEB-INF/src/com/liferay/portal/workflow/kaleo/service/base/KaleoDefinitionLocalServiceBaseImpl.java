@@ -253,6 +253,11 @@ public abstract class KaleoDefinitionLocalServiceBaseImpl
 		return kaleoDefinitionPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	public KaleoDefinition fetchKaleoDefinition(long kaleoDefinitionId)
+		throws SystemException {
+		return kaleoDefinitionPersistence.fetchByPrimaryKey(kaleoDefinitionId);
+	}
+
 	/**
 	 * Returns the kaleo definition with the primary key.
 	 *

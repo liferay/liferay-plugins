@@ -57,30 +57,33 @@ public class JIRAActionLocalServiceClp implements JIRAActionLocalService {
 				"dynamicQueryCount",
 				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
 
-		_getJIRAActionMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+		_fetchJIRAActionMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+				"fetchJIRAAction", long.class);
+
+		_getJIRAActionMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getJIRAAction", long.class);
 
-		_getPersistedModelMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getPersistedModelMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getPersistedModel", java.io.Serializable.class);
 
-		_getJIRAActionsMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getJIRAActionsMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getJIRAActions", int.class, int.class);
 
-		_getJIRAActionsCountMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getJIRAActionsCountMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getJIRAActionsCount");
-
-		_updateJIRAActionMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
-				"updateJIRAAction",
-				com.liferay.socialcoding.model.JIRAAction.class);
 
 		_updateJIRAActionMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateJIRAAction",
+				com.liferay.socialcoding.model.JIRAAction.class);
+
+		_updateJIRAActionMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateJIRAAction",
 				com.liferay.socialcoding.model.JIRAAction.class, boolean.class);
 
-		_getBeanIdentifierMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getBeanIdentifierMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getBeanIdentifier");
 
-		_setBeanIdentifierMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+		_setBeanIdentifierMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
 				"setBeanIdentifier", java.lang.String.class);
 	}
 
@@ -305,13 +308,41 @@ public class JIRAActionLocalServiceClp implements JIRAActionLocalService {
 		return ((Long)returnObj).longValue();
 	}
 
+	public com.liferay.socialcoding.model.JIRAAction fetchJIRAAction(
+		long jiraActionId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_fetchJIRAActionMethodKey8,
+				jiraActionId);
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.socialcoding.model.JIRAAction)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public com.liferay.socialcoding.model.JIRAAction getJIRAAction(
 		long jiraActionId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getJIRAActionMethodKey8,
+		MethodHandler methodHandler = new MethodHandler(_getJIRAActionMethodKey9,
 				jiraActionId);
 
 		try {
@@ -344,7 +375,7 @@ public class JIRAActionLocalServiceClp implements JIRAActionLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getPersistedModelMethodKey9,
+		MethodHandler methodHandler = new MethodHandler(_getPersistedModelMethodKey10,
 				ClpSerializer.translateInput(primaryKeyObj));
 
 		try {
@@ -376,7 +407,7 @@ public class JIRAActionLocalServiceClp implements JIRAActionLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getJIRAActionsMethodKey10,
+		MethodHandler methodHandler = new MethodHandler(_getJIRAActionsMethodKey11,
 				start, end);
 
 		try {
@@ -403,7 +434,7 @@ public class JIRAActionLocalServiceClp implements JIRAActionLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getJIRAActionsCountMethodKey11);
+		MethodHandler methodHandler = new MethodHandler(_getJIRAActionsCountMethodKey12);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -430,7 +461,7 @@ public class JIRAActionLocalServiceClp implements JIRAActionLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateJIRAActionMethodKey12,
+		MethodHandler methodHandler = new MethodHandler(_updateJIRAActionMethodKey13,
 				ClpSerializer.translateInput(jiraAction));
 
 		try {
@@ -458,7 +489,7 @@ public class JIRAActionLocalServiceClp implements JIRAActionLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateJIRAActionMethodKey13,
+		MethodHandler methodHandler = new MethodHandler(_updateJIRAActionMethodKey14,
 				ClpSerializer.translateInput(jiraAction), merge);
 
 		try {
@@ -484,7 +515,7 @@ public class JIRAActionLocalServiceClp implements JIRAActionLocalService {
 	public java.lang.String getBeanIdentifier() {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey14);
+		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey15);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -503,7 +534,7 @@ public class JIRAActionLocalServiceClp implements JIRAActionLocalService {
 	}
 
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey15,
+		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey16,
 				ClpSerializer.translateInput(beanIdentifier));
 
 		try {
@@ -533,12 +564,13 @@ public class JIRAActionLocalServiceClp implements JIRAActionLocalService {
 	private MethodKey _dynamicQueryMethodKey5;
 	private MethodKey _dynamicQueryMethodKey6;
 	private MethodKey _dynamicQueryCountMethodKey7;
-	private MethodKey _getJIRAActionMethodKey8;
-	private MethodKey _getPersistedModelMethodKey9;
-	private MethodKey _getJIRAActionsMethodKey10;
-	private MethodKey _getJIRAActionsCountMethodKey11;
-	private MethodKey _updateJIRAActionMethodKey12;
+	private MethodKey _fetchJIRAActionMethodKey8;
+	private MethodKey _getJIRAActionMethodKey9;
+	private MethodKey _getPersistedModelMethodKey10;
+	private MethodKey _getJIRAActionsMethodKey11;
+	private MethodKey _getJIRAActionsCountMethodKey12;
 	private MethodKey _updateJIRAActionMethodKey13;
-	private MethodKey _getBeanIdentifierMethodKey14;
-	private MethodKey _setBeanIdentifierMethodKey15;
+	private MethodKey _updateJIRAActionMethodKey14;
+	private MethodKey _getBeanIdentifierMethodKey15;
+	private MethodKey _setBeanIdentifierMethodKey16;
 }

@@ -159,6 +159,12 @@ public class OAuthTokenLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
+	public static com.liferay.opensocial.model.OAuthToken fetchOAuthToken(
+		long oAuthTokenId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().fetchOAuthToken(oAuthTokenId);
+	}
+
 	/**
 	* Returns the o auth token with the primary key.
 	*

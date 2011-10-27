@@ -147,6 +147,11 @@ public interface KaleoTaskInstanceTokenLocalService
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken fetchKaleoTaskInstanceToken(
+		long kaleoTaskInstanceTokenId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
 	/**
 	* Returns the kaleo task instance token with the primary key.
 	*
@@ -264,11 +269,6 @@ public interface KaleoTaskInstanceTokenLocalService
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public void deleteKaleoInstanceKaleoTaskInstanceTokens(long kaleoInstanceId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken fetchKaleoTaskInstanceToken(
-		long kaleoTaskInstanceTokenId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)

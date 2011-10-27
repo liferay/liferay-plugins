@@ -148,6 +148,11 @@ public interface KaleoNotificationRecipientLocalService
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient fetchKaleoNotificationRecipient(
+		long kaleoNotificationRecipientId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
 	/**
 	* Returns the kaleo notification recipient with the primary key.
 	*

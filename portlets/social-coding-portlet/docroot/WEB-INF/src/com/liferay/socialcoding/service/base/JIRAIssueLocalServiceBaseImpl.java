@@ -234,6 +234,10 @@ public abstract class JIRAIssueLocalServiceBaseImpl
 		return jiraIssuePersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	public JIRAIssue fetchJIRAIssue(long jiraIssueId) throws SystemException {
+		return jiraIssuePersistence.fetchByPrimaryKey(jiraIssueId);
+	}
+
 	/**
 	 * Returns the j i r a issue with the primary key.
 	 *

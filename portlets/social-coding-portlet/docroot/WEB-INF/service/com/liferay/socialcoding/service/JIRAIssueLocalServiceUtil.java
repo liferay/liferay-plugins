@@ -159,6 +159,12 @@ public class JIRAIssueLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
+	public static com.liferay.socialcoding.model.JIRAIssue fetchJIRAIssue(
+		long jiraIssueId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().fetchJIRAIssue(jiraIssueId);
+	}
+
 	/**
 	* Returns the j i r a issue with the primary key.
 	*

@@ -56,103 +56,106 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 				"dynamicQueryCount",
 				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
 
-		_getTasksEntryMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+		_fetchTasksEntryMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+				"fetchTasksEntry", long.class);
+
+		_getTasksEntryMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getTasksEntry", long.class);
 
-		_getPersistedModelMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getPersistedModelMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getPersistedModel", java.io.Serializable.class);
 
-		_getTasksEntriesMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getTasksEntriesMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getTasksEntries", int.class, int.class);
 
-		_getTasksEntriesCountMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getTasksEntriesCountMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getTasksEntriesCount");
 
-		_updateTasksEntryMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateTasksEntryMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateTasksEntry", com.liferay.tasks.model.TasksEntry.class);
 
-		_updateTasksEntryMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateTasksEntryMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateTasksEntry", com.liferay.tasks.model.TasksEntry.class,
 				boolean.class);
 
-		_getBeanIdentifierMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getBeanIdentifierMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getBeanIdentifier");
 
-		_setBeanIdentifierMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+		_setBeanIdentifierMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
 				"setBeanIdentifier", java.lang.String.class);
 
-		_addTasksEntryMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+		_addTasksEntryMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
 				"addTasksEntry", long.class, java.lang.String.class, int.class,
 				long.class, int.class, int.class, int.class, int.class,
 				int.class, boolean.class,
 				com.liferay.portal.service.ServiceContext.class);
 
-		_getAssigneeTasksEntriesMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getAssigneeTasksEntriesMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getAssigneeTasksEntries", long.class, int.class, int.class);
 
-		_getAssigneeTasksEntriesCountMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getAssigneeTasksEntriesCountMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getAssigneeTasksEntriesCount", long.class);
 
-		_getGroupAssigneeTasksEntriesMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getGroupAssigneeTasksEntriesMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getGroupAssigneeTasksEntries", long.class, long.class,
 				int.class, int.class);
 
-		_getGroupAssigneeTasksEntriesCountMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getGroupAssigneeTasksEntriesCountMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getGroupAssigneeTasksEntriesCount", long.class, long.class);
 
-		_getGroupResolverTasksEntriesMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getGroupResolverTasksEntriesMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getGroupResolverTasksEntries", long.class, long.class,
 				int.class, int.class);
 
-		_getGroupResolverTasksEntriesCountMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getGroupResolverTasksEntriesCountMethodKey23 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getGroupResolverTasksEntriesCount", long.class, long.class);
 
-		_getGroupUserTasksEntriesMethodKey23 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getGroupUserTasksEntriesMethodKey24 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getGroupUserTasksEntries", long.class, long.class, int.class,
 				int.class);
 
-		_getGroupUserTasksEntriesCountMethodKey24 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getGroupUserTasksEntriesCountMethodKey25 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getGroupUserTasksEntriesCount", long.class, long.class);
 
-		_getResolverTasksEntriesMethodKey25 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getResolverTasksEntriesMethodKey26 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getResolverTasksEntries", long.class, int.class, int.class);
 
-		_getResolverTasksEntriesCountMethodKey26 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getResolverTasksEntriesCountMethodKey27 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getResolverTasksEntriesCount", long.class);
 
-		_getTasksEntriesMethodKey27 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getTasksEntriesMethodKey28 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getTasksEntries", long.class, int.class, int.class);
 
-		_getTasksEntriesMethodKey28 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getTasksEntriesMethodKey29 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getTasksEntries", long.class, int.class, long.class,
 				long.class, int.class, long[].class, long[].class, int.class,
 				int.class);
 
-		_getTasksEntriesCountMethodKey29 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getTasksEntriesCountMethodKey30 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getTasksEntriesCount", long.class);
 
-		_getTasksEntriesCountMethodKey30 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getTasksEntriesCountMethodKey31 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getTasksEntriesCount", long.class, int.class, long.class,
 				long.class, int.class, long[].class, long[].class);
 
-		_getUserTasksEntriesMethodKey31 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getUserTasksEntriesMethodKey32 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getUserTasksEntries", long.class, int.class, int.class);
 
-		_getUserTasksEntriesCountMethodKey32 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getUserTasksEntriesCountMethodKey33 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getUserTasksEntriesCount", long.class);
 
-		_updateAssetMethodKey33 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateAssetMethodKey34 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateAsset", long.class,
 				com.liferay.tasks.model.TasksEntry.class, long[].class,
 				java.lang.String[].class);
 
-		_updateTasksEntryMethodKey34 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateTasksEntryMethodKey35 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateTasksEntry", long.class, java.lang.String.class,
 				int.class, long.class, long.class, int.class, int.class,
 				int.class, int.class, int.class, boolean.class, int.class,
 				com.liferay.portal.service.ServiceContext.class);
 
-		_updateTasksEntryStatusMethodKey35 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateTasksEntryStatusMethodKey36 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateTasksEntryStatus", long.class, long.class, int.class,
 				com.liferay.portal.service.ServiceContext.class);
 	}
@@ -382,12 +385,39 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 		return ((Long)returnObj).longValue();
 	}
 
+	public com.liferay.tasks.model.TasksEntry fetchTasksEntry(long tasksEntryId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_fetchTasksEntryMethodKey8,
+				tasksEntryId);
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.tasks.model.TasksEntry)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public com.liferay.tasks.model.TasksEntry getTasksEntry(long tasksEntryId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getTasksEntryMethodKey8,
+		MethodHandler methodHandler = new MethodHandler(_getTasksEntryMethodKey9,
 				tasksEntryId);
 
 		try {
@@ -420,7 +450,7 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getPersistedModelMethodKey9,
+		MethodHandler methodHandler = new MethodHandler(_getPersistedModelMethodKey10,
 				ClpSerializer.translateInput(primaryKeyObj));
 
 		try {
@@ -452,7 +482,7 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getTasksEntriesMethodKey10,
+		MethodHandler methodHandler = new MethodHandler(_getTasksEntriesMethodKey11,
 				start, end);
 
 		try {
@@ -479,7 +509,7 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getTasksEntriesCountMethodKey11);
+		MethodHandler methodHandler = new MethodHandler(_getTasksEntriesCountMethodKey12);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -506,7 +536,7 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateTasksEntryMethodKey12,
+		MethodHandler methodHandler = new MethodHandler(_updateTasksEntryMethodKey13,
 				ClpSerializer.translateInput(tasksEntry));
 
 		try {
@@ -534,7 +564,7 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateTasksEntryMethodKey13,
+		MethodHandler methodHandler = new MethodHandler(_updateTasksEntryMethodKey14,
 				ClpSerializer.translateInput(tasksEntry), merge);
 
 		try {
@@ -560,7 +590,7 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 	public java.lang.String getBeanIdentifier() {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey14);
+		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey15);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -579,7 +609,7 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 	}
 
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey15,
+		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey16,
 				ClpSerializer.translateInput(beanIdentifier));
 
 		try {
@@ -605,7 +635,7 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_addTasksEntryMethodKey16,
+		MethodHandler methodHandler = new MethodHandler(_addTasksEntryMethodKey17,
 				userId, ClpSerializer.translateInput(title), priority,
 				assigneeUserId, dueDateMonth, dueDateDay, dueDateYear,
 				dueDateHour, dueDateMinute, neverDue,
@@ -640,7 +670,7 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getAssigneeTasksEntriesMethodKey17,
+		MethodHandler methodHandler = new MethodHandler(_getAssigneeTasksEntriesMethodKey18,
 				userId, start, end);
 
 		try {
@@ -667,7 +697,7 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getAssigneeTasksEntriesCountMethodKey18,
+		MethodHandler methodHandler = new MethodHandler(_getAssigneeTasksEntriesCountMethodKey19,
 				userId);
 
 		try {
@@ -695,7 +725,7 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getGroupAssigneeTasksEntriesMethodKey19,
+		MethodHandler methodHandler = new MethodHandler(_getGroupAssigneeTasksEntriesMethodKey20,
 				groupId, userId, start, end);
 
 		try {
@@ -722,7 +752,7 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getGroupAssigneeTasksEntriesCountMethodKey20,
+		MethodHandler methodHandler = new MethodHandler(_getGroupAssigneeTasksEntriesCountMethodKey21,
 				groupId, userId);
 
 		try {
@@ -750,7 +780,7 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getGroupResolverTasksEntriesMethodKey21,
+		MethodHandler methodHandler = new MethodHandler(_getGroupResolverTasksEntriesMethodKey22,
 				groupId, userId, start, end);
 
 		try {
@@ -777,7 +807,7 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getGroupResolverTasksEntriesCountMethodKey22,
+		MethodHandler methodHandler = new MethodHandler(_getGroupResolverTasksEntriesCountMethodKey23,
 				groupId, userId);
 
 		try {
@@ -805,7 +835,7 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getGroupUserTasksEntriesMethodKey23,
+		MethodHandler methodHandler = new MethodHandler(_getGroupUserTasksEntriesMethodKey24,
 				groupId, userId, start, end);
 
 		try {
@@ -832,7 +862,7 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getGroupUserTasksEntriesCountMethodKey24,
+		MethodHandler methodHandler = new MethodHandler(_getGroupUserTasksEntriesCountMethodKey25,
 				groupId, userId);
 
 		try {
@@ -860,7 +890,7 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getResolverTasksEntriesMethodKey25,
+		MethodHandler methodHandler = new MethodHandler(_getResolverTasksEntriesMethodKey26,
 				userId, start, end);
 
 		try {
@@ -887,7 +917,7 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getResolverTasksEntriesCountMethodKey26,
+		MethodHandler methodHandler = new MethodHandler(_getResolverTasksEntriesCountMethodKey27,
 				userId);
 
 		try {
@@ -915,7 +945,7 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getTasksEntriesMethodKey27,
+		MethodHandler methodHandler = new MethodHandler(_getTasksEntriesMethodKey28,
 				groupId, start, end);
 
 		try {
@@ -944,7 +974,7 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 		int end) throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getTasksEntriesMethodKey28,
+		MethodHandler methodHandler = new MethodHandler(_getTasksEntriesMethodKey29,
 				groupId, priority, assigneeUserId, reporterUserId, status,
 				ClpSerializer.translateInput(assetTagIds),
 				ClpSerializer.translateInput(notAssetTagIds), start, end);
@@ -973,7 +1003,7 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getTasksEntriesCountMethodKey29,
+		MethodHandler methodHandler = new MethodHandler(_getTasksEntriesCountMethodKey30,
 				groupId);
 
 		try {
@@ -1002,7 +1032,7 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getTasksEntriesCountMethodKey30,
+		MethodHandler methodHandler = new MethodHandler(_getTasksEntriesCountMethodKey31,
 				groupId, priority, assigneeUserId, reporterUserId, status,
 				ClpSerializer.translateInput(tagsEntryIds),
 				ClpSerializer.translateInput(notTagsEntryIds));
@@ -1032,7 +1062,7 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getUserTasksEntriesMethodKey31,
+		MethodHandler methodHandler = new MethodHandler(_getUserTasksEntriesMethodKey32,
 				userId, start, end);
 
 		try {
@@ -1059,7 +1089,7 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getUserTasksEntriesCountMethodKey32,
+		MethodHandler methodHandler = new MethodHandler(_getUserTasksEntriesCountMethodKey33,
 				userId);
 
 		try {
@@ -1087,7 +1117,7 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 		java.lang.String[] assetTagNames)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_updateAssetMethodKey33,
+		MethodHandler methodHandler = new MethodHandler(_updateAssetMethodKey34,
 				userId, ClpSerializer.translateInput(tasksEntry),
 				ClpSerializer.translateInput(assetCategoryIds),
 				ClpSerializer.translateInput(assetTagNames));
@@ -1124,7 +1154,7 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateTasksEntryMethodKey34,
+		MethodHandler methodHandler = new MethodHandler(_updateTasksEntryMethodKey35,
 				tasksEntryId, ClpSerializer.translateInput(title), priority,
 				assigneeUserId, resolverUserId, dueDateMonth, dueDateDay,
 				dueDateYear, dueDateHour, dueDateMinute, neverDue, status,
@@ -1161,7 +1191,7 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateTasksEntryStatusMethodKey35,
+		MethodHandler methodHandler = new MethodHandler(_updateTasksEntryStatusMethodKey36,
 				tasksEntryId, resolverUserId, status,
 				ClpSerializer.translateInput(serviceContext));
 
@@ -1202,32 +1232,33 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 	private MethodKey _dynamicQueryMethodKey5;
 	private MethodKey _dynamicQueryMethodKey6;
 	private MethodKey _dynamicQueryCountMethodKey7;
-	private MethodKey _getTasksEntryMethodKey8;
-	private MethodKey _getPersistedModelMethodKey9;
-	private MethodKey _getTasksEntriesMethodKey10;
-	private MethodKey _getTasksEntriesCountMethodKey11;
-	private MethodKey _updateTasksEntryMethodKey12;
+	private MethodKey _fetchTasksEntryMethodKey8;
+	private MethodKey _getTasksEntryMethodKey9;
+	private MethodKey _getPersistedModelMethodKey10;
+	private MethodKey _getTasksEntriesMethodKey11;
+	private MethodKey _getTasksEntriesCountMethodKey12;
 	private MethodKey _updateTasksEntryMethodKey13;
-	private MethodKey _getBeanIdentifierMethodKey14;
-	private MethodKey _setBeanIdentifierMethodKey15;
-	private MethodKey _addTasksEntryMethodKey16;
-	private MethodKey _getAssigneeTasksEntriesMethodKey17;
-	private MethodKey _getAssigneeTasksEntriesCountMethodKey18;
-	private MethodKey _getGroupAssigneeTasksEntriesMethodKey19;
-	private MethodKey _getGroupAssigneeTasksEntriesCountMethodKey20;
-	private MethodKey _getGroupResolverTasksEntriesMethodKey21;
-	private MethodKey _getGroupResolverTasksEntriesCountMethodKey22;
-	private MethodKey _getGroupUserTasksEntriesMethodKey23;
-	private MethodKey _getGroupUserTasksEntriesCountMethodKey24;
-	private MethodKey _getResolverTasksEntriesMethodKey25;
-	private MethodKey _getResolverTasksEntriesCountMethodKey26;
-	private MethodKey _getTasksEntriesMethodKey27;
+	private MethodKey _updateTasksEntryMethodKey14;
+	private MethodKey _getBeanIdentifierMethodKey15;
+	private MethodKey _setBeanIdentifierMethodKey16;
+	private MethodKey _addTasksEntryMethodKey17;
+	private MethodKey _getAssigneeTasksEntriesMethodKey18;
+	private MethodKey _getAssigneeTasksEntriesCountMethodKey19;
+	private MethodKey _getGroupAssigneeTasksEntriesMethodKey20;
+	private MethodKey _getGroupAssigneeTasksEntriesCountMethodKey21;
+	private MethodKey _getGroupResolverTasksEntriesMethodKey22;
+	private MethodKey _getGroupResolverTasksEntriesCountMethodKey23;
+	private MethodKey _getGroupUserTasksEntriesMethodKey24;
+	private MethodKey _getGroupUserTasksEntriesCountMethodKey25;
+	private MethodKey _getResolverTasksEntriesMethodKey26;
+	private MethodKey _getResolverTasksEntriesCountMethodKey27;
 	private MethodKey _getTasksEntriesMethodKey28;
-	private MethodKey _getTasksEntriesCountMethodKey29;
+	private MethodKey _getTasksEntriesMethodKey29;
 	private MethodKey _getTasksEntriesCountMethodKey30;
-	private MethodKey _getUserTasksEntriesMethodKey31;
-	private MethodKey _getUserTasksEntriesCountMethodKey32;
-	private MethodKey _updateAssetMethodKey33;
-	private MethodKey _updateTasksEntryMethodKey34;
-	private MethodKey _updateTasksEntryStatusMethodKey35;
+	private MethodKey _getTasksEntriesCountMethodKey31;
+	private MethodKey _getUserTasksEntriesMethodKey32;
+	private MethodKey _getUserTasksEntriesCountMethodKey33;
+	private MethodKey _updateAssetMethodKey34;
+	private MethodKey _updateTasksEntryMethodKey35;
+	private MethodKey _updateTasksEntryStatusMethodKey36;
 }

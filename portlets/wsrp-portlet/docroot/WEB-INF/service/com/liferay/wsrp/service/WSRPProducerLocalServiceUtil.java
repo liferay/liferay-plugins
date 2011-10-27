@@ -161,6 +161,12 @@ public class WSRPProducerLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
+	public static com.liferay.wsrp.model.WSRPProducer fetchWSRPProducer(
+		long wsrpProducerId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().fetchWSRPProducer(wsrpProducerId);
+	}
+
 	/**
 	* Returns the w s r p producer with the primary key.
 	*

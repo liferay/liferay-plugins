@@ -159,6 +159,12 @@ public class SVNRevisionLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
+	public static com.liferay.socialcoding.model.SVNRevision fetchSVNRevision(
+		long svnRevisionId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().fetchSVNRevision(svnRevisionId);
+	}
+
 	/**
 	* Returns the s v n revision with the primary key.
 	*

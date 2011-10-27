@@ -56,45 +56,48 @@ public class AppLocalServiceClp implements AppLocalService {
 				"dynamicQueryCount",
 				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
 
-		_getAppMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+		_fetchAppMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+				"fetchApp", long.class);
+
+		_getAppMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getApp", long.class);
 
-		_getPersistedModelMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getPersistedModelMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getPersistedModel", java.io.Serializable.class);
 
-		_getAppsMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getAppsMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getApps", int.class, int.class);
 
-		_getAppsCountMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getAppsCountMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getAppsCount");
 
-		_updateAppMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateAppMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateApp", com.liferay.marketplace.model.App.class);
 
-		_updateAppMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateAppMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateApp", com.liferay.marketplace.model.App.class,
 				boolean.class);
 
-		_getBeanIdentifierMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getBeanIdentifierMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getBeanIdentifier");
 
-		_setBeanIdentifierMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+		_setBeanIdentifierMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
 				"setBeanIdentifier", java.lang.String.class);
 
-		_addAppMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+		_addAppMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
 				"addApp", long.class, long.class, java.lang.String.class,
 				java.io.InputStream.class);
 
-		_fetchRemoteAppMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
+		_fetchRemoteAppMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
 				"fetchRemoteApp", long.class);
 
-		_installAppMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
+		_installAppMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
 				"installApp", long.class);
 
-		_uninstallAppMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
+		_uninstallAppMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
 				"uninstallApp", long.class);
 
-		_updateAppMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateAppMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateApp", long.class, java.lang.String.class,
 				java.io.InputStream.class);
 	}
@@ -318,12 +321,39 @@ public class AppLocalServiceClp implements AppLocalService {
 		return ((Long)returnObj).longValue();
 	}
 
+	public com.liferay.marketplace.model.App fetchApp(long appId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_fetchAppMethodKey8,
+				appId);
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.marketplace.model.App)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public com.liferay.marketplace.model.App getApp(long appId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getAppMethodKey8, appId);
+		MethodHandler methodHandler = new MethodHandler(_getAppMethodKey9, appId);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -355,7 +385,7 @@ public class AppLocalServiceClp implements AppLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getPersistedModelMethodKey9,
+		MethodHandler methodHandler = new MethodHandler(_getPersistedModelMethodKey10,
 				ClpSerializer.translateInput(primaryKeyObj));
 
 		try {
@@ -387,7 +417,7 @@ public class AppLocalServiceClp implements AppLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getAppsMethodKey10,
+		MethodHandler methodHandler = new MethodHandler(_getAppsMethodKey11,
 				start, end);
 
 		try {
@@ -414,7 +444,7 @@ public class AppLocalServiceClp implements AppLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getAppsCountMethodKey11);
+		MethodHandler methodHandler = new MethodHandler(_getAppsCountMethodKey12);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -441,7 +471,7 @@ public class AppLocalServiceClp implements AppLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateAppMethodKey12,
+		MethodHandler methodHandler = new MethodHandler(_updateAppMethodKey13,
 				ClpSerializer.translateInput(app));
 
 		try {
@@ -469,7 +499,7 @@ public class AppLocalServiceClp implements AppLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateAppMethodKey13,
+		MethodHandler methodHandler = new MethodHandler(_updateAppMethodKey14,
 				ClpSerializer.translateInput(app), merge);
 
 		try {
@@ -495,7 +525,7 @@ public class AppLocalServiceClp implements AppLocalService {
 	public java.lang.String getBeanIdentifier() {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey14);
+		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey15);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -514,7 +544,7 @@ public class AppLocalServiceClp implements AppLocalService {
 	}
 
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey15,
+		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey16,
 				ClpSerializer.translateInput(beanIdentifier));
 
 		try {
@@ -538,7 +568,7 @@ public class AppLocalServiceClp implements AppLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_addAppMethodKey16,
+		MethodHandler methodHandler = new MethodHandler(_addAppMethodKey17,
 				userId, remoteAppId, ClpSerializer.translateInput(version),
 				ClpSerializer.translateInput(inputStream));
 
@@ -570,7 +600,7 @@ public class AppLocalServiceClp implements AppLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_fetchRemoteAppMethodKey17,
+		MethodHandler methodHandler = new MethodHandler(_fetchRemoteAppMethodKey18,
 				remoteAppId);
 
 		try {
@@ -596,7 +626,7 @@ public class AppLocalServiceClp implements AppLocalService {
 	public void installApp(long remoteAppId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_installAppMethodKey18,
+		MethodHandler methodHandler = new MethodHandler(_installAppMethodKey19,
 				remoteAppId);
 
 		try {
@@ -624,7 +654,7 @@ public class AppLocalServiceClp implements AppLocalService {
 	public void uninstallApp(long remoteAppId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_uninstallAppMethodKey19,
+		MethodHandler methodHandler = new MethodHandler(_uninstallAppMethodKey20,
 				remoteAppId);
 
 		try {
@@ -655,7 +685,7 @@ public class AppLocalServiceClp implements AppLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateAppMethodKey20,
+		MethodHandler methodHandler = new MethodHandler(_updateAppMethodKey21,
 				appId, ClpSerializer.translateInput(version),
 				ClpSerializer.translateInput(inputStream));
 
@@ -696,17 +726,18 @@ public class AppLocalServiceClp implements AppLocalService {
 	private MethodKey _dynamicQueryMethodKey5;
 	private MethodKey _dynamicQueryMethodKey6;
 	private MethodKey _dynamicQueryCountMethodKey7;
-	private MethodKey _getAppMethodKey8;
-	private MethodKey _getPersistedModelMethodKey9;
-	private MethodKey _getAppsMethodKey10;
-	private MethodKey _getAppsCountMethodKey11;
-	private MethodKey _updateAppMethodKey12;
+	private MethodKey _fetchAppMethodKey8;
+	private MethodKey _getAppMethodKey9;
+	private MethodKey _getPersistedModelMethodKey10;
+	private MethodKey _getAppsMethodKey11;
+	private MethodKey _getAppsCountMethodKey12;
 	private MethodKey _updateAppMethodKey13;
-	private MethodKey _getBeanIdentifierMethodKey14;
-	private MethodKey _setBeanIdentifierMethodKey15;
-	private MethodKey _addAppMethodKey16;
-	private MethodKey _fetchRemoteAppMethodKey17;
-	private MethodKey _installAppMethodKey18;
-	private MethodKey _uninstallAppMethodKey19;
-	private MethodKey _updateAppMethodKey20;
+	private MethodKey _updateAppMethodKey14;
+	private MethodKey _getBeanIdentifierMethodKey15;
+	private MethodKey _setBeanIdentifierMethodKey16;
+	private MethodKey _addAppMethodKey17;
+	private MethodKey _fetchRemoteAppMethodKey18;
+	private MethodKey _installAppMethodKey19;
+	private MethodKey _uninstallAppMethodKey20;
+	private MethodKey _updateAppMethodKey21;
 }

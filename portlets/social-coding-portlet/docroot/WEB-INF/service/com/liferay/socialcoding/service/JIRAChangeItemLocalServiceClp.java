@@ -58,34 +58,37 @@ public class JIRAChangeItemLocalServiceClp implements JIRAChangeItemLocalService
 				"dynamicQueryCount",
 				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
 
-		_getJIRAChangeItemMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+		_fetchJIRAChangeItemMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+				"fetchJIRAChangeItem", long.class);
+
+		_getJIRAChangeItemMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getJIRAChangeItem", long.class);
 
-		_getPersistedModelMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getPersistedModelMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getPersistedModel", java.io.Serializable.class);
 
-		_getJIRAChangeItemsMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getJIRAChangeItemsMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getJIRAChangeItems", int.class, int.class);
 
-		_getJIRAChangeItemsCountMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getJIRAChangeItemsCountMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getJIRAChangeItemsCount");
 
-		_updateJIRAChangeItemMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateJIRAChangeItemMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateJIRAChangeItem",
 				com.liferay.socialcoding.model.JIRAChangeItem.class);
 
-		_updateJIRAChangeItemMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateJIRAChangeItemMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateJIRAChangeItem",
 				com.liferay.socialcoding.model.JIRAChangeItem.class,
 				boolean.class);
 
-		_getBeanIdentifierMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getBeanIdentifierMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getBeanIdentifier");
 
-		_setBeanIdentifierMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+		_setBeanIdentifierMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
 				"setBeanIdentifier", java.lang.String.class);
 
-		_getJIRAChangeItemsMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getJIRAChangeItemsMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getJIRAChangeItems", long.class);
 	}
 
@@ -310,13 +313,41 @@ public class JIRAChangeItemLocalServiceClp implements JIRAChangeItemLocalService
 		return ((Long)returnObj).longValue();
 	}
 
+	public com.liferay.socialcoding.model.JIRAChangeItem fetchJIRAChangeItem(
+		long jiraChangeItemId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_fetchJIRAChangeItemMethodKey8,
+				jiraChangeItemId);
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.socialcoding.model.JIRAChangeItem)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public com.liferay.socialcoding.model.JIRAChangeItem getJIRAChangeItem(
 		long jiraChangeItemId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getJIRAChangeItemMethodKey8,
+		MethodHandler methodHandler = new MethodHandler(_getJIRAChangeItemMethodKey9,
 				jiraChangeItemId);
 
 		try {
@@ -349,7 +380,7 @@ public class JIRAChangeItemLocalServiceClp implements JIRAChangeItemLocalService
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getPersistedModelMethodKey9,
+		MethodHandler methodHandler = new MethodHandler(_getPersistedModelMethodKey10,
 				ClpSerializer.translateInput(primaryKeyObj));
 
 		try {
@@ -381,7 +412,7 @@ public class JIRAChangeItemLocalServiceClp implements JIRAChangeItemLocalService
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getJIRAChangeItemsMethodKey10,
+		MethodHandler methodHandler = new MethodHandler(_getJIRAChangeItemsMethodKey11,
 				start, end);
 
 		try {
@@ -408,7 +439,7 @@ public class JIRAChangeItemLocalServiceClp implements JIRAChangeItemLocalService
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getJIRAChangeItemsCountMethodKey11);
+		MethodHandler methodHandler = new MethodHandler(_getJIRAChangeItemsCountMethodKey12);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -435,7 +466,7 @@ public class JIRAChangeItemLocalServiceClp implements JIRAChangeItemLocalService
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateJIRAChangeItemMethodKey12,
+		MethodHandler methodHandler = new MethodHandler(_updateJIRAChangeItemMethodKey13,
 				ClpSerializer.translateInput(jiraChangeItem));
 
 		try {
@@ -464,7 +495,7 @@ public class JIRAChangeItemLocalServiceClp implements JIRAChangeItemLocalService
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateJIRAChangeItemMethodKey13,
+		MethodHandler methodHandler = new MethodHandler(_updateJIRAChangeItemMethodKey14,
 				ClpSerializer.translateInput(jiraChangeItem), merge);
 
 		try {
@@ -490,7 +521,7 @@ public class JIRAChangeItemLocalServiceClp implements JIRAChangeItemLocalService
 	public java.lang.String getBeanIdentifier() {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey14);
+		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey15);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -509,7 +540,7 @@ public class JIRAChangeItemLocalServiceClp implements JIRAChangeItemLocalService
 	}
 
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey15,
+		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey16,
 				ClpSerializer.translateInput(beanIdentifier));
 
 		try {
@@ -531,7 +562,7 @@ public class JIRAChangeItemLocalServiceClp implements JIRAChangeItemLocalService
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getJIRAChangeItemsMethodKey16,
+		MethodHandler methodHandler = new MethodHandler(_getJIRAChangeItemsMethodKey17,
 				jiraChangeGroupId);
 
 		try {
@@ -567,13 +598,14 @@ public class JIRAChangeItemLocalServiceClp implements JIRAChangeItemLocalService
 	private MethodKey _dynamicQueryMethodKey5;
 	private MethodKey _dynamicQueryMethodKey6;
 	private MethodKey _dynamicQueryCountMethodKey7;
-	private MethodKey _getJIRAChangeItemMethodKey8;
-	private MethodKey _getPersistedModelMethodKey9;
-	private MethodKey _getJIRAChangeItemsMethodKey10;
-	private MethodKey _getJIRAChangeItemsCountMethodKey11;
-	private MethodKey _updateJIRAChangeItemMethodKey12;
+	private MethodKey _fetchJIRAChangeItemMethodKey8;
+	private MethodKey _getJIRAChangeItemMethodKey9;
+	private MethodKey _getPersistedModelMethodKey10;
+	private MethodKey _getJIRAChangeItemsMethodKey11;
+	private MethodKey _getJIRAChangeItemsCountMethodKey12;
 	private MethodKey _updateJIRAChangeItemMethodKey13;
-	private MethodKey _getBeanIdentifierMethodKey14;
-	private MethodKey _setBeanIdentifierMethodKey15;
-	private MethodKey _getJIRAChangeItemsMethodKey16;
+	private MethodKey _updateJIRAChangeItemMethodKey14;
+	private MethodKey _getBeanIdentifierMethodKey15;
+	private MethodKey _setBeanIdentifierMethodKey16;
+	private MethodKey _getJIRAChangeItemsMethodKey17;
 }

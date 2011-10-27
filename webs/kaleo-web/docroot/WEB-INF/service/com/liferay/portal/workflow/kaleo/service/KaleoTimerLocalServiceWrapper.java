@@ -152,6 +152,12 @@ public class KaleoTimerLocalServiceWrapper implements KaleoTimerLocalService,
 		return _kaleoTimerLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
+	public com.liferay.portal.workflow.kaleo.model.KaleoTimer fetchKaleoTimer(
+		long kaleoTimerId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _kaleoTimerLocalService.fetchKaleoTimer(kaleoTimerId);
+	}
+
 	/**
 	* Returns the kaleo timer with the primary key.
 	*

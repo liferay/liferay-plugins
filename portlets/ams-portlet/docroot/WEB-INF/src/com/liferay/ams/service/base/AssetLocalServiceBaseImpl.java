@@ -225,6 +225,10 @@ public abstract class AssetLocalServiceBaseImpl implements AssetLocalService,
 		return assetPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	public Asset fetchAsset(long assetId) throws SystemException {
+		return assetPersistence.fetchByPrimaryKey(assetId);
+	}
+
 	/**
 	 * Returns the asset with the primary key.
 	 *

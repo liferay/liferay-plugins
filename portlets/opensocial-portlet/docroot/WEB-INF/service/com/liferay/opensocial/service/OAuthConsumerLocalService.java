@@ -146,6 +146,11 @@ public interface OAuthConsumerLocalService extends PersistedModelLocalService {
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.opensocial.model.OAuthConsumer fetchOAuthConsumer(
+		long oAuthConsumerId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
 	/**
 	* Returns the o auth consumer with the primary key.
 	*

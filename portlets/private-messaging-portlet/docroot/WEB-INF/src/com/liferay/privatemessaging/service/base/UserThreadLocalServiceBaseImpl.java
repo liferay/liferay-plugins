@@ -222,6 +222,11 @@ public abstract class UserThreadLocalServiceBaseImpl
 		return userThreadPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	public UserThread fetchUserThread(long userThreadId)
+		throws SystemException {
+		return userThreadPersistence.fetchByPrimaryKey(userThreadId);
+	}
+
 	/**
 	 * Returns the user thread with the primary key.
 	 *

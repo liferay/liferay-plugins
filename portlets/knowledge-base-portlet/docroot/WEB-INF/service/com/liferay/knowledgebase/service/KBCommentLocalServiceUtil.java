@@ -161,6 +161,12 @@ public class KBCommentLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
+	public static com.liferay.knowledgebase.model.KBComment fetchKBComment(
+		long kbCommentId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().fetchKBComment(kbCommentId);
+	}
+
 	/**
 	* Returns the k b comment with the primary key.
 	*

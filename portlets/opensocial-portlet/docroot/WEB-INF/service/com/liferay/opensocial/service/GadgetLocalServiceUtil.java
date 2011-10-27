@@ -160,6 +160,11 @@ public class GadgetLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
+	public static com.liferay.opensocial.model.Gadget fetchGadget(long gadgetId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().fetchGadget(gadgetId);
+	}
+
 	/**
 	* Returns the gadget with the primary key.
 	*
@@ -277,11 +282,6 @@ public class GadgetLocalServiceUtil {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		getService().destroyGadgets();
-	}
-
-	public static com.liferay.opensocial.model.Gadget fetchGadget(long gadgetId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().fetchGadget(gadgetId);
 	}
 
 	public static com.liferay.opensocial.model.Gadget fetchGadget(

@@ -230,6 +230,11 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 		return wsrpConsumerPortletPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	public WSRPConsumerPortlet fetchWSRPConsumerPortlet(
+		long wsrpConsumerPortletId) throws SystemException {
+		return wsrpConsumerPortletPersistence.fetchByPrimaryKey(wsrpConsumerPortletId);
+	}
+
 	/**
 	 * Returns the w s r p consumer portlet with the primary key.
 	 *

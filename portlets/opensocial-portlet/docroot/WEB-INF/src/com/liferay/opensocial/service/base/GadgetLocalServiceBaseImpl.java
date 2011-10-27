@@ -226,6 +226,10 @@ public abstract class GadgetLocalServiceBaseImpl implements GadgetLocalService,
 		return gadgetPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	public Gadget fetchGadget(long gadgetId) throws SystemException {
+		return gadgetPersistence.fetchByPrimaryKey(gadgetId);
+	}
+
 	/**
 	 * Returns the gadget with the primary key.
 	 *

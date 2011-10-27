@@ -230,6 +230,11 @@ public abstract class CalendarBookingLocalServiceBaseImpl
 		return calendarBookingPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	public CalendarBooking fetchCalendarBooking(long calendarBookingId)
+		throws SystemException {
+		return calendarBookingPersistence.fetchByPrimaryKey(calendarBookingId);
+	}
+
 	/**
 	 * Returns the calendar booking with the primary key.
 	 *

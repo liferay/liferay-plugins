@@ -154,6 +154,12 @@ public class WSRPConsumerLocalServiceWrapper implements WSRPConsumerLocalService
 		return _wsrpConsumerLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
+	public com.liferay.wsrp.model.WSRPConsumer fetchWSRPConsumer(
+		long wsrpConsumerId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _wsrpConsumerLocalService.fetchWSRPConsumer(wsrpConsumerId);
+	}
+
 	/**
 	* Returns the w s r p consumer with the primary key.
 	*

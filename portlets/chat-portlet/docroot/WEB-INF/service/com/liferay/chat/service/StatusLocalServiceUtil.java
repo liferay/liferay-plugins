@@ -157,6 +157,11 @@ public class StatusLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
+	public static com.liferay.chat.model.Status fetchStatus(long statusId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().fetchStatus(statusId);
+	}
+
 	/**
 	* Returns the status with the primary key.
 	*

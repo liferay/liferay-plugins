@@ -235,6 +235,11 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 		return jiraChangeItemPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	public JIRAChangeItem fetchJIRAChangeItem(long jiraChangeItemId)
+		throws SystemException {
+		return jiraChangeItemPersistence.fetchByPrimaryKey(jiraChangeItemId);
+	}
+
 	/**
 	 * Returns the j i r a change item with the primary key.
 	 *

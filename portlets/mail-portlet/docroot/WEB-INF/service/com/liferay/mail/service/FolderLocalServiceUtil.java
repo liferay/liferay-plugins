@@ -159,6 +159,11 @@ public class FolderLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
+	public static com.liferay.mail.model.Folder fetchFolder(long folderId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().fetchFolder(folderId);
+	}
+
 	/**
 	* Returns the folder with the primary key.
 	*
@@ -268,11 +273,6 @@ public class FolderLocalServiceUtil {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		getService().deleteFolders(accountId);
-	}
-
-	public static com.liferay.mail.model.Folder fetchFolder(long folderId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().fetchFolder(folderId);
 	}
 
 	public static com.liferay.mail.model.Folder getFolder(long accountId,

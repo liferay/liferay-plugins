@@ -236,6 +236,11 @@ public abstract class JIRAChangeGroupLocalServiceBaseImpl
 		return jiraChangeGroupPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	public JIRAChangeGroup fetchJIRAChangeGroup(long jiraChangeGroupId)
+		throws SystemException {
+		return jiraChangeGroupPersistence.fetchByPrimaryKey(jiraChangeGroupId);
+	}
+
 	/**
 	 * Returns the j i r a change group with the primary key.
 	 *

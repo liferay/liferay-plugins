@@ -235,6 +235,11 @@ public abstract class CalendarResourceLocalServiceBaseImpl
 		return calendarResourcePersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	public CalendarResource fetchCalendarResource(long calendarResourceId)
+		throws SystemException {
+		return calendarResourcePersistence.fetchByPrimaryKey(calendarResourceId);
+	}
+
 	/**
 	 * Returns the calendar resource with the primary key.
 	 *

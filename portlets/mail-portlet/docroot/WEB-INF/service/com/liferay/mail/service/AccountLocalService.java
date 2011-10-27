@@ -146,6 +146,10 @@ public interface AccountLocalService extends PersistedModelLocalService {
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.mail.model.Account fetchAccount(long accountId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
 	/**
 	* Returns the account with the primary key.
 	*

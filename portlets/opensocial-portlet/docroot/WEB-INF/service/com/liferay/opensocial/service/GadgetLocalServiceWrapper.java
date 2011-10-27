@@ -151,6 +151,11 @@ public class GadgetLocalServiceWrapper implements GadgetLocalService,
 		return _gadgetLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
+	public com.liferay.opensocial.model.Gadget fetchGadget(long gadgetId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _gadgetLocalService.fetchGadget(gadgetId);
+	}
+
 	/**
 	* Returns the gadget with the primary key.
 	*
@@ -266,11 +271,6 @@ public class GadgetLocalServiceWrapper implements GadgetLocalService,
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		_gadgetLocalService.destroyGadgets();
-	}
-
-	public com.liferay.opensocial.model.Gadget fetchGadget(long gadgetId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return _gadgetLocalService.fetchGadget(gadgetId);
 	}
 
 	public com.liferay.opensocial.model.Gadget fetchGadget(long companyId,

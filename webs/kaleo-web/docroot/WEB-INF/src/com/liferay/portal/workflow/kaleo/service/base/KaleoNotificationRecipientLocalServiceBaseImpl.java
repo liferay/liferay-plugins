@@ -260,6 +260,11 @@ public abstract class KaleoNotificationRecipientLocalServiceBaseImpl
 		return kaleoNotificationRecipientPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	public KaleoNotificationRecipient fetchKaleoNotificationRecipient(
+		long kaleoNotificationRecipientId) throws SystemException {
+		return kaleoNotificationRecipientPersistence.fetchByPrimaryKey(kaleoNotificationRecipientId);
+	}
+
 	/**
 	 * Returns the kaleo notification recipient with the primary key.
 	 *

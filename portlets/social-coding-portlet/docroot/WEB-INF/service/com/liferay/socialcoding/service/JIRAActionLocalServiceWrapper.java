@@ -152,6 +152,12 @@ public class JIRAActionLocalServiceWrapper implements JIRAActionLocalService,
 		return _jiraActionLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
+	public com.liferay.socialcoding.model.JIRAAction fetchJIRAAction(
+		long jiraActionId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _jiraActionLocalService.fetchJIRAAction(jiraActionId);
+	}
+
 	/**
 	* Returns the j i r a action with the primary key.
 	*

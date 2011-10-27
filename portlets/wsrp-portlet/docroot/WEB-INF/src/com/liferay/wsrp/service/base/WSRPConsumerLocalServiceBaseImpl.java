@@ -227,6 +227,11 @@ public abstract class WSRPConsumerLocalServiceBaseImpl
 		return wsrpConsumerPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	public WSRPConsumer fetchWSRPConsumer(long wsrpConsumerId)
+		throws SystemException {
+		return wsrpConsumerPersistence.fetchByPrimaryKey(wsrpConsumerId);
+	}
+
 	/**
 	 * Returns the w s r p consumer with the primary key.
 	 *

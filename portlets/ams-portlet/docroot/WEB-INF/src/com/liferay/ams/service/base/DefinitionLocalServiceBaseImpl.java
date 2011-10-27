@@ -228,6 +228,11 @@ public abstract class DefinitionLocalServiceBaseImpl
 		return definitionPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	public Definition fetchDefinition(long definitionId)
+		throws SystemException {
+		return definitionPersistence.fetchByPrimaryKey(definitionId);
+	}
+
 	/**
 	 * Returns the definition with the primary key.
 	 *

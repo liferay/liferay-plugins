@@ -161,6 +161,12 @@ public class CalendarEventLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
+	public static com.liferay.calendar.model.CalendarEvent fetchCalendarEvent(
+		long calendarEventId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().fetchCalendarEvent(calendarEventId);
+	}
+
 	/**
 	* Returns the calendar event with the primary key.
 	*

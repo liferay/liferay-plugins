@@ -144,6 +144,10 @@ public interface BarLocalService extends PersistedModelLocalService {
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.testtransaction.model.Bar fetchBar(long barId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
 	/**
 	* Returns the bar with the primary key.
 	*

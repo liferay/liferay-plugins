@@ -223,6 +223,10 @@ public abstract class EntryLocalServiceBaseImpl implements EntryLocalService,
 		return entryPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	public Entry fetchEntry(long entryId) throws SystemException {
+		return entryPersistence.fetchByPrimaryKey(entryId);
+	}
+
 	/**
 	 * Returns the entry with the primary key.
 	 *

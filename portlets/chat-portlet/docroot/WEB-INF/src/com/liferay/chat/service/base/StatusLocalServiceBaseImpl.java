@@ -223,6 +223,10 @@ public abstract class StatusLocalServiceBaseImpl implements StatusLocalService,
 		return statusPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	public Status fetchStatus(long statusId) throws SystemException {
+		return statusPersistence.fetchByPrimaryKey(statusId);
+	}
+
 	/**
 	 * Returns the status with the primary key.
 	 *

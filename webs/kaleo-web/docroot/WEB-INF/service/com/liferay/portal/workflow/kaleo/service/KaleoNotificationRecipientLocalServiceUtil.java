@@ -163,6 +163,13 @@ public class KaleoNotificationRecipientLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
+	public static com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient fetchKaleoNotificationRecipient(
+		long kaleoNotificationRecipientId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .fetchKaleoNotificationRecipient(kaleoNotificationRecipientId);
+	}
+
 	/**
 	* Returns the kaleo notification recipient with the primary key.
 	*

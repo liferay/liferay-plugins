@@ -56,49 +56,52 @@ public class StatusLocalServiceClp implements StatusLocalService {
 				"dynamicQueryCount",
 				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
 
-		_getStatusMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+		_fetchStatusMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+				"fetchStatus", long.class);
+
+		_getStatusMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getStatus", long.class);
 
-		_getPersistedModelMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getPersistedModelMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getPersistedModel", java.io.Serializable.class);
 
-		_getStatusesMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getStatusesMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getStatuses", int.class, int.class);
 
-		_getStatusesCountMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getStatusesCountMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getStatusesCount");
 
-		_updateStatusMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateStatusMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateStatus", com.liferay.chat.model.Status.class);
 
-		_updateStatusMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateStatusMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateStatus", com.liferay.chat.model.Status.class,
 				boolean.class);
 
-		_getBeanIdentifierMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getBeanIdentifierMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getBeanIdentifier");
 
-		_setBeanIdentifierMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+		_setBeanIdentifierMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
 				"setBeanIdentifier", java.lang.String.class);
 
-		_getAllStatusesMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getAllStatusesMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getAllStatuses", long.class, long.class, long.class,
 				int.class, int.class);
 
-		_getGroupStatusesMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getGroupStatusesMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getGroupStatuses", long.class, long.class, int.class, int.class);
 
-		_getSocialStatusesMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getSocialStatusesMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getSocialStatuses", long.class, int.class, long.class,
 				int.class, int.class);
 
-		_getUserStatusMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getUserStatusMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getUserStatus", long.class);
 
-		_updateStatusMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateStatusMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateStatus", long.class, long.class);
 
-		_updateStatusMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateStatusMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateStatus", long.class, long.class, int.class, int.class,
 				java.lang.String.class, java.lang.String.class, int.class);
 	}
@@ -322,12 +325,39 @@ public class StatusLocalServiceClp implements StatusLocalService {
 		return ((Long)returnObj).longValue();
 	}
 
+	public com.liferay.chat.model.Status fetchStatus(long statusId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_fetchStatusMethodKey8,
+				statusId);
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.chat.model.Status)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public com.liferay.chat.model.Status getStatus(long statusId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getStatusMethodKey8,
+		MethodHandler methodHandler = new MethodHandler(_getStatusMethodKey9,
 				statusId);
 
 		try {
@@ -360,7 +390,7 @@ public class StatusLocalServiceClp implements StatusLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getPersistedModelMethodKey9,
+		MethodHandler methodHandler = new MethodHandler(_getPersistedModelMethodKey10,
 				ClpSerializer.translateInput(primaryKeyObj));
 
 		try {
@@ -392,7 +422,7 @@ public class StatusLocalServiceClp implements StatusLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getStatusesMethodKey10,
+		MethodHandler methodHandler = new MethodHandler(_getStatusesMethodKey11,
 				start, end);
 
 		try {
@@ -419,7 +449,7 @@ public class StatusLocalServiceClp implements StatusLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getStatusesCountMethodKey11);
+		MethodHandler methodHandler = new MethodHandler(_getStatusesCountMethodKey12);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -446,7 +476,7 @@ public class StatusLocalServiceClp implements StatusLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateStatusMethodKey12,
+		MethodHandler methodHandler = new MethodHandler(_updateStatusMethodKey13,
 				ClpSerializer.translateInput(status));
 
 		try {
@@ -474,7 +504,7 @@ public class StatusLocalServiceClp implements StatusLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateStatusMethodKey13,
+		MethodHandler methodHandler = new MethodHandler(_updateStatusMethodKey14,
 				ClpSerializer.translateInput(status), merge);
 
 		try {
@@ -500,7 +530,7 @@ public class StatusLocalServiceClp implements StatusLocalService {
 	public java.lang.String getBeanIdentifier() {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey14);
+		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey15);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -519,7 +549,7 @@ public class StatusLocalServiceClp implements StatusLocalService {
 	}
 
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey15,
+		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey16,
 				ClpSerializer.translateInput(beanIdentifier));
 
 		try {
@@ -541,7 +571,7 @@ public class StatusLocalServiceClp implements StatusLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getAllStatusesMethodKey16,
+		MethodHandler methodHandler = new MethodHandler(_getAllStatusesMethodKey17,
 				companyId, userId, modifiedDate, start, end);
 
 		try {
@@ -569,7 +599,7 @@ public class StatusLocalServiceClp implements StatusLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getGroupStatusesMethodKey17,
+		MethodHandler methodHandler = new MethodHandler(_getGroupStatusesMethodKey18,
 				userId, modifiedDate, start, end);
 
 		try {
@@ -597,7 +627,7 @@ public class StatusLocalServiceClp implements StatusLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getSocialStatusesMethodKey18,
+		MethodHandler methodHandler = new MethodHandler(_getSocialStatusesMethodKey19,
 				userId, type, modifiedDate, start, end);
 
 		try {
@@ -624,7 +654,7 @@ public class StatusLocalServiceClp implements StatusLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getUserStatusMethodKey19,
+		MethodHandler methodHandler = new MethodHandler(_getUserStatusMethodKey20,
 				userId);
 
 		try {
@@ -652,7 +682,7 @@ public class StatusLocalServiceClp implements StatusLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateStatusMethodKey20,
+		MethodHandler methodHandler = new MethodHandler(_updateStatusMethodKey21,
 				userId, modifiedDate);
 
 		try {
@@ -681,7 +711,7 @@ public class StatusLocalServiceClp implements StatusLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateStatusMethodKey21,
+		MethodHandler methodHandler = new MethodHandler(_updateStatusMethodKey22,
 				userId, modifiedDate, online, awake,
 				ClpSerializer.translateInput(activePanelId),
 				ClpSerializer.translateInput(message), playSound);
@@ -719,18 +749,19 @@ public class StatusLocalServiceClp implements StatusLocalService {
 	private MethodKey _dynamicQueryMethodKey5;
 	private MethodKey _dynamicQueryMethodKey6;
 	private MethodKey _dynamicQueryCountMethodKey7;
-	private MethodKey _getStatusMethodKey8;
-	private MethodKey _getPersistedModelMethodKey9;
-	private MethodKey _getStatusesMethodKey10;
-	private MethodKey _getStatusesCountMethodKey11;
-	private MethodKey _updateStatusMethodKey12;
+	private MethodKey _fetchStatusMethodKey8;
+	private MethodKey _getStatusMethodKey9;
+	private MethodKey _getPersistedModelMethodKey10;
+	private MethodKey _getStatusesMethodKey11;
+	private MethodKey _getStatusesCountMethodKey12;
 	private MethodKey _updateStatusMethodKey13;
-	private MethodKey _getBeanIdentifierMethodKey14;
-	private MethodKey _setBeanIdentifierMethodKey15;
-	private MethodKey _getAllStatusesMethodKey16;
-	private MethodKey _getGroupStatusesMethodKey17;
-	private MethodKey _getSocialStatusesMethodKey18;
-	private MethodKey _getUserStatusMethodKey19;
-	private MethodKey _updateStatusMethodKey20;
+	private MethodKey _updateStatusMethodKey14;
+	private MethodKey _getBeanIdentifierMethodKey15;
+	private MethodKey _setBeanIdentifierMethodKey16;
+	private MethodKey _getAllStatusesMethodKey17;
+	private MethodKey _getGroupStatusesMethodKey18;
+	private MethodKey _getSocialStatusesMethodKey19;
+	private MethodKey _getUserStatusMethodKey20;
 	private MethodKey _updateStatusMethodKey21;
+	private MethodKey _updateStatusMethodKey22;
 }

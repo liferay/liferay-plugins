@@ -56,38 +56,41 @@ public class ModuleLocalServiceClp implements ModuleLocalService {
 				"dynamicQueryCount",
 				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
 
-		_getModuleMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+		_fetchModuleMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+				"fetchModule", long.class);
+
+		_getModuleMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getModule", long.class);
 
-		_getPersistedModelMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getPersistedModelMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getPersistedModel", java.io.Serializable.class);
 
-		_getModulesMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getModulesMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getModules", int.class, int.class);
 
-		_getModulesCountMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getModulesCountMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getModulesCount");
 
-		_updateModuleMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateModuleMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateModule", com.liferay.marketplace.model.Module.class);
 
-		_updateModuleMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateModuleMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateModule", com.liferay.marketplace.model.Module.class,
 				boolean.class);
 
-		_getBeanIdentifierMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getBeanIdentifierMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getBeanIdentifier");
 
-		_setBeanIdentifierMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+		_setBeanIdentifierMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
 				"setBeanIdentifier", java.lang.String.class);
 
-		_addModuleMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+		_addModuleMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
 				"addModule", long.class, long.class, java.lang.String.class);
 
-		_fetchModuleMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
+		_fetchModuleMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
 				"fetchModule", long.class, java.lang.String.class);
 
-		_getModulesMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getModulesMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getModules", long.class);
 	}
 
@@ -310,12 +313,39 @@ public class ModuleLocalServiceClp implements ModuleLocalService {
 		return ((Long)returnObj).longValue();
 	}
 
+	public com.liferay.marketplace.model.Module fetchModule(long moduleId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_fetchModuleMethodKey8,
+				moduleId);
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.marketplace.model.Module)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public com.liferay.marketplace.model.Module getModule(long moduleId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getModuleMethodKey8,
+		MethodHandler methodHandler = new MethodHandler(_getModuleMethodKey9,
 				moduleId);
 
 		try {
@@ -348,7 +378,7 @@ public class ModuleLocalServiceClp implements ModuleLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getPersistedModelMethodKey9,
+		MethodHandler methodHandler = new MethodHandler(_getPersistedModelMethodKey10,
 				ClpSerializer.translateInput(primaryKeyObj));
 
 		try {
@@ -380,7 +410,7 @@ public class ModuleLocalServiceClp implements ModuleLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getModulesMethodKey10,
+		MethodHandler methodHandler = new MethodHandler(_getModulesMethodKey11,
 				start, end);
 
 		try {
@@ -407,7 +437,7 @@ public class ModuleLocalServiceClp implements ModuleLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getModulesCountMethodKey11);
+		MethodHandler methodHandler = new MethodHandler(_getModulesCountMethodKey12);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -434,7 +464,7 @@ public class ModuleLocalServiceClp implements ModuleLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateModuleMethodKey12,
+		MethodHandler methodHandler = new MethodHandler(_updateModuleMethodKey13,
 				ClpSerializer.translateInput(module));
 
 		try {
@@ -462,7 +492,7 @@ public class ModuleLocalServiceClp implements ModuleLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateModuleMethodKey13,
+		MethodHandler methodHandler = new MethodHandler(_updateModuleMethodKey14,
 				ClpSerializer.translateInput(module), merge);
 
 		try {
@@ -488,7 +518,7 @@ public class ModuleLocalServiceClp implements ModuleLocalService {
 	public java.lang.String getBeanIdentifier() {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey14);
+		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey15);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -507,7 +537,7 @@ public class ModuleLocalServiceClp implements ModuleLocalService {
 	}
 
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey15,
+		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey16,
 				ClpSerializer.translateInput(beanIdentifier));
 
 		try {
@@ -529,7 +559,7 @@ public class ModuleLocalServiceClp implements ModuleLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_addModuleMethodKey16,
+		MethodHandler methodHandler = new MethodHandler(_addModuleMethodKey17,
 				userId, appId, ClpSerializer.translateInput(contextName));
 
 		try {
@@ -557,7 +587,7 @@ public class ModuleLocalServiceClp implements ModuleLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_fetchModuleMethodKey17,
+		MethodHandler methodHandler = new MethodHandler(_fetchModuleMethodKey18,
 				appId, ClpSerializer.translateInput(contextName));
 
 		try {
@@ -584,7 +614,7 @@ public class ModuleLocalServiceClp implements ModuleLocalService {
 		long appId) throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getModulesMethodKey18,
+		MethodHandler methodHandler = new MethodHandler(_getModulesMethodKey19,
 				appId);
 
 		try {
@@ -620,15 +650,16 @@ public class ModuleLocalServiceClp implements ModuleLocalService {
 	private MethodKey _dynamicQueryMethodKey5;
 	private MethodKey _dynamicQueryMethodKey6;
 	private MethodKey _dynamicQueryCountMethodKey7;
-	private MethodKey _getModuleMethodKey8;
-	private MethodKey _getPersistedModelMethodKey9;
-	private MethodKey _getModulesMethodKey10;
-	private MethodKey _getModulesCountMethodKey11;
-	private MethodKey _updateModuleMethodKey12;
+	private MethodKey _fetchModuleMethodKey8;
+	private MethodKey _getModuleMethodKey9;
+	private MethodKey _getPersistedModelMethodKey10;
+	private MethodKey _getModulesMethodKey11;
+	private MethodKey _getModulesCountMethodKey12;
 	private MethodKey _updateModuleMethodKey13;
-	private MethodKey _getBeanIdentifierMethodKey14;
-	private MethodKey _setBeanIdentifierMethodKey15;
-	private MethodKey _addModuleMethodKey16;
-	private MethodKey _fetchModuleMethodKey17;
-	private MethodKey _getModulesMethodKey18;
+	private MethodKey _updateModuleMethodKey14;
+	private MethodKey _getBeanIdentifierMethodKey15;
+	private MethodKey _setBeanIdentifierMethodKey16;
+	private MethodKey _addModuleMethodKey17;
+	private MethodKey _fetchModuleMethodKey18;
+	private MethodKey _getModulesMethodKey19;
 }

@@ -159,6 +159,12 @@ public class KaleoActionLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
+	public static com.liferay.portal.workflow.kaleo.model.KaleoAction fetchKaleoAction(
+		long kaleoActionId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().fetchKaleoAction(kaleoActionId);
+	}
+
 	/**
 	* Returns the kaleo action with the primary key.
 	*

@@ -224,6 +224,11 @@ public abstract class ProjectsEntryLocalServiceBaseImpl
 		return projectsEntryPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	public ProjectsEntry fetchProjectsEntry(long projectsEntryId)
+		throws SystemException {
+		return projectsEntryPersistence.fetchByPrimaryKey(projectsEntryId);
+	}
+
 	/**
 	 * Returns the projects entry with the primary key.
 	 *

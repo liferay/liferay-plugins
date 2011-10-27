@@ -235,6 +235,10 @@ public abstract class KBCommentLocalServiceBaseImpl
 		return kbCommentPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	public KBComment fetchKBComment(long kbCommentId) throws SystemException {
+		return kbCommentPersistence.fetchByPrimaryKey(kbCommentId);
+	}
+
 	/**
 	 * Returns the k b comment with the primary key.
 	 *

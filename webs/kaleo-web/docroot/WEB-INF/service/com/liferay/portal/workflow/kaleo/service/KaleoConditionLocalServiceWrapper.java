@@ -153,6 +153,12 @@ public class KaleoConditionLocalServiceWrapper
 		return _kaleoConditionLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
+	public com.liferay.portal.workflow.kaleo.model.KaleoCondition fetchKaleoCondition(
+		long kaleoConditionId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _kaleoConditionLocalService.fetchKaleoCondition(kaleoConditionId);
+	}
+
 	/**
 	* Returns the kaleo condition with the primary key.
 	*

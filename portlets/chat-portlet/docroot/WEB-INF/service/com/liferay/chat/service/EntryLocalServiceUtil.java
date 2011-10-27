@@ -157,6 +157,11 @@ public class EntryLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
+	public static com.liferay.chat.model.Entry fetchEntry(long entryId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().fetchEntry(entryId);
+	}
+
 	/**
 	* Returns the entry with the primary key.
 	*

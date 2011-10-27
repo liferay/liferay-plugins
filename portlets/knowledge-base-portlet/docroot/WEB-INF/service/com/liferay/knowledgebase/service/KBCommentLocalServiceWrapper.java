@@ -154,6 +154,12 @@ public class KBCommentLocalServiceWrapper implements KBCommentLocalService,
 		return _kbCommentLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
+	public com.liferay.knowledgebase.model.KBComment fetchKBComment(
+		long kbCommentId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _kbCommentLocalService.fetchKBComment(kbCommentId);
+	}
+
 	/**
 	* Returns the k b comment with the primary key.
 	*
