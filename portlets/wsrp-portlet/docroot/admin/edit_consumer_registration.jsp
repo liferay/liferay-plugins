@@ -35,7 +35,7 @@ if (serviceDescription.isRequiresRegistration() && (wsrpConsumerManager.getRegis
 	supportsInbandRegistration = true;
 }
 
-PropertyDescription[] propertyDescriptions = new PropertyDescription[0];
+PropertyDescription[] propertyDescriptions = null;
 
 if (supportsInbandRegistration) {
 	propertyDescriptions = wsrpConsumerManager.getPropertyDescriptions();
