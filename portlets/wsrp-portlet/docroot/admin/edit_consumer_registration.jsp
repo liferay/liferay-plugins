@@ -35,7 +35,7 @@ if (serviceDescription.isRequiresRegistration() && (wsrpConsumerManager.getRegis
 	supportsInbandRegistration = true;
 }
 
-PropertyDescription[] propertyDescriptions = null;
+PropertyDescription[] propertyDescriptions = new PropertyDescription[0];
 
 if (supportsInbandRegistration) {
 	propertyDescriptions = wsrpConsumerManager.getPropertyDescriptions();
@@ -117,56 +117,54 @@ if (supportsInbandRegistration) {
 
 			List resultRows = searchContainer.getResultRows();
 
-			if (propertyDescriptions != null) {
-				for (int i = 0; i < propertyDescriptions.length; i++) {
-					PropertyDescription propertyDescription = propertyDescriptions[i];
+			for (int i = 0; i < propertyDescriptions.length; i++) {
+				PropertyDescription propertyDescription = propertyDescriptions[i];
 
-					String fullyQualifiedName = propertyDescription.getName().toString();
+				String fullyQualifiedName = propertyDescription.getName().toString();
 
-					String name = propertyDescription.getName().getLocalPart();
+				String name = propertyDescription.getName().getLocalPart();
 
-					String description = LocalizedStringUtil.getLocalizedStringValue(propertyDescription.getDescription(), StringPool.BLANK);
+				String description = LocalizedStringUtil.getLocalizedStringValue(propertyDescription.getDescription(), StringPool.BLANK);
 
-					description += LocalizedStringUtil.getLocalizedStringValue(propertyDescription.getHint(), StringPool.BLANK);
+				description += LocalizedStringUtil.getLocalizedStringValue(propertyDescription.getHint(), StringPool.BLANK);
 
-					ResultRow row = new ResultRow(name, name, i);
+				ResultRow row = new ResultRow(name, name, i);
 
-					// Name
+				// Name
 
-					row.addText(name);
+				row.addText(name);
 
-					// Value
+				// Value
 
-					StringBuilder sb = new StringBuilder();
+				StringBuilder sb = new StringBuilder();
 
-					sb.append("<input name=\"");
-					sb.append(renderResponse.getNamespace());
-					sb.append("registrationPropertyName");
-					sb.append(i);
-					sb.append("\" type=\"hidden\" value=\"");
-					sb.append(fullyQualifiedName);
-					sb.append("\" />");
+				sb.append("<input name=\"");
+				sb.append(renderResponse.getNamespace());
+				sb.append("registrationPropertyName");
+				sb.append(i);
+				sb.append("\" type=\"hidden\" value=\"");
+				sb.append(fullyQualifiedName);
+				sb.append("\" />");
 
-					String registrationPropertyValue = GetterUtil.getString(registrationProperties.get(fullyQualifiedName));
+				String registrationPropertyValue = GetterUtil.getString(registrationProperties.get(fullyQualifiedName));
 
-					sb.append("<input name=\"");
-					sb.append(renderResponse.getNamespace());
-					sb.append("registrationPropertyValue");
-					sb.append(i);
-					sb.append("\" type=\"text\" value=\"");
-					sb.append(registrationPropertyValue);
-					sb.append("\" />");
+				sb.append("<input name=\"");
+				sb.append(renderResponse.getNamespace());
+				sb.append("registrationPropertyValue");
+				sb.append(i);
+				sb.append("\" type=\"text\" value=\"");
+				sb.append(registrationPropertyValue);
+				sb.append("\" />");
 
-					row.addText(sb.toString());
+				row.addText(sb.toString());
 
-					// Description
+				// Description
 
-					row.addText(description);
+				row.addText(description);
 
-					// Add result row
+				// Add result row
 
-					resultRows.add(row);
-				}
+				resultRows.add(row);
 			}
 			%>
 
