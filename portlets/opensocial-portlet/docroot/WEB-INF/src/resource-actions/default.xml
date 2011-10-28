@@ -57,7 +57,7 @@
 		<portlet-name>4</portlet-name>
 		<permissions>
 			<supports>
-				<action-key>ADD_TO_PAGE</action-key>
+				<action-key>ACCESS_IN_CONTROL_PANEL</action-key>
 				<action-key>CONFIGURATION</action-key>
 				<action-key>VIEW</action-key>
 			</supports>
@@ -68,6 +68,7 @@
 				<action-key>VIEW</action-key>
 			</guest-defaults>
 			<guest-unsupported>
+				<action-key>ACCESS_IN_CONTROL_PANEL</action-key>
 				<action-key>CONFIGURATION</action-key>
 			</guest-unsupported>
 		</permissions>
