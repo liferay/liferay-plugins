@@ -22,10 +22,6 @@
 	<aui:form action="<%= configurationURL %>" method="post" name="fm">
 		<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
 
-		<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" persistState="<%= true %>" title="contacts-home">
-			<aui:input name="preferences--usersPerSection--" size="2" type="text" value="<%= usersPerSection %>" />
-		</liferay-ui:panel>
-
 		<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" persistState="<%= true %>" title="user-profile">
 			<aui:input name="preferences--showUsersInformation--" type="checkbox" value="<%= showUsersInformation %>" />
 

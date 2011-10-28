@@ -48,14 +48,9 @@ public class ContactsCenterRequestInterpreter
 
 		String title = StringPool.BLANK;
 
-		if (requestType == SocialRelationConstants.TYPE_BI_COWORKER) {
+		if (requestType == SocialRelationConstants.TYPE_BI_CONNECTION) {
 			title = themeDisplay.translate(
-				"request-social-networking-summary-add-coworker",
-				new Object[] {creatorUserName});
-		}
-		else if (requestType == SocialRelationConstants.TYPE_BI_FRIEND) {
-			title = themeDisplay.translate(
-				"request-social-networking-summary-add-friend",
+				"request-social-networking-summary-add-connection",
 				new Object[] {creatorUserName});
 		}
 

@@ -16,14 +16,23 @@ package com.liferay.contacts.contactscenter.portlet;
 
 import com.liferay.contacts.util.ContactsUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import com.liferay.portal.kernel.json.JSONArray;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
+import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.servlet.ServletResponseUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.WebKeys;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
+import com.liferay.portal.model.Group;
+import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
+import com.liferay.portal.util.comparator.UserLastNameComparator;
 import com.liferay.portlet.social.model.SocialRelationConstants;
 import com.liferay.portlet.social.model.SocialRequest;
 import com.liferay.portlet.social.model.SocialRequestConstants;
@@ -31,11 +40,13 @@ import com.liferay.portlet.social.service.SocialRelationLocalServiceUtil;
 import com.liferay.portlet.social.service.SocialRequestLocalServiceUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletException;
+import javax.portlet.PortletURL;
 import javax.portlet.ResourceRequest;
 import javax.portlet.ResourceResponse;
 
@@ -44,6 +55,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * @author Ryan Park
+ * @author Jonathan Lee
  */
 public class ContactsCenterPortlet extends MVCPortlet {
 
@@ -136,6 +148,97 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			vCards.getBytes(StringPool.UTF8), "text/x-vcard; charset=UTF-8");
 	}
 
+	public void getContacts (
+			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
+		throws Exception {
+
+		int end = ParamUtil.getInteger(resourceRequest, "end");
+		String keywords = ParamUtil.getString(resourceRequest, "keywords");
+		int socialRelationType = ParamUtil.getInteger(
+			resourceRequest, "socialRelationType");
+		int start = ParamUtil.getInteger(resourceRequest, "start");
+
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
+		JSONObject optionsJSONObject = JSONFactoryUtil.createJSONObject();
+
+		optionsJSONObject.put("end", end);
+		optionsJSONObject.put("keywords", keywords);
+		optionsJSONObject.put("socialRelationType", socialRelationType);
+		optionsJSONObject.put("start", start);
+
+		jsonObject.put("options", optionsJSONObject);
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		Group group = themeDisplay.getScopeGroup();
+		Layout layout = themeDisplay.getLayout();
+
+		LinkedHashMap<String, Object> params = null;
+
+		if (group.isUser() && layout.isPublicLayout()) {
+			params = new LinkedHashMap<String, Object>();
+			params.put(
+				"socialRelation",
+				new Long[] {group.getClassPK()});
+		}
+		else {
+			if (socialRelationType != 0) {
+				params = new LinkedHashMap<String, Object>();
+				params.put(
+					"socialRelationType",
+					new Long[] {themeDisplay.getUserId(),
+					new Long(socialRelationType)});
+			}
+		}
+
+		List<User> users = UserLocalServiceUtil.search(
+			themeDisplay.getCompanyId(), keywords,
+			WorkflowConstants.STATUS_APPROVED, params, start, end,
+			new UserLastNameComparator(true));
+
+		int usersCount = UserLocalServiceUtil.searchCount(
+			themeDisplay.getCompanyId(), keywords,
+			WorkflowConstants.STATUS_APPROVED, params);
+
+		jsonObject.put("count", usersCount);
+
+		LiferayPortletResponse liferayPortletResponse =
+			(LiferayPortletResponse)resourceResponse;
+
+		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
+
+		for (User user : users) {
+			JSONObject userJSONObject = JSONFactoryUtil.createJSONObject();
+
+			userJSONObject.put("emailAddress", user.getEmailAddress());
+			userJSONObject.put("jobTitle", user.getJobTitle());
+			userJSONObject.put("userFirstName", user.getFirstName());
+			userJSONObject.put("userLastName", user.getLastName());
+			userJSONObject.put(
+				"userPortraitURL", user.getPortraitURL(themeDisplay));
+
+			PortletURL viewSummaryURL =
+				liferayPortletResponse.createRenderURL();
+
+			viewSummaryURL.setWindowState(LiferayWindowState.EXCLUSIVE);
+
+			viewSummaryURL.setParameter(
+				"jspPage", "/contacts_center/view_user.jsp");
+			viewSummaryURL.setParameter(
+				"userId", String.valueOf(user.getUserId()));
+
+			userJSONObject.put("viewSummaryURL", viewSummaryURL.toString());
+
+			jsonArray.put(userJSONObject);
+		}
+
+		jsonObject.put("users", jsonArray);
+
+		writeJSON(resourceRequest, resourceResponse, jsonObject);
+	}
+
 	public void requestSocialRelation(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
@@ -171,6 +274,9 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			}
 			else if (id.equals("exportVCards")) {
 				exportVCards(resourceRequest, resourceResponse);
+			}
+			else if (id.equals("getContacts")) {
+				getContacts(resourceRequest, resourceResponse);
 			}
 			else {
 				super.serveResource(resourceRequest, resourceResponse);
