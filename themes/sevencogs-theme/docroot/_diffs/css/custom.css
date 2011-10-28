@@ -5,7 +5,7 @@
 body {
 	background-color: #EEF0F2;
 	color: #333;
-	font: 12px/1.25 Arial, Helvetica, Verdana, sans-serif;
+	font: 12px/1 Arial, Helvetica, sans-serif;
 }
 
 a {
@@ -207,6 +207,11 @@ a:focus {
 	@include border-radius(4px);
 }
 
+.home .callout-extraborder img {
+	height: auto !important;
+	width: 846px !important;
+}
+
 a:hover .callout-extraborder,
 a:focus .callout-extraborder {
 	@include background-image(linear-gradient(top left, #DDD, #EEE));
@@ -400,183 +405,148 @@ a:focus .callout-extraborder {
 	background-image: url(../images/common/breadcrumbs_hud.png);
 }
 
-#footer #navigation {
-	position: absolute;
-	display: none;
-}
-
 /* -------- Custom Seven Cogs Panels ------------ */
 
 .lfr-panel-container {
 	background: transparent;
 }
 
-/* -------- Custom Seven Cogs Web Content-------- */
+/* -------- Custom Seven Cogs Web Content Mixin -------- */
 
-.aui-view-320 {
-	.lfc-single-image img {
-		margin-bottom: 10px;
-		width: 300px !important;
-	}
-	.all-in-one {
-		height: auto !important;
-		width: 275px !important;
-	}
-	.callout-extraborder img {
-		height: auto !important;
-		padding: 12px !important;
-		width: 280px !important;
+@mixin customContent($viewClass, $width){
+	&.#{$viewClass} {
+		.home .callout-extraborder img {
+			height: auto !important;
+			padding: 12px !important;
+			width: $width - 24px !important;
+		}
 	}
 }
+/* -------- Width Selector Mixin -------- */
 
-.aui-view-480 {
-	.lfc-single-image img {
-		margin-bottom: 10px;
-		width: 380px !important;
-	}
-	.all-in-one {
-		height: auto !important;
-		width: 430px !important;
-	}
-	.home .callout-extraborder img {
-		height: auto !important;
-		padding: 12px !important;
-		width: 440px !important;
-	}
-}
-
-/* -------- Mobile Views Global -------- */
-
-$mobile-width: 360px;
-$mobile-l-width: 600px;
-$margin: 20px;
-
-@function calculated-width($width, $padding) {
-	@return $width - $padding;
-}
-
-.aui-view-4,
-.aui-view-320,
-.aui-view-480 {
-	#breadcrumbs {
-		display: none;
-	}
-}
-
-.aui-view-4,
-.aui-view-320,
-.aui-view-480 {
-	#navigation:after,
-	#navigation:before {
-		clear: both;
-		content: " ";
-		display: block;
-		height: 0;
-		visibility: "hidden";
-	}
-	#navigation {
-		background: none repeat scroll 0 0 transparent;
-		@include border-radius(5px);
-		box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
-		clear: both;
-		color: #444444;
-		display: block;
-		margin: 0 0 40px;
-		padding: 0;
-		position: relative;
-		@include transition-property(color);
-		@include transition-duration(333ms);
-		ul {
-			border: none;
-			display: block;
-			float: none;
-			list-style: none;
-			margin: 0;
-			padding: 0;
-			background: none;
-			li {
+@mixin viewSelector($viewSelector, $width) {
+	&.#{$viewSelector} {
+		#wrapper {
+			margin: 20px auto 0;
+			width: $width !important;
+		}
+		.portlet-layout {
+			display: inline-block;
+			clear: both;
+			.portlet-column {
 				clear: both;
-				color: #444;
-				float: none;
-				a {
-					border-image: none;
-					border-color: transparent transparent transparent transparent;
-					color: inherit;
-					display: block;
-					background: -moz-linear-gradient(#FDFDFD, #EEEEEE) repeat scroll 0 0 #EEEEEE;
-					border-color: #CCCCCC;
-					border-style: solid;
-					border-width: 1px 1px 0;
-					font-size: 16px;
-					line-height: 27px;
-					padding: 9px 20px 8px;
+				float: left;
+				padding: inherit 0 !important;
+				width: $width !important;
+				.portlet-column-content {
+					padding-left: 0;
+					padding-right: 0;
 				}
 			}
-			li a:hover,
-			li.selected a{
-				@include background-image(linear-gradient(top left, #1D4663, #154661));
-				border-color: #5E87B0;
-				color: #FFFFFF;
-			}
-			li.first a {
-				border-radius: 5px 5px 0 0;
-			}
-			li.last a {
-				border-radius: 0 0 5px 5px;
-			}
+		}
+		#navigation li {
+			width: $width !important;
 		}
 	}
 }
 
-/* -------- Mobile Views 320px -------- */
+/* -------- Width Selector Mixin -------- */
 
-.aui-view-4,
-.aui-view-320 {
-	#wrapper {
-		margin: 20px auto 0;
-		width: calculated-width($mobile-width,$margin) !important;
-	}
-	.portlet-layout {
-		display: inline-block;
-		clear: both;
-		.portlet-column {
-			float: left;
-			clear: both;
-			padding: inherit 0 !important;
-			width: calculated-width($mobile-width,$margin) !important;
-			.portlet-column-content {
-				padding-left: 0;
-				padding-right: 0;
+@mixin widthSelector($selector, $sWidth, $mWidth, $lWidth) {
+	html.#{$selector}{
+		@if $selector != device-brand-unknown {	
+			
+/* -------- Custom Seven Cogs Web Content -------- */
+
+			@include customContent("aui-view-4", $sWidth);
+			@include customContent("aui-view-320", $sWidth);
+			@include customContent("aui-view-480", $mWidth);
+			@include customContent("aui-view-720", $lWidth);
+
+/* -------- Seven Cogs Mobile Views -------- */	
+			
+			&.aui-view-4,
+			&.aui-view-320,
+			&.aui-view-480,
+			&.aui-view-720 {
+				#navigation:after,
+				#navigation:before {
+					clear: both;
+					content: " ";
+					display: block;
+					height: 0;
+					visibility: "hidden";
+				}
+				#navigation {
+					background: none repeat scroll 0 0 transparent;
+					@include border-radius(5px);
+					box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+					clear: both;
+					color: #444444;
+					display: block;
+					margin: 0 0 40px;
+					padding: 0;
+					position: relative;
+					@include transition-property(color);
+					@include transition-duration(333ms);
+					ul {
+						display: block;
+						float: none;
+						list-style: none;
+						margin: 0;
+						padding: 0;
+						background: none;
+						li {
+							clear: both;
+							color: #444;
+							float: none;
+							a {
+								border-image: none;
+								border-color: transparent transparent transparent transparent;
+								color: inherit;
+								display: block;
+								@include background-image(linear-gradient(top left, #FDFDFD, #EEEEEE));
+								border-color: #CCCCCC;
+								border-style: solid;
+								border-width: 1px 1px 0;
+								font-size: 16px;
+								line-height: 27px;
+								padding: 9px 20px 8px;
+							}
+						}
+						li a:hover,
+						li.selected a{
+							@include background-image(linear-gradient(top left, #1D4663, #154661));
+							border-color: #5E87B0;
+							color: #FFFFFF;
+						}
+						li.first a {
+							border-radius: 5px 5px 0 0;
+						}
+						li.last a {
+							border-radius: 0 0 5px 5px;
+						}
+					}
+				}
+				#breadcrumbs {
+					display: none;
+				}
 			}
+			@include viewSelector("aui-view-4", $sWidth);
+			@include viewSelector("aui-view-320", $sWidth);
+			@include viewSelector("aui-view-480", $mWidth);
+			@include viewSelector("aui-view-720", $lWidth);
 		}
-	}
-	#navigation li {
-		width: calculated-width($mobile-width, $margin) !important;
 	}
 }
 
-/* -------- Mobile Views 480px -------- */
+/* -------- To target specific mobile devices: -------- */
+/* -------- Download "wurfl-web" from liferay-plugins -------- */
 
-.aui-view-480 {
-	#wrapper {
-		margin: 20px auto 0;
-		width: calculated-width($mobile-l-width, $margin) !important;
-	}
-	.portlet-layout {
-		display: inline-block;
-		clear: both;
-		.portlet-column {
-			clear: both;
-			float: left;
-			padding: inherit 0 !important;
-			width: calculated-width($mobile-l-width, $margin) !important;
-			.portlet-column-content {
-				padding-left: 0;
-				padding-right: 0;
-			}
-		}
-	}
-	#navigation li {
-		width: calculated-width($mobile-l-width, $margin) !important;
-	}
-}
+@include widthSelector("device-os-android.touch", 320px, 580px, 720px);
+@include widthSelector("device-os-iphone-os.touch", 300px, 460px, 720px);
+
+/* -------- Default Mobile -------- */
+
+@include widthSelector("device-brand-unknown", 960px, 960px, 960px);
+@include widthSelector("touch", 300px, 460px, 720px);
