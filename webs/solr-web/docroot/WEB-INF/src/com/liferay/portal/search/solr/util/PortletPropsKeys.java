@@ -19,8 +19,7 @@ package com.liferay.portal.search.solr.util;
  */
 public interface PortletPropsKeys {
 
-	public static final String SOLR_COPY_FIELDS =
-		"solr.copy.field";
+	public static final String SOLR_COPY_FIELDS = "solr.copy.field";
 
 	public static final String SOLR_SORTABLE_TEXT_FIELDS =
 		"solr.sortable.text.fields";
