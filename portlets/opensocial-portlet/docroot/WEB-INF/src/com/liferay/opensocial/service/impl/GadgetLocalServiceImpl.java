@@ -161,10 +161,6 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 		}
 	}
 
-	public Gadget fetchGadget(long gadgetId) throws SystemException {
-		return gadgetPersistence.fetchByPrimaryKey(gadgetId);
-	}
-
 	public Gadget fetchGadget(long companyId, String url)
 		throws SystemException {
 
