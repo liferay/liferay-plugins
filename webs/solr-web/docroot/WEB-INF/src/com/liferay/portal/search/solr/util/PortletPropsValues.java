@@ -23,4 +23,5 @@ public class PortletPropsValues {
 
 	public static final String[] SOLR_SORTABLE_TEXT_FIELDS =
 		PortletProps.getArray(PortletPropsKeys.SOLR_SORTABLE_TEXT_FIELDS);
+
 }

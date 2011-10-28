@@ -372,11 +372,12 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 				String sortFieldName = sort.getFieldName();
 
 				if (ArrayUtil.contains(
-					PortletPropsValues.SOLR_SORTABLE_TEXT_FIELDS,
-					sortFieldName)) {
+						PortletPropsValues.SOLR_SORTABLE_TEXT_FIELDS,
+						sortFieldName)) {
 
 					sortFieldName = GetterUtil.getString(
-						PortletProps.get(PortletPropsKeys.SOLR_COPY_FIELDS,
+						PortletProps.get(
+							PortletPropsKeys.SOLR_COPY_FIELDS,
 							new Filter(sortFieldName)));
 				}
 

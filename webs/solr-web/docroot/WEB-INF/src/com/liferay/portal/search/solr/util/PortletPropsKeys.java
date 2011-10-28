@@ -24,4 +24,5 @@ public interface PortletPropsKeys {
 
 	public static final String SOLR_SORTABLE_TEXT_FIELDS =
 		"solr.sortable.text.fields";
+
 }
