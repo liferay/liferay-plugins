@@ -59,10 +59,13 @@
 		<field name="comments" type="text" indexed="true" stored="true" />
 		<field name="content" type="text" indexed="true" stored="true" />
 		<field name="description" type="text" indexed="true" stored="true" />
-		<field name="firstName" type="string" indexed="true" stored="true" />
-		<field name="lastName" type="string" indexed="true" stored="true" />
+		<field name="firstName" type="text" indexed="true" stored="true" />
+		<field name="firstName_string" type="string" indexed="true" stored="true" />
+		<field name="lastName" type="text" indexed="true" stored="true" />
+		<field name="lastName_string" type="string" indexed="true" stored="true" />
 		<field name="leftOrganizationId" type="slong" indexed="true" stored="true" />
-		<field name="name" type="string" indexed="true" stored="true" />
+		<field name="name" type="text" indexed="true" stored="true" />
+		<field name="name_string" type="string" indexed="true" stored="true" />
 		<field name="properties" type="string" indexed="true" stored="true" />
 		<field name="rightOrganizationId" type="slong" indexed="true" stored="true" />
 		<field name="title" type="text" indexed="true" stored="true" />
@@ -76,6 +79,9 @@
 		<dynamicField name="expando/*" type="text" indexed="true" multiValued="true" stored="true" />
 		<dynamicField name="web_content/*" type="text" indexed="true" stored="true" />
 	</fields>
+	<copyField source="firstName" dest="firstName_string" />
+	<copyField source="lastName" dest="lastName_string" />
+	<copyField source="name" dest="name_string" />
 	<uniqueKey>uid</uniqueKey>
 	<defaultSearchField>content</defaultSearchField>
 	<solrQueryParser defaultOperator="OR" />
