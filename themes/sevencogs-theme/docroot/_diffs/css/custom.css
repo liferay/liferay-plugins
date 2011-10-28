@@ -540,8 +540,7 @@ a:focus .callout-extraborder {
 	}
 }
 
-/* -------- To target specific mobile devices: -------- */
-/* -------- Download "wurfl-web" from liferay-plugins -------- */
+/* -------- Depends on wurfl-web -------- */
 
 @include widthSelector("device-os-android.touch", 320px, 580px, 720px);
 @include widthSelector("device-os-iphone-os.touch", 300px, 460px, 720px);
