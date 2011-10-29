@@ -347,6 +347,11 @@ AUI().use(
 								if (lastRead < entry.createDate) {
 									instance._unreadMessages++;
 								}
+								
+								Liferay.Chat.Manager.notify(
+									Liferay.Chat.Util.getUserImagePath(instance._panelIcon),
+									"New Message from " + instance._panelTitle,
+									entry.content.replace(/\n/g, ' '));
 							}
 
 							instance.setAsUnread();
@@ -568,6 +573,8 @@ AUI().use(
 				instance._sound = new SWFObject('/chat-portlet/alert.swf', 'alertsound', '0', '0', '8');
 				instance._soundContainer = instance._chatContainer.one('.chat-sound');
 
+				instance._notificationTimeout = 8000;
+
 				instance._updatePresenceTask = A.debounce(instance._updatePresence, 30000, instance);
 
 				instance._updatePresenceTask.delay(0);
@@ -603,6 +610,21 @@ AUI().use(
 				var instance = this;
 
 				return instance._tabsContainer;
+			},
+			
+			notify: function(iconUrl, title, body) {
+				var instance = this;
+				
+				if (A.config.win.webkitNotifications.checkPermission() === 0) {
+					var notification = A.config.win.webkitNotifications.createNotification(iconUrl, title, body);
+					
+					notification.show();
+
+					setTimeout(
+						function() {
+							notification.cancel();
+					}, instance._notificationTimeout);
+				}
 			},
 
 			registerBuddyService: function(options) {
@@ -839,10 +861,22 @@ AUI().use(
 				instance._statusMessageObj = settingsPanel.one('#statusMessage');
 				instance._onlineObj = settingsPanel.one('#onlineStatus');
 				instance._playSoundObj = settingsPanel.one('#playSound');
+				instance._notifyObj = settingsPanel.one('#notify');
 
 				instance._statusMessage = instance._statusMessageObj.val() || '';
 				instance._online = instance._onlineObj.get('checked') ? 1 : 0;
 				instance._playSound = instance._playSoundObj.get('checked') ? 1 : 0;
+				
+				if(A.config.win.webkitNotifications) {
+					var notifyPermission = A.config.win.webkitNotifications.checkPermission();
+					
+					if (notifyPermission === 0) {
+						instance._notifyObj.set('checked', 1);
+					} else if (notifyPermission === 1) {
+						instance._notifyObj.set('disabled', 0);
+					}
+				}
+				
 
 				saveSettings.on('click', instance._updateSettings, instance);
 			},
@@ -1138,6 +1172,14 @@ AUI().use(
 				instance._statusMessage = instance._statusMessageObj.val();
 				instance._online = instance._onlineObj.get('checked') ? 1 : 0;
 				instance._playSound = instance._playSoundObj.get('checked') ? 1 : 0;
+				
+				if (instance._notifyObj.get('checked') &&
+						A.config.win.webkitNotifications.checkPermission() === 1) {
+					A.config.win.webkitNotifications.requestPermission(function() {
+						instance._notifyObj.set('checked', 1);
+						instance._notifyObj.set('disabled', 1);
+					});
+				}
 
 				instance._activePanelId = '';
 
