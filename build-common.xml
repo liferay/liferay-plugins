@@ -50,11 +50,7 @@
 			<equals arg1="${correct.ant.version}" arg2="true" />
 		</not>
 		<then>
-			<fail>
-.
-
-Please use Ant 1.7.0 or above.
-			</fail>
+			<fail>Please use Ant 1.7.0 or above.</fail>
 		</then>
 	</if>
 

@@ -34,7 +34,7 @@
 				<if>
 					<available file="${hook.dir}" />
 					<then>
-						<fail message="${hook.name}-hook already exists." />
+						<fail>${hook.name}-hook already exists.</fail>
 					</then>
 				</if>
 

@@ -34,7 +34,7 @@
 				<if>
 					<available file="${theme.dir}" />
 					<then>
-						<fail message="${theme.name}-theme already exists." />
+						<fail>${theme.name}-theme already exists.</fail>
 					</then>
 				</if>
 

@@ -34,7 +34,7 @@
 				<if>
 					<available file="${layouttpl.dir}" />
 					<then>
-						<fail message="${layouttpl.name}-layouttpl already exists." />
+						<fail>${layouttpl.name}-layouttpl already exists.</fail>
 					</then>
 				</if>
 

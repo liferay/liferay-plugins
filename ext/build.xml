@@ -12,7 +12,7 @@
 				<isset property="ext.name" />
 			</not>
 			<then>
-				<fail message="This task must be called by create.bat." />
+				<fail>This task must be called by create.bat.</fail>
 			</then>
 			<else>
 				<if>
@@ -29,7 +29,7 @@
 				<if>
 					<available file="${ext.plugin.dir}" />
 					<then>
-						<fail message="${ext.name}-ext already exists." />
+						<fail>${ext.name}-ext already exists.</fail>
 					</then>
 				</if>
 
@@ -73,7 +73,7 @@ exist.
 		<if>
 			<available file="${ext.name}-ext" />
 			<then>
-				<fail message="${ext.name}-ext already exists." />
+				<fail>${ext.name}-ext already exists.</fail>
 			</then>
 		</if>
 
