@@ -34,7 +34,7 @@
 				<if>
 					<available file="${portlet.dir}" />
 					<then>
-						<fail message="${portlet.dir} already exists." />
+						<fail>${portlet.dir} already exists.</fail>
 					</then>
 				</if>
 
