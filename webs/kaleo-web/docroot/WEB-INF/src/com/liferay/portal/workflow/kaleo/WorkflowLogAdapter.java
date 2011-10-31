@@ -25,6 +25,7 @@ import com.liferay.portal.workflow.kaleo.util.KaleoLogUtil;
 public class WorkflowLogAdapter extends DefaultWorkflowLog {
 
 	public WorkflowLogAdapter(KaleoLog kaleoLogEntry) {
+		setAuditUserId(kaleoLogEntry.getUserId());
 		setComment(kaleoLogEntry.getComment());
 		setCreateDate(kaleoLogEntry.getCreateDate());
 		setPreviousState(kaleoLogEntry.getPreviousKaleoNodeName());
