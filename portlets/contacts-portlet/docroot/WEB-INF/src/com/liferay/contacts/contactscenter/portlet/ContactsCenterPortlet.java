@@ -175,17 +175,16 @@ public class ContactsCenterPortlet extends MVCPortlet {
 		Group group = themeDisplay.getScopeGroup();
 		Layout layout = themeDisplay.getLayout();
 
-		LinkedHashMap<String, Object> params = null;
+		LinkedHashMap<String, Object> params =
+			new LinkedHashMap<String, Object>();
 
 		if (group.isUser() && layout.isPublicLayout()) {
-			params = new LinkedHashMap<String, Object>();
 			params.put(
 				"socialRelation",
 				new Long[] {group.getClassPK()});
 		}
 		else {
 			if (socialRelationType != 0) {
-				params = new LinkedHashMap<String, Object>();
 				params.put(
 					"socialRelationType",
 					new Long[] {themeDisplay.getUserId(),

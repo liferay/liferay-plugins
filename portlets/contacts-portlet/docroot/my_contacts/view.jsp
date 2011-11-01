@@ -71,7 +71,7 @@ Group group = themeDisplay.getScopeGroup();
 								</div>
 							</div>
 
-							<div class="clear"></div>
+							<div class="clear"><!-- --></div>
 						</aui:layout>
 
 					<%
