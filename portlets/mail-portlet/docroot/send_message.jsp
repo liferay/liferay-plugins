@@ -14,6 +14,62 @@
  */
 --%>
 
+<%@page import="com.liferay.portal.service.persistence.PortletUtil"%>
 <%@ include file="/init.jsp" %>
 
-<%= ParamUtil.getString(request, "responseData") %>
+<%
+
+String portletNamespace = "_1_WAR_mailportlet_";
+		 
+MailManager mailManager = MailManager.getInstance(request);
+
+List<MailFile> mailFiles = new ArrayList<MailFile>();
+
+UploadServletRequest uploadServletRequest =
+	PortalUtil.getUploadServletRequest(request);
+
+long accountId = ParamUtil.getLong(uploadServletRequest, portletNamespace + "accountId");
+long messageId = ParamUtil.getLong(uploadServletRequest, portletNamespace + "messageId");
+String to = ParamUtil.getString(uploadServletRequest, portletNamespace + "to");
+String cc = ParamUtil.getString(uploadServletRequest, portletNamespace + "cc");
+String bcc = ParamUtil.getString(uploadServletRequest, portletNamespace + "bcc");
+String subject = ParamUtil.getString(uploadServletRequest, portletNamespace + "subject");
+String body = ParamUtil.getString(uploadServletRequest, portletNamespace + "body");
+
+int attachmentCount = ParamUtil.getInteger(
+		uploadServletRequest, portletNamespace + "attachmentCount");
+
+JSONObject responseDataJSONObject = null;
+
+try {
+	for (int i = 1; i <= attachmentCount; i++) {
+		File file = uploadServletRequest.getFile(
+				portletNamespace + "attachment" + i, true);
+		
+		String fileName = uploadServletRequest.getFileName(
+				portletNamespace + "attachment" + i);
+
+ 		long size = uploadServletRequest.getSize(portletNamespace + "attachment" + i);
+
+		if (file == null) {
+			continue;
+		}
+
+		MailFile mailFile = new MailFile(file, fileName, size);
+
+		mailFiles.add(mailFile);
+	}
+	if (mailManager != null) {
+		responseDataJSONObject = mailManager.sendMessage(
+				accountId, messageId, to, cc, bcc, subject, body, mailFiles);
+	}
+}
+finally {
+	for (MailFile mailFile : mailFiles) {
+		mailFile.cleanUp();
+	}
+}
+
+%>
+<%= responseDataJSONObject %>
+

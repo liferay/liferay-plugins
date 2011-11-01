@@ -110,7 +110,7 @@ else {
 	</div>
 
 	<aui:button-row>
-		<aui:button type="submit" value="send" />
+		<aui:button cssClass="send-message" data-messageId="<%= messageId %>" value="send" />
 
 		<aui:button cssClass="save-draft" data-messageId="<%= messageId %>" value="save" />
 
@@ -124,13 +124,12 @@ else {
 	}
 </aui:script>
 
-<aui:script use="aui-base,aui-io">
+<aui:script use="aui-base,aui-io,aui-io-upload">
 	var form = A.one('#<portlet:namespace />fm');
 
-	form.on(
-		'submit',
+	form.one('.send-message').on(
+		'click',
 		function(event) {
-			event.preventDefault();
 
 			Liferay.Mail.setStatus('info', '<liferay-ui:message key="sending-message" />', true);
 
@@ -139,8 +138,9 @@ else {
 			document.<portlet:namespace />fm.<portlet:namespace />body.value = window.<portlet:namespace />editor.getHTML();
 
 			A.io.request(
-				form.getAttribute('action'),
+				themeDisplay.getLayoutURL() + '/-/mail/send_message',
 				{
+					method: 'POST',
 					dataType: 'json',
 					form: {
 						id: form.getDOM(),
@@ -158,7 +158,7 @@ else {
 								}
 							}
 							catch (e) {
-								Liferay.Mail.setStatus('error', '<liferay-ui:message key="unable-to-connect-with-mail-server" />');
+								Liferay.Mail.setStatus('error', '<liferay-ui:message key="unable-to-send-message" />');
 							}
 						}
 					}
@@ -183,7 +183,7 @@ else {
 					},
 					on: {
 						failure: function(event, id, obj) {
-							Liferay.Mail.setStatus('error', '<liferay-ui:message key="unable-to-connect-with-mail-server" />');
+							Liferay.Mail.setStatus('error', '<liferay-ui:message key="unable-to-save-draft" />');
 						},
 						success: function(event, id, obj) {
 							var responseData = this.get('responseData');
