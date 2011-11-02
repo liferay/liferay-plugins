@@ -17,13 +17,13 @@
 <%@ include file="/init.jsp" %>
 
 <%
-
 MailManager mailManager = MailManager.getInstance(request);
 
-List<MailFile> mailFiles = new ArrayList<MailFile>();
+if (mailManager == null) {
+	return;
+}
 
-UploadPortletRequest uploadPortletRequest =
-	PortalUtil.getUploadPortletRequest(liferayPortletRequest);
+UploadPortletRequest uploadPortletRequest = PortalUtil.getUploadPortletRequest(liferayPortletRequest);
 
 long accountId = ParamUtil.getLong(uploadPortletRequest, "accountId");
 long messageId = ParamUtil.getLong(uploadPortletRequest, "messageId");
@@ -33,10 +33,9 @@ String bcc = ParamUtil.getString(uploadPortletRequest, "bcc");
 String subject = ParamUtil.getString(uploadPortletRequest, "subject");
 String body = ParamUtil.getString(uploadPortletRequest, "body");
 
-int attachmentCount = ParamUtil.getInteger(
-	 uploadPortletRequest, "attachmentCount");
+int attachmentCount = ParamUtil.getInteger(uploadPortletRequest, "attachmentCount");
 
-JSONObject responseDataJSONObject = null;
+List<MailFile> mailFiles = new ArrayList<MailFile>();
 
 try {
 	for (int i = 1; i <= attachmentCount; i++) {
@@ -56,16 +55,15 @@ try {
 
 		mailFiles.add(mailFile);
 	}
-	if (mailManager != null) {
-		responseDataJSONObject = mailManager.sendMessage(
-				accountId, messageId, to, cc, bcc, subject, body, mailFiles);
-	}
+%>
+
+	<%= mailManager.sendMessage(accountId, messageId, to, cc, bcc, subject, body, mailFiles) %>
+
+<%
 }
 finally {
 	for (MailFile mailFile : mailFiles) {
 		mailFile.cleanUp();
 	}
 }
-
 %>
-<%= responseDataJSONObject %>

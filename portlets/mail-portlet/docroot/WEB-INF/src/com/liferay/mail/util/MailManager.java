@@ -637,6 +637,9 @@ public class MailManager {
 
 			return createJSONResult("success", "sent-successfully");
 		}
+		catch (FileSizeException fse) {
+			return createJSONResult("failure", "attachment-is-too-large");
+		}
 		catch (MailException me) {
 			if (me.getType() == MailException.MESSAGE_HAS_NO_RECIPIENTS) {
 				return createJSONResult(
@@ -653,9 +656,6 @@ public class MailManager {
 			_log.error(me, me);
 
 			return createJSONResult("failure", "unable-to-send-message");
-		}
-		catch (FileSizeException fse) {
-			return createJSONResult("failure", "unable-to-send-message-file-size-too-big");
 		}
 	}
 
