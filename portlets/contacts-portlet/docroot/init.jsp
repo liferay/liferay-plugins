@@ -24,8 +24,10 @@
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 <%@ taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 
-<%@ page import="com.liferay.contacts.util.ContactsExtensionsUtil" %><%@
+<%@ page import="com.liferay.contacts.util.ContactsConstants" %><%@
+page import="com.liferay.contacts.util.ContactsExtensionsUtil" %><%@
 page import="com.liferay.contacts.util.WebKeys" %><%@
+page import="com.liferay.portal.kernel.dao.orm.QueryUtil" %><%@
 page import="com.liferay.portal.kernel.dao.search.SearchContainer" %><%@
 page import="com.liferay.portal.kernel.language.LanguageUtil" %><%@
 page import="com.liferay.portal.kernel.portlet.LiferayWindowState" %><%@
@@ -43,6 +45,7 @@ page import="com.liferay.portal.model.Address" %><%@
 page import="com.liferay.portal.model.Contact" %><%@
 page import="com.liferay.portal.model.EmailAddress" %><%@
 page import="com.liferay.portal.model.Group" %><%@
+page import="com.liferay.portal.model.GroupConstants" %><%@
 page import="com.liferay.portal.model.Layout" %><%@
 page import="com.liferay.portal.model.Phone" %><%@
 page import="com.liferay.portal.model.Portlet" %><%@
@@ -51,6 +54,7 @@ page import="com.liferay.portal.model.Website" %><%@
 page import="com.liferay.portal.security.permission.ActionKeys" %><%@
 page import="com.liferay.portal.service.AddressServiceUtil" %><%@
 page import="com.liferay.portal.service.EmailAddressServiceUtil" %><%@
+page import="com.liferay.portal.service.GroupLocalServiceUtil" %><%@
 page import="com.liferay.portal.service.LayoutLocalServiceUtil" %><%@
 page import="com.liferay.portal.service.PhoneServiceUtil" %><%@
 page import="com.liferay.portal.service.PortletLocalServiceUtil" %><%@
@@ -69,7 +73,8 @@ page import="com.liferay.portlet.social.service.SocialActivityLocalServiceUtil" 
 page import="com.liferay.portlet.social.service.SocialRelationLocalServiceUtil" %><%@
 page import="com.liferay.portlet.social.service.SocialRequestLocalServiceUtil" %>
 
-<%@ page import="java.util.LinkedHashMap" %><%@
+<%@ page import="java.util.ArrayList" %><%@
+page import="java.util.LinkedHashMap" %><%@
 page import="java.util.List" %><%@
 page import="java.util.Map" %><%@
 page import="java.util.Set" %>
@@ -96,12 +101,9 @@ if (Validator.isNotNull(portletResource)) {
 
 String currentURL = PortalUtil.getCurrentURL(request);
 
-int maxResultCount = 200;
+int displayStyle = PrefsParamUtil.getInteger(preferences, request, "displayStyle", ContactsConstants.DISPLAY_STYLE_FULL);
 
-boolean showSimpleUserInformation = PrefsParamUtil.getBoolean(preferences, request, "showSimpleUserInformation", true);
-boolean showSocialActions = PrefsParamUtil.getBoolean(preferences, request, "showSocialActions", true);
-boolean showUsersIcon = PrefsParamUtil.getBoolean(preferences, request, "showUsersIcon", true);
-boolean showUsersInformation = PrefsParamUtil.getBoolean(preferences, request, "showUsersInformation", true);
+int maxResultCount = 200;
 
 boolean showAdditionalEmailAddresses = PrefsParamUtil.getBoolean(preferences, request, "showAdditionalEmailAddresses", true);
 boolean showAddresses = PrefsParamUtil.getBoolean(preferences, request, "showAddresses", true);
@@ -110,7 +112,9 @@ boolean showInstantMessenger = PrefsParamUtil.getBoolean(preferences, request, "
 boolean showPhones = PrefsParamUtil.getBoolean(preferences, request, "showPhones", true);
 boolean showSMS = PrefsParamUtil.getBoolean(preferences, request, "showSMS", true);
 boolean showSocialNetwork = PrefsParamUtil.getBoolean(preferences, request, "showSocialNetwork", true);
+boolean showUsersIcon = PrefsParamUtil.getBoolean(preferences, request, "showUsersIcon", true);
+boolean showUsersRecentActivity = PrefsParamUtil.getBoolean(preferences, request, "showUsersRecentActivity", true);
+boolean showUsersSites = PrefsParamUtil.getBoolean(preferences, request, "showUsersSites", true);
 boolean showWebsites = PrefsParamUtil.getBoolean(preferences, request, "showWebsites", true);
 
-boolean showUsersRecentActivity = PrefsParamUtil.getBoolean(preferences, request, "showUsersRecentActivity", true);
 %>

@@ -266,6 +266,11 @@ $section-header-bg: #CCE6F7;
 		width: 110px;
 	}
 
+	.user-sites-title {
+		color: #666;
+		font-size: 1.5em;
+	}
+
 	.lfr-user-comments {
 		float: none;
 		width: 100%;
@@ -286,7 +291,7 @@ $section-header-bg: #CCE6F7;
 	}
 
 	.lfr-user-profile-preferences {
-		margin-left: 20px;
+		margin-top: 10px;
 	}
 
 	.export-group {
@@ -362,6 +367,7 @@ $section-header-bg: #CCE6F7;
 	.lfr-members-grid-item .lfr-user-data-extra {
 		white-space: nowrap
 	}
+
 	.edit-profile {
 		cursor: pointer;
 	}

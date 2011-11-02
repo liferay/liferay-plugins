@@ -23,7 +23,11 @@
 		<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
 
 		<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" persistState="<%= true %>" title="user-profile">
-			<aui:input name="preferences--showUsersInformation--" type="checkbox" value="<%= showUsersInformation %>" />
+			<aui:select label="display-style" name="preferences--displayStyle--">
+				<aui:option label="<%= ContactsConstants.DISPLAY_STYLE_FULL_LABEL %>" selected="<%= displayStyle == ContactsConstants.DISPLAY_STYLE_FULL %>" value="<%= ContactsConstants.DISPLAY_STYLE_FULL %>" />
+				<aui:option label="<%= ContactsConstants.DISPLAY_STYLE_BASIC_LABEL %>" selected="<%= displayStyle == ContactsConstants.DISPLAY_STYLE_BASIC %>" value="<%= ContactsConstants.DISPLAY_STYLE_BASIC %>" />
+				<aui:option label="<%= ContactsConstants.DISPLAY_STYLE_DETAIL_LABEL %>" selected="<%= displayStyle == ContactsConstants.DISPLAY_STYLE_DETAIL %>" value="<%= ContactsConstants.DISPLAY_STYLE_DETAIL %>" />
+			</aui:select>
 
 			<aui:field-wrapper cssClass="lfr-user-profile-preferences">
 				<aui:column>
@@ -34,20 +38,24 @@
 					<aui:input name="preferences--showComments--" type="checkbox" value="<%= showComments %>" />
 
 					<aui:input name="preferences--showInstantMessenger--" type="checkbox" value="<%= showInstantMessenger %>" />
-				</aui:column>
 
-				<aui:column>
 					<aui:input name="preferences--showPhones--" type="checkbox" value="<%= showPhones %>" />
 
 					<aui:input label="show-sms" name="preferences--showSMS--" type="checkbox" value="<%= showSMS %>" />
+				</aui:column>
 
+				<aui:column>
 					<aui:input name="preferences--showSocialNetwork--" type="checkbox" value="<%= showSocialNetwork %>" />
+
+					<aui:input label="show-users-icon" name="preferences--showUsersIcon--" type="checkbox" value="<%= showUsersIcon %>" />
+
+					<aui:input name="preferences--showUsersRecentActivity--" type="checkbox" value="<%= showUsersRecentActivity %>" />
+
+					<aui:input label="show-users-sites" name="preferences--showUsersSites--" type="checkbox" value="<%= showUsersSites %>" />
 
 					<aui:input name="preferences--showWebsites--" type="checkbox" value="<%= showWebsites %>" />
 				</aui:column>
 			</aui:field-wrapper>
-
-			<aui:input name="preferences--showUsersRecentActivity--" type="checkbox" value="<%= showUsersRecentActivity %>" />
 		</liferay-ui:panel>
 
 		<aui:button type="submit" />
