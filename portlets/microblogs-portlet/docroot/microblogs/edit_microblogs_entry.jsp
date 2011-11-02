@@ -61,7 +61,8 @@ if ((microblogsEntry != null) && (reply || repost)) {
 }
 
 String header = "whats-happening";
-String highlighterDivClass = "highlighter-content";
+
+String cssClassName = "highlighter-content";
 String formName = "dialogFm";
 
 boolean view = false;
@@ -76,8 +77,8 @@ else if (reply) {
 	header = "what-do-you-want-to-say-to-x";
 }
 else {
+	cssClassName = "highlighter-content textbox";
 	formName = "fm";
-	highlighterDivClass = "highlighter-content textbox";
 
 	view = true;
 }
@@ -145,7 +146,7 @@ header = LanguageUtil.format(pageContext, header, receiverUserFullName);
 		<div class="autocomplete" id="<portlet:namespace />autocomplete">
 			<div id="<portlet:namespace />autocompleteContent"></div>
 
-			<div class="<%= highlighterDivClass %>" id="<portlet:namespace />highlighterContent"> </div>
+			<div class="<%= cssClassName %>" id="<portlet:namespace />highlighterContent"></div>
 		</div>
 
 		<aui:input label="" name="content" type="hidden" />

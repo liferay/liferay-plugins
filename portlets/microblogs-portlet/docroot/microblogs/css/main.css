@@ -68,18 +68,21 @@
 
 .microblogs-portlet .highlighter-content span {
 	display: inline-block;
-	filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0);
 	white-space: pre;
+}
+
+.ie .microblogs-portlet .highlighter-content span {
+	filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0);
 }
 
 .microblogs-portlet .aui-field-input-text {
 	background: none transparent;
 	border: none;
 	min-width: 99%;
+	outline: none;
 	position: absolute;
 	resize: none;
 	top: 0;
-	outline: none;
 	z-index: 999;
 }
 
@@ -101,8 +104,7 @@
 	margin-top: 10px;
 }
 
-.microblogs-portlet .microblogs-container,
-.microblogs-portlet .microblogs-status-container {
+.microblogs-portlet .microblogs-container, .microblogs-portlet .microblogs-status-container {
 	margin-top: 10px;
 }
 
