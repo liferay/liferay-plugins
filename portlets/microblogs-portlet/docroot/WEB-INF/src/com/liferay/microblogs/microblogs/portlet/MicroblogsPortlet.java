@@ -22,6 +22,7 @@ import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.util.bridges.mvc.MVCPortlet;
+import com.liferay.portal.kernel.util.StringPool;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -86,7 +87,7 @@ public class MicroblogsPortlet extends MVCPortlet {
 	protected String[] getAssetTagNames(String content) {
 		List<String> assetTagNames = new ArrayList<String>();
 
-		Matcher matcher = _pattern.matcher(content);
+		Matcher matcher = _tagPattern.matcher(content);
 
 		while (matcher.find()) {
 			String assetTagName = matcher.group();
@@ -96,9 +97,21 @@ public class MicroblogsPortlet extends MVCPortlet {
 			assetTagNames.add(assetTagName);
 		}
 
+		matcher = _userTagPattern.matcher(content);
+
+		while (matcher.find()) {
+			String assetTagName = matcher.group();
+
+			assetTagName = assetTagName.replace("[@", StringPool.BLANK);
+			assetTagName = assetTagName.replace("]", StringPool.BLANK);
+
+			assetTagNames.add(assetTagName);
+		}
+
 		return assetTagNames.toArray(new String[assetTagNames.size()]);
 	}
 
-	private Pattern _pattern = Pattern.compile("[#|@]\\S*");
+	private Pattern _tagPattern = Pattern.compile("\\#\\S*");
+	private Pattern _userTagPattern = Pattern.compile("\\[\\@\\S*\\]");
 
 }

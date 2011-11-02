@@ -55,11 +55,16 @@ for (MicroblogsEntry microblogsEntry : microblogsEntries) {
 
 		<div class="<%= (themeDisplay.getUserId() == microblogsEntry.getUserId()) ? "my-entry-bubble" : "entry-bubble" %> ">
 			<div class="user-name">
-				<span><%= userFullName %></span> <span class="small">(<%= userScreenName %>)</span>
+				<span><a href="<%= userDisplayURL %>"><%= userFullName %></a></span>
 
-				<c:if test="<%= microblogsEntry.getType() == MicroblogsEntryConstants.TYPE_REPOST %>">
-					<span class="small"><liferay-ui:message key="reposted-from" /></span> <span><%= PortalUtil.getUserName(microblogsEntry.getReceiverUserId(), StringPool.BLANK) %></span>
-				</c:if>
+				<c:choose>
+					<c:when test="<%= microblogsEntry.getType() == MicroblogsEntryConstants.TYPE_REPOST %>">
+						<span class="small"><liferay-ui:message key="reposted-from" /></span> <span><%= PortalUtil.getUserName(microblogsEntry.getReceiverUserId(), StringPool.BLANK) %></span>
+					</c:when>
+					<c:otherwise>
+						<span class="small"><liferay-ui:message key="says" /></span>
+					</c:otherwise>
+				</c:choose>
 
 				<%
 				int replyCount = MicroblogsEntryLocalServiceUtil.getReceiverMicroblogsEntryMicroblogsEntriesCount(MicroblogsEntryConstants.TYPE_REPLY, microblogsEntry.getMicroblogsEntryId());
@@ -101,38 +106,55 @@ for (MicroblogsEntry microblogsEntry : microblogsEntries) {
 				<%
 				String content = microblogsEntry.getContent();
 
-				Pattern pattern = Pattern.compile("[#|@]\\S*");
+				Pattern pattern = Pattern.compile("\\#\\S*");
 
 				Matcher matcher = pattern.matcher(content);
-
-				PortletURL viewURL = renderResponse.createRenderURL();
-
-				viewURL.setWindowState(LiferayWindowState.NORMAL);
-
-				viewURL.setParameter("jspPage", "/microblogs/view.jsp");
 
 				while (matcher.find()) {
 					String result = matcher.group();
 
 					String assetTagName = result.substring(1);
 
-					if (result.startsWith("#")) {
-						viewURL.setParameter("assetTagName", assetTagName);
-					}
-					else if (result.startsWith("@")) {
-						try {
-							User taggedUser = UserLocalServiceUtil.getUserByScreenName(microblogsEntry.getCompanyId(), assetTagName);
+					PortletURL viewURL = renderResponse.createRenderURL();
 
-							assetTagName = PortalUtil.getUserName(taggedUser.getUserId(), assetTagName);
+					viewURL.setWindowState(LiferayWindowState.NORMAL);
 
-							viewURL.setParameter("receiverUserId", String.valueOf(taggedUser.getUserId()));
-						}
-						catch (NoSuchUserException nsue) {
-							viewURL.setParameter("receiverUserId", String.valueOf(0));
-						}
-					}
-
+					viewURL.setParameter("jspPage", "/microblogs/view.jsp");
+					viewURL.setParameter("assetTagName", assetTagName);
 					viewURL.setParameter("tabs1", assetTagName);
+
+					content = StringUtil.replace(content, result, "<a href=\"" + viewURL + "\">" + assetTagName + "</a>");
+				}
+
+				pattern = Pattern.compile("\\[\\@\\S*\\]");
+
+				matcher = pattern.matcher(content);
+
+				while (matcher.find()) {
+					String result = matcher.group();
+
+					String assetTagName = result.replace("[@", StringPool.BLANK);
+
+					assetTagName = assetTagName.replace("]", StringPool.BLANK);
+
+					PortletURL viewURL = renderResponse.createRenderURL();
+
+					viewURL.setWindowState(LiferayWindowState.NORMAL);
+
+					viewURL.setParameter("jspPage", "/microblogs/view.jsp");
+					viewURL.setParameter("assetTagName", assetTagName);
+					viewURL.setParameter("tabs1", assetTagName);
+
+					try {
+						User taggedUser = UserLocalServiceUtil.getUserByScreenName(microblogsEntry.getCompanyId(), assetTagName);
+
+						assetTagName = PortalUtil.getUserName(taggedUser.getUserId(), assetTagName);
+
+						viewURL.setParameter("receiverUserId", String.valueOf(taggedUser.getUserId()));
+					}
+					catch (NoSuchUserException nsue) {
+						viewURL.setParameter("receiverUserId", String.valueOf(0));
+					}
 
 					content = StringUtil.replace(content, result, "<a href=\"" + viewURL + "\">" + assetTagName + "</a>");
 				}
