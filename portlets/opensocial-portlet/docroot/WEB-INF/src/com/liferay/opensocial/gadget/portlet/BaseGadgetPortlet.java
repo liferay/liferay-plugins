@@ -18,11 +18,11 @@ import com.liferay.opensocial.model.Gadget;
 import com.liferay.opensocial.shindig.util.ShindigUtil;
 import com.liferay.opensocial.util.WebKeys;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.Portlet;
 import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.Role;
 import com.liferay.portal.model.RoleConstants;
-import com.liferay.portal.model.User;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.service.PortletLocalServiceUtil;
 import com.liferay.portal.service.ResourcePermissionLocalServiceUtil;
@@ -81,12 +81,13 @@ public abstract class BaseGadgetPortlet extends MVCPortlet {
 			WebKeys.THEME_DISPLAY);
 
 		ExpandoTable expandoTable = ExpandoTableLocalServiceUtil.getTable(
-			themeDisplay.getCompanyId(), User.class.getName(),
+			themeDisplay.getCompanyId(), Layout.class.getName(),
 			ShindigUtil.getTableOpenSocial());
 
 		String namespace = renderResponse.getNamespace();
 
-		String columnName = ShindigUtil.getColumnUserPrefs(namespace);
+		String columnName = ShindigUtil.getColumnUserPrefs(
+			namespace, themeDisplay);
 
 		ExpandoColumn expandoColumn = ExpandoColumnLocalServiceUtil.getColumn(
 			expandoTable.getTableId(), columnName);

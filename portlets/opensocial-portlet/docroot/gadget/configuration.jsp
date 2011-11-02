@@ -21,7 +21,7 @@ Map<String, UserPref> userPrefs = (Map<String, UserPref>)renderRequest.getAttrib
 
 String namespace = ShindigUtil.getPortletResourceNamespace(renderRequest, themeDisplay);
 
-JSONObject jsonObject = ExpandoValueServiceUtil.getJSONData(themeDisplay.getCompanyId(), User.class.getName(), ShindigUtil.getTableOpenSocial(), ShindigUtil.getColumnUserPrefs(namespace), themeDisplay.getUserId());
+JSONObject jsonObject = ExpandoValueServiceUtil.getJSONData(themeDisplay.getCompanyId(), Layout.class.getName(), ShindigUtil.getTableOpenSocial(), ShindigUtil.getColumnUserPrefs(namespace, themeDisplay), themeDisplay.getLayout().getLayoutId());
 %>
 
 <liferay-portlet:actionURL portletConfiguration="true" var="configurationURL" />

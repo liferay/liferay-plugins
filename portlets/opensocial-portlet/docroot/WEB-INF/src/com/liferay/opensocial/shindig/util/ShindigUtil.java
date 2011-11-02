@@ -122,8 +122,19 @@ public class ShindigUtil {
 		return securityToken;
 	}
 
-	public static String getColumnUserPrefs(String namespace) {
-		return _COLUMN_USER_PREFS.concat(namespace);
+	public static String getColumnUserPrefs(
+		String namespace, ThemeDisplay themeDisplay) {
+
+		StringBuilder sb = new StringBuilder(3);
+
+		sb.append(_COLUMN_USER_PREFS);
+		sb.append(namespace);
+
+		Layout layout = themeDisplay.getLayout();
+
+		sb.append(layout.getLayoutId());
+
+		return sb.toString();
 	}
 
 	public static String getFileEntryURL(String portalURL, long fileEntryId)
