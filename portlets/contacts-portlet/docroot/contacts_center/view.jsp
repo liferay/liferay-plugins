@@ -17,7 +17,7 @@
 <%@ include file="/init.jsp" %>
 
 <%
-int socialRelationType = ParamUtil.getInteger(request, "socialRelationType", 0);
+int socialRelationType = ParamUtil.getInteger(request, "socialRelationType");
 
 String name = ParamUtil.getString(request, "name");
 
@@ -47,7 +47,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 %>
 
 <c:choose>
-	<c:when test="<%= userPublicPage && usersCount <= 0 %>">
+	<c:when test="<%= userPublicPage && (usersCount <= 0) %>">
 		<aui:layout cssClass="contacts-center-home">
 			<h3 class="header-title">
 				<liferay-ui:message arguments="<%= new Object[] {group.getDescriptiveName(), String.valueOf(usersCount)} %>" key="x-has-no-contacts" />

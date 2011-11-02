@@ -148,7 +148,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			vCards.getBytes(StringPool.UTF8), "text/x-vcard; charset=UTF-8");
 	}
 
-	public void getContacts (
+	public void getContacts(
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws Exception {
 
@@ -162,10 +162,10 @@ public class ContactsCenterPortlet extends MVCPortlet {
 
 		JSONObject optionsJSONObject = JSONFactoryUtil.createJSONObject();
 
+		optionsJSONObject.put("end", end);
 		optionsJSONObject.put("keywords", keywords);
 		optionsJSONObject.put("socialRelationType", socialRelationType);
 		optionsJSONObject.put("start", start);
-		optionsJSONObject.put("end", end);
 
 		jsonObject.put("options", optionsJSONObject);
 
@@ -186,8 +186,9 @@ public class ContactsCenterPortlet extends MVCPortlet {
 		else if (socialRelationType != 0) {
 			params.put(
 				"socialRelationType",
-				new Long[] {themeDisplay.getUserId(),
-				new Long(socialRelationType)});
+				new Long[] {
+					themeDisplay.getUserId(), new Long(socialRelationType)
+				});
 		}
 
 		List<User> users = UserLocalServiceUtil.search(

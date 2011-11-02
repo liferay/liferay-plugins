@@ -17,9 +17,7 @@
 <%@ include file="/init.jsp" %>
 
 <%
-User user2 = null;
-
-user2 = (User)request.getAttribute("view_user.jsp-user");
+User user2 = (User)request.getAttribute("view_user.jsp-user");
 
 boolean viewRelationActions = true;
 
