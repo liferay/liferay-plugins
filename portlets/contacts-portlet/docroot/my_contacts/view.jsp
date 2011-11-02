@@ -26,14 +26,23 @@ Group group = themeDisplay.getScopeGroup();
 		<%
 		List<User> users = UserLocalServiceUtil.getSocialUsers(group.getClassPK(), 0, 30, new UserLoginDateComparator());
 
-		PortletURL portletURL = renderResponse.createRenderURL();
+		Layout contactsLayout = null;
+		PortletURL portletURL = null;
 
-		portletURL.setWindowState(LiferayWindowState.MAXIMIZED);
+		try {
+			contactsLayout = LayoutLocalServiceUtil.getFriendlyURLLayout(group.getGroupId(), false, "/contacts");
 
-		portletURL.setParameter("jspPage", "/my_contacts/view.jsp");
+			Portlet portlet = PortletLocalServiceUtil.getPortletById(company.getCompanyId(), "1_WAR_contactsportlet");
 
-		request.setAttribute(WebKeys.CONTACTS_URL, portletURL);
-		request.setAttribute(WebKeys.CONTACTS_USERS, users);
+			portletURL = PortletURLFactoryUtil.create(request, portlet.getPortletId(), contactsLayout.getPlid(), PortletRequest.RENDER_PHASE);
+		}
+		catch (Exception e){
+			portletURL = renderResponse.createRenderURL();
+
+			portletURL.setWindowState(WindowState.MAXIMIZED);
+
+			portletURL.setParameter("jspPage", "/contacts_center/view.jsp");
+		}
 		%>
 
 		<c:choose>
@@ -42,93 +51,38 @@ Group group = themeDisplay.getScopeGroup();
 					<liferay-ui:message arguments="<%= group.getDescriptiveName() %>" key="x-has-no-contacts" />
 				</div>
 			</c:when>
-			<c:when test="<%= !windowState.equals(WindowState.MAXIMIZED) %>">
-				<div class="group-members">
-					<div class="filter-input">
-						<aui:input id="filter" label="filter-members" name="filter" type="text" />
-					</div>
+			<c:otherwise>
+				<aui:layout cssClass="my-contacts">
 
 					<%
-					request.setAttribute(WebKeys.CONTACTS_URL, portletURL);
-					request.setAttribute(WebKeys.CONTACTS_USERS, users);
+					for (User user2 : users) {
 					%>
 
-					<div class="group-user-container">
-						<liferay-util:include page="/contacts_center/view_users.jsp" servletContext="<%= application %>" />
-					</div>
-				</div>
-			</c:when>
-			<c:otherwise>
-				<aui:layout>
-					<aui:column columnWidth="<%= 25 %>" cssClass="group-members" first="<%= true %>">
-						<div class="filter-input">
-							<aui:input id="filter" label="filter-members" name="filter" type="text" />
-						</div>
+						<aui:layout cssClass="lfr-contact-grid-item">
+							<div class="lfr-contact-thumb">
+								<a href="<%= user2.getDisplayURL(themeDisplay) %>"><img alt="<%= HtmlUtil.escape(user2.getFullName()) %>" src="<%= user2.getPortraitURL(themeDisplay) %>" /></a>
+							</div>
+							<div class="lfr-contact-info">
+								<div class="lfr-contact-name">
+									<a href="<%= user2.getDisplayURL(themeDisplay) %>"><%= HtmlUtil.escape(user2.getFullName()) %></a>
+								</div>
+								<div class="lfr-contact-job-title">
+									<%= HtmlUtil.escape(user2.getJobTitle()) %>
+								</div>
+							</div>
 
-						<%
-						request.setAttribute(WebKeys.CONTACTS_URL, portletURL);
-						request.setAttribute(WebKeys.CONTACTS_USERS, users);
-						%>
+							<div class="clear"></div>
+						</aui:layout>
 
-						<div class="group-user-container">
-							<liferay-util:include page="/contacts_center/view_users.jsp" servletContext="<%= application %>" />
-						</div>
-					</aui:column>
+					<%
+					}
+					%>
 
-					<aui:column columnWidth="<%= 75 %>" last="<%= true %>">
-
-						<%
-						long userId = ParamUtil.getLong(request, "userId");
-
-						User user2 = null;
-
-						if (userId > 0) {
-							user2 = UserLocalServiceUtil.getUserById(userId);
-						}
-						else {
-							user2 =UserLocalServiceUtil.getUserById(group.getClassPK());
-						}
-
-						request.setAttribute(WebKeys.CONTACTS_USER, user2);
-						%>
-
-						<liferay-util:include page="/contacts_center/view_user.jsp" servletContext="<%= application %>" />
-					</aui:column>
 				</aui:layout>
 
-				<aui:script use="aui-base,aui-live-search">
-					var container = A.one('.lfr-user-grid');
-
-					container.delegate(
-						'mouseenter',
-						function(event) {
-							event.currentTarget.ancestor('.lfr-user-grid-item').addClass('hover');
-						},
-						'.lfr-user-grid-item img'
-					);
-
-					container.delegate(
-						'mouseleave',
-						function(event) {
-							event.currentTarget.ancestor('.lfr-user-grid-item').removeClass('hover');
-						},
-						'.lfr-user-grid-item img'
-					);
-
-					var groupMembers = A.one('.contacts-portlet .group-members');
-
-					var liveSearch = new A.LiveSearch(
-						{
-							data: function(node) {
-								var userInfo = node.one('.lfr-user-info');
-
-								return userInfo.one('.lfr-user-data-name').html() + " " + userInfo.one('.lfr-user-data-email').html();
-							},
-							input: groupMembers.one('#<portlet:namespace />filter'),
-							nodes: groupMembers.all('.lfr-user-grid-item')
-						}
-					);
-				</aui:script>
+				<c:if test="<%= portletURL != null %>">
+					<a href="<%= portletURL %>"><liferay-ui:message arguments="<%= group.getDescriptiveName() %>"key="view-all-x-connections" /></a>
+				</c:if>
 			</c:otherwise>
 		</c:choose>
 	</c:when>

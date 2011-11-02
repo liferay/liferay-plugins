@@ -57,14 +57,7 @@
 
 			<div class="lfr-user-data">
 				<div class="lfr-user-data-title">
-					<c:choose>
-						<c:when test="<%= socialRequest.getType() == SocialRelationConstants.TYPE_BI_COWORKER %>">
-							<liferay-ui:message arguments="<%= creatorUserName %>" key="request-social-networking-summary-add-coworker" />
-						</c:when>
-						<c:when test="<%= socialRequest.getType() == SocialRelationConstants.TYPE_BI_FRIEND %>">
-							<liferay-ui:message arguments="<%= creatorUserName %>" key="request-social-networking-summary-add-friend" />
-						</c:when>
-					</c:choose>
+					<liferay-ui:message arguments="<%= creatorUserName %>" key="request-social-networking-summary-add-connection" />
 				</div>
 			</div>
 

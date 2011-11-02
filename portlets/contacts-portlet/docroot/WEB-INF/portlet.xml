@@ -46,6 +46,10 @@
 		<display-name>Profile</display-name>
 		<portlet-class>com.liferay.contacts.contactscenter.portlet.ContactsCenterPortlet</portlet-class>
 		<init-param>
+			<name>config-jsp</name>
+			<value>/contacts_center/configuration.jsp</value>
+		</init-param>
+		<init-param>
 			<name>view-jsp</name>
 			<value>/profile/view.jsp</value>
 		</init-param>
