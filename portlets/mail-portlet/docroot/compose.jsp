@@ -140,12 +140,12 @@ else {
 			A.io.request(
 				themeDisplay.getLayoutURL() + '/-/mail/send_message',
 				{
-					method: 'POST',
 					dataType: 'json',
 					form: {
 						id: form.getDOM(),
 						upload: true
 					},
+					method: 'POST',
 					on: {
 						complete: function(event, id, obj) {
 							try {

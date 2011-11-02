@@ -71,6 +71,10 @@ public class AttachmentLocalServiceImpl extends AttachmentLocalServiceBaseImpl {
 		// File
 
 		if (file != null) {
+			if (!file.exists()) {
+				throw new PortalException(new FileNotFoundException());
+			}
+
 			String directoryPath = getDirectoryPath(attachment.getMessageId());
 
 			try {
@@ -80,20 +84,16 @@ public class AttachmentLocalServiceImpl extends AttachmentLocalServiceBaseImpl {
 				catch (DuplicateDirectoryException dde) {
 			}
 
-			String filePath = getFilePath(
-				attachment.getMessageId(), fileName);
+			String filePath = getFilePath(attachment.getMessageId(), fileName);
 
-			if (file.exists()) {
-				try {
-					DLStoreUtil.addFile(attachment.getCompanyId(), _REPOSITORY_ID, filePath, file);
+			try {
+				DLStoreUtil.addFile(
+					attachment.getCompanyId(), _REPOSITORY_ID, filePath, file);
+			}
+			catch (DuplicateFileException dfe) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(dfe, dfe);
 				}
-				catch (DuplicateFileException dfe) {
-					if (_log.isDebugEnabled()) {
-						_log.debug(dfe, dfe);
-					}
-				}
-			} else {
-				throw new PortalException(new FileNotFoundException());
 			}
 		}
 
