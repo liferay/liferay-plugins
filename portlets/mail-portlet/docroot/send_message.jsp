@@ -14,13 +14,12 @@
  */
 --%>
 
-<%@page import="com.liferay.portal.service.persistence.PortletUtil"%>
 <%@ include file="/init.jsp" %>
 
 <%
 
-String portletNamespace = "_1_WAR_mailportlet_";
-		 
+String portletNamespace = PortalUtil.getPortletNamespace(PortalUtil.getPortletId(request));
+
 MailManager mailManager = MailManager.getInstance(request);
 
 List<MailFile> mailFiles = new ArrayList<MailFile>();
@@ -45,7 +44,7 @@ try {
 	for (int i = 1; i <= attachmentCount; i++) {
 		File file = uploadServletRequest.getFile(
 				portletNamespace + "attachment" + i, true);
-		
+
 		String fileName = uploadServletRequest.getFileName(
 				portletNamespace + "attachment" + i);
 
@@ -72,4 +71,3 @@ finally {
 
 %>
 <%= responseDataJSONObject %>
-
