@@ -21,9 +21,10 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * This class is used by SOAP remote services.
+ * This class is used by SOAP remote services, specifically {@link com.liferay.marketplace.service.http.AppServiceSoap}.
  *
  * @author    Ryan Park
+ * @see       com.liferay.marketplace.service.http.AppServiceSoap
  * @generated
  */
 public class AppSoap implements Serializable {
