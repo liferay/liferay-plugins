@@ -53,6 +53,13 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 
 			SessionMessages.add(
 				actionRequest, portletConfig.getPortletName() + ".doConfigure");
+
+			String portletResource = ParamUtil.getString(
+				actionRequest, "portletResource");
+
+			SessionMessages.add(
+				actionRequest, portletConfig.getPortletName() + ".doRefresh",
+				portletResource);
 		}
 		else if (tabs2.equals("preferences")) {
 			doProcessAction(portletConfig, actionRequest, actionResponse);
