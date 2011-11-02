@@ -24,31 +24,31 @@ MailManager mailManager = MailManager.getInstance(request);
 
 List<MailFile> mailFiles = new ArrayList<MailFile>();
 
-UploadServletRequest uploadServletRequest =
-	PortalUtil.getUploadServletRequest(request);
+UploadPortletRequest uploadPortletRequest =
+	PortalUtil.getUploadPortletRequest(liferayPortletRequest);
 
-long accountId = ParamUtil.getLong(uploadServletRequest, portletNamespace + "accountId");
-long messageId = ParamUtil.getLong(uploadServletRequest, portletNamespace + "messageId");
-String to = ParamUtil.getString(uploadServletRequest, portletNamespace + "to");
-String cc = ParamUtil.getString(uploadServletRequest, portletNamespace + "cc");
-String bcc = ParamUtil.getString(uploadServletRequest, portletNamespace + "bcc");
-String subject = ParamUtil.getString(uploadServletRequest, portletNamespace + "subject");
-String body = ParamUtil.getString(uploadServletRequest, portletNamespace + "body");
+long accountId = ParamUtil.getLong(uploadPortletRequest, "accountId");
+long messageId = ParamUtil.getLong(uploadPortletRequest, "messageId");
+String to = ParamUtil.getString(uploadPortletRequest, "to");
+String cc = ParamUtil.getString(uploadPortletRequest, "cc");
+String bcc = ParamUtil.getString(uploadPortletRequest, "bcc");
+String subject = ParamUtil.getString(uploadPortletRequest, "subject");
+String body = ParamUtil.getString(uploadPortletRequest, "body");
 
 int attachmentCount = ParamUtil.getInteger(
-		uploadServletRequest, portletNamespace + "attachmentCount");
+	 uploadPortletRequest, "attachmentCount");
 
 JSONObject responseDataJSONObject = null;
 
 try {
 	for (int i = 1; i <= attachmentCount; i++) {
-		File file = uploadServletRequest.getFile(
-				portletNamespace + "attachment" + i, true);
+		File file = uploadPortletRequest.getFile(
+			 "attachment" + i, true);
 
-		String fileName = uploadServletRequest.getFileName(
-				portletNamespace + "attachment" + i);
+		String fileName = uploadPortletRequest.getFileName(
+			 "attachment" + i);
 
- 		long size = uploadServletRequest.getSize(portletNamespace + "attachment" + i);
+ 		long size = uploadPortletRequest.getSize(portletNamespace + "attachment" + i);
 
 		if (file == null) {
 			continue;
