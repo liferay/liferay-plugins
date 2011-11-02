@@ -9,7 +9,7 @@
 		<control-panel-entry-category>portal</control-panel-entry-category>
 		<header-portlet-css>/admin/css/main.css</header-portlet-css>
 		<css-class-wrapper>opensocial-portlet-admin</css-class-wrapper>
-		</portlet>
+	</portlet>
 	<portlet>
 		<portlet-name>2</portlet-name>
 		<configuration-action-class>com.liferay.opensocial.gadget.action.ConfigurationActionImpl</configuration-action-class>
