@@ -77,6 +77,13 @@ public abstract class BaseConfigurationAction
 
 		SessionMessages.add(
 			actionRequest, portletConfig.getPortletName() + ".doConfigure");
+
+		String portletResource = ParamUtil.getString(
+			actionRequest, "portletResource");
+
+		SessionMessages.add(
+			actionRequest, portletConfig.getPortletName() + ".doRefresh",
+			portletResource);
 	}
 
 	protected void doRender(PortletConfig portletConfig,
