@@ -61,7 +61,7 @@ if ((microblogsEntry != null) && (reply || repost)) {
 }
 
 String header = "whats-happening";
-
+String highlighterDivClass = "highlighter-content";
 String formName = "dialogFm";
 
 boolean view = false;
@@ -77,6 +77,7 @@ else if (reply) {
 }
 else {
 	formName = "fm";
+	highlighterDivClass = "highlighter-content textbox";
 
 	view = true;
 }
@@ -141,12 +142,17 @@ header = LanguageUtil.format(pageContext, header, receiverUserFullName);
 	<aui:model-context bean="<%= microblogsEntry %>" model="<%= MicroblogsEntry.class %>" />
 
 	<c:if test="<%= !repost %>">
-		<aui:input label="" type="textarea" name="content" />
+		<div class="autocomplete" id="<portlet:namespace />autocomplete">
+			<div id="<portlet:namespace />autocompleteContent"></div>
+
+			<div class="<%= highlighterDivClass %>" id="<portlet:namespace />highlighterContent"> </div>
+		</div>
+
+		<aui:input label="" name="content" type="hidden" />
 	</c:if>
 
 	<aui:button-row cssClass='<%= view ? "aui-helper-hidden" : StringPool.BLANK %>'>
 		<c:if test="<%= !repost && !reply %>">
-
 			<%
 			int socialRelationType = 0;
 
@@ -168,7 +174,7 @@ header = LanguageUtil.format(pageContext, header, receiverUserFullName);
 				<span class="microblogs-countdown">150</span>
 			</c:if>
 
-			<aui:button name="submit" type="submit" value="post" />
+			<aui:button inputCssClass="microblogs-button-input" name="submit" type="submit" value="post" />
 
 			<c:if test="<%= !view %>">
 				<aui:button onClick="Liferay.Microblogs.closePopup();" type="cancel" />
@@ -177,83 +183,260 @@ header = LanguageUtil.format(pageContext, header, receiverUserFullName);
 	</aui:button-row>
 </aui:form>
 
-<aui:script use="aui-base,aui-io-plugin">
-	var form = A.one(document.<portlet:namespace /><%= formName %>);
-
-	<c:if test="<%= !repost %>">
-		var buttonContainer = form.one('.aui-button-holder');
-		var contentInput = form.one('textarea[name=<portlet:namespace />content]');
-		var countdown = form.one('.microblogs-countdown');
-		var submitButton = form.one('.aui-button-input-submit');
-	</c:if>
-
-	<c:if test="<%= view %>">
-		contentInput.on(
-			'focus',
-			function(event) {
-				contentInput.setStyle("height", "60px");
-
-				buttonContainer.show();
-			}
-		);
-	</c:if>
-
-	form.on(
-		'submit',
-		function(event) {
-			event.halt(true);
-
-			Liferay.Microblogs.updateMicroblogs(form);
-
-			<c:choose>
-				<c:when test="<%= view %>">
-					contentInput.setStyle('height', '18px');
-					contentInput.set('value', '');
-
-					countContent();
-
-					buttonContainer.hide();
-				</c:when>
-				<c:otherwise>
-					Liferay.Microblogs.closePopup();
-				</c:otherwise>
-			</c:choose>
+<aui:script use="aui-base,aui-event-input,aui-template,aui-form-textarea,autocomplete,autocomplete-filters">
+	var MAP_MATCHED_USERS = {
+		userScreenName: function(str, match) {
+			return '[@' + MAP_USERS[str] + ']';
+		},
+		userName: function(str, match) {
+			return '<b>' + str + '</b>'
 		}
-	);
+	};
 
-	<c:if test="<%= reply %>">
-		contentInput.set('value', '@<%= receiverUserScreenName %> ');
+	var MAP_USERS = {};
 
-		contentInput.focus();
-	</c:if>
+	var REGEX_USER_NAME = /@[^\s]+$/;
+
+	var TPL_SEARCH_RESULTS = '<div class="microblogs-autocomplete">' +
+		'<div class="thumbnail">' +
+			'<img src="{portraitURL}" alt="{userFullName}" />' +
+		'</div>' +
+		'<div>' +
+			'<span class="user-name">{userFullName}</span><br />' +
+			'<span class="small">{email}</span><br />' +
+			'<span class="job-title">{jobTitle}</span>' +
+		'</div>' +
+	'</div>';
+
+	var form = A.one('#<portlet:namespace /><%= formName %>');
 
 	<c:if test="<%= !repost %>">
-		var countContent = function() {
-			var remainCount = 150 - contentInput.get('value').length;
+		var countContent = function(event) {
+			var contentInput = event.currentTarget;
 
-			countdown.set('innerHTML', remainCount);
+			var countdown = form.one('.microblogs-countdown');
+			var submitButton = form.one('.aui-button-input-submit');
 
-			if((remainCount < 0) || (remainCount == 150)) {
-				submitButton.set('disabled', true);
-				submitButton.setStyle('color', '#C8C9CA');
+			var remaining = (150 - contentInput.val().length);
 
-				if (remainCount < 0) {
-					countdown.setStyle('color', '#F00');
-				}
-			}
-			else {
-				submitButton.set('disabled', false);
-				submitButton.setStyle('color', '#34404F');
+			var disabled = ((remaining < 0) || (remaining == 150));
 
-				countdown.setStyle('color', '#C8C9CA');
-			}
+			countdown.html(remaining);
+
+			submitButton.attr('disabled', disabled);
+			submitButton.toggleClass('microblogs-button-input-disabled', disabled);
+
+			countdown.toggleClass('microblogs-countdown-warned', (remaining < 0));
 		};
 
-		contentInput.on(
-			'keyup',
-			countContent
+		var createTextarea = function(divId) {
+			var autocomplete = A.one('#<portlet:namespace/>autocomplete');
+			var highlighterContent = A.one('#<portlet:namespace/>highlighterContent');
+
+			var inputValue = '<%= ((microblogsEntry != null) && (edit)) ? microblogsEntry.getContent() : StringPool.BLANK %>';
+
+			if (autocomplete.height() < 45 || highlighterContent.height() < 45) {
+				autocomplete.height(45);
+
+				highlighterContent.height(45);
+			}
+
+			var textarea = new A.Textarea(
+				{
+					autoSize: true,
+					id: '<portlet:namespace />contentInput',
+					value: inputValue
+				}
+			).render(divId);
+
+			var contentTextarea = A.one('#<portlet:namespace />contentInput textarea');
+
+			<c:if test="<%= view %>">
+				contentTextarea.on(
+					'focus',
+					function(contentTextarea) {
+						var buttonContainer = form.one('.aui-button-holder');
+
+						buttonContainer.show();
+					}
+				);
+			</c:if>
+
+			contentTextarea.on(
+				'input',
+				function(contentTextarea) {
+					updateHighlightDivSize(contentTextarea);
+
+					countContent(contentTextarea);
+				}
+			);
+
+			createAutocomplete(contentTextarea);
+
+			contentTextarea.focus();
+
+			return contentTextarea;
+		};
+
+		var replaceName = function(inputText, returnType) {
+			var matchedUsers = {};
+
+			var updatedText = inputText;
+
+			var users = A.Object.keys(MAP_USERS);
+
+			var findNames = new RegExp('(' + users.join('|') + ')', 'g');
+
+			if (users.length > 0) {
+				updatedText = updatedText.replace(
+					findNames,
+					function(userName) {
+						if (userName !== '') {
+							matchedUsers[userName] = MAP_USERS[userName];
+
+							return MAP_MATCHED_USERS[returnType](userName, MAP_USERS[userName]);
+						}
+					}
+				);
+			}
+
+			MAP_USERS = matchedUsers;
+
+			return updatedText;
+		};
+
+		var resultFormatter = function(query, results) {
+			return A.Array.map(
+				results,
+				function(result) {
+					var userData = result.raw;
+
+					return A.Lang.sub(TPL_SEARCH_RESULTS, userData);
+				}
+			);
+		};
+
+		var updateHighlightDivContent = function(event) {
+			var inputValue = event.inputValue;
+
+			var highlighterContent = A.one('#<portlet:namespace/>highlighterContent');
+
+			var query = inputValue.match(REGEX_USER_NAME);
+
+			if (query) {
+				event.query = query[0].substr(1);
+			}
+			else {
+				event.preventDefault();
+			}
+
+			var updatedText = replaceName(inputValue, 'userName');
+
+			updatedText = updatedText.replace(/(\n)/gm, '<br />');
+			updatedText = updatedText.replace(/\s{2}/g, '&nbsp; ');
+
+			highlighterContent.html('<span>' + updatedText + '</span>');
+		};
+
+		var updateHighlightDivSize = function(event) {
+			var contentInput = event.currentTarget;
+
+			var autocomplete = A.one('#<portlet:namespace/>autocomplete');
+			var highlighterContent = A.one('#<portlet:namespace/>highlighterContent');
+
+			var contentInputHeight = contentInput.height();
+
+			autocomplete.height(contentInputHeight);
+
+			highlighterContent.height(contentInputHeight);
+		};
+
+		var updateContentTextbox = function(event) {
+			event.preventDefault();
+
+			var rawResult = event.result.raw;
+
+			var fullName = rawResult.userFullName;
+			var userScreenName = rawResult.userScreenName;
+
+			var inputNode = event.currentTarget._inputNode;
+
+			var inputNodeValue = inputNode.val();
+
+			var inputValueUpdated = inputNodeValue.replace(REGEX_USER_NAME, fullName);
+
+			inputNode.val(inputValueUpdated);
+
+			MAP_USERS[fullName] = userScreenName;
+
+			autocompleteDiv.hide()
+		};
+
+		var createAutocomplete = function(contentTextarea) {
+			return autocompleteDiv = new A.AutoComplete(
+				{
+					inputNode: contentTextarea,
+					maxResults: 5,
+					on: {
+						clear: function() {
+							var highlighterContent = A.one('#<portlet:namespace/>highlighterContent');
+
+							highlighterContent.html('');
+						},
+						query: updateHighlightDivContent,
+						select: updateContentTextbox
+					},
+					resultFilters: 'phraseMatch',
+					resultFormatter: resultFormatter,
+					resultTextLocator: 'userFullName',
+					source: <%= MicroblogsUtil.getJSONRecipients(user.getUserId(), themeDisplay) %>
+				}
+			).render();
+		}
+
+		form.on(
+			'submit',
+			function(event) {
+				event.halt(true);
+
+				var content = A.one('#<portlet:namespace />content');
+				var contentInput = A.one('#<portlet:namespace />contentInput textarea');
+
+				var contentInputValue = contentInput.val();
+
+				var updatedText = replaceName(contentInputValue, 'userScreenName');
+
+				content.val(updatedText);
+
+				Liferay.Microblogs.updateMicroblogs(form);
+
+				<c:if test="<%= !view %>">
+					Liferay.Microblogs.closePopup();
+				</c:if>
+			}
 		);
 
-		countContent();
+		<c:choose>
+			<c:when test="<%= !reply && !edit %>">
+				var autocomplete = A.one('#<portlet:namespace/>autocomplete');
+
+				autocomplete.on(
+					'click',
+					function(event) {
+						var contentInput = A.one('#<portlet:namespace/>contentInput');
+						var highlighterContent = A.one('#<portlet:namespace/>highlighterContent');
+
+						if (!contentInput) {
+							highlighterContent.removeClass('textbox');
+
+							createTextarea('#<portlet:namespace />autocompleteContent');
+						}
+					}
+				);
+			</c:when>
+			<c:otherwise>
+				createTextarea('#<portlet:namespace />autocompleteContent');
+			</c:otherwise>
+		</c:choose>
 	</c:if>
 </aui:script>

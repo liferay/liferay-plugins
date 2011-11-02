@@ -25,24 +25,62 @@
 	visibility: visible;
 }
 
-.microblogs-portlet .taglib-header,
-.aui-dialog.microblogs-portlet .taglib-header {
+.microblogs-portlet .taglib-header, .aui-dialog.microblogs-portlet .taglib-header {
 	border-bottom: none;
 	margin: 0;
 }
 
-.microblogs-portlet .aui-field-input-text {
+.microblogs-portlet .autocomplete {
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
+	background-color:#FFF;
+	border-color: #BFBFBF #DEDEDE #DEDEDE #BFBFBF;
 	border-radius: 5px;
-	height: 18px;
-	margin: 10px 0 5px;
-	min-width: 400px;
-	width: 99%;
+	border-style: solid;
+	border-width: 1px;
+	margin: 10px 0;
+	min-height: 20px;
+	min-width: 99%;
+	padding: 5px 1px;
+	position: relative;
 }
 
-.aui-dialog.microblogs-portlet .aui-field-input-text {
-	height: 60px;
+.microblogs-portlet .highlighter-content {
+	color: transparent;
+	left: 1px;
+	padding: 5px 1px;
+	position: absolute;
+	top: 1px;
+	word-wrap: break-word;
+	z-index: 998;
+}
+
+.microblogs-portlet .highlighter-content.textbox {
+	min-height: 20px;
+	padding: 0;
+	position: static;
+}
+
+.microblogs-portlet .highlighter-content b, .microblogs-portlet .highlighter-content b span {
+	background-color: #D8DFEA;
+	font-weight: normal;
+}
+
+.microblogs-portlet .highlighter-content span {
+	display: inline-block;
+	filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0);
+	white-space: pre;
+}
+
+.microblogs-portlet .aui-field-input-text {
+	background: none transparent;
+	border: none;
+	min-width: 99%;
+	position: absolute;
+	resize: none;
+	top: 0;
+	outline: none;
+	z-index: 999;
 }
 
 .microblogs-portlet .microblogs-entry:hover .action-container {
@@ -54,13 +92,20 @@
 	width: 100%;
 }
 
+.microblogs-portlet .microblogs-status-container .microblogs-entry {
+	margin-bottom: 0;
+	width: 98%;
+}
+
 .aui-dialog.microblogs-portlet .microblogs-entry {
 	margin-top: 10px;
 }
 
-.microblogs-portlet .microblogs-container {
+.microblogs-portlet .microblogs-container,
+.microblogs-portlet .microblogs-status-container {
 	margin-top: 10px;
 }
+
 
 .microblogs-portlet .microblogs-countdown {
 	color: #C8C9CA;
@@ -69,9 +114,17 @@
 	vertical-align: bottom;
 }
 
+.microblogs-portlet .microblogs-countdown-warned {
+	color: #F00;
+}
+
 .microblogs-portlet .microblogs-entry .user-name {
 	font-size: 12px;
 	font-weight: bold;
+}
+
+.microblogs-portlet .microblogs-status-container .user-name {
+	display: none;
 }
 
 .microblogs-portlet .microblogs-entry .small {
@@ -98,8 +151,7 @@
 	width: 100%;
 }
 
-.microblogs-portlet .aui-button-holder .aui-field-select,
-.microblogs-portlet .thumbnail {
+.microblogs-portlet .aui-button-holder .aui-field-select, .microblogs-portlet .thumbnail {
 	float: left;
 }
 
@@ -115,19 +167,18 @@
 	text-decoration: none;
 }
 
-.microblogs-portlet .entry-bubble,
-.microblogs-portlet .my-entry-bubble {
+.microblogs-portlet .entry-bubble, .microblogs-portlet .my-entry-bubble {
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
-	background: #DDE1E6;
-	border-color: #C8C9CA;
+	background: #FFF;
+	border-color: #CCC;
 	border-radius: 5px;
 	border-style: solid;
 	border-width: 1px 1px 3px 3px;
 	color: #000;
 	margin-left: 65px;
-	padding: 3px;
 	padding-left: 5px;
+	padding: 3px;
 	position: relative;
 }
 
@@ -138,11 +189,10 @@
 	position: relative;
 }
 
-.microblogs-portlet .entry-bubble:before,
-.microblogs-portlet .entry-bubble:after {
+.microblogs-portlet .entry-bubble:before, .microblogs-portlet .entry-bubble:after {
 	border: 12px solid transparent;
-	border-right-color: #C8C9CA;
 	border-left: 0;
+	border-right-color: #C8C9CA;
 	content: "";
 	left: -13px;
 	position: absolute;
@@ -151,23 +201,21 @@
 
 .microblogs-portlet .entry-bubble:after {
 	border: 10px solid transparent;
-	border-right-color: #DDE1E6;
+	border-right-color: #FFF;
 	left: -20px;
 }
 
-.microblogs-portlet .entry-bubble div,
-.microblogs-portlet .my-entry-bubble div {
+.microblogs-portlet .entry-bubble div, .microblogs-portlet .my-entry-bubble div {
 	left: -7px;
 	margin-bottom: 3px;
-	position: relative;
 	margin-left: 10px;
+	position: relative;
 }
 
-.microblogs-portlet .my-entry-bubble:before,
-.microblogs-portlet .my-entry-bubble:after {
+.microblogs-portlet .my-entry-bubble:before, .microblogs-portlet .my-entry-bubble:after {
 	border: 12px solid transparent;
-	border-right-color: #A7CEDF;
 	border-left: 0;
+	border-right-color: #A7CEDF;
 	content: "";
 	left: -13px;
 	position: absolute;
@@ -189,4 +237,43 @@
 	font-size: 10px;
 	font-weight: normal;
 	margin: 5px -3px;
+}
+
+.microblogs-portlet .aui-toolbar {
+	display: none;
+}
+
+.microblogs-portlet .aui-combobox-content .aui-field-content {
+	display: block;
+}
+
+.microblogs-portlet .microblogs-button-input {
+	color: #34404F;
+}
+
+.microblogs-portlet .microblogs-button-input-disabled {
+	color: #C8C9CA;
+}
+
+.microblogs-autocomplete {
+	clear: both;
+	height: 50px;
+}
+
+.microblogs-autocomplete .thumbnail {
+	margin: 0 5px 0 0;
+}
+
+.microblogs-autocomplete .thumbnail img {
+	float:left;
+	width: 50px;
+}
+
+.microblogs-autocomplete .user-name {
+	font-size: 12px;
+	font-weight: bold;
+}
+
+.microblogs-autocomplete .small {
+	font-size: 10px;
 }
