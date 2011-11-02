@@ -26,15 +26,12 @@ Group group = themeDisplay.getScopeGroup();
 		<%
 		List<User> users = UserLocalServiceUtil.getSocialUsers(group.getClassPK(), 0, 30, new UserLoginDateComparator());
 
-		Layout contactsLayout = null;
 		PortletURL portletURL = null;
 
 		try {
-			contactsLayout = LayoutLocalServiceUtil.getFriendlyURLLayout(group.getGroupId(), false, "/contacts");
+			long contactsPlid = PortalUtil.getPlidFromPortletId(group.getGroupId(), false, "1_WAR_contactsportlet");
 
-			Portlet portlet = PortletLocalServiceUtil.getPortletById(company.getCompanyId(), "1_WAR_contactsportlet");
-
-			portletURL = PortletURLFactoryUtil.create(request, portlet.getPortletId(), contactsLayout.getPlid(), PortletRequest.RENDER_PHASE);
+			portletURL = PortletURLFactoryUtil.create(request, "1_WAR_contactsportlet", contactsPlid, PortletRequest.RENDER_PHASE);
 		}
 		catch (Exception e){
 			portletURL = renderResponse.createRenderURL();
@@ -62,10 +59,12 @@ Group group = themeDisplay.getScopeGroup();
 							<div class="lfr-contact-thumb">
 								<a href="<%= user2.getDisplayURL(themeDisplay) %>"><img alt="<%= HtmlUtil.escape(user2.getFullName()) %>" src="<%= user2.getPortraitURL(themeDisplay) %>" /></a>
 							</div>
+
 							<div class="lfr-contact-info">
 								<div class="lfr-contact-name">
 									<a href="<%= user2.getDisplayURL(themeDisplay) %>"><%= HtmlUtil.escape(user2.getFullName()) %></a>
 								</div>
+
 								<div class="lfr-contact-job-title">
 									<%= HtmlUtil.escape(user2.getJobTitle()) %>
 								</div>

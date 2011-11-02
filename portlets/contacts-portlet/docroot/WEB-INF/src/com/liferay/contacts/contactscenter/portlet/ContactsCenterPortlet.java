@@ -152,20 +152,20 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws Exception {
 
-		int end = ParamUtil.getInteger(resourceRequest, "end");
 		String keywords = ParamUtil.getString(resourceRequest, "keywords");
 		int socialRelationType = ParamUtil.getInteger(
 			resourceRequest, "socialRelationType");
 		int start = ParamUtil.getInteger(resourceRequest, "start");
+		int end = ParamUtil.getInteger(resourceRequest, "end");
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 		JSONObject optionsJSONObject = JSONFactoryUtil.createJSONObject();
 
-		optionsJSONObject.put("end", end);
 		optionsJSONObject.put("keywords", keywords);
 		optionsJSONObject.put("socialRelationType", socialRelationType);
 		optionsJSONObject.put("start", start);
+		optionsJSONObject.put("end", end);
 
 		jsonObject.put("options", optionsJSONObject);
 
@@ -183,13 +183,11 @@ public class ContactsCenterPortlet extends MVCPortlet {
 				"socialRelation",
 				new Long[] {group.getClassPK()});
 		}
-		else {
-			if (socialRelationType != 0) {
-				params.put(
-					"socialRelationType",
-					new Long[] {themeDisplay.getUserId(),
-					new Long(socialRelationType)});
-			}
+		else if (socialRelationType != 0) {
+			params.put(
+				"socialRelationType",
+				new Long[] {themeDisplay.getUserId(),
+				new Long(socialRelationType)});
 		}
 
 		List<User> users = UserLocalServiceUtil.search(

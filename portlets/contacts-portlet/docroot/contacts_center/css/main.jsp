@@ -13,14 +13,13 @@
  * details.
  */
 --%>
-<!--  -->
+
 <%@ include file="/css_init.jsp" %>
 
-$border-color: #ebebeb;
+$border-color: #EBEBEB;
 $section-header-bg: #CCE6F7;
 
 .contacts-portlet {
-
 	.clear {
 		clear: both;
 	}
@@ -197,6 +196,7 @@ $section-header-bg: #CCE6F7;
 			.aui-column-content {
 				padding-right: 10px;
 			}
+
 			&:before {
 				border-right-width: 0;
 			}
@@ -228,7 +228,6 @@ $section-header-bg: #CCE6F7;
 	}
 
 	.contacts-action-content {
-
 		span {
 			padding:0 5px 0 0;
 		}

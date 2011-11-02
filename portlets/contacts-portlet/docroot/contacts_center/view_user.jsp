@@ -37,7 +37,6 @@ request.setAttribute("view_user.jsp-user", user2);
 
 <c:if test="<%= user2 != null %>">
 	<div class="contacts-profile">
-
 		<c:if test="<%= (displayStyle == ContactsConstants.DISPLAY_STYLE_BASIC) || (displayStyle ==ContactsConstants.DISPLAY_STYLE_FULL) %>">
 			<div class="lfr-contact-grid-item">
 				<c:if test="<%= showIcon %>">
@@ -45,7 +44,6 @@ request.setAttribute("view_user.jsp-user", user2);
 						<a href="<%= user2.getDisplayURL(themeDisplay) %>"><img alt="<%= HtmlUtil.escape(user2.getFullName()) %>" src="<%= user2.getPortraitURL(themeDisplay) %>" /></a>
 					</div>
 				</c:if>
-
 
 				<div class="<%= showIcon ? StringPool.BLANK : "no-icon" %> lfr-contact-info">
 					<div class="lfr-contact-name">
@@ -154,17 +152,11 @@ request.setAttribute("view_user.jsp-user", user2);
 
 						Group group = themeDisplay.getScopeGroup();
 
-						String fullName = StringPool.BLANK;
-
 						if (group.isUser()) {
 							groupParams.put("usersGroups", new Long(group.getClassPK()));
-
-							fullName = PortalUtil.getUserName(group.getClassPK(), group.getDescriptiveName());
 						}
 						else {
 							groupParams.put("usersGroups", new Long(themeDisplay.getUserId()));
-
-							fullName = PortalUtil.getUserName(themeDisplay.getUserId(), "you");
 						}
 
 						groupParams.put("active", Boolean.TRUE);
@@ -209,7 +201,7 @@ request.setAttribute("view_user.jsp-user", user2);
 							</c:when>
 							<c:otherwise>
 								<div class="empty">
-									<liferay-ui:message arguments="<%= fullName %>" key="x-does-not-belong-to-any-sites" />
+									<liferay-ui:message arguments="<%= PortalUtil.getUserName((group.isUser() ? group.getClassPK() : themeDisplay.getUserId()), group.getDescriptiveName()) %>" key="x-does-not-belong-to-any-sites" />
 								</div>
 							</c:otherwise>
 						</c:choose>

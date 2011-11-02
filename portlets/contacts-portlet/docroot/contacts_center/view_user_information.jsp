@@ -25,6 +25,7 @@ Contact contact2 = user2.getContact();
 <c:if test="<%= showComments && Validator.isNotNull(user2.getComments()) %>">
 	<div class="section lfr-user-comments">
 		<h3><liferay-ui:message key="Introduction" />:</h3>
+
 		<ul class="property-list">
 			<li>
 				<span class="property"><%= user2.getComments() %></span>
@@ -105,6 +106,7 @@ String ym = contact2.getYmSn();
 			<c:if test="<%= Validator.isNotNull(aim) %>">
 				<li>
 					<span class="property-type"><liferay-ui:message key="aim" /></span>
+
 					<span class="property"><%= HtmlUtil.escape(aim) %></span>
 				</li>
 			</c:if>
@@ -112,7 +114,9 @@ String ym = contact2.getYmSn();
 			<c:if test="<%= Validator.isNotNull(icq) %>">
 				<li>
 					<span class="property-type"><liferay-ui:message key="icq" /></span>
+
 					<span class="property"><%= HtmlUtil.escape(icq) %></span>
+
 					<img alt="" class="instant-messenger-logo" src="http://web.icq.com/whitepages/online?icq=<%= HtmlUtil.escapeAttribute(icq) %>&img=5" />
 				</li>
 			</c:if>
@@ -120,6 +124,7 @@ String ym = contact2.getYmSn();
 			<c:if test="<%= Validator.isNotNull(jabber) %>">
 				<li>
 					<span class="property-type"><liferay-ui:message key="jabber" /></span>
+
 					<span class="property"><%= HtmlUtil.escape(jabber) %></span>
 				</li>
 			</c:if>
@@ -127,6 +132,7 @@ String ym = contact2.getYmSn();
 			<c:if test="<%= Validator.isNotNull(msn) %>">
 				<li>
 					<span class="property-type"><liferay-ui:message key="msn" /></span>
+
 					<span class="property"><%= HtmlUtil.escape(msn) %></span>
 				</li>
 			</c:if>
@@ -134,6 +140,7 @@ String ym = contact2.getYmSn();
 			<c:if test="<%= Validator.isNotNull(skype) %>">
 				<li>
 					<span class="property-type"><liferay-ui:message key="skype" /></span>
+
 					<span class="property"><%= HtmlUtil.escape(skype) %></span>
 				</li>
 			</c:if>
@@ -141,7 +148,9 @@ String ym = contact2.getYmSn();
 			<c:if test="<%= Validator.isNotNull(ym) %>">
 				<li>
 					<span class="property-type"><liferay-ui:message key="ym" /></span>
+
 					<span class="property"><%= HtmlUtil.escape(ym) %></span>
+
 					<img alt="" class="instant-messenger-logo" src="http://opi.yahoo.com/online?u=<%= HtmlUtil.escapeAttribute(ym) %>&m=g&t=0" />
 				</li>
 			</c:if>
@@ -159,47 +168,47 @@ List<Address> addresses = AddressServiceUtil.getAddresses(Contact.class.getName(
 
 		<ul class="property-list">
 
-		<%
-		for (Address address: addresses) {
-			String street1 = address.getStreet1();
-			String street2 = address.getStreet2();
-			String street3 = address.getStreet3();
+			<%
+			for (Address address: addresses) {
+				String street1 = address.getStreet1();
+				String street2 = address.getStreet2();
+				String street3 = address.getStreet3();
 
-			String zipCode = address.getZip();
-			String city = address.getCity();
+				String zipCode = address.getZip();
+				String city = address.getCity();
 
-			String mailingName = LanguageUtil.get(pageContext, address.getType().getName());
-		%>
+				String mailingName = LanguageUtil.get(pageContext, address.getType().getName());
+			%>
 
-			<li class="<%= address.isPrimary() ? "primary" : "" %>">
-				<span class="property-type"><%= mailingName %></span>
+				<li class="<%= address.isPrimary() ? "primary" : "" %>">
+					<span class="property-type"><%= mailingName %></span>
 
-				<c:if test="<%= Validator.isNotNull(street1) %>">
-					<%= HtmlUtil.escape(street1) %>,
-				</c:if>
+					<c:if test="<%= Validator.isNotNull(street1) %>">
+						<%= HtmlUtil.escape(street1) %>,
+					</c:if>
 
-				<c:if test="<%= Validator.isNotNull(street2) %>">
-					<%= HtmlUtil.escape(street2) %>,
-				</c:if>
+					<c:if test="<%= Validator.isNotNull(street2) %>">
+						<%= HtmlUtil.escape(street2) %>,
+					</c:if>
 
-				<c:if test="<%= Validator.isNotNull(street3) %>">
-					<%= HtmlUtil.escape(street3) %>,
-				</c:if>
+					<c:if test="<%= Validator.isNotNull(street3) %>">
+						<%= HtmlUtil.escape(street3) %>,
+					</c:if>
 
-				<c:if test="<%= Validator.isNotNull(city) %>">
-					<%= HtmlUtil.escape(city) %>,
-				</c:if>
+					<c:if test="<%= Validator.isNotNull(city) %>">
+						<%= HtmlUtil.escape(city) %>,
+					</c:if>
 
-				<c:if test="<%= Validator.isNotNull(zipCode) %>">
-					<%= zipCode %>
-				</c:if>
+					<c:if test="<%= Validator.isNotNull(zipCode) %>">
+						<%= zipCode %>
+					</c:if>
 
-				<c:if test="<%= address.isMailing() %>">(<liferay-ui:message key="mailing" />)</c:if>
-			</li>
+					<c:if test="<%= address.isMailing() %>">(<liferay-ui:message key="mailing" />)</c:if>
+				</li>
 
-		<%
-		}
-		%>
+			<%
+			}
+			%>
 
 		</ul>
 	</div>
@@ -223,6 +232,7 @@ List<Website> websites = WebsiteServiceUtil.getWebsites(Contact.class.getName(),
 
 				<li class="<%= website.isPrimary() ? "primary" : "" %>">
 					<span class="property-type"><%= LanguageUtil.get(pageContext, website.getType().getName()) %></span>
+
 					<span class="property"><a href="<%= website.getUrl() %>"><%= website.getUrl() %></a></span>
 				</li>
 
@@ -248,6 +258,7 @@ String twitter = contact2.getTwitterSn();
 			<c:if test="<%= Validator.isNotNull(facebook) %>">
 				<li>
 					<span class="property-type"><liferay-ui:message key="facebook" /></span>
+
 					<span class="property"><%= HtmlUtil.escape(facebook) %></span>
 				</li>
 			</c:if>
@@ -255,6 +266,7 @@ String twitter = contact2.getTwitterSn();
 			<c:if test="<%= Validator.isNotNull(mySpace) %>">
 				<li>
 					<span class="property-type"><liferay-ui:message key="myspace" /></span>
+
 					<span class="property"><%= HtmlUtil.escape(mySpace) %></span>
 				</li>
 			</c:if>
@@ -262,6 +274,7 @@ String twitter = contact2.getTwitterSn();
 			<c:if test="<%= Validator.isNotNull(twitter) %>">
 				<li>
 					<span class="property-type"><liferay-ui:message key="twitter" /></span>
+
 					<span class="property"><%= HtmlUtil.escape(twitter) %></span>
 				</li>
 			</c:if>
@@ -274,7 +287,9 @@ String twitter = contact2.getTwitterSn();
 		<h3><liferay-ui:message key="sms" />:</h3>
 
 		<ul class="property-list">
-			<li class="property"><%= HtmlUtil.escape(contact2.getSmsSn()) %></li>
+			<li class="property">
+				<%= HtmlUtil.escape(contact2.getSmsSn()) %>
+			</li>
 		</ul>
 	</div>
 </c:if>
