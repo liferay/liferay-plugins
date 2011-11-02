@@ -100,11 +100,11 @@ AUI().use(
 					'{lastNameAnchor}' +
 					'<div class="lfr-contact-grid-item" data-user-url="{viewSummaryURL}">' +
 						'<div class="lfr-contact-thumb">' +
-							'<img alt="{userFullName}" src="{userPortraitURL}" />' +
+							'<img alt="{fullName}" src="{portraitURL}" />' +
 						'</div>' +
 						'<div class="lfr-contact-info">' +
 							'<div class="lfr-contact-name">' +
-								'<a>{userLastName}, {userFirstName}</a>' +
+								'<a>{lastName}, {firstName}</a>' +
 							'</div>' +
 							'<div class="lfr-contact-extra">' +
 								'{emailAddress}' +
@@ -119,10 +119,10 @@ AUI().use(
 						function(result) {
 							var displayLastNameAnchor = false;
 
-							if (result.userLastName && result.userLastName.indexOf(lastNameAnchor)) {
+							if (result.lastName && result.lastName.indexOf(lastNameAnchor)) {
 								displayLastNameAnchor = true;
 
-								lastNameAnchor = result.userLastName.substring(0, 1);
+								lastNameAnchor = result.lastName.substring(0, 1);
 							}
 
 							return A.Lang.sub(
@@ -130,9 +130,9 @@ AUI().use(
 								{
 									emailAddress: (result.emailAddress ? result.emailAddress : ''),
 									lastNameAnchor: (displayLastNameAnchor ? '<div class="lastNameAnchor"><a>' + lastNameAnchor + '</a></div>' : ''),
-									userFirstName: (result.userFirstName ? result.userFirstName : ''),
-									userLastName: (result.userLastName ? result.userLastName : ''),
-									userPortraitURL: (result.userPortraitURL ? result.userPortraitURL : ''),
+									firstName: (result.firstName ? result.firstName : ''),
+									lastName: (result.lastName ? result.lastName : ''),
+									portraitURL: (result.portraitURL ? result.portraitURL : ''),
 									viewSummaryURL: (result.viewSummaryURL ? result.viewSummaryURL : '')
 								}
 							);
@@ -225,11 +225,11 @@ AUI().use(
 						'{lastNameAnchor}' +
 						'<div class="lfr-contact-grid-item" data-user-url="{viewSummaryURL}">' +
 							'<div class="lfr-contact-thumb">' +
-								'<img alt="{userFullName}" src="{userPortraitURL}" />' +
+								'<img alt="{fullName}" src="{portraitURL}" />' +
 							'</div>' +
 							'<div class="lfr-contact-info">' +
 								'<div class="lfr-contact-name">' +
-									'<a>{userLastName}, {userFirstName}</a>' +
+									'<a>{lastName}, {firstName}</a>' +
 								'</div>' +
 								'<div class="lfr-contact-extra">' +
 									'{emailAddress}' +
@@ -247,10 +247,10 @@ AUI().use(
 
 								var displayLastNameAnchor = false;
 
-								if (result.userLastName && result.userLastName.indexOf(lastNameAnchor)) {
+								if (result.lastName && result.lastName.indexOf(lastNameAnchor)) {
 									displayLastNameAnchor = true;
 
-									lastNameAnchor = result.userLastName.substring(0, 1);
+									lastNameAnchor = result.lastName.substring(0, 1);
 								}
 
 								return A.Lang.sub(
@@ -258,9 +258,9 @@ AUI().use(
 									{
 										emailAddress: (result.emailAddress ? result.emailAddress : ''),
 										lastNameAnchor: (displayLastNameAnchor ? '<div class="lastNameAnchor"><a>' + lastNameAnchor + '</a></div>' : ''),
-										userFirstName: (result.userFirstName ? result.userFirstName : ''),
-										userLastName: (result.userLastName ? result.userLastName : ''),
-										userPortraitURL: (result.userPortraitURL ? result.userPortraitURL : ''),
+										firstName: (result.firstName ? result.firstName : ''),
+										lastName: (result.lastName ? result.lastName : ''),
+										portraitURL: (result.portraitURL ? result.portraitURL : ''),
 										viewSummaryURL: (result.viewSummaryURL ? result.viewSummaryURL : '')
 									}
 								);

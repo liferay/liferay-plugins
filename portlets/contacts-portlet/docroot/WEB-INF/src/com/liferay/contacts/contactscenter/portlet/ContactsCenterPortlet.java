@@ -213,10 +213,10 @@ public class ContactsCenterPortlet extends MVCPortlet {
 
 			userJSONObject.put("emailAddress", user.getEmailAddress());
 			userJSONObject.put("jobTitle", user.getJobTitle());
-			userJSONObject.put("userFirstName", user.getFirstName());
-			userJSONObject.put("userLastName", user.getLastName());
+			userJSONObject.put("firstName", user.getFirstName());
+			userJSONObject.put("lastName", user.getLastName());
 			userJSONObject.put(
-				"userPortraitURL", user.getPortraitURL(themeDisplay));
+				"portraitURL", user.getPortraitURL(themeDisplay));
 
 			PortletURL viewSummaryURL =
 				liferayPortletResponse.createRenderURL();
