@@ -87,7 +87,7 @@ public class MicroblogsPortlet extends MVCPortlet {
 	protected String[] getAssetTagNames(String content) {
 		List<String> assetTagNames = new ArrayList<String>();
 
-		Matcher matcher = _tagPattern.matcher(content);
+		Matcher matcher = _assetTagPattern.matcher(content);
 
 		while (matcher.find()) {
 			String assetTagName = matcher.group();
@@ -111,7 +111,7 @@ public class MicroblogsPortlet extends MVCPortlet {
 		return assetTagNames.toArray(new String[assetTagNames.size()]);
 	}
 
-	private Pattern _tagPattern = Pattern.compile("\\#\\S*");
+	private Pattern _assetTagPattern = Pattern.compile("\\#\\S*");
 	private Pattern _userTagPattern = Pattern.compile("\\[\\@\\S*\\]");
 
 }
