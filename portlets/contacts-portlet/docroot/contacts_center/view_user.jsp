@@ -40,14 +40,14 @@ request.setAttribute("view_user.jsp-user", user2);
 
 		<c:if test="<%= (displayStyle == ContactsConstants.DISPLAY_STYLE_BASIC) || (displayStyle ==ContactsConstants.DISPLAY_STYLE_FULL) %>">
 			<div class="lfr-contact-grid-item">
-				<c:if test="<%= showUsersIcon %>">
+				<c:if test="<%= showIcon %>">
 					<div class="lfr-contact-thumb">
 						<a href="<%= user2.getDisplayURL(themeDisplay) %>"><img alt="<%= HtmlUtil.escape(user2.getFullName()) %>" src="<%= user2.getPortraitURL(themeDisplay) %>" /></a>
 					</div>
 				</c:if>
 
 
-				<div class="<%= showUsersIcon ? StringPool.BLANK : "no-icon" %> lfr-contact-info">
+				<div class="<%= showIcon ? StringPool.BLANK : "no-icon" %> lfr-contact-info">
 					<div class="lfr-contact-name">
 						<a href="<%= user2.getDisplayURL(themeDisplay) %>"><%= HtmlUtil.escape(user2.getFullName()) %></a>
 					</div>
@@ -102,7 +102,7 @@ request.setAttribute("view_user.jsp-user", user2);
 
 		<c:if test="<%= ((displayStyle == ContactsConstants.DISPLAY_STYLE_DETAIL) || (displayStyle ==ContactsConstants.DISPLAY_STYLE_FULL)) && UserPermissionUtil.contains(permissionChecker, user2.getUserId(), ActionKeys.VIEW) %>">
 			<aui:layout cssClass="user-information">
-				<aui:column cssClass="user-information-column-1" columnWidth="<%= showUsersSites ? 80 : 100 %>">
+				<aui:column cssClass="user-information-column-1" columnWidth="<%= showSites ? 80 : 100 %>">
 					<div class="user-information-title">
 						<liferay-ui:message key="about" />
 					</div>
@@ -144,7 +144,7 @@ request.setAttribute("view_user.jsp-user", user2);
 
 				</aui:column>
 
-				<c:if test="<%= showUsersSites %>">
+				<c:if test="<%= showSites %>">
 					<aui:column cssClass="user-information-column-2" columnWidth="20">
 
 						<%
@@ -154,17 +154,17 @@ request.setAttribute("view_user.jsp-user", user2);
 
 						Group group = themeDisplay.getScopeGroup();
 
-						String userFullName = StringPool.BLANK;
+						String fullName = StringPool.BLANK;
 
 						if (group.isUser()) {
 							groupParams.put("usersGroups", new Long(group.getClassPK()));
 
-							userFullName = PortalUtil.getUserName(group.getClassPK(), group.getDescriptiveName());
+							fullName = PortalUtil.getUserName(group.getClassPK(), group.getDescriptiveName());
 						}
 						else {
 							groupParams.put("usersGroups", new Long(themeDisplay.getUserId()));
 
-							userFullName = PortalUtil.getUserName(themeDisplay.getUserId(), "you");
+							fullName = PortalUtil.getUserName(themeDisplay.getUserId(), "you");
 						}
 
 						groupParams.put("active", Boolean.TRUE);
@@ -209,7 +209,7 @@ request.setAttribute("view_user.jsp-user", user2);
 							</c:when>
 							<c:otherwise>
 								<div class="empty">
-									<liferay-ui:message arguments="<%= userFullName %>" key="x-does-not-belong-to-any-sites" />
+									<liferay-ui:message arguments="<%= fullName %>" key="x-does-not-belong-to-any-sites" />
 								</div>
 							</c:otherwise>
 						</c:choose>
@@ -217,7 +217,7 @@ request.setAttribute("view_user.jsp-user", user2);
 				</c:if>
 			</aui:layout>
 
-			<c:if test="<%= showUsersRecentActivity %>">
+			<c:if test="<%= showRecentActivity %>">
 				<div class="user-information-title">
 					<liferay-ui:message key="recent-activity" />
 				</div>

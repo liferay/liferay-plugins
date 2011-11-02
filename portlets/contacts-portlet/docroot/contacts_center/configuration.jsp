@@ -47,11 +47,11 @@
 				<aui:column>
 					<aui:input name="preferences--showSocialNetwork--" type="checkbox" value="<%= showSocialNetwork %>" />
 
-					<aui:input label="show-users-icon" name="preferences--showUsersIcon--" type="checkbox" value="<%= showUsersIcon %>" />
+					<aui:input label="show-icon" name="preferences--showIcon--" type="checkbox" value="<%= showIcon %>" />
 
-					<aui:input name="preferences--showUsersRecentActivity--" type="checkbox" value="<%= showUsersRecentActivity %>" />
+					<aui:input name="preferences--showRecentActivity--" type="checkbox" value="<%= showRecentActivity %>" />
 
-					<aui:input label="show-users-sites" name="preferences--showUsersSites--" type="checkbox" value="<%= showUsersSites %>" />
+					<aui:input label="show-sites" name="preferences--showSites--" type="checkbox" value="<%= showSites %>" />
 
 					<aui:input name="preferences--showWebsites--" type="checkbox" value="<%= showWebsites %>" />
 				</aui:column>

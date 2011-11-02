@@ -112,8 +112,8 @@ boolean showInstantMessenger = PrefsParamUtil.getBoolean(preferences, request, "
 boolean showPhones = PrefsParamUtil.getBoolean(preferences, request, "showPhones", true);
 boolean showSMS = PrefsParamUtil.getBoolean(preferences, request, "showSMS", true);
 boolean showSocialNetwork = PrefsParamUtil.getBoolean(preferences, request, "showSocialNetwork", true);
-boolean showUsersIcon = PrefsParamUtil.getBoolean(preferences, request, "showUsersIcon", true);
-boolean showUsersRecentActivity = PrefsParamUtil.getBoolean(preferences, request, "showUsersRecentActivity", true);
-boolean showUsersSites = PrefsParamUtil.getBoolean(preferences, request, "showUsersSites", true);
+boolean showIcon = PrefsParamUtil.getBoolean(preferences, request, "showIcon", true);
+boolean showRecentActivity = PrefsParamUtil.getBoolean(preferences, request, "showRecentActivity", true);
+boolean showSites = PrefsParamUtil.getBoolean(preferences, request, "showSites", true);
 boolean showWebsites = PrefsParamUtil.getBoolean(preferences, request, "showWebsites", true);
 %>
