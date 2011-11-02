@@ -14,21 +14,28 @@
 			WHERE
 				(
 					(
-						(MicroblogsEntry.socialRelationType = ?) OR
-						(SocialRelation.userId1 = ?)
-					) AND
-					(
-						MicroblogsEntry.userId IN
 						(
-							SELECT
-								User_.userId
-							FROM
-								User_
-							[$JOIN_BY_SOCIAL_RELATION$]
+							(MicroblogsEntry.socialRelationType = ?) OR
+							(SocialRelation.userId1 = ?)
+						) AND
+						(
+							MicroblogsEntry.userId IN
+							(
+								SELECT
+									User_.userId
+								FROM
+									User_
+								[$JOIN_BY_SOCIAL_RELATION$]
+							)
 						)
+					) OR
+					(
+						MicroblogsEntry.userId = ?
 					)
-				) OR
-				(MicroblogsEntry.userId = ?)
+				) AND
+				(
+					MicroblogsEntry.type_ <> ?
+				)
 		]]>
 	</sql>
 	<sql id="com.liferay.microblogs.service.persistence.MicroblogsEntryFinder.countByU_MU">
@@ -48,6 +55,9 @@
 				) AND
 				(
 					MicroblogsEntry.userId = ?
+				) AND
+				(
+					MicroblogsEntry.type_ <> ?
 				)
 		]]>
 	</sql>
@@ -102,7 +112,7 @@
 					(SocialRelation.userId1 = ?)
 				) AND
 				(
-					MicroblogsEntry.type = ?
+					MicroblogsEntry.type_ = ?
 				) AND
 				(
 					MicroblogsEntry.userId = ?
@@ -122,21 +132,28 @@
 			WHERE
 				(
 					(
-						(MicroblogsEntry.socialRelationType = ?) OR
-						(SocialRelation.userId1 = ?)
-					) AND
-					(
-						MicroblogsEntry.userId IN
 						(
-							SELECT
-								User_.userId
-							FROM
-								User_
-							[$JOIN_BY_SOCIAL_RELATION$]
+							(MicroblogsEntry.socialRelationType = ?) OR
+							(SocialRelation.userId1 = ?)
+						) AND
+						(
+							MicroblogsEntry.userId IN
+							(
+								SELECT
+									User_.userId
+								FROM
+									User_
+								[$JOIN_BY_SOCIAL_RELATION$]
+							)
 						)
+					) OR
+					(
+						MicroblogsEntry.userId = ?
 					)
-				) OR
-				(MicroblogsEntry.userId = ?)
+				) AND
+				(
+					MicroblogsEntry.type_ <> ?
+				)
 			ORDER BY
 				MicroblogsEntry.createDate DESC
 		]]>
@@ -158,6 +175,9 @@
 				) AND
 				(
 					MicroblogsEntry.userId = ?
+				) AND
+				(
+					MicroblogsEntry.type_ <> ?
 				)
 			ORDER BY
 				MicroblogsEntry.createDate DESC
@@ -216,7 +236,7 @@
 					(SocialRelation.userId1 = ?)
 				) AND
 				(
-					MicroblogsEntry.type = ?
+					MicroblogsEntry.type_ = ?
 				) AND
 				(
 					MicroblogsEntry.userId = ?

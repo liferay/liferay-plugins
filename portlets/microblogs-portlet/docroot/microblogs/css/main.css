@@ -130,6 +130,12 @@ $microblogs-border-color: #C7D0DA;
 		 .microblogs-countdown-warned {
 			background: #F00;
 		}
+
+		&.reply {
+			margin-left: 25px;
+			padding-left: 0;
+			
+		}
 	}
 
 	.autocomplete {
@@ -142,8 +148,16 @@ $microblogs-border-color: #C7D0DA;
 		margin: 0 25px;
 		padding: 1em 0 .5em;
 
-		&.reply {
-			margin-left: 80px;
+		.entry-bubble {
+			margin-left: 50px;
+		}
+	}
+
+	.reply {
+		margin-left: 50px;
+
+		.entry-bubble {
+			margin-left: 30px;
 		}
 	}
 
@@ -186,6 +200,10 @@ $microblogs-border-color: #C7D0DA;
 		}
 
 		.microblogs-entry-content {
+			margin-left: 35px;
+		}
+
+		.autocomplete {
 			margin-left: 35px;
 		}
 	}

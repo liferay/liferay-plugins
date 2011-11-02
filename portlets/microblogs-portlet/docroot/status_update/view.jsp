@@ -19,12 +19,18 @@
 <%
 String redirect = ParamUtil.getString(request, "redirect");
 
+boolean userPublicPage = false;
+
 Group group = themeDisplay.getScopeGroup();
 
 long microblogsEntryUserId = themeDisplay.getUserId();
 
 if (group.isUser()) {
 	microblogsEntryUserId = group.getClassPK();
+
+	if (layout.isPublicLayout()) {
+		userPublicPage = true;
+	}
 }
 
 PortletURL portletURL = renderResponse.createRenderURL();
@@ -34,7 +40,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 portletURL.setParameter("jspPage", "/status_update/view.jsp");
 %>
 
-<c:if test="<%= MicroblogsPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_ENTRY) && (microblogsEntryUserId == themeDisplay.getUserId()) %>">
+<c:if test="<%= MicroblogsPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_ENTRY) && !userPublicPage %>">
 	<liferay-util:include page="/microblogs/edit_microblogs_entry.jsp" servletContext="<%= application %>" />
 </c:if>
 
