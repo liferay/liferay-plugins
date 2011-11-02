@@ -18,8 +18,6 @@
 
 <%
 
-String portletNamespace = liferayPortletResponse.getNamespace();
-
 MailManager mailManager = MailManager.getInstance(request);
 
 List<MailFile> mailFiles = new ArrayList<MailFile>();
@@ -48,7 +46,7 @@ try {
 		String fileName = uploadPortletRequest.getFileName(
 			 "attachment" + i);
 
- 		long size = uploadPortletRequest.getSize(portletNamespace + "attachment" + i);
+ 		long size = uploadPortletRequest.getSize("attachment" + i);
 
 		if (file == null) {
 			continue;
