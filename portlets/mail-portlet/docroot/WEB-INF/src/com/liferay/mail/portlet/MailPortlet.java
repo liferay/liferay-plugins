@@ -50,68 +50,6 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class MailPortlet extends MVCPortlet {
 
-	public void sendMessage(
-			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws Exception {
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		UploadPortletRequest uploadPortletRequest =
-			PortalUtil.getUploadPortletRequest(actionRequest);
-
-		long accountId = ParamUtil.getLong(uploadPortletRequest, "accountId");
-		long messageId = ParamUtil.getLong(uploadPortletRequest, "messageId");
-		String to = ParamUtil.getString(uploadPortletRequest, "to");
-		String cc = ParamUtil.getString(uploadPortletRequest, "cc");
-		String bcc = ParamUtil.getString(uploadPortletRequest, "bcc");
-		String subject = ParamUtil.getString(uploadPortletRequest, "subject");
-		String body = ParamUtil.getString(uploadPortletRequest, "body");
-
-		int attachmentCount = ParamUtil.getInteger(
-			uploadPortletRequest, "attachmentCount");
-
-		List<MailFile> mailFiles = new ArrayList<MailFile>();
-
-		try {
-			for (int i = 1; i <= attachmentCount; i++) {
-				File file = uploadPortletRequest.getFile(
-					"attachment" + i, true);
-				String fileName = uploadPortletRequest.getFileName(
-					"attachment" + i);
-				long size = uploadPortletRequest.getSize("attachment" + i);
-
-				if (file == null) {
-					continue;
-				}
-
-				MailFile mailFile = new MailFile(file, fileName, size);
-
-				mailFiles.add(mailFile);
-			}
-
-			HttpServletRequest request = PortalUtil.getHttpServletRequest(
-				actionRequest);
-
-			MailManager mailManager = MailManager.getInstance(request);
-
-			JSONObject responseDataJSONObject = mailManager.sendMessage(
-				accountId, messageId, to, cc, bcc, subject, body, mailFiles);
-
-			String redirect =
-				PortalUtil.getLayoutURL(themeDisplay) +
-					"/-/mail/send_message?responseData=" +
-						responseDataJSONObject;
-
-			actionResponse.sendRedirect(redirect);
-		}
-		finally {
-			for (MailFile mailFile : mailFiles) {
-				mailFile.cleanUp();
-			}
-		}
-	}
-
 	@Override
 	public void serveResource(
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)

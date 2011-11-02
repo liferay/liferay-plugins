@@ -28,6 +28,7 @@
 <%@ page import="com.liferay.mail.model.Account" %><%@
 page import="com.liferay.mail.model.Attachment" %><%@
 page import="com.liferay.mail.model.Folder" %><%@
+page import="com.liferay.mail.model.MailFile" %><%@
 page import="com.liferay.mail.model.Message" %><%@
 page import="com.liferay.mail.model.MessageDisplay" %><%@
 page import="com.liferay.mail.model.MessagesDisplay" %><%@
@@ -43,16 +44,27 @@ page import="com.liferay.portal.kernel.json.JSONFactoryUtil" %><%@
 page import="com.liferay.portal.kernel.json.JSONObject" %><%@
 page import="com.liferay.portal.kernel.language.LanguageUtil" %><%@
 page import="com.liferay.portal.kernel.util.FastDateFormatFactoryUtil" %><%@
+page import="com.liferay.portal.kernel.upload.UploadPortletRequest" %><%@
+page import="com.liferay.portal.kernel.upload.UploadServletRequest" %><%@
 page import="com.liferay.portal.kernel.util.HtmlUtil" %><%@
 page import="com.liferay.portal.kernel.util.ParamUtil" %><%@
 page import="com.liferay.portal.kernel.util.StringBundler" %><%@
 page import="com.liferay.portal.kernel.util.StringPool" %><%@
 page import="com.liferay.portal.kernel.util.UnicodeFormatter" %><%@
-page import="com.liferay.portal.kernel.util.Validator" %>
+page import="com.liferay.portal.kernel.util.Validator" %><%@
+page import="com.liferay.portal.util.PortalUtil" %>
+
+
+<%@ page import="java.io.File" %>
 
 <%@ page import="java.text.Format" %>
 
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.Enumeration" %>
 <%@ page import="java.util.List" %>
+
+<%@ page import="javax.portlet.PortletRequest" %>
+
 
 <portlet:defineObjects />
 

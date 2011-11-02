@@ -44,6 +44,7 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
 import com.liferay.portal.util.PortalUtil;
+import com.liferay.portlet.documentlibrary.FileSizeException;
 
 import java.io.IOException;
 
@@ -652,6 +653,9 @@ public class MailManager {
 			_log.error(me, me);
 
 			return createJSONResult("failure", "unable-to-send-message");
+		}
+		catch (FileSizeException fse) {
+			return createJSONResult("failure", "unable-to-send-message-file-size-too-big");
 		}
 	}
 
