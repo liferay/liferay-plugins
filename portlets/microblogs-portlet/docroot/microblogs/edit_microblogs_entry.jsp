@@ -62,7 +62,6 @@ if ((microblogsEntry != null) && (reply || repost)) {
 
 String header = "whats-happening";
 
-String cssClassName = "highlighter-content";
 String formName = "dialogFm";
 
 boolean view = false;
@@ -77,16 +76,13 @@ else if (reply) {
 	header = "what-do-you-want-to-say-to-x";
 }
 else {
-	cssClassName = "highlighter-content textbox";
 	formName = "fm";
 
 	view = true;
 }
-
-header = LanguageUtil.format(pageContext, header, receiverUserFullName);
 %>
 
-<liferay-ui:header title="<%= header %>" />
+<liferay-ui:header title="<%= LanguageUtil.format(pageContext, header, receiverUserFullName) %>" />
 
 <c:if test="<%= reply || repost %>">
 	<c:choose>
@@ -146,7 +142,7 @@ header = LanguageUtil.format(pageContext, header, receiverUserFullName);
 		<div class="autocomplete" id="<portlet:namespace />autocomplete">
 			<div id="<portlet:namespace />autocompleteContent"></div>
 
-			<div class="<%= cssClassName %>" id="<portlet:namespace />highlighterContent"></div>
+			<div class="highlighter-content <%= edit || repost || reply ? StringPool.BLANK : "textbox" %>" id="<portlet:namespace />highlighterContent"></div>
 		</div>
 
 		<aui:input label="" name="content" type="hidden" />
@@ -187,7 +183,7 @@ header = LanguageUtil.format(pageContext, header, receiverUserFullName);
 
 <aui:script use="aui-base,aui-event-input,aui-template,aui-form-textarea,autocomplete,autocomplete-filters">
 	var MAP_MATCHED_USERS = {
-		userScreenName: function(str, match) {
+		screenName: function(str, match) {
 			return '[@' + MAP_USERS[str] + ']';
 		},
 		userName: function(str, match) {
@@ -201,10 +197,10 @@ header = LanguageUtil.format(pageContext, header, receiverUserFullName);
 
 	var TPL_SEARCH_RESULTS = '<div class="microblogs-autocomplete">' +
 		'<div class="thumbnail">' +
-			'<img src="{portraitURL}" alt="{userFullName}" />' +
+			'<img src="{portraitURL}" alt="{fullName}" />' +
 		'</div>' +
 		'<div>' +
-			'<span class="user-name">{userFullName}</span><br />' +
+			'<span class="user-name">{fullName}</span><br />' +
 			'<span class="small">{email}</span><br />' +
 			'<span class="job-title">{jobTitle}</span>' +
 		'</div>' +
@@ -358,8 +354,8 @@ header = LanguageUtil.format(pageContext, header, receiverUserFullName);
 
 			var rawResult = event.result.raw;
 
-			var fullName = rawResult.userFullName;
-			var userScreenName = rawResult.userScreenName;
+			var fullName = rawResult.fullName;
+			var screenName = rawResult.screenName;
 
 			var inputNode = event.currentTarget._inputNode;
 
@@ -369,7 +365,7 @@ header = LanguageUtil.format(pageContext, header, receiverUserFullName);
 
 			inputNode.val(inputValueUpdated);
 
-			MAP_USERS[fullName] = userScreenName;
+			MAP_USERS[fullName] = screenName;
 
 			autocompleteDiv.hide()
 		};
@@ -390,7 +386,7 @@ header = LanguageUtil.format(pageContext, header, receiverUserFullName);
 					},
 					resultFilters: 'phraseMatch',
 					resultFormatter: resultFormatter,
-					resultTextLocator: 'userFullName',
+					resultTextLocator: 'fullName',
 					source: <%= MicroblogsUtil.getJSONRecipients(user.getUserId(), themeDisplay) %>
 				}
 			).render();
@@ -406,7 +402,7 @@ header = LanguageUtil.format(pageContext, header, receiverUserFullName);
 
 				var contentInputValue = contentInput.val();
 
-				var updatedText = replaceName(contentInputValue, 'userScreenName');
+				var updatedText = replaceName(contentInputValue, 'screenName');
 
 				content.val(updatedText);
 

@@ -120,8 +120,8 @@ for (MicroblogsEntry microblogsEntry : microblogsEntries) {
 					viewURL.setWindowState(LiferayWindowState.NORMAL);
 
 					viewURL.setParameter("jspPage", "/microblogs/view.jsp");
-					viewURL.setParameter("assetTagName", assetTagName);
 					viewURL.setParameter("tabs1", assetTagName);
+					viewURL.setParameter("assetTagName", assetTagName);
 
 					content = StringUtil.replace(content, result, "<a href=\"" + viewURL + "\">" + assetTagName + "</a>");
 				}
@@ -142,8 +142,8 @@ for (MicroblogsEntry microblogsEntry : microblogsEntries) {
 					viewURL.setWindowState(LiferayWindowState.NORMAL);
 
 					viewURL.setParameter("jspPage", "/microblogs/view.jsp");
-					viewURL.setParameter("assetTagName", assetTagName);
 					viewURL.setParameter("tabs1", assetTagName);
+					viewURL.setParameter("assetTagName", assetTagName);
 
 					try {
 						User taggedUser = UserLocalServiceUtil.getUserByScreenName(microblogsEntry.getCompanyId(), assetTagName);
