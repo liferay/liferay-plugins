@@ -864,6 +864,6 @@ AUI().add(
 	},
 	'',
 	{
-		requires: ['aui-tree-view', 'aui-tree-node', 'aui-overlay-manager', 'aui-toolbar', 'aui-overlay-context']
+		requires: ['aui-editable', 'aui-tree-view', 'aui-tree-node', 'aui-overlay-manager', 'aui-toolbar', 'aui-overlay-context']
 	}
 );
