@@ -36,14 +36,11 @@ page import="com.liferay.microblogs.util.MicroblogsUtil" %><%@
 page import="com.liferay.microblogs.util.WebKeys" %><%@
 page import="com.liferay.microblogs.util.comparator.EntryCreateDateComparator" %><%@
 page import="com.liferay.portal.NoSuchUserException" %><%@
-page import="com.liferay.portal.kernel.dao.orm.QueryUtil" %><%@
 page import="com.liferay.portal.kernel.dao.search.SearchContainer" %><%@
 page import="com.liferay.portal.kernel.language.LanguageUtil" %><%@
 page import="com.liferay.portal.kernel.portlet.LiferayWindowState" %><%@
-page import="com.liferay.portal.kernel.util.DateUtil" %><%@
 page import="com.liferay.portal.kernel.util.FastDateFormatFactoryUtil" %><%@
 page import="com.liferay.portal.kernel.util.HtmlUtil" %><%@
-page import="com.liferay.portal.kernel.util.ListUtil" %><%@
 page import="com.liferay.portal.kernel.util.ParamUtil" %><%@
 page import="com.liferay.portal.kernel.util.StringPool" %><%@
 page import="com.liferay.portal.kernel.util.StringUtil" %><%@
@@ -53,9 +50,7 @@ page import="com.liferay.portal.model.User" %><%@
 page import="com.liferay.portal.security.permission.ActionKeys" %><%@
 page import="com.liferay.portal.service.UserLocalServiceUtil" %><%@
 page import="com.liferay.portal.util.PortalUtil" %><%@
-page import="com.liferay.portal.util.comparator.UserLoginDateComparator" %><%@
-page import="com.liferay.portlet.social.model.SocialRelationConstants" %><%@
-page import="com.liferay.portlet.social.service.SocialRelationLocalServiceUtil" %>
+page import="com.liferay.portlet.social.model.SocialRelationConstants" %>
 
 <%@ page import="java.text.Format" %>
 
@@ -64,8 +59,7 @@ page import="java.util.List" %><%@
 page import="java.util.regex.Matcher" %><%@
 page import="java.util.regex.Pattern" %>
 
-<%@ page import="javax.portlet.ActionRequest" %><%@
-page import="javax.portlet.PortletURL" %><%@
+<%@ page import="javax.portlet.PortletURL" %><%@
 page import="javax.portlet.WindowState" %>
 
 <portlet:defineObjects />

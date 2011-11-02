@@ -153,6 +153,7 @@ header = LanguageUtil.format(pageContext, header, receiverUserFullName);
 
 	<aui:button-row cssClass='<%= view ? "aui-helper-hidden" : StringPool.BLANK %>'>
 		<c:if test="<%= !repost && !reply %>">
+
 			<%
 			int socialRelationType = 0;
 
