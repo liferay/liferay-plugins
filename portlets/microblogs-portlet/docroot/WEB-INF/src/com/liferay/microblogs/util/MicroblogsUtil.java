@@ -26,8 +26,7 @@ import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.comparator.UserFirstNameComparator;
 import com.liferay.portlet.social.model.SocialRelationConstants;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 /**
  * @author Jonathan Lee
@@ -38,15 +37,12 @@ public class MicroblogsUtil {
 			long userId, ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
 
-		Set<User> users = new HashSet<User>();
+		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
-		users.addAll(
-			UserLocalServiceUtil.getSocialUsers(
-				userId, SocialRelationConstants.TYPE_BI_CONNECTION,
-				QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-				new UserFirstNameComparator(true)));
-
-		JSONArray userJSONArray = JSONFactoryUtil.createJSONArray();
+		List<User> users = UserLocalServiceUtil.getSocialUsers(
+			userId, SocialRelationConstants.TYPE_BI_CONNECTION,
+			QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			new UserFirstNameComparator(true));
 
 		for (User user : users) {
 			if (user.isDefaultUser() || (userId == user.getUserId())) {
@@ -55,19 +51,18 @@ public class MicroblogsUtil {
 
 			JSONObject userJSONObject = JSONFactoryUtil.createJSONObject();
 
-			userJSONObject.put("userScreenName", user.getScreenName());
-			userJSONObject.put("userId", user.getUserId());
-			userJSONObject.put("userFullName", user.getFullName());
-			userJSONObject.put("email", user.getEmailAddress());
+			userJSONObject.put("emailAddress", user.getEmailAddress());
+			userJSONObject.put("fullName", user.getFullName());
+			userJSONObject.put("jobTitle", user.getJobTitle());
 			userJSONObject.put(
 				"portraitURL", user.getPortraitURL(themeDisplay));
-			userJSONObject.put(
-				"jobTitle", user.getJobTitle());
+			userJSONObject.put("screenName", user.getScreenName());
+			userJSONObject.put("userId", user.getUserId());
 
-			userJSONArray.put(userJSONObject);
+			jsonArray.put(userJSONObject);
 		}
 
-		return userJSONArray;
+		return jsonArray;
 	}
 
 }
