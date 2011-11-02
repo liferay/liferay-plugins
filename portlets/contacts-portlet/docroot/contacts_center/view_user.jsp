@@ -39,7 +39,7 @@ request.setAttribute("view_user.jsp-user", user2);
 	<div class="contacts-profile">
 
 		<c:if test="<%= (displayStyle == ContactsConstants.DISPLAY_STYLE_BASIC) || (displayStyle ==ContactsConstants.DISPLAY_STYLE_FULL) %>">
-			<aui:layout cssClass="lfr-contact-grid-item">
+			<div class="lfr-contact-grid-item">
 				<c:if test="<%= showUsersIcon %>">
 					<div class="lfr-contact-thumb">
 						<a href="<%= user2.getDisplayURL(themeDisplay) %>"><img alt="<%= HtmlUtil.escape(user2.getFullName()) %>" src="<%= user2.getPortraitURL(themeDisplay) %>" /></a>
@@ -61,8 +61,8 @@ request.setAttribute("view_user.jsp-user", user2);
 					</div>
 				</div>
 
-				<div class="clear"></div>
-			</aui:layout>
+				<div class="clear"><!-- --></div>
+			</div>
 
 			<aui:layout cssClass="social-relations">
 
@@ -95,7 +95,7 @@ request.setAttribute("view_user.jsp-user", user2);
 				</c:if>
 
 				<aui:layout cssClass="contacts-action">
-					<liferay-util:include page="/contacts_center/user_action.jsp" servletContext="<%= application %>" />
+					<liferay-util:include page="/contacts_center/user_toolbar.jsp" servletContext="<%= application %>" />
 				</aui:layout>
 			</aui:layout>
 		</c:if>

@@ -49,6 +49,7 @@ PortletURL portletURL = renderResponse.createRenderURL();
 
 portletURL.setWindowState(WindowState.NORMAL);
 %>
+
 <c:choose>
 	<c:when test="<%= isUserProfilePage && usersCount <= 0 %>">
 		<aui:layout cssClass="contacts-center-home">
@@ -74,7 +75,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 			</aui:layout>
 		</c:if>
 
-		<div class="clear"></div>
+		<div class="clear"><!-- --></div>
 
 		<aui:layout cssClass="contacts-result-container lfr-app-column-view">
 			<aui:column columnWidth="30" first="<%= true %>">
@@ -89,7 +90,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 						<c:if test="<%= !StringUtil.startsWith(user2.getLastName(), lastNameAnchor) %>">
 
 							<%
-								lastNameAnchor = user2.getLastName().substring(0, 1);
+							lastNameAnchor = user2.getLastName().substring(0, 1);
 							%>
 
 							<div class="lastNameAnchor">
@@ -117,7 +118,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 								</div>
 							</div>
 
-							<div class="clear"></div>
+							<div class="clear"><!-- --></div>
 						</div>
 
 					<%
@@ -131,6 +132,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 					</c:if>
 				</aui:layout>
 			</aui:column>
+
 			<aui:column columnWidth="70" cssClass="contacts-container">
 				<c:choose>
 					<c:when test="<%= isUserProfilePage %>">
@@ -179,122 +181,122 @@ portletURL.setWindowState(WindowState.NORMAL);
 		</form>
 
 		<aui:script use="aui-base,aui-io,datatype-number">
-		Liferay.Contacts.init(
-			{
-				contactsResult: '.contacts-portlet .contacts-result-content',
-				contactsResultContainer: '.contacts-portlet .contacts-result',
-				contactsResultURL: '<portlet:resourceURL id="getContacts"><portlet:param name="portletResource" value="<%= portletResource %>" /></portlet:resourceURL>',
-				contactsSearchInput: '#<portlet:namespace />name'
-			}
-		);
-
-		var searchInput = A.one('.contacts-portlet #<portlet:namespace />name');
-
-		<c:if test="<%= !isUserProfilePage %>">
-			var contactFilterContainer = A.one('.contacts-portlet .contact-group-filter');
-			var contactFilterSelect = contactFilterContainer.one('select[name=<portlet:namespace />socialRelationType]');
-
-			contactFilterSelect.on(
-				'change',
-				function(event) {
-					searchInput.set('value', '');
-
-					Liferay.Contacts.updateContacts(searchInput.get('value'), contactFilterSelect.get('value'));
+			Liferay.Contacts.init(
+				{
+					contactsResult: '.contacts-portlet .contacts-result-content',
+					contactsResultContainer: '.contacts-portlet .contacts-result',
+					contactsResultURL: '<portlet:resourceURL id="getContacts"><portlet:param name="portletResource" value="<%= portletResource %>" /></portlet:resourceURL>',
+					contactsSearchInput: '#<portlet:namespace />name'
 				}
 			);
-		</c:if>
 
-		var contactsResult = A.one('.contacts-portlet .contacts-result');
+			var searchInput = A.one('.contacts-portlet #<portlet:namespace />name');
 
-		contactsResult.delegate(
-			'click',
-			function(event) {
-				var uri = event.currentTarget.getAttribute('data-viewSummaryURL');
-				var contactSummary = A.one('.contacts-portlet .contacts-result-container .contacts-container-content');
+			<c:if test="<%= !isUserProfilePage %>">
+				var contactFilterContainer = A.one('.contacts-portlet .contact-group-filter');
+				var contactFilterSelect = contactFilterContainer.one('select[name=<portlet:namespace />socialRelationType]');
 
-				if (!contactSummary.io) {
-					contactSummary.plug(
-						A.Plugin.IO,
-						{
-							autoLoad: false
-						}
-					);
-				}
+				contactFilterSelect.on(
+					'change',
+					function(event) {
+						searchInput.set('value', '');
 
-				contactSummary.io.set('uri', uri);
-
-				contactSummary.io.start();
-			},
-			'.lfr-contact-grid-item'
-		);
-
-		contactsResult.delegate(
-			'click',
-			function(event) {
-				var end = A.DataType.Number.parse(event.currentTarget.getAttribute('data-end'));
-				var start = end;
-
-				var lastNameAnchor = event.currentTarget.getAttribute('data-lastNameAnchor');
-
-				end = start + <%= maxResultCount %>;
-
-				A.io.request(
-					'<portlet:resourceURL id="getContacts"><portlet:param name="portletResource" value="<%= portletResource %>" /></portlet:resourceURL>',
-					{
-						after: {
-							success: function(event, id, obj) {
-								Liferay.Contacts.showMoreReuslt(this.get('responseData'), lastNameAnchor);
-							}
-						},
-						data: {
-							end: end,
-							keywords: searchInput.get('value'),
-							socialRelationType: contactFilterSelect.get('value') || 'all',
-							start: start
-						}
+						Liferay.Contacts.updateContacts(searchInput.get('value'), contactFilterSelect.get('value'));
 					}
 				);
-			},
-			'.more-results a'
-		);
+			</c:if>
 
-		<c:if test="<%= !isUserProfilePage %>">
-			var viewConnections = A.one('.contacts-portlet .contacts-center-home .connections');
+			var contactsResult = A.one('.contacts-portlet .contacts-result');
 
-			viewConnections.on(
+			contactsResult.delegate(
 				'click',
 				function(event) {
-					contactFilterSelect.set('value', '<%= SocialRelationConstants.TYPE_BI_CONNECTION %>');
+					var uri = event.currentTarget.getAttribute('data-viewSummaryURL');
+					var contactSummary = A.one('.contacts-portlet .contacts-result-container .contacts-container-content');
 
-					Liferay.Contacts.updateContacts(searchInput.get('value'), contactFilterSelect.get('value'));
+					if (!contactSummary.io) {
+						contactSummary.plug(
+							A.Plugin.IO,
+							{
+								autoLoad: false
+							}
+						);
+					}
+
+					contactSummary.io.set('uri', uri);
+
+					contactSummary.io.start();
 				},
-				'a'
+				'.lfr-contact-grid-item'
 			);
 
-			var viewFollowings = A.one('.contacts-portlet .contacts-center-home .followings');
-
-			viewFollowings.on(
+			contactsResult.delegate(
 				'click',
 				function(event) {
-					contactFilterSelect.set('value', '<%= SocialRelationConstants.TYPE_UNI_FOLLOWER %>');
+					var end = A.DataType.Number.parse(event.currentTarget.getAttribute('data-end'));
+					var start = end;
 
-					Liferay.Contacts.updateContacts(searchInput.get('value'), contactFilterSelect.get('value'));
+					var lastNameAnchor = event.currentTarget.getAttribute('data-lastNameAnchor');
+
+					end = start + <%= maxResultCount %>;
+
+					A.io.request(
+						'<portlet:resourceURL id="getContacts"><portlet:param name="portletResource" value="<%= portletResource %>" /></portlet:resourceURL>',
+						{
+							after: {
+								success: function(event, id, obj) {
+									Liferay.Contacts.showMoreReuslt(this.get('responseData'), lastNameAnchor);
+								}
+							},
+							data: {
+								end: end,
+								keywords: searchInput.get('value'),
+								socialRelationType: contactFilterSelect.get('value') || 'all',
+								start: start
+							}
+						}
+					);
 				},
-				'a'
+				'.more-results a'
 			);
 
-			var viewAll = A.one('.contacts-portlet .contacts-center-home .all');
+			<c:if test="<%= !isUserProfilePage %>">
+				var viewConnections = A.one('.contacts-portlet .contacts-center-home .connections');
 
-			viewAll.on(
-				'click',
-				function(event) {
-					contactFilterSelect.set('value', 'all');
+				viewConnections.on(
+					'click',
+					function(event) {
+						contactFilterSelect.set('value', '<%= SocialRelationConstants.TYPE_BI_CONNECTION %>');
 
-					Liferay.Contacts.updateContacts(searchInput.get('value'), contactFilterSelect.get('value'));
-				},
-				'a'
-			);
-		</c:if>
+						Liferay.Contacts.updateContacts(searchInput.get('value'), contactFilterSelect.get('value'));
+					},
+					'a'
+				);
+
+				var viewFollowings = A.one('.contacts-portlet .contacts-center-home .followings');
+
+				viewFollowings.on(
+					'click',
+					function(event) {
+						contactFilterSelect.set('value', '<%= SocialRelationConstants.TYPE_UNI_FOLLOWER %>');
+
+						Liferay.Contacts.updateContacts(searchInput.get('value'), contactFilterSelect.get('value'));
+					},
+					'a'
+				);
+
+				var viewAll = A.one('.contacts-portlet .contacts-center-home .all');
+
+				viewAll.on(
+					'click',
+					function(event) {
+						contactFilterSelect.set('value', 'all');
+
+						Liferay.Contacts.updateContacts(searchInput.get('value'), contactFilterSelect.get('value'));
+					},
+					'a'
+				);
+			</c:if>
 		</aui:script>
 	</c:otherwise>
 </c:choose>

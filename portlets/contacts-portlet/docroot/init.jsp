@@ -116,5 +116,4 @@ boolean showUsersIcon = PrefsParamUtil.getBoolean(preferences, request, "showUse
 boolean showUsersRecentActivity = PrefsParamUtil.getBoolean(preferences, request, "showUsersRecentActivity", true);
 boolean showUsersSites = PrefsParamUtil.getBoolean(preferences, request, "showUsersSites", true);
 boolean showWebsites = PrefsParamUtil.getBoolean(preferences, request, "showWebsites", true);
-
 %>

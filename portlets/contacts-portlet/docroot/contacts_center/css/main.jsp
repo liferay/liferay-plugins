@@ -192,6 +192,17 @@ $section-header-bg: #CCE6F7;
 		}
 	}
 
+	.user-information {
+		.aui-column {
+			.aui-column-content {
+				padding-right: 10px;
+			}
+			&:before {
+				border-right-width: 0;
+			}
+		}
+	}
+
 	.contacts-result-container-content {
 		.contacts-profile {
 			.lfr-contact-info {
