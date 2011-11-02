@@ -9,8 +9,7 @@
 		<control-panel-entry-category>portal</control-panel-entry-category>
 		<header-portlet-css>/admin/css/main.css</header-portlet-css>
 		<css-class-wrapper>opensocial-portlet-admin</css-class-wrapper>
-		<add-default-resource>true</add-default-resource>
-	</portlet>
+		</portlet>
 	<portlet>
 		<portlet-name>2</portlet-name>
 		<configuration-action-class>com.liferay.opensocial.gadget.action.ConfigurationActionImpl</configuration-action-class>
@@ -53,7 +52,6 @@
 		<footer-portlet-javascript>/editor/js/main.js</footer-portlet-javascript>
 		<footer-portlet-javascript>/js/service.js</footer-portlet-javascript>
 		<css-class-wrapper>opensocial-portlet-editor</css-class-wrapper>
-		<add-default-resource>true</add-default-resource>
 	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>
