@@ -18,7 +18,7 @@
 
 <%
 
-String portletNamespace = PortalUtil.getPortletNamespace(PortalUtil.getPortletId(request));
+String portletNamespace = liferayPortletResponse.getNamespace();
 
 MailManager mailManager = MailManager.getInstance(request);
 
