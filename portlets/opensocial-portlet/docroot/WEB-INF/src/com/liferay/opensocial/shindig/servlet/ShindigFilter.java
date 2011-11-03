@@ -93,7 +93,7 @@ public class ShindigFilter extends InjectedFilter {
 			String userUUIDString = CookieUtil.get(
 				(HttpServletRequest)servletRequest, CookieKeys.USER_UUID);
 
-			if (Validator.isNull(userUUID)) {
+			if (Validator.isNull(userUUIDString)) {
 				return false;
 			}
 
