@@ -84,69 +84,12 @@ AUI().use(
 				};
 			},
 
-			showMoreReuslt: function(responseData, lastNameAnchor) {
+			showMoreResult: function(responseData, lastNameAnchor) {
 				var instance = this;
 
 				var data = A.JSON.parse(responseData);
 
-				var results = data.users;
-				var count = data.count;
-
-				var options = data.options;
-
-				var buffer = [];
-
-				var userTemplate =
-					'{lastNameAnchor}' +
-					'<div class="lfr-contact-grid-item" data-viewSummaryURL="{viewSummaryURL}">' +
-						'<div class="lfr-contact-thumb">' +
-							'<img alt="{fullName}" src="{portraitURL}" />' +
-						'</div>' +
-						'<div class="lfr-contact-info">' +
-							'<div class="lfr-contact-name">' +
-								'<a>{lastName}, {firstName}</a>' +
-							'</div>' +
-							'<div class="lfr-contact-extra">' +
-								'{emailAddress}' +
-							'</div>' +
-						'</div>' +
-						'<div class="clear"></div>' +
-					'</div>';
-
-				buffer.push(
-					A.Array.map(
-						results,
-						function(result) {
-							var displayLastNameAnchor = false;
-
-							if (result.lastName && result.lastName.indexOf(lastNameAnchor)) {
-								displayLastNameAnchor = true;
-
-								lastNameAnchor = result.lastName.substring(0, 1);
-							}
-
-							return A.Lang.sub(
-								userTemplate,
-								{
-									emailAddress: (result.emailAddress ? result.emailAddress : ''),
-									lastNameAnchor: (displayLastNameAnchor ? '<div class="lastNameAnchor"><a>' + lastNameAnchor + '</a></div>' : ''),
-									firstName: (result.firstName ? result.firstName : ''),
-									lastName: (result.lastName ? result.lastName : ''),
-									portraitURL: (result.portraitURL ? result.portraitURL : ''),
-									viewSummaryURL: (result.viewSummaryURL ? result.viewSummaryURL : '')
-								}
-							);
-						}
-					).join('')
-				);
-
-				if (count > options.end) {
-					buffer.push(
-						'<div class="more-results">' +
-							'<a href="javascript:;" data-end="' + options.end + '" data-lastNameAnchor="' + lastNameAnchor + '">' + Liferay.Language.get('view-more') + ' (' + (count - options.end) + ')' + '</a>' +
-						'</div>'
-					);
-				}
+				var buffer = Liferay.Contacts._renderResult(data, false, lastNameAnchor);
 
 				var contactResultContent = A.one('.contacts-portlet .contacts-result-content');
 				var moreResults = A.one('.contacts-portlet .more-results');
@@ -193,11 +136,7 @@ AUI().use(
 				instance._contactList = contactsResult;
 			},
 
-			_updateContactsResult: function(event) {
-				var instance = this;
-
-				var data = A.JSON.parse(event.data.responseText);
-
+			_renderResult: function(data, displayMessage, lastNameAnchor) {
 				var results = data.users;
 				var count = data.count;
 
@@ -205,19 +144,9 @@ AUI().use(
 
 				var buffer = [];
 
-				var contactFilterSelect = A.one('.contacts-portlet .contact-group-filter select');
-
-				var socialRelationText = '';
-
-				if (contactFilterSelect) {
-					socialRelationSelectedIndex = contactFilterSelect.get('selectedIndex');
-
-					socialRelationText = contactFilterSelect.get('options').item(socialRelationSelectedIndex).get('text');
-				}
-
-				if (results.length == 0) {
+				if (results.length == 0 && displayMessage) {
 					buffer.push(
-						'<div class="empty">' + Liferay.Language.get('there-are-no-matching-contacts-in') + socialRelationText + '</div>'
+						'<div class="empty">' + Liferay.Language.get('there-are-no-matching-contacts') + '</div>'
 					);
 				}
 				else {
@@ -238,8 +167,6 @@ AUI().use(
 							'<div class="clear"></div>' +
 						'</div>';
 
-					var lastNameAnchor = ' ';
-
 					buffer.push(
 						A.Array.map(
 							results,
@@ -247,7 +174,7 @@ AUI().use(
 
 								var displayLastNameAnchor = false;
 
-								if (result.lastName && result.lastName.indexOf(lastNameAnchor)) {
+								if (result.lastName && result.lastName.indexOf(lastNameAnchor.toLowerCase())) {
 									displayLastNameAnchor = true;
 
 									lastNameAnchor = result.lastName.substring(0, 1);
@@ -257,7 +184,7 @@ AUI().use(
 									userTemplate,
 									{
 										emailAddress: (result.emailAddress ? result.emailAddress : ''),
-										lastNameAnchor: (displayLastNameAnchor ? '<div class="lastNameAnchor"><a>' + lastNameAnchor + '</a></div>' : ''),
+										lastNameAnchor: (displayLastNameAnchor ? '<div class="lastNameAnchor"><a>' + lastNameAnchor.toUpperCase() + '</a></div>' : ''),
 										firstName: (result.firstName ? result.firstName : ''),
 										lastName: (result.lastName ? result.lastName : ''),
 										portraitURL: (result.portraitURL ? result.portraitURL : ''),
@@ -267,15 +194,25 @@ AUI().use(
 							}
 						).join('')
 					);
-
-					if (count > options.end) {
-						buffer.push(
-							'<div class="more-results">' +
-								'<a href="javascript:;" data-end="' + options.end + '" data-lastNameAnchor="' + lastNameAnchor + '">' + Liferay.Language.get('view-more') + ' (' + (count - options.end) + ')' + '</a>' +
-							'</div>'
-						);
-					}
 				}
+
+				if (count > options.end) {
+					buffer.push(
+						'<div class="more-results">' +
+							'<a href="javascript:;" data-end="' + options.end + '" data-lastNameAnchor="' + lastNameAnchor + '">' + Liferay.Language.get('view-more') + ' (' + (count - options.end) + ')' + '</a>' +
+						'</div>'
+					);
+				}
+
+				return buffer;
+			},
+
+			_updateContactsResult: function(event) {
+				var instance = this;
+
+				var data = A.JSON.parse(event.data.responseText);
+
+				var buffer = Liferay.Contacts._renderResult(data, true, ' ');
 
 				instance._listNode.html(buffer.join(''));
 			}
