@@ -701,17 +701,26 @@ public class UpgradeCompany extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		long companyId = PortalUtil.getDefaultCompanyId();
+		String name = PrincipalThreadLocal.getName();
 
-		long defaultUserId = UserLocalServiceUtil.getDefaultUserId(companyId);
-		PrincipalThreadLocal.setName(defaultUserId);
+		try {
+			long companyId = PortalUtil.getDefaultCompanyId();
 
-		clearData(companyId);
-		setupCommunities(companyId, defaultUserId);
-		setupOrganizations(companyId, defaultUserId);
-		setupRoles(companyId, defaultUserId);
-		setupUsers(companyId);
-		setupWorkflow(companyId, defaultUserId);
+			long defaultUserId = UserLocalServiceUtil.getDefaultUserId(
+				companyId);
+
+			PrincipalThreadLocal.setName(defaultUserId);
+
+			clearData(companyId);
+			setupCommunities(companyId, defaultUserId);
+			setupOrganizations(companyId, defaultUserId);
+			setupRoles(companyId, defaultUserId);
+			setupUsers(companyId);
+			setupWorkflow(companyId, defaultUserId);
+		}
+		finally {
+			PrincipalThreadLocal.setName(name);
+		}
 	}
 
 	protected byte[] getBytes(String path) throws Exception {
