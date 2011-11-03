@@ -260,13 +260,6 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		ratingsStatsLocalService.deleteStats(
 			KBArticle.class.getName(), kbArticle.getResourcePrimKey());
 
-		// Social
-
-		AssetEntry assetEntry = assetEntryLocalService.getEntry(
-			KBArticle.class.getName(), kbArticle.getResourcePrimKey());
-
-		socialActivityLocalService.deleteActivities(assetEntry);
-
 		// Indexer
 
 		Indexer indexer = IndexerRegistryUtil.getIndexer(KBArticle.class);
