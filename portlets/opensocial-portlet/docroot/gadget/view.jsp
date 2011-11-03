@@ -63,7 +63,7 @@ String secureToken = ShindigUtil.createSecurityToken(ownerId, themeDisplay.getUs
 			specUrl: '<%= gadget.getUrl() %>',
 			store: new Liferay.OpenSocial.Store.Expando(
 				{
-					userPrefsKey: '<%= ShindigUtil.getColumnUserPrefs(renderResponse.getNamespace()) %>'
+					userPrefsKey: '<%= ShindigUtil.getColumnUserPrefs(renderResponse.getNamespace(), themeDisplay) %>'
 				}
 			),
 			view: '<%= view %>',

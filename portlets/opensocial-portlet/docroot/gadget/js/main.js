@@ -574,7 +574,7 @@ AUI().add(
 								className: instance._CLASS_NAME,
 								tableName: instance._TABLE_NAME,
 								columnName: instance.get('userPrefsKey'),
-								classPK: themeDisplay.getUserId()
+								classPK: themeDisplay.getLayoutId()
 							},
 							function(userPrefs) {
 								if (Lang.isFunction(callback)) {
@@ -604,14 +604,14 @@ AUI().add(
 								className: instance._CLASS_NAME,
 								tableName: instance._TABLE_NAME,
 								columnName: instance.get('userPrefsKey'),
-								classPK: themeDisplay.getUserId(),
+								classPK: themeDisplay.getLayoutId(),
 								data: A.JSON.stringify(gadget.get('userPrefs')),
 								serviceParameterTypes: A.JSON.stringify(serviceParameterTypes)
 							}
 						);
 					},
 
-					_CLASS_NAME: 'com.liferay.portal.model.User',
+					_CLASS_NAME: 'com.liferay.portal.model.Layout',
 					_TABLE_NAME: 'OPEN_SOCIAL_DATA_'
 				}
 			}
