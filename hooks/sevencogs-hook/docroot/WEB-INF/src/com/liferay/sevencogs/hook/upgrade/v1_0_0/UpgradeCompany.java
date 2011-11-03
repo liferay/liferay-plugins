@@ -41,6 +41,7 @@ import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.Role;
 import com.liferay.portal.model.RoleConstants;
 import com.liferay.portal.model.User;
+import com.liferay.portal.security.auth.PrincipalThreadLocal;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
@@ -613,6 +614,11 @@ public class UpgradeCompany extends UpgradeProcess {
 			UserLocalServiceUtil.deleteUser(user.getUserId());
 		}
 
+		// Organizations
+
+		deleteOrganizations(
+			companyId, OrganizationConstants.DEFAULT_PARENT_ORGANIZATION_ID);
+
 		// Groups
 
 		List<Group> groups = GroupLocalServiceUtil.search(
@@ -640,11 +646,6 @@ public class UpgradeCompany extends UpgradeProcess {
 					group.getGroupId(), true, serviceContext);
 			}
 		}
-
-		// Organizations
-
-		deleteOrganizations(
-			companyId, OrganizationConstants.DEFAULT_PARENT_ORGANIZATION_ID);
 	}
 
 	protected void configureJournalContent(
@@ -703,6 +704,7 @@ public class UpgradeCompany extends UpgradeProcess {
 		long companyId = PortalUtil.getDefaultCompanyId();
 
 		long defaultUserId = UserLocalServiceUtil.getDefaultUserId(companyId);
+		PrincipalThreadLocal.setName(defaultUserId);
 
 		clearData(companyId);
 		setupCommunities(companyId, defaultUserId);
