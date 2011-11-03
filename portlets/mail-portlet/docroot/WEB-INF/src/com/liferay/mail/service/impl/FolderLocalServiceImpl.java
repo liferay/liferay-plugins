@@ -96,10 +96,6 @@ public class FolderLocalServiceImpl extends FolderLocalServiceBaseImpl {
 		}
 	}
 
-	public Folder fetchFolder(long folderId) throws SystemException {
-		return folderPersistence.fetchByPrimaryKey(folderId);
-	}
-
 	public Folder getFolder(long accountId, String fullName)
 		throws PortalException, SystemException {
 
