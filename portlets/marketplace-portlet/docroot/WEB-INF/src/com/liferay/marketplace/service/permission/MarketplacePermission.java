@@ -16,8 +16,11 @@ package com.liferay.marketplace.service.permission;
 
 import com.liferay.marketplace.util.MarketplaceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.model.User;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.security.permission.PermissionChecker;
+import com.liferay.portal.service.UserLocalServiceUtil;
 
 /**
  * @author Ryan Park
@@ -25,17 +28,24 @@ import com.liferay.portal.security.permission.PermissionChecker;
 public class MarketplacePermission {
 
 	public static void check(PermissionChecker permissionChecker)
-		throws PortalException {
+		throws PortalException, SystemException {
 
 		if (!contains(permissionChecker)) {
 			throw new PrincipalException();
 		}
 	}
 
-	public static boolean contains(PermissionChecker permissionChecker) {
-		if (permissionChecker.isOmniadmin() &&
-			MarketplaceUtil.isMarketpalceAdmin(permissionChecker.getUserId())) {
+	public static boolean contains(PermissionChecker permissionChecker)
+		throws PortalException, SystemException {
 
+		if (!permissionChecker.isOmniadmin()) {
+			return false;
+		}
+
+		User user = UserLocalServiceUtil.getUserById(
+			permissionChecker.getUserId());
+
+		if (MarketplaceUtil.isMarketplaceAdmin(user)) {
 			return true;
 		}
 
