@@ -98,7 +98,7 @@ AUI().use(
 
 				var userTemplate =
 					'{lastNameAnchor}' +
-					'<div class="lfr-contact-grid-item" data-user-url="{viewSummaryURL}">' +
+					'<div class="lfr-contact-grid-item" data-viewSummaryURL="{viewSummaryURL}">' +
 						'<div class="lfr-contact-thumb">' +
 							'<img alt="{fullName}" src="{portraitURL}" />' +
 						'</div>' +
@@ -223,7 +223,7 @@ AUI().use(
 				else {
 					var userTemplate =
 						'{lastNameAnchor}' +
-						'<div class="lfr-contact-grid-item" data-user-url="{viewSummaryURL}">' +
+						'<div class="lfr-contact-grid-item" data-viewSummaryURL="{viewSummaryURL}">' +
 							'<div class="lfr-contact-thumb">' +
 								'<img alt="{fullName}" src="{portraitURL}" />' +
 							'</div>' +
