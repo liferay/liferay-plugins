@@ -75,8 +75,8 @@ public abstract class BaseConfigurationAction
 
 		ExpandoValueServiceUtil.addValue(
 			themeDisplay.getCompanyId(), Layout.class.getName(),
-			ShindigUtil.getTableOpenSocial(), columnName,
-			layout.getLayoutId(), userPrefsJSONObject.toString());
+			ShindigUtil.getTableOpenSocial(), columnName, layout.getPlid(),
+			userPrefsJSONObject.toString());
 
 		SessionMessages.add(
 			actionRequest, portletConfig.getPortletName() + ".doConfigure");

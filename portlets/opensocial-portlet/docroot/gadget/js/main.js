@@ -574,7 +574,7 @@ AUI().add(
 								className: instance._CLASS_NAME,
 								tableName: instance._TABLE_NAME,
 								columnName: instance.get('userPrefsKey'),
-								classPK: themeDisplay.getLayoutId()
+								classPK: themeDisplay.getPlid()
 							},
 							function(userPrefs) {
 								if (Lang.isFunction(callback)) {
@@ -604,7 +604,7 @@ AUI().add(
 								className: instance._CLASS_NAME,
 								tableName: instance._TABLE_NAME,
 								columnName: instance.get('userPrefsKey'),
-								classPK: themeDisplay.getLayoutId(),
+								classPK: themeDisplay.getPlid(),
 								data: A.JSON.stringify(gadget.get('userPrefs')),
 								serviceParameterTypes: A.JSON.stringify(serviceParameterTypes)
 							}
