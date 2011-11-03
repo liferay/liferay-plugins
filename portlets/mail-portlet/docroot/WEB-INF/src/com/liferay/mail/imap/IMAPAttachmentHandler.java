@@ -32,6 +32,7 @@ public class IMAPAttachmentHandler extends DefaultAttachmentHandler {
 		super(inputStream, folder);
 	}
 
+	@Override
 	public void cleanUp() {
 		try {
 			if ((_folder == null) || !_folder.isOpen()) {
