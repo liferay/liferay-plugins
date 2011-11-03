@@ -14,6 +14,8 @@
 
 package com.liferay.marketplace.util;
 
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.UnicodeFormatter;
 import com.liferay.portal.kernel.util.Validator;
@@ -51,7 +53,9 @@ public class MarketplaceUtil {
 		return UnicodeFormatter.bytesToHex(encodedClientIdBytes);
 	}
 
-	public static boolean hasMarketplaceAdmin(long companyId) throws Exception {
+	public static boolean hasMarketplaceAdmin(long companyId)
+		throws SystemException {
+
 		int count = ExpandoValueLocalServiceUtil.getColumnValuesCount(
 			companyId, User.class.getName(), "MP", "client-id");
 
@@ -62,7 +66,9 @@ public class MarketplaceUtil {
 		return true;
 	}
 
-	public static boolean isMarketplaceAdmin(User user) throws Exception {
+	public static boolean isMarketplaceAdmin(User user)
+		throws PortalException, SystemException {
+
 		String clientId = ExpandoValueLocalServiceUtil.getData(
 			user.getCompanyId(), User.class.getName(), "MP", "client-id",
 			user.getUserId(), StringPool.BLANK);
