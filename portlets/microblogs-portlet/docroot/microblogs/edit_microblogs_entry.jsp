@@ -138,8 +138,6 @@ if (comment) {
 		</c:when>
 		<c:when test="<%= comment %>">
 			<aui:input name="type" type="hidden" value="<%= MicroblogsEntryConstants.TYPE_REPLY %>" />
-
-
 		</c:when>
 	</c:choose>
 
@@ -152,7 +150,7 @@ if (comment) {
 			</span>
 		</c:if>
 
-		<div class="autocomplete" id="<portlet:namespace />autocomplete">
+		<div class="autocomplete textarea" id="<portlet:namespace />autocomplete">
 			<div id="<portlet:namespace />autocompleteContent">
 				<span class="placeholder-text">
 					<c:choose>
@@ -336,8 +334,6 @@ if (comment) {
 				results,
 				function(result) {
 					var userData = result.raw;
-
-					console.log('sub');
 
 					return A.Lang.sub(TPL_SEARCH_RESULTS, userData);
 				}

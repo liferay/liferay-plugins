@@ -75,13 +75,13 @@ $microblogs-border-color: #C7D0DA;
 		&.reply {
 			margin-left: 25px;
 			padding-left: 0;
-			
 		}
 	}
 
 	.autocomplete {
 		height: 18px;
 		position: relative;
+		padding: 8px;
 	}
 
 	.microblogs-entry {
@@ -98,8 +98,8 @@ $microblogs-border-color: #C7D0DA;
 		float: left;
 		height: 45px;
 		overflow: hidden;
-		width: 45px;
 		margin-right: 2px;
+		width: 45px;
 
 		img {
 			max-width: 45px;
@@ -118,7 +118,7 @@ $microblogs-border-color: #C7D0DA;
 		.footer {
 			color: #CCC;
 			font-size: .9em;
-			
+
 			.action {
 				display: none;
 			}
