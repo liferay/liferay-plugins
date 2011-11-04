@@ -80,7 +80,7 @@ Group group = themeDisplay.getScopeGroup();
 				</aui:layout>
 
 				<c:if test="<%= portletURL != null %>">
-					<a href="<%= portletURL %>"><liferay-ui:message arguments="<%= group.getDescriptiveName() %>"key="view-all-x-connections" /></a>
+					<a href="<%= portletURL %>"><liferay-ui:message arguments="<%= group.getDescriptiveName() %>" key="view-all-x-connections" /></a>
 				</c:if>
 			</c:otherwise>
 		</c:choose>

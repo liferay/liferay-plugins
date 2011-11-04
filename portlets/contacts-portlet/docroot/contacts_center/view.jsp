@@ -237,7 +237,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 						{
 							after: {
 								success: function(event, id, obj) {
-									Liferay.Contacts.showMoreReuslt(this.get('responseData'), lastNameAnchor);
+									Liferay.Contacts.showMoreResult(this.get('responseData'), lastNameAnchor);
 								}
 							},
 							data: {
