@@ -283,11 +283,11 @@ public class CalendarResourceLocalServiceImpl
 
 		// Resources
 
-		if ((serviceContext.getCommunityPermissions() != null) ||
+		if ((serviceContext.getGroupPermissions() != null) ||
 			(serviceContext.getGuestPermissions() != null)) {
 
 			updateCalendarResourceResources(
-				calendarResource, serviceContext.getCommunityPermissions(),
+				calendarResource, serviceContext.getGroupPermissions(),
 				serviceContext.getGuestPermissions());
 		}
 
@@ -295,14 +295,14 @@ public class CalendarResourceLocalServiceImpl
 	}
 
 	public void updateCalendarResourceResources(
-			CalendarResource calendarResource, String[] communityPermissions,
+			CalendarResource calendarResource, String[] sitePermissions,
 			String[] guestPermissions)
 		throws PortalException, SystemException {
 
 		resourceLocalService.updateResources(
 			calendarResource.getCompanyId(), calendarResource.getGroupId(),
 			CalendarResource.class.getName(),
-			calendarResource.getCalendarResourceId(), communityPermissions,
+			calendarResource.getCalendarResourceId(), sitePermissions,
 			guestPermissions);
 	}
 
