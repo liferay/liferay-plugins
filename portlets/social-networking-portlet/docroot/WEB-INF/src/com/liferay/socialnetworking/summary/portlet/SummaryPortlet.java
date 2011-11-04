@@ -104,7 +104,7 @@ public class SummaryPortlet extends MVCPortlet {
 		}
 		else {
 			Role role = RoleLocalServiceUtil.getRole(
-				themeDisplay.getCompanyId(), "Community Administrator");
+				themeDisplay.getCompanyId(), "Site Administrator");
 
 			LinkedHashMap<String, Object> userParams =
 				new LinkedHashMap<String, Object>();

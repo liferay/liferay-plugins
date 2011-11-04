@@ -20,7 +20,7 @@ int end = SearchContainer.DEFAULT_DELTA;
 
 List<SocialActivity> activities = null;
 
-if (group.isCommunity()) {
+if (group.isRegularSite()) {
 	activities = SocialActivityLocalServiceUtil.getGroupUsersActivities(group.getGroupId(), start, end);
 }
 else if (group.isOrganization()) {
