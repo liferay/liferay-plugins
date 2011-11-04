@@ -19,6 +19,10 @@
 $border-color: #EBEBEB;
 $section-header-bg: #CCE6F7;
 
+#wrapper .contacts-portlet .panel-page-body {
+	padding: 0;
+}
+
 .contacts-portlet {
 	.clear {
 		clear: both;
@@ -28,7 +32,7 @@ $section-header-bg: #CCE6F7;
 		padding: 0;
 	}
 
-	.contact-group-filter  {
+	.contact-group-filter {
 		font-size: 14px;
 		padding: 5px 8px;
 
@@ -46,6 +50,10 @@ $section-header-bg: #CCE6F7;
 			padding: 5px 0;
 			position: relative;
 
+			.aui-field-label {
+				display: none;
+			}
+
 			.search-input {
 				left: 5px;
 				position: absolute;
@@ -54,8 +62,43 @@ $section-header-bg: #CCE6F7;
 		}
 	}
 
+	.lfr-contact-grid-item {
+		border-bottom: 1px solid $border-color;
+		display: block;
+		white-space: nowrap;
+
+		.lfr-contact-thumb {
+			float: left;
+		}
+
+		.lfr-contact-thumb img {
+			width: 100px;
+		}
+
+		.lfr-contact-info {
+			margin-left: 100px;
+
+			&.no-icon {
+				margin-left: 0;
+			}
+		}
+	}
+
+	.lfr-contact-info {
+		.lfr-contact-name {
+			font-weight: bold;
+		}
+
+		.lfr-contact-extra {
+			color: #777;
+		}
+	}
+
 	.contacts-result {
-		height: 500px;
+		bottom: 0;
+		position: absolute;
+		top: 0;
+		width: 30%;
 		overflow-y: scroll;
 
 		.lfr-contact-grid-item {
@@ -86,22 +129,22 @@ $section-header-bg: #CCE6F7;
 			text-align: center;
 		}
 
-
 		.empty {
 			background: url(<%= themeImagesPath %>/messages/alert.png) no-repeat 0 50%;
 			margin: 5px;
 			padding-left: 25px;
 		}
 
-		.lastNameAnchor {
+		.lastNameAnchor a {
 			background: $section-header-bg;
 			border-bottom: 1px solid $border-color;
+			cursor: default;
+			display: block;
 			padding: 1px 5px;
 		}
 
-		.lastNameAnchor a {
-			font-size: .95em;
-			font-weight: bold;
+		a:hover {
+			text-decoration: none;
 		}
 	}
 
@@ -125,42 +168,9 @@ $section-header-bg: #CCE6F7;
 		padding: 5px;
 	}
 
-	.contacts-center-home h3.header-title{
-		margin: 0px;
-	}
-
-	.lfr-contact-grid-item {
-		border-bottom: 1px solid $border-color;
-		display: block;
-		white-space: nowrap;
-
-		.lfr-contact-thumb {
-			float: left;
-		}
-
-		.lfr-contact-thumb img {
-			width: 100px;
-		}
-
-		.lfr-contact-info {
-			margin-left: 100px;
-
-			&.no-icon {
-				margin-left: 0;
-			}
-
-			.lfr-contact-name {
-				font-weight: bold;
-			}
-
-			.lfr-contact-extra {
-				color: #777;
-			}
-		}
-	}
-
 	.contacts-profile {
-		padding: 10px 10px 5px;
+		border-bottom-width: 1px;
+		padding: 20px 10px 5px;
 		position: relative;
 
 		.lfr-contact-grid-item {
@@ -189,17 +199,23 @@ $section-header-bg: #CCE6F7;
 				display: none;
 			}
 		}
+
+		.aui-column-content {
+			padding: 0 10px;
+		}
+
+		.aui-column:before {
+			border-width: 0;
+		}
 	}
 
-	.user-information {
-		.aui-column {
-			.aui-column-content {
-				padding-right: 10px;
-			}
+	.contacts-result-container .contacts-container {
+		margin-left: 30%;
+		min-height: 500px;
 
-			&:before {
-				border-right-width: 0;
-			}
+		.contacts-profile {
+			border-bottom-width: 0;
+			padding-top: 10px;
 		}
 	}
 
@@ -209,28 +225,19 @@ $section-header-bg: #CCE6F7;
 				padding: 8px;
 			}
 
-			.lfr-contact-name a {
-			}
-
 			.social-relations {
 				background: $section-header-bg;
 				position: static;
 				padding: 5px;
 				left: 0;
-				top: 0;
 				margin: 5px -10px 10px;
+				top: 0;
 			}
 		}
 	}
 
-	.lfr-asset-metadata {
-		margin-bottom: 5px;
-	}
-
-	.contacts-action-content {
-		span {
-			padding:0 5px 0 0;
-		}
+	.contacts-action-content span {
+		padding-right: 5px;
 	}
 
 	.lfr-user-info-container {
@@ -249,24 +256,28 @@ $section-header-bg: #CCE6F7;
 			display: block;
 			clear: both;
 		}
-	}
 
-	.section h3 {
-		color: #B4BEC8;
-		float: left;
-		font-size: 1em;
-		margin: 0;
-		text-align: right;
-		width: 100px;
-	}
+		h3 {
+			color: #B4BEC8;
+			float: left;
+			font-size: 1em;
+			margin: 0;
+			text-align: right;
+			width: 100px;
+		}
 
-	.section ul {
-		margin: 0 0 0 105px;
-		padding: 0;
+		ul {
+			margin: 0 0 0 105px;
+			padding: 0;
+		}
 	}
 
 	.property-type {
 		font-weight: bold;
+	}
+
+	.property-list li {
+		list-style: none;
 	}
 
 	.user-information-title {
@@ -276,36 +287,35 @@ $section-header-bg: #CCE6F7;
 		width: 110px;
 	}
 
-	.user-sites-title {
-		color: #666;
-		font-size: 1.5em;
-	}
-
 	.lfr-user-comments {
 		float: none;
 		width: 100%;
 	}
 
-
 	.contacts-center-home {
-		padding: 10px;
+		.contacts-center-home-content {
+			padding: 10px;
+		}
+
+		.header-title {
+			margin: 0px;
+		}
 
 		.contacts-count {
 			font-weight: bold;
-			margin: 5px 0;
 		}
 
-		.contacts-center-introduction {
+		.contacts-count, .contacts-center-introduction {
 			margin: 5px 0;
 		}
-	}
-
-	.lfr-user-profile-preferences {
-		margin-top: 10px;
 	}
 
 	.export-group {
 		margin-top: 1em;
+	}
+
+	.lfr-user-profile-preferences {
+		margin-left: 20px;
 	}
 
 	.lfr-user-action-confirm a {
@@ -316,23 +326,24 @@ $section-header-bg: #CCE6F7;
 		background: url(<%= themeImagesPath %>/common/deactivate.png) no-repeat;
 	}
 
-	.lfr-asset-metadata .lfr-asset-connection {
-		background: url(<%= themeImagesPath %>/social/coworker.png) no-repeat;
-		padding: 0 20px
-	}
+	.lfr-asset-metadata {
+		margin-bottom: 5px;
 
-	.lfr-asset-metadata .lfr-asset-follower {
-		background: url(<%= themeImagesPath %>/social/follower.png) no-repeat;
-		padding: 0 20px
-	}
+		.lfr-asset-coworker, .lfr-asset-follower, .lfr-asset-following {
+			padding: 0 20px
+		}
 
-	.lfr-asset-metadata .lfr-asset-following {
-		background: url(<%= themeImagesPath %>/social/following.png) no-repeat;
-		padding: 0 20px
-	}
+		.lfr-asset-coworker {
+			background: url(<%= themeImagesPath %>/social/coworker.png) no-repeat;
+		}
 
-	.property-list li {
-		list-style: none;
+		.lfr-asset-follower {
+			background: url(<%= themeImagesPath %>/social/follower.png) no-repeat;
+		}
+
+		.lfr-asset-following {
+			background: url(<%= themeImagesPath %>/social/following.png) no-repeat;
+		}
 	}
 
 	.members-container {
@@ -348,37 +359,43 @@ $section-header-bg: #CCE6F7;
 		min-width: 200px;
 		overflow: hidden;
 		width: 25%;
-	}
 
-	.lfr-members-grid-item .lfr-members-thumb {
-		float: left;
-		margin: 0 5px;
-	}
+		.lfr-members-thumb {
+			float: left;
+			margin: 0 5px;
 
-	.lfr-members-grid-item .lfr-members-thumb a {
-		clip: rect(0 50px 50px 0);
-		position: absolute;
-	}
+			a {
+				clip: rect(0 50px 50px 0);
+				position: absolute;
+			}
 
-	.lfr-members-thumb img{
-		width: 50px;
-	}
+			img {
+				width: 50px;
+			}
+		}
 
-	.lfr-members-grid-item .lfr-user-data-info {
-		margin-left: 60px;
-	}
+		.lfr-user-data-info {
+			margin-left: 60px;
+		}
 
-	.lfr-members-grid-item .lfr-user-data-name {
-		font-weight: bold;
-	}
+		.lfr-user-data-name {
+			font-weight: bold;
+		}
 
-	.lfr-members-grid-item .lfr-user-data-name,
-	.lfr-members-grid-item .lfr-user-data-job-title,
-	.lfr-members-grid-item .lfr-user-data-extra {
-		white-space: nowrap
+		.lfr-user-data-name, .lfr-user-data-job-title, .lfr-user-data-extra {
+			white-space: nowrap
+		}
 	}
 
 	.edit-profile {
 		cursor: pointer;
+	}
+
+	.lfr-panel, .taglib-header {
+		margin-bottom: 1em;
+	}
+
+	.lfr-search-container {
+		margin-top: 1em;
 	}
 }
