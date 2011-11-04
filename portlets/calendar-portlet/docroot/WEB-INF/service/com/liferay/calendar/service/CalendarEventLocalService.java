@@ -279,10 +279,4 @@ public interface CalendarEventLocalService extends PersistedModelLocalService {
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
-
-	public void updateCalendarEventResources(
-		com.liferay.calendar.model.CalendarEvent calendarEvent,
-		java.lang.String[] sitePermissions, java.lang.String[] guestPermissions)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
 }

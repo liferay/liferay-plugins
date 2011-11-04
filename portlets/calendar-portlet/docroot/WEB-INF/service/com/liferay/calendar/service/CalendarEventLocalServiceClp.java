@@ -108,11 +108,6 @@ public class CalendarEventLocalServiceClp implements CalendarEventLocalService {
 				int.class, boolean.class, java.lang.String.class,
 				java.lang.String.class, int.class, int.class, int.class,
 				com.liferay.portal.service.ServiceContext.class);
-
-		_updateCalendarEventResourcesMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
-				"updateCalendarEventResources",
-				com.liferay.calendar.model.CalendarEvent.class,
-				java.lang.String[].class, java.lang.String[].class);
 	}
 
 	public com.liferay.calendar.model.CalendarEvent addCalendarEvent(
@@ -717,38 +712,6 @@ public class CalendarEventLocalServiceClp implements CalendarEventLocalService {
 		return (com.liferay.calendar.model.CalendarEvent)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void updateCalendarEventResources(
-		com.liferay.calendar.model.CalendarEvent calendarEvent,
-		java.lang.String[] sitePermissions, java.lang.String[] guestPermissions)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_updateCalendarEventResourcesMethodKey20,
-				ClpSerializer.translateInput(calendarEvent),
-				ClpSerializer.translateInput(sitePermissions),
-				ClpSerializer.translateInput(guestPermissions));
-
-		try {
-			_classLoaderProxy.invoke(methodHandler);
-		}
-		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-	}
-
 	public ClassLoaderProxy getClassLoaderProxy() {
 		return _classLoaderProxy;
 	}
@@ -774,5 +737,4 @@ public class CalendarEventLocalServiceClp implements CalendarEventLocalService {
 	private MethodKey _setBeanIdentifierMethodKey17;
 	private MethodKey _addCalendarEventMethodKey18;
 	private MethodKey _updateCalendarEventMethodKey19;
-	private MethodKey _updateCalendarEventResourcesMethodKey20;
 }
