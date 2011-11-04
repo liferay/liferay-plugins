@@ -1,0 +1,29 @@
+#set ($instanceId = "")
+#set ($sidebarPortlet = "")
+#set ($sidebarPortletTitle = "")
+
+#if ($is_user_owned)
+	#set ($instanceId = 'SIPO')
+	#set ($sidebarPortlet = "5_WAR_soportlet")
+	#set ($sidebarPortletTitle = $currentUser.getFirstName() + "'s Sites")
+#end
+
+#if ($is_profile_page)
+	#set ($instanceId = 'CONT')
+	#set ($sidebarPortlet = "3_WAR_contactsportlet")
+	#set ($sidebarPortletTitle = $currentUser.getFirstName() + "'s Contacts")
+#end
+
+<hr/>
+
+<h3>$sidebarPortletTitle</h3>
+
+#set ($VOID = $velocityPortletPreferences.setValue('displayStyle', '0'))
+
+#set ($VOID = $velocityPortletPreferences.setValue('portletSetupShowBorders', 'false'))
+
+$theme.runtime($sidebarPortlet, '', $velocityPortletPreferences.toString())
+
+#set ($queryString = "param1=value1&param2=value2")
+
+#set ($VOID = $velocityPortletPreferences.reset())
