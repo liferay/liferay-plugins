@@ -59,7 +59,7 @@ public class PrivateMessagingUtil {
 				UserLocalServiceUtil.getUsers(
 					QueryUtil.ALL_POS, QueryUtil.ALL_POS));
 		}
-		else if (autocompleteRecipientType.equals("community")) {
+		else if (autocompleteRecipientType.equals("site")) {
 			List<Group> groups = GroupLocalServiceUtil.getUserGroups(
 				userId, true);
 
