@@ -117,7 +117,7 @@ else {
 
 <portlet:actionURL name="updateMicroblogsEntry" var="updateMicroblogsEntryURL" />
 
-<aui:form action="<%= updateMicroblogsEntryURL %>" name="<%= formName %>">
+<aui:form action="<%= updateMicroblogsEntryURL %>" cssClass="microblogs-entry-form" name="<%= formName %>">
 	<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
 	<aui:input name="microblogsEntryId" type="hidden" value="<%= (repost || reply) ? 0 : microblogsEntryId %>" />
 	<aui:input name="receiverUserId" type="hidden" value="<%= receiverUserId %>" />
