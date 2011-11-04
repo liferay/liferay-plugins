@@ -94,7 +94,7 @@ List<CalEvent> events = (List<CalEvent>)request.getAttribute("view.jsp-events");
 
 				<div>
 					<c:if test="<%= group.isUser() %>">
-						<span class="event-community">
+						<span class="event-site">
 							<a href="<%= groupURL.toString() %>"><%= group.getDescriptiveName() %></a>
 						</span>
 					</c:if>
