@@ -719,13 +719,12 @@ public class CalendarEventLocalServiceClp implements CalendarEventLocalService {
 
 	public void updateCalendarEventResources(
 		com.liferay.calendar.model.CalendarEvent calendarEvent,
-		java.lang.String[] communityPermissions,
-		java.lang.String[] guestPermissions)
+		java.lang.String[] sitePermissions, java.lang.String[] guestPermissions)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_updateCalendarEventResourcesMethodKey20,
 				ClpSerializer.translateInput(calendarEvent),
-				ClpSerializer.translateInput(communityPermissions),
+				ClpSerializer.translateInput(sitePermissions),
 				ClpSerializer.translateInput(guestPermissions));
 
 		try {

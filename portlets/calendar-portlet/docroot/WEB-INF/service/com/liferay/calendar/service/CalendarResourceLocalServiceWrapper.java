@@ -388,12 +388,11 @@ public class CalendarResourceLocalServiceWrapper
 
 	public void updateCalendarResourceResources(
 		com.liferay.calendar.model.CalendarResource calendarResource,
-		java.lang.String[] communityPermissions,
-		java.lang.String[] guestPermissions)
+		java.lang.String[] sitePermissions, java.lang.String[] guestPermissions)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		_calendarResourceLocalService.updateCalendarResourceResources(calendarResource,
-			communityPermissions, guestPermissions);
+			sitePermissions, guestPermissions);
 	}
 
 	/**
