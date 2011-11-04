@@ -80,11 +80,11 @@
 	background-image: url(<%= themeImagesPath %>/common/time.png);
 }
 
-.social-networking-portlet-summary .summary-container .join-community {
+.social-networking-portlet-summary .summary-container .join-site {
 	margin: 0.7em auto 1em;
 }
 
-.social-networking-portlet-summary .summary-container .join-community.pending {
+.social-networking-portlet-summary .summary-container .join-site.pending {
 	background-image: url(<%= themeImagesPath %>/common/time.png);
 }
 
@@ -96,7 +96,7 @@
 	background-image: url(<%= themeImagesPath %>/common/time.png);
 }
 
-.social-networking-portlet-summary .summary-container .remove-community {
+.social-networking-portlet-summary .summary-container .remove-site {
 	margin: 0.7em auto 1em;
 }
 
