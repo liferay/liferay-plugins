@@ -397,16 +397,6 @@ public class CalendarResourceLocalServiceUtil {
 			descriptionMap, active, serviceContext);
 	}
 
-	public static void updateCalendarResourceResources(
-		com.liferay.calendar.model.CalendarResource calendarResource,
-		java.lang.String[] sitePermissions, java.lang.String[] guestPermissions)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		getService()
-			.updateCalendarResourceResources(calendarResource, sitePermissions,
-			guestPermissions);
-	}
-
 	public static void clearService() {
 		_service = null;
 	}

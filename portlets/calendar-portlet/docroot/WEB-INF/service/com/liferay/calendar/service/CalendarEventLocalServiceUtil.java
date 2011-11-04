@@ -323,16 +323,6 @@ public class CalendarEventLocalServiceUtil {
 			secondReminder, serviceContext);
 	}
 
-	public static void updateCalendarEventResources(
-		com.liferay.calendar.model.CalendarEvent calendarEvent,
-		java.lang.String[] sitePermissions, java.lang.String[] guestPermissions)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		getService()
-			.updateCalendarEventResources(calendarEvent, sitePermissions,
-			guestPermissions);
-	}
-
 	public static void clearService() {
 		_service = null;
 	}
