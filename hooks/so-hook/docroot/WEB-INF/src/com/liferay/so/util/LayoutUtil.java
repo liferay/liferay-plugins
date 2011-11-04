@@ -167,10 +167,10 @@ public class LayoutUtil {
 			"Silver=25",
 			"Gold=100",
 			"Platinum=250",
-			"Moderator=site-role:Message Boards Administrator",
 			"Moderator=organization:Message Boards Administrator",
 			"Moderator=organization-role:Message Boards Administrator",
 			"Moderator=regular-role:Message Boards Administrator",
+			"Moderator=site-role:Message Boards Administrator",
 			"Moderator=user-group:Message Boards Administrator"
 		};
 

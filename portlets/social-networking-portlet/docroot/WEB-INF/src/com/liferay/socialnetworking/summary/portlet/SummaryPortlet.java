@@ -26,6 +26,7 @@ import com.liferay.portal.model.Group;
 import com.liferay.portal.model.GroupConstants;
 import com.liferay.portal.model.Organization;
 import com.liferay.portal.model.Role;
+import com.liferay.portal.model.RoleConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.service.GroupLocalServiceUtil;
@@ -104,7 +105,7 @@ public class SummaryPortlet extends MVCPortlet {
 		}
 		else {
 			Role role = RoleLocalServiceUtil.getRole(
-				themeDisplay.getCompanyId(), "Site Administrator");
+				themeDisplay.getCompanyId(), RoleConstants.SITE_ADMINISTRATOR);
 
 			LinkedHashMap<String, Object> userParams =
 				new LinkedHashMap<String, Object>();

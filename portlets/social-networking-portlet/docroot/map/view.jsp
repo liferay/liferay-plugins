@@ -17,9 +17,9 @@
 <%@ include file="/init.jsp" %>
 
 <%
-boolean siteProfileMap = false;
 boolean friendsProfileMap = false;
 boolean organizationProfileMap = false;
+boolean siteProfileMap = false;
 boolean userProfileMap = false;
 
 if ((user2 != null) && layout.getFriendlyURL().equals("/friends")) {
@@ -35,7 +35,7 @@ else {
 	siteProfileMap = true;
 }
 
-if (siteProfileMap || organizationProfileMap) {
+if (organizationProfileMap || siteProfileMap) {
 	renderResponse.setTitle(LanguageUtil.format(pageContext, "where-are-the-x-members", group.getDescriptiveName()));
 }
 else if (friendsProfileMap) {
