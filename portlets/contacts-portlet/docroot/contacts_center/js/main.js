@@ -89,7 +89,7 @@ AUI().use(
 
 				var data = A.JSON.parse(responseData);
 
-				var buffer = Liferay.Contacts._renderResult(data, false, lastNameAnchor);
+				var buffer = instance._renderResult(data, false, lastNameAnchor);
 
 				var contactResultContent = A.one('.contacts-portlet .contacts-result-content');
 				var moreResults = A.one('.contacts-portlet .more-results');
@@ -144,9 +144,9 @@ AUI().use(
 
 				var buffer = [];
 
-				if (results.length == 0 && displayMessage) {
+				if ((results.length == 0) && displayMessage) {
 					buffer.push(
-						'<div class="empty">' + Liferay.Language.get('there-are-no-matching-contacts') + '</div>'
+						'<div class="empty">' + Liferay.Language.get('there-are-no-results') + '</div>'
 					);
 				}
 				else {
