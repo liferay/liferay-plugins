@@ -14,16 +14,8 @@
  */
 --%>
 
-<%@ include file="/html/portlet/navigation/init.jsp" %>
+<liferay-util:include page="/html/portlet/navigation/view.portal.jsp" />
 
-<liferay-ui:navigation
-	bulletStyle="<%= bulletStyle %>"
-	displayStyle="<%= displayStyle %>"
-	headerType="<%= headerType %>"
-	includedLayouts="<%= includedLayouts %>"
-	nestedChildren="<%= nestedChildren %>"
-	rootLayoutLevel="<%= rootLayoutLevel %>"
-	rootLayoutType="<%= rootLayoutType %>"
-/>
-
-THIS IS MODIFIED BY THE SAMPLE APPLICATION ADAPTER
+<p>
+	This was modified by the Sample Application Adapter.
+</p>
