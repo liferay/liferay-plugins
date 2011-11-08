@@ -3,6 +3,6 @@
 
 <display>
 	<category name="category.sample">
-		<portlet id="sample-form-navigator" />
+		<portlet id="1" />
 	</category>
 </display>

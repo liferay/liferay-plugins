@@ -19,9 +19,9 @@
 <%
 String[] categoryNames = {"category1", "category2", "category3"};
 
-String[] category1 = new String[]{"section1", "section2"};
-String[] category2 = new String[]{"section3", "section4"};
-String[] category3 = new String[]{"section5"};
+String[] category1 = {"section1", "section2"};
+String[] category2 = {"section3", "section4"};
+String[] category3 = {"section5"};
 
 String[][] categorySections = {category1, category2, category3};
 %>
