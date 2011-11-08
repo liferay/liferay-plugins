@@ -14,8 +14,7 @@
  */
 --%>
 
-<%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
-<%@ taglib uri="http://liferay.com/tld/aui" prefix="aui" %>
+<%@ include file="/init.jsp" %>
 
 <liferay-ui:error-marker key="errorSection" value="section1" />
 
