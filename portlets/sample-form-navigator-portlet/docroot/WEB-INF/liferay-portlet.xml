@@ -3,7 +3,7 @@
 
 <liferay-portlet-app>
 	<portlet>
-		<portlet-name>sample-form-navigator</portlet-name>
+		<portlet-name>1</portlet-name>
 		<icon>/icon.png</icon>
 		<instanceable>false</instanceable>
 		<css-class-wrapper>sample-form-navigator-portlet</css-class-wrapper>
