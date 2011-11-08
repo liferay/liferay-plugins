@@ -14,12 +14,9 @@
  */
 --%>
 
-<%@ include file="/init.jsp" %>
+<%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
 
-<liferay-ui:error-marker key="errorSection" value="section4" />
+<%@ taglib uri="http://liferay.com/tld/aui" prefix="aui" %>
+<%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
-<h3><liferay-ui:message key="section-4" /></h3>
-
-<aui:input name="example4" type="text">
-	<aui:validator name="required" />
-</aui:input>
+<portlet:defineObjects />
