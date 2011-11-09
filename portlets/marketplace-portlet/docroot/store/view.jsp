@@ -17,7 +17,7 @@
 <%@ include file="/init.jsp" %>
 
 <div class="loading-animation">
-	<iframe class="aui-helper-hidden-accessible" id="<portlet:namespace />frame" scrolling="no" src="javascript:;"></iframe>
+	<iframe class="aui-helper-hidden-accessible" id="<portlet:namespace />frame" scrolling="no" src="<%= iFrameURL %>"></iframe>
 </div>
 
 <div class="aui-helper-hidden time-out-message portlet-msg-error">
@@ -92,6 +92,4 @@
 			);
 		}
 	);
-
-	frame.attr('src', '<%= iFrameURL %>');
 </aui:script>
