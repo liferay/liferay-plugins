@@ -214,14 +214,6 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 			deleteKaleoInstanceKaleoTaskAssignmentInstances(kaleoInstanceId);
 	}
 
-	public KaleoTaskInstanceToken fetchKaleoTaskInstanceToken(
-			long kaleoTaskInstanceTokenId)
-		throws SystemException {
-
-		return kaleoTaskInstanceTokenPersistence.fetchByPrimaryKey(
-			kaleoTaskInstanceTokenId);
-	}
-
 	public List<KaleoTaskInstanceToken> getCompanyKaleoTaskInstanceTokens(
 			long companyId, int start, int end)
 		throws SystemException {
