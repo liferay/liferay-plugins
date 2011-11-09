@@ -9,7 +9,17 @@ AUI().use(
 
 		var now = Lang.now;
 
+		var NOTIFICATIONS = A.config.win.webkitNotifications;
+
+		var NOTIFICATIONS_ALLOWED = 0;
+		var NOTIFICATIONS_NOT_ALLOWED = 1;
+		var NOTIFICATIONS_DENIED = 2;
+
+		var STR_NEW_MESSAGE = Liferay.Language.get('new-message-from-x');
+
 		Liferay.namespace('Chat');
+
+		A.one(A.config.doc.documentElement).toggleClass('desktop-notifications', !!NOTIFICATIONS);
 
 		Liferay.Chat.Util = {
 			formatTime: function(time) {
@@ -30,7 +40,7 @@ AUI().use(
 					hour -= 12;
 				}
 
-				if (hour == 0) {
+				if (hour === 0) {
 					hour += 12;
 				}
 
@@ -348,7 +358,11 @@ AUI().use(
 									instance._unreadMessages++;
 								}
 
-								Liferay.Chat.Manager.notify(Liferay.Chat.Util.getUserImagePath(instance._panelIcon), "New Message from " + instance._panelTitle, entry.content.replace(/\n/g, ' '));
+								Liferay.Chat.Manager.notify(
+									Liferay.Chat.Util.getUserImagePath(instance._panelIcon),
+									Lang.sub(STR_NEW_MESSAGE, [instance._panelTitle]),
+									entry.content.replace(/\n/g, ' ')
+								);
 							}
 
 							instance.setAsUnread();
@@ -608,21 +622,21 @@ AUI().use(
 
 				return instance._tabsContainer;
 			},
-			
+
 			notify: function(iconUrl, title, body) {
 				var instance = this;
 
-				if (A.config.win.webkitNotifications.checkPermission() === 0) {
-					var notification = A.config.win.webkitNotifications.createNotification(iconUrl, title, body);
+				if (NOTIFICATIONS.checkPermission() === NOTIFICATIONS_ALLOWED) {
+					var notification = NOTIFICATIONS.createNotification(iconUrl, title, body);
 
 					notification.show();
 
 					setTimeout(
 						function() {
 							notification.cancel();
-					},
-
-					instance._notificationTimeout);
+						},
+						instance._notificationTimeout
+					);
 				}
 			},
 
@@ -860,20 +874,26 @@ AUI().use(
 				instance._statusMessageObj = settingsPanel.one('#statusMessage');
 				instance._onlineObj = settingsPanel.one('#onlineStatus');
 				instance._playSoundObj = settingsPanel.one('#playSound');
-				instance._notifyObj = settingsPanel.one('#notify');
+				instance._showNotificationsObj = settingsPanel.one('#showNotifications');
 
 				instance._statusMessage = instance._statusMessageObj.val() || '';
 				instance._online = instance._onlineObj.get('checked') ? 1 : 0;
 				instance._playSound = instance._playSoundObj.get('checked') ? 1 : 0;
 
-				if(A.config.win.webkitNotifications) {
-					var notifyPermission = A.config.win.webkitNotifications.checkPermission();
+				if (NOTIFICATIONS) {
+					var showNotificationsObj = instance._showNotificationsObj;
 
-					if (notifyPermission === 0) {
-						instance._notifyObj.set('checked', 1);
-					} else if (notifyPermission === 1) {
-						instance._notifyObj.set('disabled', 0);
+					var notifyPermission = NOTIFICATIONS.checkPermission();
+
+					var attrs = {
+						checked: (notifyPermission === NOTIFICATIONS_ALLOWED),
+					};
+
+					if (notifyPermission === NOTIFICATIONS_NOT_ALLOWED) {
+						attrs.disabled = false;
 					}
+
+					showNotificationsObj.attr(attrs);
 				}
 
 				saveSettings.on('click', instance._updateSettings, instance);
@@ -1171,11 +1191,21 @@ AUI().use(
 				instance._online = instance._onlineObj.get('checked') ? 1 : 0;
 				instance._playSound = instance._playSoundObj.get('checked') ? 1 : 0;
 
-				if (instance._notifyObj.get('checked') && A.config.win.webkitNotifications.checkPermission() === 1) {
-					A.config.win.webkitNotifications.requestPermission(function() {
-						instance._notifyObj.set('checked', 1);
-						instance._notifyObj.set('disabled', 1);
-					});
+				var showNotificationsObj = instance._showNotificationsObj;
+
+				if (showNotificationsObj.attr('checked') && NOTIFICATIONS.checkPermission() === NOTIFICATIONS_NOT_ALLOWED) {
+					NOTIFICATIONS.requestPermission(
+						function() {
+							var allowed = NOTIFICATIONS.checkPermission() == NOTIFICATIONS_ALLOWED;
+
+							showNotificationsObj.attr(
+								{
+									checked: allowed,
+									disabled: allowed
+								}
+							);
+						}
+					);
 				}
 
 				instance._activePanelId = '';

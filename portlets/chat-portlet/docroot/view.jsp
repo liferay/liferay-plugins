@@ -129,8 +129,8 @@
 									<li>
 										<label for="playSound"><input <%= playSound ? "checked=\"checked\"" : "" %> id="playSound" type="checkbox" /> <liferay-ui:message key="play-a-sound-when-i-receive-a-new-message-in-a-hidden-window" /> </label>
 									</li>
-									<li>
-										<label for="notify"><input disabled="disabled" id="notify" type="checkbox" /> <liferay-ui:message key="enable-desktop-notifications-for-new-messages" /> </label>
+									<li class="show-notifications-setting">
+										<label for="showNotifications"><input disabled="disabled" id="showNotifications" type="checkbox" /> <liferay-ui:message key="enable-desktop-notifications-for-new-messages" /> </label>
 									</li>
 								</ul>
 

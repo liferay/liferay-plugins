@@ -451,6 +451,14 @@ html body {
 	white-space: -o-pre-wrap;
 }
 
+.show-notifications-setting {
+	display: none;
+}
+
+.desktop-notifications .show-notifications-setting {
+	display: block;
+}
+
 .ie .chat-height-monitor {
 	word-wrap: break-word;
 	zoom: 1;
