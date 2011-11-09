@@ -521,12 +521,13 @@ public class KaleoTaskInstanceTokenFinderImpl
 
 			for (Group group : allGroups) {
 				if (group.isUserGroup()) {
-					List <UserGroupGroupRole> userGroupGroupRoles =
+					List<UserGroupGroupRole> userGroupGroupRoles =
 						UserGroupGroupRoleLocalServiceUtil
 							.getUserGroupGroupRoles(group.getClassPK());
 
 					for (UserGroupGroupRole userGroupGroupRole :
 							userGroupGroupRoles) {
+
 						roleIds.add(userGroupGroupRole.getRoleId());
 					}
 				}
