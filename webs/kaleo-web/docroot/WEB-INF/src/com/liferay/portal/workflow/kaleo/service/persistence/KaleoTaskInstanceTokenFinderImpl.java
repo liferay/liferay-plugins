@@ -130,47 +130,32 @@ public class KaleoTaskInstanceTokenFinderImpl
 		}
 	}
 
-	protected List<Long> addUserRelatedRoleIds(User user, List<Long> roleIds)
-		throws Exception {
+	protected boolean appendSearchCriteria(
+		KaleoTaskInstanceTokenQuery kaleoTaskInstanceTokenQuery) {
 
-		List<Group> userRelatedGroups = new ArrayList<Group>();
+		if (Validator.isNotNull(
+				kaleoTaskInstanceTokenQuery.getAssetPrimaryKeys())) {
 
-		userRelatedGroups.addAll(user.getGroups());
-		userRelatedGroups.addAll(
-			GroupLocalServiceUtil.getOrganizationsGroups(
-				user.getOrganizations()));
-		userRelatedGroups.addAll(
-			GroupLocalServiceUtil.getOrganizationsRelatedGroups(
-				user.getOrganizations()));
-		userRelatedGroups.addAll(
-			GroupLocalServiceUtil.getUserGroupsGroups(
-				user.getUserGroups()));
-		userRelatedGroups.addAll(
-			GroupLocalServiceUtil.getUserGroupsRelatedGroups(
-				user.getUserGroups()));
-
-		for (Group group : userRelatedGroups) {
-			if (group.isUserGroup()) {
-				List <UserGroupGroupRole> userGroupGroupRoles =
-					UserGroupGroupRoleLocalServiceUtil.
-						getUserGroupGroupRoles(group.getClassPK());
-
-				for (UserGroupGroupRole userGroupGroupRole :
-						userGroupGroupRoles) {
-					roleIds.add(userGroupGroupRole.getRoleId());
-				}
-			}
-			else {
-				List<Role> groupRoles = RoleLocalServiceUtil.getGroupRoles(
-					group.getGroupId());
-
-				for (Role role : groupRoles) {
-					roleIds.add(role.getRoleId());
-				}
-			}
+			return true;
 		}
 
-		return roleIds;
+		if (Validator.isNotNull(kaleoTaskInstanceTokenQuery.getAssetTypes())) {
+			return true;
+		}
+
+		if (kaleoTaskInstanceTokenQuery.getDueDateGT() != null) {
+			return true;
+		}
+
+		if (kaleoTaskInstanceTokenQuery.getDueDateLT() != null) {
+			return true;
+		}
+
+		if (Validator.isNotNull(kaleoTaskInstanceTokenQuery.getTaskName())) {
+			return true;
+		}
+
+		return false;
 	}
 
 	protected SQLQuery buildKaleoTaskInstanceTokenQuerySQL(
@@ -298,34 +283,6 @@ public class KaleoTaskInstanceTokenFinderImpl
 		setTaskName(qPos, kaleoTaskInstanceTokenQuery);
 
 		return q;
-	}
-
-	protected boolean appendSearchCriteria(
-		KaleoTaskInstanceTokenQuery kaleoTaskInstanceTokenQuery) {
-
-		if (Validator.isNotNull(
-				kaleoTaskInstanceTokenQuery.getAssetPrimaryKeys())) {
-
-			return true;
-		}
-
-		if (Validator.isNotNull(kaleoTaskInstanceTokenQuery.getAssetTypes())) {
-			return true;
-		}
-
-		if (kaleoTaskInstanceTokenQuery.getDueDateGT() != null) {
-			return true;
-		}
-
-		if (kaleoTaskInstanceTokenQuery.getDueDateLT() != null) {
-			return true;
-		}
-
-		if (Validator.isNotNull(kaleoTaskInstanceTokenQuery.getTaskName())) {
-			return true;
-		}
-
-		return false;
 	}
 
 	protected String getAssetPrimaryKey(
@@ -521,6 +478,57 @@ public class KaleoTaskInstanceTokenFinderImpl
 		return sb.toString();
 	}
 
+	protected List<Long> getSearchByUserRoleIds(
+			KaleoTaskInstanceTokenQuery kaleoTaskInstanceTokenQuery)
+		throws Exception {
+
+		List<Long> roleIds = RoleUtil.getRoleIds(
+			kaleoTaskInstanceTokenQuery.getServiceContext());
+
+		User user = UserLocalServiceUtil.getUserById(
+			kaleoTaskInstanceTokenQuery.getUserId());
+
+		List<Group> groups = new ArrayList<Group>();
+
+		groups.addAll(user.getGroups());
+		groups.addAll(
+			GroupLocalServiceUtil.getOrganizationsGroups(
+				user.getOrganizations()));
+		groups.addAll(
+			GroupLocalServiceUtil.getOrganizationsRelatedGroups(
+				user.getOrganizations()));
+		groups.addAll(
+			GroupLocalServiceUtil.getUserGroupsGroups(
+				user.getUserGroups()));
+		groups.addAll(
+			GroupLocalServiceUtil.getUserGroupsRelatedGroups(
+				user.getUserGroups()));
+
+		for (Group group : groups) {
+			if (group.isUserGroup()) {
+				List <UserGroupGroupRole> userGroupGroupRoles =
+					UserGroupGroupRoleLocalServiceUtil.getUserGroupGroupRoles(
+						group.getClassPK());
+
+				for (UserGroupGroupRole userGroupGroupRole :
+						userGroupGroupRoles) {
+
+					roleIds.add(userGroupGroupRole.getRoleId());
+				}
+			}
+			else {
+				List<Role> roles = RoleLocalServiceUtil.getGroupRoles(
+					group.getGroupId());
+
+				for (Role role : roles) {
+					roleIds.add(role.getRoleId());
+				}
+			}
+		}
+
+		return roleIds;
+	}
+
 	protected String getSearchByUserRoles(
 			KaleoTaskInstanceTokenQuery kaleoTaskInstanceTokenQuery)
 		throws Exception {
@@ -533,13 +541,8 @@ public class KaleoTaskInstanceTokenFinderImpl
 		}
 
 		if (searchByUserRoles) {
-			List<Long> roleIds = RoleUtil.getRoleIds(
-				kaleoTaskInstanceTokenQuery.getServiceContext());
-
-			User user = UserLocalServiceUtil.getUserById(
-				kaleoTaskInstanceTokenQuery.getUserId());
-
-			roleIds = addUserRelatedRoleIds(user, roleIds);
+			List<Long> roleIds = getSearchByUserRoleIds(
+				kaleoTaskInstanceTokenQuery);
 
 			List<UserGroupRole> userGroupRoles =
 				UserGroupRoleLocalServiceUtil.getUserGroupRoles(
@@ -779,13 +782,8 @@ public class KaleoTaskInstanceTokenFinderImpl
 		if (searchByUserRoles) {
 			qPos.add(Role.class.getName());
 
-			List<Long> roleIds = RoleUtil.getRoleIds(
-				kaleoTaskInstanceTokenQuery.getServiceContext());
-
-			User user = UserLocalServiceUtil.getUserById(
-				kaleoTaskInstanceTokenQuery.getUserId());
-
-			roleIds = addUserRelatedRoleIds(user, roleIds);
+			List<Long> roleIds = getSearchByUserRoleIds(
+				kaleoTaskInstanceTokenQuery);
 
 			List<UserGroupRole> userGroupRoles =
 				UserGroupRoleLocalServiceUtil.getUserGroupRoles(
