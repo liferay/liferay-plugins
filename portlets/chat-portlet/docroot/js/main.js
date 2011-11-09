@@ -347,11 +347,8 @@ AUI().use(
 								if (lastRead < entry.createDate) {
 									instance._unreadMessages++;
 								}
-								
-								Liferay.Chat.Manager.notify(
-									Liferay.Chat.Util.getUserImagePath(instance._panelIcon),
-									"New Message from " + instance._panelTitle,
-									entry.content.replace(/\n/g, ' '));
+
+								Liferay.Chat.Manager.notify(Liferay.Chat.Util.getUserImagePath(instance._panelIcon), "New Message from " + instance._panelTitle, entry.content.replace(/\n/g, ' '));
 							}
 
 							instance.setAsUnread();
@@ -614,16 +611,18 @@ AUI().use(
 			
 			notify: function(iconUrl, title, body) {
 				var instance = this;
-				
+
 				if (A.config.win.webkitNotifications.checkPermission() === 0) {
 					var notification = A.config.win.webkitNotifications.createNotification(iconUrl, title, body);
-					
+
 					notification.show();
 
 					setTimeout(
 						function() {
 							notification.cancel();
-					}, instance._notificationTimeout);
+					},
+
+					instance._notificationTimeout);
 				}
 			},
 
@@ -866,17 +865,16 @@ AUI().use(
 				instance._statusMessage = instance._statusMessageObj.val() || '';
 				instance._online = instance._onlineObj.get('checked') ? 1 : 0;
 				instance._playSound = instance._playSoundObj.get('checked') ? 1 : 0;
-				
+
 				if(A.config.win.webkitNotifications) {
 					var notifyPermission = A.config.win.webkitNotifications.checkPermission();
-					
+
 					if (notifyPermission === 0) {
 						instance._notifyObj.set('checked', 1);
 					} else if (notifyPermission === 1) {
 						instance._notifyObj.set('disabled', 0);
 					}
 				}
-				
 
 				saveSettings.on('click', instance._updateSettings, instance);
 			},
@@ -1172,9 +1170,8 @@ AUI().use(
 				instance._statusMessage = instance._statusMessageObj.val();
 				instance._online = instance._onlineObj.get('checked') ? 1 : 0;
 				instance._playSound = instance._playSoundObj.get('checked') ? 1 : 0;
-				
-				if (instance._notifyObj.get('checked') &&
-						A.config.win.webkitNotifications.checkPermission() === 1) {
+
+				if (instance._notifyObj.get('checked') && A.config.win.webkitNotifications.checkPermission() === 1) {
 					A.config.win.webkitNotifications.requestPermission(function() {
 						instance._notifyObj.set('checked', 1);
 						instance._notifyObj.set('disabled', 1);
