@@ -149,8 +149,6 @@ public class KaleoTaskInstanceTokenFinderImpl
 			GroupLocalServiceUtil.getUserGroupsRelatedGroups(
 				user.getUserGroups()));
 
-		List<Long> userRelatedRoleIds = new ArrayList<Long>();
-
 		for (Group group : userRelatedGroups) {
 			if (group.isUserGroup()) {
 				List <UserGroupGroupRole> userGroupGroupRoles =
@@ -785,7 +783,7 @@ public class KaleoTaskInstanceTokenFinderImpl
 				kaleoTaskInstanceTokenQuery.getServiceContext());
 
 			User user = UserLocalServiceUtil.getUserById(
-					kaleoTaskInstanceTokenQuery.getUserId());
+				kaleoTaskInstanceTokenQuery.getUserId());
 
 			roleIds = addUserRelatedRoleIds(user, roleIds);
 
