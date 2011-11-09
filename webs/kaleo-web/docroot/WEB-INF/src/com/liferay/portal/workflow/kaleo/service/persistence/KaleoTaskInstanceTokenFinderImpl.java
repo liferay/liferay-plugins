@@ -130,6 +130,51 @@ public class KaleoTaskInstanceTokenFinderImpl
 		}
 	}
 
+	protected List<Long> addUserRelatedRoleIds(User user, List<Long> roleIds)
+		throws Exception {
+
+		List<Group> userRelatedGroups = new ArrayList<Group>();
+
+		userRelatedGroups.addAll(user.getGroups());
+		userRelatedGroups.addAll(
+			GroupLocalServiceUtil.getOrganizationsGroups(
+				user.getOrganizations()));
+		userRelatedGroups.addAll(
+			GroupLocalServiceUtil.getOrganizationsRelatedGroups(
+				user.getOrganizations()));
+		userRelatedGroups.addAll(
+			GroupLocalServiceUtil.getUserGroupsGroups(
+				user.getUserGroups()));
+		userRelatedGroups.addAll(
+			GroupLocalServiceUtil.getUserGroupsRelatedGroups(
+				user.getUserGroups()));
+
+		List<Long> userRelatedRoleIds = new ArrayList<Long>();
+
+		for (Group group : userRelatedGroups) {
+			if (group.isUserGroup()) {
+				List <UserGroupGroupRole> userGroupGroupRoles =
+					UserGroupGroupRoleLocalServiceUtil.
+						getUserGroupGroupRoles(group.getClassPK());
+
+				for (UserGroupGroupRole userGroupGroupRole :
+						userGroupGroupRoles) {
+					roleIds.add(userGroupGroupRole.getRoleId());
+				}
+			}
+			else {
+				List<Role> groupRoles = RoleLocalServiceUtil.getGroupRoles(
+					group.getGroupId());
+
+				for (Role role : groupRoles) {
+					roleIds.add(role.getRoleId());
+				}
+			}
+		}
+
+		return roleIds;
+	}
+
 	protected SQLQuery buildKaleoTaskInstanceTokenQuerySQL(
 			KaleoTaskInstanceTokenQuery kaleoTaskInstanceTokenQuery,
 			boolean count, Session session)
@@ -493,53 +538,14 @@ public class KaleoTaskInstanceTokenFinderImpl
 			List<Long> roleIds = RoleUtil.getRoleIds(
 				kaleoTaskInstanceTokenQuery.getServiceContext());
 
-			List<UserGroupRole> userGroupRoles =
-				UserGroupRoleLocalServiceUtil.getUserGroupRoles(
-					kaleoTaskInstanceTokenQuery.getUserId());
-
-			List<Group> allGroups = new ArrayList<Group>();
-
 			User user = UserLocalServiceUtil.getUserById(
 				kaleoTaskInstanceTokenQuery.getUserId());
 
-			allGroups.addAll(user.getGroups());
-			allGroups.addAll(
-				GroupLocalServiceUtil.getOrganizationsGroups(
-					user.getOrganizations()));
+			roleIds = addUserRelatedRoleIds(user, roleIds);
 
-			allGroups.addAll(
-				GroupLocalServiceUtil.getOrganizationsRelatedGroups(
-					user.getOrganizations()));
-
-			allGroups.addAll(
-				GroupLocalServiceUtil.getUserGroupsGroups(
-					user.getUserGroups()));
-
-			allGroups.addAll(
-				GroupLocalServiceUtil.getUserGroupsRelatedGroups(
-					user.getUserGroups()));
-
-			for (Group group : allGroups) {
-				if (group.isUserGroup()) {
-					List<UserGroupGroupRole> userGroupGroupRoles =
-						UserGroupGroupRoleLocalServiceUtil
-							.getUserGroupGroupRoles(group.getClassPK());
-
-					for (UserGroupGroupRole userGroupGroupRole :
-							userGroupGroupRoles) {
-
-						roleIds.add(userGroupGroupRole.getRoleId());
-					}
-				}
-				else {
-					List<Role> groupRoles = RoleLocalServiceUtil.getGroupRoles(
-						group.getGroupId());
-
-					for (Role role : groupRoles) {
-						roleIds.add(role.getRoleId());
-					}
-				}
-			}
+			List<UserGroupRole> userGroupRoles =
+				UserGroupRoleLocalServiceUtil.getUserGroupRoles(
+					kaleoTaskInstanceTokenQuery.getUserId());
 
 			if (roleIds.isEmpty() && userGroupRoles.isEmpty()) {
 				return StringPool.BLANK;
@@ -778,52 +784,14 @@ public class KaleoTaskInstanceTokenFinderImpl
 			List<Long> roleIds = RoleUtil.getRoleIds(
 				kaleoTaskInstanceTokenQuery.getServiceContext());
 
-			List<UserGroupRole> userGroupRoles =
-				UserGroupRoleLocalServiceUtil.getUserGroupRoles(
-					kaleoTaskInstanceTokenQuery.getUserId());
-
 			User user = UserLocalServiceUtil.getUserById(
 					kaleoTaskInstanceTokenQuery.getUserId());
 
-			List<Group> allGroups = new ArrayList<Group>();
+			roleIds = addUserRelatedRoleIds(user, roleIds);
 
-			allGroups.addAll(user.getGroups());
-			allGroups.addAll(
-				GroupLocalServiceUtil.getOrganizationsGroups(
-					user.getOrganizations()));
-
-			allGroups.addAll(
-				GroupLocalServiceUtil.getOrganizationsRelatedGroups(
-					user.getOrganizations()));
-
-			allGroups.addAll(
-				GroupLocalServiceUtil.getUserGroupsGroups(
-					user.getUserGroups()));
-
-			allGroups.addAll(
-				GroupLocalServiceUtil.getUserGroupsRelatedGroups(
-					user.getUserGroups()));
-
-			for (Group group : allGroups) {
-				if (group.isUserGroup()) {
-					List <UserGroupGroupRole> userGroupGroupRoles =
-						UserGroupGroupRoleLocalServiceUtil
-							.getUserGroupGroupRoles(group.getClassPK());
-
-					for (UserGroupGroupRole userGroupGroupRole :
-							userGroupGroupRoles) {
-						roleIds.add(userGroupGroupRole.getRoleId());
-					}
-				}
-				else {
-					List<Role> groupRoles = RoleLocalServiceUtil.getGroupRoles(
-						group.getGroupId());
-
-					for (Role role : groupRoles) {
-						roleIds.add(role.getRoleId());
-					}
-				}
-			}
+			List<UserGroupRole> userGroupRoles =
+				UserGroupRoleLocalServiceUtil.getUserGroupRoles(
+					kaleoTaskInstanceTokenQuery.getUserId());
 
 			if (roleIds.isEmpty() && userGroupRoles.isEmpty()) {
 				return;
