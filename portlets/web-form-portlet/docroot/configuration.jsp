@@ -115,7 +115,7 @@ if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0
 					</liferay-portlet:resourceURL>
 
 					<%
-					String taglibExport = "submitForm(document.hrefFm, '" + exportURL + "');";
+					String taglibExport = "submitForm(document.hrefFm, '" + exportURL + "', false);";
 					%>
 
 					<aui:button onClick="<%= taglibExport %>" value="export-data" />
