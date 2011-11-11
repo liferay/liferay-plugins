@@ -64,7 +64,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 				<aui:layout cssClass="contact-group-filter">
 					<aui:select inlineField="true" label="" name="socialRelationType">
 						<aui:option label="all" selected='<%= socialRelationType == 0 %>' value="all" />
-						<aui:option label="connections" selected='<%= socialRelationType ==  SocialRelationConstants.TYPE_BI_CONNECTION %>' value="<%= SocialRelationConstants.TYPE_BI_CONNECTION %>" />
+						<aui:option label="connections" selected='<%= socialRelationType == SocialRelationConstants.TYPE_BI_CONNECTION %>' value="<%= SocialRelationConstants.TYPE_BI_CONNECTION %>" />
 						<aui:option label="following" selected='<%= socialRelationType == SocialRelationConstants.TYPE_UNI_FOLLOWER %>' value="<%= SocialRelationConstants.TYPE_UNI_FOLLOWER %>" />
 					</aui:select>
 				</aui:layout>

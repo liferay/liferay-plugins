@@ -268,7 +268,7 @@ public class LiferayActivityService implements ActivityService {
 		List<Activity> activities = new ArrayList<Activity>();
 
 		List<SocialActivity> socialActivities =
-			SocialActivityLocalServiceUtil.getUserActivities(userId, 0,  20);
+			SocialActivityLocalServiceUtil.getUserActivities(userId, 0, 20);
 
 		for (SocialActivity socialActivity : socialActivities) {
 			Activity activity = getActivity(themeDisplay, socialActivity);
